@@ -1,6 +1,9 @@
-# song
+# VueMobile
 
-> A Vue.js project
+> 按照IONIC2.x的组件样式及API编写基于Vue2.X的组件，大家看看源码就好，我也就是写写。
+
+项目使用vue-cli构建，如果对此熟悉则下面的启动说明应该就没问题了。
+
 
 ## Build Setup
 
