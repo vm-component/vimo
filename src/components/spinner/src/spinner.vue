@@ -1,113 +1,257 @@
 <template>
-  <div class="ion-spinner">
-    <svg viewBox="0 0 64 64" v-for="i in _c" [ngStyle]="i.style">
-      <circle [attr.r]="i.r" transform="translate(32,32)"></circle>
-    </svg>
-    <svg viewBox="0 0 64 64" *ngFor="let i of _l" [ngStyle]="i.style">
-      <line [attr.y1]="i.y1" [attr.y2]="i.y2" transform="translate(32,32)"></line>
-    </svg>
-  </div>
+    <div class="ion-spinner spinner" :class=[colorClass,nameClass]>
+        <svg v-if="!!circles && circles.length>0" viewBox="0 0 64 64" v-for="i in circles" :style="i.style">
+            <circle :r="i.r" transform="translate(32,32)"></circle>
+        </svg>
+        <!--<svg v-if="!!lines && lines.length>0" viewBox="0 0 64 64" v-for="i in lines" :stype="i.style">-->
+        <svg v-if="!!lines && lines.length>0" viewBox="0 0 64 64" v-for="i in lines" :style="i.style">
+            <line :y1="i.y1" :y2="i.y2" transform="translate(32,32)"></line>
+        </svg>
+    </div>
 </template>
 <style scoped lang="scss">
-  @import './spinner';
-  @import './spinner.ios';
-  @import './spinner.md';
-  @import './spinner.wp';
+    @import './spinner';
+    @import './spinner.ios';
+    @import './spinner.md';
+    @import './spinner.wp';
 
 </style>
 <script type="text/ecmascript-6">
-  export default{
-    prop: {
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: {
-        type: String,
-        default: '',
-      },
+    const CSS = {
+        transform: 'transform',
+        animationDelay: 'animation-delay',
+    };
 
-      /**
-       * mode 按钮平台 ios/window/android/we/alipay
-       * */
-      mode: {
-        type: String,
-        default: 'ios',
-      },
+    const SPINNERS = {
 
-      /**
-       * name 按钮风格
-       * */
-      name: {
-        type: String,
-        default: 'ios',
-      },
+        ios: {
+            dur: 1000,
+            lines: 12,
+            fn: function (dur, index, total) {
+                return {
+                    y1: 17,
+                    y2: 29,
+                    style: {
+                        [CSS.transform]: 'rotate(' + (30 * index + (index < 6 ? 180 : -180)) + 'deg)',
+                        [CSS.animationDelay]: -(dur - ((dur / total) * index)) + 'ms'
+                    }
+                };
+            }
+        },
 
-      /**
-       * duration 持续时间
-       * */
-      duration: {
-        type: String,
-        default: '0',
-      },
+        'ios-small': {
+            dur: 1000,
+            lines: 12,
+            fn: function (dur, index, total) {
+                return {
+                    y1: 12,
+                    y2: 20,
+                    style: {
+                        [CSS.transform]: 'rotate(' + (30 * index + (index < 6 ? 180 : -180)) + 'deg)',
+                        [CSS.animationDelay]: -(dur - ((dur / total) * index)) + 'ms'
+                    }
+                };
+            }
+        },
 
-      /**
-       * paused 是否暂停
-       * */
-      paused: {
-        type: Boolean,
-        default: false,
-      },
+        bubbles: {
+            dur: 1000,
+            circles: 9,
+            fn: function (dur, index, total) {
+                return {
+                    r: 5,
+                    style: {
+                        top: (9 * Math.sin(2 * Math.PI * index / total)) + 'px',
+                        left: (9 * Math.cos(2 * Math.PI * index / total)) + 'px',
+                        [CSS.animationDelay]: -(dur - ((dur / total) * index)) + 'ms'
+                    }
+                };
+            }
+        },
 
-    },
-    data(){
-      return {
-        _init:false,
-        _l:[],
-        _c:[],
+        circles: {
+            dur: 1000,
+            circles: 8,
+            fn: function (dur, index, total) {
+                return {
+                    r: 5,
+                    style: {
+                        top: (9 * Math.sin(2 * Math.PI * index / total)) + 'px',
+                        left: (9 * Math.cos(2 * Math.PI * index / total)) + 'px',
+                        [CSS.animationDelay]: -(dur - ((dur / total) * index)) + 'ms'
+                    }
+                };
+            }
+        },
 
+        crescent: {
+            dur: 750,
+            circles: 1,
+            fn: function (dur) {
+                return {
+                    r: 26,
+                    style: {}
+                };
+            }
+        },
 
-      }
-    },
-    watch: {},
-    computed: {
-      colorClass: function () {
+        dots: {
+            dur: 750,
+            circles: 3,
+            fn: function (dur, index, total) {
+                return {
+                    r: 6,
+                    style: {
+                        left: (9 - (9 * index)) + 'px',
+                        [CSS.animationDelay]: -(110 * index) + 'ms'
+                    }
+                };
+            }
+        }
 
-      },
+    };
 
-    },
-    methods: {
-      load:function () {
-        if (this._init) {
-          this._l = [];
-          this._c = [];
+    export default{
+        props: {
+            /**
+             * 按钮color：primary、secondary、danger、light、dark
+             * */
+            color: {
+                type: String,
+                default: '',
+            },
 
-          var name = this._name || this._config.get('spinner', 'ios');
+            /**
+             * mode 按钮平台 ios/window/android/we/alipay
+             * */
+            mode: {
+                type: String,
+                default: 'ios',
+            },
 
-          const spinner = SPINNERS[name];
-          if (spinner) {
-            if (spinner.lines) {
-              for (var i = 0, l = spinner.lines; i < l; i++) {
-                this._l.push(this._loadEle(spinner, i, l));
-              }
+            /**
+             * name 按钮风格
+             * ios/ios-small/bubbles/circles/crescent/dots
+             * */
+            name: {
+                type: String,
+                default: null,
+            },
 
-            } else if (spinner.circles) {
-              for (var i = 0, l = spinner.circles; i < l; i++) {
-                this._c.push(this._loadEle(spinner, i, l));
-              }
+            /**
+             * duration 持续时间
+             * */
+            duration: {
+                type: String,
+                default: '0',
+            },
+
+            /**
+             * paused 是否暂停
+             * */
+            paused: {
+                type: Boolean,
+                default: false,
             }
 
-            this.setElementClass(`spinner-${name}`, true);
-            this.setElementClass(`spinner-${this._mode}-${name}`, true);
-          }
-        }
-      }
-    },
-    created: function () {
-    },
-    mounted: function () {
-    },
-    activated: function () {
-    },
-    components: {}
-  }
+        },
+        data() {
+            return {
+                isInit: false,
+
+                /**
+                 * svg动画数组
+                 */
+                lines: null,
+                circles: null,
+
+                /**
+                 * ios/ios-small/bubbles/circles/crescent/dots
+                 * */
+                nameClass: null,
+            }
+        },
+        watch: {},
+        computed: {
+            // spinner-ios-#{$color-name}
+            // primary、secondary、danger、light、dark
+
+            colorClass: function () {
+                return !!this.color && `spinner-${this.mode}-${this.color}`
+            },
+            // 设置Alert的风格
+            modeClass: function () {
+                return `spinner-${this.mode}`
+            },
+            _dur: function () {
+                return parseInt(this.duration)
+            },
+        },
+        methods: {
+            load: function () {
+                const _this = this;
+                if (_this.isInit) {
+
+                    _this.lines = [];
+                    _this.circles = [];
+
+                    // _name: string;
+                    // _dur: number = null;
+                    // _init: boolean;
+                    // _paused: boolean = false;
+
+                    // 如果指定了name，则使用指定的name。
+                    // 如果没指定name，则根据设备别使用默认的name
+                    let name;
+                    if (!!_this.name) {
+                        name = _this.name;
+                    } else {
+                        if (_this.mode === 'ios') {
+                            name = 'ios';
+                        } else if (_this.mode === 'md') {
+                            name = 'crescent';
+                        } else if (_this.mode === 'wp') {
+                            name = 'circles';
+                        } else{
+                            name = 'ios';
+                        }
+                    }
+
+
+                    const spinner = SPINNERS[name];
+                    if (spinner) {
+                        if (spinner.lines) {
+                            for (var i = 0, l = spinner.lines; i < l; i++) {
+                                _this.lines.push(_loadEle(spinner, i, l));
+                            }
+
+                        } else if (spinner.circles) {
+                            for (var i = 0, l = spinner.circles; i < l; i++) {
+                                _this.circles.push(_loadEle(spinner, i, l));
+                            }
+                        }
+                        _this.nameClass = `spinner-${name} spinner-${_this.mode}-${name}`;
+                    }
+                }
+
+
+                function _loadEle(spinner, index, total) {
+                    let duration = _this._dur || spinner.dur;
+                    let data = spinner.fn(duration, index, total);
+                    data.style['animation-duration'] = parseInt(duration) + 'ms';
+                    return data;
+                }
+            }
+        },
+        created: function () {
+            const _this = this;
+            _this.isInit = true;
+            _this.load();
+        },
+        mounted: function () {
+        },
+        activated: function () {
+        },
+        components: {}
+    }
 </script>

@@ -20,6 +20,9 @@
       <router-link class="item" :to="{ name: 'toast'}" title="toast" tag="li">
         <span>toast</span>
       </router-link>
+      <router-link class="item" :to="{ name: 'spinner'}" title="spinner" tag="li">
+        <span>spinner</span>
+      </router-link>
     </ul>
   </div>
 </template>
