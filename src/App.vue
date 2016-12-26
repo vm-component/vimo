@@ -21,7 +21,7 @@
     methods: {
 
       goBack: function () {
-        window.$router.back();
+        window.$router.go(-1);
       }
     },
   }
