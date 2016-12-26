@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-spinner spinner" :class=[colorClass,nameClass]>
+    <div class="ion-spinner spinner" :class=[colorClass,nameClass,pausedClass]>
         <svg v-if="!!circles && circles.length>0" viewBox="0 0 64 64" v-for="i in circles" :style="i.style">
             <circle :r="i.r" transform="translate(32,32)"></circle>
         </svg>
@@ -143,7 +143,7 @@
              * */
             duration: {
                 type: String,
-                default: '0',
+                default: null,
             },
 
             /**
@@ -162,8 +162,8 @@
                 /**
                  * svg动画数组
                  */
-                lines: null,
-                circles: null,
+                lines: [],
+                circles: [],
 
                 /**
                  * ios/ios-small/bubbles/circles/crescent/dots
@@ -173,33 +173,22 @@
         },
         watch: {},
         computed: {
-            // spinner-ios-#{$color-name}
             // primary、secondary、danger、light、dark
-
             colorClass: function () {
-                return !!this.color && `spinner-${this.mode}-${this.color}`
+                return !!this.color ? `spinner-${this.mode}-${this.color}` : null
             },
             // 设置Alert的风格
             modeClass: function () {
-                return `spinner-${this.mode}`
+                return !!this.mode ? `spinner-${this.mode}` : null
             },
-            _dur: function () {
-                return parseInt(this.duration)
-            },
+            pausedClass: function () {
+                return !!this.paused ? "spinner-paused" : null
+            }
         },
         methods: {
             load: function () {
                 const _this = this;
                 if (_this.isInit) {
-
-                    _this.lines = [];
-                    _this.circles = [];
-
-                    // _name: string;
-                    // _dur: number = null;
-                    // _init: boolean;
-                    // _paused: boolean = false;
-
                     // 如果指定了name，则使用指定的name。
                     // 如果没指定name，则根据设备别使用默认的name
                     let name;
@@ -212,21 +201,21 @@
                             name = 'crescent';
                         } else if (_this.mode === 'wp') {
                             name = 'circles';
-                        } else{
+                        } else {
                             name = 'ios';
                         }
                     }
 
-
                     const spinner = SPINNERS[name];
+
                     if (spinner) {
                         if (spinner.lines) {
-                            for (var i = 0, l = spinner.lines; i < l; i++) {
+                            for (let i = 0, l = spinner.lines; i < l; i++) {
                                 _this.lines.push(_loadEle(spinner, i, l));
                             }
 
                         } else if (spinner.circles) {
-                            for (var i = 0, l = spinner.circles; i < l; i++) {
+                            for (let i = 0, l = spinner.circles; i < l; i++) {
                                 _this.circles.push(_loadEle(spinner, i, l));
                             }
                         }
@@ -234,9 +223,8 @@
                     }
                 }
 
-
                 function _loadEle(spinner, index, total) {
-                    let duration = _this._dur || spinner.dur;
+                    let duration = parseInt(_this.duration) || spinner.dur;
                     let data = spinner.fn(duration, index, total);
                     data.style['animation-duration'] = parseInt(duration) + 'ms';
                     return data;
@@ -247,11 +235,7 @@
             const _this = this;
             _this.isInit = true;
             _this.load();
-        },
-        mounted: function () {
-        },
-        activated: function () {
-        },
-        components: {}
+
+        }
     }
 </script>
