@@ -128,7 +128,6 @@
                 });
             },
 
-            //
             showDefaultWithNoTime: function () {
                 let loading = Loading.create({
                     content: 'Loading Please Wait...',
