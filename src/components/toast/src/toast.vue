@@ -4,7 +4,7 @@
                 v-on:before-enter="_beforeEnter"
                 v-on:after-enter="_afterEnter"
                 v-on:before-leave="_beforeLeave"
-                v-on:after-leave="_afterLeave">>
+                v-on:after-leave="_afterLeave">
       <div v-show="isActive" class="toast-wrapper" :class="[positionClass]">
         <div class="toast-container">
           <div class="toast-message" id="toast-hdr" v-if="message">{{message}}</div>

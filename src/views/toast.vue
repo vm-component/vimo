@@ -34,7 +34,7 @@
         })
         toast.present();
         toast.onDidDismiss(function () {
-          console.log('1 onDidDismiss')
+          console.debug('1 onDidDismiss')
         })
       },
       toastButtom: function () {
@@ -45,7 +45,7 @@
         })
         toast.present();
         toast.onDidDismiss(function () {
-          console.log('2 onDidDismiss')
+          console.debug('2 onDidDismiss')
         })
       },
       toastMiddle: function () {
@@ -56,7 +56,7 @@
         })
         toast.present();
         toast.onDidDismiss(function () {
-          console.log('3 onDidDismiss')
+          console.debug('3 onDidDismiss')
         })
       },
       toastMiddleWithBtn: function () {
@@ -68,7 +68,7 @@
         })
         toast.present();
         toast.onDidDismiss(function () {
-          console.log('4 onDidDismiss')
+          console.debug('4 onDidDismiss')
         })
       },
       showCloseBtnToast: function () {
@@ -82,7 +82,7 @@
         })
         toast.present();
         toast.onDidDismiss(function () {
-          console.log('5 onDidDismiss')
+          console.debug('5 onDidDismiss')
         })
       },
 
