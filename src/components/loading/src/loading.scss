@@ -17,6 +17,7 @@
   justify-content: center;
 
   contain: strict;
+
 }
 
 .loading-wrapper {
@@ -25,5 +26,9 @@
 
   align-items: center;
 
-  opacity: 0;
+  opacity: 1;
+
+  // addStyle
+  transition: all ease-in-out 200ms;
+  font-size: 14px;
 }
