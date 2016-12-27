@@ -171,7 +171,15 @@
                 nameClass: null,
             }
         },
-        watch: {},
+        watch: {
+            // 因为实例创建在前，赋值在后，如果name和duration改变则从新初始化
+            name:function () {
+                this.load()
+            },
+            duration:function () {
+                this.load()
+            }
+        },
         computed: {
             // primary、secondary、danger、light、dark
             colorClass: function () {
@@ -189,6 +197,12 @@
             load: function () {
                 const _this = this;
                 if (_this.isInit) {
+
+
+                    // 因为会涉及到再次渲染，故提前制空
+                    _this.lines = [];
+                    _this.circles = [];
+
                     // 如果指定了name，则使用指定的name。
                     // 如果没指定name，则根据设备别使用默认的name
                     let name;
@@ -205,7 +219,6 @@
                             name = 'ios';
                         }
                     }
-
                     const spinner = SPINNERS[name];
 
                     if (spinner) {
