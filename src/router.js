@@ -47,6 +47,11 @@ const routes = [
 		name: 'spinner',
 		component: require('./views/spinner.vue'),
 	},
+	{
+		path: '/loading',
+		name: 'loading',
+		component: require('./views/loading.vue'),
+	},
 ];
 
 
