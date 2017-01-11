@@ -14,6 +14,13 @@
     <ion-button shape="block">block</ion-button>
     <ion-button shape="round">round</ion-button>
 
+    <h4>Type</h4>
+    <!--solid-->
+    <ion-button type="solid" color="secondary">solid</ion-button>
+    <ion-button type="outline" color="secondary">outline</ion-button>
+    <ion-button type="clear" color="secondary">clear</ion-button>
+
+
     <h4>Outline</h4>
     <ion-button type="outline" shape="full" color="secondary">outline + full</ion-button>
     <ion-button type="outline" shape="block" color="secondary">outline + block</ion-button>
@@ -32,7 +39,10 @@
     <ion-button color="dark">
       No Icon
     </ion-button>
-    <ion-button color="dark icon-only">
+    <ion-button icon-only color="dark">
+      <ion-icon class="icon" name="star"></ion-icon>
+    </ion-button>
+    <ion-button icon-only color="dark">
       <ion-icon class="icon" name="star"></ion-icon>
     </ion-button>
     <ion-button  color="dark icon-right" icon-right>
