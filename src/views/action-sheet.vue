@@ -62,9 +62,6 @@
           ]
         });
 
-        console.log('actionSheet')
-        console.log(actionSheet)
-
         actionSheet.present().then(function (data) {
           console.log('ActionSheet present data')
           console.log(data)
