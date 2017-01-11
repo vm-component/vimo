@@ -1,6 +1,6 @@
 <template>
-  <button class="disable-hover button ion-button" @click="_click"
-          :class="[modeClass,typeClass,shapeClass,sizeClass,colorClass,roleClass,strongClass]">
+  <button class="disable-hover ion-button" @click="_click"
+          :class="[roleClass,modeClass,typeClass,shapeClass,sizeClass,colorClass,strongClass]">
     <span class="button-inner">
       <slot></slot>
     </span>
@@ -30,11 +30,11 @@
        * */
       size: {
         type: String,
-        default: 'default',
+        default: '',
       },
 
       /**
-       * 圆角还是直角：full(宽度100%无圆角)/block(宽度100%有圆角)/round(宽度auto有圆角)
+       * 形状：full(宽度100%无圆角)/block(宽度100%有圆角)/round(宽度auto有圆角)/menutoggle
        * */
       shape: {
         type: String,
@@ -46,7 +46,7 @@
        * */
       type: {
         type: String,
-        default: '',
+        default: 'default',
       },
 
       /**
@@ -58,11 +58,11 @@
       },
 
       /**
-       * role 按钮具体角色 例如 action-sheet-button
+       * role 按钮具体角色 例如 action-sheet-button/bar-button
        * */
       role: {
         type: String,
-        default: '',
+        default: 'button',
       },
 
       /**
@@ -79,25 +79,31 @@
     computed: {
       // 环境样式
       modeClass: function () {
-        return `button-${this.mode}`
+        return `${this.role}-${this.mode}`
       },
       // 颜色
       colorClass: function () {
-        return !!this.color ? (`button-${this.mode}-${this.color}`) : ''
+        return !!this.color ? (`${this.role}-${this.mode}-${this.color}`) : ''
       },
       shapeClass: function () {
         // button-round
-        return !!this.shape ? `button-${this.shape} button-${this.shape}-${this.mode}` : ''
+        return !!this.shape ? `${this.role}-${this.shape} ${this.role}-${this.shape}-${this.mode}` : ''
       },
       sizeClass: function () {
-        return !!this.size ? `button-${this.size} button-${this.size}-${this.mode}` : ''
+      	// if(this.role === 'button'){
+        //   return !!this.size ? `${this.role}-${this.size} ${this.role}-${this.size}-${this.mode}` : ''
+        // }else {
+      	// 	return ''
+        // }
+        return !!this.size ? `${this.role}-${this.size} ${this.role}-${this.size}-${this.mode}` : ''
+
       },
       typeClass: function () {
         if (!!this.type) {
           if (!!this.color) {
-            return `button-${this.type} button-${this.type}-${this.mode} button-${this.type}-${this.mode}-${this.color}`
+            return `${this.role}-${this.type} ${this.role}-${this.type}-${this.mode} ${this.role}-${this.type}-${this.mode}-${this.color}`
           } else {
-            return `button-${this.type} button-${this.type}-${this.mode}`
+            return `${this.role}-${this.type} ${this.role}-${this.type}-${this.mode}`
           }
         } else {
           return ''
@@ -114,7 +120,7 @@
       },
       // button-strong
       strongClass: function () {
-        return !!this.isStrong ? `button-strong-${this.mode}` : ''
+        return !!this.isStrong ? `${this.role}-strong-${this.mode}` : ''
       }
     },
     methods: {
