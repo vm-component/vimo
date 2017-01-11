@@ -10,9 +10,11 @@
         <ion-bubtton type="block" @click="showCrescent()">show crescent</ion-bubtton>
         <ion-bubtton type="block" @click="showDots()">show dots</ion-bubtton>
 
+        <p>showNoBackDrop</p>
+        <ion-bubtton type="block" @click="showNoBackDrop()">showNoBackDrop</ion-bubtton>
+
         <p>showDefaultWithNoTime</p>
         <ion-bubtton type="block" @click="showDefaultWithNoTime()">3000ms</ion-bubtton>
-
 
         <p>在一个loading中定时打开另一个</p>
         <ion-bubtton type="block" @click="showOther()">show default</ion-bubtton>
@@ -23,7 +25,6 @@
 
         <p>自定义内容</p>
         <ion-bubtton type="block" @click="showCusContent()">showCusContent</ion-bubtton>
-
 
     </div>
 </template>
@@ -128,6 +129,19 @@
                 });
             },
 
+            showNoBackDrop: function () {
+                let loading = Loading.create({
+                    spinner: 'ios',
+                    showBackdrop: false,
+                    duration: 1000,
+                    content: 'Loading Please Wait...'
+                });
+                loading.present();
+                loading.onDidDismiss(function () {
+                    console.debug('7 showDots onDidDismiss')
+                });
+            },
+
             showDefaultWithNoTime: function () {
                 let loading = Loading.create({
                     content: 'Loading Please Wait...',
@@ -163,8 +177,8 @@
                     let loading = Loading.create({
                         content: '这个是再上一个的上面开启的，backdrop将不再重复开启',
                         cssClass: 'cssClass',
-                        showBackdrop: true,
-                        duration: 1000,
+                        showBackdrop: false,
+                        duration: 2000,
                     });
                     loading.present();
                     loading.onDidDismiss(function () {
