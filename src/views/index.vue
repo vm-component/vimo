@@ -26,6 +26,9 @@
       <router-link class="item" :to="{ name: 'loading'}" title="loading" tag="li">
         <span>loading</span>
       </router-link>
+      <router-link class="item" :to="{ name: 'toolbar'}" title="toolbar" tag="li">
+        <span>toolbar</span>
+      </router-link>
     </ul>
   </div>
 </template>
