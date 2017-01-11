@@ -1,6 +1,6 @@
 <template>
-    <div id="ion-loading" class="ion-loading" :class="[modeClass,cssClass]">
-        <ion-backdrop :isActive="isActive" v-show="showBackdrop" :enableBackdropDismiss="false"></ion-backdrop>
+    <div class="ion-loading" :class="[modeClass,cssClass]">
+        <ion-backdrop :isActive="isActive" v-if="showBackdrop" :enableBackdropDismiss="false"></ion-backdrop>
         <transition name="loading"
                     v-on:before-enter="_beforeEnter"
                     v-on:after-enter="_afterEnter"
