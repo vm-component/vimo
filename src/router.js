@@ -52,6 +52,21 @@ const routes = [
 		name: 'loading',
 		component: require('./views/loading.vue'),
 	},
+	{
+		path: '/toolbar',
+		name: 'toolbar',
+		component: require('./views/toolbar.vue'),
+	},
+	{
+		path: '/segment',
+		name: 'segment',
+		component: require('./views/segment.vue'),
+	},
+	{
+		path: '/searchbar',
+		name: 'searchbar',
+		component: require('./views/searchbar.vue'),
+	},
 ];
 
 

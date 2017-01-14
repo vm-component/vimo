@@ -97,15 +97,6 @@
       mdClass: function () {
         return !!this.md ? ('ion-md' + '-' + this.md) : '';
       },
-
-
-    },
-    methods: {
-      _click: function () {
-        this.$emit('click', function () {
-          alert('inner')
-        })
-      }
     },
   }
 </script>

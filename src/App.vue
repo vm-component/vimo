@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <ion-app id="app">
     <h1 class="back">
       <span @click="goBack" v-if="$route.name !== 'index'">后退</span>
       <span v-else>Index</span>
@@ -7,10 +7,11 @@
     <div class="container">
       <router-view></router-view>
     </div>
-  </div>
+  </ion-app>
 </template>
 
 <script type="text/ecmascript-6">
+  import App from 'components/app'
 
   export default {
     name: 'app',
@@ -19,11 +20,14 @@
     },
 
     methods: {
-
       goBack: function () {
         window.$router.go(-1);
       }
     },
+    components:{
+    	'ion-app':App
+    }
+
   }
 
 </script>
@@ -31,16 +35,16 @@
 <style lang="scss">
 
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: left;
-    color: #2c3e50;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
+    /*-webkit-font-smoothing: antialiased;*/
+    /*-moz-osx-font-smoothing: grayscale;*/
+    /*text-align: left;*/
+    /*color: #2c3e50;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
     .back {
       position: fixed;
       top:0;

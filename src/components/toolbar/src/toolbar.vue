@@ -1,5 +1,5 @@
 <template>
- <div class="toolbar ion-toolbar" :class="[modeClass]">
+ <div class="toolbar ion-toolbar" :class="[modeClass,colorClass]">
      <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
      <slot name="ion-button"></slot>
      <!--<ng-content select="[menuToggle]ion-buttons[left]"></ng-content> -->
@@ -32,9 +32,20 @@
                 type: String,
                 default: 'ios',
             },
+            /**
+             * 按钮color：primary、secondary、danger、light、dark
+             * */
+            color:{
+                type: String,
+                default: '',
+            }
         },
         watch: {},
         computed: {
+            // 颜色
+            colorClass: function () {
+                return !!this.color ? (`toolbar-${this.mode}-${this.color}`) : ''
+            },
             // 环境样式
             modeClass:function () {
                 return `toolbar-${this.mode}`

@@ -1,5 +1,5 @@
 <template>
-  <button class="disable-hover ion-button" @click="_click"
+  <button class="disable-hover ion-button" @click="_click($event)"
           :class="[roleClass,modeClass,typeClass,shapeClass,sizeClass,colorClass,strongClass]">
     <span class="button-inner">
       <slot></slot>
@@ -124,10 +124,8 @@
       }
     },
     methods: {
-      _click: function () {
-        this.$emit('click', function () {
-          alert('inner')
-        })
+      _click: function ($event) {
+        this.$emit('click',$event)
       }
     },
   }

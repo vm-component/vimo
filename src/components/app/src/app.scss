@@ -1,17 +1,17 @@
 
 // Globals
 // --------------------------------------------------
-@import "../components/themes/ionic.globals";
+@import "../../themes/ionic.globals";
 
 
 // Normalize
 // --------------------------------------------------
-@import "../components/themes/normalize";
+@import "../../themes/normalize";
 
 
 // Util
 // --------------------------------------------------
-@import "../components/themes/util";
+@import "../../themes/util";
 
 
 // App Structure
@@ -63,10 +63,10 @@ body {
 // Nav Container Structure
 // --------------------------------------------------
 
-ion-app,
-ion-nav,
-ion-tab,
-ion-tabs,
+.ion-app,
+.ion-nav,
+.ion-tab,
+.ion-tabs,
 .app-root {
   position: absolute;
   top: 0;
@@ -78,24 +78,24 @@ ion-tabs,
   height: 100%;
 }
 
-ion-nav,
-ion-tab,
-ion-tabs {
+.ion-nav,
+.ion-tab,
+.ion-tabs {
   overflow: hidden;
 }
 
-ion-tab {
+.ion-tab {
   display: none;
 }
 
-ion-tab.show-tab {
+.ion-tab.show-tab {
   display: block;
 }
 
-ion-app,
-ion-nav,
-ion-tab,
-ion-tabs,
+.ion-app,
+.ion-nav,
+.ion-tab,
+.ion-tabs,
 .app-root,
 .ion-page {
   contain: strict;
@@ -127,7 +127,7 @@ ion-tabs,
 // Toolbar Container Structure
 // --------------------------------------------------
 
-ion-header {
+.ion-header {
   position: absolute;
   top: 0;
   left: 0;
@@ -137,7 +137,7 @@ ion-header {
   width: 100%;
 }
 
-ion-footer {
+.ion-footer {
   position: absolute;
   bottom: 0;
   left: 0;
