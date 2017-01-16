@@ -1,12 +1,14 @@
 <template>
   <ion-app id="app">
-    <h1 class="back">
-      <span @click="goBack" v-if="$route.name !== 'index'">后退</span>
-      <span v-else>Index</span>
-    </h1>
-    <div class="container">
+    <!--<h1 class="back">-->
+      <!--<span @click="goBack" v-if="$route.name !== 'index'">后退</span>-->
+      <!--<span v-else>Index</span>-->
+    <!--</h1>-->
+    <!--<div class="container">-->
+    <ion-nav>
       <router-view></router-view>
-    </div>
+    </ion-nav>
+    <!--</div>-->
   </ion-app>
 </template>
 

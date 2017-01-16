@@ -1,9 +1,28 @@
 <template>
 
-
-
-    <div class="index">
+    <ion-page>
         <ion-header>
+            <ion-navbar color="primary">
+                <!--start-->
+                <!--<ion-buttons start slot="ion-button">-->
+                    <!--<ion-button icon-only role="bar-button">-->
+                        <!--<ion-icon class="icon" name="contact"></ion-icon>-->
+                    <!--</ion-button>-->
+                <!--</ion-buttons>-->
+                <!--<ion-buttons start slot="ion-button">-->
+                    <!--<ion-button icon-only role="bar-button">-->
+                        <!--<ion-icon class="icon" name="search"></ion-icon>-->
+                    <!--</ion-button>-->
+                <!--</ion-buttons>-->
+                <!--start-->
+                <!--<ion-buttons end slot="ion-button">-->
+                    <!--<ion-button icon-only role="bar-button">-->
+                        <!--<ion-icon class="icon" name="more"></ion-icon>-->
+                    <!--</ion-button>-->
+                <!--</ion-buttons>-->
+                <!--title-->
+                <ion-title slot="content">VueMobile</ion-title>
+            </ion-navbar>
             <!--<ion-navbar>-->
             <!--<ion-title>Action Sheet</ion-title>-->
             <!--</ion-navbar>-->
@@ -45,53 +64,44 @@
                 <router-link class="item" :to="{ name: 'searchbar'}" title="searchbar" tag="li">
                     <span>searchbar</span>
                 </router-link>
+                <router-link class="item" :to="{ name: 'list'}" title="list" tag="li">
+                    <span>list</span>
+                </router-link>
             </ul>
         </ion-content>
         <!--<ion-content padding>-->
         <!--<button ion-button block (click)="present()">Basic Action Sheet</button>-->
         <!--</ion-content>-->
 
-
-    </div>
+    </ion-page>
 </template>
 <style lang="scss">
 
 
-    .index {
-        height: 100%;
-        width: 100%;
-        ul {
-            li {
-                padding-left: 10px;
-                margin: 5px 0;
-                &.title {
-                    background: #eee;
-                    font-size: 18px;
-                }
-                &.item {
-                    background: #fff;
-                    font-size: 20px;
-                }
-
+    ul {
+        li {
+            padding-left: 10px;
+            margin: 5px 0;
+            &.title {
+                background: #eee;
+                font-size: 18px;
             }
+            &.item {
+                background: #fff;
+                font-size: 20px;
+            }
+
         }
     }
 </style>
 <script type="text/ecmascript-6">
-    import Header from '../components/app/src/header.vue'
-    import Footer from '../components/app/src/footer.vue'
-    import Content from '../components/content'
 
     export default{
         name: 'index',
         data(){
             return {}
         },
-        components: {
-            'ion-header': Header,
-            'ion-footer': Footer,
-            'ion-content': Content,
-        }
+        components: {}
 
     }
 </script>

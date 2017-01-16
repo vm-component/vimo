@@ -1,17 +1,20 @@
 <template>
     <div class="ion-app" :class="[modeClass]">
         <!--app-root start-->
-        <div ref="viewport" app-viewport></div>
+        <div id="viewport" ref="viewport" app-viewport></div>
         <div class="app-root">
             <slot></slot>
         </div>
         <!--modal portal-->
-        <div ref="modalPortal" overlay-portal></div>
-        <!--overlay portal-->
-        <div ref="overlayPortal" overlay-portal></div>
+        <div id="modalPortal" ref="modalPortal" overlay-portal></div>
+        <!--蒙层指示等 overlay portal-->
+        <div id="overlayPortal" ref="overlayPortal" overlay-portal></div>
+        <!--alert portal-->
+        <div id="alertPortal" ref="alertPortal" overlay-portal></div>
         <!--loading portal-->
-        <div ref="loadingPortal" class="loading-portal" overlay-portal></div>
+        <div id="loadingPortal" ref="loadingPortal" class="loading-portal" overlay-portal></div>
         <!--toast portal-->
+        <div id="toastPortal" ref="toastPortal" class="toast-portal" overlay-portal></div>
         <!--<div ref="toastPortal" class="toast-portal" [overlay-portal]="10000"></div>-->
         <div class="click-block"></div>
     </div>

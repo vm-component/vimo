@@ -183,19 +183,22 @@
     </div>
 </template>
 <style lang="scss">
+    .main{
+        height: 100%;
+    }
 
 
 </style>
 <script type="text/ecmascript-6">
-    import Toolbar from '../components/toolbar/src/toolbar.vue';
-    import Title from '../components/toolbar/src/toolbar-title.vue';
-    import Buttons from '../components/toolbar/src/toolbar-buttons.vue';
-    import Button from '../components/button'
-    import Icon from '../components/icon'
-    import Segment from '../components/segment/src/segment.vue';
-    import SegmentButton from '../components/segment/src/segment-button.vue';
-
-    import Searchbar from '../components/searchbar'
+    // import Toolbar from '../components/toolbar/src/toolbar.vue';
+    // import Title from '../components/toolbar/src/toolbar-title.vue';
+    // import Buttons from '../components/toolbar/src/toolbar-buttons.vue';
+    // import Button from '../components/button'
+    // import Icon from '../components/icon'
+    // import Segment from '../components/segment/src/segment.vue';
+    // import SegmentButton from '../components/segment/src/segment-button.vue';
+    //
+    // import Searchbar from '../components/searchbar'
 
 
     export default{
@@ -250,14 +253,14 @@
         activated: function () {
         },
         components: {
-            'ion-toolbar': Toolbar,
-            'ion-title': Title,
-            'ion-buttons': Buttons,
-            'ion-button': Button,
-            'ion-icon': Icon,
-            'ion-segment': Segment,
-            'ion-segment-button': SegmentButton,
-            'ion-searchbar': Searchbar,
+            // 'ion-toolbar': Toolbar,
+            // 'ion-title': Title,
+            // 'ion-buttons': Buttons,
+            // 'ion-button': Button,
+            // 'ion-icon': Icon,
+            // 'ion-segment': Segment,
+            // 'ion-segment-button': SegmentButton,
+            // 'ion-searchbar': Searchbar,
         }
     }
 </script>

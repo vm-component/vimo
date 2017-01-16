@@ -67,6 +67,11 @@ const routes = [
 		name: 'searchbar',
 		component: require('./views/searchbar.vue'),
 	},
+	{
+		path: '/list',
+		name: 'list',
+		component: require('./views/list.vue'),
+	},
 ];
 
 

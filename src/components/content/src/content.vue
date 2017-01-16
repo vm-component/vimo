@@ -1,9 +1,9 @@
 <template>
-    <div class="ion-content">
-        <div class="fixed-content">
+    <div class="outer-content ion-content content-ios">
+        <div class="fixed-content" style="margin-top: 44px;">
             <!--<ng-content select="[ion-fixed],ion-fab"></ng-content>-->
         </div>
-        <div class="scroll-content">
+        <div class="scroll-content" style="margin-top: 44px;">
             <slot></slot>
             <!--<ng-content></ng-content>-->
         </div>
