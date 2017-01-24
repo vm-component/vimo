@@ -29,6 +29,10 @@ module.exports = {
     Vue.prototype.$setEnabled = _setEnabled;
     // 设置页面滚动状态
     Vue.prototype.$disableScroll = _disableScroll;
+    // 后退操作
+    Vue.prototype.$goBack = _goBack;
+    // 返回主视图(返回主页)
+    Vue.prototype.$goRoot = _goRoot;
 
     /**
      * 记录弹出层的挂载位置，默认挂在到_overlayPortal，位置为ion-app组件中
@@ -136,6 +140,17 @@ module.exports = {
      * */
     function _disableScroll (isScrollDisable) {
       _eventBus.$emit('$changeScrollDisableState',isScrollDisable)
+    }
+
+    /**
+     *
+     * */
+    function  _goBack() {
+
+    }
+
+    function _goRoot () {
+
     }
 
   }
