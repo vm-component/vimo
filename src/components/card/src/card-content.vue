@@ -1,46 +1,47 @@
 <template>
-    <div class="ion-card-content" :class="[modeClass,colorClass]">
-        <slot></slot>
-    </div>
+  <div class="ion-card-content" :class="[modeClass,colorClass]">
+    <slot></slot>
+  </div>
 </template>
 <script type="text/ecmascript-6">
-    export default{
-        data(){
-            return{
-            	componentName:'card-content'
-            }
-        },
-        props:{
-            /**
-             * 按钮color：primary、secondary、danger、light、dark
-             * */
-            color: {
-                type: String,
-                default: '',
-            },
-            /**
-             * mode 按钮风格 ios/window/android/we/alipay
-             * */
-            mode: {
-                type: String,
-                default: 'ios',
-            },
-        },
-        watch:{},
-        computed:{
-            // 环境样式
-            modeClass: function () {
-                return `${this.componentName} ${this.componentName}-${this.mode}`
-            },
-            // 颜色
-            colorClass: function () {
-                return !!this.color ? (`${this.componentName}-${this.mode}-${this.color}`) : ''
-            },
-        },
-        methods:{},
-        created:function(){},
-        mounted:function(){},
-        activated:function(){},
-        components:{}
-    }
+  export default{
+    name: 'ion-card-content',
+    data(){
+      return {
+        componentName: 'card-content'
+      }
+    },
+    props: {
+      /**
+       * 按钮color：primary、secondary、danger、light、dark
+       * */
+      color: {
+        type: String,
+        default: '',
+      },
+      /**
+       * mode 按钮风格 ios/window/android/we/alipay
+       * */
+      mode: {
+        type: String,
+        default: 'ios',
+      },
+    },
+    watch: {},
+    computed: {
+      // 环境样式
+      modeClass: function () {
+        return `${this.componentName} ${this.componentName}-${this.mode}`
+      },
+      // 颜色
+      colorClass: function () {
+        return !!this.color ? (`${this.componentName}-${this.mode}-${this.color}`) : ''
+      },
+    },
+    methods: {},
+    created: function () {},
+    mounted: function () {},
+    activated: function () {},
+    components: {}
+  }
 </script>

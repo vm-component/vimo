@@ -1,25 +1,23 @@
 <template>
-    <div class="ion-page show-page">
-        <slot></slot>
-    </div>
+  <div class="ion-page show-page" style="z-index:100">
+    <slot></slot>
+  </div>
 </template>
-<style lang="scss">
-
-</style>
 <script type="text/ecmascript-6">
-    export default{
-        data(){
-            return {}
-        },
-        watch: {},
-        computed: {},
-        methods: {},
-        created: function () {
-        },
-        mounted: function () {
-        },
-        activated: function () {
-        },
-        components: {}
-    }
+  export default{
+    name: 'ion-page',
+    data(){
+      return {}
+    },
+    watch: {},
+    computed: {},
+    methods: {},
+    created: function () {
+    },
+    mounted: function () {
+    },
+    activated: function () {
+    },
+    components: {}
+  }
 </script>

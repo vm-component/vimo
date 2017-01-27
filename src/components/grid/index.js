@@ -1,11 +1,11 @@
 /**
  * Created by Hsiang on 2017/1/17.
  */
-import grid from './src/grid.vue';
-import row from './src/row.vue';
-import col from './src/col.vue';
+import Grid from './src/grid.vue';
+import Row from './src/row.vue';
+import Col from './src/col.vue';
 module.exports = {
-	Grid:grid,
-	Row:row,
-	Col:col,
+  Grid,
+  Row,
+  Col,
 };

@@ -3,3 +3,16 @@
         <slot></slot>
     </div>
 </template>
+<script type="text/ecmascript-6">
+  export default{
+    name: 'ion-row',
+    data(){
+      return {
+      }
+    },
+    computed: {
+    },
+    mounted () {
+    }
+  }
+</script>

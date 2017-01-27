@@ -1,2 +1,9 @@
 import Toolbar from './src/toolbar.vue';
-module.exports = Toolbar;
+import ToolbarTitle from './src/toolbar-title.vue';
+import ToolbarButtons from './src/toolbar-buttons.vue';
+
+module.exports = {
+  Toolbar,
+  ToolbarTitle,
+  ToolbarButtons
+};
