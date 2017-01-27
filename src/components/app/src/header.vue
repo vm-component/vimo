@@ -25,16 +25,25 @@
     computed: {
       // set the mode class name
       // ios/md/wp
-      modeClass: function () {
+      modeClass () {
         return `header-${this.mode}`
       },
     },
     methods: {},
-    created: function () {
+    created () {
+      // 将挂载点同步到根this上
+      const _this = this;
+      _this.$eventBus.$emit('$headerReady', _this);
+
     },
-    mounted: function () {
+    mounted () {
+
     },
-    activated: function () {
+    activated () {
+    },
+    beforeDestroy:function () {
+      const _this = this;
+      _this.$eventBus.$emit('$headerDestroy', _this);
     },
     components: {}
   }
