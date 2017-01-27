@@ -1,22 +1,17 @@
 <template>
   <ion-app id="app">
-    <!--<h1 class="back">-->
-      <!--<span @click="goBack" v-if="$route.name !== 'index'">后退</span>-->
-      <!--<span v-else>Index</span>-->
-    <!--</h1>-->
-    <!--<div class="container">-->
     <ion-nav>
+      <div nav-viewport></div>
+      <!--业务视图部分-->
       <router-view></router-view>
+      <!--业务视图部分 end-->
+      <div class="nav-decor"></div>
     </ion-nav>
-    <!--</div>-->
   </ion-app>
 </template>
-
 <script type="text/ecmascript-6">
-  import App from 'components/app'
-
   export default {
-    name: 'app',
+    name: 'app-root',
     data: function () {
       return {}
     },
@@ -26,10 +21,6 @@
         window.$router.go(-1);
       }
     },
-    components:{
-    	'ion-app':App
-    }
-
   }
 
 </script>

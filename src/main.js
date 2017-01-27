@@ -6,22 +6,16 @@ import router from './router.js';
 import attachFastClick from 'fastclick';
 new attachFastClick(document.body);
 
-import './register'
+// import './register'
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 组件注册
+import Components from './components'
+Vue.use(Components,{
+  // 组件初始化参数
+  a:1,
+  b:1,
+});
 
 
 /**
@@ -34,9 +28,9 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-    mounted:function () {
-      console.log('root this;')
-      console.log(this)
-    },
+  mounted: function () {
+    // console.log('root this;')
+    // console.log(this)
+  },
   components: {App}
 });

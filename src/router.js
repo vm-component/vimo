@@ -12,6 +12,11 @@ const routes = [
 		name: 'index',
 		component: require('./views/index.vue'),
 	},
+  {
+    path: '/app',
+    name: 'app',
+    component: require('./views/app.vue'),
+  },
 	{
 		path: '/action-sheet',
 		name: 'actionSheet',
@@ -71,6 +76,16 @@ const routes = [
 		path: '/list',
 		name: 'list',
 		component: require('./views/list.vue'),
+	},
+	{
+		path: '/tabs',
+		name: 'tabs',
+		component: require('./views/tabs.vue'),
+	},
+	{
+		path: '/content',
+		name: 'content',
+		component: require('./views/content.vue'),
 	},
 ];
 
