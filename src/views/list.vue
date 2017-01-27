@@ -2,7 +2,7 @@
     <ion-page>
         <ion-header>
             <ion-navbar>
-                <ion-title slot="content">List</ion-title>
+                <ion-title slot="content" title="List"></ion-title>
             </ion-navbar>
         </ion-header>
         <ion-content>

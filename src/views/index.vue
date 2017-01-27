@@ -30,6 +30,12 @@
     <ion-content>
       <ul>
         <li class="title">组件</li>
+
+        <router-link class="item" :to="{ name: 'app'}" title="app" tag="li">
+          <span>app</span>
+        </router-link>
+
+
         <router-link class="item" :to="{ name: 'actionSheet'}" title="actionSheet" tag="li">
           <span>actionSheet</span>
         </router-link>
@@ -99,11 +105,8 @@
   }
 </style>
 <script type="text/ecmascript-6">
-  import commonMixin from '../components/commonMixIn'
-  import Vue from 'vue'
   export default{
     name: 'index',
-    mixins: [commonMixin],
     data(){
       return {
         mixin2: true,
@@ -111,26 +114,30 @@
     },
     mounted:function () {
       const _this = this;
-      console.log('page index this->')
+      // console.log('page index this->')
       // console.log(this)
       // console.log(this.$setTitle('ionic'))
       // console.log(Vue.$setTitle('ionic'))
-      setTimeout(function () {
-        console.log('change title')
-        _this.$setTitle('ionic',true)
-        console.debug(_this.$getTitle())
+      // setTimeout(function () {
+        // console.log('change title')
+        // _this.$setTitle('ionic',true)
+        // console.debug(_this.$getTitle())
 
+        // _this.$setEnabled(false,5000)
+      // },2000)
 
-        _this.$setEnabled(false,5000)
-      },2000)
-
-      console.log('view index this')
+      // console.log('view index this')
       // console.log(this)
       // console.log(this.$modalPortal)
       // console.log(this.$overlayPortal)
       // console.log(this.$LoadingPortal)
       // console.log(this.$toastPortal)
-      console.log(this.$portal)
+      // console.log(this.$portal)
+
+      console.debug('_this.$hasHeaderBar')
+      console.debug(_this.$hasHeaderBar)
+      console.debug(_this.$hasFooterBar)
+
     },
     components: {}
 

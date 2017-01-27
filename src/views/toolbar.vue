@@ -2,7 +2,9 @@
   <ion-page>
     <ion-header>
       <ion-navbar>
-        <ion-title slot="content">Toolbar</ion-title>
+        <ion-title slot="content">
+          <span>Toolbar</span>
+        </ion-title>
       </ion-navbar>
     </ion-header>
     <ion-content>
@@ -220,10 +222,8 @@
   // import SegmentButton from '../components/segment/src/segment-button.vue';
   //
   // import Searchbar from '../components/searchbar'
-  import commonMixin from '../components/commonMixIn'
 
   export default{
-    mixins: [commonMixin],
     data(){
       return {
         relationship8: 'friend1',
