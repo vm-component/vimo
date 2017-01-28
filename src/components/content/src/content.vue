@@ -33,6 +33,9 @@
         dimensions: {}, // content内容的尺寸
         isScrolling: false, // 判断是否滚动
         // $scrollContent: null, // scrollConent的DOM句柄，此变量在全局声明
+        scrollPadding: 0, // scroll-content的paddingBottom，用于键盘的显示
+        originalScrollPadding: 0, // 原始的scrollPaddingBottom的值
+        isInputting: false, // 正在输入
       }
     },
     watch: {
@@ -53,6 +56,8 @@
         // 得到header和footer的高度
         const HEADER_BAR = parseInt(getStyle(document.querySelectorAll('.header')[0], 'height'));
         const FOOTER_BAR = parseInt(getStyle(document.querySelectorAll('.footer')[0], 'height'));
+
+        _this.originalScrollPadding = FOOTER_BAR;
 
         if (_this.$hasStatusBar) {
           _valHeader = HEADER_BAR + 20; // 存在statusBar的情况下，header高20px
@@ -120,7 +125,6 @@
         };
         return _this.$scrollDimensions
       },
-
 
       /**
        * 重新计算scroll的尺寸，当动态添加header/footer或者修改了他的属性
@@ -200,7 +204,7 @@
           }
 
           if (fromX !== x) {
-            this.$scrollContent.scrollLeft = Math.floor((easedT * (x - fromX)) + fromX);
+            _this.$scrollContent.scrollLeft = Math.floor((easedT * (x - fromX)) + fromX);
           }
 
           if (easedT < 1) {
@@ -216,7 +220,6 @@
         }
 
         // return promise;
-
       },
 
       /**
@@ -240,6 +243,62 @@
         return this.scrollTo(0, y, duration);
       },
 
+      /**
+       * addScrollPadding
+       * 当键盘弹起的时候，给scroll-content增加一个padding-bottom，
+       * 这样的话，输入内容的input能展示到显示位置
+       * DOM WRITE
+       * Adds padding to the bottom of the scroll element when the keyboard is open
+       * so content below the keyboard can be scrolled into view.
+       * @param {number} newPadding
+       * */
+      addScrollPadding(newPadding){
+        const _this = this;
+        console.debug('addScrollPadding');
+
+        _this.scrollPadding = newPadding;
+        if (_this.$scrollContent) {
+          _this.$scrollContent.style.paddingBottom = (newPadding > 0) ? (newPadding + 'px' ) : (_this.originalScrollPadding + 'px');
+        }
+      },
+
+      /**
+       * 当focusOut的时候（键盘收起），恢复paddingBottom
+       * */
+      clearScrollPaddingFocusOut(){
+        const _this = this;
+        console.debug('clearScrollPaddingFocusOut');
+        const SCROLL_TRANSITION_TIME = _this.$config.scrollTransitionTime;
+        const KEYBOARD_HEIGHT = _this.$config.keyboardHeight;
+        if (!_this.isInputting) {
+          _this.isInputting = true;
+
+          // TODO: 这部分为伪代码，标识监听壳子的键盘关闭事件
+          // _this.$eventBus.$on('$keyboardClose', function () {
+          _this.isInputting = false;
+          _this.scrollPadding = _this.originalScrollPadding;
+
+          var y_bottom = this.$scrollContent.scrollHeight - this.$scrollContent.clientHeight;
+          var y_current = _this.$scrollContent.scrollTop - KEYBOARD_HEIGHT;
+          _this.scrollTo(0, Math.min(y_bottom, y_current), SCROLL_TRANSITION_TIME);
+          setTimeout(function () {
+            _this.addScrollPadding(0);
+          }, SCROLL_TRANSITION_TIME);
+
+        }
+      },
+
+      keyBoardOpen(){
+        const _this = this;
+        let _padding = _this.$config.keyboardHeight;
+        _this.addScrollPadding(_padding);
+        // scroll
+        _this.scrollTo(0, (_this.$scrollContent.scrollTop + _padding));
+      },
+
+      keyBoardClose(){
+        this.clearScrollPaddingFocusOut();
+      },
 
     },
     created () {
