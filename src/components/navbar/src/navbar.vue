@@ -1,5 +1,5 @@
 <template>
-  <!-- statusbar-padding-->
+  <!--$hasStatusBar在index中配置-->
   <div class="ion-navbar toolbar"
        :class="[modeClass,colorClass,{'statusbar-padding':$hasStatusBar}]">
     <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
@@ -10,7 +10,8 @@
       <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
     </ion-button>
 
-    <slot name="ion-button"></slot>
+    <!--button/menuToggle-->
+    <slot name="button"></slot>
 
     <!--<ng-content select="[menuToggle],ion-buttons[left]"></ng-content>-->
     <!--<ng-content select="ion-buttons[start]"></ng-content>-->
@@ -84,16 +85,17 @@
         return `toolbar-content-${this.mode}`
       },
       showBackButton: function () {
-        console.log('showBackButton')
-        console.log(window.history)
-        console.log(window.history.length)
-        console.log(window.history.length > 0)
-        return window.history.length > 0
+        // console.log('showBackButton')
+        // console.log(window.history)
+        // console.log(window.history.length)
+        // console.log(window.history.length > 0)
+        return !this.hideBackButton
       },
     },
     methods: {
       backButtonClick: function ($event) {
-
+        //TODO: 这部分需要特殊处理
+        this.$router.back();
       },
     },
     created: function () {

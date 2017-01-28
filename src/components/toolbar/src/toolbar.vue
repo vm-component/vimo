@@ -1,7 +1,7 @@
 <template>
   <div class="toolbar ion-toolbar" :class="[modeClass,colorClass]">
     <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
-    <slot name="ion-button"></slot>
+    <slot name="button"></slot>
     <!--<ng-content select="[menuToggle]ion-buttons[left]"></ng-content> -->
     <!--<ng-content select="ion-buttons[start]"></ng-content> -->
     <!--<ng-content select="ion-buttons[end]ion-buttons[right]"></ng-content> -->
