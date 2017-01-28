@@ -1,25 +1,13 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-navbar color="primary">
-        <!--start-->
-        <!--<ion-buttons start slot="ion-button">-->
-        <!--<ion-button icon-only role="bar-button">-->
-        <!--<ion-icon class="icon" name="contact"></ion-icon>-->
-        <!--</ion-button>-->
-        <!--</ion-buttons>-->
-        <!--<ion-buttons start slot="ion-button">-->
-        <!--<ion-button icon-only role="bar-button">-->
-        <!--<ion-icon class="icon" name="search"></ion-icon>-->
-        <!--</ion-button>-->
-        <!--</ion-buttons>-->
-        <!--start-->
-        <!--<ion-buttons end slot="ion-button">-->
-        <!--<ion-button icon-only role="bar-button">-->
-        <!--<ion-icon class="icon" name="more"></ion-icon>-->
-        <!--</ion-button>-->
-        <!--</ion-buttons>-->
-        <!--title-->
+      <!--menutoggle-->
+      <ion-navbar color="primary" :hideBackButton="true">
+        <!--menutoggle-->
+        <ion-button left icon-only role="bar-button" shape="menutoggle" slot="button">
+          <ion-icon class="icon" name="menu"></ion-icon>
+        </ion-button>
+
         <ion-title slot="content" title="VueMobile"></ion-title>
       </ion-navbar>
       <!--<ion-navbar>-->
@@ -28,6 +16,7 @@
     </ion-header>
 
     <ion-content>
+
       <ul>
         <li class="title">组件</li>
 
@@ -112,32 +101,8 @@
         mixin2: true,
       }
     },
-    mounted:function () {
+    mounted: function () {
       const _this = this;
-      // console.log('page index this->')
-      // console.log(this)
-      // console.log(this.$setTitle('ionic'))
-      // console.log(Vue.$setTitle('ionic'))
-      // setTimeout(function () {
-        // console.log('change title')
-        // _this.$setTitle('ionic',true)
-        // console.debug(_this.$getTitle())
-
-        // _this.$setEnabled(false,5000)
-      // },2000)
-
-      // console.log('view index this')
-      // console.log(this)
-      // console.log(this.$modalPortal)
-      // console.log(this.$overlayPortal)
-      // console.log(this.$LoadingPortal)
-      // console.log(this.$toastPortal)
-      // console.log(this.$portal)
-
-      console.debug('_this.$hasHeaderBar')
-      console.debug(_this.$hasHeaderBar)
-      console.debug(_this.$hasFooterBar)
-
     },
     components: {}
 

@@ -1,12 +1,14 @@
 <template>
   <ion-page>
-    <ion-header class="statusbar-padding" style="opacity:0.9">
+    <ion-header style="opacity:0.9">
       <ion-navbar>
         <ion-title slot="content" title="ion-app test"></ion-title>
       </ion-navbar>
     </ion-header>
 
     <ion-content :fullscreen="fullscreenVal">
+
+
       <ion-button @click="scrollToBottom()">滚动到底部</ion-button>
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
@@ -20,6 +22,9 @@
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
+      <ion-button @click="$keyBoardOpen()" type="">打开键盘的Padding</ion-button>
+      <ion-button @click="$keyBoardClose()" type="">关闭键盘的Padding</ion-button>
+
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
@@ -38,9 +43,10 @@
 
       <ion-button @click="scrollToTop()" type="">返回顶部</ion-button>
 
+
     </ion-content>
 
-    <ion-footer class="statusbar-padding" style="opacity:0.9">
+    <ion-footer style="opacity:0.9">
       <ion-toolbar>
         <ion-title slot="content" title="ion-app test"></ion-title>
       </ion-toolbar>
@@ -58,7 +64,7 @@
   export default{
     data(){
       return {
-        fullscreenVal: false
+        fullscreenVal: true
       }
     },
     watch: {},
@@ -74,20 +80,8 @@
     created: function () {},
     mounted: function () {
       const _this = this;
-      console.debug('view-app')
-      console.debug(_this.$dimensions)
-      console.debug(_this.$dimensions.contentHeight)
-      console.debug('_this.$hasHeaderBar')
-      console.debug(_this.$hasHeaderBar)
-      console.debug(_this.$hasFooterBar)
-
-      // setTimeout(function () {
-      //   _this.fullscreenVal = true
-      // },8000)
-
-      // _this.$scrollToBottom(500);
-
-
+      console.debug('app this')
+      console.debug(this)
     },
     activated: function () {},
     components: {}

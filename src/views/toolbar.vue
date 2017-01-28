@@ -17,18 +17,18 @@
       <!--2-->
       <ion-toolbar color="danger">
         <!--start-->
-        <ion-buttons start slot="ion-button">
+        <ion-buttons start slot="button">
           <ion-button icon-only role="bar-button">
             <ion-icon class="icon" name="contact"></ion-icon>
           </ion-button>
         </ion-buttons>
-        <ion-buttons start slot="ion-button">
+        <ion-buttons start slot="button">
           <ion-button icon-only role="bar-button">
             <ion-icon class="icon" name="search"></ion-icon>
           </ion-button>
         </ion-buttons>
         <!--start-->
-        <ion-buttons end slot="ion-button">
+        <ion-buttons end slot="button">
           <ion-button icon-only role="bar-button">
             <ion-icon class="icon" name="more"></ion-icon>
           </ion-button>
@@ -40,18 +40,18 @@
       <!--3-->
       <ion-toolbar>
         <!--start-->
-        <ion-buttons start slot="ion-button">
+        <ion-buttons start slot="button">
           <ion-button icon-only role="bar-button" color="danger">
             <ion-icon class="icon" name="contact"></ion-icon>
           </ion-button>
         </ion-buttons>
-        <ion-buttons start slot="ion-button">
+        <ion-buttons start slot="button">
           <ion-button icon-only role="bar-button" color="secondary">
             <ion-icon class="icon" name="search"></ion-icon>
           </ion-button>
         </ion-buttons>
         <!--end-->
-        <ion-buttons end slot="ion-button">
+        <ion-buttons end slot="button">
           <ion-button icon-only role="bar-button" color="danger">
             <ion-icon class="icon" name="more"></ion-icon>
           </ion-button>
@@ -63,14 +63,14 @@
       <!--4-->
       <ion-toolbar>
         <!--start-->
-        <ion-buttons start slot="ion-button">
+        <ion-buttons start slot="button">
           <ion-button icon-only role="bar-button" type="solid">
             <ion-icon class="icon" name="contact"></ion-icon>
           </ion-button>
         </ion-buttons>
 
         <!--end-->
-        <ion-buttons end slot="ion-button">
+        <ion-buttons end slot="button">
           <ion-button icon-right role="bar-button" color="secondary" type="solid">
             Help
             <ion-icon class="icon" name="help-circle"></ion-icon>
@@ -83,14 +83,14 @@
       <!--5-->
       <ion-toolbar>
         <!--start-->
-        <ion-buttons start slot="ion-button">
+        <ion-buttons start slot="button">
           <ion-button icon-only role="bar-button" type="outline">
             <ion-icon class="icon" name="contact"></ion-icon>
           </ion-button>
         </ion-buttons>
 
         <!--end-->
-        <ion-buttons end slot="ion-button">
+        <ion-buttons end slot="button">
           <ion-button icon-right role="bar-button" color="secondary" type="outline">
             Help
             <ion-icon class="icon" name="help-circle"></ion-icon>
@@ -103,7 +103,7 @@
       <!--6-->
       <ion-toolbar>
         <!--menutoggle-->
-        <ion-button icon-only role="bar-button" shape="menutoggle" slot="ion-button">
+        <ion-button icon-only role="bar-button" shape="menutoggle" slot="button">
           <ion-icon class="icon" name="menu"></ion-icon>
         </ion-button>
         <!--title-->
@@ -113,7 +113,7 @@
       <!--7-->
       <ion-toolbar>
         <!--menutoggle-->
-        <ion-button right icon-only role="bar-button" shape="menutoggle" slot="ion-button">
+        <ion-button right icon-only role="bar-button" shape="menutoggle" slot="button">
           <ion-icon class="icon" name="menu"></ion-icon>
         </ion-button>
         <!--title-->
@@ -123,7 +123,7 @@
       <!--7-->
       <ion-toolbar>
         <!--menutoggle-->
-        <ion-buttons end slot="ion-button">
+        <ion-buttons end slot="button">
           <ion-button icon-only role="bar-button">
             <ion-icon class="icon" name="search"></ion-icon>
           </ion-button>
@@ -135,7 +135,7 @@
       <!--8-->
       <ion-toolbar>
         <!--menutoggle-->
-        <ion-buttons end slot="ion-button">
+        <ion-buttons end slot="button">
           <ion-button icon-only role="bar-button">
             <ion-icon class="icon" name="search"></ion-icon>
           </ion-button>
