@@ -33,8 +33,9 @@
     created () {
       // 将挂载点同步到根this上
       const _this = this;
-      _this.$eventBus.$emit('$headerReady', _this);
-
+      if (_this.$parent.$options._componentTag != 'ion-menu') {
+        _this.$eventBus.$emit('$headerReady', _this);
+      }
     },
     mounted () {
 
@@ -42,8 +43,7 @@
     activated () {
     },
     beforeDestroy:function () {
-      const _this = this;
-      _this.$eventBus.$emit('$headerDestroy', _this);
+
     },
     components: {}
   }

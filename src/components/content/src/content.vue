@@ -17,7 +17,7 @@
 
 </style>
 <script type="text/ecmascript-6">
-  import { getStyle } from '../../../utils/assist'
+  import { getStyle, getNum } from '../../../utils/assist'
   export default{
     name: 'ion-content',
     props: {
@@ -52,17 +52,30 @@
       computeScrollContentStyle () {
         let _this = this;
         let _valHeader, _styleType;
+        let headerBarHeight = 0;
+        let footerBarHeight = 0;
 
         // 得到header和footer的高度
-        const HEADER_BAR = parseInt(getStyle(document.querySelectorAll('.header')[0], 'height'));
-        const FOOTER_BAR = parseInt(getStyle(document.querySelectorAll('.footer')[0], 'height'));
+        // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
+        // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
+        // 而不是全局
+        _this.$parent.$children.forEach(function (item) {
+          if (item.$options._componentTag === 'ion-header') {
+            headerBarHeight = getNum(getStyle(item.$el, 'height'));
+          }
+          if (item.$options._componentTag === 'ion-footer') {
+            footerBarHeight = getNum(getStyle(item.$el, 'height'));
+          }
+        });
 
-        _this.originalScrollPadding = FOOTER_BAR;
+        // 获取原始的footer的Height，用于keyboard的复原
+        _this.originalScrollPadding = footerBarHeight;
 
         if (_this.$hasStatusBar) {
-          _valHeader = HEADER_BAR + 20; // 存在statusBar的情况下，header高20px
+          // 存在statusBar的情况下，header高20px
+          _valHeader = headerBarHeight + _this.$config.statusBarHeight;
         } else {
-          _valHeader = HEADER_BAR
+          _valHeader = headerBarHeight
         }
 
         if (_this.fullscreen) {
@@ -80,7 +93,7 @@
           _this.fixedContentStyle[_styleType + 'Top'] = _valHeader + 'px';
         }
         if (_this.$hasFooterBar) {
-          _this.scrollContentStyle[_styleType + 'Bottom'] = FOOTER_BAR + 'px';
+          _this.scrollContentStyle[_styleType + 'Bottom'] = footerBarHeight + 'px';
         }
 
         // 计算尺寸
@@ -304,7 +317,10 @@
     created () {
       // 将挂载点同步到根this上
       const _this = this;
-      _this.$eventBus.$emit('$contentReady', _this);
+      // ion-page -> ion-content
+      if (_this.$parent.$options._componentTag === 'ion-page') {
+        _this.$eventBus.$emit('$contentReady', _this);
+      }
     },
     mounted() {
       const _this = this;
@@ -342,6 +358,9 @@
           _this.$emit('ionScrollEnd', event);
         }, 400);
       });
+
+      //
+
     }
   }
 </script>
