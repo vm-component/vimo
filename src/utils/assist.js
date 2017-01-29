@@ -23,6 +23,7 @@ module.exports = {
   oneOf: _oneOf,
   camelcaseToHyphen: _camelcaseToHyphen,
   MutationObserver: _MutationObserver,
+  getNum: _getNum,
 };
 
 
@@ -189,4 +190,19 @@ function _getScrollBarSize (fresh) {
     cached = widthContained - widthScroll;
   }
   return cached;
+}
+
+/**
+ * @desc 从字符串中提取数字
+ * @param {string} str
+ * @return {number}
+ * @example 44px => 44
+ * @example auto => 0
+ * */
+function _getNum (str) {
+  let _num = str.replace(/[^0-9]/ig, "");
+  if (_num === '' || _num === undefined || _num === null) {
+    _num = 0;
+  }
+  return _num * 1
 }
