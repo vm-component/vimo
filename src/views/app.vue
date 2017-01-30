@@ -64,7 +64,7 @@
   export default{
     data(){
       return {
-        fullscreenVal: true
+        fullscreenVal: false
       }
     },
     watch: {},
@@ -80,8 +80,8 @@
     created: function () {},
     mounted: function () {
       const _this = this;
-      console.debug('app this')
-      console.debug(this)
+      // console.debug('app this')
+      // console.debug(this)
     },
     activated: function () {},
     components: {}

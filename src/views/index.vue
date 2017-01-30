@@ -1,10 +1,11 @@
 <template>
   <ion-page>
+    <!--content-->
     <ion-header>
       <!--menutoggle-->
       <ion-navbar color="primary" :hideBackButton="true">
         <!--menutoggle-->
-        <ion-button left icon-only role="bar-button" shape="menutoggle" slot="button">
+        <ion-button @click="$toggleMenu()" left icon-only role="bar-button" shape="menutoggle" slot="button">
           <ion-icon class="icon" name="menu"></ion-icon>
         </ion-button>
 
@@ -14,7 +15,6 @@
       <!--<ion-title>Action Sheet</ion-title>-->
       <!--</ion-navbar>-->
     </ion-header>
-
     <ion-content>
 
       <ul>

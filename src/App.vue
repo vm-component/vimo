@@ -1,5 +1,25 @@
 <template>
   <ion-app id="app">
+
+    <!--menu-->
+    <ion-menu id="menu1" side="left">
+      <!--<ion-menu [content]="content" id="menu1">-->
+      <ion-header>
+        <ion-toolbar color="secondary">
+          <ion-title slot="content" title="Menu 1"></ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-button>
+            <!--<button ion-item menuClose="menu1" detail-none>-->
+            Close Menu 1
+          </ion-button>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+
     <ion-nav>
       <div nav-viewport></div>
       <!--业务视图部分-->
@@ -40,7 +60,7 @@
     /*height: 100%;*/
     .back {
       position: fixed;
-      top:0;
+      top: 0;
 
       width: 100%;
       text-align: left;
