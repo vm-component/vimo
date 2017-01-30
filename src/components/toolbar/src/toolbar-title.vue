@@ -10,7 +10,9 @@
     name: 'ion-title',
     data(){
       return {
-        titleInner: this.title
+        titleInner: this.title,
+        isInPage:false, // 该组件只是在ion-page中，中间没有ion-menu
+        isInPageHeader:false, // 该组件在ion-page -> ion-header中
       }
     },
     props: {
@@ -99,16 +101,18 @@
     created(){
       // 将挂载点同步到根this上
       const _this = this;
+      _this.isInPage = _this.$parent.$parent.$parent.$options._componentTag === 'ion-page';
+      _this.isInPageHeader = _this.$parent.$parent.$options._componentTag === 'ion-header' &&  _this.isInPage;
       // 保证战歌ion-title不是包含在ion-menu中的。
       // ion-page -> ion-header -> ion-toolbar/ion-navbar -> ion-title
-      if (_this.$parent.$parent.$parent.$options._componentTag === 'ion-page') {
+      if (_this.isInPageHeader) {
         _this.$eventBus.$emit('$titleReady', _this);
       }
     },
     mounted(){
       const _this = this;
-      if (_this.$parent.$parent.$parent.$options._componentTag === 'ion-page') {
-        _this.titleInner = _this.getTitle();
+      _this.titleInner = _this.getTitle();
+      if (_this.isInPageHeader) {
         _this.setTitle(_this.titleInner)
       }
     }
