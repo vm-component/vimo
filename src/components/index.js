@@ -25,12 +25,15 @@ import { Card, CardContent, CardHeader, CardTitle } from './card'
 
 import { Grid, Row, Col } from './grid'
 
+import Menu from './menu'
+import Backdrop from './backdrop'
+
 const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
 import defaultConfig from './defaultConfig';
 
 module.exports = {
-  version: '0.0.1',
+  version: '1.0.0',
   /**
    * 组件/插件 安装
    * @param {Object} Vue
@@ -86,6 +89,9 @@ module.exports = {
     Vue.component(Row.name, Row);
     Vue.component(Col.name, Col);
 
+    Vue.component(Menu.name, Menu);
+    Vue.component(Backdrop.name, Backdrop);
+
     // 组件实例记录
     Vue.prototype.$componentIns = {
       $app: null, //
@@ -95,6 +101,7 @@ module.exports = {
       $footer: null,
       $nav: null,
       $content: null,
+      $menu: null,
     };
 
     // ----------- 全局 方法/属性 定义 -----------
@@ -116,7 +123,7 @@ module.exports = {
      * ion-app组件
      * */
     _eventBus.$on('$appReady', function (instance) {
-      // console.info('$appReady')
+      console.info('$appReady')
       Vue.prototype.$componentIns.$app = instance;
       // 提取
       // 获取弹出层挂载点
@@ -128,10 +135,10 @@ module.exports = {
     });
 
     /**
-     * ion-title组件
+     * ion-title组件, 在ion-page下的ion-title，排除ion-menu
      * */
     _eventBus.$on('$titleReady', function (instance) {
-      // console.info('$titleReady')
+      console.info('$titleReady')
       Vue.prototype.$componentIns.$title = instance;
       // 提取
       // 设置title
@@ -143,28 +150,28 @@ module.exports = {
     /**
      * ion-header组件
      * */
-    Vue.prototype.$hasHeaderBar = false;
+    // Vue.prototype.$hasHeaderBar = false;
     _eventBus.$on('$headerReady', function (instance) {
-      // console.info('$headerReady');
+      console.info('$headerReady');
       Vue.prototype.$componentIns.$header = instance;
-      Vue.prototype.$hasHeaderBar = true;
+      // Vue.prototype.$hasHeaderBar = true;
     });
 
     /**
      * ion-footer组件
      * */
-    Vue.prototype.$hasFooterBar = false;
+    // Vue.prototype.$hasFooterBar = false;
     _eventBus.$on('$footerReady', function (instance) {
-      // console.info('$footerReady');
+      console.info('$footerReady');
       Vue.prototype.$componentIns.$footer = instance;
-      Vue.prototype.$hasFooterBar = true;
+      // Vue.prototype.$hasFooterBar = true;
     });
 
     /**
      * ion-content组件
      * */
     _eventBus.$on('$contentReady', function (instance) {
-      // console.info('$contentReady');
+      console.info('$contentReady');
       Vue.prototype.$componentIns.$content = instance;
 
       // scroll-content的句柄，用于获取scroll-content的操作
@@ -186,10 +193,25 @@ module.exports = {
       // Vue.prototype.$clearScrollPaddingFocusOut = instance.clearScrollPaddingFocusOut;
     });
 
+
+    /**
+     * ion-menu组件
+     * */
+    // Vue.prototype.$hasFooterBar = false;
+    _eventBus.$on('$menuReady', function (instance) {
+      console.info('$menuReady');
+      Vue.prototype.$componentIns.$menu = instance;
+      Vue.prototype.$openMenu = instance.openMenu;
+      Vue.prototype.$closeMenu = instance.closeMenu;
+      Vue.prototype.$toggleMenu = instance.toggleMenu;
+
+    });
+
+
     // 后退操作
-    Vue.prototype.$goBack = _goBack;
+    // Vue.prototype.$goBack = _goBack;
     // 返回主视图(返回主页)
-    Vue.prototype.$goRoot = _goRoot;
+    // Vue.prototype.$goRoot = _goRoot;
     // 滚动到
     // Vue.prototype.$scrollTo = _scrollTo;
     // 滚动到底部
@@ -202,17 +224,17 @@ module.exports = {
      * 以为在webview中的后退含义和app的后退含义不一致
      * @param {Number} n - 后退的次数，如果过大，则回到首页
      * */
-    function _goBack (n) {
-      window.$router.go(-n);
-    }
+    // function _goBack (n) {
+    //   window.$router.go(-n);
+    // }
 
     /**
      * 返回首页
      * 找到root视图，内有root则插入root然后后退到root
      * */
-    function _goRoot () {
-
-    }
+    // function _goRoot () {
+    //
+    // }
 
   }
 }
