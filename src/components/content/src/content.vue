@@ -88,13 +88,14 @@
         _this.fixedContentStyle = {};
         _this.scrollContentStyle = {};
 
-        if (_this.$hasHeaderBar) {
+        if (_valHeader > 0) {
           _this.scrollContentStyle[_styleType + 'Top'] = _valHeader + 'px';
           _this.fixedContentStyle[_styleType + 'Top'] = _valHeader + 'px';
         }
-        if (_this.$hasFooterBar) {
+        if (footerBarHeight > 0) {
           _this.scrollContentStyle[_styleType + 'Bottom'] = footerBarHeight + 'px';
         }
+
 
         // 计算尺寸
         _this.$nextTick(function () {
