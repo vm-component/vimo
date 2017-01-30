@@ -49,7 +49,6 @@
     transition: all ease 600ms;
   }
 
-
 </style>
 <script type="text/ecmascript-6">
   /**
