@@ -2,10 +2,11 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import App from './App';
-import router from './router.js';
+import routerFactory from './router.js';
 import attachFastClick from 'fastclick';
 new attachFastClick(document.body);
 
+let router = routerFactory(Vue);
 // import './register'
 
 
@@ -21,7 +22,7 @@ Vue.use(Components,{
 /**
  * $router全局化，便于外部js调用
  * */
-window.$router = router;
+// window.$router = routerFactory(Vue);
 
 /* eslint-disable no-new */
 new Vue({
