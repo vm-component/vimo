@@ -23,9 +23,9 @@
     methods: {},
     created: function () {},
     mounted: function () {
-      console.log('item')
-      console.log(this)
-      console.log(ItemMixin)
+      // console.log('item')
+      // console.log(this)
+      // console.log(ItemMixin)
     },
     activated: function () {},
     components: {}
