@@ -34,7 +34,7 @@
       return {
         hideBb: false,
         bbIcon: 'arrow-back',
-        backText: '后退',
+        backText: 'Back',
       }
     },
     props: {

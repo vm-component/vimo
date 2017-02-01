@@ -45,6 +45,8 @@ $button-ios-strong-font-weight:800;
 
 .toolbar-ios {
   padding: $toolbar-ios-padding;
+  // add
+  height: $toolbar-ios-height;
 
   min-height: $toolbar-ios-height;
 }
