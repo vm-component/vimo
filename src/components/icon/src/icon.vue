@@ -5,10 +5,9 @@
 <style lang="scss">
   @import "icon";
   @import "icon.ios";
-  @import "icon.md";
-  @import "icon.wp";
+  /*@import "icon.md";*/
+  /*@import "icon.wp";*/
   @import "scss/ionicons";
-
 
 </style>
 <script type="text/ecmascript-6">
