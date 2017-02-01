@@ -67,6 +67,8 @@ let getAnInstance = () => {
 /**
  * 使用create创建ActionSheet的实例，与IONIC保持一致
  * */
+
+let _insertPosition;
 let ActionSheet = {
   create: function (options = {}) {
     let instance = getAnInstance();
@@ -78,7 +80,13 @@ let ActionSheet = {
     instance.buttons = options.buttons;
 
     // 插入DOM中
-    document.body.appendChild(instance.$el);
+    // element.insertBefore()
+    _insertPosition = Vue.prototype.$getPortal();
+    if(!!_insertPosition){
+      document.getElementById('app').insertBefore(instance.$el,_insertPosition.nextSibling);
+    }else{
+      document.body.appendChild(instance.$el);
+    }
     return instance;
   }
 };
