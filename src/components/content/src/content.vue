@@ -61,10 +61,12 @@
         // 而不是全局
         _this.$parent.$children.forEach(function (item) {
           if (item.$options._componentTag === 'ion-header') {
-            headerBarHeight = getNum(getStyle(item.$el, 'height'));
+            headerBarHeight = getStyle(item.$el, 'height');
+            headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
           }
           if (item.$options._componentTag === 'ion-footer') {
-            footerBarHeight = getNum(getStyle(item.$el, 'height'));
+            footerBarHeight = getStyle(item.$el, 'height');
+            footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
           }
         });
 
@@ -96,7 +98,6 @@
           _this.scrollContentStyle[_styleType + 'Bottom'] = footerBarHeight + 'px';
         }
 
-
         // 计算尺寸
         _this.$nextTick(function () {
           _this.getContentDimensions();
@@ -119,7 +120,8 @@
           contentHeight: _scrollContent.offsetHeight,
           contentLeft: _scrollContent.offsetLeft,
           contentRight: _scrollContent.offsetLeft + _scrollContent.offsetWidth,
-        }
+        };
+
         return _this.$contentDimensions
       },
 
