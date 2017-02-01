@@ -13,8 +13,8 @@ $menu-small-width: $menu-width - 40px !default;
   bottom: 0;
   left: 0;
 
-  //display: none;
-  display: block;
+  display: none;
+  //display: block;
 
   contain: strict;
 }
@@ -40,7 +40,7 @@ $menu-small-width: $menu-width - 40px !default;
   //transform: translate3d(-100%, 0, 0);
   //transform: translate3d(-9999px, 0, 0);
 
-  transition: all ease 300ms;
+  transition: all cubic-bezier(0.0, 0.0, 0.2, 1) 280ms;
 
   contain: strict;
 }
@@ -64,11 +64,14 @@ $menu-small-width: $menu-width - 40px !default;
 
 .menu-content {
   transform: translate3d(0, 0, 0);
+  // 结束的动画函数
+  transition: all cubic-bezier(0.0, 0.0, 0.6, 1) 280ms;
 }
 
 .menu-content-open {
   cursor: pointer;
-
+  // 开始的动画函数
+  transition: all cubic-bezier(0.0, 0.0, 0.2, 1) 280ms;
   touch-action: manipulation;
 }
 

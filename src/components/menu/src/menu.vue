@@ -8,12 +8,12 @@
       v-on:before-enter="_beforeEnter"
       v-on:before-leave="_beforeLeave"
       v-on:after-leave="_afterLeave">
-      <div class="menu-inner" v-if="isOpen">
+      <div class="menu-inner" v-show="isOpen">
         <slot></slot>
       </div>
     </transition>
     <ion-backdrop
-      @click.native="$closeMenu()"
+      @click.native="closeMenu()"
       :isActive="showBackdrop"
       :class="{'show-backdrop':showBackdrop}"></ion-backdrop>
   </div>
@@ -23,37 +23,39 @@
   @import './menu.ios';
 
   /*slideInLeft*/
-  /*fade animate class*/
+  /*animate class*/
   .slideInLeft-enter-active,
   .slideInLeft-leave-active {
     transform: translateX(0);
-    transition: all ease 300ms;
   }
 
   .slideInLeft-enter,
   .slideInLeft-leave-active {
     transform: translateX(-100%);
-    transition: all ease 300ms;
+    transition: all cubic-bezier(0.4, 0.0, 0.6, 1) 280ms;
   }
 
-  /*fade animate class*/
-  .slideInLeft1-enter-active,
-  .slideInLeft1-leave-active {
+  /*slideInRight*/
+  /*animate class*/
+  .slideInRight-enter-active,
+  .slideInRight-leave-active {
     transform: translateX(0);
-    transition: all ease 300ms;
   }
 
-  .slideInLeft1-enter,
-  .slideInLeft1-leave-active {
-    transform: translateX(-100%);
-    transition: all ease 600ms;
+  .slideInRight-enter,
+  .slideInRight-leave-active {
+    transform: translateX(100%);
+    transition: all cubic-bezier(0.4, 0.0, 0.6, 1) 280ms;
   }
+
 
 </style>
 <script type="text/ecmascript-6">
   /**
    * 注意：menu是全局的组件，应该在App.vue中定义，而不是在业务文件中
    * */
+  import { firstUpperCase } from '../../../utils/assist';
+
   export default{
     name: 'ion-menu',
     data(){
@@ -62,6 +64,8 @@
         showMenu: false, //
         showBackdrop: false, // 是否显示半灰色蒙层
         animationName: '', // 过度动画名称
+        // currentMenuId:'', // 当前激活的menuId
+        currentMenuIns: '', // 当前激活的menuId的实例
       }
     },
     props: {
@@ -117,59 +121,74 @@
       },
     },
     watch: {},
-    computed: {
-    },
+    computed: {},
     methods: {
       // 过渡钩子
       _beforeEnter (el) {
-        this.$eventBus.$emit('ionOpen');
+        this.$setEnabled(false,300);
       },
       _beforeLeave(){
-        this.$eventBus.$emit('ionClosing');
+        this.$setEnabled(false, 300);
       },
       _afterLeave (el) {
         this.$eventBus.$emit('ionClose');
+        // 置空！！
+        this.$menu.id = null;
+        // this.$setEnabled(true);
         this.showMenu = false;
       },
 
       /**
        * @param {boolean} shouldOpen
-       * @param {boolean} animated
+       * @param {object} menuIns
        * @return {promise}
        * */
-      setOpen(shouldOpen, animated = true) {
+      setOpen(shouldOpen, menuIns) {
+        const _this = this;
         if (shouldOpen) {
-          this.showMenu = shouldOpen;
-          if (this.type === 'overlay') {
-            this.showBackdrop = true;
-            this.animationName = 'slideInLeft';
+          menuIns.showMenu = shouldOpen;
+          if (menuIns.type === 'overlay') {
+            menuIns.showBackdrop = true;
+            // 确定左右动画
+            menuIns.animationName = 'slideIn' + firstUpperCase(menuIns.side);
           }
-          if(this.type === 'push'){
-            this.animationName = 'slideInLeft1';
-          }
-        }else{
-          this.showBackdrop = false;
+        } else {
+          menuIns.showBackdrop = false;
         }
 
+        menuIns.isOpen = shouldOpen;
 
-
-
-        this.isOpen = shouldOpen;
-
-        console.log('setOpen')
-        console.log(this.showMenu)
-        console.log(this.isOpen)
-
+        return new Promise(function (resolve) {
+          let _presentHandler = function () {
+            _this.$el.removeEventListener('transitionend', _presentHandler);
+            resolve('ActionSheet Present Success!');
+          };
+          _this.$el.addEventListener('transitionend', _presentHandler);
+        });
       },
 
-      openMenu(){
-        return this.enabled && this.setOpen(true);
+      openMenu(menuId){
+        this.$menu.id = menuId;
+        this.$eventBus.$emit('ionOpen', menuId);
+        let _menuIns = this.$componentIns.$menus[menuId];
+        return _menuIns.enabled && _menuIns.setOpen(true, _menuIns);
       },
+
       closeMenu(){
-        return this.enabled && this.setOpen(false);
+        let _menuId = this.$menu.id;
+        this.$eventBus.$emit('ionClosing', _menuId);
+        let _menuIns = this.$componentIns.$menus[_menuId];
+        return _menuIns.enabled && _menuIns.setOpen(false, _menuIns);
       },
-      toggleMenu(){
-        return this.enabled && this.setOpen(!this.isOpen);
+
+      /**
+       * toggle Menu
+       * @params {String} menuId - 标识menu的id
+       * */
+      toggleMenu(menuId){
+        this.$menu.id = menuId;
+        let _menuIns = this.$componentIns.$menus[menuId];
+        return _menuIns.enabled && _menuIns.setOpen(!_menuIns.isOpen, _menuIns);
       },
       enable(){},
     },
