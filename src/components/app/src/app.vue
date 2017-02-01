@@ -30,6 +30,7 @@
 
 </style>
 <script type="text/ecmascript-6">
+  import Vue from 'vue';
 
   // 弹出层挂载点
   const AppPortal = {
@@ -162,6 +163,12 @@
       // 将挂载点同步到根this上
       const _this = this;
       _this.$eventBus.$emit('$appReady', _this);
+      Vue.prototype.$app = {
+        _this: _this,
+        getPortal: _this.getPortal,
+        setEnabled: _this.setEnabled,
+        disableScroll: _this.$disableScroll,
+      }
     },
   }
 </script>
