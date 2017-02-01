@@ -1,13 +1,18 @@
 <template>
-  <div class="toastDemo">
-    <ion-button type="block" @click="toastTop()">Toast Top</ion-button>
-    <ion-button type="block" @click="toastButtom()">Toast Bottom</ion-button>
-    <ion-button type="block" @click="toastMiddle()">Toast Middle</ion-button>
-    <ion-button type="block" @click="toastMiddleWithBtn()">Toast Middle With Button</ion-button>
-    <ion-button type="block" @click="showCloseBtnToast()">Show Close Btn Toast</ion-button>
-
-
-  </div>
+  <ion-page>
+    <ion-header>
+      <ion-navbar>
+        <ion-title slot="content">Toast</ion-title>
+      </ion-navbar>
+    </ion-header>
+    <ion-content padding>
+      <ion-button type="block" @click="toastTop()">Toast Top</ion-button>
+      <ion-button type="block" @click="toastButtom()">Toast Bottom</ion-button>
+      <ion-button type="block" @click="toastMiddle()">Toast Middle</ion-button>
+      <ion-button type="block" @click="toastMiddleWithBtn()">Toast Middle With Button</ion-button>
+      <ion-button type="block" @click="showCloseBtnToast()">Show Close Btn Toast</ion-button>
+    </ion-content>
+  </ion-page>
 </template>
 <style scoped lang="scss">
   .toastDemo {

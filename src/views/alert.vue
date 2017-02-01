@@ -1,15 +1,20 @@
 <template>
-  <div class="alertDemo">
-    <ion-button type="block" @click="alert()">Alert</ion-button>
-    <ion-button color="danger" type="block" @click="confirm()">Confirm</ion-button>
-    <ion-button color="secondary" type="block" @click="threeBtn()">Three Button</ion-button>
+  <ion-page>
+    <ion-header>
+      <ion-navbar>
+        <ion-title slot="content">Alert</ion-title>
+      </ion-navbar>
+    </ion-header>
+    <ion-content padding>
+      <ion-button type="block" @click="alert()">Alert</ion-button>
+      <ion-button color="danger" type="block" @click="confirm()">Confirm</ion-button>
+      <ion-button color="secondary" type="block" @click="threeBtn()">Three Button</ion-button>
 
-    <ion-button color="dark" type="block" @click="input()">Input</ion-button>
-    <ion-button color="dark" type="block" @click="checkbox()">Checkbox</ion-button>
-    <ion-button color="light" type="block" @click="radio()">Radio</ion-button>
-
-
-  </div>
+      <ion-button color="dark" type="block" @click="input()">Input</ion-button>
+      <ion-button color="dark" type="block" @click="checkbox()">Checkbox</ion-button>
+      <ion-button color="primary" type="block" @click="radio()">Radio</ion-button>
+    </ion-content>
+  </ion-page>
 </template>
 <style scoped lang="scss">
   .alertDemo {

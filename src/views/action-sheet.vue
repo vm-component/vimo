@@ -1,18 +1,23 @@
 <template>
-  <div class="actionSheet">
-    <br>
-    <br>
-    <ion-button  type="outline" shape="round" @click="showActionSheet()" color="primary">Instance_Show_ActionSheet</ion-button>
-    <br>
-    <br>
-  </div>
+  <ion-page>
+    <ion-header>
+      <ion-navbar>
+        <ion-title slot="content">Action Sheet</ion-title>
+      </ion-navbar>
+    </ion-header>
+    <ion-content padding>
+
+      <ion-button type="block" @click="showActionSheet()" color="primary">
+        Basic Action Sheet
+      </ion-button>
+
+    </ion-content>
+  </ion-page>
 </template>
 
 <!--这个是actionsheet的模拟-->
 <script type="text/ecmascript-6">
-  import Button from '../components/button';
   import ActionSheet from '../components/action-sheet'
-  // import Toast from './components/toast'
 
   export default {
     name: 'action-sheet',
@@ -23,10 +28,9 @@
       showActionSheet: function () {
         let actionSheet = ActionSheet.create({
           title: '请选择操作',
-          subTitle: '选择后不能撤销选择后不能撤销选择后不能撤销选择后不能撤销',
+          subTitle: '注意，选择后不能撤销！',
           cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
           enableBackdropDismiss: true,
-          //buttons:['1','2','3']
           buttons: [
             {
               text: '删除',
@@ -69,19 +73,16 @@
       },
     },
     components: {
-      'ion-button':Button,
     },
     mounted: function () {
       // this.$on('click', function () {
       //   alert('BackDrop->bdClick')
       // })
 
-
       // Toast({
       //   message: 'hello',
       //   duration: 1000,
       // })
-
 
     }
   }

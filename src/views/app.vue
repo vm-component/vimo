@@ -6,10 +6,10 @@
       </ion-navbar>
     </ion-header>
 
-    <ion-content :fullscreen="fullscreenVal">
+    <ion-content :fullscreen="fullscreenVal" padding>
 
 
-      <ion-button @click="scrollToBottom()">滚动到底部</ion-button>
+      <ion-button type="block" @click="scrollToBottom()">滚动到底部</ion-button>
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
@@ -41,7 +41,7 @@
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
 
-      <ion-button @click="scrollToTop()" type="">返回顶部</ion-button>
+      <ion-button type="block" @click="scrollToTop()">返回顶部</ion-button>
 
 
     </ion-content>
