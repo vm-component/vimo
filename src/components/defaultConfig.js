@@ -10,6 +10,13 @@ module.exports = {
   statusBarHeight: 20,
   // scroll的动画事件
   scrollTransitionTime: 300,
-  // menu展现的类型："overlay", "reveal", "push".
-  menuType:'push',
+  // menu展现的类型："overlay", "reveal".
+  menuType: 'reveal',
+  // 默认的header高度，如果header的height读取不出来的时候备用,单位px
+  headerHeight:{
+    ios:44
+  },
+  footerHeight:{
+    ios:44
+  }
 }

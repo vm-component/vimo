@@ -93,6 +93,21 @@ module.exports = {
     Vue.component(Backdrop.name, Backdrop);
 
     // 组件实例记录
+    window.$App = {
+      ins:{
+        $app: null, //
+        $page: null,
+        $header: null,
+        $title: null,
+        $footer: null,
+        $nav: null,
+        $content: null,
+        $menus: {},
+      },
+      config:{},
+      eventBus:{},
+    };
+
     Vue.prototype.$componentIns = {
       $app: null, //
       $page: null,
@@ -101,7 +116,7 @@ module.exports = {
       $footer: null,
       $nav: null,
       $content: null,
-      $menu: null,
+      $menus: {},
     };
 
     // ----------- 全局 方法/属性 定义 -----------
@@ -124,14 +139,17 @@ module.exports = {
      * */
     _eventBus.$on('$appReady', function (instance) {
       console.info('$appReady')
+
       Vue.prototype.$componentIns.$app = instance;
       // 提取
       // 获取弹出层挂载点
       Vue.prototype.$getPortal = instance.getPortal;
-      // 设置页面滚动状态
+      // 设置页面是否能点触的状态
       Vue.prototype.$setEnabled = instance.setEnabled;
       // 设置页面滚动状态
       Vue.prototype.$disableScroll = instance.disableScroll;
+
+
     });
 
     /**
@@ -193,20 +211,31 @@ module.exports = {
       // Vue.prototype.$clearScrollPaddingFocusOut = instance.clearScrollPaddingFocusOut;
     });
 
-
     /**
      * ion-menu组件
      * */
     // Vue.prototype.$hasFooterBar = false;
     _eventBus.$on('$menuReady', function (instance) {
       console.info('$menuReady');
-      Vue.prototype.$componentIns.$menu = instance;
-      Vue.prototype.$openMenu = instance.openMenu;
-      Vue.prototype.$closeMenu = instance.closeMenu;
-      Vue.prototype.$toggleMenu = instance.toggleMenu;
+      // 记录当前的menu开启的id，如果有值，代表当前Menu正在开启；
+      Vue.prototype.$menu = {
+        id: '',
+        close: null,
+        open: null,
+        toggle: null,
+      };
+      // Vue.prototype.$menu.id = null;
+      // Vue.prototype.$currentMenuId = null;
+      if (!Vue.prototype.$componentIns.$menus[instance.id]) {
+        Vue.prototype.$componentIns.$menus[instance.id] = instance;
+        // console.debug(Vue.prototype.$componentIns.$menus)
+        // 组件中注册的函数，但是其执行与组件当前状态无关。
+        Vue.prototype.$menu.open = instance.openMenu;
+        Vue.prototype.$menu.close = instance.closeMenu;
+        Vue.prototype.$menu.toggle = instance.toggleMenu;
+      }
 
     });
-
 
     // 后退操作
     // Vue.prototype.$goBack = _goBack;
