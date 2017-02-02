@@ -12,51 +12,49 @@
  * 那就在dismiss()的promise中初始化并打开吧
  */
 import Vue from 'vue';
-const actionSheet = require('./action-sheet.vue');
-const actionSheetConstructor = Vue.extend(actionSheet);
-
+import actionSheetComponent from './action-sheet.vue'
+const actionSheetConstructor = Vue.extend(actionSheetComponent);
+let _insertPosition;
 // 实例方法挂载
+// /**
+//  * Present(呈现) the action sheet instance.
+//  * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+//  */
+// actionSheetConstructor.prototype.present = function () {
+//   // this为组件实例，调用组件自己的方法。
+//   return this.present();
+// };
+// /**
+//  * Dismiss(撤销) the action sheet instance.
+//  * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+//  */
+// actionSheetConstructor.prototype.dismiss = function () {
+//   return this.dismiss();
+// };
+//
+// /**
+//  * @param {string} title Action sheet title
+//  */
+// actionSheetConstructor.prototype.setTitle = function (title) {
+//   this.setTitle(title);
+// };
+//
+// /**
+//  * @param {string} subTitle Action sheet subtitle
+//  */
+// actionSheetConstructor.prototype.setSubTitle = function (subTitle) {
+//   this.setSubTitle(subTitle);
+// };
+//
+// /**
+//  * @param {object} button Action sheet button
+//  */
+// actionSheetConstructor.prototype.addButton = function (button) {
+//   this.addButton(button);
+// };
 
 /**
- * Present(呈现) the action sheet instance.
- * @returns {Promise} Returns a promise which is resolved when the transition has completed.
- */
-actionSheetConstructor.prototype.present = function () {
-  // this为组件实例，调用组件自己的方法。
-  return this.present();
-};
-
-/**
- * Dismiss(撤销) the action sheet instance.
- * @returns {Promise} Returns a promise which is resolved when the transition has completed.
- */
-actionSheetConstructor.prototype.dismiss = function () {
-  return this.dismiss();
-};
-
-/**
- * @param {string} title Action sheet title
- */
-actionSheetConstructor.prototype.setTitle = function (title) {
-  this.setTitle(title);
-};
-
-/**
- * @param {string} subTitle Action sheet subtitle
- */
-actionSheetConstructor.prototype.setSubTitle = function (subTitle) {
-  this.setSubTitle(subTitle);
-};
-
-/**
- * @param {object} button Action sheet button
- */
-actionSheetConstructor.prototype.addButton = function (button) {
-  this.addButton(button);
-};
-
-/**
- * 获取示例，保持单利状态
+ * 获取实例
  */
 let getAnInstance = () => {
   return new actionSheetConstructor({
@@ -67,9 +65,10 @@ let getAnInstance = () => {
 /**
  * 使用create创建ActionSheet的实例，与IONIC保持一致
  * */
-
-let _insertPosition;
+//
+// let _insertPosition;
 let ActionSheet = {
+  isOpen:false,
   create: function (options = {}) {
     let instance = getAnInstance();
     // 参数传入
@@ -78,17 +77,47 @@ let ActionSheet = {
     instance.cssClass = !!options.cssClass ? options.cssClass.trim() : '';
     instance.enableBackdropDismiss = !!options.enableBackdropDismiss;
     instance.buttons = options.buttons;
+    instance.present = function () {
+      this.isOpen = true;
+      instance.present();
+    };
+    instance.dismiss = function () {
+      this.isOpen = false;
+      instance.dismiss();
+    };
 
     // 插入DOM中
     // element.insertBefore()
     _insertPosition = Vue.prototype.$getPortal();
-    if(!!_insertPosition){
-      document.getElementById('app').insertBefore(instance.$el,_insertPosition.nextSibling);
-    }else{
+    if (!!_insertPosition) {
+      document.getElementById('app').insertBefore(instance.$el, _insertPosition.nextSibling);
+    } else {
       document.body.appendChild(instance.$el);
     }
     return instance;
   }
 };
+
+
+// function ActionSheet (options = {}) {
+//   let instance = getAnInstance();
+//   // 参数传入
+//   instance.title = !!options.title ? options.title.trim() : '';
+//   instance.subTitle = !!options.subTitle ? options.subTitle.trim() : '';
+//   instance.cssClass = !!options.cssClass ? options.cssClass.trim() : '';
+//   instance.enableBackdropDismiss = !!options.enableBackdropDismiss;
+//   instance.buttons = options.buttons;
+//
+//   // 插入DOM中
+//   // element.insertBefore()
+//   _insertPosition = Vue.prototype.$getPortal();
+//   if (!!_insertPosition) {
+//     document.getElementById('app').insertBefore(instance.$el, _insertPosition.nextSibling);
+//   } else {
+//     document.body.appendChild(instance.$el);
+//   }
+//   return instance;
+//
+// }
 
 export default ActionSheet;

@@ -25,8 +25,15 @@ import { Card, CardContent, CardHeader, CardTitle } from './card'
 
 import { Grid, Row, Col } from './grid'
 
+import Spinner from './spinner'
+
 import Menu from './menu'
 import Backdrop from './backdrop'
+
+// 实例化调用组件，传入配置参数后返回实例
+import ActionSheet from './action-sheet'
+
+
 
 const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
@@ -91,22 +98,12 @@ module.exports = {
 
     Vue.component(Menu.name, Menu);
     Vue.component(Backdrop.name, Backdrop);
+    Vue.component(Spinner.name, Spinner);
 
-    // 组件实例记录
-    window.$App = {
-      ins:{
-        $app: null, //
-        $page: null,
-        $header: null,
-        $title: null,
-        $footer: null,
-        $nav: null,
-        $content: null,
-        $menus: {},
-      },
-      config:{},
-      eventBus:{},
-    };
+
+    // 实例化调用，传入options参数返回实例
+    Vue.prototype.$ActionSheet = ActionSheet;
+
 
     Vue.prototype.$componentIns = {
       $app: null, //

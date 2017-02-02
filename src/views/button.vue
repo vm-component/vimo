@@ -15,6 +15,13 @@
       <ion-button color="dark">dark</ion-button>
       <ion-button>default color</ion-button>
 
+      <h4>Spinner</h4>
+      <ion-button>
+        Loading
+        <ion-spinner  color="light" name="ios-small"></ion-spinner>
+      </ion-button>
+
+
       <h4>Shaps</h4>
       <ion-button shape="full">full</ion-button>
       <ion-button shape="block">block</ion-button>

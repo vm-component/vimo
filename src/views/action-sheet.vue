@@ -7,9 +7,14 @@
     </ion-header>
     <ion-content padding>
 
-      <ion-button type="block" @click="showActionSheet()" color="primary">
+      <ion-button type="block" @click="showActionSheet1()" color="primary">
         Basic Action Sheet
       </ion-button>
+
+      <ion-button type="block" @click="showActionSheet2()" color="primary">
+        No Cancel Action Sheet
+      </ion-button>
+
 
     </ion-content>
   </ion-page>
@@ -17,16 +22,14 @@
 
 <!--这个是actionsheet的模拟-->
 <script type="text/ecmascript-6">
-  import ActionSheet from '../components/action-sheet'
-
   export default {
     name: 'action-sheet',
-    data: function () {
+    data () {
       return {}
     },
     methods: {
-      showActionSheet: function () {
-        let actionSheet = ActionSheet.create({
+      showActionSheet1 () {
+        let actionSheet = this.$ActionSheet({
           title: '请选择操作',
           subTitle: '注意，选择后不能撤销！',
           cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
@@ -71,20 +74,45 @@
           console.log(data)
         });
       },
-    },
-    components: {
-    },
-    mounted: function () {
-      // this.$on('click', function () {
-      //   alert('BackDrop->bdClick')
-      // })
+      showActionSheet2 () {
+        let actionSheet = this.$ActionSheet({
+          title: '请选择操作',
+          subTitle: '注意，选择后不能撤销！',
+          cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
+          enableBackdropDismiss: true,
+          buttons: [
+            {
+              text: '删除',
+              role: 'destructive',
+              icon: 'icon-Destructive',
+              cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
+              handler: () => {
+                console.log('Destructive clicked');
+              }
+            },
+            {
+              text: '翻转',
+              handler: () => {
+                console.log('Archive1 clicked');
+              }
+            },
+            {
+              text: '增加',
+              handler: () => {
+                console.log('Archive4 clicked');
+              }
+            }
+          ]
+        });
 
-      // Toast({
-      //   message: 'hello',
-      //   duration: 1000,
-      // })
+        actionSheet.present().then(function (data) {
+          console.log('ActionSheet present data')
+          console.log(data)
+        });
+      },
+    },
+    components: {},
 
-    }
   }
 
 </script>

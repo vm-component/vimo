@@ -203,17 +203,17 @@
         _this.$actionSheet = {
           isOpen: true
         };
-
-        // 开启后向Vue注册
-        Vue.prototype.$actionSheet = {
-          _this: _this,
-          isActive: _this.isActive,
-          present: _this.present,
-          dismiss: _this.dismiss,
-          setTitle: _this.setTitle,
-          setSubTitle: _this.setSubTitle,
-          addButton: _this.addButton,
-        };
+        //
+        // // 开启后向Vue注册
+        // Vue.prototype.$actionSheet = {
+        //   _this: _this,
+        //   isActive: _this.isActive,
+        //   present: _this.present,
+        //   dismiss: _this.dismiss,
+        //   setTitle: _this.setTitle,
+        //   setSubTitle: _this.setSubTitle,
+        //   addButton: _this.addButton,
+        // };
 
         return new Promise(function (resolve) {
           let _presentHandler = function () {
@@ -239,7 +239,6 @@
         _this.enabled = false;
         _this.isActive = false; // 动起来
 
-        Vue.prototype.$actionSheet = null;
 
         return new Promise(function (resolve) {
           let _dismissHandler = function () {
