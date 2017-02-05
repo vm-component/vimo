@@ -7,9 +7,13 @@
   </transition>
 </template>
 <script type="text/ecmascript-6">
-
   export default{
     name: 'ion-backdrop',
+    data(){
+      return {
+        isEnable: this.isActive
+      }
+    },
     props: {
       enableBackdropDismiss: {
         type: Boolean,
@@ -24,34 +28,27 @@
     methods: {
       // private
       // 过渡钩子
-      _beforeEnter: function (el) {
+      _beforeEnter (el) {
         this.$emit('$backdropShown');
+        this.$eventBus.$emit('$backdropShown');
       },
-      _afterLeave: function (el) {
+      _afterLeave (el) {
         this.$emit('$backdropHidden');
+        this.$eventBus.$emit('$backdropHidden');
       },
 
-      //public
-      // 开启
-      retain: function () {
-        this.isActive = true;
-      },
-      // 关闭
-      release: function () {
-        if (this.enableBackdropDismiss) {
-          this.isActive = false;
-        }
-      },
+      // //public
+      // // 开启
+      // retain () {
+      //   this.isEnable = true;
+      // },
+      // // 关闭
+      // release () {
+      //   if (this.enableBackdropDismiss) {
+      //     this.isEnable = false;
+      //   }
+      // },
     },
-    mounted: function () {
-      // this.$on('$backdropShown', function () {
-      //     console.log('--beforeEnter')
-      // });
-      // this.$on('$backdropHidden', function () {
-      //     console.log('--afterLeave')
-      // })
-    }
-
   }
 </script>
 <style scoped lang="scss">

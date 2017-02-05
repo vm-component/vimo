@@ -42,8 +42,8 @@
 </template>
 <script type="text/ecmascript-6">
   import Vue from 'vue';
-  import BackDrop from '../../backdrop';
-  import Button from '../../button'
+  // import BackDrop from '../../backdrop';
+  // import Button from '../../button'
 
   // TODO: 全局的esc事件监听未做，监听触发dbClick()
   /**
@@ -200,20 +200,9 @@
       present () {
         const _this = this;
         _this.isActive = true;
-        _this.$actionSheet = {
-          isOpen: true
-        };
-        //
-        // // 开启后向Vue注册
-        // Vue.prototype.$actionSheet = {
-        //   _this: _this,
-        //   isActive: _this.isActive,
-        //   present: _this.present,
-        //   dismiss: _this.dismiss,
-        //   setTitle: _this.setTitle,
-        //   setSubTitle: _this.setSubTitle,
-        //   addButton: _this.addButton,
-        // };
+
+        // 组件通知
+        !!Vue.prototype.$ActionSheet && (Vue.prototype.$ActionSheet.isOpen = true);
 
         return new Promise(function (resolve) {
           let _presentHandler = function () {
@@ -239,11 +228,12 @@
         _this.enabled = false;
         _this.isActive = false; // 动起来
 
-
         return new Promise(function (resolve) {
           let _dismissHandler = function () {
             _this.$el.removeEventListener('transitionend', _dismissHandler);
             _this.enabled = true;
+            // 组件通知
+            !!Vue.prototype.$ActionSheet && (Vue.prototype.$ActionSheet.isOpen = false);
             resolve('ActionSheet Dismiss Success!');
           };
           _this.$el.addEventListener('transitionend', _dismissHandler);
@@ -272,8 +262,8 @@
       }
     },
     components: {
-      'ion-backdrop': BackDrop,
-      'ion-button': Button,
+      // 'ion-backdrop': BackDrop,
+      // 'ion-button': Button,
     },
   }
 </script>

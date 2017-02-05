@@ -28,11 +28,11 @@
     },
     methods: {},
     created: function () {
-      // 将挂载点同步到根this上
-      const _this = this;
-      if (_this.$parent.$options._componentTag === 'ion-page') {
-        _this.$eventBus.$emit('$footerReady', _this);
-      }
+      // // 将挂载点同步到根this上
+      // const _this = this;
+      // if (_this.$parent.$options._componentTag === 'ion-page') {
+      //   _this.$eventBus.$emit('$footerReady', _this);
+      // }
     },
     mounted: function () {
 

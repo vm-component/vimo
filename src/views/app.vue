@@ -48,7 +48,7 @@
 
     <ion-footer style="opacity:0.9">
       <ion-toolbar>
-        <ion-title slot="content" title="ion-app test"></ion-title>
+        <!--<ion-title slot="content" title="ion-app test"></ion-title>-->
       </ion-toolbar>
     </ion-footer>
 
@@ -61,7 +61,10 @@
   }
 </style>
 <script type="text/ecmascript-6">
+  import mixin from '../mixins/baseMethodMixin'
+
   export default{
+    mixins: [mixin],
     data(){
       return {
         fullscreenVal: false

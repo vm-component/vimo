@@ -32,7 +32,12 @@
         scrollContentStyle: {}, // 滑动内容的位置样式
         dimensions: {}, // content内容的尺寸
         isScrolling: false, // 判断是否滚动
-        // $scrollContent: null, // scrollConent的DOM句柄，此变量在全局声明
+
+        scrollContent: null, // scrollConent的DOM句柄
+        fixedContent: null, // fixedContent的DOM句柄
+        contentDimensions:null,
+        scrollDimensions:null,
+
         scrollPadding: 0, // scroll-content的paddingBottom，用于键盘的显示
         originalScrollPadding: 0, // 原始的scrollPaddingBottom的值
         isInputting: false, // 正在输入
@@ -111,9 +116,9 @@
        * */
       getContentDimensions(){
         const _this = this;
-        let _scrollContent = _this.$scrollContent;
-        // content属性：宽高上下左右，6个，$contentDimensions在index中定义到全局
-        _this.$contentDimensions = {
+        let _scrollContent = _this.scrollContent;
+        // content属性：宽高上下左右，6个，
+        _this.contentDimensions = {
           contentTop: _scrollContent.offsetTop,
           contentBottom: _scrollContent.offsetTop + _scrollContent.offsetHeight,
           contentWidth: _scrollContent.offsetWidth,
@@ -122,7 +127,7 @@
           contentRight: _scrollContent.offsetLeft + _scrollContent.offsetWidth,
         };
 
-        return _this.$contentDimensions
+        return _this.contentDimensions
       },
 
       /**
@@ -130,16 +135,16 @@
        * */
       getScrollDimensions(){
         const _this = this;
-        // $scrollDimensions在index中定义到全局
-        _this.$scrollDimensions = {
-          scrollTop: _this.$scrollContent.scrollTop,
-          scrollBottom: _this.$scrollContent.scrollTop + _this.$scrollContent.scrollHeight,
-          scrollWidth: _this.$scrollContent.scrollWidth,
-          scrollHeight: _this.$scrollContent.scrollHeight,
-          scrollLeft: _this.$scrollContent.scrollLeft,
-          scrollRight: _this.$scrollContent.scrollLeft + _this.$scrollContent.scrollWidth,
+        // scrollDimensions在index中定义到全局
+        _this.scrollDimensions = {
+          scrollTop: _this.scrollContent.scrollTop,
+          scrollBottom: _this.scrollContent.scrollTop + _this.scrollContent.scrollHeight,
+          scrollWidth: _this.scrollContent.scrollWidth,
+          scrollHeight: _this.scrollContent.scrollHeight,
+          scrollLeft: _this.scrollContent.scrollLeft,
+          scrollRight: _this.scrollContent.scrollLeft + _this.scrollContent.scrollWidth,
         };
-        return _this.$scrollDimensions
+        return _this.scrollDimensions
       },
 
       /**
@@ -172,7 +177,7 @@
           });
         }
 
-        if (!_this.$scrollContent) {
+        if (!_this.scrollContent) {
           // invalid element
           done();
           return promise;
@@ -181,8 +186,8 @@
         x = x || 0;
         y = y || 0;
 
-        const fromY = _this.$scrollContent.scrollTop;
-        const fromX = _this.$scrollContent.scrollLeft;
+        const fromY = _this.scrollContent.scrollTop;
+        const fromX = _this.scrollContent.scrollLeft;
 
         const maxAttempts = (duration / 16) + 100;
 
@@ -200,9 +205,9 @@
         function step () {
           attempts++;
 
-          if (!_this.$scrollContent || !_this.isScrolling || attempts > maxAttempts) {
+          if (!_this.scrollContent || !_this.isScrolling || attempts > maxAttempts) {
             _this.isScrolling = false;
-            // (<any>$scrollContent.style)[CSS.transform] = '';
+            // (<any>scrollContent.style)[CSS.transform] = '';
             done();
             return;
           }
@@ -216,11 +221,11 @@
           let easedT = (--time) * time * time + 1;
 
           if (fromY !== y) {
-            _this.$scrollContent.scrollTop = (easedT * (y - fromY)) + fromY;
+            _this.scrollContent.scrollTop = (easedT * (y - fromY)) + fromY;
           }
 
           if (fromX !== x) {
-            _this.$scrollContent.scrollLeft = Math.floor((easedT * (x - fromX)) + fromX);
+            _this.scrollContent.scrollLeft = Math.floor((easedT * (x - fromX)) + fromX);
           }
 
           if (easedT < 1) {
@@ -230,7 +235,7 @@
 
           } else {
             _this.isScrolling = false;
-            // (<any>$scrollContent.style)[CSS.transform] = '';
+            // (<any>scrollContent.style)[CSS.transform] = '';
             done();
           }
         }
@@ -253,8 +258,8 @@
        */
       scrollToBottom(duration = 300) {
         let y = 0;
-        if (this.$scrollContent) {
-          y = this.$scrollContent.scrollHeight - this.$scrollContent.clientHeight;
+        if (this.scrollContent) {
+          y = this.scrollContent.scrollHeight - this.scrollContent.clientHeight;
         }
         return this.scrollTo(0, y, duration);
       },
@@ -270,11 +275,11 @@
        * */
       addScrollPadding(newPadding){
         const _this = this;
-        console.debug('addScrollPadding');
+        // console.debug('addScrollPadding');
 
         _this.scrollPadding = newPadding;
-        if (_this.$scrollContent) {
-          _this.$scrollContent.style.paddingBottom = (newPadding > 0) ? (newPadding + 'px' ) : (_this.originalScrollPadding + 'px');
+        if (_this.scrollContent) {
+          _this.scrollContent.style.paddingBottom = (newPadding > 0) ? (newPadding + 'px' ) : (_this.originalScrollPadding + 'px');
         }
       },
 
@@ -283,7 +288,7 @@
        * */
       clearScrollPaddingFocusOut(){
         const _this = this;
-        console.debug('clearScrollPaddingFocusOut');
+        // console.debug('clearScrollPaddingFocusOut');
         const SCROLL_TRANSITION_TIME = _this.$config.scrollTransitionTime;
         const KEYBOARD_HEIGHT = _this.$config.keyboardHeight;
         if (!_this.isInputting) {
@@ -294,8 +299,8 @@
           _this.isInputting = false;
           _this.scrollPadding = _this.originalScrollPadding;
 
-          var y_bottom = this.$scrollContent.scrollHeight - this.$scrollContent.clientHeight;
-          var y_current = _this.$scrollContent.scrollTop - KEYBOARD_HEIGHT;
+          var y_bottom = this.scrollContent.scrollHeight - this.scrollContent.clientHeight;
+          var y_current = _this.scrollContent.scrollTop - KEYBOARD_HEIGHT;
           _this.scrollTo(0, Math.min(y_bottom, y_current), SCROLL_TRANSITION_TIME);
           setTimeout(function () {
             _this.addScrollPadding(0);
@@ -309,7 +314,7 @@
         let _padding = _this.$config.keyboardHeight;
         _this.addScrollPadding(_padding);
         // scroll
-        _this.scrollTo(0, (_this.$scrollContent.scrollTop + _padding));
+        _this.scrollTo(0, (_this.scrollContent.scrollTop + _padding));
       },
 
       keyBoardClose(){
@@ -324,16 +329,19 @@
       if (_this.$parent.$options._componentTag === 'ion-page') {
         _this.$eventBus.$emit('$contentReady', _this);
       }
+      // console.debug('ion-conent created')
+
     },
     mounted() {
       const _this = this;
       let _timer;
 
-      // 找到scrollContent的位置
-      _this.$scrollContent = _this.$el.children[1];
+      // 找到fixedContent/scrollContent的位置
+      _this.fixedContent = _this.$el.children[0];
+      _this.scrollContent = _this.$el.children[1];
 
-      _this.$scrollDimensions = _this.getScrollDimensions();
-      _this.$contentDimensions = _this.getContentDimensions();
+      _this.scrollDimensions = _this.getScrollDimensions();
+      _this.contentDimensions = _this.getContentDimensions();
 
       /**
        * 计算属性
@@ -342,7 +350,7 @@
       _this.computeScrollContentStyle();
 
       // scroll-content的scroll, 滚动时ionScroll事件，另外两个：ionScrollStart/ionScrollEnd
-      _this.$scrollContent.addEventListener('scroll', function (event) {
+      _this.scrollContent.addEventListener('scroll', function (event) {
         if (!_this.isScrolling) {
           // scroll start
           _this.$emit('ionScrollStart', event);
@@ -361,8 +369,6 @@
           _this.$emit('ionScrollEnd', event);
         }, 400);
       });
-
-      //
 
     }
   }

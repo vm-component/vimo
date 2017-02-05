@@ -55,6 +55,7 @@
    * 注意：menu是全局的组件，应该在App.vue中定义，而不是在业务文件中
    * */
   import { firstUpperCase } from '../../../utils/assist';
+  import Vue from 'vue';
 
   export default{
     name: 'ion-menu',
@@ -125,7 +126,7 @@
     methods: {
       // 过渡钩子
       _beforeEnter (el) {
-        this.$setEnabled(false,300);
+        this.$setEnabled(false, 300);
       },
       _beforeLeave(){
         this.$setEnabled(false, 300);
@@ -140,23 +141,22 @@
 
       /**
        * @param {boolean} shouldOpen
-       * @param {object} menuIns
        * @return {promise}
        * */
-      setOpen(shouldOpen, menuIns) {
+      setOpen(shouldOpen) {
         const _this = this;
         if (shouldOpen) {
-          menuIns.showMenu = shouldOpen;
-          if (menuIns.type === 'overlay') {
-            menuIns.showBackdrop = true;
+          _this.showMenu = shouldOpen;
+          if (_this.type === 'overlay') {
+            _this.showBackdrop = true;
             // 确定左右动画
-            menuIns.animationName = 'slideIn' + firstUpperCase(menuIns.side);
+            _this.animationName = 'slideIn' + firstUpperCase(_this.side);
           }
         } else {
-          menuIns.showBackdrop = false;
+          _this.showBackdrop = false;
         }
 
-        menuIns.isOpen = shouldOpen;
+        _this.isOpen = shouldOpen;
 
         return new Promise(function (resolve) {
           let _presentHandler = function () {
@@ -167,34 +167,70 @@
         });
       },
 
-      openMenu(menuId){
-        this.$menu.id = menuId;
-        this.$eventBus.$emit('ionOpen', menuId);
-        let _menuIns = this.$componentIns.$menus[menuId];
-        return _menuIns.enabled && _menuIns.setOpen(true, _menuIns);
+
+      openMenu(){
+        this.$eventBus.$emit('ionOpen', this.id);
+        return this.enabled && this.setOpen(true);
       },
 
       closeMenu(){
-        let _menuId = this.$menu.id;
-        this.$eventBus.$emit('ionClosing', _menuId);
-        let _menuIns = this.$componentIns.$menus[_menuId];
-        return _menuIns.enabled && _menuIns.setOpen(false, _menuIns);
+        this.$eventBus.$emit('ionClosing', this.id);
+        return this.enabled && this.setOpen(false);
       },
 
       /**
        * toggle Menu
        * @params {String} menuId - 标识menu的id
        * */
-      toggleMenu(menuId){
-        this.$menu.id = menuId;
-        let _menuIns = this.$componentIns.$menus[menuId];
-        return _menuIns.enabled && _menuIns.setOpen(!_menuIns.isOpen, _menuIns);
+      toggleMenu(){
+        if(this.showMenu){
+          return this.closeMenu()
+        }else{
+          return this.openMenu()
+        }
       },
       enable(){},
     },
     created(){
-      const _this = this
-      _this.$eventBus.$emit('$menuReady', _this);
+      const _this = this;
+
+      if (!_this.$menu) {
+        // init
+        Vue.prototype.$menu = {
+          menuIns: null,
+          currentMenuId: null,
+          open: null,
+          close: null,
+          toggle: null,
+        }
+      }
+
+      if (!_this.$menu.menuIns) {
+        _this.$menu.menuIns = {};
+        _this.$menu.open = (menuId) => {
+          _this.$menu.currentMenuId = menuId;
+          _this.$menu.menuIns[menuId].openMenu()
+        };
+        _this.$menu.close = () => {
+          let menuId = _this.$menu.currentMenuId;
+          _this.$menu.menuIns[menuId].closeMenu();
+          _this.$menu.currentMenuId = null;
+        };
+        _this.$menu.toggle = (menuId) => {
+          if (!!_this.$menu.currentMenuId) {
+            // open
+            _this.$menu.close();
+          } else {
+            // close
+            _this.$menu.open(menuId);
+          }
+        };
+      }
+
+      _this.$menu.menuIns[_this.id] = _this;
+
+      console.log('menu')
+      console.log(_this.$menu)
     },
     mounted(){
 

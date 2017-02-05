@@ -29,7 +29,8 @@
     },
     methods: {
       showActionSheet1 () {
-        let actionSheet = this.$ActionSheet({
+        const _this = this;
+        let actionSheet = _this.$ActionSheet.create({
           title: '请选择操作',
           subTitle: '注意，选择后不能撤销！',
           cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
@@ -75,7 +76,7 @@
         });
       },
       showActionSheet2 () {
-        let actionSheet = this.$ActionSheet({
+        let actionSheet = this.$ActionSheet.create({
           title: '请选择操作',
           subTitle: '注意，选择后不能撤销！',
           cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',

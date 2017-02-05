@@ -11,8 +11,8 @@
     data(){
       return {
         titleInner: this.title,
-        isInPage:false, // 该组件只是在ion-page中，中间没有ion-menu
-        isInPageHeader:false, // 该组件在ion-page -> ion-header中
+        isInPage: false, // 该组件只是在ion-page中，中间没有ion-menu
+        isInPageHeader: false, // 该组件在ion-page -> ion-header中，这个条件满足才会更新document.title
       }
     },
     props: {
@@ -78,7 +78,7 @@
       setTitle (val) {
         let iframe;
         const _this = this;
-        if (!!val) {
+        if (!!val && val != document.title) {
           // 利用iframe的onload事件刷新页面
           document.title = val;
           iframe = document.createElement('iframe');
@@ -102,12 +102,12 @@
       // 将挂载点同步到根this上
       const _this = this;
       _this.isInPage = _this.$parent.$parent.$parent.$options._componentTag === 'ion-page';
-      _this.isInPageHeader = _this.$parent.$parent.$options._componentTag === 'ion-header' &&  _this.isInPage;
-      // 保证战歌ion-title不是包含在ion-menu中的。
+      _this.isInPageHeader = _this.$parent.$parent.$options._componentTag === 'ion-header' && _this.isInPage;
+      // 保证组件ion-title不是包含在ion-menu中的。
       // ion-page -> ion-header -> ion-toolbar/ion-navbar -> ion-title
-      if (_this.isInPageHeader) {
-        _this.$eventBus.$emit('$titleReady', _this);
-      }
+      // if (_this.isInPageHeader) {
+      //   _this.$eventBus.$emit('$titleReady', _this);
+      // }
     },
     mounted(){
       const _this = this;

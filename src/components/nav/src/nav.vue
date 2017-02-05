@@ -41,8 +41,8 @@
 
       setMenuInfo(menuId){
         this.menuId = menuId;
-        this.menuSide = this.$componentIns.$menus[menuId].side;
-        this.menuType = this.$componentIns.$menus[menuId].type;
+        this.menuSide = this.$menu.menuIns[menuId].side;
+        this.menuType = this.$menu.menuIns[menuId].type;
         this.menuClass += (' menu-content-' + this.menuType)
       },
     },

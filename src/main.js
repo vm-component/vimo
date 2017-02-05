@@ -25,11 +25,35 @@ Vue.use(Components,{
 // window.$router = routerFactory(Vue);
 
 /* eslint-disable no-new */
+import mixin from './mixins/baseMethodMixin'
+
+// 全局组件继承
+// let Component = Vue.extend({
+//
+//   hello:'hello to here'
+// });
+//
+// new Component({
+//   el: '#app',
+//   router,
+//   template: '<App/>',
+//   mounted () {
+//     console.log('root this;')
+//     console.log(this)
+//   },
+//   components: {App}
+// });
+
+
+
+
+
 new Vue({
   el: '#app',
+  // mixins: [mixin],
   router,
   template: '<App/>',
-  mounted: function () {
+  mounted () {
     // console.log('root this;')
     // console.log(this)
   },

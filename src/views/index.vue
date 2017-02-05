@@ -118,32 +118,26 @@
   </ion-page>
 </template>
 <style lang="scss">
-  ul {
-    li {
-      padding-left: 10px;
-      margin: 5px 0;
-      &.title {
-        background: #eee;
-        font-size: 18px;
-      }
-      &.item {
-        background: #fff;
-        font-size: 20px;
-      }
-    }
-  }
+
+
 </style>
 <script type="text/ecmascript-6">
+  import mixin from '../mixins/baseMethodMixin'
+
   export default{
+    mixins: [mixin],
     name: 'index',
     data(){
       return {
-        mixin2: true,
       }
     },
     mounted: function () {
       const _this = this;
       console.log('index-this')
+      console.log(this)
+    },
+    activated(){
+      console.log('activated index-this')
       console.log(this)
     },
     components: {}

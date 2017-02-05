@@ -16,7 +16,7 @@
     },
     mounted: function () {
     },
-    activated: function () {
+    activated () {
     },
     components: {}
   }

@@ -6,9 +6,11 @@
     <div class="app-root">
       <slot></slot>
     </div>
+    <!--backdrop-->
+    <div id="backdrop" ref="backdrop" overlay-portal></div>
     <!--modal portal-->
     <div id="modalPortal" ref="modalPortal" overlay-portal></div>
-    <!--蒙层指示等 overlay portal-->
+    <!--蒙层指示,action-sheet,choose-sheet等 overlay portal-->
     <div id="overlayPortal" ref="overlayPortal" overlay-portal></div>
     <!--alert portal-->
     <div id="alertPortal" ref="alertPortal" overlay-portal></div>
@@ -28,6 +30,14 @@
   @import './cordova';
   @import './cordova.ios';
 
+  .ion-app {
+    display: block;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+
 </style>
 <script type="text/ecmascript-6">
   import Vue from 'vue';
@@ -35,6 +45,7 @@
   // 弹出层挂载点
   const AppPortal = {
     DEFAULT: 'DEFAULT',
+    BACKDROP: 'BACKDROP',
     MODAL: 'MODAL',
     LOADING: 'LOADING',
     TOAST: 'TOAST'
@@ -160,14 +171,12 @@
       },
     },
     created(){
-      // 将挂载点同步到根this上
       const _this = this;
-      _this.$eventBus.$emit('$appReady', _this);
-      Vue.prototype.$app = {
-        _this: _this,
-        getPortal: _this.getPortal,
-        setEnabled: _this.setEnabled,
-        disableScroll: _this.$disableScroll,
+      if(!_this.$app){
+        Vue.prototype.$app = _this;
+        Vue.prototype.$getPortal = _this.getPortal;
+        Vue.prototype.$setEnabled = _this.setEnabled;
+        Vue.prototype.$disableScroll = _this.disableScroll;
       }
     },
   }

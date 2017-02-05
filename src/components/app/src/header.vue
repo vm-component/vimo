@@ -31,18 +31,18 @@
     },
     methods: {},
     created () {
-      // 将挂载点同步到根this上
-      const _this = this;
-      if (_this.$parent.$options._componentTag === 'ion-page') {
-        _this.$eventBus.$emit('$headerReady', _this);
-      }
+      // // 将挂载点同步到根this上
+      // const _this = this;
+      // if (_this.$parent.$options._componentTag === 'ion-page') {
+      //   _this.$eventBus.$emit('$headerReady', _this);
+      // }
     },
     mounted () {
 
     },
     activated () {
     },
-    beforeDestroy:function () {
+    beforeDestroy () {
 
     },
     components: {}
