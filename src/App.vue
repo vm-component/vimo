@@ -1,6 +1,6 @@
 <template>
   <ion-app id="app">
-    <!--menu-->
+    <!--menu menu-->
     <ion-menu id="menu" side="left" type="overlay">
       <!--<ion-menu [content]="content" id="menu1">-->
       <ion-header>
@@ -122,8 +122,7 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-
-    <!--menu-->
+    <!--menu author-->
     <ion-menu id="author" side="right" type="overlay">
       <!--<ion-menu [content]="content" id="menu1">-->
       <ion-header>
@@ -147,9 +146,9 @@
     <ion-nav>
       <div nav-viewport></div>
       <!--业务视图部分-->
-      <!--<keep-alive>-->
+      <keep-alive>
         <router-view></router-view>
-      <!--</keep-alive>-->
+      </keep-alive>
       <!--业务视图部分 end-->
       <div class="nav-decor"></div>
     </ion-nav>
@@ -157,10 +156,8 @@
 </template>
 <script type="text/ecmascript-6">
 
-
   export default {
     name: 'app-root',
-    // mixins: [mixin],
     data () {
       return {}
     },

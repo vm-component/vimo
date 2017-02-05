@@ -41,6 +41,7 @@
 </style>
 <script type="text/ecmascript-6">
   import Vue from 'vue';
+  import config from '../../defaultConfig';
 
   // 弹出层挂载点
   const AppPortal = {
@@ -70,7 +71,7 @@
        * */
       mode: {
         type: String,
-        default: 'ios',
+        default: config.mode || 'ios',
       },
     },
     computed: {

@@ -50,7 +50,7 @@ function _getChildMethods (parentComponent, childComponent) {
     _componentTag = _componentTag.toLowerCase();
     _confArr = config[_componentTag];
 
-    // 注册instance  eg: app -> $app
+    // 注册instance  eg: title -> $title, 只注册第一次出现的组件
     _componentShortName = _componentTag.substring(PREFIX.length);
     if (!parentComponent['$' + _componentShortName]) {
       // console.debug('register component: ' + _componentShortName);

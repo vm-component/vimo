@@ -6,6 +6,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  import config from '../../defaultConfig';
   export default{
     name: 'ion-title',
     data(){
@@ -21,7 +22,7 @@
        * */
       mode: {
         type: String,
-        default: 'ios',
+        default: config.mode || 'ios',
       },
       /**
        * 设置的title值
@@ -31,7 +32,6 @@
         default: '',
       },
     },
-    watch: {},
     computed: {
       titleClass: function () {
         return `title-${this.mode}`
@@ -67,7 +67,6 @@
           //    </ion-title>
           _title = _this.$slots.default[0].children[0].text.trim();
         }
-
         return _title
       },
       /**
@@ -101,13 +100,10 @@
     created(){
       // 将挂载点同步到根this上
       const _this = this;
-      _this.isInPage = _this.$parent.$parent.$parent.$options._componentTag === 'ion-page';
-      _this.isInPageHeader = _this.$parent.$parent.$options._componentTag === 'ion-header' && _this.isInPage;
       // 保证组件ion-title不是包含在ion-menu中的。
       // ion-page -> ion-header -> ion-toolbar/ion-navbar -> ion-title
-      // if (_this.isInPageHeader) {
-      //   _this.$eventBus.$emit('$titleReady', _this);
-      // }
+      _this.isInPage = _this.$parent.$parent.$parent.$options._componentTag === 'ion-page';
+      _this.isInPageHeader = _this.$parent.$parent.$options._componentTag === 'ion-header' && _this.isInPage;
     },
     mounted(){
       const _this = this;
