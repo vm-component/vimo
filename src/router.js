@@ -122,7 +122,7 @@ function routerFactory (Vue) {
         // next(false)
       });
       next()
-    }else if (!!Vue.prototype.$menu && !!Vue.prototype.$menu.id) {
+    }else if (!!Vue.prototype.$menu && !!Vue.prototype.$menu.currentMenuId) {
       Vue.prototype.$menu.close().then(function () {
         next();
       },function () {

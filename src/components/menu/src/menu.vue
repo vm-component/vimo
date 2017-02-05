@@ -13,7 +13,7 @@
       </div>
     </transition>
     <ion-backdrop
-      @click.native="closeMenu()"
+      @click.native="$menu.close()"
       :isActive="showBackdrop"
       :class="{'show-backdrop':showBackdrop}"></ion-backdrop>
   </div>
@@ -62,11 +62,9 @@
     data(){
       return {
         isOpen: false, // menu-inner 动画控制
-        showMenu: false, //
+        showMenu: false, // 整体menu显示控制
         showBackdrop: false, // 是否显示半灰色蒙层
         animationName: '', // 过度动画名称
-        // currentMenuId:'', // 当前激活的menuId
-        currentMenuIns: '', // 当前激活的menuId的实例
       }
     },
     props: {
@@ -133,9 +131,6 @@
       },
       _afterLeave (el) {
         this.$eventBus.$emit('ionClose');
-        // 置空！！
-        this.$menu.id = null;
-        // this.$setEnabled(true);
         this.showMenu = false;
       },
 
@@ -189,11 +184,9 @@
           return this.openMenu()
         }
       },
-      enable(){},
     },
     created(){
       const _this = this;
-
       if (!_this.$menu) {
         // init
         Vue.prototype.$menu = {
@@ -205,37 +198,30 @@
         }
       }
 
+      // 执行组件自己的close、open、toggle方法
       if (!_this.$menu.menuIns) {
         _this.$menu.menuIns = {};
         _this.$menu.open = (menuId) => {
           _this.$menu.currentMenuId = menuId;
-          _this.$menu.menuIns[menuId].openMenu()
+          return _this.$menu.menuIns[menuId].openMenu()
         };
         _this.$menu.close = () => {
           let menuId = _this.$menu.currentMenuId;
-          _this.$menu.menuIns[menuId].closeMenu();
           _this.$menu.currentMenuId = null;
+          return _this.$menu.menuIns[menuId].closeMenu();
         };
         _this.$menu.toggle = (menuId) => {
           if (!!_this.$menu.currentMenuId) {
             // open
-            _this.$menu.close();
+            return _this.$menu.close();
           } else {
             // close
-            _this.$menu.open(menuId);
+            return _this.$menu.open(menuId);
           }
         };
       }
 
       _this.$menu.menuIns[_this.id] = _this;
-
-      console.log('menu')
-      console.log(_this.$menu)
-    },
-    mounted(){
-
-    },
-    activated(){},
-    components: {}
+    }
   }
 </script>

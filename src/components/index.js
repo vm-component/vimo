@@ -204,9 +204,9 @@ module.exports = {
     //   // Vue.prototype.$clearScrollPaddingFocusOut = instance.clearScrollPaddingFocusOut;
     // });
 
-    /**
-     * ion-menu组件
-     * */
+    // /**
+    //  * ion-menu组件
+    //  * */
     // Vue.prototype.$hasFooterBar = false;
     // _eventBus.$on('$menuReady', function (instance) {
     //   console.info('$menuReady');

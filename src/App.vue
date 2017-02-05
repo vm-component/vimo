@@ -147,9 +147,9 @@
     <ion-nav>
       <div nav-viewport></div>
       <!--业务视图部分-->
-      <keep-alive>
+      <!--<keep-alive>-->
         <router-view></router-view>
-      </keep-alive>
+      <!--</keep-alive>-->
       <!--业务视图部分 end-->
       <div class="nav-decor"></div>
     </ion-nav>

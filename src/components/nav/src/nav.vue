@@ -57,7 +57,7 @@
 
       // 监听menu的组件事件
       _this.$eventBus.$on('ionOpen', function (menuId) {
-        console.debug('$on ionOpen')
+        // console.debug('$on ionOpen')
         _this.setMenuInfo(menuId);
         _this.isMenuOpen = true;
         if(_this.menuType === 'reveal' || _this.menuType === 'push'){
@@ -70,7 +70,7 @@
       });
 
       _this.$eventBus.$on('ionClosing', function () {
-        console.debug('$on ionClosing');
+        // console.debug('$on ionClosing');
         _this.isMenuOpen = false;
         if(_this.menuType === 'reveal' || _this.menuType === 'push'){
           _this.menuStyleObj['transform'] = 'translateX(0)';
@@ -78,7 +78,7 @@
 
       });
       _this.$eventBus.$on('ionClose', function () {
-        console.debug('$on ionClose')
+        // console.debug('$on ionClose')
       });
     }
   }
