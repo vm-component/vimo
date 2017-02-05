@@ -22,7 +22,10 @@
 
 <!--这个是actionsheet的模拟-->
 <script type="text/ecmascript-6">
-  export default {
+  import mixin from '../mixins/baseMethodMixin'
+
+  export default{
+    mixins: [mixin],
     name: 'action-sheet',
     data () {
       return {}

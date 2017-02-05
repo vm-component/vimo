@@ -18,7 +18,10 @@
   }
 </style>
 <script type="text/ecmascript-6">
+  import mixin from '../mixins/baseMethodMixin'
+
   export default{
+    mixins: [mixin],
     data(){
       return {}
     },

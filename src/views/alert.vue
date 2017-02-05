@@ -25,7 +25,10 @@
 <script type="text/ecmascript-6">
   import Button from '../components/button';
   import Alert from '../components/alert'
+  import mixin from '../mixins/baseMethodMixin'
+
   export default{
+    mixins: [mixin],
     data(){
       return {}
     },

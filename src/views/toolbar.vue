@@ -223,7 +223,10 @@
   //
   // import Searchbar from '../components/searchbar'
 
+  import mixin from '../mixins/baseMethodMixin'
+
   export default{
+    mixins: [mixin],
     data(){
       return {
         relationship8: 'friend1',

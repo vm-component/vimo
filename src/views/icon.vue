@@ -12,13 +12,14 @@
   }
 </style>
 <script type="text/ecmascript-6">
-  import Icon from '../components/icon';
+  import mixin from '../mixins/baseMethodMixin'
+
   export default{
+    mixins: [mixin],
     data(){
       return {}
     },
     components: {
-      'ion-icon': Icon
     },
   }
 </script>

@@ -5,11 +5,14 @@
 </template>
 <style scoped lang="scss">
  .main{
- 
+
  }
 </style>
 <script type="text/ecmascript-6">
-    export default{
+  import mixin from '../mixins/baseMethodMixin'
+
+  export default{
+    mixins: [mixin],
         data(){
             return{}
         },

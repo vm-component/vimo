@@ -10,7 +10,10 @@
     }
 </style>
 <script type="text/ecmascript-6">
-    export default{
+  import mixin from '../mixins/baseMethodMixin'
+
+  export default{
+    mixins: [mixin],
         data(){
             return{
                 msg:'hello vue'

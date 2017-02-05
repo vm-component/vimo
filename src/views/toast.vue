@@ -24,7 +24,10 @@
   import Button from '../components/button';
   import Toast from '../components/toast';
 
+  import mixin from '../mixins/baseMethodMixin'
+
   export default{
+    mixins: [mixin],
     data(){
       return {}
     },

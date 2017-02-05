@@ -43,7 +43,10 @@
   import Button from '../components/button';
   import Loading from '../components/loading';
 
+  import mixin from '../mixins/baseMethodMixin'
+
   export default{
+    mixins: [mixin],
     data(){
       return {}
     },
