@@ -1,38 +1,35 @@
 <template>
   <div :class="[itemClass,listHeaderClass,colorClass]" @click="directTo()">
-
+    <!--以下组件显示在此处：[item-left],ion-checkbox:not([item-right])-->
     <slot name="item-left"></slot>
     <!--<ng-content select="[item-left],ion-checkbox:not([item-right])"></ng-content>-->
     <div class="item-inner">
       <div class="input-wrapper">
-        <!--<ng-content select="ion-label"></ng-content>-->
-        <!--<ion-label *ngIf="_viewLabel">-->
-        <slot name="label"></slot>
-        <slot name="content"></slot>
-
-        <!--ion-radio,ion-toggle-->
-        <!--<slot name="ion-select"></slot>-->
-
-        <!--<ng-content select="ion-select,ion-input,ion-textarea,ion-datetime,ion-range,[item-content]"></ng-content>-->
+        <!--如果是ion-label则单独显示，如果不是则显示在ion-label中-->
+        <ion-label>
+          <slot></slot>
+          <slot name="item-label"></slot>
+        </ion-label>
+        <!--以下组件显示在此处：ion-select,ion-input,ion-textarea,ion-datetime,ion-range,[item-content]-->
+        <slot name="item-content"></slot>
       </div>
 
+      <!--以下组件显示在此处：[item-right],ion-radio,ion-toggle-->
       <slot name="item-right"></slot>
-
-      <!--ion-radio,ion-toggle-->
-      <slot name="ion-select"></slot>
-
-
-      <!--<ng-content select="[item-right],ion-radio,ion-toggle"></ng-content>-->
 
       <!--<ion-reorder *ngIf="_shouldHaveReorder"></ion-reorder>-->
     </div>
     <div class="button-effect"></div>
-
-
   </div>
 </template>
 <style lang="scss">
-
+  @import "item";
+  @import "item.ios";
+  @import "item.md";
+  @import "item.wp";
+  @import "item-media";
+  @import "item-reorder";
+  @import "item-sliding";
 </style>
 <script type="text/ecmascript-6">
   module.exports = {
@@ -59,7 +56,7 @@
        * */
       to: {
         type: Object,
-        default: function(){
+        default () {
           return {}
         },
       }
@@ -67,12 +64,12 @@
     watch: {},
     computed: {
       // 环境样式
-      itemClass: function () {
+      itemClass () {
         return `item item-${this.mode}`
       },
 
       // 颜色
-      colorClass: function () {
+      colorClass () {
         return !!this.color ? (`label-${this.mode}-${this.color}`) : ''
       },
     },
@@ -86,11 +83,11 @@
         }
       }
     },
-    created: function () {
+    created () {
     },
-    mounted: function () {
+    mounted () {
     },
-    activated: function () {
+    activated () {
     },
     components: {}
   }

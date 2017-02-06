@@ -136,7 +136,7 @@ $list-ios-header-background-color:    transparent !default;
 }
 
 .list-ios[inset] .item-inner {
-  border-bottom: 0;
+  border-bottom: 0!important;
 }
 
 .list-ios[inset] > .item:first-child,
