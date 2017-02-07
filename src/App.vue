@@ -146,9 +146,9 @@
     <ion-nav>
       <div nav-viewport></div>
       <!--业务视图部分-->
-      <keep-alive>
+      <!--<keep-alive>-->
         <router-view></router-view>
-      </keep-alive>
+      <!--</keep-alive>-->
       <!--业务视图部分 end-->
       <div class="nav-decor"></div>
     </ion-nav>
@@ -162,8 +162,23 @@
       return {}
     },
     methods: {
+      /**
+       * 后退操作
+       * */
       goBack () {
         window.$router.go(-1);
+      },
+      /**
+       * 返回主页(首页)
+       * */
+      goRoot(){
+
+      },
+      /**
+       * 获取首页的位置
+       * */
+      getRootNav(){
+
       }
     },
   }

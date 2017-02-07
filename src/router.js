@@ -9,9 +9,9 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    // meta: {
-    //   inMenu: true,
-    // },
+    meta: {
+      root: true,
+    },
     component: require('./views/index.vue'),
   },
   {
@@ -85,11 +85,65 @@ const routes = [
     name: 'searchbar',
     component: require('./views/searchbar.vue'),
   },
+  //list组件系列
   {
     path: '/list',
     name: 'list',
     component: require('./views/list.vue'),
   },
+  {
+    path: '/basicList',
+    name: 'list.basicList',
+    component: require('./views/list/basicList.vue'),
+  },
+  {
+    path: '/noLine',
+    name: 'list.noLine',
+    component: require('./views/list/noLine.vue'),
+  },
+  {
+    path: '/insetList',
+    name: 'list.insetList',
+    component: require('./views/list/insetList.vue'),
+  },
+  {
+    path: '/listDividers',
+    name: 'list.listDividers',
+    component: require('./views/list/listDividers.vue'),
+  },
+  {
+    path: '/listHeaders',
+    name: 'list.listHeaders',
+    component: require('./views/list/listHeaders.vue'),
+  },
+  {
+    path: '/iconList',
+    name: 'list.iconList',
+    component: require('./views/list/iconList.vue'),
+  },
+  {
+    path: '/avatarList',
+    name: 'list.avatarList',
+    component: require('./views/list/avatarList.vue'),
+  },
+  {
+    path: '/multi-lineList',
+    name: 'list.multi-lineList',
+    component: require('./views/list/multi-lineList.vue'),
+  },
+  {
+    path: '/slidingList',
+    name: 'list.slidingList',
+    component: require('./views/list/slidingList.vue'),
+  },
+  {
+    path: '/thumbnailList',
+    name: 'list.thumbnailList',
+    component: require('./views/list/ThumbnailList.vue'),
+  },
+
+
+
   {
     path: '/tabs',
     name: 'tabs',
