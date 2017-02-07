@@ -4,27 +4,29 @@
        @touchend="onDragEnd"
        @touchmove="onDragMove"
        :class="activeClass">
-    <!--<ng-content select="ion-item,[ion-item]"></ng-content>-->
-    <!--<ng-content select="ion-item-options"></ng-content>-->
     <slot></slot>
   </div>
 </template>
-<style lang="scss">
-</style>
+<style lang="scss"></style>
 <script type="text/ecmascript-6">
+  /**
+   * 组件说明：
+   * 对外事件：
+   * ionDrag - 拖动时触发
+   * ionSwipe - 滑动超过按钮最大距离+SWIPE_MARGIN时触发，不管方向
+   * ionSwipeRight - 向右滑动 超过按钮最大距离+SWIPE_MARGIN时触发
+   * ionSwipeLeft - 向左滑动 超过按钮最大距离+SWIPE_MARGIN时触发
+   * */
   import { swipeShouldReset } from '../../../utils/assist.js'
   import { pointerCoord } from '../../../utils/dom.js'
-
   const SWIPE_MARGIN = 30 * 2; // 触发swipe的值
   const ELASTIC_FACTOR = 0.45;
-
   const ItemSideFlags = {
     None: 0,
     Left: 1,
     Right: 2,
     Both: 3,
   };
-
   const SlidingState = {
     Disabled: 2,
     Enabled: 4,
@@ -32,31 +34,26 @@
     Left: 16,
     SwipeRight: 32,
     SwipeLeft: 64,
-  }
+  };
 
-  /**
-   * 对外事件：ionDrag
-   * */
   export default{
     name: 'ion-item-sliding',
     data(){
       return {
         itemInstance: null,// 子组件item的实例
-        openAmount: 0,// 开启度 number
+        openAmount: 0,// 开启值 number
         startX: 0, // 初始的位置 number
         optsWidthRightSide: 0, // 右边选项的宽度 number
         optsWidthLeftSide: 0, // 左边选项的宽度 number
         sides: 0, // 当前滑动的方向 ItemSideFlags的枚举值 标识options的left/right/both的状态
-        timer: null, // setTimeout的定时器 number 是否在动画标志
-        // isTransforming: false, // 滑动动画正在进行判断
+        timer: null, // setTimeout的定时器 number 控制关闭时的class
         leftOptions: null, // 左边的选项 实例
         rightOptions: null, // 右边的选项 实例
         optsDirty: true, // boolean true:还未计算options的宽度，false:已计算
         state: SlidingState.Disabled, // 当前状态 SlidingState的枚举值
-        firstCoordX: 0, //number
-        firstTimestamp: new Date().getTime(), //number
+        firstCoordX: 0, //number 记录点击开始的位置，用于计算速度
+        firstTimestamp: new Date().getTime(), //number 记录点击开始的时间，用于计算速度
         activeClass: {}, // 根据滑动状态设置active的class类型
-
       }
     },
     props: {},
@@ -74,8 +71,7 @@
         this.firstCoordX = coord.x;
         this.firstTimestamp = new Date().getTime();
         this._startSliding(this.firstCoordX);
-
-        this.$eventBus.$emit('ionSlidingClose',this)
+        this.$eventBus.$emit('ionSlidingClose', this)
       },
 
       /**
@@ -127,21 +123,32 @@
         }
       },
 
+      // openLeftOptions(){
+      //   const _this = this;
+      //   console.log('openLeftOptions')
+      //   if (_this.optsDirty) {
+      //     _this._calculateOptsWidth();
+      //   }
+      //
+      //   if(_this.optsWidthRightSide > 0){
+      //     _this._setOpenAmount(_this.optsWidthRightSide,false)
+      //   }
+      //   if(_this.optsWidthLeftSide > 0){
+      //     _this._setOpenAmount(_this.optsWidthLeftSide,false)
+      //   }
+      // },
+
       /**
        * 关闭当前的sliding
        * */
       close() {
-        if(this.state != SlidingState.Disabled){
-          console.log("close")
-          console.log(this)
+        // 关闭的条件：必须是开启状态，并且不是disable状态
+        if (Math.abs(this.openAmount) > 0 && this.state != SlidingState.Disabled) {
           this._setOpenAmount(0, true);
         }
       },
 
-      closeAllSliding(){
-
-      },
-
+      // ------------- @private -------------
       /**
        * 初始化：获取子组件实例，ItemSideFlags状态变更
        * */
@@ -167,8 +174,8 @@
         _this.optsDirty = true;
 
         //  事件注册
-        _this.$eventBus.$on('ionSlidingClose',function (ins) {
-          if(_this != ins){
+        _this.$eventBus.$on('ionSlidingClose', function (ins) {
+          if (_this != ins) {
             _this.close();
           }
         })
@@ -325,6 +332,7 @@
             _this._setState(SlidingState.Disabled);
             _this.timer = null;
           }, 600);
+
           _this._setItemTransformX(0);
           return;
         }
@@ -369,20 +377,25 @@
       _fireSwipeEvent() {
         if (this.state & SlidingState.SwipeRight) {
           this.$emit('ionSwipe', this)
-          this.$emit('ionSwipeRight', this)
+          this.$emit('ionSwipeLeft', this)
         } else if (this.state & SlidingState.SwipeLeft) {
           this.$emit('ionSwipe', this)
-          this.$emit('ionSwipeLeft', this)
+          this.$emit('ionSwipeRight', this)
         }
       }
     },
-    created () {
-    },
     mounted () {
+      // 此时子组件才初始化完毕
       this._init();
+
+      // const _this = this;
+      // setTimeout(function () {
+      //   _this.openLeftOptions()
+      // },3000)
     },
     destroyed(){
-      this.$eventBus.$off('ionSlidingClose')
+      // 组件中，activated和deactivated都不管用
+      this.$eventBus.$off('ionSlidingClose');
     },
   }
 </script>
