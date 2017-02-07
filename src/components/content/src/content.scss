@@ -81,6 +81,14 @@ a {
   transform: translateZ(0);
 }
 
+// fixedPosition
+[ion-fixed][top]{
+  top:0;
+}
+[ion-fixed][bottom]{
+  bottom:0;
+}
+
 
 // Content Padding
 // --------------------------------------------------

@@ -2,7 +2,15 @@
   <div class="outer-content ion-content content-ios" :class="{'statusbar-padding':$hasStatusBar}">
     <div ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
       <!--固定在页面中的内容-->
-      <slot name="fixed"></slot>
+      <!--固定到顶部-->
+      <div ion-fixed top>
+        <slot name="fixed"></slot>
+        <slot name="fixedTop"></slot>
+      </div>
+      <!--固定到底部-->
+      <div ion-fixed bottom>
+        <slot name="fixedBottom"></slot>
+      </div>
     </div>
     <div ref="scrollContent" class="scroll-content" :style="scrollContentStyle">
       <!--默认是能滚动的内容-->
@@ -35,8 +43,8 @@
 
         scrollContent: null, // scrollConent的DOM句柄
         fixedContent: null, // fixedContent的DOM句柄
-        contentDimensions:null,
-        scrollDimensions:null,
+        contentDimensions: null,
+        scrollDimensions: null,
 
         scrollPadding: 0, // scroll-content的paddingBottom，用于键盘的显示
         originalScrollPadding: 0, // 原始的scrollPaddingBottom的值
