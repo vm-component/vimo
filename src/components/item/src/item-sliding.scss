@@ -13,7 +13,10 @@
 }
 
 .ion-item-sliding .item {
+  //position: relative;
   position: static;
+  //opacity: 1;
+  //z-index: 2;
 }
 
 .ion-item-options {
@@ -21,15 +24,14 @@
   top: 0;
   right: 0;
   z-index: $z-index-item-options;
+
+  visibility: hidden;
   display: none;
 
   justify-content: flex-end;
-
   height: 100%;
-
   font-size: 14px;
 
-  visibility: hidden;
 }
 
 .ion-item-options[side=left] {

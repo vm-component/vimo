@@ -1,57 +1,58 @@
 <template>
   <ion-page>
-    <ion-header style="opacity:0.9">
+    <ion-header>
       <ion-navbar>
-        <ion-title slot="content" title="ion-app test"></ion-title>
+        <ion-title slot="content" title="App"></ion-title>
       </ion-navbar>
     </ion-header>
 
-    <ion-content :fullscreen="fullscreenVal" padding>
+    <ion-content padding>
+
+      <h2>APP(ion-app)组件介绍：</h2>
+      <p>
+        该组件是业务页面的父组件，业务页面挂载、页面状态、弹出层挂载安插等，都是在此组件中完成。
+        组件注册初始化时，会将公共下面的方法插入到Vue.prototype中，便于业务页面对ion-app组件的操控。
+      </p>
 
 
-      <ion-button type="block" @click="scrollToBottom()">滚动到底部</ion-button>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <ion-button @click="$keyBoardOpen()" type="">打开键盘的Padding</ion-button>
-      <ion-button @click="$keyBoardClose()" type="">关闭键盘的Padding</ion-button>
+      <h2>组件方法：</h2>
 
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
+      <p>$getPortal: 获取弹出层挂载的位置</p>
+      <p>$setEnabled: 设置整个页面可点击状态</p>
+      <p>$disableScroll: 禁止页面滚动</p>
 
-      <ion-button type="block" @click="scrollToTop()">返回顶部</ion-button>
+
+      <ion-button @click="$setEnabled(false,3000)">3秒内页面无法点击(可滚动)</ion-button>
+
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+      <p>这里是内容</p>
+
+      <ion-button @click="disableScroll">3秒内页面无法滚动(无法点击+滚动)</ion-button>
 
 
     </ion-content>
-
-    <ion-footer style="opacity:0.9">
-      <ion-toolbar>
-        <!--<ion-title slot="content" title="ion-app test"></ion-title>-->
-      </ion-toolbar>
-    </ion-footer>
-
 
   </ion-page>
 </template>
@@ -67,26 +68,27 @@
     mixins: [mixin],
     data(){
       return {
-        fullscreenVal: false
+        isDisabled: false,
       }
     },
     watch: {},
     computed: {},
     methods: {
-      scrollToTop: function () {
-        this.$scrollToTop();
-      },
-      scrollToBottom: function () {
-        this.$scrollToBottom();
+      disableScroll(){
+        const _this = this;
+        if (!_this.isDisabled) {
+          _this.$disableScroll(true);
+          _this.isDisabled = true;
+          setTimeout(function () {
+            _this.$disableScroll(false);
+            _this.isDisabled = false;
+          },3000)
+        }
       }
     },
-    created: function () {},
-    mounted: function () {
-      const _this = this;
-      // console.debug('app this')
-      // console.debug(this)
-    },
-    activated: function () {},
+    created () {},
+    mounted () {},
+    activated () {},
     components: {}
   }
 </script>
