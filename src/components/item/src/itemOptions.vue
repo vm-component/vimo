@@ -25,10 +25,10 @@
        * 计算这个options的宽度
        * */
       width(){
-        let _display = this.$el.display;
-        this.$el.display = 'block';
+        // let _display = this.$el.display;
+        // this.$el.display = 'block';
         let _offsetWidth = this.$el.offsetWidth;
-        this.$el.display = _display;
+        // this.$el.display = _display;
         return _offsetWidth;
       },
 

@@ -6,11 +6,11 @@
 <style lang="scss">
   @import "list";
   @import "list.ios";
-  /*@import "../../item/src/item";*/
-  /*@import "../../item/src/item.ios";*/
-  /*@import "../../item/src/item-media";*/
-  /*@import "../../item/src/item-sliding";*/
-  /*@import "../../item/src/item-reorder";*/
+  @import "../../item/src/item";
+  @import "../../item/src/item.ios";
+  @import "../../item/src/item-media";
+  @import "../../item/src/item-sliding";
+  @import "../../item/src/item-reorder";
 
 </style>
 <script type="text/ecmascript-6">
@@ -39,7 +39,7 @@
     watch: {},
     computed: {
       // 环境样式
-      modeClass: function () {
+      modeClass () {
         return `list-${this.mode}`
       },
     },
@@ -47,17 +47,19 @@
       /**
        * Close any sliding items that are open.关闭所有滑开的items
        * */
-      closeSlidingItems: function () {
+      // TODO: 关闭所有滑开的items
+      closeSlidingItems () {
 
       },
 
     },
-    created: function () {
+    created () {
     },
-    mounted: function () {
+    mounted () {
     },
-    activated: function () {
+    activated () {
     },
+    destroyed(){},
     components: {}
   }
 </script>

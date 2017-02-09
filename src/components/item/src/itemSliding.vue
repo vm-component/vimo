@@ -20,7 +20,7 @@
   import { swipeShouldReset } from '../../../utils/assist.js'
   import { pointerCoord } from '../../../utils/dom.js'
   const SWIPE_MARGIN = 30 * 2; // 触发swipe的值
-  const ELASTIC_FACTOR = 0.45;
+  const ELASTIC_FACTOR = 0.55;
   const ItemSideFlags = {
     None: 0,
     Left: 1,
@@ -35,6 +35,8 @@
     SwipeRight: 32,
     SwipeLeft: 64,
   };
+
+  let startCood;
 
   export default{
     name: 'ion-item-sliding',
@@ -66,12 +68,24 @@
        * @param {any} ev
        */
       onDragStart(ev){
-        ev.preventDefault();
-        let coord = pointerCoord(ev);
-        this.firstCoordX = coord.x;
+        // ev.preventDefault();
+        startCood = pointerCoord(ev);
+        console.log('coord')
+        console.log(startCood)
+        this.firstCoordX = startCood.x;
         this.firstTimestamp = new Date().getTime();
         this._startSliding(this.firstCoordX);
         this.$eventBus.$emit('ionSlidingClose', this)
+      },
+
+      /**
+       * onDragMove
+       * @param {any} ev
+       */
+      onDragMove(ev){
+        // ev.preventDefault();
+        let coordX = pointerCoord(ev).x;
+        this._moveSliding(coordX);
       },
 
       /**
@@ -79,7 +93,6 @@
        * @param {any} ev
        */
       onDragEnd(ev){
-        ev.preventDefault();
         let coordX = pointerCoord(ev).x;
         let deltaX = (coordX - this.firstCoordX);
         let deltaT = (Date.now() - this.firstTimestamp);
@@ -88,16 +101,6 @@
         } else {
           this._endSliding(deltaX / deltaT);
         }
-      },
-
-      /**
-       * onDragMove
-       * @param {any} ev
-       */
-      onDragMove(ev){
-        ev.preventDefault();
-        let coordX = pointerCoord(ev).x;
-        this._moveSliding(coordX);
       },
 
       /**
@@ -123,20 +126,43 @@
         }
       },
 
-      // openLeftOptions(){
-      //   const _this = this;
-      //   console.log('openLeftOptions')
-      //   if (_this.optsDirty) {
-      //     _this._calculateOptsWidth();
-      //   }
-      //
-      //   if(_this.optsWidthRightSide > 0){
-      //     _this._setOpenAmount(_this.optsWidthRightSide,false)
-      //   }
-      //   if(_this.optsWidthLeftSide > 0){
-      //     _this._setOpenAmount(_this.optsWidthLeftSide,false)
-      //   }
-      // },
+      /**
+       * 开启左边的选项卡
+       * @return {any} ins - 开启的组件示例的this，默认是当前组件自己的this
+       * */
+      openLeftOptions(ins = this){
+        const _this = this;
+        if (ins === _this && !!_this.leftOptions) {
+          _this.activeClass = {
+            'active-slide': true,
+          };
+          _this.$nextTick(function () {
+            _this._calculateOptsWidth();
+            if (_this.optsWidthLeftSide > 0) {
+              _this._setOpenAmount(-_this.optsWidthLeftSide, false)
+            }
+          })
+        }
+      },
+
+      /**
+       * 开启右边的选项卡
+       * @return {any} ins - 开启的组件示例的this，默认是当前组件自己的this
+       * */
+      openRightOptions(ins = this){
+        const _this = this;
+        if (ins === _this && !!_this.rightOptions) {
+          _this.activeClass = {
+            'active-slide': true,
+          };
+          _this.$nextTick(function () {
+            _this._calculateOptsWidth();
+            if (_this.optsWidthRightSide > 0) {
+              _this._setOpenAmount(_this.optsWidthRightSide, false)
+            }
+          })
+        }
+      },
 
       /**
        * 关闭当前的sliding
@@ -145,6 +171,27 @@
         // 关闭的条件：必须是开启状态，并且不是disable状态
         if (Math.abs(this.openAmount) > 0 && this.state != SlidingState.Disabled) {
           this._setOpenAmount(0, true);
+        }
+      },
+
+      /**
+       * 获取方向
+       */
+      _getDirection(coordStart, coordEnd){
+        let _dx = Math.abs(coordEnd.x - coordStart.x);
+        let _dy = Math.abs(coordEnd.y - coordStart.y);
+        if (_dy > _dx) {
+          if (coordEnd.y > coordStart.y) {
+            return 'bottom'
+          } else {
+            return 'top'
+          }
+        } else {
+          if (coordEnd.x > coordStart.x) {
+            return 'right'
+          } else {
+            return 'left'
+          }
         }
       },
 
@@ -193,7 +240,6 @@
           _this.timer = null;
         }
         if (_this.openAmount === 0) {
-          _this.optsDirty = true;
           _this._setState(SlidingState.Enabled);
         }
         _this.startX = startX + this.openAmount;
@@ -382,16 +428,11 @@
           this.$emit('ionSwipe', this)
           this.$emit('ionSwipeRight', this)
         }
-      }
+      },
     },
     mounted () {
       // 此时子组件才初始化完毕
       this._init();
-
-      // const _this = this;
-      // setTimeout(function () {
-      //   _this.openLeftOptions()
-      // },3000)
     },
     destroyed(){
       // 组件中，activated和deactivated都不管用

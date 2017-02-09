@@ -12,21 +12,21 @@
     watch: {},
     computed: {
       // 颜色
-      colorClass: function () {
-        return !!this.color ? (`list-header-${this.mode}-${this.color}`) : ''
+      colorClass () {
+        return !!this.color ? (`${this.itemTypeName}-${this.mode}-${this.color}`) : ''
       },
-      listHeaderClass: function () {
-        return `ion-list-header ${this.itemTypeName} ${this.itemTypeName}-${this.mode}`
+      listHeaderClass () {
+        return `ion-${this.itemTypeName} ${this.itemTypeName} ${this.itemTypeName}-${this.mode}`
       },
     },
     methods: {},
-    created: function () {
+    created () {
     },
-    mounted: function () {
+    mounted () {
       // console.log('ion-list-header')
       // console.log(this)
     },
-    activated: function () {
+    activated () {
     },
     components: {}
   }

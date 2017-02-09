@@ -86,7 +86,54 @@
             </ion-button>
           </ion-item-options>
         </ion-item-sliding>
+        <ion-item-sliding>
+          <ion-item>
+            <ion-avatar item-left slot="item-left">
+              <img src="http://placehold.it/36x36">
+            </ion-avatar>
+            <h2>按钮在右边</h2>
+            <p>⬅️ 滑动出现按钮，再滑动则执行</p>
+          </ion-item>
 
+          <ion-item-options side="right">
+            <ion-button expandable ion-button color="danger" @click="clickDelete">
+              <ion-icon name="trash"></ion-icon>
+              Delete
+            </ion-button>
+          </ion-item-options>
+        </ion-item-sliding>
+        <ion-item-sliding>
+          <ion-item>
+            <ion-avatar item-left slot="item-left">
+              <img src="http://placehold.it/36x36">
+            </ion-avatar>
+            <h2>按钮在右边</h2>
+            <p>⬅️ 滑动出现按钮，再滑动则执行</p>
+          </ion-item>
+
+          <ion-item-options side="right">
+            <ion-button expandable ion-button color="danger" @click="clickDelete">
+              <ion-icon name="trash"></ion-icon>
+              Delete
+            </ion-button>
+          </ion-item-options>
+        </ion-item-sliding>
+        <ion-item-sliding>
+          <ion-item>
+            <ion-avatar item-left slot="item-left">
+              <img src="http://placehold.it/36x36">
+            </ion-avatar>
+            <h2>按钮在右边</h2>
+            <p>⬅️ 滑动出现按钮，再滑动则执行</p>
+          </ion-item>
+
+          <ion-item-options side="right">
+            <ion-button expandable ion-button color="danger" @click="clickDelete">
+              <ion-icon name="trash"></ion-icon>
+              Delete
+            </ion-button>
+          </ion-item-options>
+        </ion-item-sliding>
 
         <ion-item-sliding>
           <ion-item>

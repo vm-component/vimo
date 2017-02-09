@@ -12,9 +12,9 @@
     watch: {},
     computed: {},
     methods: {},
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
+    created () {},
+    mounted () {},
+    activated () {},
     components: {}
   }
 </script>

@@ -16,20 +16,19 @@
 
       <!--以下组件显示在此处：[item-right],ion-radio,ion-toggle-->
       <slot name="item-right"></slot>
-
       <!--<ion-reorder *ngIf="_shouldHaveReorder"></ion-reorder>-->
     </div>
     <div class="button-effect"></div>
   </div>
 </template>
 <style lang="scss">
-  @import "item";
-  @import "item.ios";
-  @import "item.md";
-  @import "item.wp";
-  @import "item-media";
-  @import "item-reorder";
-  @import "item-sliding";
+  /*@import "item";*/
+  /*@import "item.ios";*/
+  /*@import "item.md";*/
+  /*@import "item.wp";*/
+  /*@import "item-media";*/
+  /*@import "item-reorder";*/
+  /*@import "item-sliding";*/
 </style>
 <script type="text/ecmascript-6">
   module.exports = {
