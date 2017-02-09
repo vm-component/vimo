@@ -346,7 +346,7 @@ const skipInputAttrsReg = /^(value|checked|disabled|type|class|style|id|autofocu
  * @param {HTMLElement} srcElement -
  * @param {HTMLElement} destElement -
  * */
-export function copyInputAttributes(srcElement, destElement) {
+export function copyInputAttributes (srcElement, destElement) {
   // copy attributes from one element to another
   // however, skip over a few of them as they're already
   // handled in the angular world
@@ -359,7 +359,6 @@ export function copyInputAttributes(srcElement, destElement) {
   }
 }
 
-
 /**
  * Get the element offsetWidth and offsetHeight. Values are cached
  * to reduce DOM reads. Cache is cleared on a window resize.
@@ -368,7 +367,7 @@ export function copyInputAttributes(srcElement, destElement) {
  * @param {string} id
  * @return {Dimensions}
  */
-export function getDimensions(ele, id){
+export function getDimensions (ele, id) {
   let dimensions = dimensionCache[id];
   if (!dimensions) {
     // make sure we got good values before caching
@@ -382,7 +381,7 @@ export function getDimensions(ele, id){
 
     } else {
       // do not cache bad values
-      return { width: 0, height: 0, left: 0, top: 0 };
+      return {width: 0, height: 0, left: 0, top: 0};
     }
   }
 
@@ -394,7 +393,7 @@ export function getDimensions(ele, id){
  * @param {string} id
  * @return {Dimensions}
  */
-export function clearDimensions(id) {
+export function clearDimensions (id) {
   delete dimensionCache[id];
 }
 
@@ -402,7 +401,7 @@ export function clearDimensions(id) {
  * 获取window的dimension信息
  * @return {Dimensions}
  */
-export function windowDimensions() {
+export function windowDimensions () {
   if (!dimensionCache.win) {
     // make sure we got good values before caching
     if (win.innerWidth && win.innerHeight) {
@@ -412,7 +411,7 @@ export function windowDimensions() {
       };
     } else {
       // do not cache bad values
-      return { width: 0, height: 0 };
+      return {width: 0, height: 0};
     }
   }
   return dimensionCache.win;
@@ -421,8 +420,46 @@ export function windowDimensions() {
 /**
  * 清空dimensionCache缓存
  * */
-export function flushDimensionCache() {
+export function flushDimensionCache () {
   dimensionCache = {};
 }
 
+/**
+ * 元素的class操作
+ * @param {HTMLElement} ele - 添加、删除class的元素
+ * @param {string} className
+ * @param {boolean} add - 是添加还是删除
+ * */
+export function setElementClass (ele, className, add) {
+  if (add) {
+    _addClass(ele, className)
+  }else{
+    _removeClass(ele, className)
+  }
+}
 
+
+/**
+ * 元素的class操作
+ * */
+function _hasClass (obj, cls) {
+  return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+}
+
+function _addClass (obj, cls) {
+  if (!_hasClass(obj, cls)) {
+    obj.className += " " + cls;
+  }
+}
+
+function _removeClass (obj, cls) {
+  if (_hasClass(obj, cls)) {
+    var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+    obj.className = obj.className.replace(reg, ' ').trim();
+  }
+}
+
+
+// private _setElementClass(className: string, add: boolean) {
+//   this.renderer.setElementClass(this.elementRef.nativeElement, className, add);
+// }
