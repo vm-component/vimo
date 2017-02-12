@@ -32,7 +32,7 @@
 
   .ion-app {
     display: block;
-    max-width: 640px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -42,6 +42,9 @@
 <script type="text/ecmascript-6">
   import Vue from 'vue';
   import config from '../../defaultConfig';
+  import { ClickBlock } from "../../../util/click-block"
+
+  let _clickBlock = new ClickBlock();
 
   // 弹出层挂载点
   const AppPortal = {
@@ -126,41 +129,11 @@
       setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
         if (isEnabled) {
           // disable the click block if it's enabled, or the duration is tiny
-          this._clickBlock(false, CLICK_BLOCK_BUFFER_IN_MILLIS);
+          _clickBlock.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS);
         } else {
           // show the click block for duration + some number
-          this._clickBlock(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS);
+          _clickBlock.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS);
         }
-      },
-
-      /**
-       * 定义clickBlock处理函数
-       * @param {Boolean} shouldShow - 是否显示
-       * @param {Number} expire - shouldShow=false设置的过期时间
-       * @return {Object} 返回包含activate的对象方法
-       * */
-      _clickBlock (shouldShow, expire = 100) {
-        let _tmr;
-        let _showing = false;
-        let _this = this;
-
-        // 闭包
-        function activate () {
-          window.clearTimeout(_tmr);
-          if (shouldShow) {
-            _activate(true);
-          }
-          _tmr = setTimeout(_activate.bind(this, false), expire);
-        }
-
-        function _activate (shouldShow) {
-          if (_showing !== shouldShow) {
-            _this.isClickBlockActive = shouldShow;
-            _showing = shouldShow;
-          }
-        }
-
-        return activate()
       },
 
       /**
@@ -173,7 +146,7 @@
     },
     created(){
       const _this = this;
-      if(!_this.$app){
+      if (!_this.$app) {
         Vue.prototype.$app = _this;
         Vue.prototype.$getPortal = _this.getPortal;
         Vue.prototype.$setEnabled = _this.setEnabled;

@@ -54,7 +54,7 @@
   /**
    * 注意：menu是全局的组件，应该在App.vue中定义，而不是在业务文件中
    * */
-  import { firstUpperCase } from '../../../utils/assist';
+  import { firstUpperCase } from '../../../util/assist';
   import Vue from 'vue';
 
   export default{
@@ -162,7 +162,6 @@
         });
       },
 
-
       openMenu(){
         this.$eventBus.$emit('ionOpen', this.id);
         return this.enabled && this.setOpen(true);
@@ -178,9 +177,9 @@
        * @params {String} menuId - 标识menu的id
        * */
       toggleMenu(){
-        if(this.showMenu){
+        if (this.showMenu) {
           return this.closeMenu()
-        }else{
+        } else {
           return this.openMenu()
         }
       },

@@ -25,7 +25,7 @@
 
 </style>
 <script type="text/ecmascript-6">
-  import { getStyle, getNum } from '../../../utils/assist'
+  import { getStyle, getNum } from '../../../util/assist'
   export default{
     name: 'ion-content',
     props: {
