@@ -57,25 +57,33 @@
 
 
 // import { EventEmitter, NgZone, OpaqueToken } from '@angular/core';
-import Vue from 'vue';
 import { QueryParams } from './query-params';
 import { ready, windowDimensions, flushDimensionCache } from '../util/dom';
 import { removeArrayItem } from '../util/util';
+import { eventBus } from '../util/events'
 
 export class Platform {
   _versions = {}; // {[name: string]: PlatformVersion}
   _dir; // string 文字方向 ;
   _lang; // string 文字;
-  _ua; //string userAgent;
+
   _qp; //QueryParams 初始化时的查询实例 {data:{}};
-  _bPlt; //string 当前的导航平台,差不多是设备的类型, 例如MacIntel;
+
+  _bPlt; //string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
+  _ua; //string userAgent;
+
   _readyPromise; //Promise<any> Ready的promise;
   _readyResolve; //any;
+
   _resizeTm; //any setTimeout 定时过后执行_onResizes中的回调函数;
   _onResizes = []; //Array<Function> = [] resize时执行的回调列表;
+
   _bbActions = []; //BackButtonAction[] = [] 后退按钮上注册的回调列表;
+
   _default; //string 默认的平台模式 core/mobile/phablet/tablet/android/ios/ipad/iphone/windows/cordova等;
+  _platforms = []; // : string[] = []; 当前平台的key 例如: "mobile/ios/mobileweb"
   _registry; //{[name:string] : PlatformConfig}; platform-registry中的config列表->登记处
+
   _pW = 0; // Portrait模式的设备Width
   _pH = 0; // Portrait模式的设备Height
   _lW = 0; // Landscape模式的设备Width
@@ -83,12 +91,17 @@ export class Platform {
   _isPortrait = null; //boolean = null 横屏还是竖屏 Portrait=竖屏;
 
   /** @private */
-  _platforms = []; // : string[] = [];
 
   constructor () {
-    this._readyPromise = new Promise(res => { this._readyResolve = res; });
+    const _this = this;
+    _this._readyPromise = new Promise(res => { _this._readyResolve = res; });
 
-    // TODO: 不懂
+    // 监听后退事件
+    // window.addEventListener("popstate", function(e) {
+    //   console.debug('Event of popstate');
+    //   _this.runBackButtonAction();
+    // }, false);
+
     // this.backButton.subscribe(() => {
     //   // the hardware back button event has been fired
     //   console.debug('hardware back button');
@@ -97,13 +110,6 @@ export class Platform {
     //   this.runBackButtonAction();
     // });
   }
-
-  // /**
-  //  * @private
-  //  */
-  // setZone (zone: NgZone) {
-  //   this.zone = zone;
-  // }
 
   // Methods
   // **********************************************
@@ -263,9 +269,7 @@ export class Platform {
    * @param {string} readySource
    */
   triggerReady (readySource) {
-    // Vue.nextTick(function () {
     this._readyResolve(readySource);
-    // })
   }
 
   /**
@@ -376,6 +380,9 @@ export class Platform {
    * the background, however, it would not fire on a standard web browser.
    */
   // pause: EventEmitter<Event> = new EventEmitter < Event > ();
+  // pause () {
+  //   eventBus.$emit('app:pause')
+  // }
 
   /**
    * The resume event emits when the native platform pulls the application
@@ -671,12 +678,12 @@ export class Platform {
   /**
    *  this._qp为地址栏参数查询对象,
    *  1. 优先提取地址栏的ionicplatform值,判断是否匹配
-   *  2. 否则由useragent判断
+   *  2. 否则由useragent判断userAgentAtLeastHas中是否有而userAgentMustNotHave中没有
    *
    * @private
    * @param {string} queryStringName - 查询名称
-   * @param {array} userAgentAtLeastHas - 字少包含的值
-   * @param {array} userAgentMustNotHave - 绝对没有的值
+   * @param {array} userAgentAtLeastHas - 在useragent中查找的字段
+   * @param {array} userAgentMustNotHave -  在useragent中排除的字段
    * @return {boolean}
    */
   isPlatformMatch (queryStringName, userAgentAtLeastHas, userAgentMustNotHave = []) {
@@ -705,6 +712,7 @@ export class Platform {
 
   /** @private */
   init () {
+    this._platforms = [];
     let rootPlatformNode;//PlatformNode;
     let enginePlatformNode;//PlatformNode;
 
@@ -780,9 +788,9 @@ export class Platform {
       }
     }
 
-    if (this._platforms.indexOf('mobile') > -1 && this._platforms.indexOf('cordova') === -1) {
-      this._platforms.push('mobileweb');
-    }
+    // if (this._platforms.indexOf('mobile') > -1 && this._platforms.indexOf('cordova') === -1) {
+    //   this._platforms.push('mobileweb');
+    // }
   }
 
   /**
@@ -807,7 +815,6 @@ export class Platform {
     }
     return rootNode;
   }
-
 }
 
 /**
@@ -834,11 +841,10 @@ function insertSuperset (registry, platformNode) {
  */
 class PlatformNode {
   c; //PlatformConfig;
-
   parent; // PlatformNode
   child; // PlatformNode
   name; //string;
-  isEngine; //boolean; 是否是cordova
+  isEngine; //boolean; 是否是在壳子中
   depth; //number;
 
   /**
@@ -860,6 +866,7 @@ class PlatformNode {
   }
 
   /**
+   * Platform
    * @param {Platform} p
    * @return {boolean}
    * */
@@ -925,13 +932,13 @@ class PlatformNode {
   }
 
   /**
+   * 获取子集的父类名称数组
    * @param {string} subsetPlatformName
    * @return {array}
    * */
   getSubsetParents (subsetPlatformName) {
     const parentPlatformNames = [];
     let platform = null; // PlatformConfig
-
     for (let platformName in this.registry) {
       platform = this.registry[platformName];
 
@@ -945,7 +952,6 @@ class PlatformNode {
 
 }
 
-
 /**
  * @private
  * @param {PlatformConfig} platformConfigs
@@ -956,15 +962,20 @@ class PlatformNode {
  * @param {string} docLanguage
  * @return {Platform}
  */
-export function setupPlatform(platformConfigs, queryParams, userAgent, navigatorPlatform, docDirection, docLanguage){
-  const p = new Platform();
-  p.setDefault('core');
-  p.setPlatformConfigs(platformConfigs);
-  p.setUserAgent(userAgent);
-  p.setQueryParams(queryParams);
-  p.setNavigatorPlatform(navigatorPlatform);
-  p.setDir(docDirection, false);
-  p.setLang(docLanguage, false);
-  p.init();
-  return p;
+export function setupPlatform (platformConfigs, queryParams, userAgent, navigatorPlatform, docDirection, docLanguage) {
+  if (!!window.platform) {
+    return window.platform
+  } else {
+    const p = new Platform();
+    p.setDefault('iphone');
+    p.setPlatformConfigs(platformConfigs);
+    p.setUserAgent(userAgent);
+    p.setQueryParams(queryParams);
+    p.setNavigatorPlatform(navigatorPlatform);
+    p.setDir(docDirection, false);
+    p.setLang(docLanguage, false);
+    p.init();
+    window.platform = p;
+    return p;
+  }
 }

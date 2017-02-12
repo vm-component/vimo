@@ -1,12 +1,13 @@
 /**
  * Created by Hsiang on 2017/2/9.
+ *
+ * 平台注册中心,在这里配置各个平台的特性
+ *
+ *
  */
-// import { OpaqueToken } from '@angular/core';
 
-// import { Platform } from './platform';
 import { windowLoad } from '../util/dom';
 
-//: { [key: string]: PlatformConfig }
 export const PLATFORM_CONFIGS = {
 
   /**
@@ -14,7 +15,7 @@ export const PLATFORM_CONFIGS = {
    */
   core: {
     settings: {
-      mode: 'md',
+      mode: 'ios',
       keyboardHeight: 290
     }
   },
@@ -25,7 +26,7 @@ export const PLATFORM_CONFIGS = {
   mobile: {},
 
   /**
-   * phablet
+   * phablet手机平板
    */
   phablet: {
     /**
@@ -65,6 +66,7 @@ export const PLATFORM_CONFIGS = {
     ],
     settings: {
       /**
+       * 点触出现水纹的动画开关
        * @return {Platform}
        * */
       activator: function () {
@@ -87,7 +89,6 @@ export const PLATFORM_CONFIGS = {
             return 'none';
           }
         }
-
         // fallback to always use ripple
         return 'ripple';
       },
@@ -98,12 +99,14 @@ export const PLATFORM_CONFIGS = {
       keyboardHeight: 300,
       mode: 'md',
     },
+
     /**
      * @param {Platform} p
      * */
     isMatch(p) {
       return p.isPlatformMatch('android', ['android', 'silk'], ['windows phone']);
     },
+
     /**
      * @param {Platform} p
      * */
@@ -135,12 +138,14 @@ export const PLATFORM_CONFIGS = {
       virtualScrollEventAssist: isIOSUI,
       disableScrollAssist: isIOS,
     },
+
     /**
      * @param {Platform} p
      * */
     isMatch(p) {
       return p.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone']);
     },
+
     /**
      * @param {Platform} p
      * */
@@ -210,6 +215,21 @@ export const PLATFORM_CONFIGS = {
     }
   },
 
+  wx:{
+    isEngine: true,
+    initialize(p){
+
+    },
+
+  },
+  ali:{
+    isEngine: true,
+    initialize(p){
+
+    },
+
+  },
+
   /**
    * cordova
    */
@@ -219,7 +239,7 @@ export const PLATFORM_CONFIGS = {
      * @param {Platform} p
      * @return {any}
      * */
-    initialize: function (p) {
+    initialize (p) {
 
       // prepare a custom "ready" for cordova "deviceready"
       p.prepareReady = function () {
@@ -298,10 +318,6 @@ function isWK () {
   return !!window['webkit'];
 }
 
-// Commented out becuase it is not used yet
-// function isIOSWK(p: Platform): boolean {
-//   return isIOS(p) && isWK();
-// }
 /**
  * @param {Platform} p
  * @return {boolean}
@@ -310,8 +326,24 @@ function isIOSUI (p) {
   return isIOS(p) && !isWK() && !isSafari(p);
 }
 
-// export const PlatformConfigToken = new OpaqueToken('PLTCONFIG');
 
 export function providePlatformConfigs () {
   return PLATFORM_CONFIGS;
+}
+
+
+/**
+ * @param {Platform} plt
+ * @return {boolean}
+ * */
+export function isWKWebView(plt) {
+  return isIOS(plt) && !!window['webkit'];
+}
+
+/**
+ * @param {Platform} plt
+ * @return {boolean}
+ * */
+export function isIosUIWebView(plt) {
+  return isIOS(plt) && !isWKWebView(plt) && !isSafari(plt);
 }
