@@ -14,6 +14,13 @@ export class QueryParams {
   data = {};// {[key: string]: any}
 
   /**
+   * @param {string} url
+   * */
+  constructor (url = window.location.href) {
+    this.parseUrl(url);
+  }
+
+  /**
    * @param {string} key
    * */
   get (key) {
@@ -23,7 +30,7 @@ export class QueryParams {
   /**
    * @param {string} url
    * */
-  parseUrl(url){
+  parseUrl (url) {
     if (url) {
       const startIndex = url.indexOf('?');
       if (startIndex > -1) {

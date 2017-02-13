@@ -3,14 +3,6 @@
  * @name Platform
  * @description
  *
- * The Platform service can be used to get information about your current device.
- * You can get all of the platforms associated with the device using the [platforms](#platforms)
- * method, including whether the app is being viewed from a tablet, if it's
- * on a mobile device or browser, and the exact platform (iOS, Android, etc).
- * You can also get the orientation of the device, if it uses right-to-left
- * language direction, and much much more. With this information you can completely
- * customize your app to fit any device.
- *
  * 这个类用于从设备中获取平台信息, 比如设备种类/运行平台/设备方向/文字方向等,
  * 以此使得代码适配所有机型
  *
@@ -20,9 +12,15 @@
  * 3. 如果是在App内, 则监听ready事件, 注册并调用原生组件
  *
  * @usage
- * 这里需要补充!!
  *
+ * let platformConfigs = providePlatformConfigs();
+ * let queryParams = new QueryParams();
+ * let platform = setupPlatform(platformConfigs, queryParams, navigator.userAgent, navigator.platform, 'ltr', 'zh');
+ * platform.ready().then((data) => {
+ *    alert('Platform ready info: ' + data);
+ * });
  *
+
  *
  * 结构体定义
  *
@@ -52,7 +50,7 @@
  * }
  */
 import { QueryParams } from './query-params';
-import { getCss, isTextInput, ready, windowDimensions, flushDimensionCache } from '../util/dom';
+import { getCss, ready, windowDimensions, flushDimensionCache } from '../util/dom';
 import { removeArrayItem } from '../util/util';
 import { eventBus } from '../util/events'
 
@@ -289,29 +287,9 @@ export class Platform {
    */
   prepareReady () {
     const self = this;
-    self.windowLoad(function () {
+    ready(function () {
       self.triggerReady('dom');
     })
-  }
-
-
-
-  windowLoad(callback) {
-    let _doc =  document.documentElement;
-    let _win = window;
-
-    if (_doc.readyState === 'complete' || _doc.readyState === 'interactive') {
-      !!callback && callback()
-    } else {
-      _doc.addEventListener('DOMContentLoaded', completed, false);
-      _win.addEventListener('load', completed, false);
-    }
-
-    function completed() {
-      _doc.removeEventListener('DOMContentLoaded', completed, false);
-      _win.removeEventListener('load', completed, false);
-      !!callback && callback()
-    }
   }
 
   /**

@@ -6,7 +6,7 @@
  *
  */
 
-import { windowLoad } from '../util/dom';
+import { ready } from '../util/dom';
 
 export const PLATFORM_CONFIGS = {
 
@@ -234,14 +234,12 @@ export const PLATFORM_CONFIGS = {
        * */
       p.prepareReady();
 
-
     },
 
     /**
      * @param {Platform} p
      * */
     isMatch(p) {
-      alert(p.userAgent())
       return p.isPlatformMatch('wechat', ['micromessenger']);
     },
   },
@@ -330,8 +328,6 @@ export const PLATFORM_CONFIGS = {
        * */
       p.prepareReady();
 
-
-
     },
 
     /**
@@ -343,65 +339,63 @@ export const PLATFORM_CONFIGS = {
   },
 
 
-
-
-  /**
-   * cordova
-   */
-  cordova: {
-    isEngine: true,
-    /**
-     * @param {Platform} p
-     * @return {any}
-     * */
-    initialize (p) {
-
-      // prepare a custom "ready" for cordova "deviceready"
-      p.prepareReady = function () {
-        // 1) ionic bootstrapped
-        windowLoad(function () {
-
-          alert('initialize')
-          // 2) window onload triggered or completed
-          document.addEventListener('deviceready', function () {
-            // 3) cordova deviceready event triggered
-
-            // add cordova listeners to emit platform events
-            document.addEventListener('backbutton', function (ev) {
-              p.zone.run(() => {
-                p.backButton.emit(ev);
-              });
-            });
-            document.addEventListener('pause', function (ev) {
-              p.zone.run(() => {
-                p.pause.emit(ev);
-              });
-            });
-            document.addEventListener('resume', function (ev) {
-              p.zone.run(() => {
-                p.resume.emit(ev);
-              });
-            });
-
-            // cordova has its own exitApp method
-            p.exitApp = function () {
-              !!window.navigator.app && !!window.navigator.app.exitApp && window.navigator.app.exitApp();
-            };
-
-            // cordova has fully loaded and we've added listeners
-            p.triggerReady('cordova');
-          });
-        });
-      };
-
-    },
-    /**
-     * @return {any}
-     * */
-    isMatch() {
-      return !!(window.cordova || window.PhoneGap || window.phonegap);
-    }
-  }
+  // /**
+  //  * cordova
+  //  */
+  // cordova: {
+  //   isEngine: true,
+  //   /**
+  //    * @param {Platform} p
+  //    * @return {any}
+  //    * */
+  //   initialize (p) {
+  //
+  //     // prepare a custom "ready" for cordova "deviceready"
+  //     p.prepareReady = function () {
+  //       // 1) ionic bootstrapped
+  //       windowLoad(function () {
+  //
+  //         alert('initialize')
+  //         // 2) window onload triggered or completed
+  //         document.addEventListener('deviceready', function () {
+  //           // 3) cordova deviceready event triggered
+  //
+  //           // add cordova listeners to emit platform events
+  //           document.addEventListener('backbutton', function (ev) {
+  //             p.zone.run(() => {
+  //               p.backButton.emit(ev);
+  //             });
+  //           });
+  //           document.addEventListener('pause', function (ev) {
+  //             p.zone.run(() => {
+  //               p.pause.emit(ev);
+  //             });
+  //           });
+  //           document.addEventListener('resume', function (ev) {
+  //             p.zone.run(() => {
+  //               p.resume.emit(ev);
+  //             });
+  //           });
+  //
+  //           // cordova has its own exitApp method
+  //           p.exitApp = function () {
+  //             !!window.navigator.app && !!window.navigator.app.exitApp && window.navigator.app.exitApp();
+  //           };
+  //
+  //           // cordova has fully loaded and we've added listeners
+  //           p.triggerReady('cordova');
+  //         });
+  //       });
+  //     };
+  //
+  //   },
+  //   /**
+  //    * @return {any}
+  //    * */
+  //   isMatch() {
+  //     return !!(window.cordova || window.PhoneGap || window.phonegap);
+  //   }
+  // }
 };
 /**
  * @return {boolean}
