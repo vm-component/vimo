@@ -20,7 +20,6 @@
  *    alert('Platform ready info: ' + data);
  * });
  *
-
  *
  * 结构体定义
  *
@@ -357,23 +356,18 @@ export class Platform {
 
   /**
    * 后退按钮触发事件
-   * @private
    */
-  // backButton: EventEmitter<Event> = new EventEmitter < Event > ();
-  // backButton: EventEmitter<Event> = new EventEmitter < Event > ();
+  backButton(){}
 
   /**
    * 当将App转为[后台]时触发pause事件, 普通浏览器不适用
    */
-  // pause: EventEmitter<Event> = new EventEmitter < Event > ();
-  // pause () {
-  //   eventBus.$emit('app:pause')
-  // }
+  pause () {}
 
   /**
    * 当将App转为[前台]时触发resume事件, 普通浏览器不适用
    */
-  // resume: EventEmitter<Event> = new EventEmitter < Event > ();
+  resume () {}
 
   /**
    * App内点击设备物理的返回键的时候的处理回调列表, 在后退的事件上注册额外的处理方法,
