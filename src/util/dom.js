@@ -5,6 +5,7 @@
  */
 
 const win = window;
+const doc = document.documentElement;
 let dimensionCache = {}; // any
 // RequestAnimationFrame Polyfill (Android 4.3 and below)
 /*! @author Paul Irish */
@@ -99,8 +100,9 @@ export function zoneRafFrames (framesToWait, callback) {
 /**
  * 当前环境的可用CSS变量名称
  * 下方自动执行
+ * @param {HTMLElement} docEle
  * */
-export const CSS = {
+const CSS = {
   transform: '',
   transition: '',
   transitionDuration: '',
@@ -111,7 +113,8 @@ export const CSS = {
   transformOrigin: '',
   animationDelay: '',
 };
-(function () {
+export function getCss(docEle) {
+
   // transform
   var i;//number;
   var keys = ['webkitTransform', 'transform', '-webkit-transform', 'webkit-transform',
@@ -154,7 +157,9 @@ export const CSS = {
   // animation delay
   CSS.animationDelay = (isWebkit ? 'webkitAnimationDelay' : 'animationDelay');
 
-})();
+  return CSS
+}
+
 
 /**
  * transitionEnd事件注册，绑定的函数触发后会自动解绑
@@ -214,35 +219,6 @@ export function ready (callback) {
 
   function completed () {
     document.removeEventListener('DOMContentLoaded', completed, false);
-    win.removeEventListener('load', completed, false);
-    callback();
-  }
-}
-
-/**
- * windowLoad事件监听
- * @param {Function} callback - 回调函数
- * @return {Promise} 返回promise，completed后自动解绑
- * */
-export function windowLoad (callback) {
-  let promise = null; //Promise;
-
-  if (!callback) {
-    // a callback wasn't provided, so let's return a promise instead
-    promise = new Promise(resolve => { callback = resolve; });
-  }
-
-  if (document.readyState === 'complete') {
-    callback();
-
-  } else {
-
-    win.addEventListener('load', completed, false);
-  }
-
-  return promise;
-
-  function completed () {
     win.removeEventListener('load', completed, false);
     callback();
   }

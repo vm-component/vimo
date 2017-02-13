@@ -15,14 +15,7 @@ export class ClickBlock {
     this._tmr = 0;
     /**@param {boolean} _showing - */
     this._showing = false;
-
     this.clickBlockElement = this._getClickBlockElement();
-
-    this.isEnabled = true;
-    // 由isEnabled给ion-app组件添加"click-block-enabled"类
-    if (this.isEnabled) {
-      console.log('添加"click-block-enabled"类')
-    }
   }
 
   /**
@@ -30,17 +23,15 @@ export class ClickBlock {
    * @param {number} expire
    * */
   activate (shouldShow, expire = 100) {
-    if(!this.clickBlockElement){
+    if (!this.clickBlockElement) {
       this.clickBlockElement = this._getClickBlockElement();
     }
 
-    if (this.isEnabled) {
-      clearNativeTimeout(this._tmr);
-      if (shouldShow) {
-        this._activate(true);
-      }
-      this._tmr = nativeTimeout(this._activate.bind(this, false), expire);
+    clearNativeTimeout(this._tmr);
+    if (shouldShow) {
+      this._activate(true);
     }
+    this._tmr = nativeTimeout(this._activate.bind(this, false), expire);
   }
 
   /**
