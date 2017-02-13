@@ -14,21 +14,18 @@
  * 这个类用于从设备中获取平台信息, 比如设备种类/运行平台/设备方向/文字方向等,
  * 以此使得代码适配所有机型
  *
- * @usage
- * ```ts
- * import { Platform } from 'ionic-angular';
+ * 完成的功能
+ * 1. 如果是在普通浏览器中, 则全部使用浏览器的功能,
+ * 2. 如果是在开放平台(微信/支付宝), 则注册JSSDK
+ * 3. 如果是在App内, 则监听ready事件, 注册并调用原生组件
  *
- * @Component({...})
- * export MyPage {
- *   constructor(platform: Platform) {
- *     this.platform = platform;
- *   }
- * }
- * ```
- * @demo /docs/v2/demos/src/platform/
- */
-
-/**
+ * @usage
+ * 这里需要补充!!
+ *
+ *
+ *
+ * 结构体定义
+ *
  * @typedef {Object} PlatformConfig
  * {
  *    isEngine?: boolean;
@@ -54,16 +51,15 @@
  *    priority?: number;
  * }
  */
-
-
-// import { EventEmitter, NgZone, OpaqueToken } from '@angular/core';
 import { QueryParams } from './query-params';
-import { ready, windowDimensions, flushDimensionCache } from '../util/dom';
+import { getCss, isTextInput, ready, windowDimensions, flushDimensionCache } from '../util/dom';
 import { removeArrayItem } from '../util/util';
 import { eventBus } from '../util/events'
 
 export class Platform {
-  _versions = {}; // {[name: string]: PlatformVersion}
+
+  /** @private */
+  _versions = {}; // 当前平台的版本信息列表 PlatformVersion
   _dir; // string 文字方向 ;
   _lang; // string 文字;
 
@@ -80,7 +76,7 @@ export class Platform {
 
   _bbActions = []; //BackButtonAction[] = [] 后退按钮上注册的回调列表;
 
-  _default; //string 默认的平台模式 core/mobile/phablet/tablet/android/ios/ipad/iphone/windows/cordova等;
+  _default; //string 如果rootNode不存则使用默认的配置
   _platforms = []; // : string[] = []; 当前平台的key 例如: "mobile/ios/mobileweb"
   _registry; //{[name:string] : PlatformConfig}; platform-registry中的config列表->登记处
 
@@ -90,29 +86,40 @@ export class Platform {
   _lH = 0; // Landscape模式的设备Height
   _isPortrait = null; //boolean = null 横屏还是竖屏 Portrait=竖屏;
 
-  /** @private */
+  /** @public */
+  Css = {
+    transform: null,
+    transition: null,
+    transitionDuration: null,
+    transitionDelay: null,
+    transitionTimingFn: null,
+    transitionStart: null,
+    transitionEnd: null,
+    transformOrigin: null,
+    animationDelay: null,
+  };
 
   constructor () {
     const _this = this;
-    _this._readyPromise = new Promise(res => { _this._readyResolve = res; });
+    // _this._readyPromise = new Promise(res => { _this._readyResolve = res; });
+    _this._readyPromise = new Promise(function (resolve) {
+      _this._readyResolve = resolve;
 
-    // 监听后退事件
-    // window.addEventListener("popstate", function(e) {
-    //   console.debug('Event of popstate');
-    //   _this.runBackButtonAction();
-    // }, false);
-
-    // this.backButton.subscribe(() => {
-    //   // the hardware back button event has been fired
-    //   console.debug('hardware back button');
-    //
-    //   // decide which backbutton action should run
-    //   this.runBackButtonAction();
-    // });
+      // setTimeout(function () {
+      //   resolve('setTimeout')
+      // },1000)
+    });
   }
 
   // Methods
   // **********************************************
+
+  /**
+   * @private
+   */
+  setCssProps (docElement) {
+    this.Css = getCss(docElement);
+  }
 
   /**
    * @returns {boolean} returns true/false based on platform.
@@ -281,19 +288,36 @@ export class Platform {
    * value is `dom`.
    */
   prepareReady () {
-    ready(() => {
-      this.triggerReady('dom');
-    });
+    const self = this;
+    self.windowLoad(function () {
+      self.triggerReady('dom');
+    })
+  }
+
+
+
+  windowLoad(callback) {
+    let _doc =  document.documentElement;
+    let _win = window;
+
+    if (_doc.readyState === 'complete' || _doc.readyState === 'interactive') {
+      !!callback && callback()
+    } else {
+      _doc.addEventListener('DOMContentLoaded', completed, false);
+      _win.addEventListener('load', completed, false);
+    }
+
+    function completed() {
+      _doc.removeEventListener('DOMContentLoaded', completed, false);
+      _win.removeEventListener('load', completed, false);
+      !!callback && callback()
+    }
   }
 
   /**
-   * 设置文字显示方向的,是从左向右 ltr (大部分),还是从右向左 rtl (很少的语言)
-   * Set the app's language direction, which will update the `dir` attribute
-   * on the app's root `<html>` element. We recommend the app's `index.html`
-   * file already has the correct `dir` attribute value set, such as
-   * `<html dir="ltr">` or `<html dir="rtl">`. This method is useful if the
-   * direction needs to be dynamically changed per user/session.
-   * [W3C: Structural markup and right-to-left text in HTML](http://www.w3.org/International/questions/qa-html-dir)
+   * 设置文字显示方向
+   * 是从左向右 ltr (大部分),还是从右向左 rtl (很少的语言),例如
+   * `<html dir="ltr">` or `<html dir="rtl">`
    * @param {string} dir  Examples: `rtl`, `ltr`
    * @param {boolean} updateDocument
    */
@@ -305,10 +329,7 @@ export class Platform {
   }
 
   /**
-   * Returns app's language direction.
-   * We recommend the app's `index.html` file already has the correct `dir`
-   * attribute value set, such as `<html dir="ltr">` or `<html dir="rtl">`.
-   * [W3C: Structural markup and right-to-left text in HTML](http://www.w3.org/International/questions/qa-html-dir)
+   * 返回文字方向
    * @returns {string}
    */
   dir () {
@@ -316,10 +337,7 @@ export class Platform {
   }
 
   /**
-   * Returns if this app is using right-to-left language direction or not.
-   * We recommend the app's `index.html` file already has the correct `dir`
-   * attribute value set, such as `<html dir="ltr">` or `<html dir="rtl">`.
-   * [W3C: Structural markup and right-to-left text in HTML](http://www.w3.org/International/questions/qa-html-dir)
+   * 判断文字方向是否是从右向左的方向(right-to-left language direction)
    * @returns {boolean}
    */
   isRTL () {
@@ -327,12 +345,7 @@ export class Platform {
   }
 
   /**
-   * Set the app's language and optionally the country code, which will update
-   * the `lang` attribute on the app's root `<html>` element.
-   * We recommend the app's `index.html` file already has the correct `lang`
-   * attribute value set, such as `<html lang="en">`. This method is useful if
-   * the language needs to be dynamically changed per user/session.
-   * [W3C: Declaring language in HTML](http://www.w3.org/International/questions/qa-html-language-declarations)
+   * 在html标签中设置app语言类型
    * @param {string} language  Examples: `en-US`, `en-GB`, `ar`, `de`, `zh`, `es-MX`
    * @param {boolean} updateDocument
    */
@@ -344,10 +357,7 @@ export class Platform {
   }
 
   /**
-   * Returns app's language and optional country code.
-   * We recommend the app's `index.html` file already has the correct `lang`
-   * attribute value set, such as `<html lang="en">`.
-   * [W3C: Declaring language in HTML](http://www.w3.org/International/questions/qa-html-language-declarations)
+   * 返回app的语言类型
    * @returns {string}
    */
   lang () {
@@ -368,16 +378,14 @@ export class Platform {
   // **********************************************
 
   /**
+   * 后退按钮触发事件
    * @private
    */
   // backButton: EventEmitter<Event> = new EventEmitter < Event > ();
   // backButton: EventEmitter<Event> = new EventEmitter < Event > ();
 
   /**
-   * The pause event emits when the native platform puts the application
-   * into the background, typically when the user switches to a different
-   * application. This event would emit when a Cordova app is put into
-   * the background, however, it would not fire on a standard web browser.
+   * 当将App转为[后台]时触发pause事件, 普通浏览器不适用
    */
   // pause: EventEmitter<Event> = new EventEmitter < Event > ();
   // pause () {
@@ -385,31 +393,16 @@ export class Platform {
   // }
 
   /**
-   * The resume event emits when the native platform pulls the application
-   * out from the background. This event would emit when a Cordova app comes
-   * out from the background, however, it would not fire on a standard web browser.
+   * 当将App转为[前台]时触发resume事件, 普通浏览器不适用
    */
   // resume: EventEmitter<Event> = new EventEmitter < Event > ();
 
   /**
-   * The back button event is triggered when the user presses the native
-   * platform's back button, also referred to as the "hardware" back button.
-   * This event is only used within Cordova apps running on Android and
-   * Windows platforms. This event is not fired on iOS since iOS doesn't come
-   * with a hardware back button in the same sense an Android or Windows device
-   * does.
+   * App内点击设备物理的返回键的时候的处理回调列表, 在后退的事件上注册额外的处理方法,
+   * 比如关闭弹框
    *
-   * 点击设备物理的返回键的时候的处理,在后退的事件上注册额外的处理方法,比如关闭弹框
-   *
-   * Registering a hardware back button action and setting a priority allows
-   * apps to control which action should be called when the hardware back
-   * button is pressed. This method decides which of the registered back button
-   * actions has the highest priority and should be called.
-   *
-   * @param {Function} callback Called when the back button is pressed, 点击后退的回调
-   * if this registered action has the highest priority.
-   * @param {number} priority Set the priority for this action. 只执行最高优先级的
-   * Only the highest priority will execute. Defaults to `0`.
+   * @param {Function} callback 点击后退按钮调用最高优先级的回调
+   * @param {number} priority 只执行最高优先级的, Defaults to `0`.
    * @returns {Function} A function that, when called, will unregister
    * the its back button action.
    */
@@ -457,6 +450,13 @@ export class Platform {
    */
   setQueryParams (queryParams) {
     this._qp = queryParams;
+  }
+
+  /**
+   * Get the query string parameter
+   */
+  getQueryParam (key) {
+    return this._qp.get(key);
   }
 
   /**
@@ -530,28 +530,57 @@ export class Platform {
    * @private
    */
   _calcDim () {
-    if (this._isPortrait === null) {
-      const winDimensions = windowDimensions();
-      const screenWidth = window.screen.width || winDimensions.width;
-      const screenHeight = window.screen.height || winDimensions.height;
+    // we're caching window dimensions so that
+    // we're not forcing many layouts
+    // if _isPortrait is null then that means
+    // the dimensions needs to be looked up again
+    // this also has to cover an edge case that only
+    // happens on iOS 10 (not other versions of iOS)
+    // where window.innerWidth is always bigger than
+    // window.innerHeight when it is first measured,
+    // even when the device is in portrait but
+    // the second time it is measured it is correct.
+    // Hopefully this check will not be needed in the future
+    if (this._isPortrait === null || this._isPortrait === false && this._win['innerWidth'] < this._win['innerHeight']) {
+      var win = window;
 
-      if (screenWidth < screenHeight) {
-        this._isPortrait = true;
-        if (this._pW < winDimensions.width) {
-          this._pW = winDimensions.width;
-        }
-        if (this._pH < winDimensions.height) {
-          this._pH = winDimensions.height;
+      // we're keeping track of portrait and landscape dimensions
+      // separately because the virtual keyboard can really mess
+      // up accurate values when the keyboard is up
+      if (win.screen.width > 0 && win.screen.height > 0) {
+        if (win['innerWidth'] < win['innerHeight']) {
+
+          // the device is in portrait
+          if (this._pW <= win['innerWidth']) {
+            // console.debug('setting _isPortrait to true');
+            this._isPortrait = true;
+            this._pW = win['innerWidth'];
+          }
+          if (this._pH <= win['innerHeight']) {
+            // console.debug('setting _isPortrait to true');
+            this._isPortrait = true;
+            this._pH = win['innerHeight'];
+          }
+
+        } else {
+          if (this._lW > win['innerWidth']) {
+            // Special case: keyboard is open and device is in portrait
+            // console.debug('setting _isPortrait to true while keyboard is open and device is portrait');
+            this._isPortrait = true;
+          }
+          // the device is in landscape
+          if (this._lW <= win['innerWidth']) {
+            // console.debug('setting _isPortrait to false');
+            this._isPortrait = false;
+            this._lW = win['innerWidth'];
+          }
+          if (this._lH <= win['innerHeight']) {
+            // console.debug('setting _isPortrait to false');
+            this._isPortrait = false;
+            this._lH = win['innerHeight'];
+          }
         }
 
-      } else {
-        this._isPortrait = false;
-        if (this._lW < winDimensions.width) {
-          this._lW = winDimensions.width;
-        }
-        if (this._lH < winDimensions.height) {
-          this._lH = winDimensions.height;
-        }
       }
     }
   }
@@ -632,8 +661,8 @@ export class Platform {
   /**
    * 判断 字符串是否在 长字符串中
    * @private
-   * @param {string} queryValue
-   * @param {string} queryTestValue
+   * @param {string} queryValue  ios;md;android;iphone
+   * @param {string} queryTestValue  ios
    * @return {boolean}
    */
   testQuery (queryValue, queryTestValue) {
@@ -642,7 +671,7 @@ export class Platform {
   }
 
   /**
-   * 根据RegExp的规则测试_bPlt
+   * 判断是否匹配当前的浏览器平台
    * @private
    * @param {RegExp} navigatorPlatformExpression
    */
@@ -652,7 +681,7 @@ export class Platform {
   }
 
   /**
-   * 根据传入的RegExp获取该平台的版本
+   * 判断是否匹配当前的userAgent
    * @private
    * @param {RegExp} userAgentExpression
    */
@@ -668,6 +697,7 @@ export class Platform {
     }
   }
 
+  // 判断是否匹配当前的userAgent
   testUserAgent (expression) {
     if (this._ua) {
       return this._ua.indexOf(expression) >= 0;
@@ -677,17 +707,18 @@ export class Platform {
 
   /**
    *  this._qp为地址栏参数查询对象,
-   *  1. 优先提取地址栏的ionicplatform值,判断是否匹配
+   *  1. 优先提取地址栏的platform值,判断是否匹配
    *  2. 否则由useragent判断userAgentAtLeastHas中是否有而userAgentMustNotHave中没有
    *
    * @private
-   * @param {string} queryStringName - 查询名称
+   * @param {string} queryStringName - 通过地址栏的platform参数查询名称
    * @param {array} userAgentAtLeastHas - 在useragent中查找的字段
    * @param {array} userAgentMustNotHave -  在useragent中排除的字段
    * @return {boolean}
    */
   isPlatformMatch (queryStringName, userAgentAtLeastHas, userAgentMustNotHave = []) {
-    const queryValue = this._qp.get('ionicplatform');
+    // platform可以取值的参数: ios/android/iphone/ipad/windows
+    const queryValue = this._qp.get('platform');
     if (queryValue) {
       return this.testQuery(queryValue, queryStringName);
     }
@@ -713,13 +744,17 @@ export class Platform {
   /** @private */
   init () {
     this._platforms = [];
-    let rootPlatformNode;//PlatformNode;
-    let enginePlatformNode;//PlatformNode;
+    let rootPlatformNode; //根节点Node;
+    let enginePlatformNode; //engine节点Node;
 
     // figure out the most specific platform and active engine
-    let tmpPlatform;//PlatformNode;
+    let tmpPlatform; // 临时缓存Node;
+
+    // 找到rootPlatformNode
+    // 找到enginePlatformNode
     for (let platformName in this._registry) {
 
+      // 将platformName对用的配置转化为Node对象, 返回rootNode
       tmpPlatform = this.matchPlatform(platformName);
       if (tmpPlatform) {
         // we found a platform match!
@@ -739,6 +774,7 @@ export class Platform {
       }
     }
 
+    // 如果没找到根rootNode则使用默认的_default
     if (!rootPlatformNode) {
       rootPlatformNode = new PlatformNode(this._registry, this._default);
     }
@@ -749,6 +785,7 @@ export class Platform {
     if (rootPlatformNode) {
 
       // check if we found an engine node (cordova/node-webkit/etc)
+      // 如果是在壳子中,则将壳子的节点放置为rootNode
       if (enginePlatformNode) {
         // add the engine to the first in the platform hierarchy
         // the original rootPlatformNode now becomes a child
@@ -758,6 +795,7 @@ export class Platform {
         rootPlatformNode = enginePlatformNode;
       }
 
+      // 从根节点开始, 插入子Node
       let platformNode = rootPlatformNode;
       while (platformNode) {
         insertSuperset(this._registry, platformNode);
@@ -765,7 +803,7 @@ export class Platform {
       }
 
       // make sure the root noot is actually the root
-      // incase a node was inserted before the root
+      // in case a node was inserted before the root
       platformNode = rootPlatformNode.parent;
       while (platformNode) {
         rootPlatformNode = platformNode;
@@ -773,11 +811,12 @@ export class Platform {
       }
 
       platformNode = rootPlatformNode;
+
+      // 在这里初始化平台
       while (platformNode) {
         platformNode.initialize(this);
 
-        // set the array of active platforms with
-        // the last one in the array the most important
+        // 设置当前激活的平台信息, 最后一个是最重要的
         this._platforms.push(platformNode.name);
 
         // get the platforms version if a version parser was provided
@@ -787,13 +826,10 @@ export class Platform {
         platformNode = platformNode.child;
       }
     }
-
-    // if (this._platforms.indexOf('mobile') > -1 && this._platforms.indexOf('cordova') === -1) {
-    //   this._platforms.push('mobileweb');
-    // }
   }
 
   /**
+   * 将platformName对用的配置转化为Node对象, 返回rootNode
    * @private
    * @param {string} platformName
    * @return {PlatformNode}
@@ -822,11 +858,11 @@ export class Platform {
  * @param {PlatformNode} platformNode
  * */
 function insertSuperset (registry, platformNode) {
-  let supersetPlaformName = platformNode.superset();
-  if (supersetPlaformName) {
+  let supersetPlatformName = platformNode.superset();
+  if (supersetPlatformName) {
     // add a platform in between two exist platforms
     // so we can build the correct hierarchy of active platforms
-    let supersetPlatform = new PlatformNode(registry, supersetPlaformName);
+    let supersetPlatform = new PlatformNode(registry, supersetPlatformName);
     supersetPlatform.parent = platformNode.parent;
     supersetPlatform.child = platformNode;
     if (supersetPlatform.parent) {
@@ -840,14 +876,15 @@ function insertSuperset (registry, platformNode) {
  * @private
  */
 class PlatformNode {
-  c; //PlatformConfig;
-  parent; // PlatformNode
-  child; // PlatformNode
-  name; //string;
+  c; // platform-registry配置中的平台设置;
+  parent; // 父节点
+  child; // 子节点
+  name; // 当前节点的名称;
   isEngine; //boolean; 是否是在壳子中
-  depth; //number;
+  depth; // number 当前节点的深度;
 
   /**
+   * 读取c中的配置信息
    * @param {PlatformConfig} registry
    * @param {string} platformName
    * */
@@ -857,16 +894,18 @@ class PlatformNode {
     this.isEngine = this.c.isEngine;
   }
 
+  // 获取settings配置
   settings () {
     return this.c.settings || {};
   }
 
+  // 获取父集的名称
   superset () {
     return this.c.superset;
   }
 
   /**
-   * Platform
+   * 执行配置的匹配函数, 判断现在的node是否匹配当前运行平台
    * @param {Platform} p
    * @return {boolean}
    * */
@@ -875,6 +914,7 @@ class PlatformNode {
   }
 
   /**
+   * 执行配置的初始化函数, 传入当前平台的参数
    * @param {Platform} platform
    * */
   initialize (platform) {
@@ -882,6 +922,7 @@ class PlatformNode {
   }
 
   /**
+   * 传入当前的平台信息, 获得版本信息
    * @param {Platform} p
    * @return {PlatformVersion}
    * */
@@ -901,6 +942,7 @@ class PlatformNode {
   }
 
   /**
+   * 获得当前node的根node
    * @param {Platform} p
    * @return {PlatformNode}
    * */
@@ -967,15 +1009,20 @@ export function setupPlatform (platformConfigs, queryParams, userAgent, navigato
     return window.platform
   } else {
     const p = new Platform();
-    p.setDefault('iphone');
+    p.setDefault('core');
+
     p.setPlatformConfigs(platformConfigs);
     p.setUserAgent(userAgent);
     p.setQueryParams(queryParams);
     p.setNavigatorPlatform(navigatorPlatform);
     p.setDir(docDirection, false);
     p.setLang(docLanguage, false);
+
+    // 设置css类型
+    p.setCssProps(document.documentElement);
+
     p.init();
-    window.platform = p;
+    window.Platform = p;
     return p;
   }
 }

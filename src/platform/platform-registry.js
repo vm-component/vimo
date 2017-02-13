@@ -174,6 +174,7 @@ export const PLATFORM_CONFIGS = {
    * iphone
    */
   iphone: {
+    superset: 'mobile',
     subsets: [
       'phablet'
     ],
@@ -215,20 +216,134 @@ export const PLATFORM_CONFIGS = {
     }
   },
 
-  wx:{
+  /**
+   * 开放平台及内嵌式App初始化
+   * */
+  wechat: {
     isEngine: true,
     initialize(p){
+      alert('Wechat Init: from platform-registry.js')
+      /**
+       * 执行默认的domReady, 如果有定制化的初始化任务,
+       * 则去除prepareReady,手动执行p.triggerReady
+       *
+       * @example
+       *  setTimeout(function () {
+       *      p.triggerReady('Wechat Init Success!');
+       *  },1000);
+       * */
+      p.prepareReady();
+
 
     },
 
+    /**
+     * @param {Platform} p
+     * */
+    isMatch(p) {
+      alert(p.userAgent())
+      return p.isPlatformMatch('wechat', ['micromessenger']);
+    },
   },
-  ali:{
+  alipay: {
     isEngine: true,
     initialize(p){
+      alert('Alipay Init: from platform-registry.js')
+      /**
+       * 执行默认的domReady, 如果有定制化的初始化任务,
+       * 则去除prepareReady,手动执行p.triggerReady
+       *
+       * @example
+       *  setTimeout(function () {
+       *      p.triggerReady('Wechat Init Success!');
+       *  },1000);
+       * */
+      p.prepareReady();
+    },
+
+    /**
+     * @param {Platform} p
+     * */
+    isMatch(p) {
+      return p.isPlatformMatch('alipay', ['alipay', 'alipayclient']);
+    }
+  },
+  dingtalk: {
+    isEngine: true,
+    initialize(p){
+      alert('Dingtalk Init: from platform-registry.js')
+      /**
+       * 执行默认的domReady, 如果有定制化的初始化任务,
+       * 则去除prepareReady,手动执行p.triggerReady
+       *
+       * @example
+       *  setTimeout(function () {
+       *      p.triggerReady('Wechat Init Success!');
+       *  },1000);
+       * */
+      p.prepareReady();
+    },
+
+    /**
+     * @param {Platform} p
+     * */
+    isMatch(p) {
+      return p.isPlatformMatch('dingtalk');
+    }
+  },
+  qq: {
+    isEngine: true,
+    initialize(p){
+      alert('QQ Init: from platform-registry.js')
+      /**
+       * 执行默认的domReady, 如果有定制化的初始化任务,
+       * 则去除prepareReady,手动执行p.triggerReady
+       *
+       * @example
+       *  setTimeout(function () {
+       *      p.triggerReady('Wechat Init Success!');
+       *  },1000);
+       * */
+      p.prepareReady();
+    },
+
+    /**
+     * @param {Platform} p
+     * */
+    isMatch(p) {
+      return p.isPlatformMatch('qq');
+    }
+  },
+
+  dtdream:{
+    isEngine: true,
+    initialize(p){
+      alert('QQ Init: from platform-registry.js')
+      /**
+       * 执行默认的domReady, 如果有定制化的初始化任务,
+       * 则去除prepareReady,手动执行p.triggerReady
+       *
+       * @example
+       *  setTimeout(function () {
+       *      p.triggerReady('Wechat Init Success!');
+       *  },1000);
+       * */
+      p.prepareReady();
+
+
 
     },
 
+    /**
+     * @param {Platform} p
+     * */
+    isMatch(p) {
+      return p.isPlatformMatch('dtdream');
+    }
   },
+
+
+
 
   /**
    * cordova
@@ -245,6 +360,8 @@ export const PLATFORM_CONFIGS = {
       p.prepareReady = function () {
         // 1) ionic bootstrapped
         windowLoad(function () {
+
+          alert('initialize')
           // 2) window onload triggered or completed
           document.addEventListener('deviceready', function () {
             // 3) cordova deviceready event triggered
@@ -326,17 +443,15 @@ function isIOSUI (p) {
   return isIOS(p) && !isWK() && !isSafari(p);
 }
 
-
 export function providePlatformConfigs () {
   return PLATFORM_CONFIGS;
 }
-
 
 /**
  * @param {Platform} plt
  * @return {boolean}
  * */
-export function isWKWebView(plt) {
+export function isWKWebView (plt) {
   return isIOS(plt) && !!window['webkit'];
 }
 
@@ -344,6 +459,6 @@ export function isWKWebView(plt) {
  * @param {Platform} plt
  * @return {boolean}
  * */
-export function isIosUIWebView(plt) {
+export function isIosUIWebView (plt) {
   return isIOS(plt) && !isWKWebView(plt) && !isSafari(plt);
 }

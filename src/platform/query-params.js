@@ -4,20 +4,14 @@
  *
  * @example
  *
- * import {setupQueryParams} from './platform/query-params'
- * let a = setupQueryParams(location.href).data
+ * import {QueryParams} from './platform/query-params'
+ * let a = (new QueryParams()).queryParams(location.href)
+ * console.log(a.data);
  * => Object {a: "1", b: "3"}
  */
 
 export class QueryParams {
   data = {};// {[key: string]: any}
-
-  /**
-   * @param {string} url
-   * */
-  constructor (url) {
-    this.parseUrl(url);
-  }
 
   /**
    * @param {string} key
@@ -30,7 +24,6 @@ export class QueryParams {
    * @param {string} url
    * */
   parseUrl(url){
-    // alert('query-aprams -> parseUrl')
     if (url) {
       const startIndex = url.indexOf('?');
       if (startIndex > -1) {
@@ -45,17 +38,6 @@ export class QueryParams {
         }
       }
     }
-
     return this.data
   }
-
-}
-
-/**
- * @private
- * @param {string} url
- * @return {QueryParams}
- */
-export function setupQueryParams (url) {
-  return new QueryParams(url);
 }
