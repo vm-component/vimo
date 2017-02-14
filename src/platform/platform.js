@@ -83,6 +83,9 @@ export class Platform {
   _lH = 0; // Landscape模式的设备Height
   _isPortrait = null; //boolean = null 横屏还是竖屏 Portrait=竖屏;
 
+  _nt = null; // 记录网络类型
+
+
   /** @public */
   Css = {
     transform: null,
@@ -339,6 +342,16 @@ export class Platform {
    */
   lang () {
     return this._lang;
+  }
+
+  /**
+   * 设置网络类型/
+   * */
+  setNetType(netType){
+    this._nt = netType;
+  }
+  netType(){
+    return this._nt;
   }
 
   // Methods meant to be overridden by the engine
@@ -976,19 +989,20 @@ class PlatformNode {
  * @param {string} docLanguage
  * @return {Platform}
  */
-export function setupPlatform (platformConfigs, queryParams, userAgent, navigatorPlatform, docDirection, docLanguage) {
+export function setupPlatform (platformConfigs, queryParams) {
+  // 保持单例对象
   if (!!window.platform) {
     return window.platform
   } else {
     const p = new Platform();
     p.setDefault('core');
-
     p.setPlatformConfigs(platformConfigs);
-    p.setUserAgent(userAgent);
     p.setQueryParams(queryParams);
-    p.setNavigatorPlatform(navigatorPlatform);
-    p.setDir(docDirection, false);
-    p.setLang(docLanguage, false);
+
+    !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform);
+    !p.userAgent() && p.setUserAgent(window.navigator.userAgent);
+    !p.lang() && p.setLang('zh-cn', true);
+    !p.dir() && p.setDir('ltr', true);
 
     // 设置css类型
     p.setCssProps(document.documentElement);
