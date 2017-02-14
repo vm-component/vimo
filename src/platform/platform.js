@@ -60,7 +60,7 @@ export class Platform {
   _dir; // string 文字方向 ;
   _lang; // string 文字;
 
-  _qp; //QueryParams 初始化时的查询实例 {data:{}};
+  _qp; //QueryParams [[初始化时]]!!! 的url查询实例 {data:{}};
 
   _bPlt; //string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
   _ua; //string userAgent;
@@ -271,28 +271,27 @@ export class Platform {
   /**
    * @private
    * This should be triggered by the engine when the platform is
-   * ready. If there was no custom prepareReady method from the engine,
-   * such as Cordova or Electron, then it uses the default DOM ready.
+   * ready.
    * @param {string} readySource
    */
   triggerReady (readySource) {
     this._readyResolve(readySource);
   }
 
-  /**
-   * @private
-   * This is the default prepareReady if it's not replaced by an engine,
-   * such as Cordova or Electron. If there was no custom prepareReady
-   * method from an engine then it uses the method below, which triggers
-   * the platform ready on the DOM ready event, and the default resolved
-   * value is `dom`.
-   */
-  prepareReady () {
-    const self = this;
-    ready(function () {
-      self.triggerReady('dom');
-    })
-  }
+  // /**
+  //  * @private
+  //  * This is the default prepareReady if it's not replaced by an engine,
+  //  * such as Cordova or Electron. If there was no custom prepareReady
+  //  * method from an engine then it uses the method below, which triggers
+  //  * the platform ready on the DOM ready event, and the default resolved
+  //  * value is `dom`.
+  //  */
+  // prepareReady () {
+  //   const self = this;
+  //   ready(function () {
+  //     self.triggerReady('dom');
+  //   })
+  // }
 
   /**
    * 设置文字显示方向
@@ -350,6 +349,9 @@ export class Platform {
   setNetType(netType){
     this._nt = netType;
   }
+  /**
+   * 获取网络类型/
+   * */
   netType(){
     return this._nt;
   }
@@ -814,7 +816,7 @@ export class Platform {
   }
 
   /**
-   * 将platformName对用的配置转化为Node对象, 返回rootNode
+   * 传入的名称匹配当前的平台,如果匹配则返回rootNode
    * @private
    * @param {string} platformName
    * @return {PlatformNode}
@@ -867,13 +869,13 @@ class PlatformNode {
   name; // 当前节点的名称;
   isEngine; //boolean; 是否是在壳子中
   depth; // number 当前节点的深度;
-
   /**
    * 读取c中的配置信息
    * @param {PlatformConfig} registry
    * @param {string} platformName
    * */
   constructor (registry, platformName) {
+    this.registry = registry;
     this.c = registry[platformName];
     this.name = platformName;
     this.isEngine = this.c.isEngine;
@@ -932,8 +934,10 @@ class PlatformNode {
    * @return {PlatformNode}
    * */
   getRoot (p) {
+    // 判断当前平台是否和当前的Node匹配
     if (this.isMatch(p)) {
 
+      // 获得 父集名称 列表
       let parents = this.getSubsetParents(this.name);
 
       if (!parents.length) {
@@ -959,7 +963,7 @@ class PlatformNode {
   }
 
   /**
-   * 获取子集的父类名称数组
+   * 获取 子集名称对应的父集列表
    * @param {string} subsetPlatformName
    * @return {array}
    * */
@@ -982,22 +986,17 @@ class PlatformNode {
 /**
  * @private
  * @param {PlatformConfig} platformConfigs
- * @param {QueryParams} queryParams
- * @param {string} userAgent
- * @param {string} navigatorPlatform
- * @param {string} docDirection
- * @param {string} docLanguage
  * @return {Platform}
  */
-export function setupPlatform (platformConfigs, queryParams) {
+export function setupPlatform (platformConfigs) {
   // 保持单例对象
-  if (!!window.platform) {
-    return window.platform
+  if (!!window['VM'] && !!window['VM']['platform']) {
+    return window['VM']['platform']
   } else {
     const p = new Platform();
     p.setDefault('core');
     p.setPlatformConfigs(platformConfigs);
-    p.setQueryParams(queryParams);
+    p.setQueryParams(new QueryParams());
 
     !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform);
     !p.userAgent() && p.setUserAgent(window.navigator.userAgent);
@@ -1008,7 +1007,11 @@ export function setupPlatform (platformConfigs, queryParams) {
     p.setCssProps(document.documentElement);
 
     p.init();
-    window.Platform = p;
+
+    // 全局注册
+    window['VM'] = window['VM'] || {};
+    window['VM']['platform'] = p;
+
     return p;
   }
 }

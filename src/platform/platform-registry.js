@@ -2,17 +2,20 @@
  * Created by Hsiang on 2017/2/9.
  *
  * 平台注册中心,在这里配置各个平台的特性
- *
- *
+ * 最终检测的平台列表在window.VM.platform._platforms中列出,
+ * 例如在iphone中打开微信: ['mobile','ios','wechat']
+ * 例如在android中打开支付宝: ['mobile','android','alipay']
+ * 最后面的配置将为最终生效的配置, 请注意!!!!
  */
 
 import { ready } from '../util/dom';
+// 支持的平台
+const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq', 'dtdream'];
 
 export const PLATFORM_CONFIGS = {
-
   /**
-   * core
-   */
+   * default
+   * */
   core: {
     settings: {
       mode: 'ios',
@@ -20,50 +23,13 @@ export const PLATFORM_CONFIGS = {
     }
   },
 
-  /**
-   * mobile
-   */
   mobile: {},
-
   /**
-   * phablet手机平板
-   */
-  phablet: {
-    /**
-     * @param {Platform} p
-     * */
-    isMatch(p) {
-      let smallest = Math.min(p.width(), p.height());
-      let largest = Math.max(p.width(), p.height());
-      return (smallest > 390 && smallest < 520) &&
-        (largest > 620 && largest < 800);
-    }
-  },
-
-  /**
-   * tablet
-   */
-  tablet: {
-    /**
-     * @param {Platform} p
-     * */
-    isMatch(p) {
-      let smallest = Math.min(p.width(), p.height());
-      let largest = Math.max(p.width(), p.height());
-      return (smallest > 460 && smallest < 820) &&
-        (largest > 780 && largest < 1400);
-    }
-  },
-
-  /**
-   * android
-   */
+   * 移动端基础平台(android/IOS/windows)
+   * */
   android: {
     superset: 'mobile',
-    subsets: [
-      'phablet',
-      'tablet'
-    ],
+    subsets: SUBSET_LIST,
     settings: {
       /**
        * 点触出现水纹的动画开关
@@ -114,16 +80,9 @@ export const PLATFORM_CONFIGS = {
       return p.matchUserAgentVersion(/Android (\d+).(\d+)?/);
     }
   },
-
-  /**
-   * ios
-   */
   ios: {
     superset: 'mobile',
-    subsets: [
-      'ipad',
-      'iphone'
-    ],
+    subsets: SUBSET_LIST,
     settings: {
       autoFocusAssist: 'delay',
       hoverCSS: false,
@@ -153,48 +112,9 @@ export const PLATFORM_CONFIGS = {
       return p.matchUserAgentVersion(/OS (\d+)_(\d+)?/);
     }
   },
-
-  /**
-   * ipad
-   */
-  ipad: {
-    superset: 'tablet',
-    settings: {
-      keyboardHeight: 500,
-    },
-    /**
-     * @param {Platform} p
-     * */
-    isMatch(p) {
-      return p.isPlatformMatch('ipad');
-    }
-  },
-
-  /**
-   * iphone
-   */
-  iphone: {
-    superset: 'mobile',
-    subsets: [
-      'phablet'
-    ],
-    /**
-     * @param {Platform} p
-     * */
-    isMatch(p) {
-      return p.isPlatformMatch('iphone');
-    }
-  },
-
-  /**
-   * Windows
-   */
   windows: {
     superset: 'mobile',
-    subsets: [
-      'phablet',
-      'tablet'
-    ],
+    subsets: SUBSET_LIST,
     settings: {
       mode: 'wp',
       autoFocusAssist: 'immediate',
@@ -218,22 +138,18 @@ export const PLATFORM_CONFIGS = {
 
   /**
    * 开放平台及内嵌式App初始化
+   * 如果添加新环境,记得在SUBSET_LIST注册
    * */
   wechat: {
-    isEngine: true,
     initialize(p){
       let _userAgent = window.navigator.userAgent.toString().trim();
       let val;
       alert('Wechat Init: from platform-registry.js')
       /**
        * 执行默认的domReady, 如果有定制化的初始化任务,
-       * 则去除prepareReady,手动执行p.triggerReady
+       * 手动执行p.triggerReady
        *
        * @example
-       *
-       *  p.prepareReady();
-       *
-       *  or:
        *
        *  ready(function () {
        *      p.triggerReady('Wechat Init Success!');
@@ -256,7 +172,7 @@ export const PLATFORM_CONFIGS = {
       // Language/zh-CN
       val = _userAgent.match(/Language\/(.+)/i);
       if (!!val && val.length > 0 && !!val[1]) {
-        p.setLang(val[1].toString().toLowerCase(),true);
+        p.setLang(val[1].toString().toLowerCase(), true);
       }
 
       // 触发外层的ready
@@ -265,20 +181,13 @@ export const PLATFORM_CONFIGS = {
       })
     },
     settings: {
-      mode: 'wechat',
-      autoFocusAssist: 'immediate',
-      hoverCSS: false
+      mode: 'wechat'
     },
-    /**
-     * @param {Platform} p
-     * */
     isMatch(p) {
-
       return p.isPlatformMatch('wechat', ['micromessenger']);
     },
   },
   alipay: {
-    isEngine: true,
     initialize(p){
       alert('Alipay Init: from platform-registry.js');
       let _userAgent = window.navigator.userAgent.toString().trim();
@@ -301,7 +210,7 @@ export const PLATFORM_CONFIGS = {
       // Language/zh-CN
       val = _userAgent.match(/Language\/(.+)/i);
       if (!!val && val.length > 0 && !!val[1]) {
-        p.setLang(val[1].toString().toLowerCase(),true);
+        p.setLang(val[1].toString().toLowerCase(), true);
       }
 
       // 触发外层的ready
@@ -309,16 +218,11 @@ export const PLATFORM_CONFIGS = {
         p.triggerReady('alipay Init Success!');
       })
     },
-
-    /**
-     * @param {Platform} p
-     * */
     isMatch(p) {
       return p.isPlatformMatch('alipay', ['alipay', 'alipayclient']);
     }
   },
   dingtalk: {
-    isEngine: true,
     initialize(p){
       alert('Dingtalk Init: from platform-registry.js');
       let _userAgent = window.navigator.userAgent.toString().trim();
@@ -338,24 +242,19 @@ export const PLATFORM_CONFIGS = {
       // Language/zh-CN
       val = _userAgent.match(/language\/(.+)/i);
       if (!!val && val.length > 0 && !!val[1]) {
-        p.setLang(val[1].toString().toLowerCase(),true);
+        p.setLang(val[1].toString().toLowerCase(), true);
       }
 
       // 触发外层的ready
-      ready(()=>{
+      ready(() => {
         p.triggerReady('dingtalk Init Success!');
       })
     },
-
-    /**
-     * @param {Platform} p
-     * */
     isMatch(p) {
       return p.isPlatformMatch('dingtalk');
     }
   },
   qq: {
-    isEngine: true,
     initialize(p){
       alert('QQ Init: from platform-registry.js');
       let _userAgent = window.navigator.userAgent.toString().trim();
@@ -371,32 +270,23 @@ export const PLATFORM_CONFIGS = {
       }
 
       // DOMReady后触发外层的ready
-      ready(()=>{
+      ready(() => {
         p.triggerReady('qq Init Success!');
       })
 
     },
-
-    /**
-     * @param {Platform} p
-     * */
     isMatch(p) {
       return p.isPlatformMatch('qq');
     }
   },
-
   dtdream: {
-    isEngine: true,
     initialize(p){
-      alert('QQ Init: from platform-registry.js')
+      alert('dtdream Init: from platform-registry.js')
 
-      p.prepareReady();
-
+      ready(() => {
+        p.triggerReady('qq Init Success!');
+      })
     },
-
-    /**
-     * @param {Platform} p
-     * */
     isMatch(p) {
       return p.isPlatformMatch('dtdream');
     }
