@@ -47,36 +47,19 @@
  * },platform);
  *
  *
- * 也可以在url中传入配置参数, 通过url配置App的前后缀, 例如htttp://xx.xx.com?vm_mode=ios
+ * 也可以在url中传入配置参数, 通过url配置App的前后缀, 例如htttp://xx.xx.com?vmMode=ios
+ * 则配置mode将为ios, 改变mode并无法改变真实的mode环境, 因为平台验证有自己的isMatch方法, 切记!!
+ *
  * 此配置将是最高优先级的配置(url获取配置信息 > 用户自定义配置 > 平台默认配置)
  * 因此这个方法将可以用于PC端测试
  *
- *
- * The last way we could configure is through URL query strings. This is useful for testing
- * while in the browser. Simply add `?ionic<PROPERTYNAME>=<value>` to the url.
- *
- * ```bash
- * http://localhost:8100/?ionicTabsPlacement=bottom
- * ```
- *
- * Any value can be added to config, and looked up at a later in any component.
- *
- * ```js
+ * 可通过set方法添加自定义的配置信息
  * config.set('ios', 'favoriteColor', 'green');
- *
- * // from any page in your app:
  * config.get('favoriteColor'); // 'green' when iOS
- * ```
  *
  *
- * A config value can come from anywhere and be anything, but there are default
- * values for each mode. The [theming](../../../theming/platform-specific-styles/)
- * documentation has a chart of the default mode configuration. The following
- * chart displays each property with a description of what it controls.
  *
- *
- * | Config Property          | Type                | Details                                                                                                                                          |
- * |--------------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+ * | Config Property          | Type                | Details         |
  * | `activator`              | `string`            | Used for buttons, changes the effect of pressing on a button. Available options: `"ripple"`, `"highlight"`.                                      |
  * | `actionSheetEnter`       | `string`            | The name of the transition to use while an action sheet is presented.                                                                            |
  * | `actionSheetLeave`       | `string`            | The name of the transition to use while an action sheet is dismissed.                                                                            |
@@ -111,7 +94,7 @@
 import { Platform } from '../platform/platform';
 import { isObject, isDefined, isFunction, isArray } from '../util/util';
 // 通过url配置App的前后缀, 例如htttp://xx.xx.com?vm_mode=ios
-const URL_CONFIG_PREFIX = 'vm_';
+const URL_CONFIG_PREFIX = 'vm';
 
 export class Config {
   /**
@@ -139,7 +122,7 @@ export class Config {
   /**
    * @name get
    * @description
-   * Returns a single config value, given a key.
+   * 获取配置值
    *
    * @param {string} [key] - 查找的key
    * @param {any} [fallbackValue] - 没有找到key的被选择结果
@@ -147,7 +130,7 @@ export class Config {
   get (key, fallbackValue = null) {
     const platform = this.plt;
 
-    debugger
+    // 如果已缓存则取缓存值
     if (!isDefined(this._c[key])) {
       if (!isDefined(key)) {
         throw 'config key is not defined';
@@ -189,6 +172,7 @@ export class Config {
               if (isDefined(configObj[key])) {
                 userPlatformValue = configObj[key];
               }
+              // 从mode-registry.js获取配置
               configObj = this.getModeConfig(configObj.mode);
               if (configObj && isDefined(configObj[key])) {
                 userPlatformModeValue = configObj[key];
@@ -196,7 +180,7 @@ export class Config {
             }
           }
 
-          // get default platform's setting
+          // 获取平台的默认配置(platform-registry.js)
           configObj = platform.getPlatformConfig(activePlatformKeys[i]);
           if (configObj && configObj.settings) {
 
@@ -210,11 +194,8 @@ export class Config {
               // found setting for this platform's mode
               platformModeValue = configObj[key];
             }
-
           }
-
         }
-
       }
 
       configObj = this.getModeConfig(this._s.mode);
@@ -223,6 +204,8 @@ export class Config {
       }
 
       // cache the value
+      // 返回优先级: 用户自在platform中定义 >  用户在_s中定义 > mode中定义 > platform中定义
+      // eg: _s.platform.md[key] > _s.platform[key] > mode_register.md[key] > platform_register.md.setting[key]
       this._c[key] = isDefined(userPlatformValue) ? userPlatformValue :
         isDefined(userDefaultValue) ? userDefaultValue :
           isDefined(userPlatformModeValue) ? userPlatformModeValue :
@@ -232,12 +215,8 @@ export class Config {
                   null;
     }
 
-    // return key's value
-    // either it came directly from the user config
-    // or it was from the users platform configs
-    // or it was from the default platform configs
-    // in that order
     var rtnVal = this._c[key];
+    // 如果返回函数则导入platform执行
     if (isFunction(rtnVal)) {
       rtnVal = rtnVal(platform);
     }
@@ -248,13 +227,10 @@ export class Config {
   /**
    * @name getBoolean
    * @description
-   * Same as `get()`, however always returns a boolean value. If the
-   * value from `get()` is `null`, then it'll return the `fallbackValue`
-   * which defaults to `false`. Otherwise, `getBoolean()` will return
-   * if the config value is truthy or not. It also returns `true` if
-   * the config value was the string value `"true"`.
-   * @param {string} [key] - the key for the config value
-   * @param {boolean} [fallbackValue] - a fallback value to use when the config
+   * 和get()方法类似, 不过只返回boolean类型, 比如"true"返回true
+   *
+   * @param {string} [key] - key值
+   * @param {boolean} [fallbackValue] - 备选值
    * value was `null`. Fallback value defaults to `false`.
    */
   getBoolean (key, fallbackValue = false) {
@@ -271,13 +247,9 @@ export class Config {
   /**
    * @name getNumber
    * @description
-   * Same as `get()`, however always returns a number value. Uses `parseFloat()`
-   * on the value received from `get()`. If the result from the parse is `NaN`,
-   * then it will return the value passed to `fallbackValue`. If no fallback
-   * value was provided then it'll default to returning `NaN` when the result
-   * is not a valid number.
-   * @param {string} [key] - the key for the config value
-   * @param {number} [fallbackValue] - a fallback value to use when the config
+   * 和get()方法类似, 不过只返回number类型
+   * @param {string} [key] - key值
+   * @param {number} [fallbackValue] - 备选值
    * value turned out to be `NaN`. Fallback value defaults to `NaN`.
    */
   getNumber (key, fallbackValue = NaN) {
@@ -288,11 +260,11 @@ export class Config {
   /**
    * @name set
    * @description
-   * Sets a single config value.
+   * 对config设置键值, 可针对平台设置.
    *
-   * @param {string} [platform] - The platform (either 'ios' or 'android') that the config value should apply to. Leaving this blank will apply the config value to all platforms.
-   * @param {string} [key] - The key used to look up the value at a later point in time.
-   * @param {string} [value] - The config value being stored.
+   * @param {string} [platform] - 平台类型, 可以是(either 'ios' or 'android'). 如果不填将对所有平台生效.
+   * @param {string} [key] - key值
+   * @param {string} [value] - 设置的值
    */
   set (...args) {
     const arg0 = args[0];
@@ -353,6 +325,7 @@ export class Config {
 
   /**
    * @private
+   * 内部使用
    * @param {string} modeName
    * @param {any} modeConfig
    */
@@ -362,6 +335,7 @@ export class Config {
 
   /**
    * @private
+   * 内部使用
    * @param {string} modeName
    */
   getModeConfig (modeName) {
@@ -372,7 +346,7 @@ export class Config {
 /**
  * 初始化Config
  * @private
- * @param {any} userConfig
+ * @param {object} userConfig
  * @param {Platform} plt
  * @return {Config}
  */

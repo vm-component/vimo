@@ -1,7 +1,9 @@
-import { Config } from '../config/config';
-
-
+/**
+ * 设置三个平台的默认配置
+ * 配置生效规则: 用户自在platform中定义 >  用户在_s中定义 > mode-registry中定义 > platform-registry中定义
+ * */
 export const MODE_IOS = {
+
   activator: 'highlight',
 
   actionSheetEnter: 'action-sheet-slide-in',
