@@ -6,7 +6,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import config from '../../defaultConfig';
+  import config from '../defaultConfig';
   export default{
     name: 'ion-title',
     data(){
@@ -33,10 +33,10 @@
       },
     },
     computed: {
-      titleClass: function () {
+      titleClass () {
         return `title-${this.mode}`
       },
-      toolbarTitleClass: function () {
+      toolbarTitleClass () {
         return `toolbar-title-${this.mode}`
       },
     },

@@ -25,8 +25,7 @@
 
 </style>
 <script type="text/ecmascript-6">
-  import { getStyle, getNum } from '../../../util/assist'
-  import { assign } from '../../../util/util'
+  import { getStyle, getNum } from '../../util/assist'
 
   export default{
     name: 'ion-content',
@@ -378,11 +377,13 @@
       });
 
       // ion-page -> ion-content
+      // Content组件必须是在Page组件内部才向页面this注入控制权
       if (_this.$parent.$options._componentTag === 'ion-page') {
 
         // 将参数传给调用的页面(注入到业务页面的this中), context为调用的上下文
         _this.$vnode.context.$content = {
           '_href': window.location.href,
+          '_this': _this,
           'fixedContent': _this.fixedContent,
           'scrollContent': _this.scrollContent,
           'contentDimensions': _this.contentDimensions,

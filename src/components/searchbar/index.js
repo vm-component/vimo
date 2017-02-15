@@ -1,5 +1,5 @@
 /**
  * Created by Hsiang on 2017/1/13.
  */
-import Searchbar from './src/searchbar.vue';
+import Searchbar from './searchbar.vue';
 module.exports = Searchbar;

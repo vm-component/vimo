@@ -53,7 +53,6 @@
 </style>
 
 <script type="text/babel">
-  import Button from '../../button'
   export default {
     data() {
       return {
@@ -161,10 +160,6 @@
           _this.$el.addEventListener('transitionend', _dismissHandler);
         });
       },
-
     },
-    components: {
-      'ion-button': Button
-    }
   };
 </script>

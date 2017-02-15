@@ -22,9 +22,9 @@
   </div>
 </template>
 <style lang="scss">
-  @import '../../toolbar/src/toolbar';
-  @import '../../toolbar/src/toolbar-button.scss';
-  @import '../../toolbar/src/toolbar.ios.scss';
+  @import '../toolbar/toolbar';
+  @import '../toolbar/toolbar-button.scss';
+  @import '../toolbar/toolbar.ios.scss';
 
 </style>
 <script type="text/ecmascript-6">
@@ -62,29 +62,29 @@
     },
     watch: {},
     computed: {
-      modeClass: function () {
+      modeClass () {
         return `toolbar-${this.mode}`
       },
       // 颜色
-      colorClass: function () {
+      colorClass () {
         return !!this.color ? (`toolbar-${this.mode}-${this.color}`) : ''
       },
-      backButtonClass: function () {
+      backButtonClass () {
         return `back-button-${this.mode}`
       },
-      backButtonTextClass: function () {
+      backButtonTextClass () {
         return `back-button-text-${this.mode}`
       },
-      backButtonIconClass: function () {
+      backButtonIconClass () {
         return `back-button-icon-${this.mode}`
       },
-      toolbarBackgroundClass: function () {
+      toolbarBackgroundClass () {
         return `toolbar-background-${this.mode}`
       },
-      toolbarContentClass: function () {
+      toolbarContentClass () {
         return `toolbar-content-${this.mode}`
       },
-      showBackButton: function () {
+      showBackButton () {
         // console.log('showBackButton')
         // console.log(window.history)
         // console.log(window.history.length)
@@ -93,12 +93,12 @@
       },
     },
     methods: {
-      backButtonClick: function ($event) {
+      backButtonClick ($event) {
         //TODO: 这部分需要特殊处理
         this.$router.back();
       },
     },
-    created: function () {},
-    mounted: function () {}
+    created () {},
+    mounted () {}
   }
 </script>

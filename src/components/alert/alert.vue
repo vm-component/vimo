@@ -84,8 +84,6 @@
 
 </style>
 <script type="text/ecmascript-6">
-  import BackDrop from '../../backdrop';
-  import Button from '../../button';
   export default{
     data(){
       return {
@@ -393,10 +391,6 @@
         const activeElement = document.activeElement;
         activeElement && activeElement.blur && activeElement.blur();
       },
-    },
-    components: {
-      'ion-backdrop': BackDrop,
-      'ion-button': Button,
     }
   }
 </script>

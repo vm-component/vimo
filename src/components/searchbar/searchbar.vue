@@ -65,9 +65,6 @@
 
 </style>
 <script type="text/ecmascript-6">
-  import Button from '../../button';
-  import Icon from '../../icon';
-
   export default{
     name: 'ion-searchbar',
     data(){
@@ -398,11 +395,5 @@
 
       this._positionElements();
     },
-    activated: function () {
-    },
-    components: {
-      'ion-button': Button,
-      'ion-icon': Icon
-    }
   }
 </script>

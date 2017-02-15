@@ -38,9 +38,6 @@
 
 </style>
 <script type="text/ecmascript-6">
-    import Spinner from '../../spinner';
-    import Backdrop from '../../backdrop';
-
     export default{
         data(){
             return {
@@ -140,11 +137,5 @@
         },
         mounted: function () {
         },
-        activated: function () {
-        },
-        components: {
-            'ion-backdrop': Backdrop,
-            'ion-spinner': Spinner
-        }
     }
 </script>

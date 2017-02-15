@@ -6,11 +6,11 @@
 <style lang="scss">
   @import "list";
   @import "list.ios";
-  @import "../../item/src/item";
-  @import "../../item/src/item.ios";
-  @import "../../item/src/item-media";
-  @import "../../item/src/item-sliding";
-  @import "../../item/src/item-reorder";
+  @import "../item/item";
+  @import "../item/item.ios";
+  @import "../item/item-media";
+  @import "../item/item-sliding";
+  @import "../item/item-reorder";
 
 </style>
 <script type="text/ecmascript-6">

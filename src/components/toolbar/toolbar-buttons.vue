@@ -24,14 +24,14 @@
     watch: {},
     computed: {
       // 环境样式
-      modeClass: function () {
+      modeClass () {
         return `bar-buttons-${this.mode}`
       },
     },
     methods: {},
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
+    created () {},
+    mounted () {},
+    activated () {},
     components: {}
   }
 </script>

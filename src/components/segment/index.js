@@ -1,8 +1,8 @@
 /**
  * Created by Hsiang on 2017/1/11.
  */
-import Segment from './src/segment.vue';
-import SegmentButton from './src/segment-button.vue';
+import Segment from './segment.vue';
+import SegmentButton from './segment-button.vue';
 module.exports = {
   Segment,SegmentButton
 };
