@@ -3,7 +3,7 @@
     <!--content-->
     <ion-header>
       <!--menutoggle-->
-      <ion-navbar color="primary" :hideBackButton="true">
+      <ion-navbar :hideBackButton="true">
         <!--menutoggle-->
         <ion-button @click="$menu.open('menu')" left icon-only role="bar-button" shape="menutoggle" slot="button">
           <ion-icon class="icon" name="menu"></ion-icon>
@@ -125,7 +125,7 @@
   import mixin from '../mixins/baseMethodMixin'
 
   export default{
-    mixins: [mixin],
+    // mixins: [mixin],
     name: 'index',
     data(){
       return {
@@ -133,12 +133,12 @@
     },
     mounted: function () {
       const _this = this;
-      console.log('index-this')
-      console.log(this)
+      // console.log('index-this')
+      // console.log(this)
     },
     activated(){
-      console.log('activated index-this')
-      console.log(this)
+      // console.log('activated index-this')
+      // console.log(this)
     },
     components: {}
 

@@ -65,7 +65,7 @@
   import mixin from '../mixins/baseMethodMixin'
 
   export default{
-    mixins: [mixin],
+    // mixins: [mixin],
     data(){
       return {
         isDisabled: false,
