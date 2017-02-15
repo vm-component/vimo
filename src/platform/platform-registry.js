@@ -281,10 +281,22 @@ export const PLATFORM_CONFIGS = {
   },
   dtdream: {
     initialize(p){
-      alert('dtdream Init: from platform-registry.js')
+      alert('dtdream Init: from platform-registry.js');
+
+      /**
+       * 注册HyBrid方法
+       * 当应用运行在混合框架下, 需要使用原生的接口调用组件, 但是在普通浏览器环境, 则使用H5组件.
+       *
+       * hybrid中引入的文件包含: notification/map/launcher/connection/telephone/util/navigation/user/audio
+       * 这几部分的对象将挂在到window.VM下
+       *
+       * 当平台准备完毕后, 进行挂载初始化
+       *
+       * */
+      // 这里是代码
 
       ready(() => {
-        p.triggerReady('qq Init Success!');
+        p.triggerReady('dtdream Init Success!');
       })
     },
     isMatch(p) {
