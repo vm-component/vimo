@@ -26,6 +26,8 @@
 </style>
 <script type="text/ecmascript-6">
   import { getStyle, getNum } from '../../../util/assist'
+  import { assign } from '../../../util/util'
+
   export default{
     name: 'ion-content',
     props: {
@@ -265,6 +267,7 @@
        * @return Returns a promise which is resolved when the scroll has completed.
        */
       scrollToBottom(duration = 300) {
+        console.debug('scrollToBottom')
         let y = 0;
         if (this.scrollContent) {
           y = this.scrollContent.scrollHeight - this.scrollContent.clientHeight;
@@ -331,17 +334,13 @@
 
     },
     created () {
-      // 将挂载点同步到根this上
-      const _this = this;
-      // ion-page -> ion-content
-      if (_this.$parent.$options._componentTag === 'ion-page') {
-        _this.$eventBus.$emit('$contentReady', _this);
-      }
-      // console.debug('ion-conent created')
 
     },
     mounted() {
+      // 将挂载点同步到根this上
       const _this = this;
+
+      // const _this = this;
       let _timer;
 
       // 找到fixedContent/scrollContent的位置
@@ -377,6 +376,28 @@
           _this.$emit('ionScrollEnd', event);
         }, 400);
       });
+
+      // ion-page -> ion-content
+      if (_this.$parent.$options._componentTag === 'ion-page') {
+
+        // 将参数传给调用的页面(注入到业务页面的this中), context为调用的上下文
+        _this.$vnode.context.$content = {
+          '_href': window.location.href,
+          'fixedContent': _this.fixedContent,
+          'scrollContent': _this.scrollContent,
+          'contentDimensions': _this.contentDimensions,
+          'getContentDimensions': _this.getContentDimensions,
+          'getScrollDimensions': _this.getScrollDimensions,
+          'resize': _this.resize,
+          'scrollTo': _this.scrollTo,
+          'scrollToTop': _this.scrollToTop,
+          'scrollToBottom': _this.scrollToBottom,
+          'keyBoardOpen': _this.keyBoardOpen,
+          'keyBoardClose': _this.keyBoardClose,
+        };
+
+        _this.$eventBus.$emit('$contentReady', _this);
+      }
 
     }
   }
