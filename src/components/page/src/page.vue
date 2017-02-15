@@ -15,9 +15,6 @@
     created: function () {
     },
     mounted: function () {
-    },
-    activated () {
-    },
-    components: {}
+    }
   }
 </script>

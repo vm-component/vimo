@@ -98,12 +98,7 @@
         this.$router.back();
       },
     },
-    created: function () {
-    },
-    mounted: function () {
-    },
-    activated: function () {
-    },
-    components: {}
+    created: function () {},
+    mounted: function () {}
   }
 </script>
