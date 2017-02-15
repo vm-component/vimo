@@ -17,13 +17,13 @@ Vue.use(Components, {
   b: 1,
 });
 
+
 /**
  * $router全局化，便于外部js调用
  * */
 // window.$router = routerFactory(Vue);
 
 /* eslint-disable no-new */
-import mixin from './mixins/baseMethodMixin'
 
 // 全局组件继承
 // let Component = Vue.extend({
