@@ -23,18 +23,14 @@
 <script type="text/ecmascript-6">
   import Button from '../components/button';
   import Toast from '../components/toast';
-
-  import mixin from '../mixins/baseMethodMixin'
-
   export default{
-    mixins: [mixin],
     data(){
       return {}
     },
     watch: {},
     computed: {},
     methods: {
-      toastTop: function () {
+      toastTop () {
         let toast = Toast.create({
           message: 'top was added successfully',
           duration: 3000,
@@ -45,7 +41,7 @@
           console.debug('1 onDidDismiss')
         })
       },
-      toastButtom: function () {
+      toastButtom () {
         let toast = Toast.create({
           message: 'bottom was added successfully',
           duration: 3000,
@@ -56,7 +52,7 @@
           console.debug('2 onDidDismiss')
         })
       },
-      toastMiddle: function () {
+      toastMiddle () {
         let toast = Toast.create({
           message: 'bottom was added successfully',
           position: 'middle',
@@ -67,7 +63,7 @@
           console.debug('3 onDidDismiss')
         })
       },
-      toastMiddleWithBtn: function () {
+      toastMiddleWithBtn () {
         let toast = Toast.create({
           message: 'bottom was added successfully',
           position: 'middle',
@@ -79,7 +75,7 @@
           console.debug('4 onDidDismiss')
         })
       },
-      showCloseBtnToast: function () {
+      showCloseBtnToast () {
         let toast = Toast.create({
           message: 'top was added successfully',
           duration: 3000,
@@ -95,11 +91,11 @@
       },
 
     },
-    created: function () {
+    created () {
     },
-    mounted: function () {
+    mounted () {
     },
-    activated: function () {
+    activated () {
     },
     components: {
       'ion-button': Button

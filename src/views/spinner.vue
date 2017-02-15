@@ -58,10 +58,7 @@
 </style>
 <script type="text/ecmascript-6">
     import Spinner from '../components/spinner';
-    import mixin from '../mixins/baseMethodMixin'
-
     export default{
-      mixins: [mixin],
         data(){
             return{}
         },

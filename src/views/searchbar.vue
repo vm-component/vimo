@@ -21,10 +21,7 @@
 </style>
 <script type="text/ecmascript-6">
     import Searchbar from '../components/searchbar'
-    import mixin from '../mixins/baseMethodMixin'
-
     export default{
-      mixins: [mixin],
         data(){
             return {
                 myInput: ''

@@ -73,9 +73,7 @@ s
   }
 </style>
 <script type="text/ecmascript-6">
-  import mixin from '../mixins/baseMethodMixin'
   export default{
-    mixins: [mixin],
     data(){
       return {
         fullscreenVal: false
@@ -85,22 +83,22 @@ s
     computed: {},
     methods: {
       setTitle(val){
-        this.$setTitle(val)
+        this.$content.setTitle(val)
       },
       scrollToTop: function () {
-        this.$scrollToTop();
+        this.$content.scrollToTop();
       },
       scrollToBottom: function () {
-        this.$scrollToBottom();
+        this.$content.scrollToBottom();
       }
     },
-    created: function () {},
-    mounted: function () {
-      const _this = this;
-      // console.debug('app this')
-      // console.debug(this)
+    created: function () {
+
     },
-    activated: function () {},
+    mounted: function () {
+    },
+    activated: function () {
+    },
     components: {}
   }
 </script>

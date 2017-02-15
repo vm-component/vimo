@@ -1,37 +1,33 @@
 <template>
-    <ion-page>
-        <ion-header>
-            <ion-navbar>
-                <ion-title slot="content">Tabs</ion-title>
-            </ion-navbar>
-        </ion-header>
-        <ion-content>
+  <ion-page>
+    <ion-header>
+      <ion-navbar>
+        <ion-title slot="content">Tabs</ion-title>
+      </ion-navbar>
+    </ion-header>
+    <ion-content>
 
 
-
-
-        </ion-content>
-    </ion-page>
+    </ion-content>
+  </ion-page>
 </template>
 <style scoped lang="scss">
- .main{
+  .main {
 
- }
+  }
 </style>
 <script type="text/ecmascript-6">
-  import mixin from '../mixins/baseMethodMixin'
 
   export default{
-    mixins: [mixin],
-        data(){
-            return{}
-        },
-        watch:{},
-        computed:{},
-        methods:{},
-        created:function(){},
-        mounted:function(){},
-        activated:function(){},
-        components:{}
-    }
+    data(){
+      return {}
+    },
+    watch: {},
+    computed: {},
+    methods: {},
+    created () {},
+    mounted () {},
+    activated () {},
+    components: {}
+  }
 </script>

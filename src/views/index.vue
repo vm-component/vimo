@@ -122,23 +122,24 @@
 
 </style>
 <script type="text/ecmascript-6">
-  import mixin from '../mixins/baseMethodMixin'
-
   export default{
-    // mixins: [mixin],
     name: 'index',
     data(){
       return {
+        nameTest:'index'
       }
+    },
+    created(){
+      console.debug('index: created')
     },
     mounted: function () {
       const _this = this;
       // console.log('index-this')
-      // console.log(this)
+      console.debug('index: mounted')
     },
     activated(){
       // console.log('activated index-this')
-      // console.log(this)
+      console.debug('index: activated')
     },
     components: {}
 
