@@ -30,6 +30,8 @@ $menu-small-width: $menu-width - 40px !default;
   bottom: 0;
   left: 0;
 
+  z-index: 10;
+
   display: block;
 
   width: $menu-width;

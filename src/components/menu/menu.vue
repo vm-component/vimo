@@ -3,6 +3,11 @@
        :type="type"
        :side="side"
        :class="{'show-menu':showMenu}">
+    <ion-backdrop
+      @click.native="$menu.close()"
+      :isActive="showBackdrop"
+      :class="{'show-backdrop':showBackdrop}"></ion-backdrop>
+
     <transition
       :name="animationName"
       v-on:before-enter="_beforeEnter"
@@ -12,10 +17,7 @@
         <slot></slot>
       </div>
     </transition>
-    <ion-backdrop
-      @click.native="$menu.close()"
-      :isActive="showBackdrop"
-      :class="{'show-backdrop':showBackdrop}"></ion-backdrop>
+
   </div>
 </template>
 <style lang="scss">
