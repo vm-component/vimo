@@ -42,33 +42,52 @@ import mixin from './mixins/baseMethodMixin'
 //   components: {App}
 // });
 
-import { ClickBlock } from "./util/click-block"
+// import { ClickBlock } from "./util/click-block"
+//
+// Vue.nextTick(function () {
+//   let clickBlcok = new ClickBlock();
+//
+//   clickBlcok.activate(true, 4000)
+//
+// })
 
-Vue.nextTick(function () {
-  let clickBlcok = new ClickBlock();
-  console.log(clickBlcok)
-
-  clickBlcok.activate(true, 4000)
-
-})
-
-import { QueryParams, setupQueryParams } from './platform/query-params'
-import { setupPlatform } from './platform/platform'
 import { providePlatformConfigs } from './platform/platform-registry'
+import { setupPlatform } from './platform/platform'
+import { setupConfig } from './config/config'
+import { registerModeConfigs } from './config/mode-registry'
 
+
+
+/**
+ * //providePlatformConfigs() -> platform-registry.js
+ *
+ * 需要在这里完成platform和config的初始化
+ * setupPlatform() -> platform.js
+ * setupConfig() -> config.js
+ * setupComponent() -> 初始化组件
+ *
+ * 之后完成平台特性注册
+ * registerModeConfigs() -> mode-registry.js
+ * // registerTransitions()
+ * // setupProvideEvents()
+ * // setupTapClick()
+ * */
+
+// 用户配置
+const CUSTOMER_CONFIG= {};
 let platformConfigs = providePlatformConfigs();
-let queryParams = new QueryParams();
-queryParams.parseUrl(window.location.href);
+// 初始化平台
+let platform = setupPlatform(platformConfigs);
+// config初始化
+let config = setupConfig(CUSTOMER_CONFIG,platform);
+// 注册ios/md/wp三个平台的默认配置
+registerModeConfigs(config)
 
-// let queryParams = setupQueryParams(window.location.href)
+platform.ready().then((data) => {
+  alert('Platform ready info: ' + data);
+});
 
-let platform = setupPlatform(platformConfigs, queryParams, navigator.userAgent, navigator.platform, 'ltr', 'zh');
 
-
-console.debug('platform')
-console.log(platform)
-console.log(platform.versions());
-console.log(platform.version());
 
 new Vue({
   el: '#app',
