@@ -7,17 +7,17 @@
       <slot></slot>
     </div>
     <!--backdrop-->
-    <div id="backdrop" ref="backdrop" overlay-portal></div>
+    <div id="backdropPortal" overlay-portal></div>
     <!--modal portal-->
-    <div id="modalPortal" ref="modalPortal" overlay-portal></div>
+    <div id="modalPortal" overlay-portal></div>
     <!--蒙层指示,action-sheet,choose-sheet等 overlay portal-->
-    <div id="overlayPortal" ref="overlayPortal" overlay-portal></div>
+    <div id="overlayPortal" overlay-portal></div>
     <!--alert portal-->
-    <div id="alertPortal" ref="alertPortal" overlay-portal></div>
+    <div id="alertPortal" overlay-portal></div>
     <!--loading portal-->
-    <div id="loadingPortal" ref="loadingPortal" class="loading-portal" overlay-portal></div>
+    <div id="loadingPortal" overlay-portal></div>
     <!--toast portal-->
-    <div id="toastPortal" ref="toastPortal" class="toast-portal" overlay-portal></div>
+    <div id="toastPortal" overlay-portal></div>
     <!--<div ref="toastPortal" class="toast-portal" [overlay-portal]="10000"></div>-->
     <!--当页面被点击的时候，防止在动画的过程中再次点击页面导致bug的蒙层，全局最高！z-index=99999-->
     <div class="click-block"
@@ -52,6 +52,7 @@
     BACKDROP: 'BACKDROP',
     MODAL: 'MODAL',
     LOADING: 'LOADING',
+    ALERT: 'ALERT',
     TOAST: 'TOAST'
   };
   // click_blcok等待时间
@@ -96,27 +97,6 @@
       }
     },
     methods: {
-      /**
-       * 获取App中定义的弹出层挂载点,默认挂在到_overlayPortal
-       * Modals need their own overlay becuase we don't want an ActionSheet
-       * or Alert to trigger lifecycle events inside a modal
-       * @param {String} portal - portal的名字，可以是：'LOADING'，'TOAST'，'MODAL'，空
-       * @return {HTML} 挂载点
-       * */
-      getPortal(portal){
-        if (portal === AppPortal.LOADING) {
-          return this.$refs.loadingPortal;
-        }
-        if (portal === AppPortal.TOAST) {
-          return this.$refs.toastPortal;
-        }
-        // Modals need their own overlay becuase we don't want an ActionSheet
-        // or Alert to trigger lifecycle events inside a modal
-        if (portal === AppPortal.MODAL) {
-          return this.$refs.modalPortal;
-        }
-        return this.$refs.overlayPortal;
-      },
 
       /**
        * 设置当前页面是否能点击滑动
@@ -145,13 +125,8 @@
       },
     },
     created(){
-      const _this = this;
-      if (!_this.$app) {
-        Vue.prototype.$app = _this;
-        Vue.prototype.$getPortal = _this.getPortal;
-        Vue.prototype.$setEnabled = _this.setEnabled;
-        Vue.prototype.$disableScroll = _this.disableScroll;
-      }
+      Vue.prototype.$setEnabled = this.setEnabled;
+      Vue.prototype.$disableScroll = this.disableScroll;
     },
   }
 </script>

@@ -50,9 +50,9 @@ function actionSheetInstance (options = {}) {
   instance.cancelButton = null;
 
   // 插入DOM中
-  _insertPosition = Vue.prototype.$getPortal();
+  _insertPosition = document.getElementById('overlayPortal');
   if (!!_insertPosition) {
-    document.getElementById('app').insertBefore(instance.$el, _insertPosition.nextSibling);
+    _insertPosition.appendChild(instance.$el);
   } else {
     document.body.appendChild(instance.$el);
   }

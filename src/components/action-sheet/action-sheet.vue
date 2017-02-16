@@ -2,7 +2,7 @@
   <div class="ion-action-sheet"
        :class="[modeClass,cssClass]">
     <!--backdrop-->
-    <ion-backdrop @click.native="bdClick()" :enableBackdropDismiss="enableBackdropDismiss"
+    <ion-backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
                   :isActive="isActive"></ion-backdrop>
     <!--actionsheet wrap-->
     <transition
@@ -243,7 +243,7 @@
   @import './action-sheet.wp.scss';
   @import './action-sheet.md.scss';
 
-  // 动画
+  // transition
   @import '../../transitions/actionSheet';
 
 </style>

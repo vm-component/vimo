@@ -45,9 +45,9 @@ function alertInstance (options = {}) {
   instance.isAlertTop = false;
 
   // 插入DOM中
-  _insertPosition = Vue.prototype.$getPortal('ALERT');
+  _insertPosition = document.getElementById('alertPortal');
   if (!!_insertPosition) {
-    document.getElementById('app').insertBefore(instance.$el, _insertPosition.nextSibling);
+    _insertPosition.appendChild(instance.$el)
   } else {
     document.body.appendChild(instance.$el);
   }

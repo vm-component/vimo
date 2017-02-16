@@ -1,5 +1,10 @@
 /**
  * Created by Hsiang on 2016/12/18.
  */
-import Backdrop from './backdrop.vue';
-module.exports = Backdrop;
+import BackdropComponent from './backdrop.vue';
+import BackdropInstance from './backdrop.js';
+
+module.exports = {
+  BackdropComponent,
+  BackdropInstance
+};

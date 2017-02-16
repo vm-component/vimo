@@ -1,9 +1,10 @@
 <template>
   <transition
-    name="fade"
+    name="backdrop"
     v-on:before-enter="_beforeEnter"
     v-on:after-leave="_afterLeave">
-    <div class="ion-backdrop" :class="{'backdrop-no-tappable':!enableBackdropDismiss}" v-show="isActive"></div>
+    <div class="ion-backdrop" @click="onBdClick" :class="{'backdrop-no-tappable':!enableBackdropDismissLocal}"
+         v-show="isActiveLocal"></div>
   </transition>
 </template>
 <script type="text/ecmascript-6">
@@ -11,7 +12,11 @@
     name: 'ion-backdrop',
     data(){
       return {
-        isEnable: this.isActive
+        // 定义本地参数
+        isActiveLocal: false, // 控制权由present/dismiss控制
+        enableBackdropDismissLocal: true,
+        bdClickLocal: this.bdClick,
+        isOpen:false, // 标示当前backdrop的开启状态, isActiveLocal为组件自身维护
       }
     },
     props: {
@@ -24,6 +29,22 @@
         type: Boolean,
         default: false
       },
+      bdClick: {
+        type: Function,
+        default(){
+          return function () {}
+        }
+      },
+    },
+    watch: {
+      isActive () {
+        this.isOpen = this.isActive;
+        this.isActiveLocal = this.isActive;
+      },
+      enableBackdropDismiss () {
+        this.enableBackdropDismissLocal = this.enableBackdropDismiss
+      },
+
     },
     methods: {
       // private
@@ -37,52 +58,36 @@
         this.$eventBus.$emit('$backdropHidden');
       },
 
-      // //public
-      // // 开启
-      // retain () {
-      //   this.isEnable = true;
-      // },
-      // // 关闭
-      // release () {
-      //   if (this.enableBackdropDismiss) {
-      //     this.isEnable = false;
-      //   }
-      // },
+      /**
+       * 当点击backdrop执行的动作, 前提是enableBackdropDismiss必须开启
+       * */
+      onBdClick(){
+        if (this.enableBackdropDismissLocal && !!this.bdClickLocal) {
+          this.bdClickLocal();
+        }
+      },
+
+      // 开启
+      present (options = null) {
+        if (!!options) {
+          this.enableBackdropDismissLocal = !!options.enableBackdropDismiss;
+          if(!!options.bdClick && typeof options.bdClick === 'function'){
+            this.bdClickLocal = options.bdClick;
+          }else{
+            this.bdClickLocal = function () {};
+          }
+        }
+        this.isOpen = this.isActiveLocal = true;
+      },
+      // 关闭
+      dismiss () {
+        this.isOpen = this.isActiveLocal = false;
+      },
     },
   }
 </script>
-<style scoped lang="scss">
-  // Backdrop
-  // --------------------------------------------------
-  $backdrop-color: #000 !default;
-  $z-index-backdrop: 10;
-
-  .ion-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: $z-index-backdrop;
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: $backdrop-color;
-    opacity: .4;
-    transform: translateZ(0);
-  }
-
-  .ion-backdrop.backdrop-no-tappable {
-    cursor: auto;
-  }
-
-  /*fade animate class*/
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity 400ms;
-  }
-
-  .fade-enter, .fade-leave-active {
-    opacity: 0
-  }
-
+<style lang="scss">
+  @import './backdrop';
+  // transition
+  @import '../../transitions/backdrop';
 </style>
