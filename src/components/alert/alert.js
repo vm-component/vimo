@@ -1,11 +1,13 @@
 /**
  * Created by Hsiang on 2016/12/23.
+ * 关于设计构思参考actionSheet设计
  */
 
 import Vue from 'vue';
-const alert = require('./alert.vue');
-const AlertConstructor = Vue.extend(alert);
+const alertComponent = require('./alert.vue');
+const AlertConstructor = Vue.extend(alertComponent);
 let _insertPosition;
+let instance;
 /**
  * 获取示例，保持单利状态
  */
@@ -23,7 +25,7 @@ let getAnInstance = () => {
  * @param {object} options - 传参指纹
  * */
 function alertInstance (options = {}) {
-  let instance = getAnInstance();
+  instance = getAnInstance();
 
   // 参数传入
   instance.title = !!options.title ? options.title.trim() : '';

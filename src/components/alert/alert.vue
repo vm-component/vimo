@@ -106,13 +106,10 @@
          * */
         isActive: false,
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        // TODO: mode需要从配置中取,最好和scss同步
-        mode: 'ios', // ios?android?windown?we?alipay
+        mode: this.$config.get('mode') || 'ios',  // ios?android?window
         inputType: null,// Alert中含有的input类型，radio、checkbox
         activeId: null,
         isAlertTop: false, // 是否将alert放到顶部，用于input输入时显示虚拟键盘
-        // lastClick: null,
-
       }
     },
     watch: {
@@ -202,6 +199,7 @@
        * */
       _beforeEnter () {
         this.enabled = false; // 不允许过渡中途操作
+        this.$setEnabled(false, 200);
       },
       _afterEnter () {
         this.enabled = true;
@@ -213,6 +211,7 @@
       },
       _beforeLeave () {
         this.enabled = false;
+        this.$setEnabled(false, 200);
       },
       _afterLeave () {
         this.enabled = true;
