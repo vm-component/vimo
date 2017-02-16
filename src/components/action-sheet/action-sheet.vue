@@ -42,10 +42,7 @@
 </template>
 <script type="text/ecmascript-6">
   import Vue from 'vue';
-  // import BackDrop from '../../backdrop';
-  // import Button from '../../button'
 
-  // TODO: 全局的esc事件监听未做，监听触发dbClick()
   /**
    * 使用实例模式的话，props和data无区别。
    * */
@@ -69,7 +66,7 @@
         isActive: false,  // ActionSheet 开启状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
         // TODO: mode需要从配置中取,最好和scss同步
-        mode: 'ios', // ios?android?windown?we?alipay
+        mode: this.$config.get('mode') || 'ios', // ios?android?window
 
         /**
          * ActionSheet 计算属性
