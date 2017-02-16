@@ -99,7 +99,6 @@
         buttons: [], // Array button数组，包含全部role
         inputs: [], // 如果alert中有input等form
         enableBackdropDismiss: true, // Boolean 允许点击backdrop关闭actionsheet
-
         inputsForDispaly: [], // inputs数据再加工
 
         /**
@@ -123,7 +122,7 @@
        * 但是input的内容小修改后更新DOM。
        * 实例化创建后，部分组件功能会失效，比如created等。
        * */
-      inputs: function () {
+      inputs () {
         const _this = this;
         if (!_this.inputs || _this.inputs.length === 0) {
           return []
@@ -181,13 +180,13 @@
     },
     computed: {
       // 设置Alert的风格
-      modeClass: function () {
+      modeClass () {
         return `alert-${this.mode}`
       },
-      hdrId: function () {
+      hdrId () {
         return 'alert-hdr'
       },
-      buttonsForDisplay: function () {
+      buttonsForDisplay () {
         // 如果是string则转化为对象
         return this.buttons.map(button => {
           if (typeof button === 'string') {
@@ -201,10 +200,10 @@
       /**
        * ActionSheet Animate Hooks
        * */
-      _beforeEnter: function () {
+      _beforeEnter () {
         this.enabled = false; // 不允许过渡中途操作
       },
-      _afterEnter: function () {
+      _afterEnter () {
         this.enabled = true;
         this._focusOutActiveElement();
         let focusableEle = document.querySelector('input');
@@ -212,10 +211,10 @@
           focusableEle.focus();
         }
       },
-      _beforeLeave: function () {
+      _beforeLeave () {
         this.enabled = false;
       },
-      _afterLeave: function () {
+      _afterLeave () {
         this.enabled = true;
         // 移除DOM
         this.$el.remove();
@@ -224,7 +223,7 @@
       /**
        * 点击backdrop
        * */
-      bdClick: function () {
+      bdClick () {
         if (this.enabled && this.enableBackdropDismiss) {
           let cancelBtn = this.buttonsForDisplay.find(b => b.role === 'cancel');
           if (cancelBtn) {
@@ -239,7 +238,7 @@
        * 点击下方的按钮
        * @param {object} button
        * */
-      btnClick: function (button) {
+      btnClick (button) {
         if (!this.enabled) {
           return;
         }
@@ -264,7 +263,7 @@
        * Radio Button Click
        * @param {object} checkedInput
        * */
-      rbClick: function (checkedInput) {
+      rbClick (checkedInput) {
         const _this = this;
         if (_this.enabled) {
           _this.inputsForDispaly.forEach(input => {
@@ -280,7 +279,7 @@
       /**
        * CheckBox Button Click
        * */
-      cbClick: function (checkedInput) {
+      cbClick (checkedInput) {
         const _this = this;
         if (_this.enabled) {
           checkedInput.checked = !checkedInput.checked;
@@ -294,7 +293,7 @@
       /**
        * 获取inputs中的信息
        * */
-      _getValues: function () {
+      _getValues () {
         if (this.inputType === 'radio') {
           // this is an alert with radio buttons (single value select)
           // return the one value which is checked, otherwise undefined
@@ -314,21 +313,20 @@
         const values = {};
         this.inputsForDispaly.forEach(i => {
           let _$id = document.getElementById(i.id);
-          if(!!_$id && !!_$id.value){
+          if (!!_$id && !!_$id.value) {
             values[i.name] = _$id.value.trim();
-          }else{
+          } else {
             values[i.name] = null;
           }
         });
         return values;
       },
 
-
       /**
        * Present the instance.
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      present: function () {
+      present () {
         const _this = this;
         _this.isActive = true;
         return new Promise(function (resolve) {
@@ -344,7 +342,7 @@
        * Dismiss the instance.
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      dismiss: function () {
+      dismiss () {
         const _this = this;
         if (!_this.enabled) {
           return false
@@ -364,29 +362,28 @@
       /**
        * @param {string} title Action sheet title
        */
-      setTitle: function (title) {
+      setTitle (title) {
         this.title = title;
       },
 
       /**
        * @param {string} subTitle Action sheet subtitle
        */
-      setSubTitle: function (subTitle) {
+      setSubTitle (subTitle) {
         this.subTitle = subTitle;
       },
 
       /**
        * @param {object} button Action sheet button
        */
-      addButton: function (button) {
+      addButton (button) {
         this.buttons.push(button);
       },
-
 
       /**
        * ActionSheet启动之前去除focus效果，因为存在键盘
        * */
-      _focusOutActiveElement: function () {
+      _focusOutActiveElement () {
         // only button？
         const activeElement = document.activeElement;
         activeElement && activeElement.blur && activeElement.blur();

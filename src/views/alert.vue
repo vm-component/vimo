@@ -9,7 +9,6 @@
       <ion-button type="block" @click="alert()">Alert</ion-button>
       <ion-button color="danger" type="block" @click="confirm()">Confirm</ion-button>
       <ion-button color="secondary" type="block" @click="threeBtn()">Three Button</ion-button>
-
       <ion-button color="dark" type="block" @click="input()">Input</ion-button>
       <ion-button color="dark" type="block" @click="checkbox()">Checkbox</ion-button>
       <ion-button color="primary" type="block" @click="radio()">Radio</ion-button>
@@ -23,8 +22,6 @@
   }
 </style>
 <script type="text/ecmascript-6">
-  import Button from '../components/button';
-  import Alert from '../components/alert'
   export default{
     data(){
       return {}
@@ -32,20 +29,21 @@
     watch: {},
     computed: {},
     methods: {
-      alert: function () {
-        let alert = Alert.create({
+      alert () {
+        const _this = this;
+        let a = _this.$alert({
           title: 'Alert',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
           cssClass: 'alertCssOuterMain  ',
-          enableBackdropDismiss: false,
+          enableBackdropDismiss: true,
           //buttons:['1','2','3']
           buttons: [
             {
               text: '确定',
               role: '',
               handler: (value) => {
-                alert.dismiss().then(function (data) {
+                a.dismiss().then(function (data) {
                   console.debug('button3 click')
                   console.debug(data)
                 });
@@ -53,10 +51,11 @@
             }
           ]
         });
-        alert.present()
+
       },
-      confirm: function () {
-        let confirm = Alert.create({
+      confirm () {
+        const _this = this;
+        let confirm = _this.$alert({
           title: 'Confirm',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -85,10 +84,11 @@
             }
           ]
         });
-        confirm.present()
+        // confirm.present()
       },
-      threeBtn: function () {
-        let threeBtn = Alert.create({
+      threeBtn () {
+        const _this = this;
+        let threeBtn = _this.$alert({
           title: 'ThreeBtn',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -120,10 +120,11 @@
             }
           ]
         });
-        threeBtn.present()
+        // threeBtn.present()
       },
-      input: function () {
-        let input = Alert.create({
+      input () {
+        const _this = this;
+        let input = _this.$alert({
           title: '登录iTunes Store',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '请输入您Apple ID"apple@icloud.com"的密码',
@@ -149,7 +150,7 @@
               role: '',
               handler: (value) => {
                 input.dismiss().then(function (msg) {
-                  let alert = Alert.create({
+                  let alert = _this.$alert({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                     message: '您输入的信息：'+JSON.stringify(value),
@@ -163,18 +164,19 @@
                       }
                     ]
                   });
-                  alert.present()
+                  // alert.present()
                 })
               }
             }
           ]
         });
-        input.present().then(function () {
-
-        })
+        // input.present().then(function () {
+        //
+        // })
       },
-      checkbox: function () {
-        let checkbox = Alert.create({
+      checkbox () {
+        const _this = this;
+        let checkbox = _this.$alert({
           title: 'checkbox',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: 'checkbox',
@@ -238,7 +240,7 @@
               handler: (value) => {
                 checkbox.dismiss().then(function (msg) {
                   console.log('输入的信息：'+JSON.stringify(value))
-                  let alert = Alert.create({
+                  let alert = _this.$alert({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                     message: '您输入的信息：'+JSON.stringify(value),
@@ -252,16 +254,17 @@
                       }
                     ]
                   });
-                  alert.present()
+                  // alert.present()
                 })
               }
             }
           ]
         });
-        checkbox.present()
+        // checkbox.present()
       },
-      radio: function () {
-        let radio = Alert.create({
+      radio () {
+        const _this = this;
+        let radio = _this.$alert({
           title: 'radio',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: 'radio',
@@ -324,7 +327,7 @@
               role: '',
               handler: (value) => {
                 radio.dismiss().then(function (msg) {
-                  let alert = Alert.create({
+                  let alert = _this.$alert({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                     message: '您输入的信息：'+JSON.stringify(value),
@@ -338,13 +341,13 @@
                       }
                     ]
                   });
-                  alert.present()
+                  // alert.present()
                 })
               }
             }
           ]
         });
-        radio.present()
+        // radio.present()
       },
 
 
@@ -353,14 +356,11 @@
 
 
     },
-    created: function () {
+    created () {
     },
-    mounted: function () {
+    mounted () {
     },
-    activated: function () {
+    activated () {
     },
-    components: {
-      'ion-button': Button,
-    }
   }
 </script>
