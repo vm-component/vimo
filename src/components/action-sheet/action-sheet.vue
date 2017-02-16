@@ -6,7 +6,7 @@
                   :isActive="isActive"></ion-backdrop>
     <!--actionsheet wrap-->
     <transition
-      name="action-sheet-fadeIn"
+      name="action-sheet"
       v-on:before-enter="_beforeEnter"
       v-on:after-enter="_afterEnter"
       v-on:before-leave="_beforeLeave"
@@ -41,8 +41,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import Vue from 'vue';
-
+  import { transitionEndPromise } from '../../util/dom'
   /**
    * 使用实例模式的话，props和data无区别。
    * */
@@ -197,17 +196,7 @@
       present () {
         const _this = this;
         _this.isActive = true;
-
-        // 组件通知
-        !!Vue.prototype.$ActionSheet && (Vue.prototype.$ActionSheet.isOpen = true);
-
-        return new Promise(function (resolve) {
-          let _presentHandler = function () {
-            _this.$el.removeEventListener('transitionend', _presentHandler);
-            resolve('ActionSheet Present Success!');
-          };
-          _this.$el.addEventListener('transitionend', _presentHandler);
-        });
+        return transitionEndPromise(_this.$el.querySelectorAll('.action-sheet-wrapper')[0]);
       },
 
       /**
@@ -216,25 +205,12 @@
        */
       dismiss () {
         const _this = this;
-        console.log('dismiss?');
         if (!_this.enabled) {
-          console.log('dismiss is going');
           return false
         }
-        console.log('dismissing');
         _this.enabled = false;
         _this.isActive = false; // 动起来
-
-        return new Promise(function (resolve) {
-          let _dismissHandler = function () {
-            _this.$el.removeEventListener('transitionend', _dismissHandler);
-            _this.enabled = true;
-            // 组件通知
-            !!Vue.prototype.$ActionSheet && (Vue.prototype.$ActionSheet.isOpen = false);
-            resolve('ActionSheet Dismiss Success!');
-          };
-          _this.$el.addEventListener('transitionend', _dismissHandler);
-        });
+        return transitionEndPromise(_this.$el.querySelectorAll('.action-sheet-wrapper')[0]);
       },
 
       /**
@@ -257,27 +233,17 @@
       addButton (button) {
         this.buttons.push(button);
       }
-    },
-    components: {
-      // 'ion-backdrop': BackDrop,
-      // 'ion-button': Button,
-    },
+    }
   }
 </script>
 <style lang="scss">
 
   @import './action-sheet.scss';
   @import './action-sheet.ios.scss';
-  /*@import './action-sheet.wp.scss';*/
-  /*@import './action-sheet.md.scss';*/
+  @import './action-sheet.wp.scss';
+  @import './action-sheet.md.scss';
 
-  .action-sheet-fadeIn-enter-active, .action-sheet-fadeIn-leave-active {
-    transform: translateY(0%);
-  }
-
-  .action-sheet-fadeIn-enter, .action-sheet-fadeIn-leave-active {
-    transform: translateY(100%);
-  }
-
+  // 动画
+  @import '../../transitions/actionSheet';
 
 </style>

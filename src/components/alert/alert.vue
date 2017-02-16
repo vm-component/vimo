@@ -66,24 +66,14 @@
   @import './alert.wp.scss';
   @import './alert.md.scss';
 
-  .alert-enter-active, .alert-leave-active {
-    transform: scale(1);
-    opacity: 1;
-  }
 
-  .alert-enter {
-    transform: scale(1.1);
-    opacity: 0;
-  }
-
-  .alert-leave-active {
-    transform: scale(0.9);
-    opacity: 0;
-  }
+  // transition
+  @import '../../transitions/alert';
 
 
 </style>
 <script type="text/ecmascript-6">
+  import { transitionEndPromise } from '../../util/dom'
   export default{
     data(){
       return {
@@ -328,13 +318,7 @@
       present () {
         const _this = this;
         _this.isActive = true;
-        return new Promise(function (resolve) {
-          let _presentHandler = function () {
-            _this.$el.removeEventListener('transitionend', _presentHandler);
-            resolve('Alert Present Success!');
-          };
-          _this.$el.addEventListener('transitionend', _presentHandler);
-        });
+        return transitionEndPromise(_this.$el.querySelectorAll('.alert-wrapper')[0])
       },
 
       /**
@@ -348,14 +332,7 @@
         }
         _this.enabled = false;
         _this.isActive = false; // 动起来
-        return new Promise(function (resolve) {
-          let _dismissHandler = function () {
-            _this.$el.removeEventListener('transitionend', _dismissHandler);
-            _this.enabled = true;
-            resolve('ActionSheet Dismiss Success!');
-          };
-          _this.$el.addEventListener('transitionend', _dismissHandler);
-        });
+        return transitionEndPromise(_this.$el.querySelectorAll('.alert-wrapper')[0])
       },
 
       /**
