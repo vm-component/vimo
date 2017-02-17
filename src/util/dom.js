@@ -113,7 +113,7 @@ const CSS = {
   transformOrigin: '',
   animationDelay: '',
 };
-export function getCss(docEle) {
+export function getCss (docEle) {
 
   // transform
   var i;//number;
@@ -160,7 +160,6 @@ export function getCss(docEle) {
   return CSS
 }
 
-
 /**
  * transitionEnd事件注册，绑定的函数触发后会自动解绑
  * @param {HTMLElement} el 绑定的元素
@@ -191,6 +190,80 @@ export function transitionEnd (el, callback) {
       unregister();
       callback(ev);
     }
+  }
+}
+
+//
+// /**
+//  * transitionEnd事件注册，绑定的函数触发后会自动解绑
+//  * @param {HTMLElement} el 绑定的元素
+//  * @return {Promise}
+//  * */
+// export function transitionEndPromise (el) {
+//   alert('替换这部分: transitionEndPromise')
+//   let callback = null;
+//   let promise = new Promise(resolve => { callback = resolve; }); //Promise;
+//
+//   if (el) {
+//     CSS.transitionEnd.split(' ').forEach(eventName => {
+//       el.addEventListener(eventName, onEvent);
+//     });
+//   }
+//
+//   function unregister () {
+//     CSS.transitionEnd.split(' ').forEach(eventName => {
+//       el.removeEventListener(eventName, onEvent);
+//     });
+//   }
+//
+//   /**
+//    * @param {UIEvent} ev
+//    * */
+//   function onEvent (ev) {
+//     if (el === ev.target) {
+//       // auto unregister
+//       // 等待一下, 等待transition真正结束
+//       nativeTimeout(function () {
+//         unregister();
+//         callback(ev);
+//       },16*8);
+//
+//     } else {
+//       alert('未捕捉到transitionEnd事件, 请检查传入的el对象是否和触发事件的对象一致!')
+//     }
+//   }
+//
+//   return promise;
+// }
+
+/**
+ * urlChange注册，绑定的函数触发后会自动解绑
+ * @param {function} callback
+ * @return {function}
+ * */
+export function urlChange (callback) {
+  const URL_EVENT = ['hashchange','popstate'];
+  URL_EVENT.forEach(eventName => {
+    window.addEventListener(eventName, onEvent);
+  });
+
+  return unregister
+
+  function unregister () {
+    URL_EVENT.forEach(eventName => {
+      window.removeEventListener(eventName, onEvent);
+    });
+  }
+
+  /**
+   * @param {UIEvent} ev
+   * */
+  function onEvent (ev) {
+    console.log('执行urlChange动作')
+    console.log(ev)
+    // auto unregister
+    unregister();
+    callback(ev);
   }
 }
 
@@ -409,11 +482,10 @@ export function flushDimensionCache () {
 export function setElementClass (ele, className, add) {
   if (add) {
     _addClass(ele, className)
-  }else{
+  } else {
     _removeClass(ele, className)
   }
 }
-
 
 /**
  * 元素的class操作
@@ -434,7 +506,6 @@ function _removeClass (obj, cls) {
     obj.className = obj.className.replace(reg, ' ').trim();
   }
 }
-
 
 // private _setElementClass(className: string, add: boolean) {
 //   this.renderer.setElementClass(this.elementRef.nativeElement, className, add);

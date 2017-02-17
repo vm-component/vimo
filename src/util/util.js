@@ -229,7 +229,8 @@ export function swipeShouldReset(isResetDirection, isMovingFast, isOnResetZone) 
  */
 export function assert(actual, reason) {
   if (!actual && ASSERT_ENABLED === true) {
-    let message = 'IONIC ASSERT: ' + reason;
+    let message = 'VM ASSERT: ' + reason;
+    alert(message);
     console.error(message);
     debugger; // tslint:disable-line
     throw new Error(message);

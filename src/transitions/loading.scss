@@ -1,0 +1,15 @@
+// transitioName = 'loading'
+.loading-enter-active, .loading-leave-active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.loading-enter {
+  transform: scale(1.1);
+  opacity: 0;
+}
+
+.loading-leave-active {
+  transform: scale(0.9);
+  opacity: 0;
+}
