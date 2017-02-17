@@ -6,6 +6,7 @@
  */
 import Vue from 'vue';
 import backdropComponent from './backdrop.vue'
+
 const BackdropConstructor = Vue.extend(backdropComponent);
 let _insertPosition;
 let instance;
@@ -13,7 +14,7 @@ let instance;
 /**
  * 获取示例，保持单利状态
  */
-let getAnInstance = () => {
+function getAnInstance(){
   if(!Vue.prototype._backdrop){
     Vue.prototype._backdrop = new BackdropConstructor({
       el: document.createElement('div')
@@ -33,10 +34,12 @@ function backdropInstance () {
     // document.getElementById('app').insertBefore(instance.$el, _insertPosition.nextSibling);
     _insertPosition.appendChild(instance.$el);
   } else {
+    debugger
     document.body.appendChild(instance.$el);
   }
 
   return instance;
 }
 
+// 返回实例
 export default backdropInstance;
