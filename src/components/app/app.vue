@@ -128,5 +128,8 @@
       Vue.prototype.$setEnabled = this.setEnabled;
       Vue.prototype.$disableScroll = this.disableScroll;
     },
+    mounted(){
+      this.$eventBus.$emit('app:ready')
+    }
   }
 </script>
