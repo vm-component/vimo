@@ -17,6 +17,8 @@
     <!--<ng-content select="ion-buttons[start]"></ng-content>-->
     <!--<ng-content select="ion-buttons[end],ion-buttons[right]"></ng-content>-->
     <div class="toolbar-content" :class="[toolbarContentClass]">
+      <!--默认-->
+      <slot></slot>
       <slot name="content"></slot>
     </div>
   </div>
