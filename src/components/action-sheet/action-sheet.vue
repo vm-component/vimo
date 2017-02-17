@@ -1,6 +1,5 @@
 <template>
-  <div class="ion-action-sheet"
-       :class="[modeClass,cssClass]">
+  <div class="ion-action-sheet" :class="[modeClass,cssClass]">
     <!--backdrop-->
     <ion-backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
                   :isActive="isActive"></ion-backdrop>
@@ -41,7 +40,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import { transitionEndPromise } from '../../util/dom'
+
   /**
    * 使用实例模式的话，props和data无区别。
    * */
@@ -64,7 +63,6 @@
          * */
         isActive: false,  // ActionSheet 开启状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        // TODO: mode需要从配置中取,最好和scss同步
         mode: this.$config.get('mode') || 'ios', // ios?android?window
 
         /**
@@ -74,6 +72,10 @@
          * */
         normalButtons: [], // 普通按钮组
         cancelButton: null, // 取消按钮(组)，一般放在下面
+
+        // promise
+        presentCallback: null,
+        dismissCallback: null,
       }
     },
     computed: {
@@ -123,8 +125,9 @@
         this.enabled = false; // 不允许过渡中途操作
         this.$setEnabled(false, 400)
       },
-      _afterEnter () {
+      _afterEnter (el) {
         this.enabled = true;
+        this.presentCallback(el);
         this._focusOutActiveElement();
         let focusableEle = document.querySelector('button');
         if (focusableEle) {
@@ -135,10 +138,11 @@
         this.enabled = false;
         this.$setEnabled(false, 400)
       },
-      _afterLeave () {
+      _afterLeave (el) {
         this.enabled = true;
+        this.dismissCallback(el);
         // 删除DOM
-        this.$el.remove()
+        this.$el.remove();
       },
 
       /**
@@ -159,7 +163,7 @@
           if (_this.cancelButton) {
             _this.click(this.cancelButton);
           } else {
-            _this.dismiss()
+            _this._dismiss()
           }
         }
       },
@@ -185,7 +189,7 @@
         // 如果是在dismissing中，则意味着正在关闭，
         // 这里不必进行
         if (_this.enabled && shouldDismiss) {
-          _this.dismiss();
+          _this._dismiss();
         }
       },
 
@@ -193,24 +197,24 @@
        * Present the action sheet instance.
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      present () {
+      _present (options = {}) {
         const _this = this;
         _this.isActive = true;
-        return transitionEndPromise(_this.$el.querySelectorAll('.action-sheet-wrapper')[0]);
+        return new Promise((resolve)=>{this.presentCallback = resolve})
       },
 
       /**
        * Dismiss the action sheet instance.
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      dismiss () {
+      _dismiss () {
         const _this = this;
         if (!_this.enabled) {
           return false
         }
         _this.enabled = false;
         _this.isActive = false; // 动起来
-        return transitionEndPromise(_this.$el.querySelectorAll('.action-sheet-wrapper')[0]);
+        return new Promise((resolve)=>{this.dismissCallback = resolve})
       },
 
       /**
@@ -232,7 +236,11 @@
        */
       addButton (button) {
         this.buttons.push(button);
-      }
+      },
+
+
+
+
     }
   }
 </script>
