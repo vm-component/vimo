@@ -41,6 +41,7 @@
 </template>
 <script type="text/ecmascript-6">
 
+  
   /**
    * 使用实例模式的话，props和data无区别。
    * */
