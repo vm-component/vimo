@@ -1,6 +1,6 @@
 <template>
   <div class="ion-loading" :class="[modeClass,cssClass]">
-    <ion-backdrop :isActive="isActive" v-if="showBackdrop" :enableBackdropDismiss="false"></ion-backdrop>
+    <!--<ion-backdrop :isActive="isActive" v-if="showBackdrop" :enableBackdropDismiss="false"></ion-backdrop>-->
     <transition name="loading"
                 v-on:before-enter="_beforeEnter"
                 v-on:after-enter="_afterEnter"
@@ -15,32 +15,17 @@
     </transition>
   </div>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
   @import './loading';
   @import './loading.ios';
-  /*@import './loading.md';*/
-  /*@import './loading.wp';*/
+  @import './loading.md';
+  @import './loading.wp';
 
-  .loading-enter-active, .loading-leave-active {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  .loading-enter {
-    transform: scale(1.1);
-    opacity: 0;
-  }
-
-  .loading-leave-active {
-    transform: scale(0.9);
-    opacity: 0;
-  }
+  // transition
+  @import "../../transitions/loading";
 
 </style>
 <script type="text/ecmascript-6">
-
-  import {transitionEndPromise} from '../../util/dom'
-
   export default{
     data(){
       return {
@@ -49,12 +34,11 @@
          * 因为是实例调用模式，故prop和data在初始化后是同样的数据接口，
          * 故prop就没有存在的价值
          * */
-        spinner: 'ios', // String
+        spinner: this.$config.get('spinner') || 'ios', // String
         content: null, // 可以使html片段
         cssClass: null,
         showBackdrop: false,
         duration: null, // 自动关闭时间
-        // TODO:这部分没做。
         dismissOnPageChange: false,// 页面切花是否关闭
 
         /**
@@ -62,10 +46,14 @@
          * */
         isActive: false, // 开启状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode: this.$config.get('mode') ||'ios', // ios?android?window
+        mode: this.$config.get('mode') || 'ios', // ios?android?window
+
+        // promise
+        presentCallback: null,
+        dismissCallback: null,
+
       }
     },
-    watch: {},
     computed: {
       // 设置ActionSheet的风格
       modeClass () {
@@ -81,42 +69,37 @@
        * */
       _beforeEnter () {
         this.enabled = false; // 不允许过渡中途操作
+        this.$setEnabled(false, 200);
       },
-      _afterEnter () {
+      _afterEnter (el) {
         this.enabled = true;
+        this.presentCallback(el);
       },
       _beforeLeave () {
         this.enabled = false;
+        this.$setEnabled(false, 200);
       },
-      _afterLeave () {
+      _afterLeave (el) {
         this.enabled = true;
+        this.dismissCallback(el);
         // 删除DOM
         this.$el.remove()
       },
 
       /**
-       * Present the action sheet instance.
        * 这个是内部函数，外部同名方法会处理额外事宜
-       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+       * 开启实例
+       * @returns {Promise} transitionEnd结束后返回promise
        */
       _present () {
         const _this = this;
         _this.isActive = true;
-
-        return transitionEndPromise(_this.$el.querySelectorAll('.loading-wrapper')[0]);
-
-        // return new Promise(function (resolve) {
-        //   let _presentHandler = function () {
-        //     _this.$el.removeEventListener('transitionend', _presentHandler);
-        //     resolve('Present Success!');
-        //   };
-        //   _this.$el.addEventListener('transitionend', _presentHandler);
-        // });
+        return new Promise((resolve)=>{this.presentCallback = resolve})
       },
 
       /**
-       * Dismiss the instance.
-       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+       * 关闭实例
+       * @returns {Promise} transitionEnd结束后返回promise
        */
       _dismiss () {
         const _this = this;
@@ -125,19 +108,8 @@
         }
         _this.enabled = false;
         _this.isActive = false; // 动起来
-        return new Promise(function (resolve) {
-          let _dismissHandler = function () {
-            _this.$el.removeEventListener('transitionend', _dismissHandler);
-            _this.enabled = true;
-            resolve('Dismiss Success!');
-          };
-          _this.$el.addEventListener('transitionend', _dismissHandler);
-        });
+        return new Promise((resolve)=>{this.dismissCallback = resolve})
       },
-    },
-    created () {
-    },
-    mounted () {
-    },
+    }
   }
 </script>
