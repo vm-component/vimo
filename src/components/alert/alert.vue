@@ -15,8 +15,7 @@
         <div class="alert-message">{{message}}</div>
         <div v-if="!!inputs && inputs.length>0">
 
-          <div v-if="inputType==='radio'" class="alert-radio-group" role="radiogroup" :aria-labelledby="hdrId"
-               :aria-activedescendant="activeId">
+          <div v-if="inputType==='radio'" class="alert-radio-group" role="radiogroup">
             <ion-button role="alert-radio-button" v-for="i in inputsForDispaly" @click="rbClick(i)"
                         :aria-checked="i.checked" :disabled="i.disabled" :id="i.id"
                         class="alert-tappable alert-radio">
@@ -65,15 +64,12 @@
   @import './alert.ios.scss';
   @import './alert.wp.scss';
   @import './alert.md.scss';
-
-
   // transition
   @import '../../transitions/alert';
 
 
 </style>
 <script type="text/ecmascript-6">
-  import { transitionEndPromise } from '../../util/dom'
   export default{
     data(){
       return {
@@ -98,8 +94,10 @@
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
         mode: this.$config.get('mode') || 'ios',  // ios?android?window
         inputType: null,// Alert中含有的input类型，radio、checkbox
-        activeId: null,
         isAlertTop: false, // 是否将alert放到顶部，用于input输入时显示虚拟键盘
+
+        dismissCallback: null,
+        presentCallback: null,
       }
     },
     watch: {
@@ -145,11 +143,6 @@
 
         const checkedInput = _inputs.find(input => input.checked);
 
-        if (checkedInput) {
-          // radio标签当前选中的元素
-          _this.activeId = checkedInput.id;
-        }
-
         const NON_TEXT_INPUT_REGEX = /^(radio|checkbox|range|file|submit|reset|color|image|button)$/i;
 
         const hasTextInput = (_inputs.length && _inputs.some(i => !(NON_TEXT_INPUT_REGEX.test(i.type))));
@@ -191,8 +184,12 @@
         this.enabled = false; // 不允许过渡中途操作
         this.$setEnabled(false, 200);
       },
-      _afterEnter () {
+      _afterEnter (el) {
         this.enabled = true;
+
+        // 执行开启的promise
+        this.presentCallback(el);
+
         this._focusOutActiveElement();
         let focusableEle = document.querySelector('input');
         if (focusableEle) {
@@ -203,8 +200,10 @@
         this.enabled = false;
         this.$setEnabled(false, 200);
       },
-      _afterLeave () {
+      _afterLeave (el) {
         this.enabled = true;
+        // 执行关闭的promise
+        this.dismissCallback(el);
         // 移除DOM
         this.$el.remove();
       },
@@ -218,7 +217,7 @@
           if (cancelBtn) {
             this.btnClick(cancelBtn);
           } else {
-            this.dismiss();
+            this._dismiss();
           }
         }
       },
@@ -244,7 +243,7 @@
         }
 
         if (shouldDismiss) {
-          this.dismiss();
+          this._dismiss();
         }
       },
 
@@ -258,7 +257,6 @@
           _this.inputsForDispaly.forEach(input => {
             input.checked = (checkedInput === input);
           });
-          _this.activeId = checkedInput.id;
           if (checkedInput.handler) {
             checkedInput.handler(checkedInput);
           }
@@ -315,24 +313,25 @@
        * Present the instance.
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      present () {
+      _present () {
         const _this = this;
         _this.isActive = true;
-        return transitionEndPromise(_this.$el.querySelectorAll('.alert-wrapper')[0])
+        return new Promise((resolve) => {this.presentCallback = resolve})
       },
 
       /**
        * Dismiss the instance.
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      dismiss () {
+      _dismiss () {
         const _this = this;
         if (!_this.enabled) {
           return false
         }
+        console.log('_dismiss')
         _this.enabled = false;
         _this.isActive = false; // 动起来
-        return transitionEndPromise(_this.$el.querySelectorAll('.alert-wrapper')[0])
+        return new Promise((resolve) => {this.dismissCallback = resolve})
       },
 
       /**
