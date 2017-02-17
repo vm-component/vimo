@@ -15,7 +15,6 @@
         No Cancel Action Sheet
       </ion-button>
 
-
     </ion-content>
   </ion-page>
 </template>
@@ -30,7 +29,7 @@
     methods: {
       showActionSheet1 () {
         const _this = this;
-        let actionSheet = _this.$ActionSheet.create({
+       _this.$actionSheet.present({
           title: '请选择操作',
           subTitle: '注意，选择后不能撤销！',
           cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
@@ -61,29 +60,24 @@
               text: '取消',
               role: 'cancel',
               handler: () => {
-                actionSheet.dismiss().then(function (data) {
-                  console.log('app dismiss data')
-                  console.log(data)
+                _this.$actionSheet.dismiss().then(function (data) {
+                  console.debug('promise的退出方式')
                 });
               }
             }
           ]
-        });
-
-        actionSheet.present().then(function (data) {
-          console.log('ActionSheet present data')
-          console.log(data)
-        });
+        })
       },
       showActionSheet2 () {
-        let actionSheet = this.$ActionSheet.create({
-          title: '请选择操作',
-          subTitle: '注意，选择后不能撤销！',
+        const _this = this;
+       _this.$actionSheet.present({
+          title: '请选择型号',
+          subTitle: '必须选择, 点击backdrop不能取消',
           cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
-          enableBackdropDismiss: true,
+          enableBackdropDismiss: false,
           buttons: [
             {
-              text: '删除',
+              text: 'MacBook Pro',
               role: 'destructive',
               icon: 'icon-Destructive',
               cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
@@ -92,62 +86,24 @@
               }
             },
             {
-              text: '翻转',
+              text: 'MacMini',
               handler: () => {
                 console.log('Archive1 clicked');
               }
             },
             {
-              text: '增加',
+              text: 'iPhone',
               handler: () => {
                 console.log('Archive4 clicked');
               }
             }
           ]
         });
-
-        actionSheet.present().then(function (data) {
-          console.log('ActionSheet present data')
-          console.log(data)
-        });
       },
     },
-    components: {},
 
   }
 
 </script>
 
-<style lang="scss">
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-  }
-
-  html {
-    width: 100%;
-    height: 100%;
-    font-size: 62.5%;
-  }
-
-  .actionSheet {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    /*position: absolute;*/
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-
-</style>
+<style lang="scss"></style>

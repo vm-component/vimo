@@ -17,7 +17,6 @@
 
       <h2>组件方法：</h2>
 
-      <p>$getPortal: 获取弹出层挂载的位置</p>
       <p>$setEnabled: 设置整个页面可点击状态</p>
       <p>$disableScroll: 禁止页面滚动</p>
 

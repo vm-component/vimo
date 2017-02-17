@@ -2,35 +2,32 @@
   <ion-page>
     <ion-header>
       <ion-navbar>
-        <ion-title slot="content">Loading</ion-title>
+        <ion-title>Loading</ion-title>
       </ion-navbar>
     </ion-header>
     <ion-content padding>
-      <p>Spinner type: ios/ios-small/bubbles/circles/crescent/dots</p>
-      <p>1000ms</p>
-      <ion-bubtton type="block" @click="showDefault()">show default</ion-bubtton>
-      <ion-bubtton type="block" @click="showIos()">show ios</ion-bubtton>
-      <ion-bubtton type="block" @click="showIosSmall()">show ios-small</ion-bubtton>
-      <ion-bubtton type="block" @click="showBubbles()">show Bubbles</ion-bubtton>
-      <ion-bubtton type="block" @click="showCircles()">show circles</ion-bubtton>
-      <ion-bubtton type="block" @click="showCrescent()">show crescent</ion-bubtton>
-      <ion-bubtton type="block" @click="showDots()">show dots</ion-bubtton>
+      <p>显示不同的旋转样式, 默认打开Backdrop</p>
+      <p>类型有: ios/ios-small/bubbles/circles/crescent/dots</p>
+      <ion-button type="block" @click="showDefault()">点击打开默认Loading</ion-button>
+      <ion-button type="block" @click="showIos()">显示 ios</ion-button>
+      <ion-button type="block" @click="showIosSmall()">显示 ios-small</ion-button>
+      <ion-button type="block" @click="showBubbles()">显示 Bubbles</ion-button>
+      <ion-button type="block" @click="showCircles()">显示 circles</ion-button>
+      <ion-button type="block" @click="showCrescent()">显示 crescent</ion-button>
+      <ion-button type="block" @click="showDots()">显示 dots</ion-button>
 
-      <p>showNoBackDrop</p>
-      <ion-bubtton type="block" @click="showNoBackDrop()">showNoBackDrop</ion-bubtton>
+      <p>不显示Backdrop</p>
+      <ion-button type="block" @click="showNoBackDrop()">不显示Backdrop</ion-button>
 
-      <p>showDefaultWithNoTime</p>
-      <ion-bubtton type="block" @click="showDefaultWithNoTime()">3000ms</ion-bubtton>
 
       <p>在一个loading中定时打开另一个</p>
-      <ion-bubtton type="block" @click="showOther()">show default</ion-bubtton>
-      <!--<ion-bubtton type="block" @click="show2()">show default</ion-bubtton>-->
+      <ion-button type="block" @click="showOther()">连续开启</ion-button>
 
-      <p>无spinner</p>
-      <ion-bubtton type="block" @click="showNoSpinner()">showNoSpinner</ion-bubtton>
+      <p>没有旋转样式(NoSpinner)</p>
+      <ion-button type="block" @click="showNoSpinner()">showNoSpinner</ion-button>
 
       <p>自定义内容</p>
-      <ion-bubtton type="block" @click="showCusContent()">showCusContent</ion-bubtton>
+      <ion-button type="block" @click="showCusContent()">showCusContent</ion-button>
     </ion-content>
   </ion-page>
 </template>
@@ -40,195 +37,187 @@
   }
 </style>
 <script type="text/ecmascript-6">
-  import Button from '../components/button';
-  import Loading from '../components/loading';
   export default{
     data(){
       return {}
     },
-    watch: {},
-    computed: {},
     methods: {
-      showDefault: function () {
-        let loading = Loading.create({
-          content: 'Loading Please Wait...',
+      // 普通的
+      showDefault () {
+        const _this = this;
+        _this.$loading.present({
+          content: '正在加载, 4000ms后自动关闭...',
           cssClass: 'cssClass',
+          dismissOnPageChange:true, // url变化后关闭loading
           showBackdrop: true,
-          duration: 1000,
         });
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('1 showDefault onDidDismiss')
-        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        },4000);
       },
-      showIos: function () {
-        let loading = Loading.create({
+      showIos () {
+        const _this = this;
+        _this.$loading.present({
           spinner: 'ios',
+          content: '正在加载, 1000ms后自动关闭...',
+          cssClass: 'cssClass',
+          dismissOnPageChange:true, // url变化后关闭loading
           showBackdrop: true,
-          duration: 1000,
-          content: 'Loading Please Wait...'
         });
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('2 showIos onDidDismiss')
-        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        },1000);
       },
-      showIosSmall: function () {
-        let loading = Loading.create({
+      showIosSmall () {
+        const _this = this;
+        _this.$loading.present({
           spinner: 'ios-small',
+          content: '正在加载, 1000ms后自动关闭...',
+          cssClass: 'cssClass',
+          dismissOnPageChange:true, // url变化后关闭loading
           showBackdrop: true,
-          duration: 1000,
-          content: 'Loading Please Wait...'
         });
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('3 showIosSmall onDidDismiss')
-        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        },1000);
       },
-      showBubbles: function () {
-        let loading = Loading.create({
+      showBubbles () {
+        const _this = this;
+        _this.$loading.present({
           spinner: 'bubbles',
+          content: '正在加载, 1000ms后自动关闭...',
+          cssClass: 'cssClass',
+          dismissOnPageChange:true, // url变化后关闭loading
           showBackdrop: true,
-          duration: 1000,
-          content: 'Loading Please Wait...'
         });
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('4 showBubbles onDidDismiss')
-        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        },1000);
       },
-      showCircles: function () {
-        let loading = Loading.create({
+      showCircles () {
+        const _this = this;
+        _this.$loading.present({
           spinner: 'circles',
+          content: '正在加载, 1000ms后自动关闭...',
+          cssClass: 'cssClass',
+          dismissOnPageChange:true, // url变化后关闭loading
           showBackdrop: true,
-          duration: 1000,
-          content: 'Loading Please Wait...'
         });
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('5 showCircles onDidDismiss')
-        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        },1000);
       },
-      showCrescent: function () {
-        let loading = Loading.create({
+      showCrescent () {
+        const _this = this;
+        _this.$loading.present({
           spinner: 'crescent',
+          content: '正在加载, 1000ms后自动关闭...',
+          cssClass: 'cssClass',
+          dismissOnPageChange:true, // url变化后关闭loading
           showBackdrop: true,
-          duration: 1000,
-          content: 'Loading Please Wait...'
         });
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('6 showCrescent onDidDismiss')
-        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        },1000);
       },
-      showDots: function () {
-        let loading = Loading.create({
+      showDots () {
+        const _this = this;
+        _this.$loading.present({
           spinner: 'dots',
+          content: '正在加载, 1000ms后自动关闭...',
+          cssClass: 'cssClass',
+          dismissOnPageChange:true, // url变化后关闭loading
           showBackdrop: true,
-          duration: 1000,
-          content: 'Loading Please Wait...'
         });
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('7 showDots onDidDismiss')
-        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        },1000);
       },
 
-      showNoBackDrop: function () {
-        let loading = Loading.create({
-          spinner: 'ios',
+      // 打开没backdrop的loading
+      showNoBackDrop () {
+        const _this = this;
+        _this.$loading.present({
+          content: '正在加载, 1000ms后自动关闭...',
+          cssClass: 'cssClass',
+          dismissOnPageChange:true, // url变化后关闭loading
           showBackdrop: false,
-          duration: 1000,
-          content: 'Loading Please Wait...'
         });
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('7 showDots onDidDismiss')
-        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        },1000);
       },
 
-      showDefaultWithNoTime: function () {
-        let loading = Loading.create({
-          content: 'Loading Please Wait...',
+      // 同时开启两个
+      showOther () {
+        const _this = this;
+        _this.$loading.present({
+          content: '正在加载, 这个是开启的第一个, 没有Backdrop.',
           cssClass: 'cssClass',
-          showBackdrop: true,
-        });
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('showDefaultWithNoTime onDidDismiss')
+          showBackdrop: false,
         });
 
         setTimeout(function () {
-          loading.dismiss();
-        }, 3000)
-      },
-      //
-      showOther: function () {
-        let loading = Loading.create({
-          content: '这个是开启的第一个',
-          cssClass: 'cssClass',
-          showBackdrop: true,
-          duration: 1000,
-        });
-
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('show1 showDefault onDidDismiss')
-        });
-
-        //
-        setTimeout(function () {
-          let loading = Loading.create({
-            content: '这个是再上一个的上面开启的，backdrop将不再重复开启',
+          _this.$loading.present({
+            content: '正在加载, 这个是开启的第二个, 打开Backdrop.',
             cssClass: 'cssClass',
-            showBackdrop: false,
-            duration: 2000,
+            showBackdrop: true,
           });
-          loading.present();
-          loading.onDidDismiss(function () {
-            console.debug('show2 showDefault onDidDismiss')
-          });
-        }, 500)
+          setTimeout(function () {
+            _this.$loading.dismiss().then(function () {
+              console.debug('全部的Loading都关闭了!')
+            })
+          },2000)
+        },2000)
       },
 
-      showNoSpinner: function () {
-        let loading = Loading.create({
+      // 没有spinner
+      showNoSpinner () {
+        const _this = this;
+        _this.$loading.present({
           spinner: 'hide',
-          content: '这个loading没有Spnner。。。',
+          content: '正在加载, 这个loading没有Spnner.',
           cssClass: 'cssClass',
           showBackdrop: true,
-          duration: 1000,
         });
-
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('show1 showDefault onDidDismiss')
-        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        },1000);
       },
-      showCusContent: function () {
-        let loading = Loading.create({
+
+      // 自定义内容
+      showCusContent () {
+        const _this = this;
+        _this.$loading.present({
           spinner: 'hide',
-          content: '<h1>Title</h1><p>Content</p>',
+          content: '<p>你好Vimo</p>',
           cssClass: 'cssClass',
           showBackdrop: true,
-          duration: 1000,
         });
-
-        loading.present();
-        loading.onDidDismiss(function () {
-          console.debug('showCusContent')
-        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        },1000);
       }
-
     },
-    created: function () {
-    },
-    mounted: function () {
-    },
-    activated: function () {
-    },
-    components: {
-      'ion-bubtton': Button,
-    }
   }
 </script>

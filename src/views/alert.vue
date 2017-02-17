@@ -31,7 +31,7 @@
     methods: {
       alert () {
         const _this = this;
-        let a = _this.$alert({
+        _this.$alert.present({
           title: 'Alert',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -43,8 +43,8 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                a.dismiss().then(function (data) {
-                  console.debug('button3 click')
+                _this.$alert.dismiss().then(function (data) {
+                  console.debug('button3 click dismiss ')
                   console.debug(data)
                 });
               }
@@ -55,7 +55,7 @@
       },
       confirm () {
         const _this = this;
-        let confirm = _this.$alert({
+        _this.$alert.present({
           title: 'Confirm',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -76,7 +76,7 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                confirm.dismiss().then(function (data) {
+                _this.$alert.dismiss().then(function (data) {
                   console.debug('button3 click')
                   console.debug(data)
                 });
@@ -88,7 +88,7 @@
       },
       threeBtn () {
         const _this = this;
-        let threeBtn = _this.$alert({
+        _this.$alert.present({
           title: 'ThreeBtn',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -112,7 +112,7 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                threeBtn.dismiss().then(function (data) {
+                _this.$alert.dismiss().then(function (data) {
                   console.debug('button3 click')
                   console.debug(data)
                 });
@@ -124,7 +124,7 @@
       },
       input () {
         const _this = this;
-        let input = _this.$alert({
+        _this.$alert.present({
           title: '登录iTunes Store',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '请输入您Apple ID"apple@icloud.com"的密码',
@@ -149,11 +149,11 @@
               text: '好',
               role: '',
               handler: (value) => {
-                input.dismiss().then(function (msg) {
-                  let alert = _this.$alert({
+                _this.$alert.dismiss().then(function (msg) {
+                  _this.$alert.present({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
-                    message: '您输入的信息：'+JSON.stringify(value),
+                    message: '您输入的信息：' + JSON.stringify(value),
                     cssClass: '',
                     enableBackdropDismiss: true,
                     buttons: [
@@ -164,19 +164,15 @@
                       }
                     ]
                   });
-                  // alert.present()
                 })
               }
             }
           ]
         });
-        // input.present().then(function () {
-        //
-        // })
       },
       checkbox () {
         const _this = this;
-        let checkbox = _this.$alert({
+        _this.$alert.present({
           title: 'checkbox',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: 'checkbox',
@@ -188,7 +184,7 @@
               value: '  checkbox1_value  ',
               label: '  checkbox1_label  ',
               checked: true,
-              handler:function (val) {
+              handler: function (val) {
                 console.log('checkbox1 clicked')
                 console.log(val)
               }
@@ -198,8 +194,8 @@
               value: 'checkbox2_value',
               label: 'checkbox2_label',
               checked: false,
-              disabled:true,
-              handler:function (val) {
+              disabled: true,
+              handler: function (val) {
                 console.log('checkbox2 clicked');
                 console.log(val)
               }
@@ -209,7 +205,7 @@
               value: 'checkbox3_value',
               label: 'checkbox3_label',
               checked: true,
-              handler:function (val) {
+              handler: function (val) {
                 console.log('checkbox3 clicked');
                 console.log(val)
               }
@@ -219,7 +215,7 @@
               value: 'checkbox4_value',
               label: 'checkbox4_label',
               checked: false,
-              handler:function (val) {
+              handler: function (val) {
                 console.log('checkbox4 clicked');
                 console.log(val)
               }
@@ -230,7 +226,7 @@
               text: '取消',
               role: 'cancel',
               handler: () => {
-                alert('必须选择');
+                // alert('必须选择');
                 return false
               }
             },
@@ -238,12 +234,11 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                checkbox.dismiss().then(function (msg) {
-                  console.log('输入的信息：'+JSON.stringify(value))
-                  let alert = _this.$alert({
+                _this.$alert.dismiss().then(function (msg) {
+                  _this.$alert.present({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
-                    message: '您输入的信息：'+JSON.stringify(value),
+                    message: '您输入的信息：' + JSON.stringify(value),
                     cssClass: '',
                     enableBackdropDismiss: true,
                     buttons: [
@@ -254,17 +249,15 @@
                       }
                     ]
                   });
-                  // alert.present()
                 })
               }
             }
           ]
         });
-        // checkbox.present()
       },
       radio () {
         const _this = this;
-        let radio = _this.$alert({
+        _this.$alert.present({
           title: 'radio',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: 'radio',
@@ -276,7 +269,7 @@
               value: 'radio1_value',
               label: 'radio1_label',
               checked: true,
-              handler:function (val) {
+              handler: function (val) {
                 console.log('radio clicked')
                 console.log(val)
               }
@@ -286,8 +279,8 @@
               value: 'radio2_value',
               label: 'radio2_label',
               checked: false,
-              disabled:true,
-              handler:function (val) {
+              disabled: true,
+              handler: function (val) {
                 console.log('radio2 clicked');
                 console.log(val)
               }
@@ -297,7 +290,7 @@
               value: 'radio3_value',
               label: 'radio3_label',
               checked: false,
-              handler:function (val) {
+              handler: function (val) {
                 console.log('radio3 clicked');
                 console.log(val)
               }
@@ -307,7 +300,7 @@
               value: 'radio4_value',
               label: 'radio4_label',
               checked: false,
-              handler:function (val) {
+              handler: function (val) {
                 console.log('radio4 clicked');
                 console.log(val)
               }
@@ -318,7 +311,6 @@
               text: '取消',
               role: 'cancel',
               handler: () => {
-                alert('必须选择');
                 return false
               }
             },
@@ -326,11 +318,11 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                radio.dismiss().then(function (msg) {
-                  let alert = _this.$alert({
+                _this.$alert.dismiss().then(function (msg) {
+                  _this.$alert.present({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
-                    message: '您输入的信息：'+JSON.stringify(value),
+                    message: '您输入的信息：' + JSON.stringify(value),
                     cssClass: '',
                     enableBackdropDismiss: true,
                     buttons: [
@@ -341,19 +333,12 @@
                       }
                     ]
                   });
-                  // alert.present()
                 })
               }
             }
           ]
         });
-        // radio.present()
       },
-
-
-
-
-
 
     },
     created () {
