@@ -181,7 +181,7 @@ export const PLATFORM_CONFIGS = {
       })
     },
     settings: {
-      mode: 'wechat'
+      mode: 'ios'
     },
     isMatch(p) {
       return p.isPlatformMatch('wechat', ['micromessenger']);
