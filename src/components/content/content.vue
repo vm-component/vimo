@@ -1,5 +1,5 @@
 <template>
-  <div class="outer-content ion-content content-ios" :class="{'statusbar-padding':$hasStatusBar}">
+  <div class="ion-content content-ios outer-content" :class="{'statusbar-padding':$hasStatusBar}">
     <div ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
       <!--固定在页面中的内容-->
       <!--固定到顶部-->

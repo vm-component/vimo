@@ -13,7 +13,7 @@ let _toastIndex = -1;
 
 // 自动关闭后的callback注册
 let _onDidDismissCallBacks = [];
-
+let _insertPosition = null;
 let getAnInstance = () => {
 	return new ToastConstructor({
 		el: document.createElement('div')
@@ -115,7 +115,16 @@ let Toast = {
 		// TODO:这部分没做。
 		instance.dismissOnPageChange = !!options.dismissOnPageChange;
 
-		document.body.appendChild(instance.$el);
+		// 插入dom
+    _insertPosition = document.getElementById('toastPortal');
+    if (!!_insertPosition) {
+      _insertPosition.appendChild(instance.$el);
+    } else {
+      document.body.appendChild(instance.$el);
+    }
+
+
+
 		return instance;
 	}
 };

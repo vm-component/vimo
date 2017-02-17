@@ -11,11 +11,7 @@ let router = routerFactory(Vue);
 
 // 组件注册
 import Components from './components'
-Vue.use(Components, {
-  // 组件初始化参数
-  a: 1,
-  b: 1,
-});
+
 
 
 /**
@@ -85,6 +81,13 @@ registerModeConfigs(config)
 
 platform.ready().then((data) => {
   alert('Platform ready info: ' + data);
+});
+
+
+Vue.use(Components, {
+  // 组件初始化参数
+  a: 1,
+  b: 1,
 });
 
 

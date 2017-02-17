@@ -47,10 +47,13 @@ import { Segment, SegmentButton } from './segment';
 import Spinner from './spinner'
 
 import Menu from './menu'
-import Backdrop from './backdrop'
+import {BackdropComponent,BackdropInstance} from './backdrop'
 
 // 实例化调用组件，传入配置参数后返回实例
-import ActionSheet from './action-sheet'
+import getActionSheetInstance from './action-sheet'
+import getAlertInstance from './alert'
+import getLoadingInstance from './loading'
+import Toast from './toast'
 
 const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
@@ -120,17 +123,16 @@ module.exports = {
     Vue.component(Col.name, Col);
 
     Vue.component(Menu.name, Menu);
-    Vue.component(Backdrop.name, Backdrop);
+    Vue.component(BackdropComponent.name, BackdropComponent);
     Vue.component(Spinner.name, Spinner);
 
-    // 实例化调用，传入options参数返回实例
-    Vue.prototype.$ActionSheet = ActionSheet;
 
 
     // ----------- 全局 方法/属性 定义 -----------
 
     // 组件配置参数
-    Vue.prototype.$config = _config;
+
+    Vue.prototype.$config = window.VM.config || null;
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = _eventBus;
     // requestAnimationFrame
@@ -138,127 +140,26 @@ module.exports = {
     // 是否有stateBar的开关
     Vue.prototype.$hasStatusBar = HAS_STATUS_BAR;
 
+    // 实例化调用，传入options参数返回实例,
+    // 挂在点的获取需要等待app组件mounted
+    _eventBus.$on('app:ready',function () {
+      Vue.prototype.$actionSheet = getActionSheetInstance();
+      Vue.prototype.$alert = getAlertInstance();
+      Vue.prototype.$loading = getLoadingInstance();
+      Vue.prototype.$backdrop = BackdropInstance();
 
-    // --- 监听对body的点击
-    document.body.addEventListener('click',function () {
-      // 如果点击则全局发送item-sliding组件关机事件
-      _eventBus.$emit('ionSlidingClose')
-    })
+      Vue.prototype.$toast = Toast;
+
+    });
 
 
+    // // --- 监听对body的点击
+    // document.body.addEventListener('click',function () {
+    //   // 如果点击则全局发送item-sliding组件关机事件
+    //   _eventBus.$emit('ionSlidingClose')
+    // })
 
 
-
-
-    // -------- 提取组件公共方法到$root中 -----------
-    // -------- 只有如下基础组件：
-    // -------- app/title/header/footer/content/nav -----------
-    // /**
-    //  * ion-app组件
-    //  * */
-    // _eventBus.$on('$appReady', function (instance) {
-    //   console.info('$appReady')
-    //
-    //   // Vue.prototype.$componentIns.$app = instance;
-    //   // 提取
-    //   // 获取弹出层挂载点
-    //   // Vue.prototype.$getPortal = instance.getPortal;
-    //   // 设置页面是否能点触的状态
-    //   // Vue.prototype.$setEnabled = instance.setEnabled;
-    //   // 设置页面滚动状态
-    //   // Vue.prototype.$disableScroll = instance.disableScroll;
-    //
-    //
-    // });
-    // /**
-    //  * ion-title组件, 在ion-page下的ion-title，排除ion-menu
-    //  * */
-    // _eventBus.$on('$titleReady', function (instance) {
-    //   console.info('$titleReady')
-    //   // Vue.prototype.$componentIns.$title = instance;
-    //   // 提取
-    //   // 设置title
-    //   // Vue.prototype.$setTitle = instance.setTitle;
-    //   // 获取title
-    //   // Vue.prototype.$getTitle = instance.getTitle;
-    // });
-    // /**
-    //  * ion-header组件
-    //  * */
-    // // Vue.prototype.$hasHeaderBar = false;
-    // _eventBus.$on('$headerReady', function (instance) {
-    //   console.info('$headerReady');
-    //   Vue.prototype.$componentIns.$header = instance;
-    //   // Vue.prototype.$hasHeaderBar = true;
-    // });
-    // /**
-    //  * ion-footer组件
-    //  * */
-    // // Vue.prototype.$hasFooterBar = false;
-    // _eventBus.$on('$footerReady', function (instance) {
-    //   console.info('$footerReady');
-    //   Vue.prototype.$componentIns.$footer = instance;
-    //   // Vue.prototype.$hasFooterBar = true;
-    // });
-    // /**
-    //  * ion-content组件
-    //  * */
-    // _eventBus.$on('$contentReady', function (instance) {
-    //   console.info('$contentReady');
-    //   // Vue.prototype.$componentIns.$content = instance;
-    //
-    //   // scroll-content的句柄，用于获取scroll-content的操作
-    //   // Vue.prototype.$fixedContent = null;
-    //   // Vue.prototype.$scrollContent = null;
-    //   // // 获取content的尺寸
-    //   // Vue.prototype.$contentDimensions = null;
-    //   // // 获取scroll的尺寸
-    //   // Vue.prototype.$scrollDimensions = null;
-    //
-    //   // 重新计算content的尺寸，比如动态添加了header或者footer
-    //   // Vue.prototype.$resize = instance.resize;
-    //   // Vue.prototype.$scrollTo = instance.scrollTo;
-    //   // Vue.prototype.$scrollToTop = instance.scrollToTop;
-    //   // Vue.prototype.$scrollToBottom = instance.scrollToBottom;
-    //   // Vue.prototype.$keyBoardOpen = instance.keyBoardOpen;
-    //   // Vue.prototype.$keyBoardClose = instance.keyBoardClose;
-    //
-    //   // Vue.prototype.$addScrollPadding = instance.addScrollPadding;
-    //   // Vue.prototype.$clearScrollPaddingFocusOut = instance.clearScrollPaddingFocusOut;
-    // });
-    // /**
-    //  * ion-menu组件
-    //  * */
-    // Vue.prototype.$hasFooterBar = false;
-    // _eventBus.$on('$menuReady', function (instance) {
-    //   console.info('$menuReady');
-    //   // 记录当前的menu开启的id，如果有值，代表当前Menu正在开启；
-    //   Vue.prototype.$menu = {
-    //     id: '',
-    //     close: null,
-    //     open: null,
-    //     toggle: null,
-    //   };
-    //   // Vue.prototype.$menu.id = null;
-    //   // Vue.prototype.$currentMenuId = null;
-    //   if (!Vue.prototype.$componentIns.$menus[instance.id]) {
-    //     Vue.prototype.$componentIns.$menus[instance.id] = instance;
-    //     // console.debug(Vue.prototype.$componentIns.$menus)
-    //     // 组件中注册的函数，但是其执行与组件当前状态无关。
-    //     Vue.prototype.$menu.open = instance.openMenu;
-    //     Vue.prototype.$menu.close = instance.closeMenu;
-    //     Vue.prototype.$menu.toggle = instance.toggleMenu;
-    //   }
-    //
-    // });
-    // 后退操作
-    // Vue.prototype.$goBack = _goBack;
-    // 返回主视图(返回主页)
-    // Vue.prototype.$goRoot = _goRoot;
-    // 滚动到
-    // Vue.prototype.$scrollTo = _scrollTo;
-    // 滚动到底部
-    // Vue.prototype.$scrollToBottom = _scrollToBottom;
 
     // -------- functions --------
 
