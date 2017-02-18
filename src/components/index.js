@@ -53,7 +53,7 @@ import {BackdropComponent,BackdropInstance} from './backdrop'
 import getActionSheetInstance from './action-sheet'
 import getAlertInstance from './alert'
 import getLoadingInstance from './loading'
-import Toast from './toast'
+import prepareToast from './toast'
 
 const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
@@ -148,7 +148,7 @@ module.exports = {
       Vue.prototype.$loading = getLoadingInstance();
       Vue.prototype.$backdrop = BackdropInstance();
 
-      Vue.prototype.$toast = Toast;
+      Vue.prototype.$toast = prepareToast();
 
     });
 

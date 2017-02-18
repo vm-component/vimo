@@ -22,11 +22,7 @@
     </ion-content>
   </ion-page>
 </template>
-<style scoped lang="scss">
-  .toastDemo {
-    text-align: center;
-    padding: 30px;
-  }
+<style lang="scss">
 </style>
 <script type="text/ecmascript-6">
   export default{

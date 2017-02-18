@@ -24,7 +24,6 @@
   @import "./toast.md";
   // transition
   @import "../../transitions/toast";
-
 </style>
 
 <script type="text/babel">
@@ -42,14 +41,13 @@
         cssClass: null,
         showCloseButton: false,
         closeButtonText: 'Close', // 手动关闭按钮的文本
-        // TODO:这部分没做。
         dismissOnPageChange: false, // 页面切花是否关闭
         onDismiss: null, // 当关闭的时候触发
+
         /**
          * 组件状态
          * */
         isActive: false, // 开启状态
-        // enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
         mode: this.$config.get('mode') || 'ios', // ios?android
 
         //prmiseCallback
@@ -60,7 +58,6 @@
         timer: null,
       }
     },
-    watch: {},
     computed: {
       // 设置ActionSheet的风格
       modeClass () {
@@ -70,11 +67,10 @@
       positionClass () {
         return `toast-${this.position}`
       },
-
     },
     methods: {
       /**
-       * ActionSheet Animate Hooks
+       *Animate Hooks
        * */
       _beforeEnter () {},
       _afterEnter (el) {
@@ -99,8 +95,7 @@
       },
 
       /**
-       * Present the action sheet instance.
-       * 这个是内部函数，外部同名方法会处理额外事宜
+       * 开启当前组件
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
       _present () {
@@ -120,7 +115,7 @@
       },
 
       /**
-       * Dismiss the instance.
+       * 关闭当前组件
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
       _dismiss () {

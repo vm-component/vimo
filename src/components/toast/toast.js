@@ -3,6 +3,12 @@
  *
  * 类实例化调用, 注意: toast不是单例模式, 但是类似于单例模式的调用,
  *
+ * 组件关闭使用两种方式控制, 二选一:
+ * 1. duration 过期时间
+ * 2. showCloseButton 关闭按钮
+ *
+ * 关闭动画完毕后,执行onDismiss注册的函数
+ *
  * dismissOnPageChange默认是false状态,
  *
  */
@@ -50,7 +56,6 @@ function prepareInstance (arg0, arg1) {
       break;
   }
 
-
   // position
   if (!!options.position && POSITIONS.indexOf(options.position) > -1) {
     instance.position = options.position.trim();
@@ -88,14 +93,14 @@ function prepareInstance (arg0, arg1) {
 /**
  * 对外的Toast构建部分
  * */
-function prepareToast (){
+function prepareToast () {
   return {
     present (...args) {
       // build instance
       let _instance = prepareInstance(...args);
 
       // register navigation back event
-      if (_toastList.length) {
+      if (_toastList.length === 0) {
         urlChange(function () {
           _toastList.forEach(function (item) {
             if (item.isActive) {
@@ -124,6 +129,5 @@ function prepareToast (){
     },
   }
 }
-
 
 export default prepareToast;

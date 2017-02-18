@@ -259,8 +259,6 @@ export function urlChange (callback) {
    * @param {UIEvent} ev
    * */
   function onEvent (ev) {
-    console.log('执行urlChange动作')
-    console.log(ev)
     // auto unregister
     unregister();
     callback(ev);
