@@ -1,0 +1,28 @@
+// transitioName = 'toast'
+
+/*top*/
+.toast-top-enter-active, .toast-top-leave-active {
+  transform: translateY(0);
+}
+
+.toast-top-enter, .toast-top-leave-active {
+  transform: translateY(-130%);
+}
+
+/*bottom*/
+.toast-bottom-enter-active, .toast-bottom-leave-active {
+  transform: translateY(0);
+}
+
+.toast-bottom-enter, .toast-bottom-leave-active {
+  transform: translateY(130%);
+}
+
+/*middle*/
+.toast-middle-enter-active, .toast-middle-leave-active {
+  opacity: 1;
+}
+
+.toast-middle-enter, .toast-middle-leave-active {
+  opacity: 0.01;
+}
