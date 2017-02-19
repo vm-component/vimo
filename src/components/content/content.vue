@@ -378,8 +378,10 @@
 
       // ion-page -> ion-content
       // Content组件必须是在Page组件内部才向页面this注入控制权
-      if (_this.$parent.$options._componentTag === 'ion-page') {
 
+      // if (_this.$parent.$options._componentTag === 'ion-page' && _this.$parent.$parent && _this.$parent.$parent.$parent && _this.$parent.$parent.$parent.$options._componentTag === 'ion-nav') {
+      if (_this.$parent.$options._componentTag === 'ion-page') {
+        // && _this.$parent.$parent.$options._componentTag === 'ion-nav'
         // 将参数传给调用的页面(注入到业务页面的this中), context为调用的上下文
         _this.$vnode.context.$content = {
           '_href': window.location.href,
