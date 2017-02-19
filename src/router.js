@@ -71,6 +71,12 @@ const routes = [
     component: require('./views/loading.vue'),
   },
   {
+    path: '/modal',
+    name: 'modal',
+    component: require('./views/modal.vue'),
+  },
+
+  {
     path: '/toolbar',
     name: 'toolbar',
     component: require('./views/toolbar.vue'),
