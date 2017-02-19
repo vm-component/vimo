@@ -30,36 +30,32 @@ import Toggle from './toggle'
 import Searchbar from './searchbar'
 import { Toolbar, ToolbarTitle, ToolbarButtons } from './toolbar';
 
-
 // ------- Grid
 import { Grid, Row, Col } from './grid'
 
 //Card
 import { Card, CardContent, CardHeader, CardTitle } from './card'
 
-
 import Badge from './badge'
 import { Segment, SegmentButton } from './segment';
-
-
-
 
 import Spinner from './spinner'
 
 import Menu from './menu'
-import {BackdropComponent,BackdropInstance} from './backdrop'
+import { BackdropComponent, BackdropInstance } from './backdrop'
 
 // 实例化调用组件，传入配置参数后返回实例
 import getActionSheetInstance from './action-sheet'
 import getAlertInstance from './alert'
 import getLoadingInstance from './loading'
 import prepareToast from './toast'
+import prepareModal from './modal'
 
 const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
 import defaultConfig from './defaultConfig';
 
-import {eventBus} from '../util/events'
+import { eventBus } from '../util/events'
 module.exports = {
   version: '1.0.0',
   /**
@@ -126,8 +122,6 @@ module.exports = {
     Vue.component(BackdropComponent.name, BackdropComponent);
     Vue.component(Spinner.name, Spinner);
 
-
-
     // ----------- 全局 方法/属性 定义 -----------
 
     // 组件配置参数
@@ -140,26 +134,29 @@ module.exports = {
     // 是否有stateBar的开关
     Vue.prototype.$hasStatusBar = HAS_STATUS_BAR;
 
-    // 实例化调用，传入options参数返回实例,
-    // 挂在点的获取需要等待app组件mounted
-    _eventBus.$on('app:ready',function () {
-      Vue.prototype.$actionSheet = getActionSheetInstance();
-      Vue.prototype.$alert = getAlertInstance();
-      Vue.prototype.$loading = getLoadingInstance();
-      Vue.prototype.$backdrop = BackdropInstance();
-
-      Vue.prototype.$toast = prepareToast();
-
-    });
-
+    // 判断当前Platform是否为HyBrid, 判断初始化的组件形式
+    if (!!window['VM'] && !!window['VM']['hybrid']) {
+      console.debug('Vue.install: 使用HyBrid组件')
+      // 下方权利, 由HyBrid自己完成初始化
+      !!window['VM']['hybrid'] && window['VM']['hybrid'].install(Vue, config)
+    } else {
+      // 弹出层组件需要知道App组的挂载点, 故需要等待App的ready
+      _eventBus.$on('app:ready', function () {
+        console.debug('Vue.install: 使用H5组件')
+        Vue.prototype.$actionSheet = getActionSheetInstance();
+        Vue.prototype.$alert = getAlertInstance();
+        Vue.prototype.$loading = getLoadingInstance();
+        Vue.prototype.$backdrop = BackdropInstance();
+        Vue.prototype.$toast = prepareToast();
+        Vue.prototype.$modal = prepareModal();
+      });
+    }
 
     // // --- 监听对body的点击
     // document.body.addEventListener('click',function () {
     //   // 如果点击则全局发送item-sliding组件关机事件
     //   _eventBus.$emit('ionSlidingClose')
     // })
-
-
 
     // -------- functions --------
 
