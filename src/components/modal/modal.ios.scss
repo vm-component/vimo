@@ -14,6 +14,8 @@ $modal-ios-border-radius:             10px !default;
   //transform: translate3d(0, 0, 0);
   //transform: translate3d(0, 100%, 0);
 
+  transition: all cubic-bezier(0.36,0.66,0.04,1) 400ms;
+
   @media only screen and (min-width: $modal-inset-min-width) and (min-height: $modal-inset-min-height-small) {
     overflow: hidden;
 

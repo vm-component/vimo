@@ -33,6 +33,8 @@ $modal-inset-height-large:      600px !default;
   height: 100%;
 
   contain: strict;
+
+  z-index: 12;
 }
 
 .ion-modal .ion-backdrop {
@@ -48,7 +50,6 @@ $modal-inset-height-large:      600px !default;
 
   contain: strict;
 
-  transition: all cubic-bezier(0.36,0.66,0.04,1) 400ms;
 
   @media only screen and (min-width: $modal-inset-min-width) and (min-height: $modal-inset-min-height-small) {
     position: absolute;
