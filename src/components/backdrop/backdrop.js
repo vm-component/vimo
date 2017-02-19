@@ -14,15 +14,14 @@ let instance;
 /**
  * 获取示例，保持单利状态
  */
-function getAnInstance(){
-  if(!Vue.prototype._backdrop){
+function getAnInstance () {
+  if (!Vue.prototype._backdrop) {
     Vue.prototype._backdrop = new BackdropConstructor({
       el: document.createElement('div')
     })
   }
   return Vue.prototype._backdrop
 };
-
 
 function backdropInstance () {
   // 获取实例
@@ -34,7 +33,6 @@ function backdropInstance () {
     // document.getElementById('app').insertBefore(instance.$el, _insertPosition.nextSibling);
     _insertPosition.appendChild(instance.$el);
   } else {
-    debugger
     document.body.appendChild(instance.$el);
   }
 

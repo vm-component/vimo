@@ -6,7 +6,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import config from '../defaultConfig';
+  // import config from '../defaultConfig';
   export default{
     name: 'ion-title',
     data(){
@@ -22,7 +22,7 @@
        * */
       mode: {
         type: String,
-        default: config.mode || 'ios',
+        default:  VM.config.get('mode') || 'ios',
       },
       /**
        * 设置的title值

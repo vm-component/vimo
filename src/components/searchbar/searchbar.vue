@@ -99,7 +99,7 @@
        * */
       mode: {
         type: String,
-        default: 'ios',
+        default:  VM.config.get('mode') || 'ios',
       },
       /**
        * Set the the cancel button text. Default: "Cancel".

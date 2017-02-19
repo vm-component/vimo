@@ -1,7 +1,10 @@
 /**
  * Created by Hsiang on 2017/1/13.
- * 组件注册，组件方法提取操作
- * 组件的函数及属性应该由组件自己维护，如果需要全局共享，则之后在这里提取到Vue.prototype中，挂载到全局
+ *
+ * 1. 平台及配置初始化, 并挂在到VM上面(platform/config) - VimoInstall.js
+ * 2. 组件初始化及注册
+ * 3. 页面父组件挂载到Vue.prototype上, 子组件挂载到页面上下文中(context)
+ *
  */
 
 // ------- Base
@@ -53,7 +56,6 @@ import prepareModal from './modal'
 
 const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
-import defaultConfig from './defaultConfig';
 
 import { eventBus } from '../util/events'
 module.exports = {
@@ -67,9 +69,7 @@ module.exports = {
     /**
      * params合并
      * */
-    let _config = Object.assign({}, defaultConfig, config);
-    console.debug('_config')
-    console.debug(_config)
+    let _config = Object.assign({}, config);
 
     /**
      * 全局事件总线（各个组件共用）
@@ -77,6 +77,19 @@ module.exports = {
     let _eventBus = eventBus;
     // requestAnimationFrame
     let _raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+    // ----------- 全局 方法/属性 定义 -----------
+
+    // 组件配置参数
+
+    Vue.prototype.$config = window.VM.config || null;
+    // 全局事件总线（各个组件共用）中央事件总线
+    Vue.prototype.$eventBus = _eventBus;
+    // requestAnimationFrame
+    Vue.prototype.$raf = _raf;
+    // 是否有stateBar的开关
+    Vue.prototype.$hasStatusBar = HAS_STATUS_BAR;
+
 
     // 全局注册组件
     Vue.component(App.name, App);
@@ -88,6 +101,7 @@ module.exports = {
     Vue.component(ToolbarTitle.name, ToolbarTitle);
     Vue.component(ToolbarButtons.name, ToolbarButtons);
     Vue.component(Button.name, Button);
+
     Vue.component(Icon.name, Icon);
     Vue.component(Nav.name, Nav);
     Vue.component(Navbar.name, Navbar);
@@ -122,17 +136,7 @@ module.exports = {
     Vue.component(BackdropComponent.name, BackdropComponent);
     Vue.component(Spinner.name, Spinner);
 
-    // ----------- 全局 方法/属性 定义 -----------
 
-    // 组件配置参数
-
-    Vue.prototype.$config = window.VM.config || null;
-    // 全局事件总线（各个组件共用）中央事件总线
-    Vue.prototype.$eventBus = _eventBus;
-    // requestAnimationFrame
-    Vue.prototype.$raf = _raf;
-    // 是否有stateBar的开关
-    Vue.prototype.$hasStatusBar = HAS_STATUS_BAR;
 
     // 判断当前Platform是否为HyBrid, 判断初始化的组件形式
     if (!!window['VM'] && !!window['VM']['hybrid']) {

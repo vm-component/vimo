@@ -18,7 +18,7 @@ import actionSheetComponent from './action-sheet.vue';
 import { urlChange } from '../../util/dom';
 const ActionSheetConstructor = Vue.extend(actionSheetComponent);
 let _insertPosition;
-
+let _unRegisterUrlChange = null;
 ActionSheetConstructor.prototype.present = present;
 ActionSheetConstructor.prototype.dismiss = dismiss;
 
@@ -58,7 +58,7 @@ function present (options) {
   }
 
   // 地址切换就执行dismiss()
-  urlChange(function () {
+  _unRegisterUrlChange = urlChange(function () {
     _this.isActive && _this.dismiss();
   });
 
@@ -69,6 +69,8 @@ function present (options) {
  * 关闭
  * */
 function dismiss () {
+  !!_unRegisterUrlChange && _unRegisterUrlChange();
+  _unRegisterUrlChange = null;
   return this._dismiss()
 }
 

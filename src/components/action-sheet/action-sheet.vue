@@ -64,7 +64,7 @@
          * */
         isActive: false,  // ActionSheet 开启状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode: this.$config.get('mode') || 'ios', // ios?android?window
+        mode: VM.config.get('mode') || 'ios', // ios?android?window
 
         /**
          * ActionSheet 计算属性
@@ -201,7 +201,7 @@
       _present (options = {}) {
         const _this = this;
         _this.isActive = true;
-        return new Promise((resolve)=>{this.presentCallback = resolve})
+        return new Promise((resolve) => {this.presentCallback = resolve})
       },
 
       /**
@@ -215,7 +215,7 @@
         }
         _this.enabled = false;
         _this.isActive = false; // 动起来
-        return new Promise((resolve)=>{this.dismissCallback = resolve})
+        return new Promise((resolve) => {this.dismissCallback = resolve})
       },
 
       /**
@@ -239,9 +239,6 @@
         this.buttons.push(button);
       },
 
-
-
-
     }
   }
 </script>
@@ -251,7 +248,6 @@
   @import './action-sheet.ios.scss';
   @import './action-sheet.wp.scss';
   @import './action-sheet.md.scss';
-
   // transition
   @import '../../transitions/actionSheet';
 

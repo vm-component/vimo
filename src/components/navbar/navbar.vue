@@ -45,7 +45,7 @@
        * */
       mode: {
         type: String,
-        default: 'ios',
+        default:  VM.config.get('mode') || 'ios',
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark

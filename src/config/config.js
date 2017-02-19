@@ -93,6 +93,9 @@
 
 import { Platform } from '../platform/platform';
 import { isObject, isDefined, isFunction, isArray } from '../util/util';
+import { registerModeConfigs } from '../config/mode-registry'
+
+
 // 通过url配置App的前后缀, 例如htttp://xx.xx.com?vm_mode=ios
 const URL_CONFIG_PREFIX = 'vm';
 
@@ -356,6 +359,9 @@ export function setupConfig (userConfig, plt) {
     return window['VM']['config']
   } else {
     const config = new Config();
+
+    registerModeConfigs(config);
+
     config.init(userConfig, plt);
 
     // 全局注册

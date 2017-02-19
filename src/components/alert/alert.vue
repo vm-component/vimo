@@ -92,7 +92,7 @@
          * */
         isActive: false,
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode: this.$config.get('mode') || 'ios',  // ios?android?window
+        mode:  VM.config.get('mode') || 'ios',  // ios?android?window
         inputType: null,// Alert中含有的input类型，radio、checkbox
         isAlertTop: false, // 是否将alert放到顶部，用于input输入时显示虚拟键盘
 

@@ -11,7 +11,7 @@
   </transition>
 </template>
 <script type="text/ecmascript-6">
-  import {urlChange} from '../../util/dom';
+  import { urlChange } from '../../util/dom';
   export default{
     name: 'ion-backdrop',
     data(){
@@ -21,7 +21,9 @@
         bdClickLocal: this.bdClick,
         positionLocal: this.position,
         isOpen: false, // 标示当前backdrop的开启状态, isActiveLocal为组件自身维护
-        el:null, // backdrop填充的元素
+        el: null, // backdrop填充的元素
+
+        count: 0, // 记录开启数目
       }
     },
     props: {
@@ -93,6 +95,10 @@
 
       /**
        * 开启backdrop实例化
+       *
+       * 第一次触发会显示暗色背景, 之后的触发都不显示,
+       * 另外, 几次触发对应着几次的dismiss(让我显示是有代价的)
+       *
        * @param {object} options - 开启参数
        * @example
        * {
@@ -107,26 +113,30 @@
        * */
       present (options = null) {
         const _this = this;
+        _this.count++;
+        if (_this.count > 1) {
+          return
+        }
+
         if (!!options) {
           if (!!options.bdClick && typeof options.bdClick === 'function') {
             _this.bdClickLocal = options.bdClick;
           }
-          if(!!options.position){
-            if(!!options.position['right']){
+          if (!!options.position) {
+            if (!!options.position['right']) {
               options.position['left'] = 'auto'
             }
-            if(!!options.position['bottom']){
+            if (!!options.position['bottom']) {
               options.position['top'] = 'auto'
             }
             _this.positionLocal = options.position;
-          }else{
+          } else {
             _this.positionLocal = null;
           }
-        }else{
+        } else {
           _this.bdClickLocal = null;
           _this.positionLocal = null;
         }
-
 
         _this.isOpen = _this.isActiveLocal = true;
 
@@ -140,6 +150,11 @@
        * 关闭backdrop实例化
        * */
       dismiss () {
+        if (this.count > 1) {
+          this.count--;
+          return
+        }
+        this.count--;
         this.isOpen = this.isActiveLocal = false;
       },
     },

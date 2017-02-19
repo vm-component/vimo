@@ -51,6 +51,7 @@
 import { QueryParams } from './query-params';
 import { getCss, ready, windowDimensions, flushDimensionCache } from '../util/dom';
 import { removeArrayItem } from '../util/util';
+import { PLATFORM_CONFIGS } from '../platform/platform-registry'
 import { eventBus } from '../util/events'
 
 export class Platform {
@@ -270,28 +271,28 @@ export class Platform {
 
   /**
    * @private
-   * This should be triggered by the engine when the platform is
-   * ready.
+   * 当平台准备完毕的时候, 有他们来触发
+   *
    * @param {string} readySource
    */
   triggerReady (readySource) {
     this._readyResolve(readySource);
   }
 
-  // /**
-  //  * @private
-  //  * This is the default prepareReady if it's not replaced by an engine,
-  //  * such as Cordova or Electron. If there was no custom prepareReady
-  //  * method from an engine then it uses the method below, which triggers
-  //  * the platform ready on the DOM ready event, and the default resolved
-  //  * value is `dom`.
-  //  */
-  // prepareReady () {
-  //   const self = this;
-  //   ready(function () {
-  //     self.triggerReady('dom');
-  //   })
-  // }
+  /**
+   * @private
+   * 这个函数是默认函数, 当平台没有initialize函数改写prepareReady的时候, 将使用这个.
+   *
+   * 平台在initialize函数中改写prepareReady是为了在DOMReady之前做一些处理, 比如必须的资源下载等.
+   * 等完毕后, 手动触发triggerReady函数
+   *
+   */
+  prepareReady () {
+    const self = this;
+    ready(function () {
+      self.triggerReady('dom');
+    })
+  }
 
   /**
    * 设置文字显示方向
@@ -985,17 +986,16 @@ class PlatformNode {
 
 /**
  * @private
- * @param {PlatformConfig} platformConfigs
  * @return {Platform}
  */
-export function setupPlatform (platformConfigs) {
+export function setupPlatform () {
   // 保持单例对象
   if (!!window['VM'] && !!window['VM']['platform']) {
     return window['VM']['platform']
   } else {
     const p = new Platform();
     p.setDefault('core');
-    p.setPlatformConfigs(platformConfigs);
+    p.setPlatformConfigs(PLATFORM_CONFIGS);
     p.setQueryParams(new QueryParams());
 
     !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform);
@@ -1007,6 +1007,7 @@ export function setupPlatform (platformConfigs) {
     p.setCssProps(document.documentElement);
 
     p.init();
+    p.prepareReady();
 
     // 全局注册
     window['VM'] = window['VM'] || {};

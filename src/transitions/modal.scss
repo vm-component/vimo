@@ -1,8 +1,10 @@
 // transitioName = 'modal'
 .modal-enter-active, .modal-leave-active {
   transform: translateY(0%);
+  opacity: 1;
 }
 
 .modal-enter, .modal-leave-active {
   transform: translateY(100%);
+  opacity: 0;
 }

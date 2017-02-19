@@ -6,6 +6,7 @@
     <!--<ng-content select="ion-buttons[start]"></ng-content> -->
     <!--<ng-content select="ion-buttons[end]ion-buttons[right]"></ng-content> -->
     <div class="toolbar-content" :class="[toolbarContentClass]">
+      <slot></slot>
       <slot name="content"></slot>
     </div>
   </div>
@@ -31,7 +32,7 @@
        * */
       mode: {
         type: String,
-        default: 'ios',
+        default:  VM.config.get('mode') || 'ios',
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark

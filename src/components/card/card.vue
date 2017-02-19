@@ -28,7 +28,7 @@
        * */
       mode: {
         type: String,
-        default: 'ios',
+        default:  VM.config.get('mode') || 'ios',
       },
     },
     watch: {},

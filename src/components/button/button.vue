@@ -7,7 +7,7 @@
     <div class="button-effect"></div>
   </button>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
   @import './button';
   @import './button.ios';
   @import './button.md';
@@ -30,7 +30,7 @@
        * */
       mode: {
         type: String,
-        default: 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
       /**
        * 按钮大小：large small default

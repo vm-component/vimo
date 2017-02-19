@@ -41,7 +41,7 @@
 </style>
 <script type="text/ecmascript-6">
   import Vue from 'vue';
-  import config from '../defaultConfig';
+  // import config from '../defaultConfig';
   import { ClickBlock } from "../../util/click-block"
 
   let _clickBlock = new ClickBlock();
@@ -75,7 +75,7 @@
        * */
       mode: {
         type: String,
-        default: config.mode || 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
     },
     computed: {

@@ -9,7 +9,7 @@ import { assert } from '../../util/util';
 const alertComponent = require('./alert.vue');
 const AlertConstructor = Vue.extend(alertComponent);
 let _insertPosition;
-let _unRegisterUrlChange;
+let _unRegisterUrlChange = null;
 AlertConstructor.prototype.present = present;
 AlertConstructor.prototype.dismiss = dismiss;
 
@@ -64,6 +64,7 @@ function present (options = {}) {
  * */
 function dismiss () {
   !!_unRegisterUrlChange && _unRegisterUrlChange();
+  _unRegisterUrlChange = null;
   return this._dismiss();
 }
 
