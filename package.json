@@ -1,7 +1,7 @@
 {
-  "name": "VueMobile",
+  "name": "Vimo",
   "version": "1.0.0",
-  "description": "A VueMobile Project",
+  "description": "A Vue2.x Project For Mobile&HyBrid",
   "author": "向松涛 <280304286@163.com>",
   "private": true,
   "scripts": {
