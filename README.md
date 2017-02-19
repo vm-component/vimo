@@ -1,4 +1,4 @@
-# VueMobile
+# Vimo
 
 > 按照IONIC2.x的组件样式及API编写基于Vue2.X的组件，如果没读懂源码及思路, 千万别用与生成。
 
