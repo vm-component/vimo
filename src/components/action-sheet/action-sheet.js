@@ -79,6 +79,7 @@ function getAnInstance () {
   if (!Vue.prototype._actionSheet) {
     Vue.prototype._actionSheet = new ActionSheetConstructor({
       el: document.createElement('div')
+      // el: document.getElementById('overlayPortal').appendChild(document.createElement('div'))
     })
   }
   return Vue.prototype._actionSheet
