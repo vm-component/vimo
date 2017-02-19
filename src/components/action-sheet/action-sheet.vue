@@ -1,8 +1,8 @@
 <template>
   <div class="ion-action-sheet" :class="[modeClass,cssClass]">
     <!--backdrop-->
-    <ion-backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
-                  :isActive="isActive"></ion-backdrop>
+    <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
+                  :isActive="isActive"></Backdrop>
     <!--actionsheet wrap-->
     <transition
       name="action-sheet"
@@ -18,21 +18,21 @@
               {{title}}
               <div class="action-sheet-sub-title" v-if="subTitle">{{subTitle}}</div>
             </div>
-            <ion-button role="action-sheet-button" @click="click(b)" v-for="b of normalButtons"
+            <Button role="action-sheet-button" @click="click(b)" v-for="b of normalButtons"
                         class=""
                         :class="[b.cssClass,{'icon-left':b.icon}]">
-              <ion-icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></ion-icon>
+              <Icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></Icon>
               {{b.text}}
-            </ion-button>
+            </Button>
           </div>
           <!--group cancel-->
           <div class="action-sheet-group" v-if="!!cancelButton">
-            <ion-button role="action-sheet-button" @click="click(cancelButton)"
+            <Button role="action-sheet-button" @click="click(cancelButton)"
                         class="action-sheet-cancel" :class="cancelButton.cssClass">
-              <ion-icon :name="cancelButton.icon" v-if="cancelButton.icon"
-                        class="action-sheet-icon"></ion-icon>
+              <Icon :name="cancelButton.icon" v-if="cancelButton.icon"
+                        class="action-sheet-icon"></Icon>
               {{cancelButton.text || 'cancel没有值'}}
-            </ion-button>
+            </Button>
           </div>
         </div>
       </div>
@@ -46,6 +46,7 @@
    * 使用实例模式的话，props和data无区别。
    * */
   export default{
+    name: 'ActionSheet',
     data(){
       return {
         /**

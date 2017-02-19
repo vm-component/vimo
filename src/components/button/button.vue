@@ -16,7 +16,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-button',
+    name: 'Button',
     props: {
       /**
        * 按钮color：primary、secondary、danger、light、dark

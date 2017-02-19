@@ -1,5 +1,5 @@
 <template>
-  <div class="ion-content content-ios outer-content" :class="{'statusbar-padding':$hasStatusBar}">
+  <section class="ion-content content-ios outer-content" :class="{'statusbar-padding':$hasStatusBar}">
     <div ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
       <!--固定在页面中的内容-->
       <!--固定到顶部-->
@@ -17,18 +17,14 @@
       <slot></slot>
     </div>
     <slot name="ion-refresher"></slot>
-  </div>
+  </section>
 </template>
-<style lang="scss">
-  @import './content';
-  @import './content.ios';
 
-</style>
 <script type="text/ecmascript-6">
   import { getStyle, getNum } from '../../util/assist'
 
   export default{
-    name: 'ion-content',
+    name: 'Content',
     props: {
       fullscreen: {
         type: Boolean,
@@ -69,16 +65,29 @@
         let headerBarHeight = 0;
         let footerBarHeight = 0;
 
+// debugger
+
+        // let _pageInstance = _this.$vnode.context;
+        // let _headerInstance = _pageInstance.$header;
+        // let _footerInstance = _pageInstance.$footer;
+        //
+        // headerBarHeight = getStyle(_headerInstance.$el, 'height');
+        // headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
+        //
+        // footerBarHeight = getStyle(_footerInstance.$el, 'height');
+        // footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
+
+
         // 得到header和footer的高度
         // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
         // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
         // 而不是全局
         _this.$parent.$children.forEach(function (item) {
-          if (item.$options._componentTag === 'ion-header') {
+          if (item.$options._componentTag === 'Header') {
             headerBarHeight = getStyle(item.$el, 'height');
             headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
           }
-          if (item.$options._componentTag === 'ion-footer') {
+          if (item.$options._componentTag === 'Footer') {
             footerBarHeight = getStyle(item.$el, 'height');
             footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
           }
@@ -376,12 +385,9 @@
         }, 400);
       });
 
-      // ion-page -> ion-content
+      // Page -> Content
       // Content组件必须是在Page组件内部才向页面this注入控制权
-
-      // if (_this.$parent.$options._componentTag === 'ion-page' && _this.$parent.$parent && _this.$parent.$parent.$parent && _this.$parent.$parent.$parent.$options._componentTag === 'ion-nav') {
-      if (_this.$parent.$options._componentTag === 'ion-page') {
-        // && _this.$parent.$parent.$options._componentTag === 'ion-nav'
+      if (_this.$parent.$options._componentTag === 'Page') {
         // 将参数传给调用的页面(注入到业务页面的this中), context为调用的上下文
         _this.$vnode.context.$content = {
           '_href': window.location.href,
@@ -398,10 +404,15 @@
           'keyBoardOpen': _this.keyBoardOpen,
           'keyBoardClose': _this.keyBoardClose,
         };
-
-        _this.$eventBus.$emit('$contentReady', _this);
       }
 
     }
   }
 </script>
+<style lang="scss">
+  @import './content';
+  @import './content.ios';
+  @import './content.md';
+  @import './content.wp';
+
+</style>

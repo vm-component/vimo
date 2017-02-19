@@ -9,7 +9,7 @@
 </style>
 <script type="text/ecmascript-6">
     export default{
-  name:'ion-segment',
+  name:'Segment',
         props: {
             /**
              * 接收value信息

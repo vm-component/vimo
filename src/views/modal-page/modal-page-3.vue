@@ -1,19 +1,19 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-button start slot="button" role="bar-button" @click="closeModal">
+  <Page>
+    <Header>
+      <Toolbar>
+        <Button start slot="button" role="bar-button" @click="closeModal">
           Close
-        </ion-button>
-        <ion-title>Modal Page 3</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content padding>
+        </Button>
+        <Title>Modal Page 3</Title>
+      </Toolbar>
+    </Header>
+    <Content padding>
       <h3>Hello, 这里是 Modal Page 3 的页面!</h3>
       <p>传入的数据为: {{modalData}}</p>
-      <ion-button type="block" @click="closeModal">关闭Modal</ion-button>
-    </ion-content>
-  </ion-page>
+      <Button type="block" @click="closeModal">关闭Modal</Button>
+    </Content>
+  </Page>
 </template>
 
 <script type="text/ecmascript-6">

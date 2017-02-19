@@ -6,10 +6,10 @@
     <div class="item-inner">
       <div class="input-wrapper">
         <!--如果是ion-label则单独显示，如果不是则显示在ion-label中-->
-        <ion-label>
+        <Label>
           <slot></slot>
           <slot name="item-label"></slot>
-        </ion-label>
+        </Label>
         <!--以下组件显示在此处：ion-select,ion-input,ion-textarea,ion-datetime,ion-range,[item-content]-->
         <slot name="item-content"></slot>
       </div>

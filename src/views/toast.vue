@@ -1,26 +1,26 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title>Toast</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>Toast</Title>
+      </Navbar>
+    </Header>
+    <Content padding>
 
       <p>传参指纹: this.$toast.present('显示Toast提示')</p>
-      <ion-button type="block" @click="toastBottomOnlyString()">只传入String</ion-button>
+      <Button type="block" @click="toastBottomOnlyString()">只传入String</Button>
 
       <p>传参指纹: this.$toast.present('显示Toast提示',1000)</p>
-      <ion-button type="block" @click="toastBottomWithStringAndDuration()">String + Duration(1000)</ion-button>
+      <Button type="block" @click="toastBottomWithStringAndDuration()">String + Duration(1000)</Button>
 
       <p>传参指纹: this.$toast.present({...})</p>
-      <ion-button type="block" @click="toastTop()">Toast Top</ion-button>
-      <ion-button type="block" @click="toastButtom()">Toast Bottom</ion-button>
-      <ion-button type="block" @click="toastMiddle()">Toast Middle</ion-button>
-      <ion-button type="block" @click="toastMiddleWithBtn()">Toast Middle With Button</ion-button>
-      <ion-button type="block" @click="showCloseBtnToast()">Toast Top With Button</ion-button>
-    </ion-content>
-  </ion-page>
+      <Button type="block" @click="toastTop()">Toast Top</Button>
+      <Button type="block" @click="toastButtom()">Toast Bottom</Button>
+      <Button type="block" @click="toastMiddle()">Toast Middle</Button>
+      <Button type="block" @click="toastMiddleWithBtn()">Toast Middle With Button</Button>
+      <Button type="block" @click="showCloseBtnToast()">Toast Top With Button</Button>
+    </Content>
+  </Page>
 </template>
 <style lang="scss">
 </style>

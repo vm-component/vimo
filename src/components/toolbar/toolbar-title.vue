@@ -6,9 +6,8 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  // import config from '../defaultConfig';
   export default{
-    name: 'ion-title',
+    name: 'Title',
     data(){
       return {
         titleInner: this.title,
@@ -22,7 +21,7 @@
        * */
       mode: {
         type: String,
-        default:  VM.config.get('mode') || 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
       /**
        * 设置的title值
@@ -47,25 +46,33 @@
        * */
       getTitle(){
         const _this = this;
-        let _title;
+        let _title = '';
         /**
          * 组件获取了传入的title值，之后通过全局注册的$setTitle方法
          * 设置document.title（此处做了兼容）
          * */
         if (!!_this.title) {
           // prop传入title值
-          //eg: <ion-title slot="content" title="Toolbar"></ion-title>
+          //eg: <Title title="Toolbar"></Title>
           _title = _this.title.trim();
         } else if (!!_this.$slots.default[0] && !!_this.$slots.default[0].text) {
           // 如果是直接写在ion-title中的值
-          //eg: <ion-title slot="content">Toolbar</ion-title>
+          //eg: <Title>Toolbar</Title>
           _title = _this.$slots.default[0].text.trim();
         } else if (!!_this.$slots.default[0] && !!_this.$slots.default[0].tag && !!_this.$slots.default[0].children[0].text) {
           // 如果是这届下载ion-title中的值，并且包含一层标签的情况
-          //eg: <ion-title slot="content">
+          //eg: <Title>
           //      <span>Toolbar</span>
-          //    </ion-title>
-          _title = _this.$slots.default[0].children[0].text.trim();
+          //      <span>-</span>
+          //      <span>Test</span>
+          //    </Title>
+          // -> Toolbar-Test
+          _this.$slots.default.forEach(function (item) {
+            if (!!item.children && item.children.length > 0 && !!item.children[0] && !!item.children[0].text) {
+              _title += item.children[0].text.trim()
+            }
+          })
+
         }
         return _title
       },
@@ -101,20 +108,14 @@
         }
       },
     },
-    created(){
-      // 将挂载点同步到根this上
-      const _this = this;
-      // 保证组件ion-title不是包含在ion-menu中的。
-      // ion-page -> ion-header -> ion-toolbar/ion-navbar -> ion-title
-      _this.isInPage = _this.$parent.$parent.$parent.$options._componentTag === 'ion-page';
-      _this.isInPageHeader = _this.$parent.$parent.$options._componentTag === 'ion-header' && _this.isInPage;
-    },
     mounted(){
-      const _this = this;
-      _this.titleInner = _this.getTitle();
-      if (_this.isInPageHeader) {
-        _this.setTitle(_this.titleInner)
+      // 只在Navbar中的Title才会具有更新Title的特性
+      // 将挂载点同步到页面this上
+      this.titleInner = this.getTitle();
+      if(this.$parent.$options._componentTag === 'Navbar'){
+        this.setTitle(this.titleInner)
       }
+
     }
   }
 </script>

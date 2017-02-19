@@ -2,7 +2,7 @@
   import ItemMixin from './itemMixin.vue';
   export default{
     mixins: [ItemMixin],
-    name: 'ion-list-header',
+    name: 'ListHeader',
     data(){
       return {
         itemTypeName: 'list-header',

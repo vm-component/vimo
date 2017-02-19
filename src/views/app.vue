@@ -1,12 +1,12 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content" title="App"></ion-title>
-      </ion-navbar>
-    </ion-header>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title slot="content" title="App"></Title>
+      </Navbar>
+    </Header>
 
-    <ion-content padding>
+    <Content padding>
 
       <h2>APP(ion-app)组件介绍：</h2>
       <p>
@@ -21,7 +21,7 @@
       <p>$disableScroll: 禁止页面滚动</p>
 
 
-      <ion-button @click="$setEnabled(false,3000)">3秒内页面无法点击(可滚动)</ion-button>
+      <Button @click="$setEnabled(false,3000)">3秒内页面无法点击(可滚动)</Button>
 
       <p>这里是内容</p>
       <p>这里是内容</p>
@@ -48,12 +48,12 @@
       <p>这里是内容</p>
       <p>这里是内容</p>
 
-      <ion-button @click="disableScroll">3秒内页面无法滚动(无法点击+滚动)</ion-button>
+      <Button @click="disableScroll">3秒内页面无法滚动(无法点击+滚动)</Button>
 
 
-    </ion-content>
+    </Content>
 
-  </ion-page>
+  </Page>
 </template>
 <style scoped lang="scss">
   .main {

@@ -1,117 +1,117 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content" title="List"></ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title slot="content" title="List"></Title>
+      </Navbar>
+    </Header>
+    <Content>
+      <List>
         <!--header-->
-        <ion-list-header>
+        <ListHeader>
           <ion-label slot="label">setting</ion-label>
-          <ion-button icon-only slot="item-right" item-right type="clear">
-            <ion-icon name="cog"></ion-icon>
-          </ion-button>
-        </ion-list-header>
+          <Button icon-only slot="item-right" item-right type="clear">
+            <Icon name="cog"></Icon>
+          </Button>
+        </ListHeader>
         <!--group-->
-        <ion-item-group>
-          <ion-item>
-            <ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>
+        <ItemGroup>
+          <Item>
+            <Icon slot="item-left" item-left color="danger" name="plane"></Icon>
             <ion-label slot="label">Airplane Mode</ion-label>
-            <ion-toggle slot="item-right" item-right @ionChange="toggleChange"
-                        :checked="toggleValue"></ion-toggle>
-          </ion-item>
+            <Toggle slot="item-right" item-right @ionChange="toggleChange"
+                        :checked="toggleValue"></Toggle>
+          </Item>
           <!--button属性会在右边增加向右箭头-->
-          <ion-item button>
-            <ion-icon slot="item-left" item-left color="primary" name="wifi"></ion-icon>
+          <Item button>
+            <Icon slot="item-left" item-left color="primary" name="wifi"></Icon>
             <ion-label slot="label">Wi-Fi</ion-label>
-            <ion-note slot="item-right" item-right>The Interwebz</ion-note>
-          </ion-item>
+            <Note slot="item-right" item-right>The Interwebz</Note>
+          </Item>
           <!--button属性会在右边增加向右箭头-->
-          <ion-item button>
-            <ion-icon slot="item-left" item-left color="primary" name="bluetooth"></ion-icon>
+          <Item button>
+            <Icon slot="item-left" item-left color="primary" name="bluetooth"></Icon>
             <ion-label slot="label">Bluetooth</ion-label>
-            <ion-note slot="item-right" item-right>Off</ion-note>
-          </ion-item>
-        </ion-item-group>
+            <Note slot="item-right" item-right>Off</Note>
+          </Item>
+        </ItemGroup>
         <!--divider-->
-        <ion-item-divider color="primary">
+        <ItemDivider color="primary">
           <ion-label slot="label">Other Setting</ion-label>
-          <ion-button slot="item-right" item-right type="outline" color="light">Clear</ion-button>
-        </ion-item-divider>
+          <Button slot="item-right" item-right type="outline" color="light">Clear</Button>
+        </ItemDivider>
 
         <!--button属性会在右边增加向右箭头-->
-        <ion-item button>
-          <ion-icon slot="item-left" item-left color="secondary" name="call"></ion-icon>
+        <Item button>
+          <Icon slot="item-left" item-left color="secondary" name="call"></Icon>
           <ion-label slot="label">Cellular</ion-label>
-        </ion-item>
+        </Item>
         <!--button属性会在右边增加向右箭头-->
-        <ion-item button>
-          <ion-icon slot="item-left" item-left color="secondary" name="link"></ion-icon>
+        <Item button>
+          <Icon slot="item-left" item-left color="secondary" name="link"></Icon>
           <ion-label slot="label">Personal Hotspot</ion-label>
-          <ion-note slot="item-right" item-right>Off</ion-note>
-        </ion-item>
+          <Note slot="item-right" item-right>Off</Note>
+        </Item>
 
 
-      </ion-list>
+      </List>
 
-      <ion-list radio-group :value="silencePhone">
+      <List radio-group :value="silencePhone">
         <!--header-->
-        <ion-list-header>
-          <ion-icon slot="item-left" item-left name="phone-portrait"></ion-icon>
+        <ListHeader>
+          <Icon slot="item-left" item-left name="phone-portrait"></Icon>
           <ion-label slot="label">
             Silence Phone
           </ion-label>
-        </ion-list-header>
+        </ListHeader>
 
         <!--button属性会在右边增加向右箭头-->
-        <ion-item>
+        <Item>
           <ion-label slot="label">Always</ion-label>
           <!--<ion-radio value="always" checked></ion-radio>-->
-        </ion-item>
+        </Item>
         <!--button属性会在右边增加向右箭头-->
-        <ion-item>
+        <Item>
           <ion-label slot="label" value="locked">Only while phone is locked</ion-label>
-        </ion-item>
+        </Item>
 
-      </ion-list>
+      </List>
 
-      <ion-list>
+      <List>
         <!--header-->
-        <ion-list-header>
+        <ListHeader>
           <ion-label slot="label">
             Apps Installed
           </ion-label>
-        </ion-list-header>
+        </ListHeader>
 
         <!--button属性会在右边增加向右箭头-->
-        <ion-item>
-          <ion-icon slot="item-left" item-left color="primary" name="ionic"></ion-icon>
+        <Item>
+          <Icon slot="item-left" item-left color="primary" name="ionic"></Icon>
           <ion-label slot="label">Ionic View</ion-label>
-          <ion-button slot="item-right" item-right type="outline" color="primary">Uninstall</ion-button>
-        </ion-item>
+          <Button slot="item-right" item-right type="outline" color="primary">Uninstall</Button>
+        </Item>
         <!--button属性会在右边增加向右箭头-->
-        <ion-item>
-          <ion-icon slot="item-left" item-left color="primary" name="brush"></ion-icon>
+        <Item>
+          <Icon slot="item-left" item-left color="primary" name="brush"></Icon>
           <ion-label slot="label">Ionic Creator</ion-label>
-          <ion-button slot="item-right" item-right type="outline" color="primary">Uninstall</ion-button>
-        </ion-item>
+          <Button slot="item-right" item-right type="outline" color="primary">Uninstall</Button>
+        </Item>
         <!--button属性会在右边增加向右箭头-->
-        <ion-item>
-          <ion-icon slot="item-left" item-left color="dark" name="logo-octocat"></ion-icon>
+        <Item>
+          <Icon slot="item-left" item-left color="dark" name="logo-octocat"></Icon>
           <ion-label slot="label">Hubstruck</ion-label>
-          <ion-button slot="item-right" item-right type="outline" color="primary">Uninstall</ion-button>
-        </ion-item>
+          <Button slot="item-right" item-right type="outline" color="primary">Uninstall</Button>
+        </Item>
         <!--button属性会在右边增加向右箭头-->
-        <ion-item>
-          <ion-icon slot="item-left" item-left color="danger" name="paw"></ion-icon>
+        <Item>
+          <Icon slot="item-left" item-left color="danger" name="paw"></Icon>
           <ion-label slot="label">Barkpark</ion-label>
-          <ion-button slot="item-right" item-right type="outline" color="primary">Uninstall</ion-button>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-page>
+          <Button slot="item-right" item-right type="outline" color="primary">Uninstall</Button>
+        </Item>
+      </List>
+    </Content>
+  </Page>
 </template>
 <style scoped lang="scss">
   .main {

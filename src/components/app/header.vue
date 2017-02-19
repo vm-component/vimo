@@ -1,14 +1,12 @@
 <template>
-  <div class="ion-header header" :class="[modeClass]">
+  <header class="ion-header header" :class="[modeClass]">
     <slot></slot>
-  </div>
+  </header>
 </template>
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-header',
+    name: 'Header',
     data(){
       return {}
     },
@@ -18,7 +16,7 @@
        * */
       mode: {
         type: String,
-        default:  VM.config.get('mode') || 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
     },
     watch: {},
@@ -31,14 +29,11 @@
     },
     methods: {},
     created () {
-      // // 将挂载点同步到根this上
-      // const _this = this;
-      // if (_this.$parent.$options._componentTag === 'ion-page') {
-      //   _this.$eventBus.$emit('$headerReady', _this);
-      // }
+
     },
     mounted () {
-
+      // 将挂载点同步到根this上
+      this.$vnode.context.$header = this;
     },
     activated () {
     },

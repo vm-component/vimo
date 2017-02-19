@@ -22,7 +22,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-toolbar',
+    name: 'Toolbar',
     data(){
       return {}
     },

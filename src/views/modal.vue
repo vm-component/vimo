@@ -1,18 +1,18 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title>Modal</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>Modal</Title>
+      </Navbar>
+    </Header>
+    <Content padding>
 
-      <ion-button type="block" @click="openModal_1">点击打开Modal_1</ion-button>
-      <ion-button type="block" @click="openModal_2">点击打开Modal_2</ion-button>
+      <Button type="block" @click="openModal_1">点击打开Modal_1</Button>
+      <Button type="block" @click="openModal_2">点击打开Modal_2</Button>
 
 
-    </ion-content>
-  </ion-page>
+    </Content>
+  </Page>
 </template>
 <style lang="scss">
   .main {

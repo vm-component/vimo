@@ -1,12 +1,12 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content" title="Content"></ion-title>
-      </ion-navbar>
-    </ion-header>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title slot="content" title="Content"></Title>
+      </Navbar>
+    </Header>
 
-    <ion-content :fullscreen="fullscreenVal" padding>
+    <Content :fullscreen="fullscreenVal" padding>
       <h3 slot="fixed">normal组件：</h3>
       <h3 slot="fixedTop">fixTop组件：</h3>
       <h3 slot="fixedBottom">fixBottom组件：</h3>
@@ -20,9 +20,9 @@
       </p>
 
 
-      <ion-button type="block" @click="setTitle('Hello Vue')">点击设置Title='Hello Vue'</ion-button>
+      <Button type="block" @click="setTitle('Hello Vue')">点击设置Title='Hello Vue'</Button>
 
-      <ion-button type="block" @click="scrollToBottom()">滚动到底部</ion-button>
+      <Button type="block" @click="scrollToBottom()">滚动到底部</Button>
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
@@ -34,8 +34,8 @@
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
-      <ion-button @click="$keyBoardOpen()" type="">打开键盘的Padding</ion-button>
-      <ion-button @click="$keyBoardClose()" type="">关闭键盘的Padding</ion-button>
+      <Button @click="$keyBoardOpen()" type="">打开键盘的Padding</Button>
+      <Button @click="$keyBoardClose()" type="">关闭键盘的Padding</Button>
 
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
@@ -53,19 +53,19 @@
       <h1>ion-app test</h1>
       <h1>ion-app test</h1>
 
-      <ion-button type="block" @click="scrollToTop()">返回顶部</ion-button>
+      <Button type="block" @click="scrollToTop()">返回顶部</Button>
 
 s
-    </ion-content>
+    </Content>
 
-    <ion-footer>
-      <ion-toolbar>
-        <!--<ion-title slot="content" title="ion-app test"></ion-title>-->
-      </ion-toolbar>
-    </ion-footer>
+    <Footer>
+      <Toolbar>
+        <!--<Title slot="content" title="ion-app test"></Title>-->
+      </Toolbar>
+    </Footer>
 
 
-  </ion-page>
+  </Page>
 </template>
 <style scoped lang="scss">
   .main {

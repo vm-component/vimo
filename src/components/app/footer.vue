@@ -1,11 +1,11 @@
 <template>
-  <div class="ion-footer footer" :class="[modeClass]">
+  <footer class="ion-footer footer" :class="[modeClass]">
     <slot></slot>
-  </div>
+  </footer>
 </template>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-footer',
+    name: 'Footer',
     data(){
       return {}
     },
@@ -15,31 +15,28 @@
        * */
       mode: {
         type: String,
-        default:  VM.config.get('mode') || 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
     },
     watch: {},
     computed: {
       // set the mode class name
       // ios/md/wp
-      modeClass: function () {
+      modeClass () {
         return `footer-${this.mode}`
       },
     },
     methods: {},
-    created: function () {
-      // // 将挂载点同步到根this上
-      // const _this = this;
-      // if (_this.$parent.$options._componentTag === 'ion-page') {
-      //   _this.$eventBus.$emit('$footerReady', _this);
-      // }
-    },
-    mounted: function () {
+    created () {
 
     },
-    activated: function () {
+    mounted () {
+      // 将挂载点同步到根this上
+      this.$vnode.context.$footer = this;
     },
-    beforeDestroy: function () {
+    activated () {
+    },
+    beforeDestroy () {
     },
     components: {}
   }

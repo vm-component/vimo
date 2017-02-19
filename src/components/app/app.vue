@@ -1,67 +1,39 @@
 <template>
-  <div class="ion-app"
-       :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisable}]">
+  <article class="ion-app" :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisable}]">
     <!--app-root start-->
-    <div id="viewport" ref="viewport" app-viewport></div>
-    <div class="app-root">
+    <section class="app-root">
       <slot></slot>
-    </div>
+    </section>
     <!--backdrop-->
-    <div id="backdropPortal" overlay-portal></div>
+    <aside id="backdropPortal" overlay-portal></aside>
     <!--modal portal-->
-    <div id="modalPortal" overlay-portal></div>
+    <aside id="modalPortal" overlay-portal></aside>
     <!--蒙层指示,action-sheet,choose-sheet等 overlay portal-->
-    <div id="overlayPortal" overlay-portal></div>
+    <aside id="overlayPortal" overlay-portal></aside>
     <!--alert portal-->
-    <div id="alertPortal" overlay-portal></div>
+    <aside id="alertPortal" overlay-portal></aside>
     <!--loading portal-->
-    <div id="loadingPortal" overlay-portal></div>
+    <aside id="loadingPortal" overlay-portal></aside>
     <!--toast portal-->
-    <div id="toastPortal" overlay-portal></div>
+    <aside id="toastPortal" overlay-portal></aside>
     <!--<div ref="toastPortal" class="toast-portal" [overlay-portal]="10000"></div>-->
     <!--当页面被点击的时候，防止在动画的过程中再次点击页面导致bug的蒙层，全局最高！z-index=99999-->
-    <div class="click-block"
-         :class="[{'click-block-enabled':isClickBlockEnabled},{'click-block-active':isClickBlockActive}]"></div>
-  </div>
+    <aside class="click-block"
+         :class="[{'click-block-enabled':isClickBlockEnabled},{'click-block-active':isClickBlockActive}]"></aside>
+  </article>
 </template>
-<style lang="scss">
-  @import './app';
-  @import './app.ios';
-  @import './cordova';
-  @import './cordova.ios';
-
-  .ion-app {
-    display: block;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-  }
-
-</style>
 <script type="text/ecmascript-6">
   import Vue from 'vue';
-  // import config from '../defaultConfig';
   import { ClickBlock } from "../../util/click-block"
-
   let _clickBlock = new ClickBlock();
 
-  // 弹出层挂载点
-  const AppPortal = {
-    DEFAULT: 'DEFAULT',
-    BACKDROP: 'BACKDROP',
-    MODAL: 'MODAL',
-    LOADING: 'LOADING',
-    ALERT: 'ALERT',
-    TOAST: 'TOAST'
-  };
   // click_blcok等待时间
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64;
   // 时间过后回复可点击状态
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700;
 
   export default{
-    name: 'ion-app',
+    name: 'App',
     data(){
       return {
         isScrollDisable: false, // 控制页面是否能滚动
@@ -133,3 +105,9 @@
     }
   }
 </script>
+<style lang="scss">
+  @import './app';
+  @import './app.ios';
+  @import './cordova';
+  @import './cordova.ios';
+</style>

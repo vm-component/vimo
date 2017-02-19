@@ -1,29 +1,29 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">ListHeaders</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-list-header>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>ListHeaders</Title>
+      </Navbar>
+    </Header>
+    <Content>
+      <List>
+        <ListHeader>
           Action-1
-        </ion-list-header>
-        <ion-item>Terminator II</ion-item>
-        <ion-item>The Empire Strikes Back</ion-item>
-        <ion-item>Blade Runner</ion-item>
+        </ListHeader>
+        <Item>Terminator II</Item>
+        <Item>The Empire Strikes Back</Item>
+        <Item>Blade Runner</Item>
 
-        <ion-list-header>
+        <ListHeader>
           Action-2
-        </ion-list-header>
-        <ion-item>Terminator II</ion-item>
-        <ion-item>The Empire Strikes Back</ion-item>
-        <ion-item>Blade Runner</ion-item>
+        </ListHeader>
+        <Item>Terminator II</Item>
+        <Item>The Empire Strikes Back</Item>
+        <Item>Blade Runner</Item>
 
-      </ion-list>
-    </ion-content>
-  </ion-page>
+      </List>
+    </Content>
+  </Page>
 </template>
 <style scoped lang="scss">
 

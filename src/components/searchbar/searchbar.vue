@@ -11,7 +11,7 @@
          ]">
     <div class="searchbar-input-container">
       <!--在md模式下，md的取消按钮是在这里的，当点击inputs输入时，返回按钮将覆盖search按钮-->
-      <ion-button
+      <Button
         mode="md"
         @click="cancelSearchbar($event)"
         @mousedown="cancelSearchbar($event)"
@@ -19,8 +19,8 @@
         color="dark"
         class="searchbar-md-cancel"
         role="button">
-        <ion-icon mode="md" name="md-arrow-back"></ion-icon>
-      </ion-button>
+        <Icon mode="md" name="md-arrow-back"></Icon>
+      </Button>
 
       <!--input左边的search按钮-->
       <div ref="searchbarIcon" class="searchbar-search-icon"></div>
@@ -36,16 +36,16 @@
              :spellcheck="_spellcheck">
 
       <!--input右边的关闭按钮-->
-      <ion-button
+      <Button
         type="clear"
         class="searchbar-clear-icon"
         :mode="mode"
         @click="clearInput($event)"
-        role="button"></ion-button>
+        role="button"></Button>
     </div>
 
     <!--取消按钮，点击input时出现，只对IOS，md在search icon位置显示，wp没有-->
-    <ion-button
+    <Button
       ref="cancelButton"
       mode="ios"
       :tabindex="isActive ? 1 : -1"
@@ -53,7 +53,7 @@
       @click="cancelSearchbar($event)"
       class="searchbar-ios-cancel"
       role="button">{{cancelButtonText}}
-    </ion-button>
+    </Button>
 
   </div>
 </template>
@@ -66,7 +66,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-searchbar',
+    name: 'Searchbar',
     data(){
       return {
         isCancelVisible: false,

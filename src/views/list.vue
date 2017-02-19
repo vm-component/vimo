@@ -1,36 +1,36 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content" title="List"></ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>List</Title>
+      </Navbar>
+    </Header>
+    <Content>
+      <List>
         <!--header-->
-        <ion-list-header>
+        <ListHeader>
           Contents
-        </ion-list-header>
+        </ListHeader>
         <!--group-->
-        <ion-item-group>
-          <ion-item button :to="{name:'list.basicList'}">BasicList</ion-item>
-          <ion-item button :to="{name:'list.noLine'}">NoLine</ion-item>
-          <ion-item button :to="{name:'list.insetList'}">InsetList</ion-item>
-          <ion-item button :to="{name:'list.listDividers'}">ListDividers</ion-item>
-          <ion-item button :to="{name:'list.listHeaders'}">listHeaders</ion-item>
-          <ion-item button :to="{name:'list.iconList'}">IconList</ion-item>
-          <ion-item button :to="{name:'list.avatarList'}">AvatarList</ion-item>
-          <ion-item button :to="{name:'list.multi-lineList'}">Multi-lineList</ion-item>
-          <ion-item button :to="{name:'list.slidingList'}">SlidingList</ion-item>
-          <ion-item button :to="{name:'list.thumbnailList'}">ThumbnailList</ion-item>
+        <ItemGroup>
+          <Item button :to="{name:'list.basicList'}">BasicList</Item>
+          <Item button :to="{name:'list.noLine'}">NoLine</Item>
+          <Item button :to="{name:'list.insetList'}">InsetList</Item>
+          <Item button :to="{name:'list.listDividers'}">ListDividers</Item>
+          <Item button :to="{name:'list.listHeaders'}">listHeaders</Item>
+          <Item button :to="{name:'list.iconList'}">IconList</Item>
+          <Item button :to="{name:'list.avatarList'}">AvatarList</Item>
+          <Item button :to="{name:'list.multi-lineList'}">Multi-lineList</Item>
+          <Item button :to="{name:'list.slidingList'}">SlidingList</Item>
+          <Item button :to="{name:'list.thumbnailList'}">ThumbnailList</Item>
 
 
-        </ion-item-group>
+        </ItemGroup>
 
 
-      </ion-list>
-    </ion-content>
-  </ion-page>
+      </List>
+    </Content>
+  </Page>
 </template>
 <style scoped lang="scss">
   .main {

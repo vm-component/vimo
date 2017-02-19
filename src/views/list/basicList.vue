@@ -1,18 +1,18 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">BasicList</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item button v-for="item in list">
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>BasicList</Title>
+      </Navbar>
+    </Header>
+    <Content>
+      <List>
+        <Item button v-for="item in list">
           {{item}}
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-page>
+        </Item>
+      </List>
+    </Content>
+  </Page>
 </template>
 <style scoped lang="scss">
 

@@ -1,15 +1,15 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">介绍</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>介绍</Title>
+      </Navbar>
+    </Header>
+    <Content padding>
       这里是介绍
 
-    </ion-content>
-  </ion-page>
+    </Content>
+  </Page>
 </template>
 <style scoped lang="scss">
   .main {

@@ -7,7 +7,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-item-options',
+    name: 'ItemOptions',
     data(){
       return {}
     },

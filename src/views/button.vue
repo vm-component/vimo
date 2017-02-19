@@ -1,71 +1,71 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">Button</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>Button</Title>
+      </Navbar>
+    </Header>
+    <Content padding>
       <h4>Colors</h4>
-      <ion-button @click="primary()" color="primary">primary</ion-button>
-      <ion-button color="secondary" :isStrong="true">secondary</ion-button>
-      <ion-button color="danger">danger</ion-button>
-      <ion-button color="light">light</ion-button>
-      <ion-button color="light" disabled>light</ion-button>
-      <ion-button color="dark">dark</ion-button>
-      <ion-button>default color</ion-button>
+      <Button @click="primary()" color="primary">primary</Button>
+      <Button color="secondary" :isStrong="true">secondary</Button>
+      <Button color="danger">danger</Button>
+      <Button color="light">light</Button>
+      <Button color="light" disabled>light</Button>
+      <Button color="dark">dark</Button>
+      <Button>default color</Button>
 
       <h4>Spinner</h4>
-      <ion-button>
+      <Button>
         Loading
-        <ion-spinner  color="light" name="ios-small"></ion-spinner>
-      </ion-button>
+        <Spinner  color="light" name="ios-small"></Spinner>
+      </Button>
 
 
       <h4>Shaps</h4>
-      <ion-button shape="full">full</ion-button>
-      <ion-button shape="block">block</ion-button>
-      <ion-button shape="round">round</ion-button>
+      <Button shape="full">full</Button>
+      <Button shape="block">block</Button>
+      <Button shape="round">round</Button>
 
       <h4>Type</h4>
       <!--solid-->
-      <ion-button type="solid" color="secondary">solid</ion-button>
-      <ion-button type="outline" color="secondary">outline</ion-button>
-      <ion-button type="clear" color="secondary">clear</ion-button>
+      <Button type="solid" color="secondary">solid</Button>
+      <Button type="outline" color="secondary">outline</Button>
+      <Button type="clear" color="secondary">clear</Button>
 
 
       <h4>Outline</h4>
-      <ion-button type="outline" shape="full" color="secondary">outline + full</ion-button>
-      <ion-button type="outline" shape="block" color="secondary">outline + block</ion-button>
-      <ion-button type="outline" shape="round" color="secondary">outline + round</ion-button>
+      <Button type="outline" shape="full" color="secondary">outline + full</Button>
+      <Button type="outline" shape="block" color="secondary">outline + block</Button>
+      <Button type="outline" shape="round" color="secondary">outline + round</Button>
 
       <h4>Size</h4>
-      <ion-button color="light" size="large">large</ion-button>
-      <ion-button color="light" size="default">default</ion-button>
-      <ion-button color="light" size="small">small</ion-button>
+      <Button color="light" size="large">large</Button>
+      <Button color="light" size="default">default</Button>
+      <Button color="light" size="small">small</Button>
 
       <h4>Icons</h4>
-      <ion-button color="dark icon-left" icon-left>
-        <ion-icon class="icon" name="star"></ion-icon>
+      <Button color="dark icon-left" icon-left>
+        <Icon class="icon" name="star"></Icon>
         Left Icon
-      </ion-button>
-      <ion-button color="dark">
+      </Button>
+      <Button color="dark">
         No Icon
-      </ion-button>
-      <ion-button icon-only color="dark">
-        <ion-icon class="icon" name="star"></ion-icon>
-      </ion-button>
-      <ion-button icon-only color="dark">
-        <ion-icon class="icon" name="star"></ion-icon>
-      </ion-button>
-      <ion-button color="dark icon-right" icon-right>
+      </Button>
+      <Button icon-only color="dark">
+        <Icon class="icon" name="star"></Icon>
+      </Button>
+      <Button icon-only color="dark">
+        <Icon class="icon" name="star"></Icon>
+      </Button>
+      <Button color="dark icon-right" icon-right>
         Right Icon
-        <ion-icon class="icon" name="star"></ion-icon>
-      </ion-button>
+        <Icon class="icon" name="star"></Icon>
+      </Button>
 
 
-    </ion-content>
-  </ion-page>
+    </Content>
+  </Page>
 
 
 </template>

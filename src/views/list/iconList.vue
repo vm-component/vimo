@@ -1,43 +1,43 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">IconList</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-list-header>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>IconList</Title>
+      </Navbar>
+    </Header>
+    <Content>
+      <List>
+        <ListHeader>
           classes
-        </ion-list-header>
+        </ListHeader>
 
-        <ion-item>
-          <ion-icon name="planet" slot="item-left" item-left></ion-icon>
+        <Item>
+          <Icon name="planet" slot="item-left" item-left></Icon>
           Astronomy
-          <ion-note slot="item-right" item-right>To the moon</ion-note>
-        </ion-item>
+          <Note slot="item-right" item-right>To the moon</Note>
+        </Item>
 
-        <ion-item>
-          <ion-icon name="body" slot="item-left" item-left></ion-icon>
+        <Item>
+          <Icon name="body" slot="item-left" item-left></Icon>
           Muggle Studies
-          <ion-toggle slot="item-right" item-right :checked="false"></ion-toggle>
-        </ion-item>
+          <Toggle slot="item-right" item-right :checked="false"></Toggle>
+        </Item>
 
-        <ion-item>
-          <ion-icon name="leaf" slot="item-left" item-left></ion-icon>
+        <Item>
+          <Icon name="leaf" slot="item-left" item-left></Icon>
           Herbology
-          <ion-icon name="rose" slot="item-right" item-right></ion-icon>
-        </ion-item>
+          <Icon name="rose" slot="item-right" item-right></Icon>
+        </Item>
 
-        <ion-item>
-          <ion-icon name="flask" slot="item-left" item-left></ion-icon>
+        <Item>
+          <Icon name="flask" slot="item-left" item-left></Icon>
           Potions
-          <ion-button slot="item-right" item-right type="outline" color="primary">Btn</ion-button>
-        </ion-item>
+          <Button slot="item-right" item-right type="outline" color="primary">Btn</Button>
+        </Item>
 
-      </ion-list>
-    </ion-content>
-  </ion-page>
+      </List>
+    </Content>
+  </Page>
 </template>
 <style scoped lang="scss">
 

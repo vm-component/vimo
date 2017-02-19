@@ -1,6 +1,6 @@
 <template>
   <div class="ion-loading" :class="[modeClass,cssClass]">
-    <!--<ion-backdrop :isActive="isActive" v-if="showBackdrop" :enableBackdropDismiss="false"></ion-backdrop>-->
+    <!--<Backdrop :isActive="isActive" v-if="showBackdrop" :enableBackdropDismiss="false"></Backdrop>-->
     <transition name="loading"
                 v-on:before-enter="_beforeEnter"
                 v-on:after-enter="_afterEnter"
@@ -8,7 +8,7 @@
                 v-on:after-leave="_afterLeave">
       <div class="loading-wrapper" v-show="isActive">
         <div v-if="showSpinner" class="loading-spinner">
-          <ion-spinner :name="spinner"></ion-spinner>
+          <Spinner :name="spinner"></Spinner>
         </div>
         <div v-if="content" v-html="content" class="loading-content"></div>
       </div>
@@ -20,13 +20,13 @@
   @import './loading.ios';
   @import './loading.md';
   @import './loading.wp';
-
   // transition
   @import "../../transitions/loading";
 
 </style>
 <script type="text/ecmascript-6">
   export default{
+    name: 'Loading',
     data(){
       return {
         /**
@@ -94,7 +94,7 @@
       _present () {
         const _this = this;
         _this.isActive = true;
-        return new Promise((resolve)=>{this.presentCallback = resolve})
+        return new Promise((resolve) => {this.presentCallback = resolve})
       },
 
       /**
@@ -108,7 +108,7 @@
         }
         _this.enabled = false;
         _this.isActive = false; // 动起来
-        return new Promise((resolve)=>{this.dismissCallback = resolve})
+        return new Promise((resolve) => {this.dismissCallback = resolve})
       },
     }
   }

@@ -1,9 +1,9 @@
 <template>
-  <div class="ion-nav" @touchstart="tapToCloseMenu"
+  <nav class="ion-nav" @touchstart="tapToCloseMenu"
        :class="[menuClass,{'menu-content-open':isMenuOpen}]"
        :style="menuStyleObj">
     <slot></slot>
-  </div>
+  </nav>
 </template>
 <style lang="scss">
 
@@ -17,7 +17,7 @@
    * @example
    * */
   export default{
-    name: 'ion-nav',
+    name: 'Nav',
     props: {},
     data(){
       return {

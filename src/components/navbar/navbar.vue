@@ -4,11 +4,11 @@
        :class="[modeClass,colorClass,{'statusbar-padding':$hasStatusBar}]">
     <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
     <!--show-back-button-->
-    <ion-button @click="backButtonClick($event)" role="bar-button" class="back-button"
+    <Button @click="backButtonClick($event)" role="bar-button" class="back-button"
                 :class="[backButtonClass,{'show-back-button':showBackButton}]" v-if="!hideBb">
-      <ion-icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></ion-icon>
+      <Icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></Icon>
       <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
-    </ion-button>
+    </Button>
 
     <!--button/menuToggle-->
     <slot name="button"></slot>
@@ -31,7 +31,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-navbar',
+    name: 'Navbar',
     data(){
       return {
         hideBb: false,

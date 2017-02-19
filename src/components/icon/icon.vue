@@ -12,7 +12,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-icon',
+    name: 'Icon',
     props: {
       /**
        * 按钮color：primary、ghost、dashed、text、info、success、warning、error

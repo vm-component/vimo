@@ -15,7 +15,7 @@
 </template>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-modal',
+    name: 'Modal',
     data(){
       return {
         enabled: false,

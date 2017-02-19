@@ -1,7 +1,7 @@
 <template>
   <div class="ion-alert" :class="[modeClass,cssClass,{'alert-top':isAlertTop}]">
-    <ion-backdrop @click.native="bdClick()" :enableBackdropDismiss="enableBackdropDismiss"
-                  :isActive="isActive"></ion-backdrop>
+    <Backdrop @click.native="bdClick()" :enableBackdropDismiss="enableBackdropDismiss"
+                  :isActive="isActive"></Backdrop>
     <transition name="alert"
                 v-on:before-enter="_beforeEnter"
                 v-on:after-enter="_afterEnter"
@@ -16,7 +16,7 @@
         <div v-if="!!inputs && inputs.length>0">
 
           <div v-if="inputType==='radio'" class="alert-radio-group" role="radiogroup">
-            <ion-button role="alert-radio-button" v-for="i in inputsForDispaly" @click="rbClick(i)"
+            <Button role="alert-radio-button" v-for="i in inputsForDispaly" @click="rbClick(i)"
                         :aria-checked="i.checked" :disabled="i.disabled" :id="i.id"
                         class="alert-tappable alert-radio">
               <div class="alert-radio-icon">
@@ -25,11 +25,11 @@
               <div class="alert-radio-label">
                 {{i.label}}
               </div>
-            </ion-button>
+            </Button>
           </div>
 
           <div class="alert-checkbox-group" v-if="inputType==='checkbox'">
-            <ion-button :id="i.id" role="alert-checkbox-button" :aria-checked="i.checked"
+            <Button :id="i.id" role="alert-checkbox-button" :aria-checked="i.checked"
                         v-for="(i,index) in inputsForDispaly" @click="cbClick(i)"
                         :checked="i.checked" :disabled="i.disabled" class="alert-tappable alert-checkbox">
               <div class="alert-checkbox-icon">
@@ -38,7 +38,7 @@
               <div class="alert-checkbox-label">
                 {{i.label}}
               </div>
-            </ion-button>
+            </Button>
           </div>
 
           <div v-if="inputType!='radio' && inputType!='checkbox'" class="alert-input-group">
@@ -50,9 +50,9 @@
 
         </div>
         <div class="alert-button-group" :class="{'alert-button-group-vertical':buttonsForDisplay.length>2}">
-          <ion-button role="alert-button" v-for="b in buttonsForDisplay" @click="btnClick(b)" :class="[b.cssClass]">
+          <Button role="alert-button" v-for="b in buttonsForDisplay" @click="btnClick(b)" :class="[b.cssClass]">
             {{b.text}}
-          </ion-button>
+          </Button>
         </div>
       </div>
     </transition>
@@ -71,6 +71,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
+    name: 'Alert',
     data(){
       return {
         /**
@@ -92,7 +93,7 @@
          * */
         isActive: false,
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode:  VM.config.get('mode') || 'ios',  // ios?android?window
+        mode: VM.config.get('mode') || 'ios',  // ios?android?window
         inputType: null,// Alert中含有的input类型，radio、checkbox
         isAlertTop: false, // 是否将alert放到顶部，用于input输入时显示虚拟键盘
 

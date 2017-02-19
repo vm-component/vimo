@@ -1,39 +1,39 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title title="Backdrop"></ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title title="Backdrop"></Title>
+      </Navbar>
+    </Header>
+    <Content padding>
       <h3>BackDrop组件</h3>
 
       <h5>可以实例化调用也可以模板式调用</h5>
 
       <p>打开Backdrop, 4000ms之后关闭, 或者点击关闭</p>
-      <ion-button type="block" @click="present">打开Backdrop</ion-button>
+      <Button type="block" @click="present">打开Backdrop</Button>
 
       <p>打开Backdrop, 上部留白100px, 点击关闭</p>
-      <ion-button type="block" @click="presentWithTopWhite">打开Backdrop</ion-button>
+      <Button type="block" @click="presentWithTopWhite">打开Backdrop</Button>
 
       <p>打开Backdrop, 右边留白100px, 点击关闭</p>
-      <ion-button type="block" @click="presentWithRightWhite">打开Backdrop</ion-button>
+      <Button type="block" @click="presentWithRightWhite">打开Backdrop</Button>
 
       <p>打开Backdrop, 底部留白100px, 点击关闭</p>
-      <ion-button type="block" @click="presentWithBottomWhite">打开Backdrop</ion-button>
+      <Button type="block" @click="presentWithBottomWhite">打开Backdrop</Button>
 
       <p>打开Backdrop, 左边留白100px, 点击关闭</p>
-      <ion-button type="block" @click="presentWithLeftWhite">打开Backdrop</ion-button>
+      <Button type="block" @click="presentWithLeftWhite">打开Backdrop</Button>
 
       <p>在下面的DIV中显示Backdrop, 点击关闭(模板式)</p>
       <div id="backdropInDiv">
-        <ion-backdrop :isActive="isActive" :bdClick="function(){isActive=!isActive}"></ion-backdrop>
+        <Backdrop :isActive="isActive" :bdClick="function(){isActive=!isActive}"></Backdrop>
         Hello, Vimo!
       </div>
-      <ion-button type="block" @click="isActive=!isActive">打开Backdrop</ion-button>
+      <Button type="block" @click="isActive=!isActive">打开Backdrop</Button>
 
-    </ion-content>
-  </ion-page>
+    </Content>
+  </Page>
 </template>
 <style lang="scss">
   #backdropInDiv {

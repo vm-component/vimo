@@ -9,12 +9,12 @@
     <div class="toggle-icon" :class="{'toggle-checked':isChecked,'toggle-activated':activated}">
       <div class="toggle-inner"></div>
     </div>
-    <ion-button role="checkbox"
+    <Button role="checkbox"
                 type="button"
                 ion-button="item-cover"
                 :id="id"
                 class="item-cover">
-    </ion-button>
+    </Button>
   </div>
 </template>
 <style lang="scss">
@@ -23,7 +23,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-toggle',
+    name: 'Toggle',
     data(){
       return {
         isChecked: this.checked,

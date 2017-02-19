@@ -8,7 +8,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-thumbnail',
+    name: 'Thumbnail',
     data(){
       return {}
     },

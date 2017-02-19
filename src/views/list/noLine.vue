@@ -1,18 +1,18 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">NoLine</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
-      <ion-list no-lines>
-        <ion-item button v-for="item in list">
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>NoLine</Title>
+      </Navbar>
+    </Header>
+    <Content>
+      <List no-lines>
+        <Item button v-for="item in list">
           {{item}}
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-page>
+        </Item>
+      </List>
+    </Content>
+  </Page>
 </template>
 <style scoped lang="scss">
 

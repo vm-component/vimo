@@ -13,7 +13,7 @@
 <script type="text/ecmascript-6">
   import { urlChange } from '../../util/dom';
   export default{
-    name: 'ion-backdrop',
+    name: 'Backdrop',
     data(){
       return {
         // 定义本地参数
@@ -21,7 +21,6 @@
         bdClickLocal: this.bdClick,
         positionLocal: this.position,
         isOpen: false, // 标示当前backdrop的开启状态, isActiveLocal为组件自身维护
-        el: null, // backdrop填充的元素
 
         count: 0, // 记录开启数目
       }

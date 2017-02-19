@@ -5,7 +5,7 @@
 </template>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-card-content',
+    name: 'CardContent',
     data(){
       return {
         componentName: 'card-content'

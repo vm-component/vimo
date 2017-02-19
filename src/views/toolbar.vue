@@ -1,166 +1,166 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>
           <span>Toolbar</span>
-        </ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
+        </Title>
+      </Navbar>
+    </Header>
+    <Content>
       <!--1-->
-      <ion-toolbar color="primary">
+      <Toolbar color="primary">
         <!--title-->
-        <ion-title slot="content">This is a long title long title</ion-title>
-      </ion-toolbar>
+        <Title>This is a long title long title</Title>
+      </Toolbar>
 
       <!--2-->
-      <ion-toolbar color="danger">
+      <Toolbar color="danger">
         <!--start-->
-        <ion-buttons start slot="button">
-          <ion-button icon-only role="bar-button">
-            <ion-icon class="icon" name="contact"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-        <ion-buttons start slot="button">
-          <ion-button icon-only role="bar-button">
-            <ion-icon class="icon" name="search"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <Buttons start slot="button">
+          <Button icon-only role="bar-button">
+            <Icon class="icon" name="contact"></Icon>
+          </Button>
+        </Buttons>
+        <Buttons start slot="button">
+          <Button icon-only role="bar-button">
+            <Icon class="icon" name="search"></Icon>
+          </Button>
+        </Buttons>
         <!--start-->
-        <ion-buttons end slot="button">
-          <ion-button icon-only role="bar-button">
-            <ion-icon class="icon" name="more"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <Buttons end slot="button">
+          <Button icon-only role="bar-button">
+            <Icon class="icon" name="more"></Icon>
+          </Button>
+        </Buttons>
         <!--title-->
-        <ion-title slot="content">My Toolbar Title</ion-title>
-      </ion-toolbar>
+        <Title>My Toolbar Title</Title>
+      </Toolbar>
 
       <!--3-->
-      <ion-toolbar>
+      <Toolbar>
         <!--start-->
-        <ion-buttons start slot="button">
-          <ion-button icon-only role="bar-button" color="danger">
-            <ion-icon class="icon" name="contact"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-        <ion-buttons start slot="button">
-          <ion-button icon-only role="bar-button" color="secondary">
-            <ion-icon class="icon" name="search"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <Buttons start slot="button">
+          <Button icon-only role="bar-button" color="danger">
+            <Icon class="icon" name="contact"></Icon>
+          </Button>
+        </Buttons>
+        <Buttons start slot="button">
+          <Button icon-only role="bar-button" color="secondary">
+            <Icon class="icon" name="search"></Icon>
+          </Button>
+        </Buttons>
         <!--end-->
-        <ion-buttons end slot="button">
-          <ion-button icon-only role="bar-button" color="danger">
-            <ion-icon class="icon" name="more"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <Buttons end slot="button">
+          <Button icon-only role="bar-button" color="danger">
+            <Icon class="icon" name="more"></Icon>
+          </Button>
+        </Buttons>
         <!--title-->
-        <ion-title slot="content">My Toolbar Title</ion-title>
-      </ion-toolbar>
+        <Title>My Toolbar Title</Title>
+      </Toolbar>
 
       <!--4-->
-      <ion-toolbar>
+      <Toolbar>
         <!--start-->
-        <ion-buttons start slot="button">
-          <ion-button icon-only role="bar-button" type="solid">
-            <ion-icon class="icon" name="contact"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <Buttons start slot="button">
+          <Button icon-only role="bar-button" type="solid">
+            <Icon class="icon" name="contact"></Icon>
+          </Button>
+        </Buttons>
 
         <!--end-->
-        <ion-buttons end slot="button">
-          <ion-button icon-right role="bar-button" color="secondary" type="solid">
+        <Buttons end slot="button">
+          <Button icon-right role="bar-button" color="secondary" type="solid">
             Help
-            <ion-icon class="icon" name="help-circle"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+            <Icon class="icon" name="help-circle"></Icon>
+          </Button>
+        </Buttons>
         <!--title-->
-        <ion-title slot="content">Solid</ion-title>
-      </ion-toolbar>
+        <Title>Solid</Title>
+      </Toolbar>
 
       <!--5-->
-      <ion-toolbar>
+      <Toolbar>
         <!--start-->
-        <ion-buttons start slot="button">
-          <ion-button icon-only role="bar-button" type="outline">
-            <ion-icon class="icon" name="contact"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <Buttons start slot="button">
+          <Button icon-only role="bar-button" type="outline">
+            <Icon class="icon" name="contact"></Icon>
+          </Button>
+        </Buttons>
 
         <!--end-->
-        <ion-buttons end slot="button">
-          <ion-button icon-right role="bar-button" color="secondary" type="outline">
+        <Buttons end slot="button">
+          <Button icon-right role="bar-button" color="secondary" type="outline">
             Help
-            <ion-icon class="icon" name="help-circle"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+            <Icon class="icon" name="help-circle"></Icon>
+          </Button>
+        </Buttons>
         <!--title-->
-        <ion-title slot="content">Outline</ion-title>
-      </ion-toolbar>
+        <Title>Outline</Title>
+      </Toolbar>
 
       <!--6-->
-      <ion-toolbar>
+      <Toolbar>
         <!--menutoggle-->
-        <ion-button icon-only role="bar-button" shape="menutoggle" slot="button">
-          <ion-icon class="icon" name="menu"></ion-icon>
-        </ion-button>
+        <Button icon-only role="bar-button" shape="menutoggle" slot="button">
+          <Icon class="icon" name="menu"></Icon>
+        </Button>
         <!--title-->
-        <ion-title slot="content">Left Menu</ion-title>
-      </ion-toolbar>
+        <Title>Left Menu</Title>
+      </Toolbar>
 
       <!--7-->
-      <ion-toolbar>
+      <Toolbar>
         <!--menutoggle-->
-        <ion-button right icon-only role="bar-button" shape="menutoggle" slot="button">
-          <ion-icon class="icon" name="menu"></ion-icon>
-        </ion-button>
+        <Button right icon-only role="bar-button" shape="menutoggle" slot="button">
+          <Icon class="icon" name="menu"></Icon>
+        </Button>
         <!--title-->
-        <ion-title slot="content">Right Menu</ion-title>
-      </ion-toolbar>
+        <Title>Right Menu</Title>
+      </Toolbar>
 
       <!--7-->
-      <ion-toolbar>
+      <Toolbar>
         <!--menutoggle-->
-        <ion-buttons end slot="button">
-          <ion-button icon-only role="bar-button">
-            <ion-icon class="icon" name="search"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <Buttons end slot="button">
+          <Button icon-only role="bar-button">
+            <Icon class="icon" name="search"></Icon>
+          </Button>
+        </Buttons>
         <!--title-->
-        <ion-title slot="content">Right Menu</ion-title>
-      </ion-toolbar>
+        <Title>Right Menu</Title>
+      </Toolbar>
 
       <!--8-->
-      <ion-toolbar>
+      <Toolbar>
         <!--menutoggle-->
-        <ion-buttons end slot="button">
-          <ion-button icon-only role="bar-button">
-            <ion-icon class="icon" name="search"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <Buttons end slot="button">
+          <Button icon-only role="bar-button">
+            <Icon class="icon" name="search"></Icon>
+          </Button>
+        </Buttons>
         <!--content-->
-        <ion-segment :value="relationship8" @ionChange="onSegmentChange8" slot="content" color="danger">
-          <ion-segment-button value="friend1" @ionSelect="onSelectChangeFriend1">friend1</ion-segment-button>
-          <ion-segment-button value="friend2" @ionSelect="onSelectChangeFriend2">friend2</ion-segment-button>
-        </ion-segment>
-      </ion-toolbar>
+        <Segment :value="relationship8" @ionChange="onSegmentChange8" slot="content" color="danger">
+          <SegmentButton value="friend1" @ionSelect="onSelectChangeFriend1">friend1</SegmentButton>
+          <SegmentButton value="friend2" @ionSelect="onSelectChangeFriend2">friend2</SegmentButton>
+        </Segment>
+      </Toolbar>
 
       <!--9-->
-      <ion-toolbar>
+      <Toolbar>
         <!--content-->
-        <ion-segment :value="relationship9" @ionChange="onSegmentChange9" slot="content">
-          <ion-segment-button value="friend1">friend1</ion-segment-button>
-          <ion-segment-button value="friend2">friend2</ion-segment-button>
-          <ion-segment-button value="friend3">friend2</ion-segment-button>
-        </ion-segment>
-      </ion-toolbar>
+        <Segment :value="relationship9" @ionChange="onSegmentChange9" slot="content">
+          <SegmentButton value="friend1">friend1</SegmentButton>
+          <SegmentButton value="friend2">friend2</SegmentButton>
+          <SegmentButton value="friend3">friend2</SegmentButton>
+        </Segment>
+      </Toolbar>
 
 
       <!--10-->
-      <ion-toolbar>
-        <ion-searchbar :animated="true" slot="content"
+      <Toolbar>
+        <Searchbar :animated="true" slot="content"
                        :debounce="1000"
                        mode="ios"
                        v-model="myInput"
@@ -170,12 +170,12 @@
                        @ionFocus="onFocus"
                        @ionBlur="onBlur"
                        @ionCancel="onCancel"
-                       @ionClear="onClear"></ion-searchbar>
-      </ion-toolbar>
+                       @ionClear="onClear"></Searchbar>
+      </Toolbar>
 
       <!--11-->
-      <ion-toolbar color="primary">
-        <ion-searchbar :animated="true" slot="content"
+      <Toolbar color="primary">
+        <Searchbar :animated="true" slot="content"
                        :debounce="1000"
                        mode="ios"
                        v-model="myInput"
@@ -185,12 +185,12 @@
                        @ionFocus="onFocus"
                        @ionBlur="onBlur"
                        @ionCancel="onCancel"
-                       @ionClear="onClear"></ion-searchbar>
-      </ion-toolbar>
-    </ion-content>
-    <ion-footer>
-      <ion-toolbar>
-        <ion-searchbar :animated="true" slot="content"
+                       @ionClear="onClear"></Searchbar>
+      </Toolbar>
+    </Content>
+    <Footer>
+      <Toolbar>
+        <Searchbar :animated="true" slot="content"
                        :debounce="1000"
                        mode="ios"
                        v-model="myInput"
@@ -200,10 +200,10 @@
                        @ionFocus="onFocus"
                        @ionBlur="onBlur"
                        @ionCancel="onCancel"
-                       @ionClear="onClear"></ion-searchbar>
-      </ion-toolbar>
-    </ion-footer>
-  </ion-page>
+                       @ionClear="onClear"></Searchbar>
+      </Toolbar>
+    </Footer>
+  </Page>
 </template>
 <style lang="scss">
   .main {

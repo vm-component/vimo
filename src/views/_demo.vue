@@ -1,14 +1,14 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">Demo</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>Demo</Title>
+      </Navbar>
+    </Header>
+    <Content>
       <h1>content</h1>
-    </ion-content>
-  </ion-page>
+    </Content>
+  </Page>
 </template>
 <style scoped lang="scss">
   .main {

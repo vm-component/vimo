@@ -1,15 +1,15 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">Tabs</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>Tabs</Title>
+      </Navbar>
+    </Header>
+    <Content>
 
 
-    </ion-content>
-  </ion-page>
+    </Content>
+  </Page>
 </template>
 <style scoped lang="scss">
   .main {

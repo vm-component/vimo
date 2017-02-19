@@ -1,62 +1,62 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title>Spinner</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>Spinner</Title>
+      </Navbar>
+    </Header>
+    <Content padding>
 
 
       <p>默认</p>
-      <ion-spinner></ion-spinner>
-      <ion-spinner name="ios"></ion-spinner>
-      <ion-spinner name="ios-small"></ion-spinner>
-      <ion-spinner name="bubbles"></ion-spinner>
-      <ion-spinner name="circles"></ion-spinner>
-      <ion-spinner name="crescent"></ion-spinner>
-      <ion-spinner name="dots"></ion-spinner>
+      <Spinner></Spinner>
+      <Spinner name="ios"></Spinner>
+      <Spinner name="ios-small"></Spinner>
+      <Spinner name="bubbles"></Spinner>
+      <Spinner name="circles"></Spinner>
+      <Spinner name="crescent"></Spinner>
+      <Spinner name="dots"></Spinner>
 
       <p>Mode</p>
       <span>未指定</span>
-      <ion-spinner></ion-spinner>
+      <Spinner></Spinner>
       <span>ios</span>
-      <ion-spinner mode="ios"></ion-spinner>
+      <Spinner mode="ios"></Spinner>
       <span>md</span>
-      <ion-spinner mode="md"></ion-spinner>
+      <Spinner mode="md"></Spinner>
       <span>wp</span>
-      <ion-spinner mode="wp"></ion-spinner>
+      <Spinner mode="wp"></Spinner>
 
       <p>Color</p>
-      <ion-spinner></ion-spinner>
-      <ion-spinner color="primary" name="ios"></ion-spinner>
-      <ion-spinner color="secondary" name="ios-small"></ion-spinner>
-      <ion-spinner color="light" name="bubbles"></ion-spinner>
-      <ion-spinner color="dark" name="circles"></ion-spinner>
-      <ion-spinner color="primary" name="crescent"></ion-spinner>
-      <ion-spinner color="secondary" name="dots"></ion-spinner>
+      <Spinner></Spinner>
+      <Spinner color="primary" name="ios"></Spinner>
+      <Spinner color="secondary" name="ios-small"></Spinner>
+      <Spinner color="light" name="bubbles"></Spinner>
+      <Spinner color="dark" name="circles"></Spinner>
+      <Spinner color="primary" name="crescent"></Spinner>
+      <Spinner color="secondary" name="dots"></Spinner>
 
       <!--duration-->
       <p>Duration 3000ms</p>
-      <ion-spinner duration="3000"></ion-spinner>
-      <ion-spinner duration="3000" name="ios"></ion-spinner>
-      <ion-spinner duration="3000" name="ios-small"></ion-spinner>
-      <ion-spinner duration="3000" name="bubbles"></ion-spinner>
-      <ion-spinner duration="3000" name="circles"></ion-spinner>
-      <ion-spinner duration="3000" name="crescent"></ion-spinner>
-      <ion-spinner duration="3000" name="dots"></ion-spinner>
+      <Spinner duration="3000"></Spinner>
+      <Spinner duration="3000" name="ios"></Spinner>
+      <Spinner duration="3000" name="ios-small"></Spinner>
+      <Spinner duration="3000" name="bubbles"></Spinner>
+      <Spinner duration="3000" name="circles"></Spinner>
+      <Spinner duration="3000" name="crescent"></Spinner>
+      <Spinner duration="3000" name="dots"></Spinner>
 
       <!--paused-->
       <p>Paused</p>
-      <ion-spinner :paused="true"></ion-spinner>
-      <ion-spinner :paused="true" name="ios"></ion-spinner>
-      <ion-spinner :paused="true" name="ios-small"></ion-spinner>
-      <ion-spinner :paused="true" name="bubbles"></ion-spinner>
-      <ion-spinner :paused="true" name="circles"></ion-spinner>
-      <ion-spinner :paused="true" name="crescent"></ion-spinner>
-      <ion-spinner :paused="true" name="dots"></ion-spinner>
-    </ion-content>
-  </ion-page>
+      <Spinner :paused="true"></Spinner>
+      <Spinner :paused="true" name="ios"></Spinner>
+      <Spinner :paused="true" name="ios-small"></Spinner>
+      <Spinner :paused="true" name="bubbles"></Spinner>
+      <Spinner :paused="true" name="circles"></Spinner>
+      <Spinner :paused="true" name="crescent"></Spinner>
+      <Spinner :paused="true" name="dots"></Spinner>
+    </Content>
+  </Page>
 </template>
 <style lang="scss">
 </style>

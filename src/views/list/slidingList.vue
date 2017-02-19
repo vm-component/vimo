@@ -1,188 +1,188 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">SlidingList</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-list-header>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>SlidingList</Title>
+      </Navbar>
+    </Header>
+    <Content>
+      <List>
+        <ListHeader>
           SlidingList Demo
-        </ion-list-header>
-        <ion-item-sliding>
-          <ion-item>
-            <ion-avatar item-left slot="item-left">
+        </ListHeader>
+        <ItemSliding>
+          <Item>
+            <Avatar item-left slot="item-left">
               <img src="http://placehold.it/36x36">
-            </ion-avatar>
+            </Avatar>
             <h2>两边都有按钮</h2>
             <p>试试 ↔️️ 都滑动</p>
-          </ion-item>
-          <ion-item-options side="left">
-            <ion-button ion-button color="primary" @click="clickText">
-              <ion-icon name="text"></ion-icon>
+          </Item>
+          <ItemOptions side="left">
+            <Button ion-button color="primary" @click="clickText">
+              <Icon name="text"></Icon>
               Text
-            </ion-button>
-            <ion-button ion-button color="secondary" @click="clickCall">
-              <ion-icon name="call"></ion-icon>
+            </Button>
+            <Button ion-button color="secondary" @click="clickCall">
+              <Icon name="call"></Icon>
               Call
-            </ion-button>
-          </ion-item-options>
-          <ion-item-options side="right">
-            <ion-button ion-button color="primary" @click="clickEmail">
-              <ion-icon name="mail"></ion-icon>
+            </Button>
+          </ItemOptions>
+          <ItemOptions side="right">
+            <Button ion-button color="primary" @click="clickEmail">
+              <Icon name="mail"></Icon>
               Email
-            </ion-button>
-          </ion-item-options>
-        </ion-item-sliding>
-        <ion-item-sliding>
-          <ion-item>
-            <ion-avatar item-left slot="item-left">
+            </Button>
+          </ItemOptions>
+        </ItemSliding>
+        <ItemSliding>
+          <Item>
+            <Avatar item-left slot="item-left">
               <img src="http://placehold.it/36x36">
-            </ion-avatar>
+            </Avatar>
             <h2>按钮在右边</h2>
             <p>⬅️ 滑动出现按钮</p>
-          </ion-item>
-          <ion-item-options side="right">
-            <ion-button ion-button color="primary" @click="clickEmail">
-              <ion-icon name="mail"></ion-icon>
+          </Item>
+          <ItemOptions side="right">
+            <Button ion-button color="primary" @click="clickEmail">
+              <Icon name="mail"></Icon>
               Email
-            </ion-button>
-          </ion-item-options>
-        </ion-item-sliding>
-        <ion-item-sliding>
-          <ion-item>
-            <ion-avatar item-left slot="item-left">
+            </Button>
+          </ItemOptions>
+        </ItemSliding>
+        <ItemSliding>
+          <Item>
+            <Avatar item-left slot="item-left">
               <img src="http://placehold.it/36x36">
-            </ion-avatar>
+            </Avatar>
             <h2>按钮在左边</h2>
             <p>➡️ 滑动出现按钮</p>
-          </ion-item>
-          <ion-item-options side="left">
-            <ion-button ion-button color="primary" @click="clickText">
-              <ion-icon name="text"></ion-icon>
+          </Item>
+          <ItemOptions side="left">
+            <Button ion-button color="primary" @click="clickText">
+              <Icon name="text"></Icon>
               Text
-            </ion-button>
-            <ion-button ion-button color="secondary" @click="clickCall">
-              <ion-icon name="call"></ion-icon>
+            </Button>
+            <Button ion-button color="secondary" @click="clickCall">
+              <Icon name="call"></Icon>
               Call
-            </ion-button>
-          </ion-item-options>
-        </ion-item-sliding>
+            </Button>
+          </ItemOptions>
+        </ItemSliding>
 
-        <ion-item-sliding>
-          <ion-item>
-            <ion-avatar item-left slot="item-left">
+        <ItemSliding>
+          <Item>
+            <Avatar item-left slot="item-left">
               <img src="http://placehold.it/36x36">
-            </ion-avatar>
+            </Avatar>
             <h2>按钮在右边</h2>
             <p>⬅️ 滑动出现按钮，再滑动则执行</p>
-          </ion-item>
+          </Item>
 
-          <ion-item-options side="right">
-            <ion-button expandable ion-button color="danger" @click="clickDelete">
-              <ion-icon name="trash"></ion-icon>
+          <ItemOptions side="right">
+            <Button expandable ion-button color="danger" @click="clickDelete">
+              <Icon name="trash"></Icon>
               Delete
-            </ion-button>
-          </ion-item-options>
-        </ion-item-sliding>
-        <ion-item-sliding>
-          <ion-item>
-            <ion-avatar item-left slot="item-left">
+            </Button>
+          </ItemOptions>
+        </ItemSliding>
+        <ItemSliding>
+          <Item>
+            <Avatar item-left slot="item-left">
               <img src="http://placehold.it/36x36">
-            </ion-avatar>
+            </Avatar>
             <h2>按钮在右边</h2>
             <p>⬅️ 滑动出现按钮，再滑动则执行</p>
-          </ion-item>
+          </Item>
 
-          <ion-item-options side="right">
-            <ion-button expandable ion-button color="danger" @click="clickDelete">
-              <ion-icon name="trash"></ion-icon>
+          <ItemOptions side="right">
+            <Button expandable ion-button color="danger" @click="clickDelete">
+              <Icon name="trash"></Icon>
               Delete
-            </ion-button>
-          </ion-item-options>
-        </ion-item-sliding>
-        <ion-item-sliding>
-          <ion-item>
-            <ion-avatar item-left slot="item-left">
+            </Button>
+          </ItemOptions>
+        </ItemSliding>
+        <ItemSliding>
+          <Item>
+            <Avatar item-left slot="item-left">
               <img src="http://placehold.it/36x36">
-            </ion-avatar>
+            </Avatar>
             <h2>按钮在右边</h2>
             <p>⬅️ 滑动出现按钮，再滑动则执行</p>
-          </ion-item>
+          </Item>
 
-          <ion-item-options side="right">
-            <ion-button expandable ion-button color="danger" @click="clickDelete">
-              <ion-icon name="trash"></ion-icon>
+          <ItemOptions side="right">
+            <Button expandable ion-button color="danger" @click="clickDelete">
+              <Icon name="trash"></Icon>
               Delete
-            </ion-button>
-          </ion-item-options>
-        </ion-item-sliding>
-        <ion-item-sliding>
-          <ion-item>
-            <ion-avatar item-left slot="item-left">
+            </Button>
+          </ItemOptions>
+        </ItemSliding>
+        <ItemSliding>
+          <Item>
+            <Avatar item-left slot="item-left">
               <img src="http://placehold.it/36x36">
-            </ion-avatar>
+            </Avatar>
             <h2>按钮在右边</h2>
             <p>⬅️ 滑动出现按钮，再滑动则执行</p>
-          </ion-item>
+          </Item>
 
-          <ion-item-options side="right">
-            <ion-button expandable ion-button color="danger" @click="clickDelete">
-              <ion-icon name="trash"></ion-icon>
+          <ItemOptions side="right">
+            <Button expandable ion-button color="danger" @click="clickDelete">
+              <Icon name="trash"></Icon>
               Delete
-            </ion-button>
-          </ion-item-options>
-        </ion-item-sliding>
+            </Button>
+          </ItemOptions>
+        </ItemSliding>
 
-        <ion-item-sliding>
-          <ion-item>
-            <ion-avatar item-left slot="item-left">
+        <ItemSliding>
+          <Item>
+            <Avatar item-left slot="item-left">
               <img src="http://placehold.it/36x36">
-            </ion-avatar>
+            </Avatar>
             <h2>Icon在左边的</h2>
             <p>⬅️ 滑动出现按钮</p>
-          </ion-item>
+          </Item>
 
-          <ion-item-options side="right" icon-left>
-            <ion-button ion-button color="danger" @click="clickDelete">
-              <ion-icon name="trash"></ion-icon>
+          <ItemOptions side="right" icon-left>
+            <Button ion-button color="danger" @click="clickDelete">
+              <Icon name="trash"></Icon>
               Delete
-            </ion-button>
-          </ion-item-options>
-        </ion-item-sliding>
+            </Button>
+          </ItemOptions>
+        </ItemSliding>
 
 
-        <ion-item-sliding
+        <ItemSliding
           @ionDrag="slidingDrag"
           @ionSwipeLeft="slidingDragLeft"
           @ionSwipeRight="slidingDragRight"
           @ionSwipe="slidingSwipe">
-          <ion-item>
-            <ion-avatar item-left slot="item-left">
+          <Item>
+            <Avatar item-left slot="item-left">
               <img src="http://placehold.it/36x36">
-            </ion-avatar>
+            </Avatar>
             <h2>事件监听</h2>
             <p>↔️ 滑动出现按钮</p>
-          </ion-item>
-          <ion-item-options side="left">
-            <ion-button expandable ion-button color="danger" @click="clickDelete">
-              <ion-icon name="trash"></ion-icon>
+          </Item>
+          <ItemOptions side="left">
+            <Button expandable ion-button color="danger" @click="clickDelete">
+              <Icon name="trash"></Icon>
               Delete
-            </ion-button>
-          </ion-item-options>
-          <ion-item-options side="right">
-            <ion-button ion-button color="danger" @click="clickDelete">
-              <ion-icon name="trash"></ion-icon>
+            </Button>
+          </ItemOptions>
+          <ItemOptions side="right">
+            <Button ion-button color="danger" @click="clickDelete">
+              <Icon name="trash"></Icon>
               Delete
-            </ion-button>
-          </ion-item-options>
-        </ion-item-sliding>
+            </Button>
+          </ItemOptions>
+        </ItemSliding>
 
 
-      </ion-list>
-    </ion-content>
-  </ion-page>
+      </List>
+    </Content>
+  </Page>
 </template>
 <style lang="scss">
 

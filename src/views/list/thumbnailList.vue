@@ -1,35 +1,35 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">ThumbnailList</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>ThumbnailList</Title>
+      </Navbar>
+    </Header>
+    <Content>
 
 
-      <ion-list>
-        <ion-item>
-          <ion-thumbnail item-left slot="item-left">
+      <List>
+        <Item>
+          <Thumbnail item-left slot="item-left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-totoro.png">
-          </ion-thumbnail>
+          </Thumbnail>
           <h2>My Neighbor Totoro</h2>
           <p>Hayao Miyazaki • 1988</p>
-          <ion-button ion-button type="clear" slot="item-right" item-right>View</ion-button>
-        </ion-item>
-        <ion-item>
-          <ion-thumbnail item-left slot="item-left">
+          <Button ion-button type="clear" slot="item-right" item-right>View</Button>
+        </Item>
+        <Item>
+          <Thumbnail item-left slot="item-left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-rotla.png">
-          </ion-thumbnail>
+          </Thumbnail>
           <h2>My Neighbor Totoro</h2>
           <p>Hayao Miyazaki • 1988</p>
-          <ion-button ion-button type="clear" slot="item-right" item-right>View</ion-button>
-        </ion-item>
+          <Button ion-button type="clear" slot="item-right" item-right>View</Button>
+        </Item>
 
-      </ion-list>
+      </List>
 
-    </ion-content>
-  </ion-page>
+    </Content>
+  </Page>
 </template>
 <style scoped lang="scss">
 

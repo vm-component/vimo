@@ -1,26 +1,20 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">Alert</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding>
-      <ion-button type="block" @click="alert()">Alert</ion-button>
-      <ion-button color="danger" type="block" @click="confirm()">Confirm</ion-button>
-      <ion-button color="secondary" type="block" @click="threeBtn()">Three Button</ion-button>
-      <ion-button color="dark" type="block" @click="input()">Input</ion-button>
-      <ion-button color="dark" type="block" @click="checkbox()">Checkbox</ion-button>
-      <ion-button color="primary" type="block" @click="radio()">Radio</ion-button>
-    </ion-content>
-  </ion-page>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>Alert</Title>
+      </Navbar>
+    </Header>
+    <Content padding>
+      <Button type="block" @click="alert()">Alert</Button>
+      <Button color="danger" type="block" @click="confirm()">Confirm</Button>
+      <Button color="secondary" type="block" @click="threeBtn()">Three Button</Button>
+      <Button color="dark" type="block" @click="input()">Input</Button>
+      <Button color="dark" type="block" @click="checkbox()">Checkbox</Button>
+      <Button color="primary" type="block" @click="radio()">Radio</Button>
+    </Content>
+  </Page>
 </template>
-<style scoped lang="scss">
-  .alertDemo {
-    text-align: center;
-    padding: 30px;
-  }
-</style>
 <script type="text/ecmascript-6">
   export default{
     data(){
@@ -349,3 +343,4 @@
     },
   }
 </script>
+<style lang="scss"></style>

@@ -15,7 +15,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-list',
+    name: 'List',
     data(){
       return {}
     },

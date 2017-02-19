@@ -6,7 +6,7 @@
 </template>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-segment-button',
+    name: 'SegmentButton',
     data(){
       return {
         isSelect: false, // 标志当前是否选中

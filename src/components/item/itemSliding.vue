@@ -39,7 +39,7 @@
   let startCood;
 
   export default{
-    name: 'ion-item-sliding',
+    name: 'ItemSliding',
     data(){
       return {
         itemInstance: null,// 子组件item的实例

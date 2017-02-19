@@ -1,124 +1,124 @@
 <template>
-  <ion-page>
+  <Page>
     <!--content-->
-    <ion-header>
+    <Header>
       <!--menutoggle-->
-      <ion-navbar :hideBackButton="true">
+      <Navbar :hideBackButton="true">
         <!--menutoggle-->
-        <ion-button @click="$menu.open('menu')" left icon-only role="bar-button" shape="menutoggle" slot="button">
-          <ion-icon class="icon" name="menu"></ion-icon>
-        </ion-button>
+        <Button @click="$menu.open('menu')" left icon-only role="bar-button" shape="menutoggle" slot="button">
+          <Icon class="icon" name="menu"></Icon>
+        </Button>
 
-        <ion-title slot="content" title="VueMobile"></ion-title>
+        <Title>Vimo组件</Title>
 
-        <ion-button @click="$menu.open('author')" right icon-only role="bar-button" shape="menutoggle" slot="button">
-          <ion-icon class="icon" name="person"></ion-icon>
-        </ion-button>
+        <Button @click="$menu.open('author')" right icon-only role="bar-button" shape="menutoggle" slot="button">
+          <Icon class="icon" name="person"></Icon>
+        </Button>
 
 
-      </ion-navbar>
-      <!--<ion-navbar>-->
-      <!--<ion-title>Action Sheet</ion-title>-->
-      <!--</ion-navbar>-->
-    </ion-header>
-    <ion-content>
-      <ion-list>
+      </Navbar>
+      <!--<Navbar>-->
+      <!--<Title>Action Sheet</Title>-->
+      <!--</Navbar>-->
+    </Header>
+    <Content>
+      <List>
         <!--基础组件-->
-        <ion-list-header>
+        <ListHeader>
           基础组件
-        </ion-list-header>
+        </ListHeader>
         <!--group-->
-        <ion-item-group>
-          <ion-item button :to="{name: 'app'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+        <ItemGroup>
+          <Item button :to="{name: 'app'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             App(ion-app)
-          </ion-item>
-          <ion-item button :to="{name: 'content'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'content'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Content(ion-content)
-          </ion-item>
-          <ion-item button :to="{name: 'toolbar'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'toolbar'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Toolbar(ion-toolbar)
-          </ion-item>
+          </Item>
 
-        </ion-item-group>
+        </ItemGroup>
 
 
         <!--通用组件-->
-        <ion-list-header>
+        <ListHeader>
           通用组件
-        </ion-list-header>
+        </ListHeader>
         <!--group-->
-        <ion-item-group>
-          <ion-item button :to="{name: 'button'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+        <ItemGroup>
+          <Item button :to="{name: 'button'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Button(ion-button)
-          </ion-item>
-          <ion-item button :to="{name: 'icon'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'icon'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Icon(ion-icon)
-          </ion-item>
-          <ion-item button :to="{name: 'spinner'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'spinner'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Spinner(ion-spinner)
-          </ion-item>
-          <ion-item button :to="{name: 'list'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'list'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             List(ion-list)
-          </ion-item>
+          </Item>
 
-          <ion-item button :to="{name: 'searchbar'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          <Item button :to="{name: 'searchbar'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Searchbar(ion-searchbar)
-          </ion-item>
-          <ion-item button :to="{name: 'tabs'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'tabs'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Tabs(ion-tabs)
-          </ion-item>
-          <ion-item button :to="{name: 'segment'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'segment'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Segment(ion-segment)
-          </ion-item>
+          </Item>
 
-        </ion-item-group>
+        </ItemGroup>
 
 
         <!--弹出层组件-->
-        <ion-list-header>
+        <ListHeader>
           弹出层组件
-        </ion-list-header>
+        </ListHeader>
         <!--group-->
-        <ion-item-group>
-          <ion-item button :to="{name: 'actionSheet'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+        <ItemGroup>
+          <Item button :to="{name: 'actionSheet'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             ActionSheet
-          </ion-item>
-          <ion-item button :to="{name: 'alert'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'alert'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Alert
-          </ion-item>
-          <ion-item button :to="{name: 'toast'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'toast'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Toast
-          </ion-item>
-          <ion-item button :to="{name: 'backdrop'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'backdrop'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Backdrop
-          </ion-item>
-          <ion-item button :to="{name: 'loading'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'loading'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Loading
-          </ion-item>
-          <ion-item button :to="{name: 'modal'}">
-            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+          </Item>
+          <Item button :to="{name: 'modal'}">
+            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
             Modal
-          </ion-item>
+          </Item>
 
-        </ion-item-group>
-      </ion-list>
-    </ion-content>
-  </ion-page>
+        </ItemGroup>
+      </List>
+    </Content>
+  </Page>
 </template>
 <style lang="scss">
 

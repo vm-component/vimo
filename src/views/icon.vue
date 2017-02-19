@@ -1,16 +1,16 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title>Icon</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding class="iconDemo">
-      <ion-icon color="primary" name="ionic"></ion-icon>
-      <ion-icon color="danger" ios="ionic"></ion-icon>
-      <ion-icon color="secondary" md="ionic"></ion-icon>
-    </ion-content>
-  </ion-page>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>Icon</Title>
+      </Navbar>
+    </Header>
+    <Content padding class="iconDemo">
+      <Icon color="primary" name="ionic"></Icon>
+      <Icon color="danger" ios="ionic"></Icon>
+      <Icon color="secondary" md="ionic"></Icon>
+    </Content>
+  </Page>
 </template>
 <style lang="scss">
   .iconDemo{

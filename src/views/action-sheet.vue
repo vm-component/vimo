@@ -1,22 +1,22 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">Action Sheet</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>Action Sheet</Title>
+      </Navbar>
+    </Header>
+    <Content padding>
 
-      <ion-button type="block" @click="showActionSheet1()" color="primary">
+      <Button type="block" @click="showActionSheet1()" color="primary">
         Basic Action Sheet
-      </ion-button>
+      </Button>
 
-      <ion-button type="block" @click="showActionSheet2()" color="primary">
+      <Button type="block" @click="showActionSheet2()" color="primary">
         No Cancel Action Sheet
-      </ion-button>
+      </Button>
 
-    </ion-content>
-  </ion-page>
+    </Content>
+  </Page>
 </template>
 
 <!--这个是actionsheet的模拟-->

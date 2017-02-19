@@ -1,32 +1,30 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title slot="content">ListDividers</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
-      <ion-item-group>
-        <ion-item-divider color="light">A</ion-item-divider>
-        <ion-item>Angola</ion-item>
-        <ion-item>Angular</ion-item>
-        <ion-item>America</ion-item>
-        <ion-item>Arg</ion-item>
-      </ion-item-group>
-      <ion-item-group>
-        <ion-item-divider color="light">B</ion-item-divider>
-        <ion-item>Bee</ion-item>
-        <ion-item>Book</ion-item>
-        <ion-item>Back</ion-item>
-        <ion-item>Bear</ion-item>
-      </ion-item-group>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>ListDividers</Title>
+      </Navbar>
+    </Header>
+    <Content>
+      <ItemGroup>
+        <ItemDivider color="light">A</ItemDivider>
+        <Item>Angola</Item>
+        <Item>Angular</Item>
+        <Item>America</Item>
+        <Item>Arg</Item>
+      </ItemGroup>
+      <ItemGroup>
+        <ItemDivider color="light">B</ItemDivider>
+        <Item>Bee</Item>
+        <Item>Book</Item>
+        <Item>Back</Item>
+        <Item>Bear</Item>
+      </ItemGroup>
 
-
-
-    </ion-content>
-  </ion-page>
+    </Content>
+  </Page>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
 
 </style>
 <script type="text/ecmascript-6">

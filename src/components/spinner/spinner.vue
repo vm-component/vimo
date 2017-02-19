@@ -112,7 +112,7 @@
   };
 
   export default{
-    name: 'ion-spinner',
+    name: 'Spinner',
 
     props: {
       /**

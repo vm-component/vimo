@@ -1,11 +1,11 @@
 <template>
-  <div class="ion-page show-page" style="z-index:100">
+  <article class="ion-page show-page" style="z-index:100">
     <slot></slot>
-  </div>
+  </article>
 </template>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-page',
+    name: 'Page',
     data(){
       return {}
     },

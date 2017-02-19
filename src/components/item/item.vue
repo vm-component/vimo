@@ -2,7 +2,7 @@
   import ItemMixin from './itemMixin.vue';
   export default{
     mixins: [ItemMixin],
-    name: 'ion-item',
+    name: 'Item',
     data(){
       return {
         itemTypeName: 'item',

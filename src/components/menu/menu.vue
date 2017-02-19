@@ -3,10 +3,10 @@
        :type="type"
        :side="side"
        :class="{'show-menu':showMenu}">
-    <ion-backdrop
+    <Backdrop
       @click.native="$menu.close()"
       :isActive="showBackdrop"
-      :class="{'show-backdrop':showBackdrop}"></ion-backdrop>
+      :class="{'show-backdrop':showBackdrop}"></Backdrop>
 
     <transition
       :name="animationName"
@@ -60,7 +60,7 @@
   import Vue from 'vue';
 
   export default{
-    name: 'ion-menu',
+    name: 'Menu',
     data(){
       return {
         isOpen: false, // menu-inner 动画控制

@@ -9,7 +9,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'ion-badge',
+    name: 'Badge',
     data(){
       return {}
     },

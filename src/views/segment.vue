@@ -1,14 +1,56 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-navbar>
-        <ion-title>Segment</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content padding>
-      segment
-    </ion-content>
-  </ion-page>
+  <Page>
+    <Header>
+      <Navbar>
+        <Title>Segment</Title>
+      </Navbar>
+      <Toolbar>
+        <!--content-->
+        <Segment :value="relationship9" slot="content">
+          <SegmentButton value="friend1">friend1</SegmentButton>
+          <SegmentButton value="friend2">friend2</SegmentButton>
+          <SegmentButton value="friend3">friend2</SegmentButton>
+        </Segment>
+      </Toolbar>
+    </Header>
+    <Content padding>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+      <p>这里是数据</p>
+    </Content>
+    <Footer>
+      <Toolbar>
+        <!--content-->
+        <Segment :value="relationship9" slot="content">
+          <SegmentButton value="friend1">friend1</SegmentButton>
+          <SegmentButton value="friend2">friend2</SegmentButton>
+          <SegmentButton value="friend3">friend2</SegmentButton>
+        </Segment>
+      </Toolbar>
+    </Footer>
+  </Page>
 </template>
 <style lang="scss">
 
@@ -16,7 +58,9 @@
 <script type="text/ecmascript-6">
   export default{
     data(){
-      return {}
+      return {
+        relationship9:'friend1'
+      }
     },
     watch: {},
     computed: {},
