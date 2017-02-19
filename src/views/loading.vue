@@ -167,23 +167,34 @@
       // 同时开启两个
       showOther () {
         const _this = this;
+        // 第一个
         _this.$loading.present({
           content: '正在加载, 这个是开启的第一个, 没有Backdrop.',
           cssClass: 'cssClass',
           showBackdrop: false,
         });
 
+        // 第二个
         setTimeout(function () {
           _this.$loading.present({
             content: '正在加载, 这个是开启的第二个, 打开Backdrop.',
             cssClass: 'cssClass',
             showBackdrop: true,
           });
-          setTimeout(function () {
-            _this.$loading.dismiss().then(function () {
-              console.debug('全部的Loading都关闭了!')
-            })
-          },2000)
+
+          // 第三个
+         setTimeout(function () {
+           _this.$loading.present({
+             content: '正在加载, 这个是开启的第三个, 没有Backdrop.',
+             cssClass: 'cssClass',
+             showBackdrop: false,
+           });
+           setTimeout(function () {
+             _this.$loading.dismiss().then(function () {
+               console.debug('所有Loading都关闭了');
+             })
+           },2000)
+         },2000)
         },2000)
       },
 

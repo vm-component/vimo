@@ -110,7 +110,10 @@
             <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
             Loading
           </ion-item>
-
+          <ion-item button :to="{name: 'modal'}">
+            <!--<ion-icon slot="item-left" item-left color="danger" name="plane"></ion-icon>-->
+            Modal
+          </ion-item>
 
         </ion-item-group>
       </ion-list>
