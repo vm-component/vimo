@@ -30,15 +30,15 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'app'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             App(ion-app)
           </Item>
           <Item button :to="{name: 'content'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Content(ion-content)
           </Item>
           <Item button :to="{name: 'toolbar'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Toolbar(ion-toolbar)
           </Item>
 
@@ -52,32 +52,32 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'button'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Button(ion-button)
           </Item>
           <Item button :to="{name: 'icon'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Icon(ion-icon)
           </Item>
           <Item button :to="{name: 'spinner'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Spinner(ion-spinner)
           </Item>
           <Item button :to="{name: 'list'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             List(ion-list)
           </Item>
 
           <Item button :to="{name: 'searchbar'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Searchbar(ion-searchbar)
           </Item>
           <Item button :to="{name: 'tabs'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Tabs(ion-tabs)
           </Item>
           <Item button :to="{name: 'segment'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Segment(ion-segment)
           </Item>
 
@@ -91,27 +91,27 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'actionSheet'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             ActionSheet
           </Item>
           <Item button :to="{name: 'alert'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Alert
           </Item>
           <Item button :to="{name: 'toast'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Toast
           </Item>
           <Item button :to="{name: 'backdrop'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Backdrop
           </Item>
           <Item button :to="{name: 'loading'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Loading
           </Item>
           <Item button :to="{name: 'modal'}">
-            <!--<Icon slot="item-left" item-left color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
             Modal
           </Item>
 

@@ -11,20 +11,20 @@
           today
         </ListHeader>
         <Item>
-          <Avatar item-left slot="item-left">
+          <Avatar slot="left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
           </Avatar>
           <h2>Woody</h2>
           <p>This town ain't big enough for the two of us!</p>
-          <Note item-right slot="item-right">3:43 pm</Note>
+          <Note slot="right">3:43 pm</Note>
         </Item>
         <Item>
-          <Avatar item-left slot="item-left">
+          <Avatar slot="left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-buzz.png">
           </Avatar>
           <h2>Buzz Lightyear</h2>
           <p>My eyeballs could have been sucked from their sockets!</p>
-          <Note item-right slot="item-right">1:12 pm</Note>
+          <Note slot="right">1:12 pm</Note>
         </Item>
       </List>
 
@@ -33,20 +33,20 @@
           yesterday
         </ListHeader>
         <Item>
-          <Avatar item-left slot="item-left">
+          <Avatar slot="left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-hamm.png">
           </Avatar>
           <h2>Hamm</h2>
           <p>You heard of Kung Fu? Well get ready for pork chop.</p>
-          <Note item-right slot="item-right">11:12 pm</Note>
+          <Note slot="right">11:12 pm</Note>
         </Item>
         <Item>
-          <Avatar item-left slot="item-left">
+          <Avatar slot="left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-slinky.png">
           </Avatar>
           <h2>Slinky Dog</h2>
           <p>I may not be a smart dog, but I know what roadkill is.</p>
-          <Note item-right slot="item-right">12:12 pm</Note>
+          <Note slot="right">12:12 pm</Note>
         </Item>
       </List>
     </Content>

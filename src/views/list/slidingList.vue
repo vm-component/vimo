@@ -12,7 +12,7 @@
         </ListHeader>
         <ItemSliding>
           <Item>
-            <Avatar item-left slot="item-left">
+            <Avatar slot="left">
               <img src="http://placehold.it/36x36">
             </Avatar>
             <h2>两边都有按钮</h2>
@@ -37,7 +37,7 @@
         </ItemSliding>
         <ItemSliding>
           <Item>
-            <Avatar item-left slot="item-left">
+            <Avatar slot="left">
               <img src="http://placehold.it/36x36">
             </Avatar>
             <h2>按钮在右边</h2>
@@ -52,7 +52,7 @@
         </ItemSliding>
         <ItemSliding>
           <Item>
-            <Avatar item-left slot="item-left">
+            <Avatar slot="left">
               <img src="http://placehold.it/36x36">
             </Avatar>
             <h2>按钮在左边</h2>
@@ -72,7 +72,7 @@
 
         <ItemSliding>
           <Item>
-            <Avatar item-left slot="item-left">
+            <Avatar slot="left">
               <img src="http://placehold.it/36x36">
             </Avatar>
             <h2>按钮在右边</h2>
@@ -88,7 +88,7 @@
         </ItemSliding>
         <ItemSliding>
           <Item>
-            <Avatar item-left slot="item-left">
+            <Avatar slot="left">
               <img src="http://placehold.it/36x36">
             </Avatar>
             <h2>按钮在右边</h2>
@@ -104,7 +104,7 @@
         </ItemSliding>
         <ItemSliding>
           <Item>
-            <Avatar item-left slot="item-left">
+            <Avatar slot="left">
               <img src="http://placehold.it/36x36">
             </Avatar>
             <h2>按钮在右边</h2>
@@ -120,7 +120,7 @@
         </ItemSliding>
         <ItemSliding>
           <Item>
-            <Avatar item-left slot="item-left">
+            <Avatar slot="left">
               <img src="http://placehold.it/36x36">
             </Avatar>
             <h2>按钮在右边</h2>
@@ -137,7 +137,7 @@
 
         <ItemSliding>
           <Item>
-            <Avatar item-left slot="item-left">
+            <Avatar slot="left">
               <img src="http://placehold.it/36x36">
             </Avatar>
             <h2>Icon在左边的</h2>
@@ -159,7 +159,7 @@
           @ionSwipeRight="slidingDragRight"
           @ionSwipe="slidingSwipe">
           <Item>
-            <Avatar item-left slot="item-left">
+            <Avatar slot="left">
               <img src="http://placehold.it/36x36">
             </Avatar>
             <h2>事件监听</h2>

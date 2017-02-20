@@ -98,6 +98,11 @@ const routes = [
     component: require('./views/list.vue'),
   },
   {
+    path: '/listForAll',
+    name: 'list.listForAll',
+    component: require('./views/list/listForAll.vue'),
+  },
+  {
     path: '/basicList',
     name: 'list.basicList',
     component: require('./views/list/basicList.vue'),

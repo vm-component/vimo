@@ -13,6 +13,7 @@
         </ListHeader>
         <!--group-->
         <ItemGroup>
+          <Item button :to="{name:'list.listForAll'}">ListForAll</Item>
           <Item button :to="{name:'list.basicList'}">BasicList</Item>
           <Item button :to="{name:'list.noLine'}">NoLine</Item>
           <Item button :to="{name:'list.insetList'}">InsetList</Item>

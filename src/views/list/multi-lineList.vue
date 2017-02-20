@@ -11,7 +11,7 @@
           today
         </ListHeader>
         <Item>
-          <Avatar item-left slot="item-left">
+          <Avatar slot="left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
           </Avatar>
           <h2>Woody</h2>
@@ -19,7 +19,7 @@
           <p>This town ain't big enough for the two of us!</p>
         </Item>
         <Item>
-          <Avatar item-left slot="item-left">
+          <Avatar slot="left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-buzz.png">
           </Avatar>
           <h2>Buzz Lightyear</h2>
@@ -33,7 +33,7 @@
           yesterday
         </ListHeader>
         <Item>
-          <Avatar item-left slot="item-left">
+          <Avatar slot="left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-hamm.png">
           </Avatar>
           <h2>Hamm</h2>
@@ -41,7 +41,7 @@
           <p>You heard of Kung Fu? Well get ready for pork chop.</p>
         </Item>
         <Item>
-          <Avatar item-left slot="item-left">
+          <Avatar slot="left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-slinky.png">
           </Avatar>
           <h2>Slinky Dog</h2>

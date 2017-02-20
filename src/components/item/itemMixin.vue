@@ -1,21 +1,22 @@
 <template>
   <div :class="[itemClass,listHeaderClass,colorClass]" @click="directTo()">
     <!--以下组件显示在此处：[item-left],ion-checkbox:not([item-right])-->
-    <slot name="item-left"></slot>
+    <slot name="left"></slot>
+
     <!--<ng-content select="[item-left],ion-checkbox:not([item-right])"></ng-content>-->
     <div class="item-inner">
       <div class="input-wrapper">
         <!--如果是ion-label则单独显示，如果不是则显示在ion-label中-->
         <Label>
           <slot></slot>
-          <slot name="item-label"></slot>
+          <slot name="label"></slot>
         </Label>
         <!--以下组件显示在此处：ion-select,ion-input,ion-textarea,ion-datetime,ion-range,[item-content]-->
-        <slot name="item-content"></slot>
+        <slot name="content"></slot>
       </div>
 
       <!--以下组件显示在此处：[item-right],ion-radio,ion-toggle-->
-      <slot name="item-right"></slot>
+      <slot name="right"></slot>
       <!--<ion-reorder *ngIf="_shouldHaveReorder"></ion-reorder>-->
     </div>
     <div class="button-effect"></div>
@@ -41,7 +42,7 @@
        * */
       mode: {
         type: String,
-        default:  VM.config.get('mode') || 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark
@@ -82,12 +83,19 @@
         }
       }
     },
-    created () {
-    },
+    created () {},
     mounted () {
-    },
-    activated () {
-    },
-    components: {}
+      // 为slot左右的元素设定属性
+      if(!!this.$slots && !!this.$slots['left']){
+        this.$slots['left'].forEach(function (item) {
+          item.elm.setAttribute('item-left','')
+        })
+      }
+      if(!!this.$slots && !!this.$slots['right']){
+        this.$slots['right'].forEach(function (item) {
+          item.elm.setAttribute('item-right','')
+        })
+      }
+    }
   }
 </script>
