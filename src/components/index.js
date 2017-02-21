@@ -156,6 +156,7 @@ module.exports = {
       });
     }
 
+
     // // --- 监听对body的点击
     // document.body.addEventListener('click',function () {
     //   // 如果点击则全局发送item-sliding组件关机事件

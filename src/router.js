@@ -87,6 +87,11 @@ const routes = [
     component: require('./views/segment.vue'),
   },
   {
+    path: '/input',
+    name: 'input',
+    component: require('./views/input.vue'),
+  },
+  {
     path: '/searchbar',
     name: 'searchbar',
     component: require('./views/searchbar.vue'),

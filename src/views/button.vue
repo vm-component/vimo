@@ -6,7 +6,7 @@
       </Navbar>
     </Header>
     <Content padding>
-      <h4>Colors</h4>
+      <p>Colors</p>
       <Button @click="primary()" color="primary">primary</Button>
       <Button color="secondary" :isStrong="true">secondary</Button>
       <Button color="danger">danger</Button>
@@ -15,36 +15,35 @@
       <Button color="dark">dark</Button>
       <Button>default color</Button>
 
-      <h4>Spinner</h4>
+      <p>Spinner</p>
       <Button>
         Loading
         <Spinner  color="light" name="ios-small"></Spinner>
       </Button>
 
-
-      <h4>Shaps</h4>
+      <p>Shaps</p>
       <Button shape="full">full</Button>
       <Button shape="block">block</Button>
       <Button shape="round">round</Button>
 
-      <h4>Type</h4>
+      <p>Type</p>
       <!--solid-->
       <Button type="solid" color="secondary">solid</Button>
       <Button type="outline" color="secondary">outline</Button>
       <Button type="clear" color="secondary">clear</Button>
 
 
-      <h4>Outline</h4>
+      <p>Outline</p>
       <Button type="outline" shape="full" color="secondary">outline + full</Button>
       <Button type="outline" shape="block" color="secondary">outline + block</Button>
       <Button type="outline" shape="round" color="secondary">outline + round</Button>
 
-      <h4>Size</h4>
+      <p>Size</p>
       <Button color="light" size="large">large</Button>
       <Button color="light" size="default">default</Button>
       <Button color="light" size="small">small</Button>
 
-      <h4>Icons</h4>
+      <p>Icons</p>
       <Button color="dark icon-left" icon-left>
         <Icon class="icon" name="star"></Icon>
         Left Icon

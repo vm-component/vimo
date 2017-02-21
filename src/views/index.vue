@@ -31,58 +31,25 @@
         <ItemGroup>
           <Item button :to="{name: 'app'}">
             <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            App(ion-app)
+            App
           </Item>
-          <Item button :to="{name: 'content'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Content(ion-content)
-          </Item>
-          <Item button :to="{name: 'toolbar'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Toolbar(ion-toolbar)
-          </Item>
-
+          <Item button :to="{name: 'content'}">Content</Item>
+          <Item button :to="{name: 'toolbar'}">Toolbar</Item>
         </ItemGroup>
-
 
         <!--通用组件-->
-        <ListHeader>
-          通用组件
-        </ListHeader>
+        <ListHeader>通用组件</ListHeader>
         <!--group-->
         <ItemGroup>
-          <Item button :to="{name: 'button'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Button(ion-button)
-          </Item>
-          <Item button :to="{name: 'icon'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Icon(ion-icon)
-          </Item>
-          <Item button :to="{name: 'spinner'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Spinner(ion-spinner)
-          </Item>
-          <Item button :to="{name: 'list'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            List(ion-list)
-          </Item>
-
-          <Item button :to="{name: 'searchbar'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Searchbar(ion-searchbar)
-          </Item>
-          <Item button :to="{name: 'tabs'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Tabs(ion-tabs)
-          </Item>
-          <Item button :to="{name: 'segment'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Segment(ion-segment)
-          </Item>
-
+          <Item button :to="{name: 'button'}">Button</Item>
+          <Item button :to="{name: 'icon'}">Icon</Item>
+          <Item button :to="{name: 'spinner'}">Spinner</Item>
+          <Item button :to="{name: 'list'}">List</Item>
+          <Item button :to="{name: 'searchbar'}">Searchbar</Item>
+          <Item button :to="{name: 'tabs'}">Tabs</Item>
+          <Item button :to="{name: 'segment'}">Segment</Item>
+          <Item button :to="{name: 'input'}">Input</Item>
         </ItemGroup>
-
 
         <!--弹出层组件-->
         <ListHeader>
@@ -90,30 +57,12 @@
         </ListHeader>
         <!--group-->
         <ItemGroup>
-          <Item button :to="{name: 'actionSheet'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            ActionSheet
-          </Item>
-          <Item button :to="{name: 'alert'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Alert
-          </Item>
-          <Item button :to="{name: 'toast'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Toast
-          </Item>
-          <Item button :to="{name: 'backdrop'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Backdrop
-          </Item>
-          <Item button :to="{name: 'loading'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Loading
-          </Item>
-          <Item button :to="{name: 'modal'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
-            Modal
-          </Item>
+          <Item button :to="{name: 'actionSheet'}">ActionSheet</Item>
+          <Item button :to="{name: 'alert'}">Alert</Item>
+          <Item button :to="{name: 'toast'}">Toast</Item>
+          <Item button :to="{name: 'backdrop'}">Backdrop</Item>
+          <Item button :to="{name: 'loading'}">Loading</Item>
+          <Item button :to="{name: 'modal'}">Modal</Item>
 
         </ItemGroup>
       </List>

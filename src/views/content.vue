@@ -83,7 +83,7 @@ s
     computed: {},
     methods: {
       setTitle(val){
-        this.$content.setTitle(val)
+        this.$nav.setTitle(val)
       },
       scrollToTop: function () {
         this.$content.scrollToTop();
