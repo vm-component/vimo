@@ -106,8 +106,12 @@
   }
 </script>
 <style lang="scss">
-  @import './app';
-  @import './app.ios';
-  @import './cordova';
-  @import './cordova.ios';
+  @import './app.scss';
+  @import './app.ios.scss';
+  /*@import './app.md.scss';*/
+  /*@import './app.wp.scss';*/
+  @import './cordova.scss';
+  @import './cordova.ios.scss';
+  /*@import './cordova.md.scss';*/
+  /*@import './cordova.wp.scss';*/
 </style>
