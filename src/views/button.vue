@@ -75,9 +75,6 @@
   }
 </style>
 <script type="text/ecmascript-6">
-  import Button from '../components/button'
-  import Icon from '../components/icon';
-
   export default{
     data(){
       return {}
@@ -86,10 +83,6 @@
       primary: function () {
         alert('primary');
       }
-    },
-    components: {
-      'ion-button': Button,
-      'ion-icon': Icon,
     },
   }
 </script>

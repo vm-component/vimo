@@ -7,10 +7,10 @@
     <div class="item-inner">
       <div class="input-wrapper">
         <!--如果是ion-label则单独显示，如果不是则显示在ion-label中-->
-        <Label>
-          <slot></slot>
-          <slot name="label"></slot>
-        </Label>
+        <slot></slot>
+        <!--<Label>-->
+        <slot name="label"></slot>
+        <!--</Label>-->
         <!--以下组件显示在此处：ion-select,ion-input,ion-textarea,ion-datetime,ion-range,[item-content]-->
         <slot name="content"></slot>
       </div>
@@ -83,19 +83,25 @@
         }
       }
     },
-    created () {},
+    created () {
+
+    },
+    beforeMount(){
+
+    },
     mounted () {
-      // 为slot左右的元素设定属性
-      if(!!this.$slots && !!this.$slots['left']){
+      // 为slot="left"/slot="right"的沟槽设定属性
+      if (!!this.$slots && !!this.$slots['left']) {
         this.$slots['left'].forEach(function (item) {
-          item.elm.setAttribute('item-left','')
+          item.elm.setAttribute('item-left', '')
         })
       }
-      if(!!this.$slots && !!this.$slots['right']){
+      if (!!this.$slots && !!this.$slots['right']) {
         this.$slots['right'].forEach(function (item) {
-          item.elm.setAttribute('item-right','')
+          item.elm.setAttribute('item-right', '')
         })
       }
+
     }
   }
 </script>

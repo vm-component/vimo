@@ -244,12 +244,10 @@
   }
 </script>
 <style lang="scss">
-
   @import './action-sheet.scss';
   @import './action-sheet.ios.scss';
   @import './action-sheet.wp.scss';
   @import './action-sheet.md.scss';
   // transition
   @import '../../transitions/actionSheet';
-
 </style>

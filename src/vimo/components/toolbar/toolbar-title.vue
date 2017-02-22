@@ -6,13 +6,12 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  import { urlChange } from '../../util/dom'
   export default{
     name: 'Title',
     data(){
       return {
         titleInner: this.title,
-        isInPage: false, // 该组件只是在ion-page中，中间没有ion-menu
-        isInPageHeader: false, // 该组件在ion-page -> ion-header中，这个条件满足才会更新document.title
       }
     },
     props: {
@@ -41,7 +40,7 @@
     },
     methods: {
       /**
-       * 获取title
+       * 获取title, 兼容各种模式
        * @return {String}
        * */
       getTitle(){
@@ -76,11 +75,13 @@
         }
         return _title
       },
+
       /**
        * Sets the document title.
        * 这里会对微信/钉钉/支付宝内部的title设置做兼容性处理
        * @param {String} val - 设置的document.title值
        * */
+      // TODO: 设置title需要有一个config配置: 是否同步设置document.title
       setTitle (val) {
         let iframe;
         const _this = this;
@@ -107,15 +108,51 @@
           _this.titleInner = val;
         }
       },
+
+      /**
+       * 只在Navbar中的Title才会具有更新Title的特性!!!
+       * 且, 一个Page只能拥有一个Navbar, 当在Navbar中设置Title, 则Title的方法
+       * 将赋予页面Page, 故调用指纹为: this.$nav.setTitle
+       * */
+      refreshTitle(){
+        this.titleInner = this.getTitle();
+        console.log('refreshTitle')
+        console.log('document.title: '+ document.title)
+        console.log('this.titleInner: '+ this.titleInner)
+
+        if (this.$parent.$options._componentTag === 'Navbar' && document.title != this.titleInner) {
+
+          console.log('this.$vnode.context')
+          console.log(this.$vnode.context)
+          if (!this.$vnode.context.$nav) {
+            this.$vnode.context.$nav = {}
+          }
+          this.$vnode.context.$nav = {
+            setTitle: this.setTitle,
+            getTitle: this.getTitle,
+          }
+          this.setTitle(this.titleInner);
+
+          console.info('refreshTitle: ' + this.titleInner)
+        }
+      },
+
+      /**
+       * 当开启了keep-alive时, 第二次进入的页面将不再触发mounted钩子,
+       * 也就是说, 不会再更新title, 这里需要监听urlChange, 当前页面的title
+       * 与document.title不同时, 进行设置.
+       * */
+      autoRefreshTitle(){
+        const _this = this;
+        urlChange(function (ev) {
+          _this.refreshTitle();
+        })
+      },
+
     },
     mounted(){
-      // 只在Navbar中的Title才会具有更新Title的特性
-      // 将挂载点同步到页面this上
-      this.titleInner = this.getTitle();
-      if(this.$parent.$options._componentTag === 'Navbar'){
-        this.setTitle(this.titleInner)
-      }
-
+      this.refreshTitle()
+      this.autoRefreshTitle();
     }
   }
 </script>

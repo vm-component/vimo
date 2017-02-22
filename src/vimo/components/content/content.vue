@@ -1,6 +1,6 @@
 <template>
-  <section class="ion-content content-ios outer-content" :class="{'statusbar-padding':$hasStatusBar}">
-    <div ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
+  <article class="ion-content content-ios outer-content" :class="{'statusbar-padding':$hasStatusBar}">
+    <section ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
       <!--固定在页面中的内容-->
       <!--固定到顶部-->
       <div ion-fixed top>
@@ -11,13 +11,13 @@
       <div ion-fixed bottom>
         <slot name="fixedBottom"></slot>
       </div>
-    </div>
-    <div ref="scrollContent" class="scroll-content" :style="scrollContentStyle">
+    </section>
+    <section ref="scrollContent" class="scroll-content" :style="scrollContentStyle">
       <!--默认是能滚动的内容-->
       <slot></slot>
-    </div>
-    <slot name="ion-refresher"></slot>
-  </section>
+    </section>
+    <slot name="Refresher"></slot>
+  </article>
 </template>
 
 <script type="text/ecmascript-6">
@@ -77,7 +77,6 @@
         // footerBarHeight = getStyle(_footerInstance.$el, 'height');
         // footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
 
-
         // 得到header和footer的高度
         // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
         // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
@@ -130,7 +129,7 @@
       },
 
       /**
-       * 计算content的dimensions，一下都是固有属性，只读！
+       * 计算content的dimensions，以下都是固有属性，只读！
        * */
       getContentDimensions(){
         const _this = this;

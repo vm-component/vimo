@@ -6,7 +6,7 @@
  *
  * */
 import Vue from 'vue';
-import { initVimo } from './index.js'
+import { initVimo } from './vimo/index.js'
 import App from './App';
 import routerFactory from './router.js';
 import attachFastClick from 'fastclick';

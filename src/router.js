@@ -1,10 +1,18 @@
 /**
  * Created by Hsiang on 16/12/12.
- * 路由
+ *
+ * @name router
+ * @description
+ *
+ * 生成路由实例的工厂函数
+ *
  */
 'use strict';
 import VueRouter from 'vue-router';
 
+/**
+ * 路由配置表
+ * */
 const routes = [
   {
     path: '/',
@@ -172,39 +180,27 @@ const routes = [
   },
 ];
 
+/**
+ * 初始化实例
+ * */
 const router = new VueRouter({
   mode: 'hash', //  hash 模式  history 模式
   base: '/', // 默认值: "/",应用的基路径。例如，如果整个单页应用服务在 /app/ 下，然后 base 就应该设为 "/app/"。
   routes: routes // （缩写）相当于 routes: routes
 });
 
+/**
+ * 路由安装及钩子配置
+ * */
 function routerFactory (Vue) {
   Vue.use(VueRouter);
 
   router.beforeEach((to, from, next) => {
-    // 如果路由切换的时候Menu是开启的($currentMenuId)，
-    // 则掉起$closeMenu()，之后监听ionClose事件，
-    // 再执行next();
-    if(!!Vue.prototype.$actionSheet && Vue.prototype.$actionSheet.isActive){
-      Vue.prototype.$actionSheet.dismiss().then(function () {
-        // next()
-      },function () {
-        // next(false)
-      });
-      next()
-    }else if (!!Vue.prototype.$menu && !!Vue.prototype.$menu.currentMenuId) {
-      Vue.prototype.$menu.close().then(function () {
-        next();
-      },function () {
-        next(false);
-      });
-    }else{
-      next();
-    }
+    next();
   });
 
   return router
 }
-module.exports = routerFactory
+module.exports = routerFactory;
 
 

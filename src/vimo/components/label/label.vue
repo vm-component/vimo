@@ -1,11 +1,13 @@
 <template>
-  <div class="ion-label label" :class="[modeClass,colorClass]">
+  <label class="ion-label label" :class="[modeClass,colorClass]" :form="form">
     <slot></slot>
-  </div>
+  </label>
 </template>
 <style lang="scss">
-  @import "label";
-  @import "label.ios";
+  @import "./label.scss";
+  @import "./label.ios.scss";
+  /*@import "./label.md.scss";*/
+  /*@import "./label.wp.scss";*/
 </style>
 <script type="text/ecmascript-6">
   export default{
@@ -19,7 +21,7 @@
        * */
       mode: {
         type: String,
-        default:  VM.config.get('mode') || 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark
@@ -28,6 +30,23 @@
         type: String,
         default: '',
       },
+
+      /**
+       * 规定 label 字段所属的一个或多个表单。
+       * */
+      form: {
+        type: String,
+        default: '',
+      },
+
+      /**
+       * 规定 label 绑定到哪个表单元素。
+       * */
+      for: {
+        type: String,
+        default: '',
+      },
+
       /**
        * 可以是fixed/floating/stacked，这个和input与label的位置相关
        * fixed: A persistent label that sits next the input.

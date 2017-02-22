@@ -59,15 +59,13 @@
   </div>
 
 </template>
-<style scoped lang="scss">
+<style lang="scss">
   @import './alert.scss';
   @import './alert.ios.scss';
   @import './alert.wp.scss';
   @import './alert.md.scss';
   // transition
   @import '../../transitions/alert';
-
-
 </style>
 <script type="text/ecmascript-6">
   export default{
