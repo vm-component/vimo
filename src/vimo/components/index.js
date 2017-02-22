@@ -145,7 +145,6 @@ module.exports = {
     Vue.component(Spinner.name, Spinner);
 
 
-
     // 判断当前Platform是否为HyBrid, 判断初始化的组件形式
     if (!!window['VM'] && !!window['VM']['hybrid']) {
       console.debug('Vue.install: 使用HyBrid组件')

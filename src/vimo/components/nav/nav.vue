@@ -68,7 +68,6 @@
           }
         }
       });
-
       _this.$eventBus.$on('ionClosing', function () {
         // console.debug('$on ionClosing');
         _this.isMenuOpen = false;
