@@ -13,7 +13,9 @@
   export default{
     name: 'Label',
     data(){
-      return {}
+      return {
+        _item: null, // 父元素Item实例
+      }
     },
     props: {
       /**
@@ -45,35 +47,49 @@
       for: {
         type: String,
         default: '',
-      },
-
-      /**
-       * 可以是fixed/floating/stacked，这个和input与label的位置相关
-       * fixed: A persistent label that sits next the input.
-       * floating: A label that will float above the input if the input is empty or loses focus.
-       * stacked: A stacked label will always appear on top of the input.
-       * */
-      //TODO: 还未做
-      type: {
-        type: String,
-        default: null,
       }
+
     },
     watch: {},
     computed: {
       // 环境样式
-      modeClass: function () {
+      modeClass () {
         return `label-${this.mode}`
       },
       // 颜色
-      colorClass: function () {
+      colorClass () {
         return !!this.color ? (`label-${this.mode}-${this.color}`) : ''
-      },
+      }
+
     },
     methods: {},
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
+    created () {},
+    mounted () {
+      const _this = this;
+      // 向父组件Item传递Class
+      this._item = this.$parent;
+
+      /**
+       * 可以是fixed/floating/stacked，这个和input与label的位置相关
+       * fixed: 固定label宽度, 和input并列
+       * floating:  当input为空的时候, label盖在input上面; 当input有值, 则浮动到上部
+       * stacked: floating的特例, 不管有没有值, 都浮动到上部
+       * */
+      if (this.$el.getAttribute('fixed') !== null) {
+        this._item.isFixed = true;
+      }
+      if (this.$el.getAttribute('floating') !== null) {
+        this._item.isFloating = true;
+      }
+      if (this.$el.getAttribute('stacked') !== null) {
+        this._item.isStacked = true;
+      }
+      if (this.$el.getAttribute('inset') !== null) {
+        this._item.isInset = true;
+      }
+
+    },
+    activated () {},
     components: {}
   }
 </script>

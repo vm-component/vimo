@@ -1,10 +1,10 @@
 <template>
-  <div class="ion-input" :class="[modeClass]">
+  <div class="ion-input" :class="[modeClass]" @click="clickToFocus()">
 
     <input
       :class="[textInputClass]"
-      :value="valueInner"
-      :type="type"
+      :value="inputValue"
+      :type="typeValue"
       :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
@@ -15,22 +15,22 @@
       v-if="type!=='textarea'">
 
     <!--<textarea-->
-      <!--:class="[textInputClass]"-->
-      <!--:value="valueInner"-->
-      <!--:placeholder="placeholder"-->
-      <!--:disabled="disabled"-->
-      <!--:readonly="readonly"-->
-      <!--ref="textarea"-->
-      <!--@blur="inputBlurred($event)"-->
-      <!--@focus="inputFocused($event)"-->
-      <!--@input="inputChanged($event)"-->
-      <!--v-if="type==='textarea'"></textarea>-->
+    <!--:class="[textInputClass]"-->
+    <!--:value="inputValue"-->
+    <!--:placeholder="placeholder"-->
+    <!--:disabled="disabled"-->
+    <!--:readonly="readonly"-->
+    <!--ref="textarea"-->
+    <!--@blur="inputBlurred($event)"-->
+    <!--@focus="inputFocused($event)"-->
+    <!--@input="inputChanged($event)"-->
+    <!--v-if="type==='textarea'"></textarea>-->
 
 
     <!--<input [type]="type" aria-hidden="true" next-input *ngIf="_useAssist">-->
 
     <Button
-      v-if="clearInput"
+      v-if="clearInput && typeValue!=='textarea' && hasValue()"
       type="clear"
       class="text-input-clear-icon"
       @click="clearTextInput()"
@@ -61,26 +61,42 @@
    *
    * */
 
+  import { hasFocus } from '../../util/dom'
   export default{
     name: 'Input',
     data(){
       return {
 
-        valueInner: '', // 内部value值
+        inputValue: '', // 内部value值
+        typeValue: this.type, // 内部value值
 
-        itemInstance: null, // 外部item组件实例 -> 修改class
-        pageInstance: null, // 外部page组件实例 -> 调取scroll特性
+        _item: null, // 外部item组件实例 -> 修改class
+        _page: null, // 外部page组件实例 -> 调取scroll特性
+        _input: null, // 当前输入的主体, input/textarea
 
-        debounce:0, // 缓冲
+        debounce: 0, // 缓冲
+
+        _autoFocusAssist: null,
+        _autoComplete: null,
+        _autoCorrect: null,
+        _keyboardHeight: null,
+        _useAssist: null,
+        _usePadding: null,
+
+        _clearOnEdit: this.clearOnEdit,
+
       }
     },
     props: {
       /**
-       * 如果为true, 当输入值的时候一个清除按钮最在input左右边出现, 点击按钮则清除输入
+       * 如果为true, 当输入值的时候一个清除按钮会在input右边出现, 点击按钮则清除输入
+       * textarea没有这个特性
        * */
       clearInput: {
         type: Boolean,
-        default: false,
+        default: () => {
+          return true
+        },
       },
 
       /**
@@ -177,54 +193,163 @@
     methods: {
 
       /**
+       * 设置当前组件为focus状态
+       * */
+      setFocus(){
+        if (!hasFocus(this._input)) {
+
+          if (this._clearOnEdit) {
+            this.inputValue = '';
+          }
+
+          this._input.focus()
+        }
+      },
+
+      clickToFocus($event){
+        this.setFocus();
+      },
+
+      /**
        * @private
-       * 监听blur事件
+       * 监听并发送blur事件
        */
       inputBlurred($event){
+        // 向父组件Item添加标记
+        this.setItemHasFocusClass();
 
+        this.$emit('blur', $event)
       },
 
       /**
        * @private
-       * 监听focus事件
+       * 监听并发送focus事件
        */
       inputFocused($event){
+        // 向父组件Item添加标记
+        this.setItemHasFocusClass();
 
+        this.$emit('focus', $event)
+      },
+
+      /**
+       *  设置父组件Item被点中时的class
+       */
+      setItemHasFocusClass(){
+        if (this._item) {
+          this._item.inputHasFocus = hasFocus(this._input);
+        }
+      },
+
+      /**
+       *  设置父组件Item有值时的class
+       */
+      setItemHasValueClass(){
+        if (this._item) {
+          this._item.inputHasValue = this.hasValue();
+        }
       },
 
       /**
        * @private
-       * 监听input事件, 更新input的value(valueInner)
+       * 监听input事件, 更新input的value(inputValue)
        */
       inputChanged($event){
         const _this = this;
         // console.info('inner-inputChanged');
-        let _valueInner = !!$event.target ? $event.target.value : '';
-        if (!!_valueInner && _valueInner != undefined) {
-          _this.valueInner = _valueInner;
-        } else {
-          _this.valueInner = null;
-        }
+        _this.inputValue = !!$event.target ? $event.target.value : '';
+
+        _this.setItemHasValueClass();
 
         // TODO: setTimeout->debounce
         clearTimeout(_this.clearTimeout);
         _this.clearTimeout = setTimeout(function () {
-          // this.onChange(this.valueInner);
+          // this.onChange(this.inputValue);
           _this.$emit('ionInput', $event);
 
           // 通知父组件的v-model
-          _this.$emit('input', _this.valueInner);
+          _this.$emit('input', _this.inputValue);
         }, _this.debounce);
-      }
+      },
+
+      /**
+       * 判断input是否有value
+       * */
+      hasValue() {
+        const inputValue = this.inputValue;
+        return (inputValue !== null && inputValue !== undefined && inputValue !== '');
+      },
+
+      /**
+       * 点击清除输入项
+       * */
+      clearTextInput(){
+        console.debug('Should clear input');
+        this.inputValue = '';
+        this.setItemHasValueClass();
+      },
+
     },
     created () {},
     mounted () {
       console.debug('this')
-      console.debug()
-      if(this.$options._componentTag.toLowerCase() === 'textarea'){
-        this.typeInner = 'textarea'
+      console.debug(this)
+
+      if (this.$options._componentTag.toLowerCase() === 'textarea') {
+        this.typeValue = 'textarea'
       }
 
+      // 特性记录
+      this._autoFocusAssist = this.$config.get('autoFocusAssist', 'delay');
+      this._autoComplete = this.$config.get('autocomplete', 'off');
+      this._autoCorrect = this.$config.get('autocorrect', 'off');
+      this._keyboardHeight = this.$config.getNumber('keyboardHeight');
+      this._useAssist = this.$config.getBoolean('scrollAssist', false);
+      this._usePadding = this.$config.getBoolean('scrollPadding', this._useAssist);
+
+      // _item
+
+      console.debug('-------')
+      console.debug(this)
+      console.debug(this.name)
+
+      // 找到外部item实例
+      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
+        this._item = this.$parent;
+      }
+      // 找到外部页面实例
+      if (this.$vnode.context) {
+        this._page = this.$vnode.context
+      }
+
+      // 获取输入主体
+      if (this.$options._componentTag.toLowerCase() === 'input') {
+        this._input = this.$refs.input
+      } else if (this.$options._componentTag.toLowerCase() === 'textarea') {
+        this._input = this.$refs.textarea
+      }
+
+      if (this._item) {
+        if (this.type === 'textarea') {
+          this._item.isTextarea = true;
+        }
+        this._item.isInput = true;
+      }
+      // 默认情况下, 如果password有值, 则点击执行清空
+      if (this.type === 'password') {
+        this._clearOnEdit = true;
+      }
+
+      // scroll事件绑定, 用于处理input的focus和blur时, 文档的滚动
+      // only listen to content scroll events if there is content
+      // if (_content) {
+      //   this._scrollStart = _content.ionScrollStart.subscribe((ev: ScrollEvent) => {
+      //     this.scrollHideFocus(ev, true);
+      //   });
+      //   this._scrollEnd = _content.ionScrollEnd.subscribe((ev: ScrollEvent) => {
+      //     this.scrollHideFocus(ev, false);
+      //   });
+      // }
 
     },
     activated () {},
