@@ -392,7 +392,6 @@
       this._searchbarIcon = this.$refs.searchbarIcon
       this._searchbarInput = this.$refs.searchbarInput
       this._cancelButton = this.$refs.cancelButton.$el
-
       this._positionElements();
     },
   }

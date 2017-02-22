@@ -27,6 +27,7 @@ import Label from './label'
 // -----------------
 
 // ------- Input Form
+import Input from './input'
 import Toggle from './toggle'
 
 // ------- Bar
@@ -56,7 +57,6 @@ import prepareModal from './modal'
 
 const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
-
 import { eventBus } from '../util/events'
 module.exports = {
   version: '1.0.0',
@@ -81,8 +81,9 @@ module.exports = {
     // ----------- 全局 方法/属性 定义 -----------
 
     // 组件配置参数
-
     Vue.prototype.$config = window.VM.config || null;
+    Vue.prototype.$platform = window.VM.platform || null;
+
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = _eventBus;
     // requestAnimationFrame
@@ -123,7 +124,14 @@ module.exports = {
     Vue.component(Segment.name, Segment);
     Vue.component(SegmentButton.name, SegmentButton);
     Vue.component(Searchbar.name, Searchbar);
+
+
+
+    // Form
+    Vue.component(Input.name, Input);
     Vue.component(Toggle.name, Toggle);
+
+
     Vue.component(Card.name, Card);
     Vue.component(CardContent.name, CardContent);
     Vue.component(CardHeader.name, CardHeader);

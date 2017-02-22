@@ -154,8 +154,8 @@ export const PLATFORM_CONFIGS = {
          * @example
          *
          *  ready(function () {
-       *      p.triggerReady('Wechat Init Success!');
-       *  });
+         *      p.triggerReady('Wechat Init Success!');
+         *  });
          * */
 
         /**
