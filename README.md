@@ -4,6 +4,31 @@
 
 项目使用vue-cli构建，如果对此熟悉则下面的启动说明应该就没问题了。
 
+## 目录说明
+```
+|--backup			备份文件
+|--build  			webpack配置文件
+|--config  			webpack配置文件
+|--Manuscript  		设计手稿
+|--src				开发目录
+|----assets			内部资源
+|----views			业务页面(demo页面)
+|----vimo			vimo组件及框架
+|------component	组件
+|------config		特性配置器
+|------platform		平台配置器
+|------theme		主题
+|------transitions	过度的动画
+|------util			工具
+|------index.js		vimo安装入口
+|----App.vue		主页面
+|----main.js		入口js
+|----router.js		路由
+|----setting.js		业务设置
+|--static			外部静态资源
+|--test				测试
+|--index.html		单页的index
+```
 
 ## Build Setup
 
