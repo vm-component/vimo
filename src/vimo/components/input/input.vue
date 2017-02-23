@@ -236,7 +236,6 @@
       },
 
 
-
       /**
        * @private
        * 监听input事件, 更新input的value(inputValue)

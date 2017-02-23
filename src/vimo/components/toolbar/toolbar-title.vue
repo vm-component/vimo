@@ -92,7 +92,7 @@
             document.title = val;
             let iframe = document.createElement('iframe');
             // iframe.src = '/static/favicon.ico';
-            iframe.src = 'favicon.ico';
+            iframe.src = ' ';
             iframe.style.visibility = 'hidden';
             iframe.style.width = '1px';
             iframe.style.height = '1px';
@@ -152,7 +152,7 @@
     },
     mounted(){
       this.refreshTitle()
-      this.autoRefreshTitle();
+      // this.autoRefreshTitle();
     }
   }
 </script>
