@@ -180,7 +180,8 @@ module.exports = {
          * @name 地图定位
          * @param {Number} latitude -
          * @param {Number} longitude -
-         * @return {Position} 地理信息结构体
+         * @param {function} onSuccess - {Position} 地理信息结构体
+         * @param {function} onFail
          * */
         Vue.prototype.$getLocation = _noop; // 这两个方法的区分意义??
         /**
@@ -188,16 +189,16 @@ module.exports = {
          * @param {Number} latitude -
          * @param {Number} longitude -
          * @param {Number} scope -
-         * @return {Position} 地理信息结构体
+         * @param {function} onSuccess - {Position} 地理信息结构体
+         * @param {function} onFail
          * */
         Vue.prototype.$getPOI = _noop; // ?这个名字怪怪的
 
         /**
          * @name 判断是否安装app
          * @param {array} apps - iOS:应用scheme;Android:应用包名
-         * @param {function} onSuccess -
+         * @param {function} onSuccess - installed - ['taobao', 'tmall'] //iOS:应用scheme;Android:应用包名
          * @param {function} onFail -
-         * @return {array} installed - ['taobao', 'tmall'] //iOS:应用scheme;Android:应用包名
          * */
         Vue.prototype.$checkInstalledApps = _noop;
 
@@ -207,15 +208,40 @@ module.exports = {
          * @param {string} activity - 仅限Android，打开指定Activity，可不传。如果为空，就打开App的Main入口Activity
          * @param {function} onSuccess
          * @param {function} onFail
-         * @return {boolean}
          * */
         Vue.prototype.$launchApp = _noop; //启动app
 
-        // Connection
+        /**
+         * @name 获取当前网络类型
+         * @param {function} onSuccess - result: 'wifi' // result值: wifi 2g 3g 4g unknown none   none表示离线
+         * @param {function} onFail
+         * */
         Vue.prototype.$getNetworkType = _noop; // 获取网络类型
 
+        /**
+         * @name 获取当前网络类型
+         * @param {string} phoneNumber
+         * @param {function} onSuccess - result: 'wifi' // result值: wifi 2g 3g 4g unknown none   none表示离线
+         * @param {function} onFail
+         * */
+        Vue.prototype.$call = _noop; //  打电话
+
+        /**
+         * @name 获取当前网络类型
+         * @param {string} type - type为qrCode或者barCode
+         * @param {function} onSuccess -  { 'text': String }
+         * @param {function} onFail
+         * */
+        Vue.prototype.$scan = _noop; //  打电话
+
+        /**
+         * @name 设置导航栏颜色
+         * @param {string} color - #FFFFFF
+         * */
+        Vue.prototype.$setNavBgColor = _noop; //  打电话
 
 
+        // TODO: 继续补充空函数
 
       });
     }
