@@ -10,35 +10,35 @@
        <List>
          <Item>
            <Label color="primary">Inline Label Is In Line</Label>
-           <Input placeholder="Text Input"></Input>
+           <Input placeholder="Text Input">
          </Item>
 
          <Item>
-           <Label color="primary" fixed type="fixed">Fixed Label With Long Name</Label>
-           <Input type="tel" placeholder="Tel Input"></Input>
+           <Label color="primary" fixed>Fixed Label With Long Name</Label>
+           <Input type="tel" placeholder="Tel Input">
          </Item>
 
          <Item>
-           <Input type="number" placeholder="Number Input with no label"></Input>
+           <Input type="number" placeholder="Number Input with no label">
          </Item>
 
          <Item>
-           <Label color="primary" stacked type="stacked">Stacked Label</Label>
-           <Input type="email" placeholder="Email Input"></Input>
+           <Label color="primary" stacked>Stacked Label</Label>
+           <Input type="email" placeholder="Email Input">
          </Item>
 
          <Item>
-           <Label color="primary" stacked type="stacked">Stacked Label</Label>
-           <Input type="password" placeholder="Password Input"></Input>
+           <Label color="primary" stacked>Stacked Label</Label>
+           <Input type="password" placeholder="Password Input">
          </Item>
 
          <Item>
-           <Label color="primary" floating type="floating">Floating Label</Label>
-           <Input></Input>
+           <Label color="primary" floating>Floating Label</Label>
+           <Input>
          </Item>
 
          <Item>
-           <Input placeholder="Clear Input" clearInput></Input>
+           <Input placeholder="Clear Input" clearInput>
          </Item>
 
          <!--<Item>-->
