@@ -221,7 +221,6 @@ module.exports = {
 
       });
     }
-    ;
 
   }
 }
