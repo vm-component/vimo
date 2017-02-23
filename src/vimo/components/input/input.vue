@@ -206,6 +206,9 @@
         }
       },
 
+      /**
+       * 当该组件被点击的时候, 触发
+       */
       clickToFocus($event){
         this.setFocus();
       },
@@ -216,7 +219,7 @@
        */
       inputBlurred($event){
         // 向父组件Item添加标记
-        this.setItemHasFocusClass();
+        this._setItemHasFocusClass();
 
         this.$emit('blur', $event)
       },
@@ -227,28 +230,12 @@
        */
       inputFocused($event){
         // 向父组件Item添加标记
-        this.setItemHasFocusClass();
+        this._setItemHasFocusClass();
 
         this.$emit('focus', $event)
       },
 
-      /**
-       *  设置父组件Item被点中时的class
-       */
-      setItemHasFocusClass(){
-        if (this._item) {
-          this._item.inputHasFocus = hasFocus(this._input);
-        }
-      },
 
-      /**
-       *  设置父组件Item有值时的class
-       */
-      setItemHasValueClass(){
-        if (this._item) {
-          this._item.inputHasValue = this.hasValue();
-        }
-      },
 
       /**
        * @private
@@ -256,20 +243,15 @@
        */
       inputChanged($event){
         const _this = this;
-        // console.info('inner-inputChanged');
         _this.inputValue = !!$event.target ? $event.target.value : '';
 
-        _this.setItemHasValueClass();
+        _this._setItemHasValueClass();
 
-        // TODO: setTimeout->debounce
-        clearTimeout(_this.clearTimeout);
-        _this.clearTimeout = setTimeout(function () {
-          // this.onChange(this.inputValue);
-          _this.$emit('ionInput', $event);
+        // this.onChange(this.inputValue);
+        _this.$emit('ionInput', $event);
 
-          // 通知父组件的v-model
-          _this.$emit('input', _this.inputValue);
-        }, _this.debounce);
+        // 通知父组件的v-model
+        _this.$emit('input', _this.inputValue);
       },
 
       /**
@@ -284,10 +266,31 @@
        * 点击清除输入项
        * */
       clearTextInput(){
-        console.debug('Should clear input');
         this.inputValue = '';
-        this.setItemHasValueClass();
+        this._setItemHasValueClass();
       },
+
+
+
+
+      /**
+       *  设置父组件Item被点中时的class
+       */
+      _setItemHasFocusClass(){
+        if (this._item) {
+          this._item.inputHasFocus = hasFocus(this._input);
+        }
+      },
+
+      /**
+       *  设置父组件Item有值时的class
+       */
+      _setItemHasValueClass(){
+        if (this._item) {
+          this._item.inputHasValue = this.hasValue();
+        }
+      },
+
 
     },
     created () {},
@@ -306,12 +309,6 @@
       this._keyboardHeight = this.$config.getNumber('keyboardHeight');
       this._useAssist = this.$config.getBoolean('scrollAssist', false);
       this._usePadding = this.$config.getBoolean('scrollPadding', this._useAssist);
-
-      // _item
-
-      console.debug('-------')
-      console.debug(this)
-      console.debug(this.name)
 
       // 找到外部item实例
       if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
