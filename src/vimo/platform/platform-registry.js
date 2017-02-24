@@ -141,7 +141,7 @@ export const PLATFORM_CONFIGS = {
    * 如果添加新环境,记得在SUBSET_LIST注册
    * */
   wechat: {
-    initialize(p){
+    l(p){
       // 在ready之前进行处理
       p.prepareReady = function () {
         let _userAgent = window.navigator.userAgent.toString().trim();
@@ -296,7 +296,13 @@ export const PLATFORM_CONFIGS = {
        * 当平台准备完毕后, 进行挂载初始化
        *
        * */
-      // 这里是代码
+      //TODO: 这里是代码
+
+      VM.hybrid.install = function (Vue, config) {
+        Vue.prototype.$call = function (option) {
+          return dd.biz.telephone.call(option)
+        }
+      };
 
       ready(() => {
         p.triggerReady('dtdream Init Success!');

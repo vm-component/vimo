@@ -63,8 +63,18 @@
           <Item button :to="{name: 'backdrop'}">Backdrop</Item>
           <Item button :to="{name: 'loading'}">Loading</Item>
           <Item button :to="{name: 'modal'}">Modal</Item>
-
         </ItemGroup>
+
+        <!--弹出层组件-->
+        <ListHeader>
+          Demo
+        </ListHeader>
+        <!--group-->
+        <ItemGroup>
+          <Item button :to="{name: 'demo'}">Demo</Item>
+        </ItemGroup>
+
+
       </List>
     </Content>
   </Page>

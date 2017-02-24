@@ -18,10 +18,14 @@
 <script type="text/ecmascript-6">
   export default{
     data(){
-      return {}
+      return {
+        a:1
+      }
     },
     watch: {},
-    computed: {},
+    computed: {
+
+    },
     methods: {
       alert () {
         const _this = this;
@@ -333,7 +337,6 @@
           ]
         });
       },
-
     },
     created () {
     },
@@ -341,6 +344,7 @@
     },
     activated () {
     },
+    deactivated(){}
   }
 </script>
 <style lang="scss"></style>

@@ -110,6 +110,7 @@ module.exports = {
     Vue.prototype.$hasStatusBar = HAS_STATUS_BAR;
 
     // 全局注册组件
+    console.debug(App)
     Vue.component(App.name, App);
     Vue.component(Header.name, Header);
     Vue.component(Footer.name, Footer);

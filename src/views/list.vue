@@ -25,10 +25,7 @@
           <Item button :to="{name:'list.slidingList'}">SlidingList</Item>
           <Item button :to="{name:'list.thumbnailList'}">ThumbnailList</Item>
 
-
         </ItemGroup>
-
-
       </List>
     </Content>
   </Page>
@@ -47,21 +44,21 @@
       }
     },
     watch: {
-      toggleValue: function () {
+      toggleValue () {
         console.debug('outer toggleValue change:' + this.toggleValue)
       }
     },
     computed: {},
     methods: {
-      toggleChange: function (val) {
+      toggleChange (val) {
         console.debug('Outer Toggle Change Value - airPlane:' + val)
       }
     },
-    created: function () {
+    created () {
     },
-    mounted: function () {
+    mounted () {
     },
-    activated: function () {
+    activated () {
     },
     components: {}
   }

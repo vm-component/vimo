@@ -165,9 +165,6 @@ const routes = [
     name: 'list.thumbnailList',
     component: require('./views/list/ThumbnailList.vue'),
   },
-
-
-
   {
     path: '/tabs',
     name: 'tabs',
@@ -177,6 +174,11 @@ const routes = [
     path: '/content',
     name: 'content',
     component: require('./views/content.vue'),
+  },
+  {
+    path: '/demo',
+    name: 'demo',
+    component: require('./views/demo.vue'),
   },
 ];
 

@@ -79,18 +79,18 @@
     },
     computed: {
       // 环境样式
-      modeClass: function () {
+      modeClass () {
         return `${this.role}-${this.mode}`
       },
       // 颜色
-      colorClass: function () {
+      colorClass () {
         return !!this.color ? (`${this.role}-${this.mode}-${this.color}`) : ''
       },
-      shapeClass: function () {
+      shapeClass () {
         // button-round
         return !!this.shape ? `${this.role}-${this.shape} ${this.role}-${this.shape}-${this.mode}` : ''
       },
-      sizeClass: function () {
+      sizeClass () {
         // if(this.role === 'button'){
         //   return !!this.size ? `${this.role}-${this.size} ${this.role}-${this.size}-${this.mode}` : ''
         // }else {
@@ -99,7 +99,7 @@
         return !!this.size ? `${this.role}-${this.size} ${this.role}-${this.size}-${this.mode}` : ''
 
       },
-      typeClass: function () {
+      typeClass () {
         if (!!this.type) {
           if (!!this.color) {
             return `${this.role}-${this.type} ${this.role}-${this.type}-${this.mode} ${this.role}-${this.type}-${this.mode}-${this.color}`
@@ -111,7 +111,7 @@
         }
       },
       // 按钮角色
-      roleClass: function () {
+      roleClass () {
         if (!!this.role) {
           // action-sheet-button action-sheet-button-ios action-sheet-button-default action-sheet-button-default-ios
           return `${this.role} ${this.role}-${this.mode}`
@@ -120,16 +120,16 @@
         }
       },
       // button-strong
-      strongClass: function () {
+      strongClass () {
         return !!this.isStrong ? `${this.role}-strong-${this.mode}` : ''
       }
     },
     methods: {
-      _click: function ($event) {
+      _click ($event) {
         this.$emit('click', $event)
       }
     },
-    mounted: function () {
+    mounted () {
       if (!!this.$parent.$el && this.$parent.$el.className && this.$parent.$el.className.indexOf('item') > -1) {
         //	button in items should add class of 'item-button'
         this.itemClass += 'item-button';
