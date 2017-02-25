@@ -1,10 +1,10 @@
 <template>
-    <div class="ion-grid">
+    <div class="grid">
         <slot></slot>
     </div>
 </template>
 <style lang="scss">
-    @import "grid";
+    @import "grid.scss";
 </style>
 <script type="text/ecmascript-6">
   export default{

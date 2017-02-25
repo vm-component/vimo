@@ -1,11 +1,11 @@
 <template>
-    <div class="ion-col">
+    <div class="col">
         <slot></slot>
     </div>
 </template>
 <script type="text/ecmascript-6">
   export default{
-    name: 'Col',
+    name: 'Column',
     data(){
       return {
       }

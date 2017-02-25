@@ -100,6 +100,13 @@ const routes = [
     component: require('./views/input.vue'),
   },
   {
+    path: '/grid',
+    name: 'grid',
+    component: require('./views/grid.vue'),
+  },
+
+
+  {
     path: '/searchbar',
     name: 'searchbar',
     component: require('./views/searchbar.vue'),
