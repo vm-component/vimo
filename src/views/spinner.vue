@@ -7,7 +7,6 @@
     </Header>
     <Content padding>
 
-
       <p>默认</p>
       <Spinner></Spinner>
       <Spinner name="ios"></Spinner>
