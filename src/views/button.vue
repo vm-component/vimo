@@ -44,22 +44,32 @@
       <Button color="light" size="small">small</Button>
 
       <p>Icons</p>
-      <Button color="dark icon-left" icon-left>
-        <Icon class="icon" name="star"></Icon>
+
+      <!--icon left-->
+      <Button color="dark">
+        <Icon class="icon" name="fa-star"></Icon>
         Left Icon
       </Button>
+
+      <!--no icon-->
       <Button color="dark">
         No Icon
       </Button>
-      <Button icon-only color="dark">
-        <Icon class="icon" name="star"></Icon>
+
+      <!--icon only-->
+      <Button color="dark">
+        <Icon class="icon" name="fa-star"></Icon>
       </Button>
-      <Button icon-only color="dark">
-        <Icon class="icon" name="star"></Icon>
+
+      <!--icon only-->
+      <Button color="dark">
+        <Icon class="icon" name="fa-star"></Icon>
       </Button>
-      <Button color="dark icon-right" icon-right>
+
+      <!--icon right-->
+      <Button color="dark">
         Right Icon
-        <Icon class="icon" name="star"></Icon>
+        <Icon class="icon" name="fa-star"></Icon>
       </Button>
 
 

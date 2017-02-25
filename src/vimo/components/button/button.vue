@@ -127,13 +127,47 @@
     methods: {
       _click ($event) {
         this.$emit('click', $event)
-      }
+      },
+
+      isIconComponent(slot){
+        return !!slot.componentOptions && !!slot.componentOptions.tag && slot.componentOptions.tag.toLowerCase() === 'icon'
+      },
+
+      getSlotLength(slots){
+        return (!!slots && !!slots.default) ? slots.default.length : 0;
+      },
     },
     mounted () {
+      let _firstSlot = null;
+      let _lastSlot = null;
+      let _length = this.getSlotLength(this.$slots)
+
+      if (_length > 0 && this.role !== 'bar-button') {
+        _firstSlot = this.$slots.default[0];
+        _lastSlot = this.$slots.default[_length - 1];
+
+        // icon-only
+        if (_length === 1 && this.isIconComponent(_firstSlot)) {
+          this.$el.setAttribute('icon-only', '')
+        }
+
+        if (_length > 1) {
+          // icon left
+          if (this.isIconComponent(_firstSlot)) {
+            this.$el.setAttribute('icon-left', '')
+          }
+          // icon right
+          if (this.isIconComponent(_lastSlot)) {
+            this.$el.setAttribute('icon-right', '')
+          }
+        }
+      }
+
       if (!!this.$parent.$el && this.$parent.$el.className && this.$parent.$el.className.indexOf('item') > -1) {
         //	button in items should add class of 'item-button'
         this.itemClass += 'item-button';
       }
+
     }
   }
 </script>

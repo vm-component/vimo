@@ -105,6 +105,27 @@ const routes = [
     component: require('./views/grid.vue'),
   },
 
+  // cards
+  {
+    path: '/cards',
+    name: 'cards',
+    component: require('./views/cards.vue'),
+  },
+  {
+    path: '/basicCards',
+    name: 'cards.basicCards',
+    component: require('./views/cards/basicCards.vue'),
+  },
+  {
+    path: '/listsInCards',
+    name: 'cards.listsInCards',
+    component: require('./views/cards/listsInCards.vue'),
+  },
+  {
+    path: '/advancedCards',
+    name: 'cards.advancedCards',
+    component: require('./views/cards/advancedCards.vue'),
+  },
 
   {
     path: '/searchbar',

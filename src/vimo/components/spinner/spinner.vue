@@ -208,7 +208,6 @@
         const _this = this;
         if (_this.isInit) {
 
-
           // 因为会涉及到再次渲染，故提前制空
           _this.lines = [];
           _this.circles = [];

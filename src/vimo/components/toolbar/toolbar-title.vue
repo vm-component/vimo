@@ -54,11 +54,11 @@
           // prop传入title值
           //eg: <Title title="Toolbar"></Title>
           _title = _this.title.trim();
-        } else if (!!_this.$slots.default[0] && !!_this.$slots.default[0].text) {
+        } else if (!!_this.$slots.default && !!_this.$slots.default[0] && !!_this.$slots.default[0].text) {
           // 如果是直接写在ion-title中的值
           //eg: <Title>Toolbar</Title>
           _title = _this.$slots.default[0].text.trim();
-        } else if (!!_this.$slots.default[0] && !!_this.$slots.default[0].tag && !!_this.$slots.default[0].children[0].text) {
+        } else if (!!_this.$slots.default && !!_this.$slots.default[0] && !!_this.$slots.default[0].tag && !!_this.$slots.default[0].children[0].text) {
           // 如果是这届下载ion-title中的值，并且包含一层标签的情况
           //eg: <Title>
           //      <span>Toolbar</span>
