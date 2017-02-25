@@ -1,9 +1,8 @@
 <template>
-  <div class="ion-spinner spinner" :class=[colorClass,nameClass,pausedClass]>
+  <div class="spinner" :class=[colorClass,nameClass,pausedClass]>
     <svg v-if="!!circles && circles.length>0" viewBox="0 0 64 64" v-for="i in circles" :style="i.style">
       <circle :r="i.r" transform="translate(32,32)"></circle>
     </svg>
-    <!--<svg v-if="!!lines && lines.length>0" viewBox="0 0 64 64" v-for="i in lines" :stype="i.style">-->
     <svg v-if="!!lines && lines.length>0" viewBox="0 0 64 64" v-for="i in lines" :style="i.style">
       <line :y1="i.y1" :y2="i.y2" transform="translate(32,32)"></line>
     </svg>
@@ -17,23 +16,23 @@
 
 </style>
 <script type="text/ecmascript-6">
-  const CSS = {
-    transform: 'transform',
-    animationDelay: 'animation-delay',
-  };
 
   const SPINNERS = {
 
     ios: {
       dur: 1000,
       lines: 12,
-      fn: function (dur, index, total) {
+      fn (dur, index, total) {
+        const transform = 'rotate(' + (30 * index + (index < 6 ? 180 : -180)) + 'deg)';
+        const animationDelay = -(dur - ((dur / total) * index)) + 'ms';
         return {
           y1: 17,
           y2: 29,
           style: {
-            [CSS.transform]: 'rotate(' + (30 * index + (index < 6 ? 180 : -180)) + 'deg)',
-            [CSS.animationDelay]: -(dur - ((dur / total) * index)) + 'ms'
+            transform: transform,
+            webkitTransform: transform,
+            animationDelay: animationDelay,
+            webkitAnimationDelay: animationDelay
           }
         };
       }
@@ -42,13 +41,17 @@
     'ios-small': {
       dur: 1000,
       lines: 12,
-      fn: function (dur, index, total) {
+      fn (dur, index, total) {
+        const transform = 'rotate(' + (30 * index + (index < 6 ? 180 : -180)) + 'deg)';
+        const animationDelay = -(dur - ((dur / total) * index)) + 'ms';
         return {
           y1: 12,
           y2: 20,
           style: {
-            [CSS.transform]: 'rotate(' + (30 * index + (index < 6 ? 180 : -180)) + 'deg)',
-            [CSS.animationDelay]: -(dur - ((dur / total) * index)) + 'ms'
+            transform: transform,
+            webkitTransform: transform,
+            animationDelay: animationDelay,
+            webkitAnimationDelay: animationDelay
           }
         };
       }
@@ -57,13 +60,15 @@
     bubbles: {
       dur: 1000,
       circles: 9,
-      fn: function (dur, index, total) {
+      fn (dur, index, total) {
+        const animationDelay = -(dur - ((dur / total) * index)) + 'ms';
         return {
           r: 5,
           style: {
             top: (9 * Math.sin(2 * Math.PI * index / total)) + 'px',
             left: (9 * Math.cos(2 * Math.PI * index / total)) + 'px',
-            [CSS.animationDelay]: -(dur - ((dur / total) * index)) + 'ms'
+            animationDelay: animationDelay,
+            webkitAnimationDelay: animationDelay
           }
         };
       }
@@ -72,13 +77,15 @@
     circles: {
       dur: 1000,
       circles: 8,
-      fn: function (dur, index, total) {
+      fn (dur, index, total) {
+        const animationDelay = -(dur - ((dur / total) * index)) + 'ms';
         return {
           r: 5,
           style: {
             top: (9 * Math.sin(2 * Math.PI * index / total)) + 'px',
             left: (9 * Math.cos(2 * Math.PI * index / total)) + 'px',
-            [CSS.animationDelay]: -(dur - ((dur / total) * index)) + 'ms'
+            animationDelay: animationDelay,
+            webkitAnimationDelay: animationDelay
           }
         };
       }
@@ -87,7 +94,7 @@
     crescent: {
       dur: 750,
       circles: 1,
-      fn: function (dur) {
+      fn (dur) {
         return {
           r: 26,
           style: {}
@@ -98,12 +105,14 @@
     dots: {
       dur: 750,
       circles: 3,
-      fn: function (dur, index, total) {
+      fn (dur, index, total) {
+        const animationDelay = -(110 * index) + 'ms';
         return {
           r: 6,
           style: {
             left: (9 - (9 * index)) + 'px',
-            [CSS.animationDelay]: -(110 * index) + 'ms'
+            animationDelay: animationDelay,
+            webkitAnimationDelay: animationDelay
           }
         };
       }
@@ -113,7 +122,6 @@
 
   export default{
     name: 'Spinner',
-
     props: {
       /**
        * 按钮color：primary、secondary、danger、light、dark
@@ -128,7 +136,7 @@
        * */
       mode: {
         type: String,
-        default:  VM.config.get('mode') || 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
 
       /**
@@ -175,28 +183,28 @@
     },
     watch: {
       // 因为实例创建在前，赋值在后，如果name和duration改变则从新初始化
-      name: function () {
+      name () {
         this.load()
       },
-      duration: function () {
+      duration () {
         this.load()
       }
     },
     computed: {
       // primary、secondary、danger、light、dark
-      colorClass: function () {
+      colorClass () {
         return !!this.color ? `spinner-${this.mode}-${this.color}` : null
       },
       // 设置Alert的风格
-      modeClass: function () {
+      modeClass () {
         return !!this.mode ? `spinner-${this.mode}` : null
       },
-      pausedClass: function () {
+      pausedClass () {
         return !!this.paused ? "spinner-paused" : null
       }
     },
     methods: {
-      load: function () {
+      load () {
         const _this = this;
         if (_this.isInit) {
 
@@ -218,7 +226,7 @@
             } else if (_this.mode === 'wp') {
               name = 'circles';
             } else {
-              name = 'ios';
+              name = VM.config.get('spinner', 'ios');
             }
           }
           const spinner = SPINNERS[name];
@@ -226,31 +234,30 @@
           if (spinner) {
             if (spinner.lines) {
               for (let i = 0, l = spinner.lines; i < l; i++) {
-                _this.lines.push(_loadEle(spinner, i, l));
+                _this.lines.push(this._loadEle(spinner, i, l));
               }
 
             } else if (spinner.circles) {
               for (let i = 0, l = spinner.circles; i < l; i++) {
-                _this.circles.push(_loadEle(spinner, i, l));
+                _this.circles.push(this._loadEle(spinner, i, l));
               }
             }
             _this.nameClass = `spinner-${name} spinner-${_this.mode}-${name}`;
           }
         }
 
-        function _loadEle (spinner, index, total) {
-          let duration = parseInt(_this.duration) || spinner.dur;
-          let data = spinner.fn(duration, index, total);
-          data.style['animation-duration'] = parseInt(duration) + 'ms';
-          return data;
-        }
+      },
+      _loadEle(spinner, index, total) {
+        let duration = parseInt(this.duration) || spinner.dur;
+        let data = spinner.fn(duration, index, total);
+        data.style['animation-duration'] = parseInt(duration) + 'ms';
+        return data;
       }
-    },
-    created: function () {
-      const _this = this;
-      _this.isInit = true;
-      _this.load();
 
+    },
+    created () {
+      this.isInit = true;
+      this.load();
     }
   }
 </script>

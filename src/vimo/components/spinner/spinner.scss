@@ -3,7 +3,7 @@
 // Spinners
 // --------------------------------------------------
 
-.ion-spinner {
+.spinner {
   position: relative;
   display: inline-block;
 
@@ -11,7 +11,7 @@
   height: 28px;
 }
 
-.ion-spinner svg {
+.spinner svg {
   position: absolute;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@
   transform: translateZ(0);
 }
 
-.ion-spinner.spinner-paused svg {
+.spinner.spinner-paused svg {
   animation-play-state: paused;
 }
 
