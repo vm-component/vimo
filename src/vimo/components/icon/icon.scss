@@ -1,4 +1,6 @@
 @import "../../themes/ionic.globals";
+@import "../../themes/ionic.theme.dark.scss";
+
 
 // Icon
 // --------------------------------------------------
@@ -6,12 +8,23 @@
 
 .ion-icon {
   display: inline-block;
-
   font-size: 1.2em;
 }
 
 .ion-icon[small] {
   min-height: 1.1em;
-
   font-size: 1.1em;
+}
+// iOS Icon
+// --------------------------------------------------
+
+
+// Generate iOS Icon Colors
+// --------------------------------------------------
+
+@each $color-name, $color-base in get-colors($colors) {
+  .icon-#{$color-name} {
+    color: $color-base;
+  }
+
 }
