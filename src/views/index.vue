@@ -50,6 +50,7 @@
           <Item button :to="{name: 'segment'}">Segment</Item>
           <Item button :to="{name: 'input'}">Input</Item>
           <Item button :to="{name: 'grid'}">Grid</Item>
+          <Item button :to="{name: 'cards'}">Cards</Item>
         </ItemGroup>
 
         <!--弹出层组件-->

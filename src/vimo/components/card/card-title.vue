@@ -24,24 +24,24 @@
        * */
       mode: {
         type: String,
-        default:  VM.config.get('mode') || 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
     },
     watch: {},
     computed: {
       // 环境样式
-      modeClass: function () {
+      modeClass () {
         return `${this.componentName} ${this.componentName}-${this.mode}`
       },
       // 颜色
-      colorClass: function () {
+      colorClass () {
         return !!this.color ? (`${this.componentName}-${this.mode}-${this.color}`) : ''
       },
     },
     methods: {},
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
+    created () {},
+    mounted () {},
+    activated () {},
     components: {}
   }
 </script>
