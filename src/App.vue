@@ -26,11 +26,6 @@
             </ItemGroup>
           </List>
         </Content>
-        <Footer>
-          <Toolbar>
-            <Title>❤️ Vimo</Title>
-          </Toolbar>
-        </Footer>
       </Page>
     </Menu>
     <!--menu author-->

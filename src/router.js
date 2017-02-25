@@ -14,6 +14,7 @@ import VueRouter from 'vue-router';
  * 路由配置表
  * */
 const routes = [
+  // index
   {
     path: '/',
     name: 'index',
@@ -22,6 +23,21 @@ const routes = [
     },
     component: require('./views/index.vue'),
   },
+
+  {
+    path: '/components',
+    name: 'components',
+    component: require('./views/components.vue'),
+  },
+
+
+
+
+
+
+
+
+
   {
     path: '/introduce',
     name: 'introduce',
