@@ -35,12 +35,15 @@
       </div>
 
       <!--tabs-content-wrap-->
-      <div class="tabs-content-wrap" :style="tabsContentWrapStyle">
-        <!--<slot></slot>-->
+      <div class="tabs-content-wrap" :style="tabsContentWrapStyle" v-if="isKeepAlive">
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
       </div>
+      <div class="tabs-content-wrap" :style="tabsContentWrapStyle" v-else>
+        <router-view></router-view>
+      </div>
+
 
     </section>
   </article>
@@ -133,6 +136,14 @@
         type: String,
         default: 'bottom',
       },
+
+      /**
+       * 子路由的模式
+       * */
+      isKeepAlive: {
+        type: Boolean,
+        default: false
+      },
     },
     data(){
       return {
@@ -150,6 +161,9 @@
         selectedIndex: 0, // 内部使用的, 表示当前处于激活的Tab的index
 
         statusbarPadding: VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
+
+        _highLightBtnWidth: 0, //
+        _highLightBtnOffsetWidth: 0, //
 
       }
     },
@@ -240,8 +254,6 @@
           _this.computeTabsContentWrapStyle();
           // 获取子组件(Tab组件)真正显示的TabBar元素列表
           _this.tabBarEles = _this.$refs.tabbar.querySelectorAll('a');
-          // 获取TabHighlight元素
-          _this.tabHighlightEle = _this.$refs.tabHighlight;
 
           // 激活当前选中的Highlight
           if (_this.tabsHighlight) {
@@ -257,7 +269,6 @@
           select: _this.select,
           getActivatedIndex: _this.getActivatedIndex,
         }
-
       },
 
       /**
@@ -364,15 +375,24 @@
        * @param {number} index
        */
       tabHighlightSelect(index){
-        const tabHighlightEle = this.tabHighlightEle;
-        const btnEle = this.tabBarEles[index];
-        const transform = `translate3d(${btnEle.offsetLeft}px,0,0) scaleX(${btnEle.offsetWidth})`;
-        tabHighlightEle.style[VM.platform.Css.transform] = transform;
+        const _this = this;
 
-        if (!this.isTabHighlightInit) {
-          this.isTabHighlightInit = true;
-          setElementClass(tabHighlightEle, 'animate', true)
+        if (!_this.isTabHighlightInit) {
+          let btnEle = _this.tabBarEles[index];
+          // 获取TabHighlight元素
+          _this.tabHighlightEle = _this.$refs.tabHighlight;
+
+          _this._highLightBtnWidth = btnEle.offsetLeft;
+          _this._highLightBtnOffsetWidth = btnEle.offsetWidth;
+
+          _this.isTabHighlightInit = true;
+          setElementClass(_this.tabHighlightEle, 'animate', true)
         }
+
+        let transform = `translate3d(${_this._highLightBtnWidth * index}px,0,0) scaleX(${_this._highLightBtnOffsetWidth})`;
+
+        _this.tabHighlightEle.style[VM.platform.Css.transform] = transform;
+
       },
 
     },
@@ -405,9 +425,6 @@
       // 激活当前选中的Highlight
       if (_this.tabsHighlight) {
         _this.$eventBus.$on('onPageEnter', ({to, from}) => {
-          console.debug('onPageEnter')
-          console.debug(to)
-          console.debug(from)
 
           let _route = to;
           let _tab;
@@ -422,7 +439,6 @@
             }
           }
 
-          console.debug(_this.selectedIndex)
           _this.tabHighlightSelect(_this.selectedIndex)
 
         })

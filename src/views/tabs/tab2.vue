@@ -20,4 +20,23 @@
 
  }
 </style>
-
+<script type="text/ecmascript-6">
+  export default{
+    data(){
+      return {}
+    },
+    watch: {},
+    computed: {},
+    methods: {},
+    created () {
+      console.debug('tab2.vue - created')
+    },
+    mounted () {
+      console.debug('tab2.vue - mounted')
+    },
+    activated () {
+      console.debug('tab2.vue - activated')
+    },
+    components: {}
+  }
+</script>

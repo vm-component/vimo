@@ -3,7 +3,7 @@
      :class="[colorClass,nameClass,itemClass]"></i>
 </template>
 <style lang="scss">
-  @import "icon";
+  @import "icon.scss";
   @import "./font-awesome/css/font-awesome.css";
 </style>
 <script type="text/ecmascript-6">

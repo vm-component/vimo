@@ -37,7 +37,7 @@ $focus-outline-box-shadow:     0 0 8px 1px $focus-outline-border-color !default;
   box-shadow: $focus-outline-box-shadow;
 }
 
-ion-input :focus {
+.ion-input :focus {
   outline: none;
 }
 
