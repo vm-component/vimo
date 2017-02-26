@@ -23,7 +23,7 @@
           <Row class="vimo__logo" >
             <Column text-center no-padding>
               <div class="vimo__logo--img">
-                <img width="120" src="../assets/vimo.png">
+                <img height="120" src="../assets/vimo.png">
               </div>
             </Column>
           </Row>
@@ -31,11 +31,11 @@
           <Row class="vimo__text">
             <Column text-center>
               <h1>VIMO</h1>
-              <p>v0.1.0</p>
+              <p>v1.0.0</p>
 
               <p>
                 <Icon name="fa-github"></Icon>
-                Github Star 6
+                Github  <Icon name="fa-star"></Icon> <strong>6 </strong>
               </p>
               <p>Copyright © 2017 Songtao (GPL-3.0)</p>
             </Column>
@@ -82,7 +82,7 @@
           justify-content: center;
           align-content: center;
           flex-direction: column;
-          padding-bottom: 60px;
+          padding-bottom: 55px;
 
           .vimo__logo {
             .vimo__logo--img {
@@ -90,6 +90,7 @@
             }
           }
           .vimo__text {
+            margin-top:5px;
             margin-bottom:5px;
             h1 {
               font-weight: bold;

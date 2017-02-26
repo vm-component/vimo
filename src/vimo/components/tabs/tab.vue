@@ -1,29 +1,124 @@
 <template>
-    <div class="ion-tab">
-
-        <div #viewport></div>
-        <div class="nav-decor"></div>
-    </div>
+  <section>
+    <slot></slot>
+  </section>
 </template>
-<style scoped lang="scss">
-    .main {
 
-    }
-</style>
 <script type="text/ecmascript-6">
-    export default{
-        data(){
-            return {}
-        },
-        watch: {},
-        computed: {},
-        methods: {},
-        created: function () {
-        },
-        mounted: function () {
-        },
-        activated: function () {
-        },
-        components: {}
-    }
+  /**
+   * !!Tab组件必须和Tabs组件配合使用!!
+   *
+   * Tab组件内部与路由结合, 因此应该包含:to属性, 用于跳转
+   *
+   * 选中时的对外事件: onSelect
+   *
+   * */
+  export default{
+    name: 'Tab',
+    props: {
+      /**
+       * 是否能选择
+       * */
+      enabled: {
+        type: Boolean,
+        default: true,
+      },
+      /**
+       * 路由跳转
+       * */
+      to: {
+        type: String,
+        default: '',
+      },
+      /**
+       * 是否显示
+       * */
+      show: {
+        type: Boolean,
+        default: true,
+      },
+      /**
+       * 徽章显示值
+       * */
+      tabBadge: {
+        type: String,
+        default: '',
+      },
+      /**
+       * 徽章颜色
+       * */
+      tabBadgeStyle: {
+        type: String,
+        default: '',
+      },
+      /**
+       * tab的IconName
+       * */
+      tabIcon: {
+        type: String,
+        default: '',
+      },
+      /**
+       * tab的tabTitle
+       * */
+      tabTitle: {
+        type: String,
+        default: '',
+      },
+
+      // TODO: tabUrlPath
+      // string The URL path name to represent this tab within the URL.
+
+      //TODO: tabsHideOnSubPages
+      // boolean If true, hide the tabs on child pages.
+    },
+    data(){
+      return {}
+    },
+    watch: {},
+    computed: {},
+    methods: {
+      /**
+       * 获取当前Tab填入的信息
+       * Tab只是一个参数搬运工, 在页面总不起作用!
+       *
+       * */
+      getTabInfo(){
+
+        let _tabId = this._uid;
+        let hasTitle = !!this.tabTitle;
+        let hasIcon = !!this.tabIcon;
+        let hasTitleOnly = !!this.tabTitle && !this.tabIcon;
+        let hasIconOnly = !!this.tabIcon && !this.tabTitle;
+        let hasBadge = !!this.tabBadge;
+        let disHover = VM.config.getBoolean('hoverCSS', false);
+
+        return {
+          _tabId,
+          hasTitle,
+          hasIcon,
+          hasTitleOnly,
+          hasIconOnly,
+          hasBadge,
+          disHover,
+
+          enabled: this.enabled,
+          to: eval("(" + this.to + ")"),
+          show: this.show,
+          tabBadge: this.tabBadge,
+          tabBadgeStyle: this.tabBadgeStyle,
+          tabIcon: this.tabIcon,
+          tabTitle: this.tabTitle,
+        }
+      }
+    },
+    created () {
+    },
+    mounted () {
+
+    },
+    activated () {
+    },
+    components: {}
+  }
 </script>

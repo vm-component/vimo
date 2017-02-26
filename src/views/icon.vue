@@ -19,11 +19,11 @@
       <Icon color="danger" name="fa-spinner" :isActive="true" activeName="fa-spinner fa-spin"></Icon>
 
 
-      <p>也可以使用图片icon, 这个时候用i标签自己定义吧</p>
+      <p>也可以使用图片icon, 记得在name中传入icon的class, 像下面这样</p>
+      <Icon name="icon-vue"></Icon>
+
 
       <p>剩余的图标参考Font-Awesome, <a href="http://fontawesome.io/icons/">点击这里</a></p>
-
-
 
     </Content>
   </Page>
@@ -32,6 +32,14 @@
   .iconDemo .icon {
     font-size: 40px;
   }
+
+  .icon-vue {
+    height: 40px;
+    width: 40px;
+    background: url('../assets/vue.png') no-repeat center center/cover;
+  }
+
+
 </style>
 <script type="text/ecmascript-6">
   export default{

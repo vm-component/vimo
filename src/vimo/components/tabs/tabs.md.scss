@@ -90,7 +90,7 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
   color: $tabs-md-tab-text-color;
 }
 
-.tabs-md .tab-button[aria-selected=true] {
+.tabs-md .tab-button.tab-active {
   padding: $tabs-md-tab-padding-active;
 
   color: $tabs-md-tab-text-color-active;
@@ -110,7 +110,7 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
   transition: $tabs-md-tab-text-transition;
 }
 
-.tabs-md .tab-button[aria-selected=true] .tab-button-text {
+.tabs-md .tab-button.tab-active .tab-button-text {
   transform: $tabs-md-tab-text-transform-active;
   transition: $tabs-md-tab-text-transition;
 }
@@ -142,24 +142,24 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
 }
 
 // Tab layout: icon-top, icon-only, title-only
-.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+.tabs-md .tab-button.tab-active .tab-button-icon {
   color: $tabs-md-tab-icon-color-active;
 
   transform: $tabs-md-tab-icon-transform-active;
 }
 
 // Tab layout: icon-right
-.tabs-md[tabsLayout=icon-right] .tab-button[aria-selected=true] .tab-button-icon {
+.tabs-md[tabsLayout=icon-right] .tab-button.tab-active .tab-button-icon {
   transform: $tabs-md-tab-icon-right-transform-active;
 }
 
 // Tab layout: icon-bottom
-.tabs-md[tabsLayout=icon-bottom] .tab-button[aria-selected=true] .tab-button-icon {
+.tabs-md[tabsLayout=icon-bottom] .tab-button.tab-active .tab-button-icon {
   transform: $tabs-md-tab-icon-bottom-transform-active;
 }
 
 // Tab layout: icon-left
-.tabs-md[tabsLayout=icon-left] .tab-button[aria-selected=true] .tab-button-icon {
+.tabs-md[tabsLayout=icon-left] .tab-button.tab-active .tab-button-icon {
   transform: $tabs-md-tab-icon-left-transform-active;
 }
 
@@ -172,6 +172,10 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
 .tabs-md .tab-button.icon-only,
 .tabs-md .tab-button.has-title-only {
   padding: 0 10px;
+  // added
+  .icon{
+    line-height: inherit;
+  }
 }
 
 
@@ -216,8 +220,8 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
   }
 
   .tabs-md-#{$color-name} .tab-button:hover:not(.disable-hover),
-  .tabs-md-#{$color-name} .tab-button[aria-selected=true],
-  .tabs-md-#{$color-name} .tab-button[aria-selected=true] .tab-button-icon {
+  .tabs-md-#{$color-name} .tab-button.tab-active,
+  .tabs-md-#{$color-name} .tab-button.tab-active .tab-button-icon {
     color: $color-contrast;
   }
 
