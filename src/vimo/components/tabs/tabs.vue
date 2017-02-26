@@ -439,6 +439,7 @@
             }
           }
 
+
           _this.tabHighlightSelect(_this.selectedIndex)
 
         })
