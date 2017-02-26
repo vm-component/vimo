@@ -63,8 +63,12 @@ import { Segment, SegmentButton } from './segment';
 import Spinner from './spinner'
 
 import Menu from './menu'
-import { BackdropComponent, BackdropInstance } from './backdrop'
 
+// tab/tabs
+import {Tabs,Tab} from './tabs'
+
+
+import { BackdropComponent, BackdropInstance } from './backdrop'
 // 实例化调用组件，传入配置参数后返回实例
 import getActionSheetInstance from './action-sheet'
 import getAlertInstance from './alert'
@@ -155,6 +159,9 @@ module.exports = {
     Vue.component(Grid.name, Grid);
     Vue.component(Row.name, Row);
     Vue.component(Col.name, Col);
+
+    Vue.component(Tabs.name, Tabs);
+    Vue.component(Tab.name, Tab);
 
     Vue.component(Menu.name, Menu);
     Vue.component(BackdropComponent.name, BackdropComponent);

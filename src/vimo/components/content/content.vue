@@ -1,5 +1,5 @@
 <template>
-  <article class="ion-content content-ios outer-content" :class="{'statusbar-padding':$hasStatusBar}">
+  <article class="ion-content content-ios outer-content" :class="{'statusbar-padding':statusbarPadding}">
     <section ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
       <!--固定在页面中的内容-->
       <!--固定到顶部-->
@@ -46,6 +46,8 @@
         scrollPadding: 0, // scroll-content的paddingBottom，用于键盘的显示
         originalScrollPadding: 0, // 原始的scrollPaddingBottom的值
         isInputting: false, // 正在输入
+
+        statusbarPadding:VM.config.getBoolean('statusbarPadding',false), // 是否有statusbar的padding
       }
     },
     watch: {
@@ -57,7 +59,7 @@
     methods: {
       /**
        * 计算scrollContent的样式
-       * 因为这部分首一下因素影响：$hasStatusBar、fullscreen、$hasHeaderBar，$hasFooterBar
+       * 因为这部分首一下因素影响：statusbarPadding、fullscreen、Header，Footer
        * */
       computeScrollContentStyle () {
         let _this = this;
@@ -65,28 +67,16 @@
         let headerBarHeight = 0;
         let footerBarHeight = 0;
 
-// debugger
-
-        // let _pageInstance = _this.$vnode.context;
-        // let _headerInstance = _pageInstance.$header;
-        // let _footerInstance = _pageInstance.$footer;
-        //
-        // headerBarHeight = getStyle(_headerInstance.$el, 'height');
-        // headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
-        //
-        // footerBarHeight = getStyle(_footerInstance.$el, 'height');
-        // footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
-
         // 得到header和footer的高度
         // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
         // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
         // 而不是全局
-        _this.$parent.$children.forEach(function (item) {
-          if (item.$options._componentTag === 'Header') {
+        _this.$vnode.context.$children[0].$children.forEach(function (item) {
+          if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
             headerBarHeight = getStyle(item.$el, 'height');
             headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
           }
-          if (item.$options._componentTag === 'Footer') {
+          if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'footer') {
             footerBarHeight = getStyle(item.$el, 'height');
             footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
           }
@@ -95,9 +85,11 @@
         // 获取原始的footer的Height，用于keyboard的复原
         _this.originalScrollPadding = footerBarHeight;
 
-        if (_this.$hasStatusBar) {
+        if (_this.statusbarPadding) {
           // 存在statusBar的情况下，header高20px
-          _valHeader = headerBarHeight + _this.$config.statusBarHeight;
+          // _valHeader = headerBarHeight + _this.$config.statusBarHeight;
+          // TODO: statusBarHeight
+          _valHeader = headerBarHeight + 20;
         } else {
           _valHeader = headerBarHeight
         }

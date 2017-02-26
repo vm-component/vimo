@@ -30,14 +30,6 @@ const routes = [
     component: require('./views/components.vue'),
   },
 
-
-
-
-
-
-
-
-
   {
     path: '/introduce',
     name: 'introduce',
@@ -209,11 +201,31 @@ const routes = [
     name: 'list.thumbnailList',
     component: require('./views/list/ThumbnailList.vue'),
   },
+  // Tabs
   {
     path: '/tabs',
     name: 'tabs',
     component: require('./views/tabs.vue'),
+    redirect: {name: 'tabs.tab2'},
+    children: [
+      {
+        path: 'tab1',
+        name: 'tabs.tab1',
+        component: require('./views/tabs/tab1.vue'),
+      },
+      {
+        path: 'tab2',
+        name: 'tabs.tab2',
+        component: require('./views/tabs/tab2.vue'),
+      },
+      {
+        path: 'tab3',
+        name: 'tabs.tab3',
+        component: require('./views/tabs/tab3.vue'),
+      }
+    ]
   },
+
   {
     path: '/content',
     name: 'content',
@@ -242,8 +254,17 @@ function routerFactory (Vue) {
   Vue.use(VueRouter);
 
   router.beforeEach((to, from, next) => {
+    !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onPageEnter', {to, from});
     next();
   });
+
+  router.afterEach((to, from) => {
+    !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onPageLeave', {to, from});
+  });
+
+
+
+
 
   return router
 }
