@@ -47,7 +47,7 @@
         originalScrollPadding: 0, // 原始的scrollPaddingBottom的值
         isInputting: false, // 正在输入
 
-        statusbarPadding:VM.config.getBoolean('statusbarPadding',false), // 是否有statusbar的padding
+        statusbarPadding: VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
       }
     },
     watch: {
@@ -71,7 +71,7 @@
         // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
         // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
         // 而不是全局
-        _this.$vnode.context.$children[0].$children.forEach(function (item) {
+        _this.$parent.$children.forEach((item) => {
           if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
             headerBarHeight = getStyle(item.$el, 'height');
             headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
