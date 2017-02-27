@@ -272,12 +272,9 @@ function routerFactory (Vue) {
    *
    * */
   router.beforeEach((to, from, next) => {
-      let _current = router.currentRoute;
       let _isFromPage = from.matched.length === 1;
       let _isToPage = to.matched.length === 1;
-
       let localHistoryRecordLength = Vue.prototype.$history.length;
-
       if (localHistoryRecordLength === 0) {
         /**
          * 当本地维护的历时记录为空, 意味着页面为首次进入, 并未初始化,
@@ -290,14 +287,14 @@ function routerFactory (Vue) {
           recordHistory();
         } else {
           // 第一次进入的不是首页则将首页注入为第一个,
-          router.push('/');
+          //TODO: APP初始化只能先进这里
+          // router.push('/');
         }
       } else if (localHistoryRecordLength === 1) {
         recordHistory();
       } else if (localHistoryRecordLength > 1) {
-        let _back1Path = Vue.prototype.$history[localHistoryRecordLength - 1];
-        let _back2Path = Vue.prototype.$history[localHistoryRecordLength - 2];
-        if (to.name != _back2Path.name) {
+        let _backPath = Vue.prototype.$history[localHistoryRecordLength - 2];
+        if (to.name != _backPath.name) {
           recordHistory();
         } else {
           discardHistory();
@@ -307,8 +304,8 @@ function routerFactory (Vue) {
       function recordHistory () {
         Vue.prototype.$history.push(to);
         if (_isFromPage || _isToPage) {
-          !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onPageIn', {to, from});
           console.debug('**** onPageIn ****')
+          !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onPageIn', {to, from});
         }
       }
 
@@ -321,17 +318,13 @@ function routerFactory (Vue) {
         }
       }
 
-      function getRoot () {
-        router.options
-
-      }
-
-      let a = [];
-      Vue.prototype.$history.forEach(function (item) {
-        a.push(item.name);
-      });
-      console.log(a)
-      console.log(history.length)
+      //
+      // let a = [];
+      // Vue.prototype.$history.forEach(function (item) {
+      //   a.push(item.name);
+      // });
+      // console.log(a)
+      // console.log(history.length)
 
       next();
     }
