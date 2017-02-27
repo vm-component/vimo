@@ -11,7 +11,7 @@
       <!--<Title>Action Sheet</Title>-->
       <!--</Navbar>-->
     </Header>
-    <Content>
+    <Content :useIScroll="true">
       <List>
         <!--基础组件-->
         <ListHeader>

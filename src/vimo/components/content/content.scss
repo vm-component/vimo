@@ -28,6 +28,9 @@ a {
 // Scrollable Content
 // --------------------------------------------------
 
+
+
+
 .scroll-content {
   position: absolute;
   top: 0;
@@ -75,7 +78,6 @@ a {
 
 [ion-fixed] {
   position: absolute;
-  width: 100%;
 
   z-index: $z-index-fixed-content;
 
