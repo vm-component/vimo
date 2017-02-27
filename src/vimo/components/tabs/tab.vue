@@ -3,12 +3,13 @@
     <slot></slot>
   </section>
 </template>
-
 <script type="text/ecmascript-6">
   /**
    * !!Tab组件必须和Tabs组件配合使用!!
    *
    * Tab组件内部与路由结合, 因此应该包含:to属性, 用于跳转
+   *
+   * 此组件用于传输传递, 不具有DOM结构及生命周期
    *
    * 选中时的对外事件: onSelect
    *
@@ -72,11 +73,6 @@
       //TODO: tabsHideOnSubPages
       // boolean If true, hide the tabs on child pages.
     },
-    data(){
-      return {}
-    },
-    watch: {},
-    computed: {},
     methods: {
       /**
        * 获取当前Tab填入的信息
@@ -103,7 +99,7 @@
           disHover,
 
           enabled: this.enabled,
-          to: eval("(" + this.to + ")"),
+          to: eval("(" + this.to + ")"), // 这个必须是对象
           show: this.show,
           tabBadge: this.tabBadge,
           tabBadgeStyle: this.tabBadgeStyle,
@@ -111,14 +107,6 @@
           tabTitle: this.tabTitle,
         }
       }
-    },
-    created () {
-    },
-    mounted () {
-
-    },
-    activated () {
-    },
-    components: {}
+    }
   }
 </script>

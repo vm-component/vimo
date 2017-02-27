@@ -67,7 +67,8 @@ $tabs-md-tab-icon-left-transform-active:      translate3d(-2px, 0, 0) !default;
 $tabs-md-tab-icon-transform-origin:           50% 150% !default;
 
 /// @prop - Text transition for the tab button icon
-$tabs-md-tab-icon-transition:                 transform .3s ease-in-out !default;
+$tabs-md-tab-icon-transition:                 all .3s ease-in-out !default;
+//$tabs-md-tab-icon-transition:                 transform .3s ease-in-out !default;
 
 /// @prop - Size of the tab button icon
 $tabs-md-tab-icon-size:                       2.4rem !default;
@@ -111,8 +112,8 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
 }
 
 .tabs-md .tab-button.tab-active .tab-button-text {
-  transform: $tabs-md-tab-text-transform-active;
-  transition: $tabs-md-tab-text-transition;
+  //transform: $tabs-md-tab-text-transform-active;
+  //transition: $tabs-md-tab-text-transition;
 }
 
 .tabs-md[tabsLayout=icon-top] .has-icon .tab-button-text {
@@ -145,7 +146,7 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
 .tabs-md .tab-button.tab-active .tab-button-icon {
   color: $tabs-md-tab-icon-color-active;
 
-  transform: $tabs-md-tab-icon-transform-active;
+  //transform: $tabs-md-tab-icon-transform-active;
 }
 
 // Tab layout: icon-right

@@ -7,7 +7,6 @@
         <router-link v-for="(t,index) of tabs"
                      class="tab-button"
                      :id="t._tabId"
-                     :aria-controls="t._tabId"
                      :class="{'has-title':t.hasTitle,
                             'has-icon':t.hasIcon,
                             'has-title-only':t.hasTitleOnly,
@@ -16,7 +15,6 @@
                             'disable-hover':t.disHover,
                             'tab-disabled':!t.enabled,
                             'tab-hidden':!t.show}"
-                     role="tab"
                      :to="t.to"
                      tag="a"
                      active-class="tab-active"
@@ -35,17 +33,20 @@
       </div>
 
       <!--tabs-content-wrap-->
-      <div class="tabs-content-wrap" :style="tabsContentWrapStyle" v-if="isKeepAlive">
-        <keep-alive>
+      <div class="tabs-content-wrap" :style="tabsContentWrapStyle">
+        <section class="wrap-inner" v-if="isKeepAlive">
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
+        </section>
+        <section class="wrap-inner" v-else>
           <router-view></router-view>
-        </keep-alive>
+        </section>
       </div>
-      <div class="tabs-content-wrap" :style="tabsContentWrapStyle" v-else>
-        <router-view></router-view>
-      </div>
-
-
     </section>
+
+
+
   </article>
 </template>
 <style lang="scss">
@@ -72,13 +73,22 @@
       margin: 0;
       top: 0;
       bottom: 0;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
-      will-change: scroll-position;
-      contain: size style layout;
       box-sizing: border-box;
-
+      .wrap-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: 0;
+        top: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        will-change: scroll-position;
+        contain: size style layout;
+        box-sizing: border-box;
+      }
       /*border: 3px solid red;*/
     }
 
@@ -98,8 +108,7 @@
    *
    * */
   import { getStyle, getNum, firstUpperCase } from '../../util/assist'
-  // import { isBlank } from '../../util/util'
-  import { setElementClass, urlChange } from '../../util/dom'
+  import { setElementClass } from '../../util/dom'
   export default{
     name: 'Tabs',
     props: {
@@ -156,14 +165,10 @@
         tabBarEles: [], // 这个是真正显示的TabBar元素列表
 
         tabHighlightEle: null, // TabHighlight元素
-        isTabHighlightInit: false, // 判断TabHighlight是否已经初始化
 
         selectedIndex: 0, // 内部使用的, 表示当前处于激活的Tab的index
 
         statusbarPadding: VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
-
-        _highLightBtnWidth: 0, //
-        _highLightBtnOffsetWidth: 0, //
 
       }
     },
@@ -285,6 +290,9 @@
         // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
         // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
         // 而不是全局
+        // console.log(_this.$vnode)
+        console.log(_this.$vnode)
+        debugger
         _this.$vnode.context.$children[0].$children.forEach((item) => {
           if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
             headerBarHeight = getStyle(item.$el, 'height');
@@ -371,28 +379,18 @@
       },
 
       /**
-       * 开启下划线模式
+       * 下滑线定位
        * @param {number} index
        */
       tabHighlightSelect(index){
         const _this = this;
-
-        if (!_this.isTabHighlightInit) {
-          let btnEle = _this.tabBarEles[index];
-          // 获取TabHighlight元素
-          _this.tabHighlightEle = _this.$refs.tabHighlight;
-
-          _this._highLightBtnWidth = btnEle.offsetLeft;
-          _this._highLightBtnOffsetWidth = btnEle.offsetWidth;
-
-          _this.isTabHighlightInit = true;
-          setElementClass(_this.tabHighlightEle, 'animate', true)
-        }
-
-        let transform = `translate3d(${_this._highLightBtnWidth * index}px,0,0) scaleX(${_this._highLightBtnOffsetWidth})`;
-
+        let transform;
+        let btnEle = _this.tabBarEles[index];
+        // 获取TabHighlight元素
+        _this.tabHighlightEle = _this.$refs.tabHighlight;
+        setElementClass(_this.tabHighlightEle, 'animate', true);
+        transform = `translate3d(${btnEle.offsetLeft}px,0,0) scaleX(${btnEle.offsetWidth})`;
         _this.tabHighlightEle.style[VM.platform.Css.transform] = transform;
-
       },
 
     },
@@ -423,7 +421,7 @@
        *
        * */
       // 激活当前选中的Highlight
-      if (_this.tabsHighlight) {
+      if (_this.tabsHighlight && _this.mode === "md") {
         _this.$eventBus.$on('onPageEnter', ({to, from}) => {
 
           let _route = to;
@@ -438,7 +436,6 @@
               break;
             }
           }
-
 
           _this.tabHighlightSelect(_this.selectedIndex)
 

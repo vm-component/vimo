@@ -4,13 +4,32 @@
 </template>
 <style lang="scss">
   @import "icon.scss";
-  @import "./font-awesome/css/font-awesome.css";
+  @import "./ionicons/css/ionicons.css";
 </style>
 <script type="text/ecmascript-6">
+  /**
+   * Icon组件
+   *
+   * icon可以支持ionicons/font-awesome/自定义imgClass
+   *
+   * 1. 默认情况下使用ionicons图标, 在name中传入ionicons的name即可(去除ion/mode信息)
+   * 例如:
+   * <Icon mode="ios" color="primary" name="star"></Icon>  -->  ion-ios-star
+   * <Icon color="primary" name="star"></Icon>             -->  ion-star
+   *
+   * 2. 这样使用font-awesome
+   *  <Icon mode="ios" color="primary" name="star"></Icon>  -->  ion-ios-star
+   * */
   export default{
     name: 'Icon',
     props: {
-
+      /**
+       * 指定图标使用模式
+       * */
+      mode: {
+        type: String,
+        default: VM.config.get('mode', 'ios') || 'ios',
+      },
       /**
        * 按钮color：
        * primary:    #007aff,
@@ -58,14 +77,24 @@
         default: false,
       },
 
+      /**
+       * 图标类型, 默认为ionic自带图标
+       * */
+      type: {
+        type: String,
+        default: 'ion',
+      }
+
     },
     data(){
       return {
         nameClass: '', // 最终显示的nameClass
         itemClass: '',
 
-        nameValue: '', // 过滤后的值
+        nameValue: this.name, // 过滤后的值
         activeNameValue: '', // 过滤后的值
+
+        _type: this.type, // 图标类型, 一般图标自带,或者指定类型
       }
     },
     watch: {
@@ -80,6 +109,13 @@
       },
     },
     methods: {
+      /**
+       * 获取font的类型: ion/fa/自定义class
+       * */
+      getFontType(){
+
+      },
+
       /**
        * name的过滤规则
        * */

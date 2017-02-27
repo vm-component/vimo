@@ -339,6 +339,11 @@
       // 将挂载点同步到根this上
       const _this = this;
 
+
+      console.debug('content this')
+      console.debug(this)
+
+
       // const _this = this;
       let _timer;
 

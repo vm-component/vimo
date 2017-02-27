@@ -296,12 +296,17 @@ export const PLATFORM_CONFIGS = {
        * 当平台准备完毕后, 进行挂载初始化
        *
        * */
-      //TODO: 这里是代码
+        //TODO: 这里是代码
+
+      let hybrid = require('./hybrid');
 
       VM.hybrid.install = function (Vue, config) {
         Vue.prototype.$call = function (option) {
           return dd.biz.telephone.call(option)
         }
+
+        Vue.prototype.$actionSheet = hybrid.actionSheet;
+
       };
 
       ready(() => {

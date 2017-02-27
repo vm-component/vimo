@@ -66,6 +66,7 @@ import Menu from './menu'
 
 // tab/tabs
 import {Tabs,Tab} from './tabs'
+import {Fab,Fabs} from './fab'
 
 
 import { BackdropComponent, BackdropInstance } from './backdrop'
@@ -162,6 +163,10 @@ module.exports = {
 
     Vue.component(Tabs.name, Tabs);
     Vue.component(Tab.name, Tab);
+    Vue.component(Fabs.name, Fabs);
+    Vue.component(Fab.name, Fab);
+
+
 
     Vue.component(Menu.name, Menu);
     Vue.component(BackdropComponent.name, BackdropComponent);

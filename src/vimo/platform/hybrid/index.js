@@ -13,10 +13,57 @@
 let _alert = '';
 
 export const notification = {
-  alert:_alert,
+  alert: _alert,
 }
 
+export const util = {}
 
-export const util = {
+/**
+ * @param {object} options - H5的传参指纹
+ * return Promise
+ * */
+export function actionSheet (options) {
+
+  let title = options.title;
+  let cancelButton;
+  let otherButtons = [];
+  let params;
+
+  let resolveCallback = null;
+  let rejectCallback = null;
+
+  options.buttons.forEach(function (item) {
+    if (item.role === 'cancel') {
+      cancelButton = item.text;
+    } else {
+      otherButtons.push(item.text);
+    }
+
+  })
+
+  params = {
+    title: title, //标题
+    cancelButton: cancelButton, //取消按钮文本
+    otherButtons: otherButtons,
+    onSuccess: function (result) {
+      resolveCallback()
+    },
+    onFail: function (err) {
+      rejectCallback()
+    }
+  }
+
+  dd.device.notification.actionSheet(params);
+
+  return new Promise(function (resolve, reject) {
+    resolveCallback = resolve;
+    rejectCallback = reject;
+  })
+
+
+
+
+
+
 
 }

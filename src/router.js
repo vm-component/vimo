@@ -227,6 +227,13 @@ const routes = [
   },
 
   {
+    path: '/fab',
+    name: 'fab',
+    component: require('./views/fab.vue'),
+  },
+
+
+  {
     path: '/content',
     name: 'content',
     component: require('./views/content.vue'),
