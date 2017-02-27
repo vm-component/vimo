@@ -10,15 +10,15 @@
   /**
    * Icon组件
    *
-   * icon可以支持ionicons/font-awesome/自定义imgClass
+   * icon可以支持ionicons/自定义imgClass
    *
    * 1. 默认情况下使用ionicons图标, 在name中传入ionicons的name即可(去除ion/mode信息)
-   * 例如:
-   * <Icon mode="ios" color="primary" name="star"></Icon>  -->  ion-ios-star
-   * <Icon color="primary" name="star"></Icon>             -->  ion-star
+   *  <Icon mode="ios" name="star"></Icon>  -->  ion-ios-star
+   *  <Icon name="star"></Icon>             -->  根据平台mode  ->  ion-ios-star/ion-android-star
    *
-   * 2. 这样使用font-awesome
-   *  <Icon mode="ios" color="primary" name="star"></Icon>  -->  ion-ios-star
+   * 2. 如果是自定义的图标icon, 命名需要规范下, 用于区分ionicons.
+   *  <Icon name="icon-star"></Icon>        -->  icon-star
+   *
    * */
   export default{
     name: 'Icon',
@@ -53,7 +53,8 @@
 
       /**
        * 激活状态的图标样式,
-       * 如果未定义,则为:`${this.name}-o`
+       * 如果未定义,则为:
+       * ion -> `${this.name}-outline`
        * */
       activeName: {
         type: String,
@@ -62,8 +63,6 @@
 
       /**
        * 表示当前的图标的状态
-       * 这里使用fontawesome图标, 意味着, 当isActive为true时,
-       * 需要给name的名字后面增加'-o'的字段, 表示为激活状态.
        *
        * 特殊情况:
        * 当定义了activeIcon时, 则使用这个字段的值作为激活状态的图标
@@ -77,24 +76,15 @@
         default: false,
       },
 
-      /**
-       * 图标类型, 默认为ionic自带图标
-       * */
-      type: {
-        type: String,
-        default: 'ion',
-      }
-
     },
     data(){
       return {
         nameClass: '', // 最终显示的nameClass
         itemClass: '',
 
-        nameValue: this.name, // 过滤后的值
+        nameValue: '', // 过滤后的值
         activeNameValue: '', // 过滤后的值
 
-        _type: this.type, // 图标类型, 一般图标自带,或者指定类型
       }
     },
     watch: {
@@ -109,40 +99,37 @@
       },
     },
     methods: {
-      /**
-       * 获取font的类型: ion/fa/自定义class
-       * */
-      getFontType(){
 
-      },
+      // -------- private ---------
 
       /**
        * name的过滤规则
+       * icon-star  ->    icon-star
+       * star       ->    ion-star
+       * (ios)star  ->    ion-ios-star
        * */
-      getFilteredName(name){
-        name = name.trim();
-
-        if (name.indexOf('fa-') === 0) {
-          return `fa ${name}`;
+      getFilteredName(){
+        let _name = this.name;
+        if (_name.indexOf('icon-') === 0) {
+          return _name
+        } else {
+          return `ion-${this.mode}-${_name}`
         }
-
-        // 如果不是fa, 则直接将name当做class
-        return name
       },
 
       /**
        * activeName的过滤规则
        * */
       getFilteredActiveName(){
-        let name = this.activeName;
-        if (!!name) {
-          return this.getFilteredName(name)
+        let _activeName = this.activeName;
+        if (!!_activeName) {
+          return _activeName
         } else {
-          if (this.name.indexOf('fa-') === 0) {
-            // font-awesome 的激活状态是后面带'-o'
-            return `fa ${this.name}` + '-o';
+          let _name = this.name;
+          if (_name.indexOf('icon-') === 0) {
+            return _name
           } else {
-            return ''
+            return `ion-${this.mode}-${_name}-outline`
           }
         }
       },
@@ -151,10 +138,11 @@
        * 初始化
        * */
       init(){
+
         /**
          * 过滤后的name
          * */
-        this.nameValue = this.getFilteredName(this.name);
+        this.nameValue = this.getFilteredName();
         this.activeNameValue = this.getFilteredActiveName();
 
         /**
