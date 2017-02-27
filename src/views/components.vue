@@ -20,7 +20,7 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'app'}">
-            <!--<Icon slot="left" color="danger" name="plane"></Icon>-->
+            <!--<Icon slot="left" name="fa-bank" class="fa-fw"></Icon>-->
             App
           </Item>
           <Item button :to="{name: 'content'}">Content</Item>
@@ -41,6 +41,7 @@
           <Item button :to="{name: 'input'}">Input</Item>
           <Item button :to="{name: 'grid'}">Grid</Item>
           <Item button :to="{name: 'cards'}">Cards</Item>
+          <Item button :to="{name: 'fab'}">Fab</Item>
         </ItemGroup>
 
         <!--弹出层组件-->
