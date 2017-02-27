@@ -47,7 +47,7 @@
 
       <!--icon left-->
       <Button color="dark">
-        <Icon class="icon" name="fa-star"></Icon>
+        <Icon class="icon" name="star"></Icon>
         Left Icon
       </Button>
 
@@ -58,18 +58,18 @@
 
       <!--icon only-->
       <Button color="dark">
-        <Icon class="icon" name="fa-star"></Icon>
+        <Icon class="icon" name="star"></Icon>
       </Button>
 
       <!--icon only-->
       <Button color="dark">
-        <Icon class="icon" name="fa-star"></Icon>
+        <Icon class="icon" name="star"></Icon>
       </Button>
 
       <!--icon right-->
       <Button color="dark">
         Right Icon
-        <Icon class="icon" name="fa-star"></Icon>
+        <Icon class="icon" name="star"></Icon>
       </Button>
 
 

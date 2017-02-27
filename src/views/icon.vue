@@ -7,23 +7,20 @@
     </Header>
     <Content padding class="iconDemo">
 
-      <h5>Vimo的Icon使用的是font-awesome图标</h5>
+      <h5>Vimo的Icon可以使用ionicons/自定义(需要以icon-开头)</h5>
 
-      <p>fa-address-book的普通状态和激活状态</p>
-      <Icon color="primary" name="fa-address-book"></Icon>
-      <Icon color="primary" name="fa-address-book" :isActive="true"></Icon>
+      <p>IonIcon</p>
+      <Icon color="primary" name="star"></Icon>
 
-      <p>fa-spinner的普通状态和激活状态</p>
-
-      <Icon color="danger" name="fa-spinner"></Icon>
-      <Icon color="danger" name="fa-spinner" :isActive="true" activeName="fa-spinner fa-spin"></Icon>
-
+      <!--icon icon-ios icon-ios-primary ion-ios-ionic-->
+      <p>book的普通状态和激活状态</p>
+      <Icon color="primary" name="book"></Icon>
+      <Icon color="primary" name="book" :isActive="true"></Icon>
 
       <p>也可以使用图片icon, 记得在name中传入icon的class, 像下面这样</p>
       <Icon name="icon-vue"></Icon>
 
-
-      <p>剩余的图标参考Font-Awesome, <a href="http://fontawesome.io/icons/">点击这里</a></p>
+      <p>剩余的图标参考IonIcons, <a href="http://ionicons.com/">点击这里</a></p>
 
     </Content>
   </Page>

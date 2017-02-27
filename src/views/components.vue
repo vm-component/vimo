@@ -1,15 +1,9 @@
 <template>
   <Page>
-    <!--content-->
     <Header>
-      <!--menutoggle-->
       <Navbar>
-        <!--menutoggle-->
-        <Title>组件(Component)</Title>
+        <Title>组件</Title>
       </Navbar>
-      <!--<Navbar>-->
-      <!--<Title>Action Sheet</Title>-->
-      <!--</Navbar>-->
     </Header>
     <Content>
       <List>
@@ -20,11 +14,17 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'app'}">
-            <!--<Icon slot="left" name="fa-bank" class="fa-fw"></Icon>-->
-            App
+            <Icon slot="left" name="browsers" :isActive="true"></Icon>
+            整体 (App)
           </Item>
-          <Item button :to="{name: 'content'}">Content</Item>
-          <Item button :to="{name: 'toolbar'}">Toolbar</Item>
+          <Item button :to="{name: 'content'}">
+            <Icon slot="left" name="chatboxes" :isActive="true"></Icon>
+            布局 (Header/Content/Footer)
+          </Item>
+          <Item button :to="{name: 'toolbar'}">
+            <Icon slot="left" name="briefcase" :isActive="true"></Icon>
+            工具条 (Toolbar)
+          </Item>
         </ItemGroup>
 
         <!--通用组件-->
@@ -73,23 +73,23 @@
   </Page>
 </template>
 <style scoped lang="scss">
- .main{
+  .main {
 
- }
+  }
 </style>
 <script type="text/ecmascript-6">
-    export default{
-        name:'name',
-        data(){
-            return{}
-        },
-        props:{},
-        watch:{},
-        computed:{},
-        methods:{},
-        created:function(){},
-        mounted:function(){},
-        activated:function(){},
-        components:{}
-    }
+  export default{
+    name: 'name',
+    data(){
+      return {}
+    },
+    props: {},
+    watch: {},
+    computed: {},
+    methods: {},
+    created: function () {},
+    mounted: function () {},
+    activated: function () {},
+    components: {}
+  }
 </script>

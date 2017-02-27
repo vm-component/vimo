@@ -8,10 +8,10 @@
         <Searchbar></Searchbar>
       </Toolbar>
     </Header>
-    <Tabs mode="ios" :isKeepAlive="false" color="dark" :tabsHighlight="false" tabsLayout="icon-left" tabsPlacement="bottom">
-      <Tab to="{name:'tabs.tab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger" tabIcon="fa-user"></Tab>
-      <Tab to="{name:'tabs.tab2'}" tabBadge="2"  tabTitle="Cars" tabBadgeStyle="light" tabIcon="fa-car"></Tab>
-      <Tab to="{name:'tabs.tab3'}" tabBadge="7"  tabTitle="Star" tabIcon="fa-star" :enabled="true"></Tab>
+    <Tabs mode="ios" :isKeepAlive="false" :tabsHighlight="false" tabsLayout="icon-top" tabsPlacement="bottom">
+      <Tab to="{name:'tabs.tab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger" tabIcon="person"></Tab>
+      <Tab to="{name:'tabs.tab2'}" tabBadge="2"  tabTitle="Cars" tabBadgeStyle="dark" tabIcon="car"></Tab>
+      <Tab to="{name:'tabs.tab3'}" tabBadge="7"  tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
     </Tabs>
   </Page>
 </template>
