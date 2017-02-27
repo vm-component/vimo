@@ -106,6 +106,7 @@ module.exports = {
     // 组件配置参数
     Vue.prototype.$config = window.VM.config || null;
     Vue.prototype.$platform = window.VM.platform || null;
+    // Vue.prototype.$IScroll = $IScroll;
 
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = _eventBus;
