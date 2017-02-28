@@ -17,7 +17,7 @@
    * ionSwipeRight - 向右滑动 超过按钮最大距离+SWIPE_MARGIN时触发
    * ionSwipeLeft - 向左滑动 超过按钮最大距离+SWIPE_MARGIN时触发
    * */
-  import { swipeShouldReset } from '../../util/assist.js'
+  import { swipeShouldReset } from '../../util/util'
   import { pointerCoord } from '../../util/dom.js'
   const SWIPE_MARGIN = 30 * 2; // 触发swipe的值
   const ELASTIC_FACTOR = 0.55;

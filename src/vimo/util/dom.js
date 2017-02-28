@@ -387,23 +387,23 @@ export function focusOutActiveElement () {
 
 const skipInputAttrsReg = /^(value|checked|disabled|type|class|style|id|autofocus|autocomplete|autocorrect)$/i;
 
-/**
- * 拷贝input的属性, 好像用不到?
- * @param {HTMLElement} srcElement -
- * @param {HTMLElement} destElement -
- * */
-export function copyInputAttributes (srcElement, destElement) {
-  // copy attributes from one element to another
-  // however, skip over a few of them as they're already
-  // handled in the angular world
-  var attrs = srcElement.attributes;
-  for (var i = 0; i < attrs.length; i++) {
-    var attr = attrs[i];
-    if (!skipInputAttrsReg.test(attr.name)) {
-      destElement.setAttribute(attr.name, attr.value);
-    }
-  }
-}
+// /**
+//  * 拷贝input的属性, 好像用不到?
+//  * @param {HTMLElement} srcElement -
+//  * @param {HTMLElement} destElement -
+//  * */
+// export function copyInputAttributes (srcElement, destElement) {
+//   // copy attributes from one element to another
+//   // however, skip over a few of them as they're already
+//   // handled in the angular world
+//   var attrs = srcElement.attributes;
+//   for (var i = 0; i < attrs.length; i++) {
+//     var attr = attrs[i];
+//     if (!skipInputAttrsReg.test(attr.name)) {
+//       destElement.setAttribute(attr.name, attr.value);
+//     }
+//   }
+// }
 
 /**
  * Get the element offsetWidth and offsetHeight. Values are cached
@@ -507,3 +507,17 @@ function _removeClass (obj, cls) {
 // private _setElementClass(className: string, add: boolean) {
 //   this.renderer.setElementClass(this.elementRef.nativeElement, className, add);
 // }
+
+export function getStyle (element, styleName) {
+  if (!element || !styleName) return null;
+  styleName = _camelCase(styleName);
+  if (styleName === 'float') {
+    styleName = 'cssFloat';
+  }
+  try {
+    const computed = document.defaultView.getComputedStyle(element, '');
+    return element.style[styleName] || computed ? computed[styleName] : null;
+  } catch (e) {
+    return element.style[styleName];
+  }
+}

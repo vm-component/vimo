@@ -79,7 +79,6 @@ import prepareModal from './modal'
 const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
 import { NavContorller } from "./navController"
-import { eventBus } from '../util/events'
 module.exports = {
   version: '1.0.0',
   /**
@@ -97,7 +96,7 @@ module.exports = {
     /**
      * 全局事件总线（各个组件共用）
      * */
-    let _eventBus = eventBus;
+    let _eventBus = new Vue();
     // requestAnimationFrame
     let _raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 

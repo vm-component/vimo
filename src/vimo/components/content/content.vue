@@ -21,7 +21,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { getStyle, getNum } from '../../util/assist'
+  import { getStyle, getNum } from '../../util/util'
 
   export default{
     name: 'Content',

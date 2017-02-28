@@ -56,7 +56,7 @@
   /**
    * 注意：menu是全局的组件，应该在App.vue中定义，而不是在业务文件中
    * */
-  import { firstUpperCase } from '../../util/assist';
+  import { firstUpperCase } from '../../util/util';
   import Vue from 'vue';
 
   export default{
