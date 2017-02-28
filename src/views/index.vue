@@ -37,7 +37,7 @@
                 <Icon name="fa-github"></Icon>
                 Github  <Icon name="fa-star"></Icon> <strong>6 </strong>
               </p>
-              <p>Copyright © 2017 Songtao (GPL-3.0)</p>
+              <p>Copyright © 2017 Songtao (MIT)</p>
             </Column>
           </Row>
 

@@ -16,8 +16,8 @@
   @import './toolbar.scss';
   @import './toolbar-button.scss';
   @import './toolbar.ios.scss';
-  /*@import './toolbar.md.scss';*/
-  /*@import './toolbar.wp.scss';*/
+  @import './toolbar.md.scss';
+  @import './toolbar.wp.scss';
 
 </style>
 <script type="text/ecmascript-6">
