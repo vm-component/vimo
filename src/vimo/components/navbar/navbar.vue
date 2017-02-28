@@ -5,7 +5,7 @@
     <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
     <!--show-back-button-->
     <Button @click="backButtonClick($event)" role="bar-button" class="back-button"
-                :class="[backButtonClass,{'show-back-button':showBackButton}]" v-if="!hideBb">
+            :class="[backButtonClass,{'show-back-button':showBackButton}]" v-if="!hideBb">
       <Icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></Icon>
       <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
     </Button>
@@ -45,7 +45,7 @@
        * */
       mode: {
         type: String,
-        default:  VM.config.get('mode') || 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark
@@ -97,10 +97,16 @@
     methods: {
       backButtonClick ($event) {
         //TODO: 这部分需要特殊处理
-        this.$back($event);
+        this.$router.back();
       },
     },
-    created () {},
-    mounted () {}
+    created () {
+      this.hideBb = !this.$nav.canGoBack();
+
+      console.log(this.$nav)
+    },
+    mounted () {
+
+    }
   }
 </script>
