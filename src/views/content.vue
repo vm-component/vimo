@@ -7,9 +7,9 @@
     </Header>
 
     <Content :fullscreen="fullscreenVal" padding>
-      <h3 slot="fixed">normal组件：</h3>
-      <h3 slot="fixedTop">fixTop组件：</h3>
-      <h3 slot="fixedBottom">fixBottom组件：</h3>
+      <!--<h3 slot="fixed">normal组件：</h3>-->
+      <!--<h3 slot="fixedTop">fixTop组件：</h3>-->
+      <!--<h3 slot="fixedBottom">fixBottom组件：</h3>-->
 
       <p>
         业务部分的页面内容就是在此完成的，除去Header部分到最下面都欧式content的内容
@@ -20,47 +20,31 @@
       </p>
 
 
+      <h4>这个是标题</h4>
+
       <Button type="block" @click="setTitle('Hello Vue')">点击设置Title='Hello Vue'</Button>
 
       <Button type="block" @click="scrollToBottom()">滚动到底部</Button>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
       <Button @click="$keyBoardOpen()" type="">打开键盘的Padding</Button>
       <Button @click="$keyBoardClose()" type="">关闭键盘的Padding</Button>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
 
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
-      <h1>ion-app test</h1>
 
       <Button type="block" @click="scrollToTop()">返回顶部</Button>
 
-s
     </Content>
 
     <Footer>
       <Toolbar>
-        <!--<Title slot="content" title="ion-app test"></Title>-->
+        <Title>Footer</Title>
       </Toolbar>
     </Footer>
 
