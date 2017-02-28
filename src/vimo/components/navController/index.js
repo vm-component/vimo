@@ -51,14 +51,14 @@ export class NavContorller {
         }
       }
 
-      /**
-       * 测试
-       * */
-      let a = [];
-      NAVIGATION_STACK.forEach(function (item) {
-        a.push(item.name)
-      });
-      console.debug(a);
+      // /**
+      //  * 测试
+      //  * */
+      // let a = [];
+      // NAVIGATION_STACK.forEach(function (item) {
+      //   a.push(item.name)
+      // });
+      // console.debug(a);
 
     });
 
@@ -148,14 +148,16 @@ export class NavContorller {
     return NAVIGATION_STACK.indexOf(route)
   }
 
-
   /**
    * 返回root页面
    * */
-  popToRoot(){
-
+  popToRoot () {
+    //TODO: popToRoot
   }
 
+  getRoot () {
+    //TODO: popToRoot
+  }
 }
 
 

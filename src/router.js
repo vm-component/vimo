@@ -248,7 +248,7 @@ const routes = [
  * 初始化实例
  * */
 const router = new VueRouter({
-  mode: 'hash', //  hash 模式  history 模式
+  mode: 'hash', //   "hash" | "history" | "abstract";
   base: '/', // 默认值: "/",应用的基路径。例如，如果整个单页应用服务在 /app/ 下，然后 base 就应该设为 "/app/"。
   routes: routes // （缩写）相当于 routes: routes
 });

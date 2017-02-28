@@ -22,7 +22,7 @@ setupConfig(CUSTOMER_CONFIG, setupPlatform());
 export const initVimo = function (Vue) {
   let component = require('./components')
   component.install(Vue, CUSTOMER_CONFIG);
-  console.debug('VimoInstall success!')
-  console.debug(VM.platform)
-  console.debug(VM.config)
+  // console.debug('VimoInstall success!')
+  // console.debug(VM.platform)
+  // console.debug(VM.config)
 }
