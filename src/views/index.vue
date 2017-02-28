@@ -42,9 +42,9 @@
           </Row>
 
           <Row class="vimo__btns">
-            <Button shape="block" type="solid" @click="$router.push({'name':'components'})">组件(Component)</Button>
-            <Button shape="block" type="solid" @click="$menu.open('menu')">菜单(Menu)</Button>
-            <Button shape="block" type="solid" @click="$menu.open('author')">关于我(About)</Button>
+            <Button shape="block" type="solid" @click="$router.push({'name':'components'})">组件</Button>
+            <Button shape="block" type="solid" @click="$menu.open('menu')">菜单</Button>
+            <Button shape="block" type="solid" @click="$menu.open('author')">关于我们</Button>
           </Row>
 
         </Grid>
