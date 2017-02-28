@@ -5,7 +5,7 @@
     <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
     <!--show-back-button-->
     <Button @click="backButtonClick($event)" role="bar-button" class="back-button"
-            :class="[backButtonClass,{'show-back-button':showBackButton}]" v-if="!hideBb">
+            :class="[backButtonClass,{'show-back-button':!hideBackButton}]" v-if="!hideBb">
       <Icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></Icon>
       <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
     </Button>
@@ -86,13 +86,7 @@
       toolbarContentClass () {
         return `toolbar-content-${this.mode}`
       },
-      showBackButton () {
-        // console.log('showBackButton')
-        // console.log(window.history)
-        // console.log(window.history.length)
-        // console.log(window.history.length > 0)
-        return !this.hideBackButton
-      },
+
     },
     methods: {
       backButtonClick ($event) {
@@ -102,8 +96,6 @@
     },
     created () {
       this.hideBb = !this.$nav.canGoBack();
-
-      console.log(this.$nav)
     },
     mounted () {
 

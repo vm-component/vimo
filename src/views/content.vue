@@ -82,6 +82,8 @@
     mounted: function () {
       console.info('content mounted this');
       console.info(this);
+
+
     },
     activated: function () {
     },

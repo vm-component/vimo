@@ -18,7 +18,7 @@
  *
  * 1. 内建导航记录,挂载方法
  * 2. 根据routeChange发出navChange相关事件
- * 3. $nav为标示当前导航状态及全局事件触发, 并不操作导航, 导航操作(go/back..)由$router进行
+ * 3. $nav为标示当前导航状态及全局事件触发, 并不操作导航(window.history), 导航操作(go/back..)由$router进行
  *
  */
 
@@ -52,7 +52,7 @@ export class NavContorller {
       }
 
       /**
-       * sdfasdfasdf
+       * 测试
        * */
       let a = [];
       NAVIGATION_STACK.forEach(function (item) {
@@ -134,13 +134,28 @@ export class NavContorller {
     return NAVIGATION_STACK[NAVIGATION_STACK.length - 2]
   }
 
-  getViews () {
+  /**
+   * 获取当前的导航记录
+   * */
+  getHistory () {
     return NAVIGATION_STACK
   }
 
+  /**
+   * 返回传入的route是历史记录中的第几条
+   * */
   indexOf (route) {
+    return NAVIGATION_STACK.indexOf(route)
+  }
+
+
+  /**
+   * 返回root页面
+   * */
+  popToRoot(){
 
   }
+
 }
 
 

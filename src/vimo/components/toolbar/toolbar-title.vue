@@ -127,10 +127,11 @@
           if (!this.$vnode.context.$nav) {
             this.$vnode.context.$nav = {}
           }
-          this.$vnode.context.$nav = {
+          Object.assign(this.$vnode.context.$nav, {
             setTitle: this.setTitle,
             getTitle: this.getTitle,
-          }
+          })
+
           this.setTitle(this.titleInner);
 
           //console.info('refreshTitle: ' + this.titleInner)
