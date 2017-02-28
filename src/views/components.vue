@@ -31,17 +31,50 @@
         <ListHeader>通用组件</ListHeader>
         <!--group-->
         <ItemGroup>
-          <Item button :to="{name: 'button'}">Button</Item>
-          <Item button :to="{name: 'icon'}">Icon</Item>
-          <Item button :to="{name: 'spinner'}">Spinner</Item>
-          <Item button :to="{name: 'list'}">List</Item>
-          <Item button :to="{name: 'searchbar'}">Searchbar</Item>
-          <Item button :to="{name: 'tabs'}">Tabs</Item>
-          <Item button :to="{name: 'segment'}">Segment</Item>
-          <Item button :to="{name: 'input'}">Input</Item>
-          <Item button :to="{name: 'grid'}">Grid</Item>
-          <Item button :to="{name: 'cards'}">Cards</Item>
-          <Item button :to="{name: 'fab'}">Fab</Item>
+          <Item button :to="{name: 'button'}">
+            <Icon slot="left" name="download" :isActive="true"></Icon>
+            按钮 (Button)
+          </Item>
+          <Item button :to="{name: 'icon'}">
+            <Icon slot="left" name="color-filter" :isActive="true"></Icon>
+            图标 (Icon)
+          </Item>
+          <Item button :to="{name: 'spinner'}">
+            <Icon slot="left" name="medical" :isActive="true"></Icon>
+            菊花图 (Spinner)
+          </Item>
+          <Item button :to="{name: 'list'}">
+            <Icon slot="left" name="list" :isActive="true"></Icon>
+            列表 (List)
+          </Item>
+          <Item button :to="{name: 'searchbar'}">
+            <Icon slot="left" name="search" :isActive="true"></Icon>
+            搜索栏 (SearchBar)
+          </Item>
+          <Item button :to="{name: 'tabs'}">
+            <Icon slot="left" name="star" :isActive="true"></Icon>
+            Tabs
+          </Item>
+          <Item button :to="{name: 'segment'}">
+            <Icon slot="left" name="book" :isActive="true"></Icon>
+            Segment
+          </Item>
+          <Item button :to="{name: 'input'}">
+            <Icon slot="left" name="cart" :isActive="true"></Icon>
+            输入框 (Input)
+          </Item>
+          <Item button :to="{name: 'grid'}">
+            <Icon slot="left" name="keypad" :isActive="true"></Icon>
+            栅格 (Grid)
+          </Item>
+          <Item button :to="{name: 'cards'}">
+            <Icon slot="left" name="calendar" :isActive="true"></Icon>
+            卡片 (Cards)
+          </Item>
+          <Item button :to="{name: 'fab'}">
+            <Icon slot="left" name="basketball" :isActive="true"></Icon>
+            Fab
+          </Item>
         </ItemGroup>
 
         <!--弹出层组件-->
@@ -50,15 +83,33 @@
         </ListHeader>
         <!--group-->
         <ItemGroup>
-          <Item button :to="{name: 'actionSheet'}">ActionSheet</Item>
-          <Item button :to="{name: 'alert'}">Alert</Item>
-          <Item button :to="{name: 'toast'}">Toast</Item>
-          <Item button :to="{name: 'backdrop'}">Backdrop</Item>
-          <Item button :to="{name: 'loading'}">Loading</Item>
-          <Item button :to="{name: 'modal'}">Modal</Item>
+          <Item button :to="{name: 'actionSheet'}">
+            <Icon slot="left" name="list" :isActive="true"></Icon>
+            ActionSheet
+          </Item>
+          <Item button :to="{name: 'alert'}">
+            <Icon slot="left" name="albums" :isActive="true"></Icon>
+            Alert
+          </Item>
+          <Item button :to="{name: 'backdrop'}">
+            <Icon slot="left" name="barcode" :isActive="true"></Icon>
+            Backdrop
+          </Item>
+          <Item button :to="{name: 'loading'}">
+            <Icon slot="left" name="refresh" :isActive="false"></Icon>
+            Loading
+          </Item>
+          <Item button :to="{name: 'modal'}">
+            <Icon slot="left" name="photos" :isActive="true"></Icon>
+            Modal
+          </Item>
+          <Item button :to="{name: 'toast'}">
+            <Icon slot="left" name="cloud" :isActive="true"></Icon>
+            Toast
+          </Item>
         </ItemGroup>
 
-        <!--弹出层组件-->
+        <!--Demo-->
         <ListHeader>
           Demo
         </ListHeader>
