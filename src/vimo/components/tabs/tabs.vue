@@ -290,9 +290,6 @@
         // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
         // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
         // 而不是全局
-        // console.log(_this.$vnode)
-        console.log(_this.$vnode)
-        debugger
         _this.$vnode.context.$children[0].$children.forEach((item) => {
           if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
             headerBarHeight = getStyle(item.$el, 'height');

@@ -6,13 +6,13 @@
       <Navbar :hideBackButton="true">
         <!--menutoggle-->
         <Button color="dark" @click="$menu.open('menu')" left icon-only role="bar-button" shape="menutoggle" slot="button">
-          <Icon class="icon" name="fa-navicon"></Icon>
+          <Icon class="icon" name="menu"></Icon>
         </Button>
 
         <Title>Welcome</Title>
 
         <Button color="dark" @click="$menu.open('author')" right icon-only role="bar-button" shape="menutoggle" slot="button">
-          <Icon class="icon" name="fa-user"></Icon>
+          <Icon class="icon" name="person"></Icon>
         </Button>
       </Navbar>
     </Header>
@@ -61,7 +61,6 @@
           </section>
         </div>
       </section>
-
 
     </Content>
   </Page>

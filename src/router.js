@@ -232,7 +232,6 @@ const routes = [
     component: require('./views/fab.vue'),
   },
 
-
   {
     path: '/content',
     name: 'content',
@@ -260,18 +259,81 @@ const router = new VueRouter({
 function routerFactory (Vue) {
   Vue.use(VueRouter);
 
+  Vue.prototype.$history = [];
+  /**
+   * 全局EventBus事件:
+   *
+   * 页面级切换, 而不是子页面的切换. 页面切换伴随着nav及content的动画.
+   * 这里定义, 在一级路由发生切换时, 才算做页面切换, 子路由的切换不是页面切换
+   *
+   *
+   * onPageIn: 页面进入的事件.
+   * onPageBack: 页面离开的事件.
+   *
+   * */
   router.beforeEach((to, from, next) => {
-    !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onPageEnter', {to, from});
-    next();
-  });
+      let _isFromPage = from.matched.length === 1;
+      let _isToPage = to.matched.length === 1;
+      let localHistoryRecordLength = Vue.prototype.$history.length;
+      if (localHistoryRecordLength === 0) {
+        /**
+         * 当本地维护的历时记录为空, 意味着页面为首次进入, 并未初始化,
+         * 此时, 可能我们是从app中的某个页面进入的, 如果后退的话相当于onPageIn, 会产生错乱,
+         * 因此, 当从app中的某个页面进入时, 需要判断下history.length
+         * */
+        // 页面当前没有前进后退
+        if (to.meta.root) {
+          // 当前进入的是首页
+          recordHistory();
+        } else {
+          // 第一次进入的不是首页则将首页注入为第一个,
+          //TODO: APP初始化只能先进这里
+          // router.push('/');
+        }
+      } else if (localHistoryRecordLength === 1) {
+        recordHistory();
+      } else if (localHistoryRecordLength > 1) {
+        let _backPath = Vue.prototype.$history[localHistoryRecordLength - 2];
+        if (to.name != _backPath.name) {
+          recordHistory();
+        } else {
+          discardHistory();
+        }
+      }
+
+      function recordHistory () {
+        Vue.prototype.$history.push(to);
+        if (_isFromPage || _isToPage) {
+          console.debug('**** onPageIn ****')
+          !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onPageIn', {to, from});
+        }
+      }
+
+      function discardHistory () {
+        //激活了浏览器的后退,这里只需要更新状态
+        Vue.prototype.$history.pop();
+        if (_isFromPage || _isToPage) {
+          console.debug('**** onPageBack ****')
+          !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onPageBack', {to, from});
+        }
+      }
+
+      //
+      // let a = [];
+      // Vue.prototype.$history.forEach(function (item) {
+      //   a.push(item.name);
+      // });
+      // console.log(a)
+      // console.log(history.length)
+
+      next();
+    }
+  )
+  ;
 
   router.afterEach((to, from) => {
-    !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onPageLeave', {to, from});
+
   });
-
-
-
-
 
   return router
 }

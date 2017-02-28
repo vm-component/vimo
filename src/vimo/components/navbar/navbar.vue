@@ -35,7 +35,7 @@
     data(){
       return {
         hideBb: false,
-        bbIcon: 'fa-angle-left',
+        bbIcon: 'arrow-back',
         backText: 'Back',
       }
     },
