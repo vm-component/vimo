@@ -97,12 +97,7 @@
     methods: {
       backButtonClick ($event) {
         //TODO: 这部分需要特殊处理
-        this.$router.back();
-
-
-        console.debug('navbar:')
-        console.debug(this.$router)
-
+        this.$back($event);
       },
     },
     created () {},

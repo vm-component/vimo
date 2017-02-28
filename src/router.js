@@ -260,6 +260,23 @@ function routerFactory (Vue) {
   Vue.use(VueRouter);
 
   Vue.prototype.$history = [];
+
+  Vue.prototype.$back = function () {
+    if (Vue.prototype.$history.length === 1) {
+      // 当只有一条记录则无法后退
+      return
+    }
+
+    if (Vue.prototype.$history.length === 2) {
+      // 返回到主页
+      Vue.prototype.$history = [];
+      router.push('/');
+      return
+    }
+
+    router.back();
+  };
+
   /**
    * 全局EventBus事件:
    *
@@ -289,6 +306,8 @@ function routerFactory (Vue) {
           // 第一次进入的不是首页则将首页注入为第一个,
           //TODO: APP初始化只能先进这里
           // router.push('/');
+          Vue.prototype.$history.push({name: 'index'});
+          recordHistory();
         }
       } else if (localHistoryRecordLength === 1) {
         recordHistory();
