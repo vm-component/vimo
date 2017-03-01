@@ -242,10 +242,17 @@ const routes = [
     name: 'content',
     component: require('./views/content.vue'),
   },
+
+  // demo
   {
     path: '/demo',
     name: 'demo',
     component: require('./views/demo.vue'),
+  },
+  {
+    path: '/gl-input',
+    name: 'gl-input',
+    component: require('./views/gl-input.vue'),
   },
 ];
 
@@ -253,7 +260,7 @@ const routes = [
  * 初始化实例
  * */
 const router = new VueRouter({
-  mode: 'hash', //  hash 模式  history 模式
+  mode: 'hash', //   "hash" | "history" | "abstract";
   base: '/', // 默认值: "/",应用的基路径。例如，如果整个单页应用服务在 /app/ 下，然后 base 就应该设为 "/app/"。
   routes: routes // （缩写）相当于 routes: routes
 });
@@ -264,80 +271,24 @@ const router = new VueRouter({
 function routerFactory (Vue) {
   Vue.use(VueRouter);
 
-  Vue.prototype.$history = [];
   /**
    * 全局EventBus事件:
    *
-   * 页面级切换, 而不是子页面的切换. 页面切换伴随着nav及content的动画.
+   * 页面级切换, 而不是子页面(tab/segment/modal)的切换. 页面切换伴随着nav及content的动画.
    * 这里定义, 在一级路由发生切换时, 才算做页面切换, 子路由的切换不是页面切换
    *
-   *
-   * onPageIn: 页面进入的事件.
-   * onPageBack: 页面离开的事件.
+   * onRouteChangeBefore: 页面变化前的事件.
+   * onRouteChangeAfter: 页面变化后的事件.
    *
    * */
   router.beforeEach((to, from, next) => {
-      let _isFromPage = from.matched.length === 1;
-      let _isToPage = to.matched.length === 1;
-      let localHistoryRecordLength = Vue.prototype.$history.length;
-      if (localHistoryRecordLength === 0) {
-        /**
-         * 当本地维护的历时记录为空, 意味着页面为首次进入, 并未初始化,
-         * 此时, 可能我们是从app中的某个页面进入的, 如果后退的话相当于onPageIn, 会产生错乱,
-         * 因此, 当从app中的某个页面进入时, 需要判断下history.length
-         * */
-        // 页面当前没有前进后退
-        if (to.meta.root) {
-          // 当前进入的是首页
-          recordHistory();
-        } else {
-          // 第一次进入的不是首页则将首页注入为第一个,
-          //TODO: APP初始化只能先进这里
-          // router.push('/');
-        }
-      } else if (localHistoryRecordLength === 1) {
-        recordHistory();
-      } else if (localHistoryRecordLength > 1) {
-        let _backPath = Vue.prototype.$history[localHistoryRecordLength - 2];
-        if (to.name != _backPath.name) {
-          recordHistory();
-        } else {
-          discardHistory();
-        }
-      }
-
-      function recordHistory () {
-        Vue.prototype.$history.push(to);
-        if (_isFromPage || _isToPage) {
-          console.debug('**** onPageIn ****')
-          !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onPageIn', {to, from});
-        }
-      }
-
-      function discardHistory () {
-        //激活了浏览器的后退,这里只需要更新状态
-        Vue.prototype.$history.pop();
-        if (_isFromPage || _isToPage) {
-          console.debug('**** onPageBack ****')
-          !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onPageBack', {to, from});
-        }
-      }
-
-      //
-      // let a = [];
-      // Vue.prototype.$history.forEach(function (item) {
-      //   a.push(item.name);
-      // });
-      // console.log(a)
-      // console.log(history.length)
-
+      Vue.prototype.$eventBus.$emit('onRouteChangeBefore', {to, from});
       next();
     }
-  )
-  ;
+  );
 
   router.afterEach((to, from) => {
-
+    Vue.prototype.$eventBus.$emit('onRouteChangeAfter', {to, from});
   });
 
   return router

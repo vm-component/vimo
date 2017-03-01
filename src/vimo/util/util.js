@@ -274,3 +274,23 @@ function _baseExtend (dst, objs, deep) {
 
   return dst;
 }
+
+
+export function firstUpperCase (str) {
+  return str.toString()[0].toUpperCase() + str.toString().slice(1);
+}
+
+/**
+ * @desc 从字符串中提取数字
+ * @param {string} str
+ * @return {number}
+ * @example 44px => 44
+ * @example auto => 0
+ * */
+export function getNum (str) {
+  let _num = str.replace(/[^0-9]/ig, "");
+  if (_num === '' || _num === undefined || _num === null) {
+    _num = 0;
+  }
+  return _num * 1
+}

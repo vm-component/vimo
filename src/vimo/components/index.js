@@ -65,9 +65,8 @@ import Spinner from './spinner'
 import Menu from './menu'
 
 // tab/tabs
-import {Tabs,Tab} from './tabs'
-import {Fab,Fabs} from './fab'
-
+import { Tabs, Tab } from './tabs'
+import { Fab, Fabs } from './fab'
 
 import { BackdropComponent, BackdropInstance } from './backdrop'
 // 实例化调用组件，传入配置参数后返回实例
@@ -79,7 +78,7 @@ import prepareModal from './modal'
 import Ghost from './ghostbtn'
 const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
-import { eventBus } from '../util/events'
+import { NavContorller } from "./navController"
 module.exports = {
   version: '1.0.0',
   /**
@@ -97,7 +96,7 @@ module.exports = {
     /**
      * 全局事件总线（各个组件共用）
      * */
-    let _eventBus = eventBus;
+    let _eventBus = new Vue();
     // requestAnimationFrame
     let _raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
@@ -106,10 +105,12 @@ module.exports = {
     // 组件配置参数
     Vue.prototype.$config = window.VM.config || null;
     Vue.prototype.$platform = window.VM.platform || null;
-    // Vue.prototype.$IScroll = $IScroll;
 
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = _eventBus;
+    // 内建历史记录, 监听route变化并发出Nav切换事件
+    Vue.prototype.$nav = new NavContorller(Vue);
+
     // requestAnimationFrame
     Vue.prototype.$raf = _raf;
     // 是否有stateBar的开关
@@ -167,8 +168,6 @@ module.exports = {
     Vue.component(Tab.name, Tab);
     Vue.component(Fabs.name, Fabs);
     Vue.component(Fab.name, Fab);
-
-
 
     Vue.component(Menu.name, Menu);
     Vue.component(BackdropComponent.name, BackdropComponent);
@@ -254,7 +253,6 @@ module.exports = {
          * @param {string} color - #FFFFFF
          * */
         Vue.prototype.$setNavBgColor = _noop; //  打电话
-
 
         // TODO: 继续补充空函数
 

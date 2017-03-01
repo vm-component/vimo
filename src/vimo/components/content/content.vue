@@ -333,7 +333,7 @@
        * @return Returns a promise which is resolved when the scroll has completed.
        */
       scrollToBottom(duration = 300) {
-        console.debug('scrollToBottom')
+        //console.debug('scrollToBottom')
         let y = 0;
         if (this.scrollContent) {
           y = this.scrollContent.scrollHeight - this.scrollContent.clientHeight;
@@ -352,7 +352,7 @@
        * */
       addScrollPadding(newPadding){
         const _this = this;
-        // console.debug('addScrollPadding');
+        // //console.debug('addScrollPadding');
 
         _this.scrollPadding = newPadding;
         if (_this.scrollContent) {
@@ -365,7 +365,7 @@
        * */
       clearScrollPaddingFocusOut(){
         const _this = this;
-        // console.debug('clearScrollPaddingFocusOut');
+        // //console.debug('clearScrollPaddingFocusOut');
         const SCROLL_TRANSITION_TIME = _this.$config.scrollTransitionTime;
         const KEYBOARD_HEIGHT = _this.$config.keyboardHeight;
         if (!_this.isInputting) {
@@ -405,6 +405,7 @@
     mounted() {
       // 将挂载点同步到根this上
       const _this = this;
+
 
       // const _this = this;
       let _timer;

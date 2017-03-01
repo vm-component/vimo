@@ -52,7 +52,6 @@ import { QueryParams } from './query-params';
 import { getCss, ready, windowDimensions, flushDimensionCache } from '../util/dom';
 import { removeArrayItem } from '../util/util';
 import { PLATFORM_CONFIGS } from '../platform/platform-registry'
-import { eventBus } from '../util/events'
 
 export class Platform {
 

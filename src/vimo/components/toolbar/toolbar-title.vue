@@ -116,24 +116,25 @@
        * */
       refreshTitle(){
         this.titleInner = this.getTitle();
-        console.log('refreshTitle')
-        console.log('document.title: '+ document.title)
-        console.log('this.titleInner: '+ this.titleInner)
+        //console.log('refreshTitle')
+        //console.log('document.title: '+ document.title)
+        //console.log('this.titleInner: '+ this.titleInner)
 
         if (this.$parent.$options._componentTag === 'Navbar' && document.title != this.titleInner) {
 
-          console.log('this.$vnode.context')
-          console.log(this.$vnode.context)
+          //console.log('this.$vnode.context')
+          //console.log(this.$vnode.context)
           if (!this.$vnode.context.$nav) {
             this.$vnode.context.$nav = {}
           }
-          this.$vnode.context.$nav = {
+          Object.assign(this.$vnode.context.$nav, {
             setTitle: this.setTitle,
             getTitle: this.getTitle,
-          }
+          })
+
           this.setTitle(this.titleInner);
 
-          console.info('refreshTitle: ' + this.titleInner)
+          //console.info('refreshTitle: ' + this.titleInner)
         }
       },
 

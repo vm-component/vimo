@@ -107,8 +107,8 @@
    * 2. select(): 传入index或者Tab
    *
    * */
-  import { getStyle, getNum, firstUpperCase } from '../../util/assist'
-  import { setElementClass } from '../../util/dom'
+  import { getNum, firstUpperCase } from '../../util/util'
+  import { getStyle,setElementClass } from '../../util/dom'
   export default{
     name: 'Tabs',
     props: {

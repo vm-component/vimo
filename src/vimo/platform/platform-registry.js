@@ -146,7 +146,7 @@ export const PLATFORM_CONFIGS = {
       p.prepareReady = function () {
         let _userAgent = window.navigator.userAgent.toString().trim();
         let val;
-        alert('Wechat Init: from platform-registry.js')
+        //alert('Wechat Init: from platform-registry.js')
         /**
          * 执行默认的domReady, 如果有定制化的初始化任务,
          * 手动执行p.triggerReady
@@ -184,7 +184,8 @@ export const PLATFORM_CONFIGS = {
       }
     },
     settings: {
-      mode: 'ios'
+      mode: 'ios',
+      hasNavBar: false,
     },
     isMatch(p) {
       return p.isPlatformMatch('wechat', ['micromessenger']);
@@ -192,7 +193,7 @@ export const PLATFORM_CONFIGS = {
   },
   alipay: {
     initialize(p){
-      alert('Alipay Init: from platform-registry.js');
+      //alert('Alipay Init: from platform-registry.js');
       let _userAgent = window.navigator.userAgent.toString().trim();
       let val;
 
@@ -221,13 +222,17 @@ export const PLATFORM_CONFIGS = {
         p.triggerReady('alipay Init Success!');
       })
     },
+    settings: {
+      mode: 'ios',
+      hasNavBar: false,
+    },
     isMatch(p) {
       return p.isPlatformMatch('alipay', ['alipay', 'alipayclient']);
     }
   },
   dingtalk: {
     initialize(p){
-      alert('Dingtalk Init: from platform-registry.js');
+      //alert('Dingtalk Init: from platform-registry.js');
       let _userAgent = window.navigator.userAgent.toString().trim();
       let val;
 
@@ -253,13 +258,17 @@ export const PLATFORM_CONFIGS = {
         p.triggerReady('dingtalk Init Success!');
       })
     },
+    settings: {
+      mode: 'ios',
+      hasNavBar: false,
+    },
     isMatch(p) {
       return p.isPlatformMatch('dingtalk');
     }
   },
   qq: {
     initialize(p){
-      alert('QQ Init: from platform-registry.js');
+      //alert('QQ Init: from platform-registry.js');
       let _userAgent = window.navigator.userAgent.toString().trim();
       let val;
 
@@ -278,13 +287,17 @@ export const PLATFORM_CONFIGS = {
       })
 
     },
+    settings: {
+      mode: 'ios',
+      hasNavBar: false,
+    },
     isMatch(p) {
       return p.isPlatformMatch('qq');
     }
   },
   dtdream: {
     initialize(p){
-      alert('dtdream Init: from platform-registry.js');
+      //alert('dtdream Init: from platform-registry.js');
 
       /**
        * 注册HyBrid方法
@@ -334,7 +347,7 @@ export const PLATFORM_CONFIGS = {
   //       // 1) ionic bootstrapped
   //       windowLoad(function () {
   //
-  //         alert('initialize')
+  //         //alert('initialize')
   //         // 2) window onload triggered or completed
   //         document.addEventListener('deviceready', function () {
   //           // 3) cordova deviceready event triggered

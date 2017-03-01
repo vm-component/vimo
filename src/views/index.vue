@@ -5,13 +5,15 @@
       <!--menutoggle-->
       <Navbar :hideBackButton="true">
         <!--menutoggle-->
-        <Button color="dark" @click="$menu.open('menu')" left icon-only role="bar-button" shape="menutoggle" slot="button">
+        <Button color="dark" @click="$menu.open('menu')" left icon-only role="bar-button" shape="menutoggle"
+                slot="button">
           <Icon class="icon" name="menu"></Icon>
         </Button>
 
         <Title>Welcome</Title>
 
-        <Button color="dark" @click="$menu.open('author')" right icon-only role="bar-button" shape="menutoggle" slot="button">
+        <Button color="dark" @click="$menu.open('author')" right icon-only role="bar-button" shape="menutoggle"
+                slot="button">
           <Icon class="icon" name="person"></Icon>
         </Button>
       </Navbar>
@@ -20,7 +22,7 @@
 
       <article class="scrollContent">
         <Grid class="vimo">
-          <Row class="vimo__logo" >
+          <Row class="vimo__logo">
             <Column text-center no-padding>
               <div class="vimo__logo--img">
                 <img height="120" src="../assets/vimo.png">
@@ -32,20 +34,25 @@
             <Column text-center>
               <h1>VIMO</h1>
               <p>v1.0.0</p>
-
-              <p>
-                <Icon name="fa-github"></Icon>
-                Github  <Icon name="fa-star"></Icon> <strong>6 </strong>
-              </p>
-              <p>Copyright © 2017 Songtao (GPL-3.0)</p>
+              <p>基于Vue2.x的移动端Hybrid框架</p>
+              <div class="vimo__text--iframe">
+                <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=star&amp;count=true"
+                        frameborder="0" scrolling="0" width="110px" height="20px" class="enter-transition"
+                        style=""></iframe>
+                <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=fork&amp;count=true"
+                frameborder="0" scrolling="0" width="95px" height="20px" class="enter-transition"
+                style=""></iframe>
+              </div>
             </Column>
           </Row>
 
           <Row class="vimo__btns">
-            <Button shape="block" type="solid" @click="$router.push({'name':'components'})">组件(Component)</Button>
-            <Button shape="block" type="solid" @click="$menu.open('menu')">菜单(Menu)</Button>
-            <Button shape="block" type="solid" @click="$menu.open('author')">关于我(About)</Button>
+            <Button shape="block" type="solid" @click="$router.push({'name':'components'})">组件</Button>
+            <Button shape="block" type="solid" @click="$menu.open('menu')">打开菜单</Button>
+            <Button shape="block" type="solid" @click="$menu.open('author')">项目介绍</Button>
           </Row>
+
+
 
         </Grid>
       </article>
@@ -89,8 +96,8 @@
             }
           }
           .vimo__text {
-            margin-top:5px;
-            margin-bottom:5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
             h1 {
               font-weight: bold;
             }
@@ -98,6 +105,14 @@
               margin: 5px 0;
               font-size: 12px;
               color: #2c3e50;
+            }
+            .vimo__text--iframe {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              iframe {
+                width:90px;
+              }
             }
 
           }
