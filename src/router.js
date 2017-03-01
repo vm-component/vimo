@@ -237,10 +237,17 @@ const routes = [
     name: 'content',
     component: require('./views/content.vue'),
   },
+
+  // demo
   {
     path: '/demo',
     name: 'demo',
     component: require('./views/demo.vue'),
+  },
+  {
+    path: '/gl-input',
+    name: 'gl-input',
+    component: require('./views/gl-input.vue'),
   },
 ];
 

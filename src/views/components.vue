@@ -116,7 +116,9 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'demo'}">Demo</Item>
+          <Item button :to="{name: 'gl-input'}">GL-Input</Item>
         </ItemGroup>
+
 
 
       </List>
