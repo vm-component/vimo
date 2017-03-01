@@ -34,25 +34,25 @@
             <Column text-center>
               <h1>VIMO</h1>
               <p>v1.0.0</p>
-              <p>Copyright © 2017 (MIT)</p>
+              <p>基于Vue2.x的移动端Hybrid框架</p>
               <div class="vimo__text--iframe">
                 <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=star&amp;count=true"
                         frameborder="0" scrolling="0" width="110px" height="20px" class="enter-transition"
                         style=""></iframe>
                 <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=fork&amp;count=true"
-                        frameborder="0" scrolling="0" width="95px" height="20px" class="enter-transition"
-                        style=""></iframe>
+                frameborder="0" scrolling="0" width="95px" height="20px" class="enter-transition"
+                style=""></iframe>
               </div>
-
-
             </Column>
           </Row>
 
           <Row class="vimo__btns">
             <Button shape="block" type="solid" @click="$router.push({'name':'components'})">组件</Button>
-            <Button shape="block" type="solid" @click="$menu.open('menu')">菜单</Button>
-            <Button shape="block" type="solid" @click="$menu.open('author')">关于我们</Button>
+            <Button shape="block" type="solid" @click="$menu.open('menu')">打开菜单</Button>
+            <Button shape="block" type="solid" @click="$menu.open('author')">项目介绍</Button>
           </Row>
+
+
 
         </Grid>
       </article>
@@ -111,7 +111,7 @@
               justify-content: center;
               align-items: center;
               iframe {
-                width:80px;
+                width:90px;
               }
             }
 

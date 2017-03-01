@@ -184,7 +184,8 @@ export const PLATFORM_CONFIGS = {
       }
     },
     settings: {
-      mode: 'ios'
+      mode: 'ios',
+      hasNavBar: false,
     },
     isMatch(p) {
       return p.isPlatformMatch('wechat', ['micromessenger']);
@@ -221,6 +222,10 @@ export const PLATFORM_CONFIGS = {
         p.triggerReady('alipay Init Success!');
       })
     },
+    settings: {
+      mode: 'ios',
+      hasNavBar: false,
+    },
     isMatch(p) {
       return p.isPlatformMatch('alipay', ['alipay', 'alipayclient']);
     }
@@ -253,6 +258,10 @@ export const PLATFORM_CONFIGS = {
         p.triggerReady('dingtalk Init Success!');
       })
     },
+    settings: {
+      mode: 'ios',
+      hasNavBar: false,
+    },
     isMatch(p) {
       return p.isPlatformMatch('dingtalk');
     }
@@ -277,6 +286,10 @@ export const PLATFORM_CONFIGS = {
         p.triggerReady('qq Init Success!');
       })
 
+    },
+    settings: {
+      mode: 'ios',
+      hasNavBar: false,
     },
     isMatch(p) {
       return p.isPlatformMatch('qq');

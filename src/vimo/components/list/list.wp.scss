@@ -66,17 +66,17 @@ $list-wp-header-color:           $list-wp-text-color !default;
 
 .list-wp > .item-block:last-child,
 .list-wp > .item-wrapper:last-child {
-  ion-label,
+  .ion-label,
   .item-inner {
     border-bottom: 0;
   }
 }
 
-.list-wp > ion-input:last-child::after {
+.list-wp > .ion-input:last-child::after {
   left: 0;
 }
 
-.list-wp ion-item-options .button {
+.list-wp .ion-item-options .button {
   display: inline-flex;
 
   align-items: center;
@@ -92,7 +92,7 @@ $list-wp-header-color:           $list-wp-text-color !default;
   box-sizing: border-box;
 }
 
-.list-wp ion-item-options .button::before {
+.list-wp .ion-item-options .button::before {
   margin: 0 auto;
 }
 
@@ -104,7 +104,7 @@ $list-wp-header-color:           $list-wp-text-color !default;
   border-width: 0;
 }
 
-.list-wp + ion-list ion-list-header {
+.list-wp + .ion-list .ion-list-header {
   margin-top: -$list-wp-margin-top;
   padding-top: 0;
 }
@@ -136,11 +136,11 @@ $list-wp-header-color:           $list-wp-text-color !default;
   padding-left: 0;
 }
 
-.list-wp[inset] + ion-list[inset] {
+.list-wp[inset] + .ion-list[inset] {
   margin-top: 0;
 }
 
-.list-wp[inset] ion-list-header {
+.list-wp[inset] .ion-list-header {
   background-color: $list-wp-background-color;
 }
 

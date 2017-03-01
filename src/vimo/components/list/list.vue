@@ -4,13 +4,17 @@
   </div>
 </template>
 <style lang="scss">
-  @import "list";
-  @import "list.ios";
-  @import "../item/item";
-  @import "../item/item.ios";
-  @import "../item/item-media";
-  @import "../item/item-sliding";
-  @import "../item/item-reorder";
+  @import "list.scss";
+  @import "list.ios.scss";
+  @import "list.md.scss";
+  @import "list.wp.scss";
+  @import "../item/item.scss";
+  @import "../item/item.ios.scss";
+  @import "../item/item.md.scss";
+  @import "../item/item.wp.scss";
+  @import "../item/item-media.scss";
+  @import "../item/item-sliding.scss";
+  @import "../item/item-reorder.scss";
 
 </style>
 <script type="text/ecmascript-6">

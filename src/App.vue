@@ -5,8 +5,8 @@
       <!--<Menu [content]="content" id="menu1">-->
       <Page>
         <Header>
-          <Toolbar color="primary">
-            <Title>Menu</Title>
+          <Toolbar>
+            <Title>菜单</Title>
           </Toolbar>
         </Header>
         <Content>
@@ -23,6 +23,9 @@
               <Item button :to="{name: 'howToStart'}">
                 如何开始
               </Item>
+              <Item button :to="{name: 'howToStart'}">
+                当前设备信息
+              </Item>
             </ItemGroup>
           </List>
         </Content>
@@ -33,19 +36,23 @@
       <!--<Menu [content]="content" id="menu1">-->
       <Page>
         <Header>
-          <Toolbar color="primary">
-            <Title slot="content" title="About Me"></Title>
+          <Toolbar>
+            <Title>项目介绍</Title>
           </Toolbar>
         </Header>
         <Content padding>
-          <List>
-            <!--<Button  @click="$closeMenu()">-->
-            <!--&lt;!&ndash;<button ion-item menuClose="menu1" detail-none>&ndash;&gt;-->
-            <!--Close Menu 1-->
-            <!--</Button>-->
-          </List>
+          <h5>起源</h5>
+          <p>这里是介绍</p>
+
+          <h5>Vimo需要解决的问题</h5>
+          <p>这里是介绍</p>
+
+          <h5>团队成员</h5>
           <p>这里是介绍</p>
         </Content>
+        <Footer>
+          <Toolbar style="text-align:center;color:#444;"><p>Copyright © 2017 Songtao(MIT)</p></Toolbar>
+        </Footer>
       </Page>
     </Menu>
 
