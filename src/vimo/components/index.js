@@ -76,7 +76,7 @@ import getAlertInstance from './alert'
 import getLoadingInstance from './loading'
 import prepareToast from './toast'
 import prepareModal from './modal'
-
+import Ghost from './ghostbtn'
 const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
 import { eventBus } from '../util/events'
@@ -126,6 +126,7 @@ module.exports = {
     Vue.component(ToolbarTitle.name, ToolbarTitle);
     Vue.component(ToolbarButtons.name, ToolbarButtons);
     Vue.component(Button.name, Button);
+    Vue.component(Ghost.name,Ghost);
 
     Vue.component(Icon.name, Icon);
     Vue.component(Nav.name, Nav);

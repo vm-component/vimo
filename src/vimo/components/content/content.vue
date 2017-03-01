@@ -189,7 +189,6 @@
 
       initIscroll(){
         console.log(window.VM.IScroll);
-        debugger;
         let iscroll = iScroll||window.VM.IScroll;
         if(this.useIScroll){
           require("../../util/iscroll.css");

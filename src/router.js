@@ -62,6 +62,11 @@ const routes = [
     component: require('./views/button.vue'),
   },
   {
+    path: '/ghost',
+    name: 'ghostvue',
+    component: require('./views/ghost.vue'),
+  },
+  {
     path: '/icon',
     name: 'icon',
     component: require('./views/icon.vue'),
