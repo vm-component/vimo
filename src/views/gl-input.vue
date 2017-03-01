@@ -29,7 +29,7 @@
 
 
       <div class="demo">
-        <div class="circleButton">
+        <div class="circleButton" @click="circleGo">
           <div class="circleButton__bottom"></div>
           <div class="circleButton__left"></div>
           <div class="circleButton__top"></div>
@@ -37,6 +37,33 @@
         </div>
       </div>
 
+      <Grid>
+        <Row>
+          <label>Start Percent</label>
+          <input type="number" v-model="start">
+        </Row>
+        <Row>
+          <label>Color Before</label>
+          <input type="text" v-model="colorBefore">
+        </Row>
+        <Row>
+          <label>Color After</label>
+          <input type="text" v-model="colorAfter">
+        </Row>
+        <Row>
+          <label>startDuration</label>
+          <input type="number" v-model="startDuration">
+        </Row>
+        <Row>
+          <label>middleDuration</label>
+          <input type="number" v-model="middleDuration">
+        </Row>
+        <Row>
+          <label>endDuration</label>
+          <input type="number" v-model="endDuration">
+        </Row>
+      </Grid>
+      <Button @click="resetCircle()">ResetCircle</Button>
       <Button @click="circleGo()">CircleGo</Button>
 
 
@@ -144,6 +171,7 @@
     height: 50px;
     width: 200px;
     position: relative;
+
     background: #cdcdcd;
     .circleButton__bottom,
     .circleButton__left,
@@ -152,34 +180,28 @@
       position: absolute;
       opacity: 1;
       display: block;
-      background: #b5b5b5;
+      background: #000;
       z-index: 1;
     }
     .circleButton__bottom {
       height: 3px;
-      width: 100%;
       bottom: 0;
-
-      right: 0;
-      left: auto;
+      /*width: 100%;*/
     }
     .circleButton__left {
       width: 3px;
-      height: 100%;
       left: 0;
-
-      top: 0;
-      bottom: auto;
+      /*height: 100%;*/
     }
     .circleButton__top {
       height: 3px;
-      /*width: 80%;*/
       top: 0;
+      /*width: 100%;*/
     }
     .circleButton__right {
       width: 3px;
-      /*height: 80%;*/
       right: 0;
+      /*height: 100%;*/
     }
   }
 </style>
@@ -194,11 +216,40 @@
         isActive: false,
         inputValue: '',
         inputValueForDisplay: [],
+
+        _bottom: null,
+        _left: null,
+        _top: null,
+        _right: null,
+
+        start: 30,
+        colorBefore: '#fff',
+        colorAfter: '#000',
+
+        isAnimate: false,
+        startCubicBezier: [1, 0.01, 0.9, 0.73],
+        middleCubicBezier: [0.31, 0.81, 0.4, 0.97],
+        endCubicBezier: [0.15, 0.6, 0.27, 0.9],
+        startDuration: 300,
+        middleDuration: 150,
+        endDuration: 300,
+
       }
     },
     props: {},
     watch: {},
-    computed: {},
+    computed: {
+      startPercent(){
+        return this.start + '%'
+      },
+      restPercent(){
+        return (100 - this.start) + '%'
+      },
+      totalDuration(){
+        return this.startDuration + this.middleDuration + this.endDuration
+      }
+
+    },
     methods: {
       toggle(){
         this.isActive = !this.isActive;
@@ -216,34 +267,230 @@
           this.inputValue = _arr.join('');
         }
       },
-
+      resetCircle(){
+        const _this = this;
+        _this._bottom.style.width = _this.restPercent;
+        _this._bottom.style.left = 0;
+        _this._left.style.height = '100%';
+        _this._top.style.width = _this.startPercent;
+        _this._top.style.left = 0;
+        _this._right.style.height = '0%';
+      },
       circleGo(){
-        let $bottom = document.querySelectorAll('.circleButton__bottom')[0];
-        let $left = document.querySelectorAll('.circleButton__left')[0];
-        let $top = document.querySelectorAll('.circleButton__top')[0];
-        let $right = document.querySelectorAll('.circleButton__right')[0];
-        // state 1:go
+        const _this = this;
+        let sequenceBottom;
+        let sequenceTop;
+        let sequenceColor;
+        if (_this.isAnimate) {
+          return
+        }
+        _this.isAnimate = true;
+        let startPercent = _this.startPercent;
+        let restPercent = _this.restPercent;
 
-        // Velocity($bottom, {left: 0, width:0}, {duration: 300})
-        // Velocity($top, {left: 0, width:'100%'}, {duration: 300})
-        // Velocity($top, {left: 0, width:'100%'}, {duration: 300})
-        //      {e: $top, p: {left: 0, width:'100%'}, o: {duration: 300, sequenceQueue: false}},
-        var mySequence = [
-          {e: $bottom, p: {left: 0, width: 0}, o: {duration: 300}},
-          {e: $top, p: {left: 0, width: '100%'}, o: {duration: 300, sequenceQueue: false}},
+        if (parseInt(_this._left.style.height) > 0) {
+          sequenceColor = [
+            {
+              e: _this._bottom,
+              p: {backgroundColor: _this.colorBefore},
+              o: {duration: _this.totalDuration, sequenceQueue: false}
+            },
+            {
+              e: _this._left,
+              p: {backgroundColor: _this.colorBefore},
+              o: {duration: _this.totalDuration, sequenceQueue: false}
+            },
+            {
+              e: _this._top,
+              p: {backgroundColor: _this.colorBefore},
+              o: {duration: _this.totalDuration, sequenceQueue: false}
+            },
+            {
+              e: _this._right,
+              p: {backgroundColor: _this.colorBefore},
+              o: {duration: _this.totalDuration, sequenceQueue: false}
+            },
 
+          ];
+          sequenceBottom = [
+            {
+              e: _this._bottom,
+              p: {width: ['0%', restPercent]},
+              o: {
+                begin () {
+                  _this._bottom.style.left = 0;
+                },
+                duration: _this.startDuration,
+                easing: _this.startCubicBezier
+              }
+            },
+            {
+              e: _this._left,
+              p: {height: ['0%', '100%']},
+              o: {
+                begin () {
+                  _this._bottom.style.left = 'inherit';
+                  _this._left.style.top = 0;
+                },
+                duration: _this.middleDuration,
+                easing: _this.middleCubicBezier
+              }
+            },
+            {
+              e: _this._top,
+              p: {width: [restPercent, '100%']},
+              o: {
+                begin () {
+                  _this._top.style.right = 0;
+                },
+                duration: _this.endDuration,
+                easing: _this.endCubicBezier,
+                complete(){
+                  _this.isAnimate = false;
+                }
+              }
+            },
+          ];
+          sequenceTop = [
+            {
+              e: _this._top,
+              p: {width: ['100%', startPercent]},
+              o: {
+                begin () {
+                  _this._top.style.left = 0;
+                },
+                duration: _this.startDuration,
+                easing: _this.startCubicBezier
+              }
+            },
+            {
+              e: _this._right,
+              p: {height: ['100%', '0%']},
+              o: {
+                begin () {
+                  _this._top.style.left = 'inherit';
+                  _this._right.style.top = 0;
+                },
+                duration: _this.middleDuration,
+                easing: _this.middleCubicBezier
+              }
+            },
+            {
+              e: _this._bottom,
+              p: {width: [startPercent, '0%']},
+              o: {
+                begin () {
+                  _this._bottom.style.right = 0;
+                },
+                duration: _this.endDuration,
+                easing: _this.endCubicBezier,
+                complete(){
+                  _this.isAnimate = false;
+                }
+              }
+            },
+          ];
+          Velocity.RunSequence(sequenceColor);
+          Velocity.RunSequence(sequenceBottom);
+          Velocity.RunSequence(sequenceTop);
 
-        ];
-        Velocity.RunSequence(mySequence);
-
-
-
-
+        } else {
+          sequenceTop = [
+            {
+              e: _this._top,
+              p: {width: ['0%', restPercent]},
+              o: {
+                begin () {
+                  _this._top.style.right = 0;
+                },
+                duration: _this.startDuration,
+                easing: _this.startCubicBezier
+              }
+            },
+            {
+              e: _this._right,
+              p: {height: ['0%', '100%']},
+              o: {
+                begin () {
+                  _this._top.style.right = 'inherit';
+                  _this._right.style.top = 'inherit';
+                  _this._right.style.bottom = 0;
+                },
+                duration: _this.middleDuration,
+                easing: _this.middleCubicBezier
+              }
+            },
+            {
+              e: _this._bottom,
+              p: {width: [restPercent, '100%']},
+              o: {
+                begin () {
+                  _this._right.style.bottom = 'inherit';
+                  _this._bottom.style.right = 'inherit';
+                  _this._bottom.style.left = 0;
+                },
+                duration: _this.endDuration,
+                easing: _this.endCubicBezier,
+                complete(){
+                  _this._bottom.style.left = 'inherit';
+                  _this.isAnimate = false;
+                }
+              }
+            },
+          ];
+          sequenceBottom = [
+            {
+              e: _this._bottom,
+              p: {width: ['100%', startPercent]},
+              o: {
+                begin () {
+                  _this._bottom.style.right = 0;
+                  _this._bottom.style.left = 'inherit';
+                },
+                duration: _this.startDuration,
+                easing: _this.startCubicBezier
+              }
+            },
+            {
+              e: _this._left,
+              p: {height: ['100%', '0%']},
+              o: {
+                begin () {
+                  _this._bottom.style.left = 'inherit';
+                  _this._left.style.top = 'inherit';
+                  _this._left.style.bottom = 0;
+                },
+                duration: _this.middleDuration,
+                easing: _this.middleCubicBezier
+              }
+            },
+            {
+              e: _this._top,
+              p: {width: [startPercent, '0%']},
+              o: {
+                begin () {
+                  _this._top.style.left = 0;
+                  _this._top.style.right = 'inherit';
+                },
+                duration: _this.endDuration,
+                easing: _this.endCubicBezier,
+                complete(){
+                  _this.isAnimate = false;
+                }
+              }
+            },
+          ];
+          Velocity.RunSequence(sequenceBottom);
+          Velocity.RunSequence(sequenceTop);
+        }
       }
     },
     created () {},
     mounted () {
-
+      this._bottom = document.querySelectorAll('.circleButton__bottom')[0];
+      this._left = document.querySelectorAll('.circleButton__left')[0];
+      this._top = document.querySelectorAll('.circleButton__top')[0];
+      this._right = document.querySelectorAll('.circleButton__right')[0];
     },
     activated () {},
     components: {}
