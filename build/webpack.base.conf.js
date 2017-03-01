@@ -27,7 +27,8 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
-      'font-awesome': path.resolve(__dirname, '../node_modules/font-awesome')
+      'velocity': path.resolve(__dirname, '../node_modules/velocity-animate/velocity.js'),
+      'velocity.ui': path.resolve(__dirname, '../node_modules/velocity-animate/velocity.ui.js'),
     }
   },
   resolveLoader: {

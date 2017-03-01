@@ -184,7 +184,9 @@
   }
 </style>
 <script type="text/ecmascript-6">
-  import Velocity from 'velocity-animate';
+  import  'velocity';
+  import  'velocity.ui';
+
   export default{
     name: 'name',
     data(){
@@ -215,7 +217,6 @@
         }
       },
 
-
       circleGo(){
         let $bottom = document.querySelectorAll('.circleButton__bottom')[0];
         let $left = document.querySelectorAll('.circleButton__left')[0];
@@ -223,12 +224,25 @@
         let $right = document.querySelectorAll('.circleButton__right')[0];
         // state 1:go
 
-        Velocity($bottom, {left: 0, width:0}, {duration: 4300})
+        // Velocity($bottom, {left: 0, width:0}, {duration: 300})
+        // Velocity($top, {left: 0, width:'100%'}, {duration: 300})
+        // Velocity($top, {left: 0, width:'100%'}, {duration: 300})
+        //      {e: $top, p: {left: 0, width:'100%'}, o: {duration: 300, sequenceQueue: false}},
+        var mySequence = [
+          {e: $bottom, p: {left: 0, width: 0}, o: {duration: 300}},
+          {e: $top, p: {left: 0, width: '100%'}, o: {duration: 300, sequenceQueue: false}},
+
+
+        ];
+        Velocity.RunSequence(mySequence);
+
+
+
+
       }
     },
     created () {},
     mounted () {
-
 
     },
     activated () {},
