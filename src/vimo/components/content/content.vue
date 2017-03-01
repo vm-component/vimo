@@ -24,8 +24,8 @@
 
 <script type="text/ecmascript-6">
 
-  import { getStyle, getNum } from '../../util/assist'
-  import {setElementClass} from '../../util/dom'
+  import { getStyle,setElementClass } from '../../util/dom'
+  import {getNum} from '../../util/util'
   import iScroll from '../../util/iscroll'
   import dutil from '../../util/demoUtils'
   export default{

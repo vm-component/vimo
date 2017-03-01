@@ -4,3 +4,9 @@
 [0301/140323:WARNING:process_snapshot_win.cc(68)] ReadMemory ExceptionInformation failed
 [0301/140323:WARNING:crash_report_exception_handler.cc(61)] ProcessSnapshotWin::Initialize failed
 [0301/140323:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess: 已尝试访问正在退出的过程。  (0xc000010a)
+[0301/165805:ERROR:process_info.cc(330)] VirtualQueryEx: 拒绝访问。 (0x5)
+[0301/165805:ERROR:process_info.cc(547)] ReadMemoryInfo failed
+[0301/165805:ERROR:process_reader_win.cc(99)] process 11732 not found
+[0301/165805:ERROR:exception_snapshot_win.cc(87)] thread ID 11532 not found in process
+[0301/165805:WARNING:crash_report_exception_handler.cc(61)] ProcessSnapshotWin::Initialize failed
+[0301/165805:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess: 已尝试访问正在退出的过程。  (0xc000010a)

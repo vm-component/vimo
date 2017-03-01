@@ -6,12 +6,11 @@
       </Navbar>
     </Header>
     <Content padding>
+    
       <Ghost>
         CREATE MY ACCOUNT
       </Ghost>
-      <Ghost>
-        CREATE
-      </Ghost>
+      
     </Content>
   </Page>
 </template>

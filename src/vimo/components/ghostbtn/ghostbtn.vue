@@ -22,17 +22,21 @@
   export default{
     name:'Ghost',
     data(){
+      return {
 
+      }
     },
     props:{
 
     },
     methods:{
       animation(){
+        stopAni();
         startAni();
+        stopAni();
       },
       removeAni(){
-        stopAni();
+       // stopAni();
       }
     }
     
