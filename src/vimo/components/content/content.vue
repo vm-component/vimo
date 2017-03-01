@@ -1,5 +1,5 @@
 <template>
-  <article class="ion-content content-ios outer-content" :class="{'statusbar-padding':statusbarPadding}">
+  <article class="ion-content content-ios outer-content" :class="{'statusbar-padding':$hasStatusBar}">
     <section ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
       <!--固定在页面中的内容-->
       <!--固定到顶部-->
@@ -12,24 +12,60 @@
         <slot name="fixedBottom"></slot>
       </div>
     </section>
-    <section ref="scrollContent" class="scroll-content" :style="scrollContentStyle">
-      <!--默认是能滚动的内容-->
-      <slot></slot>
+    <section   ref="scrollContent" class="scroll-content" id="wrapper"  :style="scrollContentStyle">
+      <!--默认是能滚动的内容   -->
+      <div id="scroller">
+        <slot></slot>
+      </div>    
     </section>
     <slot name="Refresher"></slot>
   </article>
 </template>
 
 <script type="text/ecmascript-6">
-  import { getNum } from '../../util/util'
-  import { getStyle } from '../../util/dom'
 
+  import { getStyle,setElementClass } from '../../util/dom'
+  import {getNum} from '../../util/util'
+  import iScroll from '../../util/iscroll'
+  import dutil from '../../util/demoUtils'
   export default{
     name: 'Content',
     props: {
       fullscreen: {
         type: Boolean,
         default: false
+      },
+      useIScroll:{
+        type:Boolean,
+        default:false
+      },
+      scrollX:{
+        type:Boolean,
+        default:false
+      },
+      snap:{
+        type:Boolean,
+        default:true
+      },
+      snapSpeed:{
+        type:Boolean,
+        default:true
+      },
+      keyBindings:{
+        type:Boolean,
+        default:true
+      },
+      indicatorsEl:{
+        type:String,
+        default:"indicator"
+      },
+      indicatorResize:{
+        type:Boolean,
+        default:true
+      },
+      stemplate:{
+        type:String,
+        default:"#wrapper"
       }
     },
     data(){
@@ -47,8 +83,6 @@
         scrollPadding: 0, // scroll-content的paddingBottom，用于键盘的显示
         originalScrollPadding: 0, // 原始的scrollPaddingBottom的值
         isInputting: false, // 正在输入
-
-        statusbarPadding: VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
       }
     },
     watch: {
@@ -60,7 +94,7 @@
     methods: {
       /**
        * 计算scrollContent的样式
-       * 因为这部分首一下因素影响：statusbarPadding、fullscreen、Header，Footer
+       * 因为这部分首一下因素影响：$hasStatusBar、fullscreen、$hasHeaderBar，$hasFooterBar
        * */
       computeScrollContentStyle () {
         let _this = this;
@@ -68,16 +102,30 @@
         let headerBarHeight = 0;
         let footerBarHeight = 0;
 
+
+
+// debugger
+
+        // let _pageInstance = _this.$vnode.context;
+        // let _headerInstance = _pageInstance.$header;
+        // let _footerInstance = _pageInstance.$footer;
+        //
+        // headerBarHeight = getStyle(_headerInstance.$el, 'height');
+        // headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
+        //
+        // footerBarHeight = getStyle(_footerInstance.$el, 'height');
+        // footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
+
         // 得到header和footer的高度
         // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
         // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
         // 而不是全局
-        _this.$parent.$children.forEach((item) => {
-          if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
+        _this.$parent.$children.forEach(function (item) {
+          if (item.$options._componentTag === 'Header') {
             headerBarHeight = getStyle(item.$el, 'height');
             headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
           }
-          if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'footer') {
+          if (item.$options._componentTag === 'Footer') {
             footerBarHeight = getStyle(item.$el, 'height');
             footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
           }
@@ -86,11 +134,9 @@
         // 获取原始的footer的Height，用于keyboard的复原
         _this.originalScrollPadding = footerBarHeight;
 
-        if (_this.statusbarPadding) {
+        if (_this.$hasStatusBar) {
           // 存在statusBar的情况下，header高20px
-          // _valHeader = headerBarHeight + _this.$config.statusBarHeight;
-          // TODO: statusBarHeight
-          _valHeader = headerBarHeight + 20;
+          _valHeader = headerBarHeight + _this.$config.statusBarHeight;
         } else {
           _valHeader = headerBarHeight
         }
@@ -138,6 +184,26 @@
         };
 
         return _this.contentDimensions
+      },
+
+
+      initIscroll(){
+        console.log(window.VM.IScroll);
+        let iscroll = iScroll||window.VM.IScroll;
+        if(this.useIScroll){
+          require("../../util/iscroll.css");
+          let attr = {
+            freeScroll:true,
+            mouseWheel: true, 
+            click: true,
+            bounceEasing: 'elastic',
+            bounceTime: 1200
+          };
+          this.scrollX&&(attr.scrollX=this.scrollX);
+           setElementClass(this.$el.querySelector("#wrapper"),"scroll-content",false);
+          //var myScroll = new iScroll(this.stemplate, attr,this.$el);
+          var myScroll = new iscroll(this.stemplate,attr,this.$el);
+        }
       },
 
       /**
@@ -340,12 +406,10 @@
       // 将挂载点同步到根this上
       const _this = this;
 
-      //console.debug('content this')
-      //console.debug(this)
 
       // const _this = this;
       let _timer;
-
+      _this.initIscroll();
       // 找到fixedContent/scrollContent的位置
       _this.fixedContent = _this.$el.children[0];
       _this.scrollContent = _this.$el.children[1];

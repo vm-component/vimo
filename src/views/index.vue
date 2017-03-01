@@ -18,7 +18,7 @@
         </Button>
       </Navbar>
     </Header>
-    <Content padding class="content">
+    <Content padding class="content" :useIScroll="true">
 
       <article class="scrollContent">
         <Grid class="vimo">
