@@ -390,7 +390,7 @@
               }
             },
           ];
-          Velocity.RunSequence(sequenceColor);
+          // Velocity.RunSequence(sequenceColor);
           Velocity.RunSequence(sequenceBottom);
           Velocity.RunSequence(sequenceTop);
 
