@@ -59,9 +59,9 @@
     <Nav>
       <div nav-viewport></div>
       <!--业务视图部分-->
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
+      <!--<keep-alive>-->
+      <router-view></router-view>
+      <!--</keep-alive>-->
       <!--业务视图部分 end-->
       <div class="nav-decor"></div>
     </Nav>
