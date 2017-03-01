@@ -5,7 +5,7 @@
         <Title>组件</Title>
       </Navbar>
     </Header>
-    <Content :useIScroll="true">
+    <Content>
       <List>
         <!--基础组件-->
         <ListHeader>
@@ -31,23 +31,12 @@
         <ListHeader>通用组件</ListHeader>
         <!--group-->
         <ItemGroup>
-          <Item button :to="{name: 'button'}">Button</Item>
-          <Item button :to="{name: 'ghostvue'}">ghost</Item>
-          <Item button :to="{name: 'icon'}">Icon</Item>
-          <Item button :to="{name: 'spinner'}">Spinner</Item>
-          <Item button :to="{name: 'list'}">List</Item>
-          <Item button :to="{name: 'searchbar'}">Searchbar</Item>
-          <Item button :to="{name: 'tabs'}">Tabs</Item>
-          <Item button :to="{name: 'segment'}">Segment</Item>
-          <Item button :to="{name: 'input'}">Input</Item>
-          <Item button :to="{name: 'grid'}">Grid</Item>
-          <Item button :to="{name: 'cards'}">Cards</Item>
-          <Item button :to="{name: 'fab'}">Fab</Item>
-
           <Item button :to="{name: 'button'}">
             <Icon slot="left" name="download"></Icon>
             按钮 (Button)
           </Item>
+          <Item button :to="{name: 'ghostvue'}">ghost</Item>
+
           <Item button :to="{name: 'icon'}">
             <Icon slot="left" name="color-filter"></Icon>
             图标 (Icon)

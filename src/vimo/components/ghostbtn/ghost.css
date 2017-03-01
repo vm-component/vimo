@@ -1,6 +1,6 @@
 
 *{
-  font: 13.3333px Arial;
+  /*font: 13.3333px Arial;*/
 }
 
 
@@ -25,19 +25,19 @@
 }
 #bottom{
   position: relative;
-  left:150px; 
+  left:150px;
   top:29px;
   width: 50px;
 }
 .bottomAnimation{
-   animation:leftTo 1s ease-in 0s; 
+   animation:leftTo 1s ease-in 0s;
 }
 #right{
   float: right;
   height: 30px;
 }
 .rightAnimation{
-  animation: bottomTo 1s ease-in 0s; 
+  animation: bottomTo 1s ease-in 0s;
 }
 #left{
   float: left;
@@ -135,7 +135,7 @@
     }
     70%{
        width: 2px;
-      height:31px; 
+      height:31px;
     }
     84.9%{
       width: 2px;
@@ -187,7 +187,7 @@
     color:rgba(256,0,51,0);
   }
   100%{
-    color:rgba(256,0,51,1); 
+    color:rgba(256,0,51,1);
   }
 }
 
