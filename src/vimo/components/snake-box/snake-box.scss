@@ -1,0 +1,37 @@
+@import "../../themes/ionic.globals";
+
+// snakeBox
+// --------------------------------------------------
+
+.snakeBox {
+  //height: 50px;
+  //width: 200px;
+  position: relative;
+  background: transparent;
+  .snakeBox__bottom,
+  .snakeBox__left,
+  .snakeBox__top,
+  .snakeBox__right {
+    position: absolute;
+    opacity: 1;
+    display: block;
+    background: #000;
+    z-index: 1;
+  }
+  .snakeBox__bottom {
+    height: 3px;
+    bottom: 0;
+  }
+  .snakeBox__left {
+    width: 3px;
+    left: 0;
+  }
+  .snakeBox__top {
+    height: 3px;
+    top: 0;
+  }
+  .snakeBox__right {
+    width: 3px;
+    right: 0;
+  }
+}

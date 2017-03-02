@@ -43,6 +43,7 @@
   /*@import "item-sliding";*/
 </style>
 <script type="text/ecmascript-6">
+  import { isTrueProperty } from '../../util/util'
   module.exports = {
     data(){
       return {
@@ -52,10 +53,12 @@
         isTextarea: false, // 用于input组件修改, 标记内部有textarea组件
 
         // label的样式
-        isFixed:false,
-        isFloating:false,
-        isStacked:false,
-        isInset:false,
+        isFixed: false,
+        isFloating: false,
+        isStacked: false,
+        isInset: false,
+
+        isInMenu: true, // 判断是否在menu组件中, 如果在menu中, 则
       }
     },
     props: {
@@ -83,8 +86,7 @@
         },
       }
     },
-    watch: {
-    },
+    watch: {},
     computed: {
       // 环境样式
       itemClass () {
@@ -101,18 +103,28 @@
        * 类似于a标签跳转
        * */
       directTo(){
-        if (!!this.to) {
-          this.$router.push(this.to)
+        const _this = this;
+        if (!!_this.to) {
+
+          if (_this.isInMenu) {
+            _this.$menu.close();
+            _this.$eventBus.$on('onMenuClosed', directToHandler)
+          }
+
+          function directToHandler () {
+            _this.$router.push(_this.to);
+            _this.$eventBus.$off('onMenuClosed', directToHandler)
+          }
         }
       }
     },
-    created () {
-
-    },
-    beforeMount(){
-
-    },
+    created () {},
     mounted () {
+
+      if (isTrueProperty(this.$el.getAttribute('delay'))) {
+        this.isInMenu = true;
+      }
+
       // 为slot="left"/slot="right"的沟槽设定属性
       if (!!this.$slots && !!this.$slots['left']) {
         this.$slots['left'].forEach(function (item) {

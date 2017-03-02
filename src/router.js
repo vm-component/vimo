@@ -30,17 +30,27 @@ const routes = [
     component: require('./views/components.vue'),
   },
 
+  // ----  menu ----
   {
     path: '/introduce',
     name: 'introduce',
     component: require('./views/introduce.vue'),
   },
   {
+    path: '/howToStart',
+    name: 'howToStart',
+    component: require('./views/how-to-start.vue'),
+  },
+  {
+    path: '/equipment',
+    name: 'equipment',
+    component: require('./views/equipment.vue'),
+  },
+
+
+  {
     path: '/app',
     name: 'app',
-    // meta: {
-    //   inMenu: true, // 当前点击是否对
-    // },
     component: require('./views/app.vue'),
   },
   {

@@ -19,6 +19,9 @@ export const isPrimitive = function(val) {
   return isString(val) || isBoolean(val) || (isNumber(val) && !isNaN(val));
 };
 
+/**
+ * 判断元素属性是否存在设值
+ * */
 export const isTrueProperty = function(val) {
   if (typeof val === 'string') {
     val = val.toLowerCase().trim();
@@ -26,7 +29,11 @@ export const isTrueProperty = function(val) {
   }
   return !!val;
 };
-// 判断是否相等，比如：'true'和true，'0'和0
+
+/**
+ * 判断Checked属性的值
+ * 判断是否相等，比如：'true'和true，'0'和0
+ * */
 export const isCheckedProperty = function(a, b) {
   if (a === undefined || a === null || a === '') {
     return (b === undefined || b === null || b === '');

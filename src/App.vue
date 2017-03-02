@@ -1,7 +1,7 @@
 <template>
   <App id="app">
     <!--menu menu-->
-    <Menu id="menu" side="left" type="overlay">
+    <Menu id="menu" side="left" type="push">
       <!--<Menu [content]="content" id="menu1">-->
       <Page>
         <Header>
@@ -17,13 +17,14 @@
             </ListHeader>
             <!--group-->
             <ItemGroup>
-              <Item button :to="{name: 'introduce'}">
+              <!--delay 表示等待关闭事件-->
+              <Item button :to="{name: 'introduce'}" delay>
                 介绍
               </Item>
-              <Item button :to="{name: 'howToStart'}">
+              <Item button :to="{name: 'howToStart'}" delay>
                 如何开始
               </Item>
-              <Item button :to="{name: 'howToStart'}">
+              <Item button :to="{name: 'equipment'}" delay>
                 当前设备信息
               </Item>
             </ItemGroup>
@@ -32,7 +33,7 @@
       </Page>
     </Menu>
     <!--menu author-->
-    <Menu id="author" side="right" type="overlay">
+    <Menu id="author" side="right">
       <!--<Menu [content]="content" id="menu1">-->
       <Page>
         <Header>
@@ -51,7 +52,7 @@
           <p>这里是介绍</p>
         </Content>
         <Footer>
-          <Toolbar style="text-align:center;color:#444;"><p>Copyright © 2017 Songtao(MIT)</p></Toolbar>
+          <Toolbar style="text-align:center;color:#444;"><p>Copyright © 2017(MIT)</p></Toolbar>
         </Footer>
       </Page>
     </Menu>

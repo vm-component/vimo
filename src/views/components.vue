@@ -5,7 +5,7 @@
         <Title>组件</Title>
       </Navbar>
     </Header>
-    <Content :useIScroll="true">
+    <Content>
       <List>
         <!--基础组件-->
         <ListHeader>
@@ -33,7 +33,6 @@
         <ItemGroup>
           <Item button :to="{name: 'button'}">Button</Item>
           <Item button :to="{name: 'ghostvue'}">ghost</Item>
-          <Item button :to="{name: 'floattop'}">floattop</Item>
           <Item button :to="{name: 'icon'}">Icon</Item>
           <Item button :to="{name: 'spinner'}">Spinner</Item>
           <Item button :to="{name: 'list'}">List</Item>
@@ -130,6 +129,7 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'demo'}">Demo</Item>
+          <Item button :to="{name: 'ghostvue'}">ghost</Item>
           <Item button :to="{name: 'gl-input'}">GL-Input</Item>
         </ItemGroup>
 

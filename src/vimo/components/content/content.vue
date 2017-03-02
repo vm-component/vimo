@@ -1,5 +1,5 @@
 <template>
-  <article class="ion-content content-ios outer-content" :class="{'statusbar-padding':$hasStatusBar}">
+  <article class="ion-content outer-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
     <section ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
       <!--固定在页面中的内容-->
       <!--固定到顶部-->
@@ -12,11 +12,13 @@
         <slot name="fixedBottom"></slot>
       </div>
     </section>
-    <section   ref="scrollContent" class="scroll-content" id="wrapper"  :style="scrollContentStyle">
+    <section ref="scrollContent" class="scroll-content" :style="scrollContentStyle">
+    <!--<section   ref="scrollContent" class="scroll-content" id="wrapper"  :style="scrollContentStyle">-->
       <!--默认是能滚动的内容   -->
-      <div id="scroller">
-        <slot></slot>
-      </div>    
+      <!--<div id="scroller">-->
+        <!--<slot></slot>-->
+      <!--</div>-->
+      <slot></slot>
     </section>
     <slot name="Refresher"></slot>
   </article>
@@ -26,47 +28,49 @@
 
   import { getStyle,setElementClass } from '../../util/dom'
   import {getNum} from '../../util/util'
-  import iScroll from '../../util/iscroll'
-  import dutil from '../../util/demoUtils'
+  // import iScroll from '../../util/iscroll'
+  // import dutil from '../../util/demoUtils'
+
+
   export default{
     name: 'Content',
     props: {
       fullscreen: {
         type: Boolean,
         default: false
-      },
-      useIScroll:{
-        type:Boolean,
-        default:false
-      },
-      scrollX:{
-        type:Boolean,
-        default:false
-      },
-      snap:{
-        type:Boolean,
-        default:true
-      },
-      snapSpeed:{
-        type:Boolean,
-        default:true
-      },
-      keyBindings:{
-        type:Boolean,
-        default:true
-      },
-      indicatorsEl:{
-        type:String,
-        default:"indicator"
-      },
-      indicatorResize:{
-        type:Boolean,
-        default:true
-      },
-      stemplate:{
-        type:String,
-        default:"#wrapper"
       }
+      // useIScroll:{
+      //   type:Boolean,
+      //   default:false
+      // },
+      // scrollX:{
+      //   type:Boolean,
+      //   default:false
+      // },
+      // snap:{
+      //   type:Boolean,
+      //   default:true
+      // },
+      // snapSpeed:{
+      //   type:Boolean,
+      //   default:true
+      // },
+      // keyBindings:{
+      //   type:Boolean,
+      //   default:true
+      // },
+      // indicatorsEl:{
+      //   type:String,
+      //   default:"indicator"
+      // },
+      // indicatorResize:{
+      //   type:Boolean,
+      //   default:true
+      // },
+      // stemplate:{
+      //   type:String,
+      //   default:"#wrapper"
+      // }
     },
     data(){
       return {
@@ -83,6 +87,13 @@
         scrollPadding: 0, // scroll-content的paddingBottom，用于键盘的显示
         originalScrollPadding: 0, // 原始的scrollPaddingBottom的值
         isInputting: false, // 正在输入
+
+        statusbarPadding: VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
+      }
+    },
+    computed:{
+      modeClass(){
+        return `content-${this.mode}`
       }
     },
     watch: {
@@ -94,49 +105,38 @@
     methods: {
       /**
        * 计算scrollContent的样式
-       * 因为这部分首一下因素影响：$hasStatusBar、fullscreen、$hasHeaderBar，$hasFooterBar
+       * 因为这部分首一下因素影响：statusbarPadding、fullscreen、Header，Footer
        * */
       computeScrollContentStyle () {
         let _this = this;
         let _valHeader, _styleType;
         let headerBarHeight = 0;
         let footerBarHeight = 0;
-
-
-
-// debugger
-
-        // let _pageInstance = _this.$vnode.context;
-        // let _headerInstance = _pageInstance.$header;
-        // let _footerInstance = _pageInstance.$footer;
-        //
-        // headerBarHeight = getStyle(_headerInstance.$el, 'height');
-        // headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
-        //
-        // footerBarHeight = getStyle(_footerInstance.$el, 'height');
-        // footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
+        let headerBarMinHeight = this.$config.get('toolbarMinHeight',44);
 
         // 得到header和footer的高度
         // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
         // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
         // 而不是全局
-        _this.$parent.$children.forEach(function (item) {
-          if (item.$options._componentTag === 'Header') {
+        _this.$parent.$children.forEach((item) => {
+          if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
             headerBarHeight = getStyle(item.$el, 'height');
-            headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
+            headerBarHeight === 'auto' ? (headerBarHeight = headerBarMinHeight) : (headerBarHeight = getNum(headerBarHeight));
           }
-          if (item.$options._componentTag === 'Footer') {
+          if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'footer') {
             footerBarHeight = getStyle(item.$el, 'height');
-            footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
+            footerBarHeight === 'auto' ? (footerBarHeight = headerBarMinHeight) : (footerBarHeight = getNum(footerBarHeight));
           }
         });
 
         // 获取原始的footer的Height，用于keyboard的复原
         _this.originalScrollPadding = footerBarHeight;
 
-        if (_this.$hasStatusBar) {
+        if (_this.statusbarPadding) {
           // 存在statusBar的情况下，header高20px
-          _valHeader = headerBarHeight + _this.$config.statusBarHeight;
+          // _valHeader = headerBarHeight + _this.$config.statusBarHeight;
+          // TODO: statusBarHeight
+          _valHeader = headerBarHeight + 20;
         } else {
           _valHeader = headerBarHeight
         }
@@ -187,24 +187,24 @@
       },
 
 
-      initIscroll(){
-        console.log(window.VM.IScroll);
-        let iscroll = iScroll||window.VM.IScroll;
-        if(this.useIScroll){
-          require("../../util/iscroll.css");
-          let attr = {
-            freeScroll:true,
-            mouseWheel: true, 
-            click: true,
-            bounceEasing: 'elastic',
-            bounceTime: 1200
-          };
-          this.scrollX&&(attr.scrollX=this.scrollX);
-           setElementClass(this.$el.querySelector("#wrapper"),"scroll-content",false);
-          //var myScroll = new iScroll(this.stemplate, attr,this.$el);
-          var myScroll = new iscroll(this.stemplate,attr,this.$el);
-        }
-      },
+      // initIscroll(){
+      //   console.log(window.VM.IScroll);
+      //   let iscroll = iScroll||window.VM.IScroll;
+      //   if(this.useIScroll){
+      //     require("../../util/iscroll.css");
+      //     let attr = {
+      //       freeScroll:true,
+      //       mouseWheel: true,
+      //       click: true,
+      //       bounceEasing: 'elastic',
+      //       bounceTime: 1200
+      //     };
+      //     this.scrollX&&(attr.scrollX=this.scrollX);
+      //      setElementClass(this.$el.querySelector("#wrapper"),"scroll-content",false);
+      //     //var myScroll = new iScroll(this.stemplate, attr,this.$el);
+      //     var myScroll = new iscroll(this.stemplate,attr,this.$el);
+      //   }
+      // },
 
       /**
        * 计算scroll的dimensions，因为其随着滚动而变化，内容会随滚动更新
@@ -409,7 +409,7 @@
 
       // const _this = this;
       let _timer;
-      _this.initIscroll();
+      // _this.initIscroll();
       // 找到fixedContent/scrollContent的位置
       _this.fixedContent = _this.$el.children[0];
       _this.scrollContent = _this.$el.children[1];
@@ -446,7 +446,7 @@
 
       // Page -> Content
       // Content组件必须是在Page组件内部才向页面this注入控制权
-      if (_this.$parent.$options._componentTag === 'Page') {
+      if (!!_this.$parent.$options._componentTag && _this.$parent.$options._componentTag.toLowerCase() === 'Page') {
         // 将参数传给调用的页面(注入到业务页面的this中), context为调用的上下文
         _this.$vnode.context.$content = {
           '_href': window.location.href,

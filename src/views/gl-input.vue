@@ -6,117 +6,149 @@
       </Navbar>
     </Header>
     <Content padding>
-      <p> Gl-Input</p>
 
-
-      <div class="gl-inputBox" :class="{'active':isActive}">
-        <!--border-->
-        <div class="gl-border"></div>
-        <!--border Cover-->
-        <div class="gl-borderCover"></div>
-        <!--content-->
-        <div class="gl-content" @click="focusInput">
-          <transition-group name="list" tag="span" class="gl-content--spanBox">
+      <div class="gl__input">
+        <SnakeBox :trigger="trigger" :disableClick="true" :auto="true" :duration="750" :startPosition="20" color="#fff"
+                  class="snakebox">
+          <section class="inner" @click="focusInput">
+            <transition-group name="list" tag="span" class="gl-content--spanBox">
             <span class="gl-content__spanBox--span" v-for="item in inputValueForDisplay"
                   v-bind:key="item">{{item}}</span>
-          </transition-group>
-
-        </div>
+            </transition-group>
+            <input type="number" v-model="inputValue" id="hidedInput" @focus="onfocus" @keyup="valueChange" class="">
+          </section>
+        </SnakeBox>
       </div>
 
-      <Button type="solid" @click="toggle">toggle</Button>
-      <input type="number" v-model="inputValue" id="hidedInput" @keyup="valueChange" class="">
 
+      <Button type="solid" @click="GoSnake">GoSnake</Button>
+
+      <div class="gl__button">
+        <SnakeBox :delay="500" :auto="true" :duration="750" :startPosition="20" color="red" class="snakebox">
+          <section class="inner">
+            CREATE MY ACCOUNT
+          </section>
+        </SnakeBox>
+      </div>
+
+      <p>* 刷新之后才能再次看到效果</p>
+
+
+      <p>自动运行及点击</p>
+      <div class="demo">
+        <SnakeBox :auto="true" color="red" class="snakebox">
+          <section class="inner">
+            动画自动执行
+          </section>
+        </SnakeBox>
+      </div>
+      <div class="demo">
+        <SnakeBox color="red" class="snakebox">
+          <section class="inner">
+            点击运行动画
+          </section>
+        </SnakeBox>
+      </div>
+
+      <p>选择起始位置及持续时间</p>
+      <div class="demo">
+        <SnakeBox :startPosition="50" :duration="500" class="snakebox">
+          <section class="inner">
+            左侧从一半开始,持续500ms
+          </section>
+        </SnakeBox>
+      </div>
 
       <div class="demo">
-        <div class="circleButton">
-          <div class="circleButton__bottom"></div>
-          <div class="circleButton__left"></div>
-          <div class="circleButton__top"></div>
-          <div class="circleButton__right"></div>
-        </div>
+        <SnakeBox initState="right" :startPosition="50" :duration="500" class="snakebox">
+          <section class="inner">
+            右侧从一半开始,持续500ms
+          </section>
+        </SnakeBox>
       </div>
 
-      <Button @click="circleGo()">CircleGo</Button>
+      <p>设置延迟</p>
+      <div class="demo">
+        <SnakeBox color="blue" :delay="500" :startPosition="30" :duration="500" class="snakebox">
+          <section class="inner">
+            延迟500ms后再执行
+          </section>
+        </SnakeBox>
+      </div>
 
+      <p>设置动画比例</p>
+      <div class="demo">
+        <SnakeBox :radio="40" color="green" :startPosition="30" :duration="500" class="snakebox">
+          <section class="inner">
+            动画比例40
+          </section>
+        </SnakeBox>
+      </div>
+
+      <div class="demo">
+        <SnakeBox :radio="4" color="green" :startPosition="30" :duration="500" class="snakebox">
+          <section class="inner">
+            动画比例4
+          </section>
+        </SnakeBox>
+      </div>
 
     </Content>
   </Page>
 </template>
 <style scoped lang="scss">
-  * {
-    /*outline: 1px solid #eee;*/
+  .gl__button {
+    width: 100%;
+    height: 100px;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .snakebox {
+      width: 250px;
+      height: 50px;
+      .inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        color: red;
+        font-size: 18px;
+        opacity: 1;
+      }
+    }
   }
 
-  $boxHeight: 50px;
-  $boxWidth: 300px;
-  .gl-inputBox {
-    overflow: hidden;
-    height: $boxHeight;
-    width: $boxWidth;
-    position: relative;
+  .gl__input {
+    width: 100%;
+    height: 100px;
     background: #000;
-    &.active {
-      .gl-borderCover {
-        transform: rotate(12deg);
-      }
-    }
-    .gl-border {
-      position: absolute;
-      top: 0;
-      left: 0;
-      border: 3px solid red;
-      height: 100%;
-      width: 100%;
-      z-index: 1;
-    }
-    .gl-borderCover {
-      background: #000;
-      position: absolute;
-      height: $boxWidth;
-      width: 2*$boxWidth;
-      z-index: 2;
-      top: $boxHeight/2;
-      left: 50%;
-      margin-left: -$boxWidth;
-
-      transform-origin: $boxWidth 0;
-      transform: rotate(-171deg);
-
-      transition: all cubic-bezier(1, 0.19, 0, 0.82) 1000ms;
-
-    }
-    .gl-content {
-      position: absolute;
-      top: 10px;
-      bottom: 10px;
-      left: 10px;
-      right: 10px;
-      background: #fff;
-      z-index: 3;
-      font-size: 20px;
-      #hidedInput {
-        display: block;
-        position: absolute;
-        z-index: 0;
-        opacity: 0;
-        height: 0;
-        width: 0;
-        min-height: 0;
-        min-width: 0;
-        left: -60px;
-
-      }
-      .gl-content--spanBox {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .snakebox {
+      width: 250px;
+      height: 50px;
+      .inner {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         height: 100%;
-        z-index: 10;
-        .gl-content__spanBox--span {
-          font-weight: bold;
-          display: inline-block;
+        width: 100%;
+        color: #fff;
+        font-size: 24px;
+        opacity: 1;
+        padding: 0 15px;
+        #hidedInput {
+          position: absolute;
+          top: 0;
+          left: -1px;
+          padding:0 15px;
+          opacity: 0;
+          height: 100%;
+          width: 100%;
+          background:transparent;
         }
       }
     }
@@ -130,7 +162,6 @@
     opacity: 0;
   }
 
-  /**/
   .demo {
     width: 100%;
     height: 100px;
@@ -138,54 +169,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .circleButton {
-    height: 50px;
-    width: 200px;
-    position: relative;
-    background: #cdcdcd;
-    .circleButton__bottom,
-    .circleButton__left,
-    .circleButton__top,
-    .circleButton__right {
-      position: absolute;
-      opacity: 1;
-      display: block;
-      background: #b5b5b5;
-      z-index: 1;
-    }
-    .circleButton__bottom {
-      height: 3px;
-      width: 100%;
-      bottom: 0;
-
-      right: 0;
-      left: auto;
-    }
-    .circleButton__left {
-      width: 3px;
-      height: 100%;
-      left: 0;
-
-      top: 0;
-      bottom: auto;
-    }
-    .circleButton__top {
-      height: 3px;
-      /*width: 80%;*/
-      top: 0;
-    }
-    .circleButton__right {
-      width: 3px;
-      /*height: 80%;*/
-      right: 0;
+    .snakebox {
+      width: 300px;
+      height: 50px;
+      .inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 </style>
 <script type="text/ecmascript-6">
-  import  'velocity';
-  import  'velocity.ui';
 
   export default{
     name: 'name',
@@ -194,18 +191,25 @@
         isActive: false,
         inputValue: '',
         inputValueForDisplay: [],
+
+        trigger: 0,
       }
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
-      toggle(){
-        this.isActive = !this.isActive;
+      GoSnake(){
+        this.trigger = Math.random();
       },
       focusInput(){
+        console.debug('focusInput')
         document.getElementById('hidedInput').focus()
       },
+      onfocus(){
+        // document.getElementById('hidedInput').style.left = "-20%";
+      },
+
       valueChange(){
         console.debug('valueChange')
         let _arr = this.inputValue.toString().split('');
@@ -217,29 +221,6 @@
         }
       },
 
-      circleGo(){
-        let $bottom = document.querySelectorAll('.circleButton__bottom')[0];
-        let $left = document.querySelectorAll('.circleButton__left')[0];
-        let $top = document.querySelectorAll('.circleButton__top')[0];
-        let $right = document.querySelectorAll('.circleButton__right')[0];
-        // state 1:go
-
-        // Velocity($bottom, {left: 0, width:0}, {duration: 300})
-        // Velocity($top, {left: 0, width:'100%'}, {duration: 300})
-        // Velocity($top, {left: 0, width:'100%'}, {duration: 300})
-        //      {e: $top, p: {left: 0, width:'100%'}, o: {duration: 300, sequenceQueue: false}},
-        var mySequence = [
-          {e: $bottom, p: {left: 0, width: 0}, o: {duration: 300}},
-          {e: $top, p: {left: 0, width: '100%'}, o: {duration: 300, sequenceQueue: false}},
-
-
-        ];
-        Velocity.RunSequence(mySequence);
-
-
-
-
-      }
     },
     created () {},
     mounted () {

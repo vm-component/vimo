@@ -16,9 +16,9 @@
     </div>
     <br>
   </div>
-  
+
 </template>
-<style lang="scss">
+<style scoped lang="scss">
   @import './ghost.css';
 </style>
 <script type="text/ecmascript-6">
@@ -42,6 +42,6 @@
        // stopAni();
       }
     }
-    
+
   }
 </script>

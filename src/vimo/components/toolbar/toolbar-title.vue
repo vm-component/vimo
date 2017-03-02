@@ -120,7 +120,7 @@
         //console.log('document.title: '+ document.title)
         //console.log('this.titleInner: '+ this.titleInner)
 
-        if (this.$parent.$options._componentTag === 'Navbar' && document.title != this.titleInner) {
+        if (!!this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'navbar' && document.title != this.titleInner) {
 
           //console.log('this.$vnode.context')
           //console.log(this.$vnode.context)

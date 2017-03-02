@@ -13,10 +13,13 @@
 
 import { setupPlatform } from './platform/platform'
 import { setupConfig } from './config/config'
+
 import './util/iscroll'
 import _console  from './console/console'
 // 用户配置
-const CUSTOMER_CONFIG = {};
+const CUSTOMER_CONFIG = {
+  // ...
+};
 // 初始化platform/初始化config
 setupConfig(CUSTOMER_CONFIG, setupPlatform());
 
