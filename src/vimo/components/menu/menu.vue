@@ -21,8 +21,10 @@
   </div>
 </template>
 <style lang="scss">
-  @import './menu';
-  @import './menu.ios';
+  @import './menu.scss';
+  @import './menu.ios.scss';
+  @import './menu.md.scss';
+  @import './menu.wp.scss';
 
   /*slideInLeft*/
   /*animate class*/

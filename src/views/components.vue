@@ -35,8 +35,6 @@
             <Icon slot="left" name="download"></Icon>
             按钮 (Button)
           </Item>
-          <Item button :to="{name: 'ghostvue'}">ghost</Item>
-
           <Item button :to="{name: 'icon'}">
             <Icon slot="left" name="color-filter"></Icon>
             图标 (Icon)
@@ -118,6 +116,7 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'demo'}">Demo</Item>
+          <Item button :to="{name: 'ghostvue'}">ghost</Item>
           <Item button :to="{name: 'gl-input'}">GL-Input</Item>
         </ItemGroup>
 

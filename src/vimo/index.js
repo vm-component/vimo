@@ -13,6 +13,7 @@
 
 import { setupPlatform } from './platform/platform'
 import { setupConfig } from './config/config'
+
 import './util/iscroll'
 // 用户配置
 const CUSTOMER_CONFIG = {

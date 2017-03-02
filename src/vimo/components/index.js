@@ -69,16 +69,23 @@ import { Tabs, Tab } from './tabs'
 import { Fab, Fabs } from './fab'
 
 import { BackdropComponent, BackdropInstance } from './backdrop'
+
+
+
 // 实例化调用组件，传入配置参数后返回实例
 import getActionSheetInstance from './action-sheet'
 import getAlertInstance from './alert'
 import getLoadingInstance from './loading'
 import prepareToast from './toast'
 import prepareModal from './modal'
-import Ghost from './ghostbtn'
-const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
-import { NavContorller } from "./navController"
+
+
+// 自定义组件
+import SnakeBox from './snake-box'
+import Ghost from './ghostbtn'
+
+import { NavContorller } from "./nav-controller"
 module.exports = {
   version: '1.0.0',
   /**
@@ -113,8 +120,6 @@ module.exports = {
 
     // requestAnimationFrame
     Vue.prototype.$raf = _raf;
-    // 是否有stateBar的开关
-    Vue.prototype.$hasStatusBar = HAS_STATUS_BAR;
 
     // 全局注册组件
     console.debug(App)
@@ -172,6 +177,8 @@ module.exports = {
     Vue.component(Menu.name, Menu);
     Vue.component(BackdropComponent.name, BackdropComponent);
     Vue.component(Spinner.name, Spinner);
+
+    Vue.component(SnakeBox.name, SnakeBox);
 
     // 判断当前Platform是否为HyBrid, 判断初始化的组件形式
     if (!!window['VM'] && !!window['VM']['hybrid']) {
