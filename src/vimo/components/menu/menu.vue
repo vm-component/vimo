@@ -18,7 +18,6 @@
         <slot></slot>
       </div>
     </transition>
-
   </div>
 </template>
 <style lang="scss">
@@ -57,6 +56,25 @@
 <script type="text/ecmascript-6">
   /**
    * 注意：menu是全局的组件，应该在App.vue中定义，而不是在业务文件中
+   *
+   * @name Menu
+   *
+   * menu.vue: Menu组件的模板文件, 方法只用于维护自身状态
+   * menu.js:  组件全局安装及实例注册, 用于在Vue.prototype.$menu上共享方法
+   *
+   * 页面文件这样使用:
+   * this.$menu.open('menuId1'): 打开id为menuId1的menu
+   * this.$menu.close(): 关闭打开的menu
+   * this.$menu.toggle('menuId1'): 如果开启则关闭, 如果没开启的则打开 menuId1
+   *
+   * 对于menu模板的传参, 参考props
+   *
+   * 对外事件:
+   * onMenuOpen: menu开启事件, 传递menuId
+   * onMenuClosing: menu触发关闭事件,正在关闭...
+   * onMenuClosed: menu关闭动画完毕
+   *
+   *
    * */
   import { firstUpperCase } from '../../util/util';
   import { recordMenuInstance } from './menu';
@@ -91,7 +109,7 @@
         default: 'left'
       },
       /**
-       * menu打开的类型: "overlay", "reveal", "push"
+       * menu打开的类型: "overlay", "reveal"
        * */
       type: {
         type: String,
@@ -119,13 +137,14 @@
         this.$setEnabled(false, 300);
       },
       _afterLeave (el) {
-        this.$eventBus.$emit('ionClose');
+        this.$eventBus.$emit('onMenuClosed',this.id);
         this.dismissCallback(el);
         this.showMenu = false;
       },
 
       /**
        * open
+       * @return {promise}
        * */
       openMenu(){
         const _this = this;
@@ -138,19 +157,20 @@
           _this.animationName = 'slideIn' + firstUpperCase(_this.side);
         }
         _this.isOpen = true;
-        this.$eventBus.$emit('ionOpen', this.id);
+        this.$eventBus.$emit('onMenuOpen', this.id);
         return new Promise((resolve) => {this.presentCallback = resolve});
       },
 
       /**
        * close
+       * @return {promise}
        * */
       closeMenu(){
         const _this = this;
         if (!_this.enabled) return;
         _this.showBackdrop = false;
         _this.isOpen = false;
-        _this.$eventBus.$emit('ionClosing', _this.id);
+        _this.$eventBus.$emit('onMenuClosing', _this.id);
         return new Promise((resolve) => {this.dismissCallback = resolve});
       },
     },

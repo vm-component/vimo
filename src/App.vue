@@ -17,13 +17,14 @@
             </ListHeader>
             <!--group-->
             <ItemGroup>
-              <Item button :to="{name: 'introduce'}">
+              <!--delay 表示等待关闭事件-->
+              <Item button :to="{name: 'introduce'}" delay>
                 介绍
               </Item>
-              <Item button :to="{name: 'howToStart'}">
+              <Item button :to="{name: 'howToStart'}" delay>
                 如何开始
               </Item>
-              <Item button :to="{name: 'equipment'}">
+              <Item button :to="{name: 'equipment'}" delay>
                 当前设备信息
               </Item>
             </ItemGroup>

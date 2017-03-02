@@ -30,6 +30,7 @@ export function recordMenuInstance (instance) {
  * */
 function open (menuId) {
   let _menu = Vue.prototype.$menu;
+  if (!!_menu.currentMenuId) return;
   _menu.currentMenuId = menuId;
   if (!!_menu.menuIns[menuId]) {
     return _menu.menuIns[menuId].openMenu()
@@ -43,6 +44,7 @@ function open (menuId) {
 function close () {
   let _menu = Vue.prototype.$menu;
   let currentMenuId = _menu.currentMenuId;
+  if(!currentMenuId) return
   _menu.currentMenuId = null;
   if (!!_menu.menuIns[currentMenuId]) {
     return _menu.menuIns[currentMenuId].closeMenu();
