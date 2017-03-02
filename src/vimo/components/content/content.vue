@@ -1,5 +1,5 @@
 <template>
-  <article class="ion-content content-ios outer-content" :class="{'statusbar-padding':statusbarPadding}">
+  <article class="ion-content outer-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
     <section ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
       <!--固定在页面中的内容-->
       <!--固定到顶部-->
@@ -89,6 +89,11 @@
         isInputting: false, // 正在输入
 
         statusbarPadding: VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
+      }
+    },
+    computed:{
+      modeClass(){
+        return `content-${this.mode}`
       }
     },
     watch: {
