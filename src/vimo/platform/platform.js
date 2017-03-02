@@ -151,16 +151,16 @@ export class Platform {
    * | Platform Name   | Description                        |
    * |-----------------|------------------------------------|
    * | android         | on a device running Android.       |
-   * | cordova         | on a device running Cordova.       |
    * | core            | on a desktop device.               |
    * | ios             | on a device running iOS.           |
-   * | ipad            | on an iPad device.                 |
    * | iphone          | on an iPhone device.               |
    * | mobile          | on a mobile device.                |
-   * | mobileweb       | in a browser on a mobile device.   |
-   * | phablet         | on a phablet device.               |
-   * | tablet          | on a tablet device.                |
    * | windows         | on a device running Windows.       |
+   * | wechat          |       |
+   * | alipay          |       |
+   * | dingtalk        |       |
+   * | qq              |       |
+   * | dedream         |       |
    *
    * @param {string} platformName
    * @return {boolean}
@@ -517,6 +517,7 @@ export class Platform {
    * @private
    */
   _calcDim () {
+    var win = window;
     // we're caching window dimensions so that
     // we're not forcing many layouts
     // if _isPortrait is null then that means
@@ -528,8 +529,7 @@ export class Platform {
     // even when the device is in portrait but
     // the second time it is measured it is correct.
     // Hopefully this check will not be needed in the future
-    if (this._isPortrait === null || this._isPortrait === false && this._win['innerWidth'] < this._win['innerHeight']) {
-      var win = window;
+    if (this._isPortrait === null || this._isPortrait === false && this.win['innerWidth'] < this.win['innerHeight']) {
 
       // we're keeping track of portrait and landscape dimensions
       // separately because the virtual keyboard can really mess
@@ -730,6 +730,10 @@ export class Platform {
 
   /** @private */
   init () {
+
+    // 计算屏幕尺寸
+    this._calcDim();
+
     this._platforms = [];
     let rootPlatformNode; //根节点Node;
     let enginePlatformNode; //engine节点Node;
