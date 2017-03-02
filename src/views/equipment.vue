@@ -35,12 +35,12 @@
         <Row v-if="$platform._isPortrait !== null">
           <Column col-4><strong>屏幕尺寸:</strong></Column>
           <Column col-8 v-if="$platform._isPortrait">
-            <Row>Height: {{$platform._pH}}</Row>
-            <Row>Width: {{$platform._pW}}</Row>
+            <Row>高度: {{$platform._pH}}px</Row>
+            <Row>宽度: {{$platform._pW}}px</Row>
           </Column>
           <Column col-8 v-if="!$platform._isPortrait">
-            <Row>Height: {{$platform._lH}}</Row>
-            <Row>Width: {{$platform._lW}}</Row>
+            <Row>高度: {{$platform._lH}}px</Row>
+            <Row>宽度: {{$platform._lW}}px</Row>
           </Column>
         </Row>
 
@@ -54,8 +54,7 @@
           <Column col-4><strong>地址栏参数:</strong></Column>
           <Column col-8>
             <div class="detailBox" v-for="(value,key) in $platform._qp.data">
-              <Row><span class="detailBox__title">{{key}}:</span></Row>
-              <Row><span class="detailBox__value">{{value}}</span></Row>
+              <Row><span class="detailBox__title">{{key}}: </span><span class="detailBox__value">{{value}}</span></Row>
             </div>
           </Column>
         </Row>
@@ -65,7 +64,11 @@
         </Row>
         <Row>
           <Column col-4><strong>平台版本:</strong></Column>
-          <Column col-8>{{$platform._versions}}</Column>
+          <Column col-8>
+            <div class="detailBox" v-for="(value,key) in $platform._versions" v-if="!!value">
+              <Row><span class="detailBox__title">{{key}}: </span><span class="detailBox__value">{{value.str}}</span></Row>
+            </div>
+          </Column>
         </Row>
         <Row>
           <Column col-4><strong>CSS属性:</strong></Column>

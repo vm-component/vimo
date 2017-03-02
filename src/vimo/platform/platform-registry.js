@@ -144,7 +144,7 @@ export const PLATFORM_CONFIGS = {
    * 如果添加新环境,记得在SUBSET_LIST注册
    * */
   wechat: {
-    l(p){
+    initialize(p){
       // 在ready之前进行处理
       p.prepareReady = function () {
         let _userAgent = window.navigator.userAgent.toString().trim();
@@ -193,6 +193,9 @@ export const PLATFORM_CONFIGS = {
     isMatch(p) {
       return p.isPlatformMatch('wechat', ['micromessenger']);
     },
+    versionParser(p) {
+      return p.matchUserAgentVersion(/micromessenger\/(\d+).(\d+).(\d+)?/i);
+    }
   },
   alipay: {
     initialize(p){
@@ -231,6 +234,9 @@ export const PLATFORM_CONFIGS = {
     },
     isMatch(p) {
       return p.isPlatformMatch('alipay', ['alipay', 'alipayclient']);
+    },
+    versionParser(p) {
+      return p.matchUserAgentVersion(/alipayclient\/(\d+).(\d+).(\d+)?/i);
     }
   },
   dingtalk: {
@@ -267,6 +273,9 @@ export const PLATFORM_CONFIGS = {
     },
     isMatch(p) {
       return p.isPlatformMatch('dingtalk');
+    },
+    versionParser(p) {
+      return p.matchUserAgentVersion(/dingtalk\/(\d+).(\d+).(\d+)?/i);
     }
   },
   qq: {
@@ -296,6 +305,9 @@ export const PLATFORM_CONFIGS = {
     },
     isMatch(p) {
       return p.isPlatformMatch('qq');
+    },
+    versionParser(p) {
+      return p.matchUserAgentVersion(/qq\/(\d+).(\d+).(\d+)?/i);
     }
   },
   dtdream: {

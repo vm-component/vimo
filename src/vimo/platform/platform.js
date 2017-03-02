@@ -85,7 +85,6 @@ export class Platform {
 
   _nt = null; // 记录网络类型
 
-
   /** @public */
   Css = {
     transform: null,
@@ -346,13 +345,14 @@ export class Platform {
   /**
    * 设置网络类型/
    * */
-  setNetType(netType){
+  setNetType (netType) {
     this._nt = netType;
   }
+
   /**
    * 获取网络类型/
    * */
-  netType(){
+  netType () {
     return this._nt;
   }
 
@@ -372,7 +372,7 @@ export class Platform {
   /**
    * 后退按钮触发事件
    */
-  backButton(){}
+  backButton () {}
 
   /**
    * 当将App转为[后台]时触发pause事件, 普通浏览器不适用
@@ -678,7 +678,8 @@ export class Platform {
       if (val) {
         return {
           major: val[1],
-          minor: val[2]
+          minor: val[2],
+          third: val[3]
         };
       }
     }
@@ -921,12 +922,13 @@ class PlatformNode {
     if (this.c.versionParser) {
       const v = this.c.versionParser(p);
       if (v) {
-        const str = v.major + '.' + v.minor;
+        const str = v.major + '.' + v.minor + ( !!v.third ? ('.' + v.third) : '');
         return {
           str: str,
           num: parseFloat(str),
           major: parseInt(v.major, 10),
-          minor: parseInt(v.minor, 10)
+          minor: parseInt(v.minor, 10),
+          third: parseInt(v.third, 10)
         };
       }
     }
