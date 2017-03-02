@@ -51,7 +51,7 @@
           <p>这里是介绍</p>
         </Content>
         <Footer>
-          <Toolbar style="text-align:center;color:#444;"><p>Copyright © 2017 Songtao(MIT)</p></Toolbar>
+          <Toolbar style="text-align:center;color:#444;"><p>Copyright © 2017(MIT)</p></Toolbar>
         </Footer>
       </Page>
     </Menu>

@@ -143,17 +143,19 @@
         #hidedInput {
           position: absolute;
           top: 0;
-          left: -30%;
+          left: -1px;
+          padding:0 15px;
           opacity: 0;
-          width: 1px;
-          height: 1px;
+          height: 100%;
+          width: 100%;
+          background:transparent;
         }
       }
     }
   }
 
   .list-enter-active, .list-leave-active {
-    transition: all 500ms;
+    transition: all 300ms;
   }
 
   .list-enter, .list-leave-active {
