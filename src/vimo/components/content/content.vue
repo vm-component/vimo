@@ -112,6 +112,7 @@
         let _valHeader, _styleType;
         let headerBarHeight = 0;
         let footerBarHeight = 0;
+        let headerBarMinHeight = this.$config.get('toolbarMinHeight',44);
 
         // 得到header和footer的高度
         // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
@@ -120,11 +121,11 @@
         _this.$parent.$children.forEach((item) => {
           if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
             headerBarHeight = getStyle(item.$el, 'height');
-            headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
+            headerBarHeight === 'auto' ? (headerBarHeight = headerBarMinHeight) : (headerBarHeight = getNum(headerBarHeight));
           }
           if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'footer') {
             footerBarHeight = getStyle(item.$el, 'height');
-            footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
+            footerBarHeight === 'auto' ? (footerBarHeight = headerBarMinHeight) : (footerBarHeight = getNum(footerBarHeight));
           }
         });
 

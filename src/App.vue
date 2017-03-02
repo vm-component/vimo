@@ -1,7 +1,7 @@
 <template>
   <App id="app">
     <!--menu menu-->
-    <Menu id="menu" side="left" type="overlay">
+    <Menu id="menu" side="left">
       <!--<Menu [content]="content" id="menu1">-->
       <Page>
         <Header>
@@ -32,7 +32,7 @@
       </Page>
     </Menu>
     <!--menu author-->
-    <Menu id="author" side="right" type="overlay">
+    <Menu id="author" side="right">
       <!--<Menu [content]="content" id="menu1">-->
       <Page>
         <Header>

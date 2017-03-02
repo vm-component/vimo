@@ -98,7 +98,7 @@
       type: {
         type: String,
         default: function () {
-          return this.$config.menuType
+          return VM.config.get('menuType','overlay')
         }
       },
       /**

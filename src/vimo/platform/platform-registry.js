@@ -23,9 +23,7 @@ export const PLATFORM_CONFIGS = {
     }
   },
 
-  mobile: {
-
-  },
+  mobile: {},
   /**
    * 移动端基础平台(android/IOS/windows)
    * */
@@ -33,6 +31,7 @@ export const PLATFORM_CONFIGS = {
     superset: 'mobile',
     subsets: SUBSET_LIST,
     settings: {
+      toolbarMinHeight: 56,
       /**
        * 点触出现水纹的动画开关
        * @return {Platform}
@@ -87,6 +86,8 @@ export const PLATFORM_CONFIGS = {
     subsets: SUBSET_LIST,
     settings: {
       hideNavBar: false,
+      toolbarMinHeight: 44,
+
       autoFocusAssist: 'delay',
       hoverCSS: false,
       inputBlurring: isIOS,
