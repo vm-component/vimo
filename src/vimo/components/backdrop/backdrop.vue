@@ -84,7 +84,7 @@
       },
 
       /**
-       * 当点击backdrop执行的动作, 前提是enableBackdropDismiss必须开启
+       * 当点击backdrop执行的动作
        * */
       onBdClick(){
         if (!!this.bdClickLocal) {
