@@ -86,7 +86,7 @@ export class Platform {
   _nt = null; // 记录网络类型
 
   /** @public */
-  Css = {
+  css = {
     transform: null,
     transition: null,
     transitionDuration: null,
@@ -117,7 +117,7 @@ export class Platform {
    * @private
    */
   setCssProps (docElement) {
-    this.Css = getCss(docElement);
+    this.css = getCss(docElement);
   }
 
   /**

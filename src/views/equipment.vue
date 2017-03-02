@@ -50,14 +50,22 @@
             <strong>{{$platform._platforms.join(' -> ')}}</strong>
           </Column>
         </Row>
+
+
         <Row>
           <Column col-4><strong>地址栏参数:</strong></Column>
-          <Column col-8>
+
+          <Column col-8 v-if="JSON.stringify($platform._qp.data) !== '{}'">
             <div class="detailBox" v-for="(value,key) in $platform._qp.data">
               <Row><span class="detailBox__title">{{key}}: </span><span class="detailBox__value">{{value}}</span></Row>
             </div>
           </Column>
+          <Column col-8 v-else>
+            <Row>无参数</Row>
+          </Column>
         </Row>
+
+
         <Row>
           <Column col-4><strong>UserAgent:</strong></Column>
           <Column col-8>{{$platform._ua}}</Column>
@@ -66,14 +74,15 @@
           <Column col-4><strong>平台版本:</strong></Column>
           <Column col-8>
             <div class="detailBox" v-for="(value,key) in $platform._versions" v-if="!!value">
-              <Row><span class="detailBox__title">{{key}}: </span><span class="detailBox__value">{{value.str}}</span></Row>
+              <Row><span class="detailBox__title">{{key}}: </span><span class="detailBox__value">{{value.str}}</span>
+              </Row>
             </div>
           </Column>
         </Row>
         <Row>
           <Column col-4><strong>CSS属性:</strong></Column>
           <Column col-8>
-            <div class="detailBox" v-for="(value,key) in $platform.Css">
+            <div class="detailBox" v-for="(value,key) in $platform.css">
               <Row><span class="detailBox__title">{{key}}:</span></Row>
               <Row><span class="detailBox__value">{{value}}</span></Row>
             </div>

@@ -387,7 +387,7 @@
         _this.tabHighlightEle = _this.$refs.tabHighlight;
         setElementClass(_this.tabHighlightEle, 'animate', true);
         transform = `translate3d(${btnEle.offsetLeft}px,0,0) scaleX(${btnEle.offsetWidth})`;
-        _this.tabHighlightEle.style[VM.platform.Css.transform] = transform;
+        _this.tabHighlightEle.style[VM.platform.css.transform] = transform;
       },
 
     },
