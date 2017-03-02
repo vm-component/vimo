@@ -1,11 +1,24 @@
 <template>
-  <nav class="ion-nav" @touchstart="tapToCloseMenu"
+  <nav class="ion-nav"
        :class="[menuClass,{'menu-content-open':isMenuOpen}]"
        :style="menuStyleObj">
+    <div nav-viewport></div>
     <slot></slot>
+    <!--<div class="nav-decor"></div>-->
+    <div v-if="isMenuOpen" @click="tapToCloseMenu" class="click-cover"></div>
   </nav>
 </template>
-<style lang="scss">
+<style scoped lang="scss">
+  .ion-nav{
+    .click-cover{
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+    }
+  }
 </style>
 <script type="text/ecmascript-6">
   export default{
@@ -35,7 +48,10 @@
        * 点击nav关闭Menu
        * */
       tapToCloseMenu(){
-        this.isMenuOpen && this.$menu.close();
+        const _this = this;
+        _this.$nextTick(function () {
+          _this.isMenuOpen && _this.$menu.close();
+        })
       },
 
       /**
