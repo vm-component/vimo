@@ -10,3 +10,7 @@
 [0301/165805:ERROR:exception_snapshot_win.cc(87)] thread ID 11532 not found in process
 [0301/165805:WARNING:crash_report_exception_handler.cc(61)] ProcessSnapshotWin::Initialize failed
 [0301/165805:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess: 已尝试访问正在退出的过程。  (0xc000010a)
+[0301/184400:ERROR:process_reader_win.cc(142)] SuspendThread: 拒绝访问。 (0x5)
+[0301/184400:ERROR:exception_snapshot_win.cc(87)] thread ID 3168 not found in process
+[0301/184400:WARNING:crash_report_exception_handler.cc(61)] ProcessSnapshotWin::Initialize failed
+[0301/184400:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess: 已尝试访问正在退出的过程。  (0xc000010a)

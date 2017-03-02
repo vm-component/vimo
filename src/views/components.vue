@@ -33,6 +33,7 @@
         <ItemGroup>
           <Item button :to="{name: 'button'}">Button</Item>
           <Item button :to="{name: 'ghostvue'}">ghost</Item>
+          <Item button :to="{name: 'floattop'}">floattop</Item>
           <Item button :to="{name: 'icon'}">Icon</Item>
           <Item button :to="{name: 'spinner'}">Spinner</Item>
           <Item button :to="{name: 'list'}">List</Item>
