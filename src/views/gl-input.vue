@@ -6,17 +6,6 @@
       </Navbar>
     </Header>
     <Content padding>
-      <p> Gl-Input</p>
-
-
-      <div class="gl-inputBox" :class="{'active':isActive}">
-        <!--border-->
-        <div class="gl-border"></div>
-        <!--border Cover-->
-        <div class="gl-borderCover"></div>
-
-      </div>
-
 
       <div class="gl__input">
         <SnakeBox :trigger="trigger" :disableClick="true" :auto="true" :duration="750" :startPosition="20" color="#fff"
