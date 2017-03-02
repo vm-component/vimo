@@ -51,6 +51,7 @@
             <Button shape="block" type="solid" @click="$router.push({'name':'components'})">组件</Button>
             <Button shape="block" type="solid" @click="$menu.open('menu')">打开菜单</Button>
             <Button shape="block" type="solid" @click="$menu.open('author')">项目介绍</Button>
+             <Button shape="block" type="solid" @click="print()">打印信的console</Button>
           </Row>
 
 
@@ -179,5 +180,10 @@
 <script type="text/ecmascript-6">
   export default{
     name: 'index',
+    methods:{
+      print(){
+        console.log(this.$console);
+      }
+    }
   }
 </script>

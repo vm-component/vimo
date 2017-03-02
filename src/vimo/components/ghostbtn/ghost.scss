@@ -1,14 +1,16 @@
-
+$button-red:#ff0033;
 *{
-  /*font: 13.3333px Arial;*/
+  font: 13.3333px Arial;
 }
-
 
 #banner{
   position: relative;
   top:5px;
 }
 
+.btn{
+
+}
 
 .top{
   position: relative;
@@ -20,28 +22,14 @@
 
 .bottom{
   position: relative;
-  left:150px;
+  left:150px; 
   top:29px;
   width: 50px;
   height: 2px;
   background: #ff0033;
 }
-<<<<<<< HEAD
 
 .left{
-=======
-.bottomAnimation{
-   animation:leftTo 1s ease-in 0s;
-}
-#right{
-  float: right;
-  height: 30px;
-}
-.rightAnimation{
-  animation: bottomTo 1s ease-in 0s;
-}
-#left{
->>>>>>> 4dca9e9246d751de5bde4404c55a80195d111671
   float: left;
   background: none;
   height:30px;
@@ -56,22 +44,29 @@
   position: relative;
 }
 
-.run >.top{
+.run{
+   .top{
     animation:rightTo 1s ease-in 0s;
    } 
-
-.run > .bottom{
-    animation:leftTo 1s ease-in 0s;
 }
 
-.run >.right{
+.run{
+  .bottom{
+    animation:leftTo 1s ease-in 0s;
+  }
+}
+
+.run{
+  .right{
     animation: bottomTo 1s ease-in 0s; 
   }
+}
 
-.run >.left{
+.run{
+  .left{
     animation: topTo 1s ease-in 0s;
   }
-
+}
 
 #ghost{
    border: 0px solid #fff;
@@ -84,8 +79,14 @@
 }
 
 
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+}
 
-@-webkit-keyframes leftTo{
+
+@include keyframes(leftTo){
     0%{
       height: 2px;
       left:0;
@@ -112,7 +113,7 @@
       width:50px;
     }
 }
-@-webkit-keyframes rightTo{
+@include keyframes (rightTo){
     0%{
        height: 2px;
       left:0;
@@ -139,7 +140,7 @@
       width:150px;
     }
 }
-@-webkit-keyframes topTo{
+@include keyframes (topTo){
     0%{
       background: #ff0033 ;
       width: 2px;
@@ -147,7 +148,7 @@
     }
     70%{
        width: 2px;
-      height:31px;
+      height:31px; 
     }
     84.9%{
       width: 2px;
@@ -165,7 +166,7 @@
       height: 3px;
     }
 }
-@-webkit-keyframes bottomTo{
+@include keyframes (bottomTo){
     0%{
        width: 2px;
       height: 3px;
@@ -191,7 +192,7 @@
     }
 }
 
-@-webkit-keyframes fontShow{
+@include keyframes (fontShow){
   0%{
     color:rgba(256,0,51,0);
   }
@@ -199,14 +200,6 @@
     color:rgba(256,0,51,0);
   }
   100%{
-    color:rgba(256,0,51,1);
+    color:rgba(256,0,51,1); 
   }
 }
-
-
-
-
-
-
-
-

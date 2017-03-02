@@ -77,6 +77,11 @@ const routes = [
     component: require('./views/ghost.vue'),
   },
   {
+    path: '/floattop',
+    name: 'floattop',
+    component: require('./views/floattop.vue'),
+  },
+  {
     path: '/icon',
     name: 'icon',
     component: require('./views/icon.vue'),

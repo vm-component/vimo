@@ -2,14 +2,14 @@
   <Page>
      <Header>
       <Navbar>
-        <Title>Ghost</Title>
+        <Title>Floattop</Title>
       </Navbar>
     </Header>
     <Content padding>
     
-      <Ghost>
+      <Floattop>
         CREATE MY ACCOUNT
-      </Ghost>
+      </Floattop>
       
     </Content>
   </Page>
