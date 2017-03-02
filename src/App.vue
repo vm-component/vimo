@@ -23,7 +23,7 @@
               <Item button :to="{name: 'howToStart'}">
                 如何开始
               </Item>
-              <Item button :to="{name: 'howToStart'}">
+              <Item button :to="{name: 'equipment'}">
                 当前设备信息
               </Item>
             </ItemGroup>

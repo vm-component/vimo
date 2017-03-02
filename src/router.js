@@ -30,11 +30,22 @@ const routes = [
     component: require('./views/components.vue'),
   },
 
+
   {
     path: '/introduce',
     name: 'introduce',
     component: require('./views/introduce.vue'),
   },
+
+
+  {
+    path: '/equipment',
+    name: 'equipment',
+    component: require('./views/equipment.vue'),
+  },
+
+
+
   {
     path: '/app',
     name: 'app',
