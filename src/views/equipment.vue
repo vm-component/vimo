@@ -26,19 +26,38 @@
         </Row>
         <Row>
           <Column col-4><strong>屏幕方向:</strong></Column>
-          <Column col-8>{{$platform._isPortrait === null ? '未检测到' : $platform._isPortrait === true ? '竖屏': '横屏'}}
+          <Column col-8>
+            {{$platform._isPortrait === null ? '未检测到' : $platform._isPortrait === true ? '竖屏': '横屏'}}
+          </Column>
+        </Row>
+
+        <!--屏幕尺寸-->
+        <Row v-if="$platform._isPortrait !== null">
+          <Column col-4><strong>屏幕尺寸:</strong></Column>
+          <Column col-8 v-if="$platform._isPortrait">
+            <Row>Height: {{$platform._pH}}</Row>
+            <Row>Width: {{$platform._pW}}</Row>
+          </Column>
+          <Column col-8 v-if="!$platform._isPortrait">
+            <Row>Height: {{$platform._lH}}</Row>
+            <Row>Width: {{$platform._lW}}</Row>
           </Column>
         </Row>
 
         <Row>
           <Column col-4><strong>平台级别:</strong></Column>
           <Column col-8>
-           <strong>{{$platform._platforms.join(' -> ')}}</strong>
+            <strong>{{$platform._platforms.join(' -> ')}}</strong>
           </Column>
         </Row>
         <Row>
           <Column col-4><strong>地址栏参数:</strong></Column>
-          <Column col-8>{{$platform._qp}}</Column>
+          <Column col-8>
+            <div class="detailBox" v-for="(value,key) in $platform._qp.data">
+              <Row><span class="detailBox__title">{{key}}:</span></Row>
+              <Row><span class="detailBox__value">{{value}}</span></Row>
+            </div>
+          </Column>
         </Row>
         <Row>
           <Column col-4><strong>UserAgent:</strong></Column>
@@ -60,7 +79,7 @@
         <Row>
           <Column col-4><strong>当前Config:</strong></Column>
           <Column col-8>
-            <div class="detailBox" v-for="(value,key) in $config._c">
+            <div class="detailBox" v-for="(value,key) in currentConfig">
               <Row><span class="detailBox__title">{{key}}:</span></Row>
               <Row><span class="detailBox__value">{{value}}</span></Row>
             </div>
@@ -92,7 +111,7 @@
     name: 'equipment',
     data(){
       return {
-        currentConfig: this.$config._c
+        currentConfig: null,
       }
     },
     props: {},
@@ -100,7 +119,9 @@
     computed: {},
     methods: {},
     created(){},
-    mounted(){},
+    mounted(){
+      this.currentConfig = this.$config._c;
+    },
     activated(){},
     components: {}
   }

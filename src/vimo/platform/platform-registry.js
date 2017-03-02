@@ -23,7 +23,9 @@ export const PLATFORM_CONFIGS = {
     }
   },
 
-  mobile: {},
+  mobile: {
+
+  },
   /**
    * 移动端基础平台(android/IOS/windows)
    * */
@@ -84,6 +86,7 @@ export const PLATFORM_CONFIGS = {
     superset: 'mobile',
     subsets: SUBSET_LIST,
     settings: {
+      hideNavBar: false,
       autoFocusAssist: 'delay',
       hoverCSS: false,
       inputBlurring: isIOS,
@@ -185,7 +188,7 @@ export const PLATFORM_CONFIGS = {
     },
     settings: {
       mode: 'ios',
-      hasNavBar: false,
+      hideNavBar: true,
     },
     isMatch(p) {
       return p.isPlatformMatch('wechat', ['micromessenger']);
@@ -224,7 +227,7 @@ export const PLATFORM_CONFIGS = {
     },
     settings: {
       mode: 'ios',
-      hasNavBar: false,
+      hideNavBar: true,
     },
     isMatch(p) {
       return p.isPlatformMatch('alipay', ['alipay', 'alipayclient']);
@@ -260,7 +263,7 @@ export const PLATFORM_CONFIGS = {
     },
     settings: {
       mode: 'ios',
-      hasNavBar: false,
+      hideNavBar: true,
     },
     isMatch(p) {
       return p.isPlatformMatch('dingtalk');
@@ -289,7 +292,7 @@ export const PLATFORM_CONFIGS = {
     },
     settings: {
       mode: 'ios',
-      hasNavBar: false,
+      hideNavBar: true,
     },
     isMatch(p) {
       return p.isPlatformMatch('qq');

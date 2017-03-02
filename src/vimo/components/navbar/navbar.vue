@@ -1,7 +1,7 @@
 <template>
   <!--$hasStatusBar在index中配置-->
   <div class="ion-navbar toolbar"
-       :class="[modeClass,colorClass,{'statusbar-padding':$hasStatusBar}]" v-if="hasNavBar">
+       :class="[modeClass,colorClass,{'statusbar-padding':$hasStatusBar}]" v-if="!hideNavBar">
     <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
     <!--show-back-button-->
     <Button @click="backButtonClick($event)" role="bar-button" class="back-button"
@@ -37,8 +37,7 @@
         hideBb: false,
         bbIcon: 'arrow-back',
         backText: 'Back',
-
-        hasNavBar: VM.config.getBoolean('hasNavBar', true)
+        hideNavBar: VM.config.getBoolean('hideNavBar', false)
       }
     },
     props: {
