@@ -9,12 +9,12 @@
       <h4>LocalStorage</h4>
       <Grid>
         <Row>
-          <Column col-4>前缀:</Column>
-          <Column col-8>{{$localStorage._prefix}}</Column>
+          <Column col-6>前缀:</Column>
+          <Column col-6>{{$localStorage._prefix}}</Column>
         </Row>
         <Row>
-          <Column col-4>Storage中:</Column>
-          <Column col-8>
+          <Column col-6>Storage中:</Column>
+          <Column col-6>
             <div class="detailBox"
                  v-for="(value,key) in $localStorage"
                  v-if="key.indexOf('_') !== 0">
@@ -25,8 +25,8 @@
         </Row>
 
         <Row>
-          <Column col-4>localStorage中:</Column>
-          <Column col-8>
+          <Column col-6>localStorage中:</Column>
+          <Column col-6>
             <div class="detailBox" v-for="(value,key) in localStorageList">
               <Row><span class="detailBox__title">{{key}}:</span></Row>
               <Row><span class="detailBox__value">{{value}}</span></Row>
@@ -41,13 +41,13 @@
       <h4>SessionStorage</h4>
       <Grid>
         <Row>
-          <Column col-4>前缀:</Column>
-          <Column col-8>{{$sessionStorage._prefix}}</Column>
+          <Column col-6>前缀:</Column>
+          <Column col-6>{{$sessionStorage._prefix}}</Column>
         </Row>
 
         <Row>
-          <Column col-4>Storage中:</Column>
-          <Column col-8>
+          <Column col-6>Storage中:</Column>
+          <Column col-6>
             <div class="detailBox"
                  v-for="(value,key) in $sessionStorage"
                  v-if="key.indexOf('_') !== 0">
@@ -58,8 +58,8 @@
         </Row>
 
         <Row>
-          <Column col-4>sessionStorage中:</Column>
-          <Column col-8>
+          <Column col-6>sessionStorage中:</Column>
+          <Column col-6>
             <div class="detailBox" v-for="(value,key) in sessionStorageList">
               <Row><span class="detailBox__title">{{key}}:</span></Row>
               <Row><span class="detailBox__value">{{value}}</span></Row>
@@ -116,8 +116,8 @@
     },
     mounted(){
 
-      this.$localStorage.setItem('innerUse', 'IsInStorage')
-      window.localStorage.setItem('outerUse', 'NotInStorage')
+      this.$localStorage.setItem('innerUse', ['a','b'])
+      // window.localStorage.setItem('outerUse', 'NotInStorage')
     },
     activated(){},
     components: {}

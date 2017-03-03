@@ -63,6 +63,8 @@
    * menu.js:  组件全局安装及实例注册, 用于在Vue.prototype.$menu上共享方法
    *
    * 页面文件这样使用:
+   * this.$menu.menuIns: 当前缓存的menu实例对象
+   * this.$menu.currentMenuId: 当前开启的menuId
    * this.$menu.open('menuId1'): 打开id为menuId1的menu
    * this.$menu.close(): 关闭打开的menu
    * this.$menu.toggle('menuId1'): 如果开启则关闭, 如果没开启的则打开 menuId1
