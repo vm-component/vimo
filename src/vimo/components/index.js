@@ -85,6 +85,7 @@ import prepareModal from './modal'
 import SnakeBox from './snake-box'
 import Ghost from './ghostbtn'
 import FloatTop from './floattop'
+const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
 import { NavContorller } from "./nav-controller"
 module.exports = {

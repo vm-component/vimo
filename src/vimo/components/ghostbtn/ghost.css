@@ -1,70 +1,50 @@
-$button-red:#ff0033;
+
+*{
+  /*font: 13.3333px Arial;*/
+}
+
 
 #banner{
-  font: 13.3333px Arial;
   position: relative;
   top:5px;
 }
 
-.btn{
 
+.bottomAnimation{
+   animation:leftTo 1s ease-in 0s;
 }
-
-.top{
-  position: relative;
-  left: 50px;
-  width: 150px;
-  height: 2px;
-  background: #ff0033;
+#right{
+  float: right;
+  height: 30px;
 }
-
-.bottom{
-  position: relative;
-  left:150px;
-  top:29px;
-  width: 50px;
-  height: 2px;
-  background: #ff0033;
+.rightAnimation{
+  animation: bottomTo 1s ease-in 0s;
 }
-
-.left{
+#left{
   float: left;
   background: none;
   height:30px;
   width: 2px;
   position: relative;
 }
-.right{
-  float: right;
-  height: 30px;
-  width: 2px;
-  background: #ff0033;
-  position: relative;
-}
 
-.run{
-   .top{
+
+.run >.top{
     animation:rightTo 1s ease-in 0s;
-   }
-}
+   } 
 
-.run{
-  .bottom{
+.run > .bottom{
     animation:leftTo 1s ease-in 0s;
-  }
 }
 
-.run{
-  .right{
-    animation: bottomTo 1s ease-in 0s;
+.run >.right{
+    animation: bottomTo 1s ease-in 0s; 
   }
-}
 
-.run{
-  .left{
+.run >.left{
     animation: topTo 1s ease-in 0s;
   }
-}
+
 
 #ghost{
    border: 0px solid #fff;
@@ -77,14 +57,8 @@ $button-red:#ff0033;
 }
 
 
-@mixin keyframes($animationName) {
-    @-webkit-keyframes #{$animationName} {
-        @content;
-    }
-}
 
-
-@include keyframes(leftTo){
+@-webkit-keyframes leftTo{
     0%{
       height: 2px;
       left:0;
@@ -111,7 +85,7 @@ $button-red:#ff0033;
       width:50px;
     }
 }
-@include keyframes (rightTo){
+@-webkit-keyframes rightTo{
     0%{
        height: 2px;
       left:0;
@@ -138,7 +112,7 @@ $button-red:#ff0033;
       width:150px;
     }
 }
-@include keyframes (topTo){
+@-webkit-keyframes topTo{
     0%{
       background: #ff0033 ;
       width: 2px;
@@ -164,7 +138,7 @@ $button-red:#ff0033;
       height: 3px;
     }
 }
-@include keyframes (bottomTo){
+@-webkit-keyframes bottomTo{
     0%{
        width: 2px;
       height: 3px;
@@ -190,7 +164,7 @@ $button-red:#ff0033;
     }
 }
 
-@include keyframes (fontShow){
+@-webkit-keyframes fontShow{
   0%{
     color:rgba(256,0,51,0);
   }
@@ -201,3 +175,11 @@ $button-red:#ff0033;
     color:rgba(256,0,51,1);
   }
 }
+
+
+
+
+
+
+
+
