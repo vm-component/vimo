@@ -102,8 +102,6 @@
   </Page>
 </template>
 <style scoped lang="scss">
-
-
   .detailBox {
     margin-bottom: 5px;
 
@@ -115,8 +113,6 @@
       color: #333;
     }
   }
-
-
 </style>
 <script type="text/ecmascript-6">
   export default{

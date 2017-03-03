@@ -122,6 +122,19 @@
           </Item>
         </ItemGroup>
 
+        <!--模块-->
+        <ListHeader>
+          模块
+        </ListHeader>
+        <!--group-->
+        <ItemGroup>
+          <Item button :to="{name: 'storage'}">
+            <Icon slot="left" name="list"></Icon>
+            本地存储 (Storage)
+          </Item>
+        </ItemGroup>
+
+
         <!--Demo-->
         <ListHeader>
           Demo

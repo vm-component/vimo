@@ -128,13 +128,13 @@ class Storage {
    *
    * @param {object} window
    * @param {string} storageType - 存储的对象名称: localStorage/sessionStorage
-   * @return {object} 返回存储对象(window.localStorage/window.sessionStorage), 否则返回false
+   * @return {object/boolean} 返回存储对象(window.localStorage/window.sessionStorage), 否则返回false
    * */
   _isStorageSupported (window, storageType) {
 
     // Some installations of IE, for an unknown reason, throw "SCRIPT5: Error: Access is denied"
-    // when accessing window.localStorage. This happens before you try to do anything with it. Catch
-    // that error and allow execution to continue.
+    // when accessing window.localStorage. This happens before you try to do anything with it.
+    // Catch that error and allow execution to continue.
 
     // fix 'SecurityError: DOM Exception 18' exception in Desktop Safari, Mobile Safari
     // when "Block cookies": "Always block" is turned on

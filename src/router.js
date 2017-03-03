@@ -260,6 +260,15 @@ const routes = [
     component: require('./views/content.vue'),
   },
 
+  // 模块
+  {
+    path: '/storage',
+    name: 'storage',
+    component: require('./views/storage.vue'),
+  },
+
+
+
   // demo
   {
     path: '/demo',
