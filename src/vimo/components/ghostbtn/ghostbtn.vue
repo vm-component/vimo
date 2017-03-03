@@ -1,10 +1,10 @@
 <template>
   <div>
-    
+
     <div id="ghost" @click="animation()" >
-      <!-- <span> CREATE MY ACCOUNT</span> 
+      <!-- <span> CREATE MY ACCOUNT</span>
           <div id="top" class="line-1 top-1 topAnimation"></div>
-      
+
       <div id="left" class="line-2 top-1 leftAnimation"></div>
       <div id="right" class="line-2 top-1 rightAnimation"></div>
       <div id="bottom" class="line-1 top-1 bottomAnimation"></div>-->
@@ -19,7 +19,7 @@
 
 </template>
 <style scoped lang="scss">
-  @import './ghost.css';
+  @import './ghost.scss';
 </style>
 <script type="text/ecmascript-6">
   import {setElementClass} from '../../util/dom';

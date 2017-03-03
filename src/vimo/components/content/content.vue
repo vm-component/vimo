@@ -25,6 +25,14 @@
 </template>
 
 <script type="text/ecmascript-6">
+  /**
+   * @name Content组件
+   *
+   * !!在一个页面(Page组件)中只能有一个Content组件
+   * 如果要添加其他可滚动区域, 使用Scroll组件
+   *
+   *
+   * */
 
   import { getStyle,setElementClass } from '../../util/dom'
   import {getNum} from '../../util/util'

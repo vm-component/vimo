@@ -10,6 +10,8 @@
 'use strict';
 import VueRouter from 'vue-router';
 
+
+
 /**
  * 路由配置表
  * */
@@ -257,6 +259,15 @@ const routes = [
     name: 'content',
     component: require('./views/content.vue'),
   },
+
+  // 模块
+  {
+    path: '/storage',
+    name: 'storage',
+    component: require('./views/storage.vue'),
+  },
+
+
 
   // demo
   {

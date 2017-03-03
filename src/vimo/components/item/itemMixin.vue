@@ -58,7 +58,7 @@
         isStacked: false,
         isInset: false,
 
-        isInMenu: true, // 判断是否在menu组件中, 如果在menu中, 则
+        isInMenu: false, // 判断是否在menu组件中, 如果在menu中, 则
       }
     },
     props: {
@@ -109,6 +109,8 @@
           if (_this.isInMenu) {
             _this.$menu.close();
             _this.$eventBus.$on('onMenuClosed', directToHandler)
+          }else{
+            _this.$router.push(_this.to);
           }
 
           function directToHandler () {
