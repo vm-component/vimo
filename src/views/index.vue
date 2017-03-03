@@ -182,7 +182,10 @@
     name: 'index',
     methods:{
       print(){
-        console.log(this.$console);
+        this.$openconsole();
+        for(let i =0;i<50;i++){
+          console.log("ddf");
+        }
       }
     }
   }

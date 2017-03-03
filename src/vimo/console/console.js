@@ -1,10 +1,27 @@
 
-
+var middleDiv;
 
   window.addEventListener('error', function (err) {
     printToDiv("errorList",'EXCEPTION:', err.message + '\n  ' + err.filename, err.lineno + ':' + err.colno);
   });
 
+function createContainer(){
+  
+  
+}
+
+
+var logTo = (function createLogDiv() {  //创建盛放信息的container当中
+  var container = document.createElement("fieldset");
+
+  var caption = document.createTextNode('console output \n');
+  var legend = document.createElement('legend');
+  legend.appendChild(caption);
+  container.appendChild(legend);
+  
+ 
+  return container;
+}());
 
 
 
@@ -53,6 +70,9 @@ function printToDiv() {
     .map(toString)
     .join(' ');
   _console[arguments[0]].push(msg);
+  var text = logTo.textContent;  //容器就是div的text
+  logTo.textContent = text + msg + '\n';
+  if(middleDiv)  middleDiv.scrollTop = middleDiv.scrollHeight;
  }
 
 function logWithCopy() {  //以后的console就是这个了
@@ -99,9 +119,65 @@ console.debug = function debuginfo(){
 }
 
 
+function closeConsole(){
+  document.querySelector("#winConsole").style.display = "none";
+}
+
+
+function createDiv(div){ //创建中间层，有和Start标识END
+    var text1  = document.createTextNode("START: \n");
+    var text2  = document.createTextNode("END: \n");
+    div.appendChild(text1);
+    div.appendChild(logTo);
+    div.appendChild(text2);
+    div.id = "consoleScroll";
+    div.style.height = "95%";
+    div.style.overflowY = "scroll"
+    return div;
+}
+
+
+
+function openConsole(){
+  if(!document.querySelector("#winConsole")){
+    var outer = document.createElement("div");
+    var style = outer.style;
+    style.fontFamily = 'monospace';
+    style.marginTop = '20px';
+    style.marginLeft = '10px';
+    style.marginRight = '10px';
+    style.whiteSpace = 'pre-line';
+    style.wordBreak = 'break-all';
+    style.border = '1px solid black';
+    style.borderRadius = '5px';
+    style.padding = '5px 10px';
+    style.zIndex="99999";
+    style.position = "absolute";
+    style.backgroundColor = "#ff0033";
+    
+    style.height = "90%"
+    outer.id = "winConsole"
+    var div = document.createElement("div")
+     middleDiv = createDiv(div);
+    
+    outer.appendChild(middleDiv);
+    var button = document.createElement("button");
+    button.style.width = "100px";
+    button.style.height="30px";
+    button.onclick = closeConsole;
+    button.style.position = "relative";
+    button.style.bottom = "5px;"
+    button.appendChild(document.createTextNode("close"));
+    outer.appendChild(button);
+    document.body.appendChild(outer);
+  }else{
+    document.querySelector("#winConsole").style.display = "block";
+  }
+}
 
 function install(Vue){
   Vue.prototype.$console = _console;
+  Vue.prototype.$openconsole = openConsole;
 }
 
 module.exports = install;

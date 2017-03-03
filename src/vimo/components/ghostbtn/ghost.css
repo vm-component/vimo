@@ -10,26 +10,6 @@
 }
 
 
-.top{
-  position: relative;
-  left: 50px;
-  width: 150px;
-  height: 2px;
-  background: #ff0033;
-}
-
-.bottom{
-  position: relative;
-  left:150px;
-  top:29px;
-  width: 50px;
-  height: 2px;
-  background: #ff0033;
-}
-<<<<<<< HEAD
-
-.left{
-=======
 .bottomAnimation{
    animation:leftTo 1s ease-in 0s;
 }
@@ -41,20 +21,13 @@
   animation: bottomTo 1s ease-in 0s;
 }
 #left{
->>>>>>> 4dca9e9246d751de5bde4404c55a80195d111671
   float: left;
   background: none;
   height:30px;
   width: 2px;
   position: relative;
 }
-.right{
-  float: right;
-  height: 30px;
-  width: 2px;
-  background: #ff0033;
-  position: relative;
-}
+
 
 .run >.top{
     animation:rightTo 1s ease-in 0s;
