@@ -11,6 +11,7 @@ import App from './App';
 import routerFactory from './router.js';
 import attachFastClick from 'fastclick';
 
+
 /**
  * 完成安装及初始化工作
  * */
@@ -27,7 +28,11 @@ VM.platform.ready().then(function (data) {
     el: '#app',
     router,
     template: '<App/>',
-    mounted () {},
+    mounted () {
+      console.debug(this.$localStorage)
+      console.debug(this.$sessionStorage)
+      console.debug(this.$sessionStorage)
+    },
     components: {App}
   });
 })

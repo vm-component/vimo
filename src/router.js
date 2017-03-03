@@ -10,6 +10,8 @@
 'use strict';
 import VueRouter from 'vue-router';
 
+
+
 /**
  * 路由配置表
  * */
