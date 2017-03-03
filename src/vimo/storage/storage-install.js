@@ -5,22 +5,24 @@
  * @description
  *
  * 因为遇到了有些浏览器没开启本地存储导致app报错假死, 因此需要在
+ *
  * window.sessionStorage.getItem
  * window.sessionStorage.removeItem
  * window.sessionStorage.setItem
  * window.sessionStorage.clear
- * ... sessionStorage/localStorage提供的多种方法
+ * ... sessionStorage/localStorage
  *
+ * 提供的多种方法之前再次分装一层, 检测(try/catch)是否支持本地存储,
+ * 如果不行, 给出提示
  *
- * 之前再次分装一层, 检测(try/catch)是否支持本地存储, 如果不行, 给出提示,
- * sessionStorage/localstorage则使用内存缓存处理.
+ * sessionStorage/localstorage此时使用内存缓存处理(降级保证能运行).
  *
  * 参考的项目: https://github.com/DTFE/vStorage
  *
  * 设计概要:
  * 1. 基本上是对vStorage翻版改写
  * 2. config中能设置key的前缀
- * 3. $开头的变量为内存变量, 不在了内地存储中驻村
+ * 3. $开头的变量为内存变量, 不在sessionStorage/localStorage中存储
  *
  */
 
@@ -60,8 +62,19 @@ class Storage {
     this._prefixLength = this._prefix.length;
     this._storage = this._isStorageSupported(window, storageType); // 返回浏览器的存储对象(localStorage/sessionStorage)
 
+    if (!this._storage) {
+      console.error('Current browser does not support sessionStorage and localStorage, system will use memory to cache key/value data!')
+    }
+
     // 初始化
-    this._init();
+    if (!this.supported() || this._storageType !== 'localStorage') return;
+    for (let i = 0, l = this._storage.length, k; i < l; i++) {
+      // #8, #10: ` _storage.key(i)` may be an empty string (or throw an exception in IE9 if ` _storage` is empty)
+      k = this._storage.key(i);
+      if (this._prefix === k.slice(0, this._prefixLength)) {
+        this[k.slice(this._prefixLength)] = JSON.parse(this._storage.getItem(k))
+      }
+    }
   }
 
   /**
@@ -79,7 +92,8 @@ class Storage {
    * */
   setItem (key, value) {
     this[key] = JSON.parse(JSON.stringify(value));
-    this._storage.setItem(this._prefix + key, JSON.stringify(value));
+
+    this.supported() && this._storage.setItem(this._prefix + key, JSON.stringify(value));
   }
 
   /**
@@ -88,7 +102,7 @@ class Storage {
   clear () {
     const _this = this;
     for (let k in _this) {
-      '$' === k[0] || (delete _this[k] && _this._storage.removeItem(_this._prefix + k));
+      '$' === k[0] || (delete _this[k] && this.supported() && _this._storage.removeItem(_this._prefix + k));
     }
   }
 
@@ -97,7 +111,7 @@ class Storage {
    * @param {string} key
    * */
   removeItem (key) {
-    delete this[key] && this._storage.removeItem(this._prefix + key);
+    delete this[key] && this.supported() && this._storage.removeItem(this._prefix + key);
   }
 
   /**
@@ -108,21 +122,6 @@ class Storage {
   }
 
   // -------- private --------
-
-  /**
-   * fetch data
-   * 从localStorage中拉去记录
-   * */
-  _init () {
-    if (this._storageType !== 'localStorage') return;
-    for (let i = 0, l = this._storage.length, k; i < l; i++) {
-      // #8, #10: ` _storage.key(i)` may be an empty string (or throw an exception in IE9 if ` _storage` is empty)
-      k = this._storage.key(i);
-      if (this._prefix === k.slice(0, this._prefixLength)) {
-        this[k.slice(this._prefixLength)] = JSON.parse(this._storage.getItem(k))
-      }
-    }
-  }
 
   /**
    * 检查是否能使用存储功能

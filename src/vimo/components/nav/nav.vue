@@ -78,7 +78,6 @@
 
           // 获取开口读, 宽度小于340px的的屏幕开口度为264px
           // 大于340px的屏幕开口度为304px
-
           if (this.$platform.width() > 340) {
             _translateX = 304;
           }else{
