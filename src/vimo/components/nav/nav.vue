@@ -9,10 +9,10 @@
   </nav>
 </template>
 <style scoped lang="scss">
-  .ion-nav{
-    .click-cover{
+  .ion-nav {
+    .click-cover {
       position: absolute;
-      top:0;
+      top: 0;
       left: 0;
       width: 100%;
       height: 100%;
@@ -68,17 +68,28 @@
        * 初始化menu组件对应的监听处理
        * */
       initMenu(){
+        let _translateX;
         const _this = this;
         // 监听menu的组件事件
         _this.$eventBus.$on('onMenuOpen', function (menuId) {
           console.debug('$on onMenuOpen-' + menuId)
           _this.setMenuInfo(menuId);
           _this.isMenuOpen = true;
+
+          // 获取开口读, 宽度小于340px的的屏幕开口度为264px
+          // 大于340px的屏幕开口度为304px
+
+          if (this.$platform.width() > 340) {
+            _translateX = 304;
+          }else{
+            _translateX = 264;
+          }
+
           if (_this.menuType === 'reveal' || _this.menuType === 'push') {
             if (_this.menuSide === 'left') {
-              _this.menuStyleObj['transform'] = 'translateX(264px)';
+              _this.menuStyleObj['transform'] = `translateX(${_translateX}px)`;
             } else {
-              _this.menuStyleObj['transform'] = 'translateX(-264px)';
+              _this.menuStyleObj['transform'] = `translateX(-${_translateX}px)`;
             }
           }
         });
