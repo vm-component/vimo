@@ -138,14 +138,15 @@ $menu-small-width: $menu-width - 40px !default;
 // --------------------------------------------------
 .ion-menu[type=push] {
   z-index: 0;
+  //
 }
 
 .ion-menu[type=push] .menu-inner {
-  //transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
 }
 
 .ion-menu[type=push].show-menu .menu-inner {
-  //transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0)!important;
 }
 
 

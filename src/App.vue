@@ -29,11 +29,14 @@
               </Item>
             </ItemGroup>
           </List>
+
+
+          <Button @click="openOtherOne">开启另一个</Button>
         </Content>
       </Page>
     </Menu>
     <!--menu author-->
-    <Menu id="author" side="right">
+    <Menu id="author" side="right" type="overlay">
       <!--<Menu [content]="content" id="menu1">-->
       <Page>
         <Header>
@@ -73,6 +76,9 @@
       return {}
     },
     methods: {
+      openOtherOne(){
+        this.$menu.open('author')
+      },
       /**
        * 后退操作
        * */

@@ -46,6 +46,10 @@
       fullscreen: {
         type: Boolean,
         default: false
+      },
+      mode:{
+        type:String,
+        default:VM.config.get('mode','ios')
       }
       // useIScroll:{
       //   type:Boolean,

@@ -111,7 +111,7 @@
         default: 'left'
       },
       /**
-       * menu打开的类型: "overlay", "reveal"
+       * menu打开的类型: "overlay", "reveal", "push"
        * */
       type: {
         type: String,
@@ -152,12 +152,22 @@
         const _this = this;
         if (!_this.enabled) return;
 
+
         _this.showMenu = true;
         if (_this.type === 'overlay') {
           _this.showBackdrop = true;
           // 确定左右动画
           _this.animationName = 'slideIn' + firstUpperCase(_this.side);
         }
+
+        if (_this.type === 'push') {
+          // _this.showBackdrop = true;
+          // 确定左右动画
+          _this.animationName = 'slideIn' + firstUpperCase(_this.side);
+        }
+
+
+
         _this.isOpen = true;
         this.$eventBus.$emit('onMenuOpen', this.id);
         return new Promise((resolve) => {this.presentCallback = resolve});

@@ -26,30 +26,68 @@ export function recordMenuInstance (instance) {
 // --------  function  --------
 /**
  * 开启
+ * 如果在menu开启另一个menu, 则等到第一个的关闭promise之后再开启
+ *
  * @param {string} menuId - 开启menu的id
+ * @return {promise}
+ *
  * */
 function open (menuId) {
   let _menu = Vue.prototype.$menu;
-  if (!!_menu.currentMenuId) return;
-  _menu.currentMenuId = menuId;
-  if (!!_menu.menuIns[menuId]) {
-    return _menu.menuIns[menuId].openMenu()
+  let _successCb;
+  let _errorCb;
+
+  if (!!_menu.currentMenuId) {
+    _menu.close().then(function () {
+      _openMenu(_menu, menuId)
+    })
+  } else {
+    _openMenu(_menu, menuId)
   }
-  return false
+
+  function _openMenu ($menu, id) {
+    if (!!$menu.menuIns[id]) {
+      $menu.currentMenuId = id;
+      $menu.menuIns[id].openMenu();
+      !!_successCb && _successCb();
+    } else {
+      !!_errorCb && _errorCb();
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    _successCb = resolve;
+    _errorCb = reject
+  });
 }
 
 /**
  * 关闭当前开启的, 如果没有则不处理
+ * @return {promise}
  * */
 function close () {
   let _menu = Vue.prototype.$menu;
   let currentMenuId = _menu.currentMenuId;
-  if(!currentMenuId) return
-  _menu.currentMenuId = null;
-  if (!!_menu.menuIns[currentMenuId]) {
-    return _menu.menuIns[currentMenuId].closeMenu();
+  let _successCb;
+  let _errorCb;
+
+  if (!currentMenuId) {
+    !!_errorCb && _errorCb();
+  } else {
+    _menu.currentMenuId = null;
+    if (!!_menu.menuIns[currentMenuId]) {
+      _menu.menuIns[currentMenuId].closeMenu().then(function () {
+        !!_successCb && _successCb();
+      });
+    } else {
+      !!_errorCb && _errorCb();
+    }
   }
-  return false;
+
+  return new Promise((resolve, reject) => {
+    _successCb = resolve;
+    _errorCb = reject
+  });
 }
 
 /**

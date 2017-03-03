@@ -35,9 +35,9 @@
 
         isMenuOpen: false, // ion-menu开启
         menuId: '', // menuId
-        menuType: '', // "overlay", "reveal",  这里只处理 reveal
+        // menuType: '', // "overlay", "reveal", "push"  这里只处理 reveal/push
         menuSide: 'left', // 方向
-        menuClass: 'menu-content',
+        menuClass: '',
       }
     },
     methods: {
@@ -58,10 +58,12 @@
        * 设置Menu的信息
        * */
       setMenuInfo(menuId){
-        this.menuId = menuId;
-        this.menuSide = this.$menu.menuIns[menuId].side;
-        this.menuType = this.$menu.menuIns[menuId].type;
-        this.menuClass += (' menu-content-' + this.menuType)
+        if(!!menuId){
+          this.menuId = menuId;
+          this.menuSide = this.$menu.menuIns[menuId].side;
+          this.menuType = this.$menu.menuIns[menuId].type;
+          this.menuClass = `menu-content menu-content-${this.menuType}`
+        }
       },
 
       /**
@@ -72,7 +74,7 @@
         const _this = this;
         // 监听menu的组件事件
         _this.$eventBus.$on('onMenuOpen', function (menuId) {
-          console.debug('$on onMenuOpen-' + menuId)
+          // console.debug('$on onMenuOpen-' + menuId)
           _this.setMenuInfo(menuId);
           _this.isMenuOpen = true;
 
@@ -91,17 +93,17 @@
               _this.menuStyleObj['transform'] = `translateX(-${_translateX}px)`;
             }
           }
+
         });
         _this.$eventBus.$on('onMenuClosing', function (menuId) {
-          console.debug('$on onMenuClosing-' + menuId);
+          // console.debug('$on onMenuClosing-' + menuId);
           _this.isMenuOpen = false;
           if (_this.menuType === 'reveal' || _this.menuType === 'push') {
             _this.menuStyleObj['transform'] = 'translateX(0)';
           }
-
         });
         _this.$eventBus.$on('onMenuClosed', function (menuId) {
-          console.debug('$on onMenuClosed-' + menuId)
+          // console.debug('$on onMenuClosed-' + menuId)
         });
       }
     },
