@@ -36,7 +36,8 @@
   .slideInLeft-enter,
   .slideInLeft-leave-active {
     transform: translateX(-100%);
-    transition: all cubic-bezier(0.4, 0.0, 0.6, 1) 280ms;
+    transition: all cubic-bezier(0.2, 0, 1, 1) 280ms;
+    /*transition: all cubic-bezier(0.0, 0.0, 0.2, 1) 1280ms;*/
   }
 
   /*slideInRight*/
@@ -49,7 +50,7 @@
   .slideInRight-enter,
   .slideInRight-leave-active {
     transform: translateX(100%);
-    transition: all cubic-bezier(0.4, 0.0, 0.6, 1) 280ms;
+    transition: all cubic-bezier(0, 0, 1, 1) 280ms;
   }
 
 </style>

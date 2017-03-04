@@ -39,7 +39,10 @@ function open (menuId) {
 
   if (!!_menu.currentMenuId) {
     _menu.close().then(function () {
-      _openMenu(_menu, menuId)
+      // debug: 如果不加nextTick, 部分手机连续动画会出错
+     Vue.nextTick(function () {
+       _openMenu(_menu, menuId)
+     })
     })
   } else {
     _openMenu(_menu, menuId)

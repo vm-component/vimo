@@ -39,11 +39,7 @@ $menu-small-width: $menu-width - 40px !default;
 
   // inner从左边进入出去
   transform: translate3d(0, 0, 0);
-  //transform: translate3d(-100%, 0, 0);
-  //transform: translate3d(-9999px, 0, 0);
-
-  transition: all cubic-bezier(0.0, 0.0, 0.2, 1) 280ms;
-
+  transition: all cubic-bezier(0, 0, 0, 1) 280ms;
   contain: strict;
 }
 
@@ -60,20 +56,19 @@ $menu-small-width: $menu-width - 40px !default;
 
 .ion-menu .ion-backdrop {
   z-index: -1;
-  //display: none;
-  //opacity: .01;
 }
 
+
+// Nav组件的class
 .menu-content {
   transform: translate3d(0, 0, 0);
   // 结束的动画函数
-  transition: all cubic-bezier(0.0, 0.0, 0.6, 1) 280ms;
+  transition: all cubic-bezier(0, 0, 0.6, 1) 280ms;
 }
 
 .menu-content-open {
   cursor: pointer;
   // 开始的动画函数
-  transition: all cubic-bezier(0.0, 0.0, 0.2, 1) 280ms;
   touch-action: manipulation;
 }
 
@@ -122,32 +117,17 @@ $menu-small-width: $menu-width - 40px !default;
   z-index: $z-index-menu-overlay;
 }
 
-.ion-menu[type=overlay] .menu-inner {
-  //transform: translate3d(-100%, 0, 0);
-}
-
-.ion-menu[type=overlay].show-menu .menu-inner {
-  //transform: translate3d(0, 0, 0);
-}
-
-.ion-menu[type=overlay] .show-backdrop {
-  //display: block;
-}
-
 // Menu Push
 // --------------------------------------------------
 .ion-menu[type=push] {
+  z-index: 1;
+}
+
+.ion-menu[type=push].show-menu {
   z-index: 0;
-  //
 }
 
-.ion-menu[type=push] .menu-inner {
-  transform: translate3d(-100%, 0, 0);
-}
 
-.ion-menu[type=push].show-menu .menu-inner {
-  transform: translate3d(0, 0, 0)!important;
-}
 
 
 
