@@ -16,7 +16,7 @@ import { setupConfig } from './config/config'
 import Storage from './storage/storage-install'
 
 import './util/iscroll'
-import _console  from './console/console'
+// import _console  from './console/console'
 // 用户配置
 const CUSTOMER_CONFIG = {
   // ...
@@ -26,7 +26,7 @@ setupConfig(CUSTOMER_CONFIG, setupPlatform());
 
 export const initVimo = function (Vue) {
   let component = require('./components')
-  Vue.use(_console);
+  // Vue.use(_console);
   Vue.use(Storage);
   component.install(Vue, CUSTOMER_CONFIG);
   // console.debug('VimoInstall success!')

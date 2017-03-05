@@ -121,13 +121,13 @@ $toggle-md-item-right-padding:           12px ($item-md-padding-right / 2) 12px 
 // -----------------------------------------
 
 .toggle-md.toggle-disabled,
-.item-md.item-toggle-disabled ion-label {
+.item-md.item-toggle-disabled .ion-label {
   opacity: $toggle-md-disabled-opacity;
 
   pointer-events: none;
 }
 
-.toggle-md.toggle-disabled ion-radio {
+.toggle-md.toggle-disabled .ion-radio {
   opacity: $toggle-md-disabled-opacity;
 }
 

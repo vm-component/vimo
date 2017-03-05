@@ -135,13 +135,13 @@ $toggle-wp-item-right-padding:           12px ($item-wp-padding-right / 2) 12px 
 // -----------------------------------------
 
 .toggle-wp.toggle-disabled,
-.item-wp.item-toggle-disabled ion-label {
+.item-wp.item-toggle-disabled .ion-label {
   opacity: $toggle-wp-disabled-opacity;
 
   pointer-events: none;
 }
 
-.toggle-wp.toggle-disabled ion-radio {
+.toggle-wp.toggle-disabled .ion-radio {
   opacity: $toggle-wp-disabled-opacity;
 }
 
@@ -160,7 +160,7 @@ $toggle-wp-item-right-padding:           12px ($item-wp-padding-right / 2) 12px 
   padding: $toggle-wp-item-left-padding;
 }
 
-.item-wp.item-toggle ion-label {
+.item-wp.item-toggle .ion-label {
   margin-left: 0;
 }
 

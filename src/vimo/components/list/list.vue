@@ -4,10 +4,7 @@
   </div>
 </template>
 <style lang="scss">
-  @import "list.scss";
-  @import "list.ios.scss";
-  @import "list.md.scss";
-  @import "list.wp.scss";
+
   @import "../item/item.scss";
   @import "../item/item.ios.scss";
   @import "../item/item.md.scss";
@@ -15,6 +12,11 @@
   @import "../item/item-media.scss";
   @import "../item/item-sliding.scss";
   @import "../item/item-reorder.scss";
+
+  @import "list.scss";
+  @import "list.ios.scss";
+  @import "list.md.scss";
+  @import "list.wp.scss";
 
 </style>
 <script type="text/ecmascript-6">

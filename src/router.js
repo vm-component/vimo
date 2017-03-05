@@ -130,6 +130,13 @@ const routes = [
     component: require('./views/input.vue'),
   },
   {
+    path: '/toggle',
+    name: 'toggle',
+    component: require('./views/toggle.vue'),
+  },
+
+
+  {
     path: '/grid',
     name: 'grid',
     component: require('./views/grid.vue'),

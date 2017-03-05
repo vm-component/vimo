@@ -76,6 +76,13 @@
             <Icon slot="left" name="cart"></Icon>
             输入框 (Input)
           </Item>
+
+          <Item button :to="{name: 'toggle'}">
+            <Icon slot="left" name="toggle"></Icon>
+            开关 (Toggle)
+          </Item>
+
+
           <Item button :to="{name: 'grid'}">
             <Icon slot="left" name="keypad"></Icon>
             栅格 (Grid)
