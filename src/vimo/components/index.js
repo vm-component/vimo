@@ -46,6 +46,7 @@ import Label from './label'
 // ------- Input Form
 import { Input, Textarea } from './input'
 import Toggle from './toggle'
+import Range from './range'
 
 // ------- Bar
 import Searchbar from './searchbar'
@@ -85,7 +86,6 @@ import prepareModal from './modal'
 import SnakeBox from './snake-box'
 import Ghost from './ghostbtn'
 import FloatTop from './floattop'
-const HAS_STATUS_BAR = false; // 是否显示顶部的状态bar
 
 import { NavContorller } from "./nav-controller"
 module.exports = {
@@ -163,6 +163,7 @@ module.exports = {
     Vue.component(Input.name, Input);
     Vue.component(Textarea.name, Textarea);
     Vue.component(Toggle.name, Toggle);
+    Vue.component(Range.name, Range);
 
     Vue.component(Card.name, Card);
     Vue.component(CardContent.name, CardContent);

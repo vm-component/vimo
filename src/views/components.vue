@@ -81,6 +81,11 @@
             <Icon slot="left" name="toggle"></Icon>
             开关 (Toggle)
           </Item>
+          <Item button :to="{name: 'range'}">
+            <Icon slot="left" name="range"></Icon>
+            范围选择 (Range)
+          </Item>
+
 
 
           <Item button :to="{name: 'grid'}">

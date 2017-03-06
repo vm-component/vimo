@@ -134,6 +134,12 @@ const routes = [
     name: 'toggle',
     component: require('./views/toggle.vue'),
   },
+  {
+    path: '/range',
+    name: 'range',
+    component: require('./views/range.vue'),
+  },
+
 
 
   {
