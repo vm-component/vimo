@@ -10,7 +10,7 @@
       <List>
         <ListHeader>
           Brightness
-          <Badge slot="right">{{brightness}}</Badge>
+          <Badge slot="item-right">{{brightness}}</Badge>
         </ListHeader>
         <Item>
           <Range v-model="brightness">
@@ -23,7 +23,7 @@
       <List>
         <ListHeader>
           Saturation
-          <Badge item-right color="secondary">{{saturation}}</Badge>
+          <Badge slot="item-right" color="secondary">{{saturation}}</Badge>
         </ListHeader>
         <Item>
           <Range :min="-200" :max="200" :pin="true" v-model="saturation" color="secondary">
@@ -36,7 +36,7 @@
       <List>
         <ListHeader>
           Disable
-          <Badge item-right color="secondary">{{disable}}</Badge>
+          <Badge slot="item-right" color="secondary">{{disable}}</Badge>
         </ListHeader>
         <Item>
           <Range :disabled="true" :min="-200" :max="200" :pin="true" v-model="disable" color="secondary">
@@ -50,7 +50,7 @@
       <List>
         <ListHeader>
           Warmth
-          <Badge item-right color="danger">{{warmth}}</Badge>
+          <Badge slot="item-right" color="danger">{{warmth}}</Badge>
         </ListHeader>
         <Item>
           <Range :min="1000" :max="2000" :step="100" :snaps="true" v-model="warmth" color="danger">
@@ -63,8 +63,8 @@
       <List>
         <ListHeader>
           Structure
-          <Badge item-right color="dark">{{structure.lower}}</Badge>
-          <Badge item-right color="dark">{{structure.upper}}</Badge>
+          <Badge slot="item-right" color="dark">{{structure.lower}}</Badge>
+          <Badge slot="item-right" color="dark">{{structure.upper}}</Badge>
         </ListHeader>
         <Item>
           <Range :debounce="200" :dualKnobs="true" :pin="true" v-model="structure" @onChange="onChange" color="dark">

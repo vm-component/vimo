@@ -10,20 +10,20 @@
 
       <List>
         <Item>
-          <Thumbnail slot="left">
+          <Thumbnail slot="item-left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-totoro.png">
           </Thumbnail>
           <h2>My Neighbor Totoro</h2>
           <p>Hayao Miyazaki • 1988</p>
-          <Button ion-button type="clear" slot="right">View</Button>
+          <Button ion-button type="clear" slot="item-right">View</Button>
         </Item>
         <Item>
-          <Thumbnail slot="left">
+          <Thumbnail slot="item-left">
             <img src="http://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-rotla.png">
           </Thumbnail>
           <h2>My Neighbor Totoro</h2>
           <p>Hayao Miyazaki • 1988</p>
-          <Button ion-button type="clear" slot="right">View</Button>
+          <Button ion-button type="clear" slot="item-right">View</Button>
         </Item>
 
       </List>

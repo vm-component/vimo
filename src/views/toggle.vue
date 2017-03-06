@@ -14,23 +14,23 @@
         </ListHeader>
         <Item>
           Toggle Normal
-          <Toggle slot="right"></Toggle>
+          <Toggle slot="item-right"></Toggle>
         </Item>
         <Item>
           Red Toggle
-          <Toggle slot="right" color="danger"></Toggle>
+          <Toggle slot="item-right" color="danger"></Toggle>
         </Item>
         <Item>
           Toggle Open
-          <Toggle slot="right" :checked="true"></Toggle>
+          <Toggle slot="item-right" :checked="true"></Toggle>
         </Item>
         <Item>
           Toggle Close
-          <Toggle slot="right" :checked="false"></Toggle>
+          <Toggle slot="item-right" :checked="false"></Toggle>
         </Item>
         <Item>
           Toggle Disabled
-          <Toggle slot="right" :disabled="true"></Toggle>
+          <Toggle slot="item-right" :disabled="true"></Toggle>
         </Item>
       </List>
 
@@ -40,7 +40,7 @@
         </ListHeader>
         <Item>
           下方按钮控制
-          <Toggle slot="right" :checked="checked" :disabled="disabled" @onChange="toggleChange"></Toggle>
+          <Toggle slot="item-right" :checked="checked" :disabled="disabled" @onChange="toggleChange"></Toggle>
         </Item>
       </List>
 

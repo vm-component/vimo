@@ -12,27 +12,27 @@
         </ListHeader>
 
         <Item>
-          <Icon name="planet" slot="left"></Icon>
+          <Icon name="planet" slot="item-left"></Icon>
           Astronomy
-          <Note slot="right">To the moon</Note>
+          <Note slot="item-right">To the moon</Note>
         </Item>
 
         <Item>
-          <Icon name="body" slot="left"></Icon>
+          <Icon name="body" slot="item-left"></Icon>
           Muggle Studies
-          <Toggle slot="right" :checked="false"></Toggle>
+          <Toggle slot="item-right" :checked="false"></Toggle>
         </Item>
 
         <Item>
-          <Icon name="leaf" slot="left"></Icon>
+          <Icon name="leaf" slot="item-left"></Icon>
           Herbology
-          <Icon name="rose" slot="right"></Icon>
+          <Icon name="rose" slot="item-right"></Icon>
         </Item>
 
         <Item>
-          <Icon name="flask" slot="left"></Icon>
+          <Icon name="flask" slot="item-left"></Icon>
           Potions
-          <Button slot="right" type="outline" color="primary">Btn</Button>
+          <Button slot="item-right" type="outline" color="primary">Btn</Button>
         </Item>
 
       </List>

@@ -14,15 +14,15 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'app'}">
-            <Icon slot="left" name="browsers"></Icon>
+            <Icon slot="item-left" name="browsers"></Icon>
             整体 (App)
           </Item>
           <Item button :to="{name: 'content'}">
-            <Icon slot="left" name="chatboxes"></Icon>
+            <Icon slot="item-left" name="chatboxes"></Icon>
             布局 (Header/Content/Footer)
           </Item>
           <Item button :to="{name: 'toolbar'}">
-            <Icon slot="left" name="briefcase"></Icon>
+            <Icon slot="item-left" name="briefcase"></Icon>
             工具条 (Toolbar)
           </Item>
         </ItemGroup>
@@ -45,59 +45,59 @@
           <!--<Item button :to="{name: 'fab'}">Fab</Item>-->
 
           <Item button :to="{name: 'button'}">
-            <Icon slot="left" name="download"></Icon>
+            <Icon slot="item-left" name="download"></Icon>
             按钮 (Button)
           </Item>
           <Item button :to="{name: 'icon'}">
-            <Icon slot="left" name="color-filter"></Icon>
+            <Icon slot="item-left" name="color-filter"></Icon>
             图标 (Icon)
           </Item>
           <Item button :to="{name: 'spinner'}">
-            <Icon slot="left" name="medical"></Icon>
+            <Icon slot="item-left" name="medical"></Icon>
             菊花图 (Spinner)
           </Item>
           <Item button :to="{name: 'list'}">
-            <Icon slot="left" name="list"></Icon>
+            <Icon slot="item-left" name="list"></Icon>
             列表 (List)
           </Item>
           <Item button :to="{name: 'searchbar'}">
-            <Icon slot="left" name="search"></Icon>
+            <Icon slot="item-left" name="search"></Icon>
             搜索栏 (SearchBar)
           </Item>
           <Item button :to="{name: 'tabs'}">
-            <Icon slot="left" name="star"></Icon>
+            <Icon slot="item-left" name="star"></Icon>
             Tabs
           </Item>
           <Item button :to="{name: 'segment'}">
-            <Icon slot="left" name="book"></Icon>
+            <Icon slot="item-left" name="book"></Icon>
             Segment
           </Item>
           <Item button :to="{name: 'input'}">
-            <Icon slot="left" name="cart"></Icon>
+            <Icon slot="item-left" name="cart"></Icon>
             输入框 (Input)
           </Item>
 
           <Item button :to="{name: 'toggle'}">
-            <Icon slot="left" name="toggle"></Icon>
+            <Icon slot="item-left" name="toggle"></Icon>
             开关 (Toggle)
           </Item>
           <Item button :to="{name: 'range'}">
-            <Icon slot="left" name="range"></Icon>
+            <Icon slot="item-left" name="range"></Icon>
             范围选择 (Range)
           </Item>
 
 
 
           <Item button :to="{name: 'grid'}">
-            <Icon slot="left" name="keypad"></Icon>
+            <Icon slot="item-left" name="keypad"></Icon>
             栅格 (Grid)
           </Item>
           <Item button :to="{name: 'cards'}">
-            <Icon slot="left" name="calendar"></Icon>
+            <Icon slot="item-left" name="calendar"></Icon>
             卡片 (Cards)
           </Item>
           <Item button :to="{name: 'fab'}">
-            <Icon slot="left" name="basketball"></Icon>
+            <Icon slot="item-left" name="basketball"></Icon>
             Fab
           </Item>
         </ItemGroup>
@@ -109,27 +109,27 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'actionSheet'}">
-            <Icon slot="left" name="list"></Icon>
+            <Icon slot="item-left" name="list"></Icon>
             ActionSheet
           </Item>
           <Item button :to="{name: 'alert'}">
-            <Icon slot="left" name="albums"></Icon>
+            <Icon slot="item-left" name="albums"></Icon>
             Alert
           </Item>
           <Item button :to="{name: 'backdrop'}">
-            <Icon slot="left" name="barcode"></Icon>
+            <Icon slot="item-left" name="barcode"></Icon>
             Backdrop
           </Item>
           <Item button :to="{name: 'loading'}">
-            <Icon slot="left" name="refresh"></Icon>
+            <Icon slot="item-left" name="refresh"></Icon>
             Loading
           </Item>
           <Item button :to="{name: 'modal'}">
-            <Icon slot="left" name="photos"></Icon>
+            <Icon slot="item-left" name="photos"></Icon>
             Modal
           </Item>
           <Item button :to="{name: 'toast'}">
-            <Icon slot="left" name="cloud"></Icon>
+            <Icon slot="item-left" name="cloud"></Icon>
             Toast
           </Item>
         </ItemGroup>
@@ -141,7 +141,7 @@
         <!--group-->
         <ItemGroup>
           <Item button :to="{name: 'storage'}">
-            <Icon slot="left" name="list"></Icon>
+            <Icon slot="item-left" name="list"></Icon>
             本地存储 (Storage)
           </Item>
         </ItemGroup>

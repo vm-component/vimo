@@ -12,7 +12,7 @@
   {'item-label-stacked':isStacked},
   {'item-label-inset':isInset}]" @click="directTo()">
     <!--以下组件显示在此处：[item-left],ion-checkbox:not([item-right])-->
-    <slot name="left"></slot>
+    <slot name="item-left"></slot>
 
     <!--<ng-content select="[item-left],ion-checkbox:not([item-right])"></ng-content>-->
     <div class="item-inner">
@@ -27,7 +27,7 @@
       </div>
 
       <!--以下组件显示在此处：[item-right],ion-radio,ion-toggle-->
-      <slot name="right"></slot>
+      <slot name="item-right"></slot>
       <!--<ion-reorder *ngIf="_shouldHaveReorder"></ion-reorder>-->
     </div>
     <div class="button-effect"></div>
@@ -127,14 +127,14 @@
         this.isInMenu = true;
       }
 
-      // 为slot="left"/slot="right"的沟槽设定属性
-      if (!!this.$slots && !!this.$slots['left']) {
-        this.$slots['left'].forEach(function (item) {
+      // 为slot="item-left"/slot="item-right"的沟槽设定属性
+      if (!!this.$slots && !!this.$slots['item-left']) {
+        this.$slots['item-left'].forEach(function (item) {
           item.elm.setAttribute('item-left', '')
         })
       }
-      if (!!this.$slots && !!this.$slots['right']) {
-        this.$slots['right'].forEach(function (item) {
+      if (!!this.$slots && !!this.$slots['item-right']) {
+        this.$slots['item-right'].forEach(function (item) {
           item.elm.setAttribute('item-right', '')
         })
       }
