@@ -4,8 +4,10 @@
   </div>
 </template>
 <style lang="scss">
-  @import "badge";
-  @import "badge.ios";
+  @import "badge.scss";
+  @import "badge.ios.scss";
+  @import "badge.md.scss";
+  @import "badge.wp.scss";
 </style>
 <script type="text/ecmascript-6">
   export default{
@@ -26,7 +28,7 @@
        * */
       mode: {
         type: String,
-        default:  VM.config.get('mode') || 'ios',
+        default: VM.config.get('mode') || 'ios',
       },
     },
     computed: {
