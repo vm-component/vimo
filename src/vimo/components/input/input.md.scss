@@ -151,11 +151,11 @@ $text-input-md-highlight-color-invalid:     $text-input-highlight-color-invalid 
 // Material Design Clear Input Icon
 // --------------------------------------------------
 
-.input-md[clearInput] {
+.input-md.clearInput {
   position: relative;
 }
 
-.input-md[clearInput] .text-input {
+.input-md.clearInput .text-input {
   padding-right: $text-input-md-input-clear-icon-width;
 }
 
@@ -167,4 +167,6 @@ $text-input-md-highlight-color-invalid:     $text-input-highlight-color-invalid 
   width: $text-input-md-input-clear-icon-width;
 
   background-size: $text-input-md-input-clear-icon-size;
+
+
 }

@@ -1,16 +1,5 @@
 <template>
-  <div :class="[
-  itemClass,
-  listHeaderClass,
-  colorClass,
-  {'input-has-value':inputHasValue},
-  {'input-has-focus':inputHasFocus},
-  {'item-input':isInput},
-  {'item-textarea':isTextarea},
-  {'item-label-fixed':isFixed},
-  {'item-label-floating':isFloating},
-  {'item-label-stacked':isStacked},
-  {'item-label-inset':isInset}]" @click="directTo()">
+  <div :class="[itemClass,listHeaderClass,colorClass]" @click="directTo()">
     <!--以下组件显示在此处：[item-left],ion-checkbox:not([item-right])-->
     <slot name="item-left"></slot>
 
@@ -47,17 +36,6 @@
   module.exports = {
     data(){
       return {
-        inputHasValue: false, // 用于input组件修改, 标记input有值
-        inputHasFocus: false, // 用于input组件修改, 标记input被选中
-        isInput: false, // 用于input组件修改, 标记内部有input组件
-        isTextarea: false, // 用于input组件修改, 标记内部有textarea组件
-
-        // label的样式
-        isFixed: false,
-        isFloating: false,
-        isStacked: false,
-        isInset: false,
-
         isInMenu: false, // 判断是否在menu组件中, 如果在menu中, 则
       }
     },

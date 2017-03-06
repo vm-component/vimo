@@ -6,10 +6,12 @@
 <style lang="scss">
   @import "./label.scss";
   @import "./label.ios.scss";
-  /*@import "./label.md.scss";*/
-  /*@import "./label.wp.scss";*/
+  @import "./label.md.scss";
+  @import "./label.wp.scss";
 </style>
 <script type="text/ecmascript-6">
+  import { setElementClass } from '../../util/dom'
+  import { isTrueProperty } from '../../util/util'
   export default{
     name: 'Label',
     data(){
@@ -75,17 +77,11 @@
        * floating:  当input为空的时候, label盖在input上面; 当input有值, 则浮动到上部
        * stacked: floating的特例, 不管有没有值, 都浮动到上部
        * */
-      if (this.$el.getAttribute('fixed') !== null) {
-        this._item.isFixed = true;
-      }
-      if (this.$el.getAttribute('floating') !== null) {
-        this._item.isFloating = true;
-      }
-      if (this.$el.getAttribute('stacked') !== null) {
-        this._item.isStacked = true;
-      }
-      if (this.$el.getAttribute('inset') !== null) {
-        this._item.isInset = true;
+      if(this._item.$el){
+        setElementClass(this._item.$el, 'item-label-fixed', isTrueProperty(this.$el.getAttribute('fixed')))
+        setElementClass(this._item.$el, 'item-label-floating', isTrueProperty(this.$el.getAttribute('floating')))
+        setElementClass(this._item.$el, 'item-label-stacked', isTrueProperty(this.$el.getAttribute('stacked')))
+        setElementClass(this._item.$el, 'item-label-inset', isTrueProperty(this.$el.getAttribute('inset')))
       }
 
     },

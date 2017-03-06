@@ -134,11 +134,11 @@ $text-input-wp-highlight-color-invalid:     $text-input-highlight-color-invalid 
 // Windows Clear Input Icon
 // --------------------------------------------------
 
-.input-wp[clearInput] {
+.input-wp.clearInput {
   position: relative;
 }
 
-.input-wp[clearInput] .text-input {
+.input-wp.clearInput .text-input {
   padding-right: $text-input-wp-input-clear-icon-width;
 }
 
