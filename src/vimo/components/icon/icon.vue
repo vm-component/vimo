@@ -13,11 +13,16 @@
    * icon可以支持ionicons/自定义imgClass
    *
    * 1. 默认情况下使用ionicons图标, 在name中传入ionicons的name即可(去除ion/mode信息)
-   *  <Icon mode="ios" name="star"></Icon>  -->  ion-ios-star
-   *  <Icon name="star"></Icon>             -->  根据平台mode  ->  ion-ios-star/ion-android-star
+   *  <Icon name="star"></Icon>                     -->  根据平台选择, ios:ion-ios-star, md:ion-md-star
+   *  <Icon name="ios-star"></Icon>                 -->  在全平台都使用ion-ios-star图标
+   *  <Icon name="star"></Icon>                     -->  根据平台mode  ->  ion-ios-star/ion-android-star
+   *  <Icon ios="ios-home" md="md-home"></Icon>     -->  单独设定: ios平台使用ios-home, md平台使用md-home
    *
    * 2. 如果是自定义的图标icon, 命名需要规范下, 用于区分ionicons.
-   *  <Icon name="icon-star"></Icon>        -->  icon-star
+   *  <Icon name="icon-star"></Icon>                -->  icon-star
+   *
+   * 3. 自定义激活的类 activeName
+   *  <Icon name="home" activeName="star"></Icon>  -->  设定激活的class图标
    *
    * */
   export default{
@@ -28,7 +33,7 @@
        * */
       mode: {
         type: String,
-        default: VM.config.get('mode', 'ios') || 'ios',
+        default: VM.config.get('iconMode', 'ios'),
       },
       /**
        * 按钮color：
@@ -73,23 +78,33 @@
        * */
       isActive: {
         type: Boolean,
-        default: false,
+        default: true,
       },
 
+      ios: {
+        type: String,
+        default: '',
+      },
+
+      md: {
+        type: String,
+        default: '',
+      },
     },
     data(){
       return {
         nameClass: '', // 最终显示的nameClass
         itemClass: '',
 
-        nameValue: '', // 过滤后的值
-        activeNameValue: '', // 过滤后的值
+        nameValue: null,
+        // activeNameValue: '', // 过滤后的值
 
+        hidden: false, // 是否隐藏图标
       }
     },
     watch: {
       isActive () {
-        this.init();
+        this.update();
       },
     },
     computed: {
@@ -100,69 +115,68 @@
     },
     methods: {
 
-      // -------- private ---------
-
-      /**
-       * name的过滤规则
-       * icon-star  ->    icon-star
-       * star       ->    ion-star
-       * (ios)star  ->    ion-ios-star
-       * */
-      getFilteredName(){
-        let _name = this.name;
-        if (_name.indexOf('icon-') === 0) {
-          return _name
+      getNameValue(val){
+        if (!(/^md-|^ios-|^logo-|^icon-/.test(val))) {
+          // this does not have one of the defaults
+          // so lets auto add in the mode prefix for them
+          return this.mode + '-' + val;
         } else {
-          return `ion-${this.mode}-${_name}`
+          return val;
         }
       },
 
-      /**
-       * activeName的过滤规则
-       * */
-      getFilteredActiveName(){
-        let _activeName = this.activeName;
-        if (!!_activeName) {
-          return _activeName
+      update() {
+        let iconName;
+
+        if (this.isActive && this.activeName) {
+          this.nameValue = this.getNameValue(this.activeName)
         } else {
-          let _name = this.name;
-          if (_name.indexOf('icon-') === 0) {
-            return _name
-          } else {
-            return `ion-${this.mode}-${_name}-outline`
-          }
+          this.nameValue = this.getNameValue(this.name)
         }
+
+        if (this.ios && this.mode === 'ios') {
+          // ios-star ios
+          iconName = this.ios;
+        } else if (this.md && this.mode === 'md') {
+          // md-star md
+          iconName = this.md;
+        } else {
+          // ios-star md-star icon-star
+          iconName = this.nameValue;
+        }
+
+        this.hidden = (iconName === null);
+        if (this.hidden) {
+          return;
+        }
+
+        let iconMode = iconName.split('-', 2)[0];
+        if (iconMode === 'ios' && !this.isActive &&
+          iconName.indexOf('logo-') < 0 &&
+          iconName.indexOf('-outline') < 0) {
+          //ios-star -> ios-star-outline
+          iconName += '-outline';
+        }
+        //ios-star-outline -> ion-ios-star-outline
+        //ios-star -> ion-ios-star-outline
+        //icon-star -> icon-star
+        if (iconMode === 'icon') {
+          this.nameClass = iconName;
+        } else {
+          this.nameClass = 'ion-' + iconName;
+        }
+
       },
 
-      /**
-       * 初始化
-       * */
-      init(){
-
-        /**
-         * 过滤后的name
-         * */
-        this.nameValue = this.getFilteredName();
-        this.activeNameValue = this.getFilteredActiveName();
-
-        /**
-         * 是否为激活状态
-         */
-        if (this.isActive) {
-          this.nameClass = this.activeNameValue;
-        } else {
-          this.nameClass = this.nameValue;
-        }
-      },
     },
     created(){
-      this.init();
+      this.update();
     },
     mounted(){
 
       if (!!this.$parent.$el && this.$parent.$el.className && this.$parent.$el.className.indexOf('item') > -1) {
         //	button in items should add class of 'item-button'
-        this.itemClass += 'item-icon';
+        this.itemClass = 'item-icon';
       }
 
     }
