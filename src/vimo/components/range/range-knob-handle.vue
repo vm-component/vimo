@@ -66,11 +66,6 @@
       rangeKnobMax(){
         return this.val === this.max
       },
-    },
-    methods: {},
-    created(){},
-    mounted(){},
-    activated(){},
-    components: {}
+    }
   }
 </script>

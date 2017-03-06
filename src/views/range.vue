@@ -33,18 +33,6 @@
         </Item>
       </List>
 
-      <List>
-        <ListHeader>
-          Disable
-          <Badge slot="item-right" color="secondary">{{disable}}</Badge>
-        </ListHeader>
-        <Item>
-          <Range :disabled="true" :min="-200" :max="200" :pin="true" v-model="disable" color="secondary">
-            <Label slot="range-left">-200</Label>
-            <Label slot="range-right">200</Label>
-          </Range>
-        </Item>
-      </List>
 
 
       <List>
@@ -62,7 +50,7 @@
 
       <List>
         <ListHeader>
-          Structure
+          Structure/Debounce
           <Badge slot="item-right" color="dark">{{structure.lower}}</Badge>
           <Badge slot="item-right" color="dark">{{structure.upper}}</Badge>
         </ListHeader>
@@ -73,6 +61,29 @@
           </Range>
         </Item>
       </List>
+
+      <List>
+        <ListHeader>
+          Disable
+          <Badge slot="item-right" color="secondary">{{disableRange}}</Badge>
+        </ListHeader>
+        <Item>
+          <Range :disabled="disabled" :min="-200" :max="200" :pin="true" v-model="disableRange" color="secondary">
+            <Label slot="range-left">-200</Label>
+            <Label slot="range-right">200</Label>
+          </Range>
+        </Item>
+      </List>
+
+      <Grid>
+        <Row  justify-content-center>
+          <Column col-6>
+            <Button type="block" @click="disableToggle">Disabled Toggle</Button>
+          </Column>
+        </Row>
+      </Grid>
+
+
 
     </Content>
   </Page>
@@ -90,9 +101,11 @@
 
         brightness: 20,
         saturation: 0,
-        disable: 10,
         warmth: 1300,
         structure: {lower: 33, upper: 60},
+
+        disableRange: 10,
+        disabled:false,
 
       }
     },
@@ -105,8 +118,12 @@
     },
     computed: {},
     methods: {
+
       onChange(value) {
         console.log('Changed', JSON.stringify(value));
+      },
+      disableToggle(){
+        this.disabled = !this.disabled;
       }
     },
     created(){},
