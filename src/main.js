@@ -5,6 +5,7 @@
  * 在这里完成初始化工作及页面启动
  *
  * */
+
 import Vue from 'vue';
 import { initVimo } from './vimo/index.js'
 import App from './App';
@@ -19,6 +20,7 @@ initVimo(Vue);
 new attachFastClick(document.body);
 let router = routerFactory(Vue);
 
+
 /**
  * 平台初始化完毕后触发ready回调
  * */
@@ -29,12 +31,11 @@ VM.platform.ready().then(function (data) {
     router,
     template: '<App/>',
     mounted () {
-      console.debug(this.$localStorage)
-      console.debug(this.$sessionStorage)
-      console.debug(this.$sessionStorage)
     },
     components: {App}
   });
 })
+
+
 
 

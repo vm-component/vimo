@@ -2,12 +2,12 @@
 var middleDiv;
 
   window.addEventListener('error', function (err) {
+    console.log('addEventListener--error')
     printToDiv("errorList",'EXCEPTION:', err.message + '\n  ' + err.filename, err.lineno + ':' + err.colno);
   });
 
 function createContainer(){
-  
-  
+
 }
 
 
@@ -18,8 +18,8 @@ var logTo = (function createLogDiv() {  //创建盛放信息的container当中
   var legend = document.createElement('legend');
   legend.appendChild(caption);
   container.appendChild(legend);
-  
- 
+
+
   return container;
 }());
 
@@ -64,7 +64,7 @@ function createOuter() { //创建一个放置error的东西
 
   var _console = createOuter();
 
- 
+
 function printToDiv() {
   var msg = Array.prototype.slice.call(arguments,1) //msg就是每次的信息内容
     .map(toString)
@@ -138,6 +138,24 @@ function createDiv(div){ //创建中间层，有和Start标识END
 
 
 
+
+let style={
+  fontFamily:'monospace',
+  marginTop:'20px',
+  marginLeft:'10px',
+  marginRight:'10px',
+  whiteSpace:'pre-line',
+  wordBreak:'break-all',
+  border:'1px solid black',
+  borderRadius:'5px',
+  padding:'5px 10px',
+  zIndex:'99999',
+  position:'absolute',
+  backgroundColor:'#ffe692',
+  height:'90%',
+  id:'winConsole',
+}
+
 function openConsole(){
   if(!document.querySelector("#winConsole")){
     var outer = document.createElement("div");
@@ -153,13 +171,13 @@ function openConsole(){
     style.padding = '5px 10px';
     style.zIndex="99999";
     style.position = "absolute";
-    style.backgroundColor = "#ff0033";
-    
+    style.backgroundColor = "#ffe692";
+
     style.height = "90%"
     outer.id = "winConsole"
     var div = document.createElement("div")
      middleDiv = createDiv(div);
-    
+
     outer.appendChild(middleDiv);
     var button = document.createElement("button");
     button.style.width = "100px";

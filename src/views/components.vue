@@ -78,15 +78,13 @@
           </Item>
 
           <Item button :to="{name: 'toggle'}">
-            <Icon slot="item-left" name="toggle"></Icon>
+            <Icon slot="item-left" name="book"></Icon>
             开关 (Toggle)
           </Item>
           <Item button :to="{name: 'range'}">
-            <Icon slot="item-left" name="range"></Icon>
+            <Icon slot="item-left" name="book"></Icon>
             范围选择 (Range)
           </Item>
-
-
 
           <Item button :to="{name: 'grid'}">
             <Icon slot="item-left" name="keypad"></Icon>
@@ -146,7 +144,6 @@
           </Item>
         </ItemGroup>
 
-
         <!--Demo-->
         <ListHeader>
           Demo
@@ -157,8 +154,6 @@
           <Item button :to="{name: 'ghostvue'}">ghost</Item>
           <Item button :to="{name: 'gl-input'}">GL-Input</Item>
         </ItemGroup>
-
-
 
       </List>
     </Content>

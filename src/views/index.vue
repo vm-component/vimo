@@ -159,7 +159,6 @@
               line-height: 154%;
               color: #2c3e50;
               font-weight: 500;
-
             }
             .inspired__logos--ionic {
               height: 22px;
@@ -183,10 +182,12 @@
     methods:{
       print(){
         this.$openconsole();
-        for(let i =0;i<50;i++){
-          console.log("ddf");
-        }
       }
+    },
+    mounted(){
+      console.dir('this')
+      console.log(this)
+      console.dir(this)
     }
   }
 </script>

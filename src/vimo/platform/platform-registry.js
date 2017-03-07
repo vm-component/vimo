@@ -188,7 +188,6 @@ export const PLATFORM_CONFIGS = {
       }
     },
     settings: {
-      mode: 'ios',
       hideNavBar: true,
     },
     isMatch(p) {
@@ -230,7 +229,6 @@ export const PLATFORM_CONFIGS = {
       })
     },
     settings: {
-      mode: 'ios',
       hideNavBar: true,
     },
     isMatch(p) {
@@ -269,7 +267,6 @@ export const PLATFORM_CONFIGS = {
       })
     },
     settings: {
-      mode: 'ios',
       hideNavBar: true,
     },
     isMatch(p) {
@@ -301,7 +298,6 @@ export const PLATFORM_CONFIGS = {
 
     },
     settings: {
-      mode: 'ios',
       hideNavBar: true,
     },
     isMatch(p) {
