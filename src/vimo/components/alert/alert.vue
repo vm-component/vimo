@@ -64,8 +64,23 @@
   @import './alert.ios.scss';
   @import './alert.wp.scss';
   @import './alert.md.scss';
-  // transition
-  @import '../../transitions/alert';
+
+  // transitioName = 'alert'
+  .alert-enter-active, .alert-leave-active {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .alert-enter {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+
+  .alert-leave-active {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
 </style>
 <script type="text/ecmascript-6">
   export default{

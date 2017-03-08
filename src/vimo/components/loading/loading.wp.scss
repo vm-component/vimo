@@ -49,6 +49,8 @@ $loading-wp-spinner-dots-color:        $loading-wp-spinner-color !default;
   border-radius: $loading-wp-border-radius;
   color: $loading-wp-text-color;
   background: $loading-wp-background;
+  // addStyle
+  transition: all cubic-bezier(0,0,0.05,1) 200ms;
 }
 
 
@@ -82,4 +84,20 @@ $loading-wp-spinner-dots-color:        $loading-wp-spinner-color !default;
 
 .loading-wp .spinner-dots circle {
   fill: $loading-wp-spinner-dots-color;
+}
+
+// transitioName = 'loading-wp'
+.loading-wp-enter-active, .loading-wp-leave-active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.loading-wp-enter {
+  transform: scale(1.3);
+  opacity: 0;
+}
+
+.loading-wp-leave-active {
+  transform: scale(1.3);
+  opacity: 0;
 }

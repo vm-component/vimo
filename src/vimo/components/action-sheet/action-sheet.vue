@@ -247,6 +247,13 @@
   @import './action-sheet.ios.scss';
   @import './action-sheet.wp.scss';
   @import './action-sheet.md.scss';
-  // transition
-  @import '../../transitions/actionSheet';
+
+  // transitioName = 'action-sheet'
+  .action-sheet-enter-active, .action-sheet-leave-active {
+    transform: translateY(0%);
+  }
+
+  .action-sheet-enter, .action-sheet-leave-active {
+    transform: translateY(100%);
+  }
 </style>

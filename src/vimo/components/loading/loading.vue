@@ -1,7 +1,7 @@
 <template>
   <div class="ion-loading" :class="[modeClass,cssClass]">
     <!--<Backdrop :isActive="isActive" v-if="showBackdrop" :enableBackdropDismiss="false"></Backdrop>-->
-    <transition name="loading"
+    <transition :name="transitionClass"
                 v-on:before-enter="_beforeEnter"
                 v-on:after-enter="_afterEnter"
                 v-on:before-leave="_beforeLeave"
@@ -20,8 +20,6 @@
   @import './loading.ios';
   @import './loading.md';
   @import './loading.wp';
-  // transition
-  @import "../../transitions/loading";
 
 </style>
 <script type="text/ecmascript-6">
@@ -46,7 +44,7 @@
          * */
         isActive: false, // 开启状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode: this.$config.get('mode') || 'ios', // ios?android?window
+        mode: this.$config.get('mode','ios') || 'ios', // ios?android?window
 
         // promise
         presentCallback: null,
@@ -62,6 +60,9 @@
       showSpinner () {
         return this.spinner !== 'hide'
       },
+      transitionClass(){
+        return `loading-${this.mode}`
+      }
     },
     methods: {
       /**

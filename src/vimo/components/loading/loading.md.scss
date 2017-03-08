@@ -58,6 +58,8 @@ $loading-md-spinner-dots-color:        $loading-md-spinner-color !default;
   background: $loading-md-background;
 
   box-shadow: $loading-md-box-shadow;
+  // addStyle
+  transition: all ease-in-out 200ms;
 }
 
 
@@ -91,4 +93,20 @@ $loading-md-spinner-dots-color:        $loading-md-spinner-color !default;
 
 .loading-md .spinner-dots circle {
   fill: $loading-md-spinner-dots-color;
+}
+
+// transitioName = 'loading-md'
+.loading-md-enter-active, .loading-md-leave-active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.loading-md-enter {
+  transform: scale(1.1);
+  opacity: 0;
+}
+
+.loading-md-leave-active {
+  transform: scale(0.9);
+  opacity: 0;
 }

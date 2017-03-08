@@ -54,6 +54,8 @@ $loading-ios-spinner-dots-color:        $loading-ios-spinner-color !default;
   background: $loading-ios-background;
 
   margin-bottom: 44px;
+  // addStyle
+  transition: all ease-in-out 200ms;
 }
 
 
@@ -91,4 +93,19 @@ $loading-ios-spinner-dots-color:        $loading-ios-spinner-color !default;
 
 .loading-ios .spinner-dots circle {
   fill: $loading-ios-spinner-dots-color;
+}
+
+
+// transitioName = 'loading-ios'
+.loading-ios-enter-active, .loading-ios-leave-active {
+  transform: scale(1);
+  opacity: 1;
+}
+.loading-ios-enter {
+  transform: scale(1.1);
+  opacity: 0.01;
+}
+.loading-ios-leave-active {
+  transform: scale(0.9);
+  opacity: 0;
 }
