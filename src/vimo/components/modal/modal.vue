@@ -1,7 +1,7 @@
 <template>
   <div class="ion-modal">
     <transition
-      name="modal"
+      :name="transitionClass"
       v-on:before-enter="_beforeEnter"
       v-on:after-enter="_afterEnter"
       v-on:before-leave="_beforeLeave"
@@ -21,10 +21,16 @@
         enabled: false,
         bdDismiss: false,
         isActive: false,
+        mode: VM.config.get('mode', 'ios'),
 
         // promise
         presentCallback: null,
         dismissCallback: null,
+      }
+    },
+    computed: {
+      transitionClass(){
+        return `modal-${this.mode}`
       }
     },
     methods: {
@@ -72,6 +78,5 @@
   @import "./modal.ios";
   @import "./modal.md";
   @import "./modal.wp";
-  // transition
-  @import "../../transitions/modal";
+
 </style>

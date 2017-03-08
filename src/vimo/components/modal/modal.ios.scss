@@ -11,14 +11,21 @@ $modal-ios-border-radius:             10px !default;
 
 .ios .modal-wrapper {
   // hidden by default to prevent flickers, the animation will show it
-  //transform: translate3d(0, 0, 0);
-  //transform: translate3d(0, 100%, 0);
-
   transition: all cubic-bezier(0.36,0.66,0.04,1) 400ms;
-
   @media only screen and (min-width: $modal-inset-min-width) and (min-height: $modal-inset-min-height-small) {
     overflow: hidden;
 
     border-radius: $modal-ios-border-radius;
   }
+}
+
+// transitioName = 'modal-ios'
+.modal-ios-enter-active, .modal-ios-leave-active {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+.modal-ios-enter, .modal-ios-leave-active {
+  transform: translateY(100%);
+  opacity: 0;
 }

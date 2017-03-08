@@ -7,6 +7,16 @@
 $modal-wp-background-color:          $background-wp-color !default;
 
 .wp .modal-wrapper {
-  opacity: .01;
-  transform: translate3d(0, 40px, 0);
+  transition: all cubic-bezier(0.36,0.66,0.04,1) 400ms;
+}
+
+// transitioName = 'modal-wp'
+.modal-wp-enter-active, .modal-wp-leave-active {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+.modal-wp-enter, .modal-wp-leave-active {
+  transform: translateY(40px);
+  opacity: 0.01;
 }

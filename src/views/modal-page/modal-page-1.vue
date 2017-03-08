@@ -2,7 +2,7 @@
   <Page>
     <Header>
       <Toolbar>
-        <Button start slot="button" role="bar-button" @click="closeModal">
+        <Button right slot="button" role="bar-button" @click="closeModal">
           Close
         </Button>
         <Title>Modal Page 1</Title>
