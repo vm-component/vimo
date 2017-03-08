@@ -90,6 +90,8 @@ $toggle-wp-item-right-padding:           12px ($item-wp-padding-right / 2) 12px 
   background-color: $toggle-wp-track-background-color-off;
 
   pointer-events: none;
+
+  transition: all ease 300ms;
 }
 
 
