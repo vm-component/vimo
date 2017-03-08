@@ -4,8 +4,10 @@
     </div>
 </template>
 <style lang="scss">
-    @import './segment';
-    @import './segment.ios';
+    @import './segment.scss';
+    @import './segment.ios.scss';
+    @import './segment.md.scss';
+    @import './segment.wp.scss';
 </style>
 <script type="text/ecmascript-6">
     export default{
