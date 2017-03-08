@@ -70,6 +70,11 @@
   </App>
 </template>
 <script type="text/ecmascript-6">
+  /**
+   * @name App.vue
+   * @description
+   * 项目描述
+   * */
   export default {
     name: 'app-root',
     data () {

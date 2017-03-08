@@ -1,18 +1,48 @@
 /**
  * Created by Hsiang on 2016/12/18.
  *
- * ！！！！！不支持组件式调用！！！！！
+ * ActionSheetComponent
+ * @module Component/ActionSheet
+ * @description
  *
- * 使用实例方式调用actionSheet，故需要在此文件中模拟组件使用过程
- * 此文件是实例化函数，
+ * 弹出表单组件
+ *
+ *
+ *                  ！！！！！不支持组件式调用！！！！！
+ *
+ * ## 1
+ *              使用实例方式调用actionSheet，故需要在此文件中模拟组件使用过程
+ *              此文件是实例化函数，
  * 可以为实例绑定方法，但是方法应该隶属于组件(action-sheet.vue)自己
  * 全局共用一个实例，挂在到 Vue.prototype._actionSheet 上
  *
+ * ## 2
  * 注意，如果想在一个ActionSheet的button中打开另一个ActionSheet(扯淡的需求)，
  * 那就在dismiss()的promise中初始化并打开吧
  *
+ * ## 3
  * 在页面动画过程中, 页面会进入短暂的 冻结状态
+ *
+ * @param {string} [type=text] - field 类型，接受 text, textarea 等
+ * @param {string} [label] - 标签
+ * @param {string} [rows] - textarea 的 rows
+ * @param {string} [placeholder] - placeholder
+ * @param {string} [disabled] - disabled
+ * @param {string} [readonly] - readonly
+ * @param {string} [state] - 表单校验状态样式，接受 error, warning, success
+ *
+ * @event event
+ *
+ * @example
+ * <mt-field v-model="value" label="用户名"></mt-field>
+ * <mt-field v-model="value" label="密码" placeholder="请输入密码"></mt-field>
+ * <mt-field v-model="value" label="自我介绍" placeholder="自我介绍" type="textarea" rows="4"></mt-field>
+ * <mt-field v-model="value" label="邮箱" placeholder="成功状态" state="success"></mt-field>
  */
+
+
+
+
 import Vue from 'vue';
 import actionSheetComponent from './action-sheet.vue';
 import { urlChange } from '../../util/dom';
@@ -28,6 +58,7 @@ ActionSheetConstructor.prototype.dismiss = dismiss;
  * 开启的外部函数, 内部_present用于控制组件开闭,
  * 外部present用于初始化传参
  * @param {object} options
+ * @return {promise}
  * */
 function present (options) {
   const _this = this;
@@ -67,6 +98,7 @@ function present (options) {
 
 /**
  * 关闭
+ * @return {promise}
  * */
 function dismiss () {
   !!_unRegisterUrlChange && _unRegisterUrlChange();
@@ -75,6 +107,7 @@ function dismiss () {
 }
 
 /**
+ * @private
  * 获取示例，保持单利状态
  */
 function getAnInstance () {

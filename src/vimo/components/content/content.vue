@@ -28,8 +28,17 @@
   /**
    * @name Content组件
    *
+   *
+   * @module Content
+   *
+   *
+   * @description
    * !!在一个页面(Page组件)中只能有一个Content组件
    * 如果要添加其他可滚动区域, 使用Scroll组件
+   *
+   * @param {Boolean=} fullscreen - 是否全屏显示的控制
+   * @param {String=} mode - 样式模式
+   *
    *
    *
    * */

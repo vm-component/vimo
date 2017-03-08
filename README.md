@@ -30,6 +30,13 @@
 |--index.html		单页的index
 ```
 
+## 文档生成
+
+```
+jsdoc ./src/vimo/components/**/** -c ./conf.json
+
+```
+
 ## 安装运行
 
 ``` bash

@@ -1,0 +1,10 @@
+{
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true
+  },
+  "plugins": ["node_modules/jsdoc-vue"],
+  "source": {
+    "includePattern": "\\.(vue|js)$"
+  }
+}

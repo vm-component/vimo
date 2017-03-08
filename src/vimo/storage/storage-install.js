@@ -1,16 +1,19 @@
 /**
  * Created by Hsiang on 2017/3/2.
  *
- * @name sessionStorage/localStorage本地存储
+ * @module Storage
  * @description
  *
  * 因为遇到了有些浏览器没开启本地存储导致app报错假死, 因此需要在
  *
+ *```
  * window.sessionStorage.getItem
  * window.sessionStorage.removeItem
  * window.sessionStorage.setItem
  * window.sessionStorage.clear
  * ... sessionStorage/localStorage
+ *
+ * ```
  *
  * 提供的多种方法之前再次分装一层, 检测(try/catch)是否支持本地存储,
  * 如果不行, 给出提示
@@ -31,28 +34,44 @@ module.exports = {
     Object.assign(Vue.prototype, {
       $localStorage: new Storage('localStorage', options),
       $sessionStorage: new Storage('sessionStorage', options),
-    });
+    })
   }
-};
+}
 
 /**
  * @name Storage
+
  * @description
  *
- * 根据传入的storage名称, 这个类用于生成storage实例;
+ * 根据传入的storage名称, 这个类用于生成storage实例
  *
  * */
 class Storage {
-  _prefix; // 存储前缀
-  _storage; // 当前的storage函数(window.localStorage/window.sessionStorage), 如果不可用则返回false
-  _prefixLength; // 前缀长度
-  _storageType; // 存储类型名称
+  // /**
+  //  * 存储前缀
+  //  * */
+  // _prefix ;
+  // /**
+  //  * 当前的storage函数(window.localStorage/window.sessionStorage), 如果不可用则返回false
+  //  * */
+  // _storage;
+  // /**
+  //  * 前缀长度
+  //  * */
+  // _prefixLength;
+  // /**
+  //  * 存储类型名称
+  //  * */
+  // _storageType;
 
   /**
    * @param {string} storageType
    * @param {object} options
    * */
   constructor (storageType, options) {
+
+
+
     this._storageType = storageType;
     if (!!options && !!options.prefix) {
       this._prefix = options.prefix
