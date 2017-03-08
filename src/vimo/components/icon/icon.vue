@@ -106,6 +106,18 @@
       isActive () {
         this.update();
       },
+      name(){
+        this.update();
+      },
+      activeName(){
+        this.update();
+      },
+      ios(){
+        this.update();
+      },
+      md(){
+        this.update();
+      },
     },
     computed: {
       // 颜色
@@ -114,7 +126,6 @@
       },
     },
     methods: {
-
       getNameValue(val){
         if (!(/^md-|^ios-|^logo-|^icon-/.test(val))) {
           // this does not have one of the defaults
@@ -165,7 +176,6 @@
         } else {
           this.nameClass = 'ion-' + iconName;
         }
-
       },
 
     },
