@@ -18,7 +18,7 @@
                      :to="t.to"
                      tag="a"
                      active-class="tab-active"
-                     @onSelect="select($event)">
+                     @onSelect="select($event)" replace>
           <Icon v-if="t.tabIcon" :name="t.tabIcon" :isActive="t.isSelected" class="tab-button-icon"></Icon>
           <span v-if="t.tabTitle" class="tab-button-text">{{t.tabTitle}}</span>
           <Badge v-if="t.tabBadge" class="tab-badge" :color="t.tabBadgeStyle">{{t.tabBadge}}</Badge>
@@ -439,11 +439,6 @@
         })
       }
 
-      //
-      // this.$eventBus.$on('onPageLeave',function (params) {
-      //   console.debug('onPageLeave')
-      //   console.debug(params)
-      // })
 
     },
 
