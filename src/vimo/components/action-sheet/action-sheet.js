@@ -45,10 +45,8 @@
 
 import Vue from 'vue';
 import actionSheetComponent from './action-sheet.vue';
-import { urlChange } from '../../util/dom';
 const ActionSheetConstructor = Vue.extend(actionSheetComponent);
 let _insertPosition;
-let _unRegisterUrlChange = null;
 ActionSheetConstructor.prototype.present = present;
 ActionSheetConstructor.prototype.dismiss = dismiss;
 
@@ -66,13 +64,14 @@ function present (options) {
     console.debug('actionSheet实例当前只能开启一个!')
     return
   }
-  // 初始化参数
 
   // 参数传入
   _this.title = !!options.title ? options.title.trim() : '';
   _this.subTitle = !!options.subTitle ? options.subTitle.trim() : '';
   _this.cssClass = !!options.cssClass ? options.cssClass.trim() : '';
+  _this.buttons = [];
   _this.buttons = options.buttons;
+  console.log(_this.buttons)
   _this.enableBackdropDismiss = !!options.enableBackdropDismiss;
 
   // 重置
@@ -89,7 +88,7 @@ function present (options) {
   }
 
   // 地址切换就执行dismiss()
-  _unRegisterUrlChange = urlChange(function () {
+  !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$on('onRouteChangeBefore',function () {
     _this.isActive && _this.dismiss();
   });
 
@@ -101,8 +100,6 @@ function present (options) {
  * @return {promise}
  * */
 function dismiss () {
-  !!_unRegisterUrlChange && _unRegisterUrlChange();
-  _unRegisterUrlChange = null;
   return this._dismiss()
 }
 

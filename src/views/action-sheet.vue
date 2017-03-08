@@ -15,6 +15,10 @@
         No Cancel Action Sheet
       </Button>
 
+      <Button type="block" @click="showActionSheet3()" color="primary">
+        Action Sheet No Icon
+      </Button>
+
     </Content>
   </Page>
 </template>
@@ -38,7 +42,6 @@
             {
               text: '删除',
               role: 'destructive',
-              icon: 'icon-Destructive',
               cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
               handler: () => {
                 console.log('Destructive clicked');
@@ -79,7 +82,6 @@
             {
               text: 'MacBook Pro',
               role: 'destructive',
-              icon: 'icon-Destructive',
               cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
               handler: () => {
                 console.log('Destructive clicked');
@@ -99,6 +101,50 @@
             }
           ]
         });
+      },
+      showActionSheet3 () {
+        const _this = this;
+        _this.$actionSheet.present({
+          title: '请选择操作',
+          subTitle: '注意，选择后不能撤销！',
+          cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
+          enableBackdropDismiss: true,
+          buttons: [
+            {
+              text: '删除',
+              role: 'destructive',
+              icon: 'trash',
+              cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
+              handler: () => {
+                console.log('Destructive clicked');
+              }
+            },
+            {
+              text: '分享',
+              icon: 'share',
+              handler: () => {
+                console.log('Archive1 clicked');
+              }
+            },
+            {
+              text: '播放',
+              icon: 'play',
+              handler: () => {
+                console.log('Archive4 clicked');
+              }
+            },
+            {
+              text: '取消',
+              role: 'cancel',
+              icon: 'close',
+              handler: () => {
+                _this.$actionSheet.dismiss().then(function (data) {
+                  console.debug('promise的退出方式')
+                });
+              }
+            }
+          ]
+        })
       },
     },
 

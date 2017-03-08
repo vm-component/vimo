@@ -74,6 +74,14 @@ $action-sheet-wp-icon-margin:                     0 20px 0 0 !default;
   font-size: $action-sheet-wp-title-font-size;
   text-align: $action-sheet-wp-title-text-align;
   color: $action-sheet-wp-title-color;
+
+  // 源文件没对此处理
+  .action-sheet-sub-title{
+    margin-top: 3%;
+    font-size: 70%;
+    line-height: 130%;
+    max-width:90%;
+  }
 }
 
 .action-sheet-wp .action-sheet-button {
@@ -87,8 +95,10 @@ $action-sheet-wp-icon-margin:                     0 20px 0 0 !default;
   background: $action-sheet-wp-button-background;
 }
 
-.action-sheet-wp .action-sheet-button.activated {
-  background: $action-sheet-wp-button-background-activated;
+.action-sheet-wp .action-sheet-button {
+  &:active{
+    background: $action-sheet-wp-button-background-activated;
+  }
 }
 
 .action-sheet-wp .action-sheet-icon {

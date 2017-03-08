@@ -185,9 +185,7 @@
       }
     },
     mounted(){
-      console.dir('this')
       console.log(this)
-      console.dir(this)
     }
   }
 </script>
