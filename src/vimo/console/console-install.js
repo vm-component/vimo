@@ -4,33 +4,23 @@
  *
  *    angular的$log服务, 打印出来的信息不包含发出信息的原始位置
  *
+ * 1. 打印记录日志
  *    API:
- *    $log.info(string)
- *    $log.warn(string)
- *    $log.error(string)
- *    $log.log(string)
- *    $log.debug(string)
- *    $log.assert(true)
+ *    $console.info(string)
+ *    $console.warn(string)
+ *    $console.error(string)
+ *    $console.log(string)
+ *    $console.debug(string)
  *
  *
+ * 2. 提供埋点服务
+ *    $analysis.clickRegister() // 点击监听注册 data-analysis-id="_id" -> 处理方式
+ *    $analysis.scrollRegister() // 滚动监听注册
+ *    $analysis.stayRegister() // 停留时间注册
+ *    $analysis.systemRegister() // 系统信息/app启动参数/系统
  *
+ *    其余通过友盟的u-web完成
  *
- *
- *
- *
- App.controller('DemoController', ['$log', function ($log) {
-
-            $log.info('普通信息');
-
-            $log.warn('警告信息');
-
-            $log.error('错误信息');
-
-            $log.log('打印信息');
-
-            $log.debug('调试信息');
-
-        }]);
  */
 module.exports = {
   install (Vue, options) {
@@ -47,26 +37,26 @@ module.exports = {
  *
  * */
 class Log {
-  _logs = []; // 日志记录数组
-
-  constructor(options){
-
+  constructor (options) {
+    this._logs = [];// 日志记录数组
   }
 
   /**
    * log
    * */
-  log(){
+  log () {
 
   }
+
+
+
 
 
   /**
    * 实例内部处理
    * */
-  clear(){
+  clear () {
 
   }
-
 
 }

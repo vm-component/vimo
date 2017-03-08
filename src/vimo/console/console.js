@@ -1,4 +1,3 @@
-
 var middleDiv;
 
   window.addEventListener('error', function (err) {
