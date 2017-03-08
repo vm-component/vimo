@@ -42,8 +42,7 @@ $toast-ios-title-padding:                         1.5rem !default;
 }
 
 .toast-ios .toast-wrapper.toast-middle {
-  top:50%;
-  transform: translateY(-50%);
+  top:38.2%;
   transition: opacity cubic-bezier(.36,.66,.04,1) 400ms;
 }
 
@@ -53,4 +52,33 @@ $toast-ios-title-padding:                         1.5rem !default;
   font-size: $toast-ios-title-font-size;
 
   color: $toast-ios-title-color;
+}
+
+// transition
+
+/*top*/
+.toast-top-ios-enter-active, .toast-top-ios-leave-active {
+  transform: translateY(0);
+}
+
+.toast-top-ios-enter, .toast-top-ios-leave-active {
+  transform: translateY(-130%);
+}
+
+/*bottom*/
+.toast-bottom-ios-enter-active, .toast-bottom-ios-leave-active {
+  transform: translateY(0);
+}
+
+.toast-bottom-ios-enter, .toast-bottom-ios-leave-active {
+  transform: translateY(130%);
+}
+
+/*middle*/
+.toast-middle-ios-enter-active, .toast-middle-ios-leave-active {
+  opacity: 1;
+}
+
+.toast-middle-ios-enter, .toast-middle-ios-leave-active {
+  opacity: 0.01;
 }

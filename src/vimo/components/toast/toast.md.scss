@@ -33,18 +33,17 @@ $toast-md-title-padding:                         19px 16px 17px !default;
 
 .toast-md .toast-wrapper.toast-top {
   top: 0;
-
-  transform: translate3d(0, -100%, 0);
+  transition: all cubic-bezier(.36,.66,.04,1) 400ms;
 }
 
 .toast-md .toast-wrapper.toast-bottom {
   bottom: 0;
-
-  transform: translate3d(0, 100%, 0);
+  transition: all cubic-bezier(.36,.66,.04,1) 400ms;
 }
 
 .toast-md .toast-wrapper.toast-middle {
-  opacity: .01;
+  top:38.2%;
+  transition: all cubic-bezier(.36,.66,.04,1) 400ms;
 }
 
 .toast-md .toast-message {
@@ -53,4 +52,33 @@ $toast-md-title-padding:                         19px 16px 17px !default;
   font-size: $toast-md-title-font-size;
 
   color: $toast-md-title-color;
+}
+
+// transition
+
+/*top*/
+.toast-top-md-enter-active, .toast-top-md-leave-active {
+  transform: translateY(0);
+}
+
+.toast-top-md-enter, .toast-top-md-leave-active {
+  transform: translateY(-130%);
+}
+
+/*bottom*/
+.toast-bottom-md-enter-active, .toast-bottom-md-leave-active {
+  transform: translateY(0);
+}
+
+.toast-bottom-md-enter, .toast-bottom-md-leave-active {
+  transform: translateY(130%);
+}
+
+/*middle*/
+.toast-middle-md-enter-active, .toast-middle-md-leave-active {
+  opacity: 1;
+}
+
+.toast-middle-md-enter, .toast-middle-md-leave-active {
+  opacity: 0.01;
 }

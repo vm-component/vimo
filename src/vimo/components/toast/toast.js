@@ -14,7 +14,6 @@
  */
 
 import Vue from 'vue';
-import { urlChange } from '../../util/dom';
 let toastComponent = require('./toast.vue');
 const ToastConstructor = Vue.extend(toastComponent);
 const POSITIONS = ['top', 'middle', 'bottom'];
@@ -101,13 +100,12 @@ function prepareToast () {
 
       // register navigation back event
       if (_toastList.length === 0) {
-        urlChange(function () {
+        Vue.prototype.$eventBus.$on('onRouteChangeBefore',function () {
           _toastList.forEach(function (item) {
             if (item.isActive) {
               if (!item.dismissOnPageChange) {
                 return
               }
-
               if (item.showCloseButton) {
                 item.cbClick()
               } else if (item.timer) {

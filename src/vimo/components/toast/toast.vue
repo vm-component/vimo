@@ -1,6 +1,6 @@
 <template>
   <div id="ion-toast" class="ion-toast" :class="[modeClass,cssClass]">
-    <transition :name="positionClass"
+    <transition :name="transitionClass"
                 v-on:before-enter="_beforeEnter"
                 v-on:after-enter="_afterEnter"
                 v-on:before-leave="_beforeLeave"
@@ -22,8 +22,6 @@
   @import "./toast.ios";
   @import "./toast.wp";
   @import "./toast.md";
-  // transition
-  @import "../../transitions/toast";
 </style>
 
 <script type="text/babel">
@@ -67,6 +65,9 @@
       positionClass () {
         return `toast-${this.position}`
       },
+      transitionClass(){
+        return `toast-${this.position}-${this.mode}`
+      }
     },
     methods: {
       /**
