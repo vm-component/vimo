@@ -2,12 +2,12 @@
  * Created by Hsiang on 2017/3/9.
  * http://broofa.com/tests/ErrorProperties.htm
  */
-(function() {
+(function () {
   var slice = Array.prototype.slice;
 
   // Detect the current scripts domain
   var scripts = document.getElementsByTagName('script');
-  var isSameDomain = !/bitabove\.com/.test(scripts[scripts.length-1].src);
+  var isSameDomain = !/bitabove\.com/.test(scripts[scripts.length - 1].src);
   var domain = isSameDomain ? 'Same-domain: ' : 'Cross-domain: ';
 
   // Feature detect based on error properties
@@ -20,17 +20,13 @@
   // We want to test on browsers that don't have a console API, so whip
   // something up here ...
   var sys = {
-    log: function(msg, type) {
+    log: function (msg, type) {
       var el = document.createElement(type || 'div');
-      el.innerHTML = msg.replace(/&/g, '&amp;').
-      replace(/>/g, '&gt;').
-      replace(/</g, '&lt;').
-      replace(/ {2}/g, ' &nbsp;').
-      replace(/\n/g, '<br />');
+      el.innerHTML = msg.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;').replace(/ {2}/g, ' &nbsp;').replace(/\n/g, '<br />');
       document.body.appendChild(el);
     },
 
-    dir: function(o) {
+    dir: function (o) {
       sys.log(JSON.stringify(o, null, 2), 'pre');
     }
   };
@@ -45,7 +41,7 @@
   // Normalize Error objects across all browsers into something semi-standard.
   // Not all properties are will be available, but if they are, they'll at
   // least have a predictable property name.
-  function normalizeError(err) {
+  function normalizeError (err) {
     var o = {
       line: err.lineNumber || err.line,
       message: err.message,
@@ -74,7 +70,7 @@
   }
 
   // Log any/all information we can find in an Error object
-  function logErr(err) {
+  function logErr (err) {
     sys.log(domain + 'In "try {...} catch(err) {...}" contexts', 'h2');
 
     // See what declared properties it has
@@ -113,9 +109,9 @@
   //
 
   // Some functions we use to create a stack
-  function throwingFunction() {1/xxx;}
+  function throwingFunction () {1 / xxx;}
 
-  function trappingFunction() {
+  function trappingFunction () {
     try {
       throwingFunction('123', 456, false);
     } catch (err) {
@@ -123,15 +119,15 @@
     }
   }
 
-  function nontrappingFunction() {
+  function nontrappingFunction () {
     throwingFunction('789', 0xabc, true);
   }
 
   // trapError lets us record the properties of an exception object, and merge
   // those with the properties handed to the onerror reporter, which gives us
   // more information there
-  function trapError(f) {
-    return function() {
+  function trapError (f) {
+    return function () {
       try {
         f.apply(null, arguments);
       } catch (err) {
@@ -143,7 +139,7 @@
   }
 
   // NOTE: IE6 does not call onerror when script debugging is enabled.
-  var errorHandler = function(msg, script, line) {
+  var errorHandler = function (msg, script, line) {
     var err = window.currentError;
     // Note "delete window.currentError" here breaks IE
     window.currentError = null;
@@ -163,7 +159,6 @@
     return true; // Suppress default browser error handling
   };
 
-  //
   // Main
   //
 
@@ -175,11 +170,11 @@
 
   var delay = 200;
   setTimeout(trappingFunction, delay);
-  setTimeout(function() {
+  setTimeout(function () {
     window.onerror = errorHandler;
     nontrappingFunction();
   }, delay);
-  setTimeout(function() {
+  setTimeout(function () {
     window.onerror = errorHandler;
     trapError(nontrappingFunction)();
   }, delay);
