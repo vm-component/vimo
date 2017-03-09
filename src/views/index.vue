@@ -178,14 +178,23 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'index',
+    name: 'index-99',
     methods:{
       print(){
         this.$openconsole();
       }
     },
     mounted(){
-      console.log(this)
+      const _this = this;
+      this.$log.debug('hello---1')
+      this.$log.debug('hello---2')
+      this.$log.debug('hello---3')
+      this.$log.debug('hello---4')
+      this.$log.debug('hello---5')
+
+      // (function a () {
+      //   error
+      // })()
     }
   }
 </script>
