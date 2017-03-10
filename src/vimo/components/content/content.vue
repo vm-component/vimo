@@ -467,7 +467,7 @@
 
       // Page -> Content
       // Content组件必须是在Page组件内部才向页面this注入控制权
-      if (!!_this.$parent.$options._componentTag && _this.$parent.$options._componentTag.toLowerCase() === 'Page') {
+      if (!!_this.$parent.$options._componentTag && _this.$parent.$options._componentTag.toLowerCase() === 'page') {
         // 将参数传给调用的页面(注入到业务页面的this中), context为调用的上下文
         _this.$vnode.context.$content = {
           '_href': window.location.href,
