@@ -407,6 +407,8 @@
         }
       },
 
+
+      // 键盘相关的
       keyBoardOpen(){
         const _this = this;
         let _padding = _this.$config.keyboardHeight;

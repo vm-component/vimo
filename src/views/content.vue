@@ -26,8 +26,6 @@
 
       <Button type="block" @click="scrollToBottom()">滚动到底部</Button>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <Button @click="$keyBoardOpen()" type="">打开键盘的Padding</Button>
-      <Button @click="$keyBoardClose()" type="">关闭键盘的Padding</Button>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
@@ -36,7 +34,6 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-
 
       <Button type="block" @click="scrollToTop()">返回顶部</Button>
 
@@ -52,9 +49,6 @@
   </Page>
 </template>
 <style scoped lang="scss">
-  .main {
-
-  }
 </style>
 <script type="text/ecmascript-6">
   export default{
