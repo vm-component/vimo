@@ -13,11 +13,12 @@
 console.time("Platform初始化时间");
 import { setupPlatform } from './platform/platform'
 import { setupConfig } from './config/config'
-import Storage from './storage/storage-install'
 import geolocation from './geolocation/geoStart'
-
+import Storage from './storage/storage'
+import log from './log/log'
 import './util/iscroll'
-// import _console  from './console/console'
+
+
 // 用户配置
 const CUSTOMER_CONFIG = {
   // ...
@@ -28,6 +29,13 @@ setupConfig(CUSTOMER_CONFIG, setupPlatform());
 console.timeEnd("Platform初始化时间");
 
 export const initVimo = function (Vue) {
+
+  // 日志服务
+  Vue.use(log,{
+    isDev:true, // 开发模式,
+    needLogPage:true, // 打开日志界面
+  })
+
 
   console.time("Component引用时间");
   let component = require('./components')

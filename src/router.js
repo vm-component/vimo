@@ -297,6 +297,14 @@ const routes = [
     name: 'gl-input',
     component: require('./views/gl-input.vue'),
   },
+
+  {
+    path: '/log',
+    name: 'log',
+    component: require('./vimo/log/log.vue'),
+  },
+
+
 ];
 
 /**

@@ -21,6 +21,7 @@ new attachFastClick(document.body);
 let router = routerFactory(Vue);
 
 
+
 /**
  * 平台初始化完毕后触发ready回调
  * */

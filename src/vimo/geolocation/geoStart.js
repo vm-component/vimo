@@ -11,9 +11,16 @@ class geolocation{
     var targetType = keys.filter(function (item, index) {
       return reg[item].type === type;
     })[0];  //返回类型
-    geo.register(reg[targetType]);
-    return geo.getCurrentPosition(reg[targetType].type);
+   // geo.register(reg[targetType]);
+    return geo.getCurrentPosition(targetType);
   }
+
+  getTest(){
+    return new Promise(function(resolve,reject){
+      setTimeout(resolve("我测试了promise"),50000)
+    })
+  }
+
 }
 
 

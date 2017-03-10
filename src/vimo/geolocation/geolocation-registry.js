@@ -1,14 +1,12 @@
 /**
  * Created by Hsiang on 2017/3/2.
  * geolocatation配置信息
+ *
+ * @description
+ *
+ *
  */
 var  GEOLOCATION_CONFIG = {
-  HTML5: {
-    type: 'h5',
-    map_js_url: '',
-    app_key: '',
-    app_name: ''
-  },
   QQMAP: {
     type: 'qq',
     app_key: 'JBIBZ-JNQC3-ZII35-YFBYC-NS3E6-N2BTA',
