@@ -19,9 +19,6 @@ import log from './log/log'
 import './util/iscroll'
 
 
-
-
-
 // 用户配置
 const CUSTOMER_CONFIG = {
   // ...
@@ -32,7 +29,6 @@ setupConfig(CUSTOMER_CONFIG, setupPlatform());
 console.timeEnd("Platform初始化时间");
 
 export const initVimo = function (Vue) {
-
 
   // 日志服务
   Vue.use(log,{

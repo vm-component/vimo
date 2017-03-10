@@ -20,7 +20,7 @@
               <i v-if="!!item.line" class="line">-{{item.line}}</i>
             </div>
             <div class="recordItem__info--message" v-if="!!item.message">
-              <span class="name">Msg: </span>
+              <span class="name">Message: </span>
               <span>{{item.message}}</span>
             </div>
             <div class="recordItem__info--stack" v-if="!!item.stack">
@@ -288,26 +288,29 @@
                 font-weight: bold;
               }
               .time {
+                color: #fff;
               }
             }
             .recordItem__info--position {
-              color: #fff;
               .name {
-                text-transform: uppercase;
+                color: #fff;
+                text-transform: capitalize;
                 font-weight: bold;
               }
             }
             .recordItem__info--message {
               font-size: 12px;
               .name {
-                text-transform: uppercase;
+                color: #fff;
+                text-transform: capitalize;
                 font-weight: bold;
               }
             }
             .recordItem__info--stack {
               font-size: 12px;
               .name {
-                text-transform: uppercase;
+                color: #fff;
+                text-transform: capitalize;
                 font-weight: bold;
               }
             }
@@ -387,7 +390,7 @@
        * */
       segmentClick(type){
         type = type.toString().toLowerCase();
-        if (!!type && this.selectType!==type) {
+        if (!!type && this.selectType !== type) {
           this.selectType = type;
         } else {
           this.selectType = 'all';
