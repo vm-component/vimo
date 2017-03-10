@@ -51,10 +51,7 @@
             <Button shape="block" type="solid" @click="$router.push({'name':'components'})">组件</Button>
             <Button shape="block" type="solid" @click="$menu.open('menu')">打开菜单</Button>
             <Button shape="block" type="solid" @click="$menu.open('author')">项目介绍</Button>
-             <Button shape="block" type="solid" @click="print()">打印信的console</Button>
           </Row>
-
-
 
         </Grid>
       </article>
@@ -178,52 +175,8 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'index-99',
-    methods:{
-      print(){
-        this.$openconsole();
-      }
-    },
-    mounted(){
-      const _this = this;
-      this.$log.log('这个是打log测试,传入的是string');
-      this.$log.debug('这个是打debug测试,传入的是string');
-
-      this.$log.error('这个是测试的error,传入string')
-      this.$log.error('未得到ajax的数据','AJAX TIMEOUT/FAIL','./getData.js::<Function>getInfo()','12')
-      this.$log.error('ajax返回错误','AJAX FAIL')
-
-      try{
-        qwerqwe()
-      }catch(rawErr){
-        this.$log.error(rawErr)
-      }
-
-
-      this.$log.warn('1这个是测试的error,传入string')
-      this.$log.warn('1未得到ajax的数据','AJAX TIMEOUT/FAIL','./getData.js::<Function>getInfo()','12')
-      this.$log.warn('1ajax返回错误','AJAX FAIL')
-
-      try{
-        qwerqwe()
-      }catch(rawErr){
-        this.$log.warn(rawErr)
-      }
-
-
-
-      this.$log.assert(false, '这个是测试的error,传入string')
-      this.$log.assert(false, '未得到ajax的数据','AJAX TIMEOUT/FAIL','./getData.js::<Function>getInfo()','12')
-      this.$log.assert(false, 'ajax返回错误','AJAX FAIL')
-
-      try{
-        qwerqwe()
-      }catch(rawErr){
-        this.$log.assert(false, rawErr)
-      }
-
-
-
-    }
+    name: 'index',
+    methods:{},
+    mounted(){}
   }
 </script>

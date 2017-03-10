@@ -1,9 +1,6 @@
 /**
  * Created by Hsiang on 2017/3/6.
- *    // 代码异常监控体系 = 日志记录/发送 + 埋点记录/发送 服务(单向服务,$http为双向)
- *
- *
- *
+ *    // APP日志监控 = 日志记录/发送 + 埋点记录/发送 服务(单向服务)
  *
  *    定位:
  *    $log用于搜集app对外的日志记录, 包括console级别的记录 + 埋点记录, 其中,console级别的记录根据
@@ -11,11 +8,9 @@
  *
  *    // 使用日志服务
  *
- *    angular的$log服务, 打印出来的信息不包含发出信息的原始位置
- *
  * 1. 打印记录日志
  *    API:
- *    // 打开
+ *    // 打开日志界面
  *    $log.open()
  *    $log.close()
  *    // 日志记录
@@ -23,55 +18,89 @@
  *    // 常规
  *    $log.log(string)          // 信息输出
  *    $log.debug(string,script) // 调试信息, 不计入异常
+ *    $log.info(string,script)  //
  *
  *    // 异常
  *    $log.warn(string,script)  // 警告, 但是不影响运行
  *    $log.error(string,script) // 错误, 可能终止运行
  *    $log.assert(true,string,script)  // 断言, 如果为false则报错, 不同于error
  *
- *    $log.send(object) // 包括当前的信息及之前节流的信息一并发送
+ *    $log.sendAbnormal(object) // 包括当前的信息及之前节流的信息一并发送
  *    $log.clean() // 清楚历史记录
+ *
+ *
+ *    // 日志会截获系统的console
+ *    截获console.log
+ *    截获console.debug
+ *    截获console.info
+ *    截获console.error
+ *    截获console.warn
+ *    截获console.assert
  *
  *
  * 2. 提供埋点服务
  *    // 用户唯一的uuid提前获取
- *    $log.analytics('type', id, other) // 点击监听注册 data-analysis-id="_id" -> 处理方式
+ *    $analytics('type', id, other) // 点击监听注册 data-analysis-id="_id" -> 处理方式
  *
  *    其余通过友盟的u-web完成(访问统计)
  *
+ *
  */
-import logComponent from './log.vue';
+const HAS_CONSOLE = typeof window.console !== 'undefined';
 
 module.exports = {
   /**
    * @param {object} Vue -
    * @param {object} options - 参数
-   * @param {boolean=true} options.dev - 是否为开发状态
-   * @param {array} options.levels - 记录的等级, 如果为空, 则全部记录, 否则注册什么记录什么
+   * @param {boolean=true} options.isDev        - 是否为开发状态
+   * @param {boolean=true} options.needLogPage  - 是否为开启日志界面
    * */
   install (Vue, options = {}) {
     let _ins = new Log(Vue, options);
-
     Object.assign(Vue.prototype, {
       $log: _ins,
     });
 
+    // 截获console
+    // 正常log: log/debug/info
+    // 异常log: error/warn/assert 等信息, 并用自己的方法存储记录
+    if (HAS_CONSOLE) {
+      let console = window.console;
+      let typeLists = ['log', 'debug', 'info', 'error', 'warn', 'assert'];
+      typeLists.forEach(function (type) {
+        let typeFn = console[type].bind(console);
+        console[type] = function () {
+          var args = Array.prototype.slice.call(arguments);
+          !!options.isDev && typeFn.apply(null, arguments);
+          _ins[type](...args)
+        };
+      })
+    }
+
     /**
+     * 监听全局的js文件错误
      * @param {String}  message   错误信息
      * @param {String}  script      出错的文件
      * @param {String}    line     出错代码的行号
      * @param {String}    column   出错代码的列号
      * @param {Object}  errorObj       错误的详细信息，Anything
      */
-    window.onerror = function (message, script, line, column, errorObj) {
+    window['onerror'] = function (message, script, line, column, errorObj) {
       _ins.error(normalizeError({
         message: message,
-        name: errorObj.message || message.split(':')[1].trim(),
+        name: !!errorObj && (errorObj.message || message.split(':')[1].trim()),
         script: script,
         line: line,
-        stack: errorObj.stack,
+        stack: !!errorObj && errorObj.stack,
       }))
+      return true
     }
+
+    window.addEventListener('error', function (err) {
+      // TODO: 需要验证
+      console.error('addEventListener--error')
+      console.error(err)
+    });
 
   }
 };
@@ -82,17 +111,15 @@ module.exports = {
  * 日志记录类
  *
  * @param {object}        options               - 参数
- * @param {array}         options.showList      - 日志显示列列表, 移动端显示的分类
- * @param {boolean=true}  options.isDev           - 模式
+ * @param {boolean=true}  options.isDev         - 模式
  * @param {boolean=true}  options.needLogPage   - 需要日志页面
- *{isDev = true, needLogPage = true}
  * */
 class Log {
   constructor (Vue, options) {
     this._isLogPageInit = false; // 是否初始化了log页面
     this._LogConstructor = null; // log页面的构造器
     this._logPageInstance = null; // log页面的实例
-    this._dev = !!options.isDev;
+    this._dev = !!options.isDev;  // 开发模式, 此模式下: log信息会打印到console, assert会自动debugger
     this._history = [];// 日志记录数组
 
     if (!!options.needLogPage) {
@@ -135,6 +162,11 @@ class Log {
   /**
    * 记录类型为log的日志
    * @param {any} msg - 传入的记录信息
+   * @return {string} - 返回传入的msg
+   * @example
+   * ```js
+   *  this.$log.log('这个是打log测试');
+   * ```
    * */
   log (msg) {
     return this._recordTypeAssemble('log', msg)
@@ -143,9 +175,28 @@ class Log {
   /**
    * 记录类型为debug的日志
    * @param {any} msg - 传入的记录信息
+   * @return {string} - 返回传入的msg
+   * @example
+   * ```js
+   *  this.$log.debug('这个是打debug测试');
+   * ```
    * */
   debug (msg) {
     return this._recordTypeAssemble('debug', msg)
+  }
+
+
+  /**
+   * 记录类型为info的日志
+   * @param {any} msg - 传入的记录信息
+   * @return {string} - 返回传入的msg
+   * @example
+   * ```js
+   *  this.$log.debug('这个是打info测试');
+   * ```
+   * */
+  info (msg) {
+    return this._recordTypeAssemble('info', msg)
   }
 
   // -------- abnormal logs --------
@@ -157,11 +208,18 @@ class Log {
    * 3. message-errorName-script-line
    *
    * @example:
-   * this.$log.error(normalizeError(err))
+   *
+   * try{
+   *  a()
+   * }catch(rawError){
+   *  this.$log.error(rawError)
+   * }
+   *
    * this.$log.error('未获取到位置信息')
+   *
+   * // 参数顺序: msg/errName/script/line
    * this.$log.error('未得到ajax的数据','AJAX TIMEOUT/FAIL','./getData.js::<Function>getInfo()','12')
    *
-   * @param {(string|object)} info - 如果为object则为normalizeError的对象
    * */
   error () {
     return this._recordTypeAssemble('error', ...arguments)
@@ -169,7 +227,7 @@ class Log {
 
   /**
    * 记录类型为warn的日志
-   * @param {any} msg - 传入的记录信息
+   * 传参类似error
    * */
   warn () {
     return this._recordTypeAssemble('warn', ...arguments)
@@ -178,11 +236,12 @@ class Log {
   /**
    * 断言
    * @param {boolean} isFalse - 如果错误
+   * 传参类似error
    * */
   assert (isFalse) {
-    let args = Array.prototype.slice.call(arguments);
-    args.shift();
-    if (isFalse) {
+    if (!isFalse) {
+      let args = Array.prototype.slice.call(arguments);
+      args.shift();
       return this._recordTypeAssemble('assert', ...args)
     }
   }
@@ -197,11 +256,12 @@ class Log {
   }
 
   /**
-   * 立即发送
+   * 立即发送错误
    * data + 待发送的信息
    * @param {object=} data - 发送的错误信息
    * */
-  send (data) {
+  sendAbnormal (data) {
+    // TODO: 发送异常信息
 
   }
 
@@ -210,7 +270,7 @@ class Log {
    * @return {array}
    * */
   getHistory () {
-
+    return this._history
   }
 
   // -------- private --------
@@ -228,28 +288,19 @@ class Log {
   _recordTypeAssemble (type, message, errorName, script, line, stack) {
 
     let args = Array.prototype.slice.call(arguments);
-    console.debug('args')
-    console.debug(args)
 
-
-    if (args.length === 2 && typeof args[1] === 'object') {
-      // _recordTypeAssemble(type, rawErr)
-      let formatted = normalizeError(args[1]);
-
-      console.debug('formatted')
-      console.debug(formatted)
-
-
-      message = formatted['message'];
-      errorName = formatted['name'];
-      script = formatted['script'];
-      line = formatted['line'];
-      stack = formatted['stack'];
-    }
-
-    if (args.length === 2 && typeof args[1] === 'string') {
-      // _recordTypeAssemble('error', '未获取到位置信息')
-      message = args[1];
+    if (args.length === 2) {
+      if (typeof args[1] === 'object' && (type === 'error' || type === 'warn' || type === 'assert')) {
+        // _recordTypeAssemble('error', rawErr)
+        let formatted = normalizeError(args[1]);
+        message = formatted['message'];
+        errorName = formatted['name'];
+        script = formatted['script'];
+        line = formatted['line'];
+        stack = formatted['stack'];
+      } else {
+        message = args[1];
+      }
     }
 
     if (args.length > 2) {
@@ -273,8 +324,9 @@ class Log {
       line: line,                   // The line number the error occured on
     });
 
-    if (this._dev && typeof window.console !== 'undefined') {
-      window.console[type](_str)
+    // assert 模式下使用debugger
+    if (this._dev && type === 'assert') {
+      debugger;
     }
 
     return _str
@@ -292,7 +344,7 @@ class Log {
     }
 
     if (typeof msg === 'object') {
-      msg = JSON.stringify(msg);
+      msg = JSON.stringify(msg, null, 2);
     }
 
     if (typeof msg !== 'string') {
@@ -312,10 +364,6 @@ class Log {
    * @param {string} record.time - 消息出时间, timestamp
    * */
   _storeRecord (record) {
-
-
-
-
     let _len = this._history.length;
     if (_len > 0) {
       let _lastRecord = this._history.pop();

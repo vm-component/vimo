@@ -14,12 +14,11 @@ console.time("Platform初始化时间");
 import { setupPlatform } from './platform/platform'
 import { setupConfig } from './config/config'
 import Storage from './storage/storage'
+import log from './log/log'
 
 import './util/iscroll'
-// import _console  from './console/console'
 
-// import vueLogger from 'vue-logger'
-import log from './log/log'
+
 
 
 
@@ -34,11 +33,11 @@ console.timeEnd("Platform初始化时间");
 
 export const initVimo = function (Vue) {
 
-  // Vue.use(_console);
-  // Vue.use(vueLogger, { prefix: new Date(), dev: true })
+
+  // 日志服务
   Vue.use(log,{
-    isDev:true,
-    needLogPage:true,
+    isDev:true, // 开发模式,
+    needLogPage:true, // 打开日志界面
   })
 
 

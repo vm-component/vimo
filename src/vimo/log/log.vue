@@ -34,8 +34,8 @@
     </article>
     <footer class="logBox__footer">
       <div class="logBox__footer--buttons left">
-        <button :class="{'active':selectType==='all'}" class="all" @click="segmentClick('all')">all</button>
         <button :class="{'active':selectType==='log'}" class="log" @click="segmentClick('log')">LOG</button>
+        <button :class="{'active':selectType==='info'}" class="info" @click="segmentClick('info')">info</button>
         <button :class="{'active':selectType==='debug'}" class="debug" @click="segmentClick('debug')">DEBUG</button>
         <button :class="{'active':selectType==='warn'}" class="warn" @click="segmentClick('warn')">WARN</button>
         <button :class="{'active':selectType==='error'}" class="error" @click="segmentClick('error')">ERROR</button>
@@ -52,15 +52,13 @@
   </section>
 </template>
 <style scoped lang="scss">
-  /** {*/
-  /*!*outline: 1px solid #ddd;*!*/
-  /*}*/
 
-  $log: #05b300;
+  $log: #757575;
   $debug: #36a8ee;
-  $warn: #ee03e6;
+  $info: #32b208;
+  $warn: #ff8f0e;
   $error: #ff0000;
-  $assert: #ffb019;
+  $assert: #ff0000;
 
   .logBox {
     position: absolute;
@@ -104,10 +102,11 @@
           border: 0;
           outline: none;
           color: #fff;
-          padding: 0 4px;
+          padding: 0 2px;
           box-sizing: border-box;
           transition: all ease 200ms;
           font-size: 12px;
+
           &.all {
             border: 1px solid #fff;
             color: #fff;
@@ -140,6 +139,18 @@
           &.debug.active {
             border: 1px solid $debug;
             background-color: $debug;
+            color: #fff;
+            border-radius: 2px;
+          }
+
+          &.info {
+            border: 1px solid $info;
+            color: $info;
+            border-radius: 2px;
+          }
+          &.info.active {
+            border: 1px solid $info;
+            background-color: $info;
             color: #fff;
             border-radius: 2px;
           }
@@ -212,6 +223,16 @@
               }
               .name {
                 color: $debug;
+              }
+            }
+          }
+          &.info {
+            .recordItem__info--names {
+              .type {
+                background-color: $info;
+              }
+              .name {
+                color: $info;
               }
             }
           }
@@ -365,8 +386,9 @@
        * @param {string} type - all表示全部
        * */
       segmentClick(type){
-        if (!!type) {
-          this.selectType = type.toString().toLowerCase();
+        type = type.toString().toLowerCase();
+        if (!!type && this.selectType!==type) {
+          this.selectType = type;
         } else {
           this.selectType = 'all';
         }
