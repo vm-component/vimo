@@ -186,15 +186,44 @@
     },
     mounted(){
       const _this = this;
-      this.$log.debug('hello---1')
-      this.$log.debug('hello---2')
-      this.$log.debug('hello---3')
-      this.$log.debug('hello---4')
-      this.$log.debug('hello---5')
+      this.$log.log('这个是打log测试,传入的是string');
+      this.$log.debug('这个是打debug测试,传入的是string');
 
-      // (function a () {
-      //   error
-      // })()
+      this.$log.error('这个是测试的error,传入string')
+      this.$log.error('未得到ajax的数据','AJAX TIMEOUT/FAIL','./getData.js::<Function>getInfo()','12')
+      this.$log.error('ajax返回错误','AJAX FAIL')
+
+      try{
+        qwerqwe()
+      }catch(rawErr){
+        this.$log.error(rawErr)
+      }
+
+
+      this.$log.warn('1这个是测试的error,传入string')
+      this.$log.warn('1未得到ajax的数据','AJAX TIMEOUT/FAIL','./getData.js::<Function>getInfo()','12')
+      this.$log.warn('1ajax返回错误','AJAX FAIL')
+
+      try{
+        qwerqwe()
+      }catch(rawErr){
+        this.$log.warn(rawErr)
+      }
+
+
+
+      this.$log.assert(false, '这个是测试的error,传入string')
+      this.$log.assert(false, '未得到ajax的数据','AJAX TIMEOUT/FAIL','./getData.js::<Function>getInfo()','12')
+      this.$log.assert(false, 'ajax返回错误','AJAX FAIL')
+
+      try{
+        qwerqwe()
+      }catch(rawErr){
+        this.$log.assert(false, rawErr)
+      }
+
+
+
     }
   }
 </script>

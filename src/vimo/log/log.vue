@@ -19,11 +19,13 @@
               <i v-if="!!item.script" class="script">{{item.script}}</i>
               <i v-if="!!item.line" class="line">-{{item.line}}</i>
             </div>
-            <div class="recordItem__info--message">
-              {{item.message}}
+            <div class="recordItem__info--message" v-if="!!item.message">
+              <span class="name">Msg: </span>
+              <span>{{item.message}}</span>
             </div>
-            <div class="recordItem__info--stack">
-              {{item.stack}}
+            <div class="recordItem__info--stack" v-if="!!item.stack">
+              <span class="name">Stack: </span>
+              <span>{{item.stack}}</span>
             </div>
           </div>
         </div>
@@ -51,7 +53,7 @@
 </template>
 <style scoped lang="scss">
   /** {*/
-    /*!*outline: 1px solid #ddd;*!*/
+  /*!*outline: 1px solid #ddd;*!*/
   /*}*/
 
   $log: #05b300;
@@ -76,7 +78,7 @@
     font-size: 12px;
     transform: translateX(-100%);
     transition: all ease 200ms;
-    &.active{
+    &.active {
       transform: translateX(0);
     }
     .logBox__footer {
@@ -276,23 +278,31 @@
             }
             .recordItem__info--message {
               font-size: 12px;
+              .name {
+                text-transform: uppercase;
+                font-weight: bold;
+              }
             }
             .recordItem__info--stack {
               font-size: 12px;
+              .name {
+                text-transform: uppercase;
+                font-weight: bold;
+              }
             }
           }
         }
       }
     }
-    .logBox__aside{
+    .logBox__aside {
       position: absolute;
-      bottom:0;
+      bottom: 0;
       right: 0;
       transform: translateX(100%);
       height: 46px;
       width: 46px;
       box-sizing: border-box;
-      background:rgba(0,0,0,0.8);
+      background: rgba(0, 0, 0, 0.8);
       text-transform: uppercase;
       display: flex;
       justify-content: center;
@@ -309,87 +319,10 @@
     name: 'logbox',
     data(){
       return {
-        isActive:false, // 是否打开
+        isActive: false, // 是否打开
         selectType: 'all', // 默认选中全部
         listBox: null, // 列表盒子的dom
-        recordList:[],
-        // recordList: [
-        //   {
-        //     message: '这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息这个是log信息',                // The error message
-        //     count: 99,
-        //     type: 'log',
-        //     name: '',
-        //     time: (new Date()).getTime(),
-        //     script: '',
-        //     stack: '',
-        //     line: '',
-        //   },
-        //   {
-        //     message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
-        //     ' Assumenda autem debitis dicta dolor exercitationem expedita fugit' +
-        //     ' harum id incidunt ipsum obcaecati, pariatur placeat, possimus quas' +
-        //     ' quis ratione sapiente vero. Eveniet!',                // The error message
-        //     count: 12,
-        //     type: 'debug',
-        //     name: '',
-        //     time: (new Date()).getTime(),
-        //     script: './test.js::<Function>testMethod',
-        //     stack: '',
-        //     line: '123',
-        //   },
-        //   {
-        //     message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
-        //     ' Assumenda autem debitis dicta dolor exercitationem expedita fugit' +
-        //     ' harum id incidunt ipsum obcaecati, pariatur placeat, possimus quas' +
-        //     ' quis ratione sapiente vero. Eveniet!',                // The error message
-        //     count: 23,
-        //     type: 'warn',
-        //     name: '',
-        //     time: (new Date()).getTime(),
-        //     script: './test.js::<Function>testMethod',
-        //     stack: '',
-        //     line: '123',
-        //   },
-        //   {
-        //     message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
-        //     ' Assumenda autem debitis dicta dolor exercitationem expedita fugit' +
-        //     ' harum id incidunt ipsum obcaecati, pariatur placeat, possimus quas' +
-        //     ' quis ratione sapiente vero. Eveniet!',                // The error message
-        //     count: 1,
-        //     type: 'error',
-        //     name: '',
-        //     time: (new Date()).getTime(),
-        //     script: './test.js::<Function>testMethod',
-        //     stack: '',
-        //     line: '123',
-        //   },
-        //   {
-        //     message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
-        //     ' Assumenda autem debitis dicta dolor exercitationem expedita fugit' +
-        //     ' harum id incidunt ipsum obcaecati, pariatur placeat, possimus quas' +
-        //     ' quis ratione sapiente vero. Eveniet!',                // The error message
-        //     count: 1,
-        //     type: 'assert',
-        //     name: '',
-        //     time: (new Date()).getTime(),
-        //     script: './test.js::<Function>testMethod',
-        //     stack: '',
-        //     line: '123',
-        //   },
-        //   {
-        //     message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
-        //     ' Assumenda autem debitis dicta dolor exercitationem expedita fugit' +
-        //     ' harum id incidunt ipsum obcaecati, pariatur placeat, possimus quas' +
-        //     ' quis ratione sapiente vero. Eveniet!',                // The error message
-        //     count: 1,
-        //     type: 'error',
-        //     name: 'SyntaxError',
-        //     time: (new Date()).getTime(),
-        //     script: './test.js::<Function>testMethod',
-        //     stack: '',
-        //     line: '123',
-        //   },
-        // ]
+        recordList: [],
       }
     },
     computed: {

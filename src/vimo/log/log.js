@@ -57,42 +57,21 @@ module.exports = {
     });
 
     /**
-     * @param {String}  errorMessage   错误信息
-     * @param {String}  scriptURI      出错的文件
-     * @param {Long}    lineNumber     出错代码的行号
-     * @param {Long}    columnNumber   出错代码的列号
+     * @param {String}  message   错误信息
+     * @param {String}  script      出错的文件
+     * @param {String}    line     出错代码的行号
+     * @param {String}    column   出错代码的列号
      * @param {Object}  errorObj       错误的详细信息，Anything
      */
-    window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
-
-
-
-      console.log('window.onerror')
-      console.log("errorMessage:"+errorMessage)
-      console.log("scriptURI:"+scriptURI)
-      console.log("lineNumber:"+lineNumber)
-      console.log("columnNumber:"+columnNumber)
-      console.log("errorObj:"+JSON.stringify(errorObj))
+    window.onerror = function (message, script, line, column, errorObj) {
+      _ins.error(normalizeError({
+        message: message,
+        name: errorObj.message || message.split(':')[1].trim(),
+        script: script,
+        line: line,
+        stack: errorObj.stack,
+      }))
     }
-
-    unknownVariable()
-
-    // setTimeout(function () {
-    //   // 变量名错误
-    //   try{
-    //     unknownVariable
-    //   }catch(err){
-    //
-    //     console.debug(err)
-    //
-    //     console.debug('---')
-    //     console.log(normalizeError(err))
-    //     console.debug('---')
-    //
-    //
-    //   }
-    // },3000)
-
 
   }
 };
@@ -173,30 +152,39 @@ class Log {
 
   /**
    * 记录类型为error的日志
-   * @param {any} msg - 传入的记录信息
+   * 1. 一个类型为object的normalizeError对象
+   * 2. message
+   * 3. message-errorName-script-line
+   *
+   * @example:
+   * this.$log.error(normalizeError(err))
+   * this.$log.error('未获取到位置信息')
+   * this.$log.error('未得到ajax的数据','AJAX TIMEOUT/FAIL','./getData.js::<Function>getInfo()','12')
+   *
+   * @param {(string|object)} info - 如果为object则为normalizeError的对象
    * */
-  error (msg) {
-    return this._recordTypeAssemble('error', msg)
+  error () {
+    return this._recordTypeAssemble('error', ...arguments)
   }
 
   /**
    * 记录类型为warn的日志
    * @param {any} msg - 传入的记录信息
    * */
-  warn (msg) {
-    return this._recordTypeAssemble('warn', msg)
+  warn () {
+    return this._recordTypeAssemble('warn', ...arguments)
   }
 
   /**
    * 断言
    * @param {boolean} isFalse - 如果错误
-   * @param {any}     msg     - 传入的记录信息
    * */
-  assert (isFalse, msg) {
+  assert (isFalse) {
+    let args = Array.prototype.slice.call(arguments);
+    args.shift();
     if (isFalse) {
-      return this._recordTypeAssemble('assert', msg)
+      return this._recordTypeAssemble('assert', ...args)
     }
-
   }
 
   // -------- logs history --------
@@ -230,21 +218,59 @@ class Log {
   /**
    * @private
    * 记录类型组装
-   * @param {string} type - 记录类型
-   * @param {any} message - 记录信息
-   * @param {string} name - 错误类型
+   * @param {string} type             - 记录类型
+   * @param {(any|object)} message    - 记录信息/err对象
+   * @param {any=} errorName     - 错误的类型
+   * @param {string=} script     - 错误位置, 一般是脚本的位置
+   * @param {string=} line       - 出错代码的行号
+   * @param {string=} stack     - 出错代码的列号
    * */
-  _recordTypeAssemble (type, message, name) {
+  _recordTypeAssemble (type, message, errorName, script, line, stack) {
+
+    let args = Array.prototype.slice.call(arguments);
+    console.debug('args')
+    console.debug(args)
+
+
+    if (args.length === 2 && typeof args[1] === 'object') {
+      // _recordTypeAssemble(type, rawErr)
+      let formatted = normalizeError(args[1]);
+
+      console.debug('formatted')
+      console.debug(formatted)
+
+
+      message = formatted['message'];
+      errorName = formatted['name'];
+      script = formatted['script'];
+      line = formatted['line'];
+      stack = formatted['stack'];
+    }
+
+    if (args.length === 2 && typeof args[1] === 'string') {
+      // _recordTypeAssemble('error', '未获取到位置信息')
+      message = args[1];
+    }
+
+    if (args.length > 2) {
+      // _recordTypeAssemble('error','未得到ajax的数据','AJAX TIMEOUT/FAIL','./getData.js::<Function>getInfo()','12')
+      message = args[1];
+      errorName = args[2];
+      script = args[3];
+      line = args[4];
+      stack = args[5];
+    }
+
     let _str = this._msgToString(message);
     !!_str && this._storeRecord({
       message: _str,                // The error message
       count: 1,                     // the same message count
       type: type,                   // 记录类型
-      name: name,                   // 错误类型名称
+      name: errorName,              // 错误类型名称
       time: (new Date()).getTime(), // record time
-      script: '',                    // The script file the error occured in
-      stack: '',                      // Stack trace (as a string)
-      line: '',                      // The line number the error occured on
+      script: script,               // The script file the error occured in
+      stack: stack,                 // Stack trace (as a string)
+      line: line,                   // The line number the error occured on
     });
 
     if (this._dev && typeof window.console !== 'undefined') {
@@ -286,6 +312,10 @@ class Log {
    * @param {string} record.time - 消息出时间, timestamp
    * */
   _storeRecord (record) {
+
+
+
+
     let _len = this._history.length;
     if (_len > 0) {
       let _lastRecord = this._history.pop();
@@ -305,17 +335,15 @@ class Log {
   }
 }
 
-
 // Normalize Error objects across all browsers into something semi-standard.
 // Not all properties are will be available, but if they are, they'll at
 // least have a predictable property name.
-function normalizeError(err) {
+function normalizeError (err) {
   var o = {
-    line: err.lineNumber || err.line,
     message: err.message,
-    type: 'error',
+    script: err.fileName || err.sourceURL || err.script,
     name: err.name,
-    script: err.fileName || err.sourceURL,
+    line: err.lineNumber || err.line,
     stack: err.stackTrace || err.stack
   };
 
@@ -323,10 +351,10 @@ function normalizeError(err) {
   // only reports the script/line # of where an error was last rethrown (as
   // opposed to the original throw point).  So we scrape the stack trace to
   // get that info
-  if (!!window.chrome && err.stack &&
-    /(\w{3,5}:\/\/[^:]+):(\d+)/.test(err.stack)) {
-    o.script = RegExp.$1;
-    o.line = RegExp.$2;
+  if (!!window.chrome && err.stack && !o.script && !o.line) {
+    var _res = err.stack.match(/\w{3,5}:\/\/(.+):(\d+):(\d+)/);
+    o.script = _res[0];
+    o.line = _res[2];
   }
 
   // Clear out undefined properties
