@@ -7,8 +7,12 @@
     "template": "node_modules/minami"
   },
   "plugins": [
+    "node_modules/jsdoc-vue",
     "plugins/markdown"
   ],
+  "source": {
+    "includePattern": "\\.(vue)$"
+  },
   "templates": {
     "cleverLinks": true,
     "monospaceLinks": true

@@ -8,7 +8,7 @@ var browserSync = bs.create();
 const reload = browserSync.reload;
 let cache = require('gulp-cache');
 
-let srcCode = ['./src/vimo/components/**/index.js'];
+let srcCode = ['./src/vimo/components/content/*.*'];
 //clean
 gulp.task('clean', del.bind(null, ['docs']));
 
@@ -16,8 +16,15 @@ gulp.task('clean', del.bind(null, ['docs']));
 gulp.task('doc', function (cb) {
   gulp.src(['README.md'].concat(srcCode), {read: false})
     .pipe(jsdoc(config, cb));
-  reload();
 });
+
+gulp.task('reload', function () {
+ reload();
+})
+
+gulp.task('refreshDoc', function () {
+  runSequence('doc', 'reload');
+})
 
 // server
 gulp.task('serve', function () {
@@ -33,7 +40,7 @@ gulp.task('serve', function () {
     gulp.watch([
       'README.md',
       'src/vimo/**/*.js',
-    ], ['doc']);
+    ], ['refreshDoc']);
   });
 });
 

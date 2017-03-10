@@ -11,30 +11,7 @@
  *
  * 此外, 设置slot="pullToRefresh"可以引入Refresher组件.
  *
- * 而且, 得到23423
- * 而且, 得到23423
- * 而且, 得到23423
- * 而且, 得到23423
- * 而且, 得到23423sdfsdlf
- * 而且, 得到23423sdfsdlf
- * 而且, 得到23423sdfsdlf
- * 而且, 得到23423sdfsdlf
  *
- * sdfa
- * sdfasdfasf
- * asd
- * f
- * asd
- * f
- *
- * sdfas
- *
- *
- *
- *
- * asdf
- * a
- * s
  *
  *
  *
@@ -61,7 +38,6 @@
  * @see {@link foo} for further information.
  * @see {@link http://github.com|GitHub}
  *
-
  *
  * */
 import Content from './content.vue';
