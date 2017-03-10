@@ -8,6 +8,8 @@
  * 之后完成component的全局安装工作
  *
  * CUSTOMER_CONFIG: 为用户自定义配置
+ * CUSTOMER_CONFIG: 为用户自定义配置
+ * CUSTOMER_CONFIG: 为用户自定义配置
  *
  */
 console.time("Platform初始化时间");
@@ -36,7 +38,6 @@ export const initVimo = function (Vue) {
   //   needLogPage:true, // 打开日志界面
   // })
 
-
   console.time("Component引用时间");
   let component = require('./components')
   console.timeEnd("Component引用时间");
@@ -49,7 +50,6 @@ export const initVimo = function (Vue) {
   console.time("Component安装时间");
   component.install(Vue, CUSTOMER_CONFIG);
   console.timeEnd("Component安装时间");
-
 
   // logo
   var vimoLogo = {
