@@ -17,8 +17,9 @@
  *
  * 5. 有更好的建议可继续添加
  */
+ import geo from './geo'
 
-export class Geolocation {
+class Geolocation {
 
   /**
    * @private
@@ -28,9 +29,9 @@ export class Geolocation {
   constructor (config) {
     /**
      * 完成初始化工作
-     * config为参数配置
+     * type为参数配置
      * */
-    this._register(config);
+    //this._register(type);
 
   }
 
@@ -54,7 +55,7 @@ export class Geolocation {
   /**
    * config注册
    * */
-  _register (config) {
+  _register (type) {
     this._getScript();
   }
 
@@ -66,23 +67,4 @@ export class Geolocation {
   }
 }
 
-/**
- * 初始化及安装Geolocation
- * @param {Object} config - 初始化的参数
- * @return {Object} - Geolocation实例对象
- * */
-export function setupGeolocation (config) {
-  // 保持单例对象
-  if (!!window['VM'] && !!window['VM']['geolocation']) {
-    return window['VM']['geolocation']
-  } else {
-    const geolocation = new Geolocation(config);
-
-    // 全局注册
-    const win = window;
-    win['VM'] = win['VM'] || {};
-    win['VM']['geolocation'] = geolocation;
-
-    return geolocation;
-  }
-}
+module.exports = Geolocation;

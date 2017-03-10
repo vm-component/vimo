@@ -142,6 +142,10 @@
             <Icon slot="item-left" name="list"></Icon>
             本地存储 (Storage)
           </Item>
+          <Item button :to="{name: 'position'}">
+            <Icon slot="item-left" name="list"></Icon>
+            获取位置 (Position)
+          </Item>
         </ItemGroup>
 
         <!--Demo-->

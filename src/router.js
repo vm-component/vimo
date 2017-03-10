@@ -279,7 +279,11 @@ const routes = [
     name: 'storage',
     component: require('./views/storage.vue'),
   },
-
+  {
+    path: '/position',
+    name: 'position',
+    component: require('./views/position.vue'),
+  },
 
 
   // demo

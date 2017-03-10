@@ -14,6 +14,7 @@ console.time("Platform初始化时间");
 import { setupPlatform } from './platform/platform'
 import { setupConfig } from './config/config'
 import Storage from './storage/storage-install'
+import geolocation from './geolocation/geoStart'
 
 import './util/iscroll'
 // import _console  from './console/console'
@@ -35,6 +36,7 @@ export const initVimo = function (Vue) {
   // Vue.use(_console);
   console.time("Storage安装时间");
   Vue.use(Storage);
+  Vue.use(geolocation);
   console.timeEnd("Storage安装时间");
 
   console.time("Component安装时间");
