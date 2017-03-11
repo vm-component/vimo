@@ -28,9 +28,6 @@ a {
 // Scrollable Content
 // --------------------------------------------------
 
-
-
-
 .scroll-content {
   position: absolute;
   top: 0;
@@ -64,7 +61,7 @@ a {
 }
 
 
-// Fixed Content (ion-fixed and ion-fab)
+// Fixed Content (fixed and fab)
 // --------------------------------------------------
 
 .fixed-content {
@@ -76,20 +73,19 @@ a {
   display: block;
 }
 
-[ion-fixed] {
+[fixed] {
   position: absolute;
   width: 100%;
-
+  // if move to fixed-content class, then page can not click
   z-index: $z-index-fixed-content;
-
   transform: translateZ(0);
 }
 
 // fixedPosition
-[ion-fixed][top]{
+[fixed][top]{
   top:0;
 }
-[ion-fixed][bottom]{
+[fixed][bottom]{
   bottom:0;
 }
 

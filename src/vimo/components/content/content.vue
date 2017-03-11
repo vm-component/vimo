@@ -1,26 +1,25 @@
 <template>
   <article class="ion-content outer-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
     <section ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
-      <!--固定在页面中的内容-->
-      <!--固定到顶部-->
-      <div ion-fixed top>
+      <!--Fixed Top-->
+      <div fixed top>
         <slot name="fixed"></slot>
         <slot name="fixedTop"></slot>
       </div>
-      <!--固定到底部-->
-      <div ion-fixed bottom>
+      <!--Fixed Bottom-->
+      <div fixed bottom>
         <slot name="fixedBottom"></slot>
       </div>
     </section>
     <section ref="scrollContent" class="scroll-content" :style="scrollContentStyle">
-    <!--<section   ref="scrollContent" class="scroll-content" id="wrapper"  :style="scrollContentStyle">-->
+      <!--<section   ref="scrollContent" class="scroll-content" id="wrapper"  :style="scrollContentStyle">-->
       <!--默认是能滚动的内容   -->
       <!--<div id="scroller">-->
-        <!--<slot></slot>-->
+      <!--<slot></slot>-->
       <!--</div>-->
       <slot></slot>
     </section>
-    <slot name="Refresher"></slot>
+    <slot name="refresher"></slot>
   </article>
 </template>
 
@@ -42,9 +41,10 @@
    * @param {Boolean=} fullscreen - 是否全屏显示的控制, 如果为true, 则content的上下将延伸到Header和Footer的下面
    * @param {String=} mode - 样式模式
    *
+   *
    * */
-  import { getStyle,setElementClass } from '../../util/dom'
-  import {getNum} from '../../util/util'
+  import { getStyle, setElementClass } from '../../util/dom'
+  import { getNum } from '../../util/util'
   // import iScroll from '../../util/iscroll'
   // import dutil from '../../util/demoUtils'
 
@@ -55,9 +55,9 @@
         type: Boolean,
         default: false
       },
-      mode:{
-        type:String,
-        default:VM.config.get('mode','ios')
+      mode: {
+        type: String,
+        default: VM.config.get('mode', 'ios')
       }
       // useIScroll:{
       //   type:Boolean,
@@ -108,10 +108,20 @@
         originalScrollPadding: 0, // 原始的scrollPaddingBottom的值
         isInputting: false, // 正在输入
 
-        statusbarPadding: VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
+        // 是否有statusbar的padding, 高度固定为20px
+        statusbarPadding: VM.config.getBoolean('statusbarPadding', false),
+
+        // 第一次进入需要判断header和footer的高度,进而调整content组件的尺寸.
+        // 但是, 设置了样式后需要在$nextTick中读取content尺寸才是正确的结果
+        // (更新了header/footer的样式并不代表实际更新DOM)
+        isDomReady: false,
+
+        statusBarHeight: 20,
+        headerBarHeight: 0,
+        footerBarHeight: 0,
       }
     },
-    computed:{
+    computed: {
       modeClass(){
         return `content-${this.mode}`
       }
@@ -129,10 +139,8 @@
        * */
       computeScrollContentStyle () {
         let _this = this;
-        let _valHeader, _styleType;
-        let headerBarHeight = 0;
-        let footerBarHeight = 0;
-        let headerBarMinHeight = this.$config.get('toolbarMinHeight',44);
+        let _styleType;
+        let headerBarMinHeight = this.$config.get('toolbarMinHeight', 44);
 
         // 得到header和footer的高度
         // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
@@ -140,25 +148,30 @@
         // 而不是全局
         _this.$parent.$children.forEach((item) => {
           if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
-            headerBarHeight = getStyle(item.$el, 'height');
-            headerBarHeight === 'auto' ? (headerBarHeight = headerBarMinHeight) : (headerBarHeight = getNum(headerBarHeight));
+            _this.headerBarHeight = getStyle(item.$el, 'height');
+            if (_this.headerBarHeight === 'auto') {
+              _this.headerBarHeight = headerBarMinHeight
+            } else {
+              _this.headerBarHeight = getNum(_this.headerBarHeight)
+            }
           }
           if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'footer') {
-            footerBarHeight = getStyle(item.$el, 'height');
-            footerBarHeight === 'auto' ? (footerBarHeight = headerBarMinHeight) : (footerBarHeight = getNum(footerBarHeight));
+            _this.footerBarHeight = getStyle(item.$el, 'height');
+            if (_this.footerBarHeight === 'auto') {
+              _this.footerBarHeight = headerBarMinHeight
+            } else {
+              _this.footerBarHeight = getNum(_this.footerBarHeight)
+            }
           }
         });
 
         // 获取原始的footer的Height，用于keyboard的复原
-        _this.originalScrollPadding = footerBarHeight;
-
+        _this.originalScrollPadding = _this.footerBarHeight;
         if (_this.statusbarPadding) {
           // 存在statusBar的情况下，header高20px
-          // _valHeader = headerBarHeight + _this.$config.statusBarHeight;
-          // TODO: statusBarHeight
-          _valHeader = headerBarHeight + 20;
+          _this.headerBarHeight = _this.headerBarHeight + _this.statusBarHeight;
         } else {
-          _valHeader = headerBarHeight
+          _this.headerBarHeight = _this.headerBarHeight
         }
 
         if (_this.fullscreen) {
@@ -171,41 +184,61 @@
         _this.fixedContentStyle = {};
         _this.scrollContentStyle = {};
 
-        if (_valHeader > 0) {
-          _this.scrollContentStyle[_styleType + 'Top'] = _valHeader + 'px';
-          _this.fixedContentStyle[_styleType + 'Top'] = _valHeader + 'px';
+        if (_this.headerBarHeight > 0) {
+          _this.scrollContentStyle[_styleType + 'Top'] = _this.headerBarHeight + 'px';
+          _this.fixedContentStyle[_styleType + 'Top'] = _this.headerBarHeight + 'px';
         }
-        if (footerBarHeight > 0) {
-          _this.scrollContentStyle[_styleType + 'Bottom'] = footerBarHeight + 'px';
+        if (_this.footerBarHeight > 0) {
+          _this.scrollContentStyle[_styleType + 'Bottom'] = _this.footerBarHeight + 'px';
+          _this.fixedContentStyle[_styleType + 'Bottom'] = _this.footerBarHeight + 'px';
         }
 
-        // 计算尺寸
+        // DOM更新完毕后获取尺寸,设置isDomReady
         _this.$nextTick(function () {
-          _this.getContentDimensions();
-          _this.getScrollDimensions();
+          _this.contentDimensions = _this.getContentDimensions();
+          _this.scrollDimensions = _this.getScrollDimensions();
+          _this.isDomReady = true;
         });
 
       },
 
       /**
        * 计算content的dimensions，以下都是固有属性，只读！
+       * @return {object} contentDimensions -
        * */
       getContentDimensions(){
         const _this = this;
         let _scrollContent = _this.scrollContent;
-        // content属性：宽高上下左右，6个，
-        _this.contentDimensions = {
-          contentTop: _scrollContent.offsetTop,
-          contentBottom: _scrollContent.offsetTop + _scrollContent.offsetHeight,
-          contentWidth: _scrollContent.offsetWidth,
-          contentHeight: _scrollContent.offsetHeight,
-          contentLeft: _scrollContent.offsetLeft,
-          contentRight: _scrollContent.offsetLeft + _scrollContent.offsetWidth,
-        };
+        if (_this.isDomReady) {
+          // dom ready 情况下, 读取DOM尺寸
+          // content属性：宽高上下左右，6个，
+          _this.contentDimensions = {
+            contentTop: _scrollContent.offsetTop,
+            contentBottom: _scrollContent.offsetTop + _scrollContent.offsetHeight,
+            contentWidth: _scrollContent.offsetWidth,
+            contentHeight: _scrollContent.offsetHeight,
+            contentLeft: _scrollContent.offsetLeft,
+            contentRight: _scrollContent.offsetLeft + _scrollContent.offsetWidth,
+          };
+        } else {
+          // dom not ready 情况下, 根据计算的值手动计算,
+          // 因为首次进入Content的尺寸是固定的.
+          let _contentHeight = _scrollContent.clientHeight - _this.headerBarHeight - _this.footerBarHeight;
+          let _contentTop = _this.headerBarHeight;
+          let _contentBottom = _scrollContent.clientHeight - _this.footerBarHeight;
+          let _contentWidth = _scrollContent.clientWidth;
+          _this.contentDimensions = {
+            contentTop: _contentTop,
+            contentBottom: _contentBottom,
+            contentWidth: _contentWidth,
+            contentHeight: _contentHeight,
+            contentLeft: _scrollContent.offsetLeft,
+            contentRight: _scrollContent.offsetLeft + _scrollContent.offsetWidth,
+          };
+        }
 
         return _this.contentDimensions
       },
-
 
       // initIscroll(){
       //   console.log(window.VM.IScroll);
@@ -253,11 +286,12 @@
       },
 
       /**
+       * 滚动到一个位置
        * @param {Number} x - The x-value to scroll to.
        * @param {Number} y - The y-value to scroll to.
        * @param {Number} duration - Duration of the scroll animation in milliseconds.
-       * @param {Function} done - 当滚动结束时触发
-       * @return Returns a promise which is resolved when the scroll has completed.
+       * @param {Function=} done - 当滚动结束时触发的回调
+       * @return {Promise} 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
       scrollTo (x, y, duration = 300, done) {
         // scroll animation loop w/ easing
@@ -336,7 +370,7 @@
           }
         }
 
-        // return promise;
+        return promise;
       },
 
       /**
@@ -406,7 +440,6 @@
         }
       },
 
-
       // 键盘相关的
       keyBoardOpen(){
         const _this = this;
@@ -425,21 +458,17 @@
     mounted() {
       // 将挂载点同步到根this上
       const _this = this;
-
-      let _timer;
-      // _this.initIscroll();
       // 找到fixedContent/scrollContent的位置
       _this.fixedContent = _this.$el.children[0];
       _this.scrollContent = _this.$el.children[1];
 
-      _this.scrollDimensions = _this.getScrollDimensions();
-      _this.contentDimensions = _this.getContentDimensions();
-
       /**
-       * 计算属性
-       * 放在这里是因为此时并不知道footer子组件有没有，因此在mounted中等待
+       * 计算并设置当前Content的位置及尺寸
        * */
       _this.computeScrollContentStyle();
+
+      let _timer;
+      // _this.initIscroll();
 
       // scroll-content的scroll, 滚动时ionScroll事件，另外两个：ionScrollStart/ionScrollEnd
       _this.scrollContent.addEventListener('scroll', function (event) {
