@@ -19,7 +19,7 @@ var  GEOLOCATION_CONFIG = {
   },
   AMAP: {
     type: 'ali',
-    app_key: '1a5684d65e7c2406620abeaf350555e9',
+    app_key: '2f5e48a126e425758856266a703473e9',
     app_name: 'yourappname'
   }
 }

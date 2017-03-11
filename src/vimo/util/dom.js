@@ -528,3 +528,63 @@ function _camelCase (name) {
     return offset ? letter.toUpperCase() : letter;
   }).replace(MOZ_HACK_REGEXP, 'Moz$1');
 }
+
+
+//这个函数是用来将form表单里的所有数据打包成data
+export  function getFormJsonData(config) {
+    var _config = {
+      container: undefined, // 在指定容器中寻找表单元素
+      empty: true      // value为空的值是否获取
+    }
+    $.extend(_config, config);
+
+    var $targets = $('input, select, textarea');
+    if(_config.container) {
+      $targets = $(_config.container).find('input, select, textarea');
+    }
+
+    var result = {};
+    $targets.each(function() {
+      var k = $(this).attr('name');
+      var v = $(this).val();
+      var type = $(this).attr('type');
+      if(typeof k === 'undefined') return;
+      if(!_config.empty && v === '') return;
+      if(type === 'radio') {
+        if($(this).is(':checked')) {
+          result[k] = v;
+        }
+      } else if(type === 'checkbox') {
+        if($(this).is(':checked')) {
+          if(result[k] instanceof Array) {
+            result[k].push(v);
+          } else {
+            result[k] = [v];
+          }
+        }
+      } else {
+        result[k] = v;
+      }
+    });
+    return JSON.stringify(result);
+}
+ 
+
+ /**
+ * @param context Object {name:key,name:key....}
+ */
+export function setFormJsonData(context, config) {
+    var _config = {
+      container: undefined // 在指定容器中寻找表单元素
+    }
+    $.extend(_config, config);
+
+    for(var k in context) {
+      var $target = $('[name="'+k+'"]');
+      if(_config.container) {
+        $target = $(_config.container).find('[name="'+k+'"]');
+      }
+      $target.val(context[k]);
+    }
+  }
+
