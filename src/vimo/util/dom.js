@@ -643,3 +643,19 @@ export function setFormJsonData(context, config) {
     }
   }
 
+/*
+ *@param el  scirpt dom
+ * @param callback 回掉函数
+**/
+export function loadScript(el,callback){  //script加载完成后的监听
+  el.onload = el.onreadystatechange = function () {
+    if (!this.readyState || /^(loaded|complete)$/.test(this.readyState)) {
+      el.onload = el.onreadystatechange = null;
+      callback();
+    }
+  };
+  el.onerror = function (err) {
+    console.error(err);
+    el.onerror = null;
+  };
+}

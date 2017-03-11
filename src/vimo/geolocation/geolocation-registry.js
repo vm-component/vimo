@@ -21,7 +21,8 @@ var  GEOLOCATION_CONFIG = {
     type: 'ali',
     app_key: '2f5e48a126e425758856266a703473e9',
     app_name: 'yourappname'
-  }
+  },
+  isSinglePage:true
 }
 
 module.exports = GEOLOCATION_CONFIG;

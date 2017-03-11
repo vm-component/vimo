@@ -8,6 +8,7 @@ var geo = {
   getCurrentPosition: getCurrentPosition
 };
 
+var count = 0;
 
 /**
  * [cacheURL cache for maps js url]
@@ -56,7 +57,11 @@ function getCurrentPosition() {
           _QQMapLocation(successFn, errorFn, posOptions);
           break;
         default:
-          _H5Location(successFn,errorFn,posOptions);
+          try{
+            (isHttps)_H5Location(successFn,errorFn,posOptions);
+          }catch(err){
+            console.error("h5位置获取必须是https协议模式");
+          }
       }
     
     function successFn(pos) {
@@ -104,39 +109,46 @@ function _H5Location(successFn, errorFn, posOptions) {
  */
 function _AMapLocation(successFn, errorFn, posOptions) {
   // http://lbs.amap.com/api/javascript-api/reference/location/
-  _getScript('//webapi.amap.com/maps?v=1.3&key=' + reg.AMAP.app_key).then(function () {
-    var aMapWrapId = 'geo-everywhere-amap';
-    var map = void 0,
-        geolocation = void 0;
-
-    createAMap(function () {
-      // instantiate a AMap instance
-      map = new window.AMap.Map(aMapWrapId);
-
-      map.plugin('AMap.Geolocation', function () {
-        geolocation = new window.AMap.Geolocation({});
-        geolocation.getCurrentPosition(onComplete);
-      });
-      // callback of getCurrentPosition
-      function onComplete(status, result) {
-        if (status === 'complete') {
-          successFn(result);
-        } else {
-          errorFn(status);
-        }
-      }
-    });
-    // Amap need a real map DOM to use AMap.Geolocation plugin
-    function createAMap(next) {
-      var container = document.createElement('div');
-      container.id = aMapWrapId;
-      container.style.display = 'none';
-
-      document.body.appendChild(container);
-
-      util.isFunction(next) && next();
-    }
+  var src = '//webapi.amap.com/maps?v=1.3&key=' + reg.AMAP.app_key;
+  if (hasScript(src)&&count>0) runAmap();
+  else
+  _getScript(src).then(function () {
+    runAmap();
   });
+    function runAmap(){
+      count++;
+      var aMapWrapId = 'geo-everywhere-amap';
+      var map = void 0,
+          geolocation = void 0;
+
+      createAMap(function () {
+        // instantiate a AMap instance
+        map = new window.AMap.Map(aMapWrapId);
+
+        map.plugin('AMap.Geolocation', function () {
+          geolocation = new window.AMap.Geolocation({});
+          geolocation.getCurrentPosition(onComplete);
+        });
+        // callback of getCurrentPosition
+        function onComplete(status, result) {
+          if (status === 'complete') {
+            successFn(result);
+          } else {
+            errorFn(status);
+          }
+        }
+      });
+    // Amap need a real map DOM to use AMap.Geolocation plugin
+      function createAMap(next) {
+        var container = document.createElement('div');
+        container.id = aMapWrapId;
+        container.style.display = 'none';
+
+        document.body.appendChild(container);
+
+        util.isFunction(next) && next();
+      }
+    }
 }
 /**
  * [_BMapLocation description]
@@ -227,6 +239,20 @@ function _getScript(mapJsUrl) {  //将地图放在页面上。
 
     document.body.appendChild(sc);
   });
+}
+
+
+function hasScript(src){
+  var res = false;
+  var dom = document.getElementsByTagName("script");
+  try{
+    Array.prototype.forEach.call(dom,function(e,i){
+      e.src===src&&(res=true)
+    })
+  }catch(err){
+    return res;
+  }
+  
 }
 
 exports.default = geo;
