@@ -57,7 +57,11 @@ function getCurrentPosition() {
           _QQMapLocation(successFn, errorFn, posOptions);
           break;
         default:
-          _H5Location(successFn,errorFn,posOptions);
+          try{
+            (isHttps)_H5Location(successFn,errorFn,posOptions);
+          }catch(err){
+            console.error("h5位置获取必须是https协议模式");
+          }
       }
     
     function successFn(pos) {
