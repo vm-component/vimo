@@ -329,9 +329,6 @@ export const PLATFORM_CONFIGS = {
         Vue.prototype.$call = function (option) {
           return dd.biz.telephone.call(option)
         }
-
-        Vue.prototype.$actionSheet = hybrid.actionSheet;
-
       };
 
       ready(() => {
@@ -441,15 +438,12 @@ function isIOSUI (p) {
   return isIOS(p) && !isWK() && !isSafari(p);
 }
 
-export function providePlatformConfigs () {
-  return PLATFORM_CONFIGS;
-}
 
 /**
  * @param {Platform} plt
  * @return {boolean}
  * */
-export function isWKWebView (plt) {
+function isWKWebView (plt) {
   return isIOS(plt) && !!window['webkit'];
 }
 
@@ -457,6 +451,6 @@ export function isWKWebView (plt) {
  * @param {Platform} plt
  * @return {boolean}
  * */
-export function isIosUIWebView (plt) {
+function isIosUIWebView (plt) {
   return isIOS(plt) && !isWKWebView(plt) && !isSafari(plt);
 }

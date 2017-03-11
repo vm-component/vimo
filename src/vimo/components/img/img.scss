@@ -7,7 +7,7 @@
 $img-placeholder-background:         #eee !default;
 
 
-ion-img {
+.ion-img {
   display: inline-block;
 
   min-width: 20px;
@@ -18,14 +18,14 @@ ion-img {
   contain: strict;
 }
 
-ion-img img {
+.ion-img img {
   object-fit: cover;
 }
 
-ion-img.img-unloaded img {
+.ion-img.img-unloaded img {
   display: none;
 }
 
-ion-img.img-loaded img {
+.ion-img.img-loaded img {
   display: block;
 }

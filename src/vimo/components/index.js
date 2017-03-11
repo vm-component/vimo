@@ -71,7 +71,7 @@ import { Fab, Fabs } from './fab'
 
 import { BackdropComponent, BackdropInstance } from './backdrop'
 
-
+import Img from './img'
 
 // 实例化调用组件，传入配置参数后返回实例
 import getActionSheetInstance from './action-sheet'
@@ -79,8 +79,6 @@ import getAlertInstance from './alert'
 import getLoadingInstance from './loading'
 import prepareToast from './toast'
 import prepareModal from './modal'
-
-
 
 // 自定义组件
 import SnakeBox from './snake-box'
@@ -133,8 +131,8 @@ module.exports = {
     Vue.component(ToolbarTitle.name, ToolbarTitle);
     Vue.component(ToolbarButtons.name, ToolbarButtons);
     Vue.component(Button.name, Button);
-    Vue.component(Ghost.name,Ghost);
-    Vue.component(FloatTop.name,FloatTop);
+    Vue.component(Ghost.name, Ghost);
+    Vue.component(FloatTop.name, FloatTop);
 
     Vue.component(Icon.name, Icon);
     Vue.component(Nav.name, Nav);
@@ -176,6 +174,8 @@ module.exports = {
     Vue.component(Tab.name, Tab);
     Vue.component(Fabs.name, Fabs);
     Vue.component(Fab.name, Fab);
+
+    Vue.component(Img.name, Img);
 
     Vue.component(Menu.name, Menu);
     Vue.component(BackdropComponent.name, BackdropComponent);

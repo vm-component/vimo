@@ -268,6 +268,12 @@ const routes = [
   },
 
   {
+    path: '/img',
+    name: 'img',
+    component: require('./views/img.vue'),
+  },
+
+  {
     path: '/content',
     name: 'content',
     component: require('./views/content.vue'),

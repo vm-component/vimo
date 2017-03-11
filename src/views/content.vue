@@ -23,23 +23,30 @@
       <Button type="block" @click="setTitle('Hello Vue')">点击设置Title='Hello Vue'</Button>
 
       <Button type="block" @click="scrollToBottom()">滚动到底部</Button>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
 
       <Button type="block" @click="scrollToTop()">返回顶部</Button>
 
       {{contentDimensions}}
       <Button type="block" @click="refreshContentDimensions()">点击更新Content尺寸</Button>
 
-      {{scrollDimensions}}
-      <Button slot="fixedTop" type="block" @click="refreshScrollDimensions()">点击更新Scroll尺寸</Button>
     </Content>
 
     <Footer>
@@ -59,9 +66,8 @@
       return {
         fullscreenVal: false,
 
-
-        contentDimensions:null,
-        scrollDimensions:null,
+        contentDimensions: null,
+        scrollDimensions: null,
       }
     },
     watch: {},
@@ -77,13 +83,10 @@
         this.$content.scrollToBottom();
       },
 
-
       refreshContentDimensions(){
         this.contentDimensions = this.$content.getContentDimensions()
       },
-      refreshScrollDimensions(){
-        this.scrollDimensions = this.$content.getScrollDimensions()
-      }
+
     },
     created: function () {
 
@@ -94,7 +97,25 @@
       const _this = this;
 
       this.refreshContentDimensions();
-      this.refreshScrollDimensions();
+
+      // this.$eventBus.$on('onScrollStart', function (ev) {
+      //   console.debug('--------------')
+      //   console.debug('onScrollStart')
+      //   console.log('scrollTop:' + ev.scrollTop)
+      //   console.log('directionY:' + ev.directionY)
+      // })
+      // this.$eventBus.$on('onScroll', function (ev) {
+      //   console.debug('--------------')
+      //   console.debug('onScroll')
+      //   console.log('scrollTop:' + ev.scrollTop)
+      //   console.log('directionY:' + ev.directionY)
+      // })
+      // this.$eventBus.$on('onScrollEnd', function (ev) {
+      //   console.debug('--------------')
+      //   console.debug('onScrollEnd')
+      //   console.log('scrollTop:' + ev.scrollTop)
+      //   console.log('directionY:' + ev.directionY)
+      // })
 
     },
     activated: function () {

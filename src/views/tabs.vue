@@ -13,6 +13,11 @@
       <Tab to="{name:'tabs.tab2'}" tabBadge="2"  tabTitle="Cars" tabBadgeStyle="dark" tabIcon="car"></Tab>
       <Tab to="{name:'tabs.tab3'}" tabBadge="7"  tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
     </Tabs>
+    <Footer>
+      <Toolbar>
+        <Title>Footer</Title>
+      </Toolbar>
+    </Footer>
   </Page>
 </template>
 <style scoped lang="scss">

@@ -98,6 +98,10 @@
             <Icon slot="item-left" name="basketball"></Icon>
             Fab
           </Item>
+          <Item button :to="{name: 'img'}">
+            <Icon slot="item-left" name="image"></Icon>
+            图片 (Img)
+          </Item>
         </ItemGroup>
 
         <!--弹出层组件-->

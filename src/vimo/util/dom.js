@@ -166,31 +166,86 @@ export function getCss (docEle) {
  * @return {Function}  取消绑定的函数
  * */
 export function transitionEnd (el, callback) {
-  if (el) {
-    CSS.transitionEnd.split(' ').forEach(eventName => {
-      el.addEventListener(eventName, onEvent);
-    });
+  const unRegs= [];
 
-    return unregister;
-  }
-
-  function unregister () {
-    CSS.transitionEnd.split(' ').forEach(eventName => {
-      el.removeEventListener(eventName, onEvent);
+  function unregister() {
+    unRegs.forEach(unReg => {
+      unReg();
     });
   }
 
-  /**
-   * @param {UIEvent} ev
-   * */
-  function onEvent (ev) {
+  function onTransitionEnd(ev) {
     if (el === ev.target) {
-      // auto unregister
       unregister();
       callback(ev);
     }
   }
+
+  if (el) {
+    this.registerListener(el, 'webkitTransitionEnd', onTransitionEnd, {}, unRegs);
+    this.registerListener(el, 'transitionend', onTransitionEnd, {}, unRegs);
+  }
+
+  return unregister;
 }
+
+
+/**
+ * @private
+ *
+ * 给addEventListener增加passive属性, 如果不支持将降级使用!!opts.capture
+ *
+ * @param {any} ele                                   - 监听的元素
+ * @param {string} eventName                          - 监听的名称
+ * @param {function} callback                         - 回调
+ * @param {object} opts EventListenerOptions          - addEventListener的第三个参数
+ * @param {Function[]=} unregisterListenersCollection - 如果提供Function[], 则unReg将压如这个列表中
+ *
+ * @return {Function} 返回removeEventListener的函数
+ *
+ */
+export function registerListener (ele, eventName, callback, opts, unregisterListenersCollection) {
+  // TODO: 这部分事件需要放到event.js中
+  let _uiEvtOpts = _initEvent();
+  // use event listener options when supported
+  // otherwise it's just a boolean for the "capture" arg
+  const listenerOpts = _uiEvtOpts ? {
+      'capture': !!opts.capture,
+      'passive': !!opts.passive,
+    } : !!opts.capture;
+
+  let unReg;
+
+  // use the native addEventListener
+  ele['addEventListener'](eventName, callback, listenerOpts);
+
+  unReg = function unregisterListener () {
+    ele['removeEventListener'](eventName, callback, listenerOpts);
+  };
+
+  if (unregisterListenersCollection && Array.isArray(unregisterListenersCollection)) {
+    unregisterListenersCollection.push(unReg);
+  }
+
+  return unReg;
+}
+
+// TODO: 这部分事件需要放到event.js中
+export function _initEvent () {
+  let _uiEvtOpts = false;
+  // Test via a getter in the options object to see if the passive property is accessed
+  try {
+    var opts = Object.defineProperty({}, 'passive', {
+      get: () => {
+        _uiEvtOpts = true;
+      }
+    });
+    window.addEventListener('optsTest', null, opts);
+  } catch (e) { }
+
+  return _uiEvtOpts
+}
+
 
 //
 // /**
@@ -568,7 +623,7 @@ export  function getFormJsonData(config) {
     });
     return JSON.stringify(result);
 }
- 
+
 
  /**
  * @param context Object {name:key,name:key....}
