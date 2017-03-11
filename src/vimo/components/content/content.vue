@@ -1,6 +1,6 @@
 <template>
   <article class="ion-content outer-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
-    <section ref="fixedContent" class="fixed-content" :style="fixedContentStyle">
+    <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
       <!--Fixed Top-->
       <div fixed top>
         <slot name="fixed"></slot>
@@ -11,8 +11,8 @@
         <slot name="fixedBottom"></slot>
       </div>
     </section>
-    <section ref="scrollContent" class="scroll-content" :style="scrollContentStyle">
-      <!--<section   ref="scrollContent" class="scroll-content" id="wrapper"  :style="scrollContentStyle">-->
+    <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
+      <!--<section   ref="scrollElement" class="scroll-content" id="wrapper"  :style="scrollElementStyle">-->
       <!--默认是能滚动的内容   -->
       <!--<div id="scroller">-->
       <!--<slot></slot>-->
@@ -94,19 +94,20 @@
     },
     data(){
       return {
-        fixedContentStyle: {}, // 固定内容的位置样式
-        scrollContentStyle: {}, // 滑动内容的位置样式
-        dimensions: {}, // content内容的尺寸
+        fixedElementStyle: {}, // 固定内容的位置样式
+        scrollElementStyle: {}, // 滑动内容的位置样式
+
+
         isScrolling: false, // 判断是否滚动
 
-        scrollContent: null, // scrollConent的DOM句柄
-        fixedContent: null, // fixedContent的DOM句柄
+        scrollElement: null, // scrollConent的DOM句柄
+        fixedElement: null, // fixedElement的DOM句柄
+
+        headerElement:null, //Header组件的DOM句柄
+        footerElement:null, //footer组件的DOM句柄
+
         contentDimensions: null,
         scrollDimensions: null,
-
-        scrollPadding: 0, // scroll-content的paddingBottom，用于键盘的显示
-        originalScrollPadding: 0, // 原始的scrollPaddingBottom的值
-        isInputting: false, // 正在输入
 
         // 是否有statusbar的padding, 高度固定为20px
         statusbarPadding: VM.config.getBoolean('statusbarPadding', false),
@@ -134,7 +135,7 @@
     },
     methods: {
       /**
-       * 计算scrollContent的样式
+       * 计算scrollElement的样式
        * 因为这部分首一下因素影响：statusbarPadding、fullscreen、Header，Footer
        * */
       computeScrollContentStyle () {
@@ -148,25 +149,35 @@
         // 而不是全局
         _this.$parent.$children.forEach((item) => {
           if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
-            _this.headerBarHeight = getStyle(item.$el, 'height');
-            if (_this.headerBarHeight === 'auto') {
-              _this.headerBarHeight = headerBarMinHeight
-            } else {
-              _this.headerBarHeight = getNum(_this.headerBarHeight)
-            }
+            _this.headerElement = item.$el;
           }
           if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'footer') {
-            _this.footerBarHeight = getStyle(item.$el, 'height');
-            if (_this.footerBarHeight === 'auto') {
-              _this.footerBarHeight = headerBarMinHeight
-            } else {
-              _this.footerBarHeight = getNum(_this.footerBarHeight)
-            }
+            _this.footerElement = item.$el;
           }
         });
 
-        // 获取原始的footer的Height，用于keyboard的复原
-        _this.originalScrollPadding = _this.footerBarHeight;
+        if(!!_this.headerElement){
+          _this.headerBarHeight = getStyle(_this.headerElement, 'height');
+          if (_this.headerBarHeight === 'auto') {
+            _this.headerBarHeight = headerBarMinHeight
+          } else {
+            _this.headerBarHeight = getNum(_this.headerBarHeight)
+          }
+        }
+
+        if(!!_this.footerElement){
+          _this.footerBarHeight = getStyle(_this.footerElement, 'height');
+          if (_this.footerBarHeight === 'auto') {
+            _this.footerBarHeight = headerBarMinHeight
+          } else {
+            _this.footerBarHeight = getNum(_this.footerBarHeight)
+          }
+        }
+
+
+
+
+
         if (_this.statusbarPadding) {
           // 存在statusBar的情况下，header高20px
           _this.headerBarHeight = _this.headerBarHeight + _this.statusBarHeight;
@@ -181,16 +192,16 @@
         }
 
         // empty
-        _this.fixedContentStyle = {};
-        _this.scrollContentStyle = {};
+        _this.fixedElementStyle = {};
+        _this.scrollElementStyle = {};
 
         if (_this.headerBarHeight > 0) {
-          _this.scrollContentStyle[_styleType + 'Top'] = _this.headerBarHeight + 'px';
-          _this.fixedContentStyle[_styleType + 'Top'] = _this.headerBarHeight + 'px';
+          _this.scrollElementStyle[_styleType + 'Top'] = _this.headerBarHeight + 'px';
+          _this.fixedElementStyle[_styleType + 'Top'] = _this.headerBarHeight + 'px';
         }
         if (_this.footerBarHeight > 0) {
-          _this.scrollContentStyle[_styleType + 'Bottom'] = _this.footerBarHeight + 'px';
-          _this.fixedContentStyle[_styleType + 'Bottom'] = _this.footerBarHeight + 'px';
+          _this.scrollElementStyle[_styleType + 'Bottom'] = _this.footerBarHeight + 'px';
+          _this.fixedElementStyle[_styleType + 'Bottom'] = _this.footerBarHeight + 'px';
         }
 
         // DOM更新完毕后获取尺寸,设置isDomReady
@@ -204,40 +215,51 @@
 
       /**
        * 计算content的dimensions，以下都是固有属性，只读！
-       * @return {object} contentDimensions -
+       * @return {object} contentDimensions纬度尺寸
        * */
       getContentDimensions(){
         const _this = this;
-        let _scrollContent = _this.scrollContent;
         if (_this.isDomReady) {
           // dom ready 情况下, 读取DOM尺寸
           // content属性：宽高上下左右，6个，
           _this.contentDimensions = {
-            contentTop: _scrollContent.offsetTop,
-            contentBottom: _scrollContent.offsetTop + _scrollContent.offsetHeight,
-            contentWidth: _scrollContent.offsetWidth,
-            contentHeight: _scrollContent.offsetHeight,
-            contentLeft: _scrollContent.offsetLeft,
-            contentRight: _scrollContent.offsetLeft + _scrollContent.offsetWidth,
+            contentTop: _this.scrollElement.offsetTop,
+            contentBottom: _this.scrollElement.offsetTop + _this.scrollElement.offsetHeight,
+            contentWidth: _this.scrollElement.offsetWidth,
+            contentHeight: _this.scrollElement.offsetHeight,
+            contentLeft: _this.scrollElement.offsetLeft,
+            contentRight: _this.scrollElement.offsetLeft + _this.scrollElement.offsetWidth,
           };
         } else {
           // dom not ready 情况下, 根据计算的值手动计算,
           // 因为首次进入Content的尺寸是固定的.
-          let _contentHeight = _scrollContent.clientHeight - _this.headerBarHeight - _this.footerBarHeight;
-          let _contentTop = _this.headerBarHeight;
-          let _contentBottom = _scrollContent.clientHeight - _this.footerBarHeight;
-          let _contentWidth = _scrollContent.clientWidth;
           _this.contentDimensions = {
-            contentTop: _contentTop,
-            contentBottom: _contentBottom,
-            contentWidth: _contentWidth,
-            contentHeight: _contentHeight,
-            contentLeft: _scrollContent.offsetLeft,
-            contentRight: _scrollContent.offsetLeft + _scrollContent.offsetWidth,
+            contentTop: _this.headerBarHeight,
+            contentBottom: _this.scrollElement.clientHeight - _this.footerBarHeight,
+            contentWidth:  _this.scrollElement.clientWidth,
+            contentHeight: _this.scrollElement.clientHeight - _this.headerBarHeight - _this.footerBarHeight,
+            contentLeft: _this.scrollElement.offsetLeft,
+            contentRight: _this.scrollElement.offsetLeft + _this.scrollElement.offsetWidth,
           };
         }
 
         return _this.contentDimensions
+      },
+
+      /**
+       * 计算scroll的dimensions，因为其随着滚动而变化，内容会随滚动更新
+       * */
+      getScrollDimensions(){
+        const _this = this;
+        // scrollDimensions在index中定义到全局
+        _this.scrollDimensions = {
+          scrollTop: _this.scrollElement.scrollTop,
+          scrollWidth: _this.scrollElement.scrollWidth,
+          scrollHeight: _this.scrollElement.scrollHeight,
+          scrollLeft: _this.scrollElement.scrollLeft,
+          scrollRight: _this.scrollElement.scrollLeft + _this.scrollElement.scrollWidth,
+        };
+        return _this.scrollDimensions
       },
 
       // initIscroll(){
@@ -259,27 +281,9 @@
       //   }
       // },
 
-      /**
-       * 计算scroll的dimensions，因为其随着滚动而变化，内容会随滚动更新
-       * */
-      getScrollDimensions(){
-        const _this = this;
-        // scrollDimensions在index中定义到全局
-        _this.scrollDimensions = {
-          scrollTop: _this.scrollContent.scrollTop,
-          scrollBottom: _this.scrollContent.scrollTop + _this.scrollContent.scrollHeight,
-          scrollWidth: _this.scrollContent.scrollWidth,
-          scrollHeight: _this.scrollContent.scrollHeight,
-          scrollLeft: _this.scrollContent.scrollLeft,
-          scrollRight: _this.scrollContent.scrollLeft + _this.scrollContent.scrollWidth,
-        };
-        return _this.scrollDimensions
-      },
 
       /**
-       * 重新计算scroll的尺寸，当动态添加header/footer或者修改了他的属性
-       * Tell the content to recalculate its dimensions.
-       * This should be called after dynamically adding headers, footers, or tabs.
+       * 重新计算scroll的尺寸，当动态添加header/footer/tabs或者修改了他的属性
        * */
       resize(){
         this.computeScrollContentStyle();
@@ -297,7 +301,7 @@
         // scroll animation loop w/ easing
         // credit https://gist.github.com/dezinezync/5487119
         const _this = this;
-        // scrollContent
+        // scrollElement
         let promise;
         if (done === undefined) {
           // only create a promise if a done callback wasn't provided
@@ -307,7 +311,7 @@
           });
         }
 
-        if (!_this.scrollContent) {
+        if (!_this.scrollElement) {
           // invalid element
           done();
           return promise;
@@ -316,8 +320,8 @@
         x = x || 0;
         y = y || 0;
 
-        const fromY = _this.scrollContent.scrollTop;
-        const fromX = _this.scrollContent.scrollLeft;
+        const fromY = _this.scrollElement.scrollTop;
+        const fromX = _this.scrollElement.scrollLeft;
 
         const maxAttempts = (duration / 16) + 100;
 
@@ -335,9 +339,9 @@
         function step () {
           attempts++;
 
-          if (!_this.scrollContent || !_this.isScrolling || attempts > maxAttempts) {
+          if (!_this.scrollElement || !_this.isScrolling || attempts > maxAttempts) {
             _this.isScrolling = false;
-            // (<any>scrollContent.style)[CSS.transform] = '';
+            // (<any>scrollElement.style)[CSS.transform] = '';
             done();
             return;
           }
@@ -351,11 +355,11 @@
           let easedT = (--time) * time * time + 1;
 
           if (fromY !== y) {
-            _this.scrollContent.scrollTop = (easedT * (y - fromY)) + fromY;
+            _this.scrollElement.scrollTop = (easedT * (y - fromY)) + fromY;
           }
 
           if (fromX !== x) {
-            _this.scrollContent.scrollLeft = Math.floor((easedT * (x - fromX)) + fromX);
+            _this.scrollElement.scrollLeft = Math.floor((easedT * (x - fromX)) + fromX);
           }
 
           if (easedT < 1) {
@@ -365,7 +369,7 @@
 
           } else {
             _this.isScrolling = false;
-            // (<any>scrollContent.style)[CSS.transform] = '';
+            // (<any>scrollElement.style)[CSS.transform] = '';
             done();
           }
         }
@@ -374,6 +378,7 @@
       },
 
       /**
+       * 滚动到顶部
        * @param {Number} duration - Duration of the scroll animation in milliseconds.
        * Defaults to 300
        * @return Returns a promise which is resolved when the scroll has completed.
@@ -382,6 +387,7 @@
         this.scrollTo(0, 0, duration);
       },
       /**
+       * 滚动到底部
        * @param {Number} duration - Duration of the scroll animation in milliseconds.
        * Defaults to 300
        * @return Returns a promise which is resolved when the scroll has completed.
@@ -389,68 +395,10 @@
       scrollToBottom(duration = 300) {
         //console.debug('scrollToBottom')
         let y = 0;
-        if (this.scrollContent) {
-          y = this.scrollContent.scrollHeight - this.scrollContent.clientHeight;
+        if (this.scrollElement) {
+          y = this.scrollElement.scrollHeight - this.scrollElement.clientHeight;
         }
         return this.scrollTo(0, y, duration);
-      },
-
-      /**
-       * addScrollPadding
-       * 当键盘弹起的时候，给scroll-content增加一个padding-bottom，
-       * 这样的话，输入内容的input能展示到显示位置
-       * DOM WRITE
-       * Adds padding to the bottom of the scroll element when the keyboard is open
-       * so content below the keyboard can be scrolled into view.
-       * @param {number} newPadding
-       * */
-      addScrollPadding(newPadding){
-        const _this = this;
-        // //console.debug('addScrollPadding');
-
-        _this.scrollPadding = newPadding;
-        if (_this.scrollContent) {
-          _this.scrollContent.style.paddingBottom = (newPadding > 0) ? (newPadding + 'px' ) : (_this.originalScrollPadding + 'px');
-        }
-      },
-
-      /**
-       * 当focusOut的时候（键盘收起），恢复paddingBottom
-       * */
-      clearScrollPaddingFocusOut(){
-        const _this = this;
-        // //console.debug('clearScrollPaddingFocusOut');
-        const SCROLL_TRANSITION_TIME = _this.$config.scrollTransitionTime;
-        const KEYBOARD_HEIGHT = _this.$config.keyboardHeight;
-        if (!_this.isInputting) {
-          _this.isInputting = true;
-
-          // TODO: 这部分为伪代码，标识监听壳子的键盘关闭事件
-          // _this.$eventBus.$on('$keyboardClose', function () {
-          _this.isInputting = false;
-          _this.scrollPadding = _this.originalScrollPadding;
-
-          var y_bottom = this.scrollContent.scrollHeight - this.scrollContent.clientHeight;
-          var y_current = _this.scrollContent.scrollTop - KEYBOARD_HEIGHT;
-          _this.scrollTo(0, Math.min(y_bottom, y_current), SCROLL_TRANSITION_TIME);
-          setTimeout(function () {
-            _this.addScrollPadding(0);
-          }, SCROLL_TRANSITION_TIME);
-
-        }
-      },
-
-      // 键盘相关的
-      keyBoardOpen(){
-        const _this = this;
-        let _padding = _this.$config.keyboardHeight;
-        _this.addScrollPadding(_padding);
-        // scroll
-        _this.scrollTo(0, (_this.scrollContent.scrollTop + _padding));
-      },
-
-      keyBoardClose(){
-        this.clearScrollPaddingFocusOut();
       },
 
     },
@@ -458,9 +406,9 @@
     mounted() {
       // 将挂载点同步到根this上
       const _this = this;
-      // 找到fixedContent/scrollContent的位置
-      _this.fixedContent = _this.$el.children[0];
-      _this.scrollContent = _this.$el.children[1];
+      // 找到fixedElement/scrollElement的位置
+      _this.fixedElement = _this.$refs.fixedElement;
+      _this.scrollElement = _this.$refs.scrollElement;
 
       /**
        * 计算并设置当前Content的位置及尺寸
@@ -471,7 +419,7 @@
       // _this.initIscroll();
 
       // scroll-content的scroll, 滚动时ionScroll事件，另外两个：ionScrollStart/ionScrollEnd
-      _this.scrollContent.addEventListener('scroll', function (event) {
+      _this.scrollElement.addEventListener('scroll', function (event) {
         if (!_this.isScrolling) {
           // scroll start
           _this.$emit('ionScrollStart', event);
@@ -498,8 +446,11 @@
         _this.$vnode.context.$content = {
           '_href': window.location.href,
           '_this': _this,
-          'fixedContent': _this.fixedContent,
-          'scrollContent': _this.scrollContent,
+          'fixedElement': _this.fixedElement,
+          'scrollElement': _this.scrollElement,
+          'headerElement': _this.headerElement,
+          'footerElement': _this.footerElement,
+
           'contentDimensions': _this.contentDimensions,
           'getContentDimensions': _this.getContentDimensions,
           'getScrollDimensions': _this.getScrollDimensions,
@@ -507,8 +458,6 @@
           'scrollTo': _this.scrollTo,
           'scrollToTop': _this.scrollToTop,
           'scrollToBottom': _this.scrollToBottom,
-          'keyBoardOpen': _this.keyBoardOpen,
-          'keyBoardClose': _this.keyBoardClose,
         };
       }
 

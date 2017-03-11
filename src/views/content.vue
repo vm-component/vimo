@@ -36,11 +36,10 @@
       <Button type="block" @click="scrollToTop()">返回顶部</Button>
 
       {{contentDimensions}}
-
-
       <Button type="block" @click="refreshContentDimensions()">点击更新Content尺寸</Button>
 
-
+      {{scrollDimensions}}
+      <Button slot="fixedTop" type="block" @click="refreshScrollDimensions()">点击更新Scroll尺寸</Button>
     </Content>
 
     <Footer>
@@ -62,6 +61,7 @@
 
 
         contentDimensions:null,
+        scrollDimensions:null,
       }
     },
     watch: {},
@@ -80,6 +80,9 @@
 
       refreshContentDimensions(){
         this.contentDimensions = this.$content.getContentDimensions()
+      },
+      refreshScrollDimensions(){
+        this.scrollDimensions = this.$content.getScrollDimensions()
       }
     },
     created: function () {
@@ -90,12 +93,8 @@
       console.info(this);
       const _this = this;
 
-      // _this.$nextTick(function () {
-      //   _this.refreshContentDimensions();
-      // })
-
-
       this.refreshContentDimensions();
+      this.refreshScrollDimensions();
 
     },
     activated: function () {
