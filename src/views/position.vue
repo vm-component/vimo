@@ -6,9 +6,9 @@
       </Navbar>
     </Header>
     <Content padding>
-      <Button @click="getByAli()" color="primary">ali</Button>
-      <Button @click="getByQQ()" color="primary">QQ</Button>
-      <Button @click="getByBaidu()" color="primary">baidu</Button>
+      <div v-for="bi in btn">
+        <Button @click="getPosition(bi.name)" v-bind:color="bi.color">{{bi.name}}</Button>
+      </div>
       <Grid>
         <Row>
           <Column col-4>type</Column>
@@ -44,36 +44,34 @@
   export default{
     data(){
       return {
+        btn:[
+          {
+            name:'ali',
+            color:'primary'
+          },{
+            name:'qq',
+            color:'primary'
+          },{
+            name:'baidu',
+            color:'primary'
+          }
+        ],
         type:'',
         lat:'',
         lng:''
       }
     },
     methods: {
-      getByAli: function () {
-        let _this = this;
-
-        this.$geolocation.getCurrentPosition("ali").then(function(pos){
-          console.log(pos);
-          _this.type = pos.maptype;
-          _this.lat = pos.lat;
-          _this.lng = pos.lng
+      getPosition(type){
+       let p =  this.btn.forEach(function(e,i){
+          e.color = "primary"
+          if(e.name===type) e.color="secondary";
         });
+        this.getFromGeo(type);
       },
-      getByQQ: function () {
-        let _this = this;
-        this.$geolocation.getCurrentPosition("qq").then(function(pos){
-          console.log(pos);
-          _this.type = pos.maptype;
-          _this.lat = pos.lat;
-          _this.lng = pos.lng
-        });
-      },
-      getByBaidu: function () {
-        let _this = this;
-        console.log(this.type)
-        this.$geolocation.getCurrentPosition("baidu").then(function(pos){
-          console.log(pos);
+      getFromGeo(type){
+       var _this = this;
+       this.$geolocation.getCurrentPosition(type).then(function(pos){
           _this.type = pos.maptype;
           _this.lat = pos.lat;
           _this.lng = pos.lng
