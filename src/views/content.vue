@@ -7,12 +7,10 @@
     </Header>
 
     <Content :fullscreen="fullscreenVal" padding>
-      <!--<h3 slot="fixed">normal组件：</h3>-->
-      <!--<h3 slot="fixedTop">fixTop组件：</h3>-->
-      <!--<h3 slot="fixedBottom">fixBottom组件：</h3>-->
+      <!--<h3 slot="fixedTop" text-center>这里插播一条广告</h3>-->
+      <!--<h3 slot="fixedBottom" text-center>可以把我当成歌词</h3>-->
 
-      <p>
-        业务部分的页面内容就是在此完成的，除去Header部分到最下面都欧式content的内容
+      <p>Vimo的页面结构分为三明治结构的, Content就在中间, 业务部分的页面内容就是在此完成的，除去Header部分到最下面都是content的内容.
       </p>
 
       <p>
@@ -37,6 +35,11 @@
 
       <Button type="block" @click="scrollToTop()">返回顶部</Button>
 
+      {{contentDimensions}}
+      <Button type="block" @click="refreshContentDimensions()">点击更新Content尺寸</Button>
+
+      {{scrollDimensions}}
+      <Button slot="fixedTop" type="block" @click="refreshScrollDimensions()">点击更新Scroll尺寸</Button>
     </Content>
 
     <Footer>
@@ -54,7 +57,11 @@
   export default{
     data(){
       return {
-        fullscreenVal: false
+        fullscreenVal: false,
+
+
+        contentDimensions:null,
+        scrollDimensions:null,
       }
     },
     watch: {},
@@ -68,6 +75,14 @@
       },
       scrollToBottom: function () {
         this.$content.scrollToBottom();
+      },
+
+
+      refreshContentDimensions(){
+        this.contentDimensions = this.$content.getContentDimensions()
+      },
+      refreshScrollDimensions(){
+        this.scrollDimensions = this.$content.getScrollDimensions()
       }
     },
     created: function () {
@@ -76,7 +91,10 @@
     mounted: function () {
       console.info('content mounted this');
       console.info(this);
+      const _this = this;
 
+      this.refreshContentDimensions();
+      this.refreshScrollDimensions();
 
     },
     activated: function () {
