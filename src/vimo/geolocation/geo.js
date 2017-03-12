@@ -38,7 +38,7 @@ var ERROR_TYPE = {
 
 
 /*
-  @param type 类型  
+  @param type 类型
   @param posOptions 设置获取参数
 **/
 function getCurrentPosition() {
@@ -58,12 +58,13 @@ function getCurrentPosition() {
           break;
         default:
           try{
-            (isHttps)_H5Location(successFn,errorFn,posOptions);
+           _H5Location(successFn,errorFn,posOptions);
+            // (isHttps)_H5Location(successFn,errorFn,posOptions);
           }catch(err){
             console.error("h5位置获取必须是https协议模式");
           }
       }
-    
+
     function successFn(pos) {
       var position = {};
       if (pos.coords) {
@@ -252,7 +253,7 @@ function hasScript(src){
   }catch(err){
     return res;
   }
-  
+
 }
 
 exports.default = geo;

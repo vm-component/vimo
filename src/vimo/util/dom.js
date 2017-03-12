@@ -42,38 +42,6 @@ export const cancelRaf = win.cancelAnimationFrame.bind(win);
 export const nativeTimeout = win.setTimeout.bind(win);
 export const clearNativeTimeout = win.clearTimeout.bind(win);
 
-// /**
-//  * Run a function in an animation frame after waiting `framesToWait` frames.
-//  * 等待framesToWait个帧后执行动画函数
-//  *
-//  * @param framesToWait {number} how many frames to wait 等待数
-//  * @param callback {Function} the function call to defer 执行的函数
-//  * @return Function a function to call to cancel the wait 取消的函数
-//  */
-// export function rafFrames (framesToWait, callback) {
-//   framesToWait = Math.ceil(framesToWait);
-//   let rafId;
-//   let timeoutId;
-//
-//   if (framesToWait === 0) {
-//     callback();
-//
-//   } else if (framesToWait < 2) {
-//     rafId = nativeRaf(callback);
-//
-//   } else {
-//     timeoutId = nativeTimeout(() => {
-//       rafId = nativeRaf(callback);
-//     }, (framesToWait - 1) * 16.6667);
-//   }
-//
-//   return function () {
-//     clearNativeTimeout(timeoutId);
-//     cancelRaf(nativeRaf);
-//   };
-// }
-
-
 /**
  * 当前环境的可用CSS变量名称
  * 下方自动执行

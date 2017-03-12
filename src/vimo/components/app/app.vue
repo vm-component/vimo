@@ -1,7 +1,6 @@
 <template>
   <article class="ion-app" :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
     <!--app-root start-->
-    <!---->
     <section class="app-root">
       <slot></slot>
     </section>
@@ -26,14 +25,15 @@
 <script type="text/ecmascript-6">
   import Vue from 'vue';
   import { ClickBlock } from "../../util/click-block"
-  import { setElementClass } from '../../util/dom'
+  import { setElementClass ,nativeTimeout,clearNativeTimeout} from '../../util/dom'
+
+
   let _clickBlock = new ClickBlock();
 
   // click_blcok等待时间
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64;
   // 时间过后回复可点击状态
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700;
-
   const ACTIVE_SCROLLING_TIME = 100;
 
   export default{
@@ -140,8 +140,8 @@
       setDisableScroll (isScrollDisabled, duration = 0) {
         this.isScrollDisabled = isScrollDisabled;
         if (duration > 0 && isScrollDisabled) {
-          clearTimeout(this._scrollDisTime);
-          this._scrollDisTime = setTimeout(() => {
+          clearNativeTimeout(this._scrollDisTime);
+          this._scrollDisTime = nativeTimeout(() => {
             this.isScrollDisabled = false;
           }, duration)
         }

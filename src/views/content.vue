@@ -44,16 +44,16 @@
 
       <Button type="block" @click="scrollToTop()">返回顶部</Button>
 
-      {{contentDimensions}}
+      <p>{{contentDimensions}}</p>
       <Button type="block" @click="refreshContentDimensions()">点击更新Content尺寸</Button>
 
     </Content>
 
-    <Footer>
-      <Toolbar>
-        <Title>Footer</Title>
-      </Toolbar>
-    </Footer>
+    <!--<Footer>-->
+    <!--<Toolbar>-->
+    <!--<Title>Footer</Title>-->
+    <!--</Toolbar>-->
+    <!--</Footer>-->
 
 
   </Page>
@@ -82,21 +82,17 @@
       scrollToBottom () {
         this.$content.scrollToBottom();
       },
-
       refreshContentDimensions(){
-        this.contentDimensions = this.$content.getContentDimensions()
+        return this.contentDimensions = this.$content.getContentDimensions()
       },
-
     },
-    created () {
-
-    },
+    created () {},
     mounted () {
       console.info('content mounted this');
       console.info(this);
       const _this = this;
 
-      this.refreshContentDimensions();
+      _this.refreshContentDimensions();
 
       // this.$eventBus.$on('onScrollStart', function (ev) {
       //   console.debug('--------------')
@@ -104,12 +100,12 @@
       //   console.log('scrollTop:' + ev.scrollTop)
       //   console.log('directionY:' + ev.directionY)
       // })
-      // this.$eventBus.$on('onScroll', function (ev) {
-      //   console.debug('--------------')
-      //   console.debug('onScroll')
-      //   console.log('scrollTop:' + ev.scrollTop)
-      //   console.log('directionY:' + ev.directionY)
-      // })
+      this.$eventBus.$on('onScroll', function (ev) {
+        console.debug('--------------')
+        console.debug('onScroll')
+        console.log('scrollTop:' + ev.scrollTop)
+        console.log('directionY:' + ev.directionY)
+      })
       // this.$eventBus.$on('onScrollEnd', function (ev) {
       //   console.debug('--------------')
       //   console.debug('onScrollEnd')

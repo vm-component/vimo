@@ -48,10 +48,10 @@ export class ScrollView {
       directionY: 'down',
       directionX: null,
       contentElement: null, // HTMLElement
-      fixedElement: null, // HTMLElement
-      scrollElement: null, // HTMLElement
-      headerElement: null, // HTMLElement
-      footerElement: null, // HTMLElement
+      fixedElement: null,   // HTMLElement
+      scrollElement: null,  // HTMLElement
+      headerElement: null,  // HTMLElement
+      footerElement: null,  // HTMLElement
     };
   }
 
@@ -86,7 +86,7 @@ export class ScrollView {
 
     const self = this;
     const ev = self.ev;
-    const positions = []; //: number[]
+    const positions = []; // number[]
 
     /**
      * @param {UIEvent} scrollEvent

@@ -19,13 +19,8 @@ $img-placeholder-background:         #eee !default;
 }
 
 .ion-img img {
-  object-fit: cover;
-}
-
-.ion-img.img-unloaded img {
-  display: none;
-}
-
-.ion-img.img-loaded img {
   display: block;
+  object-fit: cover;
+  z-index: 1;
 }
+

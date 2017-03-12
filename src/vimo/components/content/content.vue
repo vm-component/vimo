@@ -99,17 +99,12 @@
         fixedElementStyle: {}, // 固定内容的位置样式
         scrollElementStyle: {}, // 滑动内容的位置样式
 
-        isScrolling: false, // 判断是否滚动
-
         scrollElement: null, // scrollConent的DOM句柄
         fixedElement: null, // fixedElement的DOM句柄
 
         headerElement: null, //Header组件的DOM句柄
         footerElement: null, //footer组件的DOM句柄
         tabsElement: null, //tabs组件的DOM句柄
-
-        // contentDimensions: null,
-        // scrollDimensions: null,
 
         // 第一次进入需要判断header和footer的高度,进而调整content组件的尺寸.
         // 但是, 设置了样式后需要在$nextTick中读取content尺寸才是正确的结果
@@ -132,15 +127,15 @@
         _pBottom: 0,  // padding bottom
 
         _imgs: [], // 子组件Img的实例列表
-        _imgReqBfr: 1400,
-        _imgRndBfr: 400,
-        _imgVelMax: 3,
+        _imgReqBfr: 0, // 1400
+        _imgRndBfr: 0, // 400
+        _imgVelMax: 0,
       }
     },
     computed: {
       modeClass(){
         return `content-${this.mode}`
-      }
+      },
     },
     watch: {
       // 当值改变是，重新设置
@@ -177,9 +172,7 @@
         // 改写 滚动中 的回调
         scroll.scroll = (ev) => {
           // remind the app that it's currently scrolling
-          // TODO: $app通知
           this.$app.setScrolling();
-
           this.$eventBus.$emit('onScroll', ev);
 
           // img更新
@@ -291,19 +284,6 @@
           this._cBottom += this._pBottom;
         }
 
-        // 计算Content组件的维度信息, 写入scrollEvent中
-        const contentDimensions = this.getContentDimensions();
-        scrollEvent.scrollHeight = contentDimensions.scrollHeight;
-        scrollEvent.scrollWidth = contentDimensions.scrollWidth;
-        scrollEvent.contentHeight = contentDimensions.contentHeight;
-        scrollEvent.contentWidth = contentDimensions.contentWidth;
-        scrollEvent.contentTop = contentDimensions.contentTop;
-        scrollEvent.contentBottom = contentDimensions.contentBottom;
-
-        // 初始化_scroll滚动对象
-        // this._scroll.init(this.scrollElement, this._cTop, this._cBottom);
-        this._scroll.init(this.scrollElement, scrollEvent.contentTop, scrollEvent.contentBottom);
-
         // 默认为fullscreen未开启状态, 使用margin属性
         let topProperty = 'marginTop';
         let bottomProperty = 'marginBottom';
@@ -334,6 +314,19 @@
         (scrollEle.style)[bottomProperty] = cssFormat(this._cBottom);
         fixedEle.style.marginBottom = cssFormat(fixedBottom);
 
+        // 计算Content组件的维度信息, 写入scrollEvent中
+        const contentDimensions = this.getContentDimensions();
+        scrollEvent.scrollHeight = contentDimensions.scrollHeight;
+        scrollEvent.scrollWidth = contentDimensions.scrollWidth;
+        scrollEvent.contentHeight = contentDimensions.contentHeight;
+        scrollEvent.contentWidth = contentDimensions.contentWidth;
+        scrollEvent.contentTop = contentDimensions.contentTop;
+        scrollEvent.contentBottom = contentDimensions.contentBottom;
+
+        // 初始化_scroll滚动对象
+        // this._scroll.init(this.scrollElement, this._cTop, this._cBottom);
+        this._scroll.init(this.scrollElement, scrollEvent.contentTop, scrollEvent.contentBottom);
+
         // initial imgs refresh
         this.imgsUpdate();
       },
@@ -359,8 +352,10 @@
       getContentDimensions(){
         const scrollEle = this.scrollElement;
         const parentElement = scrollEle.parentElement;
+
         return {
           contentHeight: parentElement.offsetHeight - this._cTop - this._cBottom,
+          contentHeight2: scrollEle.offsetHeight,
           contentTop: this._cTop,
           contentBottom: parentElement.offsetHeight - this._cBottom,
 
@@ -373,6 +368,7 @@
           scrollWidth: scrollEle.scrollWidth,
           scrollLeft: scrollEle.scrollLeft,
         };
+
       },
 
       /**
@@ -482,7 +478,10 @@
        */
       imgsUpdate(){
         if (this._scroll.initialized && this._imgs.length && this.isImgsUpdatable()) {
-          updateImgs(this._imgs, this.scrollTop, this.contentHeight, this.directionY, this._imgReqBfr, this._imgRndBfr);
+          let contentDimensions = this.getContentDimensions();
+          this.$nextTick(() => {
+            updateImgs(this._imgs, contentDimensions.scrollTop, contentDimensions.contentHeight, contentDimensions.directionY, this._imgReqBfr, this._imgRndBfr);
+          })
         }
       },
 
@@ -490,7 +489,7 @@
        * @private
        */
       isImgsUpdatable() {
-        // 当滚动不是太快的时候, Img组件更新才被允许, 这个速度由this._imgVelMax控制
+        // 当滚动不是太快的时候, Img组件更新才被允许, 这个速度由this.imgVelMax控制
         return Math.abs(this._scroll.ev.velocityY) < this._imgVelMax;
       }
 
@@ -499,7 +498,7 @@
       // 页面进入前完成非DOM操作部分
       this.statusbarPadding = this.$config.getBoolean('statusbarPadding', false);
       this._imgReqBfr = this.$config.getNumber('imgRequestBuffer', 1400);
-      this._imgRndBfr = this.$config.getNumber('imgRenderBuffer', 400);
+      this._imgRndBfr = this.$config.getNumber('imgRenderBuffer', 600);
       this._imgVelMax = this.$config.getNumber('imgVelocityMax', 3);
       this._scroll = new ScrollView();
       this._imgs = [];
@@ -507,9 +506,6 @@
     mounted() {
       // 初始化
       this.init();
-
-      // _this.initIscroll();
-
     }
   }
 
@@ -571,53 +567,48 @@
 
       if (scrollDirectionY === 'up') {
         // scrolling up
-        if (img.top < viewableBottom && img.bottom > viewableTop - renderableBuffer) {
-          // scrolling up, img is within viewable area
-          // or about to be viewable area
+        if (img.getTop() < viewableBottom && img.getBottom() > viewableTop - renderableBuffer) {
+          // 可视区向上移动, 图片在可是区域或者在可视区域的上面一点, 按照滚动方向即将要看到图片
           img.canRequest = img.canRender = true;
           priority1.push(img);
           continue;
         }
 
-        if (img.bottom <= viewableTop && img.bottom > viewableTop - requestableBuffer) {
-          // scrolling up, img is within requestable area
+        if (img.getBottom() <= viewableTop && img.getBottom() > viewableTop - requestableBuffer) {
+          // 可视区向上移动, 图片在可视区的上面, 还未进入, 但是需要提前发出图片请求
           img.canRequest = true;
           img.canRender = false;
           priority2.push(img);
           continue;
         }
 
-        if (img.top >= viewableBottom && img.top < viewableBottom + renderableBuffer) {
-          // scrolling up, img below viewable area
-          // but it's still within renderable area
-          // don't allow a reset
+        if (img.getTop() >= viewableBottom && img.getTop() < viewableBottom + renderableBuffer) {
+          // 可视区向上移动, 图片在可视区的下面, 所以按照这个方向移动, 是不会再看到图片,
+          // 但是图片还是可能在renderable area, 故不需要reset
           img.canRequest = img.canRender = false;
           continue;
         }
 
       } else {
         // scrolling down
-
-        if (img.bottom > viewableTop && img.top < viewableBottom + renderableBuffer) {
-          // scrolling down, img is within viewable area
-          // or about to be viewable area
+        if (img.getBottom() > viewableTop && img.getTop() < viewableBottom + renderableBuffer) {
+          // 可视区向下移动,  图片在可是区域或者在可视区域的下面一点, 按照滚动方向即将要看到图片
           img.canRequest = img.canRender = true;
           priority1.push(img);
           continue;
         }
 
-        if (img.top >= viewableBottom && img.top < viewableBottom + requestableBuffer) {
-          // scrolling down, img is within requestable area
+        if (img.getTop() >= viewableBottom && img.getTop() < viewableBottom + requestableBuffer) {
+          // 可视区向下移动, 图片在可视区的下面, 还未进入, 但是需要提前发出图片请求
           img.canRequest = true;
           img.canRender = false;
           priority2.push(img);
           continue;
         }
 
-        if (img.bottom <= viewableTop && img.bottom > viewableTop - renderableBuffer) {
-          // scrolling down, img above viewable area
-          // but it's still within renderable area
-          // don't allow a reset
+        if (img.getBottom() <= viewableTop && img.getBottom() > viewableTop - renderableBuffer) {
+          // 可视区向下移动, 图片在可视区的上面, 所以按照这个方向移动, 是不会再看到图片,
+          // 但是图片还是可能在renderable area, 故不需要reset
           img.canRequest = img.canRender = false;
           continue;
         }
