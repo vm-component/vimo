@@ -7,7 +7,7 @@
 const win = window;
 const doc = document.documentElement;
 let dimensionCache = {}; // any
-// RequestAnimationFrame Polyfill (Android 4.3 and below)
+// RequestAnimationFrame的兼容腻子(Android 4.3 and below)
 /*! @author Paul Irish */
 /*! @source https://gist.github.com/paulirish/1579671 */
 (function () {
@@ -34,68 +34,45 @@ let dimensionCache = {}; // any
   }
 })();
 
-// use native raf rather than the zone wrapped one ：使用当前环境原生的raf
-// const originalRaf = (win[win['Zone']['__symbol__']('requestAnimationFrame')] || win[win['Zone']['__symbol__']('webkitRequestAnimationFrame')]);
-// if the originalRaf from the Zone symbol is not available, we need to provide the polyfilled version
-// export const nativeRaf = originalRaf !== undefined ? originalRaf['bind'](win) : win.requestAnimationFrame.bind(win);
+// requestAnimationFrame/cancelAnimationFrame包装
 export const nativeRaf = win.requestAnimationFrame.bind(win);
-
-// zone wrapped raf
-export const raf = win.requestAnimationFrame.bind(win);
 export const cancelRaf = win.cancelAnimationFrame.bind(win);
 
-// export const nativeTimeout = win[win['Zone']['__symbol__']('setTimeout')]['bind'](win);
-// export const clearNativeTimeout = win[win['Zone']['__symbol__']('clearTimeout')]['bind'](win);
-
+// setTimeout/clearTimeout包装
 export const nativeTimeout = win.setTimeout.bind(win);
 export const clearNativeTimeout = win.clearTimeout.bind(win);
 
-/**
- * Run a function in an animation frame after waiting `framesToWait` frames.
- * 等待framesToWait个帧后执行动画函数
- *
- * @param framesToWait {number} how many frames to wait 等待数
- * @param callback {Function} the function call to defer 执行的函数
- * @return Function a function to call to cancel the wait 取消的函数
- */
-export function rafFrames (framesToWait, callback) {
-  framesToWait = Math.ceil(framesToWait);
-  let rafId;
-  let timeoutId;
+// /**
+//  * Run a function in an animation frame after waiting `framesToWait` frames.
+//  * 等待framesToWait个帧后执行动画函数
+//  *
+//  * @param framesToWait {number} how many frames to wait 等待数
+//  * @param callback {Function} the function call to defer 执行的函数
+//  * @return Function a function to call to cancel the wait 取消的函数
+//  */
+// export function rafFrames (framesToWait, callback) {
+//   framesToWait = Math.ceil(framesToWait);
+//   let rafId;
+//   let timeoutId;
+//
+//   if (framesToWait === 0) {
+//     callback();
+//
+//   } else if (framesToWait < 2) {
+//     rafId = nativeRaf(callback);
+//
+//   } else {
+//     timeoutId = nativeTimeout(() => {
+//       rafId = nativeRaf(callback);
+//     }, (framesToWait - 1) * 16.6667);
+//   }
+//
+//   return function () {
+//     clearNativeTimeout(timeoutId);
+//     cancelRaf(nativeRaf);
+//   };
+// }
 
-  if (framesToWait === 0) {
-    callback();
-
-  } else if (framesToWait < 2) {
-    rafId = nativeRaf(callback);
-
-  } else {
-    timeoutId = nativeTimeout(() => {
-      rafId = nativeRaf(callback);
-    }, (framesToWait - 1) * 16.6667);
-  }
-
-  return function () {
-    clearNativeTimeout(timeoutId);
-    cancelRaf(raf);
-  };
-}
-
-export function zoneRafFrames (framesToWait, callback) {
-  framesToWait = Math.ceil(framesToWait);
-
-  if (framesToWait === 0) {
-    callback();
-
-  } else if (framesToWait < 2) {
-    raf(callback);
-
-  } else {
-    setTimeout(() => {
-      raf(callback);
-    }, (framesToWait - 1) * 16.6667);
-  }
-}
 
 /**
  * 当前环境的可用CSS变量名称
@@ -246,50 +223,6 @@ export function _initEvent () {
   return _uiEvtOpts
 }
 
-
-//
-// /**
-//  * transitionEnd事件注册，绑定的函数触发后会自动解绑
-//  * @param {HTMLElement} el 绑定的元素
-//  * @return {Promise}
-//  * */
-// export function transitionEndPromise (el) {
-//   alert('替换这部分: transitionEndPromise')
-//   let callback = null;
-//   let promise = new Promise(resolve => { callback = resolve; }); //Promise;
-//
-//   if (el) {
-//     CSS.transitionEnd.split(' ').forEach(eventName => {
-//       el.addEventListener(eventName, onEvent);
-//     });
-//   }
-//
-//   function unregister () {
-//     CSS.transitionEnd.split(' ').forEach(eventName => {
-//       el.removeEventListener(eventName, onEvent);
-//     });
-//   }
-//
-//   /**
-//    * @param {UIEvent} ev
-//    * */
-//   function onEvent (ev) {
-//     if (el === ev.target) {
-//       // auto unregister
-//       // 等待一下, 等待transition真正结束
-//       nativeTimeout(function () {
-//         unregister();
-//         callback(ev);
-//       },16*8);
-//
-//     } else {
-//       alert('未捕捉到transitionEnd事件, 请检查传入的el对象是否和触发事件的对象一致!')
-//     }
-//   }
-//
-//   return promise;
-// }
-
 /**
  * urlChange注册，绑定的函数触发后会自动解绑
  * @param {function} callback
@@ -350,13 +283,11 @@ export function ready (callback) {
 }
 
 /**
- * 获取event事件对象中的点击位置
- * @param {any} ev
+ * 根据click或者touch的事件对象, 获取event事件对象中的点击位置(坐标xy值)
+ * @param {any} ev - 事件对象
  * @return  {PointerCoordinates} - 坐标
  * */
 export function pointerCoord (ev) {
-  // get coordinates for either a mouse click
-  // or a touch depending on the given event
   if (ev) {
     var changedTouches = ev.changedTouches;
     if (changedTouches && changedTouches.length > 0) {
@@ -537,31 +468,30 @@ export function setElementClass (ele, className, add) {
   } else {
     _removeClass(ele, className)
   }
-}
 
-/**
- * 元素的class操作
- * */
-function _hasClass (obj, cls) {
-  return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
-}
-
-function _addClass (obj, cls) {
-  if (!_hasClass(obj, cls)) {
-    obj.className += " " + cls;
+  /**
+   * 元素的class操作
+   * */
+  function _hasClass (obj, cls) {
+    return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
   }
-}
 
-function _removeClass (obj, cls) {
-  if (_hasClass(obj, cls)) {
-    var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
-    obj.className = obj.className.replace(reg, ' ').trim();
+  function _addClass (obj, cls) {
+    if (!_hasClass(obj, cls)) {
+      obj.className += " " + cls;
+    }
   }
+
+  function _removeClass (obj, cls) {
+    if (_hasClass(obj, cls)) {
+      var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+      obj.className = obj.className.replace(reg, ' ').trim();
+    }
+  }
+
 }
 
-// private _setElementClass(className: string, add: boolean) {
-//   this.renderer.setElementClass(this.elementRef.nativeElement, className, add);
-// }
+
 
 export function getStyle (element, styleName) {
   if (!element || !styleName) return null;

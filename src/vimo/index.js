@@ -33,17 +33,12 @@ console.timeEnd("Platform初始化时间");
 export const initVimo = function (Vue) {
 
   // 日志服务
-<<<<<<< HEAD
- Vue.use(log,{
-    isDev:true, // 开发模式,
-    needLogPage:true, // 打开日志界面
-  })
-=======
+
   // Vue.use(log,{
   //   isDev:true, // 开发模式,
   //   needLogPage:true, // 打开日志界面
   // })
->>>>>>> eab91ffe008c46dc795d4cceee6d78cc2337983d
+
 
   console.time("Component引用时间");
   let component = require('./components')

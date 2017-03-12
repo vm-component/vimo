@@ -131,13 +131,13 @@
     methods: {
       // 过渡钩子
       _beforeEnter (el) {
-        this.$setEnabled(false, 300);
+        this.$app.setEnabled(false, 300);
       },
       _afterEnter (el) {
         this.presentCallback(el);
       },
       _beforeLeave(){
-        this.$setEnabled(false, 300);
+        this.$app.setEnabled(false, 300);
       },
       _afterLeave (el) {
         this.$eventBus.$emit('onMenuClosed',this.id);

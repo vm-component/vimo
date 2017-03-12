@@ -178,7 +178,7 @@
         scroll.scroll = (ev) => {
           // remind the app that it's currently scrolling
           // TODO: $app通知
-          // this.$app.setScrolling();
+          this.$app.setScrolling();
 
           this.$eventBus.$emit('onScroll', ev);
 
@@ -301,7 +301,8 @@
         scrollEvent.contentBottom = contentDimensions.contentBottom;
 
         // 初始化_scroll滚动对象
-        this._scroll.init(this.scrollElement, this._cTop, this._cBottom);
+        // this._scroll.init(this.scrollElement, this._cTop, this._cBottom);
+        this._scroll.init(this.scrollElement, scrollEvent.contentTop, scrollEvent.contentBottom);
 
         // 默认为fullscreen未开启状态, 使用margin属性
         let topProperty = 'marginTop';
@@ -340,6 +341,20 @@
       /**
        * 计算content的dimensions，以下都是固有属性，只读！
        * @return {object} contentDimensions纬度尺寸
+       * Returns the content and scroll elements' dimensions.
+       * @returns {object} dimensions       content and scroll elements' dimensions
+       * {number} dimensions.contentHeight  content offsetHeight            content自身高度
+       * {number} dimensions.contentTop     content offsetTop               content到窗体顶部的距离
+       * {number} dimensions.contentBottom  content offsetTop+offsetHeight  content底部到窗体顶部的的距离
+       * {number} dimensions.contentWidth   content offsetWidth
+       * {number} dimensions.contentLeft    content offsetLeft
+       * {number} dimensions.contentRight   content offsetLeft + offsetWidth
+       * {number} dimensions.scrollHeight   scroll scrollHeight
+       * {number} dimensions.scrollTop      scroll scrollTop
+       * {number} dimensions.scrollBottom   scroll scrollTop + scrollHeight
+       * {number} dimensions.scrollWidth    scroll scrollWidth
+       * {number} dimensions.scrollLeft     scroll scrollLeft
+       * {number} dimensions.scrollRight    scroll scrollLeft + scrollWidth
        * */
       getContentDimensions(){
         const scrollEle = this.scrollElement;
@@ -347,7 +362,7 @@
         return {
           contentHeight: parentElement.offsetHeight - this._cTop - this._cBottom,
           contentTop: this._cTop,
-          contentBottom: this._cBottom,
+          contentBottom: parentElement.offsetHeight - this._cBottom,
 
           contentWidth: parentElement.offsetWidth,
           contentLeft: parentElement.offsetLeft,
@@ -382,22 +397,24 @@
 
       /**
        * 滚动到顶部
-       * @param {Number} duration - Duration of the scroll animation in milliseconds.
-       * Defaults to 300
-       * @return Returns a promise which is resolved when the scroll has completed.
+       * @param {Number} duration - 滚动动画的时间, 默认是300ms
+       * @return {promise} 当滚动动画完毕后返回promise
        */
       scrollToTop(duration = 300) {
         console.debug(`content, scrollToTop, duration: ${duration}`);
+        // 页面防止点击
+        this.$app.setDisableScroll(true, 320);
         return this._scroll.scrollToTop(duration);
       },
       /**
        * 滚动到底部
-       * @param {Number} duration - Duration of the scroll animation in milliseconds.
-       * Defaults to 300
-       * @return Returns a promise which is resolved when the scroll has completed.
+       * @param {Number} duration - 滚动动画的时间, 默认是300ms
+       * @return {promise} 当滚动动画完毕后返回promise
        */
       scrollToBottom(duration = 300) {
         console.debug(`content, scrollToBottom, duration: ${duration}`);
+        // 页面防止点击
+        this.$app.setDisableScroll(true, 320);
         return this._scroll.scrollToBottom(duration);
       },
 

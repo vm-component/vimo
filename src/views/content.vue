@@ -76,10 +76,10 @@
       setTitle(val){
         this.$nav.setTitle(val)
       },
-      scrollToTop: function () {
+      scrollToTop () {
         this.$content.scrollToTop();
       },
-      scrollToBottom: function () {
+      scrollToBottom () {
         this.$content.scrollToBottom();
       },
 
@@ -88,10 +88,10 @@
       },
 
     },
-    created: function () {
+    created () {
 
     },
-    mounted: function () {
+    mounted () {
       console.info('content mounted this');
       console.info(this);
       const _this = this;
@@ -118,7 +118,7 @@
       // })
 
     },
-    activated: function () {
+    activated () {
     },
     components: {}
   }
