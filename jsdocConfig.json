@@ -1,6 +1,7 @@
 {
   "tags": {
-    "allowUnknownTags": true
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc","closure"]
   },
   "opts": {
     "destination": "./docs",
@@ -13,7 +14,15 @@
   "source": {
     "include": [
       "README.md",
-      "./src/vimo/components/content"
+      "./src/vimo/components",
+      "./src/vimo/config",
+      "./src/vimo/geolocation",
+      "./src/vimo/log",
+      "./src/vimo/platform",
+      "./src/vimo/storage",
+      "./src/vimo/util",
+      "./src/vimo/index.js"
+
     ],
     "exclude":["gulpfile.js"],
     "includePattern": ".+\\.js(doc|x)?$|.+\\.vue$",

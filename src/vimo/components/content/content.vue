@@ -41,51 +41,48 @@
    * */
 
   /**
-   * @typedef {Object} ScrollEvent    - 滚动事件返回的滚动对象
-   * @property {number} timeStamp     - 滚动事件
-   * @property {number} scrollTop     -
-   * @property {number} scrollLeft     -
-   * @property {number} scrollHeight     -
-   * @property {number} scrollWidth     -
-   * @property {number} contentHeight     -
-   * @property {number} contentWidth     -
-   * @property {number} contentTop     -
-   * @property {number} contentBottom     -
-   * @property {number} startY     -
-   * @property {number} startX     -
-   * @property {number} deltaY     -
-   * @property {number} deltaX     -
-   * @property {number} velocityY     -
-   * @property {number} velocityX     -
-   * @property {number} [directionY=down]     -
-   * @property {number} directionX     -
-   * @property {HTMLElement} contentElement     -
+   * @typedef {Object} ScrollEvent            - 滚动事件返回的滚动对象
+   * @property {number} timeStamp             - 滚动事件
+   * @property {number} scrollTop             -
+   * @property {number} scrollLeft            -
+   * @property {number} scrollHeight          -
+   * @property {number} scrollWidth           -
+   * @property {number} contentHeight         -
+   * @property {number} contentWidth          -
+   * @property {number} contentTop            -
+   * @property {number} contentBottom         -
+   * @property {number} startY                -
+   * @property {number} startX                -
+   * @property {number} deltaY                -
+   * @property {number} deltaX                -
+   * @property {number} velocityY             -
+   * @property {number} velocityX             -
+   * @property {number} directionY            -
+   * @property {number} directionX            -
+   * @property {HTMLElement} contentElement   -
    * @property {HTMLElement} fixedElement     -
-   * @property {HTMLElement} scrollElement     -
-   * @property {HTMLElement} scrollElement     -
-   * @property {HTMLElement} headerElement     -
-   * @property {HTMLElement} footerElement     -
+   * @property {HTMLElement} scrollElement    -
+   * @property {HTMLElement} scrollElement    -
+   * @property {HTMLElement} headerElement    -
+   * @property {HTMLElement} footerElement    -
    * */
 
   /**
    * @event onScroll
-   * @type {object}
    * @description 正在滚动时触发的全局事件
-   * @property {object} ev - 滚动事件对象
+   * @property {ScrollEvent} ev - 滚动事件对象
    * */
 
   /**
    * @event onScrollStart
-   * @type {object}
    * @description 滚动开始时触发的全局事件
-   * @property {object} ev - 滚动事件对象
+   * @property {ScrollEvent} ev - 滚动事件对象
    * */
 
   /**
    * @event onScrollEnd
-   * @type {object}
    * @description 滚动结束时触发的全局事件
-   * @property {object} ev - 滚动事件对象
+   * @property {ScrollEvent} ev - 滚动事件对象
    * */
 
   /**
@@ -103,6 +100,7 @@
    * Content组件中也可以加入下拉刷新和上拉加载的功能[目前正在开发].
    *
    *
+   *
    * ##### Slots:
    *  Name | Description
    * ------------- | -------------
@@ -110,13 +108,15 @@
    * fixedTop       | 固定到顶部
    * fixedBottom    | 固定到底部
    *
-   * @property {boolean} [false] fullscreen - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
-   * @property {string} [ios] mode - 样式模式
+   * @property {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
+   * @property {string} [mode=ios]  - 样式模式
    *
    *
    * @fires onScroll
    * @fires onScrollStart
    * @fires onScrollEnd
+   *
+   *
    *
    * @example
    * <template>
@@ -346,10 +346,14 @@
             this.headerElement = scrollEvent.headerElement = ele;
             computedStyle = getComputedStyle(this.headerElement);
             this.headerBarHeight = parsePxUnit(computedStyle.height);
+            console.debug('this.headerBarHeight')
+            console.debug(computedStyle.height)
           } else if (tagName === 'footer') {
             this.footerElement = scrollEvent.footerElement = ele;
             computedStyle = getComputedStyle(this.footerElement);
             this.footerBarHeight = parsePxUnit(computedStyle.height);
+            console.debug('this.footerBarHeight')
+            console.debug(computedStyle.height)
           }
         });
 
@@ -597,6 +601,8 @@
     mounted() {
       // 初始化
       this.init();
+
+      console.log('content mounted')
     }
   }
 

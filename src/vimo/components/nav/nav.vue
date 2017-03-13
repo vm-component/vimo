@@ -1,6 +1,6 @@
 <template>
   <nav class="ion-nav"
-       :class="[menuClass,{'menu-content-open':isMenuOpen}]"
+       :class="[menuContentClass,menuContentTypeClass,{'menu-content-open':isMenuOpen}]"
        :style="menuStyleObj">
     <div nav-viewport></div>
     <slot></slot>
@@ -34,10 +34,13 @@
         },
 
         isMenuOpen: false, // ion-menu开启
-        menuId: '', // menuId
-        // menuType: '', // "overlay", "reveal", "push"  这里只处理 reveal/push
+        menuId: null, // menuId
+        menuType: '', // "overlay", "reveal", "push"  这里只处理 reveal/push
         menuSide: 'left', // 方向
-        menuClass: '',
+        menuContentClass: null,
+        menuContentTypeClass: null,
+
+        transform: !!VM && !!VM.platform && !!VM.platform.css ? VM.platform.css.transform : 'webkitTransform',
       }
     },
     methods: {
@@ -58,11 +61,12 @@
        * 设置Menu的信息
        * */
       setMenuInfo(menuId){
-        if(!!menuId){
+        if (!!menuId) {
           this.menuId = menuId;
           this.menuSide = this.$menu.menuIns[menuId].side;
           this.menuType = this.$menu.menuIns[menuId].type;
-          this.menuClass = `menu-content menu-content-${this.menuType}`
+          this.menuContentClass = `menu-content`;
+          this.menuContentTypeClass = `menu-content-${this.menuType}`;
         }
       },
 
@@ -74,7 +78,6 @@
         const _this = this;
         // 监听menu的组件事件
         _this.$eventBus.$on('onMenuOpen', function (menuId) {
-          // console.debug('$on onMenuOpen-' + menuId)
           _this.setMenuInfo(menuId);
           _this.isMenuOpen = true;
 
@@ -82,28 +85,28 @@
           // 大于340px的屏幕开口度为304px
           if (this.$platform.width() > 340) {
             _translateX = 304;
-          }else{
+          } else {
             _translateX = 264;
           }
 
           if (_this.menuType === 'reveal' || _this.menuType === 'push') {
             if (_this.menuSide === 'left') {
-              _this.menuStyleObj['transform'] = `translateX(${_translateX}px)`;
+              _this.menuStyleObj[_this.transform] = `translateX(${_translateX}px)`;
             } else {
-              _this.menuStyleObj['transform'] = `translateX(-${_translateX}px)`;
+              _this.menuStyleObj[_this.transform] = `translateX(-${_translateX}px)`;
             }
           }
 
         });
+
         _this.$eventBus.$on('onMenuClosing', function (menuId) {
-          // console.debug('$on onMenuClosing-' + menuId);
           _this.isMenuOpen = false;
           if (_this.menuType === 'reveal' || _this.menuType === 'push') {
-            _this.menuStyleObj['transform'] = 'translateX(0)';
+            _this.menuStyleObj[_this.transform] = 'translateX(0)';
           }
         });
-        _this.$eventBus.$on('onMenuClosed', function (menuId) {
-          // console.debug('$on onMenuClosed-' + menuId)
+        _this.$eventBus.$on('onMenuClosed', function () {
+          _this.menuContentTypeClass = null;
         });
       }
     },

@@ -1,7 +1,7 @@
 <template>
   <App id="app">
     <!--menu menu-->
-    <Menu id="menu" side="left" type="reveal">
+    <Menu id="menu" side="left" type="push">
       <!--<Menu [content]="content" id="menu1">-->
       <Page>
         <Header>
@@ -29,8 +29,6 @@
               </Item>
             </ItemGroup>
           </List>
-
-
           <Button @click="openOtherOne">开启另一个</Button>
         </Content>
       </Page>

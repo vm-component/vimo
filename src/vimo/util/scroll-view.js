@@ -1,3 +1,5 @@
+/** @module util/scroll-view */
+
 import { assert } from './util';
 import { pointerCoord, nativeRaf, cancelRaf, registerListener } from './dom';
 

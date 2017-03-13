@@ -1,6 +1,10 @@
 /**
  * Created by Hsiang on 2017/2/8.
  */
+
+/** @module util/util */
+
+
 // TODO：关联到debug模式
 const ASSERT_ENABLED = true; // 是否能使用断言，可以关联到debug模式
 

@@ -1,5 +1,6 @@
 <template>
   <div class="ion-menu"
+       :id="id"
        :type="type"
        :side="side"
        :class="{'show-menu':showMenu}">
@@ -14,7 +15,7 @@
       v-on:after-enter="_afterEnter"
       v-on:before-leave="_beforeLeave"
       v-on:after-leave="_afterLeave">
-      <div class="menu-inner" v-show="isOpen">
+      <div class="menu-inner" v-if="isOpen">
         <slot></slot>
       </div>
     </transition>
