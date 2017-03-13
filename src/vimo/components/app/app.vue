@@ -25,8 +25,7 @@
 <script type="text/ecmascript-6">
   import Vue from 'vue';
   import { ClickBlock } from "../../util/click-block"
-  import { setElementClass ,nativeTimeout,clearNativeTimeout} from '../../util/dom'
-
+  import { setElementClass, nativeTimeout, clearNativeTimeout } from '../../util/dom'
 
   let _clickBlock = new ClickBlock();
 
@@ -42,11 +41,12 @@
       return {
         isScrollDisabled: false, // 控制页面是否能滚动
         isClickBlockEnabled: false, // 控制是否激活 '冷冻'效果 click-block-enabled
+        title: null, // 当前的App的title
 
         _disTime: 0, // 禁用计时
         _scrollTime: 0, // 滚动计时
-
         _scrollDisTime: 0,
+
       }
     },
     props: {
@@ -79,15 +79,36 @@
     methods: {
 
       /**
-       * 设置document.title的值
+       * 设置App的title
        * @param {string} val  Value to set the document title to.
        */
       setTitle(val){
-        // TODO: 设置document.title的值
-        // if (val !== this._title) {
-        //   this._title = val;
-        //   this._titleSrv.setTitle(val);
-        // }
+        this.title = val;
+        this.setDocTitle(val)
+      },
+
+      /**
+       * @private
+       * 设置document.title的值
+       * */
+      setDocTitle(val){
+        //以下代码可以解决以上问题，不依赖jq
+        let _docTitle = document.title;
+        if (val !== _docTitle) {
+          //利用iframe的onload事件刷新页面
+          document.title = val;
+          let iframe = document.createElement('iframe');
+          iframe.src = '/static/favicon.ico';
+          iframe.style.visibility = 'hidden';
+          iframe.style.width = '1px';
+          iframe.style.height = '1px';
+          iframe.onload = function () {
+            setTimeout(function () {
+              document.body.removeChild(iframe);
+            }, 0);
+          };
+          document.body.appendChild(iframe);
+        }
       },
 
       /**
@@ -205,10 +226,10 @@
 <style lang="scss">
   @import './app.scss';
   @import './app.ios.scss';
-  /*@import './app.md.scss';*/
-  /*@import './app.wp.scss';*/
+  @import './app.md.scss';
+  @import './app.wp.scss';
   @import './cordova.scss';
   @import './cordova.ios.scss';
-  /*@import './cordova.md.scss';*/
-  /*@import './cordova.wp.scss';*/
+  @import './cordova.md.scss';
+  @import './cordova.wp.scss';
 </style>
