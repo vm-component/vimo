@@ -198,6 +198,7 @@
 
       console.assert(!!_clickBlock, '_clickBlock实例不存在, 请检查!');
       this.isClickBlockEnabled = true;
+
     }
   }
 </script>

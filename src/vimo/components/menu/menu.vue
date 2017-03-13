@@ -190,6 +190,10 @@
     created(){
       // 记录当前实例
       recordMenuInstance(this);
+    },
+    mounted(){
+      console.log('menu this')
+      console.log(this)
     }
   }
 </script>
