@@ -24,75 +24,114 @@
 </template>
 
 <script type="text/ecmascript-6">
-  // /**
-  //  * @name Content组件
-  //  * @module components/Content
-  //  * @description
-  //  *
-  //  * 页面基础布局分为Header/Content/Footer, 而Content组件则是中间业务内容的位置,
-  //  * Content内容为可滚动内容, 当然, 设置slot=fixed可以固定在页面, 详细请参考下方API.
-  //  * 需要注意的是, 一个页面(Page)中只能有一个Content组件, 切记.
-  //  *
-  //  * 对于内容超出页面高度的情况, 将使用css的特性: "overflow-y:scorll; -webkit-overflow-scrolling: touch;"处理, 如果需要的滚动更为顺畅, 请使用Scroll组件, 它是iScroll的包装.
-  //  *
-  //  * 此外, 设置slot="pullToRefresh"可以引入Refresher组件
-  //  *
-  //  *
-  //  * @param {Boolean=} fullscreen - 是否全屏显示的控制, 如果为true, 则content的上下将延伸到Header和Footer的下面
-  //  * @param {String=} mode - 样式模式
-  //  *
-  //  *
-  //  * */
-
-
   /**
-   * @name Content组件
-   * @module Components/Content
-   * @description
-   *
-   * 页面基础布局分为Header/Content/Footer, 而Content组件则是中间业务内容的位置,
-   * Content内容为可滚动内容, 当然, 设置slot=fixed可以固定在页面, 详细请参考下方API.
-   * 需要注意的是, 一个页面(Page)中只能有一个Content组件, 切记.
-   *
-   * 对于内容超出页面高度的情况, 将使用css的特性: "overflow-y:scorll; -webkit-overflow-scrolling: touch;"处理, 如果需要的滚动更为顺畅, 请使用Scroll组件, 它是iScroll的包装.
-   *
-   * ## 二级标题
-   * ## 二级标题
-   * 此外, 设置slot="pullToRefresh"可以引入Refresher组件.
-   * 此外, 设置slot="pullToRefresh"可以引入Refresher组件.
-   * 此外, 设置slot="pullToRefresh"可以引入Refresher组件.
-   *
-   *
-   *
-   *
-   *
-   * @property {Boolean=} fullscreen - 是否全屏显示的控制, 如果为true, 则content的上下将延伸到Header和Footer的下面
-   * @property {String=} mode - 样式模式
-   *
-   * @example
-   * // returns 2
-   * globalNS.method1(5, 10);
-   * @example
-   * // returns 3
-   * globalNS.method(5, 15);
-   * @example
-
-   * // returns 3
-   * globalNS.method(5, 15);
-
-   * @returns {Number} Returns the value of x for the equation.
-   *
-   * @listens onChange - 监听onChange事件, 事件有$eventBus传递, 参数为:
-   *
-   *
-   *
-   * @see {@link foo} for further information.
-   * @see {@link http://github.com|GitHub}
-   *
-   *
+   * @typedef {Object} ContentDimension   - Content组件的维度尺寸信息
+   * @property {number} contentHeight     - content offsetHeight,           content自身高度
+   * @property {number} contentTop        - content offsetTop,               content到窗体顶部的距离
+   * @property {number} contentBottom     - content offsetTop+offsetHeight,  content底部到窗体顶部的的距离
+   * @property {number} contentWidth      - content offsetWidth
+   * @property {number} contentLeft       - content contentLeft
+   * @property {number} contentRight      - content offsetLeft + offsetWidth
+   * @property {number} scrollHeight      - scroll scrollHeight
+   * @property {number} scrollTop         - scroll scrollTop
+   * @property {number} scrollBottom      - scroll scrollTop + scrollHeight
+   * @property {number} scrollWidth       - scroll scrollWidth
+   * @property {number} scrollLeft        - scroll scrollLeft
+   * @property {number} scrollRight       - scroll scrollLeft + scrollWidth
    * */
 
+  /**
+   * @typedef {Object} ScrollEvent    - 滚动事件返回的滚动对象
+   * @property {number} timeStamp     - 滚动事件
+   * @property {number} scrollTop     -
+   * @property {number} scrollLeft     -
+   * @property {number} scrollHeight     -
+   * @property {number} scrollWidth     -
+   * @property {number} contentHeight     -
+   * @property {number} contentWidth     -
+   * @property {number} contentTop     -
+   * @property {number} contentBottom     -
+   * @property {number} startY     -
+   * @property {number} startX     -
+   * @property {number} deltaY     -
+   * @property {number} deltaX     -
+   * @property {number} velocityY     -
+   * @property {number} velocityX     -
+   * @property {number} [directionY=down]     -
+   * @property {number} directionX     -
+   * @property {HTMLElement} contentElement     -
+   * @property {HTMLElement} fixedElement     -
+   * @property {HTMLElement} scrollElement     -
+   * @property {HTMLElement} scrollElement     -
+   * @property {HTMLElement} headerElement     -
+   * @property {HTMLElement} footerElement     -
+   * */
 
+  /**
+   * @event onScroll
+   * @type {object}
+   * @description 正在滚动时触发的全局事件
+   * @property {object} ev - 滚动事件对象
+   * */
+
+  /**
+   * @event onScrollStart
+   * @type {object}
+   * @description 滚动开始时触发的全局事件
+   * @property {object} ev - 滚动事件对象
+   * */
+
+  /**
+   * @event onScrollEnd
+   * @type {object}
+   * @description 滚动结束时触发的全局事件
+   * @property {object} ev - 滚动事件对象
+   * */
+
+  /**
+   * @module Content
+   * @description
+   *
+   * Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是"上中下三明治"结构,
+   * Content组件则是中间业务内容的位置.
+   *
+   * Content组件中书写的代码可以是滚动内容的内容, 也可以是固定在一面不随滚动的内容, 比如说当页的广告/刷新按钮/歌词等.
+   * 这个特性的的开启需要特殊命名slot才能激活.
+   *
+   * 此外需要注意的是, 一个页面(Page组件)中只能有一个Content组件, 这个是Vimo使用的规则!
+   *
+   * Content组件中也可以加入下拉刷新和上拉加载的功能[目前正在开发].
+   *
+   *
+   * ##### Slots:
+   *  Name | Description
+   * ------------- | -------------
+   * fixed          | 默认值, 固定到顶部
+   * fixedTop       | 固定到顶部
+   * fixedBottom    | 固定到底部
+   *
+   * @property {boolean} [false] fullscreen - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
+   * @property {string} [ios] mode - 样式模式
+   *
+   *
+   * @fires onScroll
+   * @fires onScrollStart
+   * @fires onScrollEnd
+   *
+   * @example
+   * <template>
+   *  <Page>
+   *    <Header>
+   *      <Navbar>
+   *        <Title>Demo</Title>
+   *      <Navbar>
+   *    </Header>
+   *    <Content>
+   *      <h1>这里是内容</h1>
+   *    </Content>
+   *  </Page>
+   * </template>
+   * */
   import { getStyle, setElementClass, transitionEnd } from '../../util/dom'
   import { getNum, removeArrayItem } from '../../util/util'
   // import iScroll from '../../util/iscroll'
@@ -196,6 +235,7 @@
     methods: {
 
       /**
+       * @private
        * DOM完毕后进行初始化
        * */
       init(){
@@ -270,6 +310,7 @@
       },
 
       /**
+       * @private
        * 重新计算Content组件的尺寸维度
        * 因为这部分受以下因素影响：statusbarPadding、fullscreen、Header，Footer
        * */
@@ -382,22 +423,10 @@
       },
 
       /**
-       * 计算content的dimensions，以下都是固有属性，只读！
-       * @return {object} contentDimensions纬度尺寸
+       * @function getContentDimensions
+       * @description
        * Returns the content and scroll elements' dimensions.
-       * @returns {object} dimensions       content and scroll elements' dimensions
-       * {number} dimensions.contentHeight  content offsetHeight            content自身高度
-       * {number} dimensions.contentTop     content offsetTop               content到窗体顶部的距离
-       * {number} dimensions.contentBottom  content offsetTop+offsetHeight  content底部到窗体顶部的的距离
-       * {number} dimensions.contentWidth   content offsetWidth
-       * {number} dimensions.contentLeft    content offsetLeft
-       * {number} dimensions.contentRight   content offsetLeft + offsetWidth
-       * {number} dimensions.scrollHeight   scroll scrollHeight
-       * {number} dimensions.scrollTop      scroll scrollTop
-       * {number} dimensions.scrollBottom   scroll scrollTop + scrollHeight
-       * {number} dimensions.scrollWidth    scroll scrollWidth
-       * {number} dimensions.scrollLeft     scroll scrollLeft
-       * {number} dimensions.scrollRight    scroll scrollLeft + scrollWidth
+       * @return {ContentDimension} content and scroll elements' dimensions
        * */
       getContentDimensions(){
         const scrollEle = this.scrollElement;
@@ -422,19 +451,23 @@
       },
 
       /**
-       * 重新计算scroll的尺寸，当动态添加header/footer/tabs或者修改了他的属性
+       * @function resize
+       * @description
+       * 当动态添加Header/Footer/Tabs或者修改了他的属性时, 重新计算Content组件的尺寸.
        * */
       resize(){
         this.recalculateContentDimensions();
       },
 
       /**
-       * 滚动到一个位置
-       * @param {Number} x - The x-value to scroll to.
-       * @param {Number} y - The y-value to scroll to.
-       * @param {Number} duration - Duration of the scroll animation in milliseconds.
-       * @param {Function=} done - 当滚动结束时触发的回调
-       * @return {Promise} 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
+       * @function scrollTo
+       * @description
+       * 滚动到指定位置
+       * @param {Number} x                - 滚动到指定位置的x值
+       * @param {Number} y                - 滚动到指定位置的y值
+       * @param {Number} [duration=300]   - 滚动动画的时间
+       * @param {Function=} done          - 当滚动结束时触发的回调
+       * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
       scrollTo (x, y, duration = 300, done) {
         console.debug(`content, scrollTo started, y: ${y}, duration: ${duration}`);
@@ -442,8 +475,10 @@
       },
 
       /**
+       * @function scrollToTop
+       * @description
        * 滚动到顶部
-       * @param {Number} duration - 滚动动画的时间, 默认是300ms
+       * @param {Number=} [duration=300] - 滚动动画的时间, 默认是300ms
        * @return {promise} 当滚动动画完毕后返回promise
        */
       scrollToTop(duration = 300) {
@@ -453,8 +488,11 @@
         return this._scroll.scrollToTop(duration);
       },
       /**
-       * 滚动到底部
-       * @param {Number} duration - 滚动动画的时间, 默认是300ms
+       *
+       * @function scrollToBottom
+       * @description
+       * 滚动到顶部
+       * @param {Number=} [duration=300] - 滚动动画的时间, 默认是300ms
        * @return {promise} 当滚动动画完毕后返回promise
        */
       scrollToBottom(duration = 300) {
@@ -466,27 +504,30 @@
 
       // -------- For Refresher Component --------
       /**
-       * 获取滚动元素
+       * @function getScrollElement
+       * @description
+       * 获取scrollElement元素的Dom
        * */
       getScrollElement(){
         return this.scrollElement
       },
 
       /**
-       * @private
-       * @callback callback
-       * @param {TransitionEvent} ev
-       * @return {void}
+       * @function onScrollElementTransitionEnd
+       * @description
+       * 滚动结束的事件回调
+       * @param {function} callback - 过渡结束的回调, 回调传参TransitionEvent
        */
       onScrollElementTransitionEnd(callback) {
         transitionEnd(this.scrollElement, callback);
       },
 
       /**
+       * @function setScrollElementStyle
+       * @description
        * 在scrollElement上设置属性
-       * @private
-       * @param {string} prop
-       * @param {any} val
+       * @param {string} prop - 属性名称
+       * @param {any} val     - 属性值
        */
       setScrollElementStyle(prop, val) {
         if (this.scrollElement) {
@@ -523,8 +564,8 @@
       },
 
       /**
-       * Img组件更新
        * @private
+       * Img组件更新
        */
       imgsUpdate(){
         if (this._scroll.initialized && this._imgs.length && this.isImgsUpdatable()) {
@@ -560,6 +601,7 @@
   }
 
   /**
+   * @private
    * @param {string} val
    * @return {number}
    * */
@@ -568,6 +610,7 @@
   }
 
   /**
+   * @private
    * @param {string} val
    * @return {string}
    * */
@@ -576,6 +619,7 @@
   }
 
   /**
+   * @private
    * 对两个img组件根据top排序
    * @param {object} a - Img组件实例
    * @param {object} b - Img组件实例
@@ -592,6 +636,7 @@
   }
 
   /**
+   * @private
    * @param {Img[]} imgs
    * @param {number} viewableTop
    * @param {number} contentHeight

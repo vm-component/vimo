@@ -6,7 +6,7 @@
       </Navbar>
     </Header>
     <Content>
-      <h1>content</h1>
+      <h1>这里是内容</h1>
     </Content>
   </Page>
 </template>
