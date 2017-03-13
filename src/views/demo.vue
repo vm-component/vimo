@@ -16,14 +16,17 @@
     </Content>
     <Footer>
       <Toolbar>
-        <Title>Footer</Title>
+        <input class="inputDemo" placeholder="1234">
       </Toolbar>
     </Footer>
 
   </Page>
 </template>
 <style scoped lang="scss">
-  .main {
+  .inputDemo {
+    font-size: 16px;
+    position: relative;
+    bottom:0;
 
   }
 </style>

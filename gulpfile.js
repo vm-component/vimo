@@ -1,21 +1,26 @@
+
+/**
+ * @name gulpFile
+ * @description
+ * 这个是gulpFile自动化工具
+ * */
 let gulp = require('gulp');
 let jsdoc = require('gulp-jsdoc3');
 let del = require('del');
-let config = require('./jsdocConfig');
 const runSequence = require('run-sequence');
 var bs = require("browser-sync");
 var browserSync = bs.create();
 const reload = browserSync.reload;
 let cache = require('gulp-cache');
+let jsdocConfig = require('./jsdocConfig');
 
-let srcCode = ['./src/vimo/components/content/*.*'];
 //clean
 gulp.task('clean', del.bind(null, ['docs']));
 
 // jsdoc
 gulp.task('doc', function (cb) {
-  gulp.src(['README.md'].concat(srcCode), {read: false})
-    .pipe(jsdoc(config, cb));
+  gulp.src('./', {read: false})
+    .pipe(jsdoc(jsdocConfig, cb));
 });
 
 gulp.task('reload', function () {
@@ -39,7 +44,7 @@ gulp.task('serve', function () {
     });
     gulp.watch([
       'README.md',
-      'src/vimo/**/*.js',
+      'src/vimo/**/*.*',
     ], ['refreshDoc']);
   });
 });

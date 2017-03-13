@@ -173,9 +173,9 @@ function _BMapLocation(successFn, errorFn, posOptions) {
   });
 }
 /**
- * [_QQMapLocation description]
- * @param  {[Function]} successFn  [description]
- * @param  {[Function]} errorFn    [description]
+ * _QQMapLocation description
+ * @param  {Function} successFn  - description
+ * @param  {Function} errorFn    [description]
  * @param  {[Object]} posOptions [description]
  * @return {[type]}            [description]
  */

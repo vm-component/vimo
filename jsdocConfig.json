@@ -11,7 +11,13 @@
     "plugins/markdown"
   ],
   "source": {
-    "includePattern": "\\.(vue)$"
+    "include": [
+      "README.md",
+      "./src/vimo/components/content"
+    ],
+    "exclude":["gulpfile.js"],
+    "includePattern": ".+\\.js(doc|x)?$|.+\\.vue$",
+    "excludePattern": "(^|\\/|\\\\)_"
   },
   "templates": {
     "cleverLinks": true,
