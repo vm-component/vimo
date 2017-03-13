@@ -3,7 +3,18 @@
     <slot></slot>
   </header>
 </template>
-<style lang="scss"></style>
+<style lang="scss">
+  @import "../../themes/ionic.globals";
+  .ion-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: $z-index-toolbar;
+    display: block;
+
+    width: 100%;
+  }
+</style>
 <script type="text/ecmascript-6">
   export default{
     name: 'Header',
