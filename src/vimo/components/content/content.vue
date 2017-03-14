@@ -1,5 +1,17 @@
 <template>
-  <article class="ion-content outer-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
+  <article class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
+    <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
+      <!--<section   ref="scrollElement" class="scroll-content" id="wrapper"  :style="scrollElementStyle">-->
+      <!--默认是能滚动的内容   -->
+      <!--<div id="scroller">-->
+      <!--<slot></slot>-->
+      <!--</div>-->
+      <div id="scroll">
+       <div>
+         <slot></slot>
+       </div>
+      </div>
+    </section>
     <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
       <!--Fixed Top-->
       <div fixed top>
@@ -11,18 +23,19 @@
         <slot name="fixedBottom"></slot>
       </div>
     </section>
-    <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
-      <!--<section   ref="scrollElement" class="scroll-content" id="wrapper"  :style="scrollElementStyle">-->
-      <!--默认是能滚动的内容   -->
-      <!--<div id="scroller">-->
-      <!--<slot></slot>-->
-      <!--</div>-->
-      <slot></slot>
-    </section>
     <slot name="refresher"></slot>
   </article>
 </template>
+<style lang="scss">
+  @import './content';
+  @import './content.ios';
+  @import './content.md';
+  @import './content.wp';
+  #scroll{
+    height: auto;
 
+  }
+</style>
 <script type="text/ecmascript-6">
   /**
    * @typedef {Object} ContentDimension   - Content组件的维度尺寸信息
@@ -734,9 +747,4 @@
 
 
 </script>
-<style lang="scss">
-  @import './content';
-  @import './content.ios';
-  @import './content.md';
-  @import './content.wp';
-</style>
+

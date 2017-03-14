@@ -75,7 +75,6 @@
   .index {
     .content {
       background: #fff !important;
-
       .scrollContent {
         width: 100%;
         height: 100%;
