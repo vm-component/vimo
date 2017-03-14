@@ -99,7 +99,7 @@
    * */
 
   /**
-   * @module Content
+   * @module Component/Content
    * @description
    *
    * Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是"上中下三明治"结构,
@@ -110,7 +110,7 @@
    *
    * 此外需要注意的是, 一个页面(Page组件)中只能有一个Content组件, 这个是Vimo使用的规则!
    *
-   * Content组件中也可以加入下拉刷新和上拉加载的功能[目前正在开发].
+   * Content组件中也可以加入下拉刷新和上拉加载的功能**目前正在开发**.
    *
    *
    *

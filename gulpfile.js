@@ -1,4 +1,3 @@
-
 /**
  * @name gulpFile
  * @description
@@ -13,6 +12,7 @@ var browserSync = bs.create();
 const reload = browserSync.reload;
 let cache = require('gulp-cache');
 let jsdocConfig = require('./jsdocConfig');
+let plumber = require('gulp-plumber');
 
 //clean
 gulp.task('clean', del.bind(null, ['docs']));
@@ -20,11 +20,12 @@ gulp.task('clean', del.bind(null, ['docs']));
 // jsdoc
 gulp.task('doc', function (cb) {
   gulp.src('./', {read: false})
+    .pipe(plumber())
     .pipe(jsdoc(jsdocConfig, cb));
 });
 
 gulp.task('reload', function () {
- reload();
+  reload();
 })
 
 gulp.task('refreshDoc', function () {

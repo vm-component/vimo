@@ -55,6 +55,7 @@
     "gulp": "^3.9.1",
     "gulp-cache": "^0.4.6",
     "gulp-jsdoc3": "^1.0.1",
+    "gulp-plumber": "^1.1.0",
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.2",
     "inject-loader": "^2.0.1",
