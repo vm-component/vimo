@@ -272,6 +272,11 @@ const routes = [
     name: 'img',
     component: require('./views/img.vue'),
   },
+  {
+    path: '/infinite-scroll',
+    name: 'infinite-scroll',
+    component: require('./views/infinite-scroll.vue'),
+  },
 
   {
     path: '/content',

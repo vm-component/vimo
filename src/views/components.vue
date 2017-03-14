@@ -102,6 +102,12 @@
             <Icon slot="item-left" name="image"></Icon>
             图片 (Img)
           </Item>
+          <Item button :to="{name: 'infinite-scroll'}">
+            <Icon slot="item-left" name="car"></Icon>
+            无限滚动 (InfiniteScroll)
+          </Item>
+
+
         </ItemGroup>
 
         <!--弹出层组件-->

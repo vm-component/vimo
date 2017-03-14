@@ -80,6 +80,9 @@ import getLoadingInstance from './loading'
 import prepareToast from './toast'
 import prepareModal from './modal'
 
+// 滚动刷新组件
+import {InfiniteScroll,InfiniteScrollContent} from './infinite-scroll'
+
 // 自定义组件
 import SnakeBox from './snake-box'
 import Ghost from './ghostbtn'
@@ -176,6 +179,8 @@ module.exports = {
     Vue.component(Fab.name, Fab);
 
     Vue.component(Img.name, Img);
+    Vue.component(InfiniteScroll.name, InfiniteScroll);
+    Vue.component(InfiniteScrollContent.name, InfiniteScrollContent);
 
     Vue.component(Menu.name, Menu);
     Vue.component(BackdropComponent.name, BackdropComponent);
