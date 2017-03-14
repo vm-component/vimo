@@ -112,14 +112,14 @@
    *
    * Content组件中也可以加入下拉刷新和上拉加载的功能**目前正在开发**.
    *
-   *
-   *
    * ##### Slots:
-   *  Name | Description
-   * ------------- | -------------
-   * fixed          | 默认值, 固定到顶部
-   * fixedTop       | 固定到顶部
-   * fixedBottom    | 固定到底部
+   * | Name  | Description  |
+   * |:------------- |:--------------- |
+   * | 空            | 内容插入到scroll中 |
+   * | fixed         | 默认值, 固定到顶部 |
+   * | fixedTop      | 固定到顶部        |
+   * | fixedBottom   | 固定到底部        |
+   *
    *
    * @property {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
    * @property {string} [mode=ios]  - 样式模式
