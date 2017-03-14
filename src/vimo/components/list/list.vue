@@ -20,6 +20,34 @@
 
 </style>
 <script type="text/ecmascript-6">
+
+  /**
+   * 
+   * @name list
+   * @module Component/List
+   * @description
+   *  list有多重种风格的样式，有ios/window/android等等
+   *
+   *  支持item-sliding（**此功能正在开发，暂时不可用**）
+   *
+   *  @property {string} [mode=ios]        - 样式模式
+   *  @property {Boolean} [sliding=false]  - 是否需要item-silding
+   *
+   *  @example
+   *  html:
+   *    <List :mode="mode"></List>
+   *  js:
+   *    export default {
+          return {
+            data () {
+              mode: {
+                type: 'window'
+              }
+            }
+          }   
+        }
+  */
+
   export default{
     name: 'List',
     data(){
@@ -46,12 +74,15 @@
     computed: {
       // 环境样式
       modeClass () {
-        return `list-${this.mode}`
+        return `list-${this.mode.type}`;
       },
     },
     methods: {
-      /**
+      /**@method closeSlidingItems (暂时不可用)
+       *
+       * @description
        * Close any sliding items that are open.关闭所有滑开的items
+       * 
        * */
       // TODO: 关闭所有滑开的items
       closeSlidingItems () {
