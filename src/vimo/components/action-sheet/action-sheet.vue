@@ -40,6 +40,32 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  /**
+   *@module Component/ActionSheet
+   *@description
+   *ActionSheet是一个对话框，让用户从一组选项中进行选择。
+   *
+   *它显示在应用内容的顶层，必须由用户手动关闭，然后他们才能恢复与应用的互动。
+   *有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键。
+   *
+   *
+   *
+   * @property {String} [title='']                     - 初始化Alert Instance的数据
+   * @property {string} [subTitle='']                  - 初始化Alert Instance的数据
+   * @property {string} [message='']                   - 初始化Alert Instance的数据
+   * @property {string} [cssClass='']                  - Additional classes for custom styles, separated by spaces
+   * @property {Array} [buttons=[ ]]                   - button数组，包含全部role
+   * @property {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
+   *
+   * @property {Boolean} [isActive=false]                - ActionSheet 开启状态
+   * @property {Boolean} [enabled=false]               - 是否在过渡态的状态判断，如果在动画中则为false
+   * @property {string} [mode=ios]                     - 样式模式
+   * @property {Array} [normalButtons=[ ]]             - 普通按钮组
+   * @property {Array} [cancelButton=[ ]]              - 取消按钮(组)，一般放在下面
+   * @property {Array} [dismissCallback=[ ]]          - inputs数据再加工
+   * @property {Array} [presentCallback=[ ]]          - inputs数据再加工
+   */
+
 
   /**
    * 使用实例模式的话，props和data无区别。
@@ -49,6 +75,7 @@
     data(){
       return {
         /**
+         * @private
          * 初始化ActionSheet Instance的数据
          * 因为是实例调用模式，故prop和data在初始化后是同样的数据接口，
          * 故prop就没有存在的价值
@@ -60,6 +87,7 @@
         enableBackdropDismiss: true, // Boolean 允许点击backdrop关闭actionsheet
 
         /**
+         * @private
          * ActionSheet State
          * */
         isActive: false,  // ActionSheet 开启状态
@@ -67,6 +95,7 @@
         mode: VM.config.get('mode') || 'ios', // ios?android?window
 
         /**
+         * @private
          * ActionSheet 计算属性
          * 因为实例化后computed也就无效了，
          * 故这部分在watch处理
@@ -120,6 +149,7 @@
     },
     methods: {
       /**
+       * @private
        * ActionSheet Animate Hooks
        * */
       _beforeEnter () {
@@ -147,6 +177,7 @@
       },
 
       /**
+       * @private
        * ActionSheet启动之前去除focus效果，因为存在键盘
        * */
       _focusOutActiveElement () {
@@ -156,6 +187,11 @@
       },
 
       /**
+       * @function bdClick
+       * @description
+       * 点击backdrop,关闭actionsheet
+       *
+       * 如存在cancel按钮，点击按钮关闭actionsheet
        * Backdrop Click Handler, If cancelButton defined, then action cancelButton handler.
        */
       bdClick () {
@@ -170,6 +206,9 @@
       },
 
       /**
+       * @function click
+       * @description
+       * 点击下方按钮
        * @param {object} button Button Click Handler
        */
       click (button) {
@@ -195,6 +234,7 @@
       },
 
       /**
+       * @private
        * Present the action sheet instance.
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
@@ -219,6 +259,9 @@
       },
 
       /**
+       * @function setTitle
+       * @description
+       * 设置 Action sheet title
        * @param {string} title Action sheet title
        */
       setTitle (title) {
@@ -226,6 +269,10 @@
       },
 
       /**
+       *
+       * @function setSubTitle
+       * @description
+       * 设置 Action sheet subtitle
        * @param {string} subTitle Action sheet subtitle
        */
       setSubTitle (subTitle) {
@@ -233,6 +280,9 @@
       },
 
       /**
+       * @function addButton
+       * @description
+       * 增加button
        * @param {object} button Action sheet button
        */
       addButton (button) {
