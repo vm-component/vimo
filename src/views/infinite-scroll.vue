@@ -9,12 +9,11 @@
       <List>
         <Item v-for="i in list">{{i}}</Item>
       </List>
-      <!--<InfiniteScroll :enabled="true" threshold="20%" @onInfinite="onInfinite">-->
-      <InfiniteScroll :enabled="true" threshold="20%" @onInfinite="$event.waitFor(onInfinitePromise())">
+      <InfiniteScroll class="infiniteScroll" :enabled="true" threshold="20%" @onInfinite="onInfinite">
+      <!--<InfiniteScroll class="infiniteScroll" :enabled="true" threshold="20%" @onInfinite="$event.waitFor(onInfinitePromise())">-->
         <InfiniteScrollContent loadingSpinner="ios" loadingText="正在加载..."></InfiniteScrollContent>
         <h5 class="loadedAll" text-center>全部加载完毕</h5>
       </InfiniteScroll>
-      <Button type="block" @click="scrollToTop">Scroll To Top</Button>
     </Content>
   </Page>
 </template>
@@ -29,6 +28,10 @@
     .loadedAll {
       display: block;
     }
+  }
+  .infiniteScroll{
+    margin-top:20px;
+
   }
 </style>
 <script type="text/ecmascript-6">
@@ -61,7 +64,6 @@
           infiniteScroll.enable(false);
           console.debug('onInfinite-enable-false')
         }
-
       },
       onInfinitePromise(){
         console.debug('Begin async operation');
