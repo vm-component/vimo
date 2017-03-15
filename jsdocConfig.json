@@ -16,7 +16,7 @@
   },
   "source": {
     "include": [
-      "src/vimo/components/infinite-scroll"
+      "src/vimo/components/refresher"
     ],
     "exclude":["gulpfile.js"],
     "includePattern": ".+\\.js(doc|x)?$|.+\\.vue$",

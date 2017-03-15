@@ -20,9 +20,6 @@
 <script type="text/ecmascript-6">
   export default{
     name: 'RefresherContent',
-    data(){
-      return {}
-    },
     props: {
       pullingIcon: {
         type: String,
@@ -40,13 +37,6 @@
         type: String,
         default: '正在刷新'
       },
-    },
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {},
-    mounted () {},
-    activated () {},
-    components: {}
+    }
   }
 </script>
