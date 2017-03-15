@@ -14,16 +14,16 @@
   },
   "dependencies": {
     "fastclick": "^1.0.6",
-    "lodash": "^4.17.2",
-    "node-sass": "^4.0.0",
     "sass-loader": "^4.1.0",
     "velocity-animate": "^1.4.3",
     "vue": "^2.1.6",
+    "vue-awesome-swiper": "^2.3.2",
     "vue-loader": "^10.0.2",
     "vue-router": "^2.1.1",
     "vuex": "^2.0.0"
   },
   "devDependencies": {
+    "node-sass": "^4.0.0",
     "autoprefixer": "^6.4.0",
     "babel-core": "^6.0.0",
     "babel-eslint": "^7.0.0",

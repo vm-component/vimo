@@ -73,7 +73,6 @@
                 _title += item.children[0].text.trim()
               }
             })
-
           }
           return _title
         }
@@ -120,6 +119,7 @@
         this.isInit = true;
       },
     },
+    created(){},
     mounted(){
       this.init()
     }

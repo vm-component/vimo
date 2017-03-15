@@ -59,6 +59,10 @@
             <Icon slot="item-left" name="image"></Icon>
             图片 (Img)
           </Item>
+          <Item button :to="{name: 'swiper'}">
+            <Icon slot="item-left" name="image"></Icon>
+            轮播 (Swiper)
+          </Item>
         </ItemGroup>
 
         <!--List组件-->

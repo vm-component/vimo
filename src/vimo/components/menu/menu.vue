@@ -57,12 +57,12 @@
 </style>
 <script type="text/ecmascript-6">
   /**
-   * 
+   *
    * @module Menu
    * @description
-   * 
+   *
    * 注意：menu是全局的组件，应该在App.vue中定义，而不是在业务文件中。menu组件和nav组件应该是平级，放在最外层。
-   * 
+   *
    * 该组件用于在Vue.prototype.$menu上共享方法，可以用this.$menu来访问menu组件
    * @example
    * var vm = new Vue();
@@ -80,14 +80,14 @@
    *  <Menu id="menu" side="left" type="push" :enabled="false"></Menu>
    *
    */
-  
+
   /**
    * @event onMenuOpen
    *  @description
    *     menu开启事件, 传递menuId,可通过$eventBus.#on()去监听。
    *
    * @example
-   * 
+   *
    * new Vue({
    *    methods: {
    *     open: function () {
@@ -100,7 +100,7 @@
    * })
    *
    */
-  
+
   /**
    * @event onMenuClosing
    *  @description
@@ -108,7 +108,7 @@
    *
    *
    */
-  
+
   /**
    * @event onMenuClosed
    *  @description
@@ -119,7 +119,7 @@
 
 
   /**
-   * @property 
+   * @property
    * @private
    * menu.vue: Menu组件的模板文件, 方法只用于维护自身状态
    * menu.js:  组件全局安装及实例注册, 用于在Vue.prototype.$menu上共享方法
@@ -142,12 +142,12 @@
    *
    * */
    /**
-    * @function open 
+    * @function open
     * @description
     * 如果在menu开启另一个menu, 则等到第一个的关闭promise之后再开启
     * @param {String} menuId   - 打开menu的id，与上面属性中的id对应
-    * @return {Promise}        
-    * @example  
+    * @return {Promise}
+    * @example
     * 下面只弹出id为aaa的menu
     *
     *
@@ -165,8 +165,8 @@
     */
    /**
     * @function close
-    * @return {Promise} 
-    * @example  
+    * @return {Promise}
+    * @example
     *
     * new Vue({
     *    methods: {
@@ -185,7 +185,7 @@
     * html:
     *   <Menu id="aa"></Menu>
     *   <Menu id="bb"></Menu>
-    * js:  
+    * js:
     * js:
     * new Vue({
     *    methods: {
@@ -195,7 +195,7 @@
     *   }
     * })
     */
-  
+
   import { firstUpperCase } from '../../util/util';
   import { recordMenuInstance } from './menu';
 
@@ -284,8 +284,6 @@
           _this.animationName = 'slideIn' + firstUpperCase(_this.side);
         }
 
-
-
         _this.isOpen = true;
         this.$eventBus.$emit('onMenuOpen', this.id);
         return new Promise((resolve) => {this.presentCallback = resolve});
@@ -308,9 +306,6 @@
       // 记录当前实例
       recordMenuInstance(this);
     },
-    mounted(){
-      console.log('menu this')
-      console.log(this)
-    }
+    mounted(){}
   }
 </script>

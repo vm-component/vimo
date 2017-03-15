@@ -165,6 +165,16 @@ const routes = [
       require(['./views/img.vue'], resolve)
     },
   },
+  {
+    path: '/swiper',
+    name: 'swiper',
+    component  (resolve) {
+      require(['./views/swiper.vue'], resolve)
+    },
+  },
+
+
+
 
   // cards
   {

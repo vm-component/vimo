@@ -6,7 +6,7 @@
       <!--<div id="scroller">-->
       <!--<slot></slot>-->
       <!--</div>-->
-         <slot></slot>
+      <slot></slot>
     </section>
     <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
       <!--Fixed Top-->
@@ -24,14 +24,14 @@
 </template>
 <style lang="scss">
   /*.scroll-content{*/
-    /*border:3px solid red;*/
+  /*border:3px solid red;*/
   /*}*/
   @import './content';
   @import './content.ios';
   @import './content.md';
   @import './content.wp';
   /*#scroll{*/
-    /*height: auto;*/
+  /*height: auto;*/
   /*}*/
 </style>
 <script type="text/ecmascript-6">
@@ -471,7 +471,7 @@
        * */
       resize(){
         // 等待DOM更新完毕
-        this.$nextTick(()=>{
+        this.$nextTick(() => {
           this.recalculateContentDimensions();
         })
       },

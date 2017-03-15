@@ -6,7 +6,7 @@
       </Navbar>
     </Header>
 
-    <Content :fullscreen="fullscreenVal" padding>
+    <Content :fullscreen="fullscreenVal" padding ref="content">
       <!--<h3 slot="fixedTop" text-center>这里插播一条广告</h3>-->
       <!--<h3 slot="fixedBottom" text-center>可以把我当成歌词</h3>-->
 
@@ -71,7 +71,11 @@
       }
     },
     watch: {},
-    computed: {},
+    computed: {
+      content(){
+        return this.$refs.content
+      }
+    },
     methods: {
       setTitle(val){
         this.$nav.setTitle(val)
@@ -86,7 +90,10 @@
         return this.contentDimensions = this.$content.getContentDimensions()
       },
     },
-    created () {},
+    created () {
+      console.debug('content----->')
+      console.debug(this.content)
+    },
     mounted () {
       console.info('content mounted this');
       console.info(this);
@@ -112,6 +119,7 @@
       //   console.log('scrollTop:' + ev.scrollTop)
       //   console.log('directionY:' + ev.directionY)
       // })
+
 
     },
     activated () {
