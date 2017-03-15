@@ -46,11 +46,13 @@ a {
 
 .ion-content.js-scroll {
   padding: 0 !important;
+  overflow: hidden;
+
 }
 
 .ion-content.js-scroll > .scroll-content {
   position: relative;
-
+  margin-top:0!important;
   min-height: 100%;
 
   overflow-x: initial;
