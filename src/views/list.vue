@@ -6,7 +6,7 @@
       </Navbar>
     </Header>
     <Content>
-      <List>
+      <List :mode="mode">
         <!--header-->
         <ListHeader>
           Contents
@@ -41,6 +41,7 @@
       return {
         toggleValue: true,
         silencePhone: 'always',
+        mode: 'ios'
       }
     },
     watch: {

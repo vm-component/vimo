@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>alert/alert.vue - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Component_Content.html">Component/Content</a><ul class='methods'><li data-type='method'><a href="module-Component_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Component_Content.html#~getScrollElement">getScrollElement</a></li><li data-type='method'><a href="module-Component_Content.html#~onScrollElementTransitionEnd">onScrollElementTransitionEnd</a></li><li data-type='method'><a href="module-Component_Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToTop">scrollToTop</a></li><li data-type='method'><a href="module-Component_Content.html#~setScrollElementStyle">setScrollElementStyle</a></li></ul></li><li><a href="module-Component_Img.html">Component/Img</a></li><li><a href="module-Component_List.html">Component/List</a><ul class='methods'><li data-type='method'><a href="module-Component_List.html#~closeSlidingItems%25E6%259A%2582%25E6%2597%25B6%25E4%25B8%258D%25E5%258F%25AF%25E7%2594%25A8">closeSlidingItems </a></li></ul></li><li><a href="module-Menu.html">Menu</a><ul class='methods'><li data-type='method'><a href="module-Menu.html#~close">close</a></li><li data-type='method'><a href="module-Menu.html#~open">open</a></li><li data-type='method'><a href="module-Menu.html#~taggle">taggle</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="global.html#event:event">event</a></li><li><a href="module-Menu.html#~event:onMenuClosed">onMenuClosed</a></li><li><a href="module-Menu.html#~event:onMenuClosing">onMenuClosing</a></li><li><a href="module-Menu.html#~event:onMenuOpen">onMenuOpen</a></li><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#close">close</a></li><li><a href="global.html#dismiss">dismiss</a></li><li><a href="global.html#getAnInstance">getAnInstance</a></li><li><a href="global.html#getModalInstance">getModalInstance</a></li><li><a href="global.html#Input/Textarea">Input/Textarea</a></li><li><a href="global.html#isActive">isActive</a></li><li><a href="global.html#lines">lines</a></li><li><a href="global.html#message">message</a></li><li><a href="global.html#nameClass">nameClass</a></li><li><a href="global.html#NAVIGATION_STACK">NAVIGATION_STACK</a></li><li><a href="global.html#normalButtons">normalButtons</a></li><li><a href="global.html#open">open</a></li><li><a href="global.html#POI%25E6%2590%259C%25E7%25B4%25A2">POI 搜索</a></li><li><a href="global.html#prepareInstance">prepareInstance</a></li><li><a href="global.html#prepareToast">prepareToast</a></li><li><a href="global.html#present">present</a></li><li><a href="global.html#recordMenuInstance">recordMenuInstance</a></li><li><a href="global.html#spinner">spinner</a></li><li><a href="global.html#title">title</a></li><li><a href="global.html#Toggle">Toggle</a></li><li><a href="global.html#toggle">toggle</a></li><li><a href="global.html#%25E5%2588%25A4%25E6%2596%25AD%25E6%2598%25AF%25E5%2590%25A6%25E5%25AE%2589%25E8%25A3%2585app">判断是否安装app</a></li><li><a href="global.html#%25E5%2590%25AF%25E5%258A%25A8app">启动app</a></li><li><a href="global.html#%25E5%259C%25B0%25E5%259B%25BE%25E5%25AE%259A%25E4%25BD%258D">地图定位</a></li><li><a href="global.html#%25E5%25A4%2584%25E7%2590%2586range%25E6%258C%2589%25E9%2592%25AE%25E4%25B8%259A%25E5%258A%25A1%25E7%259A%2584%25E7%25BB%2584%25E4%25BB%25B6%25E5%25AF%25B9%25E5%25A4%2596%25E4%25BA%258B%25E4%25BB%25B6:onIncreaseonDecrease">处理range按钮业务的组件
+
+
+对外事件:
+onIncrease
+onDecrease</a></li><li><a href="global.html#%25E8%258E%25B7%25E5%258F%2596%25E5%25BD%2593%25E5%2589%258D%25E7%25BD%2591%25E7%25BB%259C%25E7%25B1%25BB%25E5%259E%258B">获取当前网络类型</a></li><li><a href="global.html#%25E8%25AE%25BE%25E7%25BD%25AE%25E5%25AF%25BC%25E8%2588%25AA%25E6%25A0%258F%25E9%25A2%259C%25E8%2589%25B2">设置导航栏颜色</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">alert/alert.vue</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+  &lt;div class="ion-alert" :class="[modeClass,cssClass,{'alert-top':isAlertTop}]">
+    &lt;Backdrop @click.native="bdClick()" :enableBackdropDismiss="enableBackdropDismiss"
+                  :isActive="isActive">&lt;/Backdrop>
+    &lt;transition name="alert"
+                v-on:before-enter="_beforeEnter"
+                v-on:after-enter="_afterEnter"
+                v-on:before-leave="_beforeLeave"
+                v-on:after-leave="_afterLeave">>
+      &lt;div class="alert-wrapper" v-show="isActive">
+        &lt;div class="alert-head">
+          &lt;h2 class="alert-title" v-if="title">{{title}}&lt;/h2>
+          &lt;h3 class="alert-sub-title" v-if="subTitle">{{subTitle}}&lt;/h3>
+        &lt;/div>
+        &lt;div class="alert-message">{{message}}&lt;/div>
+        &lt;div v-if="!!inputs &amp;&amp; inputs.length>0">
+
+          &lt;div v-if="inputType==='radio'" class="alert-radio-group" role="radiogroup">
+            &lt;Button role="alert-radio-button" v-for="i in inputsForDispaly" @click="rbClick(i)"
+                        :aria-checked="i.checked" :disabled="i.disabled" :id="i.id"
+                        class="alert-tappable alert-radio">
+              &lt;div class="alert-radio-icon">
+                &lt;div class="alert-radio-inner">&lt;/div>
+              &lt;/div>
+              &lt;div class="alert-radio-label">
+                {{i.label}}
+              &lt;/div>
+            &lt;/Button>
+          &lt;/div>
+
+          &lt;div class="alert-checkbox-group" v-if="inputType==='checkbox'">
+            &lt;Button :id="i.id" role="alert-checkbox-button" :aria-checked="i.checked"
+                        v-for="(i,index) in inputsForDispaly" @click="cbClick(i)"
+                        :checked="i.checked" :disabled="i.disabled" class="alert-tappable alert-checkbox">
+              &lt;div class="alert-checkbox-icon">
+                &lt;div class="alert-checkbox-inner">&lt;/div>
+              &lt;/div>
+              &lt;div class="alert-checkbox-label">
+                {{i.label}}
+              &lt;/div>
+            &lt;/Button>
+          &lt;/div>
+
+          &lt;div v-if="inputType!='radio' &amp;&amp; inputType!='checkbox'" class="alert-input-group">
+            &lt;div v-for="i of inputsForDispaly" class="alert-input-wrapper">
+              &lt;!-- v-model="i.value"-->
+              &lt;input :id="i.id" :value="i.value" :placeholder="i.placeholder" :type="i.type" class="alert-input">
+            &lt;/div>
+          &lt;/div>
+
+        &lt;/div>
+        &lt;div class="alert-button-group" :class="{'alert-button-group-vertical':buttonsForDisplay.length>2}">
+          &lt;Button role="alert-button" v-for="b in buttonsForDisplay" @click="btnClick(b)" :class="[b.cssClass]">
+            {{b.text}}
+          &lt;/Button>
+        &lt;/div>
+      &lt;/div>
+    &lt;/transition>
+  &lt;/div>
+
+&lt;/template>
+&lt;style lang="scss">
+  @import './alert.scss';
+  @import './alert.ios.scss';
+  @import './alert.wp.scss';
+  @import './alert.md.scss';
+
+  // transitioName = 'alert'
+  .alert-enter-active, .alert-leave-active {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .alert-enter {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+
+  .alert-leave-active {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+&lt;/style>
+&lt;script type="text/ecmascript-6">
+  export default{
+    name: 'Alert',
+    data(){
+      return {
+        /**
+         * 初始化Alert Instance的数据
+         * 因为是实例调用模式，故prop和data在初始化后是同样的数据接口，
+         * 故prop就没有存在的价值
+         * */
+        title: '', // String
+        subTitle: '', // String
+        message: '', // String
+        cssClass: '', // String Additional classes for custom styles, separated by spaces.
+        buttons: [], // Array button数组，包含全部role
+        inputs: [], // 如果alert中有input等form
+        enableBackdropDismiss: true, // Boolean 允许点击backdrop关闭actionsheet
+        inputsForDispaly: [], // inputs数据再加工
+
+        /**
+         * Alert State
+         * */
+        isActive: false,
+        enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
+        mode: VM.config.get('mode','ios') || 'ios',  // ios?android?window
+        inputType: null,// Alert中含有的input类型，radio、checkbox
+        isAlertTop: false, // 是否将alert放到顶部，用于input输入时显示虚拟键盘
+
+        dismissCallback: null,
+        presentCallback: null,
+      }
+    },
+    watch: {
+      /**
+       * 这部分不能放到computed中，
+       * 因为computed只能计算一次，
+       * 但是input的内容小修改后更新DOM。
+       * 实例化创建后，部分组件功能会失效，比如created等。
+       * */
+      inputs () {
+        const _this = this;
+        if (!_this.inputs || _this.inputs.length === 0) {
+          return []
+        }
+        // 传入数据处理
+        let _inputs = [];
+        _inputs = _this.inputs.map((input, index) => {
+          return {
+            type: input.type || 'text',
+            name: !!(input.name) ? input.name : index,
+            placeholder: !!(input.placeholder) ? input.placeholder : '',
+            value: !!(input.value) ? input.value : '',
+            label: input.label,
+            checked: !!input.checked,
+            disabled: !!input.disabled,
+            id: `alert-input-${index}`, // used for input -> text/tel/number/password
+            handler: !!(input.handler) ? input.handler : null,
+          };
+        });
+
+        let inputTypes = [];
+        _inputs.forEach(input => {
+          if (inputTypes.indexOf(input.type) &lt; 0) {
+            inputTypes.push(input.type);
+          }
+        });
+        if (inputTypes.length > 1 &amp;&amp; (inputTypes.indexOf('checkbox') > -1 || inputTypes.indexOf('radio') > -1)) {
+          console.warn(`Alert cannot mix input types: ${(inputTypes.join('/'))}. Please see alert docs for more info.`);
+          console.warn(`Alert 组件不能包含复合的input类型: ${(inputTypes.join('/'))}. 请再次阅读说明文档.`);
+        }
+
+        _this.inputType = inputTypes.length ? inputTypes[0] : null;
+
+        const checkedInput = _inputs.find(input => input.checked);
+
+        const NON_TEXT_INPUT_REGEX = /^(radio|checkbox|range|file|submit|reset|color|image|button)$/i;
+
+        const hasTextInput = (_inputs.length &amp;&amp; _inputs.some(i => !(NON_TEXT_INPUT_REGEX.test(i.type))));
+        // if (hasTextInput &amp;&amp; this._platform.is('mobile')) {
+        if (hasTextInput) {
+          // this alert has a text input and it's on a mobile device so we should align
+          // the alert up high because we need to leave space for the virtual keboard
+          // this also helps prevent the layout getting all messed up from
+          // the browser trying to scroll the input into a safe area
+          _this.isAlertTop = true;
+        }
+
+        _this.inputsForDispaly = _inputs;
+      },
+    },
+    computed: {
+      // 设置Alert的风格
+      modeClass () {
+        return `alert-${this.mode}`
+      },
+      hdrId () {
+        return 'alert-hdr'
+      },
+      buttonsForDisplay () {
+        // 如果是string则转化为对象
+        return this.buttons.map(button => {
+          if (typeof button === 'string') {
+            return {text: button};
+          }
+          return button;
+        });
+      },
+    },
+    methods: {
+      /**
+       * ActionSheet Animate Hooks
+       * */
+      _beforeEnter () {
+        this.enabled = false; // 不允许过渡中途操作
+        this.$app.setEnabled(false, 200);
+      },
+      _afterEnter (el) {
+        this.enabled = true;
+
+        // 执行开启的promise
+        this.presentCallback(el);
+
+        this._focusOutActiveElement();
+        let focusableEle = document.querySelector('input');
+        if (focusableEle) {
+          focusableEle.focus();
+        }
+      },
+      _beforeLeave () {
+        this.enabled = false;
+        this.$app.setEnabled(false, 200);
+      },
+      _afterLeave (el) {
+        this.enabled = true;
+        // 执行关闭的promise
+        this.dismissCallback(el);
+        // 移除DOM
+        this.$el.remove();
+      },
+
+      /**
+       * 点击backdrop
+       * */
+      bdClick () {
+        if (this.enabled &amp;&amp; this.enableBackdropDismiss) {
+          let cancelBtn = this.buttonsForDisplay.find(b => b.role === 'cancel');
+          if (cancelBtn) {
+            this.btnClick(cancelBtn);
+          } else {
+            this._dismiss();
+          }
+        }
+      },
+
+      /**
+       * 点击下方的按钮
+       * @param {object} button
+       * */
+      btnClick (button) {
+        if (!this.enabled) {
+          return;
+        }
+
+        let shouldDismiss = true;
+
+        if (button.handler) {
+          // a handler has been provided, execute it
+          // pass the handler the values from the inputs
+          if (button.handler(this._getValues()) === false) {
+            // if the return value of the handler is false then do not dismiss
+            shouldDismiss = false;
+          }
+        }
+
+        if (shouldDismiss) {
+          this._dismiss();
+        }
+      },
+
+      /**
+       * Radio Button Click
+       * @param {object} checkedInput
+       * */
+      rbClick (checkedInput) {
+        const _this = this;
+        if (_this.enabled) {
+          _this.inputsForDispaly.forEach(input => {
+            input.checked = (checkedInput === input);
+          });
+          if (checkedInput.handler) {
+            checkedInput.handler(checkedInput);
+          }
+        }
+      },
+
+      /**
+       * CheckBox Button Click
+       * */
+      cbClick (checkedInput) {
+        const _this = this;
+        if (_this.enabled) {
+          checkedInput.checked = !checkedInput.checked;
+          if (checkedInput.handler) {
+            // 简单的对象拷贝
+            checkedInput.handler(JSON.parse(JSON.stringify(checkedInput)));
+          }
+        }
+      },
+
+      /**
+       * 获取inputs中的信息
+       * */
+      _getValues () {
+        if (this.inputType === 'radio') {
+          // this is an alert with radio buttons (single value select)
+          // return the one value which is checked, otherwise undefined
+          const checkedInput = this.inputsForDispaly.find(i => i.checked);
+          return checkedInput ? checkedInput.value : undefined;
+        }
+
+        if (this.inputType === 'checkbox') {
+          // this is an alert with checkboxes (multiple value select)
+          // return an array of all the checked values
+          return this.inputsForDispaly.filter(i => i.checked).map(i => i.value.trim());
+        }
+
+        // this is an alert with text inputs
+        // return an object of all the values with the input name as the key
+        // input因为不能使用v-model，故通过id获取里面的信息
+        const values = {};
+        this.inputsForDispaly.forEach(i => {
+          let _$id = document.getElementById(i.id);
+          if (!!_$id &amp;&amp; !!_$id.value) {
+            values[i.name] = _$id.value.trim();
+          } else {
+            values[i.name] = null;
+          }
+        });
+        return values;
+      },
+
+      /**
+       * Present the instance.
+       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+       */
+      _present () {
+        const _this = this;
+        _this.isActive = true;
+        return new Promise((resolve) => {this.presentCallback = resolve})
+      },
+
+      /**
+       * Dismiss the instance.
+       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+       */
+      _dismiss () {
+        const _this = this;
+        if (!_this.enabled) {
+          return false
+        }
+        console.log('_dismiss')
+        _this.enabled = false;
+        _this.isActive = false; // 动起来
+        return new Promise((resolve) => {this.dismissCallback = resolve})
+      },
+
+      /**
+       * @param {string} title Action sheet title
+       */
+      setTitle (title) {
+        this.title = title;
+      },
+
+      /**
+       * @param {string} subTitle Action sheet subtitle
+       */
+      setSubTitle (subTitle) {
+        this.subTitle = subTitle;
+      },
+
+      /**
+       * @param {object} button Action sheet button
+       */
+      addButton (button) {
+        this.buttons.push(button);
+      },
+
+      /**
+       * ActionSheet启动之前去除focus效果，因为存在键盘
+       * */
+      _focusOutActiveElement () {
+        // only button？
+        const activeElement = document.activeElement;
+        activeElement &amp;&amp; activeElement.blur &amp;&amp; activeElement.blur();
+      },
+    }
+  }
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 15 2017 10:38:12 GMT+0800 (中国标准时间) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

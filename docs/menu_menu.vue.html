@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>menu/menu.vue - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Component_Content.html">Component/Content</a><ul class='methods'><li data-type='method'><a href="module-Component_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Component_Content.html#~getScrollElement">getScrollElement</a></li><li data-type='method'><a href="module-Component_Content.html#~onScrollElementTransitionEnd">onScrollElementTransitionEnd</a></li><li data-type='method'><a href="module-Component_Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToTop">scrollToTop</a></li><li data-type='method'><a href="module-Component_Content.html#~setScrollElementStyle">setScrollElementStyle</a></li></ul></li><li><a href="module-Component_Img.html">Component/Img</a></li><li><a href="module-Component_List.html">Component/List</a><ul class='methods'><li data-type='method'><a href="module-Component_List.html#~closeSlidingItems%25E6%259A%2582%25E6%2597%25B6%25E4%25B8%258D%25E5%258F%25AF%25E7%2594%25A8">closeSlidingItems </a></li></ul></li><li><a href="module-Menu.html">Menu</a><ul class='methods'><li data-type='method'><a href="module-Menu.html#~close">close</a></li><li data-type='method'><a href="module-Menu.html#~open">open</a></li><li data-type='method'><a href="module-Menu.html#~taggle">taggle</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="global.html#event:event">event</a></li><li><a href="module-Menu.html#~event:onMenuClosed">onMenuClosed</a></li><li><a href="module-Menu.html#~event:onMenuClosing">onMenuClosing</a></li><li><a href="module-Menu.html#~event:onMenuOpen">onMenuOpen</a></li><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#close">close</a></li><li><a href="global.html#dismiss">dismiss</a></li><li><a href="global.html#getAnInstance">getAnInstance</a></li><li><a href="global.html#getModalInstance">getModalInstance</a></li><li><a href="global.html#Input/Textarea">Input/Textarea</a></li><li><a href="global.html#isActive">isActive</a></li><li><a href="global.html#lines">lines</a></li><li><a href="global.html#message">message</a></li><li><a href="global.html#nameClass">nameClass</a></li><li><a href="global.html#NAVIGATION_STACK">NAVIGATION_STACK</a></li><li><a href="global.html#normalButtons">normalButtons</a></li><li><a href="global.html#open">open</a></li><li><a href="global.html#POI%25E6%2590%259C%25E7%25B4%25A2">POI 搜索</a></li><li><a href="global.html#prepareInstance">prepareInstance</a></li><li><a href="global.html#prepareToast">prepareToast</a></li><li><a href="global.html#present">present</a></li><li><a href="global.html#recordMenuInstance">recordMenuInstance</a></li><li><a href="global.html#spinner">spinner</a></li><li><a href="global.html#title">title</a></li><li><a href="global.html#Toggle">Toggle</a></li><li><a href="global.html#toggle">toggle</a></li><li><a href="global.html#%25E5%2588%25A4%25E6%2596%25AD%25E6%2598%25AF%25E5%2590%25A6%25E5%25AE%2589%25E8%25A3%2585app">判断是否安装app</a></li><li><a href="global.html#%25E5%2590%25AF%25E5%258A%25A8app">启动app</a></li><li><a href="global.html#%25E5%259C%25B0%25E5%259B%25BE%25E5%25AE%259A%25E4%25BD%258D">地图定位</a></li><li><a href="global.html#%25E5%25A4%2584%25E7%2590%2586range%25E6%258C%2589%25E9%2592%25AE%25E4%25B8%259A%25E5%258A%25A1%25E7%259A%2584%25E7%25BB%2584%25E4%25BB%25B6%25E5%25AF%25B9%25E5%25A4%2596%25E4%25BA%258B%25E4%25BB%25B6:onIncreaseonDecrease">处理range按钮业务的组件
+
+
+对外事件:
+onIncrease
+onDecrease</a></li><li><a href="global.html#%25E8%258E%25B7%25E5%258F%2596%25E5%25BD%2593%25E5%2589%258D%25E7%25BD%2591%25E7%25BB%259C%25E7%25B1%25BB%25E5%259E%258B">获取当前网络类型</a></li><li><a href="global.html#%25E8%25AE%25BE%25E7%25BD%25AE%25E5%25AF%25BC%25E8%2588%25AA%25E6%25A0%258F%25E9%25A2%259C%25E8%2589%25B2">设置导航栏颜色</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">menu/menu.vue</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+  &lt;div class="ion-menu"
+       :id="id"
+       :type="type"
+       :side="side"
+       :class="{'show-menu':showMenu}">
+    &lt;!--组件自己维护backdrop-->
+    &lt;Backdrop
+      @click.native="$menu.close()"
+      :isActive="showBackdrop"
+      :class="{'show-backdrop':showBackdrop}">&lt;/Backdrop>
+    &lt;transition
+      :name="animationName"
+      v-on:before-enter="_beforeEnter"
+      v-on:after-enter="_afterEnter"
+      v-on:before-leave="_beforeLeave"
+      v-on:after-leave="_afterLeave">
+      &lt;div class="menu-inner" v-if="isOpen">
+        &lt;slot>&lt;/slot>
+      &lt;/div>
+    &lt;/transition>
+  &lt;/div>
+&lt;/template>
+&lt;style lang="scss">
+  @import './menu.scss';
+  @import './menu.ios.scss';
+  @import './menu.md.scss';
+  @import './menu.wp.scss';
+
+  /*slideInLeft*/
+  /*animate class*/
+  .slideInLeft-enter-active,
+  .slideInLeft-leave-active {
+    transform: translateX(0);
+  }
+
+  .slideInLeft-enter,
+  .slideInLeft-leave-active {
+    transform: translateX(-100%);
+    transition: all cubic-bezier(0.2, 0, 1, 1) 280ms;
+    /*transition: all cubic-bezier(0.0, 0.0, 0.2, 1) 1280ms;*/
+  }
+
+  /*slideInRight*/
+  /*animate class*/
+  .slideInRight-enter-active,
+  .slideInRight-leave-active {
+    transform: translateX(0);
+  }
+
+  .slideInRight-enter,
+  .slideInRight-leave-active {
+    transform: translateX(100%);
+    transition: all cubic-bezier(0, 0, 1, 1) 280ms;
+  }
+
+&lt;/style>
+&lt;script type="text/ecmascript-6">
+  /**
+   * 
+   * @module Menu
+   * @description
+   * 
+   * 注意：menu是全局的组件，应该在App.vue中定义，而不是在业务文件中。menu组件和nav组件应该是平级，放在最外层。
+   * 
+   * 该组件用于在Vue.prototype.$menu上共享方法，可以用this.$menu来访问menu组件
+   * @example
+   * var vm = new Vue();
+   * vm.$menu.menuIns: 当前缓存的menu实例对象
+   * vm.$menu.currentMenuId: 当前开启的menuId
+   * vm.$menu.open('menuId'): 打开id为menuId1的menu
+   * vm.$menu.close(): 关闭打开的menu
+   * vm.$menu.toggle('menuId'): 如果开启则关闭, 如果没开启的则打开id为menuId1的menu
+   *
+   * @property  {string}  id               - 要打开menu的id，与open方法中的id对用应
+   * @property  {String}  [side=left]      - 从哪个方向打开  可选 left/right
+   * @property  {String}  [type=overlay]   - 用什么方式打开  可选 overlay/reveal/push
+   * @property  {boolean} [enabled=true]   - 是否精致禁止使用menu
+   * @example
+   *  &lt;Menu id="menu" side="left" type="push" :enabled="false">&lt;/Menu>
+   *
+   */
+  
+  /**
+   * @event onMenuOpen
+   *  @description
+   *     menu开启事件, 传递menuId,可通过$eventBus.#on()去监听。
+   *
+   * @example
+   * 
+   * new Vue({
+   *    methods: {
+   *     open: function () {
+   *       this.$menu.open('aaa');
+   *       this.$$eventBus.#on("onMenuOpen", function(){
+   *         //...
+   *       })
+   *     }
+   *   }
+   * })
+   *
+   */
+  
+  /**
+   * @event onMenuClosing
+   *  @description
+   *     menu触发关闭事件,正在关闭...,可通过$eventBus.#on()去监听。
+   *
+   *
+   */
+  
+  /**
+   * @event onMenuClosed
+   *  @description
+   *     menu关闭动画完毕,可通过$eventBus.#on()去监听。
+   *
+   *
+   */
+
+
+  /**
+   * @property 
+   * @private
+   * menu.vue: Menu组件的模板文件, 方法只用于维护自身状态
+   * menu.js:  组件全局安装及实例注册, 用于在Vue.prototype.$menu上共享方法
+   *
+   *
+   * 页面文件这样使用:
+   * this.$menu.menuIns: 当前缓存的menu实例对象
+   * this.$menu.currentMenuId: 当前开启的menuId
+   * this.$menu.open('menuId1'): 打开id为menuId1的menu
+   * this.$menu.close(): 关闭打开的menu
+   * this.$menu.toggle('menuId1'): 如果开启则关闭, 如果没开启的则打开 menuId1
+   *
+   * 对于menu模板的传参, 参考props
+   *
+   * 对外事件:
+   * onMenuOpen: menu开启事件, 传递menuId
+   * onMenuClosing: menu触发关闭事件,正在关闭...
+   * onMenuClosed: menu关闭动画完毕
+   *
+   *
+   * */
+   /**
+    * @function open 
+    * @description
+    * 如果在menu开启另一个menu, 则等到第一个的关闭promise之后再开启
+    * @param {String} menuId   - 打开menu的id，与上面属性中的id对应
+    * @return {Promise}        
+    * @example  
+    * 下面只弹出id为aaa的menu
+    *
+    *
+    * html:
+    *   &lt;Menu id="aa">&lt;/Menu>
+    *   &lt;Menu id="bb">&lt;/Menu>
+    * js:
+    * new Vue({
+    *    methods: {
+    *     open: function () {
+    *       this.$menu.open('aaa');
+    *     }
+    *   }
+    * })
+    */
+   /**
+    * @function close
+    * @return {Promise} 
+    * @example  
+    *
+    * new Vue({
+    *    methods: {
+    *     open: function () {
+    *       this.$menu.close();
+    *     }
+    *   }
+    * })
+    */
+   /**
+    * @function taggle
+    * @param {String} menuId   - 打开menu的id
+    * @example
+    *  下面只对id为aaa的menu有效果
+    *
+    * html:
+    *   &lt;Menu id="aa">&lt;/Menu>
+    *   &lt;Menu id="bb">&lt;/Menu>
+    * js:  
+    * js:
+    * new Vue({
+    *    methods: {
+    *     open: function () {
+    *       this.$menu.taggle('aaa');
+    *     }
+    *   }
+    * })
+    */
+  
+  import { firstUpperCase } from '../../util/util';
+  import { recordMenuInstance } from './menu';
+
+  export default{
+    name: 'Menu',
+    data(){
+      return {
+        isOpen: false, // menu-inner 动画控制
+        showMenu: false, // 整体menu显示控制
+        showBackdrop: false, // 是否显示半灰色蒙层
+        animationName: '', // 过度动画名称
+
+        // promise
+        presentCallback: null,
+        dismissCallback: null,
+      }
+    },
+    props: {
+      /**
+       * 当前menu的id
+       * */
+      id: {
+        type: String,
+      },
+      /**
+       * menu从哪个位置出来, left/right
+       * 默认:"left"
+       * */
+      side: {
+        type: String,
+        default: 'left'
+      },
+      /**
+       * menu打开的类型: "overlay", "reveal", "push"
+       * */
+      type: {
+        type: String,
+        default () {
+          return VM.config.get('menuType', 'overlay')
+        }
+      },
+      /**
+       * 是否禁用menu
+       * */
+      enabled: {
+        type: Boolean,
+        default: true
+      },
+    },
+    methods: {
+      // 过渡钩子
+      _beforeEnter (el) {
+        this.$app.setEnabled(false, 300);
+      },
+      _afterEnter (el) {
+        this.presentCallback(el);
+      },
+      _beforeLeave(){
+        this.$app.setEnabled(false, 300);
+      },
+      _afterLeave (el) {
+        this.$eventBus.$emit('onMenuClosed',this.id);
+        this.dismissCallback(el);
+        this.showMenu = false;
+      },
+
+      /**
+       * open
+       * @return {promise}
+       * */
+      openMenu(){
+        const _this = this;
+        if (!_this.enabled) return;
+
+
+        _this.showMenu = true;
+        if (_this.type === 'overlay') {
+          _this.showBackdrop = true;
+          // 确定左右动画
+          _this.animationName = 'slideIn' + firstUpperCase(_this.side);
+        }
+
+        if (_this.type === 'push') {
+          // _this.showBackdrop = true;
+          // 确定左右动画
+          _this.animationName = 'slideIn' + firstUpperCase(_this.side);
+        }
+
+
+
+        _this.isOpen = true;
+        this.$eventBus.$emit('onMenuOpen', this.id);
+        return new Promise((resolve) => {this.presentCallback = resolve});
+      },
+
+      /**
+       * close
+       * @return {promise}
+       * */
+      closeMenu(){
+        const _this = this;
+        if (!_this.enabled) return;
+        _this.showBackdrop = false;
+        _this.isOpen = false;
+        _this.$eventBus.$emit('onMenuClosing', _this.id);
+        return new Promise((resolve) => {this.dismissCallback = resolve});
+      },
+    },
+    created(){
+      // 记录当前实例
+      recordMenuInstance(this);
+    },
+    mounted(){
+      console.log('menu this')
+      console.log(this)
+    }
+  }
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 15 2017 10:38:12 GMT+0800 (中国标准时间) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

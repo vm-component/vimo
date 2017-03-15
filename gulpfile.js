@@ -1,3 +1,4 @@
+
 /**
  * @name gulpFile
  * @description
@@ -37,7 +38,7 @@ gulp.task('serve', function () {
   runSequence(['clean'], ['doc'], function () {
     browserSync.init({
       notify: false,
-      port: 8011,
+      port: 8012,
       server: {
         baseDir: ['docs'],
         routes: {}

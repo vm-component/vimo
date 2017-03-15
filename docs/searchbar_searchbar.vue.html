@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>searchbar/searchbar.vue - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Component_Content.html">Component/Content</a><ul class='methods'><li data-type='method'><a href="module-Component_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Component_Content.html#~getScrollElement">getScrollElement</a></li><li data-type='method'><a href="module-Component_Content.html#~onScrollElementTransitionEnd">onScrollElementTransitionEnd</a></li><li data-type='method'><a href="module-Component_Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToTop">scrollToTop</a></li><li data-type='method'><a href="module-Component_Content.html#~setScrollElementStyle">setScrollElementStyle</a></li></ul></li><li><a href="module-Component_Img.html">Component/Img</a></li><li><a href="module-Component_List.html">Component/List</a><ul class='methods'><li data-type='method'><a href="module-Component_List.html#~closeSlidingItems%25E6%259A%2582%25E6%2597%25B6%25E4%25B8%258D%25E5%258F%25AF%25E7%2594%25A8">closeSlidingItems </a></li></ul></li><li><a href="module-Menu.html">Menu</a><ul class='methods'><li data-type='method'><a href="module-Menu.html#~close">close</a></li><li data-type='method'><a href="module-Menu.html#~open">open</a></li><li data-type='method'><a href="module-Menu.html#~taggle">taggle</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="global.html#event:event">event</a></li><li><a href="module-Menu.html#~event:onMenuClosed">onMenuClosed</a></li><li><a href="module-Menu.html#~event:onMenuClosing">onMenuClosing</a></li><li><a href="module-Menu.html#~event:onMenuOpen">onMenuOpen</a></li><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#close">close</a></li><li><a href="global.html#dismiss">dismiss</a></li><li><a href="global.html#getAnInstance">getAnInstance</a></li><li><a href="global.html#getModalInstance">getModalInstance</a></li><li><a href="global.html#Input/Textarea">Input/Textarea</a></li><li><a href="global.html#isActive">isActive</a></li><li><a href="global.html#lines">lines</a></li><li><a href="global.html#message">message</a></li><li><a href="global.html#nameClass">nameClass</a></li><li><a href="global.html#NAVIGATION_STACK">NAVIGATION_STACK</a></li><li><a href="global.html#normalButtons">normalButtons</a></li><li><a href="global.html#open">open</a></li><li><a href="global.html#POI%25E6%2590%259C%25E7%25B4%25A2">POI 搜索</a></li><li><a href="global.html#prepareInstance">prepareInstance</a></li><li><a href="global.html#prepareToast">prepareToast</a></li><li><a href="global.html#present">present</a></li><li><a href="global.html#recordMenuInstance">recordMenuInstance</a></li><li><a href="global.html#spinner">spinner</a></li><li><a href="global.html#title">title</a></li><li><a href="global.html#Toggle">Toggle</a></li><li><a href="global.html#toggle">toggle</a></li><li><a href="global.html#%25E5%2588%25A4%25E6%2596%25AD%25E6%2598%25AF%25E5%2590%25A6%25E5%25AE%2589%25E8%25A3%2585app">判断是否安装app</a></li><li><a href="global.html#%25E5%2590%25AF%25E5%258A%25A8app">启动app</a></li><li><a href="global.html#%25E5%259C%25B0%25E5%259B%25BE%25E5%25AE%259A%25E4%25BD%258D">地图定位</a></li><li><a href="global.html#%25E5%25A4%2584%25E7%2590%2586range%25E6%258C%2589%25E9%2592%25AE%25E4%25B8%259A%25E5%258A%25A1%25E7%259A%2584%25E7%25BB%2584%25E4%25BB%25B6%25E5%25AF%25B9%25E5%25A4%2596%25E4%25BA%258B%25E4%25BB%25B6:onIncreaseonDecrease">处理range按钮业务的组件
+
+
+对外事件:
+onIncrease
+onDecrease</a></li><li><a href="global.html#%25E8%258E%25B7%25E5%258F%2596%25E5%25BD%2593%25E5%2589%258D%25E7%25BD%2591%25E7%25BB%259C%25E7%25B1%25BB%25E5%259E%258B">获取当前网络类型</a></li><li><a href="global.html#%25E8%25AE%25BE%25E7%25BD%25AE%25E5%25AF%25BC%25E8%2588%25AA%25E6%25A0%258F%25E9%25A2%259C%25E8%2589%25B2">设置导航栏颜色</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">searchbar/searchbar.vue</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+  &lt;div class="ion-searchbar"
+       :class="[
+         modeClass,colorClass,
+         {'searchbar-has-focus': sbHasFocus},
+         {'searchbar-has-value':valueInner},
+         {'searchbar-has-animated':animated},
+         {'searchbar-has-active':isActive},
+         {'searchbar-show-cancel':showCancelButton},
+         {'searchbar-left-aligned':shouldAlignLeft}
+         ]">
+    &lt;div class="searchbar-input-container">
+      &lt;!--在md模式下，md的取消按钮是在这里的，当点击inputs输入时，返回按钮将覆盖search按钮-->
+      &lt;Button
+        mode="md"
+        @click="cancelSearchbar($event)"
+        @mousedown="cancelSearchbar($event)"
+        type="clear"
+        color="dark"
+        class="searchbar-md-cancel"
+        role="button">
+        &lt;Icon mode="md" name="md-arrow-back">&lt;/Icon>
+      &lt;/Button>
+
+      &lt;!--input左边的search按钮-->
+      &lt;div ref="searchbarIcon" class="searchbar-search-icon">&lt;/div>
+      &lt;input ref="searchbarInput" class="searchbar-input"
+             @input="inputChanged($event)"
+             @blur="inputBlurred($event)"
+             :value="valueInner"
+             @focus="inputFocused($event)"
+             :placeholder="placeholder"
+             :type="type"
+             :autocomplete="_autocomplete"
+             :autocorrect="_autocorrect"
+             :spellcheck="_spellcheck">
+
+      &lt;!--input右边的关闭按钮-->
+      &lt;Button
+        type="clear"
+        class="searchbar-clear-icon"
+        :mode="mode"
+        @click="clearInput($event)"
+        role="button">&lt;/Button>
+    &lt;/div>
+
+    &lt;!--取消按钮，点击input时出现，只对IOS，md在search icon位置显示，wp没有-->
+    &lt;Button
+      ref="cancelButton"
+      mode="ios"
+      :tabindex="isActive ? 1 : -1"
+      type="clear"
+      @click="cancelSearchbar($event)"
+      class="searchbar-ios-cancel"
+      role="button">{{cancelButtonText}}
+    &lt;/Button>
+
+  &lt;/div>
+&lt;/template>
+&lt;style scoped lang="scss">
+  @import "./searchbar";
+  @import "./searchbar.ios";
+  @import "./searchbar.md";
+  @import "./searchbar.wp";
+
+&lt;/style>
+&lt;script type="text/ecmascript-6">
+  export default{
+    name: 'Searchbar',
+    data(){
+      return {
+        isCancelVisible: false,
+        sbHasFocus: false,
+        isActive: false,
+        shouldAlignLeft: true,
+        shouldBlur: true,
+
+        // 三个元素的id的document实例
+        _searchbarIcon: '',
+        _searchbarInput: '',
+        _cancelButton: '',
+
+        // 外部的value映射
+        valueInner: this.value,
+
+        clearTimeout: '',
+      }
+    },
+    props: {
+      /**
+       * The predefined color to use. For example: "primary", "secondary", "danger".
+       * */
+      color: {
+        type: String,
+        default: '',
+      },
+      /**
+       * The mode to apply to this component. Mode can be ios, wp, or md.
+       * */
+      mode: {
+        type: String,
+        default:  VM.config.get('mode') || 'ios',
+      },
+      /**
+       * Set the the cancel button text. Default: "Cancel".
+       * */
+      cancelButtonText: {
+        type: String,
+        default: 'Cancel',
+      },
+      /**
+       * Whether to show the cancel button or not. Default: "false".
+       * */
+      showCancelButton: {
+        type: Boolean,
+        default: false,
+      },
+      /**
+       * How long, in milliseconds, to wait to trigger the ionInput event after each keystroke. Default 250.
+       * */
+      debounce: {
+        type: Number,
+        default: 250,
+      },
+      /**
+       * Set the input's placeholder. Default "Search".
+       * */
+      placeholder: {
+        type: String,
+        default: 'Search',
+      },
+      /**
+       * Set the input's autocomplete property. Values: "on", "off". Default "off".
+       * */
+      autocomplete: {
+        type: String,
+        default: 'off',
+      },
+      /**
+       * Set the input's autocorrect property. Values: "on", "off". Default "off".
+       * */
+      autocorrect: {
+        type: String,
+        default: 'off',
+      },
+      /**
+       * Set the input's spellcheck property. Values: true, false. Default false.
+       * */
+      spellcheck: {
+        type: [String, Boolean],
+        default: false,
+      },
+      /**
+       * Set the type of the input. Values: "text", "password", "email", "number", "search", "tel", "url". Default "search".
+       * */
+      type: {
+        type: String,
+        default: 'search',
+      },
+      /**
+       * Configures if the searchbar is animated or no. By default, animation is false.
+       * */
+      animated: {
+        type: Boolean,
+        default: false,
+      },
+      /**
+       * Set the input value.
+       * */
+      value: {
+        type: String,
+        default: '',
+      },
+    },
+    watch: {
+      valueInner: function (val) {
+        // console.log('watch val : ' + val)
+      }
+    },
+    computed: {
+      // props处理
+      _autocomplete: function () {
+        return (this.autocomplete === '' || this.autocomplete === 'on') ? 'on' : 'off';
+      },
+      _autocorrect: function () {
+        return (this.autocorrect === '' || this.autocorrect === 'on') ? 'on' : 'off';
+      },
+      _spellcheck: function () {
+        return this.spellcheck === '' || this.spellcheck === 'true' || this.spellcheck === true
+      },
+
+      // class处理
+      modeClass: function () {
+        return `searchbar-${this.mode}`
+      },
+      colorClass: function () {
+        return !!this.color ? `searchbar-${this.mode}-${this.color}` : ''
+      },
+    },
+    methods: {
+      /**
+       * @private
+       * Update the Searchbar input value when the input changes
+       */
+      inputChanged: function ($event) {
+        const _this = this;
+        // console.info('inner-inputChanged');
+        let _valueInner = !!$event.target ? $event.target.value : '';
+        if (!!_valueInner &amp;&amp; _valueInner != undefined) {
+          _this.valueInner = _valueInner;
+        } else {
+          _this.valueInner = null;
+        }
+
+        // TODO: setTimeout->debounce
+        clearTimeout(_this.clearTimeout);
+        _this.clearTimeout = setTimeout(function () {
+          // this.onChange(this.valueInner);
+          _this.$emit('ionInput', $event);
+
+          // 通知父组件的v-model
+          _this.$emit('input', _this.valueInner);
+        }, _this.debounce);
+      },
+
+      /**
+       * @private
+       * Sets the Searchbar to focused and active on input focus.
+       */
+      inputFocused: function ($event) {
+        // console.info('inner-inputFocused');
+        this.$emit('ionFocus', $event);
+        this.sbHasFocus = true;
+        this.isActive = true;
+        this._positionElements();
+      },
+
+      /**
+       * @private
+       * Sets the Searchbar to not focused and checks if it should align left
+       * based on whether there is a value in the searchbar or not.
+       */
+      inputBlurred: function ($event) {
+        // this.sbHasFocus = false;
+        // shouldBlur determines if it should blur
+        // if we are clearing the input we still want to stay focused in the input
+        const _this = this;
+        // wait for DOM update, because of focus method
+        _this.$nextTick(function () {
+          if (!_this.shouldBlur) {
+            _this._searchbarInput.focus();
+            _this.shouldBlur = true;
+            return;
+          }
+          // console.info('inner-inputBlurred: ');
+          _this.$emit('ionBlur', $event);
+          _this.sbHasFocus = false;
+          _this._positionElements();
+        })
+      },
+      /**
+       * @private
+       * Clears the input field and triggers the control change.
+       */
+      clearInput: function ($event) {
+        const _this = this;
+        // console.info('inner-clearInput:');
+        _this.$emit('ionClear', $event);
+        // setTimeout() fixes https://github.com/driftyco/ionic/issues/7527
+        // wait for 4 frames
+        // setTimeout(() => {
+        //     let value = _this.valueInner;
+        //     if (!!value &amp;&amp; value !== '') {
+        //         _this.valueInner = ''; // DOM WRITE
+        //         // this.onChange(this.valueInner);
+        //         _this.$emit('input', _this.valueInner);
+        //         _this.$emit('ionInput', $event)
+        //     }
+        // }, 16 * 4);
+
+        let value = _this.valueInner;
+        if (!!value &amp;&amp; value !== '') {
+          _this.valueInner = ''; // DOM WRITE
+          // this.onChange(this.valueInner);
+          _this.$emit('input', _this.valueInner);
+          _this.$emit('ionInput', $event)
+        }
+
+        _this.shouldBlur = false;
+      },
+      /**
+       * @private
+       * Clears the input field and tells the input to blur since
+       * the clearInput function doesn't want the input to blur
+       * then calls the custom cancel function if the user passed one in.
+       */
+      cancelSearchbar: function ($event) {
+        // console.info('inner-cancelSearchbar:');
+        this.$emit('ionCancel', $event);
+
+        let value = this.valueInner;
+        if (!!value &amp;&amp; value !== '') {
+
+        }
+        this.clearInput($event);
+        this.shouldBlur = true;
+        this.isActive = false;
+
+      },
+
+      /**
+       * @private
+       * Positions the input search icon, placeholder, and the cancel button
+       * based on the input value and if it is focused. (ios only)
+       */
+      _positionElements() {
+        let isAnimated = this.animated;
+        let prevAlignLeft = this.shouldAlignLeft;
+        let shouldAlignLeft = (!isAnimated || (this.valueInner &amp;&amp; this.valueInner.toString().trim() !== '') || this.sbHasFocus === true);
+        this.shouldAlignLeft = shouldAlignLeft;
+
+        if (this.mode !== 'ios') {
+          return;
+        }
+
+        if (prevAlignLeft !== shouldAlignLeft) {
+          this._positionPlaceholder();
+        }
+        if (isAnimated) {
+          this.positionCancelButton();
+        }
+      },
+
+      _positionPlaceholder() {
+        let inputEle = this._searchbarInput;
+        let iconEle = this._searchbarIcon;
+        if (!inputEle || !iconEle) {
+          return;
+        }
+
+        if (this.shouldAlignLeft) {
+          inputEle.removeAttribute('style');
+          iconEle.removeAttribute('style');
+        } else {
+          // Create a dummy span to get the placeholder width
+          let tempSpan = document.createElement('span');
+          tempSpan.innerHTML = this.placeholder;
+          document.body.appendChild(tempSpan);
+
+          // Get the width of the span then remove it
+          let textWidth = tempSpan.offsetWidth;
+          tempSpan.remove();
+
+          // Set the input padding left
+          let inputLeft = 'calc(50% - ' + (textWidth / 2) + 'px)';
+          inputEle.style.paddingLeft = inputLeft;
+
+          // Set the icon margin left
+          let iconLeft = 'calc(50% - ' + ((textWidth / 2) + 30) + 'px)';
+          iconEle.style.marginLeft = iconLeft;
+        }
+      },
+
+      /**
+       * @private
+       * Show the iOS Cancel button on focus, hide it offscreen otherwise
+       */
+      positionCancelButton() {
+        if (!this._cancelButton) {
+          return;
+        }
+        let showShowCancel = this.sbHasFocus;
+        if (showShowCancel !== this.isCancelVisible) {
+          let cancelStyleEle = this._cancelButton;
+          let cancelStyle = cancelStyleEle.style;
+          this.isCancelVisible = showShowCancel;
+          if (showShowCancel) {
+            cancelStyle.marginRight = '0';
+          } else {
+            let offset = cancelStyleEle.offsetWidth;
+            if (offset > 0) {
+              cancelStyle.marginRight = -offset + 'px';
+            }
+          }
+        }
+      }
+
+    },
+    created: function () {
+    },
+    mounted: function () {
+      this._searchbarIcon = this.$refs.searchbarIcon
+      this._searchbarInput = this.$refs.searchbarInput
+      this._cancelButton = this.$refs.cancelButton.$el
+      this._positionElements();
+    },
+  }
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 15 2017 10:38:12 GMT+0800 (中国标准时间) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
