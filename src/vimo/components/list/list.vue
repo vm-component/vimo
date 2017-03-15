@@ -26,7 +26,7 @@
    * @name list
    * @module Component/List
    * @description
-   *  list有多重种风格的样式，有ios/window/android等等
+   *  list有多重种风格的样式，有ios/window/android等等,对应ios/md/wp模式
    *
    *  支持item-sliding（**此功能正在开发，暂时不可用**）
    *
@@ -40,9 +40,7 @@
    *    export default {
           return {
             data () {
-              mode: {
-                type: 'window'
-              }
+              mode:  'md' 
             }
           }   
         }
@@ -74,7 +72,7 @@
     computed: {
       // 环境样式
       modeClass () {
-        return `list-${this.mode.type}`;
+        return `list-${this.mode}`;
       },
     },
     methods: {
