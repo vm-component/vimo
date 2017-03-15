@@ -57,12 +57,73 @@
 </style>
 <script type="text/ecmascript-6">
   /**
-   * 注意：menu是全局的组件，应该在App.vue中定义，而不是在业务文件中
+   * 
+   * @module Menu
+   * @description
+   * 
+   * 注意：menu是全局的组件，应该在App.vue中定义，而不是在业务文件中。menu组件和nav组件应该是平级，放在最外层。
+   * 
+   * 该组件用于在Vue.prototype.$menu上共享方法，可以用this.$menu来访问menu组件
+   * @example
+   * var vm = new Vue();
+   * vm.$menu.menuIns: 当前缓存的menu实例对象
+   * vm.$menu.currentMenuId: 当前开启的menuId
+   * vm.$menu.open('menuId'): 打开id为menuId1的menu
+   * vm.$menu.close(): 关闭打开的menu
+   * vm.$menu.toggle('menuId'): 如果开启则关闭, 如果没开启的则打开id为menuId1的menu
    *
-   * @name Menu
+   * @property  {string}  id               - 要打开menu的id，与open方法中的id对用应
+   * @property  {String}  [side=left]      - 从哪个方向打开  可选 left/right
+   * @property  {String}  [type=overlay]   - 用什么方式打开  可选 overlay/reveal/push
+   * @property  {boolean} [enabled=true]   - 是否精致禁止使用menu
+   * @example
+   *  <Menu id="menu" side="left" type="push" :enabled="false"></Menu>
    *
+   */
+  
+  /**
+   * @event onMenuOpen
+   *  @description
+   *     menu开启事件, 传递menuId,可通过$eventBus.#on()去监听。
+   *
+   * @example
+   * 
+   * new Vue({
+   *    methods: {
+   *     open: function () {
+   *       this.$menu.open('aaa');
+   *       this.$$eventBus.#on("onMenuOpen", function(){
+   *         //...
+   *       })
+   *     }
+   *   }
+   * })
+   *
+   */
+  
+  /**
+   * @event onMenuClosing
+   *  @description
+   *     menu触发关闭事件,正在关闭...,可通过$eventBus.#on()去监听。
+   *
+   *
+   */
+  
+  /**
+   * @event onMenuClosed
+   *  @description
+   *     menu关闭动画完毕,可通过$eventBus.#on()去监听。
+   *
+   *
+   */
+
+
+  /**
+   * @property 
+   * @private
    * menu.vue: Menu组件的模板文件, 方法只用于维护自身状态
    * menu.js:  组件全局安装及实例注册, 用于在Vue.prototype.$menu上共享方法
+   *
    *
    * 页面文件这样使用:
    * this.$menu.menuIns: 当前缓存的menu实例对象
@@ -80,6 +141,61 @@
    *
    *
    * */
+   /**
+    * @function open 
+    * @description
+    * 如果在menu开启另一个menu, 则等到第一个的关闭promise之后再开启
+    * @param {String} menuId   - 打开menu的id，与上面属性中的id对应
+    * @return {Promise}        
+    * @example  
+    * 下面只弹出id为aaa的menu
+    *
+    *
+    * html:
+    *   <Menu id="aa"></Menu>
+    *   <Menu id="bb"></Menu>
+    * js:
+    * new Vue({
+    *    methods: {
+    *     open: function () {
+    *       this.$menu.open('aaa');
+    *     }
+    *   }
+    * })
+    */
+   /**
+    * @function close
+    * @return {Promise} 
+    * @example  
+    *
+    * new Vue({
+    *    methods: {
+    *     open: function () {
+    *       this.$menu.close();
+    *     }
+    *   }
+    * })
+    */
+   /**
+    * @function taggle
+    * @param {String} menuId   - 打开menu的id
+    * @example
+    *  下面只对id为aaa的menu有效果
+    *
+    * html:
+    *   <Menu id="aa"></Menu>
+    *   <Menu id="bb"></Menu>
+    * js:  
+    * js:
+    * new Vue({
+    *    methods: {
+    *     open: function () {
+    *       this.$menu.taggle('aaa');
+    *     }
+    *   }
+    * })
+    */
+  
   import { firstUpperCase } from '../../util/util';
   import { recordMenuInstance } from './menu';
 
