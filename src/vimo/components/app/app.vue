@@ -23,8 +23,6 @@
   </article>
 </template>
 <script type="text/ecmascript-6">
-  
- 
   import Vue from 'vue';
   import { ClickBlock } from "../../util/click-block"
   import { setElementClass, nativeTimeout, clearNativeTimeout } from '../../util/dom'
