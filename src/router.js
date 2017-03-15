@@ -10,8 +10,6 @@
 'use strict';
 import VueRouter from 'vue-router';
 
-
-
 /**
  * 路由配置表
  * */
@@ -25,259 +23,351 @@ const routes = [
     },
     component: require('./views/index.vue'),
   },
-
   {
     path: '/components',
     name: 'components',
     component: require('./views/components.vue'),
+  },
+  {
+    path: '/grid',
+    name: 'grid',
+    component  (resolve) {
+      require(['./views/grid.vue'], resolve)
+    },
   },
 
   // ----  menu ----
   {
     path: '/introduce',
     name: 'introduce',
-    component: require('./views/introduce.vue'),
+    component  (resolve) {
+      require(['./views/introduce.vue'], resolve)
+    },
   },
   {
     path: '/howToStart',
     name: 'howToStart',
-    component: require('./views/how-to-start.vue'),
+    component  (resolve) {
+      require(['./views/how-to-start.vue'], resolve)
+    },
   },
   {
     path: '/equipment',
     name: 'equipment',
-    component: require('./views/equipment.vue'),
+    component  (resolve) {
+      require(['./views/equipment.vue'], resolve)
+    },
   },
 
+  // ----  component ----
 
+  // ----  component/base ----
   {
     path: '/app',
     name: 'app',
-    component: require('./views/app.vue'),
+    component  (resolve) {
+      require(['./views/app.vue'], resolve)
+    },
   },
+  {
+    path: '/content',
+    name: 'content',
+    component  (resolve) {
+      require(['./views/content.vue'], resolve)
+    },
+  },
+  {
+    path: '/toolbar',
+    name: 'toolbar',
+    component  (resolve) {
+      require(['./views/toolbar.vue'], resolve)
+    },
+  },
+
+  // ----  component/弹出层组件 ----
   {
     path: '/action-sheet',
     name: 'actionSheet',
-    meta: {
-      inMenu: true,
+    component  (resolve) {
+      require(['./views/action-sheet.vue'], resolve)
     },
-    component: require('./views/action-sheet.vue'),
-  },
-  {
-    path: '/backdrop',
-    name: 'backdrop',
-    component: require('./views/backdrop.vue'),
-  },
-  {
-    path: '/button',
-    name: 'button',
-    component: require('./views/button.vue'),
-  },
-  {
-    path: '/ghost',
-    name: 'ghostvue',
-    component: require('./views/ghost.vue'),
-  },
-  {
-    path: '/floattop',
-    name: 'floattop',
-    component: require('./views/floattop.vue'),
-  },
-  {
-    path: '/icon',
-    name: 'icon',
-    component: require('./views/icon.vue'),
   },
   {
     path: '/alert',
     name: 'alert',
-    component: require('./views/alert.vue'),
+    component  (resolve) {
+      require(['./views/alert.vue'], resolve)
+    },
   },
   {
-    path: '/toast',
-    name: 'toast',
-    component: require('./views/toast.vue'),
-  },
-  {
-    path: '/spinner',
-    name: 'spinner',
-    component: require('./views/spinner.vue'),
+    path: '/backdrop',
+    name: 'backdrop',
+    component  (resolve) {
+      require(['./views/backdrop.vue'], resolve)
+    },
   },
   {
     path: '/loading',
     name: 'loading',
-    component: require('./views/loading.vue'),
+    component  (resolve) {
+      require(['./views/loading.vue'], resolve)
+    },
   },
   {
     path: '/modal',
     name: 'modal',
-    component: require('./views/modal.vue'),
+    component  (resolve) {
+      require(['./views/modal.vue'], resolve)
+    },
+  },
+  {
+    path: '/toast',
+    name: 'toast',
+    component  (resolve) {
+      require(['./views/toast.vue'], resolve)
+    },
   },
 
-  {
-    path: '/toolbar',
-    name: 'toolbar',
-    component: require('./views/toolbar.vue'),
-  },
-  {
-    path: '/segment',
-    name: 'segment',
-    component: require('./views/segment.vue'),
-  },
-  {
-    path: '/input',
-    name: 'input',
-    component: require('./views/input.vue'),
-  },
-  {
-    path: '/toggle',
-    name: 'toggle',
-    component: require('./views/toggle.vue'),
-  },
-  {
-    path: '/range',
-    name: 'range',
-    component: require('./views/range.vue'),
-  },
-
-
+  // ----  component/通用组件 ----
 
   {
-    path: '/grid',
-    name: 'grid',
-    component: require('./views/grid.vue'),
+    path: '/button',
+    name: 'button',
+    component  (resolve) {
+      require(['./views/button.vue'], resolve)
+    },
+  },
+  {
+    path: '/icon',
+    name: 'icon',
+    component  (resolve) {
+      require(['./views/icon.vue'], resolve)
+    },
+  },
+  {
+    path: '/spinner',
+    name: 'spinner',
+    component  (resolve) {
+      require(['./views/spinner.vue'], resolve)
+    },
+  },
+  {
+    path: '/fab',
+    name: 'fab',
+    component  (resolve) {
+      require(['./views/fab.vue'], resolve)
+    },
+  },
+  {
+    path: '/img',
+    name: 'img',
+    component  (resolve) {
+      require(['./views/img.vue'], resolve)
+    },
   },
 
   // cards
   {
     path: '/cards',
     name: 'cards',
-    component: require('./views/cards.vue'),
+    component  (resolve) {
+      require(['./views/cards.vue'], resolve)
+    },
   },
   {
     path: '/basicCards',
     name: 'cards.basicCards',
-    component: require('./views/cards/basicCards.vue'),
+    component  (resolve) {
+      require(['./views/cards/basicCards.vue'], resolve)
+    },
   },
   {
     path: '/listsInCards',
     name: 'cards.listsInCards',
-    component: require('./views/cards/listsInCards.vue'),
+    component  (resolve) {
+      require(['./views/cards/listsInCards.vue'], resolve)
+    },
   },
   {
     path: '/advancedCards',
     name: 'cards.advancedCards',
-    component: require('./views/cards/advancedCards.vue'),
+    component  (resolve) {
+      require(['./views/cards/advancedCards.vue'], resolve)
+    },
   },
 
+  // ----  component/Form组件 ----
   {
     path: '/searchbar',
     name: 'searchbar',
-    component: require('./views/searchbar.vue'),
+    component  (resolve) {
+      require(['./views/searchbar.vue'], resolve)
+    },
   },
-  //list组件系列
+  {
+    path: '/input',
+    name: 'input',
+    component  (resolve) {
+      require(['./views/input.vue'], resolve)
+    },
+  },
+  {
+    path: '/toggle',
+    name: 'toggle',
+    component  (resolve) {
+      require(['./views/toggle.vue'], resolve)
+    },
+  },
+  {
+    path: '/range',
+    name: 'range',
+    component  (resolve) {
+      require(['./views/range.vue'], resolve)
+    },
+  },
+
+
+  // ----  component/list组件系列 ----
+
   {
     path: '/list',
     name: 'list',
-    component: require('./views/list.vue'),
+    component  (resolve) {
+      require(['./views/list.vue'], resolve)
+    },
+  },
+  {
+    path: '/infinite-scroll',
+    name: 'infinite-scroll',
+    component  (resolve) {
+      require(['./views/infinite-scroll.vue'], resolve)
+    },
+  },
+  {
+    path: '/refresher',
+    name: 'refresher',
+    component  (resolve) {
+      require(['./views/refresher.vue'], resolve)
+    },
   },
   {
     path: '/listForAll',
     name: 'list.listForAll',
-    component: require('./views/list/listForAll.vue'),
+    component  (resolve) {
+      require(['./views/list/listForAll.vue'], resolve)
+    },
   },
   {
     path: '/basicList',
     name: 'list.basicList',
-    component: require('./views/list/basicList.vue'),
+    component  (resolve) {
+      require(['./views/list/basicList.vue'], resolve)
+    },
   },
   {
     path: '/noLine',
     name: 'list.noLine',
-    component: require('./views/list/noLine.vue'),
+    component  (resolve) {
+      require(['./views/list/noLine.vue'], resolve)
+    },
   },
   {
     path: '/insetList',
     name: 'list.insetList',
-    component: require('./views/list/insetList.vue'),
+    component  (resolve) {
+      require(['./views/list/insetList.vue'], resolve)
+    },
   },
   {
     path: '/listDividers',
     name: 'list.listDividers',
-    component: require('./views/list/listDividers.vue'),
+    component  (resolve) {
+      require(['./views/list/listDividers.vue'], resolve)
+    },
   },
   {
     path: '/listHeaders',
     name: 'list.listHeaders',
-    component: require('./views/list/listHeaders.vue'),
+    component  (resolve) {
+      require(['./views/list/listHeaders.vue'], resolve)
+    },
   },
   {
     path: '/iconList',
     name: 'list.iconList',
-    component: require('./views/list/iconList.vue'),
+    component  (resolve) {
+      require(['./views/list/iconList.vue'], resolve)
+    },
   },
   {
     path: '/avatarList',
     name: 'list.avatarList',
-    component: require('./views/list/avatarList.vue'),
+    component  (resolve) {
+      require(['./views/list/avatarList.vue'], resolve)
+    },
   },
   {
     path: '/multi-lineList',
     name: 'list.multi-lineList',
-    component: require('./views/list/multi-lineList.vue'),
+    component  (resolve) {
+      require(['./views/list/multi-lineList.vue'], resolve)
+    },
   },
   {
     path: '/slidingList',
     name: 'list.slidingList',
-    component: require('./views/list/slidingList.vue'),
+    component  (resolve) {
+      require(['./views/list/slidingList.vue'], resolve)
+    },
   },
   {
     path: '/thumbnailList',
     name: 'list.thumbnailList',
-    component: require('./views/list/ThumbnailList.vue'),
+    component  (resolve) {
+      require(['./views/list/ThumbnailList.vue'], resolve)
+    },
   },
-  // Tabs
+
+  // ----  component/Tabs组件 ----
+  {
+    path: '/segment',
+    name: 'segment',
+    component  (resolve) {
+      require(['./views/segment.vue'], resolve)
+    },
+  },
   {
     path: '/tabs',
     name: 'tabs',
-    component: require('./views/tabs.vue'),
+    component  (resolve) {
+      require(['./views/tabs.vue'], resolve)
+    },
     redirect: {name: 'tabs.tab2'},
     children: [
       {
         path: 'tab1',
         name: 'tabs.tab1',
-        component: require('./views/tabs/tab1.vue'),
+        component  (resolve) {
+          require(['./views/tabs/tab1.vue'], resolve)
+        },
       },
       {
         path: 'tab2',
         name: 'tabs.tab2',
-        component: require('./views/tabs/tab2.vue'),
+        component  (resolve) {
+          require(['./views/tabs/tab2.vue'], resolve)
+        },
       },
       {
         path: 'tab3',
         name: 'tabs.tab3',
-        component: require('./views/tabs/tab3.vue'),
+        component  (resolve) {
+          require(['./views/tabs/tab3.vue'], resolve)
+        },
       }
     ]
   },
 
-  {
-    path: '/fab',
-    name: 'fab',
-    component: require('./views/fab.vue'),
-  },
-
-  {
-    path: '/img',
-    name: 'img',
-    component: require('./views/img.vue'),
-  },
-
-  {
-    path: '/content',
-    name: 'content',
-    component: require('./views/content.vue'),
-  },
 
   // 模块
   {
@@ -290,7 +380,6 @@ const routes = [
     name: 'position',
     component: require('./views/position.vue'),
   },
-
 
   // demo
   {
@@ -305,11 +394,20 @@ const routes = [
   },
 
   {
+    path: '/ghost',
+    name: 'ghostvue',
+    component: require('./views/ghost.vue'),
+  },
+  {
+    path: '/floattop',
+    name: 'floattop',
+    component: require('./views/floattop.vue'),
+  },
+  {
     path: '/log',
     name: 'log',
     component: require('./vimo/log/log.vue'),
   },
-
 
 ];
 

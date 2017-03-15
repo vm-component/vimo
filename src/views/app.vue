@@ -18,7 +18,7 @@
       <p>$disableScroll: 禁止页面滚动</p>
 
 
-      <Button @click="$setEnabled(false,3000)">3秒内页面无法点击(可滚动)</Button>
+      <Button @click="$app.setEnabled(false,3000)">3秒内页面无法点击(可滚动)</Button>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
@@ -31,7 +31,7 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
 
-      <Button @click="disableScroll">3秒内页面无法滚动(无法点击+滚动)</Button>
+      <Button @click="$app.setDisableScroll(true,3000)">3秒内页面无法滚动(无法点击+滚动)</Button>
 
     </Content>
 
@@ -55,10 +55,10 @@
       disableScroll(){
         const _this = this;
         if (!_this.isDisabled) {
-          _this.$disableScroll(true);
+          _this.$app.disableScroll(true);
           _this.isDisabled = true;
           setTimeout(function () {
-            _this.$disableScroll(false);
+            _this.$app.disableScroll(false);
             _this.isDisabled = false;
           },3000)
         }

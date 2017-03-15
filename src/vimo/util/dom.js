@@ -65,7 +65,7 @@ export function getCss (docEle) {
   var keys = ['webkitTransform', '-webkit-transform', 'webkit-transform', 'transform'];
 
   for (i = 0; i < keys.length; i++) {
-    if (docEle.style [keys[i]] !== undefined){
+    if (docEle.style [keys[i]] !== undefined) {
       css.transform = keys[i];
       break;
     }
@@ -74,7 +74,7 @@ export function getCss (docEle) {
   // transition
   keys = ['webkitTransition', 'transition'];
   for (i = 0; i < keys.length; i++) {
-    if (docEle.style[keys[i]] !== undefined){
+    if (docEle.style[keys[i]] !== undefined) {
       css.transition = keys[i];
       break;
     }
@@ -111,15 +111,15 @@ export function getCss (docEle) {
  * @return {Function}  取消绑定的函数
  * */
 export function transitionEnd (el, callback) {
-  const unRegs= [];
+  const unRegs = [];
 
-  function unregister() {
+  function unregister () {
     unRegs.forEach(unReg => {
       unReg();
     });
   }
 
-  function onTransitionEnd(ev) {
+  function onTransitionEnd (ev) {
     if (el === ev.target) {
       unregister();
       callback(ev);
@@ -127,13 +127,12 @@ export function transitionEnd (el, callback) {
   }
 
   if (el) {
-    this.registerListener(el, 'webkitTransitionEnd', onTransitionEnd, {}, unRegs);
-    this.registerListener(el, 'transitionend', onTransitionEnd, {}, unRegs);
+    registerListener(el, 'webkitTransitionEnd', onTransitionEnd, {}, unRegs);
+    registerListener(el, 'transitionend', onTransitionEnd, {}, unRegs);
   }
 
   return unregister;
 }
-
 
 /**
  * @private
@@ -459,8 +458,6 @@ export function setElementClass (ele, className, add) {
 
 }
 
-
-
 export function getStyle (element, styleName) {
   if (!element || !styleName) return null;
   styleName = _camelCase(styleName);
@@ -482,70 +479,68 @@ function _camelCase (name) {
   }).replace(MOZ_HACK_REGEXP, 'Moz$1');
 }
 
-
 //这个函数是用来将form表单里的所有数据打包成data
-export  function getFormJsonData(config) {
-    var _config = {
-      container: undefined, // 在指定容器中寻找表单元素
-      empty: true      // value为空的值是否获取
-    }
-    $.extend(_config, config);
+export function getFormJsonData (config) {
+  var _config = {
+    container: undefined, // 在指定容器中寻找表单元素
+    empty: true      // value为空的值是否获取
+  }
+  $.extend(_config, config);
 
-    var $targets = $('input, select, textarea');
-    if(_config.container) {
-      $targets = $(_config.container).find('input, select, textarea');
-    }
+  var $targets = $('input, select, textarea');
+  if (_config.container) {
+    $targets = $(_config.container).find('input, select, textarea');
+  }
 
-    var result = {};
-    $targets.each(function() {
-      var k = $(this).attr('name');
-      var v = $(this).val();
-      var type = $(this).attr('type');
-      if(typeof k === 'undefined') return;
-      if(!_config.empty && v === '') return;
-      if(type === 'radio') {
-        if($(this).is(':checked')) {
-          result[k] = v;
-        }
-      } else if(type === 'checkbox') {
-        if($(this).is(':checked')) {
-          if(result[k] instanceof Array) {
-            result[k].push(v);
-          } else {
-            result[k] = [v];
-          }
-        }
-      } else {
+  var result = {};
+  $targets.each(function () {
+    var k = $(this).attr('name');
+    var v = $(this).val();
+    var type = $(this).attr('type');
+    if (typeof k === 'undefined') return;
+    if (!_config.empty && v === '') return;
+    if (type === 'radio') {
+      if ($(this).is(':checked')) {
         result[k] = v;
       }
-    });
-    return JSON.stringify(result);
+    } else if (type === 'checkbox') {
+      if ($(this).is(':checked')) {
+        if (result[k] instanceof Array) {
+          result[k].push(v);
+        } else {
+          result[k] = [v];
+        }
+      }
+    } else {
+      result[k] = v;
+    }
+  });
+  return JSON.stringify(result);
 }
 
-
- /**
+/**
  * @param context Object {name:key,name:key....}
  */
-export function setFormJsonData(context, config) {
-    var _config = {
-      container: undefined // 在指定容器中寻找表单元素
-    }
-    $.extend(_config, config);
-
-    for(var k in context) {
-      var $target = $('[name="'+k+'"]');
-      if(_config.container) {
-        $target = $(_config.container).find('[name="'+k+'"]');
-      }
-      $target.val(context[k]);
-    }
+export function setFormJsonData (context, config) {
+  var _config = {
+    container: undefined // 在指定容器中寻找表单元素
   }
+  $.extend(_config, config);
+
+  for (var k in context) {
+    var $target = $('[name="' + k + '"]');
+    if (_config.container) {
+      $target = $(_config.container).find('[name="' + k + '"]');
+    }
+    $target.val(context[k]);
+  }
+}
 
 /*
  *@param el  scirpt dom
  * @param callback 回掉函数
-**/
-export function loadScript(el,callback){  //script加载完成后的监听
+ **/
+export function loadScript (el, callback) {  //script加载完成后的监听
   el.onload = el.onreadystatechange = function () {
     if (!this.readyState || /^(loaded|complete)$/.test(this.readyState)) {
       el.onload = el.onreadystatechange = null;

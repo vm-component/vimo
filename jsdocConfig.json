@@ -16,11 +16,7 @@
   },
   "source": {
     "include": [
-      "README.md",
-      "src/vimo/components/content",
-      "src/vimo/components/action-sheet",
-      "src/vimo/components/alert",
-      "src/vimo/components/app"
+      "src/vimo/components/infinite-scroll"
     ],
     "exclude":["gulpfile.js"],
     "includePattern": ".+\\.js(doc|x)?$|.+\\.vue$",

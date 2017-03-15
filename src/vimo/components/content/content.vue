@@ -6,11 +6,7 @@
       <!--<div id="scroller">-->
       <!--<slot></slot>-->
       <!--</div>-->
-      <div id="scroll">
-       <div>
          <slot></slot>
-       </div>
-      </div>
     </section>
     <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
       <!--Fixed Top-->
@@ -27,14 +23,16 @@
   </article>
 </template>
 <style lang="scss">
+  /*.scroll-content{*/
+    /*border:3px solid red;*/
+  /*}*/
   @import './content';
   @import './content.ios';
   @import './content.md';
   @import './content.wp';
-  #scroll{
-    height: auto;
-
-  }
+  /*#scroll{*/
+    /*height: auto;*/
+  /*}*/
 </style>
 <script type="text/ecmascript-6">
   /**
@@ -119,7 +117,6 @@
    * | fixed         | 默认值, 固定到顶部 |
    * | fixedTop      | 固定到顶部        |
    * | fixedBottom   | 固定到底部        |
-   *
    *
    * @property {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
    * @property {string} [mode=ios]  - 样式模式
@@ -269,6 +266,9 @@
          * */
         // 改写 滚动开始 的回调
         scroll.scrollStart = (ev) => {
+          //TODO: 组件自己对外
+          this.$emit('onContentScrollStart', ev);
+          //TODO: 全局事件
           this.$eventBus.$emit('onScrollStart', ev);
         };
 
@@ -276,6 +276,7 @@
         scroll.scroll = (ev) => {
           // remind the app that it's currently scrolling
           this.$app.setScrolling();
+          this.$emit('onContentScroll', ev);
           this.$eventBus.$emit('onScroll', ev);
 
           // img更新
@@ -284,6 +285,7 @@
 
         // 改写 滚动结束 的回调
         scroll.scrollEnd = (ev) => {
+          this.$emit('onContentScrollEnd', ev);
           this.$eventBus.$emit('onScrollEnd', ev);
 
           // img更新
@@ -359,14 +361,10 @@
             this.headerElement = scrollEvent.headerElement = ele;
             computedStyle = getComputedStyle(this.headerElement);
             this.headerBarHeight = parsePxUnit(computedStyle.height);
-            console.debug('this.headerBarHeight')
-            console.debug(computedStyle.height)
           } else if (tagName === 'footer') {
             this.footerElement = scrollEvent.footerElement = ele;
             computedStyle = getComputedStyle(this.footerElement);
             this.footerBarHeight = parsePxUnit(computedStyle.height);
-            console.debug('this.footerBarHeight')
-            console.debug(computedStyle.height)
           }
         });
 
@@ -422,7 +420,7 @@
         (scrollEle.style)[bottomProperty] = cssFormat(this._cBottom);
         fixedEle.style.marginBottom = cssFormat(fixedBottom);
 
-        // 计算Content组件的维度信息, 写入scrollEvent中
+        // 计算Content组件的维度信息, 写入scrollEvent中, 只是初始化的信息
         const contentDimensions = this.getContentDimensions();
         scrollEvent.scrollHeight = contentDimensions.scrollHeight;
         scrollEvent.scrollWidth = contentDimensions.scrollWidth;
@@ -432,7 +430,6 @@
         scrollEvent.contentBottom = contentDimensions.contentBottom;
 
         // 初始化_scroll滚动对象
-        // this._scroll.init(this.scrollElement, this._cTop, this._cBottom);
         this._scroll.init(this.scrollElement, scrollEvent.contentTop, scrollEvent.contentBottom);
 
         // initial imgs refresh
@@ -473,7 +470,10 @@
        * 当动态添加Header/Footer/Tabs或者修改了他的属性时, 重新计算Content组件的尺寸.
        * */
       resize(){
-        this.recalculateContentDimensions();
+        // 等待DOM更新完毕
+        this.$nextTick(()=>{
+          this.recalculateContentDimensions();
+        })
       },
 
       /**
@@ -614,8 +614,6 @@
     mounted() {
       // 初始化
       this.init();
-
-      console.log('content mounted')
     }
   }
 

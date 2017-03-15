@@ -22,14 +22,19 @@
    * @description
    * Img组件, 用于实现Img按需加载的功能. 当滚动到将要显示的位置的时候再加载图片
    *
+   *
    * > Img组件只能在Content组件中使用!
    *
    * 这里能使用markdown语法
    *
+   * @property {String} [alt='image']         - 图片的alt属性
+   * @property {(Number|String)} [height=0]   - 图片的高度
+   * @property {String} src                   - 图片的src地址
+   * @property {(Number|String)} [width=0]    - 图片的宽度
+   *
    * */
   import { isPresent } from'../../util/util'
   import { registerListener } from'../../util/dom'
-
   export default{
     name: 'Img',
     props: {
@@ -85,6 +90,7 @@
     computed: {},
     methods: {
       /**
+       * @private
        * 组件初始化操作
        * */
       init(){
@@ -119,10 +125,9 @@
       },
 
       /**
+       * @private
        * 重置src请求,将img的src置空, 撤去渲染结果
-       *
        * 当前组件的src记录在this.src中, 如果未加载, 则将this.src=>this._requestingSrc, 表示图片需要下载.
-       *
        * */
       reset(){
         if (this._requestingSrc && !this._renderedSrc && !this._hasLoaded) {
@@ -139,6 +144,7 @@
       },
 
       /**
+       * @private
        * 更新
        * */
       update(){
@@ -172,12 +178,16 @@
         }
       },
 
-      // 设置DOM控制
+      /**
+       * @private
+       * 设置DOM控制
+       * */
       setLoaded(isLoaded){
         this.isLoaded = !!isLoaded;
       },
 
       /**
+       * @private
        * 设置imgbox的尺寸值
        * */
       setDims() {
@@ -197,6 +207,7 @@
       },
 
       /**
+       * @private
        * 初始化/改变prop中src值时的处理函数
        * */
       initSrcValue(){
@@ -213,6 +224,7 @@
       },
 
       /**
+       * @private
        * 真正设置img元素src的函数, 设置意味着即将进行img下载
        * @param {string} srcAttr - 将要加载的img的src属性值
        * */
@@ -221,6 +233,7 @@
       },
 
       /**
+       * @private
        * 将传入的height和width转为正确格式
        * @param {any} val
        * @return {string}
@@ -243,6 +256,7 @@
       },
 
       /**
+       * @private
        * 获取当前组件的尺寸及距离页面的位置
        * */
       getBounds() {
@@ -255,6 +269,7 @@
       },
 
       /**
+       * @private
        * 获取从图片底部到页面顶部的距离
        * */
       getBottom(){
@@ -263,6 +278,7 @@
       },
 
       /**
+       * @private
        * 获取从图片顶部到页面顶部的距离
        * */
       getTop(){
