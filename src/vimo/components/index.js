@@ -82,6 +82,7 @@ import prepareModal from './modal'
 
 // 滚动刷新组件
 import {InfiniteScroll,InfiniteScrollContent} from './infinite-scroll'
+import {Refresher,RefresherContent} from './refresher'
 
 // 自定义组件
 import SnakeBox from './snake-box'
@@ -179,8 +180,12 @@ module.exports = {
     Vue.component(Fab.name, Fab);
 
     Vue.component(Img.name, Img);
+
+    // 上拉下拉刷新
     Vue.component(InfiniteScroll.name, InfiniteScroll);
     Vue.component(InfiniteScrollContent.name, InfiniteScrollContent);
+    Vue.component(Refresher.name, Refresher);
+    Vue.component(RefresherContent.name, RefresherContent);
 
     Vue.component(Menu.name, Menu);
     Vue.component(BackdropComponent.name, BackdropComponent);
