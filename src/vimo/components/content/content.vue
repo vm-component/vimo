@@ -122,7 +122,6 @@
    * @fires onScrollEnd     - 滚动结束时触发， 传递ScrollEvent对象
    *
    *
-   *
    * @example
    * <template>
    *  <Page>

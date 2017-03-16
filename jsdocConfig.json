@@ -23,10 +23,14 @@
   },
   "source": {
     "include": [
+      "README.md",
       "src/vimo/components/app",
       "src/vimo/components/content",
       "src/vimo/components/refresher",
       "src/vimo/components/icon",
+      "src/vimo/components/grid",
+      "src/vimo/components/infinite-scroll",
+      "src/vimo/components/spinner",
       "src/vimo/components/tabs"
     ],
     "exclude": [

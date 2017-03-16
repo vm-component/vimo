@@ -5,14 +5,6 @@
 </template>
 <script type="text/ecmascript-6">
   export default{
-    name: 'Row',
-    data(){
-      return {
-      }
-    },
-    computed: {
-    },
-    mounted () {
-    }
+    name: 'Row'
   }
 </script>
