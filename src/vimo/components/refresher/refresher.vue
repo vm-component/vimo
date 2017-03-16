@@ -21,10 +21,45 @@
    * @property {Number} [pullMin=70] - 下拉进入refreshing状态的最小值
    * @property {Number} [snapbackDuration=280] - 回复到 refreshing 状态的动画时间
    *
-   * @fires onRefresh - 进入 refreshing 状态时触发
-   * @fires onPull - 下拉并且看到了refresher
-   * @fires onStart - 开始下拉的事件
+   * @fires onRefresh - 进入 refreshing 状态时触发, 事件传递组件的this
+   * @fires onPull - 下拉并且看到了refresher, 事件传递组件的this
+   * @fires onStart - 开始下拉的事件, 事件传递组件的this
    *
+   * @example
+   *
+   <Page>
+      <Header>
+          <Navbar>
+              <Title>Refresher</Title>
+          </Navbar>
+      </Header>
+      <Content>
+          <Refresher slot="refresher" @onRefresh="doRefresh($event)" @onPull="doPulling($event)">
+            <RefresherContent pullingText="下拉刷新..." refreshingText="正在刷新..."></RefresherContent>
+          </Refresher>
+          <List>
+              <Item v-for="i in list">{{i}}</Item>
+          </List>
+      </Content>
+   </Page>
+   *
+   * @example
+   *
+   methods: {
+      doRefresh(ins){
+        console.debug('doRefresh $event')
+        let _start = this.i;
+        setTimeout(() => {
+          for (; (10 + _start) > this.i; this.i++) {
+            this.list.unshift(`item - ${this.i}`)
+          }
+          // 当前异步完成
+          ins.complete();
+          console.debug('onInfinite-complete')
+        }, 500)
+
+      },
+    },
    * */
 
   const STATE_INACTIVE = 'inactive';
@@ -161,7 +196,6 @@
       },
 
       /**
-       * @private
        * @param {Boolean} shouldListen -
        * */
       setListeners(shouldListen) {
@@ -189,7 +223,6 @@
       },
 
       /**
-       * @private
        * @param {TouchEvent} ev - 点击事件
        * */
       pointerDownHandler(ev){
@@ -226,7 +259,6 @@
         return true;
       },
       /**
-       * @private
        * @param {TouchEvent} ev - 点击事件
        * */
       pointerMoveHandler(ev){
@@ -308,10 +340,6 @@
 
       },
 
-      /**
-       * @private
-       * 进行滚动吧
-       * */
       goScroll(){
         // set pull progress
         this.progress = (this.deltaY * this.damp / this.pullMin);
@@ -363,7 +391,6 @@
         this.$emit('onRefresh', this)
       },
       /**
-       * @private
        * @param {string} state
        * @param {string} delay
        * */
@@ -392,15 +419,9 @@
         // set that the refresh is actively cancelling/completing
         this.state = state;
         this.setCss(0, '', true, delay);
-
-        // if (this.pointerEvents) {
-        //   this.pointerEvents.stop();
-        // }
-
       },
 
       /**
-       * @private
        * @param {Number} y -
        * @param {String} duration -
        * @param {Boolean} overflowVisible -

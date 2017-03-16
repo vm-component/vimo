@@ -305,3 +305,12 @@ export function getNum (str) {
   }
   return _num * 1
 }
+
+
+/**
+ * @param {string} val
+ * @return {number}
+ * */
+export function parsePxUnit (val) {
+  return (!!val && val.indexOf('px') > 0) ? parseInt(val, 10) : 0;
+}

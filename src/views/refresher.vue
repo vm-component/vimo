@@ -6,14 +6,12 @@
       </Navbar>
     </Header>
     <Content>
-
       <Refresher slot="refresher" @onRefresh="doRefresh($event)" @onPull="doPulling($event)">
         <RefresherContent
           pullingText="下拉刷新..."
           refreshingText="正在刷新...">
         </RefresherContent>
       </Refresher>
-
       <List>
         <Item v-for="i in list">{{i}}</Item>
       </List>
@@ -38,7 +36,7 @@
     watch: {},
     computed: {},
     methods: {
-      doRefresh($event){
+      doRefresh(ins){
         console.debug('doRefresh $event')
         let _start = this.i;
         setTimeout(() => {
@@ -46,13 +44,11 @@
             this.list.unshift(`item - ${this.i}`)
           }
           // 当前异步完成
-          $event.complete();
+          ins.complete();
           console.debug('onInfinite-complete')
         }, 500)
 
       },
-      doPulling($event){
-      }
     },
     created(){
       for (; 15 > this.i; this.i++) {

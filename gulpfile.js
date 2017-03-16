@@ -16,7 +16,7 @@ let jsdocConfig = require('./jsdocConfig');
 let plumber = require('gulp-plumber');
 
 //clean
-gulp.task('clean', del.bind(null, ['docs']));
+gulp.task('clean', del.bind(null, ['docs/page']));
 
 // jsdoc
 gulp.task('doc', function (cb) {
@@ -40,7 +40,7 @@ gulp.task('serve', function () {
       notify: false,
       port: 8012,
       server: {
-        baseDir: ['docs'],
+        baseDir: ['docs/page','docs'],
         routes: {}
       }
     });
@@ -52,10 +52,10 @@ gulp.task('serve', function () {
 });
 
 gulp.task('default', function (cb) {
-  runSequence('doc', cb);
+  runSequence(['clean'], 'doc', cb);
 });
 
 gulp.task('publish', function (cb) {
   let runSequence = require('run-sequence');
-  runSequence('doc', cb);
+  runSequence(['clean'], 'doc', cb);
 });

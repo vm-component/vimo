@@ -8,7 +8,8 @@
 </style>
 <script type="text/ecmascript-6">
   /**
-   * Icon组件
+   * @module Component/Icon
+   * @description
    *
    * icon可以支持ionicons/自定义imgClass
    *
@@ -23,6 +24,8 @@
    *
    * 3. 自定义激活的类 activeName
    *  <Icon name="home" activeName="star"></Icon>  -->  设定激活的class图标
+   *
+   *
    *
    * */
   export default{

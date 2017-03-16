@@ -1,11 +1,7 @@
 <template>
   <article class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
     <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
-      <!--<section   ref="scrollElement" class="scroll-content" id="wrapper"  :style="scrollElementStyle">-->
       <!--默认是能滚动的内容   -->
-      <!--<div id="scroller">-->
-      <!--<slot></slot>-->
-      <!--</div>-->
       <slot></slot>
     </section>
     <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
@@ -23,16 +19,10 @@
   </article>
 </template>
 <style lang="scss">
-  /*.scroll-content{*/
-  /*border:3px solid red;*/
-  /*}*/
   @import './content';
   @import './content.ios';
   @import './content.md';
   @import './content.wp';
-  /*#scroll{*/
-  /*height: auto;*/
-  /*}*/
 </style>
 <script type="text/ecmascript-6">
   /**
@@ -103,14 +93,19 @@
    * Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是"上中下三明治"结构,
    * Content组件则是中间业务内容的位置.
    *
-   * Content组件中书写的代码可以是滚动内容的内容, 也可以是固定在一面不随滚动的内容, 比如说当页的广告/刷新按钮/歌词等.
+   * Content组件中书写的代码可以是滚动的内容, 也可以是固定在一面不随滚动的内容, 比如说当页的广告/刷新按钮/歌词等.
    * 这个特性的的开启需要特殊命名slot才能激活.
    *
    * 此外需要注意的是, 一个页面(Page组件)中只能有一个Content组件, 这个是Vimo使用的规则!
    *
-   * Content组件中也可以加入下拉刷新和上拉加载的功能**目前正在开发**.
+   * Content组件中也可以加入下拉刷新和上拉加载的功能
+   *
+   * ![content组件](../asset/content.png)
    *
    * ##### Slots:
+   *
+   *
+   *
    * | Name  | Description  |
    * |:------------- |:--------------- |
    * | 空            | 内容插入到scroll中 |
@@ -122,9 +117,9 @@
    * @property {string} [mode=ios]  - 样式模式
    *
    *
-   * @fires onScroll
-   * @fires onScrollStart
-   * @fires onScrollEnd
+   * @fires onScroll        - 滚动时触发， 传递ScrollEvent对象
+   * @fires onScrollStart   - 滚动开始时触发， 传递ScrollEvent对象
+   * @fires onScrollEnd     - 滚动结束时触发， 传递ScrollEvent对象
    *
    *
    *
@@ -142,11 +137,8 @@
    *  </Page>
    * </template>
    * */
-  import { getStyle, setElementClass, transitionEnd } from '../../util/dom'
-  import { getNum, removeArrayItem } from '../../util/util'
-  // import iScroll from '../../util/iscroll'
-  // import dutil from '../../util/demoUtils'
-
+  import { transitionEnd } from '../../util/dom'
+  import { removeArrayItem,parsePxUnit } from '../../util/util'
   import { ScrollView } from '../../util/scroll-view'
 
   export default{
@@ -206,9 +198,90 @@
       }
     },
     methods: {
+      // -------- public --------
+      /**
+       * @function getContentDimensions
+       * @description
+       * Returns the content and scroll elements' dimensions.
+       * @return {ContentDimension} content and scroll elements' dimensions
+       * */
+      getContentDimensions(){
+        const scrollEle = this.scrollElement;
+        const parentElement = scrollEle.parentElement;
+
+        return {
+          contentHeight: parentElement.offsetHeight - this._cTop - this._cBottom,
+          contentHeight2: scrollEle.offsetHeight,
+          contentTop: this._cTop,
+          contentBottom: parentElement.offsetHeight - this._cBottom,
+
+          contentWidth: parentElement.offsetWidth,
+          contentLeft: parentElement.offsetLeft,
+
+          scrollHeight: scrollEle.scrollHeight,
+          scrollTop: scrollEle.scrollTop,
+
+          scrollWidth: scrollEle.scrollWidth,
+          scrollLeft: scrollEle.scrollLeft,
+        };
+
+      },
+      /**
+       * @function resize
+       * @description
+       * 当动态添加Header/Footer/Tabs或者修改了他的属性时, 重新计算Content组件的尺寸.
+       * */
+      resize(){
+        // 等待DOM更新完毕
+        this.$nextTick(() => {
+          this.recalculateContentDimensions();
+        })
+      },
+      /**
+       * @function scrollTo
+       * @description
+       * 滚动到指定位置
+       * @param {Number} x                - 滚动到指定位置的x值
+       * @param {Number} y                - 滚动到指定位置的y值
+       * @param {Number} [duration=300]   - 滚动动画的时间
+       * @param {Function=} done          - 当滚动结束时触发的回调
+       * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
+       * */
+      scrollTo (x, y, duration = 300, done) {
+        console.debug(`content, scrollTo started, y: ${y}, duration: ${duration}`);
+        return this._scroll.scrollTo(x, y, duration, done);
+      },
+      /**
+       * @function scrollToTop
+       * @description
+       * 滚动到顶部
+       * @param {Number=} [duration=300] - 滚动动画的时间, 默认是300ms
+       * @return {promise} 当滚动动画完毕后返回promise
+       */
+      scrollToTop(duration = 300) {
+        console.debug(`content, scrollToTop, duration: ${duration}`);
+        // 页面防止点击
+        this.$app.setDisableScroll(true, 320);
+        return this._scroll.scrollToTop(duration);
+      },
+      /**
+       *
+       * @function scrollToBottom
+       * @description
+       * 滚动到顶部
+       * @param {Number=} [duration=300] - 滚动动画的时间, 默认是300ms
+       * @return {promise} 当滚动动画完毕后返回promise
+       */
+      scrollToBottom(duration = 300) {
+        console.debug(`content, scrollToBottom, duration: ${duration}`);
+        // 页面防止点击
+        this.$app.setDisableScroll(true, 320);
+        return this._scroll.scrollToBottom(duration);
+      },
+
+      // -------- private --------
 
       /**
-       * @private
        * DOM完毕后进行初始化
        * */
       init(){
@@ -288,7 +361,6 @@
       },
 
       /**
-       * @private
        * 重新计算Content组件的尺寸维度
        * 因为这部分受以下因素影响：statusbarPadding、fullscreen、Header，Footer
        * */
@@ -399,93 +471,9 @@
         this.imgsUpdate();
       },
 
-      /**
-       * @function getContentDimensions
-       * @description
-       * Returns the content and scroll elements' dimensions.
-       * @return {ContentDimension} content and scroll elements' dimensions
-       * */
-      getContentDimensions(){
-        const scrollEle = this.scrollElement;
-        const parentElement = scrollEle.parentElement;
-
-        return {
-          contentHeight: parentElement.offsetHeight - this._cTop - this._cBottom,
-          contentHeight2: scrollEle.offsetHeight,
-          contentTop: this._cTop,
-          contentBottom: parentElement.offsetHeight - this._cBottom,
-
-          contentWidth: parentElement.offsetWidth,
-          contentLeft: parentElement.offsetLeft,
-
-          scrollHeight: scrollEle.scrollHeight,
-          scrollTop: scrollEle.scrollTop,
-
-          scrollWidth: scrollEle.scrollWidth,
-          scrollLeft: scrollEle.scrollLeft,
-        };
-
-      },
-
-      /**
-       * @function resize
-       * @description
-       * 当动态添加Header/Footer/Tabs或者修改了他的属性时, 重新计算Content组件的尺寸.
-       * */
-      resize(){
-        // 等待DOM更新完毕
-        this.$nextTick(() => {
-          this.recalculateContentDimensions();
-        })
-      },
-
-      /**
-       * @function scrollTo
-       * @description
-       * 滚动到指定位置
-       * @param {Number} x                - 滚动到指定位置的x值
-       * @param {Number} y                - 滚动到指定位置的y值
-       * @param {Number} [duration=300]   - 滚动动画的时间
-       * @param {Function=} done          - 当滚动结束时触发的回调
-       * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
-       * */
-      scrollTo (x, y, duration = 300, done) {
-        console.debug(`content, scrollTo started, y: ${y}, duration: ${duration}`);
-        return this._scroll.scrollTo(x, y, duration, done);
-      },
-
-      /**
-       * @function scrollToTop
-       * @description
-       * 滚动到顶部
-       * @param {Number=} [duration=300] - 滚动动画的时间, 默认是300ms
-       * @return {promise} 当滚动动画完毕后返回promise
-       */
-      scrollToTop(duration = 300) {
-        console.debug(`content, scrollToTop, duration: ${duration}`);
-        // 页面防止点击
-        this.$app.setDisableScroll(true, 320);
-        return this._scroll.scrollToTop(duration);
-      },
-      /**
-       *
-       * @function scrollToBottom
-       * @description
-       * 滚动到顶部
-       * @param {Number=} [duration=300] - 滚动动画的时间, 默认是300ms
-       * @return {promise} 当滚动动画完毕后返回promise
-       */
-      scrollToBottom(duration = 300) {
-        console.debug(`content, scrollToBottom, duration: ${duration}`);
-        // 页面防止点击
-        this.$app.setDisableScroll(true, 320);
-        return this._scroll.scrollToBottom(duration);
-      },
 
       // -------- For Refresher Component --------
       /**
-       * @function getScrollElement
-       * @description
        * 获取scrollElement元素的Dom
        * */
       getScrollElement(){
@@ -493,8 +481,6 @@
       },
 
       /**
-       * @function onScrollElementTransitionEnd
-       * @description
        * 滚动结束的事件回调
        * @param {function} callback - 过渡结束的回调, 回调传参TransitionEvent
        */
@@ -503,8 +489,6 @@
       },
 
       /**
-       * @function setScrollElementStyle
-       * @description
        * 在scrollElement上设置属性
        * @param {string} prop - 属性名称
        * @param {any} val     - 属性值
@@ -520,31 +504,24 @@
       },
 
       // -------- For VirtualScroll Component --------
-      /**
-       * @private
-       */
       enableJsScroll() {
         this._scroll.enableJsScroll(this._cTop, this._cBottom);
       },
 
       // -------- For Img Component --------
       /**
-       * @private
        * @param {object} img - Img组件的实例
        */
       addImg(img){
         this._imgs.push(img);
       },
       /**
-       * @private
        *  @param {object} img - Img组件的实例
        */
       removeImg(img) {
         removeArrayItem(this._imgs, img);
       },
-
       /**
-       * @private
        * Img组件更新
        */
       imgsUpdate(){
@@ -555,15 +532,10 @@
           })
         }
       },
-
-      /**
-       * @private
-       */
       isImgsUpdatable() {
         // 当滚动不是太快的时候, Img组件更新才被允许, 这个速度由this.imgVelMax控制
         return Math.abs(this._scroll.ev.velocityY) < this._imgVelMax;
       }
-
     },
     created () {
       // 页面进入前完成非DOM操作部分
@@ -583,20 +555,12 @@
   /**
    * @private
    * @param {string} val
-   * @return {number}
-   * */
-  function parsePxUnit (val) {
-    return (!!val && val.indexOf('px') > 0) ? parseInt(val, 10) : 0;
-  }
-
-  /**
-   * @private
-   * @param {string} val
    * @return {string}
    * */
   function cssFormat (val) {
     return (val > 0 ? val + 'px' : '');
   }
+
 
   /**
    * @private
@@ -705,7 +669,5 @@
       priority2.sort(sortTopToBottom).forEach(i => i.update());
     }
   }
-
-
 </script>
 

@@ -23,6 +23,22 @@
   </article>
 </template>
 <script type="text/ecmascript-6">
+  /**
+   * @module Component/App
+   * @description
+   *
+   * App组件是Vimo框架的根组件,用于管理及控制整个页面的状态.
+   *
+   * 该组件的下列方法已挂载到`vue.prototype.$app`上, 所以在页面中直接像这样使用:
+   *
+   * ```
+   *  this.$app.setTitle('Hello World');
+   * ```
+   *
+   * @fires app:ready - App组件在Mounted之后发送的事件, 事件传播在$eventBus上
+   *
+   * @property {String} mode - 模式
+   * */
   import Vue from 'vue';
   import { ClickBlock } from "../../util/click-block"
   import { setElementClass, nativeTimeout, clearNativeTimeout } from '../../util/dom'
@@ -77,10 +93,11 @@
       }
     },
     methods: {
-
+      // -------- public --------
       /**
-       * 设置App的title
-       * @param {string} val  Value to set the document title to.
+       * @function setTitle
+       * @description 设置App的title及document的title
+       * @param {string} val - 设置document title的值
        */
       setTitle(val){
         this.title = val;
@@ -88,7 +105,76 @@
       },
 
       /**
-       * @private
+       * @function setEnabled
+       * @description
+       * 设置当前页面是否能点击滑动, 一般使用在像ActionSheet/Alert/Modal等弹出会出现transition动画,
+       * 当transition动画进行中，页面是锁定的不能点击，因此使用该函数设定App的状态, 保证动画过程中, 用户不会操作页面
+       * @param {boolean} isEnabled  - `true` for enabled, `false` for disabled
+       * @param {number} duration - isEnabled=false的过期时间 当 `isEnabled` 设置为`false`, 则duration之后，`isEnabled`将自动设为`true`
+       * */
+      setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
+        this._disTime = (isEnabled ? 0 : Date.now() + duration);
+        if (isEnabled) {
+          // disable the click block if it's enabled, or the duration is tiny
+          _clickBlock.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS);
+        } else {
+          // show the click block for duration + some number
+          _clickBlock.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS);
+        }
+      },
+
+      /**
+       * @function setDisableScroll
+       * @description
+       * 是否点击滚动, 这个需要自己设置时间解锁
+       * @param {Boolean} isScrollDisabled - 是否禁止滚动点击 true:禁止滚动/false:可以滚动
+       * @param {number} duration - 时间过后则自动解锁
+       * */
+      setDisableScroll (isScrollDisabled, duration = 0) {
+        this.isScrollDisabled = isScrollDisabled;
+        if (duration > 0 && isScrollDisabled) {
+          clearNativeTimeout(this._scrollDisTime);
+          this._scrollDisTime = nativeTimeout(() => {
+            this.isScrollDisabled = false;
+          }, duration)
+        }
+      },
+
+      /**
+       * @function isScrolling
+       * @description
+       * 判断现在app是否在scroll状态, scroll状态可能是任意一个页面的状态,
+       * 这个isScroll作为全局的scroll判断
+       * @return {boolean}
+       */
+      isScrolling() {
+        const scrollTime = this._scrollTime;
+        if (scrollTime === 0) {
+          return false;
+        }
+        if (scrollTime < Date.now()) {
+          this._scrollTime = 0;
+          return false;
+        }
+        return true;
+      },
+      /**
+       * @function isEnabled
+       * @description
+       * 查看App现在的激活状态
+       * @return {boolean}
+       */
+      isEnabled() {
+        const disTime = this._disTime;
+        if (disTime === 0) {
+          return true;
+        }
+        return (disTime < Date.now());
+      },
+
+      // -------- private --------
+
+      /**
        * 设置document.title的值
        * */
       setDocTitle(val){
@@ -112,60 +198,11 @@
       },
 
       /**
-       * @private
        *  @param {string} className
        *  @param {boolean} isAdd
        */
       setElementClass(className, isAdd) {
         setElementClass(this.$el, className, isAdd);
-      },
-
-      /**
-       * 设置当前页面是否能点击滑动
-       * 一般适用在像ActionSheet/Alert/Modal等弹出会出现transition动画
-       * 当transition动画进行中，页面是锁定的不能点击，因此使用该函数设定此状态
-       * @param {boolean} isEnabled `true` for enabled, `false` for disabled
-       * @param {number} duration isEnabled=false的过期时间 当 `isEnabled` 设置为`false`,
-       * 则duration之后，`isEnabled`将自动设为`true`
-       * */
-      setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
-        this._disTime = (isEnabled ? 0 : Date.now() + duration);
-        if (isEnabled) {
-          // disable the click block if it's enabled, or the duration is tiny
-          _clickBlock.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS);
-        } else {
-          // show the click block for duration + some number
-          _clickBlock.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS);
-        }
-      },
-
-      /**
-       * @private
-       * Boolean if the app is actively enabled or not.
-       * @return {boolean}
-       */
-      isEnabled() {
-        const disTime = this._disTime;
-        if (disTime === 0) {
-          return true;
-        }
-        return (disTime < Date.now());
-      },
-
-      /**
-       * 是否点击滚动
-       * 这个需要自己设置时间解锁
-       * @param {Boolean} isScrollDisabled - 是否禁止滚动点击 true:禁止滚动/false:可以滚动
-       * @param {number} duration
-       * */
-      setDisableScroll (isScrollDisabled, duration = 0) {
-        this.isScrollDisabled = isScrollDisabled;
-        if (duration > 0 && isScrollDisabled) {
-          clearNativeTimeout(this._scrollDisTime);
-          this._scrollDisTime = nativeTimeout(() => {
-            this.isScrollDisabled = false;
-          }, duration)
-        }
       },
 
       /**
@@ -177,24 +214,6 @@
       setScrolling() {
         this._scrollTime = Date.now() + ACTIVE_SCROLLING_TIME;
       },
-
-      /**
-       * 判断现在app是否在scroll状态, scroll状态可能是任意一个页面的状态,
-       * 这个isScroll作为全局的scroll判断
-       * @return {boolean} returns true or false
-       */
-      isScrolling() {
-        const scrollTime = this._scrollTime;
-        if (scrollTime === 0) {
-          return false;
-        }
-        if (scrollTime < Date.now()) {
-          this._scrollTime = 0;
-          return false;
-        }
-        return true;
-      },
-
     },
     created(){
       /**

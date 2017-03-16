@@ -10,63 +10,66 @@
 </template>
 <script type="text/ecmascript-6">
   /**
-   * !!Tab组件必须和Tabs组件配合使用!!
+   * @module Component/Tab
+   * @description
    *
-   * Tab组件内部与路由结合, 因此应该包含:to属性, 用于跳转
+   * 还是需要再声明下，Tab组件必须和Tabs组件配合使用， Tab组件内部与路由`$router`结合,
+   * Tab点击切换使用的是`$router.replace(this.to)`处理的， 因此应该包含:to属性用于跳转。
    *
-   * 此组件用于传输传递, 不具有DOM结构及生命周期
    *
-   * 选中时的对外事件: onTabSelect, 传递this
+   * @property {Boolean} [enabled] - 是否能选择
+   * @property {Object} to - 路由跳转，必填
+   * @property {Boolean} [show=true] - 是否显示
+   * @property {String} [tabBadge] - 徽章显示值
+   * @property {String} [tabBadgeStyle] - 徽章颜色
+   * @property {String} [tabIcon] - tab的IconName
+   * @property {String} [tabTitle] - tab的tabTitle
+   *
+   * @fires onTabSelect - Tab被点击时触发，传递当前Tab的this
+   *
+   * @example
+   *
+   <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
+   *
+   *
+   *
    *
    * */
   let _tabId = -1;
   export default{
     name: 'Tab',
     props: {
-      /**
-       * 是否能选择
-       * */
+      // 是否能选择
       enabled: {
         type: Boolean,
         default: true,
       },
-      /**
-       * 路由跳转
-       * */
+      // 路由跳转
       to: {
         type: Object,
+        required:true
       },
-      /**
-       * 是否显示
-       * */
+      // 是否显示
       show: {
         type: Boolean,
         default: true,
       },
-      /**
-       * 徽章显示值
-       * */
+      // 徽章显示值
       tabBadge: {
         type: String,
         default: '',
       },
-      /**
-       * 徽章颜色
-       * */
+      // 徽章颜色
       tabBadgeStyle: {
         type: String,
         default: '',
       },
-      /**
-       * tab的IconName
-       * */
+      // tab的IconName
       tabIcon: {
         type: String,
         default: '',
       },
-      /**
-       * tab的tabTitle
-       * */
+      // tab的tabTitle
       tabTitle: {
         type: String,
         default: '',

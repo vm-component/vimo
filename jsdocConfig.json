@@ -1,29 +1,46 @@
 {
   "tags": {
     "allowUnknownTags": true,
-    "dictionaries": ["jsdoc","closure"]
+    "dictionaries": [
+      "jsdoc",
+      "closure"
+    ]
   },
   "opts": {
-    "destination": "./docs",
-    "template": "node_modules/minami"
+    "destination": "./docs/page",
+    "encoding": "utf8",
+    "template": "node_modules/docdash"
   },
   "plugins": [
     "node_modules/jsdoc-vue",
     "plugins/markdown"
   ],
   "markdown": {
-    "tags": ["usage", "slot"]
+    "tags": [
+      "usage",
+      "slot"
+    ]
   },
   "source": {
     "include": [
-      "src/vimo/components/refresher"
+      "src/vimo/components/app",
+      "src/vimo/components/content",
+      "src/vimo/components/refresher",
+      "src/vimo/components/icon",
+      "src/vimo/components/tabs"
     ],
-    "exclude":["gulpfile.js"],
+    "exclude": [
+      "gulpfile.js"
+    ],
     "includePattern": ".+\\.js(doc|x)?$|.+\\.vue$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
   "templates": {
-    "cleverLinks": true,
-    "monospaceLinks": true
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "docdash": {
+    "static": true,
+    "sort": true
   }
 }
