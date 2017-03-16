@@ -1,7 +1,12 @@
 <template>
-  <section>
-    <slot></slot>
-  </section>
+  <a class="tab-button" ref="routerLink" @click="tabClickHandler($event)"
+     :id="tabId"
+     :class="{'has-title':hasTitle, 'has-icon':hasIcon, 'has-title-only':hasTitleOnly, 'icon-only':hasIconOnly, 'has-badge':hasBadge, 'disable-hover':disHover, 'tab-disabled':!enabled, 'tab-hidden':!show,'tab-active':isActive}">
+    <Icon v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
+    <span v-if="tabTitle" class="tab-button-text">{{tabTitle}}</span>
+    <Badge v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
+    <div class="button-effect"></div>
+  </a>
 </template>
 <script type="text/ecmascript-6">
   /**
@@ -11,9 +16,10 @@
    *
    * 此组件用于传输传递, 不具有DOM结构及生命周期
    *
-   * 选中时的对外事件: onSelect
+   * 选中时的对外事件: onTabSelect, 传递this
    *
    * */
+  let _tabId = -1;
   export default{
     name: 'Tab',
     props: {
@@ -28,8 +34,7 @@
        * 路由跳转
        * */
       to: {
-        type: String,
-        default: '',
+        type: Object,
       },
       /**
        * 是否显示
@@ -66,47 +71,56 @@
         type: String,
         default: '',
       },
-
-      // TODO: tabUrlPath
-      // string The URL path name to represent this tab within the URL.
-
-      //TODO: tabsHideOnSubPages
-      // boolean If true, hide the tabs on child pages.
+    },
+    data(){
+      return {
+        disHover: VM && VM.config.getBoolean('hoverCSS', false),
+        index: ++_tabId,
+        isActive: false, // 这个值具有滞后性, 只代表当前的页面的状态, 不能用于其他
+      }
+    },
+    computed: {
+      hasTitle(){
+        return !!this.tabTitle
+      },
+      tabId(){
+        return `tabId-${this.index}`
+      },
+      hasIcon(){
+        return !!this.tabIcon
+      },
+      hasTitleOnly(){
+        return !!this.tabTitle && !this.tabIcon
+      },
+      hasIconOnly(){
+        return !!this.tabIcon && !this.tabTitle
+      },
+      hasBadge(){
+        return !!this.tabBadge
+      },
+    },
+    watch: {
+      $route(){
+        this.refreshMatchState()
+      }
     },
     methods: {
-      /**
-       * 获取当前Tab填入的信息
-       * Tab只是一个参数搬运工, 在页面总不起作用!
-       *
-       * */
-      getTabInfo(){
-
-        let _tabId = this._uid;
-        let hasTitle = !!this.tabTitle;
-        let hasIcon = !!this.tabIcon;
-        let hasTitleOnly = !!this.tabTitle && !this.tabIcon;
-        let hasIconOnly = !!this.tabIcon && !this.tabTitle;
-        let hasBadge = !!this.tabBadge;
-        let disHover = VM.config.getBoolean('hoverCSS', false);
-
-        return {
-          _tabId,
-          hasTitle,
-          hasIcon,
-          hasTitleOnly,
-          hasIconOnly,
-          hasBadge,
-          disHover,
-
-          enabled: this.enabled,
-          to: eval("(" + this.to + ")"), // 这个必须是对象
-          show: this.show,
-          tabBadge: this.tabBadge,
-          tabBadgeStyle: this.tabBadgeStyle,
-          tabIcon: this.tabIcon,
-          tabTitle: this.tabTitle,
+      isMatch(){
+        return this.to.name === this.$route.name || this.to.path === this.$route.path
+      },
+      tabClickHandler(){
+        if (this.enabled) {
+          this.$router.replace(this.to);
+          this.$emit('onTabSelect', this)
         }
+      },
+      refreshMatchState(){
+        this.isActive = this.isMatch();
       }
-    }
+    },
+    created(){
+      this.refreshMatchState();
+      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'tabs', 'Tab component must combine with Tabs')
+    },
   }
 </script>

@@ -160,38 +160,6 @@
         type: String,
         default: VM.config.get('mode', 'ios')
       }
-      // useIScroll:{
-      //   type:Boolean,
-      //   default:false
-      // },
-      // scrollX:{
-      //   type:Boolean,
-      //   default:false
-      // },
-      // snap:{
-      //   type:Boolean,
-      //   default:true
-      // },
-      // snapSpeed:{
-      //   type:Boolean,
-      //   default:true
-      // },
-      // keyBindings:{
-      //   type:Boolean,
-      //   default:true
-      // },
-      // indicatorsEl:{
-      //   type:String,
-      //   default:"indicator"
-      // },
-      // indicatorResize:{
-      //   type:Boolean,
-      //   default:true
-      // },
-      // stemplate:{
-      //   type:String,
-      //   default:"#wrapper"
-      // }
     },
     data(){
       return {
@@ -204,11 +172,6 @@
         headerElement: null, //Header组件的DOM句柄
         footerElement: null, //footer组件的DOM句柄
         tabsElement: null, //tabs组件的DOM句柄
-
-        // 第一次进入需要判断header和footer的高度,进而调整content组件的尺寸.
-        // 但是, 设置了样式后需要在$nextTick中读取content尺寸才是正确的结果
-        // (更新了header/footer的样式并不代表实际更新DOM)
-        isDomReady: false,
 
         statusBarHeight: 20,
         headerBarHeight: 0,
