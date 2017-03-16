@@ -30,13 +30,10 @@
     computed: {},
     methods: {},
     created () {
-      console.debug('tab1.vue - created')
     },
     mounted () {
-      console.debug('tab1.vue - mounted')
     },
     activated () {
-      console.debug('tab1.vue - activated')
     },
     components: {}
   }

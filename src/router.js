@@ -173,9 +173,6 @@ const routes = [
     },
   },
 
-
-
-
   // cards
   {
     path: '/cards',
@@ -235,7 +232,6 @@ const routes = [
       require(['./views/range.vue'], resolve)
     },
   },
-
 
   // ----  component/list组件系列 ----
 
@@ -352,32 +348,224 @@ const routes = [
     component  (resolve) {
       require(['./views/tabs.vue'], resolve)
     },
-    redirect: {name: 'tabs.tab2'},
+  },
+  {
+    path: '/tabsBottom',
+    name: 'tabs.tabsBottom',
+    component  (resolve) {
+      require(['./views/tabs/tabsBottom.vue'], resolve)
+    },
+    redirect: {name: 'tabsBottom.demoTab1'},
     children: [
       {
-        path: 'tab1',
-        name: 'tabs.tab1',
+        path: 'demoTab1',
+        name: 'tabsBottom.demoTab1',
         component  (resolve) {
-          require(['./views/tabs/tab1.vue'], resolve)
+          require(['./views/tabs/demoTab1.vue'], resolve)
         },
       },
       {
-        path: 'tab2',
-        name: 'tabs.tab2',
+        path: 'demoTab2',
+        name: 'tabsBottom.demoTab2',
         component  (resolve) {
-          require(['./views/tabs/tab2.vue'], resolve)
+          require(['./views/tabs/demoTab2.vue'], resolve)
         },
       },
       {
-        path: 'tab3',
-        name: 'tabs.tab3',
+        path: 'demoTab3',
+        name: 'tabsBottom.demoTab3',
         component  (resolve) {
-          require(['./views/tabs/tab3.vue'], resolve)
+          require(['./views/tabs/demoTab3.vue'], resolve)
         },
       }
     ]
   },
-
+  {
+    path: '/tabsTop',
+    name: 'tabs.tabsTop',
+    component  (resolve) {
+      require(['./views/tabs/tabsTop.vue'], resolve)
+    },
+    redirect: {name: 'tabsTop.demoTab1'},
+    children: [
+      {
+        path: 'demoTab1',
+        name: 'tabsTop.demoTab1',
+        component  (resolve) {
+          require(['./views/tabs/demoTab1.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab2',
+        name: 'tabsTop.demoTab2',
+        component  (resolve) {
+          require(['./views/tabs/demoTab2.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab3',
+        name: 'tabsTop.demoTab3',
+        component  (resolve) {
+          require(['./views/tabs/demoTab3.vue'], resolve)
+        },
+      }
+    ]
+  },
+  {
+    path: '/iconOnly',
+    name: 'tabs.iconOnly',
+    component  (resolve) {
+      require(['./views/tabs/iconOnly.vue'], resolve)
+    },
+    redirect: {name: 'iconOnly.demoTab1'},
+    children: [
+      {
+        path: 'demoTab1',
+        name: 'iconOnly.demoTab1',
+        component  (resolve) {
+          require(['./views/tabs/demoTab1.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab2',
+        name: 'iconOnly.demoTab2',
+        component  (resolve) {
+          require(['./views/tabs/demoTab2.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab3',
+        name: 'iconOnly.demoTab3',
+        component  (resolve) {
+          require(['./views/tabs/demoTab3.vue'], resolve)
+        },
+      }
+    ]
+  },
+  {
+    path: '/iconLeft',
+    name: 'tabs.iconLeft',
+    component  (resolve) {
+      require(['./views/tabs/iconLeft.vue'], resolve)
+    },
+    redirect: {name: 'iconLeft.demoTab1'},
+    children: [
+      {
+        path: 'demoTab1',
+        name: 'iconLeft.demoTab1',
+        component  (resolve) {
+          require(['./views/tabs/demoTab1.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab2',
+        name: 'iconLeft.demoTab2',
+        component  (resolve) {
+          require(['./views/tabs/demoTab2.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab3',
+        name: 'iconLeft.demoTab3',
+        component  (resolve) {
+          require(['./views/tabs/demoTab3.vue'], resolve)
+        },
+      }
+    ]
+  },
+  {
+    path: '/titleOnly',
+    name: 'tabs.titleOnly',
+    component  (resolve) {
+      require(['./views/tabs/titleOnly.vue'], resolve)
+    },
+    redirect: {name: 'titleOnly.demoTab1'},
+    children: [
+      {
+        path: 'demoTab1',
+        name: 'titleOnly.demoTab1',
+        component  (resolve) {
+          require(['./views/tabs/demoTab1.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab2',
+        name: 'titleOnly.demoTab2',
+        component  (resolve) {
+          require(['./views/tabs/demoTab2.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab3',
+        name: 'titleOnly.demoTab3',
+        component  (resolve) {
+          require(['./views/tabs/demoTab3.vue'], resolve)
+        },
+      }
+    ]
+  },
+  {
+    path: '/iconBottom',
+    name: 'tabs.iconBottom',
+    component  (resolve) {
+      require(['./views/tabs/iconBottom.vue'], resolve)
+    },
+    redirect: {name: 'iconBottom.demoTab1'},
+    children: [
+      {
+        path: 'demoTab1',
+        name: 'iconBottom.demoTab1',
+        component  (resolve) {
+          require(['./views/tabs/demoTab1.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab2',
+        name: 'iconBottom.demoTab2',
+        component  (resolve) {
+          require(['./views/tabs/demoTab2.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab3',
+        name: 'iconBottom.demoTab3',
+        component  (resolve) {
+          require(['./views/tabs/demoTab3.vue'], resolve)
+        },
+      }
+    ]
+  },
+  {
+    path: '/tabHighLight',
+    name: 'tabs.tabHighLight',
+    component  (resolve) {
+      require(['./views/tabs/tabHighLight.vue'], resolve)
+    },
+    redirect: {name: 'tabHighLight.demoTab1'},
+    children: [
+      {
+        path: 'demoTab1',
+        name: 'tabHighLight.demoTab1',
+        component  (resolve) {
+          require(['./views/tabs/demoTab1.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab2',
+        name: 'tabHighLight.demoTab2',
+        component  (resolve) {
+          require(['./views/tabs/demoTab2.vue'], resolve)
+        },
+      },
+      {
+        path: 'demoTab3',
+        name: 'tabHighLight.demoTab3',
+        component  (resolve) {
+          require(['./views/tabs/demoTab3.vue'], resolve)
+        },
+      }
+    ]
+  },
 
   // 模块
   {
