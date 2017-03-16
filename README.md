@@ -4,7 +4,7 @@
 
 这个是目前的组件图谱, 基本上完成了90%.
 
-![](./static/component.png)
+![](./static/component.svg)
 
 项目使用vue-cli构建，如果对此熟悉则下面的启动说明应该就没问题了。
 
