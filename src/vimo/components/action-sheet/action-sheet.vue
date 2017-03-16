@@ -41,14 +41,14 @@
 </template>
 <script type="text/ecmascript-6">
   /**
-   *@module Component/ActionSheet
-   *@description
-   *ActionSheet是一个对话框，让用户从一组选项中进行选择。
+   * @module Component/ActionSheet
+   * @description
    *
-   *它显示在应用内容的顶层，必须由用户手动关闭，然后他们才能恢复与应用的互动。
-   *有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键。
+   * ActionSheet是一个弹出表单，一般都是由很多Button组成。当用户点击确认完毕后关闭.
    *
-   *
+   * 它显示在应用内容的顶层，必须由用户手动关闭，然后他们才能恢复与应用的互动。
+   * 有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键,
+   * 也就是说, ActionSheet能监听url的变化做出关闭的动作。
    *
    * @property {String} [title='']                     - 初始化Alert Instance的数据
    * @property {string} [subTitle='']                  - 初始化Alert Instance的数据
@@ -62,8 +62,6 @@
    * @property {string} [mode=ios]                     - 样式模式
    * @property {Array} [normalButtons=[ ]]             - 普通按钮组
    * @property {Array} [cancelButton=[ ]]              - 取消按钮(组)，一般放在下面
-   * @property {Array} [dismissCallback=[ ]]          - inputs数据再加工
-   * @property {Array} [presentCallback=[ ]]          - inputs数据再加工
    */
 
 
