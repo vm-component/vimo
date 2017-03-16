@@ -21,46 +21,6 @@
   @import "./tabs.ios.scss";
   @import "./tabs.md.scss";
   @import "./tabs.wp.scss";
-
-  .tabs-content {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    display: block;
-    overflow: hidden;
-    contain: size style layout;
-    .tabs-content-wrap {
-      position: absolute;
-      width: 100%;
-      display: block;
-      padding: 0;
-      margin: 0;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      box-sizing: border-box;
-      .wrap-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: block;
-        margin: 0;
-        top: 0;
-        bottom: 0;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-        will-change: scroll-position;
-        contain: size style layout;
-        box-sizing: border-box;
-      }
-    }
-  }
 </style>
 <script type="text/ecmascript-6">
   /**
@@ -328,6 +288,7 @@
     },
     created () {},
     mounted () {
+      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'page', 'Tabs component must place in Page Component');
       // 初始化
       this.initTabs();
     },

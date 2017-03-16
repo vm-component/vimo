@@ -1,6 +1,5 @@
 <template>
   <Page>
-
     <Tabs tabsLayout="icon-bottom" tabsPlacement="bottom" color="dark">
       <router-view></router-view>
       <Tab slot="tab" :to="{name:'iconBottom.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger"
