@@ -16,9 +16,32 @@
 
 </style>
 <script type="text/ecmascript-6">
+  /**
+   * @module Component/Spinner
+   * @description
+   * Spinner组件提供了一个使用svg+js的方式事项的菊花图(loading). Spinner组件可以通过传入`props`来实时控制Spinner的样子,
+   * 用来模拟诸如: processing/thinking/waiting/chilling 等特性.
+   *
+   * Spinner的风格可以是下面的一种: ios/ios-small/bubbles/circles/crescent/dots,
+   * 其中, ios默认的是'ios'; md默认的是'crescent'; wp默认的是'circles'; 这些可以通过`config`配置
+   *
+   *
+   * @property {String} [color] - 颜色
+   * @property {String} [mode='ios'] - 模式
+   * @property {String} [name] - 模式
+   * @property {String} [duration] - 持续时间
+   * @property {Boolean} [paused] - 是否暂停
+   *
+   * @example
+   * <Spinner></Spinner>
+   * <Spinner name="ios"></Spinner>
+   * <Spinner mode="wp"></Spinner>
+   * <Spinner color="secondary" name="dots"></Spinner>
+   * <Spinner duration="3000" name="dots"></Spinner>
+   * <Spinner :paused="true" name="ios"></Spinner>
+   * */
 
   const SPINNERS = {
-
     ios: {
       dur: 1000,
       lines: 12,
@@ -119,46 +142,35 @@
     }
 
   };
-
   export default{
     name: 'Spinner',
     props: {
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
+      // 按钮color：primary、secondary、danger、light、dark
       color: {
         type: String,
         default: '',
       },
 
-      /**
-       * mode 按钮平台 ios/window/android/we/alipay
-       * */
+      // mode 按钮平台 ios/window/android
       mode: {
         type: String,
         default: VM.config.get('mode') || 'ios',
       },
 
-      /**
-       * name 按钮风格
-       * ios/ios-small/bubbles/circles/crescent/dots
-       * */
+      // name 风格
+      // ios/ios-small/bubbles/circles/crescent/dots
       name: {
         type: String,
         default: null,
       },
 
-      /**
-       * duration 持续时间
-       * */
+      // duration 持续时间
       duration: {
         type: String,
         default: null,
       },
 
-      /**
-       * paused 是否暂停
-       * */
+      // paused 是否暂停
       paused: {
         type: Boolean,
         default: false,
@@ -168,16 +180,10 @@
     data() {
       return {
         isInit: false,
-
-        /**
-         * svg动画数组
-         */
+        // svg动画数组
         lines: [],
         circles: [],
-
-        /**
-         * ios/ios-small/bubbles/circles/crescent/dots
-         * */
+        // ios/ios-small/bubbles/circles/crescent/dots
         nameClass: null,
       }
     },

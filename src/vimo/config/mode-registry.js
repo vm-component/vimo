@@ -80,7 +80,7 @@ export const MODE_MD = {
 
   spinner: 'crescent',
 
-  tabsHighlight: false,
+  tabsHighlight: true,
   tabsPlacement: 'bottom',
   tabsHideOnSubPages: false,
 
@@ -123,7 +123,7 @@ export const MODE_WP = {
 
   spinner: 'circles',
 
-  tabsHighlight: false,
+  tabsHighlight: true,
   tabsPlacement: 'top',
   tabsHideOnSubPages: true,
 

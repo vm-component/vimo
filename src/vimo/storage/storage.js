@@ -20,10 +20,8 @@
  *
  * sessionStorage/localstorage此时使用内存缓存处理(降级保证能运行).
  *
- * 参考的项目: https://github.com/DTFE/vStorage
  *
  * 设计概要:
- * 1. 基本上是对vStorage翻版改写
  * 2. config中能设置key的前缀
  * 3. $开头的变量为内存变量, 不在sessionStorage/localStorage中存储
  *
@@ -36,11 +34,10 @@ module.exports = {
       $sessionStorage: new Storage('sessionStorage', options),
     })
   }
-}
+};
 
 /**
  * @name Storage
-
  * @description
  *
  * 根据传入的storage名称, 这个类用于生成storage实例
@@ -68,8 +65,13 @@ class Storage {
     this._prefixLength = this._prefix.length;
     this._storage = this._isStorageSupported(window, storageType); // 返回浏览器的存储对象(localStorage/sessionStorage)
 
+    // 检测是否支持storage存储, 不支持则采用回退处理
     if (!this._storage) {
-      console.error('Current browser does not support sessionStorage and localStorage, system will use memory to cache key/value data!')
+      console.error('Current browser does not support sessionStorage and localStorage, ' +
+        'system will fallback to use memory to cache key/value data! storage.js::<Class>Storage')
+      this._storageFallback();
+      // 再次执行检测
+      this._storage = this._isStorageSupported(window, storageType);
     }
 
     // 初始化
@@ -98,7 +100,6 @@ class Storage {
    * */
   setItem (key, value) {
     this[key] = JSON.parse(JSON.stringify(value));
-
     this.supported() && this._storage.setItem(this._prefix + key, JSON.stringify(value));
   }
 
@@ -168,4 +169,56 @@ class Storage {
     return supported;
   }
 
+  /**
+   * 如果手机不支持storage的降级处理
+   * */
+  _storageFallback () {
+    window.localStorage = new StorageFallback('localStorage');
+    window.sessionStorage = new StorageFallback('sessionStorage');
+  }
+
+}
+
+/**
+ * @class StorageFallback
+ * @description
+ * 当storage不能正常工作时的降级处理, 即在内存维护一个能记录长度和获取key的键值对
+ * */
+class StorageFallback {
+  constructor (storageType) {
+    this._storageType = storageType;
+    this._storage = {};
+    this.length = 0;
+  }
+
+  getItem (key) {
+    if (!key || !value) {return}
+    key = key.toString();
+    return this._storage[key]
+  }
+
+  setItem (key, value) {
+    if (!key || !value) {return}
+    key = key.toString();
+    value = value.toString();
+    this._storage[key] = value;
+    this.length++;
+  }
+
+  clear () {
+    this._storage = {};
+    this.length = 0;
+  }
+
+  removeItem (key) {
+    if (!key) {return}
+    key = key.toString();
+    delete this._storage[key];
+    this.length--;
+  }
+
+  key (num) {
+    let keys = Object.keys(this._storage);
+    return keys[parseInt(num)]
+  }
 }

@@ -19,7 +19,6 @@
               <div class="action-sheet-sub-title" v-if="subTitle">{{subTitle}}</div>
             </div>
             <Button role="action-sheet-button" @click="click(b)" v-for="b of normalButtons"
-                        class=""
                         :class="[b.cssClass,{'icon-left':b.icon}]">
               <Icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></Icon>
               {{b.text}}
@@ -40,6 +39,31 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  /**
+   * @module Component/ActionSheet
+   * @description
+   *
+   * [文档还未完成]
+   *
+   * ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭.
+   *
+   * 它显示在应用内容的顶层，必须由用户手动关闭，然后他们才能恢复与应用的互动。
+   * 有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键,
+   * 也就是说, ActionSheet能监听url的变化做出关闭的动作。
+   *
+   * @property {String} [title=]                     - ActionSheet的标题
+   * @property {string} [subTitle=]                  - ActionSheet的副标题
+   * @property {string} [cssClass=]                  - Additional classes for custom styles, separated by spaces
+   * @property {Array} [buttons=]                   - button数组，包含全部role
+   * @property {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
+   *
+   * @property {Boolean} [isActive=false]                - ActionSheet 开启状态
+   * @property {Boolean} [enabled=false]               - 是否在过渡态的状态判断，如果在动画中则为false
+   * @property {string} [mode=ios]                     - 样式模式
+   * @property {Array} [normalButtons=[ ]]             - 普通按钮组
+   * @property {Array} [cancelButton=[ ]]              - 取消按钮(组)，一般放在下面
+   */
+
 
   /**
    * 使用实例模式的话，props和data无区别。
@@ -49,6 +73,7 @@
     data(){
       return {
         /**
+         * @private
          * 初始化ActionSheet Instance的数据
          * 因为是实例调用模式，故prop和data在初始化后是同样的数据接口，
          * 故prop就没有存在的价值
@@ -60,6 +85,7 @@
         enableBackdropDismiss: true, // Boolean 允许点击backdrop关闭actionsheet
 
         /**
+         * @private
          * ActionSheet State
          * */
         isActive: false,  // ActionSheet 开启状态
@@ -67,6 +93,7 @@
         mode: VM.config.get('mode') || 'ios', // ios?android?window
 
         /**
+         * @private
          * ActionSheet 计算属性
          * 因为实例化后computed也就无效了，
          * 故这部分在watch处理
@@ -120,11 +147,12 @@
     },
     methods: {
       /**
+       * @private
        * ActionSheet Animate Hooks
        * */
       _beforeEnter () {
         this.enabled = false; // 不允许过渡中途操作
-        this.$setEnabled(false, 400)
+        this.$app.setEnabled(false, 400)
       },
       _afterEnter (el) {
         this.enabled = true;
@@ -137,7 +165,7 @@
       },
       _beforeLeave () {
         this.enabled = false;
-        this.$setEnabled(false, 400)
+        this.$app.setEnabled(false, 400)
       },
       _afterLeave (el) {
         this.enabled = true;
@@ -147,6 +175,7 @@
       },
 
       /**
+       * @private
        * ActionSheet启动之前去除focus效果，因为存在键盘
        * */
       _focusOutActiveElement () {
@@ -156,6 +185,11 @@
       },
 
       /**
+       * @function bdClick
+       * @description
+       * 点击backdrop,关闭actionsheet
+       *
+       * 如存在cancel按钮，点击按钮关闭actionsheet
        * Backdrop Click Handler, If cancelButton defined, then action cancelButton handler.
        */
       bdClick () {
@@ -170,6 +204,9 @@
       },
 
       /**
+       * @function click
+       * @description
+       * 点击下方按钮
        * @param {object} button Button Click Handler
        */
       click (button) {
@@ -195,6 +232,7 @@
       },
 
       /**
+       * @private
        * Present the action sheet instance.
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
@@ -219,6 +257,9 @@
       },
 
       /**
+       * @function setTitle
+       * @description
+       * 设置 Action sheet title
        * @param {string} title Action sheet title
        */
       setTitle (title) {
@@ -226,6 +267,10 @@
       },
 
       /**
+       *
+       * @function setSubTitle
+       * @description
+       * 设置 Action sheet subtitle
        * @param {string} subTitle Action sheet subtitle
        */
       setSubTitle (subTitle) {
@@ -233,6 +278,9 @@
       },
 
       /**
+       * @function addButton
+       * @description
+       * 增加button
        * @param {object} button Action sheet button
        */
       addButton (button) {

@@ -8,21 +8,47 @@
 </style>
 <script type="text/ecmascript-6">
   /**
-   * Icon组件
+   * @module Component/Icon
+   * @description
    *
-   * icon可以支持ionicons/自定义imgClass
+   * 因为Vimo是对Ionic的移植, 故Icon组件也是使用ionicons图标, ionicons地址[点这里](http://ionicons.com/),
+   * ionicon根据ios和Android提供了两种同类型不同风格的图标(windows模式使用的是ios图标).
    *
-   * 1. 默认情况下使用ionicons图标, 在name中传入ionicons的name即可(去除ion/mode信息)
+   * 另外,ionicon的图标不多, 但是包含了大多数移动端使用场景的icon, 故这部分没有用font-awesome替换.
+   *
+   * 如果有需要其他类型的图片可以使用自定义图标. 这里, icon可以支持ionicons/自定义imgClass:
+   *
+   * ##### 1 .默认情况下使用ionicons图标
+   *
+   *   在name中传入ionicons的name即可(去除ion/mode信息)
+   *
+   * ```
    *  <Icon name="star"></Icon>                     -->  根据平台选择, ios:ion-ios-star, md:ion-md-star
    *  <Icon name="ios-star"></Icon>                 -->  在全平台都使用ion-ios-star图标
    *  <Icon name="star"></Icon>                     -->  根据平台mode  ->  ion-ios-star/ion-android-star
    *  <Icon ios="ios-home" md="md-home"></Icon>     -->  单独设定: ios平台使用ios-home, md平台使用md-home
+   * ```
    *
-   * 2. 如果是自定义的图标icon, 命名需要规范下, 用于区分ionicons.
+   * ##### 2. 如果是自定义的图标icon
+   *
+   *    命名需要规范下, 用于区分ionicons.
+   *
+   * ```
    *  <Icon name="icon-star"></Icon>                -->  icon-star
+   * ```
    *
-   * 3. 自定义激活的类 activeName
+   * ##### 3. 自定义激活的类 activeName
+   * ```
    *  <Icon name="home" activeName="star"></Icon>  -->  设定激活的class图标
+   * ```
+   *
+   * @property {String} [mode='ios'] - 模式
+   * @property {String} [color] - 颜色
+   * @property {String} [name] - icon的名称
+   * @property {String} [activeName] - Icon激活状态的Icon名称(默认只有ios有, 会在name后面加后缀: `${this.name}-outline`, 其他平台的需要自己传入值)
+   * @property {Boolean} [isActive=true] - 表示是否未激活状态, 默认是激活状态
+   * @property {String} [ios] - 强制使用ios的Icon
+   * @property {String} [md] - 强制使用md的Icon
    *
    * */
   export default{
@@ -47,7 +73,6 @@
         type: String,
         default: '',
       },
-
       /**
        * icon的名字, 默认的名字
        * */
@@ -85,7 +110,6 @@
         type: String,
         default: '',
       },
-
       md: {
         type: String,
         default: '',
@@ -95,10 +119,7 @@
       return {
         nameClass: '', // 最终显示的nameClass
         itemClass: '',
-
         nameValue: null,
-        // activeNameValue: '', // 过滤后的值
-
         hidden: false, // 是否隐藏图标
       }
     },
@@ -135,7 +156,6 @@
           return val;
         }
       },
-
       update() {
         let iconName;
 
@@ -177,13 +197,11 @@
           this.nameClass = 'ion-' + iconName;
         }
       },
-
     },
     created(){
       this.update();
     },
     mounted(){
-
       if (!!this.$parent.$el && this.$parent.$el.className && this.$parent.$el.className.indexOf('item') > -1) {
         //	button in items should add class of 'item-button'
         this.itemClass = 'item-icon';

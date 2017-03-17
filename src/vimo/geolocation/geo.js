@@ -38,7 +38,7 @@ var ERROR_TYPE = {
 
 
 /*
-  @param type 类型  
+  @param type 类型
   @param posOptions 设置获取参数
 **/
 function getCurrentPosition() {
@@ -59,11 +59,12 @@ function getCurrentPosition() {
         default:
           try{
             if(isHttps)_H5Location(successFn,errorFn,posOptions);
+            // (isHttps)_H5Location(successFn,errorFn,posOptions);
           }catch(err){
             console.error("h5位置获取必须是https协议模式");
           }
       }
-    
+
     function successFn(pos) {
       var position = {};
       if (pos.coords) {
@@ -172,9 +173,9 @@ function _BMapLocation(successFn, errorFn, posOptions) {
   });
 }
 /**
- * [_QQMapLocation description]
- * @param  {[Function]} successFn  [description]
- * @param  {[Function]} errorFn    [description]
+ * _QQMapLocation description
+ * @param  {Function} successFn  - description
+ * @param  {Function} errorFn    [description]
  * @param  {[Object]} posOptions [description]
  * @return {[type]}            [description]
  */
@@ -252,7 +253,7 @@ function hasScript(src){
   }catch(err){
     return res;
   }
-  
+
 }
 
 exports.default = geo;

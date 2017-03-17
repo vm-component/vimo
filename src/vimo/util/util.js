@@ -1,6 +1,10 @@
 /**
  * Created by Hsiang on 2017/2/8.
  */
+
+/** @module util/util */
+
+
 // TODO：关联到debug模式
 const ASSERT_ENABLED = true; // 是否能使用断言，可以关联到debug模式
 
@@ -300,4 +304,13 @@ export function getNum (str) {
     _num = 0;
   }
   return _num * 1
+}
+
+
+/**
+ * @param {string} val
+ * @return {number}
+ * */
+export function parsePxUnit (val) {
+  return (!!val && val.indexOf('px') > 0) ? parseInt(val, 10) : 0;
 }

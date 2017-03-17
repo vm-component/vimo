@@ -28,11 +28,13 @@
 import { App, Header, Footer } from './app'
 import Content from './content'
 import Page from './page'
-
+import Nav from './nav'
+import { NavContorller } from "./nav-controller"
+import Navbar from './navbar'
+import { Toolbar, ToolbarTitle, ToolbarButtons } from './toolbar';
+import { Grid, Row, Col } from './grid'
 import Button from './button'
 import Icon from './icon'
-import Nav from './nav'
-import Navbar from './navbar'
 
 // ------- List Item
 import List from './list'
@@ -41,54 +43,51 @@ import Note from './note'
 import Thumbnail from './thumbnail'
 import Avatar from './avatar'
 import Label from './label'
-// -----------------
 
 // ------- Input Form
 import { Input, Textarea } from './input'
 import Toggle from './toggle'
 import Range from './range'
-
-// ------- Bar
 import Searchbar from './searchbar'
-import { Toolbar, ToolbarTitle, ToolbarButtons } from './toolbar';
 
-// ------- Grid
-import { Grid, Row, Col } from './grid'
-
-//Card
+// ------- Card
 import { Card, CardContent, CardHeader, CardTitle } from './card'
 
+//  ------- Other
 import Badge from './badge'
-import { Segment, SegmentButton } from './segment';
-
 import Spinner from './spinner'
+import { Fab, Fabs } from './fab'
+import Img from './img'
 
+// ------- Menu
 import Menu from './menu'
 
-// tab/tabs
+// ------- tab/Segment
 import { Tabs, Tab } from './tabs'
-import { Fab, Fabs } from './fab'
-
-import { BackdropComponent, BackdropInstance } from './backdrop'
+import { Segment, SegmentButton } from './segment'
 
 
-
-// 实例化调用组件，传入配置参数后返回实例
+// ------- 实例化调用组件，传入配置参数后返回实例
 import getActionSheetInstance from './action-sheet'
 import getAlertInstance from './alert'
 import getLoadingInstance from './loading'
 import prepareToast from './toast'
 import prepareModal from './modal'
 import getPopoverInstance from './popover'
+import { BackdropComponent, BackdropInstance } from './backdrop'
 
+// ------- 滚动刷新组件
+import { InfiniteScroll, InfiniteScrollContent } from './infinite-scroll'
+import { Refresher, RefresherContent } from './refresher'
 
+// ------- slides组件
+import { Slides, Slide } from './slides'
 
-// 自定义组件
+// ------- 自定义组件
 import SnakeBox from './snake-box'
 import Ghost from './ghostbtn'
 import FloatTop from './floattop'
 
-import { NavContorller } from "./nav-controller"
 module.exports = {
   version: '1.0.0',
   /**
@@ -100,7 +99,6 @@ module.exports = {
     /**
      * params合并
      * */
-    let _config = Object.assign({}, config);
     const _noop = function () {};
 
     /**
@@ -134,8 +132,8 @@ module.exports = {
     Vue.component(ToolbarTitle.name, ToolbarTitle);
     Vue.component(ToolbarButtons.name, ToolbarButtons);
     Vue.component(Button.name, Button);
-    Vue.component(Ghost.name,Ghost);
-    Vue.component(FloatTop.name,FloatTop);
+    Vue.component(Ghost.name, Ghost);
+    Vue.component(FloatTop.name, FloatTop);
 
     Vue.component(Icon.name, Icon);
     Vue.component(Nav.name, Nav);
@@ -178,11 +176,22 @@ module.exports = {
     Vue.component(Fabs.name, Fabs);
     Vue.component(Fab.name, Fab);
 
+    Vue.component(Img.name, Img);
+
+    // 上拉下拉刷新
+    Vue.component(InfiniteScroll.name, InfiniteScroll);
+    Vue.component(InfiniteScrollContent.name, InfiniteScrollContent);
+    Vue.component(Refresher.name, Refresher);
+    Vue.component(RefresherContent.name, RefresherContent);
+
     Vue.component(Menu.name, Menu);
     Vue.component(BackdropComponent.name, BackdropComponent);
     Vue.component(Spinner.name, Spinner);
 
     Vue.component(SnakeBox.name, SnakeBox);
+
+    Vue.component(Slides.name, Slides);
+    Vue.component(Slide.name, Slide);
 
     // 判断当前Platform是否为HyBrid, 判断初始化的组件形式
     if (!!window['VM'] && !!window['VM']['hybrid']) {

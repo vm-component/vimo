@@ -1,20 +1,63 @@
 {
   "tags": {
-    "allowUnknownTags": true
+    "allowUnknownTags": true,
+    "dictionaries": [
+      "jsdoc",
+      "closure"
+    ]
   },
   "opts": {
-    "destination": "./docs",
-    "template": "node_modules/minami"
+    "destination": "./docs/page",
+    "encoding": "utf8",
+    "template": "node_modules/docdash"
   },
   "plugins": [
     "node_modules/jsdoc-vue",
     "plugins/markdown"
   ],
+  "markdown": {
+    "tags": [
+      "usage",
+      "slot"
+    ]
+  },
   "source": {
-    "includePattern": "\\.(vue)$"
+    "include": [
+      "README.md",
+      "src/vimo/components/app",
+      "src/vimo/components/content",
+      "src/vimo/components/refresher",
+      "src/vimo/components/icon",
+      "src/vimo/components/grid",
+      "src/vimo/components/infinite-scroll",
+      "src/vimo/components/spinner",
+      "src/vimo/components/action-sheet",
+      "src/vimo/components/alert",
+      "src/vimo/components/backdrop",
+      "src/vimo/components/avatar",
+      "src/vimo/components/badge",
+      "src/vimo/components/button",
+      "src/vimo/components/card",
+      "src/vimo/components/fab",
+      "src/vimo/components/img",
+      "src/vimo/components/input",
+      "src/vimo/components/item",
+      "src/vimo/components/toggle",
+      "src/vimo/components/label",
+      "src/vimo/components/tabs"
+    ],
+    "exclude": [
+      "gulpfile.js"
+    ],
+    "includePattern": ".+\\.js(doc|x)?$|.+\\.vue$",
+    "excludePattern": "(^|\\/|\\\\)_"
   },
   "templates": {
-    "cleverLinks": true,
-    "monospaceLinks": true
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "docdash": {
+    "static": true,
+    "sort": true
   }
 }

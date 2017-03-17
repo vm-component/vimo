@@ -1,52 +1,19 @@
 <template>
   <article class="ion-tabs tabs" :class="[modeClass,colorClass]" :tabsLayout="tabsLayout"
            :tabsHighlight="tabsHighlight">
-    <section class="tabs-content" :style="tabsContentStyle">
+    <section class="tabs-content" ref="tabsContent">
       <!--tabbar-->
       <div class="tabbar" role="tablist" ref="tabbar" :tabsLayout="tabsLayout">
-        <router-link v-for="(t,index) of tabs"
-                     class="tab-button"
-                     :id="t._tabId"
-                     :class="{'has-title':t.hasTitle,
-                            'has-icon':t.hasIcon,
-                            'has-title-only':t.hasTitleOnly,
-                            'icon-only':t.hasIconOnly,
-                            'has-badge':t.hasBadge,
-                            'disable-hover':t.disHover,
-                            'tab-disabled':!t.enabled,
-                            'tab-hidden':!t.show}"
-                     :to="t.to"
-                     tag="a"
-                     active-class="tab-active"
-                     @onSelect="select($event)" replace>
-          <Icon v-if="t.tabIcon" :name="t.tabIcon" :isActive="t.isSelected" class="tab-button-icon"></Icon>
-          <span v-if="t.tabTitle" class="tab-button-text">{{t.tabTitle}}</span>
-          <Badge v-if="t.tabBadge" class="tab-badge" :color="t.tabBadgeStyle">{{t.tabBadge}}</Badge>
-          <div class="button-effect"></div>
-        </router-link>
+        <slot name="tab"></slot>
         <div ref="tabHighlight" class="tab-highlight"></div>
       </div>
-
-      <!--不用但是必须写上的-->
-      <div hidden>
-        <slot></slot>
-      </div>
-
       <!--tabs-content-wrap-->
-      <div class="tabs-content-wrap" :style="tabsContentWrapStyle">
-        <section class="wrap-inner" v-if="isKeepAlive">
-          <keep-alive>
-            <router-view></router-view>
-          </keep-alive>
-        </section>
-        <section class="wrap-inner" v-else>
-          <router-view></router-view>
+      <div ref="tabsContentWrap" class="tabs-content-wrap">
+        <section class="wrap-inner">
+          <slot></slot>
         </section>
       </div>
     </section>
-
-
-
   </article>
 </template>
 <style lang="scss">
@@ -54,61 +21,80 @@
   @import "./tabs.ios.scss";
   @import "./tabs.md.scss";
   @import "./tabs.wp.scss";
-
-  .tabs-content {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    display: block;
-    overflow: hidden;
-    contain: size style layout;
-    .tabs-content-wrap {
-      position: absolute;
-      width: 100%;
-      display: block;
-      margin: 0;
-      top: 0;
-      bottom: 0;
-      box-sizing: border-box;
-      .wrap-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: block;
-        margin: 0;
-        top: 0;
-        bottom: 0;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-        will-change: scroll-position;
-        contain: size style layout;
-        box-sizing: border-box;
-      }
-      /*border: 3px solid red;*/
-    }
-
-  }
-
 </style>
 <script type="text/ecmascript-6">
   /**
-   * Tabs组件(父集组件)
-   * 作用与Content相当, 内部为TabBar和Tab组件的区域
+   * @module Component/Tabs
+   * @description
+   * ----
+   * Tabs是一个使用`$router.replace`进行页面导航的组件，其中Tab组件中传入`props`定义每个tab的结构/样式/路由位子等信息。
    *
-   * 对外事件: onChange
+   * Tabs使用场景类似于"栏目切换"， 如果你使用的是IOS手机，请参考"App Store"应用。下图也许能更直观的表达Tabs的职责范围。
    *
-   * 用于激活当前那个tab未激活状态的方法有两个: (保证控制集中,所以去掉了selectedIndex控制)
-   * 1. 路由控制: 设置redirect参数
-   * 2. select(): 传入index或者Tab
+   * ![tabs的设计](../asset/tabs.png)
+   *
+   * Tabs中嵌入的自路由页面应该是不包含Navbar组件的Page页面，可以包括Footer和Header，这个由业务确定。
+   *
+   * Tabs组件是使用规则如下：
+   *
+   * 1. Tabs和Tab必须组合使用
+   * 2. Tab组件需要增加`slot="tab"`插槽标记
+   * 3. Tabs组件必须在Page组件中，而且子路由也是一个Page包裹的页面
+   * 4. 页面路由插槽`<router-view></router-view>`写在Tabs中，是否开启`keep-alive`由业务自己决定
+   * 5. 页面进入究竟激活那个子页面由路由规则`route.js`决定
+   * 6. `tabsHighlight`特性只能在`md`模式下使用
+   *
+   * ##### Slots
+   * - tab - Tab组件的插槽
+   *
+   * @fires onTabChange - 当切换Tab时触发
+   *
+   *
+   * @property {String=} color                        - 颜色
+   * @property {String} [mode='ios']                  - 模式
+   * @property {Boolean} [tabsHighlight='false']      - tab下面是否显示选中bar
+   * @property {String} [tabsLayout='icon-top']       - tabbar的样式，可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
+   * @property {String} [tabsPlacement='bottom']      - tabbar的位置，可选配置: top, bottom
+   *
+   * @example
+   *
+   <Page>
+      <Tabs tabsLayout="icon-top" tabsPlacement="bottom" @onTabChange="onTabChange" ref=tabs>
+          <router-view></router-view>
+          <Tab slot="tab" :to="{name:'tabsBottom.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger" tabIcon="person"></Tab>
+          <Tab slot="tab" :to="{name:'tabsBottom.demoTab2'}" tabBadge="2" tabTitle="Cars" tabBadgeStyle="dark" tabIcon="car"></Tab>
+          <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
+      </Tabs>
+   </Page>
+   *
+   * @example
+   *
+   computed: {
+     tabs(){
+      // 获取tabs的实例
+      return this.$refs.tabs
+     }
+   },
+   methods: {
+      onTabChange(index){
+        console.debug('事件 -> onTabChange-selectedIndex:' + index);
+        console.debug('当前选择index的tab实例:')
+        console.debug(this.tabs.getByIndex(index))
+        console.debug('获取当前在激活状态的tab实例:')
+        console.debug(this.tabs.getSelected())
+        console.debug('由Tabs组件获取当前激活的index:' + this.tabs.getActivatedIndex());
+
+        console.debug('3s后选择第一个')
+        clearTimeout(this.timer)
+        this.timer = setTimeout(()=>{
+          this.tabs.select(0)
+        },3000)
+      },
+    },
    *
    * */
-  import { getNum, firstUpperCase } from '../../util/util'
-  import { getStyle,setElementClass } from '../../util/dom'
+  import { parsePxUnit, firstUpperCase } from '../../util/util'
+  import { setElementClass } from '../../util/dom'
   export default{
     name: 'Tabs',
     props: {
@@ -118,61 +104,50 @@
       },
       mode: {
         type: String,
-        default: VM.config.get('mode', 'ios')
+        default: VM && VM.config.get('mode', 'ios') || 'ios'
       },
-
-      /**
-       * tab下面是否显示选中bar
-       * */
+      // tab下面是否显示选中bar
       tabsHighlight: {
         type: Boolean,
-        default: VM.config.getBoolean('tabsHighlight', false)
+        default: VM && VM.config.getBoolean('tabsHighlight', false)
       },
-
-      /**
-       * tabbar的样式: icon和title的放置位置
-       * 可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
-       * */
+      // tabbar的样式: icon和title的放置位置
+      // 可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
       tabsLayout: {
         type: String,
         default: 'icon-top',
       },
-
-      /**
-       * tabbar的位置 top, bottom
-       * */
+      // tabbar的位置 top, bottom
       tabsPlacement: {
         type: String,
         default: 'bottom',
       },
 
-      /**
-       * 子路由的模式
-       * */
-      isKeepAlive: {
-        type: Boolean,
-        default: false
-      },
     },
     data(){
       return {
         isInit: false, // 当前组件初始化状态
-
-        tabsContentStyle: {}, // tabs-content 内容的位置样式
-        tabsContentWrapStyle: {}, // tabs-content-wrap 内容的位置样式
-
-        tabs: [], // Tab子组件的参数列表, 不是实例, 因为实例没有用!
-        tabBarEles: [], // 这个是真正显示的TabBar元素列表
-
+        tabElementWidth: 0, // 每个tab的宽度, 用于tabHighLight
+        tabSlots: null,
+        tabbarElement: null, // tabbar元素
+        tabsContentElement: null,
+        tabsContentWrapElement: null,
         tabHighlightEle: null, // TabHighlight元素
-
-        selectedIndex: 0, // 内部使用的, 表示当前处于激活的Tab的index
-
+        selectedIndex: -1, // 内部使用的, 表示当前处于激活的Tab的index
         statusbarPadding: VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
-
       }
     },
-    watch: {},
+    watch: {
+      $route(){
+        if (!this.isInit) return;
+        let _index = this.getActivatedIndex();
+        if (this.selectedIndex !== _index) {
+          this.selectedIndex = _index;
+          this.tabHighlightSelect(this.selectedIndex)
+          this.$emit('onTabChange', _index)
+        }
+      }
+    },
     computed: {
       // 环境样式
       modeClass () {
@@ -186,94 +161,101 @@
     methods: {
       // ------ public ------
       /**
+       * @function getByIndex
+       * @description
        * 获取第几个index的Tab组件实例
-       * @param {number} index
+       * @param {number} index - 第几个index
        * @return {Tab}
        * */
-      getByIndex(index){},
+      getByIndex(index){
+        if (!!this.tabSlots[index]) {
+          return this.tabSlots[index].componentInstance
+        }
+      },
 
       /**
-       * 获取当前选中的Tab组件
-       * @return {Tab}
-       * */
-      getSelected(){},
-
-      /**
-       * 获取上一个选中的Tab组件, 不是disabled和hidden的Tab组件
-       * @param {boolean} trimHistory - 是get还是pop
-       * @return {Tab}
-       * */
-      previousTab(trimHistory){},
-
-      /**
-       * 选中
-       * @param {number/Tab} tabOrIndex -
-       * @return {Tab}
-       * */
-      select(tabOrIndex){},
-
-      /**
-       * 获取当前被选中的index
+       * @function getActivatedIndex
+       * @description
+       * 获取当前被选中Tab实例的index
        * @return {number}
        * */
       getActivatedIndex(){
-        if (!this.isInit) {
-          let _route = this.$route;
-          for (let i = 0, len = this.tabs.length; len > i; i++) {
-            let _tab = this.tabs[i];
-            if (!!_tab.to.name && _tab.to.name === _route.name) {
-              this.selectedIndex = i;
-              break;
-            } else if (!!_tab.to.path && _tab.to.path === _route.path) {
-              this.selectedIndex = i;
-              break;
-            }
+        for (let i = 0, len = this.tabSlots.length; len > i; i++) {
+          let tabIns = this.tabSlots[i].componentInstance;
+          if (tabIns.to.name === this.$route.name || tabIns.to.path === this.$route.path) {
+            return i
           }
         }
+        return 0
+      },
 
-        this.isInit = true;
-        return this.selectedIndex
+      /**
+       * @function getSelected
+       * @description
+       * 获取当前选中的Tab实例
+       * @return {Tab}
+       * */
+      getSelected(){
+        return this.getByIndex(this.getActivatedIndex())
+      },
+
+      /**
+       * @function select
+       * @description
+       * 根据传入值选中Tab
+       * @param {number/Tab} tabOrIndex - 传入的Tab实例或者Tab的序号
+       * @return {Tab}
+       * */
+      select(tabOrIndex){
+        let tabIns = tabOrIndex;
+        if (typeof tabOrIndex === 'number') {
+          tabIns = this.getByIndex(tabOrIndex)
+        }
+        if (tabIns === this.getSelected()) {
+          return tabIns
+        } else {
+          this.$router.replace(tabIns.to);
+          return tabIns
+        }
       },
 
       // ------ private ------
 
-      tabClick(index){
-        this.selectedIndex = index;
-        this.tabHighlightSelect(index)
-        console.debug('index')
-        console.debug(index)
+      /**
+       * 获取每个tab的宽度, 因为是平均, 故用除法就行
+       * */
+      getTabElementWidth(){
+        let _count = this.tabSlots.length;
+        let _warpWidth = this.tabbarElement.offsetWidth;
+        return _warpWidth / _count
       },
 
       /**
        * 第一次进入是的初始化,
        */
       initTabs(){
-        const _this = this;
+        if (this.isInit) return;
 
-        // 获取子组件(Tab组件)的参数
-        _this.getTabParams();
+        // 获取tabbar元素
+        this.tabSlots = this.$slots.tab;
+        this.tabbarElement = this.$refs.tabbar;
+        this.tabElementWidth = this.getTabElementWidth();
+        this.selectedIndex = this.getActivatedIndex();
+
+        this.tabHighlightEle = this.$refs.tabHighlight;
+        this.tabsContentElement = this.$refs.tabsContent;
+        this.tabsContentWrapElement = this.$refs.tabsContentWrap;
 
         // 计算属性盒子的尺寸
-        _this.$nextTick(function () {
-          _this.computeTabsContentStyle();
-          _this.computeTabsContentWrapStyle();
-          // 获取子组件(Tab组件)真正显示的TabBar元素列表
-          _this.tabBarEles = _this.$refs.tabbar.querySelectorAll('a');
+        this.computeTabsContentStyle();
+        this.computeTabsContentWrapStyle();
 
-          // 激活当前选中的Highlight
-          if (_this.tabsHighlight) {
-            _this.tabHighlightSelect(_this.getActivatedIndex())
-          }
-        });
-
-        // Tabs的方法对页面开放
-        _this.$vnode.context.$tabs = {
-          getByIndex: _this.getByIndex,
-          getSelected: _this.getSelected,
-          previousTab: _this.previousTab,
-          select: _this.select,
-          getActivatedIndex: _this.getActivatedIndex,
+        // 激活当前选中的Highlight
+        if (this.tabsHighlight) {
+          this.tabHighlightSelect(this.selectedIndex)
         }
+
+        this.isInit = true
       },
 
       /**
@@ -281,47 +263,38 @@
        * 因为这部分首一下因素影响：statusbarPadding、fullscreen、Header，Footer
        * */
       computeTabsContentStyle () {
-        let _this = this;
-        let _valHeader, _styleType;
+        let _styleType = 'margin';
         let headerBarHeight = 0;
         let footerBarHeight = 0;
+        let computedStyle;
+        let children = this.$parent.$children;
+        let ele;
+        let tagName;
 
-        // 得到header和footer的高度
-        // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
-        // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
-        // 而不是全局
-        _this.$vnode.context.$children[0].$children.forEach((item) => {
-          if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
-            headerBarHeight = getStyle(item.$el, 'height');
-            headerBarHeight === 'auto' ? (headerBarHeight = '44') : (headerBarHeight = getNum(headerBarHeight));
-          }
-          if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'footer') {
-            footerBarHeight = getStyle(item.$el, 'height');
-            footerBarHeight === 'auto' ? (footerBarHeight = '44') : (footerBarHeight = getNum(footerBarHeight));
+        children.forEach((child) => {
+          ele = child.$el;
+          tagName = child.$options._componentTag.toLowerCase();
+          if (tagName === 'header') {
+            // this.headerElement = ele;
+            computedStyle = getComputedStyle(ele);
+            headerBarHeight = parsePxUnit(computedStyle.height);
+          } else if (tagName === 'footer') {
+            // this.footerElement = ele;
+            computedStyle = getComputedStyle(ele);
+            footerBarHeight = parsePxUnit(computedStyle.height);
           }
         });
 
-        if (_this.statusbarPadding) {
-          // 存在statusBar的情况下，header高20px
-          // TODO: statusBarHeight
-          // _valHeader = headerBarHeight + _this.$config.statusBarHeight;
-          _valHeader = headerBarHeight + 20;
-        } else {
-          _valHeader = headerBarHeight
+        if (this.statusbarPadding) {
+          headerBarHeight = headerBarHeight + 20;
         }
 
-        _styleType = 'margin';
-
-        // empty
-        _this.tabsContentStyle = {};
-
-        if (_valHeader > 0) {
-          _this.tabsContentStyle[_styleType + 'Top'] = _valHeader + 'px';
+        if (headerBarHeight > 0) {
+          this.tabsContentElement.style.marginTop = headerBarHeight + 'px';
         }
         if (footerBarHeight > 0) {
-          _this.tabsContentStyle[_styleType + 'Bottom'] = footerBarHeight + 'px';
+          this.tabsContentElement.style.marginBottom = footerBarHeight + 'px';
         }
-
       },
 
       /**
@@ -329,33 +302,13 @@
        * 这部分的因素影响：tabbar的位置及高度
        * */
       computeTabsContentWrapStyle(){
-        const _this = this;
-        let tabBarHeight = getStyle(this.$refs.tabbar, 'height');
-        let _styleType = 'margin';
-
-        if (tabBarHeight === 'auto') {
-          console.error('无法计算tabBar的高度, height:auto')
-        }
-        tabBarHeight === 'auto' ? (tabBarHeight = '44') : (tabBarHeight = getNum(tabBarHeight));
-
+        let tabBarHeight = getComputedStyle(this.tabbarElement).height;
+        tabBarHeight = parsePxUnit(tabBarHeight)
+        let _styleType = 'margin' + firstUpperCase(this.tabsPlacement);
         if (tabBarHeight > 0) {
-          _this.tabsContentWrapStyle[_styleType + firstUpperCase(_this.tabsPlacement)] = tabBarHeight + 'px';
+          this.tabsContentWrapElement.style[_styleType] = tabBarHeight + 'px';
         }
-
-        _this.setTabbarPosition(_this.tabsPlacement);
-
-      },
-
-      /**
-       * 获取子组件(Tab组件)的参数
-       * */
-      getTabParams(){
-        const _this = this;
-        _this.$children.forEach(function (item) {
-          if (!!item && !!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'tab') {
-            _this.tabs.push(item.getTabInfo());
-          }
-        })
+        this.setTabbarPosition(this.tabsPlacement);
       },
 
       /**
@@ -363,16 +316,15 @@
        * @param {string} position - top, bottom
        */
       setTabbarPosition(position) {
-        const tabbarEle = this.$refs.tabbar;
         position = !!position && position.toLowerCase();
         if (position === 'bottom') {
-          tabbarEle.style.bottom = '0px';
-          tabbarEle.style.top = 'auto';
+          this.tabbarElement.style.bottom = '0px';
+          this.tabbarElement.style.top = 'auto';
         } else {
-          tabbarEle.style.top = '0px';
-          tabbarEle.style.bottom = 'auto';
+          this.tabbarElement.style.top = '0px';
+          this.tabbarElement.style.bottom = 'auto';
         }
-        tabbarEle.classList.add('show-tabbar');
+        this.tabbarElement.classList.add('show-tabbar');
       },
 
       /**
@@ -380,74 +332,17 @@
        * @param {number} index
        */
       tabHighlightSelect(index){
-        const _this = this;
-        let transform;
-        let btnEle = _this.tabBarEles[index];
-        // 获取TabHighlight元素
-        _this.tabHighlightEle = _this.$refs.tabHighlight;
-        setElementClass(_this.tabHighlightEle, 'animate', true);
-        transform = `translate3d(${btnEle.offsetLeft}px,0,0) scaleX(${btnEle.offsetWidth})`;
-        _this.tabHighlightEle.style[VM.platform.css.transform] = transform;
+        if (this.mode !== 'md') return
+        let _offsetLeft = this.tabElementWidth * index;
+        let transform = `translate3d(${_offsetLeft}px,0,0) scaleX(${this.tabElementWidth})`;
+        setElementClass(this.tabHighlightEle, 'animate', true);
+        this.tabHighlightEle.style[VM.platform.css.transform] = transform;
       },
-
-    },
-    created () {
     },
     mounted () {
-      const _this = this;
-      let _context = _this.$vnode.context;
-      // console.debug('****tabs/tabs.vue页面 组件****')
-      // console.log(_this)
-      // console.debug('****tabs/tabs.vue页面 组件的调用页面****')
-      // console.log(_this.$vnode.context)
-
+      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'page', 'Tabs component must place in Page Component');
       // 初始化
-      _this.initTabs();
-
-      // console.info('Tabs mounted this')
-      // console.log(_this.$route)
-      // console.log(_this.$router)
-
-      /**
-       * 监听页面及url的变化
-       *
-       * 如果router的变化还是在 业务页面(this.$vnode.coontext)中切换,
-       * 则计算当前激活的tab然后更新selectedIndex数据;
-       *
-       * 如果router的变化离开了业务页面, 则不做处理
-       *
-       * */
-      // 激活当前选中的Highlight
-      if (_this.tabsHighlight && _this.mode === "md") {
-        _this.$eventBus.$on('onPageEnter', ({to, from}) => {
-
-          let _route = to;
-          let _tab;
-          for (let i = 0, len = _this.tabs.length; len > i; i++) {
-            _tab = _this.tabs[i];
-            if (!!_tab.to.name && _tab.to.name === _route.name) {
-              _this.selectedIndex = i;
-              break;
-            } else if (!!_tab.to.path && _tab.to.path === _route.path) {
-              _this.selectedIndex = i;
-              break;
-            }
-          }
-
-          _this.tabHighlightSelect(_this.selectedIndex)
-
-        })
-      }
-
-
+      this.initTabs();
     },
-
-    activated () {
-    },
-    deactivated () {
-    },
-    components: {},
-    destroy(){
-    }
   }
 </script>

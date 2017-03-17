@@ -1,112 +1,129 @@
 <template>
-  <section>
-    <slot></slot>
-  </section>
+  <a class="tab-button" ref="routerLink" @click="tabClickHandler($event)"
+     :id="tabId"
+     :class="{'has-title':hasTitle, 'has-icon':hasIcon, 'has-title-only':hasTitleOnly, 'icon-only':hasIconOnly, 'has-badge':hasBadge, 'disable-hover':disHover, 'tab-disabled':!enabled, 'tab-hidden':!show,'tab-active':isActive}">
+    <Icon v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
+    <span v-if="tabTitle" class="tab-button-text">{{tabTitle}}</span>
+    <Badge v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
+    <div class="button-effect"></div>
+  </a>
 </template>
 <script type="text/ecmascript-6">
   /**
-   * !!Tab组件必须和Tabs组件配合使用!!
+   * @module Component/Tab
+   * @description
    *
-   * Tab组件内部与路由结合, 因此应该包含:to属性, 用于跳转
+   * 还是需要再声明下，Tab组件必须和Tabs组件配合使用， Tab组件内部与路由`$router`结合,
+   * Tab点击切换使用的是`$router.replace(this.to)`处理的， 因此应该包含:to属性用于跳转。
    *
-   * 此组件用于传输传递, 不具有DOM结构及生命周期
    *
-   * 选中时的对外事件: onSelect
+   * @property {Boolean} [enabled] - 是否能选择
+   * @property {Object} to - 路由跳转，必填
+   * @property {Boolean} [show=true] - 是否显示
+   * @property {String} [tabBadge] - 徽章显示值
+   * @property {String} [tabBadgeStyle] - 徽章颜色
+   * @property {String} [tabIcon] - tab的IconName
+   * @property {String} [tabTitle] - tab的tabTitle
+   *
+   * @fires onTabSelect - Tab被点击时触发，传递当前Tab的this
+   *
+   * @example
+   *
+   <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
+   *
+   *
+   *
    *
    * */
+  let _tabId = -1;
   export default{
     name: 'Tab',
     props: {
-      /**
-       * 是否能选择
-       * */
+      // 是否能选择
       enabled: {
         type: Boolean,
         default: true,
       },
-      /**
-       * 路由跳转
-       * */
+      // 路由跳转
       to: {
-        type: String,
-        default: '',
+        type: Object,
+        required:true
       },
-      /**
-       * 是否显示
-       * */
+      // 是否显示
       show: {
         type: Boolean,
         default: true,
       },
-      /**
-       * 徽章显示值
-       * */
+      // 徽章显示值
       tabBadge: {
         type: String,
         default: '',
       },
-      /**
-       * 徽章颜色
-       * */
+      // 徽章颜色
       tabBadgeStyle: {
         type: String,
         default: '',
       },
-      /**
-       * tab的IconName
-       * */
+      // tab的IconName
       tabIcon: {
         type: String,
         default: '',
       },
-      /**
-       * tab的tabTitle
-       * */
+      // tab的tabTitle
       tabTitle: {
         type: String,
         default: '',
       },
-
-      // TODO: tabUrlPath
-      // string The URL path name to represent this tab within the URL.
-
-      //TODO: tabsHideOnSubPages
-      // boolean If true, hide the tabs on child pages.
+    },
+    data(){
+      return {
+        disHover: VM && VM.config.getBoolean('hoverCSS', false),
+        index: ++_tabId,
+        isActive: false, // 这个值具有滞后性, 只代表当前的页面的状态, 不能用于其他
+      }
+    },
+    computed: {
+      hasTitle(){
+        return !!this.tabTitle
+      },
+      tabId(){
+        return `tabId-${this.index}`
+      },
+      hasIcon(){
+        return !!this.tabIcon
+      },
+      hasTitleOnly(){
+        return !!this.tabTitle && !this.tabIcon
+      },
+      hasIconOnly(){
+        return !!this.tabIcon && !this.tabTitle
+      },
+      hasBadge(){
+        return !!this.tabBadge
+      },
+    },
+    watch: {
+      $route(){
+        this.refreshMatchState()
+      }
     },
     methods: {
-      /**
-       * 获取当前Tab填入的信息
-       * Tab只是一个参数搬运工, 在页面总不起作用!
-       *
-       * */
-      getTabInfo(){
-
-        let _tabId = this._uid;
-        let hasTitle = !!this.tabTitle;
-        let hasIcon = !!this.tabIcon;
-        let hasTitleOnly = !!this.tabTitle && !this.tabIcon;
-        let hasIconOnly = !!this.tabIcon && !this.tabTitle;
-        let hasBadge = !!this.tabBadge;
-        let disHover = VM.config.getBoolean('hoverCSS', false);
-
-        return {
-          _tabId,
-          hasTitle,
-          hasIcon,
-          hasTitleOnly,
-          hasIconOnly,
-          hasBadge,
-          disHover,
-
-          enabled: this.enabled,
-          to: eval("(" + this.to + ")"), // 这个必须是对象
-          show: this.show,
-          tabBadge: this.tabBadge,
-          tabBadgeStyle: this.tabBadgeStyle,
-          tabIcon: this.tabIcon,
-          tabTitle: this.tabTitle,
+      isMatch(){
+        return this.to.name === this.$route.name || this.to.path === this.$route.path
+      },
+      tabClickHandler(){
+        if (this.enabled) {
+          this.$router.replace(this.to);
+          this.$emit('onTabSelect', this)
         }
+      },
+      refreshMatchState(){
+        this.isActive = this.isMatch();
       }
-    }
+    },
+    created(){
+      this.refreshMatchState();
+      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'tabs', 'Tab component must combine with Tabs')
+    },
   }
 </script>

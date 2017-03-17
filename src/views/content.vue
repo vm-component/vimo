@@ -6,7 +6,7 @@
       </Navbar>
     </Header>
 
-    <Content :fullscreen="fullscreenVal" padding>
+    <Content :fullscreen="fullscreenVal" padding ref="content">
       <!--<h3 slot="fixedTop" text-center>这里插播一条广告</h3>-->
       <!--<h3 slot="fixedBottom" text-center>可以把我当成歌词</h3>-->
 
@@ -23,30 +23,37 @@
       <Button type="block" @click="setTitle('Hello Vue')">点击设置Title='Hello Vue'</Button>
 
       <Button type="block" @click="scrollToBottom()">滚动到底部</Button>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
 
       <Button type="block" @click="scrollToTop()">返回顶部</Button>
 
-      {{contentDimensions}}
+      <p>{{contentDimensions}}</p>
       <Button type="block" @click="refreshContentDimensions()">点击更新Content尺寸</Button>
 
-      {{scrollDimensions}}
-      <Button slot="fixedTop" type="block" @click="refreshScrollDimensions()">点击更新Scroll尺寸</Button>
     </Content>
 
-    <Footer>
-      <Toolbar>
-        <Title>Footer</Title>
-      </Toolbar>
-    </Footer>
+    <!--<Footer>-->
+    <!--<Toolbar>-->
+    <!--<Title>Footer</Title>-->
+    <!--</Toolbar>-->
+    <!--</Footer>-->
 
 
   </Page>
@@ -59,45 +66,63 @@
       return {
         fullscreenVal: false,
 
-
-        contentDimensions:null,
-        scrollDimensions:null,
+        contentDimensions: null,
+        scrollDimensions: null,
       }
     },
     watch: {},
-    computed: {},
+    computed: {
+      content(){
+        return this.$refs.content
+      }
+    },
     methods: {
       setTitle(val){
         this.$nav.setTitle(val)
       },
-      scrollToTop: function () {
+      scrollToTop () {
         this.$content.scrollToTop();
       },
-      scrollToBottom: function () {
+      scrollToBottom () {
         this.$content.scrollToBottom();
       },
-
-
       refreshContentDimensions(){
-        this.contentDimensions = this.$content.getContentDimensions()
+        return this.contentDimensions = this.$content.getContentDimensions()
       },
-      refreshScrollDimensions(){
-        this.scrollDimensions = this.$content.getScrollDimensions()
-      }
     },
-    created: function () {
-
+    created () {
+      console.debug('content----->')
+      console.debug(this.content)
     },
-    mounted: function () {
+    mounted () {
       console.info('content mounted this');
       console.info(this);
       const _this = this;
 
-      this.refreshContentDimensions();
-      this.refreshScrollDimensions();
+      _this.refreshContentDimensions();
+
+      // this.$eventBus.$on('onScrollStart', function (ev) {
+      //   console.debug('--------------')
+      //   console.debug('onScrollStart')
+      //   console.log('scrollTop:' + ev.scrollTop)
+      //   console.log('directionY:' + ev.directionY)
+      // })
+      this.$eventBus.$on('onScroll', function (ev) {
+        console.debug('--------------')
+        console.debug('onScroll')
+        console.log('scrollTop:' + ev.scrollTop)
+        console.log('directionY:' + ev.directionY)
+      })
+      // this.$eventBus.$on('onScrollEnd', function (ev) {
+      //   console.debug('--------------')
+      //   console.debug('onScrollEnd')
+      //   console.log('scrollTop:' + ev.scrollTop)
+      //   console.log('directionY:' + ev.directionY)
+      // })
+
 
     },
-    activated: function () {
+    activated () {
     },
     components: {}
   }

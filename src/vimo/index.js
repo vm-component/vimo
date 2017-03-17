@@ -37,10 +37,7 @@ export const initVimo = function (Vue) {
     isDev:true, // 开发模式,
     needLogPage:true, // 打开日志界面
   })*/
-  // Vue.use(log,{
-  //   isDev:true, // 开发模式,
-  //   needLogPage:true, // 打开日志界面
-  // })
+
 
   console.time("Component引用时间");
   let component = require('./components')
@@ -49,12 +46,16 @@ export const initVimo = function (Vue) {
   // Vue.use(_console);
   console.time("Storage安装时间");
   Vue.use(Storage);
-  Vue.use(geolocation);
   console.timeEnd("Storage安装时间");
+
+  console.time("geolocation安装时间");
+  Vue.use(geolocation);
+  console.timeEnd("geolocation安装时间");
 
   console.time("Component安装时间");
   component.install(Vue, CUSTOMER_CONFIG);
   console.timeEnd("Component安装时间");
+
 
   // logo
   var vimoLogo = {

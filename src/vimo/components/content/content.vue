@@ -1,5 +1,9 @@
 <template>
-  <article class="ion-content outer-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
+  <article class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
+    <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
+      <!--默认是能滚动的内容   -->
+      <slot></slot>
+    </section>
     <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
       <!--Fixed Top-->
       <div fixed top>
@@ -11,42 +15,130 @@
         <slot name="fixedBottom"></slot>
       </div>
     </section>
-    <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
-      <!--<section   ref="scrollElement" class="scroll-content" id="wrapper"  :style="scrollElementStyle">-->
-      <!--默认是能滚动的内容   -->
-      <!--<div id="scroller">-->
-      <!--<slot></slot>-->
-      <!--</div>-->
-      <slot></slot>
-    </section>
     <slot name="refresher"></slot>
   </article>
 </template>
-
+<style lang="scss">
+  @import './content';
+  @import './content.ios';
+  @import './content.md';
+  @import './content.wp';
+</style>
 <script type="text/ecmascript-6">
   /**
-   * @name Content组件
-   * @module components/Content
+   * @typedef {Object} ContentDimension   - Content组件的维度尺寸信息
+   * @property {number} contentHeight     - content offsetHeight,           content自身高度
+   * @property {number} contentTop        - content offsetTop,               content到窗体顶部的距离
+   * @property {number} contentBottom     - content offsetTop+offsetHeight,  content底部到窗体顶部的的距离
+   * @property {number} contentWidth      - content offsetWidth
+   * @property {number} contentLeft       - content contentLeft
+   * @property {number} contentRight      - content offsetLeft + offsetWidth
+   * @property {number} scrollHeight      - scroll scrollHeight
+   * @property {number} scrollTop         - scroll scrollTop
+   * @property {number} scrollBottom      - scroll scrollTop + scrollHeight
+   * @property {number} scrollWidth       - scroll scrollWidth
+   * @property {number} scrollLeft        - scroll scrollLeft
+   * @property {number} scrollRight       - scroll scrollLeft + scrollWidth
+   * */
+
+  /**
+   * @typedef {Object} ScrollEvent            - 滚动事件返回的滚动对象
+   * @property {number} timeStamp             - 滚动事件
+   * @property {number} scrollTop             -
+   * @property {number} scrollLeft            -
+   * @property {number} scrollHeight          -
+   * @property {number} scrollWidth           -
+   * @property {number} contentHeight         -
+   * @property {number} contentWidth          -
+   * @property {number} contentTop            -
+   * @property {number} contentBottom         -
+   * @property {number} startY                -
+   * @property {number} startX                -
+   * @property {number} deltaY                -
+   * @property {number} deltaX                -
+   * @property {number} velocityY             -
+   * @property {number} velocityX             -
+   * @property {number} directionY            -
+   * @property {number} directionX            -
+   * @property {HTMLElement} contentElement   -
+   * @property {HTMLElement} fixedElement     -
+   * @property {HTMLElement} scrollElement    -
+   * @property {HTMLElement} scrollElement    -
+   * @property {HTMLElement} headerElement    -
+   * @property {HTMLElement} footerElement    -
+   * */
+
+  /**
+   * @event onScroll
+   * @description 正在滚动时触发的全局事件
+   * @property {ScrollEvent} ev - 滚动事件对象
+   * */
+
+  /**
+   * @event onScrollStart
+   * @description 滚动开始时触发的全局事件
+   * @property {ScrollEvent} ev - 滚动事件对象
+   * */
+
+  /**
+   * @event onScrollEnd
+   * @description 滚动结束时触发的全局事件
+   * @property {ScrollEvent} ev - 滚动事件对象
+   * */
+
+  /**
+   * @module Component/Content
    * @description
    *
-   * 页面基础布局分为Header/Content/Footer, 而Content组件则是中间业务内容的位置,
-   * Content内容为可滚动内容, 当然, 设置slot=fixed可以固定在页面, 详细请参考下方API.
-   * 需要注意的是, 一个页面(Page)中只能有一个Content组件, 切记.
+   * Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是"上中下三明治"结构,
+   * Content组件则是中间业务内容的位置.
    *
-   * 对于内容超出页面高度的情况, 将使用css的特性: "overflow-y:scorll; -webkit-overflow-scrolling: touch;"处理, 如果需要的滚动更为顺畅, 请使用Scroll组件, 它是iScroll的包装.
+   * Content组件中书写的代码可以是滚动的内容, 也可以是固定在一面不随滚动的内容, 比如说当页的广告/刷新按钮/歌词等.
+   * 这个特性的的开启需要特殊命名slot才能激活.
    *
-   * 此外, 设置slot="pullToRefresh"可以引入Refresher组件
+   * 此外需要注意的是, 一个页面(Page组件)中只能有一个Content组件, 这个是Vimo使用的规则!
+   *
+   * Content组件中也可以加入下拉刷新和上拉加载的功能
+   *
+   * ![content组件](../asset/content.png)
+   *
+   * ##### Slots:
    *
    *
-   * @param {Boolean=} fullscreen - 是否全屏显示的控制, 如果为true, 则content的上下将延伸到Header和Footer的下面
-   * @param {String=} mode - 样式模式
+   *
+   * | Name  | Description  |
+   * |:------------- |:--------------- |
+   * | 空            | 内容插入到scroll中 |
+   * | fixed         | 默认值, 固定到顶部 |
+   * | fixedTop      | 固定到顶部        |
+   * | fixedBottom   | 固定到底部        |
+   *
+   * @property {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
+   * @property {string} [mode=ios]  - 样式模式
    *
    *
+   * @fires onScroll        - 滚动时触发， 传递ScrollEvent对象
+   * @fires onScrollStart   - 滚动开始时触发， 传递ScrollEvent对象
+   * @fires onScrollEnd     - 滚动结束时触发， 传递ScrollEvent对象
+   *
+   *
+   * @example
+   * <template>
+   *  <Page>
+   *    <Header>
+   *      <Navbar>
+   *        <Title>Demo</Title>
+   *      <Navbar>
+   *    </Header>
+   *    <Content>
+   *      <h1>这里是内容</h1>
+   *    </Content>
+   *  </Page>
+   * </template>
    * */
-  import { getStyle, setElementClass } from '../../util/dom'
-  import { getNum } from '../../util/util'
-  // import iScroll from '../../util/iscroll'
-  // import dutil from '../../util/demoUtils'
+  import { transitionEnd } from '../../util/dom'
+  import { removeArrayItem,parsePxUnit } from '../../util/util'
+  import { ScrollView } from '../../util/scroll-view'
 
   export default{
     name: 'Content',
@@ -59,414 +151,522 @@
         type: String,
         default: VM.config.get('mode', 'ios')
       }
-      // useIScroll:{
-      //   type:Boolean,
-      //   default:false
-      // },
-      // scrollX:{
-      //   type:Boolean,
-      //   default:false
-      // },
-      // snap:{
-      //   type:Boolean,
-      //   default:true
-      // },
-      // snapSpeed:{
-      //   type:Boolean,
-      //   default:true
-      // },
-      // keyBindings:{
-      //   type:Boolean,
-      //   default:true
-      // },
-      // indicatorsEl:{
-      //   type:String,
-      //   default:"indicator"
-      // },
-      // indicatorResize:{
-      //   type:Boolean,
-      //   default:true
-      // },
-      // stemplate:{
-      //   type:String,
-      //   default:"#wrapper"
-      // }
     },
     data(){
       return {
         fixedElementStyle: {}, // 固定内容的位置样式
         scrollElementStyle: {}, // 滑动内容的位置样式
 
-
-        isScrolling: false, // 判断是否滚动
-
         scrollElement: null, // scrollConent的DOM句柄
         fixedElement: null, // fixedElement的DOM句柄
 
-        headerElement:null, //Header组件的DOM句柄
-        footerElement:null, //footer组件的DOM句柄
-
-        contentDimensions: null,
-        scrollDimensions: null,
-
-        // 是否有statusbar的padding, 高度固定为20px
-        statusbarPadding: VM.config.getBoolean('statusbarPadding', false),
-
-        // 第一次进入需要判断header和footer的高度,进而调整content组件的尺寸.
-        // 但是, 设置了样式后需要在$nextTick中读取content尺寸才是正确的结果
-        // (更新了header/footer的样式并不代表实际更新DOM)
-        isDomReady: false,
+        headerElement: null, //Header组件的DOM句柄
+        footerElement: null, //footer组件的DOM句柄
+        tabsElement: null, //tabs组件的DOM句柄
 
         statusBarHeight: 20,
         headerBarHeight: 0,
         footerBarHeight: 0,
+
+        // 是否有statusbar的padding, 高度固定为20px
+        statusbarPadding: VM.config.getBoolean('statusbarPadding', false),
+
+        _scroll: null, // 滚动的实例
+        _cTop: 0,     // content top
+        _cBottom: 0,  // content bottom
+        _fTop: 0,     // fixex top
+        _fBottom: 0,  // fixex bottom
+        _pTop: 0,     // padding top
+        _pBottom: 0,  // padding bottom
+
+        _imgs: [], // 子组件Img的实例列表
+        _imgReqBfr: 0, // 1400
+        _imgRndBfr: 0, // 400
+        _imgVelMax: 0,
       }
     },
     computed: {
       modeClass(){
         return `content-${this.mode}`
-      }
+      },
     },
     watch: {
       // 当值改变是，重新设置
       fullscreen () {
-        this.computeScrollContentStyle()
+        this.recalculateContentDimensions()
       }
     },
     methods: {
+      // -------- public --------
       /**
-       * 计算scrollElement的样式
-       * 因为这部分首一下因素影响：statusbarPadding、fullscreen、Header，Footer
-       * */
-      computeScrollContentStyle () {
-        let _this = this;
-        let _styleType;
-        let headerBarMinHeight = this.$config.get('toolbarMinHeight', 44);
-
-        // 得到header和footer的高度
-        // 一般情况下，ion-conent在ion-page中是唯一的，但是在ion-menu组件中也包含ion-content
-        // 所以ion-header和ion-footer的高度应该在父组件的子组件中查找，这样计算高度才有意义
-        // 而不是全局
-        _this.$parent.$children.forEach((item) => {
-          if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'header') {
-            _this.headerElement = item.$el;
-          }
-          if (!!item.$options._componentTag && item.$options._componentTag.toLowerCase() === 'footer') {
-            _this.footerElement = item.$el;
-          }
-        });
-
-        if(!!_this.headerElement){
-          _this.headerBarHeight = getStyle(_this.headerElement, 'height');
-          if (_this.headerBarHeight === 'auto') {
-            _this.headerBarHeight = headerBarMinHeight
-          } else {
-            _this.headerBarHeight = getNum(_this.headerBarHeight)
-          }
-        }
-
-        if(!!_this.footerElement){
-          _this.footerBarHeight = getStyle(_this.footerElement, 'height');
-          if (_this.footerBarHeight === 'auto') {
-            _this.footerBarHeight = headerBarMinHeight
-          } else {
-            _this.footerBarHeight = getNum(_this.footerBarHeight)
-          }
-        }
-
-
-
-
-
-        if (_this.statusbarPadding) {
-          // 存在statusBar的情况下，header高20px
-          _this.headerBarHeight = _this.headerBarHeight + _this.statusBarHeight;
-        } else {
-          _this.headerBarHeight = _this.headerBarHeight
-        }
-
-        if (_this.fullscreen) {
-          _styleType = 'padding';
-        } else {
-          _styleType = 'margin';
-        }
-
-        // empty
-        _this.fixedElementStyle = {};
-        _this.scrollElementStyle = {};
-
-        if (_this.headerBarHeight > 0) {
-          _this.scrollElementStyle[_styleType + 'Top'] = _this.headerBarHeight + 'px';
-          _this.fixedElementStyle[_styleType + 'Top'] = _this.headerBarHeight + 'px';
-        }
-        if (_this.footerBarHeight > 0) {
-          _this.scrollElementStyle[_styleType + 'Bottom'] = _this.footerBarHeight + 'px';
-          _this.fixedElementStyle[_styleType + 'Bottom'] = _this.footerBarHeight + 'px';
-        }
-
-        // DOM更新完毕后获取尺寸,设置isDomReady
-        _this.$nextTick(function () {
-          _this.contentDimensions = _this.getContentDimensions();
-          _this.scrollDimensions = _this.getScrollDimensions();
-          _this.isDomReady = true;
-        });
-
-      },
-
-      /**
-       * 计算content的dimensions，以下都是固有属性，只读！
-       * @return {object} contentDimensions纬度尺寸
+       * @function getContentDimensions
+       * @description
+       * Returns the content and scroll elements' dimensions.
+       * @return {ContentDimension} content and scroll elements' dimensions
        * */
       getContentDimensions(){
-        const _this = this;
-        if (_this.isDomReady) {
-          // dom ready 情况下, 读取DOM尺寸
-          // content属性：宽高上下左右，6个，
-          _this.contentDimensions = {
-            contentTop: _this.scrollElement.offsetTop,
-            contentBottom: _this.scrollElement.offsetTop + _this.scrollElement.offsetHeight,
-            contentWidth: _this.scrollElement.offsetWidth,
-            contentHeight: _this.scrollElement.offsetHeight,
-            contentLeft: _this.scrollElement.offsetLeft,
-            contentRight: _this.scrollElement.offsetLeft + _this.scrollElement.offsetWidth,
-          };
-        } else {
-          // dom not ready 情况下, 根据计算的值手动计算,
-          // 因为首次进入Content的尺寸是固定的.
-          _this.contentDimensions = {
-            contentTop: _this.headerBarHeight,
-            contentBottom: _this.scrollElement.clientHeight - _this.footerBarHeight,
-            contentWidth:  _this.scrollElement.clientWidth,
-            contentHeight: _this.scrollElement.clientHeight - _this.headerBarHeight - _this.footerBarHeight,
-            contentLeft: _this.scrollElement.offsetLeft,
-            contentRight: _this.scrollElement.offsetLeft + _this.scrollElement.offsetWidth,
-          };
-        }
+        const scrollEle = this.scrollElement;
+        const parentElement = scrollEle.parentElement;
 
-        return _this.contentDimensions
-      },
+        return {
+          contentHeight: parentElement.offsetHeight - this._cTop - this._cBottom,
+          contentHeight2: scrollEle.offsetHeight,
+          contentTop: this._cTop,
+          contentBottom: parentElement.offsetHeight - this._cBottom,
 
-      /**
-       * 计算scroll的dimensions，因为其随着滚动而变化，内容会随滚动更新
-       * */
-      getScrollDimensions(){
-        const _this = this;
-        // scrollDimensions在index中定义到全局
-        _this.scrollDimensions = {
-          scrollTop: _this.scrollElement.scrollTop,
-          scrollWidth: _this.scrollElement.scrollWidth,
-          scrollHeight: _this.scrollElement.scrollHeight,
-          scrollLeft: _this.scrollElement.scrollLeft,
-          scrollRight: _this.scrollElement.scrollLeft + _this.scrollElement.scrollWidth,
+          contentWidth: parentElement.offsetWidth,
+          contentLeft: parentElement.offsetLeft,
+
+          scrollHeight: scrollEle.scrollHeight,
+          scrollTop: scrollEle.scrollTop,
+
+          scrollWidth: scrollEle.scrollWidth,
+          scrollLeft: scrollEle.scrollLeft,
         };
-        return _this.scrollDimensions
+
       },
-
-      // initIscroll(){
-      //   console.log(window.VM.IScroll);
-      //   let iscroll = iScroll||window.VM.IScroll;
-      //   if(this.useIScroll){
-      //     require("../../util/iscroll.css");
-      //     let attr = {
-      //       freeScroll:true,
-      //       mouseWheel: true,
-      //       click: true,
-      //       bounceEasing: 'elastic',
-      //       bounceTime: 1200
-      //     };
-      //     this.scrollX&&(attr.scrollX=this.scrollX);
-      //      setElementClass(this.$el.querySelector("#wrapper"),"scroll-content",false);
-      //     //var myScroll = new iScroll(this.stemplate, attr,this.$el);
-      //     var myScroll = new iscroll(this.stemplate,attr,this.$el);
-      //   }
-      // },
-
-
       /**
-       * 重新计算scroll的尺寸，当动态添加header/footer/tabs或者修改了他的属性
+       * @function resize
+       * @description
+       * 当动态添加Header/Footer/Tabs或者修改了他的属性时, 重新计算Content组件的尺寸.
        * */
       resize(){
-        this.computeScrollContentStyle();
+        // 等待DOM更新完毕
+        this.$nextTick(() => {
+          this.recalculateContentDimensions();
+        })
       },
-
       /**
-       * 滚动到一个位置
-       * @param {Number} x - The x-value to scroll to.
-       * @param {Number} y - The y-value to scroll to.
-       * @param {Number} duration - Duration of the scroll animation in milliseconds.
-       * @param {Function=} done - 当滚动结束时触发的回调
-       * @return {Promise} 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
+       * @function scrollTo
+       * @description
+       * 滚动到指定位置
+       * @param {Number} x                - 滚动到指定位置的x值
+       * @param {Number} y                - 滚动到指定位置的y值
+       * @param {Number} [duration=300]   - 滚动动画的时间
+       * @param {Function=} done          - 当滚动结束时触发的回调
+       * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
       scrollTo (x, y, duration = 300, done) {
-        // scroll animation loop w/ easing
-        // credit https://gist.github.com/dezinezync/5487119
-        const _this = this;
-        // scrollElement
-        let promise;
-        if (done === undefined) {
-          // only create a promise if a done callback wasn't provided
-          // done can be a null, which avoids any functions
-          promise = new Promise(resolve => {
-            done = resolve;
-          });
-        }
-
-        if (!_this.scrollElement) {
-          // invalid element
-          done();
-          return promise;
-        }
-
-        x = x || 0;
-        y = y || 0;
-
-        const fromY = _this.scrollElement.scrollTop;
-        const fromX = _this.scrollElement.scrollLeft;
-
-        const maxAttempts = (duration / 16) + 100;
-
-        let startTime;
-        let timeStamp;
-        let attempts = 0;
-
-        // start scroll loop
-        _this.isScrolling = true;
-        startTime = new Date().getTime();
-        // chill out for a frame first
-        window.requestAnimationFrame(step);
-
-        // scroll loop
-        function step () {
-          attempts++;
-
-          if (!_this.scrollElement || !_this.isScrolling || attempts > maxAttempts) {
-            _this.isScrolling = false;
-            // (<any>scrollElement.style)[CSS.transform] = '';
-            done();
-            return;
-          }
-
-          timeStamp = new Date().getTime();
-
-          let time = Math.min(1, ((timeStamp - startTime) / duration));
-
-          // where .5 would be 50% of time on a linear scale easedT gives a
-          // fraction based on the easing method
-          let easedT = (--time) * time * time + 1;
-
-          if (fromY !== y) {
-            _this.scrollElement.scrollTop = (easedT * (y - fromY)) + fromY;
-          }
-
-          if (fromX !== x) {
-            _this.scrollElement.scrollLeft = Math.floor((easedT * (x - fromX)) + fromX);
-          }
-
-          if (easedT < 1) {
-            // do not use DomController here
-            // must use nativeRaf in order to fire in the next frame
-            window.requestAnimationFrame(step);
-
-          } else {
-            _this.isScrolling = false;
-            // (<any>scrollElement.style)[CSS.transform] = '';
-            done();
-          }
-        }
-
-        return promise;
+        console.debug(`content, scrollTo started, y: ${y}, duration: ${duration}`);
+        return this._scroll.scrollTo(x, y, duration, done);
       },
-
       /**
+       * @function scrollToTop
+       * @description
        * 滚动到顶部
-       * @param {Number} duration - Duration of the scroll animation in milliseconds.
-       * Defaults to 300
-       * @return Returns a promise which is resolved when the scroll has completed.
+       * @param {Number=} [duration=300] - 滚动动画的时间, 默认是300ms
+       * @return {promise} 当滚动动画完毕后返回promise
        */
       scrollToTop(duration = 300) {
-        this.scrollTo(0, 0, duration);
+        console.debug(`content, scrollToTop, duration: ${duration}`);
+        // 页面防止点击
+        this.$app.setDisableScroll(true, 320);
+        return this._scroll.scrollToTop(duration);
       },
       /**
-       * 滚动到底部
-       * @param {Number} duration - Duration of the scroll animation in milliseconds.
-       * Defaults to 300
-       * @return Returns a promise which is resolved when the scroll has completed.
+       *
+       * @function scrollToBottom
+       * @description
+       * 滚动到顶部
+       * @param {Number=} [duration=300] - 滚动动画的时间, 默认是300ms
+       * @return {promise} 当滚动动画完毕后返回promise
        */
       scrollToBottom(duration = 300) {
-        //console.debug('scrollToBottom')
-        let y = 0;
-        if (this.scrollElement) {
-          y = this.scrollElement.scrollHeight - this.scrollElement.clientHeight;
-        }
-        return this.scrollTo(0, y, duration);
+        console.debug(`content, scrollToBottom, duration: ${duration}`);
+        // 页面防止点击
+        this.$app.setDisableScroll(true, 320);
+        return this._scroll.scrollToBottom(duration);
       },
 
-    },
-    created () {},
-    mounted() {
-      // 将挂载点同步到根this上
-      const _this = this;
-      // 找到fixedElement/scrollElement的位置
-      _this.fixedElement = _this.$refs.fixedElement;
-      _this.scrollElement = _this.$refs.scrollElement;
+      // -------- private --------
 
       /**
-       * 计算并设置当前Content的位置及尺寸
+       * DOM完毕后进行初始化
        * */
-      _this.computeScrollContentStyle();
+      init(){
 
-      let _timer;
-      // _this.initIscroll();
+        if (this.scrollElement) return;
 
-      // scroll-content的scroll, 滚动时ionScroll事件，另外两个：ionScrollStart/ionScrollEnd
-      _this.scrollElement.addEventListener('scroll', function (event) {
-        if (!_this.isScrolling) {
-          // scroll start
-          _this.$emit('ionScrollStart', event);
-        }
-        window.clearTimeout(_timer);
-        _this.isScrolling = true;
-        // isScrolling
-        _this.$emit('ionScroll', event);
+        const scroll = this._scroll; // 滚动的实例
+        const _this = this;
 
-        // 重新计算尺寸，尤其是scroll部分
-        _this.getScrollDimensions();
+        /**
+         * 找到fixedElement/scrollElement的位置
+         * */
+        scroll.ev.fixedElement = this.fixedElement = this.$refs.fixedElement;
+        scroll.ev.scrollElement = this.scrollElement = this.$refs.scrollElement;
 
-        _timer = setTimeout(function () {
-          _this.isScrolling = false;
-          // scroll end
-          _this.$emit('ionScrollEnd', event);
-        }, 400);
-      });
-
-      // Page -> Content
-      // Content组件必须是在Page组件内部才向页面this注入控制权
-      if (!!_this.$parent.$options._componentTag && _this.$parent.$options._componentTag.toLowerCase() === 'page') {
-        // 将参数传给调用的页面(注入到业务页面的this中), context为调用的上下文
-        _this.$vnode.context.$content = {
-          '_href': window.location.href,
-          '_this': _this,
-          'fixedElement': _this.fixedElement,
-          'scrollElement': _this.scrollElement,
-          'headerElement': _this.headerElement,
-          'footerElement': _this.footerElement,
-
-          'contentDimensions': _this.contentDimensions,
-          'getContentDimensions': _this.getContentDimensions,
-          'getScrollDimensions': _this.getScrollDimensions,
-          'resize': _this.resize,
-          'scrollTo': _this.scrollTo,
-          'scrollToTop': _this.scrollToTop,
-          'scrollToBottom': _this.scrollToBottom,
+        /**
+         * 注册滚动事件
+         * */
+        // 改写 滚动开始 的回调
+        scroll.scrollStart = (ev) => {
+          //TODO: 组件自己对外
+          this.$emit('onContentScrollStart', ev);
+          //TODO: 全局事件
+          this.$eventBus.$emit('onScrollStart', ev);
         };
+
+        // 改写 滚动中 的回调
+        scroll.scroll = (ev) => {
+          // remind the app that it's currently scrolling
+          this.$app.setScrolling();
+          this.$emit('onContentScroll', ev);
+          this.$eventBus.$emit('onScroll', ev);
+
+          // img更新
+          this.imgsUpdate();
+        };
+
+        // 改写 滚动结束 的回调
+        scroll.scrollEnd = (ev) => {
+          this.$emit('onContentScrollEnd', ev);
+          this.$eventBus.$emit('onScrollEnd', ev);
+
+          // img更新
+          this.imgsUpdate();
+        };
+
+        /**
+         * 计算并设置当前Content的位置及尺寸
+         * */
+        this.recalculateContentDimensions()
+
+        /**
+         * Page -> Content
+         * Content组件必须是在Page组件内部才向页面this注入控制权
+         * */
+        if (!!_this.$parent.$options._componentTag && _this.$parent.$options._componentTag.toLowerCase() === 'page') {
+          // 将参数传给调用的页面(注入到业务页面的this中), context为调用的上下文
+          this.$vnode.context.$content = {
+            '_href': window.location.href,
+            'contentElement': this,
+            'fixedElement': this.fixedElement,
+            'scrollElement': this.scrollElement,
+            'headerElement': this.headerElement,
+            'footerElement': this.footerElement,
+
+            'getContentDimensions': this.getContentDimensions,
+            'resize': this.resize,
+
+            'scrollTo': this.scrollTo,
+            'scrollToTop': this.scrollToTop,
+            'scrollToBottom': this.scrollToBottom,
+
+            'scrollTop': this.scrollElement.scrollTop
+          }
+        }
+
+      },
+
+      /**
+       * 重新计算Content组件的尺寸维度
+       * 因为这部分受以下因素影响：statusbarPadding、fullscreen、Header，Footer
+       * */
+      recalculateContentDimensions(){
+
+        const scrollEle = this.scrollElement;
+        if (!scrollEle) {
+          console.assert(false, 'this.scrollElement should be valid');
+          return;
+        }
+
+        const fixedEle = this.fixedElement;
+        if (!fixedEle) {
+          console.assert(false, 'this.fixedElement should be valid');
+          return;
+        }
+
+        // 如果滚动实例_scroll不存在
+        // 则直接返回
+        if (!this._scroll) return;
+        let scrollEvent = this._scroll.ev;
+
+        let ele = this.$el; // HTMLElement
+
+        // 获取Footer/Header信息
+        let computedStyle;
+        let tagName;
+        let children = this.$parent.$children;
+        children.forEach((child) => {
+          ele = child.$el;
+          tagName = child.$options._componentTag.toLowerCase();
+          if (tagName === 'header') {
+            this.headerElement = scrollEvent.headerElement = ele;
+            computedStyle = getComputedStyle(this.headerElement);
+            this.headerBarHeight = parsePxUnit(computedStyle.height);
+          } else if (tagName === 'footer') {
+            this.footerElement = scrollEvent.footerElement = ele;
+            computedStyle = getComputedStyle(this.footerElement);
+            this.footerBarHeight = parsePxUnit(computedStyle.height);
+          }
+        });
+
+        // 获取Content信息
+        scrollEvent.contentElement = this.$el;
+        if (this.fullscreen) {
+          computedStyle = getComputedStyle(this.$el);
+          this._pTop = parsePxUnit(computedStyle.paddingTop);
+          this._pBottom = parsePxUnit(computedStyle.paddingBottom);
+        }
+
+        // Content的位置值
+        this._cTop = this.headerBarHeight; // contentTop
+        this._cBottom = this.footerBarHeight;
+
+        // Fixed的位置值和Content相等, 但是属性可能不一样
+        this._fTop = this._cTop;
+        this._fBottom = this._cBottom;
+
+        // 如果是fullscreen的话,padding还需要计算之前的值, 一般为16px
+        if (this.fullscreen) {
+          this._cTop += this._pTop;
+          this._cBottom += this._pBottom;
+        }
+
+        // 默认为fullscreen未开启状态, 使用margin属性
+        let topProperty = 'marginTop';
+        let bottomProperty = 'marginBottom';
+        let fixedTop = this._fTop;
+        let fixedBottom = this._fBottom;
+
+        // 如果fullscreen开启, 使用padding属性
+        if (this.fullscreen) {
+          console.assert(this._pTop >= 0, '_paddingTop has to be positive');
+          console.assert(this._pBottom >= 0, '_paddingBottom has to be positive');
+
+          // 调整Content组件的padding属性, 使得content中的内容在Header和Footer下方滚动,
+          topProperty = 'paddingTop';
+          bottomProperty = 'paddingBottom';
+        }
+
+        // update top margin if value changed
+        console.assert(this._cTop >= 0, 'contentTop has to be positive');
+        console.assert(fixedTop >= 0, 'fixedTop has to be positive');
+
+        (scrollEle.style)[topProperty] = cssFormat(this._cTop);
+        fixedEle.style.marginTop = cssFormat(fixedTop);
+
+        // update bottom margin if value changed
+        console.assert(this._cBottom >= 0, 'contentBottom has to be positive');
+        console.assert(fixedBottom >= 0, 'fixedBottom has to be positive');
+
+        (scrollEle.style)[bottomProperty] = cssFormat(this._cBottom);
+        fixedEle.style.marginBottom = cssFormat(fixedBottom);
+
+        // 计算Content组件的维度信息, 写入scrollEvent中, 只是初始化的信息
+        const contentDimensions = this.getContentDimensions();
+        scrollEvent.scrollHeight = contentDimensions.scrollHeight;
+        scrollEvent.scrollWidth = contentDimensions.scrollWidth;
+        scrollEvent.contentHeight = contentDimensions.contentHeight;
+        scrollEvent.contentWidth = contentDimensions.contentWidth;
+        scrollEvent.contentTop = contentDimensions.contentTop;
+        scrollEvent.contentBottom = contentDimensions.contentBottom;
+
+        // 初始化_scroll滚动对象
+        this._scroll.init(this.scrollElement, scrollEvent.contentTop, scrollEvent.contentBottom);
+
+        // initial imgs refresh
+        this.imgsUpdate();
+      },
+
+
+      // -------- For Refresher Component --------
+      /**
+       * 获取scrollElement元素的Dom
+       * */
+      getScrollElement(){
+        return this.scrollElement
+      },
+
+      /**
+       * 滚动结束的事件回调
+       * @param {function} callback - 过渡结束的回调, 回调传参TransitionEvent
+       */
+      onScrollElementTransitionEnd(callback) {
+        transitionEnd(this.scrollElement, callback);
+      },
+
+      /**
+       * 在scrollElement上设置属性
+       * @param {string} prop - 属性名称
+       * @param {any} val     - 属性值
+       */
+      setScrollElementStyle(prop, val) {
+        if (this.scrollElement) {
+          this.$nextTick(() => {
+            if (this.scrollElement) {
+              (this.scrollElement.style)[prop] = val;
+            }
+          })
+        }
+      },
+
+      // -------- For VirtualScroll Component --------
+      enableJsScroll() {
+        this._scroll.enableJsScroll(this._cTop, this._cBottom);
+      },
+
+      // -------- For Img Component --------
+      /**
+       * @param {object} img - Img组件的实例
+       */
+      addImg(img){
+        this._imgs.push(img);
+      },
+      /**
+       *  @param {object} img - Img组件的实例
+       */
+      removeImg(img) {
+        removeArrayItem(this._imgs, img);
+      },
+      /**
+       * Img组件更新
+       */
+      imgsUpdate(){
+        if (this._scroll.initialized && this._imgs.length && this.isImgsUpdatable()) {
+          let contentDimensions = this.getContentDimensions();
+          this.$nextTick(() => {
+            updateImgs(this._imgs, contentDimensions.scrollTop, contentDimensions.contentHeight, contentDimensions.directionY, this._imgReqBfr, this._imgRndBfr);
+          })
+        }
+      },
+      isImgsUpdatable() {
+        // 当滚动不是太快的时候, Img组件更新才被允许, 这个速度由this.imgVelMax控制
+        return Math.abs(this._scroll.ev.velocityY) < this._imgVelMax;
+      }
+    },
+    created () {
+      // 页面进入前完成非DOM操作部分
+      this.statusbarPadding = this.$config.getBoolean('statusbarPadding', false);
+      this._imgReqBfr = this.$config.getNumber('imgRequestBuffer', 1400);
+      this._imgRndBfr = this.$config.getNumber('imgRenderBuffer', 600);
+      this._imgVelMax = this.$config.getNumber('imgVelocityMax', 3);
+      this._scroll = new ScrollView();
+      this._imgs = [];
+    },
+    mounted() {
+      // 初始化
+      this.init();
+    }
+  }
+
+  /**
+   * @private
+   * @param {string} val
+   * @return {string}
+   * */
+  function cssFormat (val) {
+    return (val > 0 ? val + 'px' : '');
+  }
+
+
+  /**
+   * @private
+   * 对两个img组件根据top排序
+   * @param {object} a - Img组件实例
+   * @param {object} b - Img组件实例
+   * @return {number}
+   * */
+  function sortTopToBottom (a, b) {
+    if (a.top < b.top) {
+      return -1;
+    }
+    if (a.top > b.top) {
+      return 1;
+    }
+    return 0;
+  }
+
+  /**
+   * @private
+   * @param {Img[]} imgs
+   * @param {number} viewableTop
+   * @param {number} contentHeight
+   * @param {string} scrollDirectionY
+   * @param {number} requestableBuffer
+   * @param {number} renderableBuffer
+   * */
+  function updateImgs (imgs, viewableTop, contentHeight, scrollDirectionY, requestableBuffer, renderableBuffer) {
+    // ok, so it's time to see which images, if any, should be requested and rendered
+    // ultimately, if we're scrolling fast then don't bother requesting or rendering
+    // when scrolling is done, then it needs to do a check to see which images are
+    // important to request and render, and which image requests should be aborted.
+    // Additionally, images which are not near the viewable area should not be
+    // rendered at all in order to save browser resources.
+    const viewableBottom = (viewableTop + contentHeight);
+    const priority1 = []; //: Img[]
+    const priority2 = []; //: Img[]
+    let img; // 每个Img的实例;
+
+    // all images should be paused
+    for (var i = 0, ilen = imgs.length; i < ilen; i++) {
+      img = imgs[i];
+
+      if (scrollDirectionY === 'up') {
+        // scrolling up
+        if (img.getTop() < viewableBottom && img.getBottom() > viewableTop - renderableBuffer) {
+          // 可视区向上移动, 图片在可是区域或者在可视区域的上面一点, 按照滚动方向即将要看到图片
+          img.canRequest = img.canRender = true;
+          priority1.push(img);
+          continue;
+        }
+
+        if (img.getBottom() <= viewableTop && img.getBottom() > viewableTop - requestableBuffer) {
+          // 可视区向上移动, 图片在可视区的上面, 还未进入, 但是需要提前发出图片请求
+          img.canRequest = true;
+          img.canRender = false;
+          priority2.push(img);
+          continue;
+        }
+
+        if (img.getTop() >= viewableBottom && img.getTop() < viewableBottom + renderableBuffer) {
+          // 可视区向上移动, 图片在可视区的下面, 所以按照这个方向移动, 是不会再看到图片,
+          // 但是图片还是可能在renderable area, 故不需要reset
+          img.canRequest = img.canRender = false;
+          continue;
+        }
+
+      } else {
+        // scrolling down
+        if (img.getBottom() > viewableTop && img.getTop() < viewableBottom + renderableBuffer) {
+          // 可视区向下移动,  图片在可是区域或者在可视区域的下面一点, 按照滚动方向即将要看到图片
+          img.canRequest = img.canRender = true;
+          priority1.push(img);
+          continue;
+        }
+
+        if (img.getTop() >= viewableBottom && img.getTop() < viewableBottom + requestableBuffer) {
+          // 可视区向下移动, 图片在可视区的下面, 还未进入, 但是需要提前发出图片请求
+          img.canRequest = true;
+          img.canRender = false;
+          priority2.push(img);
+          continue;
+        }
+
+        if (img.getBottom() <= viewableTop && img.getBottom() > viewableTop - renderableBuffer) {
+          // 可视区向下移动, 图片在可视区的上面, 所以按照这个方向移动, 是不会再看到图片,
+          // 但是图片还是可能在renderable area, 故不需要reset
+          img.canRequest = img.canRender = false;
+          continue;
+        }
       }
 
+      img.canRequest = img.canRender = false;
+      img.reset();
+    }
+
+    // update all imgs which are viewable
+    priority1.sort(sortTopToBottom).forEach(i => i.update());
+
+    if (scrollDirectionY === 'up') {
+      // scrolling up
+      priority2.sort(sortTopToBottom).reverse().forEach(i => i.update());
+
+    } else {
+      // scrolling down
+      priority2.sort(sortTopToBottom).forEach(i => i.update());
     }
   }
 </script>
-<style lang="scss">
-  @import './content';
-  @import './content.ios';
-  @import './content.md';
-  @import './content.wp';
-</style>
+

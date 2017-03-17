@@ -15,6 +15,7 @@ $content-ios-transition-background:     #000 !default;
   background-color: $background-ios-color;
 }
 
+// outer-content是用户自定义类, 不是由组件自己添加的
 .content-ios.outer-content {
   background: $content-ios-outer-background;
 }

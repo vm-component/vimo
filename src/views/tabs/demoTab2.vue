@@ -29,13 +29,10 @@
     computed: {},
     methods: {},
     created () {
-      console.debug('tab2.vue - created')
     },
     mounted () {
-      console.debug('tab2.vue - mounted')
     },
     activated () {
-      console.debug('tab2.vue - activated')
     },
     components: {}
   }

@@ -7,3 +7,8 @@ test/e2e/reports
 selenium-debug.log
 backup
 .idea
+/docs/action-sheet_action-sheet.js.html
+/docs/action-sheet_action-sheet.vue.html
+/docs/scripts
+/docs/styles
+/docs/fonts

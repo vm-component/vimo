@@ -4,7 +4,9 @@
   </div>
 </template>
 <style lang="scss">
-  @import 'note.ios';
+  @import 'note.ios.scss';
+  @import 'note.wp.scss';
+  @import 'note.md.scss';
 
 </style>
 <script type="text/ecmascript-6">
