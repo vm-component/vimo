@@ -40,7 +40,8 @@
         </ListHeader>
         <Item>
           下方按钮控制
-          <Toggle slot="item-right" :checked="checked" :disabled="disabled" @onChange="toggleChange"></Toggle>
+          <Toggle v-model="checked" :checked="true" slot="item-right" :disabled="disabled"
+                  @onChange="toggleChange"></Toggle>
         </Item>
       </List>
 
@@ -80,7 +81,7 @@
         this.checked = !this.checked
       },
       toggleChange(val){
-        this.checked = val;
+        console.debug('toogle changed, value:' + val)
       },
 
       setDisable(){

@@ -19,7 +19,6 @@
               <div class="action-sheet-sub-title" v-if="subTitle">{{subTitle}}</div>
             </div>
             <Button role="action-sheet-button" @click="click(b)" v-for="b of normalButtons"
-                        class=""
                         :class="[b.cssClass,{'icon-left':b.icon}]">
               <Icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></Icon>
               {{b.text}}
@@ -44,17 +43,18 @@
    * @module Component/ActionSheet
    * @description
    *
-   * ActionSheet是一个弹出表单，一般都是由很多Button组成。当用户点击确认完毕后关闭.
+   * [文档还未完成]
+   *
+   * ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭.
    *
    * 它显示在应用内容的顶层，必须由用户手动关闭，然后他们才能恢复与应用的互动。
    * 有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键,
    * 也就是说, ActionSheet能监听url的变化做出关闭的动作。
    *
-   * @property {String} [title='']                     - 初始化Alert Instance的数据
-   * @property {string} [subTitle='']                  - 初始化Alert Instance的数据
-   * @property {string} [message='']                   - 初始化Alert Instance的数据
-   * @property {string} [cssClass='']                  - Additional classes for custom styles, separated by spaces
-   * @property {Array} [buttons=[ ]]                   - button数组，包含全部role
+   * @property {String} [title=]                     - ActionSheet的标题
+   * @property {string} [subTitle=]                  - ActionSheet的副标题
+   * @property {string} [cssClass=]                  - Additional classes for custom styles, separated by spaces
+   * @property {Array} [buttons=]                   - button数组，包含全部role
    * @property {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
    *
    * @property {Boolean} [isActive=false]                - ActionSheet 开启状态

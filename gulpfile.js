@@ -40,7 +40,7 @@ gulp.task('serve', function () {
       notify: false,
       port: 8012,
       server: {
-        baseDir: ['docs/page','docs'],
+        baseDir: ['docs/page','docs','./'],
         routes: {}
       }
     });

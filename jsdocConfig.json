@@ -42,6 +42,7 @@
       "src/vimo/components/img",
       "src/vimo/components/input",
       "src/vimo/components/item",
+      "src/vimo/components/toggle",
       "src/vimo/components/label",
       "src/vimo/components/tabs"
     ],
