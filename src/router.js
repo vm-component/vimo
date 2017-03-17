@@ -94,6 +94,11 @@ const routes = [
     component: require('./views/alert.vue'),
   },
   {
+    path: '/popover',
+    name: 'popover',
+    component: require('./views/popover.vue'),
+  },
+  {
     path: '/toast',
     name: 'toast',
     component: require('./views/toast.vue'),

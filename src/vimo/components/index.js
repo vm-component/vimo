@@ -79,6 +79,7 @@ import getAlertInstance from './alert'
 import getLoadingInstance from './loading'
 import prepareToast from './toast'
 import prepareModal from './modal'
+import getPopoverInstance from './popover'
 
 
 
@@ -198,8 +199,10 @@ module.exports = {
         Vue.prototype.$loading = getLoadingInstance();
         Vue.prototype.$backdrop = BackdropInstance();
         Vue.prototype.$toast = prepareToast();
+        Vue.prototype.$popover = getPopoverInstance();
         Vue.prototype.$modal = prepareModal();
-
+       
+        
         /**
          * @name 地图定位
          * @param {Number} latitude -

@@ -16,6 +16,8 @@
     <aside id="loadingPortal" overlay-portal></aside>
     <!--toast portal-->
     <aside id="toastPortal" overlay-portal></aside>
+    <!--popover portal-->
+    <aside id="popoverPortal" overlay-portal></aside>
     <!--<div ref="toastPortal" class="toast-portal" [overlay-portal]="10000"></div>-->
     <!--当页面被点击的时候，防止在动画的过程中再次点击页面导致bug的蒙层，全局最高！z-index=99999-->
     <aside class="click-block"

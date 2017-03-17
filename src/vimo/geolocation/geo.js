@@ -58,7 +58,7 @@ function getCurrentPosition() {
           break;
         default:
           try{
-            (isHttps)_H5Location(successFn,errorFn,posOptions);
+            if(isHttps)_H5Location(successFn,errorFn,posOptions);
           }catch(err){
             console.error("h5位置获取必须是https协议模式");
           }

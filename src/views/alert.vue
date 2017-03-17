@@ -16,6 +16,7 @@
   </Page>
 </template>
 <script type="text/ecmascript-6">
+  import list from "./list.vue"
   export default{
     data(){
       return {
