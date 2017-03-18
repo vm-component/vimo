@@ -3,28 +3,20 @@
  *
  * @module Storage
  * @description
+ * @licence MIT
+ * @author Hisang
  *
- * 因为遇到了有些浏览器没开启本地存储导致app报错假死, 因此需要在
+ * For more detail? please direct to [here](https://github.com/xiangsongtao/vm-storage)
  *
- *```
- * window.sessionStorage.getItem
- * window.sessionStorage.removeItem
- * window.sessionStorage.setItem
- * window.sessionStorage.clear
- * ... sessionStorage/localStorage
+ * NOTICE: This is written by ES2015! You will need babel to compile or run `npm dev`.
+ *
+ * ### for Babel
  *
  * ```
+ * npm install --global babel-cli
+ * npm install --save-dev babel-preset-es2015
  *
- * 提供的多种方法之前再次分装一层, 检测(try/catch)是否支持本地存储,
- * 如果不行, 给出提示
- *
- * sessionStorage/localstorage此时使用内存缓存处理(降级保证能运行).
- *
- *
- * 设计概要:
- * 2. config中能设置key的前缀
- * 3. $开头的变量为内存变量, 不在sessionStorage/localStorage中存储
- *
+ * ```
  */
 
 module.exports = {
@@ -37,11 +29,9 @@ module.exports = {
 };
 
 /**
- * @name Storage
+ * @class Storage
  * @description
- *
- * 根据传入的storage名称, 这个类用于生成storage实例
- *
+ * Storage class to init instance
  * */
 class Storage {
 
@@ -50,43 +40,44 @@ class Storage {
    * @param {object} options
    * */
   constructor (storageType, options) {
-    // 定义
-    this._prefix = null; // 存储前缀
-    this._storage = null; // 当前的storage函数(window.localStorage/window.sessionStorage), 如果不可用则返回false
-    this._prefixLength = null; // 前缀长度
-    this._storageType = null; // 存储类型名称
+    this._prefix = null; // storage profix
+    this._storage = null; // current storage function, if not support, it will be false
+    this._prefixLength = null; // prefix length
+    this._storageType = null; // storage type: localStorage/sessionStorage
+
+    this.length = 0;
 
     this._storageType = storageType;
     if (!!options && !!options.prefix) {
       this._prefix = options.prefix
     } else {
-      this._prefix = 'vStorage-';
+      this._prefix = 'vmStorage-';
     }
     this._prefixLength = this._prefix.length;
-    this._storage = this._isStorageSupported(window, storageType); // 返回浏览器的存储对象(localStorage/sessionStorage)
+    this._storage = this._isStorageSupported(window, storageType); // return localStorage or sessionStorage
 
-    // 检测是否支持storage存储, 不支持则采用回退处理
+    // check whether support storage function, if not then use fallback function to handle
     if (!this._storage) {
       console.error('Current browser does not support sessionStorage and localStorage, ' +
         'system will fallback to use memory to cache key/value data! storage.js::<Class>Storage')
       this._storageFallback();
-      // 再次执行检测
+      // test again
       this._storage = this._isStorageSupported(window, storageType);
     }
 
-    // 初始化
-    if (!this.supported() || this._storageType !== 'localStorage') return;
+    // init
     for (let i = 0, l = this._storage.length, k; i < l; i++) {
       // #8, #10: ` _storage.key(i)` may be an empty string (or throw an exception in IE9 if ` _storage` is empty)
       k = this._storage.key(i);
       if (this._prefix === k.slice(0, this._prefixLength)) {
+        this.length++;
         this[k.slice(this._prefixLength)] = JSON.parse(this._storage.getItem(k))
       }
     }
   }
 
   /**
-   * 取值
+   * getItem
    * @param {string} key
    * */
   getItem (key) {
@@ -94,35 +85,41 @@ class Storage {
   }
 
   /**
-   * 设值
+   * setItem
    * @param {string} key
    * @param {string} value
    * */
   setItem (key, value) {
     this[key] = JSON.parse(JSON.stringify(value));
     this.supported() && this._storage.setItem(this._prefix + key, JSON.stringify(value));
+    this.length++;
   }
 
   /**
-   * 清除全部指定前缀的键值对
+   * clear all
    * */
   clear () {
     const _this = this;
+    this.length = 0;
     for (let k in _this) {
       '$' === k[0] || (delete _this[k] && this.supported() && _this._storage.removeItem(_this._prefix + k));
     }
   }
 
   /**
-   * 移除
+   * removeItem
    * @param {string} key
    * */
   removeItem (key) {
+    this.length--;
     delete this[key] && this.supported() && this._storage.removeItem(this._prefix + key);
   }
-
+  key (num) {
+    let keys = Object.keys(this._storage);
+    return keys[parseInt(num)]
+  }
   /**
-   * 是否支持
+   * supported test
    * */
   supported () {
     return !!this._storage;
@@ -131,11 +128,10 @@ class Storage {
   // -------- private --------
 
   /**
-   * 检查是否能使用存储功能
-   *
+   * check whether storage is support or not
    * @param {object} window
-   * @param {string} storageType - 存储的对象名称: localStorage/sessionStorage
-   * @return {object/boolean} 返回存储对象(window.localStorage/window.sessionStorage), 否则返回false
+   * @param {string} storageType - storage name: localStorage/sessionStorage
+   * @return {object/boolean}  storage object, such as : window.localStorage/window.sessionStorage. if not support, return false
    * */
   _isStorageSupported (window, storageType) {
 
@@ -170,7 +166,7 @@ class Storage {
   }
 
   /**
-   * 如果手机不支持storage的降级处理
+   * if not support, then rollback to use memory to catch key/value
    * */
   _storageFallback () {
     window.localStorage = new StorageFallback('localStorage');
@@ -182,7 +178,7 @@ class Storage {
 /**
  * @class StorageFallback
  * @description
- * 当storage不能正常工作时的降级处理, 即在内存维护一个能记录长度和获取key的键值对
+ * fallback to use local memory to catch key/value
  * */
 class StorageFallback {
   constructor (storageType) {

@@ -1,5 +1,3 @@
-@import "../../themes/ionic.globals";
-
 @import "./grid.mixins";
 
 // Grid
@@ -53,16 +51,6 @@ $grid-padding-widths: (
   lg: $grid-padding-width,
   xl: $grid-padding-width
 ) !default;
-
-
-// Check that the Sass maps are declared correctly
-// --------------------------------------------------
-
-//@include assert-ascending($grid-breakpoints, "$grid-breakpoints");
-//@include assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
-//
-//@include assert-ascending($grid-max-widths, "$grid-max-widths");
-
 
 // Grid
 // --------------------------------------------------

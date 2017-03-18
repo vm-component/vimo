@@ -80,7 +80,7 @@ function present (options) {
   _this.normalButtons = [];
   _this.cancelButton = null;
 
-  _insertPosition = document.getElementById('overlayPortal');
+  _insertPosition = document.getElementById('sheetPortal');
   if (!!_insertPosition) {
     _insertPosition.appendChild(_this.$el);
   } else {

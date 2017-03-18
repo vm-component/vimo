@@ -10,6 +10,18 @@
   @import "./label.wp.scss";
 </style>
 <script type="text/ecmascript-6">
+  /**
+   * @module Component/Label
+   * @description
+   *
+   * Label组件主要是放在Item组件中使用, 用于标记Input组件/Toggle组件/Checkbox组件等From组件
+   * @property {String} mode - 模式
+   * @property {String} color - 颜色
+   * @property {String} fixed - 固定在input旁边
+   * @property {String} floating - 浮动在input上面, 点击input时浮动到上面
+   * @property {String} stacked - 永远在input的上面
+   *
+   * */
   import { setElementClass } from '../../util/dom'
   import { isTrueProperty } from '../../util/util'
   export default{
@@ -42,15 +54,6 @@
         type: String,
         default: '',
       },
-
-      /**
-       * 规定 label 绑定到哪个表单元素。
-       * */
-      for: {
-        type: String,
-        default: '',
-      }
-
     },
     watch: {},
     computed: {

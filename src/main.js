@@ -32,6 +32,8 @@ VM.platform.ready().then(function (data) {
     router,
     template: '<App/>',
     mounted () {
+
+      this.$localStorage.setItem('hello','songtao')
     },
     components: {App}
   });

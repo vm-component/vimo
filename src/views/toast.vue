@@ -26,6 +26,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
+
     data(){
       return {}
     },
@@ -37,9 +38,8 @@
       },
 
       toastBottomWithStringAndDuration(){
-        this.$toast.present('Toast Bottom With String And Druation',1000)
+        this.$toast.present('Toast Bottom With String And Druation', 1000)
       },
-
 
       toastTop () {
         const _this = this;
@@ -47,7 +47,7 @@
           message: 'Top was added successfully',
           duration: 3000,
           position: 'top',
-          dismissOnPageChange:true,
+          dismissOnPageChange: true,
           onDismiss () {
             console.debug('1 onDismiss in promise success!')
           }
@@ -59,7 +59,7 @@
           message: 'Bottom was added successfully',
           duration: 3000,
           position: 'bottom',
-          dismissOnPageChange:true,
+          dismissOnPageChange: true,
           onDismiss () {
             console.debug('2 onDismiss in promise success!')
           }
@@ -71,7 +71,7 @@
           message: 'Middle was added successfully',
           duration: 3000,
           position: 'middle',
-          dismissOnPageChange:true,
+          dismissOnPageChange: true,
           onDismiss () {
             console.debug('3 onDismiss in promise success!')
           }
@@ -85,7 +85,7 @@
           showCloseButton: true,
           closeButtonText: 'OK',
           position: 'middle',
-          dismissOnPageChange:false,
+          dismissOnPageChange: false,
           onDismiss () {
             console.debug('4 onDismiss in promise success!')
           }
@@ -100,7 +100,7 @@
           showCloseButton: true,
           closeButtonText: '好的',
           cssClass: 'showCloseBtnToastCssClass',
-          dismissOnPageChange:true,
+          dismissOnPageChange: true,
           onDismiss () {
             console.debug('5 onDismiss in promise success!')
           }
@@ -111,8 +111,11 @@
     created () {
     },
     mounted () {
+      console.log('toast.vue')
+      console.log(this)
     },
     activated () {
     },
   }
+
 </script>

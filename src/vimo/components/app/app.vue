@@ -5,18 +5,17 @@
       <slot></slot>
     </section>
     <!--backdrop-->
-    <aside id="backdropPortal" overlay-portal></aside>
+    <aside id="backdropPortal"></aside>
     <!--modal portal-->
-    <aside id="modalPortal" overlay-portal></aside>
-    <!--蒙层指示,action-sheet,choose-sheet等 overlay portal-->
-    <aside id="overlayPortal" overlay-portal></aside>
+    <aside id="modalPortal"></aside>
+    <!--蒙层指示,action-sheet,choose-sheet,picker等 sheetPortal-->
+    <aside id="sheetPortal"></aside>
     <!--alert portal-->
-    <aside id="alertPortal" overlay-portal></aside>
+    <aside id="alertPortal"></aside>
     <!--loading portal-->
-    <aside id="loadingPortal" overlay-portal></aside>
+    <aside id="loadingPortal"></aside>
     <!--toast portal-->
-    <aside id="toastPortal" overlay-portal></aside>
-    <!--<div ref="toastPortal" class="toast-portal" [overlay-portal]="10000"></div>-->
+    <aside id="toastPortal"></aside>
     <!--当页面被点击的时候，防止在动画的过程中再次点击页面导致bug的蒙层，全局最高！z-index=99999-->
     <aside class="click-block"
            :class="[{'click-block-enabled':isClickBlockEnabled}]"></aside>

@@ -1,5 +1,5 @@
 <template>
-  <div id="ion-toast" class="ion-toast" :class="[modeClass,cssClass]">
+  <div class="toast" :class="[modeClass,cssClass]">
     <transition :name="transitionClass"
                 v-on:before-enter="_beforeEnter"
                 v-on:after-enter="_afterEnter"
@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
   @import "./toast";
   @import "./toast.ios";
   @import "./toast.wp";
@@ -28,40 +28,32 @@
   export default {
     data() {
       return {
-        /**
-         * 初始化Instance的数据
-         * 因为是实例调用模式，故prop和data在初始化后是同样的数据接口，
-         * 故prop就没有存在的价值
-         * */
         message: '', // String
         duration: null, // Number
         position: 'bottom',
         cssClass: null,
         showCloseButton: false,
-        closeButtonText: 'Close', // 手动关闭按钮的文本
-        dismissOnPageChange: false, // 页面切花是否关闭
-        onDismiss: null, // 当关闭的时候触发
+        closeButtonText: 'Close', // the text of close button
+        dismissOnPageChange: false, // whether to close component when page change
+        onDismiss: null, // execute when component closed and animate done
+        mode: VM && VM.config && VM.config.get('mode', 'ios') || 'ios', // ios?android
 
-        /**
-         * 组件状态
-         * */
-        isActive: false, // 开启状态
-        mode: this.$config.get('mode') || 'ios', // ios?android
 
+
+        // component state
+        isActive: false, // open state
         //prmiseCallback
         presentCallback: null,
         dismissCallback: null,
-
-        // timer
-        timer: null,
+        timer: null, // timer
       }
     },
     computed: {
-      // 设置ActionSheet的风格
+      // set mode class of ActionSheet
       modeClass () {
         return `toast-${this.mode}`
       },
-      // 位置样式
+      // position class
       positionClass () {
         return `toast-${this.position}`
       },
@@ -71,7 +63,7 @@
     },
     methods: {
       /**
-       *Animate Hooks
+       * Animate Hooks
        * */
       _beforeEnter () {},
       _afterEnter (el) {
@@ -85,45 +77,40 @@
       },
 
       /**
-       * 手动关闭的 close button
+       * click close button to close
        * */
       cbClick() {
-        const _this = this;
-        return _this._dismiss().then(function () {
-          !!_this.onDismiss && _this.onDismiss()
+        return this._dismiss().then(() => {
+          !!this.onDismiss && this.onDismiss()
         })
-
       },
 
       /**
-       * 开启当前组件
+       * open current component instance
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
       _present () {
-        const _this = this;
-        _this.isActive = true;
-
-        if (!_this.showCloseButton) {
-          _this.timer = setTimeout(function () {
-            _this.timer = null;
-            _this._dismiss().then(function () {
-              !!_this.onDismiss && _this.onDismiss()
+        this.isActive = true;
+        if (!this.showCloseButton) {
+          this.timer = setTimeout(() => {
+            this.timer = null;
+            this._dismiss().then(() => {
+              !!this.onDismiss && this.onDismiss()
             })
-          }, _this.duration)
+          }, this.duration)
         }
-
-        return new Promise((resolve) => {_this.presentCallback = resolve})
+        return new Promise((resolve) => {this.presentCallback = resolve})
       },
 
       /**
-       * 关闭当前组件
+       * close current component instance
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
       _dismiss () {
-        const _this = this;
-        _this.isActive = false; // 动起来
-        return new Promise((resolve) => {_this.dismissCallback = resolve})
+        this.isActive = false; // move
+        return new Promise((resolve) => {this.dismissCallback = resolve})
       },
     },
+    mounted(){}
   };
 </script>

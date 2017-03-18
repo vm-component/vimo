@@ -16,7 +16,12 @@ console.time("Platform初始化时间");
 import { setupPlatform } from './platform/platform'
 import { setupConfig } from './config/config'
 import geolocation from './geolocation/geoStart'
-import Storage from './storage/storage'
+
+
+import Storage from 'vm-storage'
+
+
+
 import log from './log/log'
 import './util/iscroll'
 

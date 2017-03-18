@@ -39,9 +39,17 @@ $z-index-menu-backdrop:          79;
 
 
 
-
-
 $z-index-overlay:                1000;
+$z-index-overlay-backdrop:       50;
+$z-index-overlay-modal:          100;
+$z-index-overlay-actionSheet:    150;
+$z-index-overlay-alert:          200;
+$z-index-overlay-loading:        250;
+$z-index-overlay-toast:          300;
+
+
+
+
 $z-index-click-block:            99999;
 
 $z-index-fixed-content:          999;
