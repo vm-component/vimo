@@ -148,6 +148,10 @@
             <Icon slot="item-left" name="cloud"></Icon>
             Toast
           </Item>
+           <Item button :to="{name: 'popover'}">
+            <Icon slot="item-left" name="ios-flame"></Icon>
+            Popover
+          </Item>
         </ItemGroup>
 
         <!--模块-->

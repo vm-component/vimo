@@ -95,9 +95,17 @@ const routes = [
   {
     path: '/alert',
     name: 'alert',
-    component  (resolve) {
-      require(['./views/alert.vue'], resolve)
-    },
+    component: require('./views/alert.vue'),
+  },
+  {
+    path: '/popover',
+    name: 'popover',
+    component: require('./views/popover.vue'),
+  },
+  {
+    path: '/toast',
+    name: 'toast',
+    component: require('./views/toast.vue'),
   },
   {
     path: '/backdrop',
