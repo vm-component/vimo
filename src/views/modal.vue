@@ -33,6 +33,8 @@
     methods: {
       openModal_1(){
         this.$modal.present({
+          name:'modal_1',
+          position:'bottom',
           template: modalPageComponent_1,
           modalData: {hello: 'Page1Data'},
           onDismiss (data) {
@@ -43,6 +45,8 @@
       },
       openModal_2(){
         this.$modal.present({
+          name:'modal_2',
+          position:'right',
           template: modalPageComponent_2,
           modalData: {hello: 'Page2Data'},
           onDismiss (data) {

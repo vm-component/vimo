@@ -34,7 +34,7 @@
     computed: {},
     methods: {
       toastBottomOnlyString(){
-        let _toastIns = this.$toast('Toast Bottom Only String',10000)
+        let _toastIns = this.$toast('Toast Bottom Only String',4000)
         setTimeout(function () {
           _toastIns.dismiss();
         },3000)

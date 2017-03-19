@@ -1,9 +1,5 @@
 /**
  * Created by Hsiang on 2016/12/26.
- *
- * 关于实例化的方法请参考actionSheet的处理
- *
- * 单例模式实例化调用, 一次只能开启一个实例, 开启之前需要判断
  */
 import Vue from 'vue';
 import { isNumber, isObject, isPresent } from '../../util/util';
@@ -26,9 +22,9 @@ class Loading extends LoadingConstructor {
 function LoadingFactory (options) {
   let _insertPosition;
   let el = null;
-  let spinner;
+  let spinner = VM && VM.config.get('spinner', 'ios') || 'ios';
   let content;
-  let duration = 4000;
+  let duration = 0;
   let cssClass;
   let showBackdrop;
   let dismissOnPageChange;
@@ -50,10 +46,28 @@ function LoadingFactory (options) {
   })
 }
 
-export default function (options) {
-  let _instance = LoadingFactory(options);
-  // 自动开启
-  _instance.present();
-  return _instance;
+export default function () {
+  return {
+    present(options){
+      let _instance = Vue.prototype._loading;
+      if (_instance && _instance.isActive) {
+        _instance.dismiss().then(() => {
+          _instance = LoadingFactory(options);
+          Vue.prototype._loading = _instance;
+          // 自动开启
+          _instance.present();
+          return _instance;
+        });
+      } else {
+        _instance = LoadingFactory(options);
+        Vue.prototype._loading = _instance;
+        // 自动开启
+        _instance.present();
+        return _instance;
+      }
+    },
+    dismiss(){
+      return Vue.prototype._loading.dismiss();
+    }
+  }
 };
-

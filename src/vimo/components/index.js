@@ -209,7 +209,7 @@ module.exports = {
         Vue.prototype.$actionSheet = ActionSheet;
         Vue.prototype.$alert = Alert;
         Vue.prototype.$toast = Toast;
-        Vue.prototype.$loading = Loading;
+        Vue.prototype.$loading = Loading();
 
 
         Vue.prototype.$backdrop = BackdropInstance();

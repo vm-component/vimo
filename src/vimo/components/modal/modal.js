@@ -4,7 +4,6 @@
  * Modal是不是单例组件,
  * 而且Modal可以叠加弹出多次, Model的开关是由Modal自己控制的
  *
- *
  */
 import Vue from 'vue';
 import modalComponent from './modal.vue';
@@ -33,9 +32,11 @@ function getModalInstance () {
  * @param {object} options
  * 传入参数示例:
  * {
- *  template:require('*.vue'),
- *  modalData:{...},
- *  onDismiss(data){....}
+ *  name:'model_1',             // modal的名字
+ *  position:'bottom',          // modal出现位置
+ *  template:require('*.vue'),  // modal页面
+ *  modalData:{...},            // 传给modal的数据
+ *  onDismiss(data){....},      // 关闭model执行的操作, data是关闭时传入的参数
  * }
  * */
 function present (options = {}) {
@@ -81,17 +82,16 @@ function present (options = {}) {
 /**
  * 全局注册dismiss方法
  * dismiss关闭最后一次打开的Modal, 并执行onDismiss函数, 就酱
+ * 因为, modal是覆盖式的显示在页面上, 即使给定关闭的modal名字, 也无使用意义.
  *
  * @param {any} dataBack -  modal调用dismiss传递向外的数据
  * */
 function dismiss (dataBack) {
   // 总是关闭最后一次创建的modal
-  let lastModalIndex = _modalArr.length - 1;
-  let lastModalInstance = _modalArr[lastModalIndex].modalInstance;
+  let _lastModal = _modalArr.pop();
+  let lastModalInstance = _lastModal.modalInstance;
   // 执行注册的onDismiss回调
-  _modalArr[lastModalIndex].onDismiss && _modalArr[lastModalIndex].onDismiss(dataBack);
-
-  _modalArr.splice(lastModalIndex, 1);
+  _lastModal.onDismiss && _lastModal.onDismiss(dataBack);
 
   // 如果是最后一个则解绑urlChange
   if (_modalArr.length === 0) {

@@ -22,6 +22,29 @@
   @import './loading.wp.scss';
 </style>
 <script type="text/ecmascript-6">
+  /**
+   * @module Component/Loading
+   * @description
+   * Loading组件
+   *
+   * 通过present开启, 如果没设置duration, 则需要手动dismiss.
+   *
+   * @example
+   *
+  const _this = this;
+   _this.$loading.present({
+    content: '正在加载, 4000ms后自动关闭...',
+    cssClass: 'cssClass',
+    dismissOnPageChange: true, // url变化后关闭loading
+    showBackdrop: true,
+  });
+   setTimeout(function () {
+    _this.$loading.dismiss().then(function () {
+      console.debug('dismiss in promise success!')
+    })
+  }, 4000);
+   *
+   * */
   import { registerListener } from '../../util/dom'
   export default{
     name: 'Loading',
@@ -32,7 +55,7 @@
          * 因为是实例调用模式，故prop和data在初始化后是同样的数据接口，
          * 故prop就没有存在的价值
          * */
-        spinner: this.$config.get('spinner') || 'ios', // String
+        spinner: 'ios', // String
         content: null, // 可以使html片段
         cssClass: null,
         showBackdrop: false,
@@ -43,7 +66,7 @@
          * 组件状态
          * */
         isActive: false, // 开启状态
-        mode: this.$config.get('mode', 'ios') || 'ios', // ios?android?window
+        mode: 'ios',
 
         // promise
         presentCallback: null,
@@ -102,10 +125,12 @@
       present () {
         const _this = this;
         _this.isActive = true;
-        this.timer && clearTimeout(this.timer)
-        this.timer = setTimeout(() => {
-          this.dismiss();
-        }, this.duration);
+        if (parseInt(this.duration) > 0) {
+          this.timer && clearTimeout(this.timer)
+          this.timer = setTimeout(() => {
+            this.dismiss();
+          }, this.duration);
+        }
         return new Promise((resolve) => {this.presentCallback = resolve})
       },
 
