@@ -20,17 +20,15 @@
   export default{
     data(){
       return {
-        a:1
+        a: 1
       }
     },
     watch: {},
-    computed: {
-
-    },
+    computed: {},
     methods: {
       alert () {
         const _this = this;
-        _this.$alert.present({
+        let _alert = _this.$alert({
           title: 'Alert',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -42,7 +40,7 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _this.$alert.dismiss().then(function (data) {
+                _alert.dismiss().then(function (data) {
                   console.debug('button3 click dismiss ')
                   console.debug(data)
                 });
@@ -54,7 +52,7 @@
       },
       confirm () {
         const _this = this;
-        _this.$alert.present({
+        let _alert = _this.$alert({
           title: 'Confirm',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -75,7 +73,7 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _this.$alert.dismiss().then(function (data) {
+                _alert.dismiss().then(function (data) {
                   console.debug('button3 click')
                   console.debug(data)
                 });
@@ -87,7 +85,7 @@
       },
       threeBtn () {
         const _this = this;
-        _this.$alert.present({
+        let _alert = _this.$alert({
           title: 'ThreeBtn',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -111,7 +109,7 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _this.$alert.dismiss().then(function (data) {
+                _alert.dismiss().then(function (data) {
                   console.debug('button3 click')
                   console.debug(data)
                 });
@@ -123,7 +121,7 @@
       },
       input () {
         const _this = this;
-        _this.$alert.present({
+        let _alert = _this.$alert({
           title: '登录iTunes Store',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '请输入您Apple ID"apple@icloud.com"的密码',
@@ -148,8 +146,8 @@
               text: '好',
               role: '',
               handler: (value) => {
-                _this.$alert.dismiss().then(function (msg) {
-                  _this.$alert.present({
+                _alert.dismiss().then(function (msg) {
+                  _this.$alert({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                     message: '您输入的信息：' + JSON.stringify(value),
@@ -171,7 +169,7 @@
       },
       checkbox () {
         const _this = this;
-        _this.$alert.present({
+        let _alert = _this.$alert({
           title: 'checkbox',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: 'checkbox',
@@ -233,8 +231,8 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _this.$alert.dismiss().then(function (msg) {
-                  _this.$alert.present({
+                _alert.dismiss().then(function (msg) {
+                  _this.$alert({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                     message: '您输入的信息：' + JSON.stringify(value),
@@ -256,7 +254,7 @@
       },
       radio () {
         const _this = this;
-        _this.$alert.present({
+        let _alert = _this.$alert({
           title: 'radio',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: 'radio',
@@ -317,8 +315,8 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _this.$alert.dismiss().then(function (msg) {
-                  _this.$alert.present({
+                _alert.dismiss().then(function (msg) {
+                  _this.$alert({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                     message: '您输入的信息：' + JSON.stringify(value),
@@ -347,5 +345,6 @@
     },
     deactivated(){}
   }
+
 </script>
 <style lang="scss"></style>

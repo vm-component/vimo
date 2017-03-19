@@ -10,7 +10,7 @@ $alert-button-line-height:        20px !default;
 $alert-button-font-size:          14px !default;
 
 
-.ion-alert {
+.alert {
   position: absolute;
   top: 0;
   right: 0;
@@ -28,13 +28,13 @@ $alert-button-font-size:          14px !default;
 
 }
 
-.ion-alert.alert-top {
+.alert.alert-top {
   align-items: flex-start;
 
   padding-top: 50px;
 }
 
-.ion-alert input {
+.alert input {
   width: 100%;
 }
 

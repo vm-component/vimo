@@ -1,83 +1,64 @@
 /**
  * Created by Hsiang on 2016/12/23.
- * 关于设计构思参考actionSheet设计
  */
-
 import Vue from 'vue';
-import { urlChange } from '../../util/dom';
-import { assert } from '../../util/util';
+import { isArray, isObject, isPresent } from '../../util/util';
+
 const alertComponent = require('./alert.vue');
 const AlertConstructor = Vue.extend(alertComponent);
-let _insertPosition;
-let _unRegisterUrlChange = null;
-AlertConstructor.prototype.present = present;
-AlertConstructor.prototype.dismiss = dismiss;
-
+const DOM_INSERT_POSITION = 'alertPortal'; // the DOM position of component insert to
+const DOM_INSERT_POSITION_FALLBACK = 'app'; // fallback position
 // ---------- functions ----------
 
-/**
- * open
- * @param {object} options
- * */
-function present (options = {}) {
-  const _this = this;
-  if(_this.isActive){
-    assert(!_this.isActive,'alert实例当前只能开启一个!')
-    return
+class Alert extends AlertConstructor {
+  constructor (options) {
+    super(options);
+    // params
+    if (isObject(options)) {
+      for (let key in options)  this[key] = options[key]
+    }
   }
-
-  // 参数传入
-  _this.title = !!options.title ? options.title.trim() : '';
-  _this.subTitle = !!options.subTitle ? options.subTitle.trim() : '';
-  _this.message = !!options.message ? options.message.trim() : '';
-  _this.cssClass = !!options.cssClass ? options.cssClass.trim() : '';
-  _this.buttons = options.buttons;
-  _this.inputs = options.inputs;
-  _this.enableBackdropDismiss = !!options.enableBackdropDismiss;
-  _this.inputsForDispaly = [];
-
-  // 重置
-  _this.isActive = false;
-  _this.enabled = false;
-  _this.inputType = null;
-  _this.activeId = null;
-  _this.isAlertTop = false;
-
-  // 插入DOM中
-  _insertPosition = document.getElementById('alertPortal');
-  if (!!_insertPosition) {
-    _insertPosition.appendChild(_this.$el)
-  } else {
-    document.body.appendChild(_this.$el);
-  }
-
-  // url切换则关闭alert
-  _unRegisterUrlChange = urlChange(function () {
-    _this.isActive && _this.dismiss();
-  });
-
-  return this._present();
 }
 
-/**
- * close
- * */
-function dismiss () {
-  !!_unRegisterUrlChange && _unRegisterUrlChange();
-  _unRegisterUrlChange = null;
-  return this._dismiss();
+function AlertFactory (options) {
+  let _insertPosition;
+  let el = null;
+  let title;
+  let subTitle;
+  let message;
+  let cssClass;
+  let buttons;
+  let inputs;
+  let enableBackdropDismiss;
+  let mode = VM && VM.config.get('mode', 'ios') || 'ios';
+
+  // get data
+  _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body;
+  el = _insertPosition.appendChild(document.createElement('div'));
+  title = isPresent(options.title) ? options.title.trim() : null;
+  subTitle = isPresent(options.subTitle) ? options.subTitle.trim() : null;
+  message = isPresent(options.message) ? options.message.trim() : null;
+  cssClass = isPresent(options.cssClass) ? options.cssClass.trim() : null;
+  isArray(options.buttons) ? ( buttons = options.buttons) : ( buttons = []);
+  isArray(options.inputs) ? ( inputs = options.inputs) : ( inputs = []);
+  enableBackdropDismiss = !!options.enableBackdropDismiss;
+  mode = isPresent(options.mode) ? options.mode.trim() : mode;
+
+  return new Alert({
+    el, title, subTitle, message, cssClass, buttons, inputs, enableBackdropDismiss, mode
+  })
 }
 
-/**
- * 获取示例，保持单利状态
- */
-function getAnInstance () {
-  if (!Vue.prototype._alert) {
-    Vue.prototype._alert = new AlertConstructor({
-      el: document.createElement('div')
-    })
-  }
-  return Vue.prototype._alert
-}
+export default function (options) {
+  let _instance = AlertFactory(options);
+  // 自动开启
+  _instance.present();
+  return _instance;
+};
 
-export default getAnInstance;
+
+
+
+
+
+

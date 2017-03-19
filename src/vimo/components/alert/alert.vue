@@ -1,7 +1,7 @@
 <template>
-  <div class="ion-alert" :class="[modeClass,cssClass,{'alert-top':isAlertTop}]">
+  <div class="alert" :class="[modeClass,cssClass,{'alert-top':isAlertTop}]">
     <Backdrop @click.native="bdClick()" :enableBackdropDismiss="enableBackdropDismiss"
-                  :isActive="isActive"></Backdrop>
+              :isActive="isActive"></Backdrop>
     <transition name="alert"
                 v-on:before-enter="_beforeEnter"
                 v-on:after-enter="_afterEnter"
@@ -17,8 +17,8 @@
 
           <div v-if="inputType==='radio'" class="alert-radio-group" role="radiogroup">
             <Button role="alert-radio-button" v-for="i in inputsForDispaly" @click="rbClick(i)"
-                        :aria-checked="i.checked" :disabled="i.disabled" :id="i.id"
-                        class="alert-tappable alert-radio">
+                    :aria-checked="i.checked" :disabled="i.disabled" :id="i.id"
+                    class="alert-tappable alert-radio">
               <div class="alert-radio-icon">
                 <div class="alert-radio-inner"></div>
               </div>
@@ -30,8 +30,8 @@
 
           <div class="alert-checkbox-group" v-if="inputType==='checkbox'">
             <Button :id="i.id" role="alert-checkbox-button" :aria-checked="i.checked"
-                        v-for="(i,index) in inputsForDispaly" @click="cbClick(i)"
-                        :checked="i.checked" :disabled="i.disabled" class="alert-tappable alert-checkbox">
+                    v-for="(i,index) in inputsForDispaly" @click="cbClick(i)"
+                    :checked="i.checked" :disabled="i.disabled" class="alert-tappable alert-checkbox">
               <div class="alert-checkbox-icon">
                 <div class="alert-checkbox-inner"></div>
               </div>
@@ -83,59 +83,60 @@
 
 </style>
 <script type="text/ecmascript-6">
-/**
- *@module Component/Alert
- *@description
- *
- * 提醒是向用户提供选择特定操作或操作列表的一种很好的方法。他们还可以向用户提供重要信息，或要求他们做出决定（或多个决定）。
- *
- * 提醒还可以包括几个不同的输入，其数据可以传递回应用程序。输入可以用作提示用户提供信息的简单方法。Radios、checkboxes 和 text inputs都可以接受，但不能混用。
- *
- * 例如，提醒可以具有所有单选按钮输入或所有复选框输入，但是相同的警报不能混合 Radios 和 checkboxes。
- * 然而，待办事项，不同类型的“文本”，“输入可以混合使用，例如url，email，text等，
- * 如果您需要的不符合提醒的话，我们建议构建一个模式内的形式指引的范围内复杂的表单UI代替。
- *
- *
- *
- *
- * @property {String} [title='']                     - 初始化Alert Instance的数据
- * @property {string} [subTitle='']                  - 初始化Alert Instance的数据
- * @property {string} [message='']                   - 初始化Alert Instance的数据
- * @property {string} [cssClass='']                  - Additional classes for custom styles, separated by spaces
- * @property {Array} [buttons=[ ]]                   - button数组，包含全部role
- * @property {Array} [inputs=[ ]]                    - 如果alert中有input等form
- * @property {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
- * @property {Boolean} [isActive=false]              - 是否活动状态
- * @property {Boolean} [enabled=false]               - 是否在过渡态的状态判断，如果在动画中则为false
- * @property {String} [mode=ios]                     - 样式模式
- * @property {String} [inputType=null]               - Alert中含有的input类型，radio、checkbox
- * @property {Boolean} [isAlertTop=false]            - 是否将alert放到顶部，用于input输入时显示虚拟键盘
- * @property {Array} [dismissCallback=[ ]]          - inputs数据再加工
- * @property {Array} [presentCallback=[ ]]          - inputs数据再加工
- *
- *
- *
- * @example
- * <template>
- *    <Page>
- *      <Header>
- *        <Navbar>
- *         <Title>Alert</Title>
- *        </Navbar>
- *      </Header>
- *     <Content padding>
- *       <Button type="block" @click="alert()">Alert</Button>
- *     </Content>
- *   </Page>
- * </template>
- *
- *
- *
- *
- *
- *
- *
- */
+  /**
+   * @module Component/Alert
+   * @description
+   *
+   * 提醒是向用户提供选择特定操作或操作列表的一种很好的方法。他们还可以向用户提供重要信息，或要求他们做出决定（或多个决定）。
+   *
+   * 提醒还可以包括几个不同的输入，其数据可以传递回应用程序。输入可以用作提示用户提供信息的简单方法。Radios、checkboxes 和 text inputs都可以接受，但不能混用。
+   *
+   * 例如，提醒可以具有所有单选按钮输入或所有复选框输入，但是相同的警报不能混合 Radios 和 checkboxes。
+   * 然而，待办事项，不同类型的“文本”，“输入可以混合使用，例如url，email，text等，
+   * 如果您需要的不符合提醒的话，我们建议构建一个模式内的形式指引的范围内复杂的表单UI代替。
+   *
+   *
+   *
+   *
+   * @property {String} title                    - 初始化Alert Instance的数据
+   * @property {string} [subTitle]                  - 初始化Alert Instance的数据
+   * @property {string} [message]                   - 初始化Alert Instance的数据
+   * @property {string} [cssClass]                  - Additional classes for custom styles, separated by spaces
+   * @property {Array} [buttons]                   - button数组，包含全部role
+   * @property {Array} [inputs]                    - 如果alert中有input等form
+   * @property {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
+   * @property {String} [mode=ios]                     - 样式模式
+   *
+   *
+   *
+   * @example
+   *
+   * 1. 简单的alert
+   *
+   let _alert = _this.$alert({
+    title: 'Alert',
+    // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
+    message: '收到这个通知的人希望你今天能搞定这个alert组件',
+    cssClass: 'alertCssOuterMain  ',
+    enableBackdropDismiss: true,
+    //buttons:['1','2','3']
+    buttons: [
+      {
+        text: '确定',
+        role: '',
+        handler: (value) => {
+          _alert.dismiss().then(function (data) {
+            console.debug('button3 click dismiss ')
+            console.debug(data)
+          });
+        }
+      }
+    ]
+  });
+   *
+   *
+   *
+   */
   export default{
     name: 'Alert',
     data(){
@@ -153,15 +154,15 @@
         buttons: [], // Array button数组，包含全部role
         inputs: [], // 如果alert中有input等form
         enableBackdropDismiss: true, // Boolean 允许点击backdrop关闭actionsheet
-        inputsForDispaly: [], // inputs数据再加工
 
         /**
          * @private
          * Alert State
          * */
+        inputsForDispaly: [], // inputs数据再加工
         isActive: false,  // 是否活动状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode: VM.config.get('mode','ios') || 'ios',  // ios?android?window
+        mode: VM.config.get('mode', 'ios') || 'ios',  // ios?android?window
         inputType: null,// Alert中含有的input类型，radio、checkbox
         isAlertTop: false, // 是否将alert放到顶部，用于input输入时显示虚拟键盘
 
@@ -246,7 +247,10 @@
       },
     },
     methods: {
+      // -------- private --------
+
       /**
+       * @private
        * ActionSheet Animate Hooks
        * */
       _beforeEnter () {
@@ -259,7 +263,7 @@
         // 执行开启的promise
         this.presentCallback(el);
 
-        this._focusOutActiveElement();
+        this.focusOutActiveElement();
         let focusableEle = document.querySelector('input');
         if (focusableEle) {
           focusableEle.focus();
@@ -278,6 +282,7 @@
       },
 
       /**
+       * @private
        * @function bdClick
        * @description
        * 点击backdrop,关闭actionsheet，
@@ -289,12 +294,13 @@
           if (cancelBtn) {
             this.btnClick(cancelBtn);
           } else {
-            this._dismiss();
+            this.dismiss();
           }
         }
       },
 
       /**
+       * @private
        * @function btnClick
        * @description
        * 点击下方的按钮
@@ -310,18 +316,19 @@
         if (button.handler) {
           // a handler has been provided, execute it
           // pass the handler the values from the inputs
-          if (button.handler(this._getValues()) === false) {
+          if (button.handler(this.getValues()) === false) {
             // if the return value of the handler is false then do not dismiss
             shouldDismiss = false;
           }
         }
 
         if (shouldDismiss) {
-          this._dismiss();
+          this.dismiss();
         }
       },
 
       /**
+       * @private
        * @function rbClick
        * @description
        * Radio Button Click
@@ -340,6 +347,7 @@
       },
 
       /**
+       * @private
        * @function cbClick
        * @description
        * CheckBox Button Click
@@ -358,9 +366,10 @@
 
       /**
        * @private
+       * @private
        * 获取inputs中的信息
        * */
-      _getValues () {
+      getValues () {
         if (this.inputType === 'radio') {
           // this is an alert with radio buttons (single value select)
           // return the one value which is checked, otherwise undefined
@@ -391,70 +400,73 @@
 
       /**
        * @private
-       * Present the instance.
+       * ActionSheet启动之前去除focus效果，因为存在键盘
+       * */
+      focusOutActiveElement () {
+        // only button？
+        const activeElement = document.activeElement;
+        activeElement && activeElement.blur && activeElement.blur();
+      },
+
+      // -------- public --------
+
+      /**
+       * @function present
+       * @description
+       * 打开, 默认是自动开启的
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      _present () {
+      present () {
         const _this = this;
         _this.isActive = true;
         return new Promise((resolve) => {this.presentCallback = resolve})
       },
 
       /**
-       * @private
-       * Dismiss the instance.
+       * @function dismiss
+       * @description
+       * 关闭
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      _dismiss () {
+      dismiss () {
         const _this = this;
         if (!_this.enabled) {
           return false
         }
-        console.log('_dismiss')
+        console.log('dismiss')
         _this.enabled = false;
         _this.isActive = false; // 动起来
         return new Promise((resolve) => {this.dismissCallback = resolve})
       },
 
-      /**
-       * @function setTitle
-       * @description
-       * 设置 Action sheet title
-       * @param {string} title  - Action sheet title
-       */
-      setTitle (title) {
-        this.title = title;
-      },
+      // /**
+      //  * @function setTitle
+      //  * @description
+      //  * 设置 Action sheet title
+      //  * @param {string} title  - Action sheet title
+      //  */
+      // setTitle (title) {
+      //   this.title = title;
+      // },
+      // /**
+      //  * @function setSubTitle
+      //  * @description
+      //  * 设置 Action sheet subtitle
+      //  * @param {string} subTitle Action sheet subtitle
+      //  */
+      // setSubTitle (subTitle) {
+      //   this.subTitle = subTitle;
+      // },
+      // /**
+      //  * @function addButton
+      //  * @description
+      //  * 增加button
+      //  * @param {object} button Action sheet button
+      //  */
+      // addButton (button) {
+      //   this.buttons.push(button);
+      // },
 
-      /**
-       * @function setSubTitle
-       * @description
-       * 设置 Action sheet subtitle
-       * @param {string} subTitle Action sheet subtitle
-       */
-      setSubTitle (subTitle) {
-        this.subTitle = subTitle;
-      },
-
-      /**
-       * @function addButton
-       * @description
-       * 增加button
-       * @param {object} button Action sheet button
-       */
-      addButton (button) {
-        this.buttons.push(button);
-      },
-
-      /**
-       * @private
-       * ActionSheet启动之前去除focus效果，因为存在键盘
-       * */
-      _focusOutActiveElement () {
-        // only button？
-        const activeElement = document.activeElement;
-        activeElement && activeElement.blur && activeElement.blur();
-      },
     }
   }
 </script>
