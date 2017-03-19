@@ -1,6 +1,6 @@
 <template>
   <div class="ion-loading" :class="[modeClass,cssClass]">
-    <!--<Backdrop :isActive="isActive" v-if="showBackdrop" :enableBackdropDismiss="false"></Backdrop>-->
+    <Backdrop :isActive="isActive && showBackdrop" :enableBackdropDismiss="false"></Backdrop>
     <transition :name="transitionClass"
                 v-on:before-enter="_beforeEnter"
                 v-on:after-enter="_afterEnter"
@@ -16,13 +16,13 @@
   </div>
 </template>
 <style lang="scss">
-  @import './loading';
-  @import './loading.ios';
-  @import './loading.md';
-  @import './loading.wp';
-
+  @import './loading.scss';
+  @import './loading.ios.scss';
+  @import './loading.md.scss';
+  @import './loading.wp.scss';
 </style>
 <script type="text/ecmascript-6">
+  import { registerListener } from '../../util/dom'
   export default{
     name: 'Loading',
     data(){
@@ -43,13 +43,14 @@
          * 组件状态
          * */
         isActive: false, // 开启状态
-        enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode: this.$config.get('mode','ios') || 'ios', // ios?android?window
+        mode: this.$config.get('mode', 'ios') || 'ios', // ios?android?window
 
         // promise
         presentCallback: null,
         dismissCallback: null,
 
+        timer: null,
+        unreg: null,
       }
     },
     computed: {
@@ -65,36 +66,46 @@
       }
     },
     methods: {
+      // -------- private --------
+
       /**
        * ActionSheet Animate Hooks
        * */
       _beforeEnter () {
-        this.enabled = false; // 不允许过渡中途操作
         this.$app.setEnabled(false, 200);
       },
       _afterEnter (el) {
-        this.enabled = true;
         this.presentCallback(el);
       },
       _beforeLeave () {
-        this.enabled = false;
         this.$app.setEnabled(false, 200);
       },
       _afterLeave (el) {
-        this.enabled = true;
         this.dismissCallback(el);
         // 删除DOM
         this.$el.remove()
       },
+      /**
+       * @private
+       * */
+      dismissOnPageChangeHandler(){
+        this.isActive && this.dismiss();
+        this.unreg && this.unreg();
+      },
 
+      // -------- public --------
       /**
        * 这个是内部函数，外部同名方法会处理额外事宜
        * 开启实例
        * @returns {Promise} transitionEnd结束后返回promise
        */
-      _present () {
+      present () {
         const _this = this;
         _this.isActive = true;
+        this.timer && clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          this.dismiss();
+        }, this.duration);
         return new Promise((resolve) => {this.presentCallback = resolve})
       },
 
@@ -102,15 +113,16 @@
        * 关闭实例
        * @returns {Promise} transitionEnd结束后返回promise
        */
-      _dismiss () {
+      dismiss () {
         const _this = this;
-        if (!_this.enabled) {
-          return false
-        }
-        _this.enabled = false;
         _this.isActive = false; // 动起来
+        this.timer && clearTimeout(this.timer)
         return new Promise((resolve) => {this.dismissCallback = resolve})
       },
+    },
+    created(){
+      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
+      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
     }
   }
 </script>

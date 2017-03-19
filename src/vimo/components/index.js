@@ -74,7 +74,7 @@ import Alert from './alert'
 
 
 
-import getLoadingInstance from './loading'
+import Loading from './loading'
 import prepareModal from './modal'
 // import getPopoverInstance from './popover'
 import { BackdropComponent, BackdropInstance } from './backdrop'
@@ -209,8 +209,9 @@ module.exports = {
         Vue.prototype.$actionSheet = ActionSheet;
         Vue.prototype.$alert = Alert;
         Vue.prototype.$toast = Toast;
+        Vue.prototype.$loading = Loading;
 
-        Vue.prototype.$loading = getLoadingInstance();
+
         Vue.prototype.$backdrop = BackdropInstance();
         // Vue.prototype.$popover = getPopoverInstance();
         Vue.prototype.$modal = prepareModal();
