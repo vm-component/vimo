@@ -78,7 +78,7 @@ a {
   display: block;
 }
 
-[fixed] {
+.fixed-content [fixed] {
   position: absolute;
   width: 100%;
   // if move to fixed-content class, then page can not click
@@ -87,11 +87,11 @@ a {
 }
 
 // fixedPosition
-[fixed][top] {
+.fixed-content [fixed][top] {
   top: 0;
 }
 
-[fixed][bottom] {
+.fixed-content [fixed][bottom] {
   bottom: 0;
 }
 

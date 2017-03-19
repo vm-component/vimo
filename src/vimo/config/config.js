@@ -95,7 +95,6 @@ import { Platform } from '../platform/platform';
 import { isObject, isDefined, isFunction, isArray } from '../util/util';
 import { registerModeConfigs } from '../config/mode-registry'
 
-
 // 通过url配置App的前后缀, 例如htttp://xx.xx.com?vm_mode=ios
 const URL_CONFIG_PREFIX = 'vm';
 

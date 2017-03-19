@@ -32,10 +32,9 @@ export const PLATFORM_CONFIGS = {
     subsets: SUBSET_LIST,
     settings: {
       toolbarMinHeight: 56,
-      /**
-       * 点触出现水纹的动画开关
-       * @return {Platform}
-       * */
+      hoverCSS: false,
+      keyboardHeight: 300,
+      mode: 'md',
       activator: function () {
         // md mode defaults to use ripple activator
         // however, under-powered devices shouldn't use ripple
@@ -59,12 +58,9 @@ export const PLATFORM_CONFIGS = {
         // fallback to always use ripple
         return 'ripple';
       },
-      autoFocusAssist: 'immediate',
-      inputCloning: true,
-      scrollAssist: true,
-      hoverCSS: false,
-      keyboardHeight: 300,
-      mode: 'md',
+      // scrollAssist: true,
+      // inputCloning: true,
+      // autoFocusAssist: 'immediate',
     },
 
     /**
@@ -87,19 +83,18 @@ export const PLATFORM_CONFIGS = {
     settings: {
       hideNavBar: false,
       toolbarMinHeight: 44,
-
-      autoFocusAssist: 'delay',
       hoverCSS: false,
-      inputBlurring: isIOS,
-      inputCloning: isIOS,
       keyboardHeight: 300,
       mode: 'ios',
-      scrollAssist: isIOS,
-      statusbarPadding: isCordova,
-      swipeBackEnabled: isIOS,
-      tapPolyfill: isIOSUI,
-      virtualScrollEventAssist: isIOSUI,
-      disableScrollAssist: isIOS,
+      // autoFocusAssist: 'delay',
+      // inputBlurring: isIOS,
+      // inputCloning: isIOS,
+      // scrollAssist: isIOS,
+      // statusbarPadding: isCordova,
+      // swipeBackEnabled: isIOS,
+      // tapPolyfill: isIOSUI,
+      // virtualScrollEventAssist: isIOSUI,
+      // disableScrollAssist: isIOS,
     },
 
     /**
@@ -121,8 +116,8 @@ export const PLATFORM_CONFIGS = {
     subsets: SUBSET_LIST,
     settings: {
       mode: 'wp',
-      autoFocusAssist: 'immediate',
-      hoverCSS: false
+      hoverCSS: false,
+      // autoFocusAssist: 'immediate'
     },
     /**
      * @param {Platform} p

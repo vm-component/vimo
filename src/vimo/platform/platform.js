@@ -100,13 +100,8 @@ export class Platform {
 
   constructor () {
     const _this = this;
-    // _this._readyPromise = new Promise(res => { _this._readyResolve = res; });
     _this._readyPromise = new Promise(function (resolve) {
       _this._readyResolve = resolve;
-
-      // setTimeout(function () {
-      //   resolve('setTimeout')
-      // },1000)
     });
   }
 

@@ -17,7 +17,7 @@
         @focus="inputFocused($event)"
         @input="inputChanged($event)"
         @keydown="onKeydown($event)"
-        v-show="typeValue!=='textarea'">
+        v-if="typeValue!=='textarea'">
 
       <textarea
         :class="[textInputClass]"
@@ -30,7 +30,7 @@
         @focus="inputFocused($event)"
         @input="inputChanged($event)"
         @keydown="onKeydown($event)"
-        v-show="typeValue ==='textarea'"></textarea>
+        v-if="typeValue ==='textarea'"></textarea>
     </div>
 
     <!--<input [type]="type" aria-hidden="true" next-input *ngIf="_useAssist">-->
