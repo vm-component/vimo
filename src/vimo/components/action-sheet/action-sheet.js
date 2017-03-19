@@ -8,7 +8,7 @@
  * 有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键,
  * 也就是说, ActionSheet能监听url的变化做出关闭的动作。
  *
- * 如果选择后需要翻页, 希望能在promise回调中执行, 保证ActionSheet的动画能正常关闭, 保证流畅度.
+ * 如果选择后需要翻页, 希望能在promise回调中执行, 保证ActionSheet的动画
  *
  * @property {String} [title]                     - ActionSheet的标题
  * @property {string} [subTitle]                  - ActionSheet的副标题
@@ -18,6 +18,7 @@
  * @property {string} [mode=ios]                     - 样式模式
  *
  * @example
+ *
  *
  const _this = this;
  let _actionSheet = _this.$actionSheet({
@@ -100,7 +101,7 @@ function ActionSheetFactory (options) {
   let cssClass;
   let buttons;
   let enableBackdropDismiss;
-  let mode = 'ios';
+  let mode = VM && VM.config.get('mode', 'ios') || 'ios';
 
   // get data
   _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body;
@@ -113,7 +114,7 @@ function ActionSheetFactory (options) {
   mode = isPresent(options.mode) ? options.mode.trim() : mode;
 
   return new ActionSheet({
-    el, title, subTitle, cssClass, buttons, enableBackdropDismiss,mode
+    el, title, subTitle, cssClass, buttons, enableBackdropDismiss, mode
   })
 }
 

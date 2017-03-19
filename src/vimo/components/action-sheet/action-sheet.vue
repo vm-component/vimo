@@ -1,5 +1,5 @@
 <template>
-  <div class="ion-action-sheet" :class="[modeClass,cssClass]">
+  <div class="action-sheet" :class="[modeClass,cssClass]">
     <!--backdrop-->
     <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
               :isActive="isActive"></Backdrop>
@@ -66,7 +66,7 @@
          * */
         isActive: false,  // ActionSheet 开启状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode: VM && VM.config.get('mode', 'ios') || 'ios', // ios?android?window
+        mode: 'ios', // ios?android?window
 
         /**
          * @private
@@ -234,7 +234,6 @@
         _this.isActive = false; // 动起来
         return new Promise((resolve) => {this.dismissCallback = resolve})
       },
-
       // /**
       //  * @private
       //  * @function setTitle

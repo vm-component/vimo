@@ -142,7 +142,7 @@ export function transitionEnd (el, callback) {
  * @param {any} ele                                   - 监听的元素
  * @param {string} eventName                          - 监听的名称
  * @param {function} callback                         - 回调
- * @param {object} opts EventListenerOptions          - addEventListener的第三个参数
+ * @param {object=} opts EventListenerOptions          - addEventListener的第三个参数
  * @param {Function[]=} unregisterListenersCollection - 如果提供Function[], 则unReg将压如这个列表中
  *
  * @return {Function} 返回removeEventListener的函数
@@ -177,17 +177,25 @@ export function registerListener (ele, eventName, callback, opts, unregisterList
 // TODO: 这部分事件需要放到event.js中
 export function _initEvent () {
   let _uiEvtOpts = false;
-  // Test via a getter in the options object to see if the passive property is accessed
-  try {
-    var opts = Object.defineProperty({}, 'passive', {
-      get: () => {
-        _uiEvtOpts = true;
-      }
-    });
-    window.addEventListener('optsTest', null, opts);
-  } catch (e) { }
+  let _isInit = false;
 
-  return _uiEvtOpts
+  return function () {
+    if (_isInit) return _uiEvtOpts;
+
+    // Test via a getter in the options object to see if the passive property is accessed
+    try {
+      var opts = Object.defineProperty({}, 'passive', {
+        get: () => {
+          _uiEvtOpts = true;
+        }
+      });
+      window.addEventListener('optsTest', null, opts);
+    } catch (e) { }
+
+    _isInit = true;
+
+    return _uiEvtOpts
+  }
 }
 
 /**
