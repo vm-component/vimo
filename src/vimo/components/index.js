@@ -70,10 +70,10 @@ import { Segment, SegmentButton } from './segment'
 // ------- 实例化调用组件，传入配置参数后返回实例
 import ActionSheet from './action-sheet'
 import Toast from './toast'
+import Alert from './alert'
 
 
 
-import getAlertInstance from './alert'
 import getLoadingInstance from './loading'
 import prepareModal from './modal'
 // import getPopoverInstance from './popover'
@@ -207,10 +207,11 @@ module.exports = {
         console.debug('Vue.install: 使用H5组件')
         // Notification
         Vue.prototype.$actionSheet = ActionSheet;
-        Vue.prototype.$alert = getAlertInstance();
+        Vue.prototype.$alert = Alert;
+        Vue.prototype.$toast = Toast;
+
         Vue.prototype.$loading = getLoadingInstance();
         Vue.prototype.$backdrop = BackdropInstance();
-        Vue.prototype.$toast = Toast;
         // Vue.prototype.$popover = getPopoverInstance();
         Vue.prototype.$modal = prepareModal();
 

@@ -39,6 +39,74 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  /**
+   * @module Component/ActionSheet
+   * @description
+   *
+   * ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭.
+   *
+   * 它显示在应用内容的顶层，必须由用户手动关闭，然后他们才能恢复与应用的互动。
+   * 有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键,
+   * 也就是说, ActionSheet能监听url的变化做出关闭的动作。
+   *
+   * 如果选择后需要翻页, 希望能在promise回调中执行, 保证ActionSheet的动画
+   *
+   * @property {String} [title]                     - ActionSheet的标题
+   * @property {string} [subTitle]                  - ActionSheet的副标题
+   * @property {string} [cssClass]                  - Additional classes for custom styles, separated by spaces
+   * @property {Array} [buttons]                   - button数组，包含全部role
+   * @property {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
+   * @property {string} [mode=ios]                     - 样式模式
+   *
+   * @example
+   *
+   *
+   const _this = this;
+   let _actionSheet = _this.$actionSheet({
+    title: '请选择操作',
+    subTitle: '注意，选择后不能撤销！',
+    cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
+    enableBackdropDismiss: true,
+    buttons: [
+      {
+        text: '删除',
+        role: 'destructive',
+        icon: 'trash',
+        cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
+        handler: () => {
+          console.log('Destructive clicked');
+        }
+      },
+      {
+        text: '分享',
+        icon: 'share',
+        handler: () => {
+          console.log('Archive1 clicked');
+        }
+      },
+      {
+        text: '播放',
+        icon: 'play',
+        handler: () => {
+          console.log('Archive4 clicked');
+        }
+      },
+      {
+        text: '取消',
+        role: 'cancel',
+        icon: 'close',
+        handler: () => {
+          _actionSheet.dismiss().then(function (data) {
+            console.debug('promise的退出方式')
+          });
+        }
+      }
+    ]
+  })
+   *
+   */
+
+
 
   /**
    * 使用实例模式的话，props和data无区别。
@@ -212,19 +280,23 @@
       },
 
       /**
-       * Present the action sheet instance.
+       * @function present
+       * @description
+       * 打开ActionSheet, 默认是自动开启的
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      present (options = {}) {
+      present () {
         const _this = this;
         _this.isActive = true;
         return new Promise((resolve) => {this.presentCallback = resolve})
       },
 
       /**
-       * Dismiss the action sheet instance.
-       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
-       */
+       * @function dismiss
+       * @description
+       * 关闭ActionSheet
+       * @return {Promise} Returns a promise which is resolved when the transition has completed.
+       * */
       dismiss () {
         const _this = this;
         if (!_this.enabled) {
