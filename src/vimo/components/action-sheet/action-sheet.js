@@ -1,120 +1,125 @@
 /**
- * Created by Hsiang on 2016/12/18.
- *
- * ActionSheetComponent
  * @module Component/ActionSheet
  * @description
  *
- * 弹出表单组件
+ * ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭.
  *
+ * 它显示在应用内容的顶层，必须由用户手动关闭，然后他们才能恢复与应用的互动。
+ * 有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键,
+ * 也就是说, ActionSheet能监听url的变化做出关闭的动作。
  *
- *                  ！！！！！不支持组件式调用！！！！！
+ * 如果选择后需要翻页, 希望能在promise回调中执行, 保证ActionSheet的动画能正常关闭, 保证流畅度.
  *
- * ## 1
- *              使用实例方式调用actionSheet，故需要在此文件中模拟组件使用过程
- *              此文件是实例化函数，
- * 可以为实例绑定方法，但是方法应该隶属于组件(action-sheet.vue)自己
- * 全局共用一个实例，挂在到 Vue.prototype._actionSheet 上
- *
- * ## 2
- * 注意，如果想在一个ActionSheet的button中打开另一个ActionSheet(扯淡的需求)，
- * 那就在dismiss()的promise中初始化并打开吧
- *
- * ## 3
- * 在页面动画过程中, 页面会进入短暂的 冻结状态
- *
- * @param {string} [type=text] - field 类型，接受 text, textarea 等
- * @param {string} [label] - 标签
- * @param {string} [rows] - textarea 的 rows
- * @param {string} [placeholder] - placeholder
- * @param {string} [disabled] - disabled
- * @param {string} [readonly] - readonly
- * @param {string} [state] - 表单校验状态样式，接受 error, warning, success
- *
- * @event event
+ * @property {String} [title]                     - ActionSheet的标题
+ * @property {string} [subTitle]                  - ActionSheet的副标题
+ * @property {string} [cssClass]                  - Additional classes for custom styles, separated by spaces
+ * @property {Array} [buttons]                   - button数组，包含全部role
+ * @property {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
+ * @property {string} [mode=ios]                     - 样式模式
  *
  * @example
- * <mt-field v-model="value" label="用户名"></mt-field>
- * <mt-field v-model="value" label="密码" placeholder="请输入密码"></mt-field>
- * <mt-field v-model="value" label="自我介绍" placeholder="自我介绍" type="textarea" rows="4"></mt-field>
- * <mt-field v-model="value" label="邮箱" placeholder="成功状态" state="success"></mt-field>
+ *
+ const _this = this;
+ let _actionSheet = _this.$actionSheet({
+    title: '请选择操作',
+    subTitle: '注意，选择后不能撤销！',
+    cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
+    enableBackdropDismiss: true,
+    buttons: [
+      {
+        text: '删除',
+        role: 'destructive',
+        icon: 'trash',
+        cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
+        handler: () => {
+          console.log('Destructive clicked');
+        }
+      },
+      {
+        text: '分享',
+        icon: 'share',
+        handler: () => {
+          console.log('Archive1 clicked');
+        }
+      },
+      {
+        text: '播放',
+        icon: 'play',
+        handler: () => {
+          console.log('Archive4 clicked');
+        }
+      },
+      {
+        text: '取消',
+        role: 'cancel',
+        icon: 'close',
+        handler: () => {
+          _actionSheet.dismiss().then(function (data) {
+            console.debug('promise的退出方式')
+          });
+        }
+      }
+    ]
+  })
+ *
  */
 
-
-
+/**
+ * @function dismiss
+ * @description
+ * Close ActionSheet Component
+ *
+ * @return {Promise} Return Promise when animate finished
+ *
+ * */
 
 import Vue from 'vue';
 import actionSheetComponent from './action-sheet.vue';
+import { isArray, isObject, isPresent } from '../../util/util';
 const ActionSheetConstructor = Vue.extend(actionSheetComponent);
-let _insertPosition;
-ActionSheetConstructor.prototype.present = present;
-ActionSheetConstructor.prototype.dismiss = dismiss;
+const DOM_INSERT_POSITION = 'sheetPortal'; // the DOM position of component insert to
+const DOM_INSERT_POSITION_FALLBACK = 'app'; // fallback position
 
 // ---------- functions ----------
 
-/**
- * 开启的外部函数, 内部_present用于控制组件开闭,
- * 外部present用于初始化传参
- * @param {object} options
- * @return {promise}
- * */
-function present (options) {
-  const _this = this;
-  if(_this.isActive){
-    console.debug('actionSheet实例当前只能开启一个!')
-    return
+class ActionSheet extends ActionSheetConstructor {
+  constructor (options) {
+    super(options);
+    // params
+    if (isObject(options)) {
+      for (let key in options)  this[key] = options[key]
+    }
   }
-
-  // 参数传入
-  _this.title = !!options.title ? options.title.trim() : '';
-  _this.subTitle = !!options.subTitle ? options.subTitle.trim() : '';
-  _this.cssClass = !!options.cssClass ? options.cssClass.trim() : '';
-  _this.buttons = [];
-  _this.buttons = options.buttons;
-  console.log(_this.buttons)
-  _this.enableBackdropDismiss = !!options.enableBackdropDismiss;
-
-  // 重置
-  _this.isActive = false;
-  _this.enabled = false;
-  _this.normalButtons = [];
-  _this.cancelButton = null;
-
-  _insertPosition = document.getElementById('sheetPortal');
-  if (!!_insertPosition) {
-    _insertPosition.appendChild(_this.$el);
-  } else {
-    document.body.appendChild(_this.$el);
-  }
-
-  // 地址切换就执行dismiss()
-  !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$on('onRouteChangeBefore',function () {
-    _this.isActive && _this.dismiss();
-  });
-
-  return this._present()
-};
-
-/**
- * 关闭
- * @return {promise}
- * */
-function dismiss () {
-  return this._dismiss()
 }
 
-/**
- * @private
- * 获取示例，保持单利状态
- */
-function getAnInstance () {
-  if (!Vue.prototype._actionSheet) {
-    Vue.prototype._actionSheet = new ActionSheetConstructor({
-      el: document.createElement('div')
-      // el: document.getElementById('overlayPortal').appendChild(document.createElement('div'))
-    })
-  }
-  return Vue.prototype._actionSheet
-};
+function ActionSheetFactory (options) {
+  let _insertPosition;
+  let el = null;
+  let title;
+  let subTitle;
+  let cssClass;
+  let buttons;
+  let enableBackdropDismiss;
+  let mode = 'ios';
 
-export default getAnInstance;
+  // get data
+  _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body;
+  el = _insertPosition.appendChild(document.createElement('div'));
+  title = isPresent(options.title) ? options.title.trim() : null;
+  subTitle = isPresent(options.subTitle) ? options.subTitle.trim() : null;
+  cssClass = isPresent(options.cssClass) ? options.cssClass.trim() : null;
+  isArray(options.buttons) ? ( buttons = options.buttons) : ( buttons = []);
+  enableBackdropDismiss = !!options.enableBackdropDismiss;
+  mode = isPresent(options.mode) ? options.mode.trim() : mode;
+
+  return new ActionSheet({
+    el, title, subTitle, cssClass, buttons, enableBackdropDismiss,mode
+  })
+}
+
+export default function (options) {
+  let _instance = ActionSheetFactory(options);
+  // 自动开启
+  _instance.present();
+  return _instance;
+};

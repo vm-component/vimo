@@ -68,12 +68,15 @@ import { Segment, SegmentButton } from './segment'
 
 
 // ------- 实例化调用组件，传入配置参数后返回实例
-import getActionSheetInstance from './action-sheet'
+import ActionSheet from './action-sheet'
+import Toast from './toast'
+
+
+
 import getAlertInstance from './alert'
 import getLoadingInstance from './loading'
-import prepareToast from './toast'
 import prepareModal from './modal'
-import getPopoverInstance from './popover'
+// import getPopoverInstance from './popover'
 import { BackdropComponent, BackdropInstance } from './backdrop'
 
 // ------- 滚动刷新组件
@@ -203,15 +206,15 @@ module.exports = {
       _eventBus.$on('app:ready', function () {
         console.debug('Vue.install: 使用H5组件')
         // Notification
-        Vue.prototype.$actionSheet = getActionSheetInstance();
+        Vue.prototype.$actionSheet = ActionSheet;
         Vue.prototype.$alert = getAlertInstance();
         Vue.prototype.$loading = getLoadingInstance();
         Vue.prototype.$backdrop = BackdropInstance();
-        Vue.prototype.$toast = prepareToast();
-        Vue.prototype.$popover = getPopoverInstance();
+        Vue.prototype.$toast = Toast;
+        // Vue.prototype.$popover = getPopoverInstance();
         Vue.prototype.$modal = prepareModal();
-       
-        
+
+
         /**
          * @name 地图定位
          * @param {Number} latitude -

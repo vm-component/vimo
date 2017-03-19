@@ -16,7 +16,7 @@
       </Button>
 
       <Button type="block" @click="showActionSheet3()" color="primary">
-        Action Sheet No Icon
+        Action Sheet With Icon
       </Button>
 
     </Content>
@@ -33,18 +33,57 @@
     methods: {
       showActionSheet1 () {
         const _this = this;
-       _this.$actionSheet.present({
+        let _actionSheet = _this.$actionSheet({
           title: '请选择操作',
           subTitle: '注意，选择后不能撤销！',
           cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
           enableBackdropDismiss: true,
           buttons: [
             {
-              text: '删除',
+              text: '再弹一次',
               role: 'destructive',
               cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
               handler: () => {
                 console.log('Destructive clicked');
+                _actionSheet.dismiss().then(function (data) {
+                  let _actionSheet2 = _this.$actionSheet({
+                    title: '请选择操作',
+                    subTitle: '注意，选择后不能撤销！',
+                    cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
+                    enableBackdropDismiss: true,
+                    buttons: [
+                      {
+                        text: '删除2',
+                        role: 'destructive',
+                        cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
+                        handler: () => {
+                          console.log('Destructive clicked');
+                        }
+                      },
+                      {
+                        text: '翻转2',
+                        handler: () => {
+                          console.log('Archive1 clicked');
+                        }
+                      },
+                      {
+                        text: '增加2',
+                        handler: () => {
+                          console.log('Archive4 clicked');
+                        }
+                      },
+                      {
+                        text: '取消2',
+                        role: 'cancel',
+                        handler: () => {
+                          _actionSheet.dismiss().then(function (data) {
+                            console.debug('promise的退出方式')
+                          });
+                        }
+                      }
+                    ]
+                  })
+                });
               }
             },
             {
@@ -63,17 +102,18 @@
               text: '取消',
               role: 'cancel',
               handler: () => {
-                _this.$actionSheet.dismiss().then(function (data) {
+                _actionSheet.dismiss().then(function (data) {
                   console.debug('promise的退出方式')
                 });
               }
             }
           ]
         })
+
       },
       showActionSheet2 () {
         const _this = this;
-       _this.$actionSheet.present({
+        let _actionSheet = _this.$actionSheet({
           title: '请选择型号',
           subTitle: '必须选择, 点击backdrop不能取消',
           cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
@@ -104,7 +144,7 @@
       },
       showActionSheet3 () {
         const _this = this;
-        _this.$actionSheet.present({
+        let _actionSheet = _this.$actionSheet({
           title: '请选择操作',
           subTitle: '注意，选择后不能撤销！',
           cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
@@ -138,7 +178,7 @@
               role: 'cancel',
               icon: 'close',
               handler: () => {
-                _this.$actionSheet.dismiss().then(function (data) {
+                _actionSheet.dismiss().then(function (data) {
                   console.debug('promise的退出方式')
                 });
               }

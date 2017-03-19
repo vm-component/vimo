@@ -2,7 +2,7 @@
   <div class="ion-action-sheet" :class="[modeClass,cssClass]">
     <!--backdrop-->
     <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
-                  :isActive="isActive"></Backdrop>
+              :isActive="isActive"></Backdrop>
     <!--actionsheet wrap-->
     <transition
       name="action-sheet"
@@ -19,7 +19,7 @@
               <div class="action-sheet-sub-title" v-if="subTitle">{{subTitle}}</div>
             </div>
             <Button role="action-sheet-button" @click="click(b)" v-for="b of normalButtons"
-                        :class="[b.cssClass,{'icon-left':b.icon}]">
+                    :class="[b.cssClass,{'icon-left':b.icon}]">
               <Icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></Icon>
               {{b.text}}
             </Button>
@@ -27,9 +27,9 @@
           <!--group cancel-->
           <div class="action-sheet-group" v-if="!!cancelButton">
             <Button role="action-sheet-button" @click="click(cancelButton)"
-                        class="action-sheet-cancel" :class="cancelButton.cssClass">
+                    class="action-sheet-cancel" :class="cancelButton.cssClass">
               <Icon :name="cancelButton.icon" v-if="cancelButton.icon"
-                        class="action-sheet-icon"></Icon>
+                    class="action-sheet-icon"></Icon>
               {{cancelButton.text || 'cancel没有值'}}
             </Button>
           </div>
@@ -39,35 +39,11 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  /**
-   * @module Component/ActionSheet
-   * @description
-   *
-   * [文档还未完成]
-   *
-   * ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭.
-   *
-   * 它显示在应用内容的顶层，必须由用户手动关闭，然后他们才能恢复与应用的互动。
-   * 有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键,
-   * 也就是说, ActionSheet能监听url的变化做出关闭的动作。
-   *
-   * @property {String} [title=]                     - ActionSheet的标题
-   * @property {string} [subTitle=]                  - ActionSheet的副标题
-   * @property {string} [cssClass=]                  - Additional classes for custom styles, separated by spaces
-   * @property {Array} [buttons=]                   - button数组，包含全部role
-   * @property {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
-   *
-   * @property {Boolean} [isActive=false]                - ActionSheet 开启状态
-   * @property {Boolean} [enabled=false]               - 是否在过渡态的状态判断，如果在动画中则为false
-   * @property {string} [mode=ios]                     - 样式模式
-   * @property {Array} [normalButtons=[ ]]             - 普通按钮组
-   * @property {Array} [cancelButton=[ ]]              - 取消按钮(组)，一般放在下面
-   */
-
 
   /**
    * 使用实例模式的话，props和data无区别。
    * */
+  import { registerListener } from '../../util/dom'
   export default{
     name: 'ActionSheet',
     data(){
@@ -90,7 +66,7 @@
          * */
         isActive: false,  // ActionSheet 开启状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode: VM.config.get('mode') || 'ios', // ios?android?window
+        mode: VM && VM.config.get('mode', 'ios') || 'ios', // ios?android?window
 
         /**
          * @private
@@ -104,6 +80,8 @@
         // promise
         presentCallback: null,
         dismissCallback: null,
+
+        unreg: null,
       }
     },
     computed: {
@@ -152,7 +130,7 @@
        * */
       _beforeEnter () {
         this.enabled = false; // 不允许过渡中途操作
-        this.$app.setEnabled(false, 400)
+        this.$app && this.$app.setEnabled(false, 400)
       },
       _afterEnter (el) {
         this.enabled = true;
@@ -185,6 +163,7 @@
       },
 
       /**
+       * @private
        * @function bdClick
        * @description
        * 点击backdrop,关闭actionsheet
@@ -198,12 +177,13 @@
           if (_this.cancelButton) {
             _this.click(this.cancelButton);
           } else {
-            _this._dismiss()
+            _this.dismiss()
           }
         }
       },
 
       /**
+       * @private
        * @function click
        * @description
        * 点击下方按钮
@@ -227,16 +207,15 @@
         // 如果是在dismissing中，则意味着正在关闭，
         // 这里不必进行
         if (_this.enabled && shouldDismiss) {
-          _this._dismiss();
+          _this.dismiss();
         }
       },
 
       /**
-       * @private
        * Present the action sheet instance.
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      _present (options = {}) {
+      present (options = {}) {
         const _this = this;
         _this.isActive = true;
         return new Promise((resolve) => {this.presentCallback = resolve})
@@ -246,7 +225,7 @@
        * Dismiss the action sheet instance.
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      _dismiss () {
+      dismiss () {
         const _this = this;
         if (!_this.enabled) {
           return false
@@ -256,37 +235,47 @@
         return new Promise((resolve) => {this.dismissCallback = resolve})
       },
 
+      // /**
+      //  * @private
+      //  * @function setTitle
+      //  * @description
+      //  * 设置 Action sheet title
+      //  * @param {string} title Action sheet title
+      //  */
+      // setTitle (title) {
+      //   this.title = title;
+      // },
+      // /**
+      //  * @private
+      //  * @function setSubTitle
+      //  * @description
+      //  * 设置 Action sheet subtitle
+      //  * @param {string} subTitle Action sheet subtitle
+      //  */
+      // setSubTitle (subTitle) {
+      //   this.subTitle = subTitle;
+      // },
+      // /**
+      //  * @private
+      //  * @function addButton
+      //  * @description
+      //  * 增加button
+      //  * @param {object} button Action sheet button
+      //  */
+      // addButton (button) {
+      //   this.buttons.push(button);
+      // },
       /**
-       * @function setTitle
-       * @description
-       * 设置 Action sheet title
-       * @param {string} title Action sheet title
-       */
-      setTitle (title) {
-        this.title = title;
-      },
-
-      /**
-       *
-       * @function setSubTitle
-       * @description
-       * 设置 Action sheet subtitle
-       * @param {string} subTitle Action sheet subtitle
-       */
-      setSubTitle (subTitle) {
-        this.subTitle = subTitle;
-      },
-
-      /**
-       * @function addButton
-       * @description
-       * 增加button
-       * @param {object} button Action sheet button
-       */
-      addButton (button) {
-        this.buttons.push(button);
-      },
-
+       * @private
+       * */
+      dismissOnPageChangeHandler(){
+        this.isActive && this.dismiss();
+        this.unreg && this.unreg();
+      }
+    },
+    created(){
+      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
+      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
     }
   }
 </script>

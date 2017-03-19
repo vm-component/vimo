@@ -5,36 +5,38 @@
  * Toast是移动端比较灵活的通知组件, 可以用它来处理反馈信息或者展示系统消息.
  * Toast组件可以出现在内容的上面/下面/中间, 可以定时关闭, 也可以手动点击Toast的关闭按钮, 形式较为灵活.
  *
- * Toast组件本身并不是单例对象, 但是调用指纹都为`this.$toast.present('Toast Bottom Only String')`, 因此可能会问:
- * 如何程序关闭toast呢? 目前, 关闭Toast只有两个方法,
+ * Toast组件本身并不是单例对象, 但是调用指纹都为`this.$toast('Toast Bottom Only String')`, 因此可能会问:
+ * 如何程序关闭toast呢? 目前, 关闭Toast只有三个方法,
  *
  * 1. duration 过期时间
  * 2. showCloseButton 关闭按钮
  * 3. 当上面两个都设置了, 则只执行第二个配置
+ * 4. `let toast = this.$toast('Toast Bottom Only String')`返回toast实例, 执行`toast.dismiss()`执行关闭
  *
  * 因此使用Toast需要知道这一点.
  *
  * 此外, 在Toast的传入参数中定义`onDismiss`回调函数, 可以在Toast关闭及动画结束后可以进行一些操作.
  * `dismissOnPageChange`表示如果路由切换自动关闭Toast, 这个属性默认值为`false`.
  *
- * 希望`dismissOnPageChange`能正常工作, 需要以下操作:
+ * ### 实例化Toast的方法
  *
- * - 定义事件总线$eventBus, 并挂载在`Vue.prototype`上
- * - 在路由定义中, 增加事件`onRouteChangeBefore`
- *
- * ```
- router.beforeEach((to, from, next) => {
-      Vue.prototype.$eventBus.$emit('onRouteChangeBefore', {to, from});
-      next();
-    }
- );
- ```
- * 不在组件中绑定$route的监听,是因为实例化的组件是没有$route属性的, 故watch$route是没用的, 只能这样.
+ * #### 1. 只传入Message
  *
  *
- * @example
+ *```
+ this.$toast('Bottom was added successfully')
+ *```
  *
- _this.$toast.present({
+ * #### 2. 传入Message和Duration
+ *
+ *```
+ this.$toast('Bottom was added successfully',1000)
+ *```
+ *
+ * #### 3. 传入Options对象
+ *
+ *```
+ this.$toast({
     message: 'Bottom was added successfully',
     duration: 3000,
     position: 'bottom',
@@ -42,9 +44,9 @@
     onDismiss () {
       console.debug('2 onDismiss in promise success!')
     }
-  });
+ })
 
- _this.$toast.present({
+ this.$toast({
     message: 'Top with Button was added successfully',
     duration: 3000, // 这个不生效
     position: 'top',
@@ -55,8 +57,21 @@
     onDismiss () {
       console.debug('5 onDismiss in promise success!')
     }
-  })
+ })
+ *```
  *
+ *
+ * #### 4. Options对象
+ *
+ * @property {string} message - The message for the toast. Long strings will wrap and the toast container will expand.
+ * @property {number} [duration=3000] - How many milliseconds to wait before hiding the toast.
+ * @property {string} [position="bottom"] - The position of the toast on the screen. Accepted values: "top", "middle", "bottom".
+ * @property {string} [cssClass] - Additional classes for custom styles, separated by spaces.
+ * @property {boolean} [showCloseButton=false] - Whether or not to show a button to close the toast.
+ * @property {string} [closeButtonText='Close'] - Text to display in the close button.
+ * @property {boolean} [dismissOnPageChange=false] - Whether to dismiss the toast when navigating to a new page or nav back.
+ * @property {string} [mode='ios'] - mode
+ * @property {string} [onDismiss=noop] - execute when dismiss animate finished
  */
 
 import Vue from 'vue';
@@ -66,8 +81,8 @@ const ToastConstructor = Vue.extend(toastComponent);
 const POSITIONS = ['top', 'middle', 'bottom'];
 const noop = () => {};
 let _insertPosition = null;
-let _toastList = [];
-
+const DOM_INSERT_POSITION = 'toastPortal'; // 插入的DOM位置
+const DOM_INSERT_POSITION_FALLBACK = 'app'; // fallback选项
 // ---------- functions ----------
 
 class Toast extends ToastConstructor {
@@ -83,9 +98,9 @@ class Toast extends ToastConstructor {
 /**
  * @private
  * 创建ToastInstance, 并且根据传参指纹构建对象
- * @param {any} arguments -
+ * @param {any} arguments - 传入参数
  * */
-function prepareInstance () {
+function ToastFactory () {
   let _args = Array.from(arguments);
   let el = null;
   let message = 'This is Message!';
@@ -96,10 +111,10 @@ function prepareInstance () {
   let closeButtonText = 'Close';
   let dismissOnPageChange = false;
   let onDismiss = noop;
-  let mode = 'ios';
+  let mode = VM && VM.config && VM.config.get('mode', 'ios') || 'ios';
 
   // get el position
-  _insertPosition = document.getElementById('toastPortal') || document.getElementById('app') || document.body;
+  _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body;
   el = _insertPosition.appendChild(document.createElement('div'));
 
   if (_args.length === 2) {
@@ -157,58 +172,22 @@ function prepareInstance () {
 /**
  * @private
  * 对外的Toast构建部分
+ * @function present
+ * @description 打开Toast
+ * @param {object} args - 传入参数
+ * @param {string} args.message - The message for the toast. Long strings will wrap and the toast container will expand.
+ * @param {number} [args.duration=3000] - How many milliseconds to wait before hiding the toast.
+ * @param {string} [args.position="bottom"] - The position of the toast on the screen. Accepted values: "top", "middle", "bottom".
+ * @param {string} [args.cssClass] - Additional classes for custom styles, separated by spaces.
+ * @param {boolean} [args.showCloseButton=false] - Whether or not to show a button to close the toast.
+ * @param {string} [args.closeButtonText='Close'] - Text to display in the close button.
+ * @param {boolean} [args.dismissOnPageChange=false] - Whether to dismiss the toast when navigating to a new page or nav back.
+ * @return {ToastInstance} 返回Toast的实例
  * */
-function prepareToast () {
-  return {
-    /**
-     * @function present
-     * @description 打开Toast
-     * @param {object} args - 传入参数
-     * @param {string} args.message - The message for the toast. Long strings will wrap and the toast container will expand.
-     * @param {number} [args.duration=3000] - How many milliseconds to wait before hiding the toast.
-     * @param {string} [args.position="bottom"] - The position of the toast on the screen. Accepted values: "top", "middle", "bottom".
-     * @param {string} [args.cssClass] - Additional classes for custom styles, separated by spaces.
-     * @param {boolean} [args.showCloseButton=false] - Whether or not to show a button to close the toast.
-     * @param {string} [args.closeButtonText='Close'] - Text to display in the close button.
-     * @param {boolean} [args.dismissOnPageChange=false] - Whether to dismiss the toast when navigating to a new page or nav back.
-     * */
-    present (...args) {
-      // build instance
-      let _instance = prepareInstance(...args);
 
-      // register navigation back event
-      if (_toastList.length === 0) {
-        !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$on('onRouteChangeBefore', function () {
-          _toastList.forEach((item) => {
-            if (item.isActive) {
-              if (!item.dismissOnPageChange) {
-                return
-              }
-              if (item.showCloseButton) {
-                item.cbClick()
-              } else if (item.timer) {
-                clearTimeout(item.timer);
-                item.timer = null;
-                item._dismiss().then(function () {
-                  !!item.onDismiss && item.onDismiss()
-                })
-              }
-            }
-          });
-          _toastList = [];
-        })
-      }
-
-      // store
-      _toastList.push(_instance);
-      return _instance._present();
-    },
-
-
-
-
-
-  }
-}
-
-export default prepareToast;
+export default function (...args) {
+  let _instance = ToastFactory(...args);
+  // 自动开启
+  _instance.present();
+  return _instance;
+};

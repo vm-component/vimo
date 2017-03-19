@@ -7,14 +7,14 @@
     </Header>
     <Content padding>
 
-      <p>传参指纹: this.$toast.present('显示Toast提示')</p>
+      <p>传参指纹: this.$toast('显示Toast提示')</p>
       <Button type="block" @click="toastBottomOnlyString()">只传入String</Button>
 
-      <p>传参指纹: this.$toast.present('显示Toast提示',1000)</p>
+      <p>传参指纹: this.$toast('显示Toast提示',1000)</p>
       <Button type="block" @click="toastBottomWithStringAndDuration()">String + Duration(1000)</Button>
 
-      <p>传参指纹: this.$toast.present({...})</p>
-      <Button type="block" @click="toastTop()">Toast Top</Button>
+      <p>传参指纹: this.$toast({...})</p>
+      <Button id="top" type="block" @click="toastTop($event)">Toast Top</Button>
       <Button type="block" @click="toastButtom()">Toast Bottom</Button>
       <Button type="block" @click="toastMiddle()">Toast Middle</Button>
       <Button type="block" @click="toastMiddleWithBtn()">Toast Middle With Button</Button>
@@ -34,16 +34,20 @@
     computed: {},
     methods: {
       toastBottomOnlyString(){
-        this.$toast.present('Toast Bottom Only String')
+        let _toastIns = this.$toast('Toast Bottom Only String',10000)
+        setTimeout(function () {
+          _toastIns.dismiss();
+        },3000)
       },
 
       toastBottomWithStringAndDuration(){
-        this.$toast.present('Toast Bottom With String And Druation', 1000)
+        this.$toast('Toast Bottom With String And Druation', 1000)
       },
 
-      toastTop () {
+      toastTop ($event) {
         const _this = this;
-        _this.$toast.present({
+
+        _this.$toast({
           message: 'Top was added successfully',
           duration: 3000,
           position: 'top',
@@ -52,10 +56,11 @@
             console.debug('1 onDismiss in promise success!')
           }
         })
+
       },
       toastButtom () {
         const _this = this;
-        _this.$toast.present({
+        _this.$toast({
           message: 'Bottom was added successfully',
           duration: 3000,
           position: 'bottom',
@@ -67,7 +72,7 @@
       },
       toastMiddle () {
         const _this = this;
-        _this.$toast.present({
+        _this.$toast({
           message: 'Middle was added successfully',
           duration: 3000,
           position: 'middle',
@@ -79,7 +84,7 @@
       },
       toastMiddleWithBtn () {
         const _this = this;
-        _this.$toast.present({
+        _this.$toast({
           message: 'Middle with Button was added successfully',
           duration: 3000, // 这个不生效
           showCloseButton: true,
@@ -93,7 +98,7 @@
       },
       showCloseBtnToast () {
         const _this = this;
-        _this.$toast.present({
+        _this.$toast({
           message: 'Top with Button was added successfully',
           duration: 3000, // 这个不生效
           position: 'top',
@@ -113,6 +118,7 @@
     mounted () {
       console.log('toast.vue')
       console.log(this)
+
     },
     activated () {
     },

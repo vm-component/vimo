@@ -25,6 +25,7 @@
 </style>
 
 <script type="text/babel">
+  import { registerListener } from '../../util/dom'
   export default {
     data() {
       return {
@@ -36,9 +37,7 @@
         closeButtonText: 'Close', // the text of close button
         dismissOnPageChange: false, // whether to close component when page change
         onDismiss: null, // execute when component closed and animate done
-        mode: VM && VM.config && VM.config.get('mode', 'ios') || 'ios', // ios?android
-
-
+        mode: 'ios', // ios?android
 
         // component state
         isActive: false, // open state
@@ -46,6 +45,7 @@
         presentCallback: null,
         dismissCallback: null,
         timer: null, // timer
+        unreg: null,
       }
     },
     computed: {
@@ -62,14 +62,20 @@
       }
     },
     methods: {
+      // -------- private --------
       /**
+       *  @private
        * Animate Hooks
        * */
-      _beforeEnter () {},
+      _beforeEnter () {
+        this.$app && this.$app.setEnabled(false, 400)
+      },
       _afterEnter (el) {
         this.presentCallback(el);
       },
-      _beforeLeave () {},
+      _beforeLeave () {
+        this.$app && this.$app.setEnabled(false, 400)
+      },
       _afterLeave (el) {
         this.dismissCallback(el);
         // 删除DOM
@@ -77,24 +83,48 @@
       },
 
       /**
+       *  @private
        * click close button to close
        * */
       cbClick() {
-        return this._dismiss().then(() => {
+        return this.dismiss().then(() => {
           !!this.onDismiss && this.onDismiss()
         })
       },
 
       /**
+       * @private
+       * the handler of dismiss the page when route change
+       */
+      dismissOnPageChangeHandler(){
+        if (this.isActive) {
+          if (!this.dismissOnPageChange) {
+            return
+          }
+          if (this.showCloseButton) {
+            this.cbClick()
+          } else if (this.timer) {
+            clearTimeout(this.timer);
+            this.timer = null;
+            this.dismiss().then(() => {
+              !!this.onDismiss && this.onDismiss()
+            })
+          }
+        }
+        this.unreg && this.unreg();
+      },
+
+      // -------- public --------
+      /**
        * open current component instance
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      _present () {
+      present () {
         this.isActive = true;
         if (!this.showCloseButton) {
           this.timer = setTimeout(() => {
             this.timer = null;
-            this._dismiss().then(() => {
+            this.dismiss().then(() => {
               !!this.onDismiss && this.onDismiss()
             })
           }, this.duration)
@@ -106,11 +136,14 @@
        * close current component instance
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
-      _dismiss () {
+      dismiss () {
         this.isActive = false; // move
         return new Promise((resolve) => {this.dismissCallback = resolve})
       },
     },
-    mounted(){}
+    mounted(){
+      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
+      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+    }
   };
 </script>
