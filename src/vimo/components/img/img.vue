@@ -23,14 +23,17 @@
    * Img组件, 用于实现Img按需加载的功能. 当滚动到将要显示的位置的时候再加载图片
    *
    *
-   * > Img组件只能在Content组件中使用!
+   * **注意:** Img组件只能在Content组件中使用!
    *
-   * 这里能使用markdown语法
    *
    * @property {String} [alt='image']         - 图片的alt属性
    * @property {(Number|String)} [height=0]   - 图片的高度
    * @property {String} src                   - 图片的src地址
    * @property {(Number|String)} [width=0]    - 图片的宽度
+   *
+   * @example
+   *
+   <Img width="100%" height="200" src="static/1.jpg">
    *
    * */
   import { isPresent } from'../../util/util'

@@ -40,11 +40,6 @@
       colorClass: function () {
         return !!this.color ? (`badge-${this.mode}-${this.color}`) : ''
       },
-    },
-    methods: {},
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
-    components: {}
+    }
   }
 </script>

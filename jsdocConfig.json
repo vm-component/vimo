@@ -24,6 +24,8 @@
   "source": {
     "include": [
       "README.md",
+      "src/vimo/components/action-sheet",
+      "src/vimo/components/alert",
       "src/vimo/components/app",
       "src/vimo/components/content",
       "src/vimo/components/refresher",
@@ -31,10 +33,7 @@
       "src/vimo/components/grid",
       "src/vimo/components/infinite-scroll",
       "src/vimo/components/spinner",
-      "src/vimo/components/action-sheet",
-      "src/vimo/components/alert",
       "src/vimo/components/backdrop",
-      "src/vimo/components/avatar",
       "src/vimo/components/badge",
       "src/vimo/components/button",
       "src/vimo/components/card",
@@ -45,6 +44,9 @@
       "src/vimo/components/toggle",
       "src/vimo/components/label",
       "src/vimo/components/toast",
+      "src/vimo/components/loading",
+      "src/vimo/components/modal",
+      "src/vimo/components/avatar",
       "src/vimo/components/tabs"
     ],
     "exclude": [

@@ -1,25 +1,35 @@
 /**
  * Created by Hsiang on 2017/2/18.
- *
- * Modal是不是单例组件,
- * 而且Modal可以叠加弹出多次, Model的开关是由Modal自己控制的
- *
  */
 import Vue from 'vue';
 import modalComponent from './modal.vue';
 import { urlChange } from '../../util/dom';
+import { isArray, isObject, isPresent } from '../../util/util';
 let _modalArr = [];
 let _unRegisterUrlChange = null;
 const ModalConstructor = Vue.extend(modalComponent);
-
+const DOM_INSERT_POSITION = 'modalPortal'; // the DOM position of component insert to
+const DOM_INSERT_POSITION_FALLBACK = 'app'; // fallback position
 // ---------- functions ----------
 
 /**
  * 获取实例
  */
-function getModalInstance () {
-  return new ModalConstructor({
-    el: document.getElementById('modalPortal').appendChild(document.createElement('div'))
+class Modal extends ModalConstructor {
+  constructor (options) {
+    super(options);
+    // params
+    if (isObject(options)) {
+      for (let key in options)  this[key] = options[key]
+    }
+  }
+}
+function ModalFactory (options) {
+  let  _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body;
+  return new Modal({
+    el: _insertPosition.appendChild(document.createElement('div')),
+    name: options.name,
+    position: options.position,
   })
 }
 
@@ -32,8 +42,6 @@ function getModalInstance () {
  * @param {object} options
  * 传入参数示例:
  * {
- *  name:'model_1',             // modal的名字
- *  position:'bottom',          // modal出现位置
  *  template:require('*.vue'),  // modal页面
  *  modalData:{...},            // 传给modal的数据
  *  onDismiss(data){....},      // 关闭model执行的操作, data是关闭时传入的参数
@@ -43,19 +51,31 @@ function present (options = {}) {
   let template = options.template;
   let modalData = options.modalData;
   let onDismiss = options.onDismiss;
+  let name = options.name || '';
+  let position = options.position || 'bottom';
 
-  let modalInstance = getModalInstance();
-  let templateConstructor;
+  let modalInstance = ModalFactory({
+    name,
+    position,
+  });
+
+  let templateConstructor = Vue.extend(template);
   let templateInstance;
-
+  let el = modalInstance.$el.querySelectorAll('.modalPageLoadPort')[0].appendChild(document.createElement('div'));
 
   // 用户传入数据
   // 初始化用户自定义弹层的页面
-  template.modalData = modalData;
-  templateConstructor = Vue.extend(template);
-  templateInstance = new templateConstructor({
-    el: modalInstance.$el.querySelectorAll('.modalPageLoadPort')[0].appendChild(document.createElement('div'))
-  });
+  class Template extends templateConstructor {
+    constructor (options) {
+      super(options);
+      // params
+      if (isObject(options)) {
+        for (let key in options)  this[key] = options[key]
+      }
+    }
+  }
+
+  templateInstance = new Template({el, modalData})
 
   if (!_unRegisterUrlChange) {
     _unRegisterUrlChange = urlChange(function () {
@@ -69,11 +89,11 @@ function present (options = {}) {
 
   // record
   _modalArr.push({
-    modalInstance:modalInstance,
-    template:options.template,
-    templateInstance:templateInstance,
-    modalData:modalData,
-    onDismiss:onDismiss,
+    modalInstance: modalInstance,
+    template: options.template,
+    templateInstance: templateInstance,
+    modalData: modalData,
+    onDismiss: onDismiss,
   });
 
   return modalInstance._present();

@@ -70,6 +70,18 @@
         this.$backdrop.dismiss();
         return new Promise((resolve) => {this.dismissCallback = resolve})
       },
+    },
+    mounted(){
+      console.debug('modal mounted')
+      console.debug(this.position)
+    },
+    beforeUpdate(){
+      console.debug('modal beforeUpdate')
+      console.debug(this.position)
+    },
+    updated(){
+      console.debug('modal updated')
+      console.debug(this.position)
     }
   }
 </script>

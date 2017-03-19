@@ -29,9 +29,16 @@
    *
    * 通过present开启, 如果没设置duration, 则需要手动dismiss.
    *
+   * @property {string} [spinner='ios'] - 菊花样式
+   * @property {string} [content] - 内容
+   * @property {string} [cssClass] - 自定义样式
+   * @property {boolean} [showBackdrop=false] - 是否显示黑色背景
+   * @property {number} [duration=0] - loading持续时间, 如果为0则无效
+   * @property {boolean} [dismissOnPageChange=false] - 页面切换是否关闭loading
+   *
    * @example
    *
-  const _this = this;
+   const _this = this;
    _this.$loading.present({
     content: '正在加载, 4000ms后自动关闭...',
     cssClass: 'cssClass',

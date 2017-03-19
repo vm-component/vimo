@@ -11,6 +11,50 @@
   </transition>
 </template>
 <script type="text/ecmascript-6">
+  /**
+   * @module Component/Backdrop
+   * @description
+   * 背景变黑的组件, 可以实例化也可以模板式调用!
+   *
+   * #### 实例化调用
+   *
+   *
+   * ```
+   <Content padding>
+     <h3>BackDrop组件</h3>
+     <h5>可以实例化调用也可以模板式调用</h5>
+     <p>打开Backdrop, 4000ms之后关闭, 或者点击关闭</p>
+     <Button type="block" @click="present">打开Backdrop</Button>
+   </Content>
+   * ```
+   * ```
+   present(){
+        const _this = this;
+        let _timer;
+        _this.$backdrop.present({
+          bdClick () {
+            clearTimeout(_timer)
+            _this.$backdrop.dismiss()
+          }
+        });
+        _timer = setTimeout(function () {
+          _this.$backdrop.dismiss()
+        }, 4000);
+      },
+   *```
+   *
+   * #### 模板调用
+   * ```
+   <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive"></Backdrop>
+   * ```
+   *
+   * @property {function} bdClick - 背景点击执行的方法
+   * @property {object} position - backdrop偏移位置
+   * @property {string} position.top -
+   * @property {string} position.right -
+   * @property {string} position.bottom -
+   * @property {string} position.left -
+   * */
   import { urlChange } from '../../util/dom';
   export default{
     name: 'Backdrop',
