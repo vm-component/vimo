@@ -176,6 +176,11 @@
   export default{
     name: 'index',
     methods:{},
-    mounted(){}
+    created(){
+      console.debug('index.vue created')
+    },
+    mounted(){
+      console.debug('index.vue mounted')
+    }
   }
 </script>

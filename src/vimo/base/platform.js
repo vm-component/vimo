@@ -48,12 +48,48 @@
  *    priority?: number;
  * }
  */
-import { QueryParams } from './query-params';
-import { getCss, ready, windowDimensions, flushDimensionCache } from '../util/dom';
-import { removeArrayItem } from '../util/util';
-import { PLATFORM_CONFIGS } from '../platform/platform-registry'
 
-export class Platform {
+module.exports = setupPlatform;
+/**
+ * @private
+ * @return {Platform}
+ */
+function setupPlatform (config) {
+  // 保持单例对象
+  if (!!window['VM'] && !!window['VM']['platform']) {
+    return window['VM']['platform']
+  } else {
+    const p = new Platform();
+    p.setDefault('core');
+    p.setPlatformConfigs(config);
+    p.setQueryParams(new QueryParams());
+
+    !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform);
+    !p.userAgent() && p.setUserAgent(window.navigator.userAgent);
+    !p.lang() && p.setLang('zh-cn', true);
+    !p.dir() && p.setDir('ltr', true);
+
+    // 设置css类型
+    p.setCssProps(document.documentElement);
+
+    p.init();
+
+    // 触发ready, 一般情况下是dom ready,
+    // 如果平台改写了prepareReady方法,
+    // 则执行平台对应的ready处理
+    p.prepareReady();
+
+    // 全局注册
+    window['VM'] = window['VM'] || {};
+    window['VM']['platform'] = p;
+
+    return p;
+  }
+}
+
+
+
+class Platform {
 
   /** @private */
   _versions = {}; // 当前平台的版本信息列表 PlatformVersion
@@ -264,8 +300,8 @@ export class Platform {
 
   /**
    * @private
-   * 当平台准备完毕的时候, 有他们来触发
-   *
+   * 当平台准备完毕的时候, 由他们来触发
+   * 真正ready的执行脚本
    * @param {string} readySource
    */
   triggerReady (readySource) {
@@ -574,7 +610,6 @@ export class Platform {
     clearTimeout(this._resizeTm);
 
     this._resizeTm = setTimeout(() => {
-      flushDimensionCache();
       this._isPortrait = null;
       // 等待时间后执行resize的注册事件列表
       for (let i = 0; i < this._onResizes.length; i++) {
@@ -839,29 +874,7 @@ export class Platform {
     return rootNode;
   }
 }
-
-/**
- * @param {any} registry
- * @param {PlatformNode} platformNode
- * */
-function insertSuperset (registry, platformNode) {
-  let supersetPlatformName = platformNode.superset();
-  if (supersetPlatformName) {
-    // add a platform in between two exist platforms
-    // so we can build the correct hierarchy of active platforms
-    let supersetPlatform = new PlatformNode(registry, supersetPlatformName);
-    supersetPlatform.parent = platformNode.parent;
-    supersetPlatform.child = platformNode;
-    if (supersetPlatform.parent) {
-      supersetPlatform.parent.child = supersetPlatform;
-    }
-    platformNode.parent = supersetPlatform;
-  }
-}
-
-/**
- * @private
- */
+/***@private*/
 class PlatformNode {
   c; // platform-registry配置中的平台设置;
   parent; // 父节点
@@ -878,7 +891,7 @@ class PlatformNode {
     this.registry = registry;
     this.c = registry[platformName];
     this.name = platformName;
-    this.isEngine = this.c.isEngine;
+    this.isEngine = this.c && this.c.isEngine;
   }
 
   // 获取settings配置
@@ -983,36 +996,164 @@ class PlatformNode {
   }
 
 }
+/**
+ * 获取url参数的类
+ * @example
+ * import {QueryParams} from './platform/query-params'
+ * let a = (new QueryParams()).queryParams(location.href)
+ * console.log(a.data);
+ * => Object {a: "1", b: "3"}
+ */
+class QueryParams {
+  data = {};// {[key: string]: any}
+
+  /**
+   * @param {string} url
+   * */
+  constructor (url = window.location.href) {
+    this.parseUrl(url);
+  }
+
+  /**
+   * @param {string} key
+   * */
+  get (key) {
+    return this.data[key.toLowerCase()];
+  }
+
+  /**
+   * @param {string} url
+   * */
+  parseUrl (url) {
+    if (url) {
+      const startIndex = url.indexOf('?');
+      if (startIndex > -1) {
+        const queries = url.slice(startIndex + 1).split('&');
+        for (var i = 0; i < queries.length; i++) {
+          if (queries[i].indexOf('=') > 0) {
+            var split = queries[i].split('=');
+            if (split.length > 1) {
+              this.data[split[0].toLowerCase()] = split[1].split('#')[0];
+            }
+          }
+        }
+      }
+    }
+    return this.data
+  }
+}
 
 /**
  * @private
- * @return {Platform}
- */
-export function setupPlatform () {
-  // 保持单例对象
-  if (!!window['VM'] && !!window['VM']['platform']) {
-    return window['VM']['platform']
-  } else {
-    const p = new Platform();
-    p.setDefault('core');
-    p.setPlatformConfigs(PLATFORM_CONFIGS);
-    p.setQueryParams(new QueryParams());
+ * 当前环境的可用CSS变量名称
+ * 下方自动执行
+ * @param {HTMLElement} docEle
+ * */
+function getCss (docEle) {
+  const css = {
+    transform: null,
+    transition: null,
+    transitionDuration: null,
+    transitionDelay: null,
+    transitionTimingFn: null,
+    transitionStart: null,
+    transitionEnd: null,
+    transformOrigin: null,
+    animationDelay: null,
+  };
 
-    !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform);
-    !p.userAgent() && p.setUserAgent(window.navigator.userAgent);
-    !p.lang() && p.setLang('zh-cn', true);
-    !p.dir() && p.setDir('ltr', true);
+  // transform
+  var i;
+  var keys = ['webkitTransform', '-webkit-transform', 'webkit-transform', 'transform'];
 
-    // 设置css类型
-    p.setCssProps(document.documentElement);
+  for (i = 0; i < keys.length; i++) {
+    if (docEle.style [keys[i]] !== undefined) {
+      css.transform = keys[i];
+      break;
+    }
+  }
 
-    p.init();
-    p.prepareReady();
+  // transition
+  keys = ['webkitTransition', 'transition'];
+  for (i = 0; i < keys.length; i++) {
+    if (docEle.style[keys[i]] !== undefined) {
+      css.transition = keys[i];
+      break;
+    }
+  }
 
-    // 全局注册
-    window['VM'] = window['VM'] || {};
-    window['VM']['platform'] = p;
+  // The only prefix we care about is webkit for transitions.
+  var isWebkit = css.transition.indexOf('webkit') > -1;
 
-    return p;
+  // transition duration
+  css.transitionDuration = (isWebkit ? '-webkit-' : '') + 'transition-duration';
+
+  // transition timing function
+  css.transitionTimingFn = (isWebkit ? '-webkit-' : '') + 'transition-timing-function';
+
+  // transition delay
+  css.transitionDelay = (isWebkit ? '-webkit-' : '') + 'transition-delay';
+
+  // To be sure transitionend works everywhere, include *both* the webkit and non-webkit events
+  css.transitionEnd = (isWebkit ? 'webkitTransitionEnd ' : '') + 'transitionend';
+
+  // transform origin
+  css.transformOrigin = (isWebkit ? '-webkit-' : '') + 'transform-origin';
+
+  // animation delay
+  css.animationDelay = (isWebkit ? 'webkitAnimationDelay' : 'animationDelay');
+
+  return css;
+}
+
+/**
+ * @private
+ * @param {any} registry
+ * @param {PlatformNode} platformNode
+ * */
+function insertSuperset (registry, platformNode) {
+  let supersetPlatformName = platformNode.superset();
+  if (supersetPlatformName) {
+    // add a platform in between two exist platforms
+    // so we can build the correct hierarchy of active platforms
+    let supersetPlatform = new PlatformNode(registry, supersetPlatformName);
+    supersetPlatform.parent = platformNode.parent;
+    supersetPlatform.child = platformNode;
+    if (supersetPlatform.parent) {
+      supersetPlatform.parent.child = supersetPlatform;
+    }
+    platformNode.parent = supersetPlatform;
   }
 }
+
+function ready (callback) {
+  let promise = null; //Promise;
+
+  if (!callback) {
+    // a callback wasn't provided, so let's return a promise instead
+    promise = new Promise(resolve => { callback = resolve; });
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    callback();
+
+  } else {
+    document.addEventListener('DOMContentLoaded', completed, false);
+    window.addEventListener('load', completed, false);
+  }
+
+  return promise;
+
+  function completed () {
+    document.removeEventListener('DOMContentLoaded', completed, false);
+    window.removeEventListener('load', completed, false);
+    callback();
+  }
+}
+function removeArrayItem (array, item) {
+  const index = array.indexOf(item);
+  // ~index => index*(-1)-1
+  // ~-1 => 0
+  return !!~index && !!array.splice(index, 1);
+}
+

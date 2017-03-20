@@ -42,67 +42,67 @@ export const cancelRaf = win.cancelAnimationFrame.bind(win);
 export const nativeTimeout = win.setTimeout.bind(win);
 export const clearNativeTimeout = win.clearTimeout.bind(win);
 
-/**
- * 当前环境的可用CSS变量名称
- * 下方自动执行
- * @param {HTMLElement} docEle
- * */
-export function getCss (docEle) {
-  const css = {
-    transform: null,
-    transition: null,
-    transitionDuration: null,
-    transitionDelay: null,
-    transitionTimingFn: null,
-    transitionStart: null,
-    transitionEnd: null,
-    transformOrigin: null,
-    animationDelay: null,
-  };
-
-  // transform
-  var i;
-  var keys = ['webkitTransform', '-webkit-transform', 'webkit-transform', 'transform'];
-
-  for (i = 0; i < keys.length; i++) {
-    if (docEle.style [keys[i]] !== undefined) {
-      css.transform = keys[i];
-      break;
-    }
-  }
-
-  // transition
-  keys = ['webkitTransition', 'transition'];
-  for (i = 0; i < keys.length; i++) {
-    if (docEle.style[keys[i]] !== undefined) {
-      css.transition = keys[i];
-      break;
-    }
-  }
-
-  // The only prefix we care about is webkit for transitions.
-  var isWebkit = css.transition.indexOf('webkit') > -1;
-
-  // transition duration
-  css.transitionDuration = (isWebkit ? '-webkit-' : '') + 'transition-duration';
-
-  // transition timing function
-  css.transitionTimingFn = (isWebkit ? '-webkit-' : '') + 'transition-timing-function';
-
-  // transition delay
-  css.transitionDelay = (isWebkit ? '-webkit-' : '') + 'transition-delay';
-
-  // To be sure transitionend works everywhere, include *both* the webkit and non-webkit events
-  css.transitionEnd = (isWebkit ? 'webkitTransitionEnd ' : '') + 'transitionend';
-
-  // transform origin
-  css.transformOrigin = (isWebkit ? '-webkit-' : '') + 'transform-origin';
-
-  // animation delay
-  css.animationDelay = (isWebkit ? 'webkitAnimationDelay' : 'animationDelay');
-
-  return css;
-}
+// /**
+//  * 当前环境的可用CSS变量名称
+//  * 下方自动执行
+//  * @param {HTMLElement} docEle
+//  * */
+// export function getCss (docEle) {
+//   const css = {
+//     transform: null,
+//     transition: null,
+//     transitionDuration: null,
+//     transitionDelay: null,
+//     transitionTimingFn: null,
+//     transitionStart: null,
+//     transitionEnd: null,
+//     transformOrigin: null,
+//     animationDelay: null,
+//   };
+//
+//   // transform
+//   var i;
+//   var keys = ['webkitTransform', '-webkit-transform', 'webkit-transform', 'transform'];
+//
+//   for (i = 0; i < keys.length; i++) {
+//     if (docEle.style [keys[i]] !== undefined) {
+//       css.transform = keys[i];
+//       break;
+//     }
+//   }
+//
+//   // transition
+//   keys = ['webkitTransition', 'transition'];
+//   for (i = 0; i < keys.length; i++) {
+//     if (docEle.style[keys[i]] !== undefined) {
+//       css.transition = keys[i];
+//       break;
+//     }
+//   }
+//
+//   // The only prefix we care about is webkit for transitions.
+//   var isWebkit = css.transition.indexOf('webkit') > -1;
+//
+//   // transition duration
+//   css.transitionDuration = (isWebkit ? '-webkit-' : '') + 'transition-duration';
+//
+//   // transition timing function
+//   css.transitionTimingFn = (isWebkit ? '-webkit-' : '') + 'transition-timing-function';
+//
+//   // transition delay
+//   css.transitionDelay = (isWebkit ? '-webkit-' : '') + 'transition-delay';
+//
+//   // To be sure transitionend works everywhere, include *both* the webkit and non-webkit events
+//   css.transitionEnd = (isWebkit ? 'webkitTransitionEnd ' : '') + 'transitionend';
+//
+//   // transform origin
+//   css.transformOrigin = (isWebkit ? '-webkit-' : '') + 'transform-origin';
+//
+//   // animation delay
+//   css.animationDelay = (isWebkit ? 'webkitAnimationDelay' : 'animationDelay');
+//
+//   return css;
+// }
 
 /**
  * transitionEnd事件注册，绑定的函数触发后会自动解绑
@@ -486,63 +486,63 @@ function _camelCase (name) {
     return offset ? letter.toUpperCase() : letter;
   }).replace(MOZ_HACK_REGEXP, 'Moz$1');
 }
+//
+// //这个函数是用来将form表单里的所有数据打包成data
+// export function getFormJsonData (config) {
+//   var _config = {
+//     container: undefined, // 在指定容器中寻找表单元素
+//     empty: true      // value为空的值是否获取
+//   }
+//   $.extend(_config, config);
+//
+//   var $targets = $('input, select, textarea');
+//   if (_config.container) {
+//     $targets = $(_config.container).find('input, select, textarea');
+//   }
+//
+//   var result = {};
+//   $targets.each(function () {
+//     var k = $(this).attr('name');
+//     var v = $(this).val();
+//     var type = $(this).attr('type');
+//     if (typeof k === 'undefined') return;
+//     if (!_config.empty && v === '') return;
+//     if (type === 'radio') {
+//       if ($(this).is(':checked')) {
+//         result[k] = v;
+//       }
+//     } else if (type === 'checkbox') {
+//       if ($(this).is(':checked')) {
+//         if (result[k] instanceof Array) {
+//           result[k].push(v);
+//         } else {
+//           result[k] = [v];
+//         }
+//       }
+//     } else {
+//       result[k] = v;
+//     }
+//   });
+//   return JSON.stringify(result);
+// }
 
-//这个函数是用来将form表单里的所有数据打包成data
-export function getFormJsonData (config) {
-  var _config = {
-    container: undefined, // 在指定容器中寻找表单元素
-    empty: true      // value为空的值是否获取
-  }
-  $.extend(_config, config);
-
-  var $targets = $('input, select, textarea');
-  if (_config.container) {
-    $targets = $(_config.container).find('input, select, textarea');
-  }
-
-  var result = {};
-  $targets.each(function () {
-    var k = $(this).attr('name');
-    var v = $(this).val();
-    var type = $(this).attr('type');
-    if (typeof k === 'undefined') return;
-    if (!_config.empty && v === '') return;
-    if (type === 'radio') {
-      if ($(this).is(':checked')) {
-        result[k] = v;
-      }
-    } else if (type === 'checkbox') {
-      if ($(this).is(':checked')) {
-        if (result[k] instanceof Array) {
-          result[k].push(v);
-        } else {
-          result[k] = [v];
-        }
-      }
-    } else {
-      result[k] = v;
-    }
-  });
-  return JSON.stringify(result);
-}
-
-/**
- * @param context Object {name:key,name:key....}
- */
-export function setFormJsonData (context, config) {
-  var _config = {
-    container: undefined // 在指定容器中寻找表单元素
-  }
-  $.extend(_config, config);
-
-  for (var k in context) {
-    var $target = $('[name="' + k + '"]');
-    if (_config.container) {
-      $target = $(_config.container).find('[name="' + k + '"]');
-    }
-    $target.val(context[k]);
-  }
-}
+// /**
+//  * @param context Object {name:key,name:key....}
+//  */
+// export function setFormJsonData (context, config) {
+//   var _config = {
+//     container: undefined // 在指定容器中寻找表单元素
+//   }
+//   $.extend(_config, config);
+//
+//   for (var k in context) {
+//     var $target = $('[name="' + k + '"]');
+//     if (_config.container) {
+//       $target = $(_config.container).find('[name="' + k + '"]');
+//     }
+//     $target.val(context[k]);
+//   }
+// }
 
 /*
  *@param el  scirpt dom

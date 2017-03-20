@@ -6,7 +6,6 @@
  */
 import Vue from 'vue';
 import backdropComponent from './backdrop.vue'
-
 const BackdropConstructor = Vue.extend(backdropComponent);
 let _insertPosition;
 let instance;
@@ -16,26 +15,41 @@ let instance;
  */
 function getAnInstance () {
   if (!Vue.prototype._backdrop) {
-    Vue.prototype._backdrop = new BackdropConstructor({
+    instance = Vue.prototype._backdrop = new BackdropConstructor({
       el: document.createElement('div')
     })
+    // 插入DOM中
+    _insertPosition = document.getElementById('backdropPortal');
+    if (!!_insertPosition) {
+      _insertPosition.appendChild(instance.$el);
+    } else {
+      document.body.appendChild(instance.$el);
+    }
   }
   return Vue.prototype._backdrop
-};
+}
 
-function backdropInstance () {
+/**
+ * 开启
+ * */
+function present (options = null) {
   // 获取实例
   instance = getAnInstance();
+  instance.present(options);
+}
 
-  // 插入DOM中
-  _insertPosition = document.getElementById('backdropPortal');
-  if (!!_insertPosition) {
-    _insertPosition.appendChild(instance.$el);
-  } else {
-    document.body.appendChild(instance.$el);
+/**
+ * 关闭
+ * */
+function dismiss () {
+  instance.dismiss();
+}
+
+function backdropInstance () {
+  return {
+    present,
+    dismiss,
   }
-
-  return instance;
 }
 
 // 返回实例

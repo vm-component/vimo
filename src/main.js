@@ -5,26 +5,27 @@
  * 在这里完成初始化工作及页面启动, hello
  *
  * */
-
+// 配置
+import { PLATFORM_CONFIGS } from './config/platform-configs'
+import { APP_CONFIGS } from './config/app-configs'
 import Vue from 'vue';
-import { initVimo } from './vimo/index.js'
 import App from './App';
-import routerFactory from './router.js';
 import attachFastClick from 'fastclick';
-
-
-/**
- * 完成安装及初始化工作
- * */
-initVimo(Vue);
-new attachFastClick(document.body);
+import routerFactory from './router.js';
+import { initVimoPlatform, initVimoModules, initVimoComponents } from './vimo'
 let router = routerFactory(Vue);
+new attachFastClick(document.body);
 
+// 平台基础安装
+initVimoPlatform(APP_CONFIGS, PLATFORM_CONFIGS, function () {
+  // 模块安装
+  initVimoModules(Vue);
+  // 组件安装
+  initVimoComponents(Vue, {
+    componentList: [],
+  });
+});
 
-
-/**
- * 平台初始化完毕后触发ready回调
- * */
 VM.platform.ready().then(function (data) {
   console.debug('****  Platform ready info: ' + data + '  ****');
   new Vue({
@@ -32,13 +33,8 @@ VM.platform.ready().then(function (data) {
     router,
     template: '<App/>',
     mounted () {
-
-      this.$localStorage.setItem('hello','songtao')
+      this.$localStorage.setItem('hello', 'songtao')
     },
     components: {App}
   });
 })
-
-
-
-

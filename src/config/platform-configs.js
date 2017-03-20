@@ -8,7 +8,7 @@
  * 最后面的配置将为最终生效的配置, 请注意!!!!
  */
 
-import { ready } from '../util/dom';
+import { ready } from '../vimo/util/dom';
 // 支持的平台
 const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq', 'dtdream'];
 
@@ -58,6 +58,36 @@ export const PLATFORM_CONFIGS = {
         // fallback to always use ripple
         return 'ripple';
       },
+
+      activator: 'ripple',
+      backButtonText: '',
+      backButtonIcon: 'md-arrow-back',
+      iconMode: 'md',
+      menuType: 'overlay',
+      pickerRotateFactor: 0,
+      pickerScaleFactor: 0.81,
+      spinner: 'crescent',
+      tabsHighlight: true,
+      tabsPlacement: 'bottom',
+      tabsHideOnSubPages: false,
+
+      // actionSheetEnter: 'action-sheet-md-slide-in',
+      // actionSheetLeave: 'action-sheet-md-slide-out',
+      // alertEnter: 'alert-md-pop-in',
+      // alertLeave: 'alert-md-pop-out',
+      // loadingEnter: 'loading-md-pop-in',
+      // loadingLeave: 'loading-md-pop-out',
+      // modalEnter: 'modal-md-slide-in',
+      // modalLeave: 'modal-md-slide-out',
+      // pageTransition: 'md-transition',
+      // pickerEnter: 'picker-slide-in',
+      // pickerLeave: 'picker-slide-out',
+      // popoverEnter: 'popover-md-pop-in',
+      // popoverLeave: 'popover-md-pop-out',
+      // toastEnter: 'toast-md-slide-in',
+      // toastLeave: 'toast-md-slide-out',
+
+
       // scrollAssist: true,
       // inputCloning: true,
       // autoFocusAssist: 'immediate',
@@ -86,6 +116,36 @@ export const PLATFORM_CONFIGS = {
       hoverCSS: false,
       keyboardHeight: 300,
       mode: 'ios',
+
+      activator: 'highlight',
+      backButtonText: 'Back',
+      backButtonIcon: 'ios-arrow-back',
+      iconMode: 'ios',
+      menuType: 'reveal',
+      pickerRotateFactor: -0.46,
+      pickerScaleFactor: 1,
+      spinner: 'ios',
+      tabsHighlight: false,
+      tabsPlacement: 'bottom',
+      tabsHideOnSubPages: false,
+
+      // loadingEnter: 'loading-pop-in',
+      // loadingLeave: 'loading-pop-out',
+      // modalEnter: 'modal-slide-in',
+      // modalLeave: 'modal-slide-out',
+      // pageTransition: 'ios-transition',
+      // pickerEnter: 'picker-slide-in',
+      // pickerLeave: 'picker-slide-out',
+      // popoverEnter: 'popover-pop-in',
+      // popoverLeave: 'popover-pop-out',
+      // actionSheetEnter: 'action-sheet-slide-in',
+      // actionSheetLeave: 'action-sheet-slide-out',
+      // alertEnter: 'alert-pop-in',
+      // alertLeave: 'alert-pop-out',
+      // toastEnter: 'toast-slide-in',
+      // toastLeave: 'toast-slide-out',
+
+
       // autoFocusAssist: 'delay',
       // inputBlurring: isIOS,
       // inputCloning: isIOS,
@@ -117,6 +177,35 @@ export const PLATFORM_CONFIGS = {
     settings: {
       mode: 'wp',
       hoverCSS: false,
+
+      activator: 'highlight',
+      backButtonText: '',
+      backButtonIcon: 'ios-arrow-back',
+      iconMode: 'ios',
+      menuType: 'overlay',
+      pickerRotateFactor: 0,
+      pickerScaleFactor: 0.81,
+      spinner: 'circles',
+      tabsHighlight: true,
+      tabsPlacement: 'top',
+      tabsHideOnSubPages: true,
+      // actionSheetEnter: 'action-sheet-wp-slide-in',
+      // actionSheetLeave: 'action-sheet-wp-slide-out',
+      // alertEnter: 'alert-wp-pop-in',
+      // alertLeave: 'alert-wp-pop-out',
+      // loadingEnter: 'loading-wp-pop-in',
+      // loadingLeave: 'loading-wp-pop-out',
+      // modalEnter: 'modal-md-slide-in',
+      // modalLeave: 'modal-md-slide-out',
+      // pageTransition: 'wp-transition',
+      // pickerEnter: 'picker-slide-in',
+      // pickerLeave: 'picker-slide-out',
+      // popoverEnter: 'popover-md-pop-in',
+      // popoverLeave: 'popover-md-pop-out',
+      // toastEnter: 'toast-wp-slide-in',
+      // toastLeave: 'toast-wp-slide-out',
+
+
       // autoFocusAssist: 'immediate'
     },
     /**
@@ -178,6 +267,7 @@ export const PLATFORM_CONFIGS = {
 
         // 触发外层的ready
         ready(function () {
+          // 触发
           p.triggerReady('Wechat Init Success!');
         })
       }

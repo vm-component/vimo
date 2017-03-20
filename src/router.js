@@ -576,42 +576,48 @@ const routes = [
   {
     path: '/storage',
     name: 'storage',
-    component: require('./views/storage.vue'),
+    component  (resolve) {
+      require(['./views/storage.vue'], resolve)
+    },
   },
   {
     path: '/position',
     name: 'position',
-    component: require('./views/position.vue'),
+    component  (resolve) {
+      require(['./views/position.vue'], resolve)
+    },
   },
 
   // demo
   {
     path: '/demo',
     name: 'demo',
-    component: require('./views/demo.vue'),
+    component  (resolve) {
+      require(['./views/demo.vue'], resolve)
+    },
   },
   {
     path: '/gl-input',
     name: 'gl-input',
-    component: require('./views/gl-input.vue'),
+    component  (resolve) {
+      require(['./views/gl-input.vue'], resolve)
+    },
   },
 
   {
     path: '/ghost',
     name: 'ghostvue',
-    component: require('./views/ghost.vue'),
+    component  (resolve) {
+      require(['./views/ghost.vue'], resolve)
+    },
   },
   {
     path: '/floattop',
     name: 'floattop',
-    component: require('./views/floattop.vue'),
+    component  (resolve) {
+      require(['./views/floattop.vue'], resolve)
+    },
   },
-  {
-    path: '/log',
-    name: 'log',
-    component: require('./vimo/log/log.vue'),
-  },
-
 ];
 
 /**

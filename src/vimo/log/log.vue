@@ -340,7 +340,7 @@
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'logbox',
+    name: 'LogBox',
     data(){
       return {
         isActive: false, // 是否打开

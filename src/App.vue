@@ -61,7 +61,7 @@
     <Nav>
       <!--业务视图部分-->
       <!--<keep-alive>-->
-        <router-view></router-view>
+      <router-view></router-view>
       <!--</keep-alive>-->
       <!--业务视图部分 end-->
     </Nav>

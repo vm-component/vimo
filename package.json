@@ -20,6 +20,8 @@
     "vue-awesome-swiper": "^2.3.2",
     "vue-loader": "^10.0.2",
     "vue-router": "^2.1.1",
+    "vm-config": "^0.1.2",
+    "vm-storage": "^0.0.6",
     "vuex": "^2.0.0"
   },
   "devDependencies": {
@@ -88,7 +90,7 @@
     "sinon-chai": "^2.8.0",
     "url-loader": "^0.5.7",
     "velocity": "^0.7.2",
-    "vm-storage": "^0.0.6",
+    "vm-config": "^0.1.2",
     "vue-loader": "^10.0.0",
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.2.1",

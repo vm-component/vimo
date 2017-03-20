@@ -2,7 +2,7 @@
 
 import { assert } from './util';
 import { pointerCoord, nativeRaf, cancelRaf, registerListener } from './dom';
-import IScroll from 'iscroll'
+// import IScroll from 'iscroll'
 
 const SCROLL_END_DEBOUNCE_MS = 80;
 const MIN_VELOCITY_START_DECELERATION = 4;
@@ -200,24 +200,24 @@ export class ScrollView {
    * 使用iScroll的解决方案
    * */
   enableIScroll () {
-    const self = this;
-    this._js = true;
-    const ele = this._el;
-    if (!ele) {
-      return;
-    }
+    // const self = this;
+    // this._js = true;
+    // const ele = this._el;
+    // if (!ele) {
+    //   return;
+    // }
 
-    console.debug(`ScrollView, enableIScrollScrolling`);
+    // console.debug(`ScrollView, enableIScrollScrolling`);
 
     // 给父元素增加class
-    ele.parentElement.classList.add('js-scroll');
+    // ele.parentElement.classList.add('js-scroll');
 
-    let iscroll = new IScroll(this._el.parentNode, {
-      mouseWheel: true,
-      scrollbars: true,
-      click: true,
-      bindToWrapper: true,
-    });
+    // let iscroll = new IScroll(this._el.parentNode, {
+    //   mouseWheel: true,
+    //   scrollbars: true,
+    //   click: true,
+    //   bindToWrapper: true,
+    // });
 
   }
 
