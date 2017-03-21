@@ -1,6 +1,5 @@
 /** @module util/scroll-view */
 
-import { assert } from './util';
 import { pointerCoord, nativeRaf, cancelRaf, registerListener } from './dom';
 // import IScroll from 'iscroll'
 
@@ -70,7 +69,7 @@ export class ScrollView {
     if (!this.initialized) {
       this.initialized = true;
 
-      assert(ele, 'scroll-view, element can not be null');
+      console.assert(ele, 'scroll-view, element can not be null');
       this._el = ele;
 
       if (this._js) {

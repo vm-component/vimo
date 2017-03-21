@@ -56,9 +56,6 @@ export const isCheckedProperty = function(a, b) {
   return (a == b); // tslint:disable-line
 };
 
-
-
-
 /**
  * Given a min and max, restrict the given number
  * to the range.
@@ -232,31 +229,31 @@ export function swipeShouldReset(isResetDirection, isMovingFast, isOnResetZone) 
 }
 
 
-/**
- * 断言判断
- * @private
- * @param {any} actual 如果这个对象或者值为false，则当前程序位置出错，执行断言，开启debugger
- * @param {string} reason
- */
-export function assert(actual, reason) {
-  if (!actual && ASSERT_ENABLED === true) {
-    let message = 'VM ASSERT: ' + reason;
-    alert(message);
-    console.error(message);
-    debugger; // tslint:disable-line
-    throw new Error(message);
-  }
-}
+// /**
+//  * 断言判断
+//  * @private
+//  * @param {any} actual 如果这个对象或者值为false，则当前程序位置出错，执行断言，开启debugger
+//  * @param {string} reason
+//  */
+// export function assert(actual, reason) {
+//   if (!actual && ASSERT_ENABLED === true) {
+//     let message = 'VM ASSERT: ' + reason;
+//     alert(message);
+//     console.error(message);
+//     debugger; // tslint:disable-line
+//     throw new Error(message);
+//   }
+// }
 
-/**
- * 在开发模式中运行，或者说在断言模式中运行
- * @param {Function} fn
- * */
-export function runInDev(fn) {
-  if (ASSERT_ENABLED === true) {
-    return fn();
-  }
-}
+// /**
+//  * 在开发模式中运行，或者说在断言模式中运行
+//  * @param {Function} fn
+//  * */
+// export function runInDev(fn) {
+//   if (ASSERT_ENABLED === true) {
+//     return fn();
+//   }
+// }
 
 
 /**

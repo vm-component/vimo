@@ -28,7 +28,7 @@ function initVimoPlatform (CUSTOMER_CONFIGS, PLATFORM_CONFIGS, callback) {
 }
 
 // import geolocation from '/**/./geolocation/geoStart'
-import log from './log/log'
+// import log from './log/log'
 // import './util/iscroll'
 
 /**
@@ -51,7 +51,7 @@ function initVimoModules (Vue) {
   // Vue.use(geolocation);
   // logo
   var vimoLogo = {
-    info: "源代码请访问GitHub https://github.com/DTFE/Vimo \nPowered by Vue2.1",
+    info: "源代码请访问GitHub https://github.com/DTFE/Vimo \nPowered by Vue2.x",
     logo: "\n"
     + "  __      __ _____ __  __  ____   \n"
     + "  \\ \\    / /|_   _|  \\/  |/ __ \\  \n"
