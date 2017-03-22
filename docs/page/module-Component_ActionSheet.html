@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Component/ActionSheet - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Modal.html">Modal</a></li></ul><h3>Modules</h3><ul><li><a href="module-Component_ActionSheet.html">Component/ActionSheet</a><ul class='methods'><li data-type='method'><a href="module-Component_ActionSheet.html#~dismiss">dismiss</a></li><li data-type='method'><a href="module-Component_ActionSheet.html#~present">present</a></li></ul></li><li><a href="module-Component_Alert.html">Component/Alert</a><ul class='methods'><li data-type='method'><a href="module-Component_Alert.html#~dismiss">dismiss</a></li><li data-type='method'><a href="module-Component_Alert.html#~present">present</a></li></ul></li><li><a href="module-Component_App.html">Component/App</a><ul class='methods'><li data-type='method'><a href="module-Component_App.html#~isEnabled">isEnabled</a></li><li data-type='method'><a href="module-Component_App.html#~isScrolling">isScrolling</a></li><li data-type='method'><a href="module-Component_App.html#~setDisableScroll">setDisableScroll</a></li><li data-type='method'><a href="module-Component_App.html#~setEnabled">setEnabled</a></li><li data-type='method'><a href="module-Component_App.html#~setTitle">setTitle</a></li></ul></li><li><a href="module-Component_Backdrop.html">Component/Backdrop</a></li><li><a href="module-Component_Content.html">Component/Content</a><ul class='methods'><li data-type='method'><a href="module-Component_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Component_Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="module-Component_Footer.html">Component/Footer</a></li><li><a href="module-Component_Grid.html">Component/Grid</a></li><li><a href="module-Component_Header.html">Component/Header</a></li><li><a href="module-Component_Icon.html">Component/Icon</a></li><li><a href="module-Component_Img.html">Component/Img</a></li><li><a href="module-Component_InfiniteScroll.html">Component/InfiniteScroll</a><ul class='methods'><li data-type='method'><a href="module-Component_InfiniteScroll.html#~complete">complete</a></li><li data-type='method'><a href="module-Component_InfiniteScroll.html#~enable">enable</a></li><li data-type='method'><a href="module-Component_InfiniteScroll.html#~waitFor">waitFor</a></li></ul></li><li><a href="module-Component_Label.html">Component/Label</a></li><li><a href="module-Component_Loading.html">Component/Loading</a></li><li><a href="module-Component_Refresher.html">Component/Refresher</a><ul class='methods'><li data-type='method'><a href="module-Component_Refresher.html#~cancel">cancel</a></li><li data-type='method'><a href="module-Component_Refresher.html#~complete">complete</a></li></ul></li><li><a href="module-Component_Spinner.html">Component/Spinner</a></li><li><a href="module-Component_Tab.html">Component/Tab</a></li><li><a href="module-Component_Tabs.html">Component/Tabs</a><ul class='methods'><li data-type='method'><a href="module-Component_Tabs.html#~getActivatedIndex">getActivatedIndex</a></li><li data-type='method'><a href="module-Component_Tabs.html#~getByIndex">getByIndex</a></li><li data-type='method'><a href="module-Component_Tabs.html#~getSelected">getSelected</a></li><li data-type='method'><a href="module-Component_Tabs.html#~select">select</a></li></ul></li><li><a href="module-Component_Toast.html">Component/Toast</a></li><li><a href="module-Component_Toggle.html">Component/Toggle</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:onInfinite">onInfinite</a></li><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#dismiss">dismiss</a></li><li><a href="global.html#getAnInstance">getAnInstance</a></li><li><a href="global.html#Input/Textarea">Input/Textarea</a></li><li><a href="global.html#present">present</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Component/ActionSheet</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭.</p>
+<p>它显示在应用内容的顶层，必须由用户手动关闭，然后他们才能恢复与应用的互动。
+有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键,
+也就是说, ActionSheet能监听url的变化做出关闭的动作。</p>
+<p>如果选择后需要翻页, 希望能在promise回调中执行, 保证ActionSheet的动画</p></div>
+        
+
+        
+            
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="action-sheet_action-sheet.vue.html">action-sheet/action-sheet.vue</a>, <a href="action-sheet_action-sheet.vue.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>ActionSheet的标题</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>subTitle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>ActionSheet的副标题</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cssClass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Additional classes for custom styles, separated by spaces</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>buttons</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>button数组，包含全部role</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>enableBackdropDismiss</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>true</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>允许点击backdrop关闭actionsheet</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>ios</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>样式模式</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const _this = this;
+   let _actionSheet = _this.$actionSheet({
+    title: '请选择操作',
+    subTitle: '注意，选择后不能撤销！',
+    cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
+    enableBackdropDismiss: true,
+    buttons: [
+      {
+        text: '删除',
+        role: 'destructive',
+        icon: 'trash',
+        cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
+        handler: () => {
+          console.log('Destructive clicked');
+        }
+      },
+      {
+        text: '分享',
+        icon: 'share',
+        handler: () => {
+          console.log('Archive1 clicked');
+        }
+      },
+      {
+        text: '播放',
+        icon: 'play',
+        handler: () => {
+          console.log('Archive4 clicked');
+        }
+      },
+      {
+        text: '取消',
+        role: 'cancel',
+        icon: 'close',
+        handler: () => {
+          _actionSheet.dismiss().then(function (data) {
+            console.debug('promise的退出方式')
+          });
+        }
+      }
+    ]
+  })</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="~dismiss"><span class="type-signature">(inner) </span>dismiss<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="action-sheet_action-sheet.vue.html">action-sheet/action-sheet.vue</a>, <a href="action-sheet_action-sheet.vue.html#line252">line 252</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>关闭ActionSheet</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns a promise which is resolved when the transition has completed.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~present"><span class="type-signature">(inner) </span>present<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="action-sheet_action-sheet.vue.html">action-sheet/action-sheet.vue</a>, <a href="action-sheet_action-sheet.vue.html#line240">line 240</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>打开ActionSheet, 默认是自动开启的</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns a promise which is resolved when the transition has completed.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 22 2017 21:00:31 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>toast/toast.vue - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Modal.html">Modal</a></li></ul><h3>Modules</h3><ul><li><a href="module-Component_ActionSheet.html">Component/ActionSheet</a><ul class='methods'><li data-type='method'><a href="module-Component_ActionSheet.html#~dismiss">dismiss</a></li><li data-type='method'><a href="module-Component_ActionSheet.html#~present">present</a></li></ul></li><li><a href="module-Component_Alert.html">Component/Alert</a><ul class='methods'><li data-type='method'><a href="module-Component_Alert.html#~dismiss">dismiss</a></li><li data-type='method'><a href="module-Component_Alert.html#~present">present</a></li></ul></li><li><a href="module-Component_App.html">Component/App</a><ul class='methods'><li data-type='method'><a href="module-Component_App.html#~isEnabled">isEnabled</a></li><li data-type='method'><a href="module-Component_App.html#~isScrolling">isScrolling</a></li><li data-type='method'><a href="module-Component_App.html#~setDisableScroll">setDisableScroll</a></li><li data-type='method'><a href="module-Component_App.html#~setEnabled">setEnabled</a></li><li data-type='method'><a href="module-Component_App.html#~setTitle">setTitle</a></li></ul></li><li><a href="module-Component_Backdrop.html">Component/Backdrop</a></li><li><a href="module-Component_Content.html">Component/Content</a><ul class='methods'><li data-type='method'><a href="module-Component_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Component_Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="module-Component_Footer.html">Component/Footer</a></li><li><a href="module-Component_Grid.html">Component/Grid</a></li><li><a href="module-Component_Header.html">Component/Header</a></li><li><a href="module-Component_Icon.html">Component/Icon</a></li><li><a href="module-Component_Img.html">Component/Img</a></li><li><a href="module-Component_InfiniteScroll.html">Component/InfiniteScroll</a><ul class='methods'><li data-type='method'><a href="module-Component_InfiniteScroll.html#~complete">complete</a></li><li data-type='method'><a href="module-Component_InfiniteScroll.html#~enable">enable</a></li><li data-type='method'><a href="module-Component_InfiniteScroll.html#~waitFor">waitFor</a></li></ul></li><li><a href="module-Component_Label.html">Component/Label</a></li><li><a href="module-Component_Loading.html">Component/Loading</a></li><li><a href="module-Component_Refresher.html">Component/Refresher</a><ul class='methods'><li data-type='method'><a href="module-Component_Refresher.html#~cancel">cancel</a></li><li data-type='method'><a href="module-Component_Refresher.html#~complete">complete</a></li></ul></li><li><a href="module-Component_Spinner.html">Component/Spinner</a></li><li><a href="module-Component_Tab.html">Component/Tab</a></li><li><a href="module-Component_Tabs.html">Component/Tabs</a><ul class='methods'><li data-type='method'><a href="module-Component_Tabs.html#~getActivatedIndex">getActivatedIndex</a></li><li data-type='method'><a href="module-Component_Tabs.html#~getByIndex">getByIndex</a></li><li data-type='method'><a href="module-Component_Tabs.html#~getSelected">getSelected</a></li><li data-type='method'><a href="module-Component_Tabs.html#~select">select</a></li></ul></li><li><a href="module-Component_Toast.html">Component/Toast</a></li><li><a href="module-Component_Toggle.html">Component/Toggle</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:onInfinite">onInfinite</a></li><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#dismiss">dismiss</a></li><li><a href="global.html#getAnInstance">getAnInstance</a></li><li><a href="global.html#Input/Textarea">Input/Textarea</a></li><li><a href="global.html#present">present</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">toast/toast.vue</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+    &lt;div class="toast" :class="[modeClass,cssClass]">
+        &lt;transition :name="transitionClass"
+                    v-on:before-enter="_beforeEnter"
+                    v-on:after-enter="_afterEnter"
+                    v-on:before-leave="_beforeLeave"
+                    v-on:after-leave="_afterLeave">
+            &lt;div v-show="isActive" class="toast-wrapper" :class="[positionClass]">
+                &lt;div class="toast-container">
+                    &lt;div class="toast-message" id="toast-hdr" v-if="message">{{message}}&lt;/div>
+                    &lt;Button class="toast-button" type="clear" v-if="showCloseButton" @click="cbClick()">
+                        &lt;span>{{closeButtonText}}&lt;/span>
+                    &lt;/Button>
+                &lt;/div>
+            &lt;/div>
+        &lt;/transition>
+    &lt;/div>
+&lt;/template>
+&lt;style scoped lang="scss">
+    @import "./toast";
+    @import "./toast.ios";
+    @import "./toast.md";
+&lt;/style>
+&lt;script type="text/babel">
+  import { registerListener } from '../../util/dom'
+  export default {
+    data() {
+      return {
+        message: '', // String
+        duration: null, // Number
+        position: 'bottom',
+        cssClass: null,
+        showCloseButton: false,
+        closeButtonText: 'Close', // the text of close button
+        dismissOnPageChange: false, // whether to close component when page change
+        onDismiss: null, // execute when component closed and animate done
+        mode: 'ios', // ios?android
+
+        // component state
+        isActive: false, // open state
+        //prmiseCallback
+        presentCallback: null,
+        dismissCallback: null,
+        timer: null, // timer
+        unreg: null,
+      }
+    },
+    computed: {
+      // set mode class of ActionSheet
+      modeClass () {
+        return `toast-${this.mode}`
+      },
+      // position class
+      positionClass () {
+        return `toast-${this.position}`
+      },
+      transitionClass(){
+        return `toast-${this.position}-${this.mode}`
+      }
+    },
+    methods: {
+      // -------- private --------
+      /**
+       *  @private
+       * Animate Hooks
+       * */
+      _beforeEnter () {
+        this.$app &amp;&amp; this.$app.setEnabled(false, 400)
+      },
+      _afterEnter (el) {
+        this.presentCallback(el);
+      },
+      _beforeLeave () {
+        this.$app &amp;&amp; this.$app.setEnabled(false, 400)
+      },
+      _afterLeave (el) {
+        this.dismissCallback(el);
+        // 删除DOM
+        this.$el.remove()
+      },
+
+      /**
+       *  @private
+       * click close button to close
+       * */
+      cbClick() {
+        return this.dismiss().then(() => {
+          !!this.onDismiss &amp;&amp; this.onDismiss()
+        })
+      },
+
+      /**
+       * @private
+       * the handler of dismiss the page when route change
+       */
+      dismissOnPageChangeHandler(){
+        if (this.isActive) {
+          if (!this.dismissOnPageChange) {
+            return
+          }
+          if (this.showCloseButton) {
+            this.cbClick()
+          } else if (this.timer) {
+            clearTimeout(this.timer);
+            this.timer = null;
+            this.dismiss().then(() => {
+              !!this.onDismiss &amp;&amp; this.onDismiss()
+            })
+          }
+        }
+        this.unreg &amp;&amp; this.unreg();
+      },
+
+      // -------- public --------
+      /**
+       * open current component instance
+       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+       */
+      present () {
+        this.isActive = true;
+        if (!this.showCloseButton) {
+          this.timer = setTimeout(() => {
+            this.timer = null;
+            this.dismiss().then(() => {
+              !!this.onDismiss &amp;&amp; this.onDismiss()
+            })
+          }, this.duration)
+        }
+        return new Promise((resolve) => {this.presentCallback = resolve})
+      },
+
+      /**
+       * close current component instance
+       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+       */
+      dismiss () {
+        this.isActive = false; // move
+        return new Promise((resolve) => {this.dismissCallback = resolve})
+      },
+    },
+    mounted(){
+      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
+      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+    }
+  };
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 22 2017 21:00:31 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>grid/grid.vue - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Modal.html">Modal</a></li></ul><h3>Modules</h3><ul><li><a href="module-Component_ActionSheet.html">Component/ActionSheet</a><ul class='methods'><li data-type='method'><a href="module-Component_ActionSheet.html#~dismiss">dismiss</a></li><li data-type='method'><a href="module-Component_ActionSheet.html#~present">present</a></li></ul></li><li><a href="module-Component_Alert.html">Component/Alert</a><ul class='methods'><li data-type='method'><a href="module-Component_Alert.html#~dismiss">dismiss</a></li><li data-type='method'><a href="module-Component_Alert.html#~present">present</a></li></ul></li><li><a href="module-Component_App.html">Component/App</a><ul class='methods'><li data-type='method'><a href="module-Component_App.html#~isEnabled">isEnabled</a></li><li data-type='method'><a href="module-Component_App.html#~isScrolling">isScrolling</a></li><li data-type='method'><a href="module-Component_App.html#~setDisableScroll">setDisableScroll</a></li><li data-type='method'><a href="module-Component_App.html#~setEnabled">setEnabled</a></li><li data-type='method'><a href="module-Component_App.html#~setTitle">setTitle</a></li></ul></li><li><a href="module-Component_Backdrop.html">Component/Backdrop</a></li><li><a href="module-Component_Content.html">Component/Content</a><ul class='methods'><li data-type='method'><a href="module-Component_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Component_Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="module-Component_Footer.html">Component/Footer</a></li><li><a href="module-Component_Grid.html">Component/Grid</a></li><li><a href="module-Component_Header.html">Component/Header</a></li><li><a href="module-Component_Icon.html">Component/Icon</a></li><li><a href="module-Component_Img.html">Component/Img</a></li><li><a href="module-Component_InfiniteScroll.html">Component/InfiniteScroll</a><ul class='methods'><li data-type='method'><a href="module-Component_InfiniteScroll.html#~complete">complete</a></li><li data-type='method'><a href="module-Component_InfiniteScroll.html#~enable">enable</a></li><li data-type='method'><a href="module-Component_InfiniteScroll.html#~waitFor">waitFor</a></li></ul></li><li><a href="module-Component_Label.html">Component/Label</a></li><li><a href="module-Component_Loading.html">Component/Loading</a></li><li><a href="module-Component_Refresher.html">Component/Refresher</a><ul class='methods'><li data-type='method'><a href="module-Component_Refresher.html#~cancel">cancel</a></li><li data-type='method'><a href="module-Component_Refresher.html#~complete">complete</a></li></ul></li><li><a href="module-Component_Spinner.html">Component/Spinner</a></li><li><a href="module-Component_Tab.html">Component/Tab</a></li><li><a href="module-Component_Tabs.html">Component/Tabs</a><ul class='methods'><li data-type='method'><a href="module-Component_Tabs.html#~getActivatedIndex">getActivatedIndex</a></li><li data-type='method'><a href="module-Component_Tabs.html#~getByIndex">getByIndex</a></li><li data-type='method'><a href="module-Component_Tabs.html#~getSelected">getSelected</a></li><li data-type='method'><a href="module-Component_Tabs.html#~select">select</a></li></ul></li><li><a href="module-Component_Toast.html">Component/Toast</a></li><li><a href="module-Component_Toggle.html">Component/Toggle</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:onInfinite">onInfinite</a></li><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#dismiss">dismiss</a></li><li><a href="global.html#getAnInstance">getAnInstance</a></li><li><a href="global.html#Input/Textarea">Input/Textarea</a></li><li><a href="global.html#present">present</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">grid/grid.vue</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+    &lt;div class="grid">
+        &lt;slot>&lt;/slot>
+    &lt;/div>
+&lt;/template>
+&lt;style lang="scss">
+    @import "grid.scss";
+&lt;/style>
+&lt;script type="text/ecmascript-6">
+  /**
+   * @module Component/Grid
+   * @description
+   *
+   * 栅格系统这部分是对 Bootstrap's grid system 的移植, 基于flexBox布局.
+   *
+   * 栅格由Grid/Row/Column三个组件组成, Grid定义外部flex容器, Row定义行, Column定义列. 栅格系统的列为12行.
+   *
+   * 当然, 以上都是可以通过修改Scss文件定制的, 但是这么做的人应该很少.
+   *
+   * **注意: **如果不了解Bootstrap和Flexbox请再恶补相关的知识.
+   *
+   * 栅格Grid的使用格式大致如下:
+   *
+   * ```
+   &lt;Grid no-padding>
+   &lt;Row>
+   &lt;Column>
+   1 of 3
+   &lt;/Column>
+   &lt;Column>
+   2 of 3
+   &lt;/Column>
+   &lt;Column>
+   3 of 3
+   &lt;/Column>
+   &lt;/Row>
+   &lt;/Grid>
+   * ```
+   * 这里对Grid/Row/Colume上能放的属性大致列一下, 希望你心中有数(例如上面的no-padding属性的使用):
+   *
+   * @example
+   *
+   * Grid属性:
+   * [no-padding]: 子元素除去全部padding
+   *
+   * Row属性:
+   * [nowrap]
+   * [wrap-reverse]
+   * [align-items-start]
+   * [align-items-center]
+   * [align-items-end]
+   * [align-items-stretch]
+   * [align-items-baseline]
+   * [justify-content-start]
+   * [justify-content-center]
+   * [justify-content-end]
+   * [justify-content-around]
+   * [justify-content-between]
+   *
+   * Column属性:
+   * [align-self-start]
+   * [align-self-end]
+   * [align-self-center]
+   * [align-self-stretch]
+   * [align-self-baseline]
+   *
+   *
+   * 响应式Column属性:
+   * breakpoint-infix(xs, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+   *
+   * [col-${breakpoint}-${i}]
+   * [offset-${breakpoint}-${i}]: 定义属性margin-left
+   * [pull-${breakpoint}-${i}]: 定义属性right
+   * [push-${breakpoint}-${i}]: 定义属性left
+   * */
+  export default{
+    name: 'Grid',
+  }
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 22 2017 21:00:31 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

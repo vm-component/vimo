@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>button/button.vue - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Modal.html">Modal</a></li></ul><h3>Modules</h3><ul><li><a href="module-Component_ActionSheet.html">Component/ActionSheet</a><ul class='methods'><li data-type='method'><a href="module-Component_ActionSheet.html#~dismiss">dismiss</a></li><li data-type='method'><a href="module-Component_ActionSheet.html#~present">present</a></li></ul></li><li><a href="module-Component_Alert.html">Component/Alert</a><ul class='methods'><li data-type='method'><a href="module-Component_Alert.html#~dismiss">dismiss</a></li><li data-type='method'><a href="module-Component_Alert.html#~present">present</a></li></ul></li><li><a href="module-Component_App.html">Component/App</a><ul class='methods'><li data-type='method'><a href="module-Component_App.html#~isEnabled">isEnabled</a></li><li data-type='method'><a href="module-Component_App.html#~isScrolling">isScrolling</a></li><li data-type='method'><a href="module-Component_App.html#~setDisableScroll">setDisableScroll</a></li><li data-type='method'><a href="module-Component_App.html#~setEnabled">setEnabled</a></li><li data-type='method'><a href="module-Component_App.html#~setTitle">setTitle</a></li></ul></li><li><a href="module-Component_Backdrop.html">Component/Backdrop</a></li><li><a href="module-Component_Content.html">Component/Content</a><ul class='methods'><li data-type='method'><a href="module-Component_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Component_Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="module-Component_Footer.html">Component/Footer</a></li><li><a href="module-Component_Grid.html">Component/Grid</a></li><li><a href="module-Component_Header.html">Component/Header</a></li><li><a href="module-Component_Icon.html">Component/Icon</a></li><li><a href="module-Component_Img.html">Component/Img</a></li><li><a href="module-Component_InfiniteScroll.html">Component/InfiniteScroll</a><ul class='methods'><li data-type='method'><a href="module-Component_InfiniteScroll.html#~complete">complete</a></li><li data-type='method'><a href="module-Component_InfiniteScroll.html#~enable">enable</a></li><li data-type='method'><a href="module-Component_InfiniteScroll.html#~waitFor">waitFor</a></li></ul></li><li><a href="module-Component_Label.html">Component/Label</a></li><li><a href="module-Component_Loading.html">Component/Loading</a></li><li><a href="module-Component_Refresher.html">Component/Refresher</a><ul class='methods'><li data-type='method'><a href="module-Component_Refresher.html#~cancel">cancel</a></li><li data-type='method'><a href="module-Component_Refresher.html#~complete">complete</a></li></ul></li><li><a href="module-Component_Spinner.html">Component/Spinner</a></li><li><a href="module-Component_Tab.html">Component/Tab</a></li><li><a href="module-Component_Tabs.html">Component/Tabs</a><ul class='methods'><li data-type='method'><a href="module-Component_Tabs.html#~getActivatedIndex">getActivatedIndex</a></li><li data-type='method'><a href="module-Component_Tabs.html#~getByIndex">getByIndex</a></li><li data-type='method'><a href="module-Component_Tabs.html#~getSelected">getSelected</a></li><li data-type='method'><a href="module-Component_Tabs.html#~select">select</a></li></ul></li><li><a href="module-Component_Toast.html">Component/Toast</a></li><li><a href="module-Component_Toggle.html">Component/Toggle</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:onInfinite">onInfinite</a></li><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#dismiss">dismiss</a></li><li><a href="global.html#getAnInstance">getAnInstance</a></li><li><a href="global.html#Input/Textarea">Input/Textarea</a></li><li><a href="global.html#present">present</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">button/button.vue</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+    &lt;button class="disable-hover ion-button" @click="_click($event)"
+            :class="[roleClass,modeClass,typeClass,shapeClass,sizeClass,colorClass,strongClass,itemClass]">
+    &lt;span class="button-inner">
+      &lt;slot>&lt;/slot>
+    &lt;/span>
+        &lt;div class="button-effect">&lt;/div>
+    &lt;/button>
+&lt;/template>
+&lt;style lang="scss">
+    @import './button';
+    @import './button.ios';
+    @import './button.md';
+    @import './button-icon';
+&lt;/style>
+&lt;script type="text/ecmascript-6">
+  export default{
+    name: 'Button',
+    props: {
+      /**
+       * 按钮color：primary、secondary、danger、light、dark
+       * */
+      color: {
+        type: String,
+        default: '',
+      },
+      /**
+       * mode 按钮风格 ios/window/android/we/alipay
+       * */
+      mode: {
+        type: String,
+        default(){ return window.VM &amp;&amp; window.VM.config.get('mode') || 'ios' }
+      },
+      /**
+       * 按钮大小：large small default
+       * */
+      size: {
+        type: String,
+        default: '',
+      },
+
+      /**
+       * 形状：full(宽度100%无圆角)/block(宽度100%有圆角)/round(宽度auto有圆角)/menutoggle
+       * */
+      shape: {
+        type: String,
+        default: '',
+      },
+
+      /**
+       * 按钮类型： solid实心/outline只有边框/clear空心
+       * */
+      type: {
+        type: String,
+        default: 'default',
+      },
+
+      /**
+       * role 按钮具体角色 例如 action-sheet-button/bar-button
+       * */
+      role: {
+        type: String,
+        default: 'button',
+      },
+
+      /**
+       * A button that has strong importance, ie. it represents an important action.
+       * */
+      isStrong: {
+        type: Boolean,
+        default: false,
+      }
+    },
+    data(){
+      return {
+        itemClass: '',
+      }
+    },
+    computed: {
+      // 环境样式
+      modeClass () {
+        return `${this.role}-${this.mode}`
+      },
+      // 颜色
+      colorClass () {
+        return !!this.color ? (`${this.role}-${this.mode}-${this.color}`) : ''
+      },
+      shapeClass () {
+        // button-round
+        return !!this.shape ? `${this.role}-${this.shape} ${this.role}-${this.shape}-${this.mode}` : ''
+      },
+      sizeClass () {
+        // if(this.role === 'button'){
+        //   return !!this.size ? `${this.role}-${this.size} ${this.role}-${this.size}-${this.mode}` : ''
+        // }else {
+        // 	return ''
+        // }
+        return !!this.size ? `${this.role}-${this.size} ${this.role}-${this.size}-${this.mode}` : ''
+
+      },
+      typeClass () {
+        if (!!this.type) {
+          if (!!this.color) {
+            return `${this.role}-${this.type} ${this.role}-${this.type}-${this.mode} ${this.role}-${this.type}-${this.mode}-${this.color}`
+          } else {
+            return `${this.role}-${this.type} ${this.role}-${this.type}-${this.mode}`
+          }
+        } else {
+          return ''
+        }
+      },
+      // 按钮角色
+      roleClass () {
+        if (!!this.role) {
+          // action-sheet-button action-sheet-button-ios action-sheet-button-default action-sheet-button-default-ios
+          return `${this.role} ${this.role}-${this.mode}`
+        } else {
+          return ''
+        }
+      },
+      // button-strong
+      strongClass () {
+        return !!this.isStrong ? `${this.role}-strong-${this.mode}` : ''
+      }
+    },
+    methods: {
+      _click ($event) {
+        this.$emit('click', $event)
+      },
+
+      isIconComponent(slot){
+        return !!slot.componentOptions &amp;&amp; !!slot.componentOptions.tag &amp;&amp; slot.componentOptions.tag.toLowerCase() === 'icon'
+      },
+
+      getSlotLength(slots){
+        return (!!slots &amp;&amp; !!slots.default) ? slots.default.length : 0;
+      },
+    },
+    mounted () {
+      let _firstSlot = null;
+      let _lastSlot = null;
+      let _length = this.getSlotLength(this.$slots)
+
+      if (_length > 0 &amp;&amp; this.role !== 'bar-button') {
+        _firstSlot = this.$slots.default[0];
+        _lastSlot = this.$slots.default[_length - 1];
+
+        // icon-only
+        if (_length === 1 &amp;&amp; this.isIconComponent(_firstSlot)) {
+          this.$el.setAttribute('icon-only', '')
+        }
+
+        if (_length > 1) {
+          // icon left
+          if (this.isIconComponent(_firstSlot)) {
+            this.$el.setAttribute('icon-left', '')
+          }
+          // icon right
+          if (this.isIconComponent(_lastSlot)) {
+            this.$el.setAttribute('icon-right', '')
+          }
+        }
+      }
+
+      if (!!this.$parent.$el &amp;&amp; this.$parent.$el.className &amp;&amp; this.$parent.$el.className.indexOf('item') > -1) {
+        //	button in items should add class of 'item-button'
+        this.itemClass += 'item-button';
+      }
+
+    }
+  }
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 22 2017 21:00:31 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
