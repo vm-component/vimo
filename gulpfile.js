@@ -11,7 +11,6 @@ const runSequence = require('run-sequence');
 var bs = require("browser-sync");
 var browserSync = bs.create();
 const reload = browserSync.reload;
-let cache = require('gulp-cache');
 let jsdocConfig = require('./jsdocConfig');
 let plumber = require('gulp-plumber');
 
