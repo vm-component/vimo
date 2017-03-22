@@ -1,7 +1,7 @@
 /**
  * Created by Hsiang on 2017/3/22.
  */
-import { ready } from 'vimo/util/dom';
+import { ready } from '../package/util/dom';
 export default {
   ios:{
     settings: {}

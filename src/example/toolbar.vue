@@ -215,7 +215,7 @@
 
 </style>
 <script type="text/ecmascript-6">
-  import { Segment, SegmentButton, Searchbar } from 'vimo/comps'
+//  import { Segment, SegmentButton, Searchbar } from 'vimo/comps'
   export default{
     data(){
       return {
@@ -266,7 +266,7 @@
     activated: function () {
     },
     components: {
-      Segment, SegmentButton, Searchbar
+//      Segment, SegmentButton, Searchbar
     }
   }
 </script>

@@ -5,7 +5,7 @@ import router from './router'
 import Vue from 'vue'
 import App from './App'
 import attachFastClick from 'fastclick'
-import { initVimo } from 'vimo'
+import { initVimo } from '../src/package'
 
 /* eslint-disable no-new */
 

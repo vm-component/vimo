@@ -33,6 +33,7 @@
     }
 </style>
 <script type="text/ecmascript-6">
+//  import { Slides, Slide } from 'vimo/comps'
   export default{
     name: 'name',
     data(){
@@ -68,24 +69,9 @@
     created () {
       const _this = this;
       _this.data = _this.data1
-      // setInterval(function () {
-      //   let i = Math.ceil(Math.random() * 3);
-      //   switch (i) {
-      //     case 1:
-      //       _this.data = _this.data1
-      //       break;
-      //     case 2:
-      //       _this.data = _this.data2
-      //       break;
-      //     case 3:
-      //       _this.data = _this.data3
-      //       break;
-      //   }
-      // }, 3000);
     },
-    mounted () {
-    },
+    mounted () {},
     activated () {},
-    components: {}
+//    components: {Slides, Slide}
   }
 </script>

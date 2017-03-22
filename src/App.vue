@@ -21,6 +21,7 @@
                             <!--delay 表示等待关闭事件-->
                             <Item button :to="{name: 'introduce'}" delay>
                                 介绍
+
                             </Item>
                             <Item button :to="{name: 'howToStart'}" delay>
                                 <span>如何开始</span>
@@ -67,7 +68,7 @@
    * @description
    * 项目描述
    * */
-  import { Menus, List, ListHeader, ItemGroup, Item } from 'vimo/comps'
+  import { Menus, List, ListHeader, ItemGroup, Item } from '../src/package/comps'
   export default {
     name: 'app-root',
     data () {

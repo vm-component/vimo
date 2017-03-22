@@ -6,7 +6,7 @@
 import Vue from 'vue';
 import { setupConfig } from './base/config'
 import { setupPlatform } from './base/platform'
-import { NavContorller } from "./components/nav-controller"
+import { NavContorller } from './components/nav-controller'
 /**
  * @function initVimoPlatform
  * @description

@@ -81,7 +81,7 @@
 </template>
 <style scoped lang="scss"></style>
 <script type="text/ecmascript-6">
-  import { List, ListHeader, Item, Toggle } from 'vimo/comps'
+//  import { List, ListHeader, Item, Toggle } from 'vimo/comps'
   export default{
     name: 'toggle',
     data(){
@@ -109,7 +109,7 @@
     mounted(){},
     activated(){},
     components: {
-      List, ListHeader, Item, Toggle
+//      List, ListHeader, Item, Toggle
     }
   }
 </script>

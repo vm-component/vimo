@@ -29,6 +29,3 @@ export { Card, CardContent, CardHeader, CardTitle } from './components/card'
 // 上拉下拉刷新
 export { InfiniteScroll, InfiniteScrollContent } from './components/infinite-scroll'
 export { Refresher, RefresherContent } from './components/refresher'
-
-
-

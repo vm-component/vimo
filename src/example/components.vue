@@ -192,7 +192,7 @@
   }
 </style>
 <script type="text/ecmascript-6">
-  import { List, ListHeader, ItemGroup, Item } from 'vimo/comps'
+//  import { List, ListHeader, ItemGroup, Item } from 'vimo/comps'
   export default{
     name: 'name',
     data(){
@@ -206,7 +206,7 @@
     mounted: function () {},
     activated: function () {},
     components: {
-      List, ListHeader, ItemGroup, Item
+//      List, ListHeader, ItemGroup, Item
     }
   }
 </script>
