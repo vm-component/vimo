@@ -1,0 +1,35 @@
+
+/* #font{
+  
+  -webkit-transition: -webkit-transform 3s ease-in;
+}
+#font{
+  -webkit-transform:translateY(100px);
+} */
+
+
+
+
+
+
+@keyframes floattop{
+  0%{
+    top:0;
+  }
+  100%{
+    top:-105px;
+  }
+}
+
+
+#font{
+  position: relative;
+  top:126px;
+  color: #fff;
+}
+.float{
+  animation:floattop  1s cubic-bezier(.9,.2,.8,.1) 0.5s; 
+  animation-fill-mode: forwards;
+}
+
+
