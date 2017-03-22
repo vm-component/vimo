@@ -108,55 +108,51 @@ export function setupPlatform (config) {
 }
 
 class Platform {
-
-  /** @private */
-  _versions = {}; // 当前平台的版本信息列表 PlatformVersion
-  _dir; // string 文字方向 ;
-  _lang; // string 文字;
-
-  _qp; //QueryParams [[初始化时]]!!! 的url查询实例 {data:{}};
-
-  _bPlt; //string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
-  _ua; //string userAgent;
-
-  _readyPromise; //Promise<any> Ready的promise;
-  _readyResolve; //any;
-
-  _resizeTm; //any setTimeout 定时过后执行_onResizes中的回调函数;
-  _onResizes = []; //Array<Function> = [] resize时执行的回调列表;
-
-  _bbActions = []; //BackButtonAction[] = [] 后退按钮上注册的回调列表;
-
-  _default; //string 如果rootNode不存则使用默认的配置
-  _platforms = []; // : string[] = []; 当前平台的key 例如: "mobile/ios/mobileweb"
-  _registry; //{[name:string] : PlatformConfig}; platform-registry中的config列表->登记处
-
-  _pW = 0; // Portrait模式的设备Width
-  _pH = 0; // Portrait模式的设备Height
-  _lW = 0; // Landscape模式的设备Width
-  _lH = 0; // Landscape模式的设备Height
-  _isPortrait = null; //boolean = null 横屏还是竖屏 Portrait=竖屏;
-
-  _nt = null; // 记录网络类型
-
-  /** @public */
-  css = {
-    transform: null,
-    transition: null,
-    transitionDuration: null,
-    transitionDelay: null,
-    transitionTimingFn: null,
-    transitionStart: null,
-    transitionEnd: null,
-    transformOrigin: null,
-    animationDelay: null,
-  };
-
   constructor () {
-    const _this = this;
-    _this._readyPromise = new Promise(function (resolve) {
-      _this._readyResolve = resolve;
+    this._readyPromise = new Promise((resolve) => {
+      this._readyResolve = resolve;
     });
+
+    this._versions = {}; // 当前平台的版本信息列表 PlatformVersion
+    this._dir; // string 文字方向 ;
+    this._lang; // string 文字;
+
+    this._qp; // QueryParams [[初始化时]]!!! 的url查询实例 {data:{}};
+
+    this._bPlt; // string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
+    this._ua; // string userAgent;
+
+    this._readyPromise; // Promise<any> Ready的promise;
+    this._readyResolve; // any;
+
+    this._resizeTm; // any setTimeout 定时过后执行_onResizes中的回调函数;
+    this._onResizes = []; // Array<Function> = [] resize时执行的回调列表;
+
+    this._bbActions = []; // BackButtonAction[] = [] 后退按钮上注册的回调列表;
+
+    this._default; // string 如果rootNode不存则使用默认的配置
+    this._platforms = []; // : string[] = []; 当前平台的key 例如: "mobile/ios/mobileweb"
+    this._registry; // {[name:string] : PlatformConfig}; platform-registry中的config列表->登记处
+
+    this._pW = 0; // Portrait模式的设备Width
+    this._pH = 0; // Portrait模式的设备Height
+    this._lW = 0; // Landscape模式的设备Width
+    this._lH = 0; // Landscape模式的设备Height
+    this._isPortrait = null; // boolean = null 横屏还是竖屏 Portrait=竖屏;
+
+    this._nt = null; // 记录网络类型
+
+    this.css = {
+      transform: null,
+      transition: null,
+      transitionDuration: null,
+      transitionDelay: null,
+      transitionTimingFn: null,
+      transitionStart: null,
+      transitionEnd: null,
+      transformOrigin: null,
+      animationDelay: null,
+    };
   }
 
   // Methods
