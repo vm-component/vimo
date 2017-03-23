@@ -22,13 +22,13 @@ $action-sheet-ios-border-color:                         #d6d6da !default;
 $action-sheet-ios-border-radius:                        13px !default;
 
 /// @prop - Padding of the action sheet title
-$action-sheet-ios-title-padding:                        1.5rem !default;
+$action-sheet-ios-title-padding:                        15px !default;
 
 /// @prop - Color of the action sheet title
 $action-sheet-ios-title-color:                          #8f8f8f !default;
 
 /// @prop - Font size of the action sheet title
-$action-sheet-ios-title-font-size:                      1.3rem !default;
+$action-sheet-ios-title-font-size:                      13px !default;
 
 /// @prop - Font weight of the action sheet title
 $action-sheet-ios-title-font-weight:                    400 !default;
@@ -37,7 +37,7 @@ $action-sheet-ios-title-font-weight:                    400 !default;
 $action-sheet-ios-title-border-radius:                  0 !default;
 
 /// @prop - Minimum height of the action sheet button
-$action-sheet-ios-button-min-height:                    5.6rem !default;
+$action-sheet-ios-button-min-height:                    56px !default;
 
 /// @prop - Padding of the action sheet button
 $action-sheet-ios-button-padding:                       18px !default;
@@ -46,7 +46,7 @@ $action-sheet-ios-button-padding:                       18px !default;
 $action-sheet-ios-button-text-color:                    #007aff !default;
 
 /// @prop - Font size of the action sheet button
-$action-sheet-ios-button-font-size:                     2rem !default;
+$action-sheet-ios-button-font-size:                     20px !default;
 
 /// @prop - Border width of the action sheet button
 $action-sheet-ios-button-border-width:                  $hairlines-width !default;

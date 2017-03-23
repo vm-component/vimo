@@ -46,13 +46,13 @@ $card-ios-box-shadow:                  0 1px 2px $card-ios-box-shadow-color !def
 $card-ios-border-radius:               2px !default;
 
 /// @prop - Font size of the card
-$card-ios-font-size:                   1.4rem !default;
+$card-ios-font-size:                   14px !default;
 
 /// @prop - Color of the card text
 $card-ios-text-color:                  #666 !default;
 
 /// @prop - Font size of the card title
-$card-ios-title-font-size:             1.8rem !default;
+$card-ios-title-font-size:             18px !default;
 
 /// @prop - Padding of the card title
 $card-ios-title-padding:               8px 0 8px 0 !default;
@@ -64,7 +64,7 @@ $card-ios-title-margin:                2px 0 2px !default;
 $card-ios-title-text-color:            #222 !default;
 
 /// @prop - Font size of the card header
-$card-ios-header-font-size:            1.6rem !default;
+$card-ios-header-font-size:            16px !default;
 
 /// @prop - Font weight of the card header
 $card-ios-header-font-weight:          500 !default;
@@ -123,7 +123,7 @@ $card-ios-header-color:                #333 !default;
 }
 
 .card .note-ios {
-  font-size: 1.3rem;
+  font-size: 13px;
 }
 
 .card-title-ios {
@@ -140,14 +140,14 @@ $card-ios-header-color:                #333 !default;
 .card-ios h1 {
   margin: 0 0 2px;
 
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: normal;
 }
 
 .card-ios h2 {
   margin: 2px 0;
 
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: normal;
 }
 
@@ -157,14 +157,14 @@ $card-ios-header-color:                #333 !default;
 .card-ios h6 {
   margin: 2px 0;
 
-  font-size: 1.4rem;
+  font-size: 14px;
   font-weight: normal;
 }
 
 .card-ios p {
   margin: 0 0 2px;
 
-  font-size: 1.4rem;
+  font-size: 14px;
   color: $card-ios-text-color;
 }
 

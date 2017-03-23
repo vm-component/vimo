@@ -4,13 +4,13 @@
 // --------------------------------------------------
 
 /// @prop - Font size of the item text
-$item-ios-body-text-font-size:            1.7rem !default;
+$item-ios-body-text-font-size:            17px !default;
 
 /// @prop - Margin of the item paragraph
 $item-ios-paragraph-margin:               0 0 2px !default;
 
 /// @prop - Font size of the item paragraph
-$item-ios-paragraph-font-size:            1.4rem !default;
+$item-ios-paragraph-font-size:            14px !default;
 
 /// @prop - Color of the item paragraph
 $item-ios-paragraph-text-color:           #8e9093 !default;
@@ -67,14 +67,14 @@ $item-ios-sliding-content-background:     #eee !default;
 .item-ios h1 {
   margin: 0 0 2px;
 
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: normal;
 }
 
 .item-ios h2 {
   margin: 0 0 2px;
 
-  font-size: 1.7rem;
+  font-size: 17px;
   font-weight: normal;
 }
 
@@ -84,7 +84,7 @@ $item-ios-sliding-content-background:     #eee !default;
 .item-ios h6 {
   margin: 0 0 3px;
 
-  font-size: 1.4rem;
+  font-size: 14px;
   font-weight: normal;
   line-height: normal;
 }
@@ -139,7 +139,7 @@ $item-ios-sliding-content-background:     #eee !default;
 
   height: 24px;
 
-  font-size: 1.3rem;
+  font-size: 13px;
 }
 
 .item-ios .item-button[icon-only] .ion-icon,

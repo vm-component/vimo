@@ -11,7 +11,7 @@ $label-md-text-color-focused:         color($colors-md, primary) !default;
 
 /// @prop - Margin of the label
 $label-md-margin:                     $item-md-padding-top ($item-md-padding-right / 2) $item-md-padding-bottom 0 !default;
-$item-md-body-text-font-size:         1.2rem;
+$item-md-body-text-font-size:         12px;
 $item-md-body-text-line-height:       100%;
 
 // Material Design Default Label
@@ -40,7 +40,7 @@ $item-md-body-text-line-height:       100%;
 // --------------------------------------------------
 
 .label-md[stacked] {
-  font-size: 1.2rem;
+  font-size: 12px;
 }
 
 .label-md[floating] {

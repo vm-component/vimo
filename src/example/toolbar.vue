@@ -74,6 +74,7 @@
                     <Button icon-right role="bar-button" color="secondary" type="solid">
                         Help
 
+
                         <Icon class="icon" name="help-circle"></Icon>
                     </Button>
                 </Buttons>
@@ -94,6 +95,7 @@
                 <Buttons end slot="button">
                     <Button icon-right role="bar-button" color="secondary" type="outline">
                         Help
+
 
                         <Icon class="icon" name="help-circle"></Icon>
                     </Button>
@@ -215,7 +217,8 @@
 
 </style>
 <script type="text/ecmascript-6">
-//  import { Segment, SegmentButton, Searchbar } from 'vimo/comps'
+  import { Segment, SegmentButton } from 'vimo/components/segment'
+  import { Searchbar } from 'vimo/components/searchbar'
   export default{
     data(){
       return {
@@ -266,7 +269,7 @@
     activated: function () {
     },
     components: {
-//      Segment, SegmentButton, Searchbar
+      Segment, SegmentButton, Searchbar
     }
   }
 </script>

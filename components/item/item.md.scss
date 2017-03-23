@@ -4,7 +4,7 @@
 // --------------------------------------------------
 
 /// @prop - Font size of the item text
-$item-md-body-text-font-size:        1.4rem !default;
+$item-md-body-text-font-size:        14px !default;
 
 /// @prop - line height of the item text
 $item-md-body-text-line-height:      1.5 !default;
@@ -13,7 +13,7 @@ $item-md-body-text-line-height:      1.5 !default;
 $item-md-paragraph-text-color:       #666 !default;
 
 /// @prop - Font size of the item
-$item-md-font-size:                  1.6rem !default;
+$item-md-font-size:                  16px !default;
 
 /// @prop - Size of the avatar in the item
 $item-md-avatar-size:                40px !default;
@@ -76,14 +76,14 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 .item-md h1 {
   margin: 0 0 2px;
 
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: normal;
 }
 
 .item-md h2 {
   margin: 2px 0;
 
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: normal;
 }
 
@@ -93,7 +93,7 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 .item-md h6 {
   margin: 2px 0;
 
-  font-size: 1.4rem;
+  font-size: 14px;
   font-weight: normal;
   line-height: normal;
 }
@@ -103,7 +103,7 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 
   margin: 0 0 2px;
 
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: normal;
   text-overflow: inherit;
   color: $item-md-paragraph-text-color;
@@ -155,7 +155,7 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 
   height: 25px;
 
-  font-size: 1.2rem;
+  font-size: 12px;
 }
 
 .item-md .item-button[icon-only] .ion-icon,

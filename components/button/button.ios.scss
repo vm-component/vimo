@@ -4,7 +4,7 @@
 // --------------------------------------------------
 
 /// @prop - Margin of the button
-$button-ios-margin:                                 .4rem .2rem !default;
+$button-ios-margin:                                 4px 2px !default;
 
 /// @prop - Padding of the button
 $button-ios-padding:                                0 1em !default;
@@ -16,7 +16,7 @@ $button-ios-height:                                 2.8em !default;
 $button-ios-border-radius:                          4px !default;
 
 /// @prop - Font size of the button text
-$button-ios-font-size:                              1.6rem !default;
+$button-ios-font-size:                              16px !default;
 
 /// @prop - Background color of the button
 $button-ios-background-color:                       color($colors-ios, primary) !default;
@@ -44,7 +44,7 @@ $button-ios-large-padding:                          0 1em !default;
 $button-ios-large-height:                           2.8em !default;
 
 /// @prop - Font size of the large button
-$button-ios-large-font-size:                        2rem !default;
+$button-ios-large-font-size:                        20px !default;
 
 
 // iOS Small Button
@@ -57,7 +57,7 @@ $button-ios-small-padding:                          0 .9em !default;
 $button-ios-small-height:                           2.1em !default;
 
 /// @prop - Font size of the small button
-$button-ios-small-font-size:                        1.3rem !default;
+$button-ios-small-font-size:                        13px !default;
 
 /// @prop - Font size of an icon in the small button
 $button-ios-small-icon-font-size:                   1.3em !default;

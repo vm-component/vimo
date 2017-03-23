@@ -7,6 +7,14 @@
     </Header>
 
     <Content :fullscreen="fullscreenVal" padding ref="content">
+      <h1>这个是 h1 标签</h1>
+      <h2>这个是 h2 标签</h2>
+      <h3>这个是 h3 标签</h3>
+      <h4>这个是 h4 标签</h4>
+      <h5>这个是 h5 标签</h5>
+      <p>这个是 p 标签</p>
+      <span>这个是 span 标签</span>
+
       <!--<h3 slot="fixedTop" text-center>这里插播一条广告</h3>-->
       <!--<h3 slot="fixedBottom" text-center>可以把我当成歌词</h3>-->
 

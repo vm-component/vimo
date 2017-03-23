@@ -7,10 +7,10 @@
 $tabs-md-tab-padding:                         0 !default;
 
 /// @prop - Minimum height of the tab button
-$tabs-md-tab-min-height:                      5.6rem !default;
+$tabs-md-tab-min-height:                      56px !default;
 
 /// @prop - Font size of the inactive tab button text
-$tabs-md-tab-font-size:                       1.2rem !default;
+$tabs-md-tab-font-size:                       12px !default;
 
 /// @prop - Font weight of the tab button text
 $tabs-md-tab-font-weight:                     normal !default;
@@ -34,7 +34,7 @@ $tabs-md-tab-icon-color-active:               $tabs-md-tab-color-active !default
 $tabs-md-tab-padding-active:                  0 !default;
 
 /// @prop - Font size of the active tab button text
-$tabs-md-tab-font-size-active:                1.4rem !default;
+$tabs-md-tab-font-size-active:                14px !default;
 
 /// @prop - Margin on the tab button text
 $tabs-md-tab-text-margin:                     0 !default;
@@ -70,7 +70,7 @@ $tabs-md-tab-icon-transform-origin:           50% 150% !default;
 $tabs-md-tab-icon-transition:                 transform .3s ease-in-out !default;
 
 /// @prop - Size of the tab button icon
-$tabs-md-tab-icon-size:                       2.4rem !default;
+$tabs-md-tab-icon-size:                       24px !default;
 
 
 .tabs-md .tabbar {

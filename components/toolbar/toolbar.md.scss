@@ -16,13 +16,13 @@ $toolbar-order-md: (
 );
 
 /// @prop - Font size of the toolbar title
-$toolbar-md-title-font-size:             2rem !default;
+$toolbar-md-title-font-size:             20px !default;
 
 /// @prop - Text color of the toolbar title
 $toolbar-md-title-text-color:            color-contrast($colors-md, $toolbar-md-background, md) !default;
 
 /// @prop - Font size of the toolbar button
-$toolbar-md-button-font-size:            1.4rem !default;
+$toolbar-md-button-font-size:            14px !default;
 
 /// @prop - Text color of the toolbar button
 $toolbar-md-button-color:                $toolbar-md-title-text-color !default;
@@ -181,9 +181,9 @@ $navbar-md-height:                       $toolbar-md-height !default;
 
 .bar-button-md {
   margin-top: 0;
-  margin-right: .2rem;
+  margin-right: 2px;
   margin-bottom: 0;
-  margin-left: .2rem;
+  margin-left: 2px;
   padding: 0 5px;
 
   height: 32px;
@@ -344,7 +344,7 @@ $navbar-md-height:                       $toolbar-md-height !default;
   margin: 0;
   padding: 0 6px;
 
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: normal;
   text-align: left;
 }
@@ -365,7 +365,7 @@ $navbar-md-height:                       $toolbar-md-height !default;
 .bar-button-menutoggle-md .ion-icon {
   padding: 0 6px;
 
-  font-size: 2.4rem;
+  font-size: 24px;
 }
 
 .bar-button-menutoggle-md[end],

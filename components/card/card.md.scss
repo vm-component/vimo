@@ -35,10 +35,10 @@ $card-md-padding-media-top:           10px !default;
 $card-md-padding-media-bottom:        10px !default;
 
 /// @prop - Size of the card avatar
-$card-md-avatar-size:                 4rem !default;
+$card-md-avatar-size:                 40px !default;
 
 /// @prop - Size of the card thumbnail
-$card-md-thumbnail-size:              8rem !default;
+$card-md-thumbnail-size:              80px !default;
 
 /// @prop - Background color of the card
 $card-md-background-color:            $list-md-background-color !default;
@@ -51,7 +51,7 @@ $card-md-border-radius:               2px !default;
 
 
 /// @prop - Font size of the card
-$card-md-font-size:                   1.4rem !default;
+$card-md-font-size:                   14px !default;
 
 /// @prop - Line height of the card
 $card-md-line-height:                 1.5 !default;
@@ -60,7 +60,7 @@ $card-md-line-height:                 1.5 !default;
 $card-md-text-color:                  #222 !default;
 
 /// @prop - Font size of the card title
-$card-md-title-font-size:             2.4rem !default;
+$card-md-title-font-size:             24px !default;
 
 /// @prop - Padding of the card title
 $card-md-title-padding:               8px 0 8px 0 !default;
@@ -72,7 +72,7 @@ $card-md-title-margin:                2px 0 2px !default;
 $card-md-title-text-color:            #222 !default;
 
 /// @prop - Font size of the card header
-$card-md-header-font-size:            1.6rem !default;
+$card-md-header-font-size:            16px !default;
 
 /// @prop - Padding of the card header
 $card-md-header-padding:              16px !default;
@@ -127,7 +127,7 @@ $card-md-header-color:                #222 !default;
 }
 
 .card .note-md {
-  font-size: 1.3rem;
+  font-size: 13px;
 }
 
 .card-title-md {
@@ -144,7 +144,7 @@ $card-md-header-color:                #222 !default;
 .card-md h1 {
   margin: 0 0 2px;
 
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: normal;
   color: $card-md-text-color;
 }
@@ -152,7 +152,7 @@ $card-md-header-color:                #222 !default;
 .card-md h2 {
   margin: 2px 0;
 
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: normal;
   color: $card-md-text-color;
 }
@@ -163,7 +163,7 @@ $card-md-header-color:                #222 !default;
 .card-md h6 {
   margin: 2px 0;
 
-  font-size: 1.4rem;
+  font-size: 14px;
   font-weight: normal;
   color: $card-md-text-color;
 }
@@ -171,7 +171,7 @@ $card-md-header-color:                #222 !default;
 .card-md p {
   margin: 0 0 2px;
 
-  font-size: 1.4rem;
+  font-size: 14px;
   font-weight: normal;
   line-height: 1.5;
   color: $card-md-text-color;
