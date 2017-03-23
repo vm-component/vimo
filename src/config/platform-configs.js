@@ -1,35 +1,32 @@
 /**
  * Created by Hsiang on 2017/3/22.
  */
-import { ready } from '../package/util/dom';
 export default {
-  ios:{
+  ios: {
     settings: {}
   },
-  android:{
+  android: {
     settings: {}
   },
-  wechat:{
+  wechat: {
     settings: {
       hideNavBar: true,
       hideNavBar2: true,
       hideNavBar3: true,
     },
-    initialize(p){
+    initialize (p) {
       // 在ready之前进行处理
       p.prepareReady = function () {
         let _userAgent = window.navigator.userAgent.toString().trim();
         let val;
-        //alert('Wechat Init: from platform-registry.js')
+        // alert('Wechat Init: from platform-registry.js')
         /**
          * 执行默认的domReady, 如果有定制化的初始化任务,
          * 手动执行p.triggerReady
          *
          * @example
          *
-         *  ready(function () {
-         *      p.triggerReady('Wechat Init Success!');
-         *  });
+         * p.triggerReady('Wechat Init Success!');
          * */
 
         /**
@@ -52,19 +49,16 @@ export default {
         }
 
         // 触发外层的ready
-        ready(function () {
-          // 触发
-          p.triggerReady('Wechat Init Success!');
-        })
+        p.triggerReady('Wechat Init Success!');
       }
     },
   },
-  alipay:{
+  alipay: {
     settings: {
       hideNavBar: true,
     },
     initialize(p){
-      //alert('Alipay Init: from platform-registry.js');
+      // alert('Alipay Init: from platform-registry.js');
       let _userAgent = window.navigator.userAgent.toString().trim();
       let val;
 
@@ -89,14 +83,12 @@ export default {
       }
 
       // 触发外层的ready
-      ready(function () {
-        p.triggerReady('alipay Init Success!');
-      })
+      p.triggerReady('alipay Init Success!');
     },
   },
-  dingtalk:{
+  dingtalk: {
     initialize(p){
-      //alert('Dingtalk Init: from platform-registry.js');
+      // alert('Dingtalk Init: from platform-registry.js');
       let _userAgent = window.navigator.userAgent.toString().trim();
       let val;
 
@@ -118,17 +110,15 @@ export default {
       }
 
       // 触发外层的ready
-      ready(() => {
-        p.triggerReady('dingtalk Init Success!');
-      })
+      p.triggerReady('dingtalk Init Success!');
     },
     settings: {
       hideNavBar: true,
     },
   },
-  qq:{
-    initialize(p){
-      //alert('QQ Init: from platform-registry.js');
+  qq: {
+    initialize (p) {
+      // alert('QQ Init: from platform-registry.js');
       let _userAgent = window.navigator.userAgent.toString().trim();
       let val;
 
@@ -141,19 +131,16 @@ export default {
         p.setNetType(val[1].toString().toLowerCase());
       }
 
-      // DOMReady后触发外层的ready
-      ready(() => {
-        p.triggerReady('qq Init Success!');
-      })
-
+      // 触发外层的ready
+      p.triggerReady('qq Init Success!');
     },
     settings: {
       hideNavBar: true,
     },
   },
-  dtdream:{
+  dtdream: {
     initialize(p){
-      //alert('QQ Init: from platform-registry.js');
+      // alert('QQ Init: from platform-registry.js');
       let _userAgent = window.navigator.userAgent.toString().trim();
       let val;
 
@@ -166,11 +153,8 @@ export default {
         p.setNetType(val[1].toString().toLowerCase());
       }
 
-      // DOMReady后触发外层的ready
-      ready(() => {
-        p.triggerReady('qq Init Success!');
-      })
-
+      // 触发外层的ready
+      p.triggerReady('qq Init Success!');
     },
     settings: {
       hideNavBar: true,

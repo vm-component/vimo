@@ -23,6 +23,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      'vimo': '../',
     }
   },
   module: {
@@ -44,7 +45,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('index.js'),resolve('components'),resolve('util'),resolve('base'),resolve('src'), resolve('test')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

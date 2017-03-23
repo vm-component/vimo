@@ -7,5 +7,5 @@
  *
  */
 export default {
-  domain: '', // http://gamma-member.tesir.top
+  domain: '' // http://gamma-member.tesir.top
 };

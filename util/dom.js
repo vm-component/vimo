@@ -6,7 +6,8 @@
 
 const win = window;
 const doc = document.documentElement;
-let dimensionCache = {}; // any
+window.dimensionCache = {}; // any
+
 // RequestAnimationFrame的兼容腻子(Android 4.3 and below)
 /*! @author Paul Irish */
 /*! @source https://gist.github.com/paulirish/1579671 */
@@ -114,7 +115,7 @@ export function transitionEnd (el, callback) {
   const unRegs = [];
 
   function unregister () {
-    unRegs.forEach(unReg => {
+    unRegs.forEach((unReg) => {
       unReg();
     });
   }

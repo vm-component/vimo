@@ -1,9 +1,7 @@
 <template>
     <App id="app">
-
         <!--menu menu-->
         <Menus id="menu" side="left" type="push">
-            <!--<Menu [content]="content" id="menu1">-->
             <Page>
                 <Header>
                     <Toolbar>
@@ -20,8 +18,7 @@
                         <ItemGroup>
                             <!--delay 表示等待关闭事件-->
                             <Item button :to="{name: 'introduce'}" delay>
-                                介绍
-
+                                <span>介绍</span>
                             </Item>
                             <Item button :to="{name: 'howToStart'}" delay>
                                 <span>如何开始</span>
@@ -68,7 +65,9 @@
    * @description
    * 项目描述
    * */
-  import { Menus, List, ListHeader, ItemGroup, Item } from '../src/package/comps'
+  import { Menus } from 'vimo/components/menus'
+  import { List } from 'vimo/components/list'
+  import { ListHeader, ItemGroup, Item } from 'vimo/components/item'
   export default {
     name: 'app-root',
     data () {
@@ -77,7 +76,7 @@
     methods: {
       openOtherOne(){
         this.$menu.open('author')
-      },
+      }
     },
     components: {
       Menus, List, ListHeader, ItemGroup, Item

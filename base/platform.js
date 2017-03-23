@@ -894,12 +894,7 @@ class Platform {
 }
 /***@private*/
 class PlatformNode {
-  c; // platform-registry配置中的平台设置;
-  parent; // 父节点
-  child; // 子节点
-  name; // 当前节点的名称;
-  isEngine; //boolean; 是否是在壳子中
-  depth; // number 当前节点的深度;
+
   /**
    * 读取c中的配置信息
    * @param {PlatformConfig} registry
@@ -907,9 +902,15 @@ class PlatformNode {
    * */
   constructor (registry, platformName) {
     this.registry = registry;
-    this.c = registry[platformName];
+    this.c = registry[platformName]; // platform-registry配置中的平台设置;
     this.name = platformName;
     this.isEngine = this.c && this.c.isEngine;
+
+    this.parent; // 父节点
+    this.child; // 子节点
+    this.name; // 当前节点的名称;
+    this.isEngine; // boolean; 是否是在壳子中
+    this.depth; // number 当前节点的深度;
   }
 
   // 获取settings配置
@@ -1023,12 +1024,11 @@ class PlatformNode {
  * => Object {a: "1", b: "3"}
  */
 class QueryParams {
-  data = {};// {[key: string]: any}
-
   /**
    * @param {string} url
    * */
   constructor (url = window.location.href) {
+    this.data = {};// {[key: string]: any}
     this.parseUrl(url);
   }
 
