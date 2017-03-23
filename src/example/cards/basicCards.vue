@@ -20,3 +20,15 @@
     </Content>
   </Page>
 </template>
+<script type="text/ecmascript-6">
+  import { Card, CardContent, CardHeader, CardTitle } from 'vimo/components/card'
+  import { Note } from 'vimo/components/note'
+  import { Item } from 'vimo/components/item'
+  import { Avatar } from 'vimo/components/avatar'
+  import { Label } from 'vimo/components/label'
+  export default{
+    components: {
+      Card, CardContent, CardHeader, CardTitle, Note, Item, Avatar, Label
+    }
+  }
+</script>

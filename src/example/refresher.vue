@@ -23,6 +23,9 @@
   }
 </style>
 <script type="text/ecmascript-6">
+  import { Refresher, RefresherContent } from 'vimo/components/refresher'
+  import { List } from 'vimo/components/list'
+  import { Item } from 'vimo/components/item'
   export default{
     name: 'name',
     data(){
@@ -54,8 +57,8 @@
         this.list.unshift(`item - ${this.i}`)
       }
     },
-    mounted: function () {},
-    activated: function () {},
-    components: {}
+    mounted () {},
+    activated () {},
+    components: {Refresher, RefresherContent, List, Item}
   }
 </script>

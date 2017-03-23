@@ -1,12 +1,12 @@
 <template>
-  <a class="tab-button" ref="routerLink" @click="tabClickHandler($event)"
-     :id="tabId"
-     :class="{'has-title':hasTitle, 'has-icon':hasIcon, 'has-title-only':hasTitleOnly, 'icon-only':hasIconOnly, 'has-badge':hasBadge, 'disable-hover':disHover, 'tab-disabled':!enabled, 'tab-hidden':!show,'tab-active':isActive}">
-    <Icon v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
-    <span v-if="tabTitle" class="tab-button-text">{{tabTitle}}</span>
-    <Badge v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
-    <div class="button-effect"></div>
-  </a>
+    <a class="tab-button" ref="routerLink" @click="tabClickHandler($event)"
+       :id="tabId"
+       :class="{'has-title':hasTitle, 'has-icon':hasIcon, 'has-title-only':hasTitleOnly, 'icon-only':hasIconOnly, 'has-badge':hasBadge, 'disable-hover':disHover, 'tab-disabled':!enabled, 'tab-hidden':!show,'tab-active':isActive}">
+        <Icon v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
+        <span v-if="tabTitle" class="tab-button-text">{{tabTitle}}</span>
+        <Badge v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
+        <div class="button-effect"></div>
+    </a>
 </template>
 <script type="text/ecmascript-6">
   /**
@@ -36,6 +36,7 @@
    *
    * */
   let _tabId = -1;
+  import { Badge } from '../badge'
   export default{
     name: 'Tab',
     props: {
@@ -47,7 +48,7 @@
       // 路由跳转
       to: {
         type: Object,
-        required:true
+        required: true
       },
       // 是否显示
       show: {
@@ -125,5 +126,6 @@
       this.refreshMatchState();
       console.assert(this.$parent.$options._componentTag.toLowerCase() === 'tabs', 'Tab component must combine with Tabs')
     },
+    components: {Badge}
   }
 </script>

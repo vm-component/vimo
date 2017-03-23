@@ -16,6 +16,7 @@
 </template>
 <style scoped lang="scss"></style>
 <script type="text/ecmascript-6">
+  import { Tabs, Tab } from 'vimo/components/tabs'
   export default{
     name: 'name',
     data(){
@@ -28,6 +29,6 @@
     created: function () {},
     mounted: function () {},
     activated: function () {},
-    components: {}
+    components: {Tabs, Tab}
   }
 </script>

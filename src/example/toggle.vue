@@ -10,52 +10,36 @@
         <Content>
             <List>
                 <ListHeader>
-                    普通使用
-
-
+                    <span>普通使用</span>
                 </ListHeader>
                 <Item>
-                    Toggle Normal
-
-
+                    <span>Toggle Normal</span>
                     <Toggle slot="item-right"></Toggle>
                 </Item>
                 <Item>
-                    Red Toggle
-
-
+                    <span>Red Toggle</span>
                     <Toggle slot="item-right" color="danger"></Toggle>
                 </Item>
                 <Item>
-                    Toggle Open
-
-
+                    <span>Toggle Open</span>
                     <Toggle slot="item-right" :checked="true"></Toggle>
                 </Item>
                 <Item>
-                    Toggle Close
-
-
+                    <span>Toggle Close</span>
                     <Toggle slot="item-right" :checked="false"></Toggle>
                 </Item>
                 <Item>
-                    Toggle Disabled
-
-
+                    <span>Toggle Disabled</span>
                     <Toggle slot="item-right" :disabled="true"></Toggle>
                 </Item>
             </List>
 
             <List>
                 <ListHeader>
-                    高级用法
-
-
+                    <span>高级用法</span>
                 </ListHeader>
                 <Item>
-                    下方按钮控制
-
-
+                    <span>下方按钮控制</span>
                     <Toggle v-model="checked" :checked="true" slot="item-right" :disabled="disabled"
                             @onChange="toggleChange"></Toggle>
                 </Item>
@@ -81,7 +65,9 @@
 </template>
 <style scoped lang="scss"></style>
 <script type="text/ecmascript-6">
-//  import { List, ListHeader, Item, Toggle } from 'vimo/comps'
+  import { List } from 'vimo/components/list'
+  import { ListHeader, Item } from 'vimo/components/item'
+  import { Toggle } from 'vimo/components/toggle'
   export default{
     name: 'toggle',
     data(){
@@ -109,7 +95,7 @@
     mounted(){},
     activated(){},
     components: {
-//      List, ListHeader, Item, Toggle
+      List, ListHeader, Item, Toggle
     }
   }
 </script>

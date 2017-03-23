@@ -1,35 +1,36 @@
 <template>
-  <Page>
-    <Header>
-      <Navbar>
-        <Title>Searchbar</Title>
-      </Navbar>
-      <Toolbar>
-        <Searchbar :animated="false"
-                   :debounce="1000"
-                   mode="ios"
-                   color="danger"
-                   v-model="myInput"
-                   :showCancelButton="true"
-                   cancelButtonText="取消"
-                   @ionInput="onInput"
-                   @ionFocus="onFocus"
-                   @ionBlur="onBlur"
-                   @ionCancel="onCancel"
-                   @ionClear="onClear"></Searchbar>
-      </Toolbar>
-    </Header>
-    <Content padding>
-      <h4>Searchbar</h4>
-    </Content>
-  </Page>
+    <Page>
+        <Header>
+            <Navbar>
+                <Title>Searchbar</Title>
+            </Navbar>
+            <Toolbar>
+                <Searchbar :animated="false"
+                           :debounce="1000"
+                           mode="ios"
+                           color="danger"
+                           v-model="myInput"
+                           :showCancelButton="true"
+                           cancelButtonText="取消"
+                           @ionInput="onInput"
+                           @ionFocus="onFocus"
+                           @ionBlur="onBlur"
+                           @ionCancel="onCancel"
+                           @ionClear="onClear"></Searchbar>
+            </Toolbar>
+        </Header>
+        <Content padding>
+            <h4>Searchbar</h4>
+        </Content>
+    </Page>
 </template>
 <style scoped lang="scss">
-  .main {
+    .main {
 
-  }
+    }
 </style>
 <script type="text/ecmascript-6">
+  import { Searchbar } from 'vimo/components/searchbar'
   export default{
     data(){
       return {
@@ -65,5 +66,6 @@
     },
     activated () {
     },
+    components: {Searchbar}
   }
 </script>

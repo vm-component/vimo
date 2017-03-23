@@ -27,6 +27,7 @@
  }
 </style>
 <script type="text/ecmascript-6">
+  import { Tabs, Tab } from 'vimo/components/tabs'
   export default{
     data(){
       return {}
@@ -40,6 +41,6 @@
     },
     activated () {
     },
-    components: {}
+    components: {Tabs, Tab}
   }
 </script>

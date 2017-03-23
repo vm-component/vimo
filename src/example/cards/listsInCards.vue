@@ -13,32 +13,32 @@
 
         <List>
           <Item button>
-            <Icon name="fa-user" slot="item-left"></Icon>
+            <Icon name="person" slot="item-left"></Icon>
             Shopping
           </Item>
 
           <Item button>
-            <Icon name="fa-hospital-o" slot="item-left"></Icon>
+            <Icon name="calculator" slot="item-left"></Icon>
             Hospital
           </Item>
 
           <Item button>
-            <Icon name="fa-glass" slot="item-left"></Icon>
+            <Icon name="camera" slot="item-left"></Icon>
             Cafe
           </Item>
 
           <Item button>
-            <Icon name="fa-paw" slot="item-left"></Icon>
+            <Icon name="paw" slot="item-left"></Icon>
             Dog Park
           </Item>
 
           <Item button>
-            <Icon name="fa-beer" slot="item-left"></Icon>
+            <Icon name="beer" slot="item-left"></Icon>
             Pub
           </Item>
 
           <Item button>
-            <Icon name="fa-rocket" slot="item-left"></Icon>
+            <Icon name="easel" slot="item-left"></Icon>
             Space
           </Item>
 
@@ -47,3 +47,15 @@
     </Content>
   </Page>
 </template>
+<script type="text/ecmascript-6">
+  import { Card, CardContent, CardHeader, CardTitle } from 'vimo/components/card'
+  import { Note } from 'vimo/components/note'
+  import { Item } from 'vimo/components/item'
+  import { Avatar } from 'vimo/components/avatar'
+  import { Label } from 'vimo/components/label'
+  export default{
+    components: {
+      Card, CardContent, CardHeader, CardTitle, Note, Item, Avatar, Label
+    }
+  }
+</script>
