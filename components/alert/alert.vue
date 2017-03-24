@@ -138,6 +138,7 @@
    *
    *
    */
+  import { BackdropComponent } from '../backdrop'
   export default{
     name: 'Alert',
     data(){
@@ -468,6 +469,9 @@
       //   this.buttons.push(button);
       // },
 
+    },
+    components: {
+      'Backdrop': BackdropComponent
     }
   }
 </script>

@@ -1,5 +1,7 @@
 <template>
     <div class="ion-modal">
+        <Backdrop :enableBackdropDismiss="false"
+                  :isActive="isActive"></Backdrop>
         <transition
                 :name="transitionClass"
                 v-on:before-enter="_beforeEnter"
@@ -19,6 +21,7 @@
     @import "./modal.md";
 </style>
 <script type="text/ecmascript-6">
+  import { BackdropComponent } from '../backdrop'
   export default{
     name: 'Modal',
     data(){
@@ -65,28 +68,29 @@
        * 开启关闭值操作当前的组件
        * */
       _present(){
-        const _this = this;
-        _this.isActive = true;
-        _this.$backdrop.present();
+        const _this = this
+        _this.isActive = true
         return new Promise((resolve) => {this.presentCallback = resolve})
       },
       _dismiss(){
-        this.isActive = false;
-        this.$backdrop.dismiss();
+        this.isActive = false
         return new Promise((resolve) => {this.dismissCallback = resolve})
       },
     },
     mounted(){
-      console.debug('modal mounted')
-      console.debug(this.position)
+//      console.debug('modal mounted')
+//      console.debug(this.position)
     },
     beforeUpdate(){
-      console.debug('modal beforeUpdate')
-      console.debug(this.position)
+//      console.debug('modal beforeUpdate')
+//      console.debug(this.position)
     },
     updated(){
-      console.debug('modal updated')
-      console.debug(this.position)
+//      console.debug('modal updated')
+//      console.debug(this.position)
+    },
+    components: {
+      'Backdrop': BackdropComponent
     }
   }
 </script>

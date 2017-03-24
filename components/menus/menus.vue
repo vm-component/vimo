@@ -194,9 +194,9 @@
     * })
    */
 
-  import { firstUpperCase } from '../../util/util';
-  import { recordMenuInstance } from './menus';
-
+  import { firstUpperCase } from '../../util/util'
+  import { recordMenuInstance } from './menus'
+  import { BackdropComponent } from '../backdrop'
   export default{
     name: 'Menus',
     data(){
@@ -303,6 +303,8 @@
       // 记录当前实例
       recordMenuInstance(this);
     },
-    mounted(){}
+    components: {
+      'Backdrop': BackdropComponent
+    }
   }
 </script>

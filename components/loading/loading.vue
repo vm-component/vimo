@@ -52,6 +52,7 @@
    *
    * */
   import { registerListener } from '../../util/dom'
+  import { BackdropComponent } from '../backdrop'
   export default{
     name: 'Loading',
     data(){
@@ -154,6 +155,9 @@
     created(){
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+    },
+    components: {
+      'Backdrop': BackdropComponent
     }
   }
 </script>

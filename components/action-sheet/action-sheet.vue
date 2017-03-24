@@ -111,6 +111,7 @@
    * 使用实例模式的话，props和data无区别。
    * */
   import { registerListener } from '../../util/dom'
+  import { BackdropComponent } from '../backdrop'
   export default{
     name: 'ActionSheet',
     data(){
@@ -347,9 +348,9 @@
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
     },
-//    components: {
-//      Button
-//    }
+    components: {
+      'Backdrop': BackdropComponent
+    }
   }
 </script>
 <style lang="scss">

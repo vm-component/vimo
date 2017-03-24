@@ -38,7 +38,8 @@
 
         // component state
         isActive: false, // open state
-        //prmiseCallback
+
+        // prmiseCallback
         presentCallback: null,
         dismissCallback: null,
         timer: null, // timer
