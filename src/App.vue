@@ -1,7 +1,7 @@
 <template>
     <App id="app">
         <!--menu menu-->
-        <Menus id="menu" side="left" type="push">
+        <Menus id="menu" side="left" type="reveal">
             <Page>
                 <Header>
                     <Toolbar>
@@ -34,7 +34,6 @@
         </Menus>
         <!--menu author-->
         <Menus id="author" side="right" type="overlay">
-            <!--<Menu [content]="content" id="menu1">-->
             <Page>
                 <Header>
                     <Toolbar>
