@@ -5,28 +5,24 @@ import router from './router'
 import Vue from 'vue'
 import App from './App'
 import attachFastClick from 'fastclick'
-import { initVimo } from 'vimo'
+import vimo from 'vimo'
+
+import ActionSheet from 'vimo/components/action-sheet'
+import { Loading } from 'vimo/components/loading'
+import { Alert } from 'vimo/components/alert'
+import { Toast } from 'vimo/components/toast'
+import { Modal } from 'vimo/components/modal'
+import { Icon } from 'vimo/components/icon'
+import { BackdropComponent, BackdropInstance } from 'vimo/components/backdrop'
 
 /* eslint-disable no-new */
 new attachFastClick(document.body)
 // Vue.config.productionTip = false;
 // 平台基础安装
-initVimo(APP_CONFIGS, PLATFORM_CONFIGS, function (data) {
-  console.debug('****  Platform ready info: ' + data + '  ****')
+Vue.use(vimo, {
+  custConf: APP_CONFIGS,
+  pltConf: PLATFORM_CONFIGS,
 })
-
-// backdrop
-let comp = require('vimo/components/backdrop')
-let BackdropComponent = comp.BackdropComponent
-let BackdropInstance = comp.BackdropInstance
-// icon
-let Icon = (require('vimo/components/icon')).Icon
-// 弹出层
-let ActionSheet = (require('vimo/components/action-sheet')).ActionSheet
-let Loading = (require('vimo/components/loading')).Loading
-let Alert = (require('vimo/components/alert')).Alert
-let Toast = (require('vimo/components/toast')).Toast
-let Modal = (require('vimo/components/modal')).Modal
 
 Vue.component(BackdropComponent.name, BackdropComponent)
 Vue.component(Icon.name, Icon)

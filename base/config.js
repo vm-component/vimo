@@ -37,7 +37,7 @@ const isArray = Array.isArray;
 // 通过url配置App的前后缀, 例如htttp://xx.xx.com?vmMode=ios
 const URL_CONFIG_PREFIX = 'vm';
 
-export function setupConfig (config, plt) {
+export function setupConfig (config = {}, plt = {}) {
   if (!!window['VM'] && !!window['VM']['config']) {
     return window['VM']['config']
   } else {

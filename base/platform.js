@@ -59,7 +59,7 @@ import { defaults } from '../util/util'
 /**
  * @param {object} config - 用户在外面定义的平台配置, 需要和默认配置整合
  * */
-export function setupPlatform (config) {
+export function setupPlatform (config = {}) {
   // 保持单例对象
   if (!!window['VM'] && !!window['VM']['platform']) {
     return window['VM']['platform']

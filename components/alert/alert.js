@@ -49,7 +49,7 @@ function AlertFactory (options) {
   })
 }
 
-export function Alert(options) {
+export default function (options) {
   let _instance = AlertFactory(options);
   // 自动开启
   _instance.present();

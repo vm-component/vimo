@@ -45,7 +45,7 @@ function ActionSheetFactory (options) {
   })
 }
 
-export function ActionSheet(options) {
+export default function (options) {
   let _instance = ActionSheetFactory(options);
   // 自动开启
   _instance.present();
