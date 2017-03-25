@@ -88,25 +88,25 @@
         let _alert = _this.$alert({
           title: 'ThreeBtn',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
-          message: '收到这个通知的人希望你今天能搞定这个alert组件',
+          message: '<span style="color:red">收到这个通知的人希望你今天能搞定这个alert组件</span>',
           cssClass: 'alertCssOuterMain  ',
           enableBackdropDismiss: false,
           //buttons:['1','2','3']
           buttons: [
             {
-              text: 'Button1',
+              text: 'Button1_不清楚',
               role: '',
               handler: (value) => {
               }
             },
             {
-              text: '取消',
+              text: 'Button2_取消',
               role: 'cancel',
               handler: (value) => {
               }
             },
             {
-              text: '确定',
+              text: 'Button3_确定',
               role: '',
               handler: (value) => {
                 _alert.dismiss().then(function (data) {
