@@ -7,7 +7,7 @@ import App from './App'
 import attachFastClick from 'fastclick'
 import vimo from 'vimo'
 
-import ActionSheet from 'vimo/components/action-sheet'
+import { ActionSheet } from 'vimo/components/action-sheet'
 import { Loading } from 'vimo/components/loading'
 import { Alert } from 'vimo/components/alert'
 import { Toast } from 'vimo/components/toast'

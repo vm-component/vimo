@@ -18,7 +18,7 @@ import { Navbar } from './components/navbar'
 import { Toolbar, ToolbarTitle, ToolbarButtons } from './components/toolbar'
 
 export default {
-  version: '0.0.5',
+  version: '0.1.0',
   installed: false,
   install (Vue, options = {}) {
 

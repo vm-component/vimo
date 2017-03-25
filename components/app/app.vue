@@ -43,8 +43,8 @@
    *
    * @property {String} mode - 模式
    * */
-  import Vue from 'vue';
-  import { ClickBlock } from "../../util/click-block"
+//  import Vue from 'vue';
+  import { ClickBlock } from '../../util/click-block'
   import { setElementClass, nativeTimeout, clearNativeTimeout } from '../../util/dom'
 
   let _clickBlock = new ClickBlock();
@@ -181,10 +181,10 @@
        * 设置document.title的值
        * */
       setDocTitle(val){
-        //以下代码可以解决以上问题，不依赖jq
+        // 以下代码可以解决以上问题，不依赖jq
         let _docTitle = document.title;
         if (val !== _docTitle) {
-          //利用iframe的onload事件刷新页面
+          // 利用iframe的onload事件刷新页面
           document.title = val;
           let iframe = document.createElement('iframe');
           iframe.src = '/static/favicon.ico';
@@ -219,16 +219,17 @@
       },
     },
     created(){
+
       /**
        * $app对外方法
        * */
-      Vue.prototype.$app = {};
-      Object.assign(Vue.prototype.$app, {
+      this.__proto__.__proto__.$app = {};
+      Object.assign(this.__proto__.__proto__.$app, {
         _this: this,                               // 当前的app实例this
         setElementClass: this.setElementClass,     // 给App设置class
         setTitle: this.setTitle,                   // 设置App的Title(document级别)
 
-        setEnabled: this.setEnabled,               //设置App当前可点击状态
+        setEnabled: this.setEnabled,               // 设置App当前可点击状态
         isEnabled: this.isEnabled,                 // 判断App当前可点击状态
 
         setDisableScroll: this.setDisableScroll,   // 设置App的禁止滚动(自己定时解锁)
@@ -240,7 +241,6 @@
       this.$eventBus.$emit('app:ready');
       console.assert(!!_clickBlock, '_clickBlock实例不存在, 请检查!');
       this.isClickBlockEnabled = true;
-
     }
   }
 </script>
