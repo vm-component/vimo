@@ -7,10 +7,10 @@
 export function recordMenuInstance (instance) {
   // 如果没安装
   let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(instance))
-  if (!proto.$menu) {
-    proto.$menu = new Menus()
+  if (!proto.$menus) {
+    proto.$menus = new Menus()
   }
-  proto.$menu.record(instance)
+  proto.$menus.record(instance)
 }
 
 class Menus {

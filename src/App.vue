@@ -74,7 +74,7 @@
     },
     methods: {
       openOtherOne(){
-        this.$menu.open('author')
+        this.$menus.open('author')
       }
     },
     components: {

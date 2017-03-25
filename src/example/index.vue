@@ -5,14 +5,14 @@
             <!--menutoggle-->
             <Navbar :hideBackButton="true">
                 <!--menutoggle-->
-                <Button color="dark" @click="$menu.open('menu')" left icon-only role="bar-button" shape="menutoggle"
+                <Button color="dark" @click="$menus.open('menu')" left icon-only role="bar-button" shape="menutoggle"
                         slot="button">
                     <Icon class="icon" name="menu"></Icon>
                 </Button>
 
                 <Title>Welcome</Title>
 
-                <Button color="dark" @click="$menu.open('author')" right icon-only role="bar-button" shape="menutoggle"
+                <Button color="dark" @click="$menus.open('author')" right icon-only role="bar-button" shape="menutoggle"
                         slot="button">
                     <Icon class="icon" name="person"></Icon>
                 </Button>
@@ -51,8 +51,8 @@
 
                     <Row class="vimo__btns">
                         <Button shape="block" type="solid" @click="$router.push({'name':'components'})">组件</Button>
-                        <Button shape="block" type="solid" @click="$menu.open('menu')">打开菜单</Button>
-                        <Button shape="block" type="solid" @click="$menu.open('author')">项目介绍</Button>
+                        <Button shape="block" type="solid" @click="$menus.open('menu')">打开菜单</Button>
+                        <Button shape="block" type="solid" @click="$menus.open('author')">项目介绍</Button>
                     </Row>
 
                 </Grid>
