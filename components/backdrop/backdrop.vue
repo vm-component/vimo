@@ -4,7 +4,7 @@
             v-on:before-enter="_beforeEnter"
             v-on:after-leave="_afterLeave">
         <div class="ion-backdrop"
-             @click="onBdClick"
+             @click="bdClick"
              :class="{'backdrop-no-tappable':!enableBackdropDismiss,'fixed':fixed}"
              :style="{'left':left+'px','top':top+'px'}"
              v-show="isActiveLocal"></div>
@@ -61,24 +61,13 @@
    <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive"></Backdrop>
    * ```
    *
-   * @property {function} bdClick - 背景点击执行的方法
-   * @property {object} position - backdrop偏移位置
-   * @property {string} position.top -
-   * @property {string} position.right -
-   * @property {string} position.bottom -
-   * @property {string} position.left -
    * */
-  import { urlChange } from '../../util/dom'
   export default{
     name: 'Backdrop',
     data(){
       return {
         // 定义本地参数
         isActiveLocal: false, // 控制权由present/dismiss控制
-        bdClickLocal: this.bdClick,
-        positionLocal: this.position,
-        isOpen: false, // 标示当前backdrop的开启状态, isActiveLocal为组件自身维护
-
         count: 0, // 记录开启数目
       }
     },
@@ -127,7 +116,7 @@
     },
     watch: {
       isActive () {
-        this.isOpen = this.isActiveLocal = this.isActive;
+        this.isActiveLocal = this.isActive;
       },
     },
     methods: {
@@ -136,24 +125,10 @@
        * @private
        */
       _beforeEnter (el) {
-        this.$emit('$backdropShown');
-        this.$eventBus.$emit('$backdropShown');
+        this.$emit('onBackdropShown');
       },
       _afterLeave (el) {
-        this.$emit('$backdropHidden');
-        this.$eventBus.$emit('$backdropHidden');
-      },
-      _getPosition(){
-        this.position = {}
-      },
-
-      /**
-       * 当点击backdrop执行的动作
-       * */
-      onBdClick(){
-        if (this.bdClickLocal) {
-          this.bdClickLocal();
-        }
+        this.$emit('onBackdropHidden');
       }
     }
   }

@@ -15,8 +15,6 @@ import { Modal } from 'vimo/components/modal'
 import { Icon } from 'vimo/components/icon'
 import { Backdrop } from 'vimo/components/backdrop'
 
-console.debug('Backdrop')
-console.debug(Backdrop)
 /* eslint-disable no-new */
 new attachFastClick(document.body)
 // Vue.config.productionTip = false;
@@ -27,7 +25,6 @@ Vue.use(vimo, {
 })
 
 Vue.component(Backdrop.name, Backdrop)
-
 Vue.component(Icon.name, Icon)
 Vue.prototype.$actionSheet = ActionSheet
 Vue.prototype.$loading = Loading
