@@ -1,40 +1,43 @@
 <template>
-  <Page>
-    <Header>
-      <Navbar>
-        <Title>Loading</Title>
-      </Navbar>
-    </Header>
-    <Content padding>
-      <p>显示不同的旋转样式, 默认打开Backdrop</p>
-      <p>类型有: ios/ios-small/bubbles/circles/crescent/dots</p>
-      <Button type="block" @click="showDefault()">点击打开默认Loading</Button>
-      <Button type="block" @click="showIos()">显示 ios</Button>
-      <Button type="block" @click="showIosSmall()">显示 ios-small</Button>
-      <Button type="block" @click="showBubbles()">显示 Bubbles</Button>
-      <Button type="block" @click="showCircles()">显示 circles</Button>
-      <Button type="block" @click="showCrescent()">显示 crescent</Button>
-      <Button type="block" @click="showDots()">显示 dots</Button>
+    <Page>
+        <Header>
+            <Navbar>
+                <Title>Loading</Title>
+            </Navbar>
+        </Header>
+        <Content padding>
+            <p>显示不同的旋转样式, 默认打开Backdrop</p>
 
-      <p>不显示Backdrop</p>
-      <Button type="block" @click="showNoBackDrop()">不显示Backdrop</Button>
+            <p>只传入string</p>
+            <Button type="block" @click="stringOnly()">点击打开默认Loading</Button>
+            <p>类型有: ios/ios-small/bubbles/circles/crescent/dots</p>
+            <Button type="block" @click="showDefault()">点击打开默认Loading</Button>
+            <Button type="block" @click="showIos()">显示 ios</Button>
+            <Button type="block" @click="showIosSmall()">显示 ios-small</Button>
+            <Button type="block" @click="showBubbles()">显示 Bubbles</Button>
+            <Button type="block" @click="showCircles()">显示 circles</Button>
+            <Button type="block" @click="showCrescent()">显示 crescent</Button>
+            <Button type="block" @click="showDots()">显示 dots</Button>
+
+            <p>不显示Backdrop</p>
+            <Button type="block" @click="showNoBackDrop()">不显示Backdrop</Button>
 
 
-      <p>在一个loading中定时打开另一个</p>
-      <Button type="block" @click="showOther()">连续开启</Button>
+            <p>在一个loading中定时打开另一个</p>
+            <Button type="block" @click="showOther()">连续开启</Button>
 
-      <p>没有旋转样式(NoSpinner)</p>
-      <Button type="block" @click="showNoSpinner()">showNoSpinner</Button>
+            <p>没有旋转样式(NoSpinner)</p>
+            <Button type="block" @click="showNoSpinner()">showNoSpinner</Button>
 
-      <p>自定义内容</p>
-      <Button type="block" @click="showCusContent()">showCusContent</Button>
-    </Content>
-  </Page>
+            <p>自定义内容</p>
+            <Button type="block" @click="showCusContent()">showCusContent</Button>
+        </Content>
+    </Page>
 </template>
 <style scoped lang="scss">
-  .loadingDemo {
-    padding: 15px;
-  }
+    .loadingDemo {
+        padding: 15px;
+    }
 </style>
 <script type="text/ecmascript-6">
 
@@ -43,6 +46,14 @@
       return {}
     },
     methods: {
+      stringOnly(){
+        this.$loading.present('只传入了String');
+        setTimeout(() => {
+          this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        }, 1000)
+      },
       // 普通的
       showDefault () {
         const _this = this;
