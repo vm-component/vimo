@@ -44,13 +44,13 @@
   import { ClickBlock } from '../../util/click-block'
   import { setElementClass, nativeTimeout, clearNativeTimeout } from '../../util/dom'
 
-  let _clickBlock = new ClickBlock();
+  let _clickBlock = new ClickBlock()
 
   // click_blcok等待时间
-  const CLICK_BLOCK_BUFFER_IN_MILLIS = 64;
+  const CLICK_BLOCK_BUFFER_IN_MILLIS = 64
   // 时间过后回复可点击状态
-  const CLICK_BLOCK_DURATION_IN_MILLIS = 700;
-  const ACTIVE_SCROLLING_TIME = 100;
+  const CLICK_BLOCK_DURATION_IN_MILLIS = 700
+  const ACTIVE_SCROLLING_TIME = 100
 
   export default{
     name: 'App',
@@ -88,7 +88,7 @@
       hoverClass(){
         // touch devices should not use :hover CSS pseudo
         // enable :hover CSS when the "hoverCSS" setting is not false
-        let _isMobile = !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/);
+        let _isMobile = !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)
         return _isMobile ? 'disable-hover' : 'enable-hover'
       }
     },
@@ -100,7 +100,7 @@
        * @param {string} val - 设置document title的值
        */
       setTitle(val){
-        this.title = val;
+        this.title = val
         this.setDocTitle(val)
       },
 
@@ -113,13 +113,13 @@
        * @param {number} duration - isEnabled=false的过期时间 当 `isEnabled` 设置为`false`, 则duration之后，`isEnabled`将自动设为`true`
        * */
       setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
-        this._disTime = (isEnabled ? 0 : Date.now() + duration);
+        this._disTime = (isEnabled ? 0 : Date.now() + duration)
         if (isEnabled) {
           // disable the click block if it's enabled, or the duration is tiny
-          _clickBlock.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS);
+          _clickBlock.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS)
         } else {
           // show the click block for duration + some number
-          _clickBlock.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS);
+          _clickBlock.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS)
         }
       },
 
@@ -131,11 +131,11 @@
        * @param {number} duration - 时间过后则自动解锁
        * */
       setDisableScroll (isScrollDisabled, duration = 0) {
-        this.isScrollDisabled = isScrollDisabled;
+        this.isScrollDisabled = isScrollDisabled
         if (duration > 0 && isScrollDisabled) {
-          clearNativeTimeout(this._scrollDisTime);
+          clearNativeTimeout(this._scrollDisTime)
           this._scrollDisTime = nativeTimeout(() => {
-            this.isScrollDisabled = false;
+            this.isScrollDisabled = false
           }, duration)
         }
       },
@@ -148,15 +148,15 @@
        * @return {boolean}
        */
       isScrolling() {
-        const scrollTime = this._scrollTime;
+        const scrollTime = this._scrollTime
         if (scrollTime === 0) {
-          return false;
+          return false
         }
         if (scrollTime < Date.now()) {
-          this._scrollTime = 0;
-          return false;
+          this._scrollTime = 0
+          return false
         }
-        return true;
+        return true
       },
       /**
        * @function isEnabled
@@ -165,11 +165,11 @@
        * @return {boolean}
        */
       isEnabled() {
-        const disTime = this._disTime;
+        const disTime = this._disTime
         if (disTime === 0) {
-          return true;
+          return true
         }
-        return (disTime < Date.now());
+        return (disTime < Date.now())
       },
 
       // -------- private --------
@@ -179,21 +179,21 @@
        * */
       setDocTitle(val){
         // 以下代码可以解决以上问题，不依赖jq
-        let _docTitle = document.title;
+        let _docTitle = document.title
         if (val !== _docTitle) {
           // 利用iframe的onload事件刷新页面
-          document.title = val;
-          let iframe = document.createElement('iframe');
-          iframe.src = '/static/favicon.ico';
-          iframe.style.visibility = 'hidden';
-          iframe.style.width = '1px';
-          iframe.style.height = '1px';
+          document.title = val
+          let iframe = document.createElement('iframe')
+          iframe.src = '/static/favicon.ico'
+          iframe.style.visibility = 'hidden'
+          iframe.style.width = '1px'
+          iframe.style.height = '1px'
           iframe.onload = function () {
             setTimeout(function () {
-              document.body.removeChild(iframe);
-            }, 0);
-          };
-          document.body.appendChild(iframe);
+              document.body.removeChild(iframe)
+            }, 0)
+          }
+          document.body.appendChild(iframe)
         }
       },
 
@@ -202,7 +202,7 @@
        *  @param {boolean} isAdd
        */
       setElementClass(className, isAdd) {
-        setElementClass(this.$el, className, isAdd);
+        setElementClass(this.$el, className, isAdd)
       },
 
       /**
@@ -212,14 +212,14 @@
        * @private
        */
       setScrolling() {
-        this._scrollTime = Date.now() + ACTIVE_SCROLLING_TIME;
+        this._scrollTime = Date.now() + ACTIVE_SCROLLING_TIME
       },
     },
     created(){
       /**
        * $app对外方法
        * */
-      let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this));
+      let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
       proto.$app = {
         _this: this,                               // 当前的app实例this
         setElementClass: this.setElementClass,     // 给App设置class
@@ -234,9 +234,9 @@
       }
     },
     mounted(){
-      this.$eventBus.$emit('app:ready');
-      console.assert(!!_clickBlock, '_clickBlock实例不存在, 请检查!');
-      this.isClickBlockEnabled = true;
+      this.$eventBus.$emit('app:ready')
+      console.assert(!!_clickBlock, '_clickBlock实例不存在, 请检查!')
+      this.isClickBlockEnabled = true
     }
   }
 </script>
