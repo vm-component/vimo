@@ -15,7 +15,7 @@
 // import { Button } from './button'
 // import { Navbar } from './navbar'
 // import { Toolbar, ToolbarTitle, ToolbarButtons } from './toolbar'
-// // import { BackdropComponent, BackdropInstance } from './backdrop'
+// // import { Backdrop, BackdropInstance } from './backdrop'
 // // import { Icon } from './icon'
 //
 // // 实例化调用部分
@@ -57,7 +57,7 @@
 //   // Vue.prototype.$modal = Modal
 //
 //   // Vue.prototype.$backdrop = BackdropInstance
-//   // Vue.component(BackdropComponent.name, BackdropComponent)
+//   // Vue.component(Backdrop.name, Backdrop)
 //   // Vue.component(Icon.name, Icon)
 // }
 //

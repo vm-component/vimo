@@ -21,7 +21,7 @@
     @import "./modal.md";
 </style>
 <script type="text/ecmascript-6">
-  import { BackdropComponent } from '../backdrop'
+  import { Backdrop } from '../backdrop'
   export default{
     name: 'Modal',
     data(){
@@ -90,7 +90,7 @@
 //      console.debug(this.position)
     },
     components: {
-      'Backdrop': BackdropComponent
+      'Backdrop': Backdrop
     }
   }
 </script>

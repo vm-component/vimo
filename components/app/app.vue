@@ -4,8 +4,6 @@
         <section class="app-root">
             <slot></slot>
         </section>
-        <!--backdrop-->
-        <aside id="backdropPortal"></aside>
         <!--modal portal-->
         <aside id="modalPortal"></aside>
         <!--蒙层指示,action-sheet,choose-sheet,picker等 sheetPortal-->

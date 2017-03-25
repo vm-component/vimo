@@ -1,26 +1,26 @@
 <template>
-  <transition
-    name="backdrop"
-    v-on:before-enter="_beforeEnter"
-    v-on:after-leave="_afterLeave">
-    <div class="ion-backdrop"
-         @click="onBdClick"
-         :class="{'backdrop-no-tappable':!enableBackdropDismiss}"
-         :style="positionLocal"
-         v-show="isActiveLocal"></div>
-  </transition>
+    <transition
+            name="backdrop"
+            v-on:before-enter="_beforeEnter"
+            v-on:after-leave="_afterLeave">
+        <div class="ion-backdrop"
+             @click="onBdClick"
+             :class="{'backdrop-no-tappable':!enableBackdropDismiss,'fixed':fixed}"
+             :style="{'left':left+'px','top':top+'px'}"
+             v-show="isActiveLocal"></div>
+    </transition>
 </template>
 <style lang="scss">
-  @import './backdrop';
+    @import './backdrop';
 
-  // transitioName = 'backdrop'
-  .backdrop-enter-active, .backdrop-leave-active {
-    transition: opacity 200ms;
-  }
+    // transitioName = 'backdrop'
+    .backdrop-enter-active, .backdrop-leave-active {
+        transition: opacity 200ms;
+    }
 
-  .backdrop-enter, .backdrop-leave-active {
-    opacity: 0
-  }
+    .backdrop-enter, .backdrop-leave-active {
+        opacity: 0
+    }
 </style>
 
 <script type="text/ecmascript-6">
@@ -34,10 +34,10 @@
    *
    * ```
    <Content padding>
-     <h3>BackDrop组件</h3>
-     <h5>可以实例化调用也可以模板式调用</h5>
-     <p>打开Backdrop, 4000ms之后关闭, 或者点击关闭</p>
-     <Button type="block" @click="present">打开Backdrop</Button>
+   <h3>BackDrop组件</h3>
+   <h5>可以实例化调用也可以模板式调用</h5>
+   <p>打开Backdrop, 4000ms之后关闭, 或者点击关闭</p>
+   <Button type="block" @click="present">打开Backdrop</Button>
    </Content>
    * ```
    * ```
@@ -68,7 +68,7 @@
    * @property {string} position.bottom -
    * @property {string} position.left -
    * */
-  import { urlChange } from '../../util/dom';
+  import { urlChange } from '../../util/dom'
   export default{
     name: 'Backdrop',
     data(){
@@ -107,20 +107,27 @@
           return function () {}
         }
       },
+
       /**
        * backdrop偏移量, 用于定制化显示
        * */
-      position: {
-        type: Object,
-        default: null,
+      top: {
+        type: Number,
+        default: 0
       },
+      left: {
+        type: Number,
+        default: 0
+      },
+      // 设置position：fixed
+      fixed: {
+        type: Boolean,
+        default: false
+      }
     },
     watch: {
       isActive () {
         this.isOpen = this.isActiveLocal = this.isActive;
-      },
-      position () {
-        this.positionLocal = this.position;
       },
     },
     methods: {
@@ -144,75 +151,10 @@
        * 当点击backdrop执行的动作
        * */
       onBdClick(){
-        if (!!this.bdClickLocal) {
+        if (this.bdClickLocal) {
           this.bdClickLocal();
         }
-      },
-
-      /**
-       * 开启backdrop实例化
-       *
-       * 第一次触发会显示暗色背景, 之后的触发都不显示,
-       * 另外, 几次触发对应着几次的dismiss(让我显示是有代价的)
-       *
-       * @param {object} options - 开启参数
-       * @example
-       * {
-       *    bdClick:Function
-       *    position:{
-       *      top:String/'10px',
-       *      right:String/'10px',
-       *      bottom:String/'10px',
-       *      left:String/'10px',
-       *    }
-       * }
-       * */
-      present (options = null) {
-        const _this = this;
-        _this.count++;
-        if (_this.count > 1) {
-          return
-        }
-
-        if (!!options) {
-          if (!!options.bdClick && typeof options.bdClick === 'function') {
-            _this.bdClickLocal = options.bdClick;
-          }
-          if (!!options.position) {
-            if (!!options.position['right']) {
-              options.position['left'] = 'auto'
-            }
-            if (!!options.position['bottom']) {
-              options.position['top'] = 'auto'
-            }
-            _this.positionLocal = options.position;
-          } else {
-            _this.positionLocal = null;
-          }
-        } else {
-          _this.bdClickLocal = null;
-          _this.positionLocal = null;
-        }
-
-        _this.isOpen = _this.isActiveLocal = true;
-
-        // url变化触发关闭动作
-        urlChange(function () {
-          _this.dismiss()
-        })
-      },
-
-      /**
-       * 关闭backdrop实例化
-       * */
-      dismiss () {
-        if (this.count > 1) {
-          this.count--;
-          return
-        }
-        this.count--;
-        this.isOpen = this.isActiveLocal = false;
-      },
-    },
+      }
+    }
   }
 </script>

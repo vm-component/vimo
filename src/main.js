@@ -13,8 +13,10 @@ import { Alert } from 'vimo/components/alert'
 import { Toast } from 'vimo/components/toast'
 import { Modal } from 'vimo/components/modal'
 import { Icon } from 'vimo/components/icon'
-import { BackdropComponent, BackdropInstance } from 'vimo/components/backdrop'
+import { Backdrop } from 'vimo/components/backdrop'
 
+console.debug('Backdrop')
+console.debug(Backdrop)
 /* eslint-disable no-new */
 new attachFastClick(document.body)
 // Vue.config.productionTip = false;
@@ -24,9 +26,9 @@ Vue.use(vimo, {
   pltConf: PLATFORM_CONFIGS,
 })
 
-Vue.component(BackdropComponent.name, BackdropComponent)
+Vue.component(Backdrop.name, Backdrop)
+
 Vue.component(Icon.name, Icon)
-Vue.prototype.$backdrop = BackdropInstance
 Vue.prototype.$actionSheet = ActionSheet
 Vue.prototype.$loading = Loading
 Vue.prototype.$alert = Alert

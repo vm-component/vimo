@@ -196,7 +196,7 @@
 
   import { firstUpperCase } from '../../util/util'
   import { recordMenuInstance } from './menus'
-  import { BackdropComponent } from '../backdrop'
+  import { Backdrop } from '../backdrop'
   export default{
     name: 'Menus',
     data(){
@@ -304,7 +304,7 @@
       recordMenuInstance(this);
     },
     components: {
-      'Backdrop': BackdropComponent
+      'Backdrop': Backdrop
     }
   }
 </script>

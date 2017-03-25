@@ -138,7 +138,7 @@
    *
    *
    */
-  import { BackdropComponent } from '../backdrop'
+  import { Backdrop } from '../backdrop'
   export default{
     name: 'Alert',
     data(){
@@ -471,7 +471,7 @@
 
     },
     components: {
-      'Backdrop': BackdropComponent
+      'Backdrop': Backdrop
     }
   }
 </script>

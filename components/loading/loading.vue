@@ -52,7 +52,7 @@
    *
    * */
   import { registerListener } from '../../util/dom'
-  import { BackdropComponent } from '../backdrop'
+  import { Backdrop } from '../backdrop'
   export default{
     name: 'Loading',
     data(){
@@ -157,7 +157,7 @@
       this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
     },
     components: {
-      'Backdrop': BackdropComponent
+      'Backdrop': Backdrop
     }
   }
 </script>

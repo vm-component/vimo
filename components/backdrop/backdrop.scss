@@ -20,6 +20,10 @@ $z-index-backdrop: 10;
   transform: translateZ(0);
 }
 
+.ion-backdrop.fixed {
+  position: fixed;
+}
+
 .ion-backdrop.backdrop-no-tappable {
   cursor: auto;
 }
