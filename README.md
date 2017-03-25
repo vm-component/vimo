@@ -16,3 +16,4 @@ Vimo的设计思想来源于IONIC2.x，通过研读源码并结合当前的问�
 App在运行之前，完成对当前运行环境的初始化，这部分由`config + plarform`完成，不同的平台配置及初始化通过`platform-config.js`完成。`app-config.js`完成业务层面的配置。
 
 
+Vimo只安装必要的组件，模块根据需要自行安装。
