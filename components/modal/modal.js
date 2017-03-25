@@ -60,24 +60,35 @@ function present (options = {}) {
     name,
     position,
   })
+  // 启动modal，启动需要比页面启动早，否则content组件无法初始化！！
+  let presentPromise = modalInstance._present()
 
+  // 执行内嵌页面的初始化
   let templateConstructor = Vue.extend(template)
   let templateInstance
   let el = modalInstance.$el.querySelectorAll('.modalPageLoadPort')[0].appendChild(document.createElement('div'))
 
   // 用户传入数据
   // 初始化用户自定义弹层的页面
-  class Template extends templateConstructor {
-    constructor (options) {
-      super(options)
-      // params
-      if (isObject(options)) {
-        for (let key in options)  this[key] = options[key]
+  // 需要异步执行，便于Content组件完成初始化
+  setTimeout(function () {
+    class Template extends templateConstructor {
+      constructor (options) {
+        super(options)
+        // params
+        if (isObject(options)) {
+          for (let key in options)  this[key] = options[key]
+        }
       }
     }
-  }
 
-  templateInstance = new Template({el, modalData})
+    templateInstance = new Template({el, modalData})
+
+    // 增加浏览器历史记录
+    window.history.pushState({
+      id: templateInstance._uid
+    }, '', '')
+  }, 0)
 
   // record
   _modalArr.push({
@@ -103,13 +114,8 @@ function present (options = {}) {
     }, {}, _unRegisterUrlChange)
   }
 
-  // 增加浏览器历史记录
-  window.history.pushState({
-    id: templateInstance._uid
-  }, '', '')
-
   setTimeout(() => {navState = 0}, 400)
-  return modalInstance._present()
+  return presentPromise
 }
 
 /**

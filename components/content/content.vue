@@ -543,7 +543,6 @@
     },
     mounted() {
       this.init()
-//      this.$nextTick(() => {})
     }
   }
 
