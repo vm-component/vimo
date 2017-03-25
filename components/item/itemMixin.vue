@@ -77,7 +77,7 @@
         if (!!_this.to) {
 
           if (_this.isInMenu) {
-            _this.$menu.close();
+            _this.$menus.close();
             _this.$eventBus.$on('onMenuClosed', directToHandler)
           } else {
             _this.$router.push(_this.to);

@@ -52,7 +52,7 @@
       tapToCloseMenu(){
         const _this = this;
         _this.$nextTick(function () {
-          _this.isMenuOpen && _this.$menu.close();
+          _this.isMenuOpen && _this.$menus.close();
         })
       },
 
@@ -62,8 +62,8 @@
       setMenuInfo(menuId){
         if (!!menuId) {
           this.menuId = menuId;
-          this.menuSide = this.$menu.menuIns[menuId].side;
-          this.menuType = this.$menu.menuIns[menuId].type;
+          this.menuSide = this.$menus.menuIns[menuId].side;
+          this.menuType = this.$menus.menuIns[menuId].type;
           this.menuContentClass = `menu-content`;
           this.menuContentTypeClass = `menu-content-${this.menuType}`;
         }

@@ -6,7 +6,7 @@
          :class="{'show-menu':showMenu}">
         <!--组件自己维护backdrop-->
         <Backdrop
-                @click.native="$menu.close()"
+                @click.native="$menus.close()"
                 :isActive="showBackdrop"
                 :class="{'show-backdrop':showBackdrop}"></Backdrop>
         <transition
@@ -64,11 +64,11 @@
    * 该组件用于在Vue.prototype.$menu上共享方法，可以用this.$menu来访问menu组件
    * @example
    * var vm = new Vue();
-   * vm.$menu.menuIns: 当前缓存的menu实例对象
-   * vm.$menu.currentMenuId: 当前开启的menuId
-   * vm.$menu.open('menuId'): 打开id为menuId1的menu
-   * vm.$menu.close(): 关闭打开的menu
-   * vm.$menu.toggle('menuId'): 如果开启则关闭, 如果没开启的则打开id为menuId1的menu
+   * vm.$menus.menuIns: 当前缓存的menu实例对象
+   * vm.$menus.currentMenuId: 当前开启的menuId
+   * vm.$menus.open('menuId'): 打开id为menuId1的menu
+   * vm.$menus.close(): 关闭打开的menu
+   * vm.$menus.toggle('menuId'): 如果开启则关闭, 如果没开启的则打开id为menuId1的menu
    *
    * @property  {string}  id               - 要打开menu的id，与open方法中的id对用应
    * @property  {String}  [side=left]      - 从哪个方向打开  可选 left/right
