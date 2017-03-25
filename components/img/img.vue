@@ -144,7 +144,7 @@
         if (this._renderedSrc) {
           // 当图片已经渲染出来显示过了, 则将其隐藏就行了
           // console.warn(`hideImg ${this._renderedSrc} ${Date.now()}`);
-          this.setLoaded(false);
+          // this.setLoaded(false);
         }
       },
 
