@@ -31,7 +31,7 @@
                                 class="action-sheet-cancel" :class="cancelButton.cssClass">
                             <Icon :name="cancelButton.icon" v-if="cancelButton.icon"
                                   class="action-sheet-icon"></Icon>
-                            <span>{{cancelButton.text || 'cancel没有值'}}</span>
+                            <span>{{cancelButton.text || 'Cancel'}}</span>
                         </Button>
                     </div>
                 </div>
