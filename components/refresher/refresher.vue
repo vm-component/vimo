@@ -208,18 +208,22 @@
         }
 
         // 如果为true, 则添加事件监听
-        if (shouldListen) {
-          let contentElement = this.content.getScrollElement();
-          // TODO: 对于点击事件应该同一封装一层
-          registerListener(contentElement, 'touchstart', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs);
-          registerListener(contentElement, 'mousedown', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs);
+        // 等待Content完毕
+        this.$nextTick(() => {
+          if (shouldListen) {
+            let contentElement = this.content.getScrollElement();
+            console.assert(contentElement, 'Refresh Component need Content Ready!::<Component>setListeners()')
+            // TODO: 对于点击事件应该同一封装一层
+            registerListener(contentElement, 'touchstart', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs);
+            registerListener(contentElement, 'mousedown', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs);
 
-          registerListener(contentElement, 'touchmove', this.pointerMoveHandler.bind(this), {'passive': false}, this.unregs);
-          registerListener(contentElement, 'mousemove', this.pointerMoveHandler.bind(this), {'passive': false}, this.unregs);
+            registerListener(contentElement, 'touchmove', this.pointerMoveHandler.bind(this), {'passive': false}, this.unregs);
+            registerListener(contentElement, 'mousemove', this.pointerMoveHandler.bind(this), {'passive': false}, this.unregs);
 
-          registerListener(contentElement, 'touchend', this.pointerUpHandler.bind(this), {'passive': false}, this.unregs);
-          registerListener(contentElement, 'mouseup', this.pointerUpHandler.bind(this), {'passive': false}, this.unregs);
-        }
+            registerListener(contentElement, 'touchend', this.pointerUpHandler.bind(this), {'passive': false}, this.unregs);
+            registerListener(contentElement, 'mouseup', this.pointerUpHandler.bind(this), {'passive': false}, this.unregs);
+          }
+        })
       },
 
       /**
@@ -440,9 +444,7 @@
     },
     mounted () {
       // 需要等待父元素mounted, 故这里初始化需要延迟
-      this.$nextTick(() => {
-        this.init();
-      })
+      this.$nextTick(() => {this.init()})
     }
   }
 </script>

@@ -158,8 +158,8 @@
         scrollElement: null, // scrollConent的DOM句柄
         fixedElement: null, // fixedElement的DOM句柄
 
-        headerElement: null, //Header组件的DOM句柄
-        footerElement: null, //footer组件的DOM句柄
+        headerElement: null, // Header组件的DOM句柄
+        footerElement: null, // footer组件的DOM句柄
         tabsElement: null, //tabs组件的DOM句柄
 
         statusBarHeight: 20,
@@ -542,8 +542,7 @@
       this._imgs = [];
     },
     mounted() {
-      // 初始化
-      this.init();
+      this.$nextTick(() => {this.init()})
     }
   }
 

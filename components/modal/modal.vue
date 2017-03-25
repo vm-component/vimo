@@ -46,22 +46,22 @@
        * Animate Hooks
        * */
       _beforeEnter () {
-        this.enabled = false; // 不允许过渡中途操作
+        this.enabled = false // 不允许过渡中途操作
         this.$app.setEnabled(false, 400)
       },
       _afterEnter (el) {
-        this.enabled = true;
-        this.presentCallback(el);
+        this.enabled = true
+        this.presentCallback(el)
       },
       _beforeLeave () {
-        this.enabled = false;
+        this.enabled = false
         this.$app.setEnabled(false, 400)
       },
       _afterLeave (el) {
-        this.enabled = true;
-        this.dismissCallback(el);
+        this.enabled = true
+        this.dismissCallback(el)
         // 删除DOM
-        this.$el.remove();
+        this.$el.remove()
       },
 
       /**
@@ -76,18 +76,6 @@
         this.isActive = false
         return new Promise((resolve) => {this.dismissCallback = resolve})
       },
-    },
-    mounted(){
-//      console.debug('modal mounted')
-//      console.debug(this.position)
-    },
-    beforeUpdate(){
-//      console.debug('modal beforeUpdate')
-//      console.debug(this.position)
-    },
-    updated(){
-//      console.debug('modal updated')
-//      console.debug(this.position)
     },
     components: {
       'Backdrop': Backdrop

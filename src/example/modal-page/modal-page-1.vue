@@ -65,6 +65,7 @@
   import modalPageComponent_3 from './modal-page-3.vue';
 
   export default{
+    name:'model1',
     data(){
       return {
         modalData:null,
