@@ -220,8 +220,8 @@
       /**
        * $app对外方法
        * */
-      this.__proto__.__proto__.$app = {};
-      Object.assign(this.__proto__.__proto__.$app, {
+      let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this));
+      proto.$app = {
         _this: this,                               // 当前的app实例this
         setElementClass: this.setElementClass,     // 给App设置class
         setTitle: this.setTitle,                   // 设置App的Title(document级别)
@@ -232,7 +232,7 @@
         setDisableScroll: this.setDisableScroll,   // 设置App的禁止滚动(自己定时解锁)
         setScrolling: this.setScrolling,           // 设置App的正在滚动
         isScrolling: this.isScrolling,             // 判断App的是否在滚动
-      })
+      }
     },
     mounted(){
       this.$eventBus.$emit('app:ready');

@@ -542,7 +542,8 @@
       this._imgs = [];
     },
     mounted() {
-      this.$nextTick(() => {this.init()})
+      this.init()
+//      this.$nextTick(() => {})
     }
   }
 
