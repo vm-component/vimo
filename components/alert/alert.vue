@@ -12,7 +12,7 @@
                     <h2 class="alert-title" v-if="title">{{title}}</h2>
                     <h3 class="alert-sub-title" v-if="subTitle">{{subTitle}}</h3>
                 </div>
-                <div class="alert-message">{{message}}</div>
+                <div class="alert-message" v-html="message"></div>
                 <div v-if="!!inputs && inputs.length>0">
                     <div v-if="inputType==='radio'" class="alert-radio-group" role="radiogroup">
                         <Button role="alert-radio-button" v-for="(i,index) in inputsForDispaly" @click="rbClick(i)"
@@ -36,7 +36,7 @@
                                 <div class="alert-checkbox-inner"></div>
                             </div>
                             <div class="alert-checkbox-label">
-                                <span> {{i.label}}</span>
+                                <span>{{i.label}}</span>
                             </div>
                         </Button>
                     </div>

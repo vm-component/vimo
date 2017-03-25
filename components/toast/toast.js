@@ -74,20 +74,20 @@
  * @property {string} [onDismiss=noop] - execute when dismiss animate finished
  */
 
-import Vue from 'vue';
-import { isNumber, isString, isObject, isPresent, isFunction } from '../../util/util';
-let toastComponent = require('./toast.vue');
-const ToastConstructor = Vue.extend(toastComponent);
-const POSITIONS = ['top', 'middle', 'bottom'];
-const noop = () => {};
-let _insertPosition = null;
-const DOM_INSERT_POSITION = 'toastPortal'; // 插入的DOM位置
-const DOM_INSERT_POSITION_FALLBACK = 'app'; // fallback选项
+import Vue from 'vue'
+import { isNumber, isString, isObject, isPresent, isFunction } from '../../util/util'
+import toastComponent from './toast.vue'
+const ToastConstructor = Vue.extend(toastComponent)
+const POSITIONS = ['top', 'middle', 'bottom']
+const noop = () => {}
+const DOM_INSERT_POSITION = 'toastPortal' // 插入的DOM位置
+const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback选项
+
 // ---------- functions ----------
 
 class Toast extends ToastConstructor {
   constructor (options) {
-    super(options);
+    super(options)
     // params
     if (isObject(options)) {
       for (let key in options)  this[key] = options[key]
@@ -101,57 +101,58 @@ class Toast extends ToastConstructor {
  * @param {any} arguments - 传入参数
  * */
 function ToastFactory () {
-  let _args = Array.from(arguments);
-  let el = null;
-  let message = 'This is Message!';
-  let duration = 3000;
-  let position = 'bottom';
-  let cssClass = null;
-  let showCloseButton = false;
-  let closeButtonText = 'Close';
-  let dismissOnPageChange = false;
-  let onDismiss = noop;
-  let mode = window.VM && window.VM.config && VM.config.get('mode', 'ios') || 'ios';
+  let _args = Array.from(arguments)
+  let el = null
+  let _insertPosition = null
+  let message = 'This is Message!'
+  let duration = 3000
+  let position = 'bottom'
+  let cssClass = null
+  let showCloseButton = false
+  let closeButtonText = 'Close'
+  let dismissOnPageChange = false
+  let onDismiss = noop
+  let mode = window.VM && window.VM.config && VM.config.get('mode', 'ios') || 'ios'
 
   // get el position
-  _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body;
-  el = _insertPosition.appendChild(document.createElement('div'));
+  _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body
+  el = _insertPosition.appendChild(document.createElement('div'))
 
   if (_args.length === 2) {
     // this.$toast.present("String",1000)
-    message = isPresent(_args[0]) && _args[0].toString().trim() || message;
-    duration = isNumber(_args[1]) && parseInt(_args[1]) || duration;
+    message = isPresent(_args[0]) && _args[0].toString().trim() || message
+    duration = isNumber(_args[1]) && parseInt(_args[1]) || duration
   }
 
   if (_args.length === 1 && isString(_args[0])) {
     // this.$toast.present("String")
-    message = isPresent(_args[0]) && _args[0].toString().trim() || message;
+    message = isPresent(_args[0]) && _args[0].toString().trim() || message
   }
 
   if (_args.length === 1 && isObject(_args[0])) {
     // this.$toast.present({...})
-    message = isPresent(_args[0].message) && _args[0].message.toString().trim() || message;
-    duration = isNumber(_args[0].duration) && parseInt(_args[0].duration) || duration;
+    message = isPresent(_args[0].message) && _args[0].message.toString().trim() || message
+    duration = isNumber(_args[0].duration) && parseInt(_args[0].duration) || duration
     // position
-    position = isPresent(_args[0].position) && POSITIONS.indexOf(_args[0].position) > -1 ? _args[0].position : position;
+    position = isPresent(_args[0].position) && POSITIONS.indexOf(_args[0].position) > -1 ? _args[0].position : position
 
     // cssClass
-    cssClass = isPresent(_args[0].cssClass) ? _args[0].cssClass.trim() : cssClass;
+    cssClass = isPresent(_args[0].cssClass) ? _args[0].cssClass.trim() : cssClass
 
     // closeButton
-    if (!!_args[0].showCloseButton) duration = null;
-    showCloseButton = !!_args[0].showCloseButton;
+    if (!!_args[0].showCloseButton) duration = null
+    showCloseButton = !!_args[0].showCloseButton
 
-    closeButtonText = isPresent(_args[0].closeButtonText) ? _args[0].closeButtonText.trim() : closeButtonText;
+    closeButtonText = isPresent(_args[0].closeButtonText) ? _args[0].closeButtonText.trim() : closeButtonText
 
     // dismissOnPageChange
-    dismissOnPageChange = !!_args[0].dismissOnPageChange;
+    dismissOnPageChange = !!_args[0].dismissOnPageChange
 
     // onDismiss
-    onDismiss = (isPresent(_args[0].onDismiss) && isFunction(_args[0].onDismiss)) ? _args[0].onDismiss : onDismiss;
+    onDismiss = (isPresent(_args[0].onDismiss) && isFunction(_args[0].onDismiss)) ? _args[0].onDismiss : onDismiss
 
     // mode
-    mode = isPresent(_args[0].mode) ? _args[0].mode.trim() : mode;
+    mode = isPresent(_args[0].mode) ? _args[0].mode.trim() : mode
 
   }
 
@@ -166,7 +167,7 @@ function ToastFactory () {
     dismissOnPageChange,
     onDismiss,
     mode
-  });
+  })
 }
 
 /**
@@ -186,8 +187,8 @@ function ToastFactory () {
  * */
 
 export default function (...args) {
-  let _instance = ToastFactory(...args);
+  let _instance = ToastFactory(...args)
   // 自动开启
-  _instance.present();
-  return _instance;
-};
+  _instance.present()
+  return _instance
+}
