@@ -18,7 +18,7 @@ import { Navbar } from './components/navbar'
 import { Toolbar, ToolbarTitle, ToolbarButtons } from './components/toolbar'
 
 export default {
-  version: '0.1.0',
+  version: '0.1.1',
   installed: false,
   install (Vue, options = {}) {
 
@@ -34,7 +34,7 @@ export default {
 
     // 安装必要组件
     if (!window.VM) {
-      console.error('Component install need VM!::<Function>install')
+      console.error('Component install need VM!::<Function>install()')
       return false
     }
 

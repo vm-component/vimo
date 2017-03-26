@@ -4,18 +4,18 @@
  * 执行activate后,设置页面可点击状态
  */
 
-import { clearNativeTimeout, nativeTimeout, setElementClass } from './dom';
+import { clearNativeTimeout, nativeTimeout, setElementClass } from './dom'
 
-const CLICK_BLOCK_POSITION = '.ion-app > .click-block';
+const CLICK_BLOCK_POSITION = '.ion-app > .click-block'
 
 export class ClickBlock {
 
   constructor () {
     /**@param {number} _tmr - setTimeout record*/
-    this._tmr = 0;
+    this._tmr = 0
     /**@param {boolean} _showing - */
-    this._showing = false;
-    this.clickBlockElement = this._getClickBlockElement();
+    this._showing = false
+    this.clickBlockElement = this._getClickBlockElement()
   }
 
   /**
@@ -24,14 +24,14 @@ export class ClickBlock {
    * */
   activate (shouldShow, expire = 100) {
     if (!this.clickBlockElement) {
-      this.clickBlockElement = this._getClickBlockElement();
+      this.clickBlockElement = this._getClickBlockElement()
     }
 
-    clearNativeTimeout(this._tmr);
+    clearNativeTimeout(this._tmr)
     if (shouldShow) {
-      this._activate(true);
+      this._activate(true)
     }
-    this._tmr = nativeTimeout(this._activate.bind(this, false), expire);
+    this._tmr = nativeTimeout(this._activate.bind(this, false), expire)
   }
 
   /**
@@ -40,13 +40,13 @@ export class ClickBlock {
    * */
   _activate (shouldShow) {
     if (this._showing !== shouldShow) {
-      this._setElementClass('click-block-active', shouldShow);
-      this._showing = shouldShow;
+      this._setElementClass('click-block-active', shouldShow)
+      this._showing = shouldShow
     }
   }
 
   _getClickBlockElement () {
-    let _clickBlockElement = document.querySelectorAll(CLICK_BLOCK_POSITION);
+    let _clickBlockElement = document.querySelectorAll(CLICK_BLOCK_POSITION)
     if (!_clickBlockElement || _clickBlockElement.length === 0) {
       return null
     } else {
@@ -59,6 +59,6 @@ export class ClickBlock {
    * @param {boolean} add
    * */
   _setElementClass (className, add) {
-    !!this.clickBlockElement && setElementClass(this.clickBlockElement, className, add);
+    !!this.clickBlockElement && setElementClass(this.clickBlockElement, className, add)
   }
 }

@@ -1,9 +1,5 @@
 <template>
     <article class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
-        <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
-            <!--默认是能滚动的内容-->
-            <slot></slot>
-        </section>
         <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
             <!--Fixed Top-->
             <div fixed top>
@@ -15,6 +11,12 @@
                 <slot name="fixedBottom"></slot>
             </div>
         </section>
+        <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
+            <!--默认是能滚动的内容-->
+            <!--原生滚动-->
+            <slot></slot>
+        </section>
+
         <slot name="refresher"></slot>
     </article>
 </template>
@@ -461,7 +463,7 @@
         scrollEvent.contentBottom = contentDimensions.contentBottom;
 
         // 初始化_scroll滚动对象
-        this._scroll.init(this.scrollElement, scrollEvent.contentTop, scrollEvent.contentBottom);
+        this._scroll.init(this.scrollElement);
 
         // initial imgs refresh
         this.imgsUpdate();
@@ -496,11 +498,6 @@
             }
           })
         }
-      },
-
-      // -------- For VirtualScroll Component --------
-      enableJsScroll() {
-        this._scroll.enableJsScroll(this._cTop, this._cBottom);
       },
 
       // -------- For Img Component --------
@@ -543,6 +540,9 @@
     },
     mounted() {
       this.init()
+    },
+    destroyed(){
+      this._scroll.destroy()
     }
   }
 
