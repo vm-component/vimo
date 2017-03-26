@@ -14,6 +14,7 @@
       <h5>这个是 h5 标签</h5>
       <p>这个是 p 标签</p>
       <span>这个是 span 标签</span>
+      <a href="http://xiangsongtao.com" target="_blank">跳转到我的首页</a>
 
       <!--<h3 slot="fixedTop" text-center>这里插播一条广告</h3>-->
       <!--<h3 slot="fixedBottom" text-center>可以把我当成歌词</h3>-->

@@ -6,10 +6,10 @@
             </Navbar>
             <Toolbar>
                 <!--content-->
-                <Segment v-model="relationship9" slot="content" @onSegmentChange="onSegmentChange">
-                    <SegmentButton value="friend1" @onSegmentSelected="onSegmentSelected">friend1</SegmentButton>
-                    <SegmentButton value="friend2" @onSegmentSelected="onSegmentSelected">friend2</SegmentButton>
-                    <SegmentButton value="friend3" @onSegmentSelected="onSegmentSelected">friend3</SegmentButton>
+                <Segment v-model="relationship9" slot="content" @onChange="onChange">
+                    <SegmentButton value="friend1" @onSelected="onSelected">friend1</SegmentButton>
+                    <SegmentButton value="friend2" @onSelected="onSelected">friend2</SegmentButton>
+                    <SegmentButton value="friend3" @onSelected="onSelected">friend3</SegmentButton>
                 </Segment>
             </Toolbar>
         </Header>
@@ -57,10 +57,10 @@
     watch: {},
     computed: {},
     methods: {
-      onSegmentChange(val){
+      onChange(val){
         console.debug('当前的Segment值发生变化: ' + val)
       },
-      onSegmentSelected(val){
+      onSelected(val){
         console.debug('点击了Segment按钮, 这个按钮的值: ' + val)
       }
 

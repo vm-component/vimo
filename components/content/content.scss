@@ -20,8 +20,7 @@
 }
 
 a {
-  //color: $link-color;
-  color: red;
+  color: $link-color;
 }
 
 // Scrollable Content
@@ -43,45 +42,6 @@ a {
 
   contain: size style layout;
 }
-
-//.ion-content.js-scroll {
-//  //padding: 0 !important;
-//  //overflow: hidden;
-//  & > .scroll-content {
-//    //padding: 0 !important;
-//  }
-//  //.scroll-wrap {
-//  //  position: absolute;
-//  //  z-index: 1;
-//  //  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-//  //  width: 100%;
-//  //  -webkit-transform: translateZ(0);
-//  //  -moz-transform: translateZ(0);
-//  //  -ms-transform: translateZ(0);
-//  //  -o-transform: translateZ(0);
-//  //  transform: translateZ(0);
-//  //  -webkit-touch-callout: none;
-//  //  -webkit-user-select: none;
-//  //  -moz-user-select: none;
-//  //  -ms-user-select: none;
-//  //  user-select: none;
-//  //  -webkit-text-size-adjust: none;
-//  //  -moz-text-size-adjust: none;
-//  //  -ms-text-size-adjust: none;
-//  //  -o-text-size-adjust: none;
-//  //  text-size-adjust: none;
-//  //}
-//}
-//
-//.ion-app .js-scroll[padding] {
-//  & > .scroll-content {
-//    padding: 0 !important;
-//  }
-//  .scroll-wrap {
-//    padding: $content-padding;
-//  }
-//}
-
 
 .disable-scroll .ion-page {
   pointer-events: none;

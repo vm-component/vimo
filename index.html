@@ -6,26 +6,26 @@
         content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no email=no"/>
   <link rel="icon" href="static/favicon.ico">
-  <script>
-    (function(doc, win) {
-      var docEl = doc.documentElement,
-        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-        recalc = function() {
-          var clientWidth = docEl.clientWidth;
-          if (!clientWidth)
-            return;
-          //由屏幕宽度得到basefont大小,并将其写入html标签中,文档总的尺寸由rem确定
-          docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
-          doc.body.style.display = "block";
-          doc.getElementsByTagName('html')[0].removeAttribute('class');
-        };
+  <!--<script>-->
+    <!--(function(doc, win) {-->
+      <!--var docEl = doc.documentElement,-->
+        <!--resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',-->
+        <!--recalc = function() {-->
+          <!--var clientWidth = docEl.clientWidth;-->
+          <!--if (!clientWidth)-->
+            <!--return;-->
+          <!--//由屏幕宽度得到basefont大小,并将其写入html标签中,文档总的尺寸由rem确定-->
+          <!--docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';-->
+          <!--doc.body.style.display = "block";-->
+          <!--doc.getElementsByTagName('html')[0].removeAttribute('class');-->
+        <!--};-->
 
-      if (!doc.addEventListener)
-        return;
-      win.addEventListener(resizeEvt, recalc, false);
-      doc.addEventListener('DOMContentLoaded', recalc, false);
-    })(document, window);
-  </script>
+      <!--if (!doc.addEventListener)-->
+        <!--return;-->
+      <!--win.addEventListener(resizeEvt, recalc, false);-->
+      <!--doc.addEventListener('DOMContentLoaded', recalc, false);-->
+    <!--})(document, window);-->
+  <!--</script>-->
   <title>Hello Vimo</title>
 </head>
 <body>

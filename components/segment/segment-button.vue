@@ -14,7 +14,7 @@
    * @property {String} value - 当前SegmentButton的值, 如果父元素的value和这个相同, 这个当前被选中
    *
    *
-   * @fires onSegmentSelected - 被选中的事件, 发送当前被选中的值
+   * @fires onSelected - 被选中的事件, 发送当前被选中的值
    *
    * */
   export default{
@@ -45,7 +45,7 @@
       _click () {
         // 修改父元素的缓存值，触发watch监听
         this.$parent.parentVal = this.value;
-        this.$emit('onSegmentSelected', this.value);
+        this.$emit('onSelected', this.value);
       }
     },
     created(){
