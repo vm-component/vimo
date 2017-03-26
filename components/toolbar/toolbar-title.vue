@@ -6,12 +6,22 @@
     </div>
 </template>
 <script type="text/ecmascript-6">
+  /**
+   * @module Component/Title
+   * @description
+   * 设置顶部的title及document.title, 请使用ref获取Title组件的setTitle方法, 使用该方法会同步设置document.title(默认)
+   *
+   *
+   * @property {String} mode - 模式
+   * @property {String} title - 标题
+   *
+   * */
   export default{
     name: 'Title',
     data(){
       return {
         titleInner: this.title,
-        isInit: false,
+        isInit: false
       }
     },
     props: {
@@ -27,7 +37,7 @@
        * */
       title: {
         type: String,
-        default: '',
+        default: ''
       },
     },
     computed: {
@@ -40,6 +50,8 @@
     },
     methods: {
       /**
+       * @function getTitle
+       * @description
        * 获取Title组件中的title, 兼容各种模式
        * @return {String}
        * */
@@ -54,15 +66,15 @@
            * */
           if (!!this.title) {
             // prop传入title值
-            //eg: <Title title="Toolbar"></Title>
+            // eg: <Title title="Toolbar"></Title>
             _title = this.title.trim();
           } else if (!!this.$slots.default && !!this.$slots.default[0] && !!this.$slots.default[0].text) {
             // 如果是直接写在ion-title中的值
-            //eg: <Title>Toolbar</Title>
+            // eg: <Title>Toolbar</Title>
             _title = this.$slots.default[0].text.trim();
           } else if (!!this.$slots.default && !!this.$slots.default[0] && !!this.$slots.default[0].tag && !!this.$slots.default[0].children[0].text) {
             // 如果是这届下载ion-title中的值，并且包含一层标签的情况
-            //eg: <Title>
+            // eg: <Title>
             //      <span>Toolbar</span>
             //      <span>-</span>
             //      <span>Test</span>
@@ -79,12 +91,15 @@
       },
 
       /**
+       * @function setTitle
+       * @description
        * 修改Header的title
        * @param {String} title - title
+       * @param {boolean} [setDocTitle=true] - 是否设置doc的title, 默认是同步设置的
        * */
-      setTitle (title) {
+      setTitle (title, setDocTitle = true) {
         this.titleInner = title;
-        this.sendTitleToApp(title)
+        if (setDocTitle) this.sendTitleToApp(title)
       },
 
       /**
@@ -93,29 +108,21 @@
        * */
       sendTitleToApp(title){
         // 设置document的title, 这部分由$app处理
-        this.$app.setTitle(title);
+        this.$app && this.$app.setTitle(title);
       },
 
       /**
+       * @private
        * 初始化
        * 只在Navbar中的Title才会具有更新Title的特性!!!
        * 且, 一个Page只能拥有一个Navbar, 当在Navbar中设置Title, 则Title的方法
-       * 将赋予页面Page, 故调用指纹为: this.$nav.setTitle
+       * 将赋予页面Page(docTitle),
        * */
       init(){
         this.titleInner = this.getTitle();
         if (!!this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'navbar' && document.title != this.titleInner) {
-          if (!this.$vnode.context.$nav) {
-            this.$vnode.context.$nav = {}
-          }
-          Object.assign(this.$vnode.context.$nav, {
-            setTitle: this.setTitle,
-            getTitle: this.getTitle,
-          });
-
           this.sendTitleToApp(this.titleInner);
         }
-
         this.isInit = true;
       },
     },

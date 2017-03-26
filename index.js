@@ -30,7 +30,7 @@ export default {
     Vue.prototype.$config = window.VM && window.VM.config
     Vue.prototype.$platform = window.VM && window.VM.platform
     // 内建历史记录, 监听route变化并发出Nav切换事件
-    Vue.prototype.$nav = new NavContorller(Vue)
+    Vue.prototype.$history = new NavContorller(Vue)
 
     // 安装必要组件
     if (!window.VM) {

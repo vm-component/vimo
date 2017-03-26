@@ -257,7 +257,7 @@
        * */
       _beforeEnter () {
         this.enabled = false; // 不允许过渡中途操作
-        this.$app.setEnabled(false, 200);
+        this.$app && this.$app.setEnabled(false, 200);
       },
       _afterEnter (el) {
         this.enabled = true;
@@ -273,7 +273,7 @@
       },
       _beforeLeave () {
         this.enabled = false;
-        this.$app.setEnabled(false, 200);
+        this.$app && this.$app.setEnabled(false, 200);
       },
       _afterLeave (el) {
         this.enabled = true;

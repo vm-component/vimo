@@ -82,9 +82,6 @@
             resolve();
           }, 500);
         })
-      },
-      scrollToTop(){
-        this.$content.scrollToTop();
       }
     },
     created () {

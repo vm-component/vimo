@@ -78,14 +78,14 @@
 
           if (_this.isInMenu) {
             _this.$menus.close();
-            _this.$eventBus.$on('onMenuClosed', directToHandler)
+            _this.$eventBus && _this.$eventBus.$on('onMenuClosed', directToHandler)
           } else {
             _this.$router.push(_this.to);
           }
 
           function directToHandler () {
             _this.$router.push(_this.to);
-            _this.$eventBus.$off('onMenuClosed', directToHandler)
+            _this.$eventBus && _this.$eventBus.$off('onMenuClosed', directToHandler)
           }
         }
       }

@@ -260,7 +260,7 @@
       scrollToTop(duration = 300) {
         console.debug(`content, scrollToTop, duration: ${duration}`);
         // 页面防止点击
-        this.$app.setDisableScroll(true, 320);
+        this.$app && this.$app.setDisableScroll(true, 320);
         return this._scroll.scrollToTop(duration);
       },
       /**
@@ -274,7 +274,7 @@
       scrollToBottom(duration = 300) {
         console.debug(`content, scrollToBottom, duration: ${duration}`);
         // 页面防止点击
-        this.$app.setDisableScroll(true, 320);
+        this.$app && this.$app.setDisableScroll(true, 320);
         return this._scroll.scrollToBottom(duration);
       },
 
@@ -288,7 +288,6 @@
         if (this.scrollElement) return;
 
         const scroll = this._scroll; // 滚动的实例
-        const _this = this;
         /**
          * 找到fixedElement/scrollElement的位置
          * */
@@ -300,18 +299,16 @@
          * */
         // 改写 滚动开始 的回调
         scroll.scrollStart = (ev) => {
-          //TODO: 组件自己对外
-          this.$emit('onContentScrollStart', ev);
-          //TODO: 全局事件
-          this.$eventBus.$emit('onScrollStart', ev);
+          this.$emit('onScrollStart', ev);
+          this.$eventBus && this.$eventBus.$emit('onScrollStart', ev);
         };
 
         // 改写 滚动中 的回调
         scroll.scroll = (ev) => {
           // remind the app that it's currently scrolling
-          this.$app.setScrolling();
-          this.$emit('onContentScroll', ev);
-          this.$eventBus.$emit('onScroll', ev);
+          this.$app && this.$app.setScrolling();
+          this.$emit('onScroll', ev);
+          this.$eventBus && this.$eventBus.$emit('onScroll', ev);
 
           // img更新
           this.imgsUpdate();
@@ -319,8 +316,8 @@
 
         // 改写 滚动结束 的回调
         scroll.scrollEnd = (ev) => {
-          this.$emit('onContentScrollEnd', ev);
-          this.$eventBus.$emit('onScrollEnd', ev);
+          this.$emit('onScrollEnd', ev);
+          this.$eventBus && this.$eventBus.$emit('onScrollEnd', ev);
 
           // img更新
           this.imgsUpdate();
@@ -330,32 +327,6 @@
          * 计算并设置当前Content的位置及尺寸
          * */
         this.recalculateContentDimensions()
-
-        /**
-         * Page -> Content
-         * Content组件必须是在Page组件内部才向页面this注入控制权
-         * */
-        if (!!_this.$parent.$options._componentTag && _this.$parent.$options._componentTag.toLowerCase() === 'page') {
-          // 将参数传给调用的页面(注入到业务页面的this中), context为调用的上下文
-          this.$vnode.context.$content = {
-            '_href': window.location.href,
-            'contentElement': this,
-            'fixedElement': this.fixedElement,
-            'scrollElement': this.scrollElement,
-            'headerElement': this.headerElement,
-            'footerElement': this.footerElement,
-
-            'getContentDimensions': this.getContentDimensions,
-            'resize': this.resize,
-
-            'scrollTo': this.scrollTo,
-            'scrollToTop': this.scrollToTop,
-            'scrollToBottom': this.scrollToBottom,
-
-            'scrollTop': this.scrollElement.scrollTop
-          }
-        }
-
       },
 
       /**

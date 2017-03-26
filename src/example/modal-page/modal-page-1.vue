@@ -9,7 +9,7 @@
                 <Title>Modal Page 1</Title>
             </Toolbar>
         </Header>
-        <Content padding>
+        <Content padding ref="content">
             <h3>Hello, 这里是 Modal Page 1 的页面!</h3>
             <p>传入的数据为: {{modalData}}</p>
             <Button type="block" @click="closeModal">关闭Modal</Button>
@@ -74,7 +74,11 @@
     },
     props: {},
     watch: {},
-    computed: {},
+    computed: {
+      content(){
+        return this.$refs.content
+      }
+    },
     methods: {
       closeModal(){
         this.$modal.dismiss({
@@ -92,10 +96,10 @@
         })
       },
       scrollToBottom(){
-        this.$content.scrollToBottom();
+        this.content.scrollToBottom();
       },
       scrollToTop(){
-        this.$content.scrollToTop();
+        this.content.scrollToTop();
       }
     },
     created(){

@@ -102,13 +102,13 @@
        * ActionSheet Animate Hooks
        * */
       _beforeEnter () {
-        this.$app.setEnabled(false, 200);
+        this.$app && this.$app.setEnabled(false, 200);
       },
       _afterEnter (el) {
         this.presentCallback(el);
       },
       _beforeLeave () {
-        this.$app.setEnabled(false, 200);
+        this.$app && this.$app.setEnabled(false, 200);
       },
       _afterLeave (el) {
         this.dismissCallback(el);

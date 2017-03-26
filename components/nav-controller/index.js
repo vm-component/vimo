@@ -151,7 +151,7 @@ export class NavContorller {
   /**
    * 返回root页面
    * */
-  popToRoot () {
+  toRoot () {
     //TODO: popToRoot
   }
 

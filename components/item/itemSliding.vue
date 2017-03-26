@@ -75,7 +75,7 @@
         this.firstCoordX = startCood.x;
         this.firstTimestamp = new Date().getTime();
         this._startSliding(this.firstCoordX);
-        this.$eventBus.$emit('ionSlidingClose', this)
+        this.$eventBus && this.$eventBus.$emit('ionSlidingClose', this)
       },
 
       /**
@@ -221,7 +221,7 @@
         _this.optsDirty = true;
 
         //  事件注册
-        _this.$eventBus.$on('ionSlidingClose', function (ins) {
+        _this.$eventBus && _this.$eventBus.$on('ionSlidingClose', function (ins) {
           if (_this != ins) {
             _this.close();
           }
@@ -436,7 +436,7 @@
     },
     destroyed(){
       // 组件中，activated和deactivated都不管用
-      this.$eventBus.$off('ionSlidingClose');
+      this.$eventBus && this.$eventBus.$off('ionSlidingClose');
     },
   }
 </script>

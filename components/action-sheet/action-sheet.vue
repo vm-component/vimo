@@ -211,7 +211,7 @@
       },
       _beforeLeave () {
         this.enabled = false;
-        this.$app.setEnabled(false, 400)
+        this.$app && this.$app.setEnabled(false, 400)
       },
       _afterLeave (el) {
         this.enabled = true;

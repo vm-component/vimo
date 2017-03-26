@@ -93,7 +93,7 @@
       },
     },
     created () {
-      this.hideBb = !this.$nav.canGoBack();
+      this.hideBb = !this.$history.canGoBack();
     },
     mounted () {
 

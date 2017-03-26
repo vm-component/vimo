@@ -246,16 +246,16 @@
     methods: {
       // 过渡钩子
       _beforeEnter (el) {
-        this.$app.setEnabled(false, 300);
+        this.$app && this.$app.setEnabled(false, 300);
       },
       _afterEnter (el) {
         this.presentCallback(el);
       },
       _beforeLeave(){
-        this.$app.setEnabled(false, 300);
+        this.$app && this.$app.setEnabled(false, 300);
       },
       _afterLeave (el) {
-        this.$eventBus.$emit('onMenuClosed', this.id);
+        this.$eventBus && this.$eventBus.$emit('onMenuClosed', this.id);
         this.dismissCallback(el);
         this.showMenu = false;
       },
@@ -282,7 +282,7 @@
         }
 
         _this.isOpen = true;
-        this.$eventBus.$emit('onMenuOpen', this.id);
+        this.$eventBus && this.$eventBus.$emit('onMenuOpen', this.id);
         return new Promise((resolve) => {this.presentCallback = resolve});
       },
 
@@ -295,7 +295,7 @@
         if (!_this.enabled) return;
         _this.showBackdrop = false;
         _this.isOpen = false;
-        _this.$eventBus.$emit('onMenuClosing', _this.id);
+        _this.$eventBus && _this.$eventBus.$emit('onMenuClosing', _this.id);
         return new Promise((resolve) => {this.dismissCallback = resolve});
       },
     },
