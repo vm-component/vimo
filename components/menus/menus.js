@@ -4,6 +4,7 @@
  * 记录实例
  * @param {object} instance - 记录的子实例
  * */
+import { urlChange } from '../../util/dom'
 export function recordMenuInstance (instance) {
   // 如果没安装
   let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(instance))
@@ -17,6 +18,7 @@ class Menus {
   constructor () {
     this.currentMenuId = null
     this.menuIns = {}
+    this._unReg = null // for url change
   }
 
   /**
@@ -59,6 +61,12 @@ class Menus {
       } else {
         !!_errorCb && _errorCb()
       }
+
+      // for url change
+      _this._unReg && _this._unReg()
+      _this._unReg = urlChange(() => {
+        _this.close()
+      })
     }
 
     return new Promise((resolve, reject) => {
@@ -77,19 +85,21 @@ class Menus {
     let _errorCb
 
     if (!currentMenuId) {
-      !!_errorCb && _errorCb()
+      _errorCb && _errorCb()
     } else {
       this.currentMenuId = null
-      if (!!this.menuIns[currentMenuId]) {
-        this.menuIns[currentMenuId].closeMenu().then(function () {
-          !!_successCb && _successCb()
+      if (this.menuIns[currentMenuId]) {
+        this.menuIns[currentMenuId].closeMenu().then(() => {
+          _successCb && _successCb()
         })
       } else {
-        !!_errorCb && _errorCb()
+        _errorCb && _errorCb()
       }
     }
 
     return new Promise((resolve, reject) => {
+      // for url change
+      this._unReg && this._unReg()
       _successCb = resolve
       _errorCb = reject
     })

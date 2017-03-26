@@ -6,16 +6,18 @@
             </Navbar>
             <Toolbar>
                 <!--content-->
-                <Segment :value="relationship9" slot="content">
-                    <SegmentButton value="friend1">friend1</SegmentButton>
-                    <SegmentButton value="friend2">friend2</SegmentButton>
-                    <SegmentButton value="friend3">friend2</SegmentButton>
+                <Segment v-model="relationship9" slot="content" @onSegmentChange="onSegmentChange">
+                    <SegmentButton value="friend1" @onSegmentSelected="onSegmentSelected">friend1</SegmentButton>
+                    <SegmentButton value="friend2" @onSegmentSelected="onSegmentSelected">friend2</SegmentButton>
+                    <SegmentButton value="friend3" @onSegmentSelected="onSegmentSelected">friend3</SegmentButton>
                 </Segment>
             </Toolbar>
         </Header>
         <Content padding>
+            {{relationship9}}
             <p>这里是数据</p>
             <p>这里是数据</p>
+            <Button type="block" @click="relationship9='friend2'">设置为第二个Segment</Button>
             <p>这里是数据</p>
             <p>这里是数据</p>
             <p>这里是数据</p>
@@ -40,20 +42,9 @@
             <p>这里是数据</p>
             <p>这里是数据</p>
         </Content>
-        <Footer>
-            <Toolbar>
-                <!--content-->
-                <Segment :value="relationship9" slot="content">
-                    <SegmentButton value="friend1">friend1</SegmentButton>
-                    <SegmentButton value="friend2">friend2</SegmentButton>
-                    <SegmentButton value="friend3">friend2</SegmentButton>
-                </Segment>
-            </Toolbar>
-        </Footer>
     </Page>
 </template>
 <style lang="scss">
-
 </style>
 <script type="text/ecmascript-6">
   import { Segment, SegmentButton } from 'vimo/components/segment'
@@ -65,7 +56,15 @@
     },
     watch: {},
     computed: {},
-    methods: {},
+    methods: {
+      onSegmentChange(val){
+        console.debug('当前的Segment值发生变化: ' + val)
+      },
+      onSegmentSelected(val){
+        console.debug('点击了Segment按钮, 这个按钮的值: ' + val)
+      }
+
+    },
     created () {},
     mounted () {},
     activated () {},
