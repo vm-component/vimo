@@ -21,7 +21,7 @@
    * @property {String} mode - 样式模式
    *
    *
-   * @fires onSegmentChange - 被选中的事件, 发送当前被选中的值
+   * @fires onChange - 被选中的事件, 发送当前被选中的值
    *
    * */
   export default{
@@ -78,13 +78,13 @@
     methods: {
       /**
        * 子元素样式更新，
-       * 更新后发送onSegmentChange事件，并传入parentVal变化值
+       * 更新后发送onChange事件，并传入parentVal变化值
        * */
       setChildrenSelectState () {
         this.$children.forEach((child) => {
           child.isSelected = (child.value === this.parentVal)
         })
-        this.$emit('onSegmentChange', this.parentVal)
+        this.$emit('onChange', this.parentVal)
         this.$emit('input', this.parentVal)
       }
     },
