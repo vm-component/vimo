@@ -20,9 +20,9 @@ router.beforeEach((to, from, next) => {
   }
 )
 
-router.afterEach((to, from) => {
-  if (!Vue.prototype.$eventBus) console.warn('$eventBus is undefined!')
-  Vue.prototype.$eventBus.$emit('onRouteChangeAfter', {to, from})
-})
+// router.afterEach((to, from) => {
+//   if (!Vue.prototype.$eventBus) console.warn('$eventBus is undefined!')
+//   Vue.prototype.$eventBus.$emit('onRouteChangeAfter', {to, from})
+// })
 
 export default router

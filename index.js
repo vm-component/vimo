@@ -18,7 +18,7 @@ import { Navbar } from './components/navbar'
 import { Toolbar, ToolbarTitle, ToolbarButtons } from './components/toolbar'
 
 export default {
-  version: '0.1.1',
+  version: '0.1.2',
   installed: false,
   install (Vue, options = {}) {
 
@@ -29,7 +29,7 @@ export default {
     Vue.prototype.$eventBus = new Vue()
     Vue.prototype.$config = window.VM && window.VM.config
     Vue.prototype.$platform = window.VM && window.VM.platform
-    // 内建历史记录, 监听route变化并发出Nav切换事件
+    // 监听route变化, 内建历史记录
     Vue.prototype.$history = new NavContorller(Vue)
 
     // 安装必要组件
