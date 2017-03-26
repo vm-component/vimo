@@ -4,7 +4,7 @@ import APP_CONFIGS from './config/app-configs'
 import router from './router'
 import Vue from 'vue'
 import App from './App'
-// import attachFastClick from 'fastclick'
+import attachFastClick from 'fastclick'
 import vimo from 'vimo'
 
 import { ActionSheet } from 'vimo/components/action-sheet'
@@ -16,7 +16,7 @@ import { Icon } from 'vimo/components/icon'
 import { Backdrop } from 'vimo/components/backdrop'
 
 /* eslint-disable no-new */
-// new attachFastClick(document.body)
+new attachFastClick(document.body)
 // Vue.config.productionTip = false;
 // 平台基础安装
 Vue.use(vimo, {

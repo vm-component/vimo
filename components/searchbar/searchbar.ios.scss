@@ -144,9 +144,8 @@ $searchbar-ios-toolbar-input-background: rgba(0, 0, 0, .08) !default;
   margin-left: 0;
   padding: 0;
   padding-left: 8px;
-
   height: 30px;
-
+  z-index: 10;
   cursor: pointer;
 }
 

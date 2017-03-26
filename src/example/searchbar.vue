@@ -5,29 +5,25 @@
                 <Title>Searchbar</Title>
             </Navbar>
             <Toolbar>
-                <Searchbar :animated="false"
+                <Searchbar :animated="true"
+                           placeholder="Search"
                            :debounce="1000"
-                           mode="ios"
-                           color="danger"
                            v-model="myInput"
                            :showCancelButton="true"
                            cancelButtonText="取消"
-                           @ionInput="onInput"
-                           @ionFocus="onFocus"
-                           @ionBlur="onBlur"
-                           @ionCancel="onCancel"
-                           @ionClear="onClear"></Searchbar>
+                           @onInput="onInput"
+                           @onFocus="onFocus"
+                           @onBlur="onBlur"
+                           @onCancel="onCancel"
+                           @onClear="onClear"></Searchbar>
             </Toolbar>
         </Header>
         <Content padding>
-            <h4>Searchbar</h4>
+            <p>Search Value: {{myInput}}</p>
         </Content>
     </Page>
 </template>
 <style scoped lang="scss">
-    .main {
-
-    }
 </style>
 <script type="text/ecmascript-6">
   import { Searchbar } from 'vimo/components/searchbar'
@@ -50,13 +46,13 @@
       onCancel ($event) {
         console.debug('outer-onCancel:');
       },
-      onClear: function ($event) {
+      onClear ($event) {
         console.debug('outer-onClear:');
       },
-      onBlur: function ($event) {
+      onBlur ($event) {
         console.debug('outer-onBlur:');
       },
-      onFocus: function ($event) {
+      onFocus ($event) {
         console.debug('outer-onFocus:');
       }
     },
