@@ -60,7 +60,30 @@
     @import "./searchbar.md";
 </style>
 <script type="text/ecmascript-6">
-  import { hasFocus } from '../../util/dom'
+  /**
+   * @module Component/SearchBar
+   * @description
+   * 搜索条
+   *
+   * @property {String} color - The predefined color to use. For example: "primary", "secondary", "danger".
+   * @property {String} mode - 模式
+   * @property {String} cancelButtonText - Set the the cancel button text. Default: "Cancel".
+   * @property {Boolean} showCancelButton - Whether to show the cancel button or not. Default: "false".
+   * @property {Number} debounce - How long, in milliseconds, to wait to trigger the onInput event after each keystroke. Default 250.
+   * @property {String} placeholder - Set the input's placeholder. Default "Search".
+   * @property {String} autocomplete - autocomplete
+   * @property {String} autocorrect - autocorrect
+   * @property {Boolean} spellcheck - spellcheck
+   * @property {String} type - Set the type of the input. Values: "text", "password", "email", "number", "search", "tel", "url". Default "search".
+   * @property {Boolean} animated - Configures if the searchbar is animated or no. By default, animation is false.
+   *
+   *
+   * @fires onInput
+   * @fires onFocus
+   * @fires onBlur
+   * @fires onClear
+   * @fires onCancel
+   * */
   export default{
     name: 'Searchbar',
     data(){

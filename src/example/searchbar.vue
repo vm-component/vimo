@@ -7,7 +7,7 @@
             <Toolbar>
                 <Searchbar :animated="true"
                            placeholder="Search"
-                           :debounce="1000"
+                           :debounce="100"
                            v-model="myInput"
                            :showCancelButton="true"
                            cancelButtonText="取消"
@@ -19,6 +19,7 @@
             </Toolbar>
         </Header>
         <Content padding>
+            <p>Search debounce: 100</p>
             <p>Search Value: {{myInput}}</p>
         </Content>
     </Page>
