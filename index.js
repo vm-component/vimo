@@ -18,19 +18,18 @@ import { Navbar } from './components/navbar'
 import { Toolbar, ToolbarTitle, ToolbarButtons } from './components/toolbar'
 
 export default {
-  version: '0.1.2',
   installed: false,
   install (Vue, options = {}) {
 
     // init base (config/platform)
-    setupConfig(options.custConf, setupPlatform(options.pltConf));
+    setupConfig(options.custConf, setupPlatform(options.pltConf))
 
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = new Vue()
     Vue.prototype.$config = window.VM && window.VM.config
     Vue.prototype.$platform = window.VM && window.VM.platform
     // 监听route变化, 内建历史记录
-    Vue.prototype.$history = new NavContorller(Vue)
+    Vue.prototype.$history = new NavContorller(Vue, options.router)
 
     // 安装必要组件
     if (!window.VM) {
@@ -63,14 +62,14 @@ export default {
 function addLogo () {
   // logo
   var vimoLogo = {
-    info: "源代码请访问GitHub https://github.com/DTFE/Vimo \nPowered by Vue2.x",
-    logo: "\n"
-    + "  __      __ _____ __  __  ____   \n"
-    + "  \\ \\    / /|_   _|  \\/  |/ __ \\  \n"
-    + "   \\ \\  / /   | | | \\  / | |  | | \n"
-    + "    \\ \\/ /    | | | |\\/| | |  | | \n"
-    + "     \\  /    _| |_| |  | | |__| | \n"
-    + "      \\/    |_____|_|  |_|\\____/    "
-  };
-  window.console && console.info && console.info(vimoLogo.logo + "\n" + vimoLogo.info)
+    info: '源代码请访问GitHub https://github.com/DTFE/Vimo \nPowered by Vue2.x',
+    logo: '\n'
+    + '  __      __ _____ __  __  ____   \n'
+    + '  \\ \\    / /|_   _|  \\/  |/ __ \\  \n'
+    + '   \\ \\  / /   | | | \\  / | |  | | \n'
+    + '    \\ \\/ /    | | | |\\/| | |  | | \n'
+    + '     \\  /    _| |_| |  | | |__| | \n'
+    + '      \\/    |_____|_|  |_|\\____/    '
+  }
+  window.console && console.info && console.info(vimoLogo.logo + '\n' + vimoLogo.info)
 }

@@ -24,53 +24,72 @@
 
 export class NavContorller {
 
-  constructor (Vue) {
+  constructor (Vue, router = {}) {
     this._h = [] // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
+    this._d = 'forward' // forward/backward
+    this.isAppCompInit = false // App组件是否已完成Init, 表示基础页面是否准备完毕
 
     // 监听路由变化, 维护本地历史记录
-    Vue.prototype.$eventBus.$on('onRouteChangeBefore', ({to, from}) => {
-      let stackLength = this._h.length
-      if (stackLength <= 1) {
-        /**
-         * 当本地维护的历时记录为空或, 意味着页面为首次进入, 并未初始化,
-         * 此时, 可能我们是从app中的某个页面进入的,
-         * 因此, 需要判断下history.length, 此时, 不显示back按钮
-         *
-         * 同理, length=1也同样处理
-         * */
-        this._pushHistory(Vue, {to, from})
-      } else {
-        let _previous = this._h[stackLength - 2]
-        if (to.name !== _previous.name) {
-          this._pushHistory(Vue, {to, from})
+    router.beforeEach((to, from, next) => {
+        let stackLength = this._h.length
+        if (stackLength <= 1) {
+          /**
+           * 当本地维护的历时记录为空或, 意味着页面为首次进入, 并未初始化,
+           * 此时, 可能我们是从app中的某个页面进入的,
+           * 因此, 需要判断下history.length, 此时, 不显示back按钮
+           *
+           * 同理, length=1也同样处理
+           * */
+          this._pushHistory(Vue, {to, from, next})
         } else {
-          this._popHistory(Vue, {to, from})
+          let _previous = this._h[stackLength - 2]
+          if (to.name !== _previous.name) {
+            this._pushHistory(Vue, {to, from, next})
+          } else {
+            this._popHistory(Vue, {to, from, next})
+          }
         }
       }
-    })
+    )
   }
 
   // -------- private --------
   /**
    * push to history
    * */
-  _pushHistory (Vue, {to, from}) {
+  _pushHistory (Vue, {to, from, next}) {
     this._h.push(to)
     if (this._isPageChange({to, from})) {
-      console.debug('**** onNavEnter ****')
-      !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onNavEnter', {to, from})
+      this._d = 'forward'
+      this._emit(Vue, 'onNavEnter', {to, from, next})
+    } else {
+      this._d = ''
+      next()
     }
   }
 
   /**
    * pop history record
    * */
-  _popHistory (Vue, {to, from}) {
+  _popHistory (Vue, {to, from, next}) {
     // 激活了浏览器的后退,这里只需要更新状态
     this._h.pop()
     if (this._isPageChange({to, from})) {
-      console.debug('**** onNavLeave ****')
-      !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onNavLeave', {to, from})
+      this._d = 'backward'
+      this._emit(Vue, 'onNavLeave', {to, from, next})
+    } else {
+      this._d = ''
+      next()
+    }
+  }
+
+  _emit (Vue, eventName, {to, from, next}) {
+    if (!this.isAppCompInit) {
+      this.isAppCompInit = true
+      next()
+    } else {
+      console.debug('**** ' + eventName + ' ****')
+      !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit(eventName, {to, from, next})
     }
   }
 
@@ -91,6 +110,13 @@ export class NavContorller {
   }
 
   // -------- public --------
+  /**
+   * 获取当前的页面进行的方向
+   * */
+  getDirection () {
+    return this._d
+  }
+
   /**
    * 判断是否能返回
    * */

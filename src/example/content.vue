@@ -1,9 +1,35 @@
 <template>
     <Page>
         <Header>
-            <Navbar>
+            <Navbar color="primary">
                 <Title ref="title">Content</Title>
+
+                <!--start-->
+                <Buttons start slot="button">
+                    <Button icon-only role="bar-button">
+                        <Icon class="icon" name="contact"></Icon>
+                    </Button>
+                </Buttons>
+                <Buttons start slot="button">
+                    <Button icon-only role="bar-button">
+                        <Icon class="icon" name="search"></Icon>
+                    </Button>
+                </Buttons>
+                <!--start-->
+                <Buttons end slot="button">
+                    <Button icon-only role="bar-button">
+                        <Icon class="icon" name="more"></Icon>
+                    </Button>
+                </Buttons>
             </Navbar>
+            <Toolbar color="primary">
+                <!--content-->
+                <Segment v-model="relationship9" slot="content"  color="light">
+                    <SegmentButton value="friend1"> friend1</SegmentButton>
+                    <SegmentButton value="friend2"> friend2</SegmentButton>
+                    <SegmentButton value="friend3">friend3</SegmentButton>
+                </Segment>
+            </Toolbar>
         </Header>
 
         <Content :fullscreen="fullscreenVal" padding ref="content">
@@ -69,12 +95,14 @@
 <style scoped lang="scss">
 </style>
 <script type="text/ecmascript-6">
+  import { Segment, SegmentButton } from 'vimo/components/segment'
   export default{
     data(){
       return {
         fullscreenVal: false,
         contentDimensions: null,
         scrollDimensions: null,
+        relationship9: 'friend1'
       }
     },
     watch: {},
@@ -114,6 +142,6 @@
     },
     activated () {
     },
-    components: {}
+    components: {Segment, SegmentButton}
   }
 </script>

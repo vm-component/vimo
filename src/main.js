@@ -22,6 +22,7 @@ new attachFastClick(document.body)
 Vue.use(vimo, {
   custConf: APP_CONFIGS,
   pltConf: PLATFORM_CONFIGS,
+  router: router,
 })
 
 Vue.component(Backdrop.name, Backdrop)

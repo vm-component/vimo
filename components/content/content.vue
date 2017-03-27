@@ -1,5 +1,5 @@
 <template>
-    <article class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
+    <article content class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
         <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
             <!--Fixed Top-->
             <div fixed top>

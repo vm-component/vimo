@@ -13,13 +13,13 @@ Vue.use(Router)
  * onRouteChangeAfter: 页面变化后的事件.
  *
  * */
-router.beforeEach((to, from, next) => {
-    if (!Vue.prototype.$eventBus) console.warn('$eventBus is undefined!')
-    Vue.prototype.$eventBus.$emit('onRouteChangeBefore', {to, from})
-    next()
-  }
-)
-
+// router.beforeEach((to, from, next) => {
+//     if (!Vue.prototype.$eventBus) console.warn('$eventBus is undefined!')
+//     Vue.prototype.$eventBus.$emit('onRouteChangeBefore', {to, from})
+//     next()
+//   }
+// )
+//
 // router.afterEach((to, from) => {
 //   if (!Vue.prototype.$eventBus) console.warn('$eventBus is undefined!')
 //   Vue.prototype.$eventBus.$emit('onRouteChangeAfter', {to, from})

@@ -49,7 +49,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         return 'ripple';
       },
 
-      activator: 'ripple',
       backButtonText: '',
       backButtonIcon: 'md-arrow-back',
       iconMode: 'md',
@@ -116,12 +115,13 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: false,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
+      pageTransition: 'ios-transition',
 
       // loadingEnter: 'loading-pop-in',
       // loadingLeave: 'loading-pop-out',
       // modalEnter: 'modal-slide-in',
       // modalLeave: 'modal-slide-out',
-      // pageTransition: 'ios-transition',
+
       // pickerEnter: 'picker-slide-in',
       // pickerLeave: 'picker-slide-out',
       // popoverEnter: 'popover-pop-in',

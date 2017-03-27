@@ -5,6 +5,7 @@
     <div nav-viewport></div>
     <slot></slot>
     <div v-if="isMenuOpen" @click="tapToCloseMenu" class="click-cover"></div>
+    <div class="nav-decor"></div>
   </nav>
 </template>
 <style scoped lang="scss">
