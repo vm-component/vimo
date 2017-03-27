@@ -287,7 +287,7 @@
         }
     }
 
-    // 退出的页面1
+    // 退出的页面
     .ios-transition-backward-leave-active {
         transition-duration: $DURATION;
         .ion-header {
@@ -325,9 +325,4 @@
             transition: $TRANSFORM $DURATION $EASING;
         }
     }
-
-
-
-
-
 </style>
