@@ -24,7 +24,7 @@
             </Navbar>
             <Toolbar color="primary">
                 <!--content-->
-                <Segment v-model="relationship9" slot="content"  color="light">
+                <Segment v-model="relationship9"  color="light">
                     <SegmentButton value="friend1"> friend1</SegmentButton>
                     <SegmentButton value="friend2"> friend2</SegmentButton>
                     <SegmentButton value="friend3">friend3</SegmentButton>

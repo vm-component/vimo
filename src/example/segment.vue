@@ -6,7 +6,7 @@
             </Navbar>
             <Toolbar>
                 <!--content-->
-                <Segment v-model="relationship9" slot="content" @onChange="onChange">
+                <Segment v-model="relationship9" @onChange="onChange">
                     <SegmentButton value="friend1" @onSelected="onSelected">friend1</SegmentButton>
                     <SegmentButton value="friend2" @onSelected="onSelected">friend2</SegmentButton>
                     <SegmentButton value="friend3" @onSelected="onSelected">friend3</SegmentButton>

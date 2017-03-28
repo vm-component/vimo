@@ -1,13 +1,10 @@
 <template>
-    <div class="toolbar ion-toolbar" :class="[modeClass,colorClass]">
+    <div class="toolbar ion-toolbar"
+         :class="[modeClass,colorClass,{'statusbar-padding':statusbarPadding}]">
         <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
-        <slot name="button"></slot>
-        <!--<ng-content select="[menuToggle]ion-buttons[left]"></ng-content> -->
-        <!--<ng-content select="ion-buttons[start]"></ng-content> -->
-        <!--<ng-content select="ion-buttons[end]ion-buttons[right]"></ng-content> -->
+        <slot name="buttons"></slot>
         <div class="toolbar-content" :class="[toolbarContentClass]">
             <slot></slot>
-            <slot name="content"></slot>
         </div>
     </div>
 </template>
@@ -18,10 +15,37 @@
     @import './toolbar.md.scss';
 </style>
 <script type="text/ecmascript-6">
+  /**
+   * @module Component/Toolbar
+   * @description
+   * 工具条, 一般放在Header或者Footer中, 工具条中包含按钮组或者title, 也可以放segment和searchbar组件.
+   *
+   * slots:
+   *
+   * 1. 默认: 作为内容, 比如Title/Searchbar/Segment
+   * 2. buttons: 按钮组, 别忘记加[left]/[right]/[start]/[end]属性标记位置
+   *
+   * @property {String} mode - 模式
+   * @property {String} color - 颜色
+   *
+   * @example
+   *
+   <Toolbar>
+   <!--menutoggle-->
+   <Button icon-only role="bar-button" shape="menutoggle" slot="buttons">
+   <Icon class="icon" name="menu"></Icon>
+   </Button>
+   <!--title-->
+   <Title>Left Menu</Title>
+   </Toolbar>
+   *
+   * */
   export default{
     name: 'Toolbar',
     data(){
-      return {}
+      return {
+        statusbarPadding: window.VM && window.VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
+      }
     },
     props: {
       /**
@@ -34,35 +58,23 @@
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: {
-        type: String,
-        default: '',
-      }
+      color: [String]
     },
-    watch: {},
     computed: {
       // 颜色
-      colorClass: function () {
+      colorClass () {
         return !!this.color ? (`toolbar-${this.mode}-${this.color}`) : ''
       },
       // 环境样式
-      modeClass: function () {
+      modeClass () {
         return `toolbar-${this.mode}`
       },
-      toolbarBackgroundClass: function () {
+      toolbarBackgroundClass () {
         return `toolbar-background-${this.mode}`
       },
-      toolbarContentClass: function () {
+      toolbarContentClass () {
         return `toolbar-content-${this.mode}`
       }
-    },
-    methods: {},
-    created: function () {
-    },
-    mounted: function () {
-    },
-    activated: function () {
-    },
-    components: {}
+    }
   }
 </script>

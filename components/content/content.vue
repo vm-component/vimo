@@ -169,7 +169,7 @@
         footerBarHeight: 0,
 
         // 是否有statusbar的padding, 高度固定为20px
-        statusbarPadding: window.VM.config.getBoolean('statusbarPadding', false),
+        statusbarPadding: window.VM && window.VM.config.getBoolean('statusbarPadding', false),
 
         _scroll: null, // 滚动的实例
         _cTop: 0,     // content top

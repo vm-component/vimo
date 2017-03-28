@@ -8,17 +8,10 @@
             <Icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></Icon>
             <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
         </Button>
-
-        <!--button/menuToggle-->
-        <slot name="button"></slot>
-
-        <!--<ng-content select="[menuToggle],ion-buttons[left]"></ng-content>-->
-        <!--<ng-content select="ion-buttons[start]"></ng-content>-->
-        <!--<ng-content select="ion-buttons[end],ion-buttons[right]"></ng-content>-->
+        <!--buttons/menuToggle-->
+        <slot name="buttons"></slot>
         <div class="toolbar-content" :class="[toolbarContentClass]">
-            <!--默认-->
             <slot></slot>
-            <slot name="content"></slot>
         </div>
     </div>
 </template>
@@ -31,8 +24,8 @@
     data(){
       return {
         hideBb: false,
-        bbIcon: 'arrow-back',
-        backText: 'Back',
+        bbIcon: window.VM && window.VM.config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
+        backText: window.VM && window.VM.config.get('backButtonText', 'Back') || 'Back',
         hideNavBar: window.VM && window.VM.config.getBoolean('hideNavBar', false),
         statusbarPadding: window.VM && window.VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
       }
@@ -48,10 +41,7 @@
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: {
-        type: String,
-        default: '',
-      },
+      color: [String],
       /**
        * whether the back button should be shown or not
        * */
@@ -88,15 +78,13 @@
     },
     methods: {
       backButtonClick ($event) {
-        //TODO: 这部分需要特殊处理
+        $event.preventDefault()
+        $event.stopPropagation()
         this.$router.back();
       },
     },
     created () {
-      this.hideBb = !this.$history.canGoBack();
-    },
-    mounted () {
-
+      this.hideBb = !this.$history.canGoBack()
     }
   }
 </script>

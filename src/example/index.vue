@@ -5,17 +5,18 @@
             <!--menutoggle-->
             <Navbar :hideBackButton="true">
                 <!--menutoggle-->
-                <Button color="dark" @click="$menus.open('menu')" left icon-only role="bar-button" shape="menutoggle"
-                        slot="button">
-                    <Icon class="icon" name="menu"></Icon>
-                </Button>
-
+                <Buttons left slot="buttons">
+                    <Button color="dark" @click="$menus.open('menu')" left icon-only role="bar-button"
+                            shape="menutoggle">
+                        <Icon class="icon" name="menu"></Icon>
+                    </Button>
+                </Buttons>
                 <Title>Welcome</Title>
-
-                <Button color="dark" @click="$menus.open('author')" right icon-only role="bar-button" shape="menutoggle"
-                        slot="button">
-                    <Icon class="icon" name="person"></Icon>
-                </Button>
+                <Buttons right slot="buttons">
+                    <Button color="dark" @click="$menus.open('author')" right icon-only role="bar-button" shape="menutoggle">
+                        <Icon class="icon" name="person"></Icon>
+                    </Button>
+                </Buttons>
             </Navbar>
         </Header>
         <Content padding class="content">
@@ -30,7 +31,6 @@
                             </div>
                         </Column>
                     </Row>
-
                     <Row class="vimo__text">
                         <Column text-center>
                             <h1>VIMO</h1>

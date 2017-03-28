@@ -2,9 +2,20 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>
-                    <span>Toolbar</span>
-                </Title>
+                <Buttons start slot="buttons">
+                    <Button icon-only role="bar-button">
+                        <Icon class="icon" name="contact"></Icon>
+                    </Button>
+                    <Button icon-only role="bar-button">
+                        <Icon class="icon" name="search"></Icon>
+                    </Button>
+                </Buttons>
+                <Title>Toolbar</Title>
+                <Buttons end slot="buttons">
+                    <Button icon-only role="bar-button">
+                        <Icon class="icon" name="more"></Icon>
+                    </Button>
+                </Buttons>
             </Navbar>
         </Header>
         <Content>
@@ -17,18 +28,16 @@
             <!--2-->
             <Toolbar color="danger">
                 <!--start-->
-                <Buttons start slot="button">
+                <Buttons start slot="buttons">
                     <Button icon-only role="bar-button">
                         <Icon class="icon" name="contact"></Icon>
                     </Button>
-                </Buttons>
-                <Buttons start slot="button">
                     <Button icon-only role="bar-button">
                         <Icon class="icon" name="search"></Icon>
                     </Button>
                 </Buttons>
                 <!--start-->
-                <Buttons end slot="button">
+                <Buttons end slot="buttons">
                     <Button icon-only role="bar-button">
                         <Icon class="icon" name="more"></Icon>
                     </Button>
@@ -40,18 +49,18 @@
             <!--3-->
             <Toolbar>
                 <!--start-->
-                <Buttons start slot="button">
+                <Buttons start slot="buttons">
                     <Button icon-only role="bar-button" color="danger">
                         <Icon class="icon" name="contact"></Icon>
                     </Button>
                 </Buttons>
-                <Buttons start slot="button">
+                <Buttons start slot="buttons">
                     <Button icon-only role="bar-button" color="secondary">
                         <Icon class="icon" name="search"></Icon>
                     </Button>
                 </Buttons>
                 <!--end-->
-                <Buttons end slot="button">
+                <Buttons end slot="buttons">
                     <Button icon-only role="bar-button" color="danger">
                         <Icon class="icon" name="more"></Icon>
                     </Button>
@@ -63,16 +72,22 @@
             <!--4-->
             <Toolbar>
                 <!--start-->
-                <Buttons start slot="button">
+                <Buttons start slot="buttons">
                     <Button icon-only role="bar-button" type="solid">
                         <Icon class="icon" name="contact"></Icon>
                     </Button>
                 </Buttons>
 
                 <!--end-->
-                <Buttons end slot="button">
+                <Buttons end slot="buttons">
                     <Button icon-right role="bar-button" color="secondary" type="solid">
                         Help
+
+
+
+
+
+
 
 
                         <Icon class="icon" name="help-circle"></Icon>
@@ -85,18 +100,16 @@
             <!--5-->
             <Toolbar>
                 <!--start-->
-                <Buttons start slot="button">
+                <Buttons start slot="buttons">
                     <Button icon-only role="bar-button" type="outline">
                         <Icon class="icon" name="contact"></Icon>
                     </Button>
                 </Buttons>
 
                 <!--end-->
-                <Buttons end slot="button">
+                <Buttons end slot="buttons">
                     <Button icon-right role="bar-button" color="secondary" type="outline">
                         Help
-
-
                         <Icon class="icon" name="help-circle"></Icon>
                     </Button>
                 </Buttons>
@@ -107,7 +120,7 @@
             <!--6-->
             <Toolbar>
                 <!--menutoggle-->
-                <Button icon-only role="bar-button" shape="menutoggle" slot="button">
+                <Button icon-only role="bar-button" shape="menutoggle" slot="buttons">
                     <Icon class="icon" name="menu"></Icon>
                 </Button>
                 <!--title-->
@@ -117,7 +130,7 @@
             <!--7-->
             <Toolbar>
                 <!--menutoggle-->
-                <Button right icon-only role="bar-button" shape="menutoggle" slot="button">
+                <Button right icon-only role="bar-button" shape="menutoggle" slot="buttons">
                     <Icon class="icon" name="menu"></Icon>
                 </Button>
                 <!--title-->
@@ -127,7 +140,7 @@
             <!--7-->
             <Toolbar>
                 <!--menutoggle-->
-                <Buttons end slot="button">
+                <Buttons end slot="buttons">
                     <Button icon-only role="bar-button">
                         <Icon class="icon" name="search"></Icon>
                     </Button>
@@ -139,13 +152,13 @@
             <!--8-->
             <Toolbar>
                 <!--menutoggle-->
-                <Buttons end slot="button">
+                <Buttons end slot="buttons">
                     <Button icon-only role="bar-button">
                         <Icon class="icon" name="search"></Icon>
                     </Button>
                 </Buttons>
                 <!--content-->
-                <Segment :value="relationship8" @ionChange="onSegmentChange8" slot="content" color="danger">
+                <Segment :value="relationship8" @ionChange="onSegmentChange8" color="danger">
                     <SegmentButton value="friend1" @ionSelect="onSelectChangeFriend1">friend1</SegmentButton>
                     <SegmentButton value="friend2" @ionSelect="onSelectChangeFriend2">friend2</SegmentButton>
                 </Segment>
@@ -154,7 +167,7 @@
             <!--9-->
             <Toolbar>
                 <!--content-->
-                <Segment :value="relationship9" @ionChange="onSegmentChange9" slot="content">
+                <Segment :value="relationship9" @ionChange="onSegmentChange9">
                     <SegmentButton value="friend1">friend1</SegmentButton>
                     <SegmentButton value="friend2">friend2</SegmentButton>
                     <SegmentButton value="friend3">friend2</SegmentButton>
@@ -164,7 +177,7 @@
 
             <!--10-->
             <Toolbar>
-                <Searchbar :animated="true" slot="content"
+                <Searchbar :animated="true"
                            :debounce="1000"
                            mode="ios"
                            v-model="myInput"
@@ -179,7 +192,7 @@
 
             <!--11-->
             <Toolbar color="primary">
-                <Searchbar :animated="true" slot="content"
+                <Searchbar :animated="true"
                            :debounce="1000"
                            mode="ios"
                            v-model="myInput"
@@ -194,7 +207,7 @@
         </Content>
         <Footer>
             <Toolbar>
-                <Searchbar :animated="true" slot="content"
+                <Searchbar :animated="true"
                            :debounce="1000"
                            mode="ios"
                            v-model="myInput"
