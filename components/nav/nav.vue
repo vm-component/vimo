@@ -1,32 +1,40 @@
 <template>
-  <nav class="ion-nav"
-       :class="[menuContentClass,menuContentTypeClass,{'menu-content-open':isMenuOpen}]"
-       :style="menuStyleObj">
-    <div nav-viewport></div>
-    <div v-if="isMenuOpen" @click="tapToCloseMenu" class="click-cover"></div>
-    <slot></slot>
-    <div class="nav-decor"></div>
-  </nav>
+    <nav class="ion-nav"
+         :class="[menuContentClass,menuContentTypeClass,{'menu-content-open':isMenuOpen}]"
+         :style="menuStyleObj">
+        <div nav-viewport></div>
+        <div v-if="isMenuOpen" @click="tapToCloseMenu" class="click-cover"></div>
+        <!--animate-->
+        <transition :name="pageTransition">
+            <slot></slot>
+        </transition>
+        <div class="nav-decor"></div>
+    </nav>
 </template>
 <style scoped lang="scss">
-  .ion-nav {
-    .click-cover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
+    .ion-nav {
+        .click-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
     }
-  }
 </style>
 <script type="text/ecmascript-6">
   export default{
     name: 'Nav',
-    props: {},
+    props: {
+      animate: [String]
+    },
     data(){
       return {
         // -------- Nav --------
+        // ios-transition/fade-bottom-transition/zoom-transition
+        pageTransitionName: this.$config.get('pageTransition'),
+        pageTransitionDirection: '',
 
         // ----------- Menu -----------
         menuStyleObj: {
@@ -41,6 +49,15 @@
         menuContentTypeClass: null,
 
         transform: !!VM && !!VM.platform && !!VM.platform.css ? VM.platform.css.transform : 'webkitTransform',
+      }
+    },
+    computed: {
+      pageTransition(){
+        if (!!this.animate) {
+          return `${this.animate}-${this.pageTransitionDirection}`
+        } else {
+          return `${this.pageTransitionName}-${this.pageTransitionDirection}`
+        }
       }
     },
     methods: {
@@ -113,6 +130,19 @@
     created(){
       // 初始化menu组件对应的监听处理
       this.initMenu();
+
+      // nav 动画切换部分
+      this.$eventBus.$on('onNavEnter', ({to, from, next}) => {
+        this.pageTransitionDirection = 'forward'
+        this.$app && this.$app.setEnabled(false, 500)
+        next()
+      })
+      this.$eventBus.$on('onNavLeave', ({to, from, next}) => {
+        this.pageTransitionDirection = 'backward'
+        this.$app && this.$app.setEnabled(false, 500)
+        next()
+      })
+
     }
   }
 </script>

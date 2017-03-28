@@ -54,12 +54,10 @@
             </Page>
         </Menus>
         <Nav>
-            <!--<transition name="md-transition-backward">-->
-            <transition :name="pageTransition">
-                <keep-alive>
-                    <router-view></router-view>
-                </keep-alive>
-            </transition>
+        <!--<Nav animate="zoom-transition">-->
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </Nav>
     </App>
 </template>
@@ -75,35 +73,16 @@
   export default {
     name: 'app-root',
     data () {
-      return {
-        // ios-transition/fade-bottom-transition/zoom-transition
-        pageTransitionName: this.$config.get('pageTransition'),
-        pageTransitionDirection: '',
-      }
+      return {}
     },
-    computed: {
-      pageTransition(){
-        return `${this.pageTransitionName}-${this.pageTransitionDirection}`
-      }
-    },
+    computed: {},
     methods: {
       openOtherOne(){
         this.$menus.open('author')
       }
     },
-    created(){
-      this.$eventBus.$on('onNavEnter', ({to, from, next}) => {
-        this.pageTransitionDirection = 'forward'
-        next()
-      })
-      this.$eventBus.$on('onNavLeave', ({to, from, next}) => {
-        this.pageTransitionDirection = 'backward'
-        next()
-      })
-    },
-    mounted(){
-
-    },
+    created(){},
+    mounted(){},
     components: {
       Menus, List, ListHeader, ItemGroup, Item
     }

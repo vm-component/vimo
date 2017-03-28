@@ -105,7 +105,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       toolbarMinHeight: 44,
       hoverCSS: false,
       mode: 'ios',
-
       activator: 'highlight',
       backButtonText: 'Back',
       backButtonIcon: 'ios-arrow-back',
