@@ -68,19 +68,13 @@
     created(){
       let direction = this.$history.getDirection()
       if (direction === 'forward') {
-        console.debug('page.vue direction:forward')
         this.pageZIndex = ++initPageZIndex
       } else if (direction === 'backward') {
-        console.debug('page.vue direction:backward')
         this.pageZIndex = --initPageZIndex
       } else {
-        console.debug('page.vue direction:null')
         this.pageZIndex = initPageZIndex
       }
-
     },
-    mounted(){
-
-    }
+    mounted(){}
   }
 </script>

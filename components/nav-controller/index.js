@@ -88,7 +88,6 @@ export class NavContorller {
       this.isAppCompInit = true
       next()
     } else {
-      console.debug('**** ' + eventName + ' ****')
       !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit(eventName, {to, from, next})
     }
   }

@@ -23,6 +23,10 @@
     @import './app.scss';
     @import './app.ios.scss';
     @import './app.md.scss';
+    @import 'ios-transition';
+    @import 'fade-bottom-transition';
+    @import 'fade-right-transition';
+    @import 'zoom-transition';
 </style>
 <script type="text/ecmascript-6">
   /**

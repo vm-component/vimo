@@ -3,8 +3,8 @@
        :class="[menuContentClass,menuContentTypeClass,{'menu-content-open':isMenuOpen}]"
        :style="menuStyleObj">
     <div nav-viewport></div>
-    <slot></slot>
     <div v-if="isMenuOpen" @click="tapToCloseMenu" class="click-cover"></div>
+    <slot></slot>
     <div class="nav-decor"></div>
   </nav>
 </template>
@@ -16,7 +16,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 999;
+      z-index: 9999;
     }
   }
 </style>

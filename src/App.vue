@@ -1,6 +1,5 @@
 <template>
     <App id="app">
-        {{pageTransition}}
         <!--menu menu-->
         <Menus id="menu" side="left" type="reveal">
             <Page>
@@ -55,13 +54,16 @@
             </Page>
         </Menus>
         <Nav>
+            <!--<transition name="md-transition-backward">-->
             <transition :name="pageTransition">
-                <router-view></router-view>
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
             </transition>
         </Nav>
     </App>
 </template>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @name App.vue
    * @description
@@ -74,13 +76,14 @@
     name: 'app-root',
     data () {
       return {
+        // ios-transition/fade-bottom-transition/zoom-transition
         pageTransitionName: this.$config.get('pageTransition'),
         pageTransitionDirection: '',
       }
     },
     computed: {
       pageTransition(){
-        return !!this.pageTransitionDirection ? `${this.pageTransitionName}-${this.pageTransitionDirection}` : ''
+        return `${this.pageTransitionName}-${this.pageTransitionDirection}`
       }
     },
     methods: {
@@ -108,221 +111,6 @@
 
 </script>
 <style lang="scss">
-    /* 可以设置不同的进入和离开动画 */
-    /* 设置持续时间和动画函数 */
-    $DURATION: 500ms;
-    $EASING: cubic-bezier(0.36, 0.66, 0.04, 1);
-    $TRANSFORM: -webkit-transform;
-    $OPACITY: opacity;
-    $OFF_RIGHT: 99.5%;
-    $OFF_LEFT: -15%;
-    $CENTER: 0%;
-    $OFF_OPACITY: 0.8;
-    $OPACITY_ZERO: 0.01;
-    $BACK_BTN_TEXT_MOVE: 100px;
 
-    /*-------- ios 进入动画(forward) --------*/
-    /*    ios-transition-forward    */
 
-    // 进入的页面
-    .ios-transition-forward-enter {
-        .ion-header {
-            .ion-navbar {
-                .back-button {
-                    opacity: $OPACITY_ZERO;
-                    .back-button-text {
-                        transform: translateX($BACK_BTN_TEXT_MOVE);
-                    }
-                }
-                .ion-buttons {
-                    opacity: $OPACITY_ZERO;
-                }
-                .toolbar-background {
-                    opacity: $OPACITY_ZERO;
-                }
-                .ion-title {
-                    transform: translateX($OFF_RIGHT);
-                    opacity: $OPACITY_ZERO;
-                }
-            }
-        }
-        .ion-header > *:not(.ion-navbar), .ion-footer > * {
-            transform: translateX($OFF_RIGHT);
-        }
-        .ion-content {
-            transform: translateX($OFF_RIGHT);
-        }
-    }
-
-    .ios-transition-forward-enter-active {
-        transition-duration: $DURATION;
-        .ion-header {
-            .ion-navbar {
-                .back-button {
-                    transition: $OPACITY $DURATION $EASING;
-                    .back-button-text {
-                        transition: $TRANSFORM $DURATION $EASING
-                    }
-                }
-                .ion-buttons {
-                    transition: $OPACITY $DURATION $EASING;
-                }
-                .toolbar-background {
-                    transition: $OPACITY $DURATION $EASING;
-                }
-                .ion-title {
-                    transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-                }
-            }
-        }
-        .ion-header > *:not(.ion-navbar), .ion-footer > * {
-            transition: $TRANSFORM $DURATION $EASING;
-        }
-        .ion-content {
-            transition: $TRANSFORM $DURATION $EASING;
-        }
-    }
-
-    // 退出的页面
-    .ios-transition-forward-leave-active {
-        transition-duration: $DURATION;
-        .ion-header {
-            .ion-navbar {
-                .back-button {
-                    opacity: $OPACITY_ZERO;
-                    transition: $OPACITY $DURATION $EASING;
-                    .back-button-text {
-                        opacity: $OPACITY_ZERO;
-                        transition: $OPACITY $DURATION $EASING
-                    }
-                }
-                .ion-buttons {
-                    opacity: $OPACITY_ZERO;
-                    transition: $OPACITY $DURATION $EASING;
-                }
-                .toolbar-background {
-                    opacity: $OPACITY_ZERO;
-                    transition: $OPACITY $DURATION $EASING;
-                }
-                .ion-title {
-                    transform: translateX($OFF_LEFT);
-                    opacity: $OPACITY_ZERO;
-                    transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-                }
-            }
-        }
-        .ion-header > *:not(.ion-navbar), .ion-footer > * {
-            opacity: $OFF_OPACITY;
-            transform: translateX($OFF_LEFT);
-            transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-        }
-        .ion-content {
-            opacity: $OFF_OPACITY;
-            transform: translateX($OFF_LEFT);
-            transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-        }
-    }
-
-    /*-------- ios 后退动画(backward) --------*/
-    /*    ios-transition-backward    */
-
-    // 进入的页面
-    .ios-transition-backward-enter {
-        .ion-header {
-            .ion-navbar {
-                .back-button {
-                    opacity: $OPACITY_ZERO;
-                    .back-button-text {
-                        opacity: $OPACITY_ZERO;
-                    }
-                }
-                .ion-buttons {
-                    opacity: $OPACITY_ZERO;
-                }
-                .toolbar-background {
-                    opacity: $OPACITY_ZERO;
-                }
-                .ion-title {
-                    transform: translateX($OFF_LEFT);
-                    opacity: $OPACITY_ZERO;
-                }
-            }
-        }
-        .ion-header > *:not(.ion-navbar), .ion-footer > * {
-            opacity: $OFF_OPACITY;
-            transform: translateX($OFF_LEFT);
-        }
-        .ion-content {
-            opacity: $OFF_OPACITY;
-            transform: translateX($OFF_LEFT);
-        }
-    }
-
-    .ios-transition-backward-enter-active {
-        transition-duration: $DURATION;
-        .ion-header {
-            .ion-navbar {
-                .back-button {
-                    transition: $OPACITY $DURATION $EASING;
-                    .back-button-text {
-                        transition: $OPACITY $DURATION $EASING
-                    }
-                }
-                .ion-buttons {
-                    transition: $OPACITY $DURATION $EASING;
-                }
-                .toolbar-background {
-                    transition: $OPACITY $DURATION $EASING;
-                }
-                .ion-title {
-                    transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-                }
-            }
-        }
-        .ion-header > *:not(.ion-navbar), .ion-footer > * {
-            transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-        }
-        .ion-content {
-            transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-        }
-    }
-
-    // 退出的页面
-    .ios-transition-backward-leave-active {
-        transition-duration: $DURATION;
-        .ion-header {
-            .ion-navbar {
-                .back-button {
-                    opacity: $OPACITY_ZERO;
-                    transition: $OPACITY $DURATION $EASING;
-                    .back-button-text {
-                        opacity: $OPACITY_ZERO;
-                        transform: translateX($BACK_BTN_TEXT_MOVE);
-                        transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-                    }
-                }
-                .ion-buttons {
-                    opacity: $OPACITY_ZERO;
-                    transition: $OPACITY $DURATION $EASING;
-                }
-                .toolbar-background {
-                    opacity: $OPACITY_ZERO;
-                    transition: $OPACITY $DURATION $EASING;
-                }
-                .ion-title {
-                    transform: translateX($OFF_RIGHT);
-                    opacity: $OPACITY_ZERO;
-                    transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-                }
-            }
-        }
-        .ion-header > *:not(.ion-navbar), .ion-footer > * {
-            transform: translateX($OFF_RIGHT);
-            transition: $TRANSFORM $DURATION $EASING;
-        }
-        .ion-content {
-            transform: translateX($OFF_RIGHT);
-            transition: $TRANSFORM $DURATION $EASING;
-        }
-    }
 </style>

@@ -4,9 +4,9 @@
  * # 平台层级的 "默认" 配置
  *
  */
-import { ready } from '../util/dom';
+import { ready } from '../util/dom'
 //  platform supported list
-export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq'];
+export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq']
 
 // platform default configs
 export const PLATFORM_DEFAULT_CONFIGS = {
@@ -31,22 +31,22 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         // if this a linux device, and is using Android Chrome v36 (Android 5.0)
         // or above then use ripple, otherwise do not use a ripple effect
         if (p.testNavigatorPlatform('linux')) {
-          let chromeVersion = p.matchUserAgentVersion(/Chrome\/(\d+).(\d+)?/);
+          let chromeVersion = p.matchUserAgentVersion(/Chrome\/(\d+).(\d+)?/)
           if (chromeVersion) {
             // linux android device using modern android chrome browser gets ripple
             if (parseInt(chromeVersion.major, 10) < 36 || p.version().major < 5) {
-              return 'none';
+              return 'none'
             } else {
-              return 'ripple';
+              return 'ripple'
             }
           }
           // linux android device not using chrome browser checks just android's version
           if (p.version().major < 5) {
-            return 'none';
+            return 'none'
           }
         }
         // fallback to always use ripple
-        return 'ripple';
+        return 'ripple'
       },
 
       backButtonText: '',
@@ -59,6 +59,8 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: true,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
+      pageTransition: 'fade-bottom-transition',
+      // pageTransition: 'zoom-transition',
 
       // actionSheetEnter: 'action-sheet-md-slide-in',
       // actionSheetLeave: 'action-sheet-md-slide-out',
@@ -68,7 +70,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       // loadingLeave: 'loading-md-pop-out',
       // modalEnter: 'modal-md-slide-in',
       // modalLeave: 'modal-md-slide-out',
-      // pageTransition: 'md-transition',
+      //
       // pickerEnter: 'picker-slide-in',
       // pickerLeave: 'picker-slide-out',
       // popoverEnter: 'popover-md-pop-in',
@@ -85,14 +87,14 @@ export const PLATFORM_DEFAULT_CONFIGS = {
      * @param {Platform} p
      * */
     isMatch(p) {
-      return p.isPlatformMatch('android', ['android', 'silk'], ['windows phone']);
+      return p.isPlatformMatch('android', ['android', 'silk'], ['windows phone'])
     },
 
     /**
      * @param {Platform} p
      * */
     versionParser(p) {
-      return p.matchUserAgentVersion(/Android (\d+).(\d+)?/);
+      return p.matchUserAgentVersion(/Android (\d+).(\d+)?/)
     }
   },
   ios: {
@@ -148,14 +150,14 @@ export const PLATFORM_DEFAULT_CONFIGS = {
      * @param {Platform} p
      * */
     isMatch(p) {
-      return p.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone']);
+      return p.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone'])
     },
 
     /**
      * @param {Platform} p
      * */
     versionParser(p) {
-      return p.matchUserAgentVersion(/OS (\d+)_(\d+)?/);
+      return p.matchUserAgentVersion(/OS (\d+)_(\d+)?/)
     }
   },
 
@@ -211,10 +213,10 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       hideNavBar: true,
     },
     isMatch(p) {
-      return p.isPlatformMatch('wechat', ['micromessenger']);
+      return p.isPlatformMatch('wechat', ['micromessenger'])
     },
     versionParser(p) {
-      return p.matchUserAgentVersion(/micromessenger\/(\d+).(\d+).(\d+)?/i);
+      return p.matchUserAgentVersion(/micromessenger\/(\d+).(\d+).(\d+)?/i)
     }
   },
   alipay: {
@@ -252,10 +254,10 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       hideNavBar: true,
     },
     isMatch(p) {
-      return p.isPlatformMatch('alipay', ['alipay', 'alipayclient']);
+      return p.isPlatformMatch('alipay', ['alipay', 'alipayclient'])
     },
     versionParser(p) {
-      return p.matchUserAgentVersion(/alipayclient\/(\d+).(\d+).(\d+)?/i);
+      return p.matchUserAgentVersion(/alipayclient\/(\d+).(\d+).(\d+)?/i)
     }
   },
   dingtalk: {
@@ -290,10 +292,10 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       hideNavBar: true,
     },
     isMatch(p) {
-      return p.isPlatformMatch('dingtalk');
+      return p.isPlatformMatch('dingtalk')
     },
     versionParser(p) {
-      return p.matchUserAgentVersion(/dingtalk\/(\d+).(\d+).(\d+)?/i);
+      return p.matchUserAgentVersion(/dingtalk\/(\d+).(\d+).(\d+)?/i)
     }
   },
   qq: {
@@ -321,14 +323,14 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       hideNavBar: true,
     },
     isMatch(p) {
-      return p.isPlatformMatch('qq');
+      return p.isPlatformMatch('qq')
     },
     versionParser(p) {
-      return p.matchUserAgentVersion(/qq\/(\d+).(\d+).(\d+)?/i);
+      return p.matchUserAgentVersion(/qq\/(\d+).(\d+).(\d+)?/i)
     }
   },
 
-};
+}
 
 /**
  * @param {Platform} p
@@ -339,14 +341,14 @@ function isIOS (p) {
   // checks navigator.platform to see if it's an actual iOS device
   // this does not use the user-agent string because it is often spoofed
   // an actual iPad will return true, a chrome dev tools iPad will return false
-  return p.testNavigatorPlatform('iphone|ipad|ipod');
+  return p.testNavigatorPlatform('iphone|ipad|ipod')
 }
 /**
  * @param {Platform} p
  * @return {boolean}
  * */
 function isSafari (p) {
-  return p.testUserAgent('Safari');
+  return p.testUserAgent('Safari')
 }
 
 /**
@@ -354,7 +356,7 @@ function isSafari (p) {
  * @return {boolean}
  * */
 function isWKWebView (plt) {
-  return isIOS(plt) && !!window['webkit'];
+  return isIOS(plt) && !!window['webkit']
 }
 
 /**
@@ -362,5 +364,5 @@ function isWKWebView (plt) {
  * @return {boolean}
  * */
 function isIosUIWebView (plt) {
-  return isIOS(plt) && !isWKWebView(plt) && !isSafari(plt);
+  return isIOS(plt) && !isWKWebView(plt) && !isSafari(plt)
 }

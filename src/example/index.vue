@@ -179,12 +179,8 @@
   export default{
     name: 'index',
     methods: {},
-    created(){
-    },
+    created(){},
     mounted(){
-      console.log('index.vue this')
-      console.log(this)
-      console.log(this._loading)
     }
   }
 </script>

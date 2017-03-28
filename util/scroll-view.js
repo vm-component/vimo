@@ -76,8 +76,6 @@ export class ScrollView {
       return
     }
 
-    console.debug(`ScrollView, enableNativeScrolling`)
-
     const self = this
     const ev = self.ev
     const positions = [] // number[]
