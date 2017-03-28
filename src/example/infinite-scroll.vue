@@ -9,7 +9,7 @@
             <List>
                 <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
             </List>
-            <InfiniteScroll class="infiniteScroll" :enabled="true" threshold="20%" @onInfinite="onInfinite">
+            <InfiniteScroll class="infiniteScroll" :enabled="true" threshold="10%" @onInfinite="onInfinite">
                 <!--<InfiniteScroll class="infiniteScroll" :enabled="true" threshold="20%" @onInfinite="$event.waitFor(onInfinitePromise())">-->
                 <InfiniteScrollContent loadingSpinner="ios" loadingText="正在加载..."></InfiniteScrollContent>
                 <h5 class="loadedAll" text-center>全部加载完毕</h5>
@@ -39,6 +39,7 @@
   import { InfiniteScroll, InfiniteScrollContent } from 'vimo/components/infinite-scroll'
   import { List } from 'vimo/components/list'
   import { Item } from 'vimo/components/item'
+
   export default{
     name: 'page',
     data(){

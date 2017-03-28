@@ -26,7 +26,7 @@
    * 如此往复.
    *
    * 当通过AJAX请求的数据已经全部请求完毕(没有更多的数据时), 则执行`infiniteScroll.enable(false)`,
-   * 表明InfiniteScroll任务全部结束. 此时, 将解除对Content组件的`onContentScroll`事件的监听
+   * 表明InfiniteScroll任务全部结束. 此时, 将解除对Content组件的`onScroll`事件的监听
    *
    * InfiniteScroll组件会附带InfiniteScrollContent组件, InfiniteScrollContent组件
    * 是默认的显示组件,它只是起到显示状态的作用, 你也可以自己定义显示状态, 只要写好相应的css样式就好.
@@ -218,11 +218,11 @@
         if (this._init) {
           if (shouldListen) {
             // 监听Content组件的onScroll事件
-            // NOTICE: 这里是监听的是Content组件自己内部维护的事件`onContentScroll`
-            this._content.$on('onContentScroll', this._onScroll);
+            // NOTICE: 这里是监听的是Content组件自己内部维护的事件`onScroll`
+            this._content.$on('onScroll', this._onScroll);
           } else {
             // 解除onScroll事件监听(Content组件)
-            this._content.$off('onContentScroll', this._onScroll);
+            this._content.$off('onScroll', this._onScroll);
           }
         }
       },
