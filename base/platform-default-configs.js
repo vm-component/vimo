@@ -117,8 +117,8 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: false,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
-      pageTransition: 'ios-transition',
-
+      pageTransition: 'fade-right-transition',
+      // pageTransition: 'ios-transition',
       // loadingEnter: 'loading-pop-in',
       // loadingLeave: 'loading-pop-out',
       // modalEnter: 'modal-slide-in',
