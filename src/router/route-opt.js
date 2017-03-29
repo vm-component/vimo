@@ -120,7 +120,13 @@ const routes = [
       require(['@/example/toast.vue'], resolve)
     },
   },
-
+  {
+    path: '/picker',
+    name: 'city-picker',
+    component  (resolve) {
+      require(['@/example/picker.vue'], resolve)
+    },
+  },
   // ----  component/通用组件 ----
 
   {

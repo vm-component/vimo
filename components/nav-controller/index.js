@@ -30,7 +30,7 @@ export class NavContorller {
     this.isAppCompInit = false // App组件是否已完成Init, 表示基础页面是否准备完毕
 
     // 监听路由变化, 维护本地历史记录
-    router.beforeEach((to, from, next) => {
+    router && router.beforeEach((to, from, next) => {
         let stackLength = this._h.length
         if (stackLength <= 1) {
           /**

@@ -150,10 +150,17 @@
                         <Icon slot="item-left" name="cloud"></Icon>
                         <span>Toast</span>
                     </Item>
+                    <Item button :to="{name: 'city-picker'}">
+                        <Icon slot="item-left" name="cloud"></Icon>
+                        <span>Picker</span>
+                    </Item>
                     <Item button :to="{name: 'popover'}">
                         <Icon slot="item-left" name="ios-flame"></Icon>
                         <span>Popover</span>
                     </Item>
+
+
+
                 </ItemGroup>
 
                 <!--模块-->

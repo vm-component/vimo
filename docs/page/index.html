@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Modal.html">Modal</a></li></ul><h3>Modules</h3><ul><li><a href="module-Component_ActionSheet.html">Component/ActionSheet</a><ul class='methods'><li data-type='method'><a href="module-Component_ActionSheet.html#~dismiss">dismiss</a></li><li data-type='method'><a href="module-Component_ActionSheet.html#~present">present</a></li></ul></li><li><a href="module-Component_Alert.html">Component/Alert</a><ul class='methods'><li data-type='method'><a href="module-Component_Alert.html#~dismiss">dismiss</a></li><li data-type='method'><a href="module-Component_Alert.html#~present">present</a></li></ul></li><li><a href="module-Component_App.html">Component/App</a><ul class='methods'><li data-type='method'><a href="module-Component_App.html#~isEnabled">isEnabled</a></li><li data-type='method'><a href="module-Component_App.html#~isScrolling">isScrolling</a></li><li data-type='method'><a href="module-Component_App.html#~setDisableScroll">setDisableScroll</a></li><li data-type='method'><a href="module-Component_App.html#~setEnabled">setEnabled</a></li><li data-type='method'><a href="module-Component_App.html#~setTitle">setTitle</a></li></ul></li><li><a href="module-Component_Backdrop.html">Component/Backdrop</a></li><li><a href="module-Component_Content.html">Component/Content</a><ul class='methods'><li data-type='method'><a href="module-Component_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Component_Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Component_Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="module-Component_Footer.html">Component/Footer</a></li><li><a href="module-Component_Grid.html">Component/Grid</a></li><li><a href="module-Component_Header.html">Component/Header</a></li><li><a href="module-Component_Icon.html">Component/Icon</a></li><li><a href="module-Component_Img.html">Component/Img</a></li><li><a href="module-Component_InfiniteScroll.html">Component/InfiniteScroll</a><ul class='methods'><li data-type='method'><a href="module-Component_InfiniteScroll.html#~complete">complete</a></li><li data-type='method'><a href="module-Component_InfiniteScroll.html#~enable">enable</a></li><li data-type='method'><a href="module-Component_InfiniteScroll.html#~waitFor">waitFor</a></li></ul></li><li><a href="module-Component_Label.html">Component/Label</a></li><li><a href="module-Component_Loading.html">Component/Loading</a></li><li><a href="module-Component_Refresher.html">Component/Refresher</a><ul class='methods'><li data-type='method'><a href="module-Component_Refresher.html#~cancel">cancel</a></li><li data-type='method'><a href="module-Component_Refresher.html#~complete">complete</a></li></ul></li><li><a href="module-Component_Spinner.html">Component/Spinner</a></li><li><a href="module-Component_Tab.html">Component/Tab</a></li><li><a href="module-Component_Tabs.html">Component/Tabs</a><ul class='methods'><li data-type='method'><a href="module-Component_Tabs.html#~getActivatedIndex">getActivatedIndex</a></li><li data-type='method'><a href="module-Component_Tabs.html#~getByIndex">getByIndex</a></li><li data-type='method'><a href="module-Component_Tabs.html#~getSelected">getSelected</a></li><li data-type='method'><a href="module-Component_Tabs.html#~select">select</a></li></ul></li><li><a href="module-Component_Toast.html">Component/Toast</a></li><li><a href="module-Component_Toggle.html">Component/Toggle</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:onInfinite">onInfinite</a></li><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#dismiss">dismiss</a></li><li><a href="global.html#getAnInstance">getAnInstance</a></li><li><a href="global.html#Input/Textarea">Input/Textarea</a></li><li><a href="global.html#present">present</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#initVimo">initVimo</a></li></ul>
 </nav>
 
 <div id="main">
@@ -46,50 +46,14 @@
 
 
     <section class="readme">
-        <article><h1>Vimo</h1><blockquote>
-<p>按照IONIC2.x的组件样式及API编写基于Vue2.X的组件，如果没读懂源码及思路, 千万别用与生产。</p>
-</blockquote>
-<p>这个是目前的组件图谱, 基本上完成了90%.</p>
-<p><img src="static/component.png" alt=""></p>
-<p>项目使用vue-cli构建，如果对此熟悉则下面的启动说明应该就没问题了。</p>
-<h2>目录说明</h2><pre class="prettyprint source"><code>|--backup            备份文件
-|--build              webpack配置文件
-|--config              webpack配置文件
-|--Manuscript          设计手稿
-|--src                开发目录
-|----assets            内部资源
-|----views            业务页面(demo页面)
-|----vimo            vimo组件及框架
-|------component    组件
-|------config        特性配置器
-|------platform        平台配置器
-|------theme        主题
-|------transitions    过度的动画
-|------util            工具
-|------index.js        vimo安装入口
-|----App.vue        主页面
-|----main.js        入口js
-|----router.js        路由
-|----setting.js        业务设置
-|--static            外部静态资源
-|--test                测试
-|--index.html        单页的index</code></pre><h2>文档生成</h2><pre class="prettyprint source"><code>jsdoc ./src/vimo/components/**/** -c ./conf.json</code></pre><h2>安装运行</h2><pre class="prettyprint source lang-bash"><code># install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test</code></pre></article>
+        <article><h1>Vimo</h1><hr>
+<p>就目前来看，移动端H5的业务需求希望同样的页面能够在微信、支付宝、普通浏览器或者自建的App内部WebView中运行，因此使用一套代码完成上述需求。</p>
+<p><img src="./static/VIMO(H5" alt="">.png)</p>
+<p>从技术实现角度是没问题的，但是在维护层面会有些难度，需要在业务代码中插入很多环境判断的代码，这个和职责分离的设计思想相分离，故Vimo就是为了解决这个问题而开发。</p>
+<p>Vimo的设计思想来源于IONIC2.x，通过研读源码并结合当前的问题，上述的问题是按照这个思路解决的：</p>
+<p><img src="./static/layer-structure.png" alt=""></p>
+<p>App在运行之前，完成对当前运行环境的初始化，这部分由<code>config + plarform</code>完成，不同的平台配置及初始化通过<code>platform-config.js</code>完成。<code>app-config.js</code>完成业务层面的配置。</p>
+<p>Vimo只安装必要的组件，模块根据需要自行安装。</p></article>
     </section>
 
 
@@ -102,7 +66,7 @@ npm test</code></pre></article>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 22 2017 21:00:31 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 29 2017 12:15:24 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
