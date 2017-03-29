@@ -39,7 +39,7 @@ new Vue({
   template: '<App/>',
   created () {
     this.$platform.ready().then((data) => {
-      alert(data)
+      // alert(data)
     })
   },
   mounted () {},
