@@ -24,7 +24,7 @@
             </Navbar>
             <Toolbar color="primary">
                 <!--content-->
-                <Segment v-model="relationship9"  color="light">
+                <Segment v-model="relationship9" color="light">
                     <SegmentButton value="friend1"> friend1</SegmentButton>
                     <SegmentButton value="friend2"> friend2</SegmentButton>
                     <SegmentButton value="friend3">friend3</SegmentButton>
@@ -56,6 +56,7 @@
             <h4>这个是标题</h4>
 
             <Button type="block" @click="setTitle('Hello Vue')">点击设置Title='Hello Vue'</Button>
+            <Button type="block" @click="$history.toRoot()">返回首页</Button>
 
             <Button type="block" @click="scrollToBottom()">滚动到底部</Button>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
@@ -132,6 +133,7 @@
 
     },
     mounted () {
+      console.debug(this.$history)
       this.refreshContentDimensions();
       this.content.$on('onScroll', (ev) => {
         console.debug('--------------')
@@ -139,6 +141,7 @@
         console.log('scrollTop:' + ev.scrollTop)
         console.log('directionY:' + ev.directionY)
       })
+
     },
     activated () {
     },

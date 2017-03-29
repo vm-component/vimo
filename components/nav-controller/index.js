@@ -24,13 +24,15 @@
 
 export class NavContorller {
 
-  constructor (Vue, router = {}) {
+  constructor (Vue, router) {
     this._h = [] // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
     this._d = 'forward' // forward/backward
     this.isAppCompInit = false // App组件是否已完成Init, 表示基础页面是否准备完毕
+    this._r = router
+    this.length = 0
 
     // 监听路由变化, 维护本地历史记录
-    router && router.beforeEach((to, from, next) => {
+    this._r && this._r.beforeEach((to, from, next) => {
         let stackLength = this._h.length
         if (stackLength <= 1) {
           /**
@@ -59,6 +61,7 @@ export class NavContorller {
    * */
   _pushHistory (Vue, {to, from, next}) {
     this._h.push(to)
+    this.length++
     if (this._isPageChange({to, from})) {
       this._d = 'forward'
       this._emit(Vue, 'onNavEnter', {to, from, next})
@@ -74,6 +77,7 @@ export class NavContorller {
   _popHistory (Vue, {to, from, next}) {
     // 激活了浏览器的后退,这里只需要更新状态
     this._h.pop()
+    this.length--
     if (this._isPageChange({to, from})) {
       this._d = 'backward'
       this._emit(Vue, 'onNavLeave', {to, from, next})
@@ -163,11 +167,10 @@ export class NavContorller {
    * 返回root页面
    * */
   toRoot () {
-    //TODO: popToRoot
-  }
-
-  getRoot () {
-    //TODO: popToRoot
+    let _len = this.length
+    for (var i = 0; _len > i; i++) {
+      this._r.back()
+    }
   }
 }
 

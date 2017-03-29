@@ -1,7 +1,6 @@
 <template>
     <div @click="compClickHandler()">
         <slot></slot>
-
     </div>
 </template>
 <style scoped lang="scss">
@@ -26,14 +25,14 @@
         provinceCol: [],    // 省份显示的数据列表
         cityCol: [],        // 城市显示的数据列表
         regionCol: [],      // 地区显示的数据列表
-        selectedIndex: [], // 当前选择的列表
+        selectedIndex: [],  // 当前选择的列表
       }
     },
     props: {
       selectedCity: {
         value: Array,
         default(){
-          return [0, 0, 0]
+          return ['110000', '110100', '110101']
         }
       },
       title: {
@@ -43,8 +42,6 @@
         }
       }
     },
-    watch: {},
-    computed: {},
     methods: {
       // 获取省份列表 520000
       getProvinceCol () {
@@ -73,7 +70,7 @@
       getRegionCol (cityCode) {
         let region = []
         regions.forEach((item) => {
-          if (item.item_code && item.item_code.substr(0, 4) === cityCode.substr(0, 4)) {
+          if (item.item_code && item.item_code.substr(0, 4) === cityCode.substr(0, 4) && item.item_code.substr(4) !== '00') {
             region.push(this.formatData(item))
           }
         })

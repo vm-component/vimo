@@ -7,6 +7,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+
 module.exports = {
   entry: {
     app: './src/main.js'
@@ -24,6 +25,9 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'vimo': resolve('./'), // for vimo module
+      'vimo/components': resolve('./components'), // for vimo module
+      'vimo/util': resolve('./util'), // for vimo module
+
     }
   },
   module: {

@@ -20,11 +20,20 @@
                 <span>{{city}}</span>
                 <span>{{region}}</span>
             </h5>
-            <Button type="block">
-                <RegionPicker :selectedCity="['520000', '520100', '520103']" @onSelected="onSelectedHandler">
-                    <span>点击选择城市</span>
-                </RegionPicker>
-            </Button>
+            <Grid>
+                <Row justify-content-center>
+                    <RegionPicker :selectedCity="['520000', '520100', '520103']" @onSelected="onSelectedHandler">
+                        <span>点击选择城市</span>
+                    </RegionPicker>
+                </Row>
+            </Grid>
+            <Grid>
+                <Row justify-content-center>
+                    <RegionPicker @onSelected="onSelectedHandler">
+                        <span>点击选择城市</span>
+                    </RegionPicker>
+                </Row>
+            </Grid>
         </Content>
     </Page>
 </template>

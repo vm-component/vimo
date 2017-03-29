@@ -37,12 +37,15 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
+  created () {
+    this.$platform.ready().then((data) => {
+      alert(data)
+    })
+  },
   mounted () {},
-  created () {},
   components: {App}
 })
 
-
-window.onerror = function(err){
+window.onerror = function (err) {
   alert(err)
 }

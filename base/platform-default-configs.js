@@ -5,6 +5,7 @@
  *
  */
 import { ready } from '../util/dom'
+import { loadScript } from '../util/util'
 //  platform supported list
 export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq']
 
@@ -12,7 +13,7 @@ export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq']
 export const PLATFORM_DEFAULT_CONFIGS = {
   mobile: {
     settings: {
-      mode: 'md',
+      mode: 'md'
     }
   },
   /**
@@ -48,7 +49,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         // fallback to always use ripple
         return 'ripple'
       },
-
       backButtonText: '',
       backButtonIcon: 'md-arrow-back',
       iconMode: 'md',
@@ -59,28 +59,10 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: true,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
-      pageTransition: 'fade-bottom-transition',
-      // pageTransition: 'zoom-transition',
-
-      // actionSheetEnter: 'action-sheet-md-slide-in',
-      // actionSheetLeave: 'action-sheet-md-slide-out',
-      // alertEnter: 'alert-md-pop-in',
-      // alertLeave: 'alert-md-pop-out',
-      // loadingEnter: 'loading-md-pop-in',
-      // loadingLeave: 'loading-md-pop-out',
-      // modalEnter: 'modal-md-slide-in',
-      // modalLeave: 'modal-md-slide-out',
-      //
-      // pickerEnter: 'picker-slide-in',
-      // pickerLeave: 'picker-slide-out',
-      // popoverEnter: 'popover-md-pop-in',
-      // popoverLeave: 'popover-md-pop-out',
-      // toastEnter: 'toast-md-slide-in',
-      // toastLeave: 'toast-md-slide-out',
-
-      // scrollAssist: true,
-      // inputCloning: true,
-      // autoFocusAssist: 'immediate',
+      pageTransition: 'fade-bottom-transition', // 'zoom-transition'
+      scrollAssist: true,
+      inputCloning: true,
+      autoFocusAssist: 'immediate',
     },
 
     /**
@@ -116,35 +98,16 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: false,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
-      pageTransition: 'fade-right-transition',
-      // pageTransition: 'ios-transition',
+      pageTransition: 'fade-right-transition', //'ios-transition'
       statusbarPadding: false,
-
-      // loadingEnter: 'loading-pop-in',
-      // loadingLeave: 'loading-pop-out',
-      // modalEnter: 'modal-slide-in',
-      // modalLeave: 'modal-slide-out',
-
-      // pickerEnter: 'picker-slide-in',
-      // pickerLeave: 'picker-slide-out',
-      // popoverEnter: 'popover-pop-in',
-      // popoverLeave: 'popover-pop-out',
-      // actionSheetEnter: 'action-sheet-slide-in',
-      // actionSheetLeave: 'action-sheet-slide-out',
-      // alertEnter: 'alert-pop-in',
-      // alertLeave: 'alert-pop-out',
-      // toastEnter: 'toast-slide-in',
-      // toastLeave: 'toast-slide-out',
-
-      // autoFocusAssist: 'delay',
-      // inputBlurring: isIOS,
-      // inputCloning: isIOS,
-      // scrollAssist: isIOS,
-      // statusbarPadding: isCordova,
-      // swipeBackEnabled: isIOS,
-      // tapPolyfill: isIosUIWebView,
-      // virtualScrollEventAssist: isIosUIWebView,
-      // disableScrollAssist: isIOS,
+      autoFocusAssist: 'delay',
+      inputBlurring: true,
+      inputCloning: true,
+      scrollAssist: true,
+      swipeBackEnabled: true,
+      tapPolyfill: isIosUIWebView,
+      virtualScrollEventAssist: isIosUIWebView,
+      disableScrollAssist: true,
     },
 
     /**
@@ -167,49 +130,50 @@ export const PLATFORM_DEFAULT_CONFIGS = {
    * 如果添加新环境,记得在SUBSET_LIST注册
    * */
   wechat: {
-    // initialize(p){
-    //   // 在ready之前进行处理
-    //   p.prepareReady = function () {
-    //     let _userAgent = window.navigator.userAgent.toString().trim();
-    //     let val;
-    //     //alert('Wechat Init: from platform-registry.js')
-    //     /**
-    //      * 执行默认的domReady, 如果有定制化的初始化任务,
-    //      * 手动执行p.triggerReady
-    //      *
-    //      * @example
-    //      *
-    //      *  ready(function () {
-    //      *      p.triggerReady('Wechat Init Success!');
-    //      *  });
-    //      * */
-    //
-    //     /**
-    //      * 微信的userAgent中包含了网络类型和当前语言
-    //      * */
-    //     p.setUserAgent(_userAgent);
-    //
-    //     // 获取网络类型
-    //     // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
-    //     val = _userAgent.match(/NetType\/(\w+) /i);
-    //     if (!!val && val.length > 0 && !!val[1]) {
-    //       p.setNetType(val[1].toString().toLowerCase());
-    //     }
-    //
-    //     // 获取语言类型
-    //     // Language/zh-CN
-    //     val = _userAgent.match(/Language\/(.+)/i);
-    //     if (!!val && val.length > 0 && !!val[1]) {
-    //       p.setLang(val[1].toString().toLowerCase(), true);
-    //     }
-    //
-    //     // 触发外层的ready
-    //     ready(function () {
-    //       // 触发
-    //       p.triggerReady('Wechat Init Success!');
-    //     })
-    //   }
-    // },
+    initialize (p) {
+      const config = this
+      // 在ready之前进行处理
+      p.prepareReady = () => {
+        let val
+        let userAgent = window.navigator.userAgent.toString().trim()
+        let jsSDKUrl = config.settings['jsSDKUrl']
+        let splitArr = jsSDKUrl.split('//')
+        if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
+          splitArr[0] = 'https:'
+        } else {
+          splitArr[0] = 'http:'
+        }
+        jsSDKUrl = splitArr.join('//')
+
+        /**
+         * 微信的userAgent中包含了网络类型和当前语言
+         * */
+        p.setUserAgent(userAgent)
+
+        // 获取网络类型
+        // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
+        val = userAgent.match(/NetType\/(\w+) /i)
+        if (!!val && val.length > 0 && !!val[1]) {
+          p.setNetType(val[1].toString().toLowerCase())
+        }
+
+        // 获取语言类型
+        // Language/zh-CN
+        val = userAgent.match(/Language\/(.+)/i)
+        if (!!val && val.length > 0 && !!val[1]) {
+          p.setLang(val[1].toString().toLowerCase(), true)
+        }
+
+        if (jsSDKUrl) {
+          // loadScript
+          loadScript(jsSDKUrl, function () {
+            p.triggerReady('Wechat Init Success with jsSDK!')
+          })
+        } else {
+          p.triggerReady('Wechat Init Success without jsSDK!')
+        }
+      }
+    },
     settings: {
       hideNavBar: true,
     },
@@ -221,36 +185,34 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     }
   },
   alipay: {
-    // initialize(p){
-    //   //alert('Alipay Init: from platform-registry.js');
-    //   let _userAgent = window.navigator.userAgent.toString().trim();
-    //   let val;
-    //
-    //   /**
-    //    * 支付宝的userAgent中包含了网络类型和当前语言
-    //    * AlipayDefined(nt:WIFI,ws:320|548|2.0)
-    //    * Language/zh-Hans
-    //    * */
-    //   p.setUserAgent(_userAgent);
-    //
-    //   // 获取网络类型
-    //   val = _userAgent.match(/AlipayDefined\(nt:(\w+),/i);
-    //   if (!!val && val.length > 0 && !!val[1]) {
-    //     p.setNetType(val[1].toString().toLowerCase());
-    //   }
-    //
-    //   // 获取语言类型
-    //   // Language/zh-CN
-    //   val = _userAgent.match(/Language\/(.+)/i);
-    //   if (!!val && val.length > 0 && !!val[1]) {
-    //     p.setLang(val[1].toString().toLowerCase(), true);
-    //   }
-    //
-    //   // 触发外层的ready
-    //   ready(function () {
-    //     p.triggerReady('alipay Init Success!');
-    //   })
-    // },
+    initialize(p){
+      //alert('Alipay Init: from platform-registry.js');
+      let userAgent = window.navigator.userAgent.toString().trim()
+      let val
+
+      /**
+       * 支付宝的userAgent中包含了网络类型和当前语言
+       * AlipayDefined(nt:WIFI,ws:320|548|2.0)
+       * Language/zh-Hans
+       * */
+      p.setUserAgent(userAgent)
+
+      // 获取网络类型
+      val = userAgent.match(/AlipayDefined\(nt:(\w+),/i)
+      if (!!val && val.length > 0 && !!val[1]) {
+        p.setNetType(val[1].toString().toLowerCase())
+      }
+
+      // 获取语言类型
+      // Language/zh-CN
+      val = userAgent.match(/Language\/(.+)/i)
+      if (!!val && val.length > 0 && !!val[1]) {
+        p.setLang(val[1].toString().toLowerCase(), true)
+      }
+
+      // 触发外层的ready
+      p.triggerReady('alipay Init Success!')
+    },
     settings: {
       hideNavBar: true,
     },
@@ -262,33 +224,31 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     }
   },
   dingtalk: {
-    // initialize(p){
-    //   //alert('Dingtalk Init: from platform-registry.js');
-    //   let _userAgent = window.navigator.userAgent.toString().trim();
-    //   let val;
-    //
-    //   /**
-    //    * 钉钉的userAgent中包含了网络类型和当前语言
-    //    * AlipayDefined(nt:WIFI,ws:320|548|2.0)
-    //    * Language/zh-Hans
-    //    * */
-    //   p.setUserAgent(_userAgent);
-    //
-    //   // 获取网络类型
-    //   // dingtalk未给出
-    //
-    //   // 获取语言类型
-    //   // Language/zh-CN
-    //   val = _userAgent.match(/language\/(.+)/i);
-    //   if (!!val && val.length > 0 && !!val[1]) {
-    //     p.setLang(val[1].toString().toLowerCase(), true);
-    //   }
-    //
-    //   // 触发外层的ready
-    //   ready(() => {
-    //     p.triggerReady('dingtalk Init Success!');
-    //   })
-    // },
+    initialize(p){
+      // alert('Dingtalk Init: from platform-registry.js');
+      let userAgent = window.navigator.userAgent.toString().trim()
+      let val
+
+      /**
+       * 钉钉的userAgent中包含了网络类型和当前语言
+       * AlipayDefined(nt:WIFI,ws:320|548|2.0)
+       * Language/zh-Hans
+       * */
+      p.setUserAgent(userAgent)
+
+      // 获取网络类型
+      // dingtalk未给出
+
+      // 获取语言类型
+      // Language/zh-CN
+      val = userAgent.match(/language\/(.+)/i)
+      if (!!val && val.length > 0 && !!val[1]) {
+        p.setLang(val[1].toString().toLowerCase(), true)
+      }
+
+      // 触发外层的ready
+      p.triggerReady('dingtalk Init Success!')
+    },
     settings: {
       hideNavBar: true,
     },
@@ -300,26 +260,23 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     }
   },
   qq: {
-    // initialize(p){
-    //   //alert('QQ Init: from platform-registry.js');
-    //   let _userAgent = window.navigator.userAgent.toString().trim();
-    //   let val;
-    //
-    //   p.setUserAgent(_userAgent);
-    //
-    //   // 获取网络类型
-    //   // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
-    //   val = _userAgent.match(/NetType\/(\w+)/i);
-    //   if (!!val && val.length > 0 && !!val[1]) {
-    //     p.setNetType(val[1].toString().toLowerCase());
-    //   }
-    //
-    //   // DOMReady后触发外层的ready
-    //   ready(() => {
-    //     p.triggerReady('qq Init Success!');
-    //   })
-    //
-    // },
+    initialize(p){
+      //alert('QQ Init: from platform-registry.js');
+      let userAgent = window.navigator.userAgent.toString().trim()
+      let val
+
+      p.setUserAgent(userAgent)
+
+      // 获取网络类型
+      // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
+      val = userAgent.match(/NetType\/(\w+)/i)
+      if (!!val && val.length > 0 && !!val[1]) {
+        p.setNetType(val[1].toString().toLowerCase())
+      }
+
+      // 触发外层的ready
+      p.triggerReady('qq Init Success!')
+    },
     settings: {
       hideNavBar: true,
     },

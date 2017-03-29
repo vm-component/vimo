@@ -325,3 +325,16 @@ export function getQueryValue (name) {
   }
   return decodeURIComponent(result[1]);
 }
+
+
+
+export function loadScript (url, cb) {
+  let _head = document.getElementsByTagName('head')[0]
+  let _script = document.createElement('script')
+  _script.setAttribute('type', 'text/javascript')
+  _script.setAttribute('src', url)
+  _head.appendChild(_script)
+  _script.onload = function () {
+    cb && cb()
+  }
+}
