@@ -7,10 +7,14 @@ export default {
   ios: {
     settings: {
       statusbarPadding: true,
+      pageTransition: 'fade-right-transition',  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     }
   },
   android: {
-    settings: {}
+    settings: {
+      statusbarPadding: true,
+      pageTransition: 'zoom-transition', // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+    }
   },
   wechat: {
     settings: {

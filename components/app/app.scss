@@ -183,7 +183,6 @@ sub {
 
 .ion-app,
 .ion-nav,
-.ion-tab,
 .ion-tabs,
 .app-root {
   position: absolute;
@@ -197,22 +196,12 @@ sub {
 }
 
 .ion-nav,
-.ion-tab,
 .ion-tabs {
   overflow: hidden;
 }
 
-.ion-tab {
-  display: none;
-}
-
-.ion-tab.show-tab {
-  display: block;
-}
-
 .ion-app,
 .ion-nav,
-.ion-tab,
 .ion-tabs,
 .app-root,
 .ion-page {
@@ -267,9 +256,7 @@ $cordova-statusbar-padding-modal-max-width: 767px !default;
 
   .ion-nav > .ion-page,
   .ion-nav > .ion-page > .ion-header,
-  .ion-tab > .ion-page > .ion-header,
   .ion-tabs > .tabs-content > .tabs-content-wrap > .wrap-inner > .ion-page > .ion-header,
-  .ion-tabs > .ion-page.tab-subpage > .ion-header,
   .ion-menu > .menu-inner,
   .ion-menu > .menu-inner > .ion-header {
 
@@ -282,7 +269,7 @@ $cordova-statusbar-padding-modal-max-width: 767px !default;
   }
 
   @media only screen and (max-width: $modal-max-width) {
-    .modal-wrapper > .ion-page > .ion-header {
+    .modal-wrapper .ion-page > .ion-header {
       @include toolbar-statusbar-padding($toolbar-height, $toolbar-padding, $content-padding, $cordova-statusbar-padding);
 
       // If we should style the title elements in the toolbar

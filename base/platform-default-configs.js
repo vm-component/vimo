@@ -16,9 +16,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       mode: 'md'
     }
   },
-  /**
-   * 移动端基础平台(android/IOS)
-   * */
   android: {
     superset: 'mobile',
     subsets: SUBSET_LIST,
@@ -26,29 +23,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       toolbarMinHeight: 56,
       hoverCSS: false,
       mode: 'md',
-      activator: function () {
-        // md mode defaults to use ripple activator
-        // however, under-powered devices shouldn't use ripple
-        // if this a linux device, and is using Android Chrome v36 (Android 5.0)
-        // or above then use ripple, otherwise do not use a ripple effect
-        if (p.testNavigatorPlatform('linux')) {
-          let chromeVersion = p.matchUserAgentVersion(/Chrome\/(\d+).(\d+)?/)
-          if (chromeVersion) {
-            // linux android device using modern android chrome browser gets ripple
-            if (parseInt(chromeVersion.major, 10) < 36 || p.version().major < 5) {
-              return 'none'
-            } else {
-              return 'ripple'
-            }
-          }
-          // linux android device not using chrome browser checks just android's version
-          if (p.version().major < 5) {
-            return 'none'
-          }
-        }
-        // fallback to always use ripple
-        return 'ripple'
-      },
       backButtonText: '',
       backButtonIcon: 'md-arrow-back',
       iconMode: 'md',
@@ -64,17 +38,9 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       inputCloning: true,
       autoFocusAssist: 'immediate',
     },
-
-    /**
-     * @param {Platform} p
-     * */
     isMatch(p) {
       return p.isPlatformMatch('android', ['android', 'silk'], ['windows phone'])
     },
-
-    /**
-     * @param {Platform} p
-     * */
     versionParser(p) {
       return p.matchUserAgentVersion(/Android (\d+).(\d+)?/)
     }
@@ -98,7 +64,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: false,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
-      pageTransition: 'fade-right-transition', //'ios-transition'
+      pageTransition: 'fade-right-transition', // 'ios-transition'
       statusbarPadding: false,
       autoFocusAssist: 'delay',
       inputBlurring: true,
@@ -109,17 +75,9 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       virtualScrollEventAssist: isIosUIWebView,
       disableScrollAssist: true,
     },
-
-    /**
-     * @param {Platform} p
-     * */
     isMatch(p) {
       return p.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone'])
     },
-
-    /**
-     * @param {Platform} p
-     * */
     versionParser(p) {
       return p.matchUserAgentVersion(/OS (\d+)_(\d+)?/)
     }
