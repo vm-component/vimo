@@ -6,6 +6,7 @@
 export default {
   ios: {
     settings: {
+      statusbarPadding: true,
     }
   },
   android: {

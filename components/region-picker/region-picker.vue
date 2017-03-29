@@ -42,6 +42,11 @@
         }
       }
     },
+    watch: {
+      selectedCity(val){
+        this.init(val)
+      }
+    },
     methods: {
       // 获取省份列表 520000
       getProvinceCol () {
@@ -55,6 +60,7 @@
       },
       // 获取城市列表 520D00
       getCityCol (provinceCode) {
+        if (!provinceCode)return
         let city = []
         regions.forEach((item) => {
           let _org = item.item_code.substring(0, 3) + item.item_code.substring(4)
@@ -68,6 +74,7 @@
       },
       // 获取地区县市列表 520Dxx
       getRegionCol (cityCode) {
+        if (!cityCode)return
         let region = []
         regions.forEach((item) => {
           if (item.item_code && item.item_code.substr(0, 4) === cityCode.substr(0, 4) && item.item_code.substr(4) !== '00') {
@@ -78,6 +85,7 @@
       },
       // 格式化数据
       formatData(item){
+        if (!item)return
         return {
           code: item.item_code,
           value: item.item_code,
@@ -98,47 +106,56 @@
       // 当组件被点击时, 开启picker
       compClickHandler(){
         this.picker && this.picker.show();
+      },
+
+      // 初始化
+      init(cityArrs){
+        if (!cityArrs || !cityArrs[0] || !cityArrs[1] || !cityArrs[2]) {
+          cityArrs = ['110000', '110100', '110101']
+        }
+
+        this.provinceCol = this.getProvinceCol()
+        this.cityCol = this.getCityCol(cityArrs[0])
+        this.regionCol = this.getRegionCol(cityArrs[1])
+        this.selectedIndex[0] = this.getIndexByCode(cityArrs[0], this.provinceCol)
+        this.selectedIndex[1] = this.getIndexByCode(cityArrs[1], this.cityCol)
+        this.selectedIndex[2] = this.getIndexByCode(cityArrs[2], this.regionCol)
+
+        this.picker = new Picker({
+          data: [this.provinceCol, this.cityCol, this.regionCol],
+          selectedIndex: this.selectedIndex,
+          title: this.title
+        })
+
+        this.picker.on('picker.select', (selectedVal, selectedIndex) => {
+          let dataArr = []
+          let _p = this.provinceCol[selectedIndex[0]]
+          let _c = this.cityCol[selectedIndex[1]]
+          let _d = this.regionCol[selectedIndex[2]]
+          dataArr.push(_p)
+          dataArr.push(_c)
+          dataArr.push(_d)
+          this.$emit('onSelected', JSON.parse(JSON.stringify(dataArr)))
+        })
+
+        this.picker.on('picker.change', (selectedVal, selectedIndex) => {
+          if (selectedVal === 0) {
+            // 第一列选中, 省份选择
+            this.cityCol = this.getCityCol(this.provinceCol[selectedIndex].code)
+            this.regionCol = this.getRegionCol(this.cityCol[0].code)
+            this.picker.refillColumn(1, this.cityCol)
+            this.picker.refillColumn(2, this.regionCol)
+          } else if (selectedVal === 1) {
+            // 第一列选中, 城市选择
+            this.regionCol = this.getRegionCol(this.cityCol[selectedIndex].code)
+            this.picker.refillColumn(2, this.regionCol)
+          }
+        })
+
       }
     },
     created () {
-      this.provinceCol = this.getProvinceCol()
-      this.cityCol = this.getCityCol(this.selectedCity[0])
-      this.regionCol = this.getRegionCol(this.selectedCity[1])
-      this.selectedIndex[0] = this.getIndexByCode(this.selectedCity[0], this.provinceCol)
-      this.selectedIndex[1] = this.getIndexByCode(this.selectedCity[1], this.cityCol)
-      this.selectedIndex[2] = this.getIndexByCode(this.selectedCity[2], this.regionCol)
-
-      this.picker = new Picker({
-        data: [this.provinceCol, this.cityCol, this.regionCol],
-        selectedIndex: this.selectedIndex,
-        title: this.title
-      })
-
-      this.picker.on('picker.select', (selectedVal, selectedIndex) => {
-        let dataArr = []
-        let _p = this.provinceCol[selectedIndex[0]]
-        let _c = this.cityCol[selectedIndex[1]]
-        let _d = this.regionCol[selectedIndex[2]]
-        dataArr.push(_p)
-        dataArr.push(_c)
-        dataArr.push(_d)
-        this.$emit('onSelected', JSON.parse(JSON.stringify(dataArr)))
-      })
-
-      this.picker.on('picker.change', (selectedVal, selectedIndex) => {
-        if (selectedVal === 0) {
-          // 第一列选中, 省份选择
-          this.cityCol = this.getCityCol(this.provinceCol[selectedIndex].code)
-          this.regionCol = this.getRegionCol(this.cityCol[0].code)
-          this.picker.refillColumn(1, this.cityCol)
-          this.picker.refillColumn(2, this.regionCol)
-        } else if (selectedVal === 1) {
-          // 第一列选中, 城市选择
-          this.regionCol = this.getRegionCol(this.cityCol[selectedIndex].code)
-          this.picker.refillColumn(2, this.regionCol)
-        }
-      })
-
-    },
+      this.init(this.selectedCity)
+    }
   }
 </script>

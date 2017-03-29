@@ -50,7 +50,6 @@
             </Footer>
         </Menus>
         <Nav>
-            <!--<Nav animate="zoom-transition">-->
             <keep-alive>
                 <router-view></router-view>
             </keep-alive>

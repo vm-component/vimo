@@ -133,15 +133,14 @@
         tabsContentWrapElement: null,
         tabHighlightEle: null, // TabHighlight元素
         selectedIndex: -1, // 内部使用的, 表示当前处于激活的Tab的index
-        statusbarPadding: VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
       }
     },
     watch: {
       $route(){
-        if (!this.isInit) return;
-        let _index = this.getActivatedIndex();
+        if (!this.isInit) return
+        let _index = this.getActivatedIndex()
         if (this.selectedIndex !== _index) {
-          this.selectedIndex = _index;
+          this.selectedIndex = _index
           this.tabHighlightSelect(this.selectedIndex)
           this.$emit('onTabChange', _index)
         }
@@ -180,7 +179,7 @@
        * */
       getActivatedIndex(){
         for (let i = 0, len = this.tabSlots.length; len > i; i++) {
-          let tabIns = this.tabSlots[i].componentInstance;
+          let tabIns = this.tabSlots[i].componentInstance
           if (tabIns.to.name === this.$route.name || tabIns.to.path === this.$route.path) {
             return i
           }
@@ -206,14 +205,14 @@
        * @return {Tab}
        * */
       select(tabOrIndex){
-        let tabIns = tabOrIndex;
+        let tabIns = tabOrIndex
         if (typeof tabOrIndex === 'number') {
           tabIns = this.getByIndex(tabOrIndex)
         }
         if (tabIns === this.getSelected()) {
           return tabIns
         } else {
-          this.$router.replace(tabIns.to);
+          this.$router.replace(tabIns.to)
           return tabIns
         }
       },
@@ -224,8 +223,8 @@
        * 获取每个tab的宽度, 因为是平均, 故用除法就行
        * */
       getTabElementWidth(){
-        let _count = this.tabSlots.length;
-        let _warpWidth = this.tabbarElement.offsetWidth;
+        let _count = this.tabSlots.length
+        let _warpWidth = this.tabbarElement.offsetWidth
         return _warpWidth / _count
       },
 
@@ -233,21 +232,21 @@
        * 第一次进入是的初始化,
        */
       initTabs(){
-        if (this.isInit) return;
+        if (this.isInit) return
 
         // 获取tabbar元素
-        this.tabSlots = this.$slots.tab;
-        this.tabbarElement = this.$refs.tabbar;
-        this.tabElementWidth = this.getTabElementWidth();
-        this.selectedIndex = this.getActivatedIndex();
+        this.tabSlots = this.$slots.tab
+        this.tabbarElement = this.$refs.tabbar
+        this.tabElementWidth = this.getTabElementWidth()
+        this.selectedIndex = this.getActivatedIndex()
 
-        this.tabHighlightEle = this.$refs.tabHighlight;
-        this.tabsContentElement = this.$refs.tabsContent;
-        this.tabsContentWrapElement = this.$refs.tabsContentWrap;
+        this.tabHighlightEle = this.$refs.tabHighlight
+        this.tabsContentElement = this.$refs.tabsContent
+        this.tabsContentWrapElement = this.$refs.tabsContentWrap
 
         // 计算属性盒子的尺寸
-        this.computeTabsContentStyle();
-        this.computeTabsContentWrapStyle();
+        this.computeTabsContentStyle()
+        this.computeTabsContentWrapStyle()
 
         // 激活当前选中的Highlight
         if (this.tabsHighlight) {
@@ -259,40 +258,36 @@
 
       /**
        * 计算stabs-content的样式
-       * 因为这部分首一下因素影响：statusbarPadding、fullscreen、Header，Footer
+       * 因为这部分首一下因素影响：fullscreen、Header，Footer
        * */
       computeTabsContentStyle () {
-        let _styleType = 'margin';
-        let headerBarHeight = 0;
-        let footerBarHeight = 0;
-        let computedStyle;
-        let children = this.$parent.$children;
-        let ele;
-        let tagName;
+        let _styleType = 'margin'
+        let headerBarHeight = 0
+        let footerBarHeight = 0
+        let computedStyle
+        let children = this.$parent.$children
+        let ele
+        let tagName
 
         children.forEach((child) => {
-          ele = child.$el;
-          tagName = child.$options._componentTag.toLowerCase();
+          ele = child.$el
+          tagName = child.$options._componentTag.toLowerCase()
           if (tagName === 'header') {
-            // this.headerElement = ele;
-            computedStyle = getComputedStyle(ele);
-            headerBarHeight = parsePxUnit(computedStyle.height);
+            // this.headerElement = ele
+            computedStyle = getComputedStyle(ele)
+            headerBarHeight = parsePxUnit(computedStyle.height)
           } else if (tagName === 'footer') {
-            // this.footerElement = ele;
-            computedStyle = getComputedStyle(ele);
-            footerBarHeight = parsePxUnit(computedStyle.height);
+            // this.footerElement = ele
+            computedStyle = getComputedStyle(ele)
+            footerBarHeight = parsePxUnit(computedStyle.height)
           }
-        });
-
-        if (this.statusbarPadding) {
-          headerBarHeight = headerBarHeight + 20;
-        }
+        })
 
         if (headerBarHeight > 0) {
-          this.tabsContentElement.style.marginTop = headerBarHeight + 'px';
+          this.tabsContentElement.style.marginTop = headerBarHeight + 'px'
         }
         if (footerBarHeight > 0) {
-          this.tabsContentElement.style.marginBottom = footerBarHeight + 'px';
+          this.tabsContentElement.style.marginBottom = footerBarHeight + 'px'
         }
       },
 
@@ -301,13 +296,13 @@
        * 这部分的因素影响：tabbar的位置及高度
        * */
       computeTabsContentWrapStyle(){
-        let tabBarHeight = getComputedStyle(this.tabbarElement).height;
+        let tabBarHeight = getComputedStyle(this.tabbarElement).height
         tabBarHeight = parsePxUnit(tabBarHeight)
-        let _styleType = 'margin' + firstUpperCase(this.tabsPlacement);
+        let _styleType = 'margin' + firstUpperCase(this.tabsPlacement)
         if (tabBarHeight > 0) {
-          this.tabsContentWrapElement.style[_styleType] = tabBarHeight + 'px';
+          this.tabsContentWrapElement.style[_styleType] = tabBarHeight + 'px'
         }
-        this.setTabbarPosition(this.tabsPlacement);
+        this.setTabbarPosition(this.tabsPlacement)
       },
 
       /**
@@ -315,15 +310,15 @@
        * @param {string} position - top, bottom
        */
       setTabbarPosition(position) {
-        position = !!position && position.toLowerCase();
+        position = !!position && position.toLowerCase()
         if (position === 'bottom') {
-          this.tabbarElement.style.bottom = '0px';
-          this.tabbarElement.style.top = 'auto';
+          this.tabbarElement.style.bottom = '0px'
+          this.tabbarElement.style.top = 'auto'
         } else {
-          this.tabbarElement.style.top = '0px';
-          this.tabbarElement.style.bottom = 'auto';
+          this.tabbarElement.style.top = '0px'
+          this.tabbarElement.style.bottom = 'auto'
         }
-        this.tabbarElement.classList.add('show-tabbar');
+        this.tabbarElement.classList.add('show-tabbar')
       },
 
       /**
@@ -332,16 +327,16 @@
        */
       tabHighlightSelect(index){
         if (this.mode !== 'md') return
-        let _offsetLeft = this.tabElementWidth * index;
-        let transform = `translate3d(${_offsetLeft}px,0,0) scaleX(${this.tabElementWidth})`;
-        setElementClass(this.tabHighlightEle, 'animate', true);
-        this.tabHighlightEle.style[VM.platform.css.transform] = transform;
+        let _offsetLeft = this.tabElementWidth * index
+        let transform = `translate3d(${_offsetLeft}px,0,0) scaleX(${this.tabElementWidth})`
+        setElementClass(this.tabHighlightEle, 'animate', true)
+        this.tabHighlightEle.style[VM.platform.css.transform] = transform
       },
     },
     mounted () {
-      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'page', 'Tabs component must place in Page Component');
+      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'page', 'Tabs component must place in Page Component')
       // 初始化
-      this.initTabs();
+      this.initTabs()
     },
   }
 </script>

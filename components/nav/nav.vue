@@ -11,18 +11,6 @@
         <div class="nav-decor"></div>
     </nav>
 </template>
-<style scoped lang="scss">
-    .ion-nav {
-        .click-cover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-        }
-    }
-</style>
 <script type="text/ecmascript-6">
   export default{
     name: 'Nav',
@@ -148,3 +136,15 @@
     }
   }
 </script>
+<style scoped lang="scss">
+    .ion-nav {
+        .click-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+    }
+</style>

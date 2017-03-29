@@ -1,50 +1,43 @@
-
 // Globals
 // --------------------------------------------------
 @import "../../themes/globals";
-
-
 // Normalize
 // --------------------------------------------------
 @import "../../themes/normalize";
-
-
 // Util
 // --------------------------------------------------
 @import "../../themes/util";
-
 
 // App
 // --------------------------------------------------
 // All font sizes use px units
 
 /// @prop - Font size of the root html
-$font-size-root:               10px !default;
+$font-size-root: 10px !default;
 
 /// @prop - Font weight of all headings
-$headings-font-weight:         500 !default;
+$headings-font-weight: 500 !default;
 
 /// @prop - Line height of all headings
-$headings-line-height:         1.2 !default;
+$headings-line-height: 1.2 !default;
 
 /// @prop - Font size of heading level 1
-$h1-font-size:                 26px !default;
+$h1-font-size: 26px !default;
 
 /// @prop - Font size of heading level 2
-$h2-font-size:                 24px !default;
+$h2-font-size: 24px !default;
 
 /// @prop - Font size of heading level 3
-$h3-font-size:                 22px !default;
+$h3-font-size: 22px !default;
 
 /// @prop - Font size of heading level 4
-$h4-font-size:                 20px !default;
+$h4-font-size: 20px !default;
 
 /// @prop - Font size of heading level 5
-$h5-font-size:                 18px !default;
+$h5-font-size: 18px !default;
 
 /// @prop - Font size of heading level 6
-$h6-font-size:                 16px !default;
-
+$h6-font-size: 16px !default;
 
 // App Structure
 // --------------------------------------------------
@@ -92,7 +85,6 @@ body {
   text-size-adjust: none;
   user-select: none;
 }
-
 
 // App Typography
 // --------------------------------------------------
@@ -186,7 +178,6 @@ sub {
   bottom: -.25em;
 }
 
-
 // Nav Container Structure
 // --------------------------------------------------
 
@@ -228,7 +219,6 @@ sub {
   contain: strict;
 }
 
-
 // Text Alignment
 // --------------------------------------------------
 
@@ -252,7 +242,6 @@ sub {
   white-space: nowrap;
 }
 
-
 // Text Transformation
 // --------------------------------------------------
 
@@ -268,20 +257,18 @@ sub {
   text-transform: capitalize;
 }
 
-
-
 // Cordova Status Bar Padding iOS Platform
 // --------------------------------------------------------------------------------
 
 /// @prop - The breakpoint when a modal becomes inset
-$cordova-statusbar-padding-modal-max-width:         767px !default;
-
+$cordova-statusbar-padding-modal-max-width: 767px !default;
 
 @mixin statusbar-padding($toolbar-height, $toolbar-padding, $content-padding, $cordova-statusbar-padding, $modal-max-width, $style-title: false) {
 
   .ion-nav > .ion-page,
   .ion-nav > .ion-page > .ion-header,
   .ion-tab > .ion-page > .ion-header,
+  .ion-tabs > .tabs-content > .tabs-content-wrap > .wrap-inner > .ion-page > .ion-header,
   .ion-tabs > .ion-page.tab-subpage > .ion-header,
   .ion-menu > .menu-inner,
   .ion-menu > .menu-inner > .ion-header {
@@ -328,7 +315,6 @@ $cordova-statusbar-padding-modal-max-width:         767px !default;
   }
 
 }
-
 
 // iOS is the only mode that uses this mixin and it should be removed with #5036
 // --------------------------------------------------------------------------------

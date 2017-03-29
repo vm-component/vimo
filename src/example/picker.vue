@@ -29,7 +29,7 @@
             </Grid>
             <Grid>
                 <Row justify-content-center>
-                    <RegionPicker @onSelected="onSelectedHandler">
+                    <RegionPicker :selectedCity="dataAsync" @onSelected="onSelectedHandler">
                         <span>点击选择城市</span>
                     </RegionPicker>
                 </Row>
@@ -49,6 +49,8 @@
         province: null,
         city: null,
         region: null,
+
+        dataAsync: [],
       }
     },
     props: {},
@@ -64,7 +66,11 @@
       }
     },
     created () {},
-    mounted () {},
+    mounted () {
+      setTimeout(() => {
+        this.dataAsync = ['520000', '520100', '520103']
+      }, 3000)
+    },
     activated () {},
     components: {RegionPicker}
   }
