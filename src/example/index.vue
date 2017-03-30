@@ -12,11 +12,6 @@
                     </Button>
                 </Buttons>
                 <Title>Welcome</Title>
-                <Buttons right slot="buttons">
-                    <Button color="dark" @click="$menus.open('author')" role="bar-button" menutoggle>
-                        <Icon class="icon" name="person"></Icon>
-                    </Button>
-                </Buttons>
             </Navbar>
         </Header>
         <Content padding class="content">
@@ -50,7 +45,6 @@
                     <Row class="vimo__btns">
                         <Button block solid @click="$router.push({'name':'components'})">组件</Button>
                         <Button block solid @click="$menus.open('menu')">打开菜单</Button>
-                        <Button block solid @click="$menus.open('author')">项目介绍</Button>
                     </Row>
 
                 </Grid>

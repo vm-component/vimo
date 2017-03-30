@@ -1,10 +1,10 @@
 <template>
-  <i class="icon ion-icon"
-     :class="[colorClass,nameClass,itemClass]"></i>
+    <i class="ion-icon"
+       :class="[colorClass,nameClass,itemClass,{'hide':hidden}]"></i>
 </template>
 <style lang="scss">
-  @import "icon.scss";
-  @import "./ionicons/css/ionicons.css";
+    @import "icon.scss";
+    @import "./ionicons/dist/css/ionicons.css";
 </style>
 <script>
   /**
@@ -69,27 +69,18 @@
        * light:      #f4f4f4,
        * dark:       #222,
        * */
-      color: {
-        type: String,
-        default: '',
-      },
+      color: [String],
       /**
        * icon的名字, 默认的名字
        * */
-      name: {
-        type: String,
-        default: '',
-      },
+      name: [String],
 
       /**
        * 激活状态的图标样式,
        * 如果未定义,则为:
        * ion -> `${this.name}-outline`
        * */
-      activeName: {
-        type: String,
-        default: '',
-      },
+      activeName: [String],
 
       /**
        * 表示当前的图标的状态
@@ -106,14 +97,8 @@
         default: true,
       },
 
-      ios: {
-        type: String,
-        default: '',
-      },
-      md: {
-        type: String,
-        default: '',
-      },
+      ios: [String],
+      md: [String],
     },
     data(){
       return {
@@ -159,6 +144,9 @@
       update() {
         let iconName;
 
+        this.hidden = !this.name
+        if (this.hidden) return
+
         if (this.isActive && this.activeName) {
           this.nameValue = this.getNameValue(this.activeName)
         } else {
@@ -174,11 +162,6 @@
         } else {
           // ios-star md-star icon-star
           iconName = this.nameValue;
-        }
-
-        this.hidden = (iconName === null);
-        if (this.hidden) {
-          return;
         }
 
         let iconMode = iconName.split('-', 2)[0];

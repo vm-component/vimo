@@ -14,15 +14,11 @@ Vue.use(Router)
  *
  * */
 // router.beforeEach((to, from, next) => {
-//     if (!Vue.prototype.$eventBus) console.warn('$eventBus is undefined!')
-//     Vue.prototype.$eventBus.$emit('onRouteChangeBefore', {to, from})
 //     next()
 //   }
 // )
 //
 // router.afterEach((to, from) => {
-//   if (!Vue.prototype.$eventBus) console.warn('$eventBus is undefined!')
-//   Vue.prototype.$eventBus.$emit('onRouteChangeAfter', {to, from})
 // })
 
 export default router

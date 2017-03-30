@@ -27,27 +27,7 @@
                         </Item>
                     </ItemGroup>
                 </List>
-                <Button @click="openOtherOne">开启另一个</Button>
             </Content>
-        </Menus>
-        <!--menu author-->
-        <Menus id="author" side="right" type="overlay">
-            <Header>
-                <Toolbar>
-                    <Title>项目介绍</Title>
-                </Toolbar>
-            </Header>
-            <Content padding>
-                <h5>起源</h5>
-                <p>这里是介绍</p>
-                <h5>Vimo需要解决的问题</h5>
-                <p>这里是介绍</p>
-                <h5>团队成员</h5>
-                <p>这里是介绍</p>
-            </Content>
-            <Footer>
-                <Toolbar style="text-align:center;color:#444;"><p>Copyright © 2017(MIT)</p></Toolbar>
-            </Footer>
         </Menus>
         <Nav>
             <keep-alive>
@@ -72,9 +52,7 @@
     },
     computed: {},
     methods: {
-      openOtherOne(){
-        this.$menus.open('author')
-      }
+
     },
     created(){},
     mounted(){},

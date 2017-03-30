@@ -40,6 +40,7 @@ new Vue({
   created () {
     this.$platform.ready().then((data) => {
       console.debug(data)
+      // alert(data)
     })
   },
   mounted () {},
