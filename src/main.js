@@ -39,13 +39,10 @@ new Vue({
   template: '<App/>',
   created () {
     this.$platform.ready().then((data) => {
-      // alert(data)
+      console.debug(data)
     })
   },
   mounted () {},
   components: {App}
 })
 
-window.onerror = function (err) {
-  alert(err)
-}

@@ -18,7 +18,6 @@ export default {
   },
   wechat: {
     settings: {
-      jsSDKUrl: 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js', // 自动判断https还是http
       hideNavBar: true,
       hideNavBar2: true,
       hideNavBar3: true,

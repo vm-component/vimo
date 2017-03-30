@@ -4,10 +4,6 @@
 
 /** @module util/util */
 
-
-// TODO：关联到debug模式
-const ASSERT_ENABLED = true; // 是否能使用断言，可以关联到debug模式
-
 export const isBoolean = (val) => typeof val === 'boolean';
 export const isString = (val) => typeof val === 'string';
 export const isNumber = (val) => typeof val === 'number';
@@ -21,7 +17,7 @@ export const isArray = Array.isArray;
 // 基础变量
 export const isPrimitive = function(val) {
   return isString(val) || isBoolean(val) || (isNumber(val) && !isNaN(val));
-};
+}
 
 /**
  * 判断元素属性是否存在设值
@@ -229,33 +225,6 @@ export function swipeShouldReset(isResetDirection, isMovingFast, isOnResetZone) 
 }
 
 
-// /**
-//  * 断言判断
-//  * @private
-//  * @param {any} actual 如果这个对象或者值为false，则当前程序位置出错，执行断言，开启debugger
-//  * @param {string} reason
-//  */
-// export function assert(actual, reason) {
-//   if (!actual && ASSERT_ENABLED === true) {
-//     let message = 'VM ASSERT: ' + reason;
-//     alert(message);
-//     console.error(message);
-//     debugger; // tslint:disable-line
-//     throw new Error(message);
-//   }
-// }
-
-// /**
-//  * 在开发模式中运行，或者说在断言模式中运行
-//  * @param {Function} fn
-//  * */
-// export function runInDev(fn) {
-//   if (ASSERT_ENABLED === true) {
-//     return fn();
-//   }
-// }
-
-
 /**
  * 对象合并
  * @param {any} dst
@@ -328,13 +297,3 @@ export function getQueryValue (name) {
 
 
 
-export function loadScript (url, cb) {
-  let _head = document.getElementsByTagName('head')[0]
-  let _script = document.createElement('script')
-  _script.setAttribute('type', 'text/javascript')
-  _script.setAttribute('src', url)
-  _head.appendChild(_script)
-  _script.onload = function () {
-    cb && cb()
-  }
-}

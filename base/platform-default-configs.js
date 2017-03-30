@@ -4,8 +4,6 @@
  * # 平台层级的 "默认" 配置
  *
  */
-import { ready } from '../util/dom'
-import { loadScript } from '../util/util'
 //  platform supported list
 export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq']
 
@@ -95,6 +93,9 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         let val
         let userAgent = window.navigator.userAgent.toString().trim()
         let jsSDKUrl = config.settings['jsSDKUrl']
+        if (!jsSDKUrl) {
+          jsSDKUrl = 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
+        }
         let splitArr = jsSDKUrl.split('//')
         if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
           splitArr[0] = 'https:'
@@ -281,4 +282,15 @@ function isWKWebView (plt) {
  * */
 function isIosUIWebView (plt) {
   return isIOS(plt) && !isWKWebView(plt) && !isSafari(plt)
+}
+
+function loadScript (url, cb) {
+  let _head = document.getElementsByTagName('head')[0]
+  let _script = document.createElement('script')
+  _script.setAttribute('type', 'text/javascript')
+  _script.setAttribute('src', url)
+  _head.appendChild(_script)
+  _script.onload = function () {
+    cb && cb()
+  }
 }
