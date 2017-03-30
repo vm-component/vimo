@@ -8,7 +8,7 @@
     @import "badge.ios.scss";
     @import "badge.md.scss";
 </style>
-<script type="text/ecmascript-6">
+<script>
   export default{
     name: 'Badge',
     data(){
@@ -38,7 +38,7 @@
       // 颜色
       colorClass () {
         return !!this.color ? (`badge-${this.mode}-${this.color}`) : ''
-      },
+      }
     }
   }
 </script>

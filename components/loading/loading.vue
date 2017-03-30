@@ -20,7 +20,7 @@
     @import './loading.ios.scss';
     @import './loading.md.scss';
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Loading
    * @description

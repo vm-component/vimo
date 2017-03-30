@@ -35,7 +35,7 @@
 
         <Button
                 v-if="clearInput && typeValue!=='textarea' && hasValue()"
-                type="clear"
+                clear
                 class="text-input-clear-icon"
                 @click="clearTextInput()"
                 @touchstart="clearTextInput()"
@@ -47,7 +47,7 @@
     @import "./input.ios.scss";
     @import "./input.md.scss";
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @name Input/Textarea
    * @description

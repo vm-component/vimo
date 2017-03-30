@@ -8,17 +8,17 @@
     <Content padding>
 
       <p>传参指纹: this.$toast('显示Toast提示')</p>
-      <Button type="block" @click="toastBottomOnlyString()">只传入String</Button>
+      <Button block @click="toastBottomOnlyString()">只传入String</Button>
 
       <p>传参指纹: this.$toast('显示Toast提示',1000)</p>
-      <Button type="block" @click="toastBottomWithStringAndDuration()">String + Duration(1000)</Button>
+      <Button block @click="toastBottomWithStringAndDuration()">String + Duration(1000)</Button>
 
       <p>传参指纹: this.$toast({...})</p>
-      <Button id="top" type="block" @click="toastTop($event)">Toast Top</Button>
-      <Button type="block" @click="toastButtom()">Toast Bottom</Button>
-      <Button type="block" @click="toastMiddle()">Toast Middle</Button>
-      <Button type="block" @click="toastMiddleWithBtn()">Toast Middle With Button</Button>
-      <Button type="block" @click="showCloseBtnToast()">Toast Top With Button</Button>
+      <Button id="top" block @click="toastTop($event)">Toast Top</Button>
+      <Button block @click="toastButtom()">Toast Bottom</Button>
+      <Button block @click="toastMiddle()">Toast Middle</Button>
+      <Button block @click="toastMiddleWithBtn()">Toast Middle With Button</Button>
+      <Button block @click="showCloseBtnToast()">Toast Top With Button</Button>
     </Content>
   </Page>
 </template>

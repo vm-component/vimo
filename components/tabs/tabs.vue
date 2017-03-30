@@ -21,7 +21,7 @@
     @import "./tabs.ios.scss";
     @import "./tabs.md.scss";
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Tabs
    * @description

@@ -48,10 +48,10 @@
             <Grid>
                 <Row>
                     <Column>
-                        <Button type="block" @click="setToggle">设置开/闭</Button>
+                        <Button block @click="setToggle">设置开/闭</Button>
                     </Column>
                     <Column>
-                        <Button type="block" @click="setDisable">设置禁用/启用</Button>
+                        <Button block @click="setDisable">设置禁用/启用</Button>
                     </Column>
                 </Row>
                 <Row justify-content-center>

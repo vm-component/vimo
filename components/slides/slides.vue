@@ -9,7 +9,7 @@
 <style lang="scss">
     @import "./slides.scss";
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Slides
    * @description

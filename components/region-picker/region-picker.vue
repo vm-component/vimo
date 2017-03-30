@@ -6,7 +6,7 @@
 <style scoped lang="scss">
 
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Components/RegionPicker
    * @description

@@ -11,7 +11,7 @@
         <div class="nav-decor"></div>
     </nav>
 </template>
-<script type="text/ecmascript-6">
+<script>
   export default{
     name: 'Nav',
     props: {

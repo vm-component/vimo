@@ -23,7 +23,7 @@
     </div>
 </template>
 <style lang="scss"></style>
-<script type="text/ecmascript-6">
+<script>
   import { isTrueProperty } from '../../util/util'
   export default{
     data(){

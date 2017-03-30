@@ -1,4 +1,4 @@
-<script type="text/ecmascript-6">
+<script>
   import ItemMixin from './itemMixin.vue';
   export default{
     mixins: [ItemMixin],

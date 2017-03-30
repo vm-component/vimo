@@ -14,7 +14,7 @@
     @import './toolbar.ios.scss';
     @import './toolbar.md.scss';
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Toolbar
    * @description

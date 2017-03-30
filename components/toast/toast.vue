@@ -8,7 +8,7 @@
             <div v-show="isActive" class="toast-wrapper" :class="[positionClass]">
                 <div class="toast-container">
                     <div class="toast-message" id="toast-hdr" v-if="message">{{message}}</div>
-                    <Button class="toast-button" type="clear" v-if="showCloseButton" @click="cbClick()">
+                    <Button class="toast-button" clear v-if="showCloseButton" @click="cbClick()">
                         <span>{{closeButtonText}}</span>
                     </Button>
                 </div>

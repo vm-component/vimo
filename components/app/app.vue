@@ -28,7 +28,7 @@
     @import 'fade-right-transition';
     @import 'zoom-transition';
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/App
    * @description

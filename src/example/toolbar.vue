@@ -101,14 +101,14 @@
             <Toolbar>
                 <!--start-->
                 <Buttons start slot="buttons">
-                    <Button icon-only role="bar-button" type="outline">
+                    <Button icon-only role="bar-button" outline>
                         <Icon class="icon" name="contact"></Icon>
                     </Button>
                 </Buttons>
 
                 <!--end-->
                 <Buttons end slot="buttons">
-                    <Button icon-right role="bar-button" color="secondary" type="outline">
+                    <Button icon-right role="bar-button" color="secondary" outline>
                         Help
                         <Icon class="icon" name="help-circle"></Icon>
                     </Button>

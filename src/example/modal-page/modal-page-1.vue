@@ -12,9 +12,9 @@
         <Content padding ref="content">
             <h3>Hello, 这里是 Modal Page 1 的页面!</h3>
             <p>传入的数据为: {{modalData}}</p>
-            <Button type="block" @click="closeModal">关闭Modal</Button>
-            <Button type="block" @click="openOtherModal()">在此基础上在打开modal</Button>
-            <Button type="block" @click="scrollToBottom">滚动到底部</Button>
+            <Button block @click="closeModal">关闭Modal</Button>
+            <Button block @click="openOtherModal()">在此基础上在打开modal</Button>
+            <Button block @click="scrollToBottom">滚动到底部</Button>
             <p>这个是数据</p>
             <p>这个是数据</p>
             <p>这个是数据</p>
@@ -52,7 +52,7 @@
             <p>这个是数据</p>
             <p>这个是数据</p>
             <p>这个是数据</p>
-            <Button type="block" @click="scrollToTop">滚动到顶部</Button>
+            <Button block @click="scrollToTop">滚动到顶部</Button>
         </Content>
         <Footer>
             <Toolbar>

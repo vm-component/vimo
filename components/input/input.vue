@@ -1,4 +1,4 @@
-<script type="text/ecmascript-6">
+<script>
   import mixin from './mixin.vue'
   export default{
     name: 'Input',

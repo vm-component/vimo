@@ -20,7 +20,7 @@
     @import "./modal.ios";
     @import "./modal.md";
 </style>
-<script type="text/ecmascript-6">
+<script>
   import { Backdrop } from '../backdrop'
   export default{
     name: 'Modal',

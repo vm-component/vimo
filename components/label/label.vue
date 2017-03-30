@@ -8,7 +8,7 @@
     @import "./label.ios.scss";
     @import "./label.md.scss";
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Label
    * @description

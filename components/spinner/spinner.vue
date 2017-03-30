@@ -13,7 +13,7 @@
     @import './spinner.ios';
     @import './spinner.md';
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Spinner
    * @description

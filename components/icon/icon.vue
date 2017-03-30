@@ -6,7 +6,7 @@
   @import "icon.scss";
   @import "./ionicons/css/ionicons.css";
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Icon
    * @description

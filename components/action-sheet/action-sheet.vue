@@ -39,7 +39,7 @@
         </transition>
     </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/ActionSheet
    * @description
@@ -219,7 +219,7 @@
         // 删除DOM
         this.$el.remove();
       },
-
+      
       /**
        * @private
        * ActionSheet启动之前去除focus效果，因为存在键盘

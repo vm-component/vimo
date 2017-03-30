@@ -13,7 +13,7 @@
             <!--在md模式下，md的取消按钮是在这里的，当点击inputs输入时，返回按钮将覆盖search按钮-->
             <Button mode="md"
                     @click="cancelSearchbar($event)"
-                    type="clear"
+                    clear
                     color="dark"
                     class="searchbar-md-cancel"
                     role="button">
@@ -35,7 +35,7 @@
                        :spellcheck="_spellcheck">
             </div>
             <!--input右边的关闭按钮-->
-            <Button type="clear"
+            <Button clear
                     class="searchbar-clear-icon"
                     :mode="mode"
                     @click="clearInput($event)"
@@ -46,7 +46,7 @@
         <Button
                 ref="cancelButton"
                 mode="ios"
-                type="clear"
+                clear
                 @click="cancelSearchbar($event)"
                 class="searchbar-ios-cancel"
                 role="button">
@@ -59,7 +59,7 @@
     @import "./searchbar.ios";
     @import "./searchbar.md";
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/SearchBar
    * @description

@@ -11,7 +11,7 @@
     <Content padding>
       <h3>Hello, 这里是 Modal Page 3 的页面!</h3>
       <p>传入的数据为: {{modalData}}</p>
-      <Button type="block" @click="closeModal">关闭Modal</Button>
+      <Button block @click="closeModal">关闭Modal</Button>
     </Content>
   </Page>
 </template>

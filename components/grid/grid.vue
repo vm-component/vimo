@@ -6,7 +6,7 @@
 <style lang="scss">
     @import "grid.scss";
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Grid
    * @description

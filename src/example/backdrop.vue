@@ -13,26 +13,26 @@
             <h5>可以实例化调用也可以模板式调用</h5>
 
             <p>打开Backdrop, 4000ms之后关闭, 或者点击关闭</p>
-            <Button type="block" @click="present">打开Backdrop</Button>
+            <Button block @click="present">打开Backdrop</Button>
 
             <p>打开Backdrop, 上部留白100px, 点击关闭</p>
-            <Button type="block" @click="presentWithTopWhite">打开Backdrop</Button>
+            <Button block @click="presentWithTopWhite">打开Backdrop</Button>
 
             <p>打开Backdrop, 右边留白100px, 点击关闭</p>
-            <Button type="block" @click="presentWithRightWhite">打开Backdrop</Button>
+            <Button block @click="presentWithRightWhite">打开Backdrop</Button>
 
             <p>打开Backdrop, 底部留白100px, 点击关闭</p>
-            <Button type="block" @click="presentWithBottomWhite">打开Backdrop</Button>
+            <Button block @click="presentWithBottomWhite">打开Backdrop</Button>
 
             <p>打开Backdrop, 左边留白100px, 点击关闭</p>
-            <Button type="block" @click="presentWithLeftWhite">打开Backdrop</Button>
+            <Button block @click="presentWithLeftWhite">打开Backdrop</Button>
 
             <p>在下面的DIV中显示Backdrop, 点击关闭(模板式)</p>
             <div id="backdropInDiv">
                 <Backdrop :isActive="isActiveInner" :bdClick="function(){isActiveInner=!isActiveInner}"></Backdrop>
                 <span>Hello, Vimo!</span>
             </div>
-            <Button type="block" @click="isActiveInner=!isActiveInner">打开Backdrop</Button>
+            <Button block @click="isActiveInner=!isActiveInner">打开Backdrop</Button>
 
             <Backdrop :isActive="isActive" :bdClick="function(){isActive=!isActive}" :top="top" :left="left" :fixed="true"></Backdrop>
         </Content>

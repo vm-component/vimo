@@ -244,7 +244,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     versionParser(p) {
       return p.matchUserAgentVersion(/qq\/(\d+).(\d+).(\d+)?/i)
     }
-  },
+  }
 
 }
 

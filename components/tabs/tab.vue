@@ -8,7 +8,7 @@
         <div class="button-effect"></div>
     </a>
 </template>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Tab
    * @description

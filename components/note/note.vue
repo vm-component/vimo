@@ -7,7 +7,7 @@
     @import 'note.ios.scss';
     @import 'note.md.scss';
 </style>
-<script type="text/ecmascript-6">
+<script>
   export default{
     name: 'Note',
     props: {

@@ -16,7 +16,7 @@
     @import "list.md.scss";
 
 </style>
-<script type="text/ecmascript-6">
+<script>
 
   /**
    *

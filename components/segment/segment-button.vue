@@ -4,7 +4,7 @@
         <div class="button-effect"></div>
     </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/SegmentButton
    * @description

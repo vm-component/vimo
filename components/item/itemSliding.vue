@@ -8,7 +8,7 @@
     </div>
 </template>
 <style lang="scss"></style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * 组件说明：
    * 对外事件：

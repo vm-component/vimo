@@ -6,12 +6,12 @@
       </Navbar>
     </Header>
     <Content padding>
-      <Button type="block" @click="alert()">Alert</Button>
-      <Button color="danger" type="block" @click="confirm()">Confirm</Button>
-      <Button color="secondary" type="block" @click="threeBtn()">Three Button</Button>
-      <Button color="dark" type="block" @click="input()">Input</Button>
-      <Button color="dark" type="block" @click="checkbox()">Checkbox</Button>
-      <Button color="primary" type="block" @click="radio()">Radio</Button>
+      <Button block @click="alert()">Alert</Button>
+      <Button color="danger" block @click="confirm()">Confirm</Button>
+      <Button color="secondary" block @click="threeBtn()">Three Button</Button>
+      <Button color="dark" block @click="input()">Input</Button>
+      <Button color="dark" block @click="checkbox()">Checkbox</Button>
+      <Button color="primary" block @click="radio()">Radio</Button>
     </Content>
   </Page>
 </template>

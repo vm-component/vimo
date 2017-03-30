@@ -79,7 +79,7 @@
             <Grid>
                 <Row justify-content-center>
                     <Column col-6>
-                        <Button type="block" @click="disableToggle">Disabled Toggle</Button>
+                        <Button block @click="disableToggle">Disabled Toggle</Button>
                     </Column>
                 </Row>
             </Grid>

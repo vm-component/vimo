@@ -8,7 +8,7 @@
     @import './segment.ios.scss';
     @import './segment.md.scss';
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Segment
    * @description

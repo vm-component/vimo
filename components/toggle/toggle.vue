@@ -21,7 +21,7 @@
     @import 'toggle.ios.scss';
     @import 'toggle.md.scss';
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Toggle
    * @description

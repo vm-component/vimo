@@ -17,7 +17,7 @@
             {{relationship9}}
             <p>这里是数据</p>
             <p>这里是数据</p>
-            <Button type="block" @click="relationship9='friend2'">设置为第二个Segment</Button>
+            <Button block @click="relationship9='friend2'">设置为第二个Segment</Button>
             <p>这里是数据</p>
             <p>这里是数据</p>
             <p>这里是数据</p>

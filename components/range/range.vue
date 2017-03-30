@@ -44,7 +44,7 @@
     @import "./range.ios.scss";
     @import "./range.md.scss";
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    *
    * 对外事件:

@@ -13,7 +13,7 @@
     @import "picker.md";
     @import "picker.ios";
 </style>
-<script type="text/ecmascript-6">
+<script>
   export default{
     name: 'PickerColumns',
     data(){

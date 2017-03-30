@@ -6,11 +6,11 @@
       </Navbar>
     </Header>
     <Content padding>
-      <Button color="primary" type="block" @click="Inleft">Inleft</Button>
-      <Button color="primary" type="block" @click="Inright">Inright</Button>
-      <Button color="primary" type="block" @click="Incenter">Incenter</Button> 
-      <Button color="primary" type="block" @click="width">width=200</Button> 
-      <Button color="primary" type="block" @click="height">height=300</Button> 
+      <Button color="primary" block @click="Inleft">Inleft</Button>
+      <Button color="primary" block @click="Inright">Inright</Button>
+      <Button color="primary" block @click="Incenter">Incenter</Button>
+      <Button color="primary" block @click="width">width=200</Button>
+      <Button color="primary" block @click="height">height=300</Button>
       <div @click="Inleft" class="iosmore left" >
         <Icon color="primary"  name="ios-more" class="size mr"  :isActive="true"></Icon>
       </div>

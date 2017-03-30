@@ -23,7 +23,7 @@
     }
 </style>
 
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Backdrop
    * @description
@@ -37,7 +37,7 @@
    <h3>BackDrop组件</h3>
    <h5>可以实例化调用也可以模板式调用</h5>
    <p>打开Backdrop, 4000ms之后关闭, 或者点击关闭</p>
-   <Button type="block" @click="present">打开Backdrop</Button>
+   <Button block @click="present">打开Backdrop</Button>
    </Content>
    * ```
    * ```

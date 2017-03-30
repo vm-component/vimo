@@ -22,19 +22,19 @@
                 <Grid>
                     <Row>
                         <Column>
-                            <Button size="small" type="clear">
+                            <Button size="small" clear>
                                 <Icon class="icon" name="star"></Icon>
                                 <span>Favourite</span>
                             </Button>
                         </Column>
                         <Column>
-                            <Button size="small" type="clear">
+                            <Button size="small" clear>
                                 <Icon class="icon" name="car"></Icon>
                                 <span>Music</span>
                             </Button>
                         </Column>
                         <Column>
-                            <Button size="small" type="clear">
+                            <Button size="small" clear>
                                 <Icon class="icon" name="share"></Icon>
                                 <span>Share</span>
                             </Button>
@@ -84,13 +84,13 @@
                 </Card-content>
                 <Row>
                     <Column>
-                        <Button type="clear" clear size="small">
+                        <Button clear clear size="small">
                             <Icon name="thumbs-up"></Icon>
                             <div>12 Likes</div>
                         </Button>
                     </Column>
                     <Column>
-                        <Button type="clear" clear size="small">
+                        <Button clear clear size="small">
                             <Icon name="text"></Icon>
                             <div>4 Comments</div>
                         </Button>

@@ -56,7 +56,7 @@
     }
 
 </style>
-<script type="text/ecmascript-6">
+<script>
   let initPageZIndex = 1000
   export default{
     name: 'Page',

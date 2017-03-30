@@ -12,7 +12,7 @@
                  cancelButtonText="取消"></Searchbar>
     </Header>
     <Content padding>
-      <Button type="block">Button</Button>
+      <Button block>Button</Button>
 
       <!--http://61.161.111.131:8010/Resources/Html/31125.html-->
       <iframe height="auto" id="iframe" src="http://61.161.111.131:8010/SubmitInfoMonitor/WarningHandler.ashx?action=productdetail&code=bc7ddb9d-593e-4db0-b94f-e2d33e2d66bd&key=ADD2E41CC5FE4528B2F3EBDFBF2BC1D6"></iframe>

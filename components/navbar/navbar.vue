@@ -18,7 +18,7 @@
 <style lang="scss">
     // style from toolbar
 </style>
-<script type="text/ecmascript-6">
+<script>
   export default{
     name: 'Navbar',
     data(){

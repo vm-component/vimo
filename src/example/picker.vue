@@ -11,7 +11,7 @@
             <h5 text-center>
                 <span>选择结果: </span>
             </h5>
-            <Button type="block">点击选择</Button>
+            <Button block>点击选择</Button>
 
             <h4>城市三级联动</h4>
             <h5 text-center>

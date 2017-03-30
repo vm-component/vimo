@@ -4,7 +4,7 @@
     </div>
 </template>
 <style lang="scss"></style>
-<script type="text/ecmascript-6">
+<script>
   export default{
     name: 'Buttons',
     props: {

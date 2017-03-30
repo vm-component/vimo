@@ -9,28 +9,28 @@
             <p>显示不同的旋转样式, 默认打开Backdrop</p>
 
             <p>只传入string</p>
-            <Button type="block" @click="stringOnly()">点击打开默认Loading</Button>
+            <Button block @click="stringOnly()">点击打开默认Loading</Button>
             <p>类型有: ios/ios-small/bubbles/circles/crescent/dots</p>
-            <Button type="block" @click="showDefault()">点击打开默认Loading</Button>
-            <Button type="block" @click="showIos()">显示 ios</Button>
-            <Button type="block" @click="showIosSmall()">显示 ios-small</Button>
-            <Button type="block" @click="showBubbles()">显示 Bubbles</Button>
-            <Button type="block" @click="showCircles()">显示 circles</Button>
-            <Button type="block" @click="showCrescent()">显示 crescent</Button>
-            <Button type="block" @click="showDots()">显示 dots</Button>
+            <Button block @click="showDefault()">点击打开默认Loading</Button>
+            <Button block @click="showIos()">显示 ios</Button>
+            <Button block @click="showIosSmall()">显示 ios-small</Button>
+            <Button block @click="showBubbles()">显示 Bubbles</Button>
+            <Button block @click="showCircles()">显示 circles</Button>
+            <Button block @click="showCrescent()">显示 crescent</Button>
+            <Button block @click="showDots()">显示 dots</Button>
 
             <p>不显示Backdrop</p>
-            <Button type="block" @click="showNoBackDrop()">不显示Backdrop</Button>
+            <Button block @click="showNoBackDrop()">不显示Backdrop</Button>
 
 
             <p>在一个loading中定时打开另一个</p>
-            <Button type="block" @click="showOther()">连续开启</Button>
+            <Button block @click="showOther()">连续开启</Button>
 
             <p>没有旋转样式(NoSpinner)</p>
-            <Button type="block" @click="showNoSpinner()">showNoSpinner</Button>
+            <Button block @click="showNoSpinner()">showNoSpinner</Button>
 
             <p>自定义内容</p>
-            <Button type="block" @click="showCusContent()">showCusContent</Button>
+            <Button block @click="showCusContent()">showCusContent</Button>
         </Content>
     </Page>
 </template>

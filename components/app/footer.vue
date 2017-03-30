@@ -14,7 +14,7 @@
     width: 100%;
   }
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @module Component/Footer
    * @description

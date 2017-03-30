@@ -6,7 +6,7 @@
 <style lang="scss">
     @import "./infinite-scroll.scss";
 </style>
-<script type="text/ecmascript-6">
+<script>
 
   /**
    * @event onInfinite

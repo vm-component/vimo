@@ -17,7 +17,7 @@
         opacity: 0
     }
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @name Img
    * @module Component/Img

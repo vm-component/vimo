@@ -8,7 +8,7 @@
     </div>
 </template>
 <style lang="scss"></style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @name 处理range按钮业务的组件
    *

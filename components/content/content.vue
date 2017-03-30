@@ -25,7 +25,7 @@
     @import './content.ios';
     @import './content.md';
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @typedef {Object} ContentDimension   - Content组件的维度尺寸信息
    * @property {number} contentHeight     - content offsetHeight,           content自身高度

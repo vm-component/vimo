@@ -32,7 +32,7 @@
         <Item>
           <Icon name="flask" slot="item-left"></Icon>
           Potions
-          <Button slot="item-right" type="outline" color="primary">Btn</Button>
+          <Button slot="item-right" outline color="primary">Btn</Button>
         </Item>
 
       </List>

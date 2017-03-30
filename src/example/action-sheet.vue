@@ -6,15 +6,15 @@
       </Navbar>
     </Header>
     <Content padding>
-      <Button type="block" @click="showActionSheet1()" color="primary">
+      <Button block @click="showActionSheet1()" color="primary">
         Basic Action Sheet
       </Button>
 
-      <Button type="block" @click="showActionSheet2()" color="primary">
+      <Button block @click="showActionSheet2()" color="primary">
         No Cancel Action Sheet
       </Button>
 
-      <Button type="block" @click="showActionSheet3()" color="primary">
+      <Button block @click="showActionSheet3()" color="primary">
         Action Sheet With Icon
       </Button>
     </Content>

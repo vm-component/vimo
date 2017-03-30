@@ -8,7 +8,7 @@
     @import "card.ios.scss";
     @import "card.md.scss";
 </style>
-<script type="text/ecmascript-6">
+<script>
   export default{
     name: 'Card',
     data(){

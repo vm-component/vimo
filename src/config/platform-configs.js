@@ -6,13 +6,13 @@
 export default {
   ios: {
     settings: {
-      statusbarPadding: true,
+      statusbarPadding: false,
       pageTransition: 'fade-right-transition',  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     }
   },
   android: {
     settings: {
-      statusbarPadding: true,
+      statusbarPadding: false,
       pageTransition: 'zoom-transition', // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     }
   },
@@ -22,7 +22,7 @@ export default {
       hideNavBar: true,
       hideNavBar2: true,
       hideNavBar3: true,
-    },
+    }
   },
   alipay: {
     settings: {

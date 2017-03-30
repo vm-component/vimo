@@ -17,7 +17,7 @@
                         <h2>My Neighbor Totoro</h2>
                         <p>Hayao Miyazaki • 1988</p>
                     </Label>
-                    <Button ion-button type="clear" slot="item-right">View</Button>
+                    <Button ion-button clear slot="item-right">View</Button>
                 </Item>
                 <Item>
                     <Thumbnail slot="item-left">
@@ -27,7 +27,7 @@
                         <h2>My Neighbor Totoro</h2>
                         <p>Hayao Miyazaki • 1988</p>
                     </Label>
-                    <Button ion-button type="clear" slot="item-right">View</Button>
+                    <Button ion-button clear slot="item-right">View</Button>
                 </Item>
 
             </List>

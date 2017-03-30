@@ -7,8 +7,8 @@
     </Header>
     <Content padding>
 
-      <Button type="block" @click="openModal_1">点击打开Modal_1</Button>
-      <Button type="block" @click="openModal_2">点击打开Modal_2</Button>
+      <Button block @click="openModal_1">点击打开Modal_1</Button>
+      <Button block @click="openModal_2">点击打开Modal_2</Button>
 
 
     </Content>
