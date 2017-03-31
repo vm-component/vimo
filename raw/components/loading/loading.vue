@@ -53,6 +53,7 @@
    * */
   import { registerListener } from '../../util/util'
   import { Backdrop } from '../backdrop'
+  import { Spinner } from '../spinner'
   export default{
     name: 'Loading',
     data(){
@@ -153,11 +154,12 @@
       },
     },
     created(){
+      // TODO: dismissOnPageChange未做判断!!
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
     },
     components: {
-      'Backdrop': Backdrop
+      Backdrop, Spinner
     }
   }
 </script>

@@ -14,6 +14,7 @@ import { Toast } from 'vimo/components/toast'
 import { Modal } from 'vimo/components/modal'
 import { Icon } from 'vimo/components/icon'
 import { Backdrop } from 'vimo/components/backdrop'
+import 'ionicons/dist/css/ionicons.css'
 
 /* eslint-disable no-new */
 new attachFastClick(document.body)

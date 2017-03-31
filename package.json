@@ -1,9 +1,9 @@
 {
-  "name": "vimo",
-  "version": "0.1.5",
-  "description": "A Vue2.x Project For Mobile&HyBrid",
+  "name": "vimoTest",
+  "version": "0.0.1",
+  "description": "A Vue2.x Project For Mobile&HyBrid(Test Project)",
   "author": "向松涛 <280304286@163.com>",
-  "private": false,
+  "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
@@ -56,7 +56,9 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-jsdoc3": "^1.0.1",
+    "gulp-load-plugins": "^1.5.0",
     "gulp-plumber": "^1.1.0",
+    "gulp-uglify": "^2.1.2",
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.3",
     "inject-loader": "^2.0.1",

@@ -19,6 +19,8 @@
     // style from toolbar
 </style>
 <script>
+  import { Button } from '../button'
+  import { Icon } from '../icon'
   export default{
     name: 'Navbar',
     data(){
@@ -85,6 +87,9 @@
     },
     created () {
       this.hideBb = !this.$history.canGoBack()
+    },
+    components: {
+      Button, Icon
     }
   }
 </script>

@@ -4,7 +4,6 @@
 </template>
 <style lang="scss">
     @import "icon.scss";
-    @import "./ionicons/dist/css/ionicons.css";
 </style>
 <script>
   /**

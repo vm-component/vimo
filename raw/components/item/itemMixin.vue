@@ -93,7 +93,7 @@
     created () {},
     mounted () {
 
-      if (isTrueProperty(this.$el.getAttribute('delay'))) {
+      if (isTrueProperty(this.$el.getAttribute('wait'))) {
         this.isInMenu = true;
       }
 

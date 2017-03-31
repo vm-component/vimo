@@ -7,6 +7,8 @@ let gulp = require('gulp')
 let jsdoc = require('gulp-jsdoc3')
 let babel = require('gulp-babel')
 let del = require('del')
+let gulpLoadPlugins = require('gulp-load-plugins')
+const $ = gulpLoadPlugins();
 const runSequence = require('run-sequence')
 var bs = require('browser-sync')
 var browserSync = bs.create()
@@ -64,6 +66,7 @@ gulp.task('move-vimo', function () {
 gulp.task('babel-vimo', ['move-vimo'], function () {
   gulp.src('./output/**/**/*.js')
     .pipe(babel({presets: ['es2015']}))
+    .pipe($.uglify())
     .pipe(gulp.dest('./output'))
 
 })
