@@ -112,18 +112,18 @@ export const clearNativeTimeout = win.clearTimeout.bind(win);
  * @return {Function}  取消绑定的函数
  * */
 export function transitionEnd (el, callback) {
-  const unRegs = [];
+  const unRegs = []
 
   function unregister () {
     unRegs.forEach((unReg) => {
-      unReg();
-    });
+      unReg && unReg()
+    })
   }
 
   function onTransitionEnd (ev) {
     if (el === ev.target) {
-      unregister();
-      callback(ev);
+      unregister()
+      callback(ev)
     }
   }
 
