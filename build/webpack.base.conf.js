@@ -7,7 +7,6 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
 module.exports = {
   entry: {
     app: './src/main.js'
@@ -24,10 +23,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'vimo': resolve('./'), // for vimo module
-      'vimo/components': resolve('./components'), // for vimo module
-      'vimo/util': resolve('./util'), // for vimo module
-
+      'vimo': resolve('./output'), // for vimo module
     }
   },
   module: {
@@ -49,7 +45,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('index.js'), resolve('components'), resolve('util'), resolve('base'), resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test'), resolve('raw')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
