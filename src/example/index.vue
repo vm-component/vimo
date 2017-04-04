@@ -170,7 +170,12 @@
 
   export default{
     name: 'index',
-    methods: {},
+    methods: {
+      test(){
+        //      alert(this.$platform._platforms)
+        this.$platform.do('scanCode', function (data) {})
+      }
+    },
     created(){},
     mounted(){
     }

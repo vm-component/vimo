@@ -92,6 +92,8 @@ class Platform {
 
     this._nt = null // 记录网络类型
 
+    this._rm = [] // 平台注册的方法对象, key为方法名, value为对应的函数, registerMethod/do
+
     this.css = {
       transform: null,
       transition: null,
@@ -355,6 +357,40 @@ class Platform {
     return this._nt
   }
 
+  // 注册及执行平台的方法 registerMethod/do
+  // **********************************************
+  // 平台将方法(例如: chooseImg)注册在platform中, 因此业务就能不区分平台
+  // 进行条调用, 例如: `this.$platform.do('chooseImg', function(result){....})
+  // 或者share方法, 同名方法最后一次注册为最终方法.
+
+  /**
+   * 注册方法
+   * @param {string} methodName - 方法名称
+   * @param {function} methodFunction - 方法函数
+   * */
+  registerMethod (methodName, methodFunction) {
+    if (!methodName) return
+    if (this._rm[methodName]) {
+      console.warn(`'${methodName}' had been registered, please check the registerMethod() in platform-configs.js and the platform list is ${this._platforms}`)
+    }
+    this._rm[methodName] = methodFunction
+  }
+
+  /**
+   * 执行方法
+   * @param {string} methodName - 方法名称
+   * @param {any} [any={}] - 根据对应的 registerMethod 传入正确的参数(function/object)
+   * */
+  do (methodName, any = {}) {
+    if (!this._rm[methodName]) {
+      console.warn(`${methodName} has not registered, please check the registerMethod() in platform-configs.js and the platform list is ${this._platforms}`)
+      return
+    } else {
+      alert('registerMethod - scanCode - do')
+      this._rm[methodName](any)
+    }
+  }
+
   // Methods meant to be overridden by the engine
   // **********************************************
   // Provided NOOP methods so they do not error when
@@ -388,7 +424,8 @@ class Platform {
    * 比如关闭弹框
    *
    * @param {Function} callback 点击后退按钮调用最高优先级的回调
-   * @param {number} priority 只执行最高优先级的, Defaults to `0`.
+   * @param {number} priority 只执行最高优先级的, Defaults to `
+   0`.
    * @returns {Function} A function that, when called, will unregister
    * the its back button action.
    */
@@ -471,7 +508,8 @@ class Platform {
   }
 
   /**
-   * Gets the width of the platform's viewport using `window.innerWidth`.
+   * Gets the width of the platform's viewport using `
+   window.innerWidth`.
    * Using this method is preferred since the dimension is a cached value,
    * which reduces the chance of multiple and expensive DOM reads.
    * 尺寸信息是被缓存的
@@ -483,7 +521,8 @@ class Platform {
   }
 
   /**
-   * Gets the height of the platform's viewport using `window.innerHeight`.
+   * Gets the height of the platform's viewport using `
+   window.innerHeight`.
    * Using this method is preferred since the dimension is a cached value,
    * which reduces the chance of multiple and expensive DOM reads.
    * @return {number}
@@ -494,7 +533,8 @@ class Platform {
   }
 
   /**
-   * Returns `true` if the app is in portait mode.
+   * Returns `
+   true` if the app is in portait mode.
    * landscape是横向，portrait是纵向
    * @return {boolean}
    */
@@ -504,7 +544,8 @@ class Platform {
   }
 
   /**
-   * Returns `true` if the app is in landscape mode.
+   * Returns `
+   true` if the app is in landscape mode.
    * landscape是横向，portrait是纵向
    * @return {boolean}
    */
@@ -899,8 +940,6 @@ class PlatformNode {
   initialize (platform) {
     this.c.initialize && this.c.initialize(platform)
   }
-
-
 
   /**
    * 传入当前的平台信息, 获得版本信息

@@ -37,11 +37,11 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       inputCloning: true,
       autoFocusAssist: 'immediate',
     },
-    isMatch(p) {
-      return p.isPlatformMatch('android', ['android', 'silk'], ['windows phone'])
+    isMatch(plt) {
+      return plt.isPlatformMatch('android', ['android', 'silk'], ['windows phone'])
     },
-    versionParser(p) {
-      return p.matchUserAgentVersion(/Android (\d+).(\d+)?/)
+    versionParser(plt) {
+      return plt.matchUserAgentVersion(/Android (\d+).(\d+)?/)
     }
   },
   ios: {
@@ -74,11 +74,11 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       virtualScrollEventAssist: isIosUIWebView,
       disableScrollAssist: true,
     },
-    isMatch(p) {
-      return p.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone'])
+    isMatch(plt) {
+      return plt.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone'])
     },
-    versionParser(p) {
-      return p.matchUserAgentVersion(/OS (\d+)_(\d+)?/)
+    versionParser(plt) {
+      return plt.matchUserAgentVersion(/OS (\d+)_(\d+)?/)
     }
   },
 
@@ -87,7 +87,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
    * 如果添加新环境,记得在SUBSET_LIST注册
    * */
   wechat: {
-    initialize (p) {
+    initialize (plt) {
       /**
        * 加载JSSDK
        * */
@@ -109,23 +109,23 @@ export const PLATFORM_DEFAULT_CONFIGS = {
        * */
       // 获取网络类型
       // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
-      val = p.userAgent().match(/NetType\/(\w+) /i)
+      val = plt.userAgent().match(/NetType\/(\w+) /i)
       if (!!val && val.length > 0 && !!val[1]) {
-        p.setNetType(val[1].toString().toLowerCase())
+        plt.setNetType(val[1].toString().toLowerCase())
       }
 
       // 获取语言类型
       // Language/zh-CN
-      val = p.userAgent().match(/Language\/(.+)/i)
+      val = plt.userAgent().match(/Language\/(.+)/i)
       if (!!val && val.length > 0 && !!val[1]) {
-        p.setLang(val[1].toString().toLowerCase(), true)
+        plt.setLang(val[1].toString().toLowerCase(), true)
       }
 
       /**
        * 在ready之前进行处理
        * 执行用户定义的onBridgeReady钩子
        * */
-      p.beforeReady = () => {
+      plt.beforeReady = () => {
         // document 准备好后才能启动监听
         docReady(() => {
           function beforeBridgeReady () {
@@ -138,10 +138,10 @@ export const PLATFORM_DEFAULT_CONFIGS = {
             }
 
             // 执行自定义的bridge ready钩子
-            onBridgeReady()
+            onBridgeReady(plt)
 
             // 触发平台的统一ready事件
-            p.triggerReady('wechat')
+            plt.triggerReady('wechat')
           }
 
           if (typeof WeixinJSBridge === 'undefined') {
@@ -160,15 +160,15 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     settings: {
       hideNavBar: true,
     },
-    isMatch(p) {
-      return p.isPlatformMatch('wechat', ['micromessenger'])
+    isMatch(plt) {
+      return plt.isPlatformMatch('wechat', ['micromessenger'])
     },
-    versionParser(p) {
-      return p.matchUserAgentVersion(/micromessenger\/(\d+).(\d+).(\d+)?/i)
+    versionParser(plt) {
+      return plt.matchUserAgentVersion(/micromessenger\/(\d+).(\d+).(\d+)?/i)
     }
   },
   alipay: {
-    initialize(p){
+    initialize(plt){
       let userAgent = window.navigator.userAgent.toString().trim()
       let val
 
@@ -177,36 +177,36 @@ export const PLATFORM_DEFAULT_CONFIGS = {
        * AlipayDefined(nt:WIFI,ws:320|548|2.0)
        * Language/zh-Hans
        * */
-      p.setUserAgent(userAgent)
+      plt.setUserAgent(userAgent)
 
       // 获取网络类型
       val = userAgent.match(/AlipayDefined\(nt:(\w+),/i)
       if (!!val && val.length > 0 && !!val[1]) {
-        p.setNetType(val[1].toString().toLowerCase())
+        plt.setNetType(val[1].toString().toLowerCase())
       }
 
       // 获取语言类型
       // Language/zh-CN
       val = userAgent.match(/Language\/(.+)/i)
       if (!!val && val.length > 0 && !!val[1]) {
-        p.setLang(val[1].toString().toLowerCase(), true)
+        plt.setLang(val[1].toString().toLowerCase(), true)
       }
 
       // 触发外层的ready
-      p.triggerReady('alipay Init Success!')
+      plt.triggerReady('alipay Init Success!')
     },
     settings: {
       hideNavBar: true,
     },
-    isMatch(p) {
-      return p.isPlatformMatch('alipay', ['alipay', 'alipayclient'])
+    isMatch(plt) {
+      return plt.isPlatformMatch('alipay', ['alipay', 'alipayclient'])
     },
-    versionParser(p) {
-      return p.matchUserAgentVersion(/alipayclient\/(\d+).(\d+).(\d+)?/i)
+    versionParser(plt) {
+      return plt.matchUserAgentVersion(/alipayclient\/(\d+).(\d+).(\d+)?/i)
     }
   },
   dingtalk: {
-    initialize(p){
+    initialize(plt){
       // alert('Dingtalk Init: from platform-registry.js');
       let userAgent = window.navigator.userAgent.toString().trim()
       let val
@@ -216,7 +216,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
        * AlipayDefined(nt:WIFI,ws:320|548|2.0)
        * Language/zh-Hans
        * */
-      p.setUserAgent(userAgent)
+      plt.setUserAgent(userAgent)
 
       // 获取网络类型
       // dingtalk未给出
@@ -225,70 +225,70 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       // Language/zh-CN
       val = userAgent.match(/language\/(.+)/i)
       if (!!val && val.length > 0 && !!val[1]) {
-        p.setLang(val[1].toString().toLowerCase(), true)
+        plt.setLang(val[1].toString().toLowerCase(), true)
       }
 
       // 触发外层的ready
-      p.triggerReady('dingtalk Init Success!')
+      plt.triggerReady('dingtalk Init Success!')
     },
     settings: {
       hideNavBar: true,
     },
-    isMatch(p) {
-      return p.isPlatformMatch('dingtalk')
+    isMatch(plt) {
+      return plt.isPlatformMatch('dingtalk')
     },
-    versionParser(p) {
-      return p.matchUserAgentVersion(/dingtalk\/(\d+).(\d+).(\d+)?/i)
+    versionParser(plt) {
+      return plt.matchUserAgentVersion(/dingtalk\/(\d+).(\d+).(\d+)?/i)
     }
   },
   qq: {
-    initialize(p){
+    initialize(plt){
       // alert('QQ Init: from platform-registry.js');
       let userAgent = window.navigator.userAgent.toString().trim()
       let val
 
-      p.setUserAgent(userAgent)
+      plt.setUserAgent(userAgent)
 
       // 获取网络类型
       // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
       val = userAgent.match(/NetType\/(\w+)/i)
       if (!!val && val.length > 0 && !!val[1]) {
-        p.setNetType(val[1].toString().toLowerCase())
+        plt.setNetType(val[1].toString().toLowerCase())
       }
 
       // 触发外层的ready
-      p.triggerReady('qq Init Success!')
+      plt.triggerReady('qq Init Success!')
     },
     settings: {
       hideNavBar: true,
     },
-    isMatch(p) {
-      return p.isPlatformMatch('qq')
+    isMatch(plt) {
+      return plt.isPlatformMatch('qq')
     },
-    versionParser(p) {
-      return p.matchUserAgentVersion(/qq\/(\d+).(\d+).(\d+)?/i)
+    versionParser(plt) {
+      return plt.matchUserAgentVersion(/qq\/(\d+).(\d+).(\d+)?/i)
     }
   }
 
 }
 
 /**
- * @param {Platform} p
+ * @param {Platform} plt
  * @return {boolean}
  * */
-function isIOS (p) {
+function isIOS (plt) {
   // shortcut function to be reused internally
   // checks navigator.platform to see if it's an actual iOS device
   // this does not use the user-agent string because it is often spoofed
   // an actual iPad will return true, a chrome dev tools iPad will return false
-  return p.testNavigatorPlatform('iphone|ipad|ipod')
+  return plt.testNavigatorPlatform('iphone|ipad|ipod')
 }
 /**
- * @param {Platform} p
+ * @param {Platform} plt
  * @return {boolean}
  * */
-function isSafari (p) {
-  return p.testUserAgent('Safari')
+function isSafari (plt) {
+  return plt.testUserAgent('Safari')
 }
 
 /**
