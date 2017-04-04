@@ -49,7 +49,6 @@
  * }
  */
 
-
 import { PLATFORM_DEFAULT_CONFIGS } from './platform-default-configs'
 import { defaults } from '../util/util'
 
@@ -61,37 +60,37 @@ import { defaults } from '../util/util'
 class Platform {
   constructor () {
     this._readyPromise = new Promise((resolve) => {
-      this._readyResolve = resolve;
-    });
+      this._readyResolve = resolve
+    })
 
-    this._versions = {}; // 当前平台的版本信息列表 PlatformVersion
-    this._dir; // string 文字方向 ;
-    this._lang; // string 文字;
+    this._versions = {} // 当前平台的版本信息列表 PlatformVersion
+    this._dir // string 文字方向 ;
+    this._lang // string 文字;
 
-    this._qp; // QueryParams [[初始化时]]!!! 的url查询实例 {data:{}};
+    this._qp // QueryParams [[初始化时]]!!! 的url查询实例 {data:{}};
 
-    this._bPlt; // string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
-    this._ua; // string userAgent;
+    this._bPlt // string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
+    this._ua // string userAgent;
 
-    this._readyPromise; // Promise<any> Ready的promise;
-    this._readyResolve; // any;
+    this._readyPromise // Promise<any> Ready的promise;
+    this._readyResolve // any;
 
-    this._resizeTm; // any setTimeout 定时过后执行_onResizes中的回调函数;
-    this._onResizes = []; // Array<Function> = [] resize时执行的回调列表;
+    this._resizeTm // any setTimeout 定时过后执行_onResizes中的回调函数;
+    this._onResizes = [] // Array<Function> = [] resize时执行的回调列表;
 
-    this._bbActions = []; // BackButtonAction[] = [] 后退按钮上注册的回调列表;
+    this._bbActions = [] // BackButtonAction[] = [] 后退按钮上注册的回调列表;
 
-    this._default; // string 如果rootNode不存则使用默认的配置
-    this._platforms = []; // : string[] = []; 当前平台的key 例如: "mobile/ios/mobileweb"
-    this._registry; // {[name:string] : PlatformConfig}; platform-registry中的config列表->登记处
+    this._default // string 如果rootNode不存则使用默认的配置
+    this._platforms = [] // : string[] = []; 当前平台的key 例如: "mobile/ios/mobileweb"
+    this._registry // {[name:string] : PlatformConfig}; platform-registry中的config列表->登记处
 
-    this._pW = 0; // Portrait模式的设备Width
-    this._pH = 0; // Portrait模式的设备Height
-    this._lW = 0; // Landscape模式的设备Width
-    this._lH = 0; // Landscape模式的设备Height
-    this._isPortrait = null; // boolean = null 横屏还是竖屏 Portrait=竖屏;
+    this._pW = 0 // Portrait模式的设备Width
+    this._pH = 0 // Portrait模式的设备Height
+    this._lW = 0 // Landscape模式的设备Width
+    this._lH = 0 // Landscape模式的设备Height
+    this._isPortrait = null // boolean = null 横屏还是竖屏 Portrait=竖屏;
 
-    this._nt = null; // 记录网络类型
+    this._nt = null // 记录网络类型
 
     this.css = {
       transform: null,
@@ -103,7 +102,7 @@ class Platform {
       transitionEnd: null,
       transformOrigin: null,
       animationDelay: null,
-    };
+    }
   }
 
   // Methods
@@ -113,7 +112,7 @@ class Platform {
    * @private
    */
   setCssProps (docElement) {
-    this.css = getCss(docElement);
+    this.css = getCss(docElement)
   }
 
   /**
@@ -161,7 +160,7 @@ class Platform {
    * @return {boolean}
    */
   is (platformName) {
-    return (this._platforms.indexOf(platformName) > -1);
+    return (this._platforms.indexOf(platformName) > -1)
   }
 
   /**
@@ -188,7 +187,7 @@ class Platform {
   platforms () {
     // get the array of active platforms, which also knows the hierarchy,
     // with the last one the most important
-    return this._platforms;
+    return this._platforms
   }
 
   /**
@@ -213,7 +212,7 @@ class Platform {
    */
   versions () {
     // get all the platforms that have a valid parsed version
-    return this._versions;
+    return this._versions
   }
 
   /**
@@ -223,10 +222,10 @@ class Platform {
   version () {
     for (var platformName in this._versions) {
       if (this._versions[platformName]) {
-        return this._versions[platformName];
+        return this._versions[platformName]
       }
     }
-    return {};
+    return {}
   }
 
   /**
@@ -260,7 +259,7 @@ class Platform {
    * @returns {promise}
    */
   ready () {
-    return this._readyPromise;
+    return this._readyPromise
   }
 
   /**
@@ -270,7 +269,7 @@ class Platform {
    * @param {string} readySource
    */
   triggerReady (readySource) {
-    this._readyResolve(readySource);
+    this._readyResolve(readySource)
   }
 
   /**
@@ -288,8 +287,8 @@ class Platform {
    * !!!! platform配置中的initialize 只进行平台配置及注册签名等的代码, 而不进行和具体业务相关的代码!!!!
    *
    */
-  prepareReady () {
-    this.triggerReady('No Platform Initialization Process!');
+  beforeReady () {
+    this.triggerReady('No Platform Initialization Process!')
   }
 
   /**
@@ -300,9 +299,9 @@ class Platform {
    * @param {boolean} updateDocument
    */
   setDir (dir, updateDocument) {
-    this._dir = (dir || '').toLowerCase();
+    this._dir = (dir || '').toLowerCase()
     if (updateDocument) {
-      document.documentElement.setAttribute('dir', dir);
+      document.documentElement.setAttribute('dir', dir)
     }
   }
 
@@ -311,7 +310,7 @@ class Platform {
    * @returns {string}
    */
   dir () {
-    return this._dir;
+    return this._dir
   }
 
   /**
@@ -319,7 +318,7 @@ class Platform {
    * @returns {boolean}
    */
   isRTL () {
-    return (this._dir === 'rtl');
+    return (this._dir === 'rtl')
   }
 
   /**
@@ -328,9 +327,9 @@ class Platform {
    * @param {boolean} updateDocument
    */
   setLang (language, updateDocument) {
-    this._lang = language;
+    this._lang = language
     if (updateDocument) {
-      document.documentElement.setAttribute('lang', language);
+      document.documentElement.setAttribute('lang', language)
     }
   }
 
@@ -339,21 +338,21 @@ class Platform {
    * @returns {string}
    */
   lang () {
-    return this._lang;
+    return this._lang
   }
 
   /**
    * 设置网络类型/
    * */
   setNetType (netType) {
-    this._nt = netType;
+    this._nt = netType
   }
 
   /**
    * 获取网络类型/
    * */
   netType () {
-    return this._nt;
+    return this._nt
   }
 
   // Methods meant to be overridden by the engine
@@ -394,14 +393,14 @@ class Platform {
    * the its back button action.
    */
   registerBackButtonAction (fn, priority = 0) {
-    const action = {fn, priority};
+    const action = {fn, priority}
 
-    this._bbActions.push(action);
+    this._bbActions.push(action)
 
     // return a function to unregister this back button action
     return () => {
-      removeArrayItem(this._bbActions, action);
-    };
+      removeArrayItem(this._bbActions, action)
+    }
   }
 
   /**
@@ -409,15 +408,15 @@ class Platform {
    */
   runBackButtonAction () {
     // decide which one back button action should run
-    let winner = null; // BackButtonAction
+    let winner = null // BackButtonAction
     this._bbActions.forEach((action) => {
       if (!winner || action.priority >= winner.priority) {
-        winner = action;
+        winner = action
       }
-    });
+    })
 
     // run the winning action if there is one
-    winner && winner.fn && winner.fn();
+    winner && winner.fn && winner.fn()
   }
 
   // Getter/Setter Methods
@@ -428,7 +427,7 @@ class Platform {
    * @param {string} userAgent
    */
   setUserAgent (userAgent) {
-    this._ua = userAgent;
+    this._ua = userAgent
   }
 
   /**
@@ -436,14 +435,14 @@ class Platform {
    * @param {QueryParams} queryParams
    */
   setQueryParams (queryParams) {
-    this._qp = queryParams;
+    this._qp = queryParams
   }
 
   /**
    * Get the query string parameter
    */
   getQueryParam (key) {
-    return this._qp.get(key);
+    return this._qp.get(key)
   }
 
   /**
@@ -451,7 +450,7 @@ class Platform {
    * @return {string}
    */
   userAgent () {
-    return this._ua || '';
+    return this._ua || ''
   }
 
   /**
@@ -460,7 +459,7 @@ class Platform {
    * @param {string} navigatorPlatform
    */
   setNavigatorPlatform (navigatorPlatform) {
-    this._bPlt = navigatorPlatform;
+    this._bPlt = navigatorPlatform
   }
 
   /**
@@ -468,7 +467,7 @@ class Platform {
    * @return {string}
    */
   navigatorPlatform () {
-    return this._bPlt || '';
+    return this._bPlt || ''
   }
 
   /**
@@ -479,8 +478,8 @@ class Platform {
    * @return {number}
    */
   width () {
-    this._calcDim();
-    return this._isPortrait ? this._pW : this._lW;
+    this._calcDim()
+    return this._isPortrait ? this._pW : this._lW
   }
 
   /**
@@ -490,8 +489,8 @@ class Platform {
    * @return {number}
    */
   height () {
-    this._calcDim();
-    return this._isPortrait ? this._pH : this._lH;
+    this._calcDim()
+    return this._isPortrait ? this._pH : this._lH
   }
 
   /**
@@ -500,8 +499,8 @@ class Platform {
    * @return {boolean}
    */
   isPortrait () {
-    this._calcDim();
-    return this._isPortrait;
+    this._calcDim()
+    return this._isPortrait
   }
 
   /**
@@ -510,14 +509,14 @@ class Platform {
    * @return {boolean}
    */
   isLandscape () {
-    return !this.isPortrait();
+    return !this.isPortrait()
   }
 
   /**
    * @private
    */
   _calcDim () {
-    var win = window;
+    var win = window
     // we're caching window dimensions so that
     // we're not forcing many layouts
     // if _isPortrait is null then that means
@@ -540,31 +539,31 @@ class Platform {
           // the device is in portrait
           if (this._pW <= win['innerWidth']) {
             // console.debug('setting _isPortrait to true');
-            this._isPortrait = true;
-            this._pW = win['innerWidth'];
+            this._isPortrait = true
+            this._pW = win['innerWidth']
           }
           if (this._pH <= win['innerHeight']) {
             // console.debug('setting _isPortrait to true');
-            this._isPortrait = true;
-            this._pH = win['innerHeight'];
+            this._isPortrait = true
+            this._pH = win['innerHeight']
           }
 
         } else {
           if (this._lW > win['innerWidth']) {
             // Special case: keyboard is open and device is in portrait
             // console.debug('setting _isPortrait to true while keyboard is open and device is portrait');
-            this._isPortrait = true;
+            this._isPortrait = true
           }
           // the device is in landscape
           if (this._lW <= win['innerWidth']) {
             // console.debug('setting _isPortrait to false');
-            this._isPortrait = false;
-            this._lW = win['innerWidth'];
+            this._isPortrait = false
+            this._lW = win['innerWidth']
           }
           if (this._lH <= win['innerHeight']) {
             // console.debug('setting _isPortrait to false');
-            this._isPortrait = false;
-            this._lH = win['innerHeight'];
+            this._isPortrait = false
+            this._lH = win['innerHeight']
           }
         }
 
@@ -576,19 +575,19 @@ class Platform {
    * @private
    */
   windowResize () {
-    clearTimeout(this._resizeTm);
+    clearTimeout(this._resizeTm)
 
     this._resizeTm = setTimeout(() => {
-      this._isPortrait = null;
+      this._isPortrait = null
       // 等待时间后执行resize的注册事件列表
       for (let i = 0; i < this._onResizes.length; i++) {
         try {
-          !!this._onResizes[i] && typeof this._onResizes[i] === 'function' && this._onResizes[i]();
+          !!this._onResizes[i] && typeof this._onResizes[i] === 'function' && this._onResizes[i]()
         } catch (e) {
-          console.error(e);
+          console.error(e)
         }
       }
-    }, 200);
+    }, 200)
   }
 
   /**
@@ -598,12 +597,12 @@ class Platform {
    * @return {Function}
    */
   onResize (cb) {
-    const self = this;
-    self._onResizes.push(cb);
+    const self = this
+    self._onResizes.push(cb)
 
     return function () {
-      removeArrayItem(self._onResizes, cb);
-    };
+      removeArrayItem(self._onResizes, cb)
+    }
   }
 
   // Platform Registry
@@ -615,7 +614,7 @@ class Platform {
    * @param {PlatformConfig} platformConfigs {[key: string]: PlatformConfig}
    */
   setPlatformConfigs (platformConfigs) {
-    this._registry = platformConfigs || {};
+    this._registry = platformConfigs || {}
   }
 
   /**
@@ -624,7 +623,7 @@ class Platform {
    * @return {PlatformConfig} platformConfigs - {[key: string]: PlatformConfig}
    */
   getPlatformConfig (platformName) {
-    return this._registry[platformName] || {};
+    return this._registry[platformName] || {}
   }
 
   /**
@@ -632,7 +631,7 @@ class Platform {
    * @private
    */
   registry () {
-    return this._registry;
+    return this._registry
   }
 
   /**
@@ -641,7 +640,7 @@ class Platform {
    * @param {string}
    */
   setDefault (platformName) {
-    this._default = platformName;
+    this._default = platformName
   }
 
   /**
@@ -652,8 +651,8 @@ class Platform {
    * @return {boolean}
    */
   testQuery (queryValue, queryTestValue) {
-    const valueSplit = queryValue.toLowerCase().split(';');
-    return valueSplit.indexOf(queryTestValue) > -1;
+    const valueSplit = queryValue.toLowerCase().split(';')
+    return valueSplit.indexOf(queryTestValue) > -1
   }
 
   /**
@@ -662,8 +661,8 @@ class Platform {
    * @param {RegExp} navigatorPlatformExpression
    */
   testNavigatorPlatform (navigatorPlatformExpression) {
-    const rgx = new RegExp(navigatorPlatformExpression, 'i');
-    return rgx.test(this._bPlt);
+    const rgx = new RegExp(navigatorPlatformExpression, 'i')
+    return rgx.test(this._bPlt)
   }
 
   /**
@@ -673,13 +672,13 @@ class Platform {
    */
   matchUserAgentVersion (userAgentExpression) {
     if (this._ua && userAgentExpression) {
-      const val = this._ua.match(userAgentExpression);
+      const val = this._ua.match(userAgentExpression)
       if (val) {
         return {
           major: val[1],
           minor: val[2],
           third: val[3]
-        };
+        }
       }
     }
   }
@@ -687,9 +686,9 @@ class Platform {
   // 判断是否匹配当前的userAgent
   testUserAgent (expression) {
     if (this._ua) {
-      return this._ua.indexOf(expression) >= 0;
+      return this._ua.indexOf(expression) >= 0
     }
-    return false;
+    return false
   }
 
   /**
@@ -705,48 +704,48 @@ class Platform {
    */
   isPlatformMatch (queryStringName, userAgentAtLeastHas, userAgentMustNotHave = []) {
     // platform可以取值的参数: ios/android/iphone/ipad/windows
-    const queryValue = this._qp.get('platform');
+    const queryValue = this._qp.get('platform')
     if (queryValue) {
-      return this.testQuery(queryValue, queryStringName);
+      return this.testQuery(queryValue, queryStringName)
     }
 
-    userAgentAtLeastHas = userAgentAtLeastHas || [queryStringName];
+    userAgentAtLeastHas = userAgentAtLeastHas || [queryStringName]
 
-    const userAgent = this._ua.toLowerCase();
+    const userAgent = this._ua.toLowerCase()
 
     for (var i = 0; i < userAgentAtLeastHas.length; i++) {
       if (userAgent.indexOf(userAgentAtLeastHas[i]) > -1) {
         for (var j = 0; j < userAgentMustNotHave.length; j++) {
           if (userAgent.indexOf(userAgentMustNotHave[j]) > -1) {
-            return false;
+            return false
           }
         }
-        return true;
+        return true
       }
     }
 
-    return false;
+    return false
   }
 
   /** @private */
   init () {
 
     // 计算屏幕尺寸
-    this._calcDim();
+    this._calcDim()
 
-    this._platforms = [];
-    let rootPlatformNode; //根节点Node;
-    let enginePlatformNode; //engine节点Node;
+    this._platforms = []
+    let rootPlatformNode //根节点Node;
+    let enginePlatformNode //engine节点Node;
 
     // figure out the most specific platform and active engine
-    let tmpPlatform; // 临时缓存Node;
+    let tmpPlatform // 临时缓存Node;
 
     // 找到rootPlatformNode
     // 找到enginePlatformNode
     for (let platformName in this._registry) {
 
       // 将platformName对用的配置转化为Node对象, 返回rootNode
-      tmpPlatform = this.matchPlatform(platformName);
+      tmpPlatform = this.matchPlatform(platformName)
       if (tmpPlatform) {
         // we found a platform match!
         // check if its more specific than the one we already have
@@ -754,20 +753,20 @@ class Platform {
         if (tmpPlatform.isEngine) {
           // because it matched then this should be the active engine
           // you cannot have more than one active engine
-          enginePlatformNode = tmpPlatform;
+          enginePlatformNode = tmpPlatform
 
         } else if (!rootPlatformNode || tmpPlatform.depth > rootPlatformNode.depth) {
           // only find the root node for platforms that are not engines
           // set this node as the root since we either don't already
           // have one, or this one is more specific that the current one
-          rootPlatformNode = tmpPlatform;
+          rootPlatformNode = tmpPlatform
         }
       }
     }
 
     // 如果没找到根rootNode则使用默认的_default
     if (!rootPlatformNode) {
-      rootPlatformNode = new PlatformNode(this._registry, this._default);
+      rootPlatformNode = new PlatformNode(this._registry, this._default)
     }
 
     // build a Platform instance filled with the
@@ -781,40 +780,43 @@ class Platform {
         // add the engine to the first in the platform hierarchy
         // the original rootPlatformNode now becomes a child
         // of the engineNode, which is not the new root
-        enginePlatformNode.child = rootPlatformNode;
-        rootPlatformNode.parent = enginePlatformNode;
-        rootPlatformNode = enginePlatformNode;
+        enginePlatformNode.child = rootPlatformNode
+        rootPlatformNode.parent = enginePlatformNode
+        rootPlatformNode = enginePlatformNode
       }
 
       // 从根节点开始, 插入子Node
-      let platformNode = rootPlatformNode;
+      let platformNode = rootPlatformNode
       while (platformNode) {
-        insertSuperset(this._registry, platformNode);
-        platformNode = platformNode.child;
+        insertSuperset(this._registry, platformNode)
+        platformNode = platformNode.child
       }
 
       // make sure the root noot is actually the root
       // in case a node was inserted before the root
-      platformNode = rootPlatformNode.parent;
+      platformNode = rootPlatformNode.parent
       while (platformNode) {
-        rootPlatformNode = platformNode;
-        platformNode = platformNode.parent;
+        rootPlatformNode = platformNode
+        platformNode = platformNode.parent
       }
 
-      platformNode = rootPlatformNode;
+      platformNode = rootPlatformNode
 
       // 在这里初始化平台
       while (platformNode) {
-        platformNode.initialize(this);
+
+        platformNode.beforeInitialize(this)
+
+        platformNode.initialize(this)
 
         // 设置当前激活的平台信息, 最后一个是最重要的
-        this._platforms.push(platformNode.name);
+        this._platforms.push(platformNode.name)
 
         // get the platforms version if a version parser was provided
-        this._versions[platformNode.name] = platformNode.version(this);
+        this._versions[platformNode.name] = platformNode.version(this)
 
         // go to the next platform child
-        platformNode = platformNode.child;
+        platformNode = platformNode.child
       }
     }
   }
@@ -829,18 +831,18 @@ class Platform {
     // build a PlatformNode and assign config data to it
     // use it's getRoot method to build up its hierarchy
     // depending on which platforms match
-    let platformNode = new PlatformNode(this._registry, platformName);
-    let rootNode = platformNode.getRoot(this);
+    let platformNode = new PlatformNode(this._registry, platformName)
+    let rootNode = platformNode.getRoot(this)
 
     if (rootNode) {
-      rootNode.depth = 0;
-      let childPlatform = rootNode.child;
+      rootNode.depth = 0
+      let childPlatform = rootNode.child
       while (childPlatform) {
-        rootNode.depth++;
-        childPlatform = childPlatform.child;
+        rootNode.depth++
+        childPlatform = childPlatform.child
       }
     }
-    return rootNode;
+    return rootNode
   }
 }
 
@@ -853,26 +855,24 @@ class PlatformNode {
    * @param {string} platformName
    * */
   constructor (registry, platformName) {
-    this.registry = registry;
-    this.c = registry[platformName]; // platform-registry配置中的平台设置;
-    this.name = platformName;
-    this.isEngine = this.c && this.c.isEngine;
+    this.parent // 父节点
+    this.child // 子节点
+    this.depth // number 当前节点的深度;
+    this.registry = registry
+    this.c = registry[platformName] // platform-registry配置中的平台设置;
+    this.name = platformName // 当前节点的名称;
+    this.isEngine = this.c && this.c.isEngine  // boolean; 是否是在壳子中
 
-    this.parent; // 父节点
-    this.child; // 子节点
-    this.name; // 当前节点的名称;
-    this.isEngine; // boolean; 是否是在壳子中
-    this.depth; // number 当前节点的深度;
   }
 
   // 获取settings配置
   settings () {
-    return this.c.settings || {};
+    return this.c.settings || {}
   }
 
   // 获取父集的名称
   superset () {
-    return this.c.superset;
+    return this.c.superset
   }
 
   /**
@@ -881,7 +881,15 @@ class PlatformNode {
    * @return {boolean}
    * */
   isMatch (p) {
-    return this.c.isMatch && this.c.isMatch(p) || false;
+    return this.c.isMatch && this.c.isMatch(p) || false
+  }
+
+  /**
+   * 初始化之前执行的函数
+   * @param {Platform} platform
+   * */
+  beforeInitialize (platform) {
+    this.c.beforeInitialize && this.c.beforeInitialize(platform)
   }
 
   /**
@@ -889,8 +897,10 @@ class PlatformNode {
    * @param {Platform} platform
    * */
   initialize (platform) {
-    this.c.initialize && this.c.initialize(platform);
+    this.c.initialize && this.c.initialize(platform)
   }
+
+
 
   /**
    * 传入当前的平台信息, 获得版本信息
@@ -899,16 +909,16 @@ class PlatformNode {
    * */
   version (p) {
     if (this.c.versionParser) {
-      const v = this.c.versionParser(p);
+      const v = this.c.versionParser(p)
       if (v) {
-        const str = v.major + '.' + v.minor + ( !!v.third ? ('.' + v.third) : '');
+        const str = v.major + '.' + v.minor + ( !!v.third ? ('.' + v.third) : '')
         return {
           str: str,
           num: parseFloat(str),
           major: parseInt(v.major, 10),
           minor: parseInt(v.minor, 10),
           third: parseInt(v.third, 10)
-        };
+        }
       }
     }
   }
@@ -923,28 +933,28 @@ class PlatformNode {
     if (this.isMatch(p)) {
 
       // 获得 父集名称 列表
-      let parents = this.getSubsetParents(this.name);
+      let parents = this.getSubsetParents(this.name)
 
       if (!parents.length) {
-        return this;
+        return this
       }
 
-      let platformNode = null; // PlatformNode
-      let rootPlatformNode = null; // PlatformNode
+      let platformNode = null // PlatformNode
+      let rootPlatformNode = null // PlatformNode
 
       for (let i = 0; i < parents.length; i++) {
-        platformNode = new PlatformNode(this.registry, parents[i]);
-        platformNode.child = this;
+        platformNode = new PlatformNode(this.registry, parents[i])
+        platformNode.child = this
 
-        rootPlatformNode = platformNode.getRoot(p);
+        rootPlatformNode = platformNode.getRoot(p)
         if (rootPlatformNode) {
-          this.parent = platformNode;
-          return rootPlatformNode;
+          this.parent = platformNode
+          return rootPlatformNode
         }
       }
     }
 
-    return null;
+    return null
   }
 
   /**
@@ -953,17 +963,17 @@ class PlatformNode {
    * @return {array}
    * */
   getSubsetParents (subsetPlatformName) {
-    const parentPlatformNames = [];
-    let platform = null; // PlatformConfig
+    const parentPlatformNames = []
+    let platform = null // PlatformConfig
     for (let platformName in this.registry) {
-      platform = this.registry[platformName];
+      platform = this.registry[platformName]
 
       if (platform.subsets && platform.subsets.indexOf(subsetPlatformName) > -1) {
-        parentPlatformNames.push(platformName);
+        parentPlatformNames.push(platformName)
       }
     }
 
-    return parentPlatformNames;
+    return parentPlatformNames
   }
 
 }
@@ -980,15 +990,15 @@ class QueryParams {
    * @param {string} url
    * */
   constructor (url = window.location.href) {
-    this.data = {};// {[key: string]: any}
-    this.parseUrl(url);
+    this.data = {}// {[key: string]: any}
+    this.parseUrl(url)
   }
 
   /**
    * @param {string} key
    * */
   get (key) {
-    return this.data[key.toLowerCase()];
+    return this.data[key.toLowerCase()]
   }
 
   /**
@@ -996,14 +1006,14 @@ class QueryParams {
    * */
   parseUrl (url) {
     if (url) {
-      const startIndex = url.indexOf('?');
+      const startIndex = url.indexOf('?')
       if (startIndex > -1) {
-        const queries = url.slice(startIndex + 1).split('&');
+        const queries = url.slice(startIndex + 1).split('&')
         for (var i = 0; i < queries.length; i++) {
           if (queries[i].indexOf('=') > 0) {
-            var split = queries[i].split('=');
+            var split = queries[i].split('=')
             if (split.length > 1) {
-              this.data[split[0].toLowerCase()] = split[1].split('#')[0];
+              this.data[split[0].toLowerCase()] = split[1].split('#')[0]
             }
           }
         }
@@ -1030,50 +1040,50 @@ function getCss (docEle) {
     transitionEnd: null,
     transformOrigin: null,
     animationDelay: null,
-  };
+  }
 
   // transform
-  var i;
-  var keys = ['webkitTransform', '-webkit-transform', 'webkit-transform', 'transform'];
+  var i
+  var keys = ['webkitTransform', '-webkit-transform', 'webkit-transform', 'transform']
 
   for (i = 0; i < keys.length; i++) {
     if (docEle.style [keys[i]] !== undefined) {
-      css.transform = keys[i];
-      break;
+      css.transform = keys[i]
+      break
     }
   }
 
   // transition
-  keys = ['webkitTransition', 'transition'];
+  keys = ['webkitTransition', 'transition']
   for (i = 0; i < keys.length; i++) {
     if (docEle.style[keys[i]] !== undefined) {
-      css.transition = keys[i];
-      break;
+      css.transition = keys[i]
+      break
     }
   }
 
   // The only prefix we care about is webkit for transitions.
-  var isWebkit = css.transition.indexOf('webkit') > -1;
+  var isWebkit = css.transition.indexOf('webkit') > -1
 
   // transition duration
-  css.transitionDuration = (isWebkit ? '-webkit-' : '') + 'transition-duration';
+  css.transitionDuration = (isWebkit ? '-webkit-' : '') + 'transition-duration'
 
   // transition timing function
-  css.transitionTimingFn = (isWebkit ? '-webkit-' : '') + 'transition-timing-function';
+  css.transitionTimingFn = (isWebkit ? '-webkit-' : '') + 'transition-timing-function'
 
   // transition delay
-  css.transitionDelay = (isWebkit ? '-webkit-' : '') + 'transition-delay';
+  css.transitionDelay = (isWebkit ? '-webkit-' : '') + 'transition-delay'
 
   // To be sure transitionend works everywhere, include *both* the webkit and non-webkit events
-  css.transitionEnd = (isWebkit ? 'webkitTransitionEnd ' : '') + 'transitionend';
+  css.transitionEnd = (isWebkit ? 'webkitTransitionEnd ' : '') + 'transitionend'
 
   // transform origin
-  css.transformOrigin = (isWebkit ? '-webkit-' : '') + 'transform-origin';
+  css.transformOrigin = (isWebkit ? '-webkit-' : '') + 'transform-origin'
 
   // animation delay
-  css.animationDelay = (isWebkit ? 'webkitAnimationDelay' : 'animationDelay');
+  css.animationDelay = (isWebkit ? 'webkitAnimationDelay' : 'animationDelay')
 
-  return css;
+  return css
 }
 
 /**
@@ -1082,49 +1092,49 @@ function getCss (docEle) {
  * @param {PlatformNode} platformNode
  * */
 function insertSuperset (registry, platformNode) {
-  let supersetPlatformName = platformNode.superset();
+  let supersetPlatformName = platformNode.superset()
   if (supersetPlatformName) {
     // add a platform in between two exist platforms
     // so we can build the correct hierarchy of active platforms
-    let supersetPlatform = new PlatformNode(registry, supersetPlatformName);
-    supersetPlatform.parent = platformNode.parent;
-    supersetPlatform.child = platformNode;
+    let supersetPlatform = new PlatformNode(registry, supersetPlatformName)
+    supersetPlatform.parent = platformNode.parent
+    supersetPlatform.child = platformNode
     if (supersetPlatform.parent) {
-      supersetPlatform.parent.child = supersetPlatform;
+      supersetPlatform.parent.child = supersetPlatform
     }
-    platformNode.parent = supersetPlatform;
+    platformNode.parent = supersetPlatform
   }
 }
 
 function ready (callback) {
-  let promise = null; //Promise;
+  let promise = null //Promise;
 
   if (!callback) {
     // a callback wasn't provided, so let's return a promise instead
-    promise = new Promise(resolve => { callback = resolve; });
+    promise = new Promise(resolve => { callback = resolve })
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    callback();
+    callback()
 
   } else {
-    document.addEventListener('DOMContentLoaded', completed, false);
-    window.addEventListener('load', completed, false);
+    document.addEventListener('DOMContentLoaded', completed, false)
+    window.addEventListener('load', completed, false)
   }
 
-  return promise;
+  return promise
 
   function completed () {
-    document.removeEventListener('DOMContentLoaded', completed, false);
-    window.removeEventListener('load', completed, false);
-    callback();
+    document.removeEventListener('DOMContentLoaded', completed, false)
+    window.removeEventListener('load', completed, false)
+    callback()
   }
 }
 function removeArrayItem (array, item) {
-  const index = array.indexOf(item);
+  const index = array.indexOf(item)
   // ~index => index*(-1)-1
   // ~-1 => 0
-  return !!~index && !!array.splice(index, 1);
+  return !!~index && !!array.splice(index, 1)
 }
 
 /**
@@ -1135,45 +1145,45 @@ export function setupPlatform (config = {}) {
   if (!!window['VM'] && !!window['VM']['platform']) {
     return window['VM']['platform']
   } else {
-    const p = new Platform();
-    let _finalConf = PLATFORM_DEFAULT_CONFIGS;
+    const p = new Platform()
+    let _finalConf = PLATFORM_DEFAULT_CONFIGS
 
     for (let outerKey in config) {
       if (_finalConf[outerKey]) {
-        let _cusConf = config[outerKey];
-        let _defConf = _finalConf[outerKey];
+        let _cusConf = config[outerKey]
+        let _defConf = _finalConf[outerKey]
         for (let innerKey in _cusConf) {
-          let _tmp = {};
+          let _tmp = {}
           _tmp = defaults(_cusConf[innerKey], _defConf[innerKey])
-          _defConf[innerKey] = _tmp;
+          _defConf[innerKey] = _tmp
         }
       } else {
-        _finalConf[outerKey] = config[outerKey];
+        _finalConf[outerKey] = config[outerKey]
       }
     }
 
-    p.setDefault('mobile');
-    p.setPlatformConfigs(_finalConf);
-    p.setQueryParams(new QueryParams());
-    !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform);
-    !p.userAgent() && p.setUserAgent(window.navigator.userAgent);
-    !p.lang() && p.setLang('zh-cn', true);
-    !p.dir() && p.setDir('ltr', true);
+    p.setDefault('mobile')
+    p.setPlatformConfigs(_finalConf)
+    p.setQueryParams(new QueryParams())
+    !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform)
+    !p.userAgent() && p.setUserAgent(window.navigator.userAgent)
+    !p.lang() && p.setLang('zh-cn', true)
+    !p.dir() && p.setDir('ltr', true)
 
     // 设置css类型
-    p.setCssProps(document.documentElement);
+    p.setCssProps(document.documentElement)
 
-    p.init();
+    p.init()
 
     // 触发ready, 一般情况下是dom ready,
     // 如果平台改写了prepareReady方法,
     // 则执行平台对应的ready处理
-    p.prepareReady();
+    p.beforeReady()
 
     // 全局注册
-    window['VM'] = window['VM'] || {};
-    window['VM']['platform'] = p;
+    window['VM'] = window['VM'] || {}
+    window['VM']['platform'] = p
 
-    return p;
+    return p
   }
 }

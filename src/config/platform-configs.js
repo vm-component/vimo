@@ -7,7 +7,7 @@ export default {
   ios: {
     settings: {
       statusbarPadding: false,
-      pageTransition: 'fade-right-transition',  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+      pageTransition: 'ios-transition',  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     }
   },
   android: {
@@ -21,6 +21,9 @@ export default {
       hideNavBar: true,
       hideNavBar2: true,
       hideNavBar3: true,
+    },
+    onBridgeReady(){
+
     }
   },
   alipay: {

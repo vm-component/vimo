@@ -208,43 +208,6 @@ sub {
   contain: strict;
 }
 
-// Text Alignment
-// --------------------------------------------------
-
-[text-left] {
-  text-align: left;
-}
-
-[text-center] {
-  text-align: center;
-}
-
-[text-right] {
-  text-align: right;
-}
-
-[text-justify] {
-  text-align: justify;
-}
-
-[text-nowrap] {
-  white-space: nowrap;
-}
-
-// Text Transformation
-// --------------------------------------------------
-
-[text-uppercase] {
-  text-transform: uppercase;
-}
-
-[text-lowercase] {
-  text-transform: lowercase;
-}
-
-[text-capitalize] {
-  text-transform: capitalize;
-}
 
 // Cordova Status Bar Padding iOS Platform
 // --------------------------------------------------------------------------------

@@ -71,3 +71,42 @@ $focus-outline-box-shadow:     0 0 8px 1px $focus-outline-border-color !default;
 .click-block-active {
   transform: translate3d(0, 0, 0);
 }
+
+
+// Text Alignment
+// --------------------------------------------------
+
+[text-left] {
+  text-align: left;
+}
+
+[text-center] {
+  text-align: center;
+}
+
+[text-right] {
+  text-align: right;
+}
+
+[text-justify] {
+  text-align: justify;
+}
+
+[text-nowrap] {
+  white-space: nowrap;
+}
+
+// Text Transformation
+// --------------------------------------------------
+
+[text-uppercase] {
+  text-transform: uppercase;
+}
+
+[text-lowercase] {
+  text-transform: lowercase;
+}
+
+[text-capitalize] {
+  text-transform: capitalize;
+}

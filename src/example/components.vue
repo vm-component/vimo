@@ -19,7 +19,7 @@
                     </Item>
                     <Item button :to="{name: 'content'}">
                         <Icon slot="item-left" name="chatboxes"></Icon>
-                        <span>布局 (Header/Content/Footer)</span>
+                        <span>布局 (Content)</span>
                     </Item>
                     <Item button :to="{name: 'toolbar'}">
                         <Icon slot="item-left" name="briefcase"></Icon>

@@ -55,7 +55,9 @@
 
     },
     created(){},
-    mounted(){},
+    mounted(){
+//      alert(this.$platform._platforms)
+    },
     components: {
       Menus, List, ListHeader, ItemGroup, Item
     }

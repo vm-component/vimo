@@ -324,7 +324,7 @@ export function urlChange (callback) {
  * @param {Function} callback - 回调函数
  * @return {Promise} 返回promise，completed后自动解绑
  * */
-export function ready (callback) {
+export function docReady (callback) {
   let promise = null // Promise;
 
   if (!callback) {

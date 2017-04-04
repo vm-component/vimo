@@ -4,6 +4,7 @@
  * # 平台层级的 "默认" 配置
  *
  */
+import { docReady } from '../util/util'
 //  platform supported list
 export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq']
 
@@ -62,7 +63,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: false,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
-      pageTransition: 'fade-right-transition', // 'ios-transition'
+      pageTransition: 'ios-transition', // 'ios-transition'
       statusbarPadding: false,
       autoFocusAssist: 'delay',
       inputBlurring: true,
@@ -87,50 +88,73 @@ export const PLATFORM_DEFAULT_CONFIGS = {
    * */
   wechat: {
     initialize (p) {
-      const config = this
-      // 在ready之前进行处理
-      p.prepareReady = () => {
-        let val
-        let userAgent = window.navigator.userAgent.toString().trim()
-        let jsSDKUrl = config.settings['jsSDKUrl']
-        if (!jsSDKUrl) {
-          jsSDKUrl = 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
-        }
-        let splitArr = jsSDKUrl.split('//')
-        if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
-          splitArr[0] = 'https:'
-        } else {
-          splitArr[0] = 'http:'
-        }
-        jsSDKUrl = splitArr.join('//')
+      /**
+       * 加载JSSDK
+       * */
+      let val
+      let onBridgeReady = this.onBridgeReady || function () {} // onBridgeReady为用户自定义
+      let jsSDKUrl = this.settings['jsSDKUrl'] || 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
+      let splitArr = jsSDKUrl.split('//')
+      if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
+        splitArr[0] = 'https:'
+      } else {
+        splitArr[0] = 'http:'
+      }
+      jsSDKUrl = splitArr.join('//')
+      // loadScript
+      loadScript(jsSDKUrl)
 
-        /**
-         * 微信的userAgent中包含了网络类型和当前语言
-         * */
-        p.setUserAgent(userAgent)
+      /**
+       * 微信的userAgent中包含了网络类型和当前语言
+       * */
+      // 获取网络类型
+      // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
+      val = p.userAgent().match(/NetType\/(\w+) /i)
+      if (!!val && val.length > 0 && !!val[1]) {
+        p.setNetType(val[1].toString().toLowerCase())
+      }
 
-        // 获取网络类型
-        // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
-        val = userAgent.match(/NetType\/(\w+) /i)
-        if (!!val && val.length > 0 && !!val[1]) {
-          p.setNetType(val[1].toString().toLowerCase())
-        }
+      // 获取语言类型
+      // Language/zh-CN
+      val = p.userAgent().match(/Language\/(.+)/i)
+      if (!!val && val.length > 0 && !!val[1]) {
+        p.setLang(val[1].toString().toLowerCase(), true)
+      }
 
-        // 获取语言类型
-        // Language/zh-CN
-        val = userAgent.match(/Language\/(.+)/i)
-        if (!!val && val.length > 0 && !!val[1]) {
-          p.setLang(val[1].toString().toLowerCase(), true)
-        }
+      /**
+       * 在ready之前进行处理
+       * 执行用户定义的onBridgeReady钩子
+       * */
+      p.beforeReady = () => {
+        // document 准备好后才能启动监听
+        docReady(() => {
+          function beforeBridgeReady () {
+            // 解除绑定
+            if (document.removeEventListener) {
+              document.removeEventListener('WeixinJSBridgeReady', beforeBridgeReady)
+            } else if (document.detachEvent) {
+              document.detachEvent('WeixinJSBridgeReady', beforeBridgeReady)
+              document.detachEvent('onWeixinJSBridgeReady', beforeBridgeReady)
+            }
 
-        if (jsSDKUrl) {
-          // loadScript
-          loadScript(jsSDKUrl, function () {
-            p.triggerReady('Wechat Init Success with jsSDK!')
-          })
-        } else {
-          p.triggerReady('Wechat Init Success without jsSDK!')
-        }
+            // 执行自定义的bridge ready钩子
+            onBridgeReady()
+
+            // 触发平台的统一ready事件
+            p.triggerReady('wechat')
+          }
+
+          if (typeof WeixinJSBridge === 'undefined') {
+            if (document.addEventListener) {
+              document.addEventListener('WeixinJSBridgeReady', beforeBridgeReady, false)
+            } else if (document.attachEvent) {
+              document.attachEvent('WeixinJSBridgeReady', beforeBridgeReady)
+              document.attachEvent('onWeixinJSBridgeReady', beforeBridgeReady)
+            }
+          } else {
+            beforeBridgeReady()
+          }
+        })
       }
     },
     settings: {
@@ -145,7 +169,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   },
   alipay: {
     initialize(p){
-      //alert('Alipay Init: from platform-registry.js');
       let userAgent = window.navigator.userAgent.toString().trim()
       let val
 
@@ -220,7 +243,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   },
   qq: {
     initialize(p){
-      //alert('QQ Init: from platform-registry.js');
+      // alert('QQ Init: from platform-registry.js');
       let userAgent = window.navigator.userAgent.toString().trim()
       let val
 
