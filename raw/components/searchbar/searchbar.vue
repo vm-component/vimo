@@ -84,7 +84,6 @@
    * @fires onClear
    * @fires onCancel
    * */
-
   export default{
     name: 'Searchbar',
     data(){
