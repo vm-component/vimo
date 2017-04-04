@@ -5,7 +5,7 @@
                 <Title>Searchbar</Title>
             </Navbar>
             <Toolbar>
-                <Searchbar :animated="true"
+                <Searchbar :animated="false"
                            placeholder="Search"
                            :debounce="100"
                            v-model="myInput"
