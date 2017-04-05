@@ -23,6 +23,7 @@
 </style>
 <script type="text/babel">
   import { registerListener } from '../../util/util'
+  import { Button } from '../button'
   export default {
     data() {
       return {
@@ -142,6 +143,9 @@
     mounted(){
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+    },
+    components: {
+      Button
     }
   };
 </script>

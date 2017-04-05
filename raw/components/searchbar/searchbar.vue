@@ -84,6 +84,8 @@
    * @fires onClear
    * @fires onCancel
    * */
+  import { Button } from '../button'
+  import { Icon } from '../icon'
   export default{
     name: 'Searchbar',
     data(){
@@ -400,6 +402,9 @@
       this.searchbarInput = this.$refs.searchbarInput
       this.cancelButton = this.$refs.cancelButton.$el
       this.positionElements()
+    },
+    components: {
+      Button,Icon
     }
 
   }

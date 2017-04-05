@@ -170,7 +170,16 @@
               // var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
               var src, img;
               jsSdkReportInfo.networkType = res.networkType;
-              src = "http://open.weixin.qq.com/sdk/report?v=" + jsSdkReportInfo.version + "&o=" + jsSdkReportInfo.preVerifyState + "&s=" + jsSdkReportInfo.systemType + "&c=" + jsSdkReportInfo.clientVersion + "&a=" + jsSdkReportInfo.appId + "&n=" + jsSdkReportInfo.networkType + "&i=" + jsSdkReportInfo.initTime + "&p=" + jsSdkReportInfo.preVerifyTime + "&u=" + jsSdkReportInfo.url;
+              src = "http://open.weixin.qq.com/sdk/report?" +
+                "v=" + jsSdkReportInfo.version +
+                "&o=" + jsSdkReportInfo.preVerifyState +
+                "&s=" + jsSdkReportInfo.systemType +
+                "&c=" + jsSdkReportInfo.clientVersion +
+                "&a=" + jsSdkReportInfo.appId +
+                "&n=" + jsSdkReportInfo.networkType +
+                "&i=" + jsSdkReportInfo.initTime +
+                "&p=" + jsSdkReportInfo.preVerifyTime +
+                "&u=" + jsSdkReportInfo.url;
               img = new Image;
               img.src = src;
             }
