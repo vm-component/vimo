@@ -112,6 +112,8 @@
    * */
   import { registerListener } from '../../util/util'
   import { Backdrop } from '../backdrop'
+  import { Button } from '../button'
+  import { Icon } from '../icon'
   export default{
     name: 'ActionSheet',
     data(){
@@ -219,7 +221,7 @@
         // 删除DOM
         this.$el.remove();
       },
-      
+
       /**
        * @private
        * ActionSheet启动之前去除focus效果，因为存在键盘
@@ -349,7 +351,9 @@
       this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
     },
     components: {
-      'Backdrop': Backdrop
+      Backdrop,
+      Button,
+      Icon,
     }
   }
 </script>

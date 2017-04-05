@@ -22,18 +22,18 @@
 
             <!--input左边的search按钮-->
             <div ref="searchbarIcon" class="searchbar-search-icon"></div>
-            <div class="searchbar-input-wrap" @click="containerClickHandler($event)">
-                <input ref="searchbarInput" class="searchbar-input" id="searchbarInput"
-                       @input="onInputHandler($event)"
-                       @blur="onBlurHandler($event)"
-                       @focus="onFocusHandler($event)"
-                       :value="valueInner"
-                       :placeholder="placeholder"
-                       :type="type"
-                       :autocomplete="_autocomplete"
-                       :autocorrect="_autocorrect"
-                       :spellcheck="_spellcheck">
-            </div>
+
+            <input ref="searchbarInput" class="searchbar-input" id="searchbarInput"
+                   @input="onInputHandler($event)"
+                   @blur="onBlurHandler($event)"
+                   @focus="onFocusHandler($event)"
+                   :value="valueInner"
+                   :placeholder="placeholder"
+                   :type="type"
+                   :autocomplete="_autocomplete"
+                   :autocorrect="_autocorrect"
+                   :spellcheck="_spellcheck">
+
             <!--input右边的关闭按钮-->
             <Button clear
                     class="searchbar-clear-icon"
@@ -84,6 +84,8 @@
    * @fires onClear
    * @fires onCancel
    * */
+  import { Button } from '../button'
+  import { Icon } from '../icon'
   export default{
     name: 'Searchbar',
     data(){
@@ -95,9 +97,9 @@
         shouldAnimated: false,
 
         // 三个元素的id的document实例
-        _searchbarIcon: '',
-        _searchbarInput: '',
-        _cancelButton: '',
+        searchbarIcon: '',
+        searchbarInput: '',
+        cancelButton: '',
 
         // 外部的value映射
         valueInner: this.value,
@@ -214,31 +216,7 @@
       },
     },
     methods: {
-      /**
-       * 避免focus和动画一起执行
-       * */
-      containerClickHandler(){
-        if (this.sbHasFocus) {
-          // 这里会导致触发两次focus事件
-          this._searchbarInput.focus()
-          this.shouldBlur = false
-          return
-        }
 
-        if (this.animated) {
-          this.sbHasFocus = true
-          this._positionElements()
-          window.setTimeout(() => {
-            this.$nextTick(() => {
-              this._searchbarInput.focus()
-              this.shouldBlur = true
-            })
-          }, 16 * 20)
-        } else {
-          this._searchbarInput.focus()
-          this.shouldBlur = true
-        }
-      },
       /**
        * @private
        * Update the Searchbar input value when the input changes
@@ -272,7 +250,7 @@
       onFocusHandler ($event) {
         this.$emit('onFocus', $event)
         this.sbHasFocus = true
-        this._positionElements()
+        this.positionElements()
       },
 
       /**
@@ -287,11 +265,11 @@
         // wait for DOM update, because of focus method
         window.setTimeout(() => {
           if (!this.shouldBlur) {
-            this._searchbarInput.focus()
+            this.searchbarInput.focus()
           } else {
             this.$emit('onBlur', $event)
             this.sbHasFocus = false
-            this._positionElements()
+            this.positionElements()
           }
           this.shouldBlur = true
         }, 16 * 4)
@@ -301,7 +279,7 @@
        * Clears the input field and triggers the control change.
        */
       clearInput ($event) {
-        this._searchbarInput.focus()
+        this.searchbarInput.focus()
         this.$emit('onClear', $event)
         this.shouldBlur = false
         if (this.valueInner) {
@@ -330,7 +308,7 @@
        * @private
        * 当focus时, 设置搜索框的icon/placeholder/cancel button的位置 (ios only)
        */
-      _positionElements() {
+      positionElements() {
         let isAnimated = this.animated
         let prevAlignLeft = this.shouldAlignLeft
         let shouldAlignLeft = (!isAnimated || (this.valueInner && this.valueInner.toString().trim() !== '') || this.sbHasFocus === true)
@@ -341,7 +319,7 @@
         }
 
         if (prevAlignLeft !== shouldAlignLeft) {
-          this._positionPlaceholder()
+          this.positionPlaceholder()
         }
         if (isAnimated) {
           this.positionCancelButton()
@@ -349,11 +327,11 @@
         this.shouldAnimated = this.animated;
       },
 
-      _positionPlaceholder() {
-        let inputEle = this._searchbarInput
-        let iconEle = this._searchbarIcon
-        console.assert(inputEle, 'The input element is undefined, please check!::<Function>_positionPlaceholder():inputEle')
-        console.assert(iconEle, 'The icon element is undefined, please check!::<Function>_positionPlaceholder():iconEle')
+      positionPlaceholder() {
+        let inputEle = this.searchbarInput
+        let iconEle = this.searchbarIcon
+        console.assert(inputEle, 'The input element is undefined, please check!::<Function>positionPlaceholder():inputEle')
+        console.assert(iconEle, 'The icon element is undefined, please check!::<Function>positionPlaceholder():iconEle')
         if (!inputEle || !iconEle) {
           return
         }
@@ -363,7 +341,7 @@
           iconEle.removeAttribute('style')
         } else {
           if (this.sbHasFocus) {
-            this._searchbarInput.blur()
+            this.searchbarInput.blur()
           }
 
           if (this.placeHolderTextWidth === null) {
@@ -399,12 +377,12 @@
        * Show the iOS Cancel button on focus, hide it offscreen otherwise
        */
       positionCancelButton() {
-        if (!this._cancelButton) {
+        if (!this.cancelButton) {
           return
         }
         let showShowCancel = this.sbHasFocus
         if (showShowCancel !== this.isCancelVisible) {
-          let cancelStyleEle = this._cancelButton
+          let cancelStyleEle = this.cancelButton
           let cancelStyle = cancelStyleEle.style
           this.isCancelVisible = showShowCancel
           if (showShowCancel) {
@@ -420,10 +398,13 @@
 
     },
     mounted () {
-      this._searchbarIcon = this.$refs.searchbarIcon
-      this._searchbarInput = this.$refs.searchbarInput
-      this._cancelButton = this.$refs.cancelButton.$el
-      this._positionElements()
+      this.searchbarIcon = this.$refs.searchbarIcon
+      this.searchbarInput = this.$refs.searchbarInput
+      this.cancelButton = this.$refs.cancelButton.$el
+      this.positionElements()
+    },
+    components: {
+      Button,Icon
     }
 
   }

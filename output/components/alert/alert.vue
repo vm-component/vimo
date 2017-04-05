@@ -139,6 +139,8 @@
    *
    */
   import { Backdrop } from '../backdrop'
+  import { Button } from '../button'
+
   export default{
     name: 'Alert',
     data(){
@@ -471,7 +473,8 @@
 
     },
     components: {
-      'Backdrop': Backdrop
+      'Backdrop': Backdrop,
+      'Button': Button
     }
   }
 </script>

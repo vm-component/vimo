@@ -28,4 +28,4 @@ Vimo只安装必要的组件，模块根据需要自行安装。
 - 0.1.6 - 修复引用vimo后无法build的bug, 会因为源码为转为es5语法
 - 0.1.7 - Navbar引入基础组件, Icon组件剔除对ionicons的依赖, 如果项目需要则自行安装`npm install ionicons`, 之后`import 'ionicons/dist/css/ionicons.css'`即可
 - 0.1.8 - 修复`package.json`缺少依赖的问题
-- 0.1.9 - platform增加onBridgeReady钩子, 平台初始化由platform自己完成, 其余的自定义部分由业务自己完成(比如: config配置, 分享配置等). 增加平台方法注册钩子`onBridgeReady`
+- 0.1.9 - platform增加onBridgeReady钩子, 平台初始化由platform自己完成, 其余的自定义部分由业务自己完成(比如: config配置, 分享配置等). 增加平台方法注册钩子`onBridgeReady`. 修复alert等组件的依赖关系.
