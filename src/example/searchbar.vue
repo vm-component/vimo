@@ -5,9 +5,9 @@
                 <Title>Searchbar</Title>
             </Navbar>
             <Toolbar>
-                <Searchbar :animated="false"
+                <Searchbar :animated="true"
                            placeholder="Search"
-                           :debounce="100"
+                           :debounce="0"
                            v-model="myInput"
                            :showCancelButton="true"
                            cancelButtonText="取消"

@@ -30,9 +30,9 @@
                    :value="valueInner"
                    :placeholder="placeholder"
                    :type="type"
-                   :autocomplete="_autocomplete"
-                   :autocorrect="_autocorrect"
-                   :spellcheck="_spellcheck">
+                   :autocomplete="autocompleteValue"
+                   :autocorrect="autocorrectValue"
+                   :spellcheck="spellcheckValue">
 
             <!--input右边的关闭按钮-->
             <Button clear
@@ -103,7 +103,7 @@
 
         // 外部的value映射
         valueInner: this.value,
-        clearTimeout: '',
+        timer: '',
 
         placeHolderTextWidth: null, // number eg: 44
 
@@ -197,16 +197,15 @@
     },
     computed: {
       // props处理
-      _autocomplete () {
+      autocompleteValue () {
         return (this.autocomplete === '' || this.autocomplete === 'on') ? 'on' : 'off'
       },
-      _autocorrect () {
+      autocorrectValue () {
         return (this.autocorrect === '' || this.autocorrect === 'on') ? 'on' : 'off'
       },
-      _spellcheck () {
+      spellcheckValue () {
         return this.spellcheck === '' || this.spellcheck === 'true' || this.spellcheck === true
       },
-
       // class处理
       modeClass () {
         return this.mode ? `searchbar-${this.mode}` : ''
@@ -229,10 +228,9 @@
           this.valueInner = null
         }
 
-        // TODO: setTimeout->debounce
-        if (this.debounce > 0) {
-          window.clearTimeout(this.clearTimeout)
-          this.clearTimeout = window.setTimeout(() => {
+        if (this.debounce > 16) {
+          window.clearTimeout(this.timer)
+          this.timer = window.setTimeout(() => {
             this.$emit('onInput', $event)
             // 通知父组件的v-model
             this.$emit('input', this.valueInner)
@@ -265,6 +263,7 @@
         // wait for DOM update, because of focus method
         window.setTimeout(() => {
           if (!this.shouldBlur) {
+            this.sbHasFocus = true
             this.searchbarInput.focus()
           } else {
             this.$emit('onBlur', $event)
@@ -404,7 +403,7 @@
       this.positionElements()
     },
     components: {
-      Button,Icon
+      Button, Icon
     }
 
   }

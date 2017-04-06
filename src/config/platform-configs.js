@@ -19,8 +19,6 @@ export default {
   wechat: {
     settings: {
       hideNavBar: true,
-      hideNavBar2: true,
-      hideNavBar3: true,
     },
     onBridgeReady(plt){
 

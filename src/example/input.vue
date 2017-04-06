@@ -12,12 +12,12 @@
                     <span>Input</span>
                 </ListHeader>
                 <Item>
-                    <Label color="primary">Inline Label Is In Line</Label>
+                    <Label color="primary">Inline Label</Label>
                     <Input placeholder="Text Input"></Input>
                 </Item>
 
                 <Item>
-                    <Label color="primary" fixed>Fixed Label With Long Name</Label>
+                    <Label color="primary" fixed>Fixed Label</Label>
                     <Input type="tel" placeholder="Tel Input"></Input>
                 </Item>
 
@@ -50,7 +50,8 @@
                     <span>Textarea</span>
                 </ListHeader>
                 <Item>
-                    <Textarea placeholder="Enter a description"></Textarea>
+                    <Textarea @onBlur="onBlur($event)" @onFocus="onFocus($event)" @onInput="onInput($event)"
+                              placeholder="Enter a description"></Textarea>
                 </Item>
             </List>
 
@@ -69,15 +70,18 @@
                 </ListHeader>
                 <Item>
                     <Label color="primary">TestValue</Label>
-                    <Input :debounce="500" :clearInput="true" placeholder="Text Input" v-model="testValue"
+                    <Input :debounce="0" :clearInput="true" placeholder="Text Input" v-model="testValue"
                            :disabled="testDisabled"></Input>
                 </Item>
                 <Item>
                     <span> 当前的值: {{testValue}}</span>
                 </Item>
-                <Item>
-                    <Button @click="disableToggle">Disable Toggle</Button>
-                </Item>
+                <Grid>
+                    <Row justify-content-center>
+                        <Button @click="disableToggle">Disable Toggle</Button>
+                    </Row>
+                </Grid>
+
             </List>
         </Content>
     </Page>
@@ -85,6 +89,7 @@
 <style lang="scss">
 </style>
 <script type="text/ecmascript-6">
+  import { Label } from 'vimo/components/label'
   import { Input, Textarea } from 'vimo/components/input'
   import { List } from 'vimo/components/list'
   import { ListHeader, Item } from 'vimo/components/item'
@@ -96,10 +101,17 @@
         testDisabled: false,
       }
     },
-    props: {},
-    watch: {},
-    computed: {},
     methods: {
+      onBlur($event){
+        console.debug('onBlur')
+      },
+      onFocus($event){
+        console.debug('onFocus')
+        console.debug($event)
+      },
+      onInput($event){
+        console.debug('onInput')
+      },
       disableToggle(){
         this.testDisabled = !this.testDisabled;
       }
@@ -107,6 +119,6 @@
     created(){},
     mounted(){},
     activated(){},
-    components: {List, ListHeader, Item, Input, Textarea}
+    components: {Label, List, ListHeader, Item, Input, Textarea}
   }
 </script>
