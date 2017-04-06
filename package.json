@@ -16,7 +16,7 @@
     "fastclick": "^1.0.6",
     "vue": "^2.2.2",
     "vue-router": "^2.2.0"
-  },
+  },程度
   "devDependencies": {
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
@@ -105,6 +105,8 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "not ie <= 8",
+    "iOS >= 5",
+    "Android >= 4"
   ]
 }

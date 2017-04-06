@@ -37,9 +37,7 @@
                 v-if="clearInput && typeValue!=='textarea' && hasValue()"
                 clear
                 class="text-input-clear-icon"
-                @click="clearTextInput()"
-                @touchstart="clearTextInput()"
-                @mousedown="clearTextInput()"></Button>
+                @click="clearTextInput()"></Button>
     </div>
 </template>
 <style lang="scss">
@@ -58,23 +56,27 @@
    *
    * 此外, Textarea组件和Input组件公用此文件
    *
+   * @fires onBlur
+   * @fires onFocus
+   * @fires onInput
+   *
    * */
   import { hasFocus, setElementClass } from '../../util/util'
+  import { Button } from '../../components/button'
   export default{
     data(){
       return {
         inputValue: this.value, // 内部value值
         typeValue: this.type, // 内部value值
 
-        _item: null, // 外部item组件实例 -> 修改class
-        _page: null, // 外部page组件实例 -> 调取scroll特性
-        _input: null, // 当前输入的主体, input/textarea
+        itemComponent: null, // 外部item组件实例 -> 修改class
+        inputElement: null, // 当前输入的主体, input/textarea
 
-        _timer: null,
+        timer: null,
 
-        _clearOnEdit: this.clearOnEdit, // 内部维护的clearOnEdit副本, 因为会修改的
-        _didBlurAfterEdit: false, // clearOnEdit状态唤起的标志
-
+        clearOnEditValue: this.clearOnEdit, // 内部维护的clearOnEdit副本, 因为会修改的
+        didBlurAfterEdit: false, // clearOnEdit状态唤起的标志
+        shouldBlur: true, // 点击清楚按钮时使用
       }
     },
     props: {
@@ -107,24 +109,17 @@
       /**
        * 设置最大值, 只对type=number有效
        * */
-      max: {
-        type: Number,
-      },
+      max:  [Number],
 
       /**
        * 设置最小值, 只对type=number有效
        * */
-      min: {
-        type: Number
-      },
+      min: [Number],
 
       /**
        * 设置数字变化的阶梯值, 只对type=number有效
        * */
-      step: {
-        type: Number,
-        default: 1,
-      },
+      step: [Number],
 
       /**
        * 当前平台
@@ -172,11 +167,6 @@
       }
 
     },
-    watch: {
-      inputValue(){
-
-      }
-    },
     computed: {
 
       modeClass () {
@@ -200,8 +190,8 @@
        * 设置当前组件为focus状态
        * */
       setFocus(){
-        if (!hasFocus(this._input)) {
-          this._input.focus()
+        if (!hasFocus(this.inputElement)) {
+          this.inputElement.focus()
         }
       },
 
@@ -210,15 +200,18 @@
        * 监听并发送blur事件
        */
       inputBlurred($event){
-        const _this = this;
         // debug: clearInput会在onBlur之后,造成blur后点击clearInput失效, 故需要延迟blur
-        window.setTimeout(function () {
-          // 向父组件Item添加标记
-          _this.setItemHasFocusClass(false);
-          _this.$emit('onBlur', $event);
-          // 如果是clearOnEdit模式， blur时还有值的情况下，定一个flag
-          if (_this._clearOnEdit && _this.hasValue()) {
-            _this._didBlurAfterEdit = true;
+        window.setTimeout(() => {
+          if (this.shouldBlur) {
+            // 向父组件Item添加标记
+            this.setItemHasFocusClass(false);
+            this.$emit('onBlur', $event);
+            // 如果是clearOnEdit模式， blur时还有值的情况下，定一个flag
+            if (this.clearOnEditValue && this.hasValue()) {
+              this.didBlurAfterEdit = true;
+            }
+          } else {
+            this.shouldBlur = true
           }
         }, 16 * 2)
       },
@@ -230,9 +223,7 @@
       inputFocused($event){
         // 向父组件Item添加标记
         this.setItemHasFocusClass(true);
-
         this.setFocus();
-
         this.$emit('onFocus', $event)
       },
 
@@ -246,8 +237,8 @@
         _this.setItemHasValueClass();
 
         // debounce
-        window.clearTimeout(_this._timer);
-        _this._timer = window.setTimeout(function () {
+        window.clearTimeout(_this.timer);
+        _this.timer = window.setTimeout(function () {
           // 组件对外事件
           _this.$emit('onInput', $event);
           // 通知父组件的v-model
@@ -259,23 +250,24 @@
        * 键盘按下事件
        * */
       onKeydown(){
-        if (this._clearOnEdit) {
+        if (this.clearOnEditValue) {
           this.checkClearOnEdit();
         }
       },
 
       checkClearOnEdit(){
-        if (!this._clearOnEdit) {
+        if (!this.clearOnEditValue) {
           return;
         }
 
         // clearOnEdit模式激活,并且input有值
-        if (this._didBlurAfterEdit && this.hasValue()) {
-          this.clearTextInput();
+        if (this.didBlurAfterEdit && this.hasValue()) {
+          this.inputValue = '';
+          this.inputChanged();
         }
 
         // 重置标记
-        this._didBlurAfterEdit = false;
+        this.didBlurAfterEdit = false;
       },
 
       /**
@@ -284,6 +276,11 @@
       clearTextInput(){
         this.inputValue = '';
         this.inputChanged();
+        this.shouldBlur = false
+
+        this.setFocus()
+        this.setItemHasFocusClass(true);
+
       },
 
       /**
@@ -291,8 +288,8 @@
        */
       setItemHasFocusClass(isFocus){
         const _this = this;
-        if (_this._item) {
-          setElementClass(_this._item.$el, 'input-has-focus', isFocus)
+        if (_this.itemComponent) {
+          setElementClass(_this.itemComponent.$el, 'input-has-focus', isFocus)
           _this.$nextTick(function () {
 
           })
@@ -303,8 +300,8 @@
        *  设置父组件Item有值时的class
        */
       setItemHasValueClass(){
-        if (this._item) {
-          setElementClass(this._item.$el, 'input-has-value', this.hasValue())
+        if (this.itemComponent) {
+          setElementClass(this.itemComponent.$el, 'input-has-value', this.hasValue())
         }
       },
 
@@ -314,50 +311,41 @@
       hasValue() {
         const inputValue = this.inputValue;
         return (inputValue !== null && inputValue !== undefined && inputValue !== '');
-      },
-
-      // -----------滚动的辅助程序, 用于配合键盘滚动 -----------
-      /**
-       * 设置点击相关处理
-       * 正常情况下, 点击input会自动弹出keyboard,并且input会滚动到合适的位置
-       * 但是存在特殊原因无法滚动, 这里需要处理下
-       *
-       * 如果开启了scrollAssist模式, 将在Input组件外部覆盖一层处理点击的代理层, 并监听点击事件
-       * */
-      // TODO: 这部分待续
-
+      }
     },
-    created () {},
-    mounted () {
-
+    created(){
       // 当在textarea组件下，强制设置type=textarea
       if (this.$options._componentTag.toLowerCase() === 'textarea') {
         this.typeValue = 'textarea';
-        this._input = this.$refs['textarea']
-      } else {
-        this._input = this.$refs['input']
-      }
-
-      // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
-        this._item = this.$parent;
-        setElementClass(this._item.$el, 'item-textarea', (this.typeValue === 'textarea'))
-        setElementClass(this._item.$el, 'item-input', true)
       }
 
       // 默认情况下, 如果password有值, 则点击执行清空
       if (this.type === 'password') {
-        this._clearOnEdit = true;
+        this.clearOnEditValue = true;
+      }
+    },
+    mounted () {
+      // 当在textarea组件下，强制设置type=textarea
+      if (this.typeValue === 'textarea') {
+        this.inputElement = this.$refs['textarea']
+      } else {
+        this.inputElement = this.$refs['input']
       }
 
-      // 找到外部页面实例
-      if (this.$vnode.context) {
-        this._page = this.$vnode.context
+      console.assert(this.inputElement, 'inputElement has undefined!')
+
+      // 找到外部item实例
+      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
+        this.itemComponent = this.$parent;
+        setElementClass(this.itemComponent.$el, 'item-textarea', (this.typeValue === 'textarea'))
+        setElementClass(this.itemComponent.$el, 'item-input', true)
       }
 
       // 初始化时,判断是否有value
       this.setItemHasValueClass();
-
     },
+    components: {
+      Button
+    }
   }
 </script>

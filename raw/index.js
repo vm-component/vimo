@@ -11,8 +11,6 @@ import { App, Header, Footer } from './components/app'
 import { Content } from './components/content'
 import { Page } from './components/page'
 import { Nav } from './components/nav'
-import { Grid, Row, Col } from './components/grid'
-import { Spinner } from './components/spinner'
 import { Button } from './components/button'
 import { Navbar } from './components/navbar'
 import { Toolbar, ToolbarTitle, ToolbarButtons } from './components/toolbar'
@@ -44,10 +42,6 @@ export default {
     Vue.component(Content.name, Content)
     Vue.component(Page.name, Page)
     Vue.component(Nav.name, Nav)
-    Vue.component(Grid.name, Grid)
-    Vue.component(Row.name, Row)
-    Vue.component(Col.name, Col)
-    Vue.component(Spinner.name, Spinner)
     Vue.component(Button.name, Button)
     Vue.component(Navbar.name, Navbar)
     Vue.component(Toolbar.name, Toolbar)

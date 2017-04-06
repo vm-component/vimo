@@ -1,5 +1,5 @@
 <template>
-    <App id="app">
+    <App>
         <!--menu menu-->
         <Menus id="menu" side="left" type="reveal">
             <Header>

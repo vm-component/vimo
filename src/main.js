@@ -1,9 +1,10 @@
 // 配置
-import PLATFORM_CONFIGS from './config/platform-configs'
-import APP_CONFIGS from './config/app-configs'
+
 import router from './router'
 import Vue from 'vue'
 import App from './App'
+import PLATFORM_CONFIGS from './config/platform-configs'
+import APP_CONFIGS from './config/app-configs'
 import attachFastClick from 'fastclick'
 import vimo from 'vimo'
 

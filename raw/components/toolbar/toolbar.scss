@@ -38,6 +38,9 @@
   contain: strict;
 }
 
+// toolbar-title.vue
+// --------------------------------------------------
+
 .ion-title {
   display: flex;
 
@@ -56,6 +59,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+// toolbar-buttons.vue
+// --------------------------------------------------
 
 .ion-buttons {
   display: block;
