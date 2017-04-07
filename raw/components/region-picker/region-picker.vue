@@ -52,7 +52,7 @@
       getProvinceCol () {
         let province = []
         regions.forEach((item) => {
-          if (item.item_code && item.item_code.substr(3) === '000') {
+          if (item.item_code && item.item_code.substr(2) === '0000') {
             province.push(this.formatData(item))
           }
         })
@@ -110,48 +110,50 @@
 
       // 初始化
       init(cityArrs){
+        const _this = this
         if (!cityArrs || !cityArrs[0] || !cityArrs[1] || !cityArrs[2]) {
           cityArrs = ['110000', '110100', '110101']
         }
 
-        this.provinceCol = this.getProvinceCol()
-        this.cityCol = this.getCityCol(cityArrs[0])
-        this.regionCol = this.getRegionCol(cityArrs[1])
-        this.selectedIndex[0] = this.getIndexByCode(cityArrs[0], this.provinceCol)
-        this.selectedIndex[1] = this.getIndexByCode(cityArrs[1], this.cityCol)
-        this.selectedIndex[2] = this.getIndexByCode(cityArrs[2], this.regionCol)
-
-        this.picker = new Picker({
-          data: [this.provinceCol, this.cityCol, this.regionCol],
-          selectedIndex: this.selectedIndex,
-          title: this.title
+        _this.provinceCol = _this.getProvinceCol()
+        _this.cityCol = _this.getCityCol(cityArrs[0])
+        _this.regionCol = _this.getRegionCol(cityArrs[1])
+        _this.selectedIndex[0] = _this.getIndexByCode(cityArrs[0], _this.provinceCol)
+        _this.selectedIndex[1] = _this.getIndexByCode(cityArrs[1], _this.cityCol)
+        _this.selectedIndex[2] = _this.getIndexByCode(cityArrs[2], _this.regionCol)
+        _this.picker = new Picker({
+          data: [_this.provinceCol, _this.cityCol, _this.regionCol],
+          selectedIndex: _this.selectedIndex,
+          title: _this.title
         })
 
-        this.picker.on('picker.select', (selectedVal, selectedIndex) => {
+        _this.picker.on('picker.select', (selectedVal, selectedIndex) => {
           let dataArr = []
-          let _p = this.provinceCol[selectedIndex[0]]
-          let _c = this.cityCol[selectedIndex[1]]
-          let _d = this.regionCol[selectedIndex[2]]
+          let _p = _this.provinceCol[selectedIndex[0]]
+          let _c = _this.cityCol[selectedIndex[1]]
+          let _d = _this.regionCol[selectedIndex[2]]
           dataArr.push(_p)
           dataArr.push(_c)
           dataArr.push(_d)
-          this.$emit('onSelected', JSON.parse(JSON.stringify(dataArr)))
+          _this.$emit('onSelected', JSON.parse(JSON.stringify(dataArr)))
         })
 
-        this.picker.on('picker.change', (selectedVal, selectedIndex) => {
+        _this.picker.on('picker.change', (selectedVal, selectedIndex) => {
+
           if (selectedVal === 0) {
             // 第一列选中, 省份选择
-            this.cityCol = this.getCityCol(this.provinceCol[selectedIndex].code)
-            this.regionCol = this.getRegionCol(this.cityCol[0].code)
-            this.picker.refillColumn(1, this.cityCol)
-            this.picker.refillColumn(2, this.regionCol)
+            let province = _this.provinceCol[selectedIndex]
+            _this.cityCol = _this.getCityCol(province.code)
+            _this.regionCol = _this.getRegionCol(_this.cityCol[0].code)
+            _this.picker.refillColumn(1, _this.cityCol)
+            _this.picker.refillColumn(2, _this.regionCol)
+
           } else if (selectedVal === 1) {
             // 第一列选中, 城市选择
-            this.regionCol = this.getRegionCol(this.cityCol[selectedIndex].code)
-            this.picker.refillColumn(2, this.regionCol)
+            _this.regionCol = _this.getRegionCol(_this.cityCol[selectedIndex].code)
+            _this.picker.refillColumn(2, _this.regionCol)
           }
         })
-
       }
     },
     created () {

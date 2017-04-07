@@ -15,6 +15,8 @@
     </div>
 </template>
 <script>
+  import { Icon } from '../icon'
+  import { Spinner } from '../spinner'
   export default{
     name: 'RefresherContent',
     props: {
@@ -34,6 +36,9 @@
         type: String,
         default: '正在刷新'
       },
+    },
+    components: {
+      Icon, Spinner
     }
   }
 </script>

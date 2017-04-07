@@ -3,10 +3,9 @@
  */
 import Vue from 'vue'
 import modalComponent from './modal.vue'
-import { registerListener } from '../../util/util'
-import { isObject } from '../../util/util'
-let _modalArr = []
-let _unRegisterUrlChange = []
+import { registerListener, isObject } from '../../util/util'
+let modalArr = []
+let unRegisterUrlChange = []
 const ModalConstructor = Vue.extend(modalComponent)
 const DOM_INSERT_POSITION = 'modalPortal' // the DOM position of component insert to
 const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback position
@@ -91,7 +90,7 @@ function present (options = {}) {
   }, 0)
 
   // record
-  _modalArr.push({
+  modalArr.push({
     modalInstance: modalInstance,
     template: options.template,
     templateInstance: templateInstance,
@@ -100,18 +99,18 @@ function present (options = {}) {
   })
 
   // 如果是第一次进入则监听url变化
-  if (_unRegisterUrlChange.length == 0) {
+  if (unRegisterUrlChange.length == 0) {
     registerListener(window, 'popstate', function () {
       if (navState === 0) {
         // 总是关闭最后一次创建的modal
-        let _lastModal = _modalArr.pop()
+        let _lastModal = modalArr.pop()
         _lastModal && _lastModal.modalInstance._dismiss()
         // 如果是最后一个则解绑urlChange
-        if (_modalArr.length === 0) {
+        if (modalArr.length === 0) {
           unregisterAllListener()
         }
       }
-    }, {}, _unRegisterUrlChange)
+    }, {}, unRegisterUrlChange)
   }
 
   window.setTimeout(() => {navState = 0}, 400)
@@ -129,13 +128,13 @@ function dismiss (dataBack) {
   navState = 1
 
   // 总是关闭最后一次创建的modal
-  let _lastModal = _modalArr.pop()
+  let _lastModal = modalArr.pop()
   let lastModalInstance = _lastModal.modalInstance
   // 执行注册的onDismiss回调
   _lastModal.onDismiss && _lastModal.onDismiss(dataBack)
 
   // 如果是最后一个则解绑urlChange
-  if (_modalArr.length === 0) {
+  if (modalArr.length === 0) {
     unregisterAllListener()
   }
 
@@ -146,8 +145,8 @@ function dismiss (dataBack) {
 
 // 基础全部监听
 function unregisterAllListener () {
-  _unRegisterUrlChange.forEach((item) => item && item())
-  _unRegisterUrlChange = []
+  unRegisterUrlChange.forEach((item) => item && item())
+  unRegisterUrlChange = []
 }
 
 export default {
