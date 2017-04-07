@@ -37,3 +37,4 @@ Vimo只安装必要的组件，模块根据需要自行安装。
 - 0.1.8 - 修复`package.json`缺少依赖的问题
 - 0.1.9 - platform增加onBridgeReady钩子, 平台初始化由platform自己完成, 其余的自定义部分由业务自己完成(比如: config配置, 分享配置等); 增加平台方法注册钩子`onBridgeReady`; 修复alert等组件的依赖关系.
 - 0.2.0 - bridge设计完成(plt.registerMethod/this.$platform.do); searchbar/input组件debug; 明确基本组件为: App, Header, Footer, Content, Page, Nav, Button, Navbar, Toolbar, ToolbarTitle, ToolbarButtons, 其余按需加载.
+- 0.2.1 - 去除refresher组件的console信息, 增加refresher-content组件的组件依赖

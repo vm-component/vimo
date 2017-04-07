@@ -201,7 +201,7 @@
       setListeners(shouldListen) {
         // 如果解绑函数存在则全部解绑
         if (this.unregs && this.unregs.length > 0) {
-          console.debug('refresher.vue 解除绑定')
+//          console.debug('refresher.vue 解除绑定')
           this.unregs.forEach((_unreg) => {
             _unreg && _unreg();
           })
@@ -246,7 +246,7 @@
         }
 
         let coord = pointerCoord(ev);
-        console.debug('Pull-to-refresh, onStart', ev.type, 'y:', coord.y);
+//        console.debug('Pull-to-refresh, onStart', ev.type, 'y:', coord.y);
 
         // refresher定位
         if (contentDimensions.contentTop > 0) {

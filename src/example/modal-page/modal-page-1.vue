@@ -4,7 +4,6 @@
             <Toolbar>
                 <Button right slot="button" role="bar-button" @click="closeModal">
                     Close
-
                 </Button>
                 <Title>Modal Page 1</Title>
             </Toolbar>

@@ -1,26 +1,26 @@
 <template>
-  <Page>
-    <Header>
-      <Navbar>
-        <Title>Refresher</Title>
-      </Navbar>
-    </Header>
-    <Content>
-      <Refresher slot="refresher" @onRefresh="doRefresh($event)">
-        <RefresherContent
-          pullingText="下拉刷新..."
-          refreshingText="正在刷新...">
-        </RefresherContent>
-      </Refresher>
-      <List>
-        <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
-      </List>
-    </Content>
-  </Page>
+    <Page>
+        <Header>
+            <Navbar>
+                <Title>Refresher</Title>
+            </Navbar>
+        </Header>
+        <Content>
+            <Refresher slot="refresher" @onRefresh="doRefresh($event)">
+                <RefresherContent
+                        pullingText="下拉刷新..."
+                        refreshingText="正在刷新...">
+                </RefresherContent>
+            </Refresher>
+            <List>
+                <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
+            </List>
+        </Content>
+    </Page>
 </template>
 <style scoped lang="scss">
-  .main {
-  }
+    .main {
+    }
 </style>
 <script type="text/ecmascript-6">
   import { Refresher, RefresherContent } from 'vimo/components/refresher'
