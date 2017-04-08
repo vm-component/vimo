@@ -15,6 +15,8 @@ import { Toast } from 'vimo/components/toast'
 import { Modal } from 'vimo/components/modal'
 import { Icon } from 'vimo/components/icon'
 import { Backdrop } from 'vimo/components/backdrop'
+import { Grid, Row, Column } from 'vimo/components/grid'
+
 import 'ionicons/dist/css/ionicons.css'
 
 /* eslint-disable no-new */
@@ -29,6 +31,10 @@ Vue.use(vimo, {
 
 Vue.component(Backdrop.name, Backdrop)
 Vue.component(Icon.name, Icon)
+Vue.component(Grid.name, Grid)
+Vue.component(Row.name, Row)
+Vue.component(Column.name, Column)
+
 Vue.prototype.$actionSheet = ActionSheet
 Vue.prototype.$loading = Loading
 Vue.prototype.$alert = Alert
@@ -47,4 +53,3 @@ new Vue({
   mounted () {},
   components: {App}
 })
-
