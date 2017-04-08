@@ -4,7 +4,7 @@
   </footer>
 </template>
 <style lang="scss">
-  @import "../themes/globals";
+  @import "../../themes/globals";
   .ion-footer {
     position: absolute;
     bottom: 0;
