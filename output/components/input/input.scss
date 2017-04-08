@@ -1,4 +1,4 @@
-@import "../themes/globals";
+@import "../../themes/globals";
 
 // Input
 // --------------------------------------------------
@@ -130,8 +130,8 @@ input.text-input:-webkit-autofill {
 
   padding: 0;
 
-  width: 1px;
-  height: 1px;
+  width: 1px; /*no*/
+  height: 1px; /*no*/
 
   border: 0;
   background: transparent;

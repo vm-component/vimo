@@ -32,16 +32,16 @@ $content-ios-outer-background: #efeff4 !default;
 .content-ios:not([no-bounce]) > .scroll-content::after {
   position: absolute;
 
-  width: 1px;
-  height: 1px;
+  width: 1px; /*no*/
+  height: 1px; /*no*/
 
   content: "";
 }
 
 .content-ios:not([no-bounce]) > .scroll-content::before {
-  bottom: -1px;
+  bottom: -1px; /*no*/
 }
 
 .content-ios:not([no-bounce]) > .scroll-content::after {
-  top: -1px;
+  top: -1px; /*no*/
 }

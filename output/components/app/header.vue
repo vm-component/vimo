@@ -4,7 +4,7 @@
   </header>
 </template>
 <style lang="scss">
-  @import "../themes/globals";
+  @import "../../themes/globals";
   .ion-header {
     position: absolute;
     top: 0;

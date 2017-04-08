@@ -27,14 +27,14 @@ $focus-outline-box-shadow:     0 0 8px 1px $focus-outline-border-color !default;
 
 .focus-outline :focus {
   outline: thin dotted;
-  outline-offset: -1px;
+  outline-offset: -1px; /*no*/
 }
 
 .focus-outline button:focus,
 .focus-outline [ion-button]:focus {
   border-color: $focus-outline-border-color;
-  outline: $focus-outline-border-width solid $focus-outline-border-color;
-  box-shadow: $focus-outline-box-shadow;
+  outline: $focus-outline-border-width solid $focus-outline-border-color; /*no*/
+  box-shadow: $focus-outline-box-shadow; /*no*/
 }
 
 .ion-input :focus {
@@ -61,7 +61,7 @@ $focus-outline-box-shadow:     0 0 8px 1px $focus-outline-border-color !default;
   display: block;
 
   opacity: 0;
-  transform: translate3d(0, -100%, 0) translateY(1px);
+  transform: translate3d(0, -100%, 0) translateY(1px); /*no*/
 
   // background: red;
   // opacity: .3;

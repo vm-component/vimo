@@ -1,4 +1,4 @@
-@import "../themes/globals.md";
+@import "../../themes/globals.md";
 
 // Material Design List
 // --------------------------------------------------
@@ -53,11 +53,11 @@ $list-md-header-color:           #757575 !default;
 // --------------------------------------------------
 
 .list-md {
-  margin: -1px $list-md-margin-right $list-md-margin-bottom $list-md-margin-left;
+  margin: -1px $list-md-margin-right $list-md-margin-bottom $list-md-margin-left; /*no*/
 }
 
 .list-md .item-block .item-inner {
-  border-bottom: 1px solid $list-md-border-color;
+  border-bottom: 1px solid $list-md-border-color; /*no*/
 }
 
 .list-md > .item-block:last-child,
@@ -73,7 +73,7 @@ $list-md-header-color:           #757575 !default;
 }
 
 .list-md .ion-item-options {
-  border-bottom: 1px solid $list-md-border-color;
+  border-bottom: 1px solid $list-md-border-color; /*no*/
 }
 
 .list-md .ion-item-options .button {
@@ -81,7 +81,7 @@ $list-md-header-color:           #757575 !default;
 
   align-items: center;
 
-  margin: 1px 0;
+  margin: 1px 0; /*no*/
 
   height: calc(100% - 2px);
 
@@ -163,7 +163,7 @@ $list-md-header-color:           #757575 !default;
 
   min-height: $list-md-header-min-height;
 
-  border-top: $list-md-header-border-top;
+  border-top: $list-md-header-border-top; /*no*/
   font-size: $list-md-header-font-size;
   color: $list-md-header-color;
 }
@@ -183,5 +183,5 @@ $list-md-header-color:           #757575 !default;
 // --------------------------------------------------
 
 .list-md .item-input:last-child {
-  border-bottom: 1px solid $list-md-border-color;
+  border-bottom: 1px solid $list-md-border-color; /*no*/
 }

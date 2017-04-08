@@ -112,7 +112,7 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 .item-md.item-block .item-inner {
   padding-right: ($item-md-padding-right / 2);
 
-  border-bottom: 1px solid $list-md-border-color;
+  border-bottom: 1px solid $list-md-border-color; /*no*/
 }
 
 
@@ -160,7 +160,7 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 
 .item-md .item-button[icon-only] .ion-icon,
 .item-md .item-button[icon-only] {
-  padding: 0 1px;
+  padding: 0 1px; /*no*/
 }
 
 .item-md .ion-icon[item-left] + .item-inner,
@@ -235,7 +235,7 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   color: $item-md-divider-color;
   background-color: $item-md-divider-background;
 
-  border-bottom: $item-md-divider-border-bottom;
+  border-bottom: $item-md-divider-border-bottom; /*no*/
   font-size: $item-md-divider-font-size;
 }
 

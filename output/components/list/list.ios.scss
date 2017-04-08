@@ -1,4 +1,4 @@
-@import "../themes/globals.ios";
+@import "../../themes/globals.ios";
 
 // iOS List
 // --------------------------------------------------
@@ -59,7 +59,7 @@ $list-ios-header-background-color:    transparent !default;
 // --------------------------------------------------
 
 .list-ios {
-  margin: -1px $list-ios-margin-right $list-ios-margin-bottom $list-ios-margin-left;
+  margin: -1px $list-ios-margin-right $list-ios-margin-bottom $list-ios-margin-left; /*no*/
 }
 
 .list-ios > .item-block:first-child {
@@ -132,7 +132,7 @@ $list-ios-header-background-color:    transparent !default;
 }
 
 .list-ios[inset] .item {
-  border-bottom: 1px solid $list-ios-border-color;
+  border-bottom: 1px solid $list-ios-border-color; /*no*/
 }
 
 .list-ios[inset] .item-inner {
@@ -176,7 +176,7 @@ $list-ios-header-background-color:    transparent !default;
   border-bottom: $list-ios-header-border-bottom;
   font-size: $list-ios-header-font-size;
   font-weight: $list-ios-header-font-weight;
-  letter-spacing: $list-ios-header-letter-spacing;
+  letter-spacing: $list-ios-header-letter-spacing; /*no*/
   text-transform: $list-ios-header-text-transform;
   color: $list-ios-header-color;
   background: $list-ios-header-background-color;

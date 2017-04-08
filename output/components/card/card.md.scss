@@ -1,4 +1,4 @@
-@import "../themes/globals.md";
+@import "../../themes/globals.md";
 
 // Material Design Card
 // --------------------------------------------------
@@ -90,7 +90,7 @@ $card-md-header-color:                #222 !default;
   font-size: $card-md-font-size;
 
   background: $card-md-background-color;
-  box-shadow: $card-md-box-shadow;
+  box-shadow: $card-md-box-shadow; /*no*/
 }
 
 .card-md ion-list {

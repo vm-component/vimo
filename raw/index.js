@@ -11,12 +11,10 @@ import { App, Header, Footer } from './components/app'
 import { Content } from './components/content'
 import { Page } from './components/page'
 import { Nav } from './components/nav'
-import { Button } from './components/button'
-import { Navbar } from './components/navbar'
-import { Toolbar, ToolbarTitle, ToolbarButtons } from './components/toolbar'
 
 export default {
   installed: false,
+  version: '0.2.4',
   install (Vue, options = {}) {
 
     // init base (config/platform)
@@ -37,16 +35,11 @@ export default {
 
     // 全局注册的组件(核心组件)
     Vue.component(App.name, App)
-    Vue.component(Header.name, Header)
-    Vue.component(Footer.name, Footer)
-    Vue.component(Content.name, Content)
-    Vue.component(Page.name, Page)
     Vue.component(Nav.name, Nav)
-    Vue.component(Button.name, Button)
-    Vue.component(Navbar.name, Navbar)
-    Vue.component(Toolbar.name, Toolbar)
-    Vue.component(ToolbarTitle.name, ToolbarTitle)
-    Vue.component(ToolbarButtons.name, ToolbarButtons)
+    Vue.component(Page.name, Page)
+    Vue.component(Header.name, Header)
+    Vue.component(Content.name, Content)
+    Vue.component(Footer.name, Footer)
 
     // add logo
     addLogo()

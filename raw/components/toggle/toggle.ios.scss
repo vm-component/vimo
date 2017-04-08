@@ -114,7 +114,7 @@ $toggle-ios-item-right-padding:        6px ($item-ios-padding-right / 2) 5px ($i
 
   border-radius: $toggle-ios-handle-border-radius;
   background-color: $toggle-ios-handle-background-color;
-  box-shadow: $toggle-ios-handle-box-shadow;
+  box-shadow: $toggle-ios-handle-box-shadow; /*no*/
 
   transition: transform $toggle-ios-transition-duration, width 120ms ease-in-out 80ms, left 110ms ease-in-out 80ms;
 }

@@ -39,3 +39,8 @@ Vimo只安装必要的组件，模块根据需要自行安装。
 - 0.2.0 - bridge设计完成(plt.registerMethod/this.$platform.do); searchbar/input组件debug; 明确基本组件为: App, Header, Footer, Content, Page, Nav, Button, Navbar, Toolbar, ToolbarTitle, ToolbarButtons, 其余按需加载.
 - 0.2.1 - 去除refresher组件的console信息, 增加refresher-content组件的组件依赖.
 - 0.2.2 - 修复modal打包后使用的bug
+- 0.2.3 - 再次精简核心组件, 目前核心组件为: App/Nav/Page/Header/Content/Footer, 其余按需加载
+
+
+
+

@@ -80,7 +80,7 @@ $segment-button-ios-toolbar-icon-line-height:   24px !default;
 
   height: $segment-button-ios-height;
 
-  border-width: $segment-button-ios-border-width;
+  border-width: $segment-button-ios-border-width; /*no*/
   border-style: solid;
   border-color: $segment-button-ios-background-color-activated;
 

@@ -1,4 +1,4 @@
-@import "../themes/globals.md";
+@import "../../themes/globals.md";
 
 // Material Design Toolbar
 // --------------------------------------------------
@@ -224,7 +224,7 @@ $navbar-md-height:                       $toolbar-md-height !default;
 // --------------------------------------------------
 
 .bar-button-outline-md {
-  border-width: 1px;
+  border-width: 1px; /*no*/
   border-style: solid;
   border-color: $toolbar-md-button-color;
   color: $toolbar-md-button-color;

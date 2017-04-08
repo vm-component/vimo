@@ -67,7 +67,7 @@ $tabs-ios-tab-icon-size:            30px !default;
 
 .tabs-ios .tab-button-text {
   margin-top: 0;
-  margin-bottom: 1px;
+  margin-bottom: 1px; /*no*/
 
   min-height: $tabs-ios-tab-font-size + 1;
 }
@@ -78,7 +78,7 @@ $tabs-ios-tab-icon-size:            30px !default;
 
 .tabs-ios .tab-button-icon {
   margin-top: 4px;
-  margin-bottom: 1px;
+  margin-bottom: 1px; /*no*/
 
   min-width: $tabs-ios-tab-icon-size + 5;
   height: $tabs-ios-tab-icon-size;

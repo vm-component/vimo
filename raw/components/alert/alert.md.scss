@@ -291,14 +291,14 @@ $alert-md-checkbox-icon-transform:            rotate(45deg) !default;
 .alert-md .alert-input {
   margin: $alert-md-input-margin-top $alert-md-input-margin-right $alert-md-input-margin-bottom $alert-md-input-margin-left;
 
-  border-bottom: $alert-md-input-border-width $alert-md-input-border-style $alert-md-input-border-color;
+  border-bottom: $alert-md-input-border-width $alert-md-input-border-style $alert-md-input-border-color; /*no*/
   color: $alert-md-input-text-color;
 }
 
 .alert-md .alert-input:focus {
   margin-bottom: $alert-md-input-margin-bottom - 1;
 
-  border-bottom: $alert-md-input-border-width-focused $alert-md-input-border-style-focused $alert-md-input-border-color-focused;
+  border-bottom: $alert-md-input-border-width-focused $alert-md-input-border-style-focused $alert-md-input-border-color-focused; /*no*/
 }
 
 
@@ -312,8 +312,8 @@ $alert-md-checkbox-icon-transform:            rotate(45deg) !default;
 
   max-height: $alert-md-content-max-height;
 
-  border-top: $alert-md-list-border-top;
-  border-bottom: $alert-md-list-border-bottom;
+  border-top: $alert-md-list-border-top; /*no*/
+  border-bottom: $alert-md-list-border-bottom; /*no*/
 }
 
 .alert-md .alert-tappable {

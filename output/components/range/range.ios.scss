@@ -1,4 +1,4 @@
-@import "../themes/globals.ios";
+@import "../../themes/globals.ios";
 
 // iOS Range
 // --------------------------------------------------
@@ -43,7 +43,7 @@ $range-ios-knob-border-radius:                50% !default;
 $range-ios-knob-background-color:             #fff !default;
 
 /// @prop - Width of the range tick
-$range-ios-tick-width:                        $range-ios-bar-height !default;
+$range-ios-tick-width:                        $range-ios-bar-height !default; /*no*/
 
 /// @prop - Height of the range tick
 $range-ios-tick-height:                       8px !default;
@@ -98,7 +98,7 @@ $range-ios-pin-padding:                       8px !default;
   width: 100%;
   height: $range-ios-bar-height;
 
-  border-radius: 1px;
+  border-radius: 1px; /*no*/
 
   background: $range-ios-bar-background-color;
 
@@ -147,7 +147,7 @@ $range-ios-pin-padding:                       8px !default;
 
   background: $range-ios-knob-background-color;
 
-  box-shadow: $range-ios-knob-box-shadow;
+  box-shadow: $range-ios-knob-box-shadow; /*no*/
 
   pointer-events: none;
 }

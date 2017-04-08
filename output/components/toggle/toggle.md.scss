@@ -1,4 +1,4 @@
-@import "../themes/globals.md";
+@import "../../themes/globals.md";
 
 // Material Design Toggle
 // --------------------------------------------------
@@ -93,7 +93,7 @@ $toggle-md-item-right-padding:           12px ($item-md-padding-right / 2) 12px 
   border-radius: $toggle-md-handle-border-radius;
   background-color: $toggle-md-handle-background-color-off;
 
-  box-shadow: $toggle-md-handle-box-shadow;
+  box-shadow: $toggle-md-handle-box-shadow; /*no*/
 
   transition-duration: $toggle-md-transition-duration;
   transition-property: transform, background-color;

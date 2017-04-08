@@ -173,5 +173,3 @@ export class NavContorller {
     }
   }
 }
-
-

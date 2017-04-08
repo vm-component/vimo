@@ -1,4 +1,4 @@
-@import "../themes/globals";
+@import "../../themes/globals";
 
 // Tabs
 // --------------------------------------------------
@@ -166,7 +166,7 @@
   right: 4%;
   right: calc(50% - 50px);
 
-  padding: 1px 6px;
+  padding: 1px 6px; /*no*/
 
   height: auto;
 

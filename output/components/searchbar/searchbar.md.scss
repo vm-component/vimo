@@ -1,4 +1,4 @@
-@import "../themes/globals.md";
+@import "../../themes/globals.md";
 
 // Material Design Searchbar
 // --------------------------------------------------
@@ -120,7 +120,7 @@ $searchbar-md-input-clear-icon-size: 22px !default;
 
   background-color: $searchbar-md-input-background-color;
   background-position: 8px center;
-  box-shadow: $searchbar-md-input-box-shadow;
+  box-shadow: $searchbar-md-input-box-shadow; /*no*/
 }
 
 // Searchbar Clear Input Icon

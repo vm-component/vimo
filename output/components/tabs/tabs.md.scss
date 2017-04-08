@@ -1,4 +1,4 @@
-@import "../themes/globals.md";
+@import "../../themes/globals.md";
 
 // Material Design Tabs
 // --------------------------------------------------
@@ -129,7 +129,7 @@ $tabs-md-tab-icon-size:                       24px !default;
 // --------------------------------------------------
 
 .tabs-md .tab-button-icon {
-  margin-top: 1px;
+  margin-top: 1px; /*no*/
 
   min-width: $tabs-md-tab-icon-size;
 
@@ -188,8 +188,8 @@ $tabs-md-tab-icon-size:                       24px !default;
   left: 0;
   display: block;
 
-  width: 1px;
-  height: 2px;
+  width: 1px; /*no*/
+  height: 2px; /*no*/
 
   background: $tabs-md-tab-color-active;
   transform: translateZ(0);

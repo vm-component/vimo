@@ -1,4 +1,4 @@
-@import "../themes/globals.ios";
+@import "../../themes/globals.ios";
 
 // iOS Button
 // --------------------------------------------------
@@ -229,7 +229,7 @@ $button-ios-strong-font-weight:                     600 !default;
 // --------------------------------------------------
 
 .button-outline-ios {
-  border-width: $button-ios-outline-border-width;
+  border-width: $button-ios-outline-border-width; /*no*/
   border-style: $button-ios-outline-border-style;
   border-radius: $button-ios-outline-border-radius;
   border-color: $button-ios-outline-border-color;

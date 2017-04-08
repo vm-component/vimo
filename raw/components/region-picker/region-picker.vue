@@ -20,7 +20,7 @@
   import regions from './regions.json'
   export default{
     name: 'RegionPicker',
-    data(){sudo
+    data(){
       return {
         provinceCol: [],    // 省份显示的数据列表
         cityCol: [],        // 城市显示的数据列表
