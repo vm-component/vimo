@@ -141,7 +141,7 @@ $picker-md-option-selected-color:             color($colors-md, primary) !defaul
   width: 100%;
   height: $picker-md-option-offset-y + 4px;
 
-  border-bottom: 1px solid $picker-md-border-color;
+  border-bottom: 1px solid $picker-md-border-color; /*no*/
 
   background: linear-gradient(to bottom,
                             rgba($picker-md-background-color, 1) 20%,
@@ -159,7 +159,7 @@ $picker-md-option-selected-color:             color($colors-md, primary) !defaul
   width: 100%;
   height: $picker-md-option-offset-y + $picker-md-option-height;
 
-  border-top: 1px solid $picker-md-border-color;
+  border-top: 1px solid $picker-md-border-color; /*no*/
 
   background: linear-gradient(to top,
                            rgba($picker-md-background-color, 1) 30%,

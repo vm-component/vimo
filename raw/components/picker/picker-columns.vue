@@ -3,9 +3,6 @@
         <div class="picker-above-highlight"></div>
         <!--<div *ngFor="let c of d.columns" [col]="c" class="picker-col" (ionChange)="_colChange($event)"></div>-->
         <div class="picker-below-highlight"></div>
-
-
-
     </div>
 </template>
 <style lang="scss">

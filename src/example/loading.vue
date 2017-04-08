@@ -8,10 +8,18 @@
         <Content padding>
             <p>显示不同的旋转样式, 默认打开Backdrop</p>
 
+            <p>只有Spinner</p>
+            <Button block @click="spinnerOnly()">点击打开</Button>
             <p>只传入string</p>
             <Button block @click="stringOnly()">点击打开默认Loading</Button>
+            <p>控制页面切换是否关闭loading</p>
+
+
+            <Button block @click="showDefault()">页面切换不关闭loading(默认)</Button>
+            <Button block @click="dismissWhenChangeUrl()">页面切换关闭loading</Button>
+
+
             <p>类型有: ios/ios-small/bubbles/circles/crescent/dots</p>
-            <Button block @click="showDefault()">点击打开默认Loading</Button>
             <Button block @click="showIos()">显示 ios</Button>
             <Button block @click="showIosSmall()">显示 ios-small</Button>
             <Button block @click="showBubbles()">显示 Bubbles</Button>
@@ -31,6 +39,8 @@
 
             <p>自定义内容</p>
             <Button block @click="showCusContent()">showCusContent</Button>
+
+
         </Content>
     </Page>
 </template>
@@ -46,6 +56,14 @@
       return {}
     },
     methods: {
+      spinnerOnly(){
+        this.$loading.present();
+        setTimeout(() => {
+          this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        }, 1000)
+      },
       stringOnly(){
         this.$loading.present('只传入了String');
         setTimeout(() => {
@@ -58,8 +76,21 @@
       showDefault () {
         const _this = this;
         _this.$loading.present({
-          content: '正在加载, 4000ms后自动关闭...',
-          cssClass: 'cssClass',
+          content: '正在加载, 6000ms后自动关闭...',
+          dismissOnPageChange: false, // url变化后关闭loading(默认)
+          showBackdrop: true,
+        });
+        setTimeout(function () {
+          _this.$loading.dismiss().then(function () {
+            console.debug('dismiss in promise success!')
+          })
+        }, 6000);
+      },
+
+      dismissWhenChangeUrl(){
+        const _this = this;
+        _this.$loading.present({
+          content: '正在加载, 6000ms后自动关闭...',
           dismissOnPageChange: true, // url变化后关闭loading
           showBackdrop: true,
         });
@@ -67,7 +98,8 @@
           _this.$loading.dismiss().then(function () {
             console.debug('dismiss in promise success!')
           })
-        }, 4000);
+        }, 6000);
+
       },
       showIos () {
         const _this = this;

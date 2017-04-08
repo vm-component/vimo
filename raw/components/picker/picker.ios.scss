@@ -52,7 +52,7 @@ $picker-ios-option-offset-y:                   (($picker-ios-height - $picker-io
 .picker-ios .picker-wrapper {
   height: $picker-ios-height;
 
-  border-top: 1px solid $picker-ios-border-color;
+  border-top: 1px solid $picker-ios-border-color; /*no*/
 
   background: $picker-ios-background-color;
 }
@@ -149,7 +149,7 @@ $picker-ios-option-offset-y:                   (($picker-ios-height - $picker-io
   width: 100%;
   height: $picker-ios-option-offset-y + 4px;
 
-  border-bottom: 1px solid $picker-ios-border-color;
+  border-bottom: 1px solid $picker-ios-border-color; /*no*/
 
   background: linear-gradient(to bottom,
                             rgba($picker-ios-background-color, 1) 20%,
@@ -168,7 +168,7 @@ $picker-ios-option-offset-y:                   (($picker-ios-height - $picker-io
   width: 100%;
   height: $picker-ios-option-offset-y + $picker-ios-option-height;
 
-  border-top: 1px solid $picker-ios-border-color;
+  border-top: 1px solid $picker-ios-border-color; /*no*/
 
   background: linear-gradient(to top,
                            rgba($picker-ios-background-color, 1) 30%,
