@@ -284,7 +284,7 @@ $button-md-strong-font-weight:                  bold !default;
 // --------------------------------------------------
 
 .button-outline-md {
-  border-width: $button-md-outline-border-width;
+  border-width: $button-md-outline-border-width; /*no*/
   border-style: $button-md-outline-border-style;
   border-color: $button-md-outline-border-color;
   color: $button-md-outline-text-color;
