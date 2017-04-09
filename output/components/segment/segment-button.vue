@@ -1,7 +1,7 @@
 <template>
     <div @click="_click" class="ion-segment-button segment-button" :class="{'segment-activated':isSelected}">
         <slot></slot>
-        <div class="button-effect"></div>
+        <!--<div class="button-effect"></div>-->
     </div>
 </template>
 <script>

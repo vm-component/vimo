@@ -78,6 +78,7 @@
       _present(){
         const _this = this
         _this.isActive = true
+        console.debug(_this.isActive)
         return new Promise((resolve) => {this.presentCallback = resolve})
       },
       _dismiss(){

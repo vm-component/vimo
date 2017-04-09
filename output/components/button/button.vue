@@ -4,7 +4,7 @@
     <span class="button-inner">
       <slot></slot>
     </span>
-        <div class="button-effect"></div>
+        <!--<div class="button-effect"></div>-->
     </button>
 </template>
 <style lang="scss">
@@ -173,13 +173,7 @@
           let style = this.style;
           style = (this.role !== 'bar-button' && style === 'solid' ? 'default' : style)
           className += (style !== null && style !== '' && style !== 'default' ? '-' + style.toLowerCase() : '')
-
-          if (this.role !== 'bar-button') {
-            this.setElementClass(`${className}-${this.mode}-${color}`, isAdd)
-          } else {
-            this.setElementClass(`${className}-${color}-${this.mode}`, isAdd)
-          }
-
+          this.setElementClass(`${className}-${this.mode}-${color}`, isAdd)
         }
       },
 

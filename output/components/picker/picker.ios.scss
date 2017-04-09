@@ -84,7 +84,7 @@ $picker-ios-option-offset-y:                   (($picker-ios-height - $picker-io
 }
 
 .picker-ios .picker-button,
-.picker-ios .picker-button.activated {
+.picker-ios .picker-button:active {
   margin: 0;
 
   height: $picker-ios-button-height;

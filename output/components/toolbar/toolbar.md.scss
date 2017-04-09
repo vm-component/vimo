@@ -128,13 +128,13 @@ $navbar-md-height:                       $toolbar-md-height !default;
       color: $fg-color;
     }
 
-    .bar-button-clear-md,
-    .bar-button-default-md,
-    .bar-button-outline-md {
-      .button-effect {
-        background-color: $fg-color;
-      }
-    }
+    //.bar-button-clear-md,
+    //.bar-button-default-md,
+    //.bar-button-outline-md {
+    //  .button-effect {
+    //    background-color: $fg-color;
+    //  }
+    //}
 
     .bar-button-outline-md {
       border-color: $fg-color;
@@ -215,6 +215,9 @@ $navbar-md-height:                       $toolbar-md-height !default;
     &:hover:not(.disable-hover) {
       color: $color-base;
     }
+    &:active {
+      opacity: .4;
+    }
   }
 
 }
@@ -234,13 +237,14 @@ $navbar-md-height:                       $toolbar-md-height !default;
     opacity: .4;
   }
 
-  &.activated {
-    background-color: transparent;
-  }
-
-  .button-effect {
+  &:active {
+    color: #fff;
     background-color: $toolbar-md-button-color;
   }
+
+  //.button-effect {
+  //  background-color: $toolbar-md-button-color;
+  //}
 }
 
 @mixin md-bar-button-outline($color-name, $color-base, $color-contrast) {
@@ -251,13 +255,14 @@ $navbar-md-height:                       $toolbar-md-height !default;
     color: $fg-color;
     background-color: transparent;
 
-    &.activated {
-      background-color: transparent;
-    }
-
-    .button-effect {
+    &:active {
+      color: $color-contrast;
       background-color: $fg-color;
     }
+
+    //.button-effect {
+    //  background-color: $fg-color;
+    //}
   }
 
 }
@@ -274,7 +279,7 @@ $navbar-md-height:                       $toolbar-md-height !default;
     color: color-contrast($colors-md, $toolbar-md-button-color, md);
   }
 
-  &.activated {
+  &:active {
     color: color-contrast($colors-md, $toolbar-md-button-color, md);
     background-color: color-shade($toolbar-md-button-color);
   }
@@ -286,7 +291,7 @@ $navbar-md-height:                       $toolbar-md-height !default;
     color: $color-contrast;
     background-color: $color-base;
 
-    &.activated {
+    &:active {
       color: $color-contrast;
       background-color: color-shade($color-base);
     }

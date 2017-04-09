@@ -17,7 +17,7 @@ require('es6-promise').polyfill()
 
 export default {
   installed: false,
-  version: '0.2.4',
+  version: '0.2.6',
   install (Vue, options = {}) {
 
     // init base (config/platform)

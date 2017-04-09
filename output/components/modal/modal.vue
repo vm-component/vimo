@@ -24,12 +24,20 @@
   import { Backdrop } from '../backdrop'
   export default{
     name: 'Modal',
+    props: {
+      name: [String],
+      position: [String],
+      mode: {
+        type: String,
+        default(){return window.VM && window.VM.config.get('mode', 'ios') || 'ios'}
+      },
+    },
     data(){
       return {
         enabled: false,
         bdDismiss: false,
         isActive: false,
-        mode: window.VM && window.VM.config.get('mode', 'ios') || 'ios',
+//        mode: window.VM && window.VM.config.get('mode', 'ios') || 'ios',
 
         // promise
         presentCallback: null,

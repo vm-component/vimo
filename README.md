@@ -50,6 +50,7 @@ npm install vimo
 - 0.2.2 - 修复modal打包后使用的bug
 - 0.2.3 - 再次精简核心组件, 目前核心组件为: App/Nav/Page/Header/Content/Footer, 其余按需加载
 - 0.2.5 - 弹出层组件优化实现逻辑. modal组件的onDismiss是在动画关闭后触发. 增加promise的polyfill. md模式下的button点击效果修复. actionsheet中button过多的显示bug修复. 修复城市三级联动组件无法正确显示三级的情况.
+- 0.2.6 - 修复promise依赖的问题
 
 
 

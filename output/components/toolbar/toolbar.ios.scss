@@ -187,7 +187,7 @@ $button-ios-strong-font-weight:800;
 
 @mixin ios-bar-button-default($color-name, $color-base, $color-contrast) {
 
-  .bar-button-#{$color-name}-ios,
+  .bar-button-ios-#{$color-name},
   .bar-button-default.bar-button-ios-#{$color-name},
   .bar-button-clear-ios-#{$color-name} {
     color: $color-base;

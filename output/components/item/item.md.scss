@@ -65,7 +65,7 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   transition: background-color 300ms cubic-bezier(.4, 0, .2, 1);
 }
 
-.item-md.activated {
+.item-md:active {
   background-color: $list-md-activated-background-color;
 }
 
@@ -259,7 +259,7 @@ $item-md-sliding-content-background: $list-md-background-color !default;
       color: $color-contrast;
     }
 
-    &.activated {
+    &:active {
      background-color: color-shade($color-base);
     }
   }

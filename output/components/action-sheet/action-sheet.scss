@@ -3,9 +3,8 @@
 // Action Sheet
 // --------------------------------------------------
 
-$action-sheet-width:                             100% !default;
-$action-sheet-max-width:                         500px !default;
-
+$action-sheet-width: 100% !default;
+$action-sheet-max-width: 500px !default;
 
 .action-sheet {
   position: absolute;
@@ -31,9 +30,16 @@ $action-sheet-max-width:                         500px !default;
   width: $action-sheet-width;
   max-width: $action-sheet-max-width;
   // added
-  transition: all cubic-bezier(.36,.66,.04,1) 400ms
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
+
+
 }
 
+.action-sheet-group{
+  //max-height: 300px;
+  //overflow-y: scroll;
+  //-webkit-overflow-scrolling: touch;
+}
 .action-sheet-button {
   width: $action-sheet-width;
 }

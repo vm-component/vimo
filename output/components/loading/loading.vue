@@ -56,25 +56,38 @@
   import { Spinner } from '../spinner'
   export default{
     name: 'Loading',
+    props: {
+      spinner: {
+        type: String,
+        default(){ return window.VM && window.VM.config.get('spinner', 'ios') || 'ios' }
+      },
+      content: [String],
+      cssClass: [String],
+      showBackdrop: {
+        type: Boolean,
+        default(){ return true }
+      },
+      duration: {
+        type: Number,
+        default(){
+          return 0
+        }
+      },
+      dismissOnPageChange: {
+        type: Boolean,
+        default(){ return false }
+      },
+      mode: {
+        type: String,
+        default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+      }
+    },
     data(){
       return {
-        /**
-         * 初始化Instance的数据
-         * 因为是实例调用模式，故prop和data在初始化后是同样的数据接口，
-         * 故prop就没有存在的价值
-         * */
-        spinner: 'ios', // String
-        content: null, // 可以使html片段
-        cssClass: null,
-        showBackdrop: false,
-        duration: null, // 自动关闭时间
-        dismissOnPageChange: false,// 页面切花是否关闭
-
         /**
          * 组件状态
          * */
         isActive: false, // 开启状态
-        mode: 'ios',
 
         // promise
         presentCallback: null,
@@ -121,6 +134,7 @@
        * */
       dismissOnPageChangeHandler(){
         this.isActive && this.dismiss();
+        this.timer && window.clearTimeout(this.timer)
         this.unreg && this.unreg();
       },
 
@@ -154,9 +168,10 @@
       },
     },
     created(){
-      // TODO: dismissOnPageChange未做判断!!
-      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+      if (this.dismissOnPageChange) {
+        this.unreg && this.unreg();
+        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+      }
     },
     components: {
       Backdrop, Spinner
