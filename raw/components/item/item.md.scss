@@ -4,50 +4,49 @@
 // --------------------------------------------------
 
 /// @prop - Font size of the item text
-$item-md-body-text-font-size:        14px !default;
+$item-md-body-text-font-size: 14px !default;
 
 /// @prop - line height of the item text
-$item-md-body-text-line-height:      1.5 !default;
+$item-md-body-text-line-height: 1.5 !default;
 
 /// @prop - Color of the item paragraph
-$item-md-paragraph-text-color:       #666 !default;
+$item-md-paragraph-text-color: #666 !default;
 
 /// @prop - Font size of the item
-$item-md-font-size:                  16px !default;
+$item-md-font-size: 16px !default;
 
 /// @prop - Size of the avatar in the item
-$item-md-avatar-size:                40px !default;
+$item-md-avatar-size: 40px !default;
 
 /// @prop - Size of the thumbnail in the item
-$item-md-thumbnail-size:             80px !default;
+$item-md-thumbnail-size: 80px !default;
 
 /// @prop - Shows the detail arrow icon on an item
-$item-md-detail-push-show:           false !default;
+$item-md-detail-push-show: false !default;
 
 /// @prop - Color of the detail arrow icon
-$item-md-detail-push-color:          $list-md-border-color !default;
+$item-md-detail-push-color: $list-md-border-color !default;
 
 /// @prop - Icon for the detail arrow
-$item-md-detail-push-svg:            "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' fill='#{$item-md-detail-push-color}'/></svg>" !default;
+$item-md-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' fill='#{$item-md-detail-push-color}'/></svg>" !default;
 
 /// @prop - Color for the divider
-$item-md-divider-color:              #858585 !default;
+$item-md-divider-color: #858585 !default;
 
 /// @prop - Background for the divider
-$item-md-divider-background:         #fff !default;
+$item-md-divider-background: #fff !default;
 
 /// @prop - Font size for the divider
-$item-md-divider-font-size:          $item-md-body-text-font-size !default;
+$item-md-divider-font-size: $item-md-body-text-font-size !default;
 
 /// @prop - Border bottom for the divider
-$item-md-divider-border-bottom:      1px solid $list-md-border-color !default;
+$item-md-divider-border-bottom: 1px solid $list-md-border-color !default;
 
 /// @prop - Padding for the divider
-$item-md-divider-padding:            5px 15px !default;
+$item-md-divider-padding: 5px 15px !default;
 
 /// @prop - Background for the sliding content
 $item-md-sliding-content-background: $list-md-background-color !default;
-
 
 .item-md {
   position: relative;
@@ -65,8 +64,12 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   transition: background-color 300ms cubic-bezier(.4, 0, .2, 1);
 }
 
-.item-md:active {
+//.item-md:active {
+//  background-color: $list-md-activated-background-color;
+//}
+.item-md[button]:active {
   background-color: $list-md-activated-background-color;
+  transition-duration: 0ms;
 }
 
 .item-md[no-lines] {
@@ -115,7 +118,6 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   border-bottom: 1px solid $list-md-border-color; /*no*/
 }
 
-
 // Material Design Item Detail Push
 // --------------------------------------------------
 
@@ -133,7 +135,6 @@ $item-md-sliding-content-background: $list-md-background-color !default;
     background-size: 14px 14px;
   }
 }
-
 
 // Material Design Item Media
 // --------------------------------------------------
@@ -178,7 +179,6 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   margin: ($item-md-padding-right / 2);
 }
 
-
 // Material Design Item Avatar
 // --------------------------------------------------
 
@@ -197,7 +197,6 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   overflow: hidden;
 }
 
-
 // Material Design Item Thumbnail
 // --------------------------------------------------
 
@@ -212,7 +211,6 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   height: $item-md-thumbnail-size;
 }
 
-
 // Material Design Item Group
 // --------------------------------------------------
 
@@ -224,7 +222,6 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 .ion-item-group .item-md .item-wrapper:last-child .item-inner {
   border: 0;
 }
-
 
 // Material Design Item Divider
 // --------------------------------------------------
@@ -238,7 +235,6 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   border-bottom: $item-md-divider-border-bottom; /*no*/
   font-size: $item-md-divider-font-size;
 }
-
 
 // Generate Material Design Item and Item Divider Colors
 // --------------------------------------------------
@@ -260,11 +256,10 @@ $item-md-sliding-content-background: $list-md-background-color !default;
     }
 
     &:active {
-     background-color: color-shade($color-base);
+      background-color: color-shade($color-base);
     }
   }
 }
-
 
 // Material Design Item Sliding
 // --------------------------------------------------
