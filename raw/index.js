@@ -12,7 +12,7 @@ import { Content } from './components/content'
 import { Page } from './components/page'
 import { Nav } from './components/nav'
 
-// polyfill
+// promise polyfill
 require('es6-promise').polyfill()
 
 export default {

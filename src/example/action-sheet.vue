@@ -7,21 +7,17 @@
         </Header>
         <Content padding>
             <Button block @click="showActionSheet1()" color="primary">
-                Basic Action Sheet
-
-
+                <span>Basic Action Sheet</span>
             </Button>
-
             <Button block @click="showActionSheet2()" color="primary">
-                No Cancel Action Sheet
-
-
+                <span>No Cancel Action Sheet</span>
+            </Button>
+            <Button block @click="showActionSheet3()" color="primary">
+                <span> Action Sheet With Icon</span>
             </Button>
 
-            <Button block @click="showActionSheet3()" color="primary">
-                Action Sheet With Icon
-
-
+            <Button block @click="showActionSheet4()" color="primary">
+                <span>Action Sheet With More Buttons</span>
             </Button>
         </Content>
     </Page>
@@ -184,6 +180,47 @@
               text: '取消',
               role: 'cancel',
               icon: 'close',
+              handler: () => {
+                _this.$actionSheet.dismiss().then(function (data) {
+                  console.debug('promise的退出方式')
+                });
+              }
+            }
+          ]
+        })
+      },
+      showActionSheet4 () {
+        const _this = this;
+        _this.$actionSheet.present({
+          title: '请选择操作',
+          subTitle: '这个是无脑的需求',
+          enableBackdropDismiss: true,
+          buttons: [
+
+            {text: '按钮1', handler: () => {}},
+            {text: '按钮2', handler: () => {}},
+            {text: '按钮3', handler: () => {}},
+            {text: '按钮4', handler: () => {}},
+            {text: '按钮5', handler: () => {}},
+            {text: '按钮6', handler: () => {}},
+            {text: '按钮7', handler: () => {}},
+            {text: '按钮8', handler: () => {}},
+            {text: '按钮9', handler: () => {}},
+            {text: '按钮10', handler: () => {}},
+            {text: '按钮11', handler: () => {}},
+            {text: '按钮12', handler: () => {}},
+            {text: '按钮13', handler: () => {}},
+            {text: '按钮14', handler: () => {}},
+            {text: '按钮15', handler: () => {}},
+            {text: '按钮16', handler: () => {}},
+            {text: '按钮17', handler: () => {}},
+            {text: '按钮18', handler: () => {}},
+            {text: '按钮19', handler: () => {}},
+            {text: '按钮20', handler: () => {}},
+
+            {
+              text: '取消',
+              role: 'cancel',
               handler: () => {
                 _this.$actionSheet.dismiss().then(function (data) {
                   console.debug('promise的退出方式')

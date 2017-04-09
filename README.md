@@ -40,7 +40,7 @@ Vimo只安装必要的组件，模块根据需要自行安装。
 - 0.2.1 - 去除refresher组件的console信息, 增加refresher-content组件的组件依赖.
 - 0.2.2 - 修复modal打包后使用的bug
 - 0.2.3 - 再次精简核心组件, 目前核心组件为: App/Nav/Page/Header/Content/Footer, 其余按需加载
-- 0.2.4 - 弹出层组件优化实现逻辑. modal组件的onDismiss是在动画关闭后触发.
+- 0.2.5 - 弹出层组件优化实现逻辑. modal组件的onDismiss是在动画关闭后触发. 增加promise的polyfill. md模式下的button点击效果修复. actionsheet中button过多的显示bug修复.
 
 
 

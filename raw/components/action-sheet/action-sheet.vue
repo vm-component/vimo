@@ -18,12 +18,15 @@
                             <span>{{title}}</span>
                             <div class="action-sheet-sub-title" v-if="subTitle">{{subTitle}}</div>
                         </div>
-                        <Button role="action-sheet-button" @click="click(b)" v-for="(b,index) of normalButtons"
-                                :key="index"
-                                :class="[b.cssClass,{'icon-left':b.icon}]">
-                            <Icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></Icon>
-                            <span>{{b.text}}</span>
-                        </Button>
+
+                        <div class="action-sheet-buttons">
+                            <Button role="action-sheet-button" @click="click(b)" v-for="(b,index) of normalButtons"
+                                    :key="index"
+                                    :class="[b.cssClass,{'icon-left':b.icon}]">
+                                <Icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></Icon>
+                                <span>{{b.text}}</span>
+                            </Button>
+                        </div>
                     </div>
                     <!--group cancel-->
                     <div class="action-sheet-group" v-if="!!cancelButton">
