@@ -19,7 +19,7 @@
             <slot name="item-right"></slot>
             <!--<ion-reorder *ngIf="_shouldHaveReorder"></ion-reorder>-->
         </div>
-        <div class="button-effect"></div>
+        <!--<div class="button-effect"></div>-->
     </div>
 </template>
 <style lang="scss"></style>

@@ -68,7 +68,7 @@ $picker-md-option-selected-color:             color($colors-md, primary) !defaul
 }
 
 .picker-md .picker-button,
-.picker-md .picker-button.activated {
+.picker-md .picker-button:active {
   margin: 0;
 
   height: $picker-md-button-height;

@@ -5,7 +5,7 @@
         <Icon v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
         <span v-if="tabTitle" class="tab-button-text">{{tabTitle}}</span>
         <Badge v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
-        <div class="button-effect"></div>
+        <!--<div class="button-effect"></div>-->
     </a>
 </template>
 <script>

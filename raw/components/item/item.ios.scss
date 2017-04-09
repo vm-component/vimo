@@ -256,7 +256,7 @@ $item-ios-sliding-content-background:     #eee !default;
       color: $color-contrast;
     }
 
-    &.activated {
+    &:active {
      background-color: color-shade($color-base);
     }
   }

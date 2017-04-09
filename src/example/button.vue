@@ -41,6 +41,7 @@
                     <!--solid-->
                     <Button solid color="secondary">solid</Button>
                     <Button outline color="secondary">outline</Button>
+                    <Button outline color="danger">outline</Button>
                     <Button clear color="secondary">clear</Button>
                 </Row>
             </Grid>

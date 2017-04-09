@@ -93,7 +93,7 @@ $action-sheet-md-icon-margin:                           0 32px 0 0 !default;
   background: $action-sheet-md-button-background;
 }
 
-.action-sheet-md .action-sheet-button.activated {
+.action-sheet-md .action-sheet-button:active {
   background: $action-sheet-md-button-background-activated;
 }
 

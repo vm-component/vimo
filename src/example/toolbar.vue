@@ -105,6 +105,11 @@
                         <Icon class="icon" name="contact"></Icon>
                     </Button>
                 </Buttons>
+                <Buttons start slot="buttons">
+                    <Button icon-only role="bar-button" outline color="danger">
+                        <Icon class="icon" name="contact"></Icon>
+                    </Button>
+                </Buttons>
 
                 <!--end-->
                 <Buttons end slot="buttons">
