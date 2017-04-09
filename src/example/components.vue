@@ -126,29 +126,27 @@
                 <ItemGroup>
                     <Item button :to="{name: 'actionSheet'}">
                         <Icon slot="item-left" name="list"></Icon>
-                        <span>ActionSheet</span>
+                        <span>选择单 (ActionSheet)</span>
                     </Item>
                     <Item button :to="{name: 'alert'}">
                         <Icon slot="item-left" name="albums"></Icon>
-                        <span>Alert</span>
+                        <span>提示框 (Alert)</span>
                     </Item>
                     <Item button :to="{name: 'backdrop'}">
                         <Icon slot="item-left" name="barcode"></Icon>
-                        <span>Backdrop</span>
-
-
+                        <span>幕布 (Backdrop)</span>
                     </Item>
                     <Item button :to="{name: 'loading'}">
                         <Icon slot="item-left" name="refresh"></Icon>
-                        <span>Loading</span>
+                        <span>加载提示 (Loading)</span>
                     </Item>
                     <Item button :to="{name: 'modal'}">
                         <Icon slot="item-left" name="photos"></Icon>
-                        <span>Modal</span>
+                        <span>弹出页 (Modal)</span>
                     </Item>
                     <Item button :to="{name: 'toast'}">
                         <Icon slot="item-left" name="cloud"></Icon>
-                        <span>Toast</span>
+                        <span>通知 (Toast)</span>
                     </Item>
                     <Item button :to="{name: 'city-picker'}">
                         <Icon slot="item-left" name="cloud"></Icon>

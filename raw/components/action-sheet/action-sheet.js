@@ -2,55 +2,16 @@
  * Created by Hsiang on 2016/12/23.
  */
 import Vue from 'vue'
-import { isArray, isObject, isPresent } from '../../util/util'
 import actionSheetComponent from './action-sheet.vue'
-const ActionSheetConstructor = Vue.extend(actionSheetComponent)
-const DOM_INSERT_POSITION = 'sheetPortal' // the DOM position of component insert to
-const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback position
+import { getPresentDismissIns } from '../../util/getPresentDismissIns'
+import { getInsertPosition } from '../../util/getInsertPosition'
+const ActionSheet = Vue.extend(actionSheetComponent)
 
 // ---------- functions ----------
 
-class ActionSheet extends ActionSheetConstructor {
-  constructor (options) {
-    super(options)
-    // params
-    if (isObject(options)) {
-      for (let key in options)  this[key] = options[key]
-    }
-  }
-}
-
 function ActionSheetFactory (options) {
-  let _insertPosition
-  let el = null
-  let title = null
-  let subTitle = null
-  let cssClass = null
-  let buttons = []
-  let enableBackdropDismiss = true
-  let mode = window.VM && window.VM.config.get('mode', 'ios') || 'ios'
-
-  // get data
-  _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body
-  el = _insertPosition.appendChild(document.createElement('div'))
-
-  if (isObject(options)) {
-    title = isPresent(options.title) ? options.title.trim() : null
-    subTitle = isPresent(options.subTitle) ? options.subTitle.trim() : null
-    cssClass = isPresent(options.cssClass) ? options.cssClass.trim() : null
-    isArray(options.buttons) ? ( buttons = options.buttons) : ( buttons = [])
-    enableBackdropDismiss = !!options.enableBackdropDismiss
-    mode = isPresent(options.mode) ? options.mode.trim() : mode
-  }
-
-  return new ActionSheet({
-    el, title, subTitle, cssClass, buttons, enableBackdropDismiss, mode
-  })
+  let el = getInsertPosition('sheetPortal').appendChild(document.createElement('div'))
+  return new ActionSheet({el, propsData: options})
 }
 
-export default function (options) {
-  let _instance = ActionSheetFactory(options)
-  // 自动开启
-  _instance.present()
-  return _instance
-}
+export default getPresentDismissIns(ActionSheetFactory)

@@ -6,30 +6,18 @@ import modalComponent from './modal.vue'
 import { registerListener, isObject } from '../../util/util'
 let modalArr = []
 let unRegisterUrlChange = []
-const ModalConstructor = Vue.extend(modalComponent)
-const DOM_INSERT_POSITION = 'modalPortal' // the DOM position of component insert to
-const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback position
+const Modal = Vue.extend(modalComponent)
+import { getInsertPosition } from '../../util/getInsertPosition'
 let navState = 0 // 0:非激活状态, 1:手动激活状态
 // ---------- functions ----------
 
 /**
  * 获取实例
  */
-class Modal extends ModalConstructor {
-  constructor (options) {
-    super(options)
-    // params
-    if (isObject(options)) {
-      for (let key in options)  this[key] = options[key]
-    }
-  }
-}
 function ModalFactory (options) {
-  let _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body
   return new Modal({
-    el: _insertPosition.appendChild(document.createElement('div')),
-    name: options.name,
-    position: options.position,
+    el: getInsertPosition('modalPortal').appendChild(document.createElement('div')),
+    propsData: options
   })
 }
 
@@ -63,7 +51,7 @@ function present (options = {}) {
   let presentPromise = modalInstance._present()
 
   // 执行内嵌页面的初始化
-  let templateConstructor = Vue.extend(template)
+  let Template = Vue.extend(template)
   let templateInstance
   let el = modalInstance.$el.querySelectorAll('.modalPageLoadPort')[0].appendChild(document.createElement('div'))
 
@@ -71,15 +59,6 @@ function present (options = {}) {
   // 初始化用户自定义弹层的页面
   // 需要异步执行，便于Content组件完成初始化
   window.setTimeout(function () {
-    class Template extends templateConstructor {
-      constructor (options) {
-        super(options)
-        // params
-        if (isObject(options)) {
-          for (let key in options)  this[key] = options[key]
-        }
-      }
-    }
 
     templateInstance = new Template({el, modalData})
 
@@ -125,22 +104,29 @@ function present (options = {}) {
  * @param {any} dataBack -  modal调用dismiss传递向外的数据
  * */
 function dismiss (dataBack) {
-  navState = 1
+  return new Promise((resolve) => {
+    navState = 1
 
-  // 总是关闭最后一次创建的modal
-  let _lastModal = modalArr.pop()
-  let lastModalInstance = _lastModal.modalInstance
-  // 执行注册的onDismiss回调
-  _lastModal.onDismiss && _lastModal.onDismiss(dataBack)
+    // 总是关闭最后一次创建的modal
+    let _lastModal = modalArr.pop()
+    let lastModalInstance = _lastModal.modalInstance
 
-  // 如果是最后一个则解绑urlChange
-  if (modalArr.length === 0) {
-    unregisterAllListener()
-  }
+    // 如果是最后一个则解绑urlChange
+    if (modalArr.length === 0) {
+      unregisterAllListener()
+    }
 
-  window.history.back(-1)
-  window.setTimeout(() => {navState = 0}, 400)
-  return lastModalInstance._dismiss()
+    window.history.back(-1)
+    // window.setTimeout(() => {navState = 0}, 400)
+    lastModalInstance._dismiss().then(() => {
+      navState = 0
+
+      // 执行注册的onDismiss回调
+      _lastModal.onDismiss && _lastModal.onDismiss(dataBack)
+
+      resolve()
+    })
+  })
 }
 
 // 基础全部监听

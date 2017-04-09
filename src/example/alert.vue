@@ -1,19 +1,19 @@
 <template>
-  <Page>
-    <Header>
-      <Navbar>
-        <Title>Alert</Title>
-      </Navbar>
-    </Header>
-    <Content padding>
-      <Button block @click="alert()">Alert</Button>
-      <Button color="danger" block @click="confirm()">Confirm</Button>
-      <Button color="secondary" block @click="threeBtn()">Three Button</Button>
-      <Button color="dark" block @click="input()">Input</Button>
-      <Button color="dark" block @click="checkbox()">Checkbox</Button>
-      <Button color="primary" block @click="radio()">Radio</Button>
-    </Content>
-  </Page>
+    <Page>
+        <Header>
+            <Navbar>
+                <Title>Alert</Title>
+            </Navbar>
+        </Header>
+        <Content padding>
+            <Button block @click="alert()">Alert</Button>
+            <Button color="danger" block @click="confirm()">Confirm</Button>
+            <Button color="secondary" block @click="threeBtn()">Three Button</Button>
+            <Button color="dark" block @click="input()">Input</Button>
+            <Button color="dark" block @click="checkbox()">Checkbox</Button>
+            <Button color="primary" block @click="radio()">Radio</Button>
+        </Content>
+    </Page>
 </template>
 <script type="text/ecmascript-6">
   import list from "./list.vue"
@@ -28,7 +28,7 @@
     methods: {
       alert () {
         const _this = this;
-        let _alert = _this.$alert({
+        _this.$alert.present({
           title: 'Alert',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -40,7 +40,7 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _alert.dismiss().then(function (data) {
+                _this.$alert.dismiss().then(function (data) {
                   console.debug('button3 click dismiss ')
                   console.debug(data)
                 });
@@ -52,7 +52,7 @@
       },
       confirm () {
         const _this = this;
-        let _alert = _this.$alert({
+        _this.$alert.present({
           title: 'Confirm',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -73,7 +73,7 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _alert.dismiss().then(function (data) {
+                _this.$alert.dismiss().then(function (data) {
                   console.debug('button3 click')
                   console.debug(data)
                 });
@@ -85,7 +85,7 @@
       },
       threeBtn () {
         const _this = this;
-        let _alert = _this.$alert({
+        _this.$alert.present({
           title: 'ThreeBtn',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '<span style="color:red">收到这个通知的人希望你今天能搞定这个alert组件</span>',
@@ -109,7 +109,7 @@
               text: 'Button3_确定',
               role: '',
               handler: (value) => {
-                _alert.dismiss().then(function (data) {
+                _this.$alert.dismiss().then(function (data) {
                   console.debug('button3 click')
                   console.debug(data)
                 });
@@ -121,7 +121,7 @@
       },
       input () {
         const _this = this;
-        let _alert = _this.$alert({
+        _this.$alert.present({
           title: '登录iTunes Store',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '请输入您Apple ID"apple@icloud.com"的密码',
@@ -146,30 +146,36 @@
               text: '好',
               role: '',
               handler: (value) => {
-                _alert.dismiss().then(function (msg) {
-                  _this.$alert({
-                    title: '请确认',
-                    // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
-                    message: '您输入的信息：' + JSON.stringify(value),
-                    cssClass: '',
-                    enableBackdropDismiss: true,
-                    buttons: [
-                      {
-                        text: '确定',
-                        role: 'cancel',
-                        handler: (value) => {}
+                _this.$alert.present({
+                  title: '请确认',
+                  // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
+                  message: '您输入的信息：' + JSON.stringify(value),
+                  cssClass: '',
+                  enableBackdropDismiss: true,
+                  buttons: [
+                    {
+                      text: '确定',
+                      role: 'cancel',
+                      handler: (value) => {
+                        _this.$alert.dismiss().then(function (msg) {
+                          console.log('alert input2 dismiss promise')
+                        })
                       }
-                    ]
-                  });
-                })
+                    }
+                  ]
+                }).then(function () {
+                  console.log('alert input2 present promise')
+                });
               }
             }
           ]
+        }).then(function () {
+          console.log('alert input1 present promise')
         });
       },
       checkbox () {
         const _this = this;
-        let _alert = _this.$alert({
+        _this.$alert.present({
           title: 'checkbox',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: 'checkbox',
@@ -231,8 +237,8 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _alert.dismiss().then(function (msg) {
-                  _this.$alert({
+                _this.$alert.dismiss().then(function (msg) {
+                  _this.$alert.present({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                     message: '您输入的信息：' + JSON.stringify(value),
@@ -254,7 +260,7 @@
       },
       radio () {
         const _this = this;
-        let _alert = _this.$alert({
+        _this.$alert.present({
           title: 'radio',
           // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: 'radio',
@@ -315,8 +321,8 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _alert.dismiss().then(function (msg) {
-                  _this.$alert({
+                _this.$alert.dismiss().then(function (msg) {
+                  _this.$alert.present({
                     title: '请确认',
                     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                     message: '您输入的信息：' + JSON.stringify(value),

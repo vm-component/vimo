@@ -194,7 +194,6 @@
             <Toolbar color="primary">
                 <Searchbar :animated="true"
                            :debounce="1000"
-                           mode="ios"
                            v-model="myInput"
                            :showCancelButton="true"
                            cancelButtonText="取消"
@@ -209,7 +208,6 @@
             <Toolbar>
                 <Searchbar :animated="true"
                            :debounce="1000"
-                           mode="ios"
                            v-model="myInput"
                            :showCancelButton="true"
                            cancelButtonText="取消"

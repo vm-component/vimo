@@ -19,28 +19,26 @@
                         responsible for bringing the music to a mass audience.
                       </p>
                 </CardContent>
-                <Grid>
                     <Row>
                         <Column>
-                            <Button size="small" clear>
+                            <Button small clear>
                                 <Icon class="icon" name="star"></Icon>
                                 <span>Favourite</span>
                             </Button>
                         </Column>
                         <Column>
-                            <Button size="small" clear>
+                            <Button small clear>
                                 <Icon class="icon" name="car"></Icon>
                                 <span>Music</span>
                             </Button>
                         </Column>
                         <Column>
-                            <Button size="small" clear>
+                            <Button small clear>
                                 <Icon class="icon" name="share"></Icon>
                                 <span>Share</span>
                             </Button>
                         </Column>
                     </Row>
-                </Grid>
             </Card>
 
             <!--card type 2-->
@@ -84,13 +82,13 @@
                 </Card-content>
                 <Row>
                     <Column>
-                        <Button clear clear size="small">
+                        <Button clear  small>
                             <Icon name="thumbs-up"></Icon>
                             <div>12 Likes</div>
                         </Button>
                     </Column>
                     <Column>
-                        <Button clear clear size="small">
+                        <Button clear  small>
                             <Icon name="text"></Icon>
                             <div>4 Comments</div>
                         </Button>

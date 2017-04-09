@@ -63,7 +63,7 @@
    *
    *
    const _this = this;
-   let _actionSheet = _this.$actionSheet({
+   _this.$actionSheet.present({
     title: '请选择操作',
     subTitle: '注意，选择后不能撤销！',
     cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
@@ -97,7 +97,7 @@
         role: 'cancel',
         icon: 'close',
         handler: () => {
-          _actionSheet.dismiss().then(function (data) {
+          _this.$actionSheet.dismiss().then(function (data) {
             console.debug('promise的退出方式')
           });
         }
@@ -116,27 +116,31 @@
   import { Icon } from '../icon'
   export default{
     name: 'ActionSheet',
+    props: {
+      title: [String],
+      subTitle: [String],
+      cssClass: [String],
+      buttons: {
+        type: Array,
+        default(){return []}
+      },
+      enableBackdropDismiss: {
+        type: Boolean,
+        default(){return true}
+      },
+      mode: {
+        type: String,
+        default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+      }
+    },
     data(){
       return {
-        /**
-         * @private
-         * 初始化ActionSheet Instance的数据
-         * 因为是实例调用模式，故prop和data在初始化后是同样的数据接口，
-         * 故prop就没有存在的价值
-         * */
-        title: '', // String
-        subTitle: '', // String
-        cssClass: '', // String Additional classes for custom styles, separated by spaces.
-        buttons: [], // Array button数组，包含全部role
-        enableBackdropDismiss: true, // Boolean 允许点击backdrop关闭actionsheet
-
         /**
          * @private
          * ActionSheet State
          * */
         isActive: false,  // ActionSheet 开启状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode: 'ios',  // ios?android?window
 
         /**
          * @private
@@ -158,39 +162,6 @@
       // 设置ActionSheet的风格
       modeClass: function () {
         return `action-sheet-${this.mode}`
-      },
-    },
-    watch: {
-      buttons: function (arr) {
-        let _this = this;
-        let _buttons = [];
-        if (!Array.isArray(arr)) {
-          return
-        }
-        arr.forEach(function (button) {
-          if (typeof button === 'string') {
-            button = {text: button};
-          }
-
-          if (!button.cssClass) {
-            button.cssClass = '';
-          } else {
-            // 去除收尾空格
-            button.cssClass = button.cssClass.trim();
-          }
-
-          if (button.role === 'cancel') {
-            _this.cancelButton = button;
-          } else {
-            if (button.role === 'destructive') {
-              button.cssClass = (button.cssClass + ' ' || '') + 'action-sheet-destructive';
-            } else if (button.role === 'selected') {
-              button.cssClass = (button.cssClass + ' ' || '') + 'action-sheet-selected';
-            }
-            _buttons.push(button);
-          }
-        });
-        _this.normalButtons = _buttons;
       },
     },
     methods: {
@@ -290,6 +261,10 @@
       present () {
         const _this = this;
         _this.isActive = true;
+
+        console.debug('this.buttons present')
+        console.debug(this.buttons)
+
         return new Promise((resolve) => {this.presentCallback = resolve})
       },
 
@@ -344,9 +319,47 @@
       dismissOnPageChangeHandler(){
         this.isActive && this.dismiss();
         this.unreg && this.unreg();
+      },
+
+      /**
+       * @private
+       * 初始化buttons
+       * */
+      init(){
+        let arr = this.buttons
+        let _this = this;
+        let _buttons = [];
+        if (!Array.isArray(arr)) {
+          return
+        }
+        arr.forEach(function (button) {
+          if (typeof button === 'string') {
+            button = {text: button};
+          }
+
+          if (!button.cssClass) {
+            button.cssClass = '';
+          } else {
+            // 去除收尾空格
+            button.cssClass = button.cssClass.trim();
+          }
+
+          if (button.role === 'cancel') {
+            _this.cancelButton = button;
+          } else {
+            if (button.role === 'destructive') {
+              button.cssClass = (button.cssClass + ' ' || '') + 'action-sheet-destructive';
+            } else if (button.role === 'selected') {
+              button.cssClass = (button.cssClass + ' ' || '') + 'action-sheet-selected';
+            }
+            _buttons.push(button);
+          }
+        });
+        _this.normalButtons = _buttons;
       }
     },
     created(){
+      this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
     },

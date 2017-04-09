@@ -114,7 +114,7 @@
    *
    * 1. 简单的alert
    *
-   let _alert = _this.$alert({
+   _this.$alert.present({
     title: 'Alert',
     // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
     message: '收到这个通知的人希望你今天能搞定这个alert组件',
@@ -126,7 +126,7 @@
         text: '确定',
         role: '',
         handler: (value) => {
-          _alert.dismiss().then(function (data) {
+          _this.$alert.dismiss().then(function (data) {
             console.debug('button3 click dismiss ')
             console.debug(data)
           });
@@ -143,21 +143,33 @@
 
   export default{
     name: 'Alert',
+    props: {
+      title: [String],
+      subTitle: [String],
+      cssClass: [String],
+      message: [String],
+      // Array button数组，包含全部role
+      buttons: {
+        type: Array,
+        default(){return []}
+      },
+      // 如果alert中有input等form
+      inputs: {
+        type: Array,
+        default(){return []}
+      },
+      // Boolean 允许点击backdrop关闭actionsheet
+      enableBackdropDismiss: {
+        type: Boolean,
+        default(){return true}
+      },
+      mode: {
+        type: String,
+        default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+      }
+    },
     data(){
       return {
-        /**
-         * @private
-         * 初始化Alert Instance的数据
-         * 因为是实例调用模式，故prop和data在初始化后是同样的数据接口，
-         * 故prop就没有存在的价值
-         * */
-        title: '', // String
-        subTitle: '', // String
-        message: '', // String
-        cssClass: '', // String Additional classes for custom styles, separated by spaces.
-        buttons: [], // Array button数组，包含全部role
-        inputs: [], // 如果alert中有input等form
-        enableBackdropDismiss: true, // Boolean 允许点击backdrop关闭actionsheet
 
         /**
          * @private
@@ -166,71 +178,13 @@
         inputsForDispaly: [], // inputs数据再加工
         isActive: false,  // 是否活动状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
-        mode: 'ios',  // ios?android?window
+
         inputType: null,// Alert中含有的input类型，radio、checkbox
         isAlertTop: false, // 是否将alert放到顶部，用于input输入时显示虚拟键盘
 
         dismissCallback: null,
         presentCallback: null,
       }
-    },
-    watch: {
-      /**
-       * 这部分不能放到computed中，
-       * 因为computed只能计算一次，
-       * 但是input的内容小修改后更新DOM。
-       * 实例化创建后，部分组件功能会失效，比如created等。
-       * */
-      inputs () {
-        const _this = this;
-        if (!_this.inputs || _this.inputs.length === 0) {
-          return []
-        }
-        // 传入数据处理
-        let _inputs = [];
-        _inputs = _this.inputs.map((input, index) => {
-          return {
-            type: input.type || 'text',
-            name: !!(input.name) ? input.name : index,
-            placeholder: !!(input.placeholder) ? input.placeholder : '',
-            value: !!(input.value) ? input.value : '',
-            label: input.label,
-            checked: !!input.checked,
-            disabled: !!input.disabled,
-            id: `alert-input-${index}`, // used for input -> text/tel/number/password
-            handler: !!(input.handler) ? input.handler : null,
-          };
-        });
-
-        let inputTypes = [];
-        _inputs.forEach(input => {
-          if (inputTypes.indexOf(input.type) < 0) {
-            inputTypes.push(input.type);
-          }
-        });
-        if (inputTypes.length > 1 && (inputTypes.indexOf('checkbox') > -1 || inputTypes.indexOf('radio') > -1)) {
-          console.warn(`Alert cannot mix input types: ${(inputTypes.join('/'))}. Please see alert docs for more info.`);
-          console.warn(`Alert 组件不能包含复合的input类型: ${(inputTypes.join('/'))}. 请再次阅读说明文档.`);
-        }
-
-        _this.inputType = inputTypes.length ? inputTypes[0] : null;
-
-        const checkedInput = _inputs.find(input => input.checked);
-
-        const NON_TEXT_INPUT_REGEX = /^(radio|checkbox|range|file|submit|reset|color|image|button)$/i;
-
-        const hasTextInput = (_inputs.length && _inputs.some(i => !(NON_TEXT_INPUT_REGEX.test(i.type))));
-        // if (hasTextInput && this._platform.is('mobile')) {
-        if (hasTextInput) {
-          // this alert has a text input and it's on a mobile device so we should align
-          // the alert up high because we need to leave space for the virtual keboard
-          // this also helps prevent the layout getting all messed up from
-          // the browser trying to scroll the input into a safe area
-          _this.isAlertTop = true;
-        }
-
-        _this.inputsForDispaly = _inputs;
-      },
     },
     computed: {
       // 设置Alert的风格
@@ -437,40 +391,67 @@
         if (!_this.enabled) {
           return false
         }
-        console.log('dismiss')
         _this.enabled = false;
         _this.isActive = false; // 动起来
         return new Promise((resolve) => {this.dismissCallback = resolve})
       },
 
-      // /**
-      //  * @function setTitle
-      //  * @description
-      //  * 设置 Action sheet title
-      //  * @param {string} title  - Action sheet title
-      //  */
-      // setTitle (title) {
-      //   this.title = title;
-      // },
-      // /**
-      //  * @function setSubTitle
-      //  * @description
-      //  * 设置 Action sheet subtitle
-      //  * @param {string} subTitle Action sheet subtitle
-      //  */
-      // setSubTitle (subTitle) {
-      //   this.subTitle = subTitle;
-      // },
-      // /**
-      //  * @function addButton
-      //  * @description
-      //  * 增加button
-      //  * @param {object} button Action sheet button
-      //  */
-      // addButton (button) {
-      //   this.buttons.push(button);
-      // },
+      /**
+       * inputs数组初始化组件
+       * */
+      init(){
+        const _this = this;
+        if (!_this.inputs || _this.inputs.length === 0) {
+          return []
+        }
+        // 传入数据处理
+        let _inputs = [];
+        _inputs = _this.inputs.map((input, index) => {
+          return {
+            type: input.type || 'text',
+            name: !!(input.name) ? input.name : index,
+            placeholder: !!(input.placeholder) ? input.placeholder : '',
+            value: !!(input.value) ? input.value : '',
+            label: input.label,
+            checked: !!input.checked,
+            disabled: !!input.disabled,
+            id: `alert-input-${index}`, // used for input -> text/tel/number/password
+            handler: !!(input.handler) ? input.handler : null,
+          };
+        });
 
+        let inputTypes = [];
+        _inputs.forEach(input => {
+          if (inputTypes.indexOf(input.type) < 0) {
+            inputTypes.push(input.type);
+          }
+        });
+        if (inputTypes.length > 1 && (inputTypes.indexOf('checkbox') > -1 || inputTypes.indexOf('radio') > -1)) {
+          console.warn(`Alert cannot mix input types: ${(inputTypes.join('/'))}. Please see alert docs for more info.`);
+          console.warn(`Alert 组件不能包含复合的input类型: ${(inputTypes.join('/'))}. 请再次阅读说明文档.`);
+        }
+
+        _this.inputType = inputTypes.length ? inputTypes[0] : null;
+
+        const checkedInput = _inputs.find(input => input.checked);
+
+        const NON_TEXT_INPUT_REGEX = /^(radio|checkbox|range|file|submit|reset|color|image|button)$/i;
+
+        const hasTextInput = (_inputs.length && _inputs.some(i => !(NON_TEXT_INPUT_REGEX.test(i.type))));
+        // if (hasTextInput && this._platform.is('mobile')) {
+        if (hasTextInput) {
+          // this alert has a text input and it's on a mobile device so we should align
+          // the alert up high because we need to leave space for the virtual keboard
+          // this also helps prevent the layout getting all messed up from
+          // the browser trying to scroll the input into a safe area
+          _this.isAlertTop = true;
+        }
+
+        _this.inputsForDispaly = _inputs;
+      },
+    },
+    created(){
+      this.init()
     },
     components: {
       'Backdrop': Backdrop,
