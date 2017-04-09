@@ -52,134 +52,6 @@ export const isCheckedProperty = function(a, b) {
   return (a == b); // tslint:disable-line
 };
 
-/**
- * Given a min and max, restrict the given number
- * to the range.
- * 如果n的大小在max和min之间，则返回n
- *
- * @param {number} min the minimum
- * @param  {number}n the value
- * @param {number} max the maximum
- */
-export function clamp (min, n, max) {
-  return Math.max(min, Math.min(n, max));
-}
-
-/**
- * The assign() method is used to copy the values of all enumerable own
- * properties from one or more source objects to a target object. It will
- * return the target object. When available, this method will use
- * `Object.assign()` under-the-hood.
- *
- * 参数后面的对象合并到第一个对象中，以最右面的对象中属性值为准
- *
- * @param target  The target object
- * @param source(s)  The source object
- * @example Object.assign({a:1},{b:10},{b:1,a:2}) => 返回第一个对象{a: 2, b: 1}
- */
-export function assign (...args) {
-  if (typeof Object.assign !== 'function') {
-    // use the old-school shallow extend method
-    return _baseExtend(args[0], [].slice.call(args, 1), false);
-  }
-
-  // use the built in ES6 Object.assign method
-  return Object.assign.apply(null, args);
-}
-
-/**
- * Do a deep extend (merge). 深度合并
- *
- * @param {any} dst the destination
- * @param ... the param objects
- */
-export function merge (dst, ...args) {
-  return _baseExtend(dst, [].slice.call(arguments, 1), true);
-}
-
-export function deepClone (obj) {
-  if (Array.isArray(obj)) {
-    return obj.map(deepClone)
-  } else if (obj && typeof obj === 'object') {
-    var cloned = {}
-    var keys = Object.keys(obj)
-    for (var i = 0, l = keys.length; i < l; i++) {
-      var key = keys[i]
-      cloned[key] = deepClone(obj[key])
-    }
-    return cloned
-  } else {
-    return obj
-  }
-}
-
-/**
- * Apply default arguments if they don't exist in
- * the first object.
- * 优先使用最左边的对象中的数据，即保持默认值，添加新值
- *
- * @example defaults({a:1},{b:1,a:2},{b:10}) => 返回第一个对象 {a: 1, b: 10}
- * @param {any} dest the destination to apply defaults to.
- */
-export function defaults (dest, ...args) {
-  for (var i = arguments.length - 1; i >= 1; i--) {
-    var source = arguments[i];
-    if (source) {
-      for (var key in source) {
-        if (source.hasOwnProperty(key) && !dest.hasOwnProperty(key)) {
-          dest[key] = source[key];
-        }
-      }
-    }
-  }
-  return dest;
-}
-
-
-/**
- * 对象合并
- * @param {any} dst
- * @param {any} objs
- * @param {boolean} deep
- * */
-function _baseExtend (dst, objs, deep) {
-  for (var i = 0, ii = objs.length; i < ii; ++i) {
-    var obj = objs[i];
-    if (!obj || !isObject(obj) && !isFunction(obj)) continue;
-    var keys = Object.keys(obj);
-    for (var j = 0, jj = keys.length; j < jj; j++) {
-      var key = keys[j];
-      var src = obj[key];
-
-      if (deep && isObject(src)) {
-        if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {};
-        _baseExtend(dst[key], [src], true);
-      } else {
-        dst[key] = src;
-      }
-    }
-  }
-
-  return dst;
-}
-
-/**
- * @desc 首字母大写
- * @param {string} str
- * @return {string}
- * */
-export function firstUpperCase (str) {
-  return str.toString()[0].toUpperCase() + str.toString().slice(1);
-}
-
-
-/**
- * @param {string} val
- * @return {number}
- * */
-export function parsePxUnit (val) {
-  return (!!val && val.indexOf('px') > 0) ? parseInt(val, 10) : 0;
-}
 
 
 // RequestAnimationFrame的兼容腻子(Android 4.3 and below)
@@ -489,3 +361,134 @@ export function setElementClass (ele, className, add) {
 
 
 
+
+
+
+/**
+ * Given a min and max, restrict the given number
+ * to the range.
+ * 如果n的大小在max和min之间，则返回n
+ *
+ * @param {number} min the minimum
+ * @param  {number}n the value
+ * @param {number} max the maximum
+ */
+export function clamp (min, n, max) {
+  return Math.max(min, Math.min(n, max));
+}
+
+/**
+ * The assign() method is used to copy the values of all enumerable own
+ * properties from one or more source objects to a target object. It will
+ * return the target object. When available, this method will use
+ * `Object.assign()` under-the-hood.
+ *
+ * 参数后面的对象合并到第一个对象中，以最右面的对象中属性值为准
+ *
+ * @param target  The target object
+ * @param source(s)  The source object
+ * @example Object.assign({a:1},{b:10},{b:1,a:2}) => 返回第一个对象{a: 2, b: 1}
+ */
+export function assign (...args) {
+  if (typeof Object.assign !== 'function') {
+    // use the old-school shallow extend method
+    return _baseExtend(args[0], [].slice.call(args, 1), false);
+  }
+
+  // use the built in ES6 Object.assign method
+  return Object.assign.apply(null, args);
+}
+
+/**
+ * Do a deep extend (merge). 深度合并
+ *
+ * @param {any} dst the destination
+ * @param ... the param objects
+ */
+export function merge (dst, ...args) {
+  return _baseExtend(dst, [].slice.call(arguments, 1), true);
+}
+
+export function deepClone (obj) {
+  if (Array.isArray(obj)) {
+    return obj.map(deepClone)
+  } else if (obj && typeof obj === 'object') {
+    var cloned = {}
+    var keys = Object.keys(obj)
+    for (var i = 0, l = keys.length; i < l; i++) {
+      var key = keys[i]
+      cloned[key] = deepClone(obj[key])
+    }
+    return cloned
+  } else {
+    return obj
+  }
+}
+
+/**
+ * Apply default arguments if they don't exist in
+ * the first object.
+ * 优先使用最左边的对象中的数据，即保持默认值，添加新值
+ *
+ * @example defaults({a:1},{b:1,a:2},{b:10}) => 返回第一个对象 {a: 1, b: 10}
+ * @param {any} dest the destination to apply defaults to.
+ */
+export function defaults (dest, ...args) {
+  for (var i = arguments.length - 1; i >= 1; i--) {
+    var source = arguments[i];
+    if (source) {
+      for (var key in source) {
+        if (source.hasOwnProperty(key) && !dest.hasOwnProperty(key)) {
+          dest[key] = source[key];
+        }
+      }
+    }
+  }
+  return dest;
+}
+
+
+/**
+ * 对象合并
+ * @param {any} dst
+ * @param {any} objs
+ * @param {boolean} deep
+ * */
+function _baseExtend (dst, objs, deep) {
+  for (var i = 0, ii = objs.length; i < ii; ++i) {
+    var obj = objs[i];
+    if (!obj || !isObject(obj) && !isFunction(obj)) continue;
+    var keys = Object.keys(obj);
+    for (var j = 0, jj = keys.length; j < jj; j++) {
+      var key = keys[j];
+      var src = obj[key];
+
+      if (deep && isObject(src)) {
+        if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {};
+        _baseExtend(dst[key], [src], true);
+      } else {
+        dst[key] = src;
+      }
+    }
+  }
+
+  return dst;
+}
+
+/**
+ * @desc 首字母大写
+ * @param {string} str
+ * @return {string}
+ * */
+export function firstUpperCase (str) {
+  return str.toString()[0].toUpperCase() + str.toString().slice(1);
+}
+
+
+/**
+ * @param {string} val
+ * @return {number}
+ * */
+export function parsePxUnit (val) {
+  return (!!val && val.indexOf('px') > 0) ? parseInt(val, 10) : 0;
+}

@@ -12,6 +12,9 @@ import { Content } from './components/content'
 import { Page } from './components/page'
 import { Nav } from './components/nav'
 
+// polyfill
+require('es6-promise').polyfill()
+
 export default {
   installed: false,
   version: '0.2.4',
