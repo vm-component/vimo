@@ -42,11 +42,9 @@ function present (options = {}) {
   let modalData = options.modalData
   let onDismiss = options.onDismiss
   let name = options.name || ''
+  let mode = options.mode || ''
   let position = options.position || 'bottom'
-  let modalInstance = ModalFactory({
-    name,
-    position,
-  })
+  let modalInstance = ModalFactory({name, position, mode})
   // 启动modal，启动需要比页面启动早，否则content组件无法初始化！！
   let presentPromise = modalInstance._present()
 
