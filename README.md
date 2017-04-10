@@ -25,7 +25,9 @@ npm install vimo
 
 - [vimo-start-kit](https://github.com/DTFE/vimo-start-kit)
 
+### 组件清单
 
+![组件清单](./static/vimo_components.png)
 
 ## 框架技术清单(主要部分)
 
