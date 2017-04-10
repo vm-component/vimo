@@ -50,7 +50,7 @@
  */
 
 import { PLATFORM_DEFAULT_CONFIGS } from './platform-default-configs'
-import { defaults } from '../util/util'
+import { defaults, isObject, isFunction } from '../util/util'
 
 /**
  * @private
@@ -1188,7 +1188,7 @@ export function setupPlatform (config = {}) {
     let _finalConf = PLATFORM_DEFAULT_CONFIGS
 
     for (let outerKey in config) {
-      if (_finalConf[outerKey]) {
+      if (_finalConf[outerKey] && isObject(_finalConf[outerKey])) {
         let _cusConf = config[outerKey]
         let _defConf = _finalConf[outerKey]
         for (let innerKey in _cusConf) {

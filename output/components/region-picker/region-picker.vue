@@ -37,6 +37,7 @@
    * */
   import Picker from 'better-picker'
   import regions from './regions.json'
+  import { registerListener } from '../../util/util'
   export default{
     name: 'RegionPicker',
     data(){
@@ -48,6 +49,7 @@
         lastSelectCityArrs: [],     // 上一次城市选择的值 ['110000', '110100', '110101']
 
         isInit: false,
+        unreg: null,
       }
     },
     props: {
@@ -217,12 +219,21 @@
       // 检查初始化传入的值是否合法
       checkValue(arrs){
         return !!arrs && Array.isArray(arrs) && arrs.length === 3
+      },
+
+      // 页面切换关闭picker
+      dismissOnPageChangeHandler(){
+        this.picker && this.picker.hide()
+//        this.unreg && this.unreg()
       }
     },
     created () {
       if (this.checkValue(this.selectedCity)) {
         this.init(this.selectedCity)
       }
+
+      // 监听页面变化
+      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
     }
   }
 </script>

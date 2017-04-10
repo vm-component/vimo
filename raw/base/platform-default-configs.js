@@ -92,7 +92,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
        * 加载JSSDK
        * */
       let val
-      let onBridgeReady = this.onBridgeReady || function () {} // onBridgeReady为用户自定义
+      const _this = this
       let jsSDKUrl = this.settings['jsSDKUrl'] || 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
       let splitArr = jsSDKUrl.split('//')
       if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
@@ -100,22 +100,18 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       } else {
         splitArr[0] = 'http:'
       }
-      jsSDKUrl = splitArr.join('//')
-      // loadScript
-      loadScript(jsSDKUrl)
+      loadScript(splitArr.join('//'))
 
       /**
        * 微信的userAgent中包含了网络类型和当前语言
        * */
-      // 获取网络类型
-      // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
+      // 获取网络类型 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
       val = plt.userAgent().match(/NetType\/(\w+) /i)
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setNetType(val[1].toString().toLowerCase())
       }
 
-      // 获取语言类型
-      // Language/zh-CN
+      // 获取语言类型 Language/zh-CN
       val = plt.userAgent().match(/Language\/(.+)/i)
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setLang(val[1].toString().toLowerCase(), true)
@@ -138,7 +134,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
             }
 
             // 执行自定义的bridge ready钩子
-            onBridgeReady(plt)
+            _this.onBridgeReady(plt)
 
             // 触发平台的统一ready事件
             plt.triggerReady('wechat')
@@ -157,6 +153,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         })
       }
     },
+    onBridgeReady(plt){},
     settings: {
       hideNavBar: true,
     },
@@ -169,32 +166,30 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   },
   alipay: {
     initialize(plt){
-      let userAgent = window.navigator.userAgent.toString().trim()
-      let val
-
       /**
        * 支付宝的userAgent中包含了网络类型和当前语言
        * AlipayDefined(nt:WIFI,ws:320|548|2.0)
        * Language/zh-Hans
        * */
-      plt.setUserAgent(userAgent)
-
+      let val
       // 获取网络类型
-      val = userAgent.match(/AlipayDefined\(nt:(\w+),/i)
+      val = plt.userAgent().match(/AlipayDefined\(nt:(\w+),/i)
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setNetType(val[1].toString().toLowerCase())
       }
 
       // 获取语言类型
       // Language/zh-CN
-      val = userAgent.match(/Language\/(.+)/i)
+      val = plt.userAgent().match(/Language\/(.+)/i)
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setLang(val[1].toString().toLowerCase(), true)
       }
 
+      this.onBridgeReady(plt)
       // 触发外层的ready
       plt.triggerReady('alipay Init Success!')
     },
+    onBridgeReady(plt){},
     settings: {
       hideNavBar: true,
     },
@@ -207,30 +202,20 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   },
   dingtalk: {
     initialize(plt){
-      // alert('Dingtalk Init: from platform-registry.js');
-      let userAgent = window.navigator.userAgent.toString().trim()
-      let val
-
       /**
        * 钉钉的userAgent中包含了网络类型和当前语言
        * AlipayDefined(nt:WIFI,ws:320|548|2.0)
        * Language/zh-Hans
        * */
-      plt.setUserAgent(userAgent)
-
-      // 获取网络类型
-      // dingtalk未给出
-
-      // 获取语言类型
-      // Language/zh-CN
-      val = userAgent.match(/language\/(.+)/i)
+      let val = plt.userAgent().match(/language\/(.+)/i)
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setLang(val[1].toString().toLowerCase(), true)
       }
 
-      // 触发外层的ready
+      this.onBridgeReady(plt)
       plt.triggerReady('dingtalk Init Success!')
     },
+    onBridgeReady(plt){},
     settings: {
       hideNavBar: true,
     },
@@ -243,22 +228,18 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   },
   qq: {
     initialize(plt){
-      // alert('QQ Init: from platform-registry.js');
-      let userAgent = window.navigator.userAgent.toString().trim()
-      let val
-
-      plt.setUserAgent(userAgent)
-
       // 获取网络类型
       // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
-      val = userAgent.match(/NetType\/(\w+)/i)
+      let val = plt.userAgent().match(/NetType\/(\w+)/i)
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setNetType(val[1].toString().toLowerCase())
       }
 
+      this.onBridgeReady(plt)
       // 触发外层的ready
       plt.triggerReady('qq Init Success!')
     },
+    onBridgeReady(plt){},
     settings: {
       hideNavBar: true,
     },
