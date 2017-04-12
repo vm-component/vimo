@@ -140,7 +140,6 @@
 
       // -------- public --------
       /**
-       * 这个是内部函数，外部同名方法会处理额外事宜
        * 开启实例
        * @returns {Promise} transitionEnd结束后返回promise
        */

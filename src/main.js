@@ -5,9 +5,8 @@ import Vue from 'vue'
 import App from './App'
 import PLATFORM_CONFIGS from './config/platform-configs'
 import APP_CONFIGS from './config/app-configs'
-import attachFastClick from 'fastclick'
+import AttachFastClick from 'fastclick'
 import vimo from 'vimo'
-
 // 全局组件
 import { ActionSheet } from 'vimo/components/action-sheet'
 import { Loading } from 'vimo/components/loading'
@@ -17,22 +16,21 @@ import { Modal } from 'vimo/components/modal'
 import { Icon } from 'vimo/components/icon'
 import { Backdrop } from 'vimo/components/backdrop'
 import { Spinner } from 'vimo/components/spinner'
-import { Grid, Row, Column } from 'vimo/components/grid'
+import { Column, Grid, Row } from 'vimo/components/grid'
 import { Button } from 'vimo/components/button'
 import { Navbar } from 'vimo/components/navbar'
-import { Toolbar, ToolbarTitle, ToolbarButtons } from 'vimo/components/toolbar'
-
+import { Toolbar, ToolbarButtons, ToolbarTitle } from 'vimo/components/toolbar'
 
 import 'ionicons/dist/css/ionicons.css'
 
 /* eslint-disable no-new */
-new attachFastClick(document.body)
+new AttachFastClick(document.body)
 // Vue.config.productionTip = false;
 // 平台基础安装
 Vue.use(vimo, {
   custConf: APP_CONFIGS,
   pltConf: PLATFORM_CONFIGS,
-  router: router,
+  router: router
 })
 
 Vue.component(Backdrop.name, Backdrop)
@@ -48,10 +46,10 @@ Vue.component(ToolbarTitle.name, ToolbarTitle)
 Vue.component(ToolbarButtons.name, ToolbarButtons)
 
 Vue.prototype.$actionSheet = ActionSheet
-Vue.prototype.$loading = Loading
-Vue.prototype.$alert = Alert
-Vue.prototype.$toast = Toast
-Vue.prototype.$modal = Modal
+Vue.prototype.$loading     = Loading
+Vue.prototype.$alert       = Alert
+Vue.prototype.$toast       = Toast
+Vue.prototype.$modal       = Modal
 
 new Vue({
   el: '#app',

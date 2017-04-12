@@ -40,7 +40,6 @@
             <p>自定义内容</p>
             <Button block @click="showCusContent()">showCusContent</Button>
 
-
         </Content>
     </Page>
 </template>
@@ -272,7 +271,7 @@
             console.debug('dismiss in promise success!')
           })
         }, 1000);
-      }
+      },
     },
   }
 </script>
