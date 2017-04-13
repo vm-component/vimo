@@ -57,8 +57,7 @@
     },
     watch: {
       disabled(val){
-        this.disabledValue = isTrueProperty(val)
-        this.setDisabled(this.disabledValue)
+        this.setDisabled(isTrueProperty(val))
       },
       value(val){
         this.setChecked(isTrueProperty(val))
@@ -83,8 +82,9 @@
           this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-checked', isChecked);
         }
       },
-      setDisabled(val){
-        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-disabled', this.disabledValue)
+      setDisabled(isDisabled){
+        this.disabledValue = isDisabled
+        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-disabled', isDisabled)
       },
       onPointerDownHandler(){
         this.setChecked(!this.checkedValue)
