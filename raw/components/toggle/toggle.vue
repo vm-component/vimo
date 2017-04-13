@@ -9,12 +9,12 @@
         <div class="toggle-icon" :class="{'toggle-checked':isChecked,'toggle-activated':activated}">
             <div class="toggle-inner"></div>
         </div>
-        <Button role="checkbox"
+        <button role="checkbox"
                 type="button"
                 ion-button="item-cover"
                 :id="id"
                 class="item-cover">
-        </Button>
+        </button>
     </div>
 </template>
 <style lang="scss">

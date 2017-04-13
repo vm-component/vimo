@@ -10,7 +10,7 @@
         </button>
     </div>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     @import './checkbox.ios';
     @import './checkbox.md';
 </style>
@@ -20,9 +20,11 @@
    * @description
    * 复选框(检查框)组件
    *
+   * > !!! 使用v-modal切换状态, 不支持checked属性
    *
    *
-   * @property {Boolean} checked - 单向选择, 点击且换并不对父组件传递
+   * @property {String} mode - 模式
+   * @property {String} color - 颜色
    * @property {Boolean} disabled - 单向选择, 点击且换并不对父组件传递
    *
    * @fire onChange - 点按选择时触发
@@ -32,17 +34,13 @@
     name: 'Checkbox',
     data(){
       return {
-        checkedValue: null,         // 内部维护的checked
+        checkedValue: this.value,         // 内部维护的checked
         disabledValue: this.disabled,       // 内部维护的disabled
         init: false,                        // 是否初始化
         itemComponent: null,                // item组件实例
       }
     },
     props: {
-      checked: {
-        type: Boolean,
-        default(){return false}
-      },
       disabled: {
         type: Boolean,
         default(){return false}
@@ -58,17 +56,12 @@
       }
     },
     watch: {
-      checked(val){
-        this.checkedValue = isTrueProperty(val)
-        this.setChecked(this.checkedValue)
-      },
       disabled(val){
         this.disabledValue = isTrueProperty(val)
         this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-disabled', this.disabledValue)
       },
       value(val){
-        this.checkedValue = isTrueProperty(val)
-        this.setChecked(this.checkedValue)
+        this.setChecked(isTrueProperty(val))
       }
     },
     computed: {
@@ -83,35 +76,24 @@
       setChecked(isChecked){
         if (isChecked !== this.checkedValue) {
           this.checkedValue = isChecked;
-//          if (this.init) {
-          this.$emit('onChange', this);
-          this.$emit('input', this.checkedValue)
-//          }
+          if (this.init) {
+            this.$emit('onChange', this);
+            this.$emit('input', this.checkedValue)
+          }
           this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-checked', isChecked);
         }
       },
-
       onPointerDownHandler(){
         this.setChecked(!this.checkedValue)
       }
-
-    },
-    created: function () {
-
     },
     mounted: function () {
-
       // 找到外部item实例
       if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
         this.itemComponent = this.$parent;
         setElementClass(this.itemComponent.$el, 'item-checkbox', true)
       }
-
-      this.init = true;
-
-      this.setChecked(this.checked || this.value);
-    },
-    activated: function () {},
-    components: {}
+      this.init = true
+    }
   }
 </script>

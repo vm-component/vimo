@@ -103,6 +103,10 @@
                         <Icon slot="item-left" name="book"></Icon>
                         <span>开关 (Toggle)</span>
                     </Item>
+                    <Item button :to="{name: 'checkbox'}">
+                        <Icon slot="item-left" name="car"></Icon>
+                        <span>复选框 (Checkbox)</span>
+                    </Item>
                     <Item button :to="{name: 'input'}">
                         <Icon slot="item-left" name="cart"></Icon>
                         <span>输入框 (Input)</span>
@@ -114,10 +118,6 @@
                     <Item button :to="{name: 'searchbar'}">
                         <Icon slot="item-left" name="search"></Icon>
                         <span>搜索栏 (SearchBar)</span>
-                    </Item>
-                    <Item button :to="{name: 'checkbox'}">
-                        <Icon slot="item-left" name="search"></Icon>
-                        <span>复选框 (Checkbox)</span>
                     </Item>
                 </ItemGroup>
 
