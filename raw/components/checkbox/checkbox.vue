@@ -58,7 +58,7 @@
     watch: {
       disabled(val){
         this.disabledValue = isTrueProperty(val)
-        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-disabled', this.disabledValue)
+        this.setDisabled(this.disabledValue)
       },
       value(val){
         this.setChecked(isTrueProperty(val))
@@ -77,11 +77,14 @@
         if (isChecked !== this.checkedValue) {
           this.checkedValue = isChecked;
           if (this.init) {
-            this.$emit('onChange', this);
+            this.$emit('onChange', this.checkedValue);
             this.$emit('input', this.checkedValue)
           }
           this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-checked', isChecked);
         }
+      },
+      setDisabled(val){
+        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-disabled', this.disabledValue)
       },
       onPointerDownHandler(){
         this.setChecked(!this.checkedValue)
@@ -93,6 +96,10 @@
         this.itemComponent = this.$parent;
         setElementClass(this.itemComponent.$el, 'item-checkbox', true)
       }
+
+      this.setChecked(this.value);
+      this.setDisabled(this.disabled);
+
       this.init = true
     }
   }

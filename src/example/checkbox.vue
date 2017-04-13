@@ -25,7 +25,10 @@
                     <Label>Light</Label>
                     <Checkbox slot="item-left" color="light" v-model="displayData.light"></Checkbox>
                 </Item>
-
+                <Item>
+                    <Label>Disabled</Label>
+                    <Checkbox slot="item-left" :disabled="displayData.disabled" v-model="displayData.disabled"></Checkbox>
+                </Item>
                 <ListHeader>使用 v-modal 绑定</ListHeader>
                 <Item>
                     <Label>Danger</Label>
@@ -80,6 +83,7 @@
           primary: true,
           dark: false,
           light: true,
+          disabled: true,
         },
 
         testModal: true,
