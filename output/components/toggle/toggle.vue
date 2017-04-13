@@ -77,7 +77,7 @@
         isDisabled: false, // 禁用状态
         activated: false,
         id: this._uid,
-        _item: null, // 父组件item的句柄
+        itemComponent: null, // 父组件item的句柄
       }
     },
     props: {
@@ -165,7 +165,7 @@
         }
       },
       setItemCheckedClass(isChecked){
-        this._item && this._item.$el && setElementClass(this._item.$el, 'item-toggle-checked', isChecked);
+        this.itemComponent && this.itemComponent.$el && setElementClass(this.itemComponent.$el, 'item-toggle-checked', isChecked);
       },
 
       /**
@@ -180,7 +180,7 @@
         }
       },
       setItemDisabledClass(isDisabled){
-        this._item && this._item.$el && setElementClass(this._item.$el, 'item-toggle-disabled', isDisabled);
+        this.itemComponent && this.itemComponent.$el && setElementClass(this.itemComponent.$el, 'item-toggle-disabled', isDisabled);
       },
 
       /**
@@ -189,9 +189,9 @@
        */
       init(){
         if (!!this.$parent && !!this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'item') {
-          this._item = this.$parent;
-          if (this._item.$el) {
-            setElementClass(this._item.$el, 'item-toggle', true);
+          this.itemComponent = this.$parent;
+          if (this.itemComponent.$el) {
+            setElementClass(this.itemComponent.$el, 'item-toggle', true);
             this.setItemCheckedClass(this.isChecked);
             this.setItemDisabledClass(this.isDisabled);
           }

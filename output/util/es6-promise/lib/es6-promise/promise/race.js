@@ -1,0 +1,1 @@
+"use strict";function race(r){var e=this;return new e((0,_utils.isArray)(r)?function(t,u){for(var n=r.length,s=0;s<n;s++)e.resolve(r[s]).then(t,u)}:function(r,e){return e(new TypeError("You must pass an array to race."))})}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=race;var _utils=require("../utils");

@@ -32,7 +32,7 @@
 
 .spinner-ios line,
 .spinner-ios-small line {
-  stroke-width: 4px;
+  stroke-width: 4px; /*no*/
   stroke-linecap: round;
 }
 
@@ -63,7 +63,7 @@
 
 .spinner-crescent circle {
   fill: transparent;
-  stroke-width: 4px;
+  stroke-width: 4px; /*no*/
   stroke-dasharray: 128px;
   stroke-dashoffset: 82px;
 }

@@ -5,9 +5,8 @@
 import { setupConfig } from './base/config'
 import { setupPlatform } from './base/platform'
 import { NavContorller } from './components/nav-controller'
-
 // Core
-import { App, Header, Footer } from './components/app'
+import { App, Footer, Header } from './components/app'
 import { Content } from './components/content'
 import { Page } from './components/page'
 import { Nav } from './components/nav'
@@ -15,9 +14,16 @@ import { Nav } from './components/nav'
 // promise polyfill
 require('es6-promise').polyfill()
 
+// fixed Object #<HTMLDivElement> has no method 'remove'
+if (!('remove' in Element.prototype)) {
+  Element.prototype.remove = function () {
+    this.parentNode.removeChild(this)
+  }
+}
+
 export default {
   installed: false,
-  version: '0.2.8',
+  version: '0.2.9',
   install (Vue, options = {}) {
 
     // init base (config/platform)
@@ -25,10 +31,10 @@ export default {
 
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = new Vue()
-    Vue.prototype.$config = window.VM && window.VM.config
+    Vue.prototype.$config   = window.VM && window.VM.config
     Vue.prototype.$platform = window.VM && window.VM.platform
     // 监听route变化, 内建历史记录
-    Vue.prototype.$history = new NavContorller(Vue, options.router)
+    Vue.prototype.$history  = new NavContorller(Vue, options.router)
 
     // 安装必要组件
     if (!window.VM) {

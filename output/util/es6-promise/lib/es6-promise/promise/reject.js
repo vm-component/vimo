@@ -1,0 +1,1 @@
+"use strict";function reject(e){var r=this,t=new r(_internal.noop);return(0,_internal.reject)(t,e),t}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=reject;var _internal=require("../-internal");

@@ -232,7 +232,13 @@ const routes = [
       require(['@/example/range.vue'], resolve)
     },
   },
-
+  {
+    path: '/checkbox',
+    name: 'checkbox',
+    component  (resolve) {
+      require(['@/example/checkbox.vue'], resolve)
+    },
+  },
   // ----  component/list组件系列 ----
 
   {

@@ -115,6 +115,10 @@
                         <Icon slot="item-left" name="search"></Icon>
                         <span>搜索栏 (SearchBar)</span>
                     </Item>
+                    <Item button :to="{name: 'checkbox'}">
+                        <Icon slot="item-left" name="search"></Icon>
+                        <span>复选框 (Checkbox)</span>
+                    </Item>
                 </ItemGroup>
 
 
