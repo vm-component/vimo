@@ -107,6 +107,11 @@
                         <Icon slot="item-left" name="car"></Icon>
                         <span>复选框 (Checkbox)</span>
                     </Item>
+                    <Item button :to="{name: 'radio'}">
+                        <Icon slot="item-left" name="car"></Icon>
+                        <span>单选框 (Radio)</span>
+                    </Item>
+
                     <Item button :to="{name: 'input'}">
                         <Icon slot="item-left" name="cart"></Icon>
                         <span>输入框 (Input)</span>

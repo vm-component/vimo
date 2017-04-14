@@ -34,7 +34,7 @@
     name: 'Checkbox',
     data(){
       return {
-        checkedValue: this.value,         // 内部维护的checked
+        checkedValue: this.value,           // 内部维护的checked
         disabledValue: this.disabled,       // 内部维护的disabled
         init: false,                        // 是否初始化
         itemComponent: null,                // item组件实例
@@ -45,11 +45,11 @@
         type: Boolean,
         default(){return false}
       },
-      color: [String],
       value: {
         type: Boolean,
         default(){return false}
       },
+      color: [String],
       mode: {
         type: String,
         default(){ return window.VM && window.VM.config.get('mode') || 'ios' }

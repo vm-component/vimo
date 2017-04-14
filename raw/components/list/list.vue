@@ -27,6 +27,12 @@
    *
    *  支持item-sliding（**此功能正在开发，暂时不可用**）
    *
+   *
+   *  radio-group的受体, 当点击radio时, radio向外寻找到这里, 传递v-model信息
+   *
+   *
+   *
+   *
    *  @property {string} [mode=ios]        - 样式模式
    *  @property {Boolean} [sliding=false]  - 是否需要item-silding
    *
@@ -42,11 +48,15 @@
           }   
         }
    */
-
+  import { setElementClass, isTrueProperty, isBlank } from '../../util/util'
   export default{
     name: 'List',
     data(){
-      return {}
+      return {
+
+        // -------- Radio --------
+        radioComponentList: [],
+      }
     },
     props: {
       /**
@@ -62,10 +72,27 @@
       sliding: {
         type: Boolean,
         default: false,
-      }
+      },
 
+      // -------- Radio --------
+      radioGroup: [Boolean],
+      value: [String],
+      disabled: {
+        type: Boolean,
+        default(){return false}
+      },
     },
-    watch: {},
+    watch: {
+      value(val){
+        this.onRadioChange(val)
+      },
+      disabled(val){
+        if (isTrueProperty(this.radioGroup)) {
+          this.disableAllRadio(val)
+          this.onRadioChange(null)
+        }
+      },
+    },
     computed: {
       // 环境样式
       modeClass () {
@@ -84,8 +111,47 @@
 
       },
 
+      // -------- Radio --------
+      /**
+       * @private
+       * radio组件点击时执行这个命令
+       * */
+      onRadioChange(value){
+        this.radioComponentList.forEach((radioComponent) => {
+          if (!radioComponent.isDisabled) {
+            radioComponent.setChecked(value)
+          }
+        })
+        this.$emit('input', value)
+      },
+
+      /**
+       * @private
+       * 禁用全部radio
+       * */
+      disableAllRadio(isDisable){
+        this.radioComponentList.forEach((radioComponent) => {
+          radioComponent.setDisabled(isDisable)
+        })
+      },
+
+      /**
+       * @private
+       * 让radio组件记录自己
+       * */
+      recordRadio(radioComponent){
+        this.radioComponentList.push(radioComponent)
+      },
+
     },
     created () {
+      // -------- Radio --------
+      // 内部定义了Radio组件
+      if (isTrueProperty(this.radioGroup)) {
+        this.onRadioChange(this.value)
+      }
+
+
     },
     mounted () {
     },
