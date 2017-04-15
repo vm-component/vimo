@@ -10,23 +10,23 @@
                 <ListHeader>Fruits</ListHeader>
                 <Item>
                     <Label>Apple</Label>
-                    <Radio value="apple" :disabled="isAppleDisabled"></Radio>
+                    <Radio value="apple" :disabled="isAppleDisabled" @onSelect="onSelectHandler"></Radio>
                 </Item>
                 <Item>
                     <Label>Banana</Label>
-                    <Radio value="banana" color="danger"></Radio>
+                    <Radio value="banana" color="danger" @onSelect="onSelectHandler"></Radio>
                 </Item>
                 <Item>
                     <Label>Cherry (secondary color)</Label>
-                    <Radio value="cherry" color="secondary"></Radio>
+                    <Radio value="cherry" color="secondary" @onSelect="onSelectHandler"></Radio>
                 </Item>
                 <Item>
                     <Label>Disabled</Label>
-                    <Radio value="disabled" :disabled="true"></Radio>
+                    <Radio value="disabled" :disabled="true" @onSelect="onSelectHandler"></Radio>
                 </Item>
                 <Item>
                     <Label>Default</Label>
-                    <Radio value="default"></Radio>
+                    <Radio value="default" @onSelect="onSelectHandler"></Radio>
                 </Item>
             </List>
 
@@ -39,19 +39,33 @@
                 <Button @click="isListDisabled=!isListDisabled" outline small>Set List Disabled</Button>
             </div>
 
-            <List radio-group v-model="dynamicFruits">
-                <ListHeader>Dynamic Data(Fruits)</ListHeader>
-                <Item v-for="(item,index) in dynamicFruitList" :key="index">
+            <List radio-group v-model="currencies">
+                <ListHeader>Dynamic Data(currencies)</ListHeader>
+                <Item v-for="(item,index) in dynamicCurrencies" :key="index">
                     <Label>{{item}}</Label>
-                    <Radio :value="item"></Radio>
+                    <Radio :value="item" @onSelect="onSelectHandler"></Radio>
                 </Item>
             </List>
-
-            <div text-center>
-                <p text-center>当前选择: {{dynamicFruits}}</p>
-                <Button @click="dynamicFruits='apple'" outline small>Select Apple</Button>
-                <Button @click="dynamicFruits='banana'" outline small>Select Banana</Button>
+            <div padding>
+                <code><b>dynamicCurrencies:</b> {{dynamicCurrencies}}</code><br>
             </div>
+            <div text-center>
+                <p text-center>当前选择: {{currencies}}</p>
+                <Button @click="currencies='USD'" outline small>Select USD</Button>
+                <Button @click="currencies='EUR'" outline small>Select EUR</Button>
+            </div>
+
+            <List radio-group :disabled="true" v-model="relationship">
+                <ListHeader>Disabled radio-group</ListHeader>
+                <Item>
+                    <Label>Friends</Label>
+                    <Radio value="friends"></Radio>
+                </Item>
+                <Item>
+                    <Label>Enemies</Label>
+                    <Radio value="enemies"></Radio>
+                </Item>
+            </List>
         </Content>
     </Page>
 </template>
@@ -76,30 +90,25 @@
         isListDisabled: false,
         isDisabled: false,
 
-        dynamicFruits: '',
-        dynamicFruitList: [],
+        currencies: 'USD',
+        dynamicCurrencies: [],
 
+        relationship: 'friends'
       }
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
-      setApple(){},
-      setBanana(){},
-      setCherry(){},
+      onSelectHandler(val){
+        console.debug('当前选择的是: ' + val)
+      },
 
     },
     created: function () {
       setTimeout(() => {
-        this.dynamicFruitList = [
-          'apple',
-          'banana',
-          'cherry',
-          'disabled',
-          'default',
-        ]
-      }, 2000)
+        this.dynamicCurrencies = ['USD', 'EUR']
+      }, 100)
     },
     mounted: function () {},
     activated: function () {},

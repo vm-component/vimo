@@ -226,6 +226,13 @@ const routes = [
     }
   },
   {
+    path: '/select',
+    name: 'select',
+    component  (resolve) {
+      require(['@/example/select.vue'], resolve)
+    }
+  },
+  {
     path: '/searchbar',
     name: 'searchbar',
     component  (resolve) {

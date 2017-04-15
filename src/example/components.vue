@@ -104,13 +104,19 @@
                         <span>开关 (Toggle)</span>
                     </Item>
                     <Item button :to="{name: 'checkbox'}">
-                        <Icon slot="item-left" name="car"></Icon>
+                        <Icon slot="item-left" name="checkmark"></Icon>
                         <span>复选框 (Checkbox)</span>
                     </Item>
                     <Item button :to="{name: 'radio'}">
-                        <Icon slot="item-left" name="car"></Icon>
+                        <Icon slot="item-left" name="flask"></Icon>
                         <span>单选框 (Radio)</span>
                     </Item>
+
+                    <Item button :to="{name: 'select'}">
+                        <Icon slot="item-left" name="flask"></Icon>
+                        <span>选择弹层 (Select)</span>
+                    </Item>
+
 
                     <Item button :to="{name: 'input'}">
                         <Icon slot="item-left" name="cart"></Icon>

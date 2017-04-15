@@ -1,16 +1,16 @@
 <template>
-    <div class="ion-select">
-
+    <div class="main">
+        option
     </div>
 </template>
-<style lang="scss">
-    @import "select";
-    @import "select.ios";
-    @import "select.md";
+<style scoped lang="scss">
+    .main {
+
+    }
 </style>
 <script type="text/ecmascript-6">
   export default{
-    name: 'Select',
+    name: 'name',
     data(){
       return {}
     },

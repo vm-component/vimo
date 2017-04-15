@@ -1,9 +1,9 @@
-@import "../../themes/ionic.globals";
+@import "../../themes/globals";
 
 // Select
 // --------------------------------------------------
 
-ion-select {
+.ion-select {
   display: flex;
   overflow: hidden;
 
@@ -22,12 +22,12 @@ ion-select {
   white-space: nowrap;
 }
 
-.item-multiple-inputs ion-select {
+.item-multiple-inputs .ion-select {
   position: relative;
 }
 
 .select-disabled,
-.item-select-disabled ion-label {
+.item-select-disabled .ion-label {
   opacity: .4;
 
   pointer-events: none;
