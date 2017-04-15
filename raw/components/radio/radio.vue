@@ -56,6 +56,7 @@
         isDisabled: this.disabled,      // 内部 禁用
         itemComponent: null,            // item组件实例
         radioGroupComponent: null,      // list(radioGroup)组件实例
+        isInit: false,                  // 初始化状态
         id: `rb-${id++}`,               // id
       }
     },
@@ -99,9 +100,12 @@
        * 设置当前的radio的选中状态
        * */
       setChecked(checked){
-        this.isChecked = (checked === this.value) && !this.isDisabled
-        this.isChecked && this.$emit('onSelect', this.isChecked);
-        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-checked', this.isChecked);
+        let isChecked = (checked === this.value) && !this.isDisabled
+        if (this.isChecked !== isChecked) {
+          this.isChecked = isChecked
+          this.isInit && this.isChecked && this.$emit('onSelect', this.value);
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-checked', this.isChecked);
+        }
       },
 
       /**
@@ -132,15 +136,19 @@
           }
           console.assert(this.radioGroupComponent, 'Radio组件需要在List组件中加上`radio-group`属性才能正常使用v-model指令!')
         }
+
+        // 初始化禁用状态
+        this.setDisabled(this.disabled)
+
+        // 初始化的时候向 radioGroupComponent 告知自己在值
+        !this.isDisabled && this.radioGroupComponent && this.radioGroupComponent.onRadioChange(this.value)
+
+        this.isInit = true
       }
     },
     created: function () {},
     mounted: function () {
       this.init()
-
-      id++
-
-      this.setDisabled(this.disabled)
 
     },
     activated: function () {},

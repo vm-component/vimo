@@ -23,13 +23,14 @@
    * @name list
    * @module Component/List
    * @description
-   *  list有多重种风格的样式，有ios/window/android等等,对应ios/md/wp模式
+   * list有多重种风格的样式，有ios/window/android等等,对应ios/md/wp模式
    *
-   *  支持item-sliding（**此功能正在开发，暂时不可用**）
+   * 支持item-sliding（**此功能正在开发，暂时不可用**）
    *
    *
-   *  radio-group的受体, 当点击radio时, radio向外寻找到这里, 传递v-model信息
+   * radio-group的受体, 当点击radio时, radio向外寻找到这里, 传递v-model信息
    *
+   * radio对外事件: onChange
    *
    *
    *
@@ -86,9 +87,9 @@
       value(val){
         this.onRadioChange(val)
       },
-      disabled(val){
+      disabled(isDisabled){
         if (isTrueProperty(this.radioGroup)) {
-          this.disableAllRadio(val)
+          this.disableAllRadio(isDisabled)
           this.onRadioChange(null)
         }
       },
@@ -123,6 +124,7 @@
           }
         })
         this.$emit('input', value)
+        this.$emit('onChange', value)
       },
 
       /**
@@ -145,15 +147,14 @@
 
     },
     created () {
+    },
+    mounted () {
       // -------- Radio --------
       // 内部定义了Radio组件
       if (isTrueProperty(this.radioGroup)) {
         this.onRadioChange(this.value)
+        this.disableAllRadio(this.disabled)
       }
-
-
-    },
-    mounted () {
     },
     activated () {
     },
