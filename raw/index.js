@@ -23,7 +23,7 @@ if (!('remove' in Element.prototype)) {
 
 export default {
   installed: false,
-  version: '0.2.9',
+  version: '0.3.0',
   install (Vue, options = {}) {
 
     // init base (config/platform)

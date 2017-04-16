@@ -32,7 +32,7 @@
    * @property {string} [content] - 内容
    * @property {string} [cssClass] - 自定义样式
    * @property {boolean} [showBackdrop=false] - 是否显示黑色背景
-   * @property {number} [duration=0] - loading持续时间, 如果为0则无效
+   * @property {number} [duration=5000] - loading持续时间, 如果为0则无效, 默认提供5000ms持续时间
    * @property {boolean} [dismissOnPageChange=false] - 页面切换是否关闭loading
    *
    * @example
@@ -70,7 +70,7 @@
       duration: {
         type: Number,
         default(){
-          return 0
+          return 5000
         }
       },
       dismissOnPageChange: {

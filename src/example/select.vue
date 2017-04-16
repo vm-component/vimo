@@ -41,7 +41,6 @@
                 <!--</ion-select>-->
                 <!--</ion-item>-->
 
-
             </List>
         </Content>
     </Page>
