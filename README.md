@@ -56,6 +56,7 @@ npm install vimo
 - 0.2.7 - 城市三级组件修复页面切换不关闭的bug, platform组件debug
 - 0.2.9 - 增加checkbox组件, 还未debug
 - 0.3.0 - loading增加最长开启时间, 默认为5000ms(获取数据的最长时间)
+- 0.3.1 - loading/actionsheet/alert组件随url变化而关闭. 增加select组件
 
 
 
