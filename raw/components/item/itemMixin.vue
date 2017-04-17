@@ -29,6 +29,7 @@
     data(){
       return {
         isInMenu: false, // 判断是否在menu组件中, 如果在menu中, 则
+        labelComponent: null,
       }
     },
     props: {
@@ -88,6 +89,13 @@
             _this.$eventBus && _this.$eventBus.$off('onMenuClosed', directToHandler)
           }
         }
+      },
+
+      /**
+       * 获取组件类Label的文本
+       * */
+      getLabelText() {
+        return this.labelComponent ? this.labelComponent.$el.innerText : '';
       }
     },
     created () {},
@@ -108,6 +116,13 @@
           item.elm.setAttribute('item-right', '')
         })
       }
+
+
+
+
+
+
+//      labelComponent
 
     }
   }

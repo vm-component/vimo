@@ -149,7 +149,6 @@
     created: function () {},
     mounted: function () {
       this.init()
-
     },
     activated: function () {},
     components: {}

@@ -177,9 +177,9 @@
         const _this = this;
         _this.$alert.present({
           title: 'checkbox',
-          // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
+          subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: 'checkbox',
-          cssClass: 'alertCssOuterMain  ',
+          cssClass: 'alertCssOuterMain',
           enableBackdropDismiss: true,
           inputs: [
             {

@@ -199,6 +199,7 @@
                 <!--group-->
                 <ItemGroup>
                     <Item button :to="{name: 'demo'}">Demo</Item>
+                    <Item button :to="{name: 'demo_banshi'}">办事指南</Item>
                     <Item button :to="{name: 'ghostvue'}">ghost</Item>
                     <Item button :to="{name: 'gl-input'}">GL-Input</Item>
                     <Item button :to="{name: 'log'}">Log</Item>

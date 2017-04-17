@@ -9,100 +9,100 @@
 
 <ion-content class="outer-content">
 
-  <ion-item>
-    <ion-label>Gender</ion-label>
-    <ion-select [(ngModel)]="gender" class="e2eSelectGender">
-      <ion-option value="f">Female</ion-option>
-      <ion-option value="m">Male</ion-option>
-    </ion-select>
-  </ion-item>
+  <Item>
+    <Label>Gender</Label>
+    <Select [(ngModel)]="gender" class="e2eSelectGender">
+      <Option value="f">Female</Option>
+      <Option value="m">Male</Option>
+    </Select>
+  </Item>
 
-  <ion-item>
-    <ion-label>Gaming</ion-label>
-    <ion-select [(ngModel)]="gaming" (ionCancel)="gamingCancel()" (ionChange)="gamingChange($event)">
-      <ion-option value="nes">NES</ion-option>
-      <ion-option value="n64">Nintendo64</ion-option>
-      <ion-option value="ps">PlayStation</ion-option>
-      <ion-option value="genesis">Sega Genesis</ion-option>
-      <ion-option value="saturn">Sega Saturn</ion-option>
-      <ion-option value="snes">SNES</ion-option>
-    </ion-select>
-  </ion-item>
+  <Item>
+    <Label>Gaming</Label>
+    <Select [(ngModel)]="gaming" (ionCancel)="gamingCancel()" (ionChange)="gamingChange($event)">
+      <Option value="nes">NES</Option>
+      <Option value="n64">Nintendo64</Option>
+      <Option value="ps">PlayStation</Option>
+      <Option value="genesis">Sega Genesis</Option>
+      <Option value="saturn">Sega Saturn</Option>
+      <Option value="snes">SNES</Option>
+    </Select>
+  </Item>
 
-  <ion-item>
-    <ion-label>Operating System</ion-label>
-    <ion-select [(ngModel)]="os" interface="alert" submitText="Okay" cancelText="Nah">
-      <ion-option value="dos">DOS</ion-option>
-      <ion-option value="lunix">Linux</ion-option>
-      <ion-option value="mac7">Mac OS 7</ion-option>
-      <ion-option value="mac8">Mac OS 8</ion-option>
-      <ion-option value="win3.1">Windows 3.1</ion-option>
-      <ion-option value="win95">Windows 95</ion-option>
-      <ion-option value="win98">Windows 98</ion-option>
-    </ion-select>
-  </ion-item>
+  <Item>
+    <Label>Operating System</Label>
+    <Select [(ngModel)]="os" interface="alert" submitText="Okay" cancelText="Nah">
+      <Option value="dos">DOS</Option>
+      <Option value="lunix">Linux</Option>
+      <Option value="mac7">Mac OS 7</Option>
+      <Option value="mac8">Mac OS 8</Option>
+      <Option value="win3.1">Windows 3.1</Option>
+      <Option value="win95">Windows 95</Option>
+      <Option value="win98">Windows 98</Option>
+    </Select>
+  </Item>
 
-  <ion-item>
-    <ion-label>Notifications</ion-label>
-    <ion-select [(ngModel)]="notifications" [selectOptions]="notificationSelectOpts" interface="action-sheet" cancelText="Cancel!">
-      <ion-option value="enable">Enable</ion-option>
-      <ion-option value="mute">Mute</ion-option>
-      <ion-option value="mute_week">Mute for a week</ion-option>
-      <ion-option value="mute_year" (ionSelect)="notificationSelect($event)">Mute for a year</ion-option>
-    </ion-select>
-  </ion-item>
+  <Item>
+    <Label>Notifications</Label>
+    <Select [(ngModel)]="notifications" [selectOptions]="notificationSelectOpts" interface="action-sheet" cancelText="Cancel!">
+      <Option value="enable">Enable</Option>
+      <Option value="mute">Mute</Option>
+      <Option value="mute_week">Mute for a week</Option>
+      <Option value="mute_year" (ionSelect)="notificationSelect($event)">Mute for a year</Option>
+    </Select>
+  </Item>
 
-  <ion-item>
-    <ion-label>Music</ion-label>
-    <ion-select [(ngModel)]="music" [selectOptions]="musicSelectOpts" placeholder="Select Music">
-      <ion-option>Alice in Chains</ion-option>
-      <ion-option>Green Day</ion-option>
-      <ion-option>Nirvana</ion-option>
-      <ion-option>Pearl Jam</ion-option>
-      <ion-option>Smashing Pumpkins</ion-option>
-      <ion-option>Soundgarden</ion-option>
-      <ion-option (ionSelect)="musicSelect($event)">Stone Temple Pilots</ion-option>
-    </ion-select>
-  </ion-item>
+  <Item>
+    <Label>Music</Label>
+    <Select [(ngModel)]="music" [selectOptions]="musicSelectOpts" placeholder="Select Music">
+      <Option>Alice in Chains</Option>
+      <Option>Green Day</Option>
+      <Option>Nirvana</Option>
+      <Option>Pearl Jam</Option>
+      <Option>Smashing Pumpkins</Option>
+      <Option>Soundgarden</Option>
+      <Option (ionSelect)="musicSelect($event)">Stone Temple Pilots</Option>
+    </Select>
+  </Item>
 
-  <ion-item>
-    <ion-label>Date</ion-label>
-    <ion-select [(ngModel)]="month">
-      <ion-option value="01">January</ion-option>
-      <ion-option value="02">February</ion-option>
-      <ion-option value="03">March</ion-option>
-      <ion-option value="04">April</ion-option>
-      <ion-option value="05">May</ion-option>
-      <ion-option value="06">June</ion-option>
-      <ion-option value="07">July</ion-option>
-      <ion-option value="08">August</ion-option>
-      <ion-option value="09">September</ion-option>
-      <ion-option value="10">October</ion-option>
-      <ion-option value="11">November</ion-option>
-      <ion-option value="12">December</ion-option>
-    </ion-select>
-    <ion-select [(ngModel)]="year">
-      <ion-option *ngFor="let yr of years">{{yr}}</ion-option>
-    </ion-select>
-  </ion-item>
+  <Item>
+    <Label>Date</Label>
+    <Select [(ngModel)]="month">
+      <Option value="01">January</Option>
+      <Option value="02">February</Option>
+      <Option value="03">March</Option>
+      <Option value="04">April</Option>
+      <Option value="05">May</Option>
+      <Option value="06">June</Option>
+      <Option value="07">July</Option>
+      <Option value="08">August</Option>
+      <Option value="09">September</Option>
+      <Option value="10">October</Option>
+      <Option value="11">November</Option>
+      <Option value="12">December</Option>
+    </Select>
+    <Select [(ngModel)]="year">
+      <Option *ngFor="let yr of years">{{yr}}</Option>
+    </Select>
+  </Item>
 
-  <ion-item>
-    <ion-label>Statuses</ion-label>
-    <ion-select (ionChange)="statusChange($event)">
-      <ion-option value="selected" selected>Selected</ion-option>
-      <ion-option value="default">Default</ion-option>
-      <ion-option value="disabled" disabled="true">Disabled</ion-option>
-    </ion-select>
-  </ion-item>
+  <Item>
+    <Label>Statuses</Label>
+    <Select (ionChange)="statusChange($event)">
+      <Option value="selected" selected>Selected</Option>
+      <Option value="default">Default</Option>
+      <Option value="disabled" disabled="true">Disabled</Option>
+    </Select>
+  </Item>
 
-  <ion-item>
-    <ion-label>Currency</ion-label>
-    <ion-select [(ngModel)]="currency" [selectedText]="selectedText()">
-      <ion-option *ngFor="let cur of currencies" [value]="cur">
+  <Item>
+    <Label>Currency</Label>
+    <Select [(ngModel)]="currency" [selectedText]="selectedText()">
+      <Option *ngFor="let cur of currencies" [value]="cur">
         {{cur.symbol}} ({{cur.code}}) {{cur.name}}
-      </ion-option>
-    </ion-select>
-  </ion-item>
+      </Option>
+    </Select>
+  </Item>
 
   <button ion-button (click)="resetGender()">Reset Gender</button>
 
@@ -126,15 +126,15 @@
   </p>
 
   <form [formGroup]="fruitsForm">
-    <ion-item>
-      <ion-label>formControlName, disabled</ion-label>
-      <ion-select formControlName="fruit">
-        <ion-option>Grape</ion-option>
-        <ion-option>Cherry</ion-option>
-        <ion-option>Strawberry</ion-option>
-        <ion-option>Mango</ion-option>
-      </ion-select>
-    </ion-item>
+    <Item>
+      <Label>formControlName, disabled</Label>
+      <Select formControlName="fruit">
+        <Option>Grape</Option>
+        <Option>Cherry</Option>
+        <Option>Strawberry</Option>
+        <Option>Mango</Option>
+      </Select>
+    </Item>
   </form>
 
 </ion-content>

@@ -607,6 +607,13 @@ const routes = [
 
   // demo
   {
+    path: '/demo_banshi',
+    name: 'demo_banshi',
+    component  (resolve) {
+      require(['@/example/demo_banshi.vue'], resolve)
+    }
+  },
+  {
     path: '/demo',
     name: 'demo',
     component  (resolve) {

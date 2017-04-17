@@ -10,37 +10,116 @@
                 <ListHeader>单选</ListHeader>
                 <Item>
                     <Label>Gender</Label>
-                    <Select>
+                    <Select item-right placeholder="Select" interface="action-sheet"
+                            @onChange="onChange"
+                            @onSelect="onSelect"
+                            @onCancel="onCancel">
                         <Option value="f">Female</Option>
                         <Option value="m">Male</Option>
                     </Select>
                 </Item>
 
-                <!--<ion-item>-->
-                <!--<ion-label>Gaming</ion-label>-->
-                <!--<ion-select [(ngModel)]="gaming" (ionCancel)="gamingCancel()" (ionChange)="gamingChange($event)">-->
-                <!--<ion-option value="nes">NES</ion-option>-->
-                <!--<ion-option value="n64">Nintendo64</ion-option>-->
-                <!--<ion-option value="ps">PlayStation</ion-option>-->
-                <!--<ion-option value="genesis">Sega Genesis</ion-option>-->
-                <!--<ion-option value="saturn">Sega Saturn</ion-option>-->
-                <!--<ion-option value="snes">SNES</ion-option>-->
-                <!--</ion-select>-->
-                <!--</ion-item>-->
+                <Item>
+                    <Label>Gender</Label>
+                    <Select item-right placeholder="Select" interface="alert"
+                            @onChange="onChange"
+                            @onSelect="onSelect"
+                            @onCancel="onCancel">
+                        <Option value="f" checked>Female</Option>
+                        <Option value="m">Male</Option>
+                    </Select>
+                </Item>
 
-                <!--<ion-item>-->
-                <!--<ion-label>Operating System</ion-label>-->
-                <!--<ion-select [(ngModel)]="os" interface="alert" submitText="Okay" cancelText="Nah">-->
-                <!--<ion-option value="dos">DOS</ion-option>-->
-                <!--<ion-option value="lunix">Linux</ion-option>-->
-                <!--<ion-option value="mac7">Mac OS 7</ion-option>-->
-                <!--<ion-option value="mac8">Mac OS 8</ion-option>-->
-                <!--<ion-option value="win3.1">Windows 3.1</ion-option>-->
-                <!--<ion-option value="win95">Windows 95</ion-option>-->
-                <!--<ion-option value="win98">Windows 98</ion-option>-->
-                <!--</ion-select>-->
-                <!--</ion-item>-->
+                <Item>
+                    <Label>Gender</Label>
+                    <Select item-right placeholder="Multi Select" interface="alert" :multiple="true"
+                            @onChange="onChange"
+                            @onSelect="onSelect"
+                            @onCancel="onCancel">
+                        <Option value="f">Female</Option>
+                        <Option value="m">Male</Option>
+                    </Select>
+                </Item>
 
+                <Item>
+                    <Label>Gender</Label>
+                    <Select item-right placeholder="Disabled Select" :disabled="true" interface="alert" :multiple="true"
+                            @onChange="onChange"
+                            @onSelect="onSelect"
+                            @onCancel="onCancel">
+                        <Option value="f">Female</Option>
+                        <Option value="m">Male</Option>
+                    </Select>
+                </Item>
+
+                <Item>
+                    <Label>能修改选中值文本</Label>
+                    <Select item-right placeholder="请选择" selectedText="已选择" interface="alert" :multiple="true">
+                        <Option value="f">Female</Option>
+                        <Option value="m">Male</Option>
+                    </Select>
+                </Item>
+            </List>
+
+            <List>
+                <ListHeader>
+                    <span>Option组件没有value的情况</span>
+                </ListHeader>
+                <Item>
+                    <Label>Gaming</Label>
+                    <Select v-model="gamingNoValue" :multiple="true">
+                        <Option>NES</Option>
+                        <Option>Nintendo64</Option>
+                        <Option>PlayStation</Option>
+                        <Option>Sega Genesis</Option>
+                        <Option>Sega Saturn</Option>
+                        <Option>SNES</Option>
+                    </Select>
+                </Item>
+                <div text-cente padding>
+                    <p text-center>Gaming选中值: {{gamingNoValue}}</p>
+                </div>
+            </List>
+
+            <List>
+                <ListHeader>
+                    <span>单选 (v-model)</span>
+                </ListHeader>
+                <Item>
+                    <Label>Gaming</Label>
+                    <Select v-model="gaming" :multiple="true">
+                        <Option value="nes" checked>NES</Option>
+                        <Option value="n64" checked>Nintendo64</Option>
+                        <Option value="ps" checked>PlayStation</Option>
+                        <Option value="genesis">Sega Genesis</Option>
+                        <Option value="saturn">Sega Saturn</Option>
+                        <Option value="snes">SNES</Option>
+                    </Select>
+                </Item>
+
+                <div text-cente padding>
+                    <p text-center>Gaming选中值: {{gaming}}</p>
+                    <small>
+                        <span>  * Option中checked是NES/Nintendo64/PlayStation, 而v-model中的值是Option中checked是选中的是NES, 优先使用v-modal中的值</span>
+                    </small>
+                </div>
+            </List>
+
+            <List>
+                <ListHeader>
+                    <span>单选 (v-model && v-for)</span>
+                </ListHeader>
+                <Item>
+                    <Label>Currency</Label>
+                    <Select v-model="currency">
+                        <Option :value="cur" v-for="(cur,index) in currencies" :key="index">
+                            <span>{{cur.symbol}} ({{cur.code}}) {{cur.name}}</span>
+                        </Option>
+                    </Select>
+                </Item>
+                <div text-cente padding>
+                    <p text-center>Currency选中值: {{currency}}</p>
+                </div>
             </List>
         </Content>
     </Page>
@@ -51,20 +130,57 @@
 <script type="text/ecmascript-6">
   import { List } from 'vimo/components/list'
   import { Item, ListHeader } from 'vimo/components/item'
-  import { label } from 'vimo/components/label'
+  import { Label } from 'vimo/components/label'
   import { Select, Option } from 'vimo/components/select'
   export default{
     name: 'name',
     data(){
-      return {}
+      return {
+        gaming: 'nes',
+        gamingNoValue: '',
+        currency: '',
+        currencies: [
+          {
+            symbol: '$',
+            code: 'USD',
+            name: 'US Dollar'
+          },
+          {
+            symbol: '€',
+            code: 'EUR',
+            name: 'Euro'
+          },
+          {
+            symbol: '£',
+            code: 'FKP',
+            name: 'Falkland Islands Pound'
+          },
+          {
+            symbol: '¢',
+            code: 'GHS',
+            name: 'Ghana Cedi'
+          }
+        ],
+      }
     },
     props: {},
     watch: {},
     computed: {},
-    methods: {},
+    methods: {
+      onChange(value){
+        console.debug('外部监听 onChange 事件, 返回值: ' + value)
+
+      },
+      onSelect(value){
+        console.debug('外部监听 onSelect 事件, 返回值: ' + value)
+      },
+      onCancel(value){
+        console.debug('外部监听 onCancel 事件, 返回值: ' + value)
+      }
+    },
     created: function () {},
     mounted: function () {},
     activated: function () {},
-    components: {List, Item, ListHeader, label, Select, Option}
+    components: {List, Item, ListHeader, Label, Select, Option}
   }
 </script>

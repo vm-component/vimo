@@ -27,7 +27,7 @@
                     <Row class="vimo__text">
                         <Column text-center>
                             <h1>VIMO</h1>
-                            <p>v1.0.0</p>
+                            <p>v{{vimo.version}}</p>
                             <p>基于Vue2.x的移动端Hybrid框架</p>
                             <div class="vimo__text--iframe">
                                 <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=star&amp;count=true"
@@ -46,7 +46,6 @@
                         <Button block solid @click="$router.push({'name':'components'})">组件</Button>
                         <Button block solid @click="$menus.open('menu')">打开菜单</Button>
                     </Row>
-
                 </Grid>
             </article>
 
@@ -167,9 +166,14 @@
     }
 </style>
 <script type="text/ecmascript-6">
-
+  import vimo from 'vimo'
   export default{
     name: 'index',
+    data(){
+      return {
+        vimo: vimo,
+      }
+    },
     methods: {
       test(){
         //      alert(this.$platform._platforms)
