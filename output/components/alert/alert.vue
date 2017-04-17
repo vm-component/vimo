@@ -43,7 +43,6 @@
 
                     <div v-if="inputType!='radio' && inputType!='checkbox'" class="alert-input-group">
                         <div v-for="i in inputsForDispaly" class="alert-input-wrapper">
-                            <!-- v-model="i.value"-->
                             <input :id="i.id" :value="i.value" :placeholder="i.placeholder" :type="i.type"
                                    class="alert-input">
                         </div>
@@ -140,7 +139,7 @@
    */
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
-
+  import { registerListener } from '../../util/util'
   export default{
     name: 'Alert',
     props: {
@@ -154,6 +153,11 @@
         default(){return []}
       },
       // 如果alert中有input等form
+      // input类型 -> text/tel/number/email ....
+      // type/name/placeholder/value
+
+      // input类型 ->  checkbox/radio
+      // type/value/label/checked/disabled
       inputs: {
         type: Array,
         default(){return []}
@@ -166,6 +170,10 @@
       mode: {
         type: String,
         default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+      },
+      dismissOnPageChange: {
+        type: Boolean,
+        default(){return true}
       }
     },
     data(){
@@ -184,15 +192,13 @@
 
         dismissCallback: null,
         presentCallback: null,
+        unreg: null, // url变化关闭的注册函数
       }
     },
     computed: {
       // 设置Alert的风格
       modeClass () {
         return `alert-${this.mode}`
-      },
-      hdrId () {
-        return 'alert-hdr'
       },
       buttonsForDisplay () {
         // 如果是string则转化为对象
@@ -449,9 +455,21 @@
 
         _this.inputsForDispaly = _inputs;
       },
+
+      /**
+       * @private
+       * */
+      dismissOnPageChangeHandler(){
+        this.isActive && this.dismiss();
+        this.unreg && this.unreg();
+      },
     },
     created(){
       this.init()
+      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
+      if (this.dismissOnPageChange) {
+        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+      }
     },
     components: {
       'Backdrop': Backdrop,

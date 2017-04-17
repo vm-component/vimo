@@ -100,7 +100,7 @@
                 <ListHeader>Form组件</ListHeader>
                 <ItemGroup>
                     <Item button :to="{name: 'toggle'}">
-                        <Icon slot="item-left" name="book"></Icon>
+                        <Icon slot="item-left" name="settings"></Icon>
                         <span>开关 (Toggle)</span>
                     </Item>
                     <Item button :to="{name: 'checkbox'}">
@@ -113,10 +113,9 @@
                     </Item>
 
                     <Item button :to="{name: 'select'}">
-                        <Icon slot="item-left" name="flask"></Icon>
+                        <Icon slot="item-left" name="pie"></Icon>
                         <span>选择弹层 (Select)</span>
                     </Item>
-
 
                     <Item button :to="{name: 'input'}">
                         <Icon slot="item-left" name="cart"></Icon>

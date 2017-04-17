@@ -23,7 +23,7 @@ if (!('remove' in Element.prototype)) {
 
 export default {
   installed: false,
-  version: '0.3.1',
+  version: '0.3.2',
   install (Vue, options = {}) {
 
     // init base (config/platform)
@@ -31,10 +31,10 @@ export default {
 
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = new Vue()
-    Vue.prototype.$config   = window.VM && window.VM.config
+    Vue.prototype.$config = window.VM && window.VM.config
     Vue.prototype.$platform = window.VM && window.VM.platform
     // 监听route变化, 内建历史记录
-    Vue.prototype.$history  = new NavContorller(Vue, options.router)
+    Vue.prototype.$history = new NavContorller(Vue, options.router)
 
     // 安装必要组件
     if (!window.VM) {

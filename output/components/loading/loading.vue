@@ -75,7 +75,7 @@
       },
       dismissOnPageChange: {
         type: Boolean,
-        default(){ return false }
+        default(){ return true }
       },
       mode: {
         type: String,
@@ -125,9 +125,9 @@
         this.$app && this.$app.setEnabled(false, 200);
       },
       _afterLeave (el) {
-        this.dismissCallback(el);
         // 删除DOM
         this.$el.remove()
+        this.dismissCallback(el);
       },
       /**
        * @private

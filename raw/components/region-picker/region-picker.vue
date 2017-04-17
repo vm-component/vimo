@@ -221,19 +221,30 @@
         return !!arrs && Array.isArray(arrs) && arrs.length === 3
       },
 
-      // 页面切换关闭picker
+      // 页面切换关闭picker, 清除dom残留
       dismissOnPageChangeHandler(){
-        this.picker && this.picker.hide()
-//        this.unreg && this.unreg()
+        document.querySelectorAll('body>.picker').forEach((node) => {
+          let isHide = getComputedStyle(node).display === 'none'
+          if (isHide) {
+            node.parentNode.removeChild(node);
+          } else {
+            this.picker && this.picker.hide()
+            window.setTimeout(() => {
+              node.parentNode.removeChild(node);
+            }, 500)
+          }
+        })
+        this.unreg && this.unreg()
       }
     },
     created () {
       if (this.checkValue(this.selectedCity)) {
         this.init(this.selectedCity)
       }
-
+    },
+    mounted(){
       // 监听页面变化
-      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: true});
     }
   }
 </script>

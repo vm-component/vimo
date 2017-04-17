@@ -138,9 +138,9 @@
 
       // isLegal
       isLegal(dataArr){
-        let provinceCode = dataArr[0].code
-        let cityCode = dataArr[1].code
-        let regionCode = dataArr[2].code
+        let provinceCode = dataArr[0] && dataArr[0].code
+        let cityCode = dataArr[1] && dataArr[1].code
+        let regionCode = dataArr[2] && dataArr[2].code
         let pc = provinceCode.substr(0, 2)
         if (pc === cityCode.substr(0, 2) && pc === regionCode.substr(0, 2)) {
           let cc = cityCode.substr(0, 4)

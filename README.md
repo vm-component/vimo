@@ -57,6 +57,7 @@ npm install vimo
 - 0.2.9 - 增加checkbox组件, 还未debug
 - 0.3.0 - loading增加最长开启时间, 默认为5000ms(获取数据的最长时间)
 - 0.3.1 - loading/actionsheet/alert组件随url变化而关闭. 增加select组件. 修复三亚没有区县的显示bug
+- 0.3.2 - 修复城市数据路中的显示bug,有些显示?x区
 
 
 
