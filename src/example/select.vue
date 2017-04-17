@@ -88,12 +88,12 @@
                 <Item>
                     <Label>Gaming</Label>
                     <Select v-model="gaming" :multiple="true">
-                        <Option value="nes" checked>NES</Option>
+                        <Option value="nes" checked disabled>NES</Option>
                         <Option value="n64" checked>Nintendo64</Option>
                         <Option value="ps" checked>PlayStation</Option>
                         <Option value="genesis">Sega Genesis</Option>
                         <Option value="saturn">Sega Saturn</Option>
-                        <Option value="snes">SNES</Option>
+                        <Option value="snes" disabled>SNES</Option>
                     </Select>
                 </Item>
 
