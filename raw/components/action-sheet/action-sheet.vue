@@ -134,6 +134,10 @@
       mode: {
         type: String,
         default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+      },
+      dismissOnPageChange: {
+        type: Boolean,
+        default(){return true}
       }
     },
     data(){
@@ -364,7 +368,9 @@
     created(){
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+      if (this.dismissOnPageChange) {
+        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+      }
     },
     components: {
       Backdrop,
