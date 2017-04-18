@@ -3,8 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="scss">
-</style>
+<style lang="scss"></style>
 <script>
   export default{
     name: 'ItemOptions',
@@ -15,11 +14,9 @@
       // item的位置
       side: {
         type: String,
-        default: 'right',
+        default: 'right'
       },
     },
-    watch: {},
-    computed: {},
     methods: {
       /**
        * 计算这个options的宽度

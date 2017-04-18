@@ -1,188 +1,187 @@
 <template>
-  <Page>
-    <Header>
-      <Navbar>
-        <Title>SlidingList</Title>
-      </Navbar>
-    </Header>
-    <Content>
-      <List>
-        <ListHeader>
-          SlidingList Demo
-        </ListHeader>
-        <ItemSliding>
-          <Item>
-            <Avatar slot="item-left">
-              <img src="http://placehold.it/36x36">
-            </Avatar>
-            <h2>两边都有按钮</h2>
-            <p>试试 ↔️️ 都滑动</p>
-          </Item>
-          <ItemOptions side="left">
-            <Button ion-button color="primary" @click="clickText">
-              <Icon name="text"></Icon>
-              Text
-            </Button>
-            <Button ion-button color="secondary" @click="clickCall">
-              <Icon name="call"></Icon>
-              Call
-            </Button>
-          </ItemOptions>
-          <ItemOptions side="right">
-            <Button ion-button color="primary" @click="clickEmail">
-              <Icon name="mail"></Icon>
-              Email
-            </Button>
-          </ItemOptions>
-        </ItemSliding>
-        <ItemSliding>
-          <Item>
-            <Avatar slot="item-left">
-              <img src="http://placehold.it/36x36">
-            </Avatar>
-            <h2>按钮在右边</h2>
-            <p>⬅️ 滑动出现按钮</p>
-          </Item>
-          <ItemOptions side="right">
-            <Button ion-button color="primary" @click="clickEmail">
-              <Icon name="mail"></Icon>
-              Email
-            </Button>
-          </ItemOptions>
-        </ItemSliding>
-        <ItemSliding>
-          <Item>
-            <Avatar slot="item-left">
-              <img src="http://placehold.it/36x36">
-            </Avatar>
-            <h2>按钮在左边</h2>
-            <p>➡️ 滑动出现按钮</p>
-          </Item>
-          <ItemOptions side="left">
-            <Button ion-button color="primary" @click="clickText">
-              <Icon name="text"></Icon>
-              Text
-            </Button>
-            <Button ion-button color="secondary" @click="clickCall">
-              <Icon name="call"></Icon>
-              Call
-            </Button>
-          </ItemOptions>
-        </ItemSliding>
+    <Page>
+        <Header>
+            <Navbar>
+                <Title>SlidingList</Title>
+            </Navbar>
+        </Header>
+        <Content>
 
-        <ItemSliding>
-          <Item>
-            <Avatar slot="item-left">
-              <img src="http://placehold.it/36x36">
-            </Avatar>
-            <h2>按钮在右边</h2>
-            <p>⬅️ 滑动出现按钮，再滑动则执行</p>
-          </Item>
-
-          <ItemOptions side="right">
-            <Button expandable ion-button color="danger" @click="clickDelete">
-              <Icon name="trash"></Icon>
-              Delete
-            </Button>
-          </ItemOptions>
-        </ItemSliding>
-        <ItemSliding>
-          <Item>
-            <Avatar slot="item-left">
-              <img src="http://placehold.it/36x36">
-            </Avatar>
-            <h2>按钮在右边</h2>
-            <p>⬅️ 滑动出现按钮，再滑动则执行</p>
-          </Item>
-
-          <ItemOptions side="right">
-            <Button expandable ion-button color="danger" @click="clickDelete">
-              <Icon name="trash"></Icon>
-              Delete
-            </Button>
-          </ItemOptions>
-        </ItemSliding>
-        <ItemSliding>
-          <Item>
-            <Avatar slot="item-left">
-              <img src="http://placehold.it/36x36">
-            </Avatar>
-            <h2>按钮在右边</h2>
-            <p>⬅️ 滑动出现按钮，再滑动则执行</p>
-          </Item>
-
-          <ItemOptions side="right">
-            <Button expandable ion-button color="danger" @click="clickDelete">
-              <Icon name="trash"></Icon>
-              Delete
-            </Button>
-          </ItemOptions>
-        </ItemSliding>
-        <ItemSliding>
-          <Item>
-            <Avatar slot="item-left">
-              <img src="http://placehold.it/36x36">
-            </Avatar>
-            <h2>按钮在右边</h2>
-            <p>⬅️ 滑动出现按钮，再滑动则执行</p>
-          </Item>
-
-          <ItemOptions side="right">
-            <Button expandable ion-button color="danger" @click="clickDelete">
-              <Icon name="trash"></Icon>
-              Delete
-            </Button>
-          </ItemOptions>
-        </ItemSliding>
-
-        <ItemSliding>
-          <Item>
-            <Avatar slot="item-left">
-              <img src="http://placehold.it/36x36">
-            </Avatar>
-            <h2>Icon在左边的</h2>
-            <p>⬅️ 滑动出现按钮</p>
-          </Item>
-
-          <ItemOptions side="right" icon-left>
-            <Button ion-button color="danger" @click="clickDelete">
-              <Icon name="trash"></Icon>
-              Delete
-            </Button>
-          </ItemOptions>
-        </ItemSliding>
+            <List>
+                <ListHeader>Demo填充数据</ListHeader>
+                <Item>1</Item>
+                <Item>1</Item>
+            </List>
 
 
-        <ItemSliding
-          @ionDrag="slidingDrag"
-          @ionSwipeLeft="slidingDragLeft"
-          @ionSwipeRight="slidingDragRight"
-          @ionSwipe="slidingSwipe">
-          <Item>
-            <Avatar slot="item-left">
-              <img src="http://placehold.it/36x36">
-            </Avatar>
-            <h2>事件监听</h2>
-            <p>↔️ 滑动出现按钮</p>
-          </Item>
-          <ItemOptions side="left">
-            <Button expandable ion-button color="danger" @click="clickDelete">
-              <Icon name="trash"></Icon>
-              Delete
-            </Button>
-          </ItemOptions>
-          <ItemOptions side="right">
-            <Button ion-button color="danger" @click="clickDelete">
-              <Icon name="trash"></Icon>
-              Delete
-            </Button>
-          </ItemOptions>
-        </ItemSliding>
+            <List>
+                <ListHeader>
+                    <span>SlidingList Demo</span>
+                </ListHeader>
+                <ItemSliding>
+                    <Item>
+                        <Avatar slot="item-left">
+                            <img src="http://placehold.it/36x36">
+                        </Avatar>
+                        <Label>
+                            <h2>两边都有按钮</h2>
+                            <p>试试 ↔️️ 都滑动</p>
+                        </Label>
+                    </Item>
+                    <ItemOptions side="left">
+                        <Button color="primary" @click="clickText">
+                            <Icon name="text"></Icon>
+                            <span>Text</span>
+                        </Button>
+                        <Button color="secondary" @click="clickCall">
+                            <Icon name="call"></Icon>
+                            <span>Call</span>
+                        </Button>
+                    </ItemOptions>
+                    <ItemOptions side="right">
+                        <Button color="primary" @click="clickEmail">
+                            <Icon name="mail"></Icon>
+                            <span>Email</span>
+                        </Button>
+                    </ItemOptions>
+                </ItemSliding>
+                <ItemSliding>
+                    <Item>
+                        <Avatar slot="item-left">
+                            <img src="http://placehold.it/36x36">
+                        </Avatar>
+                        <Label>
+                            <h2>按钮在右边</h2>
+                            <p>⬅️ 滑动出现按钮</p>
+                        </Label>
+                    </Item>
+                    <ItemOptions side="right">
+                        <Button color="primary" @click="clickEmail">
+                            <Icon name="mail"></Icon>
+                            <span>Email</span>
+                        </Button>
+                    </ItemOptions>
+                </ItemSliding>
+                <ItemSliding>
+                    <Item>
+                        <Avatar slot="item-left">
+                            <img src="http://placehold.it/36x36">
+                        </Avatar>
+                        <Label>
+                            <h2>按钮在左边</h2>
+                            <p>➡️ 滑动出现按钮</p>
+                        </Label>
+                    </Item>
+                    <ItemOptions side="left">
+                        <Button color="primary" @click="clickText">
+                            <Icon name="text"></Icon>
+                            <span>Text</span>
+                        </Button>
+                        <Button color="secondary" @click="clickCall">
+                            <Icon name="call"></Icon>
+                            <span>Call</span>
+                        </Button>
+                    </ItemOptions>
+                </ItemSliding>
+
+                <ItemSliding>
+                    <Item>
+                        <Avatar slot="item-left">
+                            <img src="http://placehold.it/36x36">
+                        </Avatar>
+                        <Label>
+                            <h2>按钮在右边</h2>
+                            <p>⬅️ 滑动出现按钮，再滑动则执行</p>
+                        </Label>
+                    </Item>
+
+                    <ItemOptions side="right">
+                        <Button expandable color="danger" @click="clickDelete">
+                            <Icon name="trash"></Icon>
+                            <span>Delete</span>
+                        </Button>
+                    </ItemOptions>
+                </ItemSliding>
+
+                <ItemSliding>
+                    <Item>
+                        <Avatar slot="item-left">
+                            <img src="http://placehold.it/36x36">
+                        </Avatar>
+                        <label>
+                            <h2>Icon在左边的</h2>
+                            <p>⬅️ 滑动出现按钮</p>
+                        </label>
+                    </Item>
+
+                    <ItemOptions side="right" icon-left>
+                        <Button color="danger" @click="clickDelete">
+                            <Icon name="trash"></Icon>
+                            <span>Delete</span>
+                        </Button>
+                    </ItemOptions>
+                </ItemSliding>
+            </List>
+
+            <List>
+                <ListHeader>测试</ListHeader>
+                <ItemSliding
+                        ref="itemSlidingComponent"
+                        @onDrag="slidingDrag"
+                        @onSwipeLeft="slidingDragLeft"
+                        @onSwipeRight="slidingDragRight"
+                        @onSwipe="slidingSwipe">
+                    <Item>
+                        <Avatar slot="item-left">
+                            <img src="http://placehold.it/36x36">
+                        </Avatar>
+                        <Label>
+                            <h2>事件监听</h2>
+                            <p>↔️ 滑动出现按钮</p>
+                        </Label>
+                    </Item>
+                    <ItemOptions side="left">
+                        <Button expandable color="danger" @click="clickDelete">
+                            <Icon name="trash"></Icon>
+                            <span>Delete</span>
+                        </Button>
+                    </ItemOptions>
+                    <ItemOptions side="right">
+                        <Button color="danger" @click="clickDelete">
+                            <Icon name="trash"></Icon>
+                            <span>Delete</span>
+                        </Button>
+                    </ItemOptions>
+                </ItemSliding>
+            </List>
+
+            <div text-center>
+                <p text-center>slidingPercent: {{slidingPercent}}</p>
+                <p text-center>openAmount: {{openAmount}}</p>
+                <Button @click="closeItem" outline small>closeItem</Button>
+                <Button @click="openRightOptions" outline small>openRightOptions</Button>
+                <Button @click="openLeftOptions" outline small>openLeftOptions</Button>
+                <Button @click="getSlidingPercent" outline small>getSlidingPercent</Button>
+                <Button @click="getOpenAmount" outline small>getOpenAmount</Button>
+            </div>
 
 
-      </List>
-    </Content>
-  </Page>
+            <List>
+                <ListHeader>Demo填充数据</ListHeader>
+                <Item>1</Item>
+                <Item>1</Item>
+                <Item>1</Item>
+                <Item>1</Item>
+                <Item>1</Item>
+                <Item>1</Item>
+                <Item>1</Item>
+                <Item>1</Item>
+                <Item>1</Item>
+                <Item>1</Item>
+                <Item>1</Item>
+            </List>
+        </Content>
+    </Page>
 </template>
 <style lang="scss">
 
@@ -195,10 +194,18 @@
   import { Label } from 'vimo/components/label'
   export default{
     data(){
-      return {}
+      return {
+        slidingPercent: 0,
+        openAmount: 0,
+
+      }
     },
     watch: {},
-    computed: {},
+    computed: {
+      itemSlidingComponent(){
+        return this.$refs.itemSlidingComponent
+      }
+    },
     methods: {
       clickText(){
         alert('clickText')
@@ -214,7 +221,11 @@
       },
       // 事件监听
       slidingDrag(ins){
-        console.log('正在拖动，但不知道方向')
+        if (ins.state === 8) {
+          console.log('正在拖动，向右滑动')
+        } else if (ins.state === 16) {
+          console.log('正在拖动，向左滑动')
+        }
       },
       slidingSwipe(ins){
         console.debug('触发了滑动的最大限度值，但不知道左右')
@@ -223,13 +234,33 @@
         console.debug('slidingDragLeft：向左滑动超过了swiper阈值');
       },
       slidingDragRight(ins){
-        console.debug('slidingDragRight：向右滑动超过了swiper阈值，出发后会执行自动关闭')
-        alert('已删除')
-        ins.close();
+        console.debug('slidingDragRight：向右滑动超过了swiper阈值，500ms后会执行自动关闭')
+        setTimeout(() => {
+          ins.close();
+        }, 500)
+      },
+
+      // 测试
+      closeItem(){
+        this.itemSlidingComponent.close()
+      },
+      openRightOptions(){
+        this.itemSlidingComponent.openRightOptions()
+      },
+      openLeftOptions(){
+        this.itemSlidingComponent.openLeftOptions()
+      },
+      getSlidingPercent(){
+        this.slidingPercent = this.itemSlidingComponent.getSlidingPercent()
+      },
+      getOpenAmount(){
+        this.openAmount = this.itemSlidingComponent.getOpenAmount()
       },
     },
     created() {},
-    mounted () {},
+    mounted () {
+      console.debug(this.itemSlidingComponent)
+    },
     activated () {},
     components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label}
   }

@@ -46,10 +46,10 @@ Vue.component(ToolbarTitle.name, ToolbarTitle)
 Vue.component(ToolbarButtons.name, ToolbarButtons)
 
 Vue.prototype.$actionSheet = ActionSheet
-Vue.prototype.$loading     = Loading
-Vue.prototype.$alert       = Alert
-Vue.prototype.$toast       = Toast
-Vue.prototype.$modal       = Modal
+Vue.prototype.$loading = Loading
+Vue.prototype.$alert = Alert
+Vue.prototype.$toast = Toast
+Vue.prototype.$modal = Modal
 
 new Vue({
   el: '#app',
