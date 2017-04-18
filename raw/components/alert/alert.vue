@@ -58,7 +58,6 @@
             </div>
         </transition>
     </div>
-
 </template>
 <style lang="scss">
     @import './alert.scss';

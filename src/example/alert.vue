@@ -15,12 +15,14 @@
         </Content>
     </Page>
 </template>
+<style scoped lang="scss">
+
+</style>
 <script type="text/ecmascript-6">
-  import list from "./list.vue"
   export default{
     data(){
       return {
-        a: 1
+        a: 1,
       }
     },
     watch: {},
@@ -349,8 +351,9 @@
     },
     activated () {
     },
-    deactivated(){}
+    deactivated(){},
+    components: {}
   }
 
 </script>
-<style lang="scss"></style>
+

@@ -137,8 +137,7 @@
    *  </Page>
    * </template>
    * */
-  import { transitionEnd } from '../../util/util'
-  import { parsePxUnit } from '../../util/util'
+  import { transitionEnd, parsePxUnit } from '../../util/util'
   import { ScrollView } from './scroll-view'
   export default{
     name: 'Content',

@@ -7,7 +7,6 @@
         </Header>
         <Content>
 
-
             <List>
                 <Item>
                     <Thumbnail slot="item-left">

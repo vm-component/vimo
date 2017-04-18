@@ -10,12 +10,18 @@
 <style lang="scss"></style>
 <script>
   /**
+   * @name ItemSliding
+   * @module Component/ItemSliding
+   * @description
+   *
+   * item滑动选择
+   *
    * 组件说明：
    * 对外事件：
-   * ionDrag - 拖动时触发
-   * ionSwipe - 滑动超过按钮最大距离+SWIPE_MARGIN时触发，不管方向
-   * ionSwipeRight - 向右滑动 超过按钮最大距离+SWIPE_MARGIN时触发
-   * ionSwipeLeft - 向左滑动 超过按钮最大距离+SWIPE_MARGIN时触发
+   * onDrag - 拖动时触发
+   * onSwipe - 滑动超过按钮最大距离+SWIPE_MARGIN时触发，不管方向
+   * onSwipeRight - 向右滑动 超过按钮最大距离+SWIPE_MARGIN时触发
+   * onSwipeLeft - 向左滑动 超过按钮最大距离+SWIPE_MARGIN时触发
    * */
   import { pointerCoord } from '../../util/util.js'
   const SWIPE_MARGIN = 30 * 2; // 触发swipe的值
@@ -41,20 +47,20 @@
     name: 'ItemSliding',
     data(){
       return {
-        itemInstance: null,// 子组件item的实例
-        openAmount: 0,// 开启值 number
-        startX: 0, // 初始的位置 number
-        optsWidthRightSide: 0, // 右边选项的宽度 number
-        optsWidthLeftSide: 0, // 左边选项的宽度 number
-        sides: 0, // 当前滑动的方向 ItemSideFlags的枚举值 标识options的left/right/both的状态
-        timer: null, // setTimeout的定时器 number 控制关闭时的class
-        leftOptions: null, // 左边的选项 实例
-        rightOptions: null, // 右边的选项 实例
-        optsDirty: true, // boolean true:还未计算options的宽度，false:已计算
-        state: SlidingState.Disabled, // 当前状态 SlidingState的枚举值
-        firstCoordX: 0, //number 记录点击开始的位置，用于计算速度
-        firstTimestamp: new Date().getTime(), //number 记录点击开始的时间，用于计算速度
-        activeClass: {}, // 根据滑动状态设置active的class类型
+        itemInstance: null,                     // 子组件item的实例
+        openAmount: 0,                          // 开启值 number
+        startX: 0,                              // 初始的位置 number
+        optsWidthRightSide: 0,                  // 右边选项的宽度 number
+        optsWidthLeftSide: 0,                   // 左边选项的宽度 number
+        sides: 0,                               // 当前滑动的方向 ItemSideFlags的枚举值 标识options的left/right/both的状态
+        timer: null,                            // setTimeout的定时器 number 控制关闭时的class
+        leftOptions: null,                      // 左边的选项 实例
+        rightOptions: null,                     // 右边的选项 实例
+        optsDirty: true,                        // boolean true:还未计算options的宽度，false:已计算
+        state: SlidingState.Disabled,           // 当前状态 SlidingState的枚举值
+        firstCoordX: 0,                         // number 记录点击开始的位置，用于计算速度
+        firstTimestamp: new Date().getTime(),   // number 记录点击开始的时间，用于计算速度
+        activeClass: {},                        // 根据滑动状态设置active的class类型
       }
     },
     props: {},
@@ -73,7 +79,7 @@
         console.log(startCood)
         this.firstCoordX = startCood.x;
         this.firstTimestamp = new Date().getTime();
-        this._startSliding(this.firstCoordX);
+        this.startSliding(this.firstCoordX);
         this.$eventBus && this.$eventBus.$emit('ionSlidingClose', this)
       },
 
@@ -84,7 +90,7 @@
       onDragMove(ev){
         // ev.preventDefault();
         let coordX = pointerCoord(ev).x;
-        this._moveSliding(coordX);
+        this.moveSliding(coordX);
       },
 
       /**
@@ -98,7 +104,7 @@
         if (deltaX === 0) {
           this.close();
         } else {
-          this._endSliding(deltaX / deltaT);
+          this.endSliding(deltaX / deltaT);
         }
       },
 
@@ -198,7 +204,7 @@
       /**
        * 初始化：获取子组件实例，ItemSideFlags状态变更
        * */
-      _init(){
+      init(){
         const _this = this;
         // 获取子组件实例
         let side = 0; // ItemSideFlags None=0
@@ -232,16 +238,12 @@
        * @private
        * @param {number} startX
        * */
-      _startSliding(startX) {
-        const _this = this;
-        if (_this.timer) {
-          window.clearTimeout(_this.timer);
-          _this.timer = null;
+      startSliding(startX) {
+        this.timer && window.clearTimeout(this.timer)
+        if (this.openAmount === 0) {
+          this._setState(SlidingState.Enabled)
         }
-        if (_this.openAmount === 0) {
-          _this._setState(SlidingState.Enabled);
-        }
-        _this.startX = startX + this.openAmount;
+        this.startX = startX + this.openAmount
       },
 
       /**
@@ -250,7 +252,7 @@
        * @param {number} x
        * @return {number}
        */
-      _moveSliding(x){
+      moveSliding(x){
         const _this = this;
         if (_this.optsDirty) {
           _this._calculateOptsWidth();
@@ -287,7 +289,7 @@
        * @param {number} velocity 移动速度(惯性)
        * @return {number}
        */
-      _endSliding(velocity){
+      endSliding(velocity){
         // 松手后的停留点
         let restingPoint = (this.openAmount > 0)
           ? this.optsWidthRightSide
@@ -431,15 +433,13 @@
     },
     mounted () {
       // 此时子组件才初始化完毕
-      this._init();
+      this.init();
     },
     destroyed(){
       // 组件中，activated和deactivated都不管用
       this.$eventBus && this.$eventBus.$off('ionSlidingClose');
     },
   }
-
-
 
   /**
    * 根据传入条件判断是否执行swipeReset
@@ -449,7 +449,7 @@
    * @param {boolean} isOnResetZone
    * @return {boolean}
    */
-  function swipeShouldReset(isResetDirection, isMovingFast, isOnResetZone) {
+  function swipeShouldReset (isResetDirection, isMovingFast, isOnResetZone) {
     // The logic required to know when the sliding item should close (openAmount=0)
     // depends on three booleans (isCloseDirection, isMovingFast, isOnCloseZone)
     // and it ended up being too complicated to be written manually without errors

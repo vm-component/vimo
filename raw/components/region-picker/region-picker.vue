@@ -223,18 +223,19 @@
 
       // 页面切换关闭picker, 清除dom残留
       dismissOnPageChangeHandler(){
-        document.querySelectorAll('body>.picker').forEach((node) => {
+        let nodes = document.querySelectorAll('body>.picker')
+        this.unreg && this.unreg()
+        nodes.forEach((node) => {
           let isHide = getComputedStyle(node).display === 'none'
           if (isHide) {
-            node.parentNode.removeChild(node);
+            node.parentNode.removeChild(node)
           } else {
-            this.picker && this.picker.hide()
+            !!this.picker && !!this.picker.hide && this.picker.hide();
             window.setTimeout(() => {
-              node.parentNode.removeChild(node);
-            }, 500)
+              node && node.parentNode && node.parentNode.removeChild && node.parentNode.removeChild(node)
+            }, 550)
           }
         })
-        this.unreg && this.unreg()
       }
     },
     created () {

@@ -14,6 +14,7 @@ export const isPresent = (val) => val !== undefined && val !== null;
 export const isBlank = (val) => val === undefined || val === null;
 export const isObject = (val) => typeof val === 'object';
 export const isArray = Array.isArray;
+export const isPlainObject = (val) => isObject(val) && Object.getPrototypeOf(val) == Object.prototype
 // 基础变量
 export const isPrimitive = function(val) {
   return isString(val) || isBoolean(val) || (isNumber(val) && !isNaN(val));
