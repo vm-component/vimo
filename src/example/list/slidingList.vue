@@ -121,11 +121,13 @@
                         </Button>
                     </ItemOptions>
                 </ItemSliding>
+
             </List>
 
             <List>
                 <ListHeader>测试</ListHeader>
                 <ItemSliding
+                        :disabled="disabled"
                         ref="itemSlidingComponent"
                         @onDrag="slidingDrag"
                         @onSwipeLeft="slidingDragLeft"
@@ -158,13 +160,14 @@
             <div text-center>
                 <p text-center>slidingPercent: {{slidingPercent}}</p>
                 <p text-center>openAmount: {{openAmount}}</p>
+                <p text-center>disabled: {{disabled}}</p>
                 <Button @click="closeItem" outline small>closeItem</Button>
                 <Button @click="openRightOptions" outline small>openRightOptions</Button>
                 <Button @click="openLeftOptions" outline small>openLeftOptions</Button>
                 <Button @click="getSlidingPercent" outline small>getSlidingPercent</Button>
                 <Button @click="getOpenAmount" outline small>getOpenAmount</Button>
+                <Button @click="disabled=!disabled" outline small>setDisabled</Button>
             </div>
-
 
             <List>
                 <ListHeader>Demo填充数据</ListHeader>
@@ -197,6 +200,7 @@
       return {
         slidingPercent: 0,
         openAmount: 0,
+        disabled: false,
 
       }
     },

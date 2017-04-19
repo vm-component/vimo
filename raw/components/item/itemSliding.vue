@@ -30,13 +30,13 @@
 
   const SWIPE_MARGIN = 30 * 2 // 触发swipe的值
   const ELASTIC_FACTOR = 0.55 // 0.55
-  const ItemSideFlags = {
+  const ITEM_SIDE_FLAGS = {
     None: 0,
     Left: 1,
     Right: 2,
     Both: 3,
   }
-  const SlidingState = {
+  const SLIDING_STATE = {
     Disabled: 2,
     Enabled: 4,
     Right: 8,
@@ -52,7 +52,6 @@
   const DIRECTION_DOWN = 16
 
   const MAX_DELTAX = 20
-  let startCood
 
   export default{
     name: 'ItemSliding',
@@ -76,15 +75,15 @@
         unregister: null,                       // itemComponent组件关闭动画的解绑函数
 
         optsDirty: true,                        // boolean true:还未计算options的宽度，false:已计算
-        state: SlidingState.Disabled,           // 滑动程度及状态
+        state: SLIDING_STATE.Disabled,           // 滑动程度及状态
         firstCoord: 0,                          // {x,y} 记录点击开始的位置，用于计算速度
         firstTimestamp: new Date().getTime(),   // number 记录点击开始的时间，用于计算速度
         activeClass: {},                        // 根据滑动状态设置active的class类型
       }
     },
-    props: {},
-    watch: {},
-    computed: {},
+    props: {
+      disabled: [Boolean]
+    },
     methods: {
 
       /**
@@ -116,7 +115,7 @@
        * */
       openLeftOptions(ins = this){
         if (ins === this && !!this.leftOptions) {
-          if (this.state === SlidingState.Left || this.state === SlidingState.SwipeLeft) {
+          if (this.state === SLIDING_STATE.Left || this.state === SLIDING_STATE.SwipeLeft) {
             return
           }
           this.activeClass = {
@@ -125,7 +124,6 @@
           this.$nextTick(() => {
             if (this.optsDirty) {
               this.calculateOptsWidth()
-              return
             }
             if (this.optsWidthLeftSide > 0) {
               this.setOpenAmount(-this.optsWidthLeftSide, false)
@@ -140,17 +138,15 @@
        * */
       openRightOptions(ins = this){
         if (ins === this && !!this.rightOptions) {
-          if (this.state === SlidingState.Right || this.state === SlidingState.SwipeRight) {
+          if (this.state === SLIDING_STATE.Right || this.state === SLIDING_STATE.SwipeRight) {
             return
           }
-
           this.activeClass = {
             'active-slide': true,
           }
           this.$nextTick(() => {
             if (this.optsDirty) {
               this.calculateOptsWidth()
-              return
             }
             if (this.optsWidthRightSide > 0) {
               this.setOpenAmount(this.optsWidthRightSide, false)
@@ -164,7 +160,7 @@
        * */
       close() {
         // 关闭的条件：必须是开启状态，并且不是disable状态
-        if (Math.abs(this.openAmount) > 0 && this.state !== SlidingState.Disabled) {
+        if (Math.abs(this.openAmount) > 0 && this.state !== SLIDING_STATE.Disabled) {
           this.setOpenAmount(0, true)
         }
       },
@@ -177,11 +173,11 @@
        * @param {any} ev
        */
       onDragStart(ev){
-        startCood = pointerCoord(ev)
-        this.firstCoord = startCood
+        if(this.disabled) return
+        this.firstCoord = pointerCoord(ev)
         this.firstTimestamp = new Date().getTime()
         this.startSliding(this.firstCoord.x)
-        this.$eventBus && this.$eventBus.$emit('onSlidingClose', this)
+        this.$eventBus && this.$eventBus.$emit('onItemSlidingOpen', this)
       },
 
       /**
@@ -190,6 +186,7 @@
        * @param {any} ev
        */
       onDragMove(ev){
+        if(this.disabled) return
         let coordX = pointerCoord(ev).x
         if (this.isDragging && this.isDraggingConfirm) {
           ev.preventDefault()
@@ -213,6 +210,7 @@
        * @param {any} ev
        */
       onDragEnd(ev){
+        if(this.disabled) return
         let coordX = pointerCoord(ev).x
         let deltaX = (coordX - this.firstCoord.x)
         let deltaT = (Date.now() - this.firstTimestamp)
@@ -259,7 +257,7 @@
        * */
       init(){
         // 获取子组件实例
-        let side = 0 // ItemSideFlags None=0
+        let side = 0 // ITEM_SIDE_FLAGS None=0
         this.$children.forEach((item) => {
           if (item.$options._componentTag.toLowerCase() === 'item') {
             this.itemComponent = item
@@ -273,12 +271,12 @@
             side |= this.getSides(item)
           }
         })
-        // ItemSideFlags 的状态记录
+        // ITEM_SIDE_FLAGS 的状态记录
         this.sides = side // option的可滑动方向 none:0 left:1 right:2 both:3
         this.optsDirty = true
 
         //  事件注册
-        this.$eventBus && this.$eventBus.$on('onSlidingClose', (ins) => {
+        this.$eventBus && this.$eventBus.$on('onItemSlidingOpen', (ins) => {
           if (this !== ins) {
             this.close()
           }
@@ -298,7 +296,7 @@
       startSliding(startX) {
         this.unregister && this.unregister()
         if (this.openAmount === 0) {
-          this.setState(SlidingState.Enabled)
+          this.setState(SLIDING_STATE.Enabled)
         }
         this.startX = startX + this.openAmount
       },
@@ -318,18 +316,18 @@
         }
         let openAmount = (this.startX - x)
         switch (this.sides) {
-          case ItemSideFlags.Right:
+          case ITEM_SIDE_FLAGS.Right:
             openAmount = Math.max(0, openAmount)
             break
-          case ItemSideFlags.Left:
+          case ITEM_SIDE_FLAGS.Left:
             openAmount = Math.min(0, openAmount)
             break
-          case ItemSideFlags.Both:
+          case ITEM_SIDE_FLAGS.Both:
             break
-          case ItemSideFlags.None:
+          case ITEM_SIDE_FLAGS.None:
             return
           default:
-            console.assert(false, 'invalid ItemSideFlags value')
+            console.assert(false, 'invalid ITEM_SIDE_FLAGS value')
             break
         }
 
@@ -400,9 +398,9 @@
        * */
       getSides(ins) {
         if (ins.side === 'left') {
-          return ItemSideFlags.Left
+          return ITEM_SIDE_FLAGS.Left
         } else {
-          return ItemSideFlags.Right
+          return ITEM_SIDE_FLAGS.Right
         }
       },
 
@@ -420,15 +418,15 @@
         } else {
           if (openAmount > 0) {
             let state = (openAmount >= (this.optsWidthRightSide + SWIPE_MARGIN))
-              ? SlidingState.Right | SlidingState.SwipeRight
-              : SlidingState.Right
+              ? SLIDING_STATE.Right | SLIDING_STATE.SwipeRight
+              : SLIDING_STATE.Right
 
             this.setState(state)
 
           } else if (openAmount < 0) {
             let state = (openAmount <= (-this.optsWidthLeftSide - SWIPE_MARGIN))
-              ? SlidingState.Left | SlidingState.SwipeLeft
-              : SlidingState.Left
+              ? SLIDING_STATE.Left | SLIDING_STATE.SwipeLeft
+              : SLIDING_STATE.Left
 
             this.setState(state)
           }
@@ -438,7 +436,7 @@
           this.unregister && this.unregister()
 
           this.unregister = transitionEnd(this.itemComponent.$el, () => {
-            this.setState(SlidingState.Disabled)
+            this.setState(SLIDING_STATE.Disabled)
             this.unregister = null
           })
 
@@ -452,16 +450,16 @@
 
       /**
        * @private
-       * @param {SlidingState} state
+       * @param {SLIDING_STATE} state
        * */
       setState  (state) {
         if (state === this.state) return
         this.activeClass = {
-          'active-slide': (state !== SlidingState.Disabled),
-          'active-options-right': !!(state & SlidingState.Right),
-          'active-options-left': !!(state & SlidingState.Left),
-          'active-swipe-right': !!(state & SlidingState.SwipeRight),
-          'active-swipe-left': !!(state & SlidingState.SwipeLeft)
+          'active-slide': (state !== SLIDING_STATE.Disabled),
+          'active-options-right': !!(state & SLIDING_STATE.Right),
+          'active-options-left': !!(state & SLIDING_STATE.Left),
+          'active-swipe-right': !!(state & SLIDING_STATE.SwipeRight),
+          'active-swipe-left': !!(state & SLIDING_STATE.SwipeLeft)
         }
         this.state = state
       },
@@ -483,10 +481,10 @@
        * @param {number} val
        * */
       fireSwipeEvent() {
-        if (this.state & SlidingState.SwipeRight) {
+        if (this.state & SLIDING_STATE.SwipeRight) {
           this.$emit('onSwipe', this)
           this.$emit('onSwipeLeft', this)
-        } else if (this.state & SlidingState.SwipeLeft) {
+        } else if (this.state & SLIDING_STATE.SwipeLeft) {
           this.$emit('onSwipe', this)
           this.$emit('onSwipeRight', this)
         }
@@ -495,10 +493,6 @@
     mounted () {
       // 此时子组件才初始化完毕
       this.init()
-    },
-    destroyed(){
-      // 组件中，activated和deactivated都不管用
-      this.$eventBus && this.$eventBus.$off('onSlidingClose')
     }
   }
 
