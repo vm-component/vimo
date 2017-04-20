@@ -37,12 +37,12 @@
     Both: 3,
   }
   const SLIDING_STATE = {
-    Disabled: 2,
-    Enabled: 4,
-    Right: 8,
-    Left: 16,
-    SwipeRight: 32,
-    SwipeLeft: 64,
+    Disabled: 2,            // 关闭状态
+    Enabled: 4,             // 滑动状态, 不清楚方向和程度
+    Right: 8,               // 向右滑动
+    Left: 16,               // 向左滑动
+    SwipeRight: 32,         // 向右滑动且滑动距离大
+    SwipeLeft: 64,          // 向左滑动且滑动距离大
   }
 
   const DIRECTION_NONE = 1
@@ -59,6 +59,7 @@
       return {
         isDragging: false,                      // 是否正在滑动
         isDraggingConfirm: false,               // 单次滚动方向确认
+        isDraggingFromStart: false,
 
         itemComponent: null,                     // 父组件Item的实例
         ListComponent: null,                     // 父组件List的实例
@@ -169,15 +170,35 @@
 
       /**
        * @private
+       * 判断是否能拖动
+       * */
+      canDrag(){
+        if (this.disabled) return false
+
+        // debug
+        if (this.openAmount === 0 && this.state === SLIDING_STATE.Disabled) {
+          this.unregister && this.unregister()
+          this.unregister = null
+        }
+
+        if (this.unregister) return false
+
+        return true
+      },
+
+      /**
+       * @private
        * onDragStart
        * @param {any} ev
        */
       onDragStart(ev){
-        if(this.disabled) return
+        if (!this.canDrag()) return
         this.firstCoord = pointerCoord(ev)
         this.firstTimestamp = new Date().getTime()
         this.startSliding(this.firstCoord.x)
         this.$eventBus && this.$eventBus.$emit('onItemSlidingOpen', this)
+
+        this.isDraggingFromStart = true
       },
 
       /**
@@ -186,7 +207,7 @@
        * @param {any} ev
        */
       onDragMove(ev){
-        if(this.disabled) return
+        if (!this.canDrag()) return
         let coordX = pointerCoord(ev).x
         if (this.isDragging && this.isDraggingConfirm) {
           ev.preventDefault()
@@ -210,7 +231,7 @@
        * @param {any} ev
        */
       onDragEnd(ev){
-        if(this.disabled) return
+        if (!this.canDrag()) return
         let coordX = pointerCoord(ev).x
         let deltaX = (coordX - this.firstCoord.x)
         let deltaT = (Date.now() - this.firstTimestamp)
@@ -221,6 +242,7 @@
         }
         this.isDragging = false
         this.isDraggingConfirm = false
+        this.isDraggingFromStart = false
       },
 
       /**
@@ -294,7 +316,11 @@
        * @param {number} startX
        * */
       startSliding(startX) {
-        this.unregister && this.unregister()
+        if (this.unregister) {
+          this.unregister()
+          this.unregister = null
+        }
+
         if (this.openAmount === 0) {
           this.setState(SLIDING_STATE.Enabled)
         }
@@ -411,7 +437,11 @@
        * @param {boolean} isFinal - 是否关闭
        * */
       setOpenAmount(openAmount, isFinal) {
-        this.unregister && this.unregister()
+        if (this.unregister) {
+          this.unregister()
+          this.unregister = null
+        }
+
         this.openAmount = openAmount
         if (isFinal) {
           this.setItemTransformX(0)
@@ -433,8 +463,13 @@
         }
 
         if (openAmount === 0) {
-          this.unregister && this.unregister()
+          if (this.unregister) {
+            this.unregister()
+            this.unregister = null
+          }
 
+          // 动画过程禁止点击操作
+          this.$app && this.$app.setEnabled(false, 400)
           this.unregister = transitionEnd(this.itemComponent.$el, () => {
             this.setState(SLIDING_STATE.Disabled)
             this.unregister = null
