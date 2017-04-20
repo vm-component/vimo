@@ -47,17 +47,6 @@
   import { ListHeader, ItemGroup, Item } from 'vimo/components/item'
   export default {
     name: 'app-root',
-    data () {
-      return {}
-    },
-    computed: {},
-    methods: {
-
-    },
-    created(){},
-    mounted(){
-
-    },
     components: {
       Menus, List, ListHeader, ItemGroup, Item
     }

@@ -4,12 +4,12 @@
  */
 import { setupConfig } from './base/config'
 import { setupPlatform } from './base/platform'
-import { NavContorller } from './components/nav-controller'
 // Core
 import { App, Footer, Header } from './components/app'
 import { Content } from './components/content'
-import { Page } from './components/page'
 import { Nav } from './components/nav'
+import { NavContorller } from './components/nav-controller'
+import { Page } from './components/page'
 
 // promise polyfill
 require('es6-promise').polyfill()
@@ -20,10 +20,10 @@ if (!('remove' in Element.prototype)) {
     this.parentNode.removeChild(this)
   }
 }
-
+const VERSION = '0.3.2'
 export default {
   installed: false,
-  version: '0.3.2',
+  version: VERSION,
   install (Vue, options = {}) {
 
     // init base (config/platform)
