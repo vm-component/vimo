@@ -60,7 +60,6 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam, ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
 
-
             <section slot="fixedBottom" class="stateBar">
                 <Grid no-padding>
                     <Row no-padding v-if="ev">
