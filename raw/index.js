@@ -20,6 +20,8 @@ if (!('remove' in Element.prototype)) {
     this.parentNode.removeChild(this)
   }
 }
+
+
 const VERSION = '0.3.2'
 export default {
   installed: false,

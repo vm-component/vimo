@@ -5,7 +5,7 @@
         <Title>NoLine</Title>
       </Navbar>
     </Header>
-    <Content>
+    <Content class="outer-content">
       <List no-lines>
         <Item button v-for="(item,index) in list" :key="index">
           {{item}}

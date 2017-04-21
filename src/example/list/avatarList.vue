@@ -5,14 +5,14 @@
                 <Title>AvatarList</Title>
             </Navbar>
         </Header>
-        <Content class="list-avatar-page">
+        <Content class="list-avatar-page outer-content" >
             <List>
                 <ListHeader>
                     <span>today</span>
                 </ListHeader>
                 <Item>
                     <Avatar slot="item-left">
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+                        <img src="./img/avatar-ts-woody.png">
                     </Avatar>
                     <Label>
                         <h2>Woody</h2>
@@ -22,7 +22,7 @@
                 </Item>
                 <Item>
                     <Avatar slot="item-left">
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-buzz.png">
+                        <img src="./img/avatar-ts-buzz.png">
                     </Avatar>
                     <Label>
                         <h2>Buzz Lightyear</h2>
@@ -38,7 +38,7 @@
                 </ListHeader>
                 <Item>
                     <Avatar slot="item-left">
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-hamm.png">
+                        <img src="./img/avatar-ts-hamm.png">
                     </Avatar>
                     <Label>
                         <h2>Hamm</h2>
@@ -48,7 +48,7 @@
                 </Item>
                 <Item>
                     <Avatar slot="item-left">
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-slinky.png">
+                        <img src="./img/avatar-ts-slinky.png">
                     </Avatar>
                     <Label><h2>Slinky Dog</h2>
                         <p>I may not be a smart dog, but I know what roadkill is.</p></Label>

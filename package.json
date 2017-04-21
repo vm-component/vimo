@@ -16,6 +16,7 @@
     "better-picker": "^1.1.2",
     "es6-promise": "^4.1.0",
     "fastclick": "^1.0.6",
+    "lodash.throttle": "^4.1.1",
     "vue": "^2.2.2",
     "vue-router": "^2.2.0"
   },

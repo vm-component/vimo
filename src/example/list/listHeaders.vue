@@ -5,7 +5,7 @@
         <Title>ListHeaders</Title>
       </Navbar>
     </Header>
-    <Content>
+    <Content class="outer-content">
       <List>
         <ListHeader>
           Action-1

@@ -349,6 +349,14 @@ const routes = [
     }
   },
   {
+    path: '/reorder',
+    name: 'list.reorder',
+    component  (resolve) {
+      require(['@/example/list/reorder.vue'], resolve)
+    }
+  },
+
+  {
     path: '/thumbnailList',
     name: 'list.thumbnailList',
     component  (resolve) {

@@ -5,7 +5,7 @@
         <Title>InsetList</Title>
       </Navbar>
     </Header>
-    <Content>
+    <Content class="outer-content">
       <List inset>
         <Item button v-for="(item,index) in list" :key="index">
           {{item}}

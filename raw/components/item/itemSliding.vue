@@ -181,7 +181,9 @@
           this.unregister = null
         }
 
-        if (this.unregister) return false
+        if (!!this.unregister) return false
+
+        if (!this.isDraggingFromStart) return false
 
         return true
       },
@@ -192,7 +194,6 @@
        * @param {any} ev
        */
       onDragStart(ev){
-        if (!this.canDrag()) return
         this.firstCoord = pointerCoord(ev)
         this.firstTimestamp = new Date().getTime()
         this.startSliding(this.firstCoord.x)
@@ -231,7 +232,6 @@
        * @param {any} ev
        */
       onDragEnd(ev){
-        if (!this.canDrag()) return
         let coordX = pointerCoord(ev).x
         let deltaX = (coordX - this.firstCoord.x)
         let deltaT = (Date.now() - this.firstTimestamp)

@@ -5,33 +5,33 @@
         <Title>IconList</Title>
       </Navbar>
     </Header>
-    <Content>
+    <Content class="outer-content">
       <List>
         <ListHeader>
-          classes
+          <span>classes</span>
         </ListHeader>
 
         <Item>
           <Icon name="planet" slot="item-left"></Icon>
-          Astronomy
+          <Label>Astronomy</Label>
           <Note slot="item-right">To the moon</Note>
         </Item>
 
         <Item>
           <Icon name="body" slot="item-left"></Icon>
-          Muggle Studies
+          <Label>Muggle Studies</Label>
           <Toggle slot="item-right" :checked="false"></Toggle>
         </Item>
 
         <Item>
           <Icon name="leaf" slot="item-left"></Icon>
-          Herbology
+          <Label>Herbology</Label>
           <Icon name="rose" slot="item-right"></Icon>
         </Item>
 
         <Item>
           <Icon name="flask" slot="item-left"></Icon>
-          Potions
+          <label>Potions</label>
           <Button slot="item-right" outline color="primary">Btn</Button>
         </Item>
 
@@ -39,9 +39,7 @@
     </Content>
   </Page>
 </template>
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
 <script type="text/ecmascript-6">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'

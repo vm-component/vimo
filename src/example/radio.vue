@@ -70,9 +70,6 @@
     </Page>
 </template>
 <style lang="scss">
-    .main {
-
-    }
 </style>
 <script type="text/ecmascript-6">
   import { List } from 'vimo/components/list'

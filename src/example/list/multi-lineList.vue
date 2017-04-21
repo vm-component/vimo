@@ -5,7 +5,7 @@
                 <Title>Multi-lineList</Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content class="outer-content">
             <List>
                 <ListHeader>
                     today
@@ -13,17 +13,18 @@
                 </ListHeader>
                 <Item>
                     <Avatar slot="item-left">
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+                        <img src="./img/avatar-ts-woody.png">
                     </Avatar>
                     <Label>
                         <h2>Woody</h2>
                         <h3>Hello world</h3>
+                        <h4>This is third line</h4>
                         <p>This town ain't big enough for the two of us!</p>
                     </Label>
                 </Item>
                 <Item>
                     <Avatar slot="item-left">
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-buzz.png">
+                        <img src="./img/avatar-ts-buzz.png">
                     </Avatar>
                     <Label>
                         <h2>Buzz Lightyear</h2>
@@ -40,7 +41,7 @@
                 </ListHeader>
                 <Item>
                     <Avatar slot="item-left">
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-hamm.png">
+                        <img src="./img/avatar-ts-hamm.png">
                     </Avatar>
                     <Label>
                         <h2>Hamm</h2>
@@ -50,7 +51,7 @@
                 </Item>
                 <Item>
                     <Avatar slot="item-left">
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-slinky.png">
+                        <img src="./img/avatar-ts-slinky.png">
                     </Avatar>
                     <Label>
                         <h2>Slinky Dog</h2>

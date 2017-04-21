@@ -5,7 +5,7 @@
                 <Title>ListForAll</Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content class="outer-content">
             <List>
                 <!--header-->
                 <ListHeader>

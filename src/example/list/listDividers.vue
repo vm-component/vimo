@@ -5,7 +5,7 @@
         <Title>ListDividers</Title>
       </Navbar>
     </Header>
-    <Content>
+    <Content class="outer-content">
       <ItemGroup>
         <ItemDivider color="light">A</ItemDivider>
         <Item>Angola</Item>

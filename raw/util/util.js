@@ -258,6 +258,9 @@ export function hasPointerMoved (threshold, startCoord, endCoord) {
   return false
 }
 
+
+
+
 /**
  * 判断元素是否在激活状态, 比如input
  * @param {HTMLElement} ele - 元素

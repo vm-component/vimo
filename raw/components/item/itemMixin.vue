@@ -17,19 +17,27 @@
 
             <!--以下组件显示在此处：[item-right],ion-radio,ion-toggle-->
             <slot name="item-right"></slot>
-            <!--<ion-reorder *ngIf="_shouldHaveReorder"></ion-reorder>-->
+            <!--<section class="ion-reorder"-->
+                     <!--v-show="shouldHaveReorder">-->
+                <!--<Icon name="reorder"></Icon>-->
+            <!--</section>-->
         </div>
         <!--<div class="button-effect"></div>-->
     </div>
 </template>
 <style lang="scss"></style>
 <script>
-  import { isTrueProperty } from '../../util/util'
+  import { isTrueProperty, isPresent } from '../../util/util'
+  import { Icon } from '../icon'
+
+  //  import {Reorder} from
   export default{
     data(){
       return {
         isInMenu: false, // 判断是否在menu组件中, 如果在menu中, 则
         labelComponent: null,
+
+        shouldHaveReorder: false, //
       }
     },
     props: {
@@ -117,13 +125,9 @@
         })
       }
 
+//      this.shouldHaveReorder = isPresent(this.$parent.reorder)
 
-
-
-
-
-//      labelComponent
-
-    }
+    },
+    components: {Icon}
   }
 </script>

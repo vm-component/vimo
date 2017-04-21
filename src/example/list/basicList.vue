@@ -5,7 +5,7 @@
                 <Title>BasicList</Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content class="outer-content">
             <List>
                 <Item button v-for="(item,index) in list" :key="index">
                     {{item}}
@@ -14,9 +14,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
 <script type="text/ecmascript-6">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'

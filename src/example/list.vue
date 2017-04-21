@@ -5,7 +5,7 @@
                 <Title>List</Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content class="outer-content">
             <List>
                 <!--header-->
                 <ListHeader>
@@ -24,8 +24,8 @@
                     <Item button :to="{name:'list.avatarList'}">AvatarList</Item>
                     <Item button :to="{name:'list.multi-lineList'}">Multi-lineList</Item>
                     <Item button :to="{name:'list.slidingList'}">SlidingList</Item>
+                    <Item button :to="{name:'list.reorder'}">Reorder</Item>
                     <Item button :to="{name:'list.thumbnailList'}">ThumbnailList</Item>
-
                 </ItemGroup>
             </List>
         </Content>

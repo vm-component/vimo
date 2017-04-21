@@ -5,12 +5,12 @@
                 <Title>ThumbnailList</Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content class="outer-content">
 
             <List>
                 <Item>
                     <Thumbnail slot="item-left">
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-totoro.png">
+                        <img src="./img/thumbnail-totoro.png">
                     </Thumbnail>
                     <Label>
                         <h2>My Neighbor Totoro</h2>
@@ -20,7 +20,7 @@
                 </Item>
                 <Item>
                     <Thumbnail slot="item-left">
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-rotla.png">
+                        <img src="./img/thumbnail-rotla.png">
                     </Thumbnail>
                     <Label>
                         <h2>My Neighbor Totoro</h2>
