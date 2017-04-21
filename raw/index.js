@@ -21,7 +21,6 @@ if (!('remove' in Element.prototype)) {
   }
 }
 
-
 const VERSION = '0.3.2'
 export default {
   installed: false,

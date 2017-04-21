@@ -133,7 +133,6 @@
 
     },
     mounted () {
-      console.debug(this.$history)
       this.refreshContentDimensions();
       this.content.$on('onScroll', (ev) => {
         console.debug('--------------')

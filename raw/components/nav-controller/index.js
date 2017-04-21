@@ -57,6 +57,7 @@ export class NavContorller {
 
   // -------- private --------
   /**
+   * @private
    * push to history
    * */
   _pushHistory (Vue, {to, from, next}) {
@@ -72,6 +73,7 @@ export class NavContorller {
   }
 
   /**
+   * @private
    * pop history record
    * */
   _popHistory (Vue, {to, from, next}) {
@@ -97,6 +99,7 @@ export class NavContorller {
   }
 
   /**
+   * @private
    * 判断是否是主页面的切换
    * 默认主页面为第一级:
    * /#/page1
