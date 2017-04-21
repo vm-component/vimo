@@ -7,18 +7,18 @@ export default {
   ios: {
     settings: {
       statusbarPadding: false,
-      pageTransition: 'ios-transition',  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+      pageTransition: 'ios-transition'  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     }
   },
   android: {
     settings: {
       statusbarPadding: false,
-      pageTransition: 'zoom-transition', // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+      pageTransition: 'zoom-transition' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     }
   },
   wechat: {
     settings: {
-      hideNavBar: true,
+      hideNavBar: true
     },
     onBridgeReady(plt){
 
@@ -52,22 +52,25 @@ export default {
   },
   alipay: {
     settings: {
-      hideNavBar: true,
+      hideNavBar: true
+    },
+    onBridgeReady(plt){
+      console.debug('alipay onBridgeReady')
     }
   },
   dingtalk: {
     settings: {
-      hideNavBar: true,
-    },
+      hideNavBar: true
+    }
   },
   qq: {
     settings: {
-      hideNavBar: true,
-    },
+      hideNavBar: true
+    }
   },
   dtdream: {
     settings: {
-      hideNavBar: true,
-    },
-  },
+      hideNavBar: true
+    }
+  }
 }

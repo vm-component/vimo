@@ -1,18 +1,24 @@
 <template>
-  <footer class="ion-footer footer" :class="[modeClass]">
-    <slot></slot>
-  </footer>
+    <footer class="ion-footer footer" :class="[modeClass,{'hide-bar':isHide}]">
+        <slot></slot>
+    </footer>
 </template>
 <style lang="scss">
-  @import "../../themes/globals";
-  .ion-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: $z-index-toolbar;
-    display: block;
-    width: 100%;
-  }
+    @import "../../themes/globals";
+
+    .ion-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: $z-index-toolbar;
+        display: block;
+        width: 100%;
+        transition: -webkit-transform ease 300ms;
+    }
+
+    .ion-footer.hide-bar {
+        transform: translateY(100%);
+    }
 </style>
 <script>
   /**
@@ -40,5 +46,38 @@
         return `footer-${this.mode}`
       },
     },
+
+    data(){
+      return {
+        // -------- public --------
+        isHide: false,
+
+      }
+    },
+    methods: {
+      // -------- public --------
+      /**
+       * 隐藏header
+       * */
+      hide(){
+        this.isHide = true
+      },
+
+      /**
+       * 显示header
+       * */
+      show(){
+        this.isHide = false
+      },
+
+      toggle(){
+        this.isHide = !this.isHide
+      },
+
+      setStyle(style){
+
+      },
+
+    }
   }
 </script>

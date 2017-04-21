@@ -1,149 +1,46 @@
 <template>
     <Page>
         <Header>
-            <Navbar color="primary">
+            <Navbar>
                 <Title ref="title">Content</Title>
-
-                <!--start-->
-                <Buttons start slot="button">
-                    <Button icon-only role="bar-button">
-                        <Icon class="icon" name="contact"></Icon>
-                    </Button>
-                </Buttons>
-                <Buttons start slot="button">
-                    <Button icon-only role="bar-button">
-                        <Icon class="icon" name="search"></Icon>
-                    </Button>
-                </Buttons>
-                <!--start-->
-                <Buttons end slot="button">
-                    <Button icon-only role="bar-button">
-                        <Icon class="icon" name="more"></Icon>
-                    </Button>
-                </Buttons>
             </Navbar>
-            <Toolbar color="primary">
-                <!--content-->
-                <Segment v-model="relationship9" color="light">
-                    <SegmentButton value="friend1"> friend1</SegmentButton>
-                    <SegmentButton value="friend2"> friend2</SegmentButton>
-                    <SegmentButton value="friend3">friend3</SegmentButton>
-                </Segment>
-            </Toolbar>
         </Header>
+        <Content class="outer-content">
+            <div padding>
+                <p>
+                    Content组件是Vimo的基础布局组件, 属于三明治结构的中间层, 承接业务展示的部分. 其中, Header/Footer分别为基础布局的头和尾.
+                </p>
 
-        <Content :fullscreen="fullscreenVal" padding ref="content">
-            <h1>这个是 h1 标签</h1>
-            <h2>这个是 h2 标签</h2>
-            <h3>这个是 h3 标签</h3>
-            <h4>这个是 h4 标签</h4>
-            <h5>这个是 h5 标签</h5>
-            <p>这个是 p 标签</p>
-            <span>这个是 span 标签</span>
-            <a href="http://xiangsongtao.com" target="_blank">跳转到我的首页</a>
+                <p>
+                    默认情况下, Content组件使用的原生scroll, 因此对组件监听: onScroll/onScrollStart/onScrollEnd 这三个事件
+                    可以定制业务务求.
+                </p>
 
-            <!--<h3 slot="fixedTop" text-center>这里插播一条广告</h3>-->
-            <!--<h3 slot="fixedBottom" text-center>可以把我当成歌词</h3>-->
+                <p>
+                    另外, Content组件也支持JsScroll, 这部分使用的IScroll插件(正在开发).
+                </p>
 
-            <p>Vimo的页面结构分为三明治结构的, Content就在中间, 业务部分的页面内容就是在此完成的，除去Header部分到最下面都是content的内容.
-      </p>
+            </div>
 
-            <p>
-                包括固定部分(fixedContent)和可滚动部分(scrollContent)，scrollContent为默认的内容放置区域，fixedContent需要使用slot命名插槽：fixed
-              </p>
-
-
-            <h4>这个是标题</h4>
-
-            <Button block @click="setTitle('Hello Vue')">点击设置Title='Hello Vue'</Button>
-            <Button block @click="$history.toRoot()">返回首页</Button>
-
-            <Button block @click="scrollToBottom()">滚动到底部</Button>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-
-            <Button block @click="scrollToTop()">返回顶部</Button>
-
-            <p>{{contentDimensions}}</p>
-            <Button block @click="refreshContentDimensions()">点击更新Content尺寸</Button>
-
+            <List>
+                <ListHeader>Character</ListHeader>
+                <Item button :to="{name:'contentContext'}">文本</Item>
+                <Item button :to="{name:'contentFixed'}">内容固定</Item>
+                <Item button :to="{name:'contentFullscreen'}">全屏模式</Item>
+                <Item button :to="{name:'contentHideBars'}">隐藏头尾Bar</Item>
+                <Item button :to="{name:'contentScroll'}">滚动内容</Item>
+                <Item button :to="{name:'contentSetBarStyle'}">设置Bar的样式</Item>
+            </List>
         </Content>
-
-        <Footer>
-            <Toolbar>
-                <Title>Footer</Title>
-            </Toolbar>
-        </Footer>
-
     </Page>
 </template>
-<style scoped lang="scss">
-</style>
-<script type="text/ecmascript-6">
-  import { Segment, SegmentButton } from 'vimo/components/segment'
+<style scoped lang="scss"></style>
+<script>
+  import { List } from 'vimo/components/list'
+  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   export default{
-    data(){
-      return {
-        fullscreenVal: false,
-        contentDimensions: null,
-        scrollDimensions: null,
-        relationship9: 'friend1'
-      }
-    },
-    watch: {},
-    computed: {
-      content(){
-        return this.$refs.content
-      },
-      title(){
-        return this.$refs.title
-      },
-    },
-    methods: {
-      setTitle(val){
-        this.title.setTitle(val)
-      },
-      scrollToTop () {
-        this.content.scrollToTop();
-      },
-      scrollToBottom () {
-        this.content.scrollToBottom();
-      },
-      refreshContentDimensions(){
-        return this.contentDimensions = this.content.getContentDimensions()
-      }
-    },
-    created () {
-
-    },
-    mounted () {
-      this.refreshContentDimensions();
-      this.content.$on('onScroll', (ev) => {
-        console.debug('--------------')
-        console.debug('onScroll')
-        console.log('scrollTop:' + ev.scrollTop)
-        console.log('directionY:' + ev.directionY)
-      })
-
-    },
-    activated () {
-    },
-    components: {Segment, SegmentButton}
+    components: {
+      List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
+    }
   }
 </script>

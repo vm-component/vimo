@@ -1,7 +1,10 @@
 /**
  * 路由配置表
  * */
-const routes = [
+
+import contentChidren from './route-content'
+
+let routes = [
   // index
   {
     path: '/',
@@ -57,13 +60,7 @@ const routes = [
       require(['@/example/app.vue'], resolve)
     }
   },
-  {
-    path: '/content',
-    name: 'content',
-    component  (resolve) {
-      require(['@/example/content.vue'], resolve)
-    }
-  },
+
   {
     path: '/toolbar',
     name: 'toolbar',
@@ -651,6 +648,9 @@ const routes = [
     }
   }
 ]
+
+routes = routes.concat(contentChidren)
+
 
 export default {
   mode: 'hash', //   "hash" | "history" | "abstract";

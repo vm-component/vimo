@@ -1,18 +1,25 @@
 <template>
-  <header class="ion-header header" :class="[modeClass]">
-    <slot></slot>
-  </header>
+    <header class="ion-header header" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
+        <slot></slot>
+    </header>
 </template>
 <style lang="scss">
-  @import "../../themes/globals";
-  .ion-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: $z-index-toolbar;
-    display: block;
-    width: 100%;
-  }
+    @import "../../themes/globals";
+
+    .ion-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: $z-index-toolbar;
+        display: block;
+        width: 100%;
+        transition: -webkit-transform ease 300ms;
+    }
+
+    .ion-header.hide-bar {
+        transform: translateY(-100%);
+    }
+
 </style>
 <script>
   /**
@@ -39,6 +46,43 @@
       modeClass () {
         return `header-${this.mode}`
       },
+    },
+    data(){
+      return {
+        // -------- public --------
+        isHide: false,
+        style: {},
+
+      }
+    },
+    methods: {
+      // -------- public --------
+      /**
+       * 隐藏header
+       * */
+      hide(){
+        this.isHide = true
+      },
+
+      /**
+       * 显示header
+       * */
+      show(){
+        this.isHide = false
+      },
+
+      toggle(){
+        this.isHide = !this.isHide
+      },
+
+      /**
+       * 设置bar的样式
+       * @param {object} style - 样式对象
+       * */
+      setStyle(style){
+        this.style = style
+      },
+
     }
   }
 </script>
