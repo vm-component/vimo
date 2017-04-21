@@ -30,7 +30,7 @@
 </style>
 <script>
   /**
-   * @module Component/App
+   * @module Base/App
    * @description
    *
    * App组件是Vimo框架的根组件,用于管理及控制整个页面的状态.

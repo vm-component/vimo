@@ -88,7 +88,7 @@
    * */
 
   /**
-   * @module Component/Content
+   * @module Base/Content
    * @description
    *
    * Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是"上中下三明治"结构,

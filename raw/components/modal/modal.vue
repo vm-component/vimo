@@ -21,6 +21,12 @@
     @import "./modal.md";
 </style>
 <script>
+  /**
+   * @module Component/Modal
+   * @description
+   *
+   * Model组件用于当前页面的补充
+   * */
   import { Backdrop } from '../backdrop'
   export default{
     name: 'Modal',

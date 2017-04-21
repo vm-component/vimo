@@ -9,7 +9,7 @@
   "opts": {
     "destination": "./docs/page",
     "encoding": "utf8",
-    "template": "node_modules/docdash"
+    "template": "./docs/docdash"
   },
   "plugins": [
     "node_modules/jsdoc-vue",
