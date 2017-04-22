@@ -1,0 +1,37 @@
+
+.vimo {
+  margin-top:10px;
+  padding: 20px 0px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  .vimo__imgBox {
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 20px;
+    .vimo__imgBox--img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .vimo__title {
+    text-align: center;
+    h2 {
+      font-size: 28px;
+      margin: 20px 0 15px;
+      font-weight: bold;
+    }
+    p {
+      margin: 0;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+  }
+  .vimo__iframe {
+    text-align: center;
+    iframe {
+      width: 90px;
+    }
+  }
+}
+

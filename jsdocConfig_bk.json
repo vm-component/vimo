@@ -1,0 +1,72 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": [
+      "jsdoc",
+      "closure"
+    ]
+  },
+  "opts": {
+    "destination": "./docs/page",
+    "encoding": "utf8",
+    "template": "./docs/docdash"
+  },
+  "plugins": [
+    "node_modules/jsdoc-vue",
+    "plugins/markdown"
+  ],
+  "markdown": {
+    "tags": [
+      "usage",
+      "slot"
+    ],
+    "parser": "gfm",
+    "hardwrap": true
+  },
+  "source": {
+    "include": [
+      "README.md",
+      "raw/components/action-sheet",
+      "raw/components/alert",
+      "raw/components/app",
+      "raw/components/content",
+      "raw/components/refresher",
+      "raw/components/icon",
+      "raw/components/grid",
+      "raw/components/infinite-scroll",
+      "raw/components/spinner",
+      "raw/components/backdrop",
+      "raw/components/badge",
+      "raw/components/button",
+      "raw/components/card",
+      "raw/components/fab",
+      "raw/components/img",
+      "raw/components/input",
+      "raw/components/item",
+      "raw/components/toggle",
+      "raw/components/label",
+      "raw/components/toast",
+      "raw/components/loading",
+      "raw/components/modal",
+      "raw/components/avatar",
+      "raw/components/tabs"
+    ],
+    "exclude": [
+      "gulpfile.js"
+    ],
+    "includePattern": ".+\\.js(doc|x)?$|.+\\.vue$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "default": {
+      "outputSourceFiles": true,
+      "includeDate": false
+    }
+  },
+  "docdash": {
+    "static": true,
+    "sort": true
+  }
+}

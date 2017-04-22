@@ -4,7 +4,7 @@ var self = this;
 ?>
 <?js if (data.kind !== 'module') { ?>
     <?js if (data.kind === 'class' && data.classdesc) { ?>
-    <h2>Constructor</h2>
+    <h2>构造器 / Constructor</h2>
     <?js } ?>
 
     <h4 class="name" id="<?js= id ?>"><?js= data.attribs + (kind === 'class' ? 'new ' : '') +
@@ -24,12 +24,12 @@ var self = this;
 <?js } ?>
 
 <?js if (data.augments && data.alias && data.alias.indexOf('module:') === 0) { ?>
-    <h5>Extends:</h5>
+    <h5>继承 / Extends:</h5>
     <?js= self.partial('augments.tmpl', data) ?>
 <?js } ?>
 
 <?js if (kind === 'event' && data.type && data.type.names) {?>
-    <h5>Type:</h5>
+    <h5>类型 / Type:</h5>
     <ul>
         <li>
             <?js= self.partial('type.tmpl', data.type.names) ?>
@@ -43,17 +43,17 @@ var self = this;
 <?js } ?>
 
 <?js if (data.examples && examples.length) { ?>
-    <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
+    <h5>示例 / Example<?js= examples.length > 1? 's':'' ?></h5>
     <?js= this.partial('examples.tmpl', examples) ?>
 <?js } ?>
 
 <?js if (data.params && params.length) { ?>
-    <h5>Parameters:</h5>
+    <h5>参数 / Parameters:</h5>
     <?js= this.partial('params.tmpl', params) ?>
 <?js } ?>
 
 <?js if (data.kind !== 'module' && data.requires && data.requires.length) { ?>
-<h5>Requires:</h5>
+<h5>依赖 / Requires:</h5>
 <ul><?js data.requires.forEach(function(r) { ?>
     <li><?js= self.linkto(r) ?></li>
 <?js }); ?></ul>
@@ -81,7 +81,7 @@ var self = this;
 <?js } ?>
 
 <?js if (data.exceptions && exceptions.length) { ?>
-<h5>Throws:</h5>
+<h5>异常 / Throws:</h5>
 <?js if (exceptions.length > 1) { ?><ul><?js
     exceptions.forEach(function(r) { ?>
         <li><?js= self.partial('exceptions.tmpl', r) ?></li>
@@ -93,7 +93,7 @@ var self = this;
 } } ?>
 
 <?js if (data.returns && returns.length) { ?>
-<h5>Returns:</h5>
+<h5>返回 / Returns:</h5>
 <?js if (returns.length > 1) { ?><ul><?js
     returns.forEach(function(r) { ?>
         <li><?js= self.partial('returns.tmpl', r) ?></li>

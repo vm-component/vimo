@@ -10,10 +10,7 @@ if (data.description) {
 <?js if (data.type && data.type.names) {?>
 <dl class="param-type">
     <dt>
-        Type
+        Type: <?js= this.partial('type.tmpl', data.type.names) ?>
     </dt>
-    <dd>
-        <?js= this.partial('type.tmpl', data.type.names) ?>
-    </dd>
 </dl>
 <?js } ?>

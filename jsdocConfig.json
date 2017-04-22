@@ -19,35 +19,19 @@
     "tags": [
       "usage",
       "slot"
-    ]
+    ],
+    "parser": "gfm",
+    "hardwrap": true
   },
   "source": {
     "include": [
-      "README.md",
-      "raw/components/action-sheet",
-      "raw/components/alert",
-      "raw/components/app",
-      "raw/components/content",
-      "raw/components/refresher",
-      "raw/components/icon",
-      "raw/components/grid",
-      "raw/components/infinite-scroll",
-      "raw/components/spinner",
-      "raw/components/backdrop",
-      "raw/components/badge",
-      "raw/components/button",
-      "raw/components/card",
-      "raw/components/fab",
-      "raw/components/img",
-      "raw/components/input",
-      "raw/components/item",
-      "raw/components/toggle",
-      "raw/components/label",
-      "raw/components/toast",
-      "raw/components/loading",
-      "raw/components/modal",
-      "raw/components/avatar",
-      "raw/components/tabs"
+      "docs/docdash/README.md",
+      "docs/docdash/fixtures/base",
+      "docs/docdash/fixtures/mixins",
+      "docs/docdash/fixtures/strings",
+      "docs/docdash/fixtures/tutorials",
+      "docs/docdash/fixtures/utils",
+      "docs/docdash/fixtures/documents"
     ],
     "exclude": [
       "gulpfile.js"
@@ -57,7 +41,11 @@
   },
   "templates": {
     "cleverLinks": false,
-    "monospaceLinks": false
+    "monospaceLinks": false,
+    "default": {
+      "outputSourceFiles": true,
+      "includeDate": false
+    }
   },
   "docdash": {
     "static": true,

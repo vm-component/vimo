@@ -4,7 +4,7 @@
     },
     "source": {
         "include": [
-            "fixtures/",
+            "./fixtures/",
             "./README.md"
         ]
     },

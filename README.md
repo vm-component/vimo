@@ -61,5 +61,7 @@ npm install vimo
 - 0.3.3 - 增加item对路由的支持, 修复color设置的bug. List及其子组件的debug, 完成itemSliding组件
 
 
+## LICENSE
 
+MIT
 
