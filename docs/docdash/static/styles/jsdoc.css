@@ -326,7 +326,7 @@ footer {
   -ms-user-select: text;
   user-select: text; }
 
-.params, .props {
+.params, .props, .slots {
   border-spacing: 0;
   border: 1px solid #ddd;
   border-collapse: collapse;
@@ -335,6 +335,10 @@ footer {
   width: 100%;
   font-size: 14px;
   margin: 1em 0; }
+
+.slots {
+  min-width: 60%;
+  width: auto; }
 
 .params .type {
   white-space: nowrap; }

@@ -214,6 +214,7 @@ function generate (type, title, docs, filename, resolveLinks) {
     docs: docs
   }
 
+
   var outpath = path.join(outdir, filename),
     html = view.render('container.tmpl', docData)
 
@@ -371,6 +372,8 @@ function buildNav (members) {
   nav += '<h2><a href="index.html">示例 / Demo</a></h2>'
   nav += '<h2><a href="index.html">更新日志 / Change Log</a></h2>'
 
+  // console.log('members')
+  // console.log(members)
   var seen = {}
   var seenTutorials = {}
 
@@ -609,11 +612,14 @@ exports.publish = function (taffyData, opts, tutorials) {
   var files = find({kind: 'file'})
   var packages = find({kind: 'package'})
 
+
   generate('', 'Home',
     packages.concat(
       [{kind: 'mainpage', readme: opts.readme, longname: (opts.mainpagetitle) ? opts.mainpagetitle : 'Main Page'}]
     ).concat(files),
     indexUrl)
+
+
 
   // set up the lists that we'll use to generate pages
   var classes = taffy(members.classes)

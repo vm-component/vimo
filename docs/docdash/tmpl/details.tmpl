@@ -136,12 +136,25 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
     <?js } ?>
 </dl>
 
+
+<?js
+    var slots = data.slots;
+    if (slots && slots.length && slots.forEach) {
+?>
+
+<h5 class="subsection-title">插槽 / Slots:</h5>
+
+<?js= this.partial('slots.tmpl', data) ?>
+
+<?js } ?>
+
+
 <?js
     var properties = data.properties;
     if (properties && properties.length && properties.forEach) {
 ?>
 
-    <h5 class="subsection-title">Properties:</h5>
+    <h5 class="subsection-title">属性 / Properties:</h5>
 
     <?js= this.partial('properties.tmpl', data) ?>
 

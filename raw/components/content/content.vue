@@ -85,11 +85,14 @@
    * @event onScrollEnd
    * @description 滚动结束时触发的全局事件
    * @property {ScrollEvent} ev - 滚动事件对象
+   *
    * */
 
   /**
    * @module Base/Content
    * @description
+   *
+   * ## 基础组件/Content组件
    *
    * Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是"上中下三明治"结构,
    * Content组件则是中间业务内容的位置.
@@ -103,16 +106,11 @@
    *
    * ![content组件](../asset/content.png)
    *
-   * ##### Slots:
    *
-   *
-   *
-   * | Name  | Description  |
-   * |:------------- |:--------------- |
-   * | 空            | 内容插入到scroll中 |
-   * | fixed         | 默认值, 固定到顶部 |
-   * | fixedTop      | 固定到顶部        |
-   * | fixedBottom   | 固定到底部        |
+   * @slot 空             slot为空则将内容插入到scroll中
+   * @slot [fixed]        默认值, 固定到顶部
+   * @slot [fixedTop]     固定到顶部
+   * @slot [fixedBottom]  固定到底部
    *
    * @property {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
    * @property {string} [mode=ios]  - 样式模式

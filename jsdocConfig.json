@@ -13,7 +13,8 @@
   },
   "plugins": [
     "node_modules/jsdoc-vue",
-    "plugins/markdown"
+    "plugins/markdown",
+    "docs/plugins/slot.js"
   ],
   "markdown": {
     "tags": [
@@ -25,13 +26,9 @@
   },
   "source": {
     "include": [
-      "docs/docdash/README.md",
-      "docs/docdash/fixtures/base",
-      "docs/docdash/fixtures/mixins",
-      "docs/docdash/fixtures/strings",
-      "docs/docdash/fixtures/tutorials",
-      "docs/docdash/fixtures/utils",
-      "docs/docdash/fixtures/documents"
+      "README.md",
+      "CHANGELOG.md",
+      "raw/components/content"
     ],
     "exclude": [
       "gulpfile.js"
