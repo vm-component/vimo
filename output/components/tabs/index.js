@@ -1,1 +1,0 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.Tab=exports.Tabs=void 0;var _tabs=require("./tabs.vue"),_tabs2=_interopRequireDefault(_tabs),_tab=require("./tab.vue"),_tab2=_interopRequireDefault(_tab);exports.Tabs=_tabs2.default,exports.Tab=_tab2.default;

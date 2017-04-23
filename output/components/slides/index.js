@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var SlidesComponent=require("./slides.vue"),SlideComponent=require("./slide.vue");exports.Slides=SlidesComponent,exports.Slide=SlideComponent;
