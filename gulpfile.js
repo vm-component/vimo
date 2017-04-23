@@ -57,16 +57,21 @@ gulp.task('prepareBook', function (cb) {
   runSequence(['clean'], 'doc', cb)
 })
 
+
+
+//clean
+gulp.task('clean-vimo', del.bind(null, ['publish/dist']))
+
+
 // vimo发布
-gulp.task('move-vimo', function () {
-  return gulp.src('./raw/**/**/*.*')
-    .pipe(gulp.dest('./output'))
+gulp.task('move-vimo',['clean-vimo'], function () {
+  return gulp.src('./publish/src/**/**/*.*')
+    .pipe(gulp.dest('./publish/dist'))
 })
 
 gulp.task('babel-vimo', ['move-vimo'], function () {
-  gulp.src('./output/**/**/*.js')
+  gulp.src('./publish/dist/**/**/*.js')
     .pipe(babel({presets: ['es2015']}))
     .pipe($.uglify())
-    .pipe(gulp.dest('./output'))
-
+    .pipe(gulp.dest('./publish/dist'))
 })
