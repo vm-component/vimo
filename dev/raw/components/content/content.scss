@@ -1,0 +1,91 @@
+@import "../../themes/globals";
+
+// Content
+// --------------------------------------------------
+
+.ion-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  contain: layout size style;
+}
+
+.ion-page > .ion-content {
+  position: absolute;
+}
+
+a {
+  color: $link-color;
+}
+
+// Scrollable Content
+// --------------------------------------------------
+
+.scroll-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-scroll-content;
+  display: block;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+
+  contain: size style layout;
+}
+
+.disable-scroll .ion-page {
+  pointer-events: none;
+  touch-action: none;
+}
+
+// Fixed Content (fixed and fab)
+// --------------------------------------------------
+
+.fixed-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+}
+
+.fixed-content [fixed] {
+  position: absolute;
+  width: 100%;
+  // if move to fixed-content class, then page can not click
+  z-index: $z-index-fixed-content;
+  transform: translateZ(0);
+}
+
+// fixed Position
+.fixed-content [fixed][top] {
+  top: 0;
+}
+
+.fixed-content [fixed][bottom] {
+  bottom: 0;
+}
+
+// Content Padding
+// --------------------------------------------------
+
+.ion-app [no-padding],
+.ion-app [no-padding] .scroll-content {
+  padding: 0;
+}
+
+.ion-app [padding],
+.ion-app [padding] .scroll-content {
+  padding: $content-padding;
+}

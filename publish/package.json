@@ -1,6 +1,6 @@
 {
   "name": "vimo",
-  "version": "0.3.2",
+  "version": "0.3.0",
   "description": "A Vue2.x Project For Mobile&HyBrid",
   "author": "向松涛 <280304286@163.com>",
   "private": false,
@@ -19,7 +19,13 @@
     "es6-promise": "^4.1.0",
     "vue-router": "^2.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-uglify": "^2.1.2"
+  },
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
