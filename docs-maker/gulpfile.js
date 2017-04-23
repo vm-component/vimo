@@ -17,21 +17,22 @@ var jsdocConfig = require('./jsdoc-config.json')
 var plumber = require('gulp-plumber')
 
 //clean
-gulp.task('clean-doc', del.bind(null, ['../docs/*']))
+// gulp.task('clean-doc', del.bind(['../docs/*'], {force: true}))
+gulp.task('clean-doc', function (cb) {
+  return del(['../docs/*'], {force: true})
+})
+
+// 移动资源
+gulp.task('resource', function () {
+  return gulp.src('./asset/**/**/*.*')
+  .pipe(gulp.dest('../docs/asset'))
+})
 
 // jsdoc
-gulp.task('make-doc', function (cb) {
+gulp.task('make-doc', ['resource'], function (cb) {
   gulp.src('./', {read: false})
   .pipe(plumber())
   .pipe(jsdoc(jsdocConfig, cb))
-})
-
-gulp.task('reload', function () {
-  reload()
-})
-
-gulp.task('refresh-doc', function () {
-  runSequence('make-doc', 'reload')
 })
 
 // server
@@ -41,14 +42,18 @@ gulp.task('serve', function () {
       notify: false,
       port: 8012,
       server: {
-        baseDir: ['../docs/page', '../docs', './'],
+        baseDir: ['../docs'],
         routes: {}
       }
     })
     gulp.watch([
       '../README.md',
       '../dev/raw/**/*.*'
-    ], ['refreshDoc'])
+    ], function () {
+      runSequence('make-doc', function () {
+        reload()
+      })
+    })
   })
 })
 
