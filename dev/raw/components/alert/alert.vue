@@ -252,7 +252,7 @@
        * 如存在cancel按钮，点击按钮关闭actionsheet
        * */
       bdClick () {
-        if (this.enabled && this.enableBackdropDismiss) {
+        if (this.enabled && this.enableBackdropDismiss && this.buttonsForDisplay.length > 0) {
           let cancelBtn = this.buttonsForDisplay.find(b => b.role === 'cancel');
           if (cancelBtn) {
             this.btnClick(cancelBtn);
@@ -333,14 +333,14 @@
        * 获取inputs中的信息
        * */
       getValues () {
-        if (this.inputType === 'radio') {
+        if (this.inputType === 'radio' && this.inputsForDispaly.length > 0) {
           // this is an alert with radio buttons (single value select)
           // return the one value which is checked, otherwise undefined
           const checkedInput = this.inputsForDispaly.find(i => i.checked);
           return checkedInput ? checkedInput.value : undefined;
         }
 
-        if (this.inputType === 'checkbox') {
+        if (this.inputType === 'checkbox' && this.inputsForDispaly.length > 0) {
           // this is an alert with checkboxes (multiple value select)
           // return an array of all the checked values
           return this.inputsForDispaly.filter(i => i.checked).map(i => i.value.trim());
