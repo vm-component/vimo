@@ -30,6 +30,7 @@
                 <Item button :to="{name:'contentHideBars'}">隐藏头尾Bar</Item>
                 <Item button :to="{name:'contentScroll'}">滚动内容</Item>
                 <Item button :to="{name:'contentSetBarStyle'}">设置Bar的样式</Item>
+                <Item button :to="{name:'contentJsScroll'}">集成IScroll</Item>
             </List>
         </Content>
     </Page>

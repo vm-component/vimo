@@ -51,5 +51,12 @@ export default [
     component  (resolve) {
       require(['@/example/content/setBarStyle.vue'], resolve)
     }
+  },
+  {
+    path: '/content_jsScroll',
+    name: 'contentJsScroll',
+    component  (resolve) {
+      require(['@/example/content/jsScroll.vue'], resolve)
+    }
   }
 ]

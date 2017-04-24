@@ -123,7 +123,7 @@
         this.headerComponent.toggle()
       },
       onScrollHandler(ev){
-        if (ev.directionY === 'down') {
+        if (ev.directionY === 'down' && ev.scrollTop > 0) {
           this.footerComponent.hide()
           this.headerComponent.hide()
         } else {

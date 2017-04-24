@@ -1,0 +1,25 @@
+{
+  "name": "docs-maker",
+  "version": "1.0.0",
+  "description": "The vimo document maker",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "browser-sync": "^2.18.8",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-plumber": "^1.1.0",
+    "jsdoc": "^3.4.3",
+    "jsdoc-vue": "^1.0.0",
+    "run-sequence": "^1.2.2",
+    "vue-template-compiler": "^2.2.4"
+  },
+  "author": "Hsiang",
+  "license": "MIT"
+}

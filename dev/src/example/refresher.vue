@@ -5,13 +5,17 @@
                 <Title>Refresher</Title>
             </Navbar>
         </Header>
-        <Content>
-            <Refresher slot="refresher" @onRefresh="doRefresh($event)">
+        <Content class="outer-content">
+            <Refresher slot="refresher" :enabled="enabled" @onRefresh="doRefresh($event)">
                 <RefresherContent
                         pullingText="下拉刷新..."
                         refreshingText="正在刷新...">
                 </RefresherContent>
             </Refresher>
+            <div padding class="state" text-center>
+                <p>状态: {{enabled}}</p>
+                <Button small outline @click="toggleDisabled">禁用/启用</Button>
+            </div>
             <List>
                 <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
             </List>
@@ -19,7 +23,8 @@
     </Page>
 </template>
 <style scoped lang="scss">
-    .main {
+    .state {
+        background: #fff;
     }
 </style>
 <script type="text/ecmascript-6">
@@ -32,12 +37,19 @@
       return {
         i: 0,
         list: [],
+
+        enabled: true,
       }
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
+      //
+      toggleDisabled(){
+        this.enabled = !this.enabled
+      },
+
       doRefresh(ins){
         console.debug('doRefresh $event')
         let _start = this.i;

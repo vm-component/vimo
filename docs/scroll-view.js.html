@@ -62,20 +62,25 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>
-/**
+            <pre class="prettyprint source linenums"><code>/**
  *
  * */
-import { nativeRaf, registerListener } from '../../util/util'
+import { cancelRaf, nativeRaf, pointerCoord, registerListener } from '../../util/util'
+
 const SCROLL_END_DEBOUNCE_MS = 80
 const FRAME_MS = (1000 / 60)
+
+const MIN_VELOCITY_START_DECELERATION = 4
+const MIN_VELOCITY_CONTINUE_DECELERATION = 0.12
+const DECELERATION_FRICTION = 0.97
+
 const EVENT_OPTS = {
   passive: true
 }
 
 export class ScrollView {
 
-  constructor () {
+  constructor(){
 
     this.isScrolling = false       // 判断正在滚动
     this.initialized = false       // 判断是否已完成初始化
@@ -86,6 +91,9 @@ export class ScrollView {
     this.transform = !!window.VM &amp;&amp; !!window.VM.platform &amp;&amp; !!window.VM.platform.css ? window.VM.platform.css.transform : 'webkitTransform'
 
     this._el = null        // {HTMLElement} 当前滚动实例的元素
+    this._js = false       // 是否执行js滚动
+    this._t = 0            // {number} scrollTop临时存储值
+    this._l = 0            // {number} scrollLeft临时存储值
     this._lsn = null       // {Function} 监听函数 listen
     this._endTmr = null    // {Function} 事件记录 timeout
 
@@ -112,7 +120,7 @@ export class ScrollView {
       fixedElement: null, // HTMLElement
       scrollElement: null, // HTMLElement
       headerElement: null, // HTMLElement
-      footerElement: null, // HTMLElement
+      footerElement: null // HTMLElement
     }
   }
 
@@ -239,6 +247,230 @@ export class ScrollView {
     // call the raf if it was set within the scroll event, so this will save us some time
     self._lsn = registerListener(self._el, 'scroll', scrollCallback, EVENT_OPTS)
 
+  }
+
+  /**
+   * 使用iScroll的解决方案
+   * @private
+   * */
+  enableIScroll () {
+    // const self = this;
+    // this._js = true;
+    // const ele = this._el;
+    // if (!ele) {
+    //   return;
+    // }
+
+    // console.debug(`ScrollView, enableIScrollScrolling`);
+
+    // 给父元素增加class
+    // ele.parentElement.classList.add('js-scroll');
+
+    // let iscroll = new IScroll(this._el.parentNode, {
+    //   mouseWheel: true,
+    //   scrollbars: true,
+    //   click: true,
+    //   bindToWrapper: true,
+    // });
+  }
+
+  /**
+   * JS Scrolling has been provided only as a temporary solution
+   * until iOS apps can take advantage of scroll events at all times.
+   * The goal is to eventually remove JS scrolling entirely. When we
+   * no longer have to worry about iOS not firing scroll events during
+   * inertia then this can be burned to the ground. iOS's more modern
+   * WKWebView does not have this issue, only UIWebView does.
+   * @param {number} contentTop
+   * @param {number} contentBottom
+   * @private
+   */
+  enableJsScroll (contentTop, contentBottom) {
+    const self = this
+    self._js = true
+    const ele = self._el
+
+    if (!ele) {
+      return
+    }
+
+    console.debug(`ScrollView, enableJsScroll`)
+
+    const ev = self.ev // 获取ev的引用
+    const positions = [] // 每次滚动的位置记录
+    let rafCancel // 临时的requestAnimationFrame结果
+    let max // number
+
+    // 滚动的最大距离, 即scrollHeight
+    function setMax () {
+      if (!max) {
+        // ******** DOM READ ****************
+        // max = ele.scrollHeight;
+        max = ele.scrollHeight + contentTop - contentBottom + 16
+      }
+    }
+
+    /**
+     * @param {number} timeStamp
+     * */
+    function jsScrollDecelerate (timeStamp) {
+      ev.timeStamp = timeStamp
+
+      console.debug(`scroll-view, decelerate, velocity: ${ev.velocityY}`)
+
+      if (ev.velocityY) {
+        ev.velocityY *= DECELERATION_FRICTION
+
+        // update top with updated velocity
+        // clamp top within scroll limits
+        setMax()
+        self._t = Math.min(Math.max(self._t + ev.velocityY, 0), max)
+
+        ev.scrollTop = self._t
+
+        // 发送每一次的scroll事件, 传递ev值
+        self.scroll(ev)
+
+        self.setTop(self._t)
+
+        if (self._t > 0 &amp;&amp; self._t &lt; max &amp;&amp; Math.abs(ev.velocityY) > MIN_VELOCITY_CONTINUE_DECELERATION) {
+          rafCancel = nativeRaf((rafTimeStamp) => {
+            jsScrollDecelerate(rafTimeStamp)
+          })
+
+        } else {
+          // 当停止滚动一段时间后触发scrollEnd事件
+          self.isScrolling = false
+
+          // reset velocity, do not reset the directions or deltas
+          ev.velocityY = ev.velocityX = 0
+
+          // 发送scrollEnd事件, 传递ev值
+          self.scrollEnd(ev)
+        }
+      }
+    }
+
+    /**
+     * @param {TouchEvent} touchEvent
+     * */
+    function jsScrollTouchStart (touchEvent) {
+      positions.length = 0
+      max = null
+      cancelRaf(rafCancel)
+      positions.push(pointerCoord(touchEvent).y, touchEvent.timeStamp)
+    }
+
+    /**
+     * @param {TouchEvent} touchEvent
+     * */
+    function jsScrollTouchMove (touchEvent) {
+      if (!positions.length) {
+        return
+      }
+
+      ev.timeStamp = touchEvent.timeStamp
+
+      var y = pointerCoord(touchEvent).y
+
+      // ******** DOM READ ****************
+      setMax()
+      self._t -= (y - positions[positions.length - 2])
+      self._t = Math.min(Math.max(self._t, 0), max)
+
+      positions.push(y, ev.timeStamp)
+
+      if (!self.isScrolling) {
+        // remember the start position
+        ev.startY = self._t
+
+        // new scroll, so do some resets
+        ev.velocityY = ev.deltaY = 0
+
+        self.isScrolling = true
+
+        // 发送scrollStart事件, 传递ev值
+        self.scrollStart(ev)
+      }
+
+      // 算是立即停止吧
+      self.setTop(self._t)
+    }
+
+    /**
+     * @param {TouchEvent} touchEvent
+     * */
+    function jsScrollTouchEnd (touchEvent) {
+      // figure out what the scroll position was about 100ms ago
+      cancelRaf(rafCancel)
+      if (!positions.length &amp;&amp; self.isScrolling) {
+        self.isScrolling = false
+        ev.velocityY = ev.velocityX = 0
+
+        // 发送scrollEnd事件, 传递ev值
+        self.scrollEnd(ev)
+        return
+      }
+
+      var y = pointerCoord(touchEvent).y
+
+      positions.push(y, touchEvent.timeStamp)
+
+      var endPos = (positions.length - 1)
+      var startPos = endPos
+      var timeRange = (touchEvent.timeStamp - 100)
+
+      // move pointer to position measured 100ms ago
+      for (var i = endPos; i > 0 &amp;&amp; positions[i] > timeRange; i -= 2) {
+        startPos = i
+      }
+
+      if (startPos !== endPos) {
+        // compute relative movement between these two points
+        var timeOffset = (positions[endPos] - positions[startPos])
+        var movedTop = (positions[startPos - 1] - positions[endPos - 1])
+
+        // based on XXms compute the movement to apply for each render step
+        ev.velocityY = ((movedTop / timeOffset) * FRAME_MS)
+
+        // verify that we have enough velocity to start deceleration
+        if (Math.abs(ev.velocityY) > MIN_VELOCITY_START_DECELERATION) {
+
+          setMax()
+
+          rafCancel = nativeRaf((rafTimeStamp) => {
+            jsScrollDecelerate(rafTimeStamp)
+          })
+
+        }
+
+      } else {
+        self.isScrolling = false
+        ev.velocityY = 0
+        // 发送scrollEnd事件, 传递ev值
+        self.scrollEnd(ev)
+      }
+
+      positions.length = 0
+    }
+
+    const unRegStart = registerListener(ele, 'touchstart', jsScrollTouchStart, EVENT_OPTS)
+    const unRegMove = registerListener(ele, 'touchmove', jsScrollTouchMove, EVENT_OPTS)
+    const unRegEnd = registerListener(ele, 'touchend', jsScrollTouchEnd, EVENT_OPTS)
+
+    // 给父元素增加class
+    ele.parentElement.classList.add('js-scroll')
+
+    // stop listening for actual scroll events
+    self._lsn &amp;&amp; self._lsn()
+
+    // create an unregister for all of these events
+    self._lsn = () => {
+      unRegStart()
+      unRegMove()
+      unRegEnd()
+      ele.parentElement.classList.remove('js-scroll')
+    }
   }
 
   /**

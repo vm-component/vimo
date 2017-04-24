@@ -5,9 +5,11 @@
                 <Title ref="title">Content</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" ref="content" padding @onScroll="onScrollHandler">
-
-
+        <Content class="outer-content" ref="content" padding :fullscreen="false"
+                 :enableJsScroll="false"
+                 @onScrollStart="onScrollStartHandler"
+                 @onScrollEnd="onScrollEndtHandler"
+                 @onScroll="onScrollHandler">
             <h1>Section</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad adipisci at, dolore dolorum ex harum id quae quaerat suscipit tempora tempore, temporibus ut voluptas voluptatibus! Cupiditate dignissimos dolorem voluptatibus!</p>
@@ -20,24 +22,33 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut dignissimos, eum impedit maxime natus necessitatibus quas qui quidem repellendus sapiente tempore. Aspernatur excepturi harum laborum quasi? Ab eius, excepturi?</p>
             <Button block @click="scrollToBottom()">滚动到底部</Button>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
-        exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+                exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+                exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+                exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+                exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+                exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+                exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+                exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+                exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
+                exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
 
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
@@ -74,6 +85,7 @@
                         </Column>
                         <Column>
                             <strong>固定属性:</strong>
+                            <p>滚动状态: {{scrollState}}</p>
                             <p>contentTop: {{ev.contentTop}}</p>
                             <p>contentHeight: {{ev.contentHeight}}</p>
                             <p>contentBottom: {{ev.contentBottom}}</p>
@@ -99,6 +111,7 @@
   export default{
     data(){
       return {
+        scrollState:'',
         // scroll
         ev: {
           scrollTop: 0,
@@ -126,10 +139,18 @@
         this.contentComponent.scrollToBottom();
       },
 
+      onScrollStartHandler(ev){
+        this.scrollState = '滚动开始'
+      },
       // 滚动
       onScrollHandler(ev){
         this.ev = ev
+        this.scrollState = '滚动中...'
+      },
+      onScrollEndtHandler(ev){
+        this.scrollState = '滚动结束'
       }
+
     },
     created () {},
     mounted () {},

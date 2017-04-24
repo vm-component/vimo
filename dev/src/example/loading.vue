@@ -18,7 +18,6 @@
             <Button block @click="showDefault()">页面切换不关闭loading(默认)</Button>
             <Button block @click="dismissWhenChangeUrl()">页面切换关闭loading</Button>
 
-
             <p>类型有: ios/ios-small/bubbles/circles/crescent/dots</p>
             <Button block @click="showIos()">显示 ios</Button>
             <Button block @click="showIosSmall()">显示 ios-small</Button>

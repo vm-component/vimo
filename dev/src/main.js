@@ -10,6 +10,7 @@ import vimo from 'vimo'
 // 全局组件
 import { ActionSheet } from 'vimo/components/action-sheet'
 import { Loading } from 'vimo/components/loading'
+import { Indicator } from 'vimo/components/indicator'
 import { Alert } from 'vimo/components/alert'
 import { Toast } from 'vimo/components/toast'
 import { Modal } from 'vimo/components/modal'
@@ -51,6 +52,7 @@ Vue.prototype.$loading = Loading
 Vue.prototype.$alert = Alert
 Vue.prototype.$toast = Toast
 Vue.prototype.$modal = Modal
+Vue.prototype.$indicator = Indicator
 
 new Vue({
   el: '#app',

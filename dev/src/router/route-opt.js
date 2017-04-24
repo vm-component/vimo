@@ -104,6 +104,13 @@ let routes = [
     }
   },
   {
+    path: '/indicator',
+    name: 'indicator',
+    component  (resolve) {
+      require(['@/example/indicator.vue'], resolve)
+    }
+  },
+  {
     path: '/modal',
     name: 'modal',
     component  (resolve) {
@@ -650,7 +657,6 @@ let routes = [
 ]
 
 routes = routes.concat(contentChidren)
-
 
 export default {
   mode: 'hash', //   "hash" | "history" | "abstract";

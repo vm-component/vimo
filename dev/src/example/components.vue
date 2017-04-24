@@ -154,6 +154,10 @@
                         <Icon slot="item-left" name="refresh"></Icon>
                         <span>加载提示 (Loading)</span>
                     </Item>
+                    <Item button :to="{name: 'indicator'}">
+                        <Icon slot="item-left" name="refresh"></Icon>
+                        <span>指示器 (Indicator)</span>
+                    </Item>
                     <Item button :to="{name: 'modal'}">
                         <Icon slot="item-left" name="photos"></Icon>
                         <span>弹出页 (Modal)</span>
