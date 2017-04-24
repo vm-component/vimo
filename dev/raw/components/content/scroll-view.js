@@ -1,6 +1,6 @@
-
 /**
- *
+ * 滚动引擎
+ * @private
  * */
 import { nativeRaf, registerListener } from '../../util/util'
 const SCROLL_END_DEBOUNCE_MS = 80
@@ -48,7 +48,7 @@ export class ScrollView {
       fixedElement: null, // HTMLElement
       scrollElement: null, // HTMLElement
       headerElement: null, // HTMLElement
-      footerElement: null, // HTMLElement
+      footerElement: null // HTMLElement
     }
   }
 
@@ -56,8 +56,6 @@ export class ScrollView {
    * 滚动对象初始化, 判断_js是否标记, 否则使用原生滚动
    * (这里应该判断是否是UIWebView, 并设置_js值)
    * @param {HTMLElement} ele
-   * @param {number} contentTop
-   * @param {number} contentBottom
    * @private
    * */
   init (ele) {

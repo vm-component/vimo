@@ -1,5 +1,10 @@
 <template>
     <article content class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
+        <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
+            <!--默认是能滚动的内容-->
+            <!--原生滚动-->
+            <slot></slot>
+        </section>
         <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
             <!--Fixed Top-->
             <div fixed top>
@@ -11,12 +16,6 @@
                 <slot name="fixedBottom"></slot>
             </div>
         </section>
-        <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
-            <!--默认是能滚动的内容-->
-            <!--原生滚动-->
-            <slot></slot>
-        </section>
-
         <slot name="refresher"></slot>
     </article>
 </template>
@@ -142,6 +141,7 @@
   export default{
     name: 'Content',
     props: {
+//      enableJsScroll: [Boolean],
       fullscreen: {
         type: Boolean,
         default: false
@@ -153,15 +153,17 @@
     },
     data(){
       return {
-        fixedElementStyle: {}, // 固定内容的位置样式
+        isFullscreen: this.fullscreen,
+
+        fixedElementStyle: {},  // 固定内容的位置样式
         scrollElementStyle: {}, // 滑动内容的位置样式
 
-        scrollElement: null, // scrollConent的DOM句柄
-        fixedElement: null, // fixedElement的DOM句柄
+        scrollElement: null,    // scrollConent的DOM句柄
+        fixedElement: null,     // fixedElement的DOM句柄
 
-        headerElement: null, // Header组件的DOM句柄
-        footerElement: null, // footer组件的DOM句柄
-        tabsElement: null, //tabs组件的DOM句柄
+        headerElement: null,    // Header组件的DOM句柄
+        footerElement: null,    // footer组件的DOM句柄
+        tabsElement: null,      // tabs组件的DOM句柄
 
         statusBarHeight: 20,
         headerBarHeight: 0,
@@ -170,17 +172,17 @@
         // 是否有statusbar的padding, 高度固定为20px
         statusbarPadding: window.VM && window.VM.config.getBoolean('statusbarPadding', false),
 
-        _scroll: null, // 滚动的实例
-        _cTop: 0,     // content top
-        _cBottom: 0,  // content bottom
-        _fTop: 0,     // fixex top
-        _fBottom: 0,  // fixex bottom
-        _pTop: 0,     // padding top
-        _pBottom: 0,  // padding bottom
+        _scroll: null,  // 滚动的实例
+        _cTop: 0,       // content top
+        _cBottom: 0,    // content bottom
+        _fTop: 0,       // fixex top
+        _fBottom: 0,    // fixex bottom
+        _pTop: 0,       // padding top
+        _pBottom: 0,    // padding bottom
 
-        _imgs: [], // 子组件Img的实例列表
-        _imgReqBfr: 0, // 1400
-        _imgRndBfr: 0, // 400
+        _imgs: [],      // 子组件Img的实例列表
+        _imgReqBfr: 0,  // 1400
+        _imgRndBfr: 0,  // 400
         _imgVelMax: 0,
       }
     },
@@ -192,6 +194,7 @@
     watch: {
       // 当值改变是，重新设置
       fullscreen () {
+        this.isFullscreen = this.fullscreen
         this.recalculateContentDimensions()
       }
     },
@@ -246,7 +249,6 @@
        * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
       scrollTo (x, y, duration = 300, done) {
-        console.debug(`content, scrollTo started, y: ${y}, duration: ${duration}`);
         return this._scroll.scrollTo(x, y, duration, done);
       },
       /**
@@ -257,7 +259,6 @@
        * @return {promise} 当滚动动画完毕后返回promise
        */
       scrollToTop(duration = 300) {
-        console.debug(`content, scrollToTop, duration: ${duration}`);
         // 页面防止点击
         this.$app && this.$app.setDisableScroll(true, 320);
         return this._scroll.scrollToTop(duration);
@@ -271,7 +272,6 @@
        * @return {promise} 当滚动动画完毕后返回promise
        */
       scrollToBottom(duration = 300) {
-        console.debug(`content, scrollToBottom, duration: ${duration}`);
         // 页面防止点击
         this.$app && this.$app.setDisableScroll(true, 320);
         return this._scroll.scrollToBottom(duration);
@@ -287,6 +287,13 @@
         if (this.scrollElement) return;
 
         const scroll = this._scroll; // 滚动的实例
+
+//        // 设置为js滚动模式, 强制使用全屏模式
+//        if (this.enableJsScroll) {
+//          this._scroll._js = true
+//          this.isFullscreen = true
+//        }
+
         /**
          * 找到fixedElement/scrollElement的位置
          * */
@@ -373,7 +380,7 @@
 
         // 获取Content信息
         scrollEvent.contentElement = this.$el;
-        if (this.fullscreen) {
+        if (this.isFullscreen) {
           computedStyle = getComputedStyle(this.$el);
           this._pTop = parsePxUnit(computedStyle.paddingTop);
           this._pBottom = parsePxUnit(computedStyle.paddingBottom);
@@ -388,7 +395,7 @@
         this._fBottom = this._cBottom;
 
         // 如果是fullscreen的话,padding还需要计算之前的值, 一般为16px
-        if (this.fullscreen) {
+        if (this.isFullscreen) {
           this._cTop += this._pTop;
           this._cBottom += this._pBottom;
         }
@@ -400,7 +407,7 @@
         let fixedBottom = this._fBottom;
 
         // 如果fullscreen开启, 使用padding属性
-        if (this.fullscreen) {
+        if (this.isFullscreen) {
           console.assert(this._pTop >= 0, '_paddingTop has to be positive');
           console.assert(this._pBottom >= 0, '_paddingBottom has to be positive');
 
@@ -433,7 +440,7 @@
         scrollEvent.contentBottom = contentDimensions.contentBottom;
 
         // 初始化_scroll滚动对象
-        this._scroll.init(this.scrollElement);
+        this._scroll.init(this.scrollElement)
 
         // initial imgs refresh
         this.imgsUpdate();
