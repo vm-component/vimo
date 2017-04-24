@@ -5,7 +5,7 @@ Vimo Is still in development stage (2017/04/23), plans to release version 1.0.0 
 
 目前还在开发阶段(2017/04/23), 计划在2017/06/01发布1.0.0版本, 在此期间需要项目对此框架测试, 其中不乏一些组件的bug修复和API的变更, 如果对您的业务造成不便请谅解!
 
-- 0.3.3 - 增加item对路由的支持, 修复color设置的bug. List及其子组件的debug, 完成itemSliding组件
+- 0.3.3 - 增加item对路由的支持, 修复color设置的bug. List及其子组件的debug, 完成itemSliding组件. 修复array不支持find函数的问题
 - 0.3.2 - 修复城市数据路中的显示bug,有些显示?x区
 - 0.3.1 - loading/actionsheet/alert组件随url变化而关闭. 增加select组件. 修复三亚没有区县的显示bug
 - 0.3.0 - loading增加最长开启时间, 默认为5000ms(获取数据的最长时间)

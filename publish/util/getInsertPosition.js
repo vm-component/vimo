@@ -1,0 +1,1 @@
+"use strict";function getInsertPosition(e){return document.getElementById(e)||document.getElementById("app")||document.body}Object.defineProperty(exports,"__esModule",{value:!0}),exports.getInsertPosition=getInsertPosition;

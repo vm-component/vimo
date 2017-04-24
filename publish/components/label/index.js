@@ -1,0 +1,1 @@
+"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.Label=void 0;var _label=require("./label.vue"),_label2=_interopRequireDefault(_label);exports.Label=_label2.default;

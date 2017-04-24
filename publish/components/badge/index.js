@@ -1,0 +1,1 @@
+"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.Badge=void 0;var _badge=require("./badge.vue"),_badge2=_interopRequireDefault(_badge);exports.Badge=_badge2.default;

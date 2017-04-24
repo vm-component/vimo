@@ -10,7 +10,7 @@ var gulpLoadPlugins = require('gulp-load-plugins')
 var $ = gulpLoadPlugins()
 
 //clean
-gulp.task('clean', del.bind(null, ['publish/dist', 'publish/src']))
+gulp.task('clean', del.bind(null, ['publish']))
 
 // vimo发布
 gulp.task('copy', ['clean'], function () {
@@ -18,13 +18,14 @@ gulp.task('copy', ['clean'], function () {
   gulp.src(['*.md', 'package.json'])
   .pipe(gulp.dest('publish'))
 
+
   return gulp.src('dev/raw/**/**/*.*')
-  .pipe(gulp.dest('publish/src'))
+  .pipe(gulp.dest('publish'))
 })
 
 gulp.task('babel', ['copy'], function () {
-  gulp.src('publish/src/**/**/*.js')
+  gulp.src('publish/**/**/*.js')
   .pipe(babel({presets: ['es2015']}))
   .pipe($.uglify())
-  .pipe(gulp.dest('publish/dist'))
+  .pipe(gulp.dest('publish'))
 })
