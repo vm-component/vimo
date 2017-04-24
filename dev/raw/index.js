@@ -2,6 +2,8 @@
  * @name initVimo
  * @description Vimo框架安装
  */
+import './util/polyfill'
+
 import { setupConfig } from './base/config'
 import { setupPlatform } from './base/platform'
 // Core
@@ -11,19 +13,9 @@ import { Nav } from './components/nav'
 import { NavContorller } from './components/nav-controller'
 import { Page } from './components/page'
 
-// promise polyfill
-require('es6-promise').polyfill()
-
-// fixed Object #<HTMLDivElement> has no method 'remove'
-if (!('remove' in Element.prototype)) {
-  Element.prototype.remove = function () {
-    this.parentNode.removeChild(this)
-  }
-}
-
 export default {
   installed: false,
-  version: '0.3.2',
+  version: '0.3.7',
   install (Vue, options = {}) {
 
     // init base (config/platform)

@@ -19,6 +19,17 @@
     @import './loading.scss';
     @import './loading.ios.scss';
     @import './loading.md.scss';
+
+    .indicator {
+        .loading-wrapper {
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 13px 15px;
+            circle, line {
+                stroke: #fff !important;
+            }
+        }
+    }
 </style>
 <script>
   /**

@@ -15,6 +15,8 @@
    *
    * 如果Refresher组件使用完毕希望禁用, 请使用`enabled`属性, 而不是使用`v-if`指令.
    *
+   * 事件传递组件的this, 可用的两个方法为: complete/cancel
+   *
    * @property {Number} [closeDuration=280] - 回复到 inactive 状态的动画时间
    * @property {Boolean} [enabled=true] - 组件是否可用
    * @property {Number} [pullMax=200] - 下拉的最大值, 超过则直接进入 refreshing状态
