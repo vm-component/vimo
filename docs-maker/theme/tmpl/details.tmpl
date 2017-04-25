@@ -142,7 +142,7 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
     if (slots && slots.length && slots.forEach) {
 ?>
 
-<h5 class="subsection-title">插槽 / Slots:</h5>
+<h3 class="subsection-title">插槽 / Slots:</h3>
 
 <?js= this.partial('slots.tmpl', data) ?>
 
@@ -154,7 +154,7 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
     if (properties && properties.length && properties.forEach) {
 ?>
 
-    <h5 class="subsection-title">属性 / Properties:</h5>
+    <h3 class="subsection-title">属性 / Properties:</h3>
 
     <?js= this.partial('properties.tmpl', data) ?>
 

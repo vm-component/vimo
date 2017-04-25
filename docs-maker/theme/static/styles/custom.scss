@@ -50,7 +50,8 @@
 
   .content {
     width: 100%;
-    min-width: 700px;
+    //min-width: 700px;
+    max-width: 1200px;
   }
   .showcase {
     height: 1000px;
@@ -69,10 +70,10 @@
 
       &.ios {
         .showcase__box--ios {
-          display: block!important;
+          display: block !important;
         }
-        .showcase__choose{
-          #js_choose_ios{
+        .showcase__choose {
+          #js_choose_ios {
             font-weight: bold;
             border-radius: 20px;
             background: #00663d;
@@ -83,10 +84,10 @@
 
       &.md {
         .showcase__box--md {
-          display: block!important;
+          display: block !important;
         }
-        .showcase__choose{
-          #js_choose_md{
+        .showcase__choose {
+          #js_choose_md {
             font-weight: bold;
             border-radius: 20px;
             background: #00663d;

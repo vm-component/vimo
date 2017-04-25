@@ -110,10 +110,16 @@ h4.name a:hover {
   border-bottom-color: $theme-light-1;
 }
 
-h5, .container-overview .subsection-title {
+h5 {
   font-size: 120%;
   letter-spacing: -0.01em;
   margin: 8px 0 3px 0;
+}
+
+.container-overview .subsection-title {
+  //font-size: 120%;
+  //letter-spacing: -0.01em;
+  //margin: 8px 0 3px 0;
 }
 
 .container-overview h2 {
@@ -339,8 +345,8 @@ footer {
 .description {
   margin-bottom: 1em;
   margin-top: 1em;
-  img{
-    width:100%;
+  img {
+    width: 100%;
   }
 }
 
@@ -422,6 +428,8 @@ footer {
   width: 100%;
   font-size: 14px;
   margin: 1em 0;
+  display: block;
+  overflow:scroll;
 }
 
 .slots {

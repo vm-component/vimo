@@ -178,12 +178,14 @@
             <?js } ?>
         </article>
     </section>
-    <aricle class="showcase">
+
 
         <?js if (doc.kind === 'module' && doc.modules  && Array.isArray(doc.modules) && doc.modules.length > 0 ) { ?>
+
+
         <?js if (doc.modules[0] && doc.modules[0].demos) { ?>
 
-
+    <aricle class="showcase">
         <div id="js_showcase__box" class="showcase__box ios">
             <div class="showcase__choose">
                 <span id="js_choose_ios" class="">IOS</span>
@@ -198,11 +200,15 @@
                         src="<?js= doc.modules[0].demos.name ?>?production=true&ionicplatform=ios"></iframe>
             </div>
         </div>
-
-        <?js } ?>
-        <?js } ?>
-
     </aricle>
+        <?js } ?>
+
+
+
+
+        <?js } ?>
+
+
 </section>
 
 <script>
