@@ -1,0 +1,225 @@
+/* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
+$DURATION: 500ms;
+$EASING: cubic-bezier(0.36, 0.66, 0.04, 1);
+$TRANSFORM: -webkit-transform;
+$OPACITY: opacity;
+$OFF_RIGHT: 99.5%;
+$OFF_LEFT: -10%;
+$CENTER: 0%;
+$OFF_OPACITY: 0.8;
+$OPACITY_ZERO: 0.01;
+$BACK_BTN_TEXT_MOVE: 100px;
+$DELAY: 100ms;
+
+$TRANSITION_TRANSFORM: $TRANSFORM $DURATION $EASING;
+$TRANSITION_OPACITY: $OPACITY $DURATION $EASING;
+
+/*-------- ios 进入动画(forward) --------*/
+/*    ios-transition-forward    */
+
+// 进入的页面
+.ios-transition-forward-enter {
+  .ion-header {
+    .ion-navbar {
+      .back-button {
+        opacity: $OPACITY_ZERO;
+        .back-button-text {
+          transform: translateX($BACK_BTN_TEXT_MOVE);
+        }
+      }
+      .ion-buttons {
+        opacity: $OPACITY_ZERO;
+      }
+      .toolbar-background {
+        opacity: $OPACITY_ZERO;
+      }
+      .ion-title {
+        transform: translateX($OFF_RIGHT);
+        opacity: $OPACITY_ZERO;
+      }
+    }
+  }
+  .ion-header > *:not(.ion-navbar), .ion-footer > * {
+    transform: translateX($OFF_RIGHT);
+  }
+  .ion-content {
+    transform: translateX($OFF_RIGHT);
+  }
+}
+
+.ios-transition-forward-enter-active {
+  transition-duration: $DURATION;
+  .ion-header {
+    .ion-navbar {
+      .back-button {
+        transition: $TRANSITION_OPACITY;
+        .back-button-text {
+          transition: $TRANSITION_TRANSFORM
+        }
+      }
+      .ion-buttons {
+        transition: $TRANSITION_OPACITY;
+      }
+      .toolbar-background {
+        transition: $TRANSITION_OPACITY;
+      }
+      .ion-title {
+        transition: $TRANSITION_TRANSFORM, $TRANSITION_OPACITY;
+      }
+    }
+  }
+  .ion-header > *:not(.ion-navbar), .ion-footer > * {
+    transition: $TRANSITION_TRANSFORM;
+  }
+  .ion-content {
+    transition: $TRANSITION_TRANSFORM;
+  }
+}
+
+// 退出的页面
+.ios-transition-forward-leave-active {
+  transition-duration: $DURATION;
+  .ion-header {
+    .ion-navbar {
+      .back-button {
+        opacity: $OPACITY_ZERO;
+        transition: $TRANSITION_OPACITY;
+        .back-button-text {
+          opacity: $OPACITY_ZERO;
+          transition: $TRANSITION_OPACITY
+        }
+      }
+      .ion-buttons {
+        opacity: $OPACITY_ZERO;
+        transition: $TRANSITION_OPACITY;
+      }
+      .toolbar-background {
+        opacity: $OPACITY_ZERO;
+        transition: $TRANSITION_OPACITY;
+      }
+      .ion-title {
+        transform: translateX($OFF_LEFT);
+        opacity: $OPACITY_ZERO;
+        transition: $TRANSITION_TRANSFORM, $TRANSITION_OPACITY;
+      }
+    }
+  }
+  .ion-header > *:not(.ion-navbar), .ion-footer > * {
+    opacity: $OFF_OPACITY;
+    transform: translateX($OFF_LEFT);
+    transition: $TRANSITION_TRANSFORM, $TRANSITION_OPACITY;
+  }
+  .ion-content {
+    opacity: $OFF_OPACITY;
+    transform: translateX($OFF_LEFT);
+    transition: $TRANSITION_TRANSFORM, $TRANSITION_OPACITY;
+  }
+}
+
+/*-------- ios 后退动画(backward) --------*/
+/*    ios-transition-backward    */
+
+// 进入的页面
+.ios-transition-backward-enter {
+  .ion-header {
+    .ion-navbar {
+      .back-button {
+        opacity: $OPACITY_ZERO;
+        .back-button-text {
+          opacity: $OPACITY_ZERO;
+        }
+      }
+      .ion-buttons {
+        opacity: $OPACITY_ZERO;
+      }
+      .toolbar-background {
+        opacity: $OPACITY_ZERO;
+      }
+      .ion-title {
+        transform: translateX($OFF_LEFT);
+        opacity: $OPACITY_ZERO;
+      }
+    }
+  }
+  .ion-header > *:not(.ion-navbar), .ion-footer > * {
+    opacity: $OFF_OPACITY;
+    transform: translateX($OFF_LEFT);
+  }
+  .ion-content {
+    opacity: $OFF_OPACITY;
+    transform: translateX($OFF_LEFT);
+  }
+}
+
+.ios-transition-backward-enter-active {
+  transition-duration: $DURATION;
+  .ion-header {
+    .ion-navbar {
+      .back-button {
+        transition: $TRANSITION_OPACITY;
+        .back-button-text {
+          transition: $TRANSITION_OPACITY
+        }
+      }
+      .ion-buttons {
+        transition: $TRANSITION_OPACITY;
+      }
+      .toolbar-background {
+        transition: $TRANSITION_OPACITY;
+      }
+      .ion-title {
+        transition: $TRANSITION_TRANSFORM, $TRANSITION_OPACITY;
+      }
+    }
+  }
+  .ion-header > *:not(.ion-navbar), .ion-footer > * {
+    transition: $TRANSITION_TRANSFORM, $TRANSITION_OPACITY;
+  }
+  .ion-content {
+    transition: $TRANSITION_TRANSFORM, $TRANSITION_OPACITY;
+  }
+}
+
+// 退出的页面
+.ios-transition-backward-leave-active {
+  transition-duration: $DURATION;
+  .ion-header {
+    .ion-navbar {
+      .back-button {
+        opacity: $OPACITY_ZERO;
+        transition: $TRANSITION_OPACITY;
+        .back-button-text {
+          opacity: $OPACITY_ZERO;
+          transform: translateX($BACK_BTN_TEXT_MOVE);
+          transition: $TRANSITION_TRANSFORM, $TRANSITION_OPACITY;
+        }
+      }
+      .ion-buttons {
+        opacity: $OPACITY_ZERO;
+        transition: $TRANSITION_OPACITY;
+      }
+      .toolbar-background {
+        opacity: $OPACITY_ZERO;
+        transition: $TRANSITION_OPACITY;
+      }
+      .ion-title {
+        transform: translateX($OFF_RIGHT);
+        opacity: $OPACITY_ZERO;
+        transition: $TRANSITION_TRANSFORM, $TRANSITION_OPACITY;
+      }
+    }
+  }
+  .ion-header > *:not(.ion-navbar), .ion-footer > * {
+    transform: translateX($OFF_RIGHT);
+    transition: $TRANSITION_TRANSFORM;
+  }
+  .ion-content {
+    transform: translateX($OFF_RIGHT);
+    transition: $TRANSITION_TRANSFORM;
+  }
+}
+
+
+
+

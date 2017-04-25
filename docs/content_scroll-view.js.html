@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>content/scroll-view.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/custom.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+
+    <section class="vimo">
+        <div class="vimo__imgBox">
+            <img class="vimo__imgBox--img" src="./asset/vimo.png">
+        </div>
+
+        <div class="vimo__title">
+            <h2>VIMO</h2>
+            <!--<p>beta</p>-->
+            <p>基于Vue2.x的移动端Hybrid框架</p>
+        </div>
+        <div class="vimo__iframe">
+            <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=star&amp;count=true"
+                    frameborder="0" scrolling="0" width="110px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=fork&amp;count=true"
+                    frameborder="0" scrolling="0" width="95px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+        </div>
+
+    </section>
+
+    <h2><a href="index.html">首页 / Home</a></h2><h2><a href="https://github.com/DTFE/vimo-start-kit">如何开始 / How To Start</a></h2><h2><a href="https://github.com/DTFE/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2><h3>组件 / Components</h3><ul><li><a href="module-Base%2520_%2520App.html">Base / App</a><ul class='methods'><li data-type='method'><a href="module-Base%252520_%252520App.html#~isEnabled">isEnabled</a></li><li data-type='method'><a href="module-Base%252520_%252520App.html#~isScrolling">isScrolling</a></li><li data-type='method'><a href="module-Base%252520_%252520App.html#~setDisableScroll">setDisableScroll</a></li><li data-type='method'><a href="module-Base%252520_%252520App.html#~setEnabled">setEnabled</a></li><li data-type='method'><a href="module-Base%252520_%252520App.html#~setTitle">setTitle</a></li></ul></li><li><a href="module-Base%2520_%2520Content.html">Base / Content</a><ul class='methods'><li data-type='method'><a href="module-Base%252520_%252520Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Base%252520_%252520Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Base%252520_%252520Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Base%252520_%252520Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Base%252520_%252520Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="module-Base_Footer.html">Base/Footer</a></li><li><a href="module-Base_Header.html">Base/Header</a></li></ul><h3>事件 / Events</h3><ul><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+
+    <article class="content">
+
+        
+        <h1 class="page-title">content/scroll-view.js</h1>
+        
+
+        
+
+
+
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * 滚动引擎
+ * @private
+ * */
+import { nativeRaf, registerListener } from '../../util/util'
+const SCROLL_END_DEBOUNCE_MS = 80
+const FRAME_MS = (1000 / 60)
+const EVENT_OPTS = {
+  passive: true
+}
+
+export class ScrollView {
+
+  constructor () {
+
+    this.isScrolling = false       // 判断正在滚动
+    this.initialized = false       // 判断是否已完成初始化
+    this.scrollStart = (ev) => {}  // 滚动开始的回调, 传入ev参数, 一般用于事件操作
+    this.scroll = (ev) => {}       // 滚动进行的回调, 传入ev参数, 一般用于事件操作
+    this.scrollEnd = (ev) => {}    // 滚动结束的回调, 传入ev参数, 一般用于事件操作
+
+    this.transform = !!window.VM &amp;&amp; !!window.VM.platform &amp;&amp; !!window.VM.platform.css ? window.VM.platform.css.transform : 'webkitTransform'
+
+    this._el = null        // {HTMLElement} 当前滚动实例的元素
+    this._lsn = null       // {Function} 监听函数 listen
+    this._endTmr = null    // {Function} 事件记录 timeout
+
+    // 滚动对象
+    this.ev = {
+      timeStamp: 0,
+      scrollTop: 0,
+      scrollLeft: 0,
+      scrollHeight: 0,
+      scrollWidth: 0,
+      contentHeight: 0,
+      contentWidth: 0,
+      contentTop: 0,
+      contentBottom: 0,
+      startY: 0,
+      startX: 0,
+      deltaY: 0,
+      deltaX: 0,
+      velocityY: 0,
+      velocityX: 0,
+      directionY: 'down',
+      directionX: null,
+      contentElement: null, // HTMLElement
+      fixedElement: null, // HTMLElement
+      scrollElement: null, // HTMLElement
+      headerElement: null, // HTMLElement
+      footerElement: null // HTMLElement
+    }
+  }
+
+  /**
+   * 滚动对象初始化, 判断_js是否标记, 否则使用原生滚动
+   * (这里应该判断是否是UIWebView, 并设置_js值)
+   * @param {HTMLElement} ele
+   * @private
+   * */
+  init (ele) {
+    if (!this.initialized) {
+      this.initialized = true
+      console.assert(ele, 'scroll-view, element can not be null')
+      this._el = ele
+      this.enableNativeScrolling()
+    }
+  }
+
+  /**
+   * 初始化原生滚动, 这里: 滚动时能监听滚动的状态
+   * @private
+   * */
+  enableNativeScrolling () {
+    if (!this._el) {
+      return
+    }
+
+    const self = this
+    const ev = self.ev
+    const positions = [] // number[]
+
+    /**
+     * @param {UIEvent} scrollEvent
+     * */
+    function scrollCallback (scrollEvent) {
+      ev.timeStamp = scrollEvent.timeStamp
+
+      // 获取当前的 scrollTop
+      ev.scrollTop = self.getTop()
+
+      // 获取当前的 scrollLeft
+      ev.scrollLeft = self.getLeft()
+
+      if (!self.isScrolling) {
+        // scroll start
+        self.isScrolling = true
+
+        // 记录开始的位置
+        ev.startY = ev.scrollTop
+        ev.startX = ev.scrollLeft
+
+        // 开始前重置参数
+        ev.velocityY = ev.velocityX = 0
+        ev.deltaY = ev.deltaX = 0
+        positions.length = 0
+
+        // 发送scrollStart事件, 传递ev值
+        self.scrollStart(ev)
+      }
+
+      // actively scrolling
+      positions.push(ev.scrollTop, ev.scrollLeft, ev.timeStamp)
+
+      if (positions.length > 3) {
+        // we've gotten at least 2 scroll events so far
+        ev.deltaY = (ev.scrollTop - ev.startY)
+        ev.deltaX = (ev.scrollLeft - ev.startX)
+
+        var endPos = (positions.length - 1)
+        var startPos = endPos
+        var timeRange = (ev.timeStamp - 100)
+
+        // move pointer to position measured 100ms ago
+        for (var i = endPos; i > 0 &amp;&amp; positions[i] > timeRange; i -= 3) {
+          startPos = i
+        }
+
+        if (startPos !== endPos) {
+          // compute relative movement between these two points
+          var timeOffset = (positions[endPos] - positions[startPos])
+          var movedTop = (positions[startPos - 2] - positions[endPos - 2])
+          var movedLeft = (positions[startPos - 1] - positions[endPos - 1])
+
+          // based on XXms compute the movement to apply for each render step
+          ev.velocityY = ((movedTop / timeOffset) * FRAME_MS)
+          ev.velocityX = ((movedLeft / timeOffset) * FRAME_MS)
+
+          // figure out which direction we're scrolling
+          ev.directionY = (movedTop > 0 ? 'up' : 'down')
+          ev.directionX = (movedLeft > 0 ? 'left' : 'right')
+        }
+      }
+
+      function scrollEnd () {
+        // 当停止滚动一段时间后触发scrollEnd事件
+        self.isScrolling = false
+
+        // reset velocity, do not reset the directions or deltas
+        ev.velocityY = ev.velocityX = 0
+
+        // 发送scrollEnd事件, 传递ev值
+        self.scrollEnd(ev)
+
+        self._endTmr = null
+      }
+
+      // 发送每一次的scroll事件, 传递ev值
+      self.scroll(ev)
+
+      // 定时超时时间SCROLL_END_DEBOUNCE_MS, 如果超时则判断当前滚动结束, 发送scrollEnd事件
+      window.clearTimeout(self._endTmr)
+      self._endTmr = window.setTimeout(scrollEnd, SCROLL_END_DEBOUNCE_MS)
+    }
+
+    // 如果有则清楚之前绑定的事件
+    self._lsn &amp;&amp; self._lsn()
+
+    // assign the raw scroll listener
+    // note that it does not have a wrapping requestAnimationFrame on purpose
+    // a scroll event callback will always be right before the raf callback
+    // so there's little to no value of using raf here since it'll all ways immediately
+    // call the raf if it was set within the scroll event, so this will save us some time
+    self._lsn = registerListener(self._el, 'scroll', scrollCallback, EVENT_OPTS)
+
+  }
+
+  /**
+   * DOM READ
+   */
+  getTop () {
+    return this._el.scrollTop
+  }
+
+  /**
+   * DOM READ
+   */
+  getLeft () {
+    return this._el.scrollLeft
+  }
+
+  /**
+   * DOM WRITE
+   * @param {number} top
+   */
+  setTop (top) {
+    this._el.scrollTop = top
+  }
+
+  /**
+   * DOM WRITE
+   * @param {number} top
+   */
+  setLeft (left) {
+    this._el.scrollLeft = left
+  }
+
+  /**
+   * DOM WRITE
+   * @param {number} x
+   * @param {number} y
+   * @param {number} duration
+   * @param {Function=} done
+   * @return {Promise}
+   */
+  scrollTo (x = 0, y = 0, duration, done) {
+    // scroll animation loop w/ easing
+    // credit https://gist.github.com/dezinezync/5487119
+
+    let promise
+    if (done === undefined) {
+      // only create a promise if a done callback wasn't provided
+      // done can be a null, which avoids any functions
+      promise = new Promise(resolve => {
+        done = resolve
+      })
+    }
+
+    const self = this
+    const el = self._el
+    if (!el) {
+      // invalid element
+      done()
+      return promise
+    }
+
+    if (duration &lt; 32) {
+      self.setTop(y)
+      self.setLeft(x)
+      done()
+      return promise
+    }
+
+    const fromY = el.scrollTop
+    const fromX = el.scrollLeft
+
+    const maxAttempts = (duration / 16) + 100
+    const transform = self.transform
+
+    let startTime // number
+    let timeStamp
+    let attempts = 0
+    let stopScroll = false
+
+    // scroll loop
+    function step () {
+      attempts++
+
+      if (!self._el || stopScroll || attempts > maxAttempts) {
+        self.isScrolling = false;
+        (el.style)[transform] = ''
+        done()
+        return
+      }
+
+      timeStamp = new Date().getTime()
+
+      let time = Math.min(1, ((timeStamp - startTime) / duration))
+
+      // where .5 would be 50% of time on a linear scale easedT gives a
+      // fraction based on the easing method
+      let easedT = (--time) * time * time + 1
+
+      if (fromY !== y) {
+        self.setTop((easedT * (y - fromY)) + fromY)
+      }
+
+      if (fromX !== x) {
+        self.setLeft(Math.floor((easedT * (x - fromX)) + fromX))
+      }
+
+      if (easedT &lt; 1) {
+        // do not use DomController here
+        // must use nativeRaf in order to fire in the next frame
+        nativeRaf(step)
+
+      } else {
+        stopScroll = true
+        self.isScrolling = false
+        // (el.style)[transform] = '';
+        done()
+      }
+    }
+
+    // 准备开始滚动循环
+    self.isScrolling = true
+    startTime = new Date().getTime()
+    // 开始第一帧
+    nativeRaf(step)
+
+    return promise
+  }
+
+  /**
+   * @param {number} duration
+   * @return {Promise}
+   */
+  scrollToTop (duration) {
+    return this.scrollTo(0, 0, duration)
+  }
+
+  /**
+   * @param {number} duration
+   * @return {Promise}
+   */
+  scrollToBottom (duration) {
+    let y = 0
+    if (this._el) {
+      y = this._el.scrollHeight - this._el.clientHeight
+    }
+    return this.scrollTo(0, y, duration)
+  }
+
+  stop () {
+    this.isScrolling = false
+  }
+
+  /**
+   * @private
+   */
+  destroy () {
+    this.stop()
+    this._endTmr &amp;&amp; window.clearTimeout(self._endTmr)
+    this._lsn &amp;&amp; this._lsn()
+
+    this.scrollStart &amp;&amp; (this.scrollStart = null)
+    this.scroll &amp;&amp; (this.scrollStart = null)
+    this.scrollEnd &amp;&amp; (this.scrollStart = null)
+
+    let ev = this.ev
+    ev.contentElement = ev.fixedElement = ev.scrollElement = ev.headerElement = null
+    this._lsn = this._el = this.ev = ev = null
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+    </article>
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>     on Tue Apr 25 2017 10:51:56 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme and modified by Songtao.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
