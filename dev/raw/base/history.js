@@ -58,11 +58,6 @@ export class History {
           }
         }
       })
-
-      // // 对router拓展
-      // this._r.__proto__.printHello = function () {
-      //   console.log('printHello')
-      // }
     }
   }
 
@@ -73,6 +68,7 @@ export class History {
    * */
   _pushHistory (Vue, {to, from, next}) {
     this._h.push(to)
+    // noinspection JSAnnotator
     this.length++
     if (this._isPageChange({to, from})) {
       this._d = 'forward'
@@ -90,6 +86,7 @@ export class History {
   _popHistory (Vue, {to, from, next}) {
     // 激活了浏览器的后退,这里只需要更新状态
     this._h.pop()
+    // noinspection JSAnnotator
     this.length--
     if (this._isPageChange({to, from})) {
       this._d = 'backward'
