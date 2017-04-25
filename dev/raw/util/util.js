@@ -2,58 +2,164 @@
  * Created by Hsiang on 2017/2/8.
  */
 
-/** @module util/util */
+/**
+ * @module util/util
+ * @description
+ *
+ * ## 工具库
+ *
+ * 这里提供了Vimo使用的工具库, 当然业务代码中也可以按需使用
+ *
+ * */
 
-export const isBoolean = (val) => typeof val === 'boolean';
-export const isString = (val) => typeof val === 'string';
-export const isNumber = (val) => typeof val === 'number';
-export const isFunction = (val) => typeof val === 'function';
-export const isDefined = (val) => typeof val !== 'undefined';
-export const isUndefined = (val) => typeof val === 'undefined';
-export const isPresent = (val) => val !== undefined && val !== null;
-export const isBlank = (val) => val === undefined || val === null;
-export const isObject = (val) => typeof val === 'object';
-export const isArray = Array.isArray;
+/**
+ * @function isBoolean
+ * @description 判断传入值是否为 Boolean
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isBoolean = (val) => typeof val === 'boolean'
+/**
+ * @function isString
+ * @description 判断传入值是否为 String
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isString = (val) => typeof val === 'string'
+/**
+ * @function isNumber
+ * @description 判断传入值是否为 Number
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isNumber = (val) => typeof val === 'number'
+/**
+ * @function isFunction
+ * @description 判断传入值是否为 Function
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isFunction = (val) => typeof val === 'function'
+/**
+ * @function isDefined
+ * @description 判断传入值已定义
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isDefined = (val) => typeof val !== 'undefined'
+/**
+ * @function isUndefined
+ * @description 判断传入值未定义
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isUndefined = (val) => typeof val === 'undefined'
+/**
+ * @function isPresent
+ * @description 判断传入值不为空
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isPresent = (val) => val !== undefined && val !== null
+/**
+ * @function isBlank
+ * @description 判断传入值为空
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isBlank = (val) => val === undefined || val === null
+/**
+ * @function isObject
+ * @description 判断传入值为 Object
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isObject = (val) => typeof val === 'object'
+/**
+ * @function isArray
+ * @description 判断传入值为 Array
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isArray = Array.isArray
+/**
+ * @function isPlainObject
+ * @description 判断传入值为 纯对象
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
 export const isPlainObject = (val) => isObject(val) && Object.getPrototypeOf(val) == Object.prototype
-// 基础变量
-export const isPrimitive = function(val) {
-  return isString(val) || isBoolean(val) || (isNumber(val) && !isNaN(val));
+/**
+ * @function isPrimitive
+ * @description 判断传入值为 基础变量
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export function isPrimitive (val) {
+  return isString(val) || isBoolean(val) || (isNumber(val) && !isNaN(val))
 }
 
 /**
- * 判断元素属性是否存在设值
+ * 判断元素属性是否存在设置
+ * 一般vue的props不需要这个, 因为其内部会进行这个判断, 没有传入值则为false
+ * @param {string} val - 判断值
+ * @example
+ * 'true' => true
+ * 'on' => true
+ * '' => true
  * */
-export const isTrueProperty = function(val) {
+export function isTrueProperty (val) {
   if (typeof val === 'string') {
-    val = val.toLowerCase().trim();
-    return (val === 'true' || val === 'on' || val === '');
+    val = val.toLowerCase().trim()
+    return (val === 'true' || val === 'on' || val === '')
   }
-  return !!val;
-};
+  return !!val
+}
 
 /**
  * 判断Checked属性的值
  * 判断是否相等，比如：'true'和true，'0'和0
+ * @param {*} a - 判断的第一个值
+ * @param {*} b - 判断的第二个值
+ * return {Boolean}
+ *
+ * @example
+ * undefined == null
+ * undefined == ''
+ * null == ''
+ * true == 'true'
+ * false == 'false'
+ * 0 == '0'
  * */
-export const isCheckedProperty = function(a, b) {
+export function isCheckedProperty (a, b) {
   if (a === undefined || a === null || a === '') {
-    return (b === undefined || b === null || b === '');
+    return (b === undefined || b === null || b === '')
 
   } else if (a === true || a === 'true') {
-    return (b === true || b === 'true');
+    return (b === true || b === 'true')
 
   } else if (a === false || a === 'false') {
-    return (b === false || b === 'false');
+    return (b === false || b === 'false')
 
   } else if (a === 0 || a === '0') {
-    return (b === 0 || b === '0');
+    return (b === 0 || b === '0')
   }
 
   // not using strict comparison on purpose
-  return (a == b); // tslint:disable-line
+  return (a == b) // tslint:disable-line
 };
-
-
 
 // RequestAnimationFrame的兼容腻子(Android 4.3 and below)
 /*! @author Paul Irish */
@@ -117,7 +223,6 @@ export function transitionEnd (el, callback) {
 }
 
 /**
- * @private
  *
  * 给addEventListener增加passive属性, 如果不支持将降级使用!!opts.capture
  *
@@ -125,14 +230,15 @@ export function transitionEnd (el, callback) {
  * @param {string} eventName                          - 监听的名称
  * @param {function} callback                         - 回调
  * @param {object=} opts EventListenerOptions          - addEventListener的第三个参数
- * @param {Function[]=} unregisterListenersCollection - 如果提供Function[], 则unReg将压如这个列表中
+ * @param {array} unregisterListenersCollection - 如果提供Function[], 则unReg将压如这个列表中
  *
  * @return {Function} 返回removeEventListener的函数
  *
+ * @private
  */
 export function registerListener (ele, eventName, callback, opts, unregisterListenersCollection) {
   // Test via a getter in the options object to see if the passive property is accessed
-  let uiEvtOpts;
+  let uiEvtOpts
   try {
     var opts = Object.defineProperty({}, 'passive', {
       get: function () {
@@ -146,7 +252,7 @@ export function registerListener (ele, eventName, callback, opts, unregisterList
   // otherwise it's just a boolean for the "capture" arg
   const listenerOpts = uiEvtOpts ? {
     'capture': !!opts.capture,
-    'passive': !!opts.passive,
+    'passive': !!opts.passive
   } : !!opts.capture
 
   // use the native addEventListener
@@ -258,9 +364,6 @@ export function hasPointerMoved (threshold, startCoord, endCoord) {
   return false
 }
 
-
-
-
 /**
  * 判断元素是否在激活状态, 比如input
  * @param {HTMLElement} ele - 元素
@@ -349,7 +452,6 @@ export function setElementClass (ele, className, add) {
 
 }
 
-
 // /**
 //  * 驼峰命名
 //  * hello-world -> helloWorld
@@ -362,12 +464,6 @@ export function setElementClass (ele, className, add) {
 //   }).replace(MOZ_HACK_REGEXP, 'Moz$1')
 // }
 
-
-
-
-
-
-
 /**
  * Given a min and max, restrict the given number
  * to the range.
@@ -378,7 +474,7 @@ export function setElementClass (ele, className, add) {
  * @param {number} max the maximum
  */
 export function clamp (min, n, max) {
-  return Math.max(min, Math.min(n, max));
+  return Math.max(min, Math.min(n, max))
 }
 
 /**
@@ -396,11 +492,11 @@ export function clamp (min, n, max) {
 export function assign (...args) {
   if (typeof Object.assign !== 'function') {
     // use the old-school shallow extend method
-    return _baseExtend(args[0], [].slice.call(args, 1), false);
+    return _baseExtend(args[0], [].slice.call(args, 1), false)
   }
 
   // use the built in ES6 Object.assign method
-  return Object.assign.apply(null, args);
+  return Object.assign.apply(null, args)
 }
 
 /**
@@ -410,7 +506,7 @@ export function assign (...args) {
  * @param ... the param objects
  */
 export function merge (dst, ...args) {
-  return _baseExtend(dst, [].slice.call(arguments, 1), true);
+  return _baseExtend(dst, [].slice.call(arguments, 1), true)
 }
 
 export function deepClone (obj) {
@@ -439,44 +535,44 @@ export function deepClone (obj) {
  */
 export function defaults (dest, ...args) {
   for (var i = arguments.length - 1; i >= 1; i--) {
-    var source = arguments[i];
+    var source = arguments[i]
     if (source) {
       for (var key in source) {
         if (source.hasOwnProperty(key) && !dest.hasOwnProperty(key)) {
-          dest[key] = source[key];
+          dest[key] = source[key]
         }
       }
     }
   }
-  return dest;
+  return dest
 }
-
 
 /**
  * 对象合并
  * @param {any} dst
  * @param {any} objs
  * @param {boolean} deep
+ * @private
  * */
 function _baseExtend (dst, objs, deep) {
   for (var i = 0, ii = objs.length; i < ii; ++i) {
-    var obj = objs[i];
-    if (!obj || !isObject(obj) && !isFunction(obj)) continue;
-    var keys = Object.keys(obj);
+    var obj = objs[i]
+    if (!obj || !isObject(obj) && !isFunction(obj)) continue
+    var keys = Object.keys(obj)
     for (var j = 0, jj = keys.length; j < jj; j++) {
-      var key = keys[j];
-      var src = obj[key];
+      var key = keys[j]
+      var src = obj[key]
 
       if (deep && isObject(src)) {
-        if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {};
-        _baseExtend(dst[key], [src], true);
+        if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {}
+        _baseExtend(dst[key], [src], true)
       } else {
-        dst[key] = src;
+        dst[key] = src
       }
     }
   }
 
-  return dst;
+  return dst
 }
 
 /**
@@ -485,18 +581,16 @@ function _baseExtend (dst, objs, deep) {
  * @return {string}
  * */
 export function firstUpperCase (str) {
-  return str.toString()[0].toUpperCase() + str.toString().slice(1);
+  return str.toString()[0].toUpperCase() + str.toString().slice(1)
 }
-
 
 /**
  * @param {string} val
  * @return {number}
  * */
 export function parsePxUnit (val) {
-  return (!!val && val.indexOf('px') > 0) ? parseInt(val, 10) : 0;
+  return (!!val && val.indexOf('px') > 0) ? parseInt(val, 10) : 0
 }
-
 
 export function removeArrayItem (array, item) {
   const index = array.indexOf(item)

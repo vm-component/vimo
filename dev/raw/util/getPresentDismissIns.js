@@ -1,6 +1,7 @@
 /**
  * Created by Hsiang on 2017/4/9.
  * actionsheet/alert/loading, 三个组件的返回结构
+ * @private
  */
 export function getPresentDismissIns (Factory) {
   return {
