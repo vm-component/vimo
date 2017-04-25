@@ -1,7 +1,7 @@
 <template>
     <App>
         <!--menu menu-->
-        <Menus id="menu" side="left" type="reveal">
+        <Menus id="menu" side="left">
             <Header>
                 <Toolbar>
                     <Title>菜单</Title>

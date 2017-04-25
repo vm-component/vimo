@@ -69,7 +69,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       inputBlurring: true,
       inputCloning: true,
       scrollAssist: true,
-      swipeBackEnabled: true,
       tapPolyfill: isIosUIWebView,
       virtualScrollEventAssist: isIosUIWebView,
       disableScrollAssist: true,

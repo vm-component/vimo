@@ -1,6 +1,6 @@
 /**
  * @class Config
- * @classdesc App应用级别的配置类
+ * @classdesc **App应用级别**的配置类
  *
  *
  * ## 说明
@@ -17,14 +17,72 @@
  *
  * ## 关于配置的优先级
  *
- * 也可以在url中传入配置参数, 通过url配置App的前后缀, 例如htttp://xx.xx.com?vmMode=ios
+ * 也可以在url中传入配置参数, 通过url配置App的前后缀, 例如 http://xx.xx.com?vmMode=ios
  * 则参数mode的值为ios, 改变mode并无法改变真实的mode环境, 因为平台验证有自己的isMatch方法, 切记!!
  *
  * ### 优先级
  *
+ * ** url获取配置信息(URL) > 用户自定义配置(Config) > 平台默认配置(Platform) **
+ *
  * ```
- * url获取配置信息(URL) > 用户自定义配置(Config) > 平台默认配置(Platform)
+ * 第一优先级(URL):
+ * http://xx.xx.com?vmMode=ios
+ *
+ * 第二优先级(Config):
+ * 在src/config/app-configs.js中的platforms字段中设置
+ * export default {
+ *    domain: '',
+ *    platforms: {
+ *        ios: {
+ *          mode: 'md'
+ *        }
+ *    }
+ * }
+ *
+ * 第三优先级(Config):
+ * 在src/config/app-configs.js中根属性中设置
+ * export default {
+ *    domain: '', 
+ *    mode: 'ios'
+ * }
+ *
+ * 第四优先级(Platform):
+ * 如果当前的_platforms = ['mobile','ios','wechat']
+ * 在src/config/platform-configs.js中设置
+ * export default {
+ *    wechat: {
+ *        settings: {
+ *          mode: 'md'
+ *        }
+ *    }
+ * }
+ *
+ * 第五优先级(Platform):
+ * 如果当前的_platforms = ['mobile','ios','wechat']
+ * 在src/config/platform-configs.js中设置
+ * export default {
+ *    ios: {
+ *        settings: {
+ *          mode: 'md'
+ *        }
+ *    }
+ * }
  * ```
+ *
+ * ### 可配置的参数有
+ *
+ * - mode                 // 模式 ios/md/wechat...
+ * - hideNavBar           // 是否隐藏navbar false
+ * - toolbarMinHeight     // toolbar的最小高度 44/56
+ * - iconMode             // icon的模式 ios/md
+ * - menuType             // menu展示方式 reveal/overlay
+ * - backButtonText       // 后退按钮文字
+ * - backButtonIcon       // 后退按钮图标icon
+ * - spinner              // 菊花图配型 ios/crescent
+ * - tabsHighlight        // tab是否有下划线
+ * - tabsPlacement        // tab的放置位置
+ * - pageTransition       // 转场动画 ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+ *
  **/
 
 const isFunction = (val) => typeof val === 'function'
@@ -240,7 +298,6 @@ class Config {
     return this
   }
 }
-
 
 /**
  * @function setupConfig

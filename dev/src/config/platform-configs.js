@@ -6,6 +6,7 @@
 export default {
   ios: {
     settings: {
+      mode:'md1',
       statusbarPadding: false,
       pageTransition: 'ios-transition'  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     }
@@ -18,6 +19,7 @@ export default {
   },
   wechat: {
     settings: {
+      mode:'md2',
       hideNavBar: true
     },
     onBridgeReady(plt){

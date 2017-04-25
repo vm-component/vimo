@@ -72,12 +72,66 @@
                 Config
                 </h2>
             
-            <div class="class-description"><p>App应用级别的配置类</p>
+            <div class="class-description"><p><strong>App应用级别</strong>的配置类</p>
 <h2>说明</h2><p>Config初始化的实例能配置整个App, 也能根据使用的平台单独配置而互不影响. 另外, 配置信息也能自定义, 比如说存放合成变量.</p>
 <p>获取过一次的配置会被缓存在实例中, 便于后续快速使用. 此外, 在业务中可用过this.$config获取已定义的变量, 比如:</p>
 <pre class="prettyprint source"><code>this.$config.get('mode') => 'ios/md'</code></pre><p>config的初始化Vimo安装的时候就搞定了, 实例会在<code>window.VM.config</code>中也留一份, 便于外部业务能访问到.</p>
-<h2>关于配置的优先级</h2><p>也可以在url中传入配置参数, 通过url配置App的前后缀, 例如htttp://xx.xx.com?vmMode=ios<br>则参数mode的值为ios, 改变mode并无法改变真实的mode环境, 因为平台验证有自己的isMatch方法, 切记!!</p>
-<h3>优先级</h3><pre class="prettyprint source"><code>url获取配置信息(URL) > 用户自定义配置(Config) > 平台默认配置(Platform)</code></pre></div>
+<h2>关于配置的优先级</h2><p>也可以在url中传入配置参数, 通过url配置App的前后缀, 例如 http://xx.xx.com?vmMode=ios<br>则参数mode的值为ios, 改变mode并无法改变真实的mode环境, 因为平台验证有自己的isMatch方法, 切记!!</p>
+<h3>优先级</h3><p><strong> url获取配置信息(URL) &gt; 用户自定义配置(Config) &gt; 平台默认配置(Platform) </strong></p>
+<pre class="prettyprint source"><code>第一优先级(URL):
+http://xx.xx.com?vmMode=ios
+
+第二优先级(Config):
+在src/config/app-configs.js中的platforms字段中设置
+export default {
+   domain: '',
+   platforms: {
+       ios: {
+         mode: 'md'
+       }
+   }
+}
+
+第三优先级(Config):
+在src/config/app-configs.js中根属性中设置
+export default {
+   domain: '', 
+   mode: 'ios'
+}
+
+第四优先级(Platform):
+如果当前的_platforms = ['mobile','ios','wechat']
+在src/config/platform-configs.js中设置
+export default {
+   wechat: {
+       settings: {
+         mode: 'md'
+       }
+   }
+}
+
+第五优先级(Platform):
+如果当前的_platforms = ['mobile','ios','wechat']
+在src/config/platform-configs.js中设置
+export default {
+   ios: {
+       settings: {
+         mode: 'md'
+       }
+   }
+}</code></pre><h3>可配置的参数有</h3><ul>
+<li>mode                 // 模式 ios/md/wechat...</li>
+<li>hideNavBar           // 是否隐藏navbar false</li>
+<li>toolbarMinHeight     // toolbar的最小高度 44/56</li>
+<li>iconMode             // icon的模式 ios/md</li>
+<li>menuType             // menu展示方式 reveal/overlay</li>
+<li>backButtonText       // 后退按钮文字</li>
+<li>backButtonIcon       // 后退按钮图标icon</li>
+<li>spinner              // 菊花图配型 ios/crescent</li>
+<li>tabsHighlight        // tab是否有下划线</li>
+<li>tabsPlacement        // tab的放置位置</li>
+<li>pageTransition       // 转场动画 ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition</li>
+</ul></div>
             
             
         </header>
@@ -205,7 +259,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="base_config.js.html">base/config.js</a>, <a href="base_config.js.html#line65">line 65</a>
+        <a href="base_config.js.html">base/config.js</a>, <a href="base_config.js.html#line123">line 123</a>
     </li></ul></dd>
     
 
@@ -414,7 +468,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="base_config.js.html">base/config.js</a>, <a href="base_config.js.html#line141">line 141</a>
+        <a href="base_config.js.html">base/config.js</a>, <a href="base_config.js.html#line199">line 199</a>
     </li></ul></dd>
     
 
@@ -623,7 +677,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="base_config.js.html">base/config.js</a>, <a href="base_config.js.html#line159">line 159</a>
+        <a href="base_config.js.html">base/config.js</a>, <a href="base_config.js.html#line217">line 217</a>
     </li></ul></dd>
     
 
@@ -820,7 +874,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="base_config.js.html">base/config.js</a>, <a href="base_config.js.html#line176">line 176</a>
+        <a href="base_config.js.html">base/config.js</a>, <a href="base_config.js.html#line234">line 234</a>
     </li></ul></dd>
     
 
@@ -1056,7 +1110,7 @@ set('ios', 'key', 'value') = set key/value pair for platform</code></pre>
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="base_config.js.html">base/config.js</a>, <a href="base_config.js.html#line220">line 220</a>
+        <a href="base_config.js.html">base/config.js</a>, <a href="base_config.js.html#line278">line 278</a>
     </li></ul></dd>
     
 
