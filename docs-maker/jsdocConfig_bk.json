@@ -25,6 +25,7 @@
   },
   "source": {
     "include": [
+
       "README.md",
       "raw/components/action-sheet",
       "raw/components/alert",

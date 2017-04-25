@@ -30,7 +30,7 @@
 </style>
 <script>
   /**
-   * @component Base / App
+   * @component Base/App
    * @description
    *
    *  ## 基础组件 / App组件
@@ -44,7 +44,6 @@
    * @example
    * this.$app.setTitle('Hello World');
    *
-
    *
    * */
   import { ClickBlock } from './click-block'

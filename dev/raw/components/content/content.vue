@@ -88,7 +88,7 @@
    * */
 
   /**
-   * @component Base / Content
+   * @component Base/Content
    * @description
    *
    * ## 基础组件 / Content组件
@@ -122,6 +122,9 @@
    * @fires onScrollEnd     - 滚动结束时触发， 传递ScrollEvent对象
    *
    * @demo http://ionicframework.com/docs/demos/src/alert/www/
+   *
+   *
+   *
    *
    * @example
    * <template>
@@ -202,7 +205,6 @@
     methods: {
       // -------- public --------
       /**
-       * @member
        * @function getContentDimensions
        * @description
        * Returns the content and scroll elements' dimensions.

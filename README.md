@@ -9,7 +9,7 @@
 
 可以使用的平台:  **微信、支付宝、钉钉、普通浏览器、原生App内部增强版WebView中**, 列如下图: 
 
-![](./static/VIMO(H5).png)
+![](./dev/static/VIMO(H5).png)
 
 
 ## 如何开始
@@ -27,7 +27,7 @@ npm install vimo
 
 ## 组件清单
 
-![组件清单](./static/vimo_components.png)
+![组件清单](./dev/static/vimo_components.png)
 
 ## 框架技术清单(主要部分)
 
