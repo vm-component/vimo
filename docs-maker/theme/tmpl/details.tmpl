@@ -10,129 +10,211 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
         data.defaultvalue = indentedValues;
     } catch (e) {}
     data.defaultvalue = "<pre class=\"prettyprint\"><code>" + data.defaultvalue + "</code></pre>";
-    defaultObjectClass = ' class="object-value"';
+defaultObjectClass = ' class="object-value"';
 }
 ?>
 
 <dl class="details">
-
     <?js if (data.meta && self.outputSourceFiles) {?>
-    <dt class="tag-source">源码:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <?js= self.linkto(meta.shortpath) ?>, <?js= self.linkto(meta.shortpath, 'line ' + meta.lineno, null, 'line' + meta.lineno) ?>
-    </li></ul></dd>
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <?js= self.linkto(meta.shortpath) ?>
+                    , <?js= self.linkto(meta.shortpath, 'line ' + meta.lineno, null, 'line' + meta.lineno) ?>
+                </li>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
+
     <?js if (data.version) {?>
-    <dt class="tag-version">版本:</dt>
-    <dd class="tag-version"><ul class="dummy"><li><?js= version ?></li></ul></dd>
+    <section class="details__inner">
+        <dt class="tag-version">版本:</dt>
+        <dd class="tag-version">
+            <ul class="dummy">
+                <li><?js= version ?></li>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.since) {?>
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li><?js= since ?></li></ul></dd>
+    <section class="details__inner">
+        <dt class="tag-since">Since:</dt>
+        <dd class="tag-since">
+            <ul class="dummy">
+                <li><?js= since ?></li>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.inherited && data.inherits && !data.overrides) { ?>
-    <dt class="inherited-from">继承自:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <?js= this.linkto(data.inherits, this.htmlsafe(data.inherits)) ?>
-    </li></ul></dd>
+    <section class="details__inner">
+        <dt class="inherited-from">继承自:</dt>
+        <dd class="inherited-from">
+            <ul class="dummy">
+                <li>
+                    <?js= this.linkto(data.inherits, this.htmlsafe(data.inherits)) ?>
+                </li>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.overrides) { ?>
-    <dt class="tag-overrides">复写:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <?js= this.linkto(data.overrides, this.htmlsafe(data.overrides)) ?>
-    </li></ul></dd>
+    <section class="details__inner">
+        <dt class="tag-overrides">复写:</dt>
+        <dd class="tag-overrides">
+            <ul class="dummy">
+                <li>
+                    <?js= this.linkto(data.overrides, this.htmlsafe(data.overrides)) ?>
+                </li>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.implementations && data.implementations.length) { ?>
-    <dt class="implementations">Implementations:</dt>
-    <dd class="implementations"><ul>
-        <?js data.implementations.forEach(function(impl) { ?>
-            <li><?js= self.linkto(impl, self.htmlsafe(impl)) ?></li>
-        <?js }); ?>
-    </ul></dd>
+    <section class="details__inner">
+        <dt class="implementations">Implementations:</dt>
+        <dd class="implementations">
+            <ul>
+                <?js data.implementations.forEach(function(impl) { ?>
+                <li><?js= self.linkto(impl, self.htmlsafe(impl)) ?></li>
+                <?js }); ?>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.implements && data.implements.length) { ?>
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        <?js data.implements.forEach(function(impl) { ?>
-            <li><?js= self.linkto(impl, self.htmlsafe(impl)) ?></li>
-        <?js }); ?>
-    </ul></dd>
+    <section class="details__inner">
+        <dt class="implements">Implements:</dt>
+        <dd class="implements">
+            <ul>
+                <?js data.implements.forEach(function(impl) { ?>
+                <li><?js= self.linkto(impl, self.htmlsafe(impl)) ?></li>
+                <?js }); ?>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.mixes && data.mixes.length) { ?>
+    <section class="details__inner">
         <dt class="mixes">Mixes In:</dt>
-
-        <dd class="mixes"><ul>
-        <?js data.mixes.forEach(function(a) { ?>
-            <li><?js= self.linkto(a, a) ?></li>
-        <?js }); ?>
-        </ul></dd>
+        <dd class="mixes">
+            <ul>
+                <?js data.mixes.forEach(function(a) { ?>
+                <li><?js= self.linkto(a, a) ?></li>
+                <?js }); ?>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.deprecated) { ?>
-        <dt class="important tag-deprecated">Deprecated:</dt><?js
-            if (data.deprecated === true) { ?><dd class="yes-def tag-deprecated"><ul class="dummy"><li>Yes</li></ul></dd><?js }
-            else { ?><dd><ul class="dummy"><li><?js= data.deprecated ?></li></ul></dd><?js }
+    <section class="details__inner">
+        <dt class="important tag-deprecated">弃用:</dt>
+        <?js
+            if (data.deprecated === true) { ?>
+        <dd class="yes-def tag-deprecated">
+            <ul class="dummy">
+                <li>Yes</li>
+            </ul>
+        </dd>
+        <?js }
+            else { ?>
+        <dd>
+            <ul class="dummy">
+                <li><?js= data.deprecated ?></li>
+            </ul>
+        </dd>
+        <?js }
         ?>
+    </section>
     <?js } ?>
 
     <?js if (data.author && author.length) {?>
-    <dt class="tag-author">作者:</dt>
-    <dd class="tag-author">
-        <ul><?js author.forEach(function(a) { ?>
-            <li><?js= self.resolveAuthorLinks(a) ?></li>
-        <?js }); ?></ul>
-    </dd>
+    <section class="details__inner">
+        <dt class="tag-author">作者:</dt>
+        <dd class="tag-author">
+            <ul><?js author.forEach(function(a) { ?>
+                <li><?js= self.resolveAuthorLinks(a) ?></li>
+                <?js }); ?></ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.copyright) {?>
-    <dt class="tag-copyright">版权:</dt>
-    <dd class="tag-copyright"><ul class="dummy"><li><?js= copyright ?></li></ul></dd>
+    <section class="details__inner">
+        <dt class="tag-copyright">版权:</dt>
+        <dd class="tag-copyright">
+            <ul class="dummy">
+                <li><?js= copyright ?></li>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.license) {?>
-    <dt class="tag-license">许可证:</dt>
-    <dd class="tag-license"><ul class="dummy"><li><?js= license ?></li></ul></dd>
+    <section class="details__inner">
+        <dt class="tag-license">许可证:</dt>
+        <dd class="tag-license">
+            <ul class="dummy">
+                <li><?js= license ?></li>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.defaultvalue) {?>
-    <dt class="tag-default">默认值:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li<?js= defaultObjectClass ?>><?js= data.defaultvalue ?></li>
-        </ul></dd>
+    <section class="details__inner">
+        <dt class="tag-default">默认值:</dt>
+        <dd class="tag-default">
+            <ul class="dummy">
+                <li
+                <?js= defaultObjectClass ?>><?js= data.defaultvalue ?></li>
+            </ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.tutorials && tutorials.length) {?>
-    <dt class="tag-tutorial">教程:</dt>
-    <dd class="tag-tutorial">
-        <ul><?js tutorials.forEach(function(t) { ?>
-            <li><?js= self.tutoriallink(t) ?></li>
-        <?js }); ?></ul>
-    </dd>
+    <section class="details__inner">
+        <dt class="tag-tutorial">教程:</dt>
+        <dd class="tag-tutorial">
+            <ul><?js tutorials.forEach(function(t) { ?>
+                <li><?js= self.tutoriallink(t) ?></li>
+                <?js }); ?></ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.see && see.length) {?>
-    <dt class="tag-see">参考:</dt>
-    <dd class="tag-see">
-        <ul><?js see.forEach(function(s) { ?>
-            <li><?js= self.linkto(s) ?></li>
-        <?js }); ?></ul>
-    </dd>
+    <section class="details__inner">
+        <dt class="tag-see">参考:</dt>
+        <dd class="tag-see">
+            <ul><?js see.forEach(function(s) { ?>
+                <li><?js= self.linkto(s) ?></li>
+                <?js }); ?></ul>
+        </dd>
+    </section>
     <?js } ?>
 
     <?js if (data.todo && todo.length) {?>
-    <dt class="tag-todo">计划:</dt>
-    <dd class="tag-todo">
-        <ul><?js todo.forEach(function(t) { ?>
-            <li><?js= t ?></li>
-        <?js }); ?></ul>
-    </dd>
+    <section class="details__inner">
+        <dt class="tag-todo">计划:</dt>
+        <dd class="tag-todo">
+            <ul><?js todo.forEach(function(t) { ?>
+                <li><?js= t ?></li>
+                <?js }); ?></ul>
+        </dd>
+    </section>
     <?js } ?>
 </dl>
 
@@ -154,8 +236,8 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
     if (properties && properties.length && properties.forEach) {
 ?>
 
-    <h3 class="subsection-title">属性 / Properties:</h3>
+<h3 class="subsection-title">属性 / Properties:</h3>
 
-    <?js= this.partial('properties.tmpl', data) ?>
+<?js= this.partial('properties.tmpl', data) ?>
 
 <?js } ?>

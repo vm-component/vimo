@@ -368,14 +368,16 @@ function linktoExternal (longName, name) {
  */
 
 function buildNav (members) {
-  var nav = '<h2><a href="index.html">首页 / Home</a></h2>'
+
+  var nav = '<section class="nav__header">'
+  nav += '<h2><a href="index.html">首页 / Home</a></h2>'
   nav += '<h2><a href="https://github.com/DTFE/vimo-start-kit">如何开始 / How To Start</a></h2>'
-  // nav += '<h2><a href="index.html">示例 / Demo</a></h2>'
+  nav += '<h2><a href="http://xiangsongtao.com/vimo">示例 / Demo</a></h2>'
   nav += '<h2><a href="https://github.com/DTFE/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2>'
+  nav += '</section>'
 
   var seen = {}
   var seenTutorials = {}
-
 
   // component和module是一个概念但是不一样的叫法
   var component = []

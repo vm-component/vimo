@@ -55,11 +55,12 @@ h1.page-title {
   line-height: 130%; }
 
 h2 {
-  font-size: 24px;
+  font-size: 26px;
+  line-height: 130%;
   margin: 1.5em 0 .3em; }
 
 h3 {
-  font-size: 24px;
+  font-size: 20px;
   margin: 1.2em 0 .3em; }
 
 h4 {
@@ -108,7 +109,6 @@ tt, code, kbd, samp {
 
 #main {
   float: right;
-  min-width: 360px;
   width: calc(100% - 240px); }
 
 header {
@@ -188,15 +188,22 @@ nav ul ul a,
 nav ul ul a:active {
   padding-left: 20px; }
 
-nav h2 {
-  font-size: 12px;
-  margin: 0;
+nav .nav__header {
+  margin: 15px 0;
   padding: 0; }
-
-nav > h2 > a {
-  display: block;
-  margin: 10px 0 -10px;
-  color: #00663d !important; }
+  nav .nav__header h2 {
+    font-size: 12px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    line-height: 130%;
+    margin-bottom: 10px; }
+    nav .nav__header h2 a {
+      display: block;
+      margin: 0;
+      height: 18px;
+      line-height: 18px;
+      color: #00663d !important; }
 
 footer {
   color: #474747;
@@ -239,23 +246,26 @@ footer {
   border-left: 2px solid #ddd;
   line-height: 20px;
   font-size: 14px;
-  /*text-align: right;*/ }
-
-.details dt {
-  width: 120px;
-  float: left;
-  padding-left: 10px; }
-
-.details dd {
-  margin-left: 70px;
-  margin-top: 6px;
-  margin-bottom: 6px; }
-
-.details ul {
-  margin: 0; }
-
-.details ul {
-  list-style-type: none; }
+  /*text-align: right;*/
+  overflow: scroll;
+  width: 100%; }
+  .details .details__inner {
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; }
+    .details .details__inner dt {
+      padding-left: 10px;
+      width: 70px;
+      flex: 0 0 70px; }
+    .details .details__inner dd {
+      margin-left: 0;
+      margin-top: 6px;
+      margin-bottom: 6px; }
+      .details .details__inner dd ul {
+        margin: 0;
+        list-style-type: none;
+        padding: 0; }
 
 .details pre.prettyprint {
   margin: 0; }
@@ -279,20 +289,24 @@ footer {
   overflow: auto; }
 
 .prettyprint.source {
-  width: inherit;
+  width: 100%;
   line-height: 18px;
   display: block;
-  background-color: #0d152a;
-  color: #aeaeae; }
+  background: #0d152a;
+  color: #aeaeae;
+  overflow: hidden; }
 
 .prettyprint code {
   line-height: 18px;
-  display: block;
-  background-color: #0d152a;
+  display: inline-block;
+  background: #0d152a;
   color: #4d4e53; }
 
 .prettyprint > code {
-  padding: 15px; }
+  padding: 15px;
+  width: 100%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch; }
 
 .prettyprint .linenums code {
   padding: 0 15px; }
@@ -335,7 +349,8 @@ footer {
   font-size: 14px;
   margin: 1em 0;
   display: block;
-  overflow: scroll; }
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch; }
 
 .slots {
   min-width: 60%;
@@ -357,7 +372,8 @@ footer {
   text-align: left;
   vertical-align: top;
   padding: 10px;
-  display: table-cell; }
+  display: table-cell;
+  white-space: nowrap; }
 
 .params td {
   border-top: 1px solid #eee; }
@@ -505,9 +521,10 @@ span.param-type, .params td .param-type, .param-type dd {
   background: rgba(0, 0, 0, 0.5);
   z-index: 1; }
 
-@media only screen and (min-width: 320px) and (max-width: 680px) {
+@media only screen and (min-width: 320px) and (max-width: 780px) {
   body {
-    overflow-x: hidden; }
+    overflow-x: hidden;
+    font-size: 14px; }
 
   nav {
     background: #fff;
@@ -520,24 +537,42 @@ span.param-type, .params td .param-type, .param-type dd {
     left: -250px;
     z-index: 3;
     padding: 0 10px;
-    transition: left 0.2s; }
+    transition: left 0.2s;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; }
 
   .navicon-button {
     display: inline-block;
     position: fixed;
-    top: 1.5em;
+    top: 0.5em;
     right: 0;
     z-index: 2; }
 
   #main {
-    width: 100%;
-    min-width: 360px; }
+    width: 100%; }
+    #main .content {
+      padding: 0; }
 
   #main h1.page-title {
-    margin: 1em 0; }
+    margin: 1.5em 0 0em; }
 
-  #main section {
-    padding: 0; }
+  #main {
+    width: 100%; }
+    #main .content {
+      padding: 0; }
+      #main .content .page-content {
+        padding: 0; }
+        #main .content .page-content .readme {
+          width: 100%; }
+          #main .content .page-content .readme p > img {
+            width: 100%; }
+          #main .content .page-content .readme pre {
+            overflow: scroll;
+            -webkit-overflow-scrolling: touch; }
+        #main .content .page-content .content {
+          padding: 0; }
+        #main .content .page-content .showcase {
+          display: none; }
 
   footer {
     margin-left: 0; } }

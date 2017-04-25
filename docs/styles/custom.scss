@@ -47,7 +47,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-
+   .readme {
+     width: 100%;
+     p > img {
+       width: 100%;
+     }
+  }
   .content {
     width: 100%;
     //min-width: 700px;

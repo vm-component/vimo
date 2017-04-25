@@ -26,8 +26,18 @@
     ],
     "parser": "gfm",
     "hardwrap": true
+
   },
   "source": {
+    "include1": [
+      "./theme/README.md",
+      "./theme/fixtures/base",
+      "./theme/fixtures/mixins",
+      "./theme/fixtures/strings",
+      "./theme/fixtures/tutorials",
+      "./theme/fixtures/utils",
+      "./theme/fixtures/documents"
+    ],
     "include": [
       "../README.md",
       "../dev/raw/util",

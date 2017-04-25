@@ -6,7 +6,8 @@ $theme-light-2: #6fc7c3;
 $theme-light-3: #426d5c;
 
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
+  //outline: 1px solid #ddd;
 }
 
 html, body {
@@ -73,12 +74,13 @@ h1.page-title {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 26px;
+  line-height: 130%;
   margin: 1.5em 0 .3em;
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 20px;
   margin: 1.2em 0 .3em;
 }
 
@@ -152,7 +154,7 @@ tt, code, kbd, samp {
 
 #main {
   float: right;
-  min-width: 360px;
+  //min-width: 320px;
   width: calc(100% - 240px);
 }
 
@@ -248,17 +250,31 @@ nav ul ul a:active {
   padding-left: 20px
 }
 
+nav{
+  .nav__header{
+    margin:15px 0;
+    padding:0;
+    h2{
+      font-size: 12px;
+      height:18px;
+      margin: 0;
+      padding: 0;
+      line-height: 130%;
+      margin-bottom: 10px;
+      a{
+        display: block;
+        margin: 0;
+        height:18px;
+        line-height: 18px;
+        color: $theme !important;
+      }
+    }
+  }
+}
 nav h2 {
-  font-size: 12px;
-  margin: 0;
-  padding: 0;
+
 }
 
-nav > h2 > a {
-  display: block;
-  margin: 10px 0 -10px;
-  color: $theme !important;
-}
 
 footer {
   color: hsl(0, 0%, 28%);
@@ -312,26 +328,29 @@ footer {
   line-height: 20px;
   font-size: 14px;
   /*text-align: right;*/
-}
-
-.details dt {
-  width: 120px;
-  float: left;
-  padding-left: 10px;
-}
-
-.details dd {
-  margin-left: 70px;
-  margin-top: 6px;
-  margin-bottom: 6px;
-}
-
-.details ul {
-  margin: 0
-}
-
-.details ul {
-  list-style-type: none
+  overflow: scroll;
+  width: 100%;
+  .details__inner {
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    dt {
+      padding-left: 10px;
+      width: 70px;
+      flex: 0 0 70px;
+    }
+    dd {
+      margin-left: 0;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      ul {
+        margin: 0;
+        list-style-type: none;
+        padding: 0;
+      }
+    }
+  }
 }
 
 .details pre.prettyprint {
@@ -362,22 +381,26 @@ footer {
 }
 
 .prettyprint.source {
-  width: inherit;
+  width: 100%;
   line-height: 18px;
   display: block;
-  background-color: #0d152a;
+  background: #0d152a;
   color: #aeaeae;
+  overflow: hidden;
 }
 
 .prettyprint code {
   line-height: 18px;
-  display: block;
-  background-color: #0d152a;
+  display: inline-block;
+  background: #0d152a;
   color: #4d4e53;
 }
 
 .prettyprint > code {
   padding: 15px;
+  width: 100%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .prettyprint .linenums code {
@@ -429,7 +452,8 @@ footer {
   font-size: 14px;
   margin: 1em 0;
   display: block;
-  overflow:scroll;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .slots {
@@ -457,6 +481,7 @@ footer {
   vertical-align: top;
   padding: 10px;
   display: table-cell;
+  white-space: nowrap;
 }
 
 .params td {
@@ -635,9 +660,10 @@ span.param-type, .params td .param-type, .param-type dd {
   z-index: 1;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 680px) {
+@media only screen and (min-width: 320px) and (max-width: 780px) {
   body {
     overflow-x: hidden;
+    font-size: 14px;
   }
 
   nav {
@@ -652,28 +678,59 @@ span.param-type, .params td .param-type, .param-type dd {
     z-index: 3;
     padding: 0 10px;
     transition: left 0.2s;
+
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .navicon-button {
     display: inline-block;
     position: fixed;
-    top: 1.5em;
+    top: 0.5em;
     right: 0;
     z-index: 2;
   }
 
   #main {
     width: 100%;
-    min-width: 360px;
+    .content {
+      padding: 0;
+    }
   }
 
   #main h1.page-title {
-    margin: 1em 0;
+    margin: 1.5em 0 0em;
 
   }
 
-  #main section {
-    padding: 0;
+  #main {
+    width: 100%;
+
+    .content {
+      padding: 0;
+      .page-content {
+        padding: 0;
+        .readme {
+          width: 100%;
+          p > img {
+            width: 100%;
+          }
+
+          pre {
+            overflow: scroll;
+            -webkit-overflow-scrolling: touch;
+          }
+        }
+
+        .content {
+          padding: 0;
+
+        }
+        .showcase {
+          display: none;
+        }
+      }
+    }
   }
 
   footer {
@@ -688,3 +745,4 @@ span.param-type, .params td .param-type, .param-type dd {
   margin-left: -14px;
   margin-right: 5px;
 }
+
