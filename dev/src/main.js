@@ -34,7 +34,6 @@ Vue.use(vimo, {
   router: router
 })
 
-
 Vue.component(Backdrop.name, Backdrop)
 Vue.component(Icon.name, Icon)
 Vue.component(Grid.name, Grid)
@@ -63,6 +62,9 @@ new Vue({
       console.debug(data)
     })
   },
-  mounted () {},
+  mounted () {
+
+    console.log(this.$router)
+  },
   components: {App}
 })

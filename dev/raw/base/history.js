@@ -1,38 +1,44 @@
 /**
- * Created by Hsiang on 2017/2/28.
+ * @class HisContorller
+ * @classdesc 通过vue-router的onRouteChangeBefore事件构建本地历史记录
  *
- * 初始化导航
- * 内建历史记录数组, 类似于一个stack, 这个能正确反映当前app的浏览历史记录
+ * ## 问题
+ *
+ * 单页应用的一个需求是需要知道路由切换是前进还是后退, 但是浏览器对路由切换只给了两个事件 `hashchange` 和 `popstate`, 故无从判断当前操作是后退还是前进.
+ *
+ * ## 解决方案
+ *
+ * 这个类通过vue-router的onRouteChangeBefore事件构建本地历史记录. 当路由切换时, 内建历史记录数组, 类似于一个stack, 这个能正确反映当前app的浏览历史记录.
  *
  * router路由在页面切换的时候会发出两个事件:
  *
- * onRouteChangeBefore(router.beforeEach): 路由器切换之前
- * onRouteChangeAfter(router.afterEach): 路由切换之后, 页面进入渲染阶段
+ * - onRouteChangeBefore(router.beforeEach): 路由器切换之前
+ * - onRouteChangeAfter(router.afterEach): 路由切换之后, 页面进入渲染阶段
  *
- * 需要根据上面的onRouteChangeBefore事件, 判断Nav级别(而不是页面的生命周期)的切换事件:
+ * 需要根据上面的onRouteChangeBefore事件, 判断导航级别(而不是页面的生命周期)的切换事件:
  *
- * onNavEnter: 导航前进
- * onNavLeave: 导航后退
+ * - onNavEnter: 导航前进
+ * - onNavLeave: 导航后退
  *
  * 完成的功能如下:
  *
- * 1. 内建导航记录
- * 2. 根据routeChange发出navChange相关事件
- * 3. $nav为标示当前导航状态及全局事件触发, 并不操作导航(window.history), 导航操作(go/back..)由$router进行
- *
+ * - 内建导航记录
+ * - 根据路由切换事件发出对应的导航相关事件
+ * - 此HisContorller是对router实例的拓展, 但是不会为router实例添加方法, 而是从新定义$history, 这个可在业务的this中访问到
  */
 
-export class NavContorller {
+export class HisContorller {
 
   constructor (Vue, router) {
-    this._h = [] // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
-    this._d = 'forward' // forward/backward
-    this.isAppCompInit = false // App组件是否已完成Init, 表示基础页面是否准备完毕
-    this._r = router
+    this._h = []                // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
+    this._d = 'forward'         // forward/backward
+    this._r = router            // vur-router实例
+    this.isAppCompInit = false  // App组件是否已完成Init, 表示基础页面是否准备完毕
     this.length = 0
 
     // 监听路由变化, 维护本地历史记录
-    this._r && this._r.beforeEach((to, from, next) => {
+    if (this._r) {
+      this._r.beforeEach((to, from, next) => {
         let stackLength = this._h.length
         if (stackLength <= 1) {
           /**
@@ -51,14 +57,19 @@ export class NavContorller {
             this._popHistory(Vue, {to, from, next})
           }
         }
-      }
-    )
+      })
+
+      // // 对router拓展
+      // this._r.__proto__.printHello = function () {
+      //   console.log('printHello')
+      // }
+    }
   }
 
   // -------- private --------
   /**
-   * @private
    * push to history
+   * @private
    * */
   _pushHistory (Vue, {to, from, next}) {
     this._h.push(to)
@@ -73,8 +84,8 @@ export class NavContorller {
   }
 
   /**
-   * @private
    * pop history record
+   * @private
    * */
   _popHistory (Vue, {to, from, next}) {
     // 激活了浏览器的后退,这里只需要更新状态
@@ -99,7 +110,6 @@ export class NavContorller {
   }
 
   /**
-   * @private
    * 判断是否是主页面的切换
    * 默认主页面为第一级:
    * /#/page1
@@ -108,6 +118,7 @@ export class NavContorller {
    * 二级页面
    * /#/page1/tab1
    * /#/page1/modal1
+   * @private
    * */
   _isPageChange ({to, from}) {
     let _isFromPage = from.matched.length === 1
@@ -125,6 +136,7 @@ export class NavContorller {
 
   /**
    * 判断是否能返回
+   * @return {Boolean}
    * */
   canGoBack () {
     return this._h.length > 1
@@ -132,6 +144,7 @@ export class NavContorller {
 
   /**
    * 获取历史记录的第一个
+   * @return {location}
    * */
   first () {
     return this._h[0]
@@ -140,6 +153,7 @@ export class NavContorller {
   /**
    * 获取当前激活的页面
    * 获取最后一个历史记录
+   * @return {location}
    * */
   getActive () {
     return this._h[this._h.length - 1]
@@ -147,6 +161,7 @@ export class NavContorller {
 
   /**
    * 获取上一个历史记录
+   * @return {location}
    * */
   getPrevious () {
     return this._h[this._h.length - 2]
@@ -154,6 +169,7 @@ export class NavContorller {
 
   /**
    * 获取当前的导航记录
+   * @return {Array}
    * */
   getHistory () {
     return this._h
@@ -161,13 +177,14 @@ export class NavContorller {
 
   /**
    * 返回传入的route是历史记录中的第几条
+   * @return {Number}
    * */
   indexOf (route) {
     return this._h.indexOf(route)
   }
 
   /**
-   * 返回root页面
+   * 返回root页面(进入的第一个页面)
    * */
   toRoot () {
     let _len = this.length

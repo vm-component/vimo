@@ -12,6 +12,13 @@
     </nav>
 </template>
 <script>
+
+  /**
+   * @component base/nav
+   * @description
+   *
+   * asdf
+   * */
   export default{
     name: 'Nav',
     props: {

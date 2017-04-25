@@ -1,32 +1,32 @@
+import { setupConfig } from './base/config'
+import { setupPlatform } from './base/platform'
+import { HisContorller } from './base/history'
+// Core
+import { App, Footer, Header } from './components/app'
+import { Content } from './components/content'
+import { Nav } from './components/nav'
+
+import { Page } from './components/page'
 /**
  * @name initVimo
  * @description Vimo框架安装
  */
 import './util/polyfill'
 
-import { setupConfig } from './base/config'
-import { setupPlatform } from './base/platform'
-// Core
-import { App, Footer, Header } from './components/app'
-import { Content } from './components/content'
-import { Nav } from './components/nav'
-import { NavContorller } from './components/nav-controller'
-import { Page } from './components/page'
-
 export default {
   installed: false,
   version: '0.3.7',
   install (Vue, options = {}) {
-
+    window.VM = {}
     // init base (config/platform)
     setupConfig(options.custConf, setupPlatform(options.pltConf))
 
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = new Vue()
-    Vue.prototype.$config = window.VM && window.VM.config
-    Vue.prototype.$platform = window.VM && window.VM.platform
+    Vue.prototype.$config = window.VM.config
+    Vue.prototype.$platform = window.VM.platform
     // 监听route变化, 内建历史记录
-    Vue.prototype.$history = new NavContorller(Vue, options.router)
+    Vue.prototype.$history = window.VM.history = new HisContorller(Vue, options.router)
 
     // 安装必要组件
     if (!window.VM) {
