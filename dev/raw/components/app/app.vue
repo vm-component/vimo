@@ -36,27 +36,36 @@
    *  ## 基础组件 / App组件
    *
    * App组件是Vimo框架的根组件,用于管理及控制整个页面的状态.
+   * 控制App行为的方法已挂载到`vue.prototype.$app`上, 所以在页面中直接像这样使用, 例如:
    *
-   * 该组件的下列方法已挂载到`vue.prototype.$app`上, 所以在页面中直接像这样使用:
+   * ```
+   * this.$app.setTitle('Hello World');
+   * ```
+   *
+   * 此外, 弹出层挂载点也在此组件中列举, 可以用id搜索到这些挂载点:
+   *
+   * - modalPortal
+   * - sheetPortal
+   * - alertPortal
+   * - loadingPortal
+   * - toastPortal
    *
    * @property {String} mode - 模式
    *
-   * @example
-   * this.$app.setTitle('Hello World');
-   *
-   *
    * */
+
   import { ClickBlock } from './click-block'
   import { setElementClass } from '../../util/util'
-
-  let _clickBlock = new ClickBlock()
 
   // click_blcok等待时间
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64
   // 时间过后回复可点击状态
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700
   const ACTIVE_SCROLLING_TIME = 100
-
+  let _clickBlock = new ClickBlock()
+  let _disTime = 0          // 禁用计时
+  let _scrollTime = 0       // 滚动计时
+  let _scrollDisTime = 0
   export default{
     name: 'App',
     data(){
@@ -64,10 +73,6 @@
         isScrollDisabled: false, // 控制页面是否能滚动
         isClickBlockEnabled: false, // 控制是否激活 '冷冻'效果 click-block-enabled
         title: null, // 当前的App的title
-
-        _disTime: 0, // 禁用计时
-        _scrollTime: 0, // 滚动计时
-        _scrollDisTime: 0,
       }
     },
     props: {
@@ -118,7 +123,7 @@
        * @param {number} duration - isEnabled=false的过期时间 当 `isEnabled` 设置为`false`, 则duration之后，`isEnabled`将自动设为`true`
        * */
       setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
-        this._disTime = (isEnabled ? 0 : Date.now() + duration)
+        _disTime = (isEnabled ? 0 : Date.now() + duration)
         if (isEnabled) {
           // disable the click block if it's enabled, or the duration is tiny
           _clickBlock.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS)
@@ -138,8 +143,8 @@
       setDisableScroll (isScrollDisabled, duration = 0) {
         this.isScrollDisabled = isScrollDisabled
         if (duration > 0 && isScrollDisabled) {
-          window.clearTimeout(this._scrollDisTime)
-          this._scrollDisTime = window.setTimeout(() => {
+          window.clearTimeout(_scrollDisTime)
+          _scrollDisTime = window.setTimeout(() => {
             this.isScrollDisabled = false
           }, duration)
         }
@@ -148,17 +153,16 @@
       /**
        * @function isScrolling
        * @description
-       * 判断现在app是否在scroll状态, scroll状态可能是任意一个页面的状态,
-       * 这个isScroll作为全局的scroll判断
+       * 判断现在app是否在scroll状态, scroll状态可能是任意一个页面的状态, 这个isScroll作为全局的scroll判断
        * @return {boolean}
        */
       isScrolling() {
-        const scrollTime = this._scrollTime
+        const scrollTime = _scrollTime
         if (scrollTime === 0) {
           return false
         }
         if (scrollTime < Date.now()) {
-          this._scrollTime = 0
+          _scrollTime = 0
           return false
         }
         return true
@@ -166,20 +170,30 @@
       /**
        * @function isEnabled
        * @description
-       * 查看App现在的激活状态
+       * 查看App当前的激活(禁用)状态
        * @return {boolean}
        */
       isEnabled() {
-        const disTime = this._disTime
-        if (disTime === 0) {
+        if (_disTime === 0) {
           return true
         }
-        return (disTime < Date.now())
+        return (_disTime < Date.now())
       },
 
-      // -------- private --------
+      /**
+       * @function setClass
+       * @description
+       * 设置app的class
+       * @param {string} className
+       * @param {boolean} isAdd
+       */
+      setClass(className, isAdd) {
+        setElementClass(this.$el, className, isAdd)
+      },
 
       /**
+       * @function setDocTitle
+       * @description
        * 设置document.title的值
        * */
       setDocTitle(val){
@@ -202,22 +216,16 @@
         }
       },
 
-      /**
-       *  @param {string} className
-       *  @param {boolean} isAdd
-       */
-      setElementClass(className, isAdd) {
-        setElementClass(this.$el, className, isAdd)
-      },
 
       /**
+       * @function setScrolling
+       * @description
        * 设置当前App级别是否在滚动, 例如: 这个函数由scroll-view的实例调用, 反应当前的conent
        * 正在滚动... 滚动的有效时间为ACTIVE_SCROLLING_TIME, 超时后将判断为不再滚动, 由
        * isScrolling进行判断
-       * @private
        */
       setScrolling() {
-        this._scrollTime = Date.now() + ACTIVE_SCROLLING_TIME
+        _scrollTime = Date.now() + ACTIVE_SCROLLING_TIME
       },
     },
     created(){

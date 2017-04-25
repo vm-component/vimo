@@ -19,12 +19,13 @@
     .ion-header.hide-bar {
         transform: translateY(-100%);
     }
-
 </style>
 <script>
   /**
    * @component Base/Header
    * @description
+   *
+   * ## 基础组件 / Footer组件
    *
    * Header和Footer组件结构类似, 都是提供一个包裹容器, 不同的是一个固定在上面, 一个固定在下面.
    *
@@ -52,37 +53,45 @@
         // -------- public --------
         isHide: false,
         style: {},
-
       }
     },
     methods: {
       // -------- public --------
       /**
-       * 隐藏header
+       * @function hide
+       * @description
+       * 隐藏Header
        * */
       hide(){
         this.isHide = true
       },
 
       /**
-       * 显示header
+       * @function show
+       * @description
+       * 显示Header
        * */
       show(){
         this.isHide = false
       },
 
+      /**
+       * @function toggle
+       * @description
+       * Toggle显示Header
+       * */
       toggle(){
         this.isHide = !this.isHide
       },
 
       /**
-       * 设置bar的样式
-       * @param {object} style - 样式对象
+       * @function setStyle
+       * @description
+       * 设置Header的样式
        * */
       setStyle(style){
         this.style = style
-      },
-
+      }
     }
   }
 </script>

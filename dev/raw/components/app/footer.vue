@@ -1,5 +1,5 @@
 <template>
-    <footer class="ion-footer footer" :class="[modeClass,{'hide-bar':isHide}]">
+    <footer class="ion-footer footer" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
         <slot></slot>
     </footer>
 </template>
@@ -25,10 +25,12 @@
    * @component Base/Footer
    * @description
    *
+   * ## 基础组件 / Footer组件
+   *
    * Header和Footer组件结构类似, 都是提供一个包裹容器, 不同的是一个固定在上面, 一个固定在下面.
    *
-   * Footer组件是Vimo页面的的三个主要构成之一, 主要是为Toolbar/Navbar/自定义结构提供一个容器,
-   * 该组件将始终固定在页面底部, Content组件会根据Footer的高度自动设定`margin`值.
+   * Header组件是Vimo页面的的三个主要构成之一, 主要是为Toolbar/Navbar/自定义结构提供一个容器,
+   * 该组件将始终固定在页面顶部, Content组件会根据Header的高度自动设定`margin`值, 或者`padding`值.
    *
    * @property {String} [mode='ios'] - 模式
    *
@@ -51,33 +53,46 @@
       return {
         // -------- public --------
         isHide: false,
-
+        style: {},
       }
     },
     methods: {
       // -------- public --------
       /**
-       * 隐藏header
+       * @function hide
+       * @description
+       * 隐藏Footer
        * */
       hide(){
         this.isHide = true
       },
 
       /**
-       * 显示header
+       * @function show
+       * @description
+       * 显示Footer
        * */
       show(){
         this.isHide = false
       },
 
+      /**
+       * @function toggle
+       * @description
+       * Toggle显示Footer
+       * */
       toggle(){
         this.isHide = !this.isHide
       },
 
+      /**
+       * @function setStyle
+       * @description
+       * 设置Footer的样式
+       * */
       setStyle(style){
-
-      },
-
+        this.style = style
+      }
     }
   }
 </script>

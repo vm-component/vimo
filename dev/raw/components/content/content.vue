@@ -102,7 +102,7 @@
    *
    * 此外需要注意的是, 一个页面(Page组件)中只能有一个Content组件, 这个是Vimo使用的规则!
    *
-   * Content组件中也可以加入下拉刷新和上拉加载的功能
+   * Content组件中也可以加入下拉刷新和上拉加载的功能, 具体请参考示例.
    *
    * ![content组件](../asset/content.png)
    *
@@ -285,6 +285,7 @@
 
       /**
        * DOM完毕后进行初始化
+       * @private
        * */
       init(){
 
@@ -342,6 +343,7 @@
       /**
        * 重新计算Content组件的尺寸维度
        * 因为这部分受以下因素影响：statusbarPadding、fullscreen、Header，Footer
+       * @private
        * */
       recalculateContentDimensions(){
 
@@ -453,6 +455,7 @@
       // -------- For Refresher Component --------
       /**
        * 获取scrollElement元素的Dom
+       * @private
        * */
       getScrollElement(){
         return this.scrollElement
@@ -461,6 +464,7 @@
       /**
        * 滚动结束的事件回调
        * @param {function} callback - 过渡结束的回调, 回调传参TransitionEvent
+       * @private
        */
       onScrollElementTransitionEnd(callback) {
         transitionEnd(this.scrollElement, callback);
@@ -470,6 +474,7 @@
        * 在scrollElement上设置属性
        * @param {string} prop - 属性名称
        * @param {any} val     - 属性值
+       * @private
        */
       setScrollElementStyle(prop, val) {
         if (this.scrollElement) {
@@ -484,18 +489,21 @@
       // -------- For Img Component --------
       /**
        * @param {object} img - Img组件的实例
+       * @private
        */
       addImg(img){
         this._imgs.push(img);
       },
       /**
        *  @param {object} img - Img组件的实例
+       *  @private
        */
       removeImg(img) {
         removeArrayItem(this._imgs, img);
       },
       /**
        * Img组件更新
+       * @private
        */
       imgsUpdate(){
         if (this._scroll.initialized && this._imgs.length && this.isImgsUpdatable()) {
@@ -505,6 +513,10 @@
           })
         }
       },
+
+      /**
+       * @private
+       * */
       isImgsUpdatable() {
         // 当滚动不是太快的时候, Img组件更新才被允许, 这个速度由this.imgVelMax控制
         return Math.abs(this._scroll.ev.velocityY) < this._imgVelMax;

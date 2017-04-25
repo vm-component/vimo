@@ -7,10 +7,7 @@
 
 使用一套H5代码在各类HyBrid平台中运行, 并根据平台完成对应的初始化工作, 且能根据平台自动切换主题样式.
 
-可以使用的平台:  **微信、支付宝、钉钉、普通浏览器、原生App内部增强版WebView中**, 列如下图: 
-
-![](./dev/static/VIMO(H5).png)
-
+可以使用的平台:  **微信、支付宝、钉钉、普通浏览器、原生App内部增强版WebView中**.
 
 ## 如何开始
 
@@ -27,7 +24,7 @@ npm install vimo
 
 ## 组件清单
 
-![组件清单](./dev/static/vimo_components.png)
+![组件清单](https://github.com/DTFE/Vimo/blob/master/dev/static/vimo_components.png?raw=true)
 
 ## 框架技术清单(主要部分)
 
