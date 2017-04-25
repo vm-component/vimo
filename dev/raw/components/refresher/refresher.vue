@@ -8,7 +8,7 @@
 </style>
 <script>
   /**
-   * @module Component/Refresher
+   * @component Component/Refresher
    * @description
    *
    * Refresher组件是在Content组件下使用, 并提供了下拉刷新的功能. 使用前需要将Refresher组件放在Content组件内所有内容的前面, 并加上`slot="refresher"`属性.

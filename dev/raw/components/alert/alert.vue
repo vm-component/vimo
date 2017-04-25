@@ -83,7 +83,7 @@
 </style>
 <script>
   /**
-   * @module Component/Alert
+   * @component Component/Alert
    * @description
    *
    * 提醒是向用户提供选择特定操作或操作列表的一种很好的方法。他们还可以向用户提供重要信息，或要求他们做出决定（或多个决定）。

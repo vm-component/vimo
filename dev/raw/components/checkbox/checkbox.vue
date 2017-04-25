@@ -16,7 +16,7 @@
 </style>
 <script type="text/ecmascript-6">
   /**
-   * @module Component/Checkbox
+   * @component Component/Checkbox
    * @description
    * 复选框(检查框)组件
    *

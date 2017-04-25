@@ -16,7 +16,7 @@
 </style>
 <script>
   /**
-   * @module Component/Toolbar
+   * @component Component/Toolbar
    * @description
    * 工具条, 一般放在Header或者Footer中, 工具条中包含按钮组或者title, 也可以放segment和searchbar组件.
    *

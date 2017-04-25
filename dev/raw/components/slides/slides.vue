@@ -11,7 +11,7 @@
 </style>
 <script>
   /**
-   * @module Component/Slides
+   * @component Component/Slides
    * @description
    * 轮播组件
    *

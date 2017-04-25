@@ -1,5 +1,5 @@
 /**
- * @module Component/Toast
+ * @component Component/Toast
  * @description
  *
  * Toast是移动端比较灵活的通知组件, 可以用它来处理反馈信息或者展示系统消息.

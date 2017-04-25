@@ -17,7 +17,7 @@
 </style>
 <script type="text/ecmascript-6">
   /**
-   * @module Component/Radio
+   * @component Component/Radio
    * @description
    * 单选框组件
    *

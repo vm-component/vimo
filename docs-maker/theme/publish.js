@@ -279,6 +279,7 @@ function attachModuleSymbols (doclets, modules) {
 
         if (symbol.kind === 'class' || symbol.kind === 'function') {
           symbol.name = symbol.name.replace('module:', '(require("') + '"))'
+          symbol.name = symbol.name.replace('component:', '(require("') + '"))'
         }
 
         return symbol
@@ -358,6 +359,7 @@ function linktoExternal (longName, name) {
  * @param {array<object>} members.globals
  * @param {array<object>} members.mixins
  * @param {array<object>} members.modules
+ * @param {array<object>} members.components
  * @param {array<object>} members.namespaces
  * @param {array<object>} members.tutorials
  * @param {array<object>} members.events
@@ -368,15 +370,29 @@ function linktoExternal (longName, name) {
 function buildNav (members) {
   var nav = '<h2><a href="index.html">首页 / Home</a></h2>'
   nav += '<h2><a href="https://github.com/DTFE/vimo-start-kit">如何开始 / How To Start</a></h2>'
-  nav += '<h2><a href="index.html">示例 / Demo</a></h2>'
+  // nav += '<h2><a href="index.html">示例 / Demo</a></h2>'
   nav += '<h2><a href="https://github.com/DTFE/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2>'
 
   var seen = {}
   var seenTutorials = {}
 
+
+  // component和module是一个概念但是不一样的叫法
+  var component = []
+  var module = []
+  members.modules.forEach((item) => {
+    if (item.trueKind === 'component') {
+      component.push(item)
+    } else {
+      module.push(item)
+    }
+  })
+
   nav += buildMemberNav(members.classes, '类 / Classes', seen, linkto)
-  nav += buildMemberNav(members.modules, '模块 / Modules', {}, linkto)
-  nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal)
+  nav += buildMemberNav(module, '模块 / Modules', {}, linkto)
+  nav += buildMemberNav(component, '组件 / Components', {}, linkto)
+  nav += buildMemberNav(members.components, '组件 / Components', {}, linkto)
+  nav += buildMemberNav(members.externals, '外部依赖 / Externals', seen, linktoExternal)
   nav += buildMemberNav(members.events, '事件 / Events', seen, linkto)
   nav += buildMemberNav(members.namespaces, '命名空间 / Namespaces', seen, linkto)
   nav += buildMemberNav(members.mixins, '混合 / Mixins', seen, linkto)
@@ -575,9 +591,10 @@ exports.publish = function (taffyData, opts, tutorials) {
       doclet.kind = 'member'
     }
   })
-
   var members = helper.getMembers(data)
   members.tutorials = tutorials.children
+  // console.log('-----data-----')
+  // console.log(data().get())
 
   // output pretty-printed source files by default
   var outputSourceFiles = conf.default && conf.default.outputSourceFiles !== false
@@ -625,8 +642,13 @@ exports.publish = function (taffyData, opts, tutorials) {
 
   Object.keys(helper.longnameToUrl).forEach(function (longname) {
     var myModules = helper.find(modules, {longname: longname})
+
     if (myModules.length) {
-      generate('Module', myModules[0].name, myModules, helper.longnameToUrl[longname])
+      if (myModules[0].trueKind === 'component') {
+        generate('Component', myModules[0].name, myModules, helper.longnameToUrl[longname])
+      } else {
+        generate('Module', myModules[0].name, myModules, helper.longnameToUrl[longname])
+      }
     }
 
     var myClasses = helper.find(classes, {longname: longname})

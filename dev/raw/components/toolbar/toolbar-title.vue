@@ -7,7 +7,7 @@
 </template>
 <script>
   /**
-   * @module Component/Title
+   * @component Component/Title
    * @description
    * 设置顶部的title及document.title, 请使用ref获取Title组件的setTitle方法, 使用该方法会同步设置document.title(默认)
    *

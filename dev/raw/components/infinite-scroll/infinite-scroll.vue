@@ -15,7 +15,7 @@
    * */
 
   /**
-   * @module Component/InfiniteScroll
+   * @component Component/InfiniteScroll
    * @description
    *
    * 当页面滚动到页面底部一定距离时, InfiniteScroll组件会触发`onInfinite`事件,

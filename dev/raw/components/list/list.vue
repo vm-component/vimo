@@ -21,7 +21,7 @@
   /**
    *
    * @name list
-   * @module Component/List
+   * @component Component/List
    * @description
    * list有多重种风格的样式，有ios/window/android等等,对应ios/md/wp模式
    *

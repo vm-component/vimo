@@ -27,7 +27,7 @@
 </style>
 <script>
   /**
-   * @module Components/RegionPicker
+   * @component Components/RegionPicker
    * @description
    * 地址三级列表选择
    *

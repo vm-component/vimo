@@ -10,7 +10,7 @@
 </style>
 <script>
   /**
-   * @module Component/Label
+   * @component Component/Label
    * @description
    *
    * Label组件主要是放在Item组件中使用, 用于标记Input组件/Toggle组件/Checkbox组件等From组件

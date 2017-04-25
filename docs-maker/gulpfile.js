@@ -48,7 +48,8 @@ gulp.task('serve', function () {
     })
     gulp.watch([
       '../README.md',
-      '../dev/raw/**/*.*'
+      '../dev/raw/**/*.*',
+      '../docs-maker/theme/**/*.*',
     ], function () {
       runSequence('make-doc', function () {
         reload()

@@ -15,7 +15,7 @@
 </style>
 <script>
   /**
-   * @module Component/Spinner
+   * @component Component/Spinner
    * @description
    * Spinner组件提供了一个使用svg+js的方式事项的菊花图(loading). Spinner组件可以通过传入`props`来实时控制Spinner的样子,
    * 用来模拟诸如: processing/thinking/waiting/chilling 等特性.

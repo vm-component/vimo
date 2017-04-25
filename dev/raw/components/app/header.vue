@@ -23,7 +23,7 @@
 </style>
 <script>
   /**
-   * @module Base/Header
+   * @component Base/Header
    * @description
    *
    * Header和Footer组件结构类似, 都是提供一个包裹容器, 不同的是一个固定在上面, 一个固定在下面.

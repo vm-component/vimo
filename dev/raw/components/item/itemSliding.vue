@@ -14,7 +14,7 @@
 <script>
   /**
    * @name ItemSliding
-   * @module Component/ItemSliding
+   * @component Component/ItemSliding
    * @description
    *
    * item滑动选择

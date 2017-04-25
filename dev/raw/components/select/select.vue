@@ -21,7 +21,7 @@
 <script type="text/ecmascript-6">
   /**
    * @name Select
-   * @module Component/Select
+   * @component Component/Select
    * @description
    *
    * 选择组件

@@ -7,7 +7,7 @@
 </style>
 <script>
   /**
-   * @module Component/Icon
+   * @component Component/Icon
    * @description
    *
    * 因为Vimo是对Ionic的移植, 故Icon组件也是使用ionicons图标, ionicons地址[点这里](http://ionicons.com/),

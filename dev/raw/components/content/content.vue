@@ -88,11 +88,10 @@
    * */
 
   /**
-   * @module Base/Content
+   * @component Base / Content
    * @description
    *
-   * ## 基础组件/Content组件
-   *
+   * ## 基础组件 / Content组件
    *
    *
    * Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是"上中下三明治"结构,
@@ -108,10 +107,11 @@
    * ![content组件](../asset/content.png)
    *
    *
-   * @slot 空             slot为空则将内容插入到scroll中
-   * @slot [fixed]        默认值, 固定到顶部
-   * @slot [fixedTop]     固定到顶部
-   * @slot [fixedBottom]  固定到底部
+   * @slot 空                slot为空则将内容插入到scroll中
+   * @slot [fixed]          默认值, 固定到顶部
+   * @slot [fixedTop]       固定到顶部
+   * @slot [fixedBottom]    固定到底部
+   * @slot [refresher]      refresher组件的位置
    *
    * @property {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
    * @property {string} [mode=ios]  - 样式模式
@@ -121,6 +121,7 @@
    * @fires onScrollStart   - 滚动开始时触发， 传递ScrollEvent对象
    * @fires onScrollEnd     - 滚动结束时触发， 传递ScrollEvent对象
    *
+   * @demo http://ionicframework.com/docs/demos/src/alert/www/
    *
    * @example
    * <template>
@@ -201,6 +202,7 @@
     methods: {
       // -------- public --------
       /**
+       * @member
        * @function getContentDimensions
        * @description
        * Returns the content and scroll elements' dimensions.

@@ -10,7 +10,7 @@
 </template>
 <script>
   /**
-   * @module Component/Tab
+   * @component Component/Tab
    * @description
    *
    * 还是需要再声明下，Tab组件必须和Tabs组件配合使用， Tab组件内部与路由`$router`结合,

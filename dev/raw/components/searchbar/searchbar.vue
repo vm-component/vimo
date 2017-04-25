@@ -61,7 +61,7 @@
 </style>
 <script>
   /**
-   * @module Component/SearchBar
+   * @component Component/SearchBar
    * @description
    * 搜索条
    *

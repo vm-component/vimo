@@ -14,11 +14,14 @@
   "plugins": [
     "node_modules/jsdoc-vue",
     "node_modules/jsdoc/plugins/markdown",
-    "plugins/slot.js"
+    "plugins/slot.js",
+    "plugins/demo.js",
+    "plugins/component.js"
   ],
   "markdown": {
     "tags": [
       "usage",
+      "component",
       "slot"
     ],
     "parser": "gfm",
@@ -27,6 +30,7 @@
   "source": {
     "include": [
       "../README.md",
+      "../dev/raw/components/app",
       "../dev/raw/components/content"
     ],
     "exclude": [

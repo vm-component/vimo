@@ -30,20 +30,22 @@
 </style>
 <script>
   /**
-   * @module Base/App
+   * @component Base / App
    * @description
+   *
+   *  ## 基础组件 / App组件
    *
    * App组件是Vimo框架的根组件,用于管理及控制整个页面的状态.
    *
    * 该组件的下列方法已挂载到`vue.prototype.$app`上, 所以在页面中直接像这样使用:
    *
-   * ```
-   *  this.$app.setTitle('Hello World');
-   * ```
-   *
-   * @fires app:ready - App组件在Mounted之后发送的事件, 事件传播在$eventBus上
-   *
    * @property {String} mode - 模式
+   *
+   * @example
+   * this.$app.setTitle('Hello World');
+   *
+
+   *
    * */
   import { ClickBlock } from './click-block'
   import { setElementClass } from '../../util/util'

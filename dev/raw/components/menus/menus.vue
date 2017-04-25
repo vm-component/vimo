@@ -56,7 +56,7 @@
 <script>
   /**
    *
-   * @module Menu
+   * @component Menu
    * @description
    *
    * 注意：menu是全局的组件，应该在App.vue中定义，而不是在业务文件中。menu组件和nav组件应该是平级，放在最外层。

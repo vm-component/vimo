@@ -8,7 +8,7 @@
 </style>
 <script>
   /**
-   * @module Component/Grid
+   * @component Component/Grid
    * @description
    *
    * 栅格系统这部分是对 Bootstrap's grid system 的移植, 基于flexBox布局.

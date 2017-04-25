@@ -25,7 +25,7 @@
 
 <script>
   /**
-   * @module Component/Backdrop
+   * @component Component/Backdrop
    * @description
    * 背景变黑的组件, 可以实例化也可以模板式调用!
    *

@@ -6,7 +6,7 @@
 </template>
 <script>
   /**
-   * @module Component/SegmentButton
+   * @component Component/SegmentButton
    * @description
    *
    * Segment组件的子组件SegmentButton, 两者配合使用, 属于嵌套关系.

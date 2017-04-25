@@ -26,12 +26,12 @@
 
     <section class="vimo">
         <div class="vimo__imgBox">
-            <img class="vimo__imgBox--img" src="">
+            <img class="vimo__imgBox--img" src="./asset/vimo.png">
         </div>
 
         <div class="vimo__title">
             <h2>VIMO</h2>
-            <p>v1.0.0</p>
+            <!--<p>beta</p>-->
             <p>基于Vue2.x的移动端Hybrid框架</p>
         </div>
         <div class="vimo__iframe">
@@ -47,42 +47,46 @@
 
     </section>
 
-    <h2><a href="index.html">首页 / Home</a></h2><h2><a href="https://github.com/DTFE/vimo-start-kit">如何开始 / How To Start</a></h2><h2><a href="index.html">示例 / Demo</a></h2><h2><a href="https://github.com/DTFE/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2><h3>模块 / Modules</h3><ul><li><a href="module-Base_Content.html">Base/Content</a><ul class='methods'><li data-type='method'><a href="module-Base_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Base_Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Base_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Base_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Base_Content.html#~scrollToTop">scrollToTop</a></li></ul></li></ul><h3>事件 / Events</h3><ul><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">首页 / Home</a></h2><h2><a href="https://github.com/DTFE/vimo-start-kit">如何开始 / How To Start</a></h2><h2><a href="https://github.com/DTFE/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2><h3>组件 / Components</h3><ul><li><a href="module-Base%2520_%2520App.html">Base / App</a><ul class='methods'><li data-type='method'><a href="module-Base%252520_%252520App.html#~isEnabled">isEnabled</a></li><li data-type='method'><a href="module-Base%252520_%252520App.html#~isScrolling">isScrolling</a></li><li data-type='method'><a href="module-Base%252520_%252520App.html#~setDisableScroll">setDisableScroll</a></li><li data-type='method'><a href="module-Base%252520_%252520App.html#~setEnabled">setEnabled</a></li><li data-type='method'><a href="module-Base%252520_%252520App.html#~setTitle">setTitle</a></li></ul></li><li><a href="module-Base_Content.html">Base/Content</a><ul class='methods'><li data-type='method'><a href="module-Base_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="module-Base_Content.html#~resize">resize</a></li><li data-type='method'><a href="module-Base_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="module-Base_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="module-Base_Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="module-Base_Footer.html">Base/Footer</a></li><li><a href="module-Base_Header.html">Base/Header</a></li></ul><h3>事件 / Events</h3><ul><li><a href="global.html#event:onScroll">onScroll</a></li><li><a href="global.html#event:onScrollEnd">onScrollEnd</a></li><li><a href="global.html#event:onScrollStart">onScrollStart</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <div id="main">
-    
-    <h1 class="page-title">Base/Content</h1>
-    
 
-    
+    <article class="content">
 
-
-
-
-<section>
-
-<header>
-    
         
+        <h1 class="page-title">Base/Content</h1>
+        
+
+        
+
+
+
+
+<section class="page-content">
+
+    <section class="content">
+        <header>
             
-        
-    
-</header>
+            
+            
+            
+            
+        </header>
 
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h2>基础组件/Content组件</h2><p>Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是&quot;上中下三明治&quot;结构,<br>Content组件则是中间业务内容的位置.</p>
+        <article>
+            <div class="container-overview">
+                
+                
+                <div class="description"><h2>基础组件 / Content组件</h2><p>Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是&quot;上中下三明治&quot;结构,<br>Content组件则是中间业务内容的位置.</p>
 <p>Content组件中书写的代码可以是滚动的内容, 也可以是固定在一面不随滚动的内容, 比如说当页的广告/刷新按钮/歌词等.<br>这个特性的的开启需要特殊命名slot才能激活.</p>
 <p>此外需要注意的是, 一个页面(Page组件)中只能有一个Content组件, 这个是Vimo使用的规则!</p>
 <p>Content组件中也可以加入下拉刷新和上拉加载的功能</p>
 <p><img src="../asset/content.png" alt="content组件"></p></div>
-        
+                
 
-        
-            
+                
+                
 
 
 
@@ -92,7 +96,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="content.vue.html">content.vue</a>, <a href="content.vue.html#line64">line 64</a>
+        <a href="content_content.vue.html">content/content.vue</a>, <a href="content_content.vue.html#line64">line 64</a>
     </li></ul></dd>
     
 
@@ -416,26 +420,26 @@
 
 
 
-        
-    
-    </div>
+                
+                
+            </div>
 
-    
+            
 
-    
+            
 
-    
+            
 
-     
+            
 
-    
+            
 
-    
+            
 
-    
-        <h3 class="subsection-title">方法 / Methods</h3>
+            
+            <h3 class="subsection-title">方法 / Methods</h3>
 
-        
+            
             
 
     
@@ -452,7 +456,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="content.vue.html">content.vue</a>, <a href="content.vue.html#line173">line 173</a>
+        <a href="content_content.vue.html">content/content.vue</a>, <a href="content_content.vue.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -542,7 +546,7 @@
     
 
 
-        
+            
             
 
     
@@ -559,7 +563,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="content.vue.html">content.vue</a>, <a href="content.vue.html#line200">line 200</a>
+        <a href="content_content.vue.html">content/content.vue</a>, <a href="content_content.vue.html#line205">line 205</a>
     </li></ul></dd>
     
 
@@ -630,7 +634,7 @@
 
 
 
-        
+            
             
 
     
@@ -647,7 +651,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="content.vue.html">content.vue</a>, <a href="content.vue.html#line211">line 211</a>
+        <a href="content_content.vue.html">content/content.vue</a>, <a href="content_content.vue.html#line216">line 216</a>
     </li></ul></dd>
     
 
@@ -915,7 +919,7 @@
     
 
 
-        
+            
             
 
     
@@ -932,7 +936,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="content.vue.html">content.vue</a>, <a href="content.vue.html#line238">line 238</a>
+        <a href="content_content.vue.html">content/content.vue</a>, <a href="content_content.vue.html#line241">line 241</a>
     </li></ul></dd>
     
 
@@ -1091,7 +1095,7 @@
     
 
 
-        
+            
             
 
     
@@ -1108,7 +1112,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="content.vue.html">content.vue</a>, <a href="content.vue.html#line225">line 225</a>
+        <a href="content_content.vue.html">content/content.vue</a>, <a href="content_content.vue.html#line229">line 229</a>
     </li></ul></dd>
     
 
@@ -1267,25 +1271,93 @@
     
 
 
+            
+            
+
+            
+
+            
+        </article>
+    </section>
+    <aricle class="showcase">
+
         
-    
+        
 
-    
 
-    
-</article>
+        <div id="js_showcase__box" class="showcase__box ios">
+            <div class="showcase__choose">
+                <span id="js_choose_ios" class="">IOS</span>
+                <span id="js_choose_md" class="">Android</span>
+            </div>
+            <div class="showcase__box--md">
+                <iframe frameborder="0"
+                        src="http://ionicframework.com/docs/demos/src/alert/www/?production=true&ionicplatform=android"></iframe>
+            </div>
+            <div class="showcase__box--ios">
+                <iframe frameborder="0"
+                        src="http://ionicframework.com/docs/demos/src/alert/www/?production=true&ionicplatform=ios"></iframe>
+            </div>
+        </div>
 
+        
+        
+
+    </aricle>
 </section>
 
+<script>
+  ;(function () {
+    document.getElementById('js_choose_ios').addEventListener('click', function () {
+      console.log('js_choose_ios')
+      var $showCaseBox = document.getElementById('js_showcase__box')
+      if(!_hasClass($showCaseBox,'ios')){
+        _removeClass($showCaseBox,'md')
+        _addClass($showCaseBox,'ios')
+      }
+
+    })
+    document.getElementById('js_choose_md').addEventListener('click', function () {
+      console.log('js_choose_md')
+      var $showCaseBox = document.getElementById('js_showcase__box')
+      if(!_hasClass($showCaseBox,'md')){
+        _removeClass($showCaseBox,'ios')
+        _addClass($showCaseBox,'md')
+      }
+
+    })
+
+    function _hasClass (obj, cls) {
+      return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+    }
+
+    function _addClass (obj, cls) {
+      if (!_hasClass(obj, cls)) {
+        obj.className += ' ' + cls
+      }
+    }
+
+    function _removeClass (obj, cls) {
+      if (_hasClass(obj, cls)) {
+        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+        obj.className = obj.className.replace(reg, ' ').trim()
+      }
+    }
+  })()
+</script>
 
 
 
+
+
+
+    </article>
 </div>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>     on Tue Apr 25 2017 10:48:51 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme and modified by Songtao.
 </footer>
 
 <script>prettyPrint();</script>

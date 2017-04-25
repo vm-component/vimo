@@ -23,7 +23,7 @@
 </style>
 <script>
   /**
-   * @module Component/Tabs
+   * @component Component/Tabs
    * @description
    * ----
    * Tabs是一个使用`$router.replace`进行页面导航的组件，其中Tab组件中传入`props`定义每个tab的结构/样式/路由位子等信息。

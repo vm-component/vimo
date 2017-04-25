@@ -33,7 +33,7 @@
 </style>
 <script>
   /**
-   * @module Component/Loading
+   * @component Component/Loading
    * @description
    * Loading组件
    *

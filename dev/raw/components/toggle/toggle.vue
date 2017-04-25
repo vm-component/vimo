@@ -23,7 +23,7 @@
 </style>
 <script>
   /**
-   * @module Component/Toggle
+   * @component Component/Toggle
    * @description
    *
    *  > !!! 使用 v-model 切换状态, 不支持checked属性

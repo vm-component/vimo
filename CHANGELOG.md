@@ -1,7 +1,10 @@
 ## CHANGE LOG
 
 #### NOTICE
+
 Vimo Is still in development stage (2017/04/23), plans to release version 1.0.0 on 2017/06/01, during which the project needs to be tested on this framework, some of which are bug fixes and API changes. I feel sorry for your inconvenience!
+
+#### 注意
 
 目前还在开发阶段(2017/04/23), 计划在2017/06/01发布1.0.0版本, 在此期间需要项目对此框架测试, 其中不乏一些组件的bug修复和API的变更, 如果对您的业务造成不便请谅解!
 

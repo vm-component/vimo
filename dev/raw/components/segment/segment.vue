@@ -10,7 +10,7 @@
 </style>
 <script>
   /**
-   * @module Component/Segment
+   * @component Component/Segment
    * @description
    *
    * Segment组件, 父子组件通过slot的关系套在一起, 建议直接修改$parent及$children的值进行, 而不是通过事件. 因为中间

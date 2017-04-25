@@ -20,7 +20,7 @@
 <script>
   /**
    * @name Img
-   * @module Component/Img
+   * @component Component/Img
    * @description
    * Img组件, 用于实现Img按需加载的功能. 当滚动到将要显示的位置的时候再加载图片
    *

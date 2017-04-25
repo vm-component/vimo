@@ -22,7 +22,7 @@
 </style>
 <script>
   /**
-   * @module Component/Modal
+   * @component Component/Modal
    * @description
    *
    * Model组件用于当前页面的补充

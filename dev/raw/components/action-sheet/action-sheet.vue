@@ -44,7 +44,7 @@
 </template>
 <script>
   /**
-   * @module Component/ActionSheet
+   * @component Component/ActionSheet
    * @description
    *
    * ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭.
