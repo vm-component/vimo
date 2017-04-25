@@ -1,6 +1,6 @@
 import { setupConfig } from './base/config'
 import { setupPlatform } from './base/platform'
-import { HisContorller } from './base/history'
+import { History } from './base/history'
 // Core
 import { App, Footer, Header } from './components/app'
 import { Content } from './components/content'
@@ -26,7 +26,7 @@ export default {
     Vue.prototype.$config = window.VM.config
     Vue.prototype.$platform = window.VM.platform
     // 监听route变化, 内建历史记录
-    Vue.prototype.$history = window.VM.history = new HisContorller(Vue, options.router)
+    Vue.prototype.$history = window.VM.history = new History(Vue, options.router)
 
     // 安装必要组件
     if (!window.VM) {

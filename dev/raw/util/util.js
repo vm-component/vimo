@@ -496,3 +496,11 @@ export function firstUpperCase (str) {
 export function parsePxUnit (val) {
   return (!!val && val.indexOf('px') > 0) ? parseInt(val, 10) : 0;
 }
+
+
+export function removeArrayItem (array, item) {
+  const index = array.indexOf(item)
+  // ~index => index*(-1)-1
+  // ~-1 => 0
+  return !!~index && !!array.splice(index, 1)
+}

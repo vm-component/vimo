@@ -3,6 +3,7 @@
  *
  * # 平台层级的 "默认" 配置
  *
+ * @private
  */
 import { docReady } from '../util/util'
 //  platform supported list

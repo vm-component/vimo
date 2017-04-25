@@ -1,5 +1,5 @@
 /**
- * @class HisContorller
+ * @class History
  * @classdesc 通过vue-router的onRouteChangeBefore事件构建本地历史记录
  *
  * ## 问题
@@ -24,10 +24,10 @@
  *
  * - 内建导航记录
  * - 根据路由切换事件发出对应的导航相关事件
- * - 此HisContorller是对router实例的拓展, 但是不会为router实例添加方法, 而是从新定义$history, 这个可在业务的this中访问到
+ * - 此History是对router实例的拓展, 但是不会为router实例添加方法, 而是从新定义$history, 这个可在业务的this中访问到
  */
 
-export class HisContorller {
+export class History {
 
   constructor (Vue, router) {
     this._h = []                // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
