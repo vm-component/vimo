@@ -123,9 +123,6 @@
    *
    * @demo http://ionicframework.com/docs/demos/src/alert/www/
    *
-   *
-   *
-   *
    * @example
    * <template>
    *  <Page>

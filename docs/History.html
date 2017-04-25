@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Base/Content - Documentation</title>
+    <title>History - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -55,7 +55,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">Base/Content</h1>
+        <h1 class="page-title">History</h1>
         
 
         
@@ -68,8 +68,29 @@
     <section class="content">
         <header>
             
+            <h2>
+                History
+                </h2>
             
-            
+            <div class="class-description"><p>通过vue-router的onRouteChangeBefore事件构建本地历史记录</p>
+<h2>问题</h2><p>单页应用的一个需求是需要知道路由切换是前进还是后退, 但是浏览器对路由切换只给了两个事件 <code>hashchange</code> 和 <code>popstate</code>, 故无从判断当前操作是后退还是前进.</p>
+<h2>解决方案</h2><p>这个类通过vue-router的onRouteChangeBefore事件构建本地历史记录. 当路由切换时, 内建历史记录数组, 类似于一个stack, 这个能正确反映当前app的浏览历史记录.</p>
+<p>router路由在页面切换的时候会发出两个事件:</p>
+<ul>
+<li>onRouteChangeBefore(router.beforeEach): 路由器切换之前</li>
+<li>onRouteChangeAfter(router.afterEach): 路由切换之后, 页面进入渲染阶段</li>
+</ul>
+<p>需要根据上面的onRouteChangeBefore事件, 判断导航级别(而不是页面的生命周期)的切换事件:</p>
+<ul>
+<li>onNavEnter: 导航前进</li>
+<li>onNavLeave: 导航后退</li>
+</ul>
+<p>完成的功能如下:</p>
+<ul>
+<li>内建导航记录</li>
+<li>根据路由切换事件发出对应的导航相关事件</li>
+<li>此History是对router实例的拓展, 但是不会为router实例添加方法, 而是从新定义$history, 这个可在业务的this中访问到</li>
+</ul></div>
             
             
         </header>
@@ -78,15 +99,14 @@
             <div class="container-overview">
                 
                 
-                <div class="description"><h2>基础组件 / Content组件</h2><p>Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是&quot;上中下三明治&quot;结构,<br>Content组件则是中间业务内容的位置.</p>
-<p>Content组件中书写的代码可以是滚动的内容, 也可以是固定在一面不随滚动的内容, 比如说当页的广告/刷新按钮/歌词等.<br>这个特性的的开启需要特殊命名slot才能激活.</p>
-<p>此外需要注意的是, 一个页面(Page组件)中只能有一个Content组件, 这个是Vimo使用的规则!</p>
-<p>Content组件中也可以加入下拉刷新和上拉加载的功能, 具体请参考示例.</p>
-<p><img src="../asset/content.png" alt="content组件"></p></div>
-                
 
-                
-                
+    
+    <h2>构造器 / Constructor</h2>
+    
+
+    <h4 class="name" id="History"><span class="type-signature"></span>new History<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
 
 
 
@@ -96,7 +116,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_content_content.vue.html">components/content/content.vue</a>, <a href="components_content_content.vue.html#line64">line 64</a>
+        <a href="base_history.js.html">base/history.js</a>, <a href="base_history.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -134,317 +154,35 @@
 
 
 
-<h5 class="subsection-title">插槽 / Slots:</h5>
 
 
 
 
 
-<table class="slots props">
-    <thead>
-    <tr>
-        
-        <th>名称 / Name</th>
-        
 
-        
-        <th>属性 / Attributes</th>
-        
 
-        
 
-        <th class="last">描述 / Description</th>
-    </tr>
-    </thead>
 
-    <tbody>
-    
 
-        <tr>
-            
-                <td class="name"><code>空</code></td>
-            
 
 
 
-            
-                <td class="attributes">
-                
 
-                
-                </td>
-            
 
-            
 
-            <td class="description last">slot为空则将内容插入到scroll中</td>
-        </tr>
 
-    
 
-        <tr>
-            
-                <td class="name"><code>fixed</code></td>
-            
 
 
 
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
 
-                
-                </td>
-            
 
-            
 
-            <td class="description last">默认值, 固定到顶部</td>
-        </tr>
 
-    
 
-        <tr>
-            
-                <td class="name"><code>fixedTop</code></td>
-            
 
 
 
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">固定到顶部</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fixedBottom</code></td>
-            
-
-
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">固定到底部</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>refresher</code></td>
-            
-
-
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">refresher组件的位置</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-    <h5 class="subsection-title">属性 / Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>名称 / Name</th>
-        
-
-        <th>类型 / Type</th>
-
-        
-        <th>属性 / Attributes</th>
-        
-
-        
-        <th>默认值 / Default</th>
-        
-
-        <th class="last">描述 / Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>fullscreen</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>mode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>ios</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>样式模式</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>示例 / Example</h5>
-    
-    <pre class="prettyprint"><code>&lt;template>
- &lt;Page>
-   &lt;Header>
-     &lt;Navbar>
-       &lt;Title>Demo&lt;/Title>
-     &lt;Navbar>
-   &lt;/Header>
-   &lt;Content>
-     &lt;h1>这里是内容&lt;/h1>
-   &lt;/Content>
- &lt;/Page>
-&lt;/template></code></pre>
-
-
-
-
-
-
-
-
-<h5>事件 / Fires:</h5>
-<ul>
-    <li>event:onScroll        - 滚动时触发， 传递ScrollEvent对象</li>
-
-    <li>event:onScrollStart   - 滚动开始时触发， 传递ScrollEvent对象</li>
-
-    <li>event:onScrollEnd     - 滚动结束时触发， 传递ScrollEvent对象</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-                
                 
             </div>
 
@@ -468,7 +206,7 @@
 
     
 
-    <h4 class="name" id="~getContentDimensions"><span class="type-signature">(inner) </span>getContentDimensions<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#ContentDimension">ContentDimension</a>}</span></h4>
+    <h4 class="name" id="canGoBack"><span class="type-signature"></span>canGoBack<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
 
     
 
@@ -480,7 +218,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_content_content.vue.html">components/content/content.vue</a>, <a href="components_content_content.vue.html#line178">line 178</a>
+        <a href="base_history.js.html">base/history.js</a>, <a href="base_history.js.html#line138">line 138</a>
     </li></ul></dd>
     
 
@@ -524,7 +262,7 @@
 
 
 <div class="description">
-    <p>Returns the content and scroll elements' dimensions.</p>
+    <p>判断是否能返回</p>
 </div>
 
 
@@ -552,16 +290,12 @@
 <h5>返回 / Returns:</h5>
 
         
-<div class="param-desc">
-    <p>content and scroll elements' dimensions</p>
-</div>
-
 
 
 <dl class="param-type">
     <dt>
         Type: 
-<span class="param-type"><a href="global.html#ContentDimension">ContentDimension</a></span>
+<span class="param-type">Boolean</span>
 
 
     </dt>
@@ -575,7 +309,7 @@
 
     
 
-    <h4 class="name" id="~resize"><span class="type-signature">(inner) </span>resize<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="first"><span class="type-signature"></span>first<span class="signature">()</span><span class="type-signature"> &rarr; {location}</span></h4>
 
     
 
@@ -587,7 +321,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_content_content.vue.html">components/content/content.vue</a>, <a href="components_content_content.vue.html#line205">line 205</a>
+        <a href="base_history.js.html">base/history.js</a>, <a href="base_history.js.html#line146">line 146</a>
     </li></ul></dd>
     
 
@@ -631,7 +365,7 @@
 
 
 <div class="description">
-    <p>当动态添加Header/Footer/Tabs或者修改了他的属性时, 重新计算Content组件的尺寸.</p>
+    <p>获取历史记录的第一个</p>
 </div>
 
 
@@ -642,270 +376,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-            
-
-    
-
-    <h4 class="name" id="~scrollTo"><span class="type-signature">(inner) </span>scrollTo<span class="signature">(x, y, duration<span class="signature-attributes">opt</span>, done<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">源码:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_content_content.vue.html">components/content/content.vue</a>, <a href="components_content_content.vue.html#line216">line 216</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-<div class="description">
-    <p>滚动到指定位置</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>参数 / Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>名称 / Name</th>
-        
-
-        <th>类型 / Type</th>
-
-        
-        <th>属性 / Attributes</th>
-        
-
-        
-        <th>默认值 / Default</th>
-        
-
-        <th class="last">描述 / Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>滚动到指定位置的x值</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>滚动到指定位置的y值</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>300</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>滚动动画的时间</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>done</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>当滚动结束时触发的回调</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -923,18 +393,12 @@
 <h5>返回 / Returns:</h5>
 
         
-<div class="param-desc">
-    <ul>
-<li>当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined</li>
-</ul>
-</div>
-
 
 
 <dl class="param-type">
     <dt>
         Type: 
-<span class="param-type">Promise</span>
+<span class="param-type">location</span>
 
 
     </dt>
@@ -948,7 +412,7 @@
 
     
 
-    <h4 class="name" id="~scrollToBottom"><span class="type-signature">(inner) </span>scrollToBottom<span class="signature">(duration<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {promise}</span></h4>
+    <h4 class="name" id="getActive"><span class="type-signature"></span>getActive<span class="signature">()</span><span class="type-signature"> &rarr; {location}</span></h4>
 
     
 
@@ -960,7 +424,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_content_content.vue.html">components/content/content.vue</a>, <a href="components_content_content.vue.html#line241">line 241</a>
+        <a href="base_history.js.html">base/history.js</a>, <a href="base_history.js.html#line155">line 155</a>
     </li></ul></dd>
     
 
@@ -1004,7 +468,7 @@
 
 
 <div class="description">
-    <p>滚动到顶部</p>
+    <p>获取当前激活的页面<br>获取最后一个历史记录</p>
 </div>
 
 
@@ -1015,75 +479,6 @@
 
 
 
-
-
-    <h5>参数 / Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>名称 / Name</th>
-        
-
-        <th>类型 / Type</th>
-
-        
-        <th>属性 / Attributes</th>
-        
-
-        
-        <th>默认值 / Default</th>
-        
-
-        <th class="last">描述 / Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>300</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>滚动动画的时间, 默认是300ms</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1101,16 +496,12 @@
 <h5>返回 / Returns:</h5>
 
         
-<div class="param-desc">
-    <p>当滚动动画完毕后返回promise</p>
-</div>
-
 
 
 <dl class="param-type">
     <dt>
         Type: 
-<span class="param-type">promise</span>
+<span class="param-type">location</span>
 
 
     </dt>
@@ -1124,7 +515,7 @@
 
     
 
-    <h4 class="name" id="~scrollToTop"><span class="type-signature">(inner) </span>scrollToTop<span class="signature">(duration<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {promise}</span></h4>
+    <h4 class="name" id="getDirection"><span class="type-signature"></span>getDirection<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -1136,7 +527,7 @@
     
     <dt class="tag-source">源码:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_content_content.vue.html">components/content/content.vue</a>, <a href="components_content_content.vue.html#line229">line 229</a>
+        <a href="base_history.js.html">base/history.js</a>, <a href="base_history.js.html#line130">line 130</a>
     </li></ul></dd>
     
 
@@ -1180,7 +571,7 @@
 
 
 <div class="description">
-    <p>滚动到顶部</p>
+    <p>获取当前的页面进行的方向</p>
 </div>
 
 
@@ -1193,73 +584,92 @@
 
 
 
-    <h5>参数 / Parameters:</h5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+
     
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>名称 / Name</th>
-        
-
-        <th>类型 / Type</th>
-
-        
-        <th>属性 / Attributes</th>
-        
-
-        
-        <th>默认值 / Default</th>
-        
-
-        <th class="last">描述 / Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>300</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>滚动动画的时间, 默认是300ms</p></td>
-        </tr>
+    <h4 class="name" id="getHistory"><span class="type-signature"></span>getHistory<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
-    </tbody>
-</table>
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">源码:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="base_history.js.html">base/history.js</a>, <a href="base_history.js.html#line171">line 171</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>获取当前的导航记录</p>
+</div>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1277,22 +687,312 @@
 <h5>返回 / Returns:</h5>
 
         
-<div class="param-desc">
-    <p>当滚动动画完毕后返回promise</p>
-</div>
-
 
 
 <dl class="param-type">
     <dt>
         Type: 
-<span class="param-type">promise</span>
+<span class="param-type">Array</span>
 
 
     </dt>
 </dl>
 
     
+
+
+            
+            
+
+    
+
+    <h4 class="name" id="getPrevious"><span class="type-signature"></span>getPrevious<span class="signature">()</span><span class="type-signature"> &rarr; {location}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">源码:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="base_history.js.html">base/history.js</a>, <a href="base_history.js.html#line163">line 163</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>获取上一个历史记录</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>返回 / Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type: 
+<span class="param-type">location</span>
+
+
+    </dt>
+</dl>
+
+    
+
+
+            
+            
+
+    
+
+    <h4 class="name" id="indexOf"><span class="type-signature"></span>indexOf<span class="signature">()</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">源码:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="base_history.js.html">base/history.js</a>, <a href="base_history.js.html#line179">line 179</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>返回传入的route是历史记录中的第几条</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>返回 / Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type: 
+<span class="param-type">Number</span>
+
+
+    </dt>
+</dl>
+
+    
+
+
+            
+            
+
+    
+
+    <h4 class="name" id="toRoot"><span class="type-signature"></span>toRoot<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">源码:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="base_history.js.html">base/history.js</a>, <a href="base_history.js.html#line186">line 186</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>返回root页面(进入的第一个页面)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             
@@ -1305,26 +1005,6 @@
     </section>
     <aricle class="showcase">
 
-        
-        
-
-
-        <div id="js_showcase__box" class="showcase__box ios">
-            <div class="showcase__choose">
-                <span id="js_choose_ios" class="">IOS</span>
-                <span id="js_choose_md" class="">Android</span>
-            </div>
-            <div class="showcase__box--md">
-                <iframe frameborder="0"
-                        src="http://ionicframework.com/docs/demos/src/alert/www/?production=true&ionicplatform=android"></iframe>
-            </div>
-            <div class="showcase__box--ios">
-                <iframe frameborder="0"
-                        src="http://ionicframework.com/docs/demos/src/alert/www/?production=true&ionicplatform=ios"></iframe>
-            </div>
-        </div>
-
-        
         
 
     </aricle>
