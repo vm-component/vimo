@@ -3,7 +3,7 @@
          :class="[modeClass,colorClass,{'statusbar-padding':statusbarPadding}]" v-if="!hideNavBar">
         <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
         <!--show-back-button-->
-        <Button @click="backButtonClick($event)" role="bar-button" class="back-button"
+        <Button @click="backButtonClickHandler" role="bar-button" class="back-button"
                 :class="[backButtonClass,{'show-back-button':!hideBackButton}]" v-if="!hideBb">
             <Icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></Icon>
             <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
@@ -79,10 +79,11 @@
 
     },
     methods: {
-      backButtonClick ($event) {
+      backButtonClickHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
-        this.$router.back();
+//        this.$router.back();
+        window.history.back()
       },
     },
     created () {

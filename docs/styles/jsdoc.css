@@ -94,10 +94,10 @@ h4.name {
   padding: .75em 0 .75em 10px; }
 
 h4.name a {
-  color: #6dece8; }
+  color: #68f5b6; }
 
 h4.name a:hover {
-  border-bottom-color: #6dece8; }
+  border-bottom-color: #68f5b6; }
 
 h5 {
   font-size: 120%;
@@ -214,7 +214,7 @@ nav .nav__header {
     margin: 0;
     padding: 0;
     line-height: 130%;
-    margin-bottom: 10px; }
+    margin-bottom: 5px; }
     nav .nav__header h2 a {
       display: block;
       margin: 0;
@@ -247,7 +247,7 @@ footer {
   text-indent: -1000px; }
 
 .type-signature {
-  color: #6fc7c3;
+  color: #51b586;
   text-transform: capitalize; }
 
 .type-signature:last-child {
@@ -257,7 +257,7 @@ footer {
   font-family: Consolas, Monaco, "Andale Mono", monospace; }
 
 .signature {
-  color: #6dece8; }
+  color: #68f5b6; }
 
 .details {
   margin-top: 6px;
@@ -357,7 +357,11 @@ footer {
   -ms-user-select: text;
   user-select: text; }
 
-.params, .props, .slots {
+.slots {
+  min-width: 60%;
+  width: auto; }
+
+.params, .props, .slots, table {
   border-spacing: 0;
   border: 1px solid #ddd;
   border-collapse: collapse;
@@ -366,13 +370,9 @@ footer {
   width: 100%;
   font-size: 14px;
   margin: 1em 0;
-  display: block;
+  display: table;
   overflow: scroll;
   -webkit-overflow-scrolling: touch; }
-
-.slots {
-  min-width: 60%;
-  width: auto; }
 
 .params .type {
   white-space: nowrap; }
@@ -380,12 +380,12 @@ footer {
 .params code {
   white-space: pre; }
 
-.params td, .params .name, .props .name, .name code {
+.params td, .params .name, .props .name, .name code, table td {
   color: #4d4e53;
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
   font-size: 100%; }
 
-.params td, .params th, .props td, .props th {
+.params td, .params th, .props td, .props th, table td, table th {
   margin: 0px;
   text-align: left;
   vertical-align: top;
@@ -393,14 +393,14 @@ footer {
   display: table-cell;
   white-space: nowrap; }
 
-.params td {
+.params td, table td {
   border-top: 1px solid #eee; }
 
-.params thead tr, .props thead tr {
+.params thead tr, .props thead tr, table tr {
   background-color: #fff;
   font-weight: bold; }
 
-.params .params thead tr, .props .props thead tr {
+.params .params thead tr, .props .props thead tr, table tr {
   background-color: #fff;
   font-weight: bold; }
 
@@ -540,6 +540,9 @@ span.param-type, .params td .param-type, .param-type dd {
   z-index: 1; }
 
 @media only screen and (min-width: 320px) and (max-width: 780px) {
+  table {
+    display: block !important; }
+
   body {
     overflow-x: hidden;
     font-size: 14px; }

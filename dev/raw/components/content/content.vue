@@ -87,6 +87,8 @@
    *
    * ![content组件](../asset/content.png)
    *
+   * @demo http://xiangsongtao.com/vimo/#/content
+   *
    *
    * @slot 空                slot为空则将内容插入到scroll中
    * @slot [fixed]          默认值, 固定到顶部
@@ -97,11 +99,10 @@
    * @props {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
    * @props {string} [mode=ios]  - 样式模式
    *
-   * @fires module:Base/Content#onScrollStart
-   * @fires module:Base/Content#onScroll
-   * @fires module:Base/Content#onScrollEnd
+   * @fires component:Base/Content#onScrollStart
+   * @fires component:Base/Content#onScroll
+   * @fires component:Base/Content#onScrollEnd
    *
-   * @demo http://ionicframework.com/docs/demos/src/alert/www/
    *
    * @usage
    * <template>
@@ -284,7 +285,7 @@
         scroll.ev.scrollElement = this.scrollElement = this.$refs.scrollElement;
 
         /**
-         * @event module:Base/Content#onScrollStart
+         * @event component:Base/Content#onScrollStart
          * @description 滚动开始时触发的事件
          * @property {ScrollEvent} ev - 滚动事件对象
          */
@@ -294,7 +295,7 @@
         };
 
         /**
-         * @event module:Base/Content#onScroll
+         * @event component:Base/Content#onScroll
          * @description 滚动时触发的事件
          * @property {ScrollEvent} ev - 滚动事件对象
          */
@@ -309,7 +310,7 @@
         };
 
         /**
-         * @event module:Base/Content#onScrollEnd
+         * @event component:Base/Content#onScrollEnd
          * @description 滚动结束时触发的事件
          * @property {ScrollEvent} ev - 滚动事件对象
          */

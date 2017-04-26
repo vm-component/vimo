@@ -36,7 +36,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       pageTransition: 'fade-bottom-transition', // 'zoom-transition'
       scrollAssist: true,
       inputCloning: true,
-      autoFocusAssist: 'immediate',
+      autoFocusAssist: 'immediate'
     },
     isMatch(plt) {
       return plt.isPlatformMatch('android', ['android', 'silk'], ['windows phone'])
@@ -72,7 +72,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       scrollAssist: true,
       tapPolyfill: isIosUIWebView,
       virtualScrollEventAssist: isIosUIWebView,
-      disableScrollAssist: true,
+      disableScrollAssist: true
     },
     isMatch(plt) {
       return plt.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone'])
@@ -155,7 +155,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     },
     onBridgeReady(plt){},
     settings: {
-      hideNavBar: true,
+      hideNavBar: true
     },
     isMatch(plt) {
       return plt.isPlatformMatch('wechat', ['micromessenger'])
@@ -191,7 +191,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     },
     onBridgeReady(plt){},
     settings: {
-      hideNavBar: true,
+      hideNavBar: true
     },
     isMatch(plt) {
       return plt.isPlatformMatch('alipay', ['alipay', 'alipayclient'])
@@ -217,7 +217,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     },
     onBridgeReady(plt){},
     settings: {
-      hideNavBar: true,
+      hideNavBar: true
     },
     isMatch(plt) {
       return plt.isPlatformMatch('dingtalk')
@@ -241,7 +241,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     },
     onBridgeReady(plt){},
     settings: {
-      hideNavBar: true,
+      hideNavBar: true
     },
     isMatch(plt) {
       return plt.isPlatformMatch('qq')

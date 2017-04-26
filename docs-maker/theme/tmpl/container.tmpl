@@ -43,11 +43,12 @@
 
         <article>
             <div class="container-overview">
-                <?js if (doc.kind === 'module' && doc.modules) { ?>
+
                 <?js if (doc.description) { ?>
                 <div class="description"><?js= doc.description ?></div>
                 <?js } ?>
 
+                <?js if (doc.kind === 'module' && doc.modules) { ?>
                 <?js doc.modules.forEach(function(module) { ?>
                 <?js= self.partial('method.tmpl', module) ?>
                 <?js }) ?>
@@ -56,9 +57,9 @@
                 <?js } else { ?>
                 <?js= self.partial('details.tmpl', doc) ?>
 
-                <?js if (doc.description) { ?>
-                <div class="description"><?js= doc.description ?></div>
-                <?js } ?>
+                <!--<?js if (doc.description) { ?>-->
+                <!--<div class="description"><?js= doc.description ?></div>-->
+                <!--<?js } ?>-->
 
                 <?js if (doc.examples && doc.examples.length) { ?>
                 <h3>示例 / Example<?js= doc.examples.length > 1? 's':'' ?></h3>
@@ -179,12 +180,7 @@
         </article>
     </section>
 
-
-        <?js if (doc.kind === 'module' && doc.modules  && Array.isArray(doc.modules) && doc.modules.length > 0 ) { ?>
-
-
-        <?js if (doc.modules[0] && doc.modules[0].demos) { ?>
-
+    <?js if (doc.kind === 'module' && doc.demos ) { ?>
     <aricle class="showcase">
         <div id="js_showcase__box" class="showcase__box ios">
             <div class="showcase__choose">
@@ -192,18 +188,16 @@
                 <span id="js_choose_md" class="">Android</span>
             </div>
             <div class="showcase__box--md">
-                <iframe frameborder="0"
-                        src="<?js= doc.modules[0].demos.name ?>?production=true&ionicplatform=android"></iframe>
+                <iframe frameborder="0" seamless
+                        src="<?js= doc.demos.name ?>?vmMode=md"></iframe>
             </div>
             <div class="showcase__box--ios">
-                <iframe frameborder="0"
-                        src="<?js= doc.modules[0].demos.name ?>?production=true&ionicplatform=ios"></iframe>
+                <iframe frameborder="0" seamless
+                        src="<?js= doc.demos.name ?>?vmMode=ios"></iframe>
             </div>
         </div>
     </aricle>
-        <?js } ?>
-        <?js } ?>
-
+    <?js } ?>
 
 </section>
 
@@ -212,18 +206,18 @@
     document.getElementById('js_choose_ios').addEventListener('click', function () {
       console.log('js_choose_ios')
       var $showCaseBox = document.getElementById('js_showcase__box')
-      if(!_hasClass($showCaseBox,'ios')){
-        _removeClass($showCaseBox,'md')
-        _addClass($showCaseBox,'ios')
+      if (!_hasClass($showCaseBox, 'ios')) {
+        _removeClass($showCaseBox, 'md')
+        _addClass($showCaseBox, 'ios')
       }
 
     })
     document.getElementById('js_choose_md').addEventListener('click', function () {
       console.log('js_choose_md')
       var $showCaseBox = document.getElementById('js_showcase__box')
-      if(!_hasClass($showCaseBox,'md')){
-        _removeClass($showCaseBox,'ios')
-        _addClass($showCaseBox,'md')
+      if (!_hasClass($showCaseBox, 'md')) {
+        _removeClass($showCaseBox, 'ios')
+        _addClass($showCaseBox, 'md')
       }
     })
 

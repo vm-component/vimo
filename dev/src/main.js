@@ -62,9 +62,6 @@ new Vue({
       console.debug(data)
     })
   },
-  mounted () {
-
-    console.log(this.$router)
-  },
+  mounted () {},
   components: {App}
 })

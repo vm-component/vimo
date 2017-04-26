@@ -15,6 +15,8 @@
             <h6>这个是h6标签</h6>
             <p>这个是p标签</p>
             <a href="http://xiangsongtao.com" target="_blank">跳转到我的首页</a>
+
+            <Button block @click="$history.toRoot()">返回首页</Button>
             <hr>
             <!--<strong>strong</strong>-->
             <!--<i>i</i>-->
@@ -41,5 +43,3 @@
     name: 'context',
   }
 </script>
-
-

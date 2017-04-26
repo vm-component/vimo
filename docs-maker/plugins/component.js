@@ -11,7 +11,8 @@ exports.defineTags = function (dictionary) {
       doclet.trueKind = 'component'
       doclet.scope = 'instance'
       doclet.name = tag.text
-      doclet.longname = 'module' + ':' + tag.text
+      doclet.longname = 'component' + ':' + tag.text
+      // doclet.longname = 'module' + ':' + tag.text
       doclet.memberof = ''
     }
   })

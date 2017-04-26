@@ -50,7 +50,7 @@
    * - loadingPortal
    * - toastPortal
    *
-   * @props {String} mode - 模式
+   * @props {String} [mode='ios'] - 模式
    *
    * */
 

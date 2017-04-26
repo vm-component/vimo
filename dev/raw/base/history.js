@@ -184,9 +184,15 @@ export class History {
    * 返回root页面(进入的第一个页面)
    * */
   toRoot () {
-    let _len = this.length
-    for (var i = 0; _len > i; i++) {
-      this._r.back()
+    let firstRoute = this.first()
+    if (firstRoute) {
+      this._r.push({
+        path: firstRoute.path
+      })
+    } else {
+      this._r.push({
+        path: '/'
+      })
     }
   }
 }

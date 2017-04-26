@@ -72,6 +72,29 @@
   },
   "docdash": {
     "static": true,
-    "sort": true
+    "sort": true,
+    "homeName": "首页 / Home",
+    "links": [
+      {
+        "name": "如何开始 / How To Start",
+        "link": "https://github.com/DTFE/vimo-start-kit"
+      },
+      {
+        "name": "示例 / Demo",
+        "link": "http://xiangsongtao.com/vimo"
+      },
+      {
+        "name": "更新日志 / Change Log",
+        "link": "https://github.com/DTFE/Vimo/blob/master/CHANGELOG.md"
+      },
+      {
+        "name": "代码规范 / Code Standard",
+        "link": "#"
+      },
+      {
+        "name": "常见问题 / Question",
+        "link": "#"
+      }
+    ]
   }
 }

@@ -27,9 +27,9 @@
     data(){
       return {
         // -------- Nav --------
-        // ios-transition/fade-bottom-transition/zoom-transition
+        // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition
         pageTransitionName: this.$config.get('pageTransition'),
-        pageTransitionDirection: '',
+        pageTransitionDirection: 'forward',
 
         // ----------- Menu -----------
         menuStyleObj: {
@@ -57,6 +57,19 @@
     methods: {
       // -------- Nav --------
       initNav(){
+
+        // pageTransitionName 传值问题
+        let _pageTransitionName = this.$config.get('pageTransition')
+        if (!_pageTransitionName) {
+          if (this.$config.get('mode') === 'ios') {
+            _pageTransitionName = 'ios-transition'
+          } else {
+            _pageTransitionName = 'zoom-transition'
+          }
+          this.pageTransitionName = _pageTransitionName
+        }
+
+
         // nav 动画切换部分
         this.$eventBus.$on('onNavEnter', ({to, from, next}) => {
           this.pageTransitionDirection = 'forward'

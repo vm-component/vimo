@@ -4,7 +4,7 @@ var self = this;
 ?>
 <?js if (data.kind !== 'module') { ?>
     <?js if (data.kind === 'class' && data.classdesc) { ?>
-    <h2>构造器 / Constructor</h2>
+    <h3 class="subsection-title">构造器 / Constructor</h3>
     <?js } ?>
 
     <h4 class="name" id="<?js= id ?>"><?js= data.attribs + (kind === 'class' ? 'new ' : '') +

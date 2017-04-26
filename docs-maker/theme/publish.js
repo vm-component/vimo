@@ -367,13 +367,17 @@ function linktoExternal (longName, name) {
  * @return {string} The HTML for the navigation sidebar.
  */
 
-function buildNav (members) {
+function buildNav (members, docdash) {
 
   var nav = '<section class="nav__header">'
-  nav += '<h2><a href="index.html">首页 / Home</a></h2>'
-  nav += '<h2><a href="https://github.com/DTFE/vimo-start-kit">如何开始 / How To Start</a></h2>'
-  nav += '<h2><a href="http://xiangsongtao.com/vimo">示例 / Demo</a></h2>'
-  nav += '<h2><a href="https://github.com/DTFE/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2>'
+  var homeName = docdash.homeName || 'Home'
+  nav += '<h2><a href="index.html">' + homeName + '</a></h2>'
+  if (docdash.links && docdash.links.length > 0) {
+    docdash.links.forEach(function (linkInfo) {
+      nav += '<h2><a href="' + linkInfo.link + '">' + linkInfo.name + '</a></h2>'
+    })
+  }
+
   nav += '</section>'
 
   var seen = {}
@@ -611,7 +615,7 @@ exports.publish = function (taffyData, opts, tutorials) {
   view.outputSourceFiles = outputSourceFiles
 
   // once for all
-  view.nav = buildNav(members)
+  view.nav = buildNav(members, docdash)
   attachModuleSymbols(find({longname: {left: 'module:'}}), members.modules)
 
   // generate the pretty-printed source files first so other pages can link to them

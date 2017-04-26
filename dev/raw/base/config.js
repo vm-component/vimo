@@ -3,7 +3,7 @@
  * @classdesc **App应用级别**的配置类
  *
  *
- * ## 说明
+ * ### 说明
  *
  * Config初始化的实例能配置整个App, 也能根据使用的平台单独配置而互不影响. 另外, 配置信息也能自定义, 比如说存放合成变量.
  *
@@ -15,12 +15,12 @@
  *
  * config的初始化Vimo安装的时候就搞定了, 实例会在`window.VM.config`中也留一份, 便于外部业务能访问到.
  *
- * ## 关于配置的优先级
+ * ### 关于配置的优先级
  *
  * 也可以在url中传入配置参数, 通过url配置App的前后缀, 例如 http://xx.xx.com?vmMode=ios
  * 则参数mode的值为ios, 改变mode并无法改变真实的mode环境, 因为平台验证有自己的isMatch方法, 切记!!
  *
- * ### 优先级
+ * #### 优先级
  *
  * ** url获取配置信息(URL) > 用户自定义配置(Config) > 平台默认配置(Platform) **
  *
@@ -69,19 +69,23 @@
  * }
  * ```
  *
- * ### 可配置的参数有
+ * #### 可配置的参数有
  *
- * - mode                 // 模式 ios/md/wechat...
- * - hideNavBar           // 是否隐藏navbar false
- * - toolbarMinHeight     // toolbar的最小高度 44/56
- * - iconMode             // icon的模式 ios/md
- * - menuType             // menu展示方式 reveal/overlay
- * - backButtonText       // 后退按钮文字
- * - backButtonIcon       // 后退按钮图标icon
- * - spinner              // 菊花图配型 ios/crescent
- * - tabsHighlight        // tab是否有下划线
- * - tabsPlacement        // tab的放置位置
- * - pageTransition       // 转场动画 ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+ * 参数 / params      | 默认值 / IOS      | 默认值 / Android   | 描述 / Description
+ * -----------------|----------------|-----------------|------------------
+ * mode             | ios            | md              | 模式
+ * hideNavBar       | false          | false           | 是否隐藏navbar
+ * toolbarMinHeight | 44             | 56              | toolbar的最小高度
+ * iconMode         | ios            | md              | icon的模式
+ * menuType         | reveal         | overlay         | menu展示方式
+ * backButtonText   | ''             | ''              | 后退按钮文字
+ * backButtonIcon   | ''             | ''              | 后退按钮图标icon
+ * spinner          | ios            | crescent        | 菊花图配型
+ * tabsHighlight    | false          | true            | tab是否有下划线
+ * tabsPlacement    | bottom         | bottom          | tab的放置位置
+ * pageTransition   | ios-transition | zoom-transition | 转场动画
+ *
+ *
  *
  **/
 
