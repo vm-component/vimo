@@ -47,11 +47,11 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-   .readme {
-     width: 100%;
-     p > img {
-       max-width: 100%;
-     }
+  .readme {
+    width: 100%;
+    p > img {
+      max-width: 100%;
+    }
   }
   .content {
     width: 100%;
@@ -152,4 +152,9 @@
 
   }
 
+}
+
+// 将函数名前面的static隐藏掉
+h4.name > span.type-signature:first-child {
+  display: none;
 }

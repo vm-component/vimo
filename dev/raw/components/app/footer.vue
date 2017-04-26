@@ -32,7 +32,7 @@
    * Header组件是Vimo页面的的三个主要构成之一, 主要是为Toolbar/Navbar/自定义结构提供一个容器,
    * 该组件将始终固定在页面顶部, Content组件会根据Header的高度自动设定`margin`值, 或者`padding`值.
    *
-   * @property {String} [mode='ios'] - 模式
+   * @props {String} [mode='ios'] - 模式
    *
    * */
   export default{

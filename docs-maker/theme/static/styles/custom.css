@@ -104,4 +104,7 @@
           background: #00663d;
           color: #fff; }
 
+h4.name > span.type-signature:first-child {
+  display: none; }
+
 /*# sourceMappingURL=custom.css.map */
