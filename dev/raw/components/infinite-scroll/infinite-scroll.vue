@@ -99,7 +99,7 @@
     name: 'InfiniteScroll',
     data(){
       return {
-        _content: null, // Content组件的实例
+        contentComponent: null, // Content组件的实例
         _lastCheck: 0,  // 节流, 少于32ms的事件变动不必监听
         _init: false,   // 组件是否初始化
 
@@ -153,6 +153,8 @@
         this.$nextTick(() => {
           if (this.state === STATE_LOADING) {
             this.state = STATE_ENABLED;
+            // 重新计算尺寸, 必须
+            this.contentComponent.resize()
           }
         })
       },
@@ -219,10 +221,10 @@
           if (shouldListen) {
             // 监听Content组件的onScroll事件
             // NOTICE: 这里是监听的是Content组件自己内部维护的事件`onScroll`
-            this._content.$on('onScroll', this._onScroll);
+            this.contentComponent.$on('onScroll', this._onScroll);
           } else {
             // 解除onScroll事件监听(Content组件)
-            this._content.$off('onScroll', this._onScroll);
+            this.contentComponent.$off('onScroll', this._onScroll);
           }
         }
       },
@@ -250,7 +252,7 @@
           return 3;
         }
 
-        const d = this._content.getContentDimensions();
+        const d = this.contentComponent.getContentDimensions();
 
         let reloadY = d.contentHeight;
         if (this._thrPc) {
@@ -260,6 +262,7 @@
         }
 
         const distanceFromInfinite = ((d.scrollHeight - infiniteHeight) - d.scrollTop) - reloadY;
+
         if (distanceFromInfinite < 0) {
           if (this.state !== STATE_LOADING && this.state !== STATE_DISABLED) {
             this.state = STATE_LOADING;
@@ -278,11 +281,11 @@
         let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || [];
         _pageComponentChildrenList.forEach((component) => {
           if (component.$options._componentTag.toLowerCase() === 'content') {
-            this._content = component;
+            this.contentComponent = component;
           }
         });
-        console.assert(this._content, 'InfiniteScroll组件必须要在Content组件下使用');
-        setElementClass(this._content.$el, 'has-infinite-scroll', true);
+        console.assert(this.contentComponent, 'InfiniteScroll组件必须要在Content组件下使用');
+        setElementClass(this.contentComponent.$el, 'has-infinite-scroll', true);
 
         this._init = true;
         this._setListeners(this.state !== STATE_DISABLED);

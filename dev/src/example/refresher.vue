@@ -5,7 +5,7 @@
                 <Title>Refresher</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content">
+        <Content class="outer-content" :enableJsScroll="false">
             <Refresher slot="refresher" :enabled="enabled" @onRefresh="doRefresh($event)">
                 <RefresherContent
                         pullingText="下拉刷新..."

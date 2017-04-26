@@ -64,13 +64,13 @@
     },
    * */
 
-  const STATE_INACTIVE = 'inactive';
-  const STATE_PULLING = 'pulling';
-  const STATE_READY = 'ready';
-  const STATE_REFRESHING = 'refreshing';
-  const STATE_CANCELLING = 'cancelling';
-  const STATE_COMPLETING = 'completing';
-  const DAMP = 0.5;// 滑动阻尼
+  const STATE_INACTIVE = 'inactive'
+  const STATE_PULLING = 'pulling'
+  const STATE_READY = 'ready'
+  const STATE_REFRESHING = 'refreshing'
+  const STATE_CANCELLING = 'cancelling'
+  const STATE_COMPLETING = 'completing'
+  const DAMP = 0.5// 滑动阻尼
   import { setElementClass, registerListener, pointerCoord } from '../../util/util'
   export default{
     name: 'Refresher',
@@ -112,14 +112,14 @@
          * @name progress
          * @type {Number}
          * @description 表示对当前进度.
-         * - 0: 原始状态,为下拉;
-         * - =1: 到达refreshing状态的最小值;
+         * - 0: 原始状态,为下拉
+         * - =1: 到达refreshing状态的最小值
          * - \>1: 超过refreshing状态的最小值
          * */
         progress: null, // 表示对当前进度. 0:原始状态,为下拉; >1: 刷新开始
 
         // -------- private --------
-        content: null, // Content组件的this
+        contentComponent: null, // Content组件的this
         appliedStyles: false,
         didStart: false,
         lastCheck: 0,
@@ -158,7 +158,7 @@
     },
     watch: {
       enabled(val){
-        this.setListeners(val);
+        this.setListeners(val)
       }
     },
     methods: {
@@ -170,7 +170,9 @@
        * 状态由`refreshing` -> `completing`.
        */
       complete() {
-        this.closeRefresher(STATE_COMPLETING, '120ms');
+        this.closeRefresher(STATE_COMPLETING, '120ms')
+        // 重新计算尺寸, 非必须
+        this.contentComponent.resize()
       },
 
       /**
@@ -179,22 +181,22 @@
        * 取消 refresher, 其状态由`refreshing` -> `cancelling`
        */
       cancel() {
-        this.closeRefresher(STATE_CANCELLING, '');
+        this.closeRefresher(STATE_CANCELLING, '')
       },
 
       // -------- private --------
       init(){
-        let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || [];
+        let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
         _pageComponentChildrenList.forEach((component) => {
           if (component.$options._componentTag.toLowerCase() === 'content') {
-            this.content = component;
+            this.contentComponent = component
           }
-        });
-        console.assert(this.content, 'Refresher组件必须要在Content组件下使用');
+        })
+        console.assert(this.contentComponent, 'Refresher组件必须要在Content组件下使用')
 
-        setElementClass(this.content.$el, 'has-refresher', true);
+        setElementClass(this.contentComponent.$el, 'has-refresher', true)
 
-        this.setListeners(this.enabled);
+        this.setListeners(this.enabled)
       },
 
       /**
@@ -205,7 +207,7 @@
         if (this.unregs && this.unregs.length > 0) {
 //          console.debug('refresher.vue 解除绑定')
           this.unregs.forEach((_unreg) => {
-            _unreg && _unreg();
+            _unreg && _unreg()
           })
         }
 
@@ -213,13 +215,13 @@
         // 等待Content完毕
         this.$nextTick(() => {
           if (shouldListen) {
-            let contentElement = this.content.getScrollElement();
+            let contentElement = this.contentComponent.getScrollElement()
             console.assert(contentElement, 'Refresh Component need Content Ready!::<Component>setListeners()')
             // TODO: 对于点击事件应该同一封装一层
-            registerListener(contentElement, 'touchstart', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs);
-            registerListener(contentElement, 'mousedown', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs);
+            registerListener(contentElement, 'touchstart', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs)
+            registerListener(contentElement, 'mousedown', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs)
 
-            registerListener(contentElement, 'touchmove', this.pointerMoveHandler.bind(this), {'passive': false}, this.unregs);
+            registerListener(contentElement, 'touchmove', this.pointerMoveHandler.bind(this), {'passive': false}, this.unregs)
             registerListener(contentElement, 'mousemove', this.pointerMoveHandler.bind(this), {'passive': false}, this.unregs);
 
             registerListener(contentElement, 'touchend', this.pointerUpHandler.bind(this), {'passive': false}, this.unregs);
@@ -234,35 +236,35 @@
       pointerDownHandler(ev){
         // 如果多点触摸, 则直接返回
         if (ev.touches && ev.touches.length > 1) {
-          return false;
+          return false
         }
         if (this.state !== STATE_INACTIVE) {
-          return false;
+          return false
         }
 
-        let contentDimensions = this.content.getContentDimensions();
-        let scrollHostScrollTop = contentDimensions.scrollTop;
+        let contentDimensions = this.contentComponent.getContentDimensions()
+        let scrollHostScrollTop = contentDimensions.scrollTop
         // 如果当前的scrollTop大于0, 意味着页面在别的位置, 不是停在顶部, 不是在refresher状态, 直接退出
         if (scrollHostScrollTop > 0) {
-          return false;
+          return false
         }
 
-        let coord = pointerCoord(ev);
-//        console.debug('Pull-to-refresh, onStart', ev.type, 'y:', coord.y);
+        let coord = pointerCoord(ev)
+//        console.debug('Pull-to-refresh, onStart', ev.type, 'y:', coord.y)
 
         // refresher定位
         if (contentDimensions.contentTop > 0) {
-          let newTop = contentDimensions.contentTop + 'px';
+          let newTop = contentDimensions.contentTop + 'px'
           if (this.top !== newTop) {
-            this.top = newTop;
+            this.top = newTop
           }
         }
 
         // 记录开始位置
-        this.startY = this.currentY = coord.y;
-        this.progress = 0;
-        this.state = STATE_INACTIVE;
-        return true;
+        this.startY = this.currentY = coord.y
+        this.progress = 0
+        this.state = STATE_INACTIVE
+        return true
       },
       /**
        * @param {TouchEvent} ev - 点击事件
@@ -274,85 +276,85 @@
 
         // 多点触摸则直接返回
         if (ev.touches && ev.touches.length > 1) {
-          return 1;
+          return 1
         }
 
         // 以下状态将返回
         // 没有开始位置/正在refreshing状态/正在closing(cancelling/completing)
         if (this.startY === null || this.state === STATE_REFRESHING || this.state === STATE_CANCELLING || this.state === STATE_COMPLETING) {
-          return 2;
+          return 2
         }
 
         // 在16ms之内如果连续触发,则不处理(节流)
-        let now = Date.now();
-        const T = 16;
+        let now = Date.now()
+        const T = 16
         if (this.lastCheck + T > now) {
-          return 3;
+          return 3
         }
 
         // 节流 -- 记录上次的节流时间
-        this.lastCheck = now;
+        this.lastCheck = now
 
-        let coord = pointerCoord(ev);
-        this.currentY = coord.y;
+        let coord = pointerCoord(ev)
+        this.currentY = coord.y
 
         // 记录拉动的距离
-        this.deltaY = (coord.y - this.startY);
+        this.deltaY = (coord.y - this.startY)
 
         // 当前是向上滑动, 所以应该设置state为inactive
         if (this.deltaY <= 0) {
           // 这个是向上滚动, 没使用 refresher 的功能, 故现在是inactive状态
-          this.progress = 0;
+          this.progress = 0
 
           if (this.state !== STATE_INACTIVE) {
-            this.state = STATE_INACTIVE;
+            this.state = STATE_INACTIVE
           }
 
           if (this.appliedStyles) {
             // reset the styles only if they were applied
-            this.setCss(0, '', false, ''); // y/duration/overflow/delay
-            return 5;
+            this.setCss(0, '', false, '') // y/duration/overflow/delay
+            return 5
           }
 
-          return 6;
+          return 6
         }
 
         // 正式进入 refresher
         if (this.state === STATE_INACTIVE) {
-          let scrollHostScrollTop = this.content.getContentDimensions().scrollTop;
+          let scrollHostScrollTop = this.contentComponent.getContentDimensions().scrollTop
           if (scrollHostScrollTop > 0) {
-            this.progress = 0;
-            this.startY = null;
-            return 7;
+            this.progress = 0
+            this.startY = null
+            return 7
           }
 
           // 步入正题
-          this.state = STATE_PULLING;
+          this.state = STATE_PULLING
         }
 
         if (!this.deltaY) {
-          this.progress = 0;
-          return 8;
+          this.progress = 0
+          return 8
         }
 
         // prevent native scroll events
-        ev.preventDefault();
+        ev.preventDefault()
 
         // 进入 pulling 状态, 开始移动scroll element
-        this.setCss((this.deltaY * this.damp), '0ms', true, '');
+        this.setCss((this.deltaY * this.damp), '0ms', true, '')
 
         // 进行滚动吧
-        this.goScroll();
+        this.goScroll()
 
       },
 
       goScroll(){
         // set pull progress
-        this.progress = (this.deltaY * this.damp / this.pullMin);
+        this.progress = (this.deltaY * this.damp / this.pullMin)
 
         // 对外发送 onStart 事件
         if (!this.didStart) {
-          this.didStart = true;
+          this.didStart = true
           this.$emit('onStart', this)
         }
 
@@ -362,36 +364,36 @@
         // do nothing if the delta is less than the pull threshold
         if (this.deltaY * this.damp < this.pullMin) {
           // ensure it stays in the pulling state, cuz its not ready yet
-          this.state = STATE_PULLING;
-          return 2;
+          this.state = STATE_PULLING
+          return 2
         }
 
         if (this.deltaY * this.damp > this.pullMax) {
           // they pulled farther than the max, so kick off the refresh
-          this.beginRefresh();
-          return 3;
+          this.beginRefresh()
+          return 3
         }
 
         // 正好在最大和最小值之间, 进入 ready 状态吧
-        this.state = STATE_READY;
+        this.state = STATE_READY
 
-        return 4;
+        return 4
       },
       pointerUpHandler(){
         if (this.state === STATE_READY) {
-          this.beginRefresh();
+          this.beginRefresh()
         } else if (this.state === STATE_PULLING) {
           // 返回原点
-          this.cancel();
+          this.cancel()
         }
         // reset
-        this.startY = null;
+        this.startY = null
       },
       beginRefresh() {
-        this.state = STATE_REFRESHING;
+        this.state = STATE_REFRESHING
 
         // 将content放置在开口处
-        this.setCss(this.pullMin, (this.snapbackDuration + 'ms'), true, '');
+        this.setCss(this.pullMin, (this.snapbackDuration + 'ms'), true, '')
 
         // 发送事件 onRefresh
         this.$emit('onRefresh', this)
@@ -401,30 +403,30 @@
        * @param {string} delay
        * */
       closeRefresher(state, delay) {
-        var timer; //: number
+        var timer //: number
 
         function close (ev) {
           // closing is done, return to inactive state
           if (ev) {
-            clearTimeout(timer);
+            clearTimeout(timer)
           }
 
-          this.state = STATE_INACTIVE;
-          this.progress = 0;
-          this.didStart = this.startY = this.currentY = this.deltaY = null;
-          this.setCss(0, '0ms', false, '');
+          this.state = STATE_INACTIVE
+          this.progress = 0
+          this.didStart = this.startY = this.currentY = this.deltaY = null
+          this.setCss(0, '0ms', false, '')
         }
 
         // create fallback timer incase something goes wrong with transitionEnd event
-        timer = window.setTimeout(close.bind(this), 600);
+        timer = window.setTimeout(close.bind(this), 600)
 
         // create transition end event on the content's scroll element
-        this.content.onScrollElementTransitionEnd(close.bind(this));
+        this.contentComponent.onScrollElementTransitionEnd(close.bind(this))
 
         // reset set the styles on the scroll element
         // set that the refresh is actively cancelling/completing
-        this.state = state;
-        this.setCss(0, '', true, delay);
+        this.state = state
+        this.setCss(0, '', true, delay)
       },
 
       /**
@@ -434,14 +436,13 @@
        * @param {String} delay -
        **/
       setCss(y, duration, overflowVisible, delay) {
-        this.appliedStyles = (y > 0);
-        const content = this.content;
-        const Css = window.VM && window.VM.platform && VM.platform.css;
+        this.appliedStyles = (y > 0)
+        const Css = window.VM && window.VM.platform && VM.platform.css
         console.assert(!!Css, "无法获取platform中的css样式定义,refresher/refresher.vue::<Function>setCss()")
-        content.setScrollElementStyle(Css.transform, ((y > 0) ? 'translateY(' + y + 'px) translateZ(0px)' : 'translateZ(0px)'));
-        content.setScrollElementStyle(Css.transitionDuration, duration);
-        content.setScrollElementStyle(Css.transitionDelay, delay);
-        content.setScrollElementStyle('overflow', (overflowVisible ? 'hidden' : ''));
+        this.contentComponent.setScrollElementStyle(Css.transform, ((y > 0) ? 'translateY(' + y + 'px) translateZ(0px)' : 'translateZ(0px)'))
+        this.contentComponent.setScrollElementStyle(Css.transitionDuration, duration)
+        this.contentComponent.setScrollElementStyle(Css.transitionDelay, delay)
+        this.contentComponent.setScrollElementStyle('overflow', (overflowVisible ? 'hidden' : ''))
       },
     },
     mounted () {

@@ -33,7 +33,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: true,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
-      pageTransition: 'fade-bottom-transition', // 'zoom-transition'
+      pageTransition: 'zoom-transition', // 'zoom-transition'
       scrollAssist: true,
       inputCloning: true,
       autoFocusAssist: 'immediate'
@@ -64,7 +64,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: false,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
-      pageTransition: 'ios-transition', // 'ios-transition'
+      pageTransition: 'fade-right-transition', // 'ios-transition'
       statusbarPadding: false,
       autoFocusAssist: 'delay',
       inputBlurring: true,

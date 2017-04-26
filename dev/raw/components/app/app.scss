@@ -52,6 +52,7 @@ $h6-font-size: 16px !default;
 html {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 
   font-size: $font-size-root;
 

@@ -7,7 +7,7 @@ export default {
   ios: {
     settings: {
       statusbarPadding: false,
-      pageTransition: 'ios-transition'  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+      pageTransition: 'fade-right-transition'  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     }
   },
   android: {

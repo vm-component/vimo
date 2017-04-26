@@ -1,10 +1,12 @@
+import IScroll from 'iscroll/build/iscroll-probe'
 /**
- * 滚动引擎
- * @private
+ *
  * */
 import { nativeRaf, registerListener } from '../../util/util'
+
 const SCROLL_END_DEBOUNCE_MS = 80
 const FRAME_MS = (1000 / 60)
+
 const EVENT_OPTS = {
   passive: true
 }
@@ -12,7 +14,6 @@ const EVENT_OPTS = {
 export class ScrollView {
 
   constructor () {
-
     this.isScrolling = false       // 判断正在滚动
     this.initialized = false       // 判断是否已完成初始化
     this.scrollStart = (ev) => {}  // 滚动开始的回调, 传入ev参数, 一般用于事件操作
@@ -21,9 +22,14 @@ export class ScrollView {
 
     this.transform = !!window.VM && !!window.VM.platform && !!window.VM.platform.css ? window.VM.platform.css.transform : 'webkitTransform'
 
-    this._el = null        // {HTMLElement} 当前滚动实例的元素
-    this._lsn = null       // {Function} 监听函数 listen
-    this._endTmr = null    // {Function} 事件记录 timeout
+    this._el = null         // scrollElement 当前滚动实例的元素
+    this._cel = null        // contentElement 当前滚动实例的元素
+    this._js = false         // 是否执行js滚动
+    this._t = 0             // {number} scrollTop临时存储值
+    this._l = 0             // {number} scrollLeft临时存储值
+    this._lsn = null        // {Function} 监听函数 listen
+    this._endTmr = null     // {Function} 事件记录 timeout
+    this._iscroll = null    // iscroll instance
 
     // 滚动对象
     this.ev = {
@@ -63,7 +69,14 @@ export class ScrollView {
       this.initialized = true
       console.assert(ele, 'scroll-view, element can not be null')
       this._el = ele
-      this.enableNativeScrolling()
+      this._cel = ele.parentElement
+      if (this._js) {
+        // this.enableJsScroll(contentTop, contentBottom)
+        this.enableIScroll()
+      } else {
+        this.enableNativeScrolling()
+      }
+
     }
   }
 
@@ -79,11 +92,13 @@ export class ScrollView {
     const self = this
     const ev = self.ev
     const positions = [] // number[]
+    console.debug(`ScrollView, enableNativeScrolling`)
 
     /**
      * @param {UIEvent} scrollEvent
      * */
     function scrollCallback (scrollEvent) {
+
       ev.timeStamp = scrollEvent.timeStamp
 
       // 获取当前的 scrollTop
@@ -143,6 +158,7 @@ export class ScrollView {
       }
 
       function scrollEnd () {
+        console.log('scrollEnd')
         // 当停止滚动一段时间后触发scrollEnd事件
         self.isScrolling = false
 
@@ -173,6 +189,126 @@ export class ScrollView {
     // call the raf if it was set within the scroll event, so this will save us some time
     self._lsn = registerListener(self._el, 'scroll', scrollCallback, EVENT_OPTS)
 
+  }
+
+  /**
+   * 使用iScroll的解决方案
+   * @private
+   * */
+  enableIScroll () {
+    console.debug(`ScrollView, enableIScroll`)
+    // 给父元素增加class
+    const contentElement = this._el.parentElement
+    const self = this
+    const ev = self.ev
+    const positions = [] // number[]
+
+    self._el.parentElement.classList.add('js-scroll')
+
+    self._iscroll = new IScroll(contentElement, {
+      bounce: false,       // Default: true
+      mouseWheel: true,
+
+      scrollbars: true,
+      fadeScrollbars: true,
+      interactiveScrollbars: true,
+      resizeScrollbars: true,
+      shrinkScrollbars: 'clip',
+
+      click: true,        // click
+      probeType: 3        // click
+    })
+
+    // start
+    self._iscroll.on('scrollStart', () => {
+      // 滚动开始时重新刷新结构
+      window.setTimeout(() => {
+        self._iscroll.refresh()
+      }, 0)
+    })
+
+    // scrolling
+    self._iscroll.on('scroll', () => {
+
+      ev.timeStamp = new Date().getTime()
+
+      // 获取当前的 scrollTop
+      ev.scrollTop = self._iscroll.y * -1 >> 0
+
+      // 获取当前的 scrollLeft
+      ev.scrollLeft = self._iscroll.x * -1 >> 0
+
+      if (!self.isScrolling) {
+        // scroll start
+        self.isScrolling = true
+
+        // 记录开始的位置
+        ev.startY = self._iscroll.y * -1 >> 0
+        ev.startX = self._iscroll.x * -1 >> 0
+
+        // 开始前重置参数
+        ev.velocityY = ev.velocityX = 0
+        ev.deltaY = ev.deltaX = 0
+        positions.length = 0
+
+        // 发送scrollStart事件, 传递ev值
+        self.scrollStart(ev)
+
+      }
+
+      // actively scrolling
+      positions.push(ev.scrollTop, ev.scrollLeft, ev.timeStamp)
+
+      if (positions.length > 3) {
+        // we've gotten at least 2 scroll events so far
+        ev.deltaY = (ev.scrollTop - ev.startY)
+        ev.deltaX = (ev.scrollLeft - ev.startX)
+
+        var endPos = (positions.length - 1)
+        var startPos = endPos
+        var timeRange = (ev.timeStamp - 100)
+
+        // move pointer to position measured 100ms ago
+        for (var i = endPos; i > 0 && positions[i] > timeRange; i -= 3) {
+          startPos = i
+        }
+
+        if (startPos !== endPos) {
+          // compute relative movement between these two points
+          var timeOffset = (positions[endPos] - positions[startPos])
+          var movedTop = (positions[startPos - 2] - positions[endPos - 2])
+          var movedLeft = (positions[startPos - 1] - positions[endPos - 1])
+
+          // based on XXms compute the movement to apply for each render step
+          ev.velocityY = ((movedTop / timeOffset) * FRAME_MS)
+          ev.velocityX = ((movedLeft / timeOffset) * FRAME_MS)
+
+          // figure out which direction we're scrolling
+          ev.directionY = (movedTop > 0 ? 'up' : 'down')
+          ev.directionX = (movedLeft > 0 ? 'left' : 'right')
+        }
+      }
+
+      // 发送每一次的scroll事件, 传递ev值
+      self.scroll(ev)
+
+      // 定时超时时间SCROLL_END_DEBOUNCE_MS, 如果超时则判断当前滚动结束, 发送scrollEnd事件
+      window.clearTimeout(self._endTmr)
+      self._endTmr = window.setTimeout(scrollEnd, SCROLL_END_DEBOUNCE_MS)
+
+      function scrollEnd () {
+        // 当停止滚动一段时间后触发scrollEnd事件
+        self.isScrolling = false
+
+        // reset velocity, do not reset the directions or deltas
+        ev.velocityY = ev.velocityX = 0
+
+        // 发送scrollEnd事件, 传递ev值
+        self.scrollEnd(ev)
+
+        self._endTmr = null
+      }
+    })
   }
 
   /**
@@ -214,8 +350,14 @@ export class ScrollView {
    * @return {Promise}
    */
   scrollTo (x = 0, y = 0, duration, done) {
+    const self = this
     // scroll animation loop w/ easing
     // credit https://gist.github.com/dezinezync/5487119
+
+    if (this._js) {
+      self._iscroll.scrollTo(x, y * -1, duration)
+      return
+    }
 
     let promise
     if (done === undefined) {
@@ -226,7 +368,6 @@ export class ScrollView {
       })
     }
 
-    const self = this
     const el = self._el
     if (!el) {
       // invalid element
@@ -316,7 +457,11 @@ export class ScrollView {
   scrollToBottom (duration) {
     let y = 0
     if (this._el) {
-      y = this._el.scrollHeight - this._el.clientHeight
+      if (this._js) {
+        y = this.ev.scrollHeight - this._cel.clientHeight
+      } else {
+        y = this._el.scrollHeight - this._el.clientHeight
+      }
     }
     return this.scrollTo(0, y, duration)
   }

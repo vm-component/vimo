@@ -1,5 +1,9 @@
 <template>
     <App>
+
+        <!--<img class="statusbar-img statusbar-img-ios" src="./assets/img/ios-statusbar.png">-->
+        <!--<img class="statusbar-img statusbar-img-md" src="./assets/img/android-statusbar.png">-->
+
         <!--menu menu-->
         <Menus id="menu" side="left">
             <Header>
@@ -31,7 +35,7 @@
         </Menus>
         <Nav>
             <!--<keep-alive>-->
-                <router-view></router-view>
+            <router-view></router-view>
             <!--</keep-alive>-->
         </Nav>
     </App>
@@ -53,4 +57,31 @@
   }
 
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+    .statusbar-img {
+        display: none;
+    }
+
+    .md .statusbar-img-md {
+        display: block !important;
+        position: absolute;
+        background-color: transparent;
+        top: 0;
+        width: 100%;
+        height: auto;
+        z-index: 999;
+    }
+
+    .ios .statusbar-img-ios {
+        display: block !important;
+        position: absolute;
+        background-color: transparent;
+        padding: 5px 0;
+        top: 0px;
+        width: 100%;
+        height: auto;
+        z-index: 999;
+    }
+
+
+</style>

@@ -119,12 +119,12 @@
    * </template>
    *
    * */
-  import { transitionEnd, parsePxUnit } from '../../util/util'
+  import { transitionEnd, parsePxUnit, setElementClass } from '../../util/util'
   import { ScrollView } from './scroll-view'
   export default{
     name: 'Content',
     props: {
-//      enableJsScroll: [Boolean],
+      enableJsScroll: [Boolean],
       fullscreen: {
         type: Boolean,
         default: false
@@ -192,23 +192,38 @@
       getContentDimensions(){
         const scrollEle = this.scrollElement;
         const parentElement = scrollEle.parentElement;
+        let contentHeight = parentElement.offsetHeight - this._cTop - this._cBottom
+        let contentTop = this._cTop
+        let contentBottom = parentElement.offsetHeight - this._cBottom
+        let contentWidth = parentElement.offsetWidth
+        let contentLeft = parentElement.offsetLeft
+        if (this.enableJsScroll) {
+          return {
+            contentHeight,
+            contentTop,
+            contentBottom,
+            contentWidth,
+            contentLeft,
 
-        return {
-          contentHeight: parentElement.offsetHeight - this._cTop - this._cBottom,
-          contentHeight2: scrollEle.offsetHeight,
-          contentTop: this._cTop,
-          contentBottom: parentElement.offsetHeight - this._cBottom,
+            scrollHeight: this._scroll._iscroll.scrollerHeight,
+            scrollTop: this._scroll._iscroll.y * -1,
+            scrollWidth: this._scroll._iscroll.scrollerWidth,
+            scrollLeft: this._scroll._iscroll.x * -1,
+          }
+        } else {
+          return {
+            contentHeight,
+            contentTop,
+            contentBottom,
+            contentWidth,
+            contentLeft,
 
-          contentWidth: parentElement.offsetWidth,
-          contentLeft: parentElement.offsetLeft,
-
-          scrollHeight: scrollEle.scrollHeight,
-          scrollTop: scrollEle.scrollTop,
-
-          scrollWidth: scrollEle.scrollWidth,
-          scrollLeft: scrollEle.scrollLeft,
-        };
-
+            scrollHeight: scrollEle.scrollHeight,
+            scrollTop: scrollEle.scrollTop,
+            scrollWidth: scrollEle.scrollWidth,
+            scrollLeft: scrollEle.scrollLeft,
+          }
+        }
       },
       /**
        * @function resize
@@ -220,6 +235,10 @@
         this.$nextTick(() => {
           this.recalculateContentDimensions();
         })
+
+        if (this.enableJsScroll) {
+          this._scroll._iscroll.refresh()
+        }
       },
       /**
        * @function scrollTo
@@ -272,11 +291,11 @@
 
         const scroll = this._scroll; // 滚动的实例
 
-//        // 设置为js滚动模式, 强制使用全屏模式
-//        if (this.enableJsScroll) {
-//          this._scroll._js = true
-//          this.isFullscreen = true
-//        }
+        // 设置为js滚动模式, 强制使用全屏模式
+        if (this.enableJsScroll) {
+          this._scroll._js = true
+          this.isFullscreen = true
+        }
 
         /**
          * 找到fixedElement/scrollElement的位置
@@ -424,6 +443,9 @@
         (scrollEle.style)[bottomProperty] = cssFormat(this._cBottom);
         fixedEle.style.marginBottom = cssFormat(fixedBottom);
 
+        // 初始化_scroll滚动对象
+        this._scroll.init(this.scrollElement)
+
         // 计算Content组件的维度信息, 写入scrollEvent中, 只是初始化的信息
         const contentDimensions = this.getContentDimensions();
         scrollEvent.scrollHeight = contentDimensions.scrollHeight;
@@ -432,9 +454,6 @@
         scrollEvent.contentWidth = contentDimensions.contentWidth;
         scrollEvent.contentTop = contentDimensions.contentTop;
         scrollEvent.contentBottom = contentDimensions.contentBottom;
-
-        // 初始化_scroll滚动对象
-        this._scroll.init(this.scrollElement)
 
         // initial imgs refresh
         this.imgsUpdate();
@@ -467,9 +486,7 @@
       setScrollElementStyle(prop, val) {
         if (this.scrollElement) {
           this.$nextTick(() => {
-            if (this.scrollElement) {
-              (this.scrollElement.style)[prop] = val;
-            }
+            (this.scrollElement.style)[prop] = val;
           })
         }
       },

@@ -5,7 +5,7 @@
                 <Title>InfiniteScroll</Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content :enableJsScroll="false">
             <List>
                 <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
             </List>
@@ -55,7 +55,7 @@
       onInfinite(infiniteScroll){
         console.debug('onInfinite')
         let _start = this.i;
-        if (_start < 40) {
+        if (_start < 400) {
           setTimeout(() => {
             for (; (10 + _start) > this.i; this.i++) {
               this.list.push(`item - ${this.i}`)

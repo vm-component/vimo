@@ -20,7 +20,7 @@
                     <Row class="vimo__logo">
                         <Column text-center no-padding>
                             <div class="vimo__logo--img">
-                                <img height="120" src="../assets/vimo.png">
+                                <img height="120" src="../assets/img/vimo.png">
                             </div>
                         </Column>
                     </Row>
@@ -152,12 +152,12 @@
                         .inspired__logos--ionic {
                             height: 22px;
                             width: 80px;
-                            background: transparent url(../assets/ionic.png) no-repeat top center/60px auto;
+                            background: transparent url(../assets/img/ionic.png) no-repeat top center/60px auto;
                         }
                         .inspired__logos--vue {
                             height: 22px;
                             width: 26px;
-                            background: transparent url(../assets/vue.png) no-repeat top center/22px auto;
+                            background: transparent url(../assets/img/vue.png) no-repeat top center/22px auto;
                         }
                     }
                 }

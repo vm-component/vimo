@@ -79,7 +79,7 @@
   .icon-vue {
     height: 40px;
     width: 40px;
-    background: url('../assets/vue.png') no-repeat center center/cover;
+    background: url('../assets/img/vue.png') no-repeat center center/cover;
   }
 
 
