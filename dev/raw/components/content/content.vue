@@ -123,7 +123,7 @@
    *
    * @demo http://ionicframework.com/docs/demos/src/alert/www/
    *
-   * @example
+   * @usage
    * <template>
    *  <Page>
    *    <Header>
@@ -136,6 +136,7 @@
    *    </Content>
    *  </Page>
    * </template>
+   *
    * */
   import { transitionEnd, parsePxUnit } from '../../util/util'
   import { ScrollView } from './scroll-view'

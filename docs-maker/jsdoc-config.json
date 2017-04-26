@@ -16,6 +16,7 @@
     "node_modules/jsdoc/plugins/markdown",
     "plugins/slot.js",
     "plugins/demo.js",
+    "plugins/usage.js",
     "plugins/component.js"
   ],
   "markdown": {
@@ -26,7 +27,6 @@
     ],
     "parser": "gfm",
     "hardwrap": true
-
   },
   "source": {
     "include1": [
@@ -38,7 +38,7 @@
       "./theme/fixtures/utils",
       "./theme/fixtures/documents"
     ],
-    "include": [
+    "include2": [
       "../README.md",
       "../dev/raw/util",
       "../dev/raw/components/app",
@@ -49,6 +49,9 @@
       "../dev/raw/base/history.js",
       "../dev/raw/base/platform.js",
       "../dev/raw/base/platform-default-configs.js"
+    ],
+    "include": [
+      "../dev/raw/components/content"
     ],
     "exclude": [
       "gulpfile.js"

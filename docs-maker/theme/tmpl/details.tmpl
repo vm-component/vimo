@@ -241,3 +241,10 @@ defaultObjectClass = ' class="object-value"';
 <?js= this.partial('properties.tmpl', data) ?>
 
 <?js } ?>
+
+<?js if (data.usages && usages.length) { ?>
+<h3 class="subsection-title">用法 / Usages<?js= usages.length > 1? 's':'' ?></h3>
+<?js= this.partial('examples.tmpl', usages) ?>
+<?js } ?>
+
+
