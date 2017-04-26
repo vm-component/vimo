@@ -21,7 +21,7 @@ body {
   margin: 0 auto;
   padding: 0 20px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 160%;
 }
 
@@ -57,6 +57,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+//h1, h2, h3 {
+//  font-weight: 800;
+//}
+
 h1 {
   font-weight: 300;
   font-size: 48px;
@@ -80,12 +84,12 @@ h2 {
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 22px;
   margin: 1.2em 0 .3em;
 }
 
 h3.subsection-title {
-  //font-weight: bold;
+  font-weight: 600;
 }
 
 h4 {
@@ -187,6 +191,7 @@ nav {
   overflow: auto;
   position: fixed;
   height: 100%;
+  padding-bottom: 40px;
 }
 
 nav h3 {
@@ -307,7 +312,8 @@ footer {
 }
 
 .type-signature {
-  color: $theme-light-2
+  color: $theme-light-2;
+  text-transform: capitalize;
 }
 
 .type-signature:last-child {
@@ -676,7 +682,7 @@ span.param-type, .params td .param-type, .param-type dd {
     bottom: 0;
     left: -250px;
     z-index: 3;
-    padding: 0 10px;
+    padding: 0 10px 30px;
     transition: left 0.2s;
 
     overflow-y: scroll;
@@ -746,3 +752,15 @@ span.param-type, .params td .param-type, .param-type dd {
   margin-right: 5px;
 }
 
+@media only screen and (min-width: 320px) and (max-width: 1400px) {
+
+  #main {
+    .content {
+      .page-content {
+        .showcase {
+          display: none;
+        }
+      }
+    }
+  }
+}

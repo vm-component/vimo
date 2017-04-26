@@ -13,7 +13,7 @@ body {
   margin: 0 auto;
   padding: 0 20px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 160%; }
 
 a,
@@ -60,8 +60,11 @@ h2 {
   margin: 1.5em 0 .3em; }
 
 h3 {
-  font-size: 20px;
+  font-size: 22px;
   margin: 1.2em 0 .3em; }
+
+h3.subsection-title {
+  font-weight: 600; }
 
 h4 {
   font-size: 18px;
@@ -135,7 +138,8 @@ nav {
   background: #fff;
   overflow: auto;
   position: fixed;
-  height: 100%; }
+  height: 100%;
+  padding-bottom: 40px; }
 
 nav h3 {
   margin-top: 12px;
@@ -230,7 +234,8 @@ footer {
   text-indent: -1000px; }
 
 .type-signature {
-  color: #6fc7c3; }
+  color: #6fc7c3;
+  text-transform: capitalize; }
 
 .type-signature:last-child {
   color: #eee; }
@@ -536,7 +541,7 @@ span.param-type, .params td .param-type, .param-type dd {
     bottom: 0;
     left: -250px;
     z-index: 3;
-    padding: 0 10px;
+    padding: 0 10px 30px;
     transition: left 0.2s;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch; }
@@ -582,5 +587,9 @@ span.param-type, .params td .param-type, .param-type dd {
   display: inline-block;
   margin-left: -14px;
   margin-right: 5px; }
+
+@media only screen and (min-width: 320px) and (max-width: 1400px) {
+  #main .content .page-content .showcase {
+    display: none; } }
 
 /*# sourceMappingURL=jsdoc.css.map */

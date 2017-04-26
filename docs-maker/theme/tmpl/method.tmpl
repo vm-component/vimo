@@ -59,12 +59,12 @@ var self = this;
 <?js }); ?></ul>
 <?js } ?>
 
-<?js if (data.fires && fires.length) { ?>
-<h5>事件 / Fires:</h5>
-<ul><?js fires.forEach(function(f) { ?>
-    <li><?js= self.linkto(f) ?></li>
-<?js }); ?></ul>
-<?js } ?>
+<!--<?js if (data.fires && fires.length) { ?>-->
+<!--<h5>事件 method / Fires:</h5>-->
+<!--<ul><?js fires.forEach(function(f) { ?>-->
+    <!--<li><?js= self.linkto(f) ?></li>-->
+<!--<?js }); ?></ul>-->
+<!--<?js } ?>-->
 
 <?js if (data.listens && listens.length) { ?>
 <h5>监听事件 / Listens to Events:</h5>
@@ -92,7 +92,7 @@ var self = this;
     <?js });
 } } ?>
 
-<?js if (data.returns && returns.length) { ?>
+<?js if (data.returns && returns.length && (returns[0].description)) { ?>
 <h5>返回 / Returns:</h5>
 <?js if (returns.length > 1) { ?><ul><?js
     returns.forEach(function(r) { ?>

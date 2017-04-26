@@ -69,25 +69,6 @@
    * */
 
   /**
-   * @event onScroll
-   * @description 正在滚动时触发的全局事件
-   * @property {ScrollEvent} ev - 滚动事件对象
-   * */
-
-  /**
-   * @event onScrollStart
-   * @description 滚动开始时触发的全局事件
-   * @property {ScrollEvent} ev - 滚动事件对象
-   * */
-
-  /**
-   * @event onScrollEnd
-   * @description 滚动结束时触发的全局事件
-   * @property {ScrollEvent} ev - 滚动事件对象
-   *
-   * */
-
-  /**
    * @component Base/Content
    * @description
    *
@@ -113,13 +94,12 @@
    * @slot [fixedBottom]    固定到底部
    * @slot [refresher]      refresher组件的位置
    *
-   * @property {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
-   * @property {string} [mode=ios]  - 样式模式
+   * @props {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
+   * @props {string} [mode=ios]  - 样式模式
    *
-   *
-   * @fires onScroll        - 滚动时触发， 传递ScrollEvent对象
-   * @fires onScrollStart   - 滚动开始时触发， 传递ScrollEvent对象
-   * @fires onScrollEnd     - 滚动结束时触发， 传递ScrollEvent对象
+   * @fires module:Base/Content#onScrollStart
+   * @fires module:Base/Content#onScroll
+   * @fires module:Base/Content#onScrollEnd
    *
    * @demo http://ionicframework.com/docs/demos/src/alert/www/
    *
@@ -304,15 +284,20 @@
         scroll.ev.scrollElement = this.scrollElement = this.$refs.scrollElement;
 
         /**
-         * 注册滚动事件
-         * */
-        // 改写 滚动开始 的回调
+         * @event module:Base/Content#onScrollStart
+         * @description 滚动开始时触发的事件
+         * @property {ScrollEvent} ev - 滚动事件对象
+         */
         scroll.scrollStart = (ev) => {
           this.$emit('onScrollStart', ev);
           this.$eventBus && this.$eventBus.$emit('onScrollStart', ev);
         };
 
-        // 改写 滚动中 的回调
+        /**
+         * @event module:Base/Content#onScroll
+         * @description 滚动时触发的事件
+         * @property {ScrollEvent} ev - 滚动事件对象
+         */
         scroll.scroll = (ev) => {
           // remind the app that it's currently scrolling
           this.$app && this.$app.setScrolling();
@@ -323,7 +308,11 @@
           this.imgsUpdate();
         };
 
-        // 改写 滚动结束 的回调
+        /**
+         * @event module:Base/Content#onScrollEnd
+         * @description 滚动结束时触发的事件
+         * @property {ScrollEvent} ev - 滚动事件对象
+         */
         scroll.scrollEnd = (ev) => {
           this.$emit('onScrollEnd', ev);
           this.$eventBus && this.$eventBus.$emit('onScrollEnd', ev);

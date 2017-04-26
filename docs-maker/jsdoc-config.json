@@ -17,12 +17,15 @@
     "plugins/slot.js",
     "plugins/demo.js",
     "plugins/usage.js",
+    "plugins/props.js",
     "plugins/component.js"
   ],
   "markdown": {
     "tags": [
+      "props",
       "usage",
       "component",
+      "demo",
       "slot"
     ],
     "parser": "gfm",
@@ -38,7 +41,7 @@
       "./theme/fixtures/utils",
       "./theme/fixtures/documents"
     ],
-    "include2": [
+    "include": [
       "../README.md",
       "../dev/raw/util",
       "../dev/raw/components/app",
@@ -50,7 +53,7 @@
       "../dev/raw/base/platform.js",
       "../dev/raw/base/platform-default-configs.js"
     ],
-    "include": [
+    "include2": [
       "../dev/raw/components/content"
     ],
     "exclude": [

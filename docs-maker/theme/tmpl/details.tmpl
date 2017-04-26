@@ -218,16 +218,29 @@ defaultObjectClass = ' class="object-value"';
     <?js } ?>
 </dl>
 
+<?js
+    var propsInComppnent = data.propsInComppnent;
+    if (propsInComppnent && propsInComppnent.length && propsInComppnent.forEach) {
+?>
+<h3 class="subsection-title">传入属性 / Props:</h3>
+<?js= this.partial('props.tmpl', data) ?>
+<?js } ?>
+
 
 <?js
     var slots = data.slots;
     if (slots && slots.length && slots.forEach) {
 ?>
-
 <h3 class="subsection-title">插槽 / Slots:</h3>
-
 <?js= this.partial('slots.tmpl', data) ?>
+<?js } ?>
 
+
+<?js if (data.fires && fires.length) { ?>
+<h3 class="subsection-title">对外事件 / Fires:</h3>
+<ul><?js fires.forEach(function(f) { ?>
+    <li><?js= self.linkto(f) ?></li>
+    <?js }); ?></ul>
 <?js } ?>
 
 
@@ -235,16 +248,12 @@ defaultObjectClass = ' class="object-value"';
     var properties = data.properties;
     if (properties && properties.length && properties.forEach) {
 ?>
-
-<h3 class="subsection-title">属性 / Properties:</h3>
-
+<h5>属性 / Properties:</h5>
 <?js= this.partial('properties.tmpl', data) ?>
-
 <?js } ?>
+
 
 <?js if (data.usages && usages.length) { ?>
 <h3 class="subsection-title">用法 / Usages<?js= usages.length > 1? 's':'' ?></h3>
 <?js= this.partial('examples.tmpl', usages) ?>
 <?js } ?>
-
-
