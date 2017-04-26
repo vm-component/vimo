@@ -28,8 +28,8 @@
       return {
         // -------- Nav --------
         // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition
-        pageTransitionName: this.$config.get('pageTransition'),
-        pageTransitionDirection: 'forward',
+        pageTransitionName: this.$config.get('pageTransition', 'ios-transition'),
+        pageTransitionDirection: '',
 
         // ----------- Menu -----------
         menuStyleObj: {
@@ -68,7 +68,6 @@
           }
           this.pageTransitionName = _pageTransitionName
         }
-
 
         // nav 动画切换部分
         this.$eventBus.$on('onNavEnter', ({to, from, next}) => {

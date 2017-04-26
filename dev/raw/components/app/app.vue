@@ -203,7 +203,7 @@
           // 利用iframe的onload事件刷新页面
           document.title = val
           let iframe = document.createElement('iframe')
-          iframe.src = '/static/favicon.ico'
+          iframe.src = 'static/img/favicon.ico'
           iframe.style.visibility = 'hidden'
           iframe.style.width = '1px'
           iframe.style.height = '1px'

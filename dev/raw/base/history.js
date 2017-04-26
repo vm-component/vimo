@@ -68,8 +68,6 @@ export class History {
    * */
   _pushHistory (Vue, {to, from, next}) {
     this._h.push(to)
-    // noinspection JSAnnotator
-    this.length++
     if (this._isPageChange({to, from})) {
       this._d = 'forward'
       this._emit(Vue, 'onNavEnter', {to, from, next})
@@ -77,6 +75,8 @@ export class History {
       this._d = ''
       next()
     }
+    // noinspection JSAnnotator
+    this.length++
   }
 
   /**
@@ -86,8 +86,6 @@ export class History {
   _popHistory (Vue, {to, from, next}) {
     // 激活了浏览器的后退,这里只需要更新状态
     this._h.pop()
-    // noinspection JSAnnotator
-    this.length--
     if (this._isPageChange({to, from})) {
       this._d = 'backward'
       this._emit(Vue, 'onNavLeave', {to, from, next})
@@ -95,6 +93,8 @@ export class History {
       this._d = ''
       next()
     }
+    // noinspection JSAnnotator
+    this.length--
   }
 
   _emit (Vue, eventName, {to, from, next}) {
