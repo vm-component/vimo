@@ -36,7 +36,7 @@
   .page-content .readme {
     width: 100%; }
     .page-content .readme p > img {
-      width: 100%; }
+      max-width: 100%; }
   .page-content .content {
     width: 100%;
     max-width: 1200px; }
