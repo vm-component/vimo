@@ -73,13 +73,10 @@
     name: 'App',
     data(){
       return {
-
         disabledTimeRecord: 0,        // 禁用计时
         scrollTimeRecord: 0,        // 滚动计时
-
         isScrollDisabled: false, // 控制页面是否能滚动
         isClickBlockEnabled: false, // 控制是否激活 '冷冻'效果 click-block-enabled
-
       }
     },
     props: {

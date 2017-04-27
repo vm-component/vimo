@@ -9,6 +9,7 @@
             <h1>Section</h1>
             <section>
                 <p>向下滚动, 则Header将渐变消失, 当滚回来的时候则显示. </p>
+                <p>ps: 如果在微信/支付宝/钉钉模式下, 可能看不到Header的效果.</p>
             </section>
             <section>
                 <p>

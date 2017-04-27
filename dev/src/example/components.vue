@@ -21,6 +21,13 @@
                         <Icon slot="item-left" name="chatboxes"></Icon>
                         <span>布局 (Content)</span>
                     </Item>
+
+                </ItemGroup>
+
+                <!--通用组件-->
+                <ListHeader>通用组件</ListHeader>
+                <!--group-->
+                <ItemGroup>
                     <Item button :to="{name: 'toolbar'}">
                         <Icon slot="item-left" name="briefcase"></Icon>
                         <span>工具条 (Toolbar)</span>
@@ -29,12 +36,6 @@
                         <Icon slot="item-left" name="keypad"></Icon>
                         <span>栅格 (Grid)</span>
                     </Item>
-                </ItemGroup>
-
-                <!--通用组件-->
-                <ListHeader>通用组件</ListHeader>
-                <!--group-->
-                <ItemGroup>
                     <Item button :to="{name: 'button'}">
                         <Icon slot="item-left" name="download"></Icon>
                         <span>按钮 (Button)</span>

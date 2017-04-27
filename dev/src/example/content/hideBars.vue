@@ -10,6 +10,7 @@
             <h1>Section</h1>
 
             <p>这部分建议使用fullscreen模式, 如果不是的话, 上下被占位置的部分是不会去掉的. </p>
+            <p>ps: 如果在微信/支付宝/钉钉模式下, 可能看不到Header的效果.</p>
 
             <Grid no-padding>
                 <Row justify-content-around align-items-center no-padding>
