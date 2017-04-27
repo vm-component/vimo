@@ -394,8 +394,8 @@ function buildNav (members, docdash) {
     }
   })
 
-  nav += buildMemberNav(members.classes, '类 / Classes', seen, linkto)
   nav += buildMemberNav(component, '组件 / Components', {}, linkto)
+  nav += buildMemberNav(members.classes, '类 / Classes', seen, linkto)
   nav += buildMemberNav(module, '模块 / Modules', {}, linkto)
   nav += buildMemberNav(members.externals, '外部依赖 / Externals', seen, linktoExternal)
   nav += buildMemberNav(members.events, '事件 / Events', seen, linkto)

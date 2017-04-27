@@ -64,63 +64,44 @@
 
   import { ClickBlock } from './click-block'
   import { setElementClass } from '../../util/util'
-
-  // click_blcok等待时间
-  const CLICK_BLOCK_BUFFER_IN_MILLIS = 64
-  // 时间过后回复可点击状态
-  const CLICK_BLOCK_DURATION_IN_MILLIS = 700
+  const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
+  const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
   const ACTIVE_SCROLLING_TIME = 100
-  let _clickBlock = new ClickBlock()
-  let _disTime = 0          // 禁用计时
-  let _scrollTime = 0       // 滚动计时
-  let _scrollDisTime = 0
+  const clickBlockInstance = new ClickBlock()
+  let scrollDisTimer = null                     // 计时器
   export default{
     name: 'App',
     data(){
       return {
+
+        disabledTimeRecord: 0,        // 禁用计时
+        scrollTimeRecord: 0,        // 滚动计时
+
         isScrollDisabled: false, // 控制页面是否能滚动
         isClickBlockEnabled: false, // 控制是否激活 '冷冻'效果 click-block-enabled
-        title: null, // 当前的App的title
+
       }
     },
     props: {
-      /**
-       * The mode to apply to this component. Mode can be ios, wp, or md.
-       * */
       mode: {
         type: String,
         default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
       }
     },
     computed: {
-      // set the mode class name
-      // ios/md/wp
       modeClass () {
         return `${this.mode}`
       },
       platformClass(){
-        // wp和md会设置成platform-core？？
-        // 后面这两个只在ios下有，不知为啥platform-mobile platform-mobileweb
         return `platform-${this.mode}`
       },
       hoverClass(){
-        // touch devices should not use :hover CSS pseudo
-        // enable :hover CSS when the "hoverCSS" setting is not false
         let _isMobile = !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)
         return _isMobile ? 'disable-hover' : 'enable-hover'
-      }
+      },
     },
     methods: {
       // -------- public --------
-      /**
-       * @function setTitle
-       * @description 设置App的title及document的title
-       * @param {string} val - 设置document title的值
-       */
-      setTitle(val){
-        this.title = val
-        this.setDocTitle(val)
-      },
 
       /**
        * @function setEnabled
@@ -129,16 +110,31 @@
        * 当transition动画进行中，页面是锁定的不能点击，因此使用该函数设定App的状态, 保证动画过程中, 用户不会操作页面
        * @param {boolean} isEnabled  - `true` for enabled, `false` for disabled
        * @param {number} duration - isEnabled=false的过期时间 当 `isEnabled` 设置为`false`, 则duration之后，`isEnabled`将自动设为`true`
+       *
+       * @example
+       * this.$app && this.$app.setEnabled(false, 400) -> 400ms内页面不可点击, 400ms过后可正常使用
+       * this.$app && this.$app.setEnabled(true) -> 64ms后解除锁定
        * */
       setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
-        _disTime = (isEnabled ? 0 : Date.now() + duration)
+        this.disabledTimeRecord = (isEnabled ? 0 : Date.now() + duration)
         if (isEnabled) {
           // disable the click block if it's enabled, or the duration is tiny
-          _clickBlock.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS)
+          clickBlockInstance.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS)
         } else {
           // show the click block for duration + some number
-          _clickBlock.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS)
+          clickBlockInstance.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS)
         }
+      },
+
+      /**
+       * @function isEnabled
+       * @description
+       * 查看App当前的激活(禁用)状态
+       * @return {boolean}
+       */
+      isEnabled() {
+        if (this.disabledTimeRecord === 0) return true
+        return (this.disabledTimeRecord < Date.now())
       },
 
       /**
@@ -147,17 +143,19 @@
        * 是否点击滚动, 这个需要自己设置时间解锁
        * @param {Boolean} isScrollDisabled - 是否禁止滚动点击 true:禁止滚动/false:可以滚动
        * @param {number} duration - 时间过后则自动解锁
+       * @example
+       * this.$app && this.$app.setDisableScroll(true, 400) -> 400ms内页面不可滚动, 400ms过后可正常使用
+       * this.$app && this.$app.setDisableScroll(false) ->立即解除锁定
        * */
       setDisableScroll (isScrollDisabled, duration = 0) {
         this.isScrollDisabled = isScrollDisabled
         if (duration > 0 && isScrollDisabled) {
-          window.clearTimeout(_scrollDisTime)
-          _scrollDisTime = window.setTimeout(() => {
+          window.clearTimeout(scrollDisTimer)
+          scrollDisTimer = window.setTimeout(() => {
             this.isScrollDisabled = false
           }, duration)
         }
       },
-
       /**
        * @function isScrolling
        * @description
@@ -165,33 +163,29 @@
        * @return {boolean}
        */
       isScrolling() {
-        const scrollTime = _scrollTime
-        if (scrollTime === 0) {
-          return false
-        }
-        if (scrollTime < Date.now()) {
-          _scrollTime = 0
+        if (this.scrollTimeRecord === 0) return false
+        if (this.scrollTimeRecord < Date.now()) {
+          this.scrollTimeRecord = 0
           return false
         }
         return true
       },
+
       /**
-       * @function isEnabled
+       * @function setScrolling
        * @description
-       * 查看App当前的激活(禁用)状态
-       * @return {boolean}
+       * 设置当前App级别是否在滚动, 例如: 这个函数由scroll-view的实例调用, 反应当前的conent
+       * 正在滚动... 滚动的有效时间为ACTIVE_SCROLLING_TIME, 超时后将判断为不再滚动, 由
+       * isScrolling进行判断
        */
-      isEnabled() {
-        if (_disTime === 0) {
-          return true
-        }
-        return (_disTime < Date.now())
+      setScrolling() {
+        this.scrollTimeRecord = Date.now() + ACTIVE_SCROLLING_TIME
       },
 
       /**
        * @function setClass
        * @description
-       * 设置app的class
+       * 设置app的class, 比如全局颜色替换或者结构变更
        * @param {string} className
        * @param {boolean} isAdd
        */
@@ -223,40 +217,16 @@
           document.body.appendChild(iframe)
         }
       },
-
-
-      /**
-       * @function setScrolling
-       * @description
-       * 设置当前App级别是否在滚动, 例如: 这个函数由scroll-view的实例调用, 反应当前的conent
-       * 正在滚动... 滚动的有效时间为ACTIVE_SCROLLING_TIME, 超时后将判断为不再滚动, 由
-       * isScrolling进行判断
-       */
-      setScrolling() {
-        _scrollTime = Date.now() + ACTIVE_SCROLLING_TIME
-      },
     },
     created(){
       /**
        * $app对外方法
        * */
       let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
-      proto.$app = {
-        _this: this,                               // 当前的app实例this
-        setElementClass: this.setElementClass,     // 给App设置class
-        setTitle: this.setTitle,                   // 设置App的Title(document级别)
-
-        setEnabled: this.setEnabled,               // 设置App当前可点击状态
-        isEnabled: this.isEnabled,                 // 判断App当前可点击状态
-
-        setDisableScroll: this.setDisableScroll,   // 设置App的禁止滚动(自己定时解锁)
-        setScrolling: this.setScrolling,           // 设置App的正在滚动
-        isScrolling: this.isScrolling,             // 判断App的是否在滚动
-      }
+      proto.$app = this
     },
     mounted(){
-      this.$eventBus.$emit('app:ready')
-      console.assert(!!_clickBlock, '_clickBlock实例不存在, 请检查!')
+      console.assert(!!clickBlockInstance, 'clickBlockInstance实例不存在, 请检查!')
       this.isClickBlockEnabled = true
     }
   }

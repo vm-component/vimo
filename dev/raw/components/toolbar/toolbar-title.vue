@@ -97,19 +97,22 @@
        * @param {String} title - title
        * @param {boolean} [setDocTitle=true] - 是否设置doc的title, 默认是同步设置的
        * */
-      setTitle (title, setDocTitle = true) {
+      setTitle (title, changeDocTitle = true) {
         this.titleInner = title;
-        if (setDocTitle) this.sendTitleToApp(title)
+        if (changeDocTitle) {
+          // 设置document的title, 这部分由$app处理
+          this.$app && this.$app.setDocTitle(title);
+        }
       },
 
-      /**
-       * @private
-       * 将当前页面的title发送给app管理
-       * */
-      sendTitleToApp(title){
-        // 设置document的title, 这部分由$app处理
-        this.$app && this.$app.setTitle(title);
-      },
+//      /**
+//       * @private
+//       * 将当前页面的title发送给app管理
+//       * */
+//      sendTitleToApp(title){
+//        // 设置document的title, 这部分由$app处理
+//        this.$app && this.$app.setTitle(title);
+//      },
 
       /**
        * @private
@@ -119,12 +122,12 @@
        * 将赋予页面Page(docTitle),
        * */
       init(){
-        this.titleInner = this.getTitle();
-        if (!!this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'navbar' && document.title != this.titleInner) {
-          this.sendTitleToApp(this.titleInner);
+        this.titleInner = this.getTitle()
+        if (!!this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'navbar' && document.title !== this.titleInner) {
+          this.setTitle(this.titleInner)
         }
-        this.isInit = true;
-      },
+        this.isInit = true
+      }
     },
     mounted(){
       this.init()
