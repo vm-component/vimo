@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>components/app/footer.vue - Documentation</title>
+    <title>Base/Page - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/prettify/prettify.js"></script>
@@ -56,7 +56,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">components/app/footer.vue</h1>
+        <h1 class="page-title">Base/Page</h1>
         
 
         
@@ -64,111 +64,171 @@
 
 
 
-    <section>
+<section class="page-content">
+
+    <section class="content">
+        <header>
+            
+        </header>
+
         <article>
-            <pre class="prettyprint source linenums"><code>&lt;template>
-    &lt;footer class="ion-footer footer" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
-        &lt;slot>&lt;/slot>
-    &lt;/footer>
-&lt;/template>
-&lt;style lang="scss">
-    @import "../../themes/globals";
+            <div class="container-overview">
 
-    .ion-footer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        z-index: $z-index-toolbar;
-        display: block;
-        width: 100%;
-        transition: -webkit-transform ease 300ms;
-    }
+                
+                <div class="description"><h2>基础组件 / Page组件</h2><p>Page组件是业务的根组件, 用于包裹业务层, 仅此而已. 切记, template标签内有且只有一个标签, 且必须为Page, 例如这样:</p></div>
+                
 
-    .ion-footer.hide-bar {
-        transform: translateY(100%);
-    }
-&lt;/style>
-&lt;script>
-  /**
-   * @component Base/Footer
-   * @description
-   *
-   * ## 基础组件 / Footer组件
-   *
-   * Header和Footer组件结构类似, 都是提供一个包裹容器, 不同的是一个固定在上面, 一个固定在下面.
-   *
-   * Header组件是Vimo页面的的三个主要构成之一, 主要是为Toolbar/Navbar/自定义结构提供一个容器,
-   * 该组件将始终固定在页面顶部, Content组件会根据Header的高度自动设定`margin`值, 或者`padding`值.
-   *
-   * @props {String} [mode='ios'] - 模式
-   *
-   * */
-  export default{
-    name: 'Footer',
-    props: {
-      mode: {
-        type: String,
-        default(){ return window.VM &amp;&amp; window.VM.config.get('mode') || 'ios' }
-      },
-    },
-    computed: {
-      modeClass () {
-        return `footer-${this.mode}`
-      },
-    },
+                
+                
 
-    data(){
-      return {
-        // -------- public --------
-        isHide: false,
-        style: {},
-      }
-    },
-    methods: {
-      // -------- public --------
-      /**
-       * @function hide
-       * @description
-       * 隐藏Footer
-       * */
-      hide(){
-        this.isHide = true
-      },
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="components_page_page.vue.html">components/page/page.vue</a>
+                    , <a href="components_page_page.vue.html#line2">line 2</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
 
-      /**
-       * @function show
-       * @description
-       * 显示Footer
-       * */
-      show(){
-        this.isHide = false
-      },
 
-      /**
-       * @function toggle
-       * @description
-       * Toggle显示Footer
-       * */
-      toggle(){
-        this.isHide = !this.isHide
-      },
+    
 
-      /**
-       * @function setStyle
-       * @param {object} style - 传入的样式对象
-       * @see https://cn.vuejs.org/v2/guide/class-and-style.html#对象语法-1
-       * @description
-       * 设置Footer的样式
-       * */
-      setStyle(style){
-        this.style = style
-      }
-    }
-  }
-&lt;/script>
-</code></pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3 class="subsection-title">用法 / Usages</h3>
+
+    <pre class="prettyprint"><code>&lt;template>
+   &lt;Page>
+       &lt;Header>
+           &lt;Navbar>
+               &lt;Title>Demo&lt;/Title>
+           &lt;/Navbar>
+       &lt;/Header>
+       &lt;Content>
+           &lt;h1>这里是内容&lt;/h1>
+       &lt;/Content>
+   &lt;/Page>
+&lt;/template></code></pre>
+
+
+
+                <!---->
+                <!--<div class="description"><h2>基础组件 / Page组件</h2><p>Page组件是业务的根组件, 用于包裹业务层, 仅此而已. 切记, template标签内有且只有一个标签, 且必须为Page, 例如这样:</p></div>-->
+                <!---->
+
+                
+                
+            </div>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
         </article>
     </section>
+
+    
+
+</section>
+
+<script>
+  ;(function () {
+    document.getElementById('js_choose_ios').addEventListener('click', function () {
+      console.log('js_choose_ios')
+      var $showCaseBox = document.getElementById('js_showcase__box')
+      if (!_hasClass($showCaseBox, 'ios')) {
+        _removeClass($showCaseBox, 'md')
+        _addClass($showCaseBox, 'ios')
+      }
+
+    })
+    document.getElementById('js_choose_md').addEventListener('click', function () {
+      console.log('js_choose_md')
+      var $showCaseBox = document.getElementById('js_showcase__box')
+      if (!_hasClass($showCaseBox, 'md')) {
+        _removeClass($showCaseBox, 'ios')
+        _addClass($showCaseBox, 'md')
+      }
+    })
+
+    function _hasClass (obj, cls) {
+      return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+    }
+
+    function _addClass (obj, cls) {
+      if (!_hasClass(obj, cls)) {
+        obj.className += ' ' + cls
+      }
+    }
+
+    function _removeClass (obj, cls) {
+      if (_hasClass(obj, cls)) {
+        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+        obj.className = obj.className.replace(reg, ' ').trim()
+      }
+    }
+  })()
+</script>
+
 
 
 

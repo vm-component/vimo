@@ -23,10 +23,10 @@
     @import './app.scss';
     @import './app.ios.scss';
     @import './app.md.scss';
-    @import 'ios-transition';
-    @import 'fade-bottom-transition';
-    @import 'fade-right-transition';
-    @import 'zoom-transition';
+    @import './ios-transition';
+    @import './fade-bottom-transition';
+    @import './fade-right-transition';
+    @import './zoom-transition';
 </style>
 <script>
   /**
@@ -50,8 +50,16 @@
    * - loadingPortal
    * - toastPortal
    *
+   * ### 何为基础组件
+   *
+   * 因为业务的复杂多样, 如果组件全部加载, 会造成初始化的下载包过大, 所以基础组件在安装Vimo的时候就全局安装, 不需要在业务中再次安装. 除此之外的组件则要按需引入.
+   *
+   * 这里规定的基础组件为: **App/Nav/Page/Header/Footer/Content**, 一共6个.
+   *
+   *
    * @props {String} [mode='ios'] - 模式
    *
+   * @demo http://xiangsongtao.com/vimo/#/app
    * */
 
   import { ClickBlock } from './click-block'

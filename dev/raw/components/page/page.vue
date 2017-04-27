@@ -57,6 +57,30 @@
 
 </style>
 <script>
+  /**
+   * @component Base/Page
+   * @description
+   *
+   * ## 基础组件 / Page组件
+   *
+   * Page组件是业务的根组件, 用于包裹业务层, 仅此而已. 切记, template标签内有且只有一个标签, 且必须为Page, 例如这样:
+   *
+   * @usage
+   *
+   * <template>
+   *    <Page>
+   *        <Header>
+   *            <Navbar>
+   *                <Title>Demo</Title>
+   *            </Navbar>
+   *        </Header>
+   *        <Content>
+   *            <h1>这里是内容</h1>
+   *        </Content>
+   *    </Page>
+   * </template>
+   *
+   * */
   let initPageZIndex = 1000
   export default{
     name: 'Page',
@@ -74,7 +98,6 @@
       } else {
         this.pageZIndex = initPageZIndex
       }
-    },
-    mounted(){}
+    }
   }
 </script>

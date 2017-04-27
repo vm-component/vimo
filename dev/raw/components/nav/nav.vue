@@ -17,7 +17,70 @@
    * @component base/nav
    * @description
    *
-   * asdf
+   * ## 基础组件 / Nav组件
+   *
+   * 这里是Page组件的父容器, 而且转场动画也是在这里执行.
+   *
+   * 转场动画是使用css3的特性完成的, 也就是说Vimo不提供手势转场动画. 按照在props中的说明, 可提供这几类已写好的专场动画, 如果项目需要定制, 则特换自定义的动画即可, 以下是示例(scss编写):
+   *
+   * @usage
+   *
+   * // zoom-transition动画的实现方法
+   *
+   * $EASING: cubic-bezier(0.36, 0.66, 0.04, 1);
+   * $DURATION: 500ms;
+   * $CENTER: 0px;
+   * $OPACITY: opacity;
+   * $TRANSFORM: -webkit-transform;
+   * $SCALE: scale;
+   * $SCALE_SMALL: .95;
+   * $OPACITY_ZERO: 0.01;
+   * $TRANSFORM_ORIGIN: center center;
+   *
+   * // -------- md 进入动画(forward) --------
+   * //    zoom-transition-forward
+   * // 进入的页面
+   * .zoom-transition-forward-enter {
+   *  transform: scale($SCALE_SMALL);
+   *   opacity: $OPACITY_ZERO !important;
+   * }
+   *
+   * .zoom-transition-forward-enter-active {
+   *   transform-origin: $TRANSFORM_ORIGIN;
+   *   transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
+   * }
+   *
+   * // 退出的页面
+   * .zoom-transition-forward-leave-active {
+   *   transform-origin: $TRANSFORM_ORIGIN;
+   *   transition-duration: $DURATION;
+   * }
+   *
+   * //-------- md 后退动画(backward) --------
+   * //    zoom-transition-backward
+   *
+   * // 进入的页面
+   * .zoom-transition-backward-enter {
+   * }
+   *
+   * .zoom-transition-backward-enter-active {
+   *   transform-origin: $TRANSFORM_ORIGIN;
+   *   transition-duration: $DURATION;
+   * }
+   *
+   * // 退出的页面
+   * .zoom-transition-backward-leave-active {
+   *  transform: scale($SCALE_SMALL);
+   *  opacity: $OPACITY_ZERO !important;
+   *   transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
+   *  transform-origin: $TRANSFORM_ORIGIN;
+   * }
+   *
+   *
+   * @props {String} [animate=] - 转场动画的名称, 可以是这里的一种: ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+   *
+   *
+   *
    * */
   export default{
     name: 'Nav',
@@ -33,7 +96,7 @@
 
         // ----------- Menu -----------
         menuStyleObj: {
-          transform: '',
+          transform: ''
         },
 
         isMenuOpen: false, // ion-menu开启
@@ -56,8 +119,11 @@
     },
     methods: {
       // -------- Nav --------
+      /**
+       * 初始化导航
+       * @private
+       * */
       initNav(){
-
         // pageTransitionName 传值问题
         let _pageTransitionName = this.$config.get('pageTransition')
         if (!_pageTransitionName) {
@@ -85,6 +151,7 @@
       // ----------- Menu -----------
       /**
        * 点击nav关闭Menu
+       * @private
        * */
       tapToCloseMenu(){
         const _this = this
@@ -95,6 +162,7 @@
 
       /**
        * 设置Menu的信息
+       * @private
        * */
       setMenuInfo(menuId){
         if (!!menuId) {
@@ -108,6 +176,7 @@
 
       /**
        * 初始化menu组件对应的监听处理
+       * @private
        * */
       initMenu(){
         let _translateX
@@ -150,8 +219,8 @@
       // 初始化menu组件对应的监听处理
       this.initMenu()
 
+      //  初始化导航
       this.initNav()
-
     }
   }
 </script>

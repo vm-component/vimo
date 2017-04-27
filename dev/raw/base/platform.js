@@ -81,11 +81,6 @@
  *    minor?: number;
  * }
  *
- * @typedef {Object} BackButtonAction
- * {
- *    fn?: Function;
- *    priority?: number;
- * }
  * */
 
 import { defaults, isObject, removeArrayItem } from '../util/util'

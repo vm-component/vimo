@@ -7,6 +7,7 @@ export function getPresentDismissIns (Factory) {
   return {
     /**
      * 组件实例
+     * @private
      * */
     _i: null, // instance
 
@@ -16,6 +17,7 @@ export function getPresentDismissIns (Factory) {
      * 如果上一个实例是开启状态, 则自动关闭后开启新的
      * @param {object} options - 传入参数
      * @return {Promise} - 开启动画结束的promise
+     * @private
      * */
     present(options){
       return new Promise((resolve) => {
@@ -36,6 +38,7 @@ export function getPresentDismissIns (Factory) {
     /**
      * 关闭
      * @return {Promise} - 关闭动画结束的promise
+     * @private
      * */
     dismiss(){
       return new Promise((resolve) => {

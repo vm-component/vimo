@@ -256,6 +256,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
 /**
  * @param {Platform} plt
  * @return {boolean}
+ * @private
  * */
 function isIOS (plt) {
   // shortcut function to be reused internally
@@ -267,6 +268,7 @@ function isIOS (plt) {
 /**
  * @param {Platform} plt
  * @return {boolean}
+ * @private
  * */
 function isSafari (plt) {
   return plt.testUserAgent('Safari')
@@ -275,6 +277,7 @@ function isSafari (plt) {
 /**
  * @param {Platform} plt
  * @return {boolean}
+ * @private
  * */
 function isWKWebView (plt) {
   return isIOS(plt) && !!window['webkit']
@@ -283,6 +286,7 @@ function isWKWebView (plt) {
 /**
  * @param {Platform} plt
  * @return {boolean}
+ * @private
  * */
 function isIosUIWebView (plt) {
   return isIOS(plt) && !isWKWebView(plt) && !isSafari(plt)
