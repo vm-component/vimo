@@ -10,17 +10,31 @@
    * @component Title
    * @description
    *
+   *
    * ## 文档标题 / Title
    *
    * 设置顶部的title及document.title, 请使用ref获取Title组件的setTitle方法, 使用该方法会同步设置document.title(默认)
    *
-   * ## 等级
+   * ### 等级
    *
    * 只有在Navbar组件中的Title组件才会自动更新`document.title`的值,
+   *
+   *
+   * ### 如何引入
+   *
+   * ```
+   * // 引入
+   * import { Toolbar, Buttons, Title } from 'vimo/components/toolbar'
+   * // 安装
+   * Vue.component(Toolbar.name, Toolbar)
+   * Vue.component(Title.name, Title)
+   * Vue.component(Buttons.name, Buttons)
+   * ```
    *
    * @props {String} [mode=ios] - 模式
    * @props {String} [title] - 标题
    *
+   * @see component:Toolbar
    * @usage
    * <template>
    *  <Page>
@@ -135,11 +149,11 @@
       },
 
       /**
-       * @private
        * 初始化
        * 只在Navbar中的Title才会具有更新Title的特性!!!
        * 且, 一个Page只能拥有一个Navbar, 当在Navbar中设置Title, 则Title的方法
        * 将赋予页面Page(docTitle),
+       * @private
        * */
       init(){
         this.titleInner = this.getTitle()

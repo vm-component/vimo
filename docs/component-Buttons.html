@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>Buttons - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/prettify/prettify.js"></script>
@@ -56,12 +56,159 @@
     <article class="content">
 
         
+        <h1 class="page-title">Buttons</h1>
+        
 
         
 
 
 
 
+<section class="page-content">
+
+    <section class="content">
+        <header>
+            
+        </header>
+
+        <article>
+            <div class="container-overview">
+
+                
+                <div class="description"><h2>按钮组(Toolbar) / Buttons</h2><p>这个组件只在Toolbar中使用.</p>
+<h3>如何引入</h3><pre class="prettyprint source"><code>// 引入
+import { Toolbar, Buttons, Title } from 'vimo/components/toolbar'
+// 安装
+Vue.component(Toolbar.name, Toolbar)
+Vue.component(Title.name, Title)
+Vue.component(Buttons.name, Buttons)</code></pre></div>
+                
+
+                
+                
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="components_toolbar_toolbar-buttons.vue.html">components/toolbar/toolbar-buttons.vue</a>
+                    , <a href="components_toolbar_toolbar-buttons.vue.html#line2">line 2</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <section class="details__inner">
+        <dt class="tag-see">参考:</dt>
+        <dd class="tag-see">
+            <ul>
+                <li><a href="component-Toolbar.html">component:Toolbar</a></li>
+                </ul>
+        </dd>
+    </section>
+    
+
+    
+</dl>
+
+
+<h3 class="subsection-title">传入属性 / Props:</h3>
+
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>名称 / Name</th>
+        
+
+        <th>类型 / Type</th>
+
+        
+        <th>属性 / Attributes</th>
+        
+
+        
+        <th>默认值 / Default</th>
+        
+
+        <th class="last">描述 / Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>ios</code>
+                
+                </td>
+            
+
+            <td class="description last">模式</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -74,27 +221,85 @@
 
 
 
-    <section class="page-content">
-        <article class="readme"><h1>Vimo</h1><hr>
-<blockquote>
-<p>一套针对HyBrid平台开发的H5框架</p>
-</blockquote>
-<h2>框架解决的问题</h2><p>使用一套H5代码在各类HyBrid平台中运行, 并根据平台完成对应的初始化工作, 且能根据平台自动切换主题样式.</p>
-<p>可以使用的平台:  <strong>微信、支付宝、钉钉、普通浏览器、原生App内部增强版WebView中</strong>.</p>
-<h2>如何开始</h2><p>可以有两种方式使用: </p>
-<h3>npm安装</h3><pre class="prettyprint source"><code>npm install vimo</code></pre><h3>使用startKit(推荐)</h3><ul>
-<li><a href="https://github.com/DTFE/vimo-start-kit">vimo-start-kit</a></li>
-</ul>
-<h2>组件清单</h2><p><img src="https://github.com/DTFE/Vimo/blob/master/dev/static/vimo_components.png?raw=true" alt="组件清单"></p>
-<h2>框架技术清单(主要部分)</h2><ul>
-<li>vue 2.x</li>
-<li>vue-router 2.x</li>
-<li>webpack 2.x</li>
-<li>fastclick 1.x</li>
-</ul>
-<h2>LICENSE</h2><p>MIT</p></article>
+
+
+
+                <!---->
+                <!--<div class="description"><h2>按钮组(Toolbar) / Buttons</h2><p>这个组件只在Toolbar中使用.</p>
+<h3>如何引入</h3><pre class="prettyprint source"><code>// 引入
+import { Toolbar, Buttons, Title } from 'vimo/components/toolbar'
+// 安装
+Vue.component(Toolbar.name, Toolbar)
+Vue.component(Title.name, Title)
+Vue.component(Buttons.name, Buttons)</code></pre></div>-->
+                <!---->
+
+                
+                
+            </div>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+        </article>
     </section>
 
+    
+
+</section>
+
+<script>
+  ;(function () {
+    document.getElementById('js_choose_ios').addEventListener('click', function () {
+      console.log('js_choose_ios')
+      var $showCaseBox = document.getElementById('js_showcase__box')
+      if (!_hasClass($showCaseBox, 'ios')) {
+        _removeClass($showCaseBox, 'md')
+        _addClass($showCaseBox, 'ios')
+      }
+
+    })
+    document.getElementById('js_choose_md').addEventListener('click', function () {
+      console.log('js_choose_md')
+      var $showCaseBox = document.getElementById('js_showcase__box')
+      if (!_hasClass($showCaseBox, 'md')) {
+        _removeClass($showCaseBox, 'ios')
+        _addClass($showCaseBox, 'md')
+      }
+    })
+
+    function _hasClass (obj, cls) {
+      return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+    }
+
+    function _addClass (obj, cls) {
+      if (!_hasClass(obj, cls)) {
+        obj.className += ' ' + cls
+      }
+    }
+
+    function _removeClass (obj, cls) {
+      if (_hasClass(obj, cls)) {
+        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+        obj.className = obj.className.replace(reg, ' ').trim()
+      }
+    }
+  })()
+</script>
 
 
 
