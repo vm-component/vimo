@@ -81,15 +81,7 @@
                 <!--end-->
                 <Buttons end slot="buttons">
                     <Button icon-right role="bar-button" color="secondary" type="solid">
-                        Help
-
-
-
-
-
-
-
-
+                        <span>Help</span>
                         <Icon class="icon" name="help-circle"></Icon>
                     </Button>
                 </Buttons>
@@ -114,7 +106,7 @@
                 <!--end-->
                 <Buttons end slot="buttons">
                     <Button icon-right role="bar-button" color="secondary" outline>
-                        Help
+                        <span>Help</span>
                         <Icon class="icon" name="help-circle"></Icon>
                     </Button>
                 </Buttons>
@@ -125,7 +117,7 @@
             <!--6-->
             <Toolbar>
                 <!--menutoggle-->
-                <Button icon-only role="bar-button" shape="menutoggle" slot="buttons">
+                <Button left icon-only role="bar-button" menutoggle slot="buttons">
                     <Icon class="icon" name="menu"></Icon>
                 </Button>
                 <!--title-->
@@ -135,7 +127,7 @@
             <!--7-->
             <Toolbar>
                 <!--menutoggle-->
-                <Button right icon-only role="bar-button" shape="menutoggle" slot="buttons">
+                <Button right icon-only role="bar-button" menutoggle slot="buttons">
                     <Icon class="icon" name="menu"></Icon>
                 </Button>
                 <!--title-->

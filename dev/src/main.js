@@ -20,7 +20,7 @@ import { Spinner } from 'vimo/components/spinner'
 import { Column, Grid, Row } from 'vimo/components/grid'
 import { Button } from 'vimo/components/button'
 import { Navbar } from 'vimo/components/navbar'
-import { Toolbar, ToolbarButtons, ToolbarTitle } from 'vimo/components/toolbar'
+import { Toolbar, Buttons, Title } from 'vimo/components/toolbar'
 
 import 'ionicons/dist/css/ionicons.css'
 
@@ -43,8 +43,8 @@ Vue.component(Spinner.name, Spinner)
 Vue.component(Button.name, Button)
 Vue.component(Navbar.name, Navbar)
 Vue.component(Toolbar.name, Toolbar)
-Vue.component(ToolbarTitle.name, ToolbarTitle)
-Vue.component(ToolbarButtons.name, ToolbarButtons)
+Vue.component(Title.name, Title)
+Vue.component(Buttons.name, Buttons)
 
 Vue.prototype.$actionSheet = ActionSheet
 Vue.prototype.$loading = Loading

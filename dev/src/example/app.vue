@@ -70,10 +70,8 @@
         isEnabled: false,
 
         isDisabled: false,
-
       }
     },
-    watch: {},
     computed: {
       titleComponent(){
         return this.$refs.title
@@ -90,7 +88,6 @@
         this.setDocTitle()
         this.titleComponent.setTitle(this.getTime())
       },
-
       disableScroll(){
         const _this = this;
         if (!_this.isDisabled) {

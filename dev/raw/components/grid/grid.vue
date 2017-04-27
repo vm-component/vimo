@@ -11,7 +11,7 @@
    * @component Grid
    * @description
    *
-   * ## 栅格组件 / Grid组件
+   * ## 栅格系统 / Grid组件
    *
    * ### 简要
    *
@@ -64,6 +64,17 @@
    *    - [offset-${breakpoint}-${i}]: 定义属性margin-left
    *    - [pull-${breakpoint}-${i}]: 定义属性right
    *    - [push-${breakpoint}-${i}]: 定义属性left
+   *
+   * ### 如何引入
+   *
+   * ```
+   * // 引入
+   * import { Column, Grid, Row } from 'vimo/components/grid'
+   * // 安装
+   * Vue.component(Grid.name, Grid)
+   * Vue.component(Row.name, Row)
+   * Vue.component(Column.name, Column)
+   * ```
    *
    * @demo http://xiangsongtao.com/vimo/#/grid
    * @usage

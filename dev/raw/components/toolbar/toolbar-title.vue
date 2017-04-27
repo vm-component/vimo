@@ -7,13 +7,45 @@
 </template>
 <script>
   /**
-   * @component Component/Title
+   * @component Title
    * @description
+   *
+   * ## 文档标题 / Title
+   *
    * 设置顶部的title及document.title, 请使用ref获取Title组件的setTitle方法, 使用该方法会同步设置document.title(默认)
    *
+   * ## 等级
    *
-   * @property {String} mode - 模式
-   * @property {String} title - 标题
+   * 只有在Navbar组件中的Title组件才会自动更新`document.title`的值,
+   *
+   * @props {String} [mode=ios] - 模式
+   * @props {String} [title] - 标题
+   *
+   * @usage
+   * <template>
+   *  <Page>
+   *    <Header>
+   *      <Navbar>
+   *        <Title ref="title">Demo</Title>
+   *      <Navbar>
+   *    </Header>
+   *    <Content>
+   *      <h1>这里是内容</h1>
+   *    </Content>
+   *  </Page>
+   * </template>
+   *
+   * ...
+   *
+   * computed: {
+   *   titleComponent(){
+   *     return this.$refs.title
+   *   }
+   * },
+   * methods: {
+   *   setAllTitle(){
+   *      this.titleComponent.setTitle('title')
+   * }
    *
    * */
   export default{
@@ -35,10 +67,7 @@
       /**
        * 设置的title值
        * */
-      title: {
-        type: String,
-        default: ''
-      },
+      title: [String]
     },
     computed: {
       titleClass () {
@@ -95,7 +124,7 @@
        * @description
        * 修改Header的title
        * @param {String} title - title
-       * @param {boolean} [setDocTitle=true] - 是否设置doc的title, 默认是同步设置的
+       * @param {boolean} [changeDocTitle=true] - 是否设置doc的title, 默认是同步设置的
        * */
       setTitle (title, changeDocTitle = true) {
         this.titleInner = title;
@@ -104,15 +133,6 @@
           this.$app && this.$app.setDocTitle(title);
         }
       },
-
-//      /**
-//       * @private
-//       * 将当前页面的title发送给app管理
-//       * */
-//      sendTitleToApp(title){
-//        // 设置document的title, 这部分由$app处理
-//        this.$app && this.$app.setTitle(title);
-//      },
 
       /**
        * @private

@@ -43,7 +43,7 @@ defaultObjectClass = ' class="object-value"';
 
     <?js if (data.since) {?>
     <section class="details__inner">
-        <dt class="tag-since">Since:</dt>
+        <dt class="tag-since">添加时间:</dt>
         <dd class="tag-since">
             <ul class="dummy">
                 <li><?js= since ?></li>
@@ -93,7 +93,7 @@ defaultObjectClass = ' class="object-value"';
 
     <?js if (data.implements && data.implements.length) { ?>
     <section class="details__inner">
-        <dt class="implements">Implements:</dt>
+        <dt class="implements">接口实现:</dt>
         <dd class="implements">
             <ul>
                 <?js data.implements.forEach(function(impl) { ?>
@@ -106,7 +106,7 @@ defaultObjectClass = ' class="object-value"';
 
     <?js if (data.mixes && data.mixes.length) { ?>
     <section class="details__inner">
-        <dt class="mixes">Mixes In:</dt>
+        <dt class="mixes">混入:</dt>
         <dd class="mixes">
             <ul>
                 <?js data.mixes.forEach(function(a) { ?>

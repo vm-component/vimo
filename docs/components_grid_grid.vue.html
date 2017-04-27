@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>History - Documentation</title>
+    <title>components/grid/grid.vue - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/prettify/prettify.js"></script>
@@ -56,7 +56,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">History</h1>
+        <h1 class="page-title">components/grid/grid.vue</h1>
         
 
         
@@ -64,1029 +64,109 @@
 
 
 
-<section class="page-content">
-
-    <section class="content">
-        <header>
-            
-            <h2>
-                History
-                </h2>
-            
-            <div class="class-description"><p>通过vue-router的onRouteChangeBefore事件构建本地历史记录</p>
-<h2>问题</h2><p>单页应用的一个需求是需要知道路由切换是前进还是后退, 但是浏览器对路由切换只给了两个事件 <code>hashchange</code> 和 <code>popstate</code>, 故无从判断当前操作是后退还是前进.</p>
-<h2>解决方案</h2><p>这个类通过vue-router的onRouteChangeBefore事件构建本地历史记录. 当路由切换时, 内建历史记录数组, 类似于一个stack, 这个能正确反映当前app的浏览历史记录.</p>
-<p>router路由在页面切换的时候会发出两个事件:</p>
-<ul>
-<li>onRouteChangeBefore(router.beforeEach): 路由器切换之前</li>
-<li>onRouteChangeAfter(router.afterEach): 路由切换之后, 页面进入渲染阶段</li>
-</ul>
-<p>需要根据上面的onRouteChangeBefore事件, 判断导航级别(而不是页面的生命周期)的切换事件:</p>
-<ul>
-<li>onNavEnter: 导航前进</li>
-<li>onNavLeave: 导航后退</li>
-</ul>
-<p>完成的功能如下:</p>
-<ul>
-<li>内建导航记录</li>
-<li>根据路由切换事件发出对应的导航相关事件</li>
-<li>此History是对router实例的拓展, 但是不会为router实例添加方法, 而是从新定义$history, 这个可在业务的this中访问到</li>
-</ul></div>
-            
-            
-        </header>
-
+    <section>
         <article>
-            <div class="container-overview">
-
-                
-
-                
-                
-
-    
-    <h3 class="subsection-title">构造器 / Constructor</h3>
-    
-
-    <h4 class="name" id="History"><span class="type-signature"></span>new History<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="base_history.js.html">base/history.js</a>
-                    , <a href="base_history.js.html#line1">line 1</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-
-
-
-
-
-
-
-
-
-
-                
-            </div>
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-            <h3 class="subsection-title">方法 / Methods</h3>
-
-            
-            
-
-    
-
-    <h4 class="name" id="canGoBack"><span class="type-signature"></span>canGoBack<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="base_history.js.html">base/history.js</a>
-                    , <a href="base_history.js.html#line138">line 138</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="description">
-    <p>判断是否能返回</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-
-
-
-
-
-
-
-
-
-
-            
-            
-
-    
-
-    <h4 class="name" id="first"><span class="type-signature"></span>first<span class="signature">()</span><span class="type-signature"> &rarr; {location}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="base_history.js.html">base/history.js</a>
-                    , <a href="base_history.js.html#line146">line 146</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="description">
-    <p>获取历史记录的第一个</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-
-
-
-
-
-
-
-
-
-
-            
-            
-
-    
-
-    <h4 class="name" id="getActive"><span class="type-signature"></span>getActive<span class="signature">()</span><span class="type-signature"> &rarr; {location}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="base_history.js.html">base/history.js</a>
-                    , <a href="base_history.js.html#line155">line 155</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="description">
-    <p>获取当前激活的页面<br>获取最后一个历史记录</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-
-
-
-
-
-
-
-
-
-
-            
-            
-
-    
-
-    <h4 class="name" id="getDirection"><span class="type-signature"></span>getDirection<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="base_history.js.html">base/history.js</a>
-                    , <a href="base_history.js.html#line130">line 130</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="description">
-    <p>获取当前的页面进行的方向</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-
-
-
-
-
-
-
-
-
-
-            
-            
-
-    
-
-    <h4 class="name" id="getHistory"><span class="type-signature"></span>getHistory<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="base_history.js.html">base/history.js</a>
-                    , <a href="base_history.js.html#line171">line 171</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="description">
-    <p>获取当前的导航记录</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-
-
-
-
-
-
-
-
-
-
-            
-            
-
-    
-
-    <h4 class="name" id="getPrevious"><span class="type-signature"></span>getPrevious<span class="signature">()</span><span class="type-signature"> &rarr; {location}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="base_history.js.html">base/history.js</a>
-                    , <a href="base_history.js.html#line163">line 163</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="description">
-    <p>获取上一个历史记录</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-
-
-
-
-
-
-
-
-
-
-            
-            
-
-    
-
-    <h4 class="name" id="indexOf"><span class="type-signature"></span>indexOf<span class="signature">()</span><span class="type-signature"> &rarr; {Number}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="base_history.js.html">base/history.js</a>
-                    , <a href="base_history.js.html#line179">line 179</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="description">
-    <p>返回传入的route是历史记录中的第几条</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-
-
-
-
-
-
-
-
-
-
-            
-            
-
-    
-
-    <h4 class="name" id="toRoot"><span class="type-signature"></span>toRoot<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="base_history.js.html">base/history.js</a>
-                    , <a href="base_history.js.html#line186">line 186</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="description">
-    <p>返回root页面(进入的第一个页面)</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-
-
-
-
-
-
-
-
-
-
-            
-            
-
-            
-
-            
+            <pre class="prettyprint source linenums"><code>&lt;template>
+    &lt;div class="grid">
+        &lt;slot>&lt;/slot>
+    &lt;/div>
+&lt;/template>
+&lt;style lang="scss">
+    @import "grid.scss";
+&lt;/style>
+&lt;script>
+  /**
+   * @component Grid
+   * @description
+   *
+   * ## 栅格系统 / Grid组件
+   *
+   * ### 简要
+   *
+   * 栅格系统类似于 **Bootstrap's grid system**, 其本质是基于flex布局.
+   *
+   * Vimo的栅格由**Grid/Row/Column**三个组件组成, Grid定义外部flex容器, Row定义行, Column定义列. 栅格系统的默认列为12行. 当然, 以上都是可以通过修改Scss文件定制的, 但是这么做的人应该很少.
+   *
+   * > 注意: 如果不了解Bootstrap和Flexbox请再恶补相关的知识.
+   *
+   * ### Grid/Row/Colume组件属性
+   *
+   * 下列属性写在组件标签中即可生效, 名称及含义与flex相似, 具体请看右边示例:
+   *
+   * - Grid属性:
+   *    - [no-padding]: 子元素除去全部padding
+   *
+   * - Row属性:
+   *    - [nowrap]
+   *    - [wrap-reverse]
+   *    - [align-items-start]
+   *    - [align-items-center]
+   *    - [align-items-end]
+   *    - [align-items-stretch]
+   *    - [align-items-baseline]
+   *    - [justify-content-start]
+   *    - [justify-content-center]
+   *    - [justify-content-end]
+   *    - [justify-content-around]
+   *    - [justify-content-between]
+   *
+   * - Column属性:
+   *    - [align-self-start]
+   *    - [align-self-end]
+   *    - [align-self-center]
+   *    - [align-self-stretch]
+   *    - [align-self-baseline]
+   *
+   *
+   * ### 响应式Column属性
+   *
+   * - 断点位置(breakpoint):
+   *    - xs: 0
+   *    - sm: 576px
+   *    - md: 768px
+   *    - lg: 992px
+   *    - xl: 1200px
+   *
+   * - 使用方法:
+   *    - [col-${breakpoint}-${i}]
+   *    - [offset-${breakpoint}-${i}]: 定义属性margin-left
+   *    - [pull-${breakpoint}-${i}]: 定义属性right
+   *    - [push-${breakpoint}-${i}]: 定义属性left
+   *
+   * ### 如何引入
+   *
+   * ```
+   * // 引入
+   * import { Column, Grid, Row } from 'vimo/components/grid'
+   * // 安装
+   * Vue.component(Grid.name, Grid)
+   * Vue.component(Row.name, Row)
+   * Vue.component(Column.name, Column)
+   * ```
+   *
+   * @demo http://xiangsongtao.com/vimo/#/grid
+   * @usage
+   * &lt;Grid no-padding>
+   *    &lt;Row justify-content-center align-items-center>
+   *        &lt;Column pull-sm-4>
+   *            1 of 3
+   *        &lt;/Column>
+   *        &lt;Column>
+   *            2 of 3
+   *        &lt;/Column>
+   *        &lt;Column>
+   *            3 of 3
+   *        &lt;/Column>
+   *    &lt;/Row>
+   * &lt;/Grid>
+   * */
+  export default{
+    name: 'Grid',
+  }
+&lt;/script>
+</code></pre>
         </article>
     </section>
-
-    
-
-</section>
-
-<script>
-  ;(function () {
-    document.getElementById('js_choose_ios').addEventListener('click', function () {
-      console.log('js_choose_ios')
-      var $showCaseBox = document.getElementById('js_showcase__box')
-      if (!_hasClass($showCaseBox, 'ios')) {
-        _removeClass($showCaseBox, 'md')
-        _addClass($showCaseBox, 'ios')
-      }
-
-    })
-    document.getElementById('js_choose_md').addEventListener('click', function () {
-      console.log('js_choose_md')
-      var $showCaseBox = document.getElementById('js_showcase__box')
-      if (!_hasClass($showCaseBox, 'md')) {
-        _removeClass($showCaseBox, 'ios')
-        _addClass($showCaseBox, 'md')
-      }
-    })
-
-    function _hasClass (obj, cls) {
-      return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
-    }
-
-    function _addClass (obj, cls) {
-      if (!_hasClass(obj, cls)) {
-        obj.className += ' ' + cls
-      }
-    }
-
-    function _removeClass (obj, cls) {
-      if (_hasClass(obj, cls)) {
-        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
-        obj.className = obj.className.replace(reg, ' ').trim()
-      }
-    }
-  })()
-</script>
-
 
 
 
