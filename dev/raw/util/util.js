@@ -1,10 +1,10 @@
 
 
 /**
- * @module util/util
+ * @module Util
  * @description
  *
- * ## 工具库
+ * ## 工具库 / Util
  *
  * 这里提供了Vimo使用的工具库, 当然业务代码中也可以按需使用.
  *

@@ -12,10 +12,7 @@
     </nav>
 </template>
 <style scoped lang="scss">
-    @import './ios-transition';
-    @import './fade-bottom-transition';
-    @import './fade-right-transition';
-    @import './zoom-transition';
+
     .ion-nav {
         .click-cover {
             position: absolute;
@@ -30,7 +27,7 @@
 <script>
 
   /**
-   * @component base/nav
+   * @component Base/Nav
    * @description
    *
    * ## 基础组件 / Nav组件
@@ -51,7 +48,7 @@
       return {
         // -------- Nav --------
         // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition
-        pageTransitionName: this.$config.get('pageTransition', 'ios-transition'),
+        pageTransitionName: this.$config.get('pageTransition', 'zoom-transition'),
         pageTransitionDirection: '',
 
         // ----------- Menu -----------
@@ -88,7 +85,7 @@
         let _pageTransitionName = this.$config.get('pageTransition')
         if (!_pageTransitionName) {
           if (this.$config.get('mode') === 'ios') {
-            _pageTransitionName = 'ios-transition'
+            _pageTransitionName = 'fade-right-transition'
           } else {
             _pageTransitionName = 'zoom-transition'
           }

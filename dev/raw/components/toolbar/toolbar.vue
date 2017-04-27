@@ -16,28 +16,33 @@
 </style>
 <script>
   /**
-   * @component Component/Toolbar
+   * @component Toolbar
    * @description
+   *
+   * ## 工具条 / Toolbar
+   *
    * 工具条, 一般放在Header或者Footer中, 工具条中包含按钮组或者title, 也可以放segment和searchbar组件.
    *
-   * slots:
+   * @slot [空] 作为内容
+   * @slot [buttons] 按钮组
    *
    * 1. 默认: 作为内容, 比如Title/Searchbar/Segment
    * 2. buttons: 按钮组, 别忘记加[left]/[right]/[start]/[end]属性标记位置
    *
-   * @property {String} mode - 模式
-   * @property {String} color - 颜色
+   * @props {String} mode - 模式
+   * @props {String} color - 颜色
    *
-   * @example
+   * @demo http://xiangsongtao.com/vimo/#/toolbar
+   * @usage
    *
-   <Toolbar>
-   <!--menutoggle-->
-   <Button icon-only role="bar-button" shape="menutoggle" slot="buttons">
-   <Icon class="icon" name="menu"></Icon>
-   </Button>
-   <!--title-->
-   <Title>Left Menu</Title>
-   </Toolbar>
+   * <Toolbar>
+   *    <!--menutoggle-->
+   *    <Button icon-only role="bar-button" shape="menutoggle" slot="buttons">
+   *        <Icon class="icon" name="menu"></Icon>
+   *    </Button>
+   *    <!--title-->
+   *    <Title>Left Menu</Title>
+   * </Toolbar>
    *
    * */
   export default{

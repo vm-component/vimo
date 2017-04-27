@@ -17,7 +17,7 @@
                 </p>
 
                 <p>
-                    另外, Content组件也支持JsScroll, 这部分使用的IScroll插件(正在开发).
+                    另外, Content组件也支持JsScroll, 这部分使用的IScroll插件.
                 </p>
 
             </div>

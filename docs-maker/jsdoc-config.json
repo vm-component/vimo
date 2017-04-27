@@ -48,13 +48,14 @@
       "../dev/raw/components/content",
       "../dev/raw/components/page",
       "../dev/raw/components/nav",
+
       "../dev/raw/base/config.js",
       "../dev/raw/base/history.js",
       "../dev/raw/base/platform.js",
-      "../dev/raw/base/platform-default-configs.js"
-    ],
-    "include2": [
-      "../dev/raw/components/content"
+
+      "../dev/raw/components/grid",
+      "../dev/raw/components/toolbar",
+      "../dev/raw/components/navbar"
     ],
     "exclude": [
       "gulpfile.js"
