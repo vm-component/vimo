@@ -85,8 +85,6 @@
    *
    * Content组件中也可以加入下拉刷新和上拉加载的功能, 具体请参考示例.
    *
-   * ![content组件](../asset/content.png)
-   *
    * @demo http://xiangsongtao.com/vimo/#/content
    *
    *
@@ -191,8 +189,10 @@
       /**
        * @function getContentDimensions
        * @description
-       * Returns the content and scroll elements' dimensions.
-       * @return {ContentDimension} content and scroll elements' dimensions
+       * 返回滚动元素的维度信息, 包括:
+       * **contentHeight/contentTop/contentBottom/contentWidth/contentLeft**
+       * **scrollHeight/scrollTop/scrollWidth/scrollLeft**
+       * @return {ContentDimension}
        * */
       getContentDimensions(){
         console.assert(this._scroll, 'The method getContentDimensions() need _scroll instance, please check!')

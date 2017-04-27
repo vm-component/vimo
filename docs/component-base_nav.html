@@ -76,7 +76,7 @@
 
                 
                 <div class="description"><h2>基础组件 / Nav组件</h2><p>这里是Page组件的父容器, 而且转场动画也是在这里执行.</p>
-<p>转场动画是使用css3的特性完成的, 也就是说Vimo不提供手势转场动画. 按照在props中的说明, 可提供这几类已写好的专场动画, 如果项目需要定制, 则特换自定义的动画即可, 以下是示例(scss编写):</p></div>
+<p>转场动画是使用css3的特性完成的, 也就是说Vimo不提供手势转场动画. 按照在props中的说明, 可提供这几类已写好的专场动画, 如果项目需要定制, 则特换自定义的动画即可, 动画定义在Nav组件的文件中.</p></div>
                 
 
                 
@@ -201,64 +201,10 @@
 
 
 
-<h3 class="subsection-title">用法 / Usages</h3>
-
-    <pre class="prettyprint"><code>// zoom-transition动画的实现方法
-
-$EASING: cubic-bezier(0.36, 0.66, 0.04, 1);
-$DURATION: 500ms;
-$CENTER: 0px;
-$OPACITY: opacity;
-$TRANSFORM: -webkit-transform;
-$SCALE: scale;
-$SCALE_SMALL: .95;
-$OPACITY_ZERO: 0.01;
-$TRANSFORM_ORIGIN: center center;
-
-// -------- md 进入动画(forward) --------
-//    zoom-transition-forward
-// 进入的页面
-.zoom-transition-forward-enter {
- transform: scale($SCALE_SMALL);
-  opacity: $OPACITY_ZERO !important;
-}
-
-.zoom-transition-forward-enter-active {
-  transform-origin: $TRANSFORM_ORIGIN;
-  transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-}
-
-// 退出的页面
-.zoom-transition-forward-leave-active {
-  transform-origin: $TRANSFORM_ORIGIN;
-  transition-duration: $DURATION;
-}
-
-//-------- md 后退动画(backward) --------
-//    zoom-transition-backward
-
-// 进入的页面
-.zoom-transition-backward-enter {
-}
-
-.zoom-transition-backward-enter-active {
-  transform-origin: $TRANSFORM_ORIGIN;
-  transition-duration: $DURATION;
-}
-
-// 退出的页面
-.zoom-transition-backward-leave-active {
- transform: scale($SCALE_SMALL);
- opacity: $OPACITY_ZERO !important;
-  transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
- transform-origin: $TRANSFORM_ORIGIN;
-}</code></pre>
-
-
 
                 <!---->
                 <!--<div class="description"><h2>基础组件 / Nav组件</h2><p>这里是Page组件的父容器, 而且转场动画也是在这里执行.</p>
-<p>转场动画是使用css3的特性完成的, 也就是说Vimo不提供手势转场动画. 按照在props中的说明, 可提供这几类已写好的专场动画, 如果项目需要定制, 则特换自定义的动画即可, 以下是示例(scss编写):</p></div>-->
+<p>转场动画是使用css3的特性完成的, 也就是说Vimo不提供手势转场动画. 按照在props中的说明, 可提供这几类已写好的专场动画, 如果项目需要定制, 则特换自定义的动画即可, 动画定义在Nav组件的文件中.</p></div>-->
                 <!---->
 
                 

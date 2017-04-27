@@ -79,6 +79,22 @@
         &lt;div class="nav-decor">&lt;/div>
     &lt;/nav>
 &lt;/template>
+&lt;style scoped lang="scss">
+    @import './ios-transition';
+    @import './fade-bottom-transition';
+    @import './fade-right-transition';
+    @import './zoom-transition';
+    .ion-nav {
+        .click-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+    }
+&lt;/style>
 &lt;script>
 
   /**
@@ -89,65 +105,9 @@
    *
    * 这里是Page组件的父容器, 而且转场动画也是在这里执行.
    *
-   * 转场动画是使用css3的特性完成的, 也就是说Vimo不提供手势转场动画. 按照在props中的说明, 可提供这几类已写好的专场动画, 如果项目需要定制, 则特换自定义的动画即可, 以下是示例(scss编写):
-   *
-   * @usage
-   *
-   * // zoom-transition动画的实现方法
-   *
-   * $EASING: cubic-bezier(0.36, 0.66, 0.04, 1);
-   * $DURATION: 500ms;
-   * $CENTER: 0px;
-   * $OPACITY: opacity;
-   * $TRANSFORM: -webkit-transform;
-   * $SCALE: scale;
-   * $SCALE_SMALL: .95;
-   * $OPACITY_ZERO: 0.01;
-   * $TRANSFORM_ORIGIN: center center;
-   *
-   * // -------- md 进入动画(forward) --------
-   * //    zoom-transition-forward
-   * // 进入的页面
-   * .zoom-transition-forward-enter {
-   *  transform: scale($SCALE_SMALL);
-   *   opacity: $OPACITY_ZERO !important;
-   * }
-   *
-   * .zoom-transition-forward-enter-active {
-   *   transform-origin: $TRANSFORM_ORIGIN;
-   *   transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-   * }
-   *
-   * // 退出的页面
-   * .zoom-transition-forward-leave-active {
-   *   transform-origin: $TRANSFORM_ORIGIN;
-   *   transition-duration: $DURATION;
-   * }
-   *
-   * //-------- md 后退动画(backward) --------
-   * //    zoom-transition-backward
-   *
-   * // 进入的页面
-   * .zoom-transition-backward-enter {
-   * }
-   *
-   * .zoom-transition-backward-enter-active {
-   *   transform-origin: $TRANSFORM_ORIGIN;
-   *   transition-duration: $DURATION;
-   * }
-   *
-   * // 退出的页面
-   * .zoom-transition-backward-leave-active {
-   *  transform: scale($SCALE_SMALL);
-   *  opacity: $OPACITY_ZERO !important;
-   *   transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
-   *  transform-origin: $TRANSFORM_ORIGIN;
-   * }
-   *
+   * 转场动画是使用css3的特性完成的, 也就是说Vimo不提供手势转场动画. 按照在props中的说明, 可提供这几类已写好的专场动画, 如果项目需要定制, 则特换自定义的动画即可, 动画定义在Nav组件的文件中.
    *
    * @props {String} [animate=] - 转场动画的名称, 可以是这里的一种: ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
-   *
-   *
    *
    * */
   export default{
@@ -291,19 +251,7 @@
       this.initNav()
     }
   }
-&lt;/script>
-&lt;style scoped lang="scss">
-    .ion-nav {
-        .click-cover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-        }
-    }
-&lt;/style></code></pre>
+&lt;/script></code></pre>
         </article>
     </section>
 
