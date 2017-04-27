@@ -98,6 +98,8 @@
    *
    * @props {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
    * @props {string} [mode=ios]  - 样式模式
+   * @props {string} [enableJsScroll=false]  - 是否强制开启JsScroll模式, 默认是根据配置开启`scrollAssist`, 这里可以使用函数判断机型选择性开启
+   *
    *
    * @fires component:Base/Content#onScrollStart
    * @fires component:Base/Content#onScroll
@@ -124,7 +126,10 @@
   export default{
     name: 'Content',
     props: {
-      enableJsScroll: [Boolean],
+      enableJsScroll: {
+        type: Boolean,
+        default(){ return window.VM && window.VM.config.getBoolean('scrollAssist', false) }
+      },
       fullscreen: {
         type: Boolean,
         default: false
@@ -231,8 +236,8 @@
        * @function scrollTo
        * @description
        * 滚动到指定位置
-       * @param {Number} x                - 滚动到指定位置的x值
-       * @param {Number} y                - 滚动到指定位置的y值
+       * @param {Number} [x=0]            - 滚动到指定位置的x值
+       * @param {Number} [y=0]            - 滚动到指定位置的y值
        * @param {Number} [duration=300]   - 滚动动画的时间
        * @param {Function=} done          - 当滚动结束时触发的回调
        * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
@@ -244,7 +249,7 @@
        * @function scrollToTop
        * @description
        * 滚动到顶部
-       * @param {Number=} [duration=300] - 滚动动画的时间, 默认是300ms
+       * @param {Number} [duration=300] - 滚动动画的时间, 默认是300ms
        * @return {promise} 当滚动动画完毕后返回promise
        */
       scrollToTop(duration = 300) {
@@ -257,7 +262,7 @@
        * @function scrollToBottom
        * @description
        * 滚动到顶部
-       * @param {Number=} [duration=300] - 滚动动画的时间, 默认是300ms
+       * @param {Number} [duration=300] - 滚动动画的时间, 默认是300ms
        * @return {promise} 当滚动动画完毕后返回promise
        */
       scrollToBottom(duration = 300) {
@@ -270,8 +275,11 @@
        * @function scrollBy
        * @description
        * 滚动到指定位置, 这个和scrollTo类似, 只不过是相对当前位置的滚动
-       * @example
+       *
+       * ```
        * 当前位置为scrollTop为`100px`, 执行`myScroll.scrollBy(0, -10)`, 则滚动到`110px`位置
+       * ```
+       *
        * @param {Number} x                - 滚动到指定位置的x值
        * @param {Number} y                - 滚动到指定位置的y值
        * @param {Number} [duration=300]   - 滚动动画的时间
@@ -287,11 +295,10 @@
        * @function scrollToElement
        * @description
        * 滚动到指定元素
-       * @example
        * @param {Number} el
        * @param {Number} [duration=300]   - 滚动动画的时间
-       * @param {Number} [offsetX]
-       * @param {Number} [offsetY]
+       * @param {Number} [offsetX=0]
+       * @param {Number} [offsetY=0]
        * @param {Function=} done          - 当滚动结束时触发的回调
        * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */

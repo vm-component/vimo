@@ -34,7 +34,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
       pageTransition: 'zoom-transition', // 'zoom-transition'
-      scrollAssist: true,
+      scrollAssist: false,
       inputCloning: true,
       autoFocusAssist: 'immediate'
     },
@@ -53,26 +53,26 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       toolbarMinHeight: 44,
       hoverCSS: false,
       mode: 'ios',
-      activator: 'highlight',
       backButtonText: 'Back',
       backButtonIcon: 'ios-arrow-back',
       iconMode: 'ios',
       menuType: 'reveal',
-      pickerRotateFactor: -0.46,
-      pickerScaleFactor: 1,
       spinner: 'ios',
       tabsHighlight: false,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
       pageTransition: 'fade-right-transition', // 'ios-transition'
       statusbarPadding: false,
+      scrollAssist: false,                      // 是否开启滚动辅助(jsScroll)
+
+      activator: 'highlight',
+      pickerRotateFactor: -0.46,
+      pickerScaleFactor: 1,
       autoFocusAssist: 'delay',
       inputBlurring: true,
       inputCloning: true,
-      scrollAssist: true,
       tapPolyfill: isIosUIWebView,
-      virtualScrollEventAssist: isIosUIWebView,
-      disableScrollAssist: true
+      virtualScrollEventAssist: isIosUIWebView
     },
     isMatch(plt) {
       return plt.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone'])

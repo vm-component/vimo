@@ -506,6 +506,11 @@ footer {
   border-top: 1px solid #eee
 }
 
+table td.last, table th.last{
+  white-space: normal!important;
+}
+
+
 .params thead tr, .props thead tr , table tr{
   background-color: #fff;
   font-weight: bold;

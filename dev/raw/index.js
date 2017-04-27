@@ -1,21 +1,22 @@
 import { setupConfig } from './base/config'
-import { setupPlatform } from './base/platform'
 import { History } from './base/history'
+import { setupPlatform } from './base/platform'
 // Core
 import { App, Footer, Header } from './components/app'
 import { Content } from './components/content'
 import { Nav } from './components/nav'
-
 import { Page } from './components/page'
+// polyfill
+import './util/polyfill'
+
 /**
  * @name initVimo
  * @description Vimo框架安装
  */
-import './util/polyfill'
-
+const VERSION = '0.3.7'
 export default {
   installed: false,
-  version: '0.3.7',
+  version: VERSION,
   install (Vue, options = {}) {
     window.VM = {}
     // init base (config/platform)
@@ -43,21 +44,21 @@ export default {
     Vue.component(Footer.name, Footer)
 
     // add logo
-    addLogo()
+    addLogo(VERSION, Vue.version)
   }
 }
 
-function addLogo () {
+function addLogo (vimoVer, vueVer) {
   // logo
   var vimoLogo = {
-    info: '源代码请访问GitHub https://github.com/DTFE/Vimo \nPowered by Vue2.x',
+    info: '源代码请访问GitHub https://github.com/DTFE/Vimo \nPowered by Vue' + vueVer,
     logo: '\n'
     + '  __      __ _____ __  __  ____   \n'
     + '  \\ \\    / /|_   _|  \\/  |/ __ \\  \n'
     + '   \\ \\  / /   | | | \\  / | |  | | \n'
     + '    \\ \\/ /    | | | |\\/| | |  | | \n'
     + '     \\  /    _| |_| |  | | |__| | \n'
-    + '      \\/    |_____|_|  |_|\\____/    '
+    + '      \\/    |_____|_|  |_|\\____/  v' + vimoVer
   }
   window.console && console.info && console.info(vimoLogo.logo + '\n' + vimoLogo.info)
 }

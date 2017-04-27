@@ -6,7 +6,7 @@
  *
  * */
 import IScroll from 'iscroll/build/iscroll-probe'
-import { isBoolean, isNumber, isPresent, nativeRaf, registerListener } from '../../util/util'
+import { isBoolean, isNumber, isPresent, registerListener } from '../../util/util'
 
 const SCROLL_END_DEBOUNCE_MS = 80
 const FRAME_MS = (1000 / 60)
@@ -211,9 +211,10 @@ export class ScrollView {
     self._el.parentElement.classList.add('js-scroll')
 
     self._jsScrollInstance = new IScroll(contentElement, {
-      bounce: false,              // 关闭滚动回弹
+      bounce: true,              // 关闭滚动回弹
       bindToWrapper: true,        // 绑定scroll事件到当前容器而不是window上
       mouseWheel: true,           // 可以鼠标滚轮滚动
+      disablePointer: true,
 
       scrollbars: true,
       fadeScrollbars: true,
@@ -510,8 +511,8 @@ export class ScrollView {
 
         if (easedT < 1) {
           // do not use DomController here
-          // must use nativeRaf in order to fire in the next frame
-          nativeRaf(step)
+          // must use window.requestAnimationFrame in order to fire in the next frame
+          window.requestAnimationFrame(step)
 
         } else {
           stopScroll = true
@@ -525,7 +526,7 @@ export class ScrollView {
       self.isScrolling = true
       startTime = new Date().getTime()
       // 开始第一帧
-      nativeRaf(step)
+      window.requestAnimationFrame(step)
     }
 
     return promise

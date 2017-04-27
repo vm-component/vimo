@@ -37,3 +37,31 @@ if (!Array.prototype.find) {
     return undefined
   }
 }
+
+
+// RequestAnimationFrame的兼容腻子(Android 4.3 and below)
+/*! @author Paul Irish */
+/*! @source https://gist.github.com/paulirish/1579671 */
+(function () {
+  var rafLastTime = 0
+  if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function (callback) {
+      var currTime = Date.now()
+      var timeToCall = Math.max(0, 16 - (currTime - rafLastTime))
+
+      var id = window.setTimeout(function () {
+        callback(currTime + timeToCall)
+      }, timeToCall)
+
+      rafLastTime = currTime + timeToCall
+      return id
+    }
+  }
+
+  if (!window.cancelAnimationFrame) {
+    /**
+     * @param {number} id
+     * */
+    window.cancelAnimationFrame = function (id) { clearTimeout(id) }
+  }
+})()

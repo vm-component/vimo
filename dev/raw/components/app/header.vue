@@ -86,6 +86,8 @@
 
       /**
        * @function setStyle
+       * @param {object} style - 传入的样式对象
+       * @see https://cn.vuejs.org/v2/guide/class-and-style.html#对象语法-1
        * @description
        * 设置Header的样式
        * */

@@ -8,4 +8,5 @@
  */
 export default {
   domain: '', // http://gamma-member.tesir.top
+  scrollAssist: true
 }

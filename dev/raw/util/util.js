@@ -1,6 +1,4 @@
-/**
- * Created by Hsiang on 2017/2/8.
- */
+
 
 /**
  * @module util/util
@@ -8,8 +6,17 @@
  *
  * ## 工具库
  *
- * 这里提供了Vimo使用的工具库, 当然业务代码中也可以按需使用
+ * 这里提供了Vimo使用的工具库, 当然业务代码中也可以按需使用.
  *
+ * @usage
+ * import {isBoolean, isString} from 'vimo/util/util'
+ *
+ * */
+
+/**
+ * @typedef {Object} PointerCoordinates   - 坐标对象
+ * @property {number} x - x坐标
+ * @property {number} y - y坐标
  * */
 
 /**
@@ -20,6 +27,7 @@
  * @static
  * */
 export const isBoolean = (val) => typeof val === 'boolean'
+
 /**
  * @function isString
  * @description 判断传入值是否为 String
@@ -28,6 +36,7 @@ export const isBoolean = (val) => typeof val === 'boolean'
  * @static
  * */
 export const isString = (val) => typeof val === 'string'
+
 /**
  * @function isNumber
  * @description 判断传入值是否为 Number
@@ -36,6 +45,7 @@ export const isString = (val) => typeof val === 'string'
  * @static
  * */
 export const isNumber = (val) => typeof val === 'number'
+
 /**
  * @function isFunction
  * @description 判断传入值是否为 Function
@@ -44,6 +54,7 @@ export const isNumber = (val) => typeof val === 'number'
  * @static
  * */
 export const isFunction = (val) => typeof val === 'function'
+
 /**
  * @function isDefined
  * @description 判断传入值已定义
@@ -52,6 +63,7 @@ export const isFunction = (val) => typeof val === 'function'
  * @static
  * */
 export const isDefined = (val) => typeof val !== 'undefined'
+
 /**
  * @function isUndefined
  * @description 判断传入值未定义
@@ -60,6 +72,7 @@ export const isDefined = (val) => typeof val !== 'undefined'
  * @static
  * */
 export const isUndefined = (val) => typeof val === 'undefined'
+
 /**
  * @function isPresent
  * @description 判断传入值不为空
@@ -68,6 +81,7 @@ export const isUndefined = (val) => typeof val === 'undefined'
  * @static
  * */
 export const isPresent = (val) => val !== undefined && val !== null
+
 /**
  * @function isBlank
  * @description 判断传入值为空
@@ -76,6 +90,7 @@ export const isPresent = (val) => val !== undefined && val !== null
  * @static
  * */
 export const isBlank = (val) => val === undefined || val === null
+
 /**
  * @function isObject
  * @description 判断传入值为 Object
@@ -84,6 +99,7 @@ export const isBlank = (val) => val === undefined || val === null
  * @static
  * */
 export const isObject = (val) => typeof val === 'object'
+
 /**
  * @function isArray
  * @description 判断传入值为 Array
@@ -92,6 +108,7 @@ export const isObject = (val) => typeof val === 'object'
  * @static
  * */
 export const isArray = Array.isArray
+
 /**
  * @function isPlainObject
  * @description 判断传入值为 纯对象
@@ -100,6 +117,7 @@ export const isArray = Array.isArray
  * @static
  * */
 export const isPlainObject = (val) => isObject(val) && Object.getPrototypeOf(val) == Object.prototype
+
 /**
  * @function isPrimitive
  * @description 判断传入值为 基础变量
@@ -159,44 +177,13 @@ export function isCheckedProperty (a, b) {
 
   // not using strict comparison on purpose
   return (a == b) // tslint:disable-line
-};
-
-// RequestAnimationFrame的兼容腻子(Android 4.3 and below)
-/*! @author Paul Irish */
-/*! @source https://gist.github.com/paulirish/1579671 */
-(function () {
-  var rafLastTime = 0
-  if (!window.requestAnimationFrame) {
-    window.requestAnimationFrame = function (callback) {
-      var currTime = Date.now()
-      var timeToCall = Math.max(0, 16 - (currTime - rafLastTime))
-
-      var id = window.setTimeout(function () {
-        callback(currTime + timeToCall)
-      }, timeToCall)
-
-      rafLastTime = currTime + timeToCall
-      return id
-    }
-  }
-
-  if (!window.cancelAnimationFrame) {
-    /**
-     * @param {number} id
-     * */
-    window.cancelAnimationFrame = function (id) { clearTimeout(id) }
-  }
-})()
-
-// requestAnimationFrame/cancelAnimationFrame包装
-export const nativeRaf = window.requestAnimationFrame.bind(window)
-export const cancelRaf = window.cancelAnimationFrame.bind(window)
+}
 
 /**
  * transitionEnd事件注册，绑定的函数触发后会自动解绑
- * @param {HTMLElement} el 绑定的元素
- * @param {Function} callback 绑定的函数
- * @return {Function}  取消绑定的函数
+ * @param {HTMLElement} el      - 绑定的元素
+ * @param {Function} callback   - 绑定的函数
+ * @return {Function}           - 取消绑定的函数
  * */
 export function transitionEnd (el, callback) {
   const unRegs = []
@@ -225,16 +212,12 @@ export function transitionEnd (el, callback) {
 /**
  *
  * 给addEventListener增加passive属性, 如果不支持将降级使用!!opts.capture
- *
- * @param {any} ele                                   - 监听的元素
- * @param {string} eventName                          - 监听的名称
- * @param {function} callback                         - 回调
- * @param {object=} opts EventListenerOptions          - addEventListener的第三个参数
- * @param {array} unregisterListenersCollection - 如果提供Function[], 则unReg将压如这个列表中
- *
- * @return {Function} 返回removeEventListener的函数
- *
- * @private
+ * @param {any} ele                               - 监听的元素
+ * @param {string} eventName                      - 监听的名称
+ * @param {function} callback                     - 回调
+ * @param {object=} opts EventListenerOptions     - addEventListener的第三个参数
+ * @param {array} unregisterListenersCollection   - 如果提供Function[], 则unReg将压如这个列表中
+ * @return {Function}                             - 返回removeEventListener的函数
  */
 export function registerListener (ele, eventName, callback, opts, unregisterListenersCollection) {
   // Test via a getter in the options object to see if the passive property is accessed
@@ -271,8 +254,8 @@ export function registerListener (ele, eventName, callback, opts, unregisterList
 
 /**
  * urlChange注册，绑定的函数触发后会自动解绑
- * @param {function} callback
- * @return {function}
+ * @param {function} callback - 回调函数
+ * @return {function} - 解绑函数
  * */
 export function urlChange (callback) {
   const URL_EVENT = ['hashchange', 'popstate']
@@ -301,7 +284,7 @@ export function urlChange (callback) {
 /**
  * document的ready事件监听
  * @param {Function} callback - 回调函数
- * @return {Promise} 返回promise，completed后自动解绑
+ * @return {Promise} - 返回promise，completed后自动解绑
  * */
 export function docReady (callback) {
   let promise = null // Promise;
@@ -331,7 +314,7 @@ export function docReady (callback) {
 /**
  * 根据click或者touch的事件对象, 获取event事件对象中的点击位置(坐标xy值)
  * @param {any} ev - 事件对象
- * @return  {PointerCoordinates} - 坐标
+ * @return  {PointerCoordinates}
  * */
 export function pointerCoord (ev) {
   if (ev) {
@@ -452,42 +435,29 @@ export function setElementClass (ele, className, add) {
 
 }
 
-// /**
-//  * 驼峰命名
-//  * hello-world -> helloWorld
-//  * */
-// export function camelCase (name) {
-//   const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g
-//   const MOZ_HACK_REGEXP = /^moz([A-Z])/
-//   return name.replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
-//     return offset ? letter.toUpperCase() : letter
-//   }).replace(MOZ_HACK_REGEXP, 'Moz$1')
-// }
-
 /**
- * Given a min and max, restrict the given number
- * to the range.
- * 如果n的大小在max和min之间，则返回n
+ * 如果n的大小在max和min之间，则返回n, 否则返回最大最小值
  *
- * @param {number} min the minimum
- * @param  {number}n the value
- * @param {number} max the maximum
+ * @example
+ * clamp(1,5,10)  -> 5
+ * clamp(6,5,10)  -> 6
+ * clamp(1,5,4)   -> 4
+ *
+ * @param {number} min - 最小值
+ * @param  {number} n - 测试值
+ * @param {number} max - 最大值
  */
 export function clamp (min, n, max) {
   return Math.max(min, Math.min(n, max))
 }
 
 /**
- * The assign() method is used to copy the values of all enumerable own
- * properties from one or more source objects to a target object. It will
- * return the target object. When available, this method will use
- * `Object.assign()` under-the-hood.
+ * 参数后面的对象合并到第一个对象中，以最右面的对象中属性值为准, 如果提供了`Object.assign()`则使用这个
  *
- * 参数后面的对象合并到第一个对象中，以最右面的对象中属性值为准
+ * @param {object} target  - 合并目标
+ * @param {object} [source(s)] - 合并元
  *
- * @param target  The target object
- * @param source(s)  The source object
- * @example Object.assign({a:1},{b:10},{b:1,a:2}) => 返回第一个对象{a: 2, b: 1}
+ * @example assign({a:1},{b:10},{b:1,a:2}) => 返回第一个对象{a: 2, b: 1}
  */
 export function assign (...args) {
   if (typeof Object.assign !== 'function') {
@@ -500,38 +470,61 @@ export function assign (...args) {
 }
 
 /**
- * Do a deep extend (merge). 深度合并
- *
- * @param {any} dst the destination
- * @param ... the param objects
+ * 深度合并, 最后面的对象将有最高优先级, dst对象将存放最终结果, 使用的是迭代替换方法
+ * @param {object} dst - 最终汇总的结果
+ * @param {object} [source(s)] - 数据源
+ * @return {object} - 最终结果
  */
 export function merge (dst, ...args) {
+
+  /**
+   * 对象合并
+   * @param {any} dst
+   * @param {Array} objs
+   * @param {boolean} deep
+   * @private
+   * */
+  function _baseExtend (dst, objs, deep) {
+    const isObject = (val) => typeof val === 'object'
+    const isFunction = (val) => typeof val === 'function'
+    const isArray = Array.isArray
+    for (var i = 0, ii = objs.length; i < ii; ++i) {
+      var obj = objs[i]
+      if (!obj || !isObject(obj) && !isFunction(obj)) continue
+      var keys = Object.keys(obj)
+      for (var j = 0, jj = keys.length; j < jj; j++) {
+        var key = keys[j]
+        var src = obj[key]
+
+        if (deep && isObject(src)) {
+          if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {}
+          _baseExtend(dst[key], [src], true)
+        } else {
+          dst[key] = src
+        }
+      }
+    }
+
+    return dst
+  }
+
   return _baseExtend(dst, [].slice.call(arguments, 1), true)
 }
 
+/**
+ * 对象深度拷贝, 只处理对象, 使用: `JSON.parse(JSON.stringify(obj))`方法
+ * @param {object} obj - 拷贝的对象
+ * @return {object} - 复制品
+ * */
 export function deepClone (obj) {
-  if (Array.isArray(obj)) {
-    return obj.map(deepClone)
-  } else if (obj && typeof obj === 'object') {
-    var cloned = {}
-    var keys = Object.keys(obj)
-    for (var i = 0, l = keys.length; i < l; i++) {
-      var key = keys[i]
-      cloned[key] = deepClone(obj[key])
-    }
-    return cloned
-  } else {
-    return obj
-  }
+  return JSON.parse(JSON.stringify(obj))
 }
 
 /**
- * Apply default arguments if they don't exist in
- * the first object.
- * 优先使用最左边的对象中的数据，即保持默认值，添加新值
- *
- * @example defaults({a:1},{b:1,a:2},{b:10}) => 返回第一个对象 {a: 1, b: 10}
+ * 优先使用最左边的对象中的数据，即保持默认值，当在第一个对象中没找到key时才添加新key
  * @param {any} dest the destination to apply defaults to.
+ * @example
+ * defaults({a:1},{b:1,a:2},{b:10}) => 返回第一个对象 {a: 1, b: 10}
  */
 export function defaults (dest, ...args) {
   for (var i = arguments.length - 1; i >= 1; i--) {
@@ -548,36 +541,8 @@ export function defaults (dest, ...args) {
 }
 
 /**
- * 对象合并
- * @param {any} dst
- * @param {any} objs
- * @param {boolean} deep
- * @private
- * */
-function _baseExtend (dst, objs, deep) {
-  for (var i = 0, ii = objs.length; i < ii; ++i) {
-    var obj = objs[i]
-    if (!obj || !isObject(obj) && !isFunction(obj)) continue
-    var keys = Object.keys(obj)
-    for (var j = 0, jj = keys.length; j < jj; j++) {
-      var key = keys[j]
-      var src = obj[key]
-
-      if (deep && isObject(src)) {
-        if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {}
-        _baseExtend(dst[key], [src], true)
-      } else {
-        dst[key] = src
-      }
-    }
-  }
-
-  return dst
-}
-
-/**
- * @desc 首字母大写
- * @param {string} str
+ * 首字母大写
+ * @param {string} str - 传入string
  * @return {string}
  * */
 export function firstUpperCase (str) {
@@ -585,13 +550,22 @@ export function firstUpperCase (str) {
 }
 
 /**
- * @param {string} val
+ * 将带px单位的string转化为数字
+ * @param {string} val - 传入的string
  * @return {number}
+ * @example
+ * 10px -> 10
  * */
 export function parsePxUnit (val) {
   return (!!val && val.indexOf('px') > 0) ? parseInt(val, 10) : 0
 }
 
+/**
+ * 从数组中移除某个item
+ * @param {Array} array - 处理的数组
+ * @param {*} item - 移除的元素
+ * @return {Boolean} - 是否成功
+ * */
 export function removeArrayItem (array, item) {
   const index = array.indexOf(item)
   // ~index => index*(-1)-1

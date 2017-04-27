@@ -5,7 +5,7 @@
                 <Title>InfiniteScroll</Title>
             </Navbar>
         </Header>
-        <Content :enableJsScroll="false">
+        <Content>
             <List>
                 <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
             </List>
