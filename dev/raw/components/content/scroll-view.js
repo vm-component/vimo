@@ -1,15 +1,16 @@
-import IScroll from 'iscroll/build/iscroll-probe'
 /**
+ * @class ScrollView
+ * @classdesc Content组件使用的滚动引擎
+ *
+ * 滚动引擎根据配置切换使用原生滚动或者使用js滚动, js滚动使用IScroll插件完成.
  *
  * */
-import { nativeRaf, registerListener } from '../../util/util'
+import IScroll from 'iscroll/build/iscroll-probe'
+import { isBoolean, isNumber, isPresent, nativeRaf, registerListener } from '../../util/util'
 
 const SCROLL_END_DEBOUNCE_MS = 80
 const FRAME_MS = (1000 / 60)
-
-const EVENT_OPTS = {
-  passive: true
-}
+const EVENT_OPTS = {passive: true}
 
 export class ScrollView {
 
@@ -22,17 +23,20 @@ export class ScrollView {
 
     this.transform = !!window.VM && !!window.VM.platform && !!window.VM.platform.css ? window.VM.platform.css.transform : 'webkitTransform'
 
-    this._el = null         // scrollElement 当前滚动实例的元素
-    this._cel = null        // contentElement 当前滚动实例的元素
-    this._js = false         // 是否执行js滚动
-    this._t = 0             // {number} scrollTop临时存储值
-    this._l = 0             // {number} scrollLeft临时存储值
-    this._lsn = null        // {Function} 监听函数 listen
-    this._endTmr = null     // {Function} 事件记录 timeout
-    this._iscroll = null    // iscroll instance
+    this._el = null                   // scrollElement 当前滚动实例的元素
+    this._cel = null                  // contentElement 当前滚动实例的元素
+    this._js = false                  // 是否执行js滚动
+    this._t = 0                       // {number} scrollTop临时存储值
+    this._l = 0                       // {number} scrollLeft临时存储值
 
+    this._lsn = null                  // 监听函数 listen, 用于nativeScrll
+    this._endTmr = null               // 事件记录 timeout, 用于nativeScrll
+
+    this._jsScrollInstance = null     // iscroll instance
+    this._scrollToEndTimer = null     // scrollTo完毕的timer, 用于jsScroll部分的scrollTo函数
     // 滚动对象
     this.ev = {
+      isJsScroll: false,
       timeStamp: 0,
       scrollTop: 0,
       scrollLeft: 0,
@@ -72,11 +76,10 @@ export class ScrollView {
       this._cel = ele.parentElement
       if (this._js) {
         // this.enableJsScroll(contentTop, contentBottom)
-        this.enableIScroll()
+        this.enableJsScroll()
       } else {
         this.enableNativeScrolling()
       }
-
     }
   }
 
@@ -92,6 +95,8 @@ export class ScrollView {
     const self = this
     const ev = self.ev
     const positions = [] // number[]
+    self._js = false
+    ev.isJsScroll = false
     console.debug(`ScrollView, enableNativeScrolling`)
 
     /**
@@ -158,7 +163,6 @@ export class ScrollView {
       }
 
       function scrollEnd () {
-        console.log('scrollEnd')
         // 当停止滚动一段时间后触发scrollEnd事件
         self.isScrolling = false
 
@@ -188,73 +192,67 @@ export class ScrollView {
     // so there's little to no value of using raf here since it'll all ways immediately
     // call the raf if it was set within the scroll event, so this will save us some time
     self._lsn = registerListener(self._el, 'scroll', scrollCallback, EVENT_OPTS)
-
   }
 
   /**
    * 使用iScroll的解决方案
    * @private
    * */
-  enableIScroll () {
-    console.debug(`ScrollView, enableIScroll`)
+  enableJsScroll () {
+    console.debug(`ScrollView, enableJsScroll`)
     // 给父元素增加class
     const contentElement = this._el.parentElement
     const self = this
     const ev = self.ev
     const positions = [] // number[]
+    self._js = true
+    ev.isJsScroll = true
 
     self._el.parentElement.classList.add('js-scroll')
 
-    self._iscroll = new IScroll(contentElement, {
-      bounce: false,       // Default: true
-      mouseWheel: true,
+    self._jsScrollInstance = new IScroll(contentElement, {
+      bounce: false,              // 关闭滚动回弹
+      bindToWrapper: true,        // 绑定scroll事件到当前容器而不是window上
+      mouseWheel: true,           // 可以鼠标滚轮滚动
 
       scrollbars: true,
       fadeScrollbars: true,
-      interactiveScrollbars: true,
+      interactiveScrollbars: false,
       resizeScrollbars: true,
       shrinkScrollbars: 'clip',
 
-      click: true,        // click
-      probeType: 3        // click
+      click: false,       // 如果开启则需要双击才能触发click事件(当前引用了fastclick)
+      probeType: 3        // 实时监听每一次滚动, 2: 手指点击页面才触发滚动
     })
 
-    // start
-    self._iscroll.on('scrollStart', () => {
-      // 滚动开始时重新刷新结构
-      window.setTimeout(() => {
-        self._iscroll.refresh()
-      }, 0)
+    // scroll start
+    self._jsScrollInstance.on('scrollStart', () => {
+      // scroll start
+      self.isScrolling = true
+
+      // 记录开始的位置
+      ev.startY = self._jsScrollInstance.y * -1 >> 0
+      ev.startX = self._jsScrollInstance.x * -1 >> 0
+
+      // 开始前重置参数
+      ev.velocityY = ev.velocityX = 0
+      ev.deltaY = ev.deltaX = 0
+      positions.length = 0
+
+      // 发送scrollStart事件, 传递ev值
+      self.scrollStart(ev)
     })
 
-    // scrolling
-    self._iscroll.on('scroll', () => {
+    // scroll scrolling
+    self._jsScrollInstance.on('scroll', () => {
 
       ev.timeStamp = new Date().getTime()
 
       // 获取当前的 scrollTop
-      ev.scrollTop = self._iscroll.y * -1 >> 0
+      ev.scrollTop = self._jsScrollInstance.y * -1 >> 0
 
       // 获取当前的 scrollLeft
-      ev.scrollLeft = self._iscroll.x * -1 >> 0
-
-      if (!self.isScrolling) {
-        // scroll start
-        self.isScrolling = true
-
-        // 记录开始的位置
-        ev.startY = self._iscroll.y * -1 >> 0
-        ev.startX = self._iscroll.x * -1 >> 0
-
-        // 开始前重置参数
-        ev.velocityY = ev.velocityX = 0
-        ev.deltaY = ev.deltaX = 0
-        positions.length = 0
-
-        // 发送scrollStart事件, 传递ev值
-        self.scrollStart(ev)
-
-      }
+      ev.scrollLeft = self._jsScrollInstance.x * -1 >> 0
 
       // actively scrolling
       positions.push(ev.scrollTop, ev.scrollLeft, ev.timeStamp)
@@ -284,81 +282,159 @@ export class ScrollView {
           ev.velocityX = ((movedLeft / timeOffset) * FRAME_MS)
 
           // figure out which direction we're scrolling
-          ev.directionY = (movedTop > 0 ? 'up' : 'down')
-          ev.directionX = (movedLeft > 0 ? 'left' : 'right')
+          // last direction (1 down/right, 0 still, -1  up/left)
+          if (self._jsScrollInstance.options.scrollY) {
+            let directionY = self._jsScrollInstance.directionY
+            if (directionY === 0) {
+              ev.directionY = (movedTop > 0 ? 'up' : 'down')
+            } else if (directionY > 0) {
+              ev.directionY = 'down'
+            } else {
+              ev.directionY = 'up'
+            }
+          } else {
+            let directionX = self._jsScrollInstance.directionX
+            if (directionX === 0) {
+              ev.directionX = (movedLeft > 0 ? 'left' : 'right')
+            } else if (directionX > 0) {
+              ev.directionX = 'right'
+            } else {
+              ev.directionX = 'left'
+            }
+          }
         }
       }
 
       // 发送每一次的scroll事件, 传递ev值
       self.scroll(ev)
+    })
 
-      // 定时超时时间SCROLL_END_DEBOUNCE_MS, 如果超时则判断当前滚动结束, 发送scrollEnd事件
-      window.clearTimeout(self._endTmr)
-      self._endTmr = window.setTimeout(scrollEnd, SCROLL_END_DEBOUNCE_MS)
+    // scroll end
+    self._jsScrollInstance.on('scrollEnd', () => {
+      // 当停止滚动一段时间后触发scrollEnd事件
+      self.isScrolling = false
 
-      function scrollEnd () {
-        // 当停止滚动一段时间后触发scrollEnd事件
-        self.isScrolling = false
+      // reset velocity, do not reset the directions or deltas
+      ev.velocityY = ev.velocityX = 0
 
-        // reset velocity, do not reset the directions or deltas
-        ev.velocityY = ev.velocityX = 0
-
-        // 发送scrollEnd事件, 传递ev值
-        self.scrollEnd(ev)
-
-        self._endTmr = null
-      }
+      // 发送scrollEnd事件, 传递ev值
+      self.scrollEnd(ev)
     })
   }
 
   /**
-   * DOM READ
+   * 获取scrollHeight
+   * @private
+   * */
+  getHeight () {
+    if (this._js) {
+      return this._jsScrollInstance.scrollerHeight
+    } else {
+      return this._el.scrollHeight
+    }
+  }
+
+  /**
+   * 获取scrollHeight
+   * @private
+   * */
+  getWidth () {
+    if (this._js) {
+      return this._jsScrollInstance.scrollerWidth
+    } else {
+      return this._el.scrollWidth
+    }
+  }
+
+  /**
+   * 获取滚动的上边距
+   * return {Number}
+   * @private
    */
   getTop () {
-    return this._el.scrollTop
+    if (this._js) {
+      return this._jsScrollInstance.y * -1
+    } else {
+      return this._el.scrollTop
+    }
   }
 
   /**
-   * DOM READ
+   * 获取滚动的左边距
+   * return {Number}
+   * @private
    */
   getLeft () {
-    return this._el.scrollLeft
+    if (this._js) {
+      return this._jsScrollInstance.x * -1
+    } else {
+      return this._el.scrollLeft
+    }
   }
 
   /**
-   * DOM WRITE
+   * 设置滚动上部距离, 只在nativeScroll中用到
    * @param {number} top
+   * @private
    */
   setTop (top) {
     this._el.scrollTop = top
   }
 
   /**
-   * DOM WRITE
-   * @param {number} top
+   * 设置滚动左边距离, 只在nativeScroll中用到
+   * @param {number} left
+   * @private
    */
   setLeft (left) {
     this._el.scrollLeft = left
   }
 
   /**
-   * DOM WRITE
-   * @param {number} x
-   * @param {number} y
-   * @param {number} duration
-   * @param {Function=} done
-   * @return {Promise}
+   * 停止滚动
+   * @private
+   * */
+  stop () {
+    this.isScrolling = false
+  }
+
+  /**
+   * 销毁
+   * @private
    */
-  scrollTo (x = 0, y = 0, duration, done) {
-    const self = this
-    // scroll animation loop w/ easing
-    // credit https://gist.github.com/dezinezync/5487119
+  destroy () {
+    this.stop()
 
     if (this._js) {
-      self._iscroll.scrollTo(x, y * -1, duration)
-      return
+      this._jsScrollInstance.destroy()
+      this._jsScrollInstance = null
+    } else {
+      this._endTmr && window.clearTimeout(self._endTmr)
+      this._lsn && this._lsn()
+      this._lsn = null
     }
 
+    let ev = this.ev
+    ev.contentElement = ev.fixedElement = ev.scrollElement = ev.headerElement = null
+    this._el = this.ev = ev = null
+    this.scrollStart && (this.scrollStart = null)
+    this.scroll && (this.scrollStart = null)
+    this.scrollEnd && (this.scrollStart = null)
+  }
+
+  // --------- public ---------
+  /**
+   * scrollTo
+   * 滚动到, 绝对滚动
+   * @param {number} [x=0] - 横轴位置
+   * @param {number} [y=0] - 纵轴位置
+   * @param {number} [duration=300] - 滚动时间
+   * @param {Function} done
+   * @return {Promise}
+   */
+  scrollTo (x = 0, y = 0, duration = 300, done) {
+    const self = this
+    const el = self._el
     let promise
     if (done === undefined) {
       // only create a promise if a done callback wasn't provided
@@ -367,94 +443,107 @@ export class ScrollView {
         done = resolve
       })
     }
-
-    const el = self._el
     if (!el) {
       // invalid element
+      console.assert(el, 'The method of scrollTo() need scrollElement!')
       done()
       return promise
     }
 
-    if (duration < 32) {
-      self.setTop(y)
-      self.setLeft(x)
-      done()
-      return promise
-    }
-
-    const fromY = el.scrollTop
-    const fromX = el.scrollLeft
-
-    const maxAttempts = (duration / 16) + 100
-    const transform = self.transform
-
-    let startTime // number
-    let timeStamp
-    let attempts = 0
-    let stopScroll = false
-
-    // scroll loop
-    function step () {
-      attempts++
-
-      if (!self._el || stopScroll || attempts > maxAttempts) {
-        self.isScrolling = false;
-        (el.style)[transform] = ''
+    if (this._js) {
+      self._jsScrollInstance.scrollTo(x, y * -1, duration)
+      // iscroll do not has callback
+      self._scrollToEndTimer && window.clearTimeout(self._scrollToEndTimer)
+      self._scrollToEndTimer = window.setTimeout(() => {
         done()
-        return
-      }
+        self._scrollToEndTimer = null
+      }, duration)
 
-      timeStamp = new Date().getTime()
+    } else {
 
-      let time = Math.min(1, ((timeStamp - startTime) / duration))
-
-      // where .5 would be 50% of time on a linear scale easedT gives a
-      // fraction based on the easing method
-      let easedT = (--time) * time * time + 1
-
-      if (fromY !== y) {
-        self.setTop((easedT * (y - fromY)) + fromY)
-      }
-
-      if (fromX !== x) {
-        self.setLeft(Math.floor((easedT * (x - fromX)) + fromX))
-      }
-
-      if (easedT < 1) {
-        // do not use DomController here
-        // must use nativeRaf in order to fire in the next frame
-        nativeRaf(step)
-
-      } else {
-        stopScroll = true
-        self.isScrolling = false
-        // (el.style)[transform] = '';
+      // scroll animation loop w/ easing
+      // credit https://gist.github.com/dezinezync/5487119
+      if (duration < 32) {
+        self.setTop(y)
+        self.setLeft(x)
         done()
+        return promise
       }
-    }
 
-    // 准备开始滚动循环
-    self.isScrolling = true
-    startTime = new Date().getTime()
-    // 开始第一帧
-    nativeRaf(step)
+      const fromY = el.scrollTop
+      const fromX = el.scrollLeft
+
+      const maxAttempts = (duration / 16) + 100
+      const transform = self.transform
+
+      let startTime // number
+      let timeStamp
+      let attempts = 0
+      let stopScroll = false
+
+      // scroll loop
+      function step () {
+        attempts++
+
+        if (!self._el || stopScroll || attempts > maxAttempts) {
+          self.isScrolling = false;
+          (el.style)[transform] = ''
+          done()
+          return
+        }
+
+        timeStamp = new Date().getTime()
+
+        let time = Math.min(1, ((timeStamp - startTime) / duration))
+
+        // where .5 would be 50% of time on a linear scale easedT gives a
+        // fraction based on the easing method
+        let easedT = (--time) * time * time + 1
+
+        if (fromY !== y) {
+          self.setTop((easedT * (y - fromY)) + fromY)
+        }
+
+        if (fromX !== x) {
+          self.setLeft(Math.floor((easedT * (x - fromX)) + fromX))
+        }
+
+        if (easedT < 1) {
+          // do not use DomController here
+          // must use nativeRaf in order to fire in the next frame
+          nativeRaf(step)
+
+        } else {
+          stopScroll = true
+          self.isScrolling = false
+          // (el.style)[transform] = '';
+          done()
+        }
+      }
+
+      // 准备开始滚动循环
+      self.isScrolling = true
+      startTime = new Date().getTime()
+      // 开始第一帧
+      nativeRaf(step)
+    }
 
     return promise
   }
 
   /**
-   * @param {number} duration
+   * @param {number} [duration=300] - 滚动时间
    * @return {Promise}
    */
-  scrollToTop (duration) {
+  scrollToTop (duration = 300) {
     return this.scrollTo(0, 0, duration)
   }
 
   /**
-   * @param {number} duration
+   * @param {number} [duration=300] - 滚动时间
    * @return {Promise}
    */
-  scrollToBottom (duration) {
+  scrollToBottom (duration = 300) {
     let y = 0
     if (this._el) {
       if (this._js) {
@@ -466,24 +555,62 @@ export class ScrollView {
     return this.scrollTo(0, y, duration)
   }
 
-  stop () {
-    this.isScrolling = false
+  /**
+   * scrollBy
+   * 滚动到, 相对滚动
+   * @param {number} [x=0] - 横轴位置
+   * @param {number} [y=0] - 纵轴位置
+   * @param {number} [duration=300] - 滚动时间
+   * @param {Function} done
+   * @return {Promise}
+   */
+  scrollBy (x = 0, y = 0, duration = 300, done) {
+    y += this.getTop()
+    x += this.getLeft()
+    return this.scrollTo(x, y, duration, done)
   }
 
   /**
-   * @private
-   */
-  destroy () {
-    this.stop()
-    this._endTmr && window.clearTimeout(self._endTmr)
-    this._lsn && this._lsn()
+   * scrollToElement
+   * 滚动到某个元素, 默认滚动到顶部对其, 如果offsetX/offsetY传入的是boolean类型, 且为true, 则滚动到屏幕中间
+   * @param {Element} el - 元素Element
+   * @param {number} [duration=300] - 滚动时间
+   * @param {number|Boolean} [offsetX=0] - 元素位置距离屏幕顶部的距离
+   * @param {number|Boolean} [offsetY=0] - 元素位置距离屏幕左侧的距离
+   * @param {Function} [done]
+   * @return {Promise}
+   * */
+  scrollToElement (el, duration = 300, offsetX = 0, offsetY = 0, done) {
+    if (!el) {
+      console.assert(el, 'The method scrollToElement() need element!')
+      return false
+    }
 
-    this.scrollStart && (this.scrollStart = null)
-    this.scroll && (this.scrollStart = null)
-    this.scrollEnd && (this.scrollStart = null)
+    let x = 0
+    let y = el.offsetTop
 
-    let ev = this.ev
-    ev.contentElement = ev.fixedElement = ev.scrollElement = ev.headerElement = null
-    this._lsn = this._el = this.ev = ev = null
+    // Content组件默认是上下滚动, 如果offsetX没有别的值, 则不进行offsetX设置
+    if (isPresent(offsetX)) {
+      if (isNumber(offsetX) && offsetX !== 0) {
+        x = el.offsetLeft + offsetX
+      }
+
+      if (isBoolean(offsetX) && offsetX) {
+        x = el.offsetLeft + ((this.ev.contentWidth - el.offsetWidth) / 2)
+      }
+    }
+
+    if (isPresent(offsetY)) {
+      if (isNumber(offsetY)) {
+        y -= offsetY
+      }
+
+      if (isBoolean(offsetY) && offsetY) {
+        y -= ((this.ev.contentHeight - el.offsetHeight) / 2)
+      }
+    }
+
+    return this.scrollTo(x, y, duration, done)
   }
+
 }

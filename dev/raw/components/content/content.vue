@@ -190,6 +190,8 @@
        * @return {ContentDimension} content and scroll elements' dimensions
        * */
       getContentDimensions(){
+        console.assert(this._scroll, 'The method getContentDimensions() need _scroll instance, please check!')
+        if (!this._scroll) return
         const scrollEle = this.scrollElement;
         const parentElement = scrollEle.parentElement;
         let contentHeight = parentElement.offsetHeight - this._cTop - this._cBottom
@@ -197,32 +199,18 @@
         let contentBottom = parentElement.offsetHeight - this._cBottom
         let contentWidth = parentElement.offsetWidth
         let contentLeft = parentElement.offsetLeft
-        if (this.enableJsScroll) {
-          return {
-            contentHeight,
-            contentTop,
-            contentBottom,
-            contentWidth,
-            contentLeft,
 
-            scrollHeight: this._scroll._iscroll.scrollerHeight,
-            scrollTop: this._scroll._iscroll.y * -1,
-            scrollWidth: this._scroll._iscroll.scrollerWidth,
-            scrollLeft: this._scroll._iscroll.x * -1,
-          }
-        } else {
-          return {
-            contentHeight,
-            contentTop,
-            contentBottom,
-            contentWidth,
-            contentLeft,
+        return {
+          contentHeight,
+          contentTop,
+          contentBottom,
+          contentWidth,
+          contentLeft,
 
-            scrollHeight: scrollEle.scrollHeight,
-            scrollTop: scrollEle.scrollTop,
-            scrollWidth: scrollEle.scrollWidth,
-            scrollLeft: scrollEle.scrollLeft,
-          }
+          scrollHeight: this._scroll.getHeight(),
+          scrollTop: this._scroll.getTop(),
+          scrollWidth: this._scroll.getWidth(),
+          scrollLeft: this._scroll.getLeft(),
         }
       },
       /**
@@ -233,11 +221,10 @@
       resize(){
         // 等待DOM更新完毕
         this.$nextTick(() => {
-          this.recalculateContentDimensions();
+          this.recalculateContentDimensions()
         })
-
         if (this.enableJsScroll) {
-          this._scroll._iscroll.refresh()
+          this._scroll._jsScrollInstance.refresh()
         }
       },
       /**
@@ -262,7 +249,7 @@
        */
       scrollToTop(duration = 300) {
         // 页面防止点击
-        this.$app && this.$app.setDisableScroll(true, 320);
+        this.$app && this.$app.setDisableScroll(true, duration);
         return this._scroll.scrollToTop(duration);
       },
       /**
@@ -275,8 +262,42 @@
        */
       scrollToBottom(duration = 300) {
         // 页面防止点击
-        this.$app && this.$app.setDisableScroll(true, 320);
+        this.$app && this.$app.setDisableScroll(true, duration);
         return this._scroll.scrollToBottom(duration);
+      },
+
+      /**
+       * @function scrollBy
+       * @description
+       * 滚动到指定位置, 这个和scrollTo类似, 只不过是相对当前位置的滚动
+       * @example
+       * 当前位置为scrollTop为`100px`, 执行`myScroll.scrollBy(0, -10)`, 则滚动到`110px`位置
+       * @param {Number} x                - 滚动到指定位置的x值
+       * @param {Number} y                - 滚动到指定位置的y值
+       * @param {Number} [duration=300]   - 滚动动画的时间
+       * @param {Function=} done          - 当滚动结束时触发的回调
+       * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
+       * */
+      scrollBy(x, y, duration = 300, done){
+        this.$app && this.$app.setDisableScroll(true, duration)
+        return this._scroll.scrollBy(x, y, duration, done)
+      },
+
+      /**
+       * @function scrollToElement
+       * @description
+       * 滚动到指定元素
+       * @example
+       * @param {Number} el
+       * @param {Number} [duration=300]   - 滚动动画的时间
+       * @param {Number} [offsetX]
+       * @param {Number} [offsetY]
+       * @param {Function=} done          - 当滚动结束时触发的回调
+       * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
+       * */
+      scrollToElement(el, duration = 300, offsetX = 0, offsetY = 0, done){
+        this.$app && this.$app.setDisableScroll(true, duration)
+        return this._scroll.scrollToElement(el, duration, offsetX, offsetY, done)
       },
 
       // -------- private --------
@@ -389,7 +410,7 @@
             computedStyle = getComputedStyle(this.footerElement);
             this.footerBarHeight = parsePxUnit(computedStyle.height);
           }
-        });
+        })
 
         // 获取Content信息
         scrollEvent.contentElement = this.$el;

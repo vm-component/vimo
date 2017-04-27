@@ -5,7 +5,7 @@
                 <Title>组件</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" no-bounce>
+        <Content class="outer-content" no-bounce :enableJsScroll="true">
             <List>
                 <!--基础组件-->
                 <ListHeader>
@@ -174,7 +174,6 @@
                         <Icon slot="item-left" name="ios-flame"></Icon>
                         <span>Popover</span>
                     </Item>
-
 
 
                 </ItemGroup>

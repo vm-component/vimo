@@ -171,7 +171,7 @@
        */
       complete() {
         this.closeRefresher(STATE_COMPLETING, '120ms')
-        // 重新计算尺寸, 非必须
+        // 重新计算尺寸, 必须
         this.contentComponent.resize()
       },
 
@@ -234,6 +234,8 @@
        * @param {TouchEvent} ev - 点击事件
        * */
       pointerDownHandler(ev){
+        console.log('pointerDownHandler')
+
         // 如果多点触摸, 则直接返回
         if (ev.touches && ev.touches.length > 1) {
           return false
@@ -264,6 +266,7 @@
         this.startY = this.currentY = coord.y
         this.progress = 0
         this.state = STATE_INACTIVE
+
         return true
       },
       /**

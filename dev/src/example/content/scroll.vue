@@ -22,6 +22,10 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut dignissimos, eum impedit maxime natus necessitatibus quas qui quidem repellendus sapiente tempore. Aspernatur excepturi harum laborum quasi? Ab eius, excepturi?</p>
             <Button block @click="scrollToBottom()">滚动到底部</Button>
+            <Button block @click="scrollBottomBy400()">向下滚动400</Button>
+            <Button block @click="scrollToElement">滚动到下面的元素</Button>
+
+
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
                 exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
@@ -49,16 +53,18 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
                 exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
+            <p id="scrollToHere" style="color:red;">滚动到的就是这个元素</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
 
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
             <Button block @click="scrollToTop()">返回顶部</Button>
+
 
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam, ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
@@ -89,6 +95,7 @@
                             <p>contentTop: {{ev.contentTop}}</p>
                             <p>contentHeight: {{ev.contentHeight}}</p>
                             <p>contentBottom: {{ev.contentBottom}}</p>
+                            <p>isJsScroll: {{ev.isJsScroll}}</p>
                         </Column>
                     </Row>
                 </Grid>
@@ -111,7 +118,7 @@
   export default{
     data(){
       return {
-        scrollState:'',
+        scrollState: '',
         // scroll
         ev: {
           scrollTop: 0,
@@ -149,6 +156,18 @@
       },
       onScrollEndtHandler(ev){
         this.scrollState = '滚动结束'
+      },
+
+      scrollBottomBy400(){
+        this.contentComponent.scrollBy(0, 400).then(function () {
+          console.log('scrollBottomBy400 done')
+        })
+      },
+
+      scrollToElement(){
+        this.contentComponent.scrollToElement(document.getElementById('scrollToHere'), 300, null, true).then(function () {
+          console.log('scrollToElement done')
+        })
       }
 
     },
