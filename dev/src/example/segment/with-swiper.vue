@@ -21,7 +21,7 @@
                 <Slide padding class="slide">
                     <!--content_1-->
                     <section class="content_1">
-                        <strong>这里的动画使用的是Vue原生的"transition"组件完成, 目前实现的效果是单向移动渐变动画.</strong>
+                        <strong>手势切换其实是Segment组件和Slides组件的结合</strong>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut culpa labore laborum magni qui quo sed voluptatibus! Aliquam doloremque eveniet facilis nam odio quisquam sequi totam veniam voluptate voluptatem. Ea.
                         </p>
@@ -42,7 +42,7 @@
                 <Slide padding class="slide">
                     <!--content_2-->
                     <section class="content_2">
-                        <strong>这里的动画使用的是Vue原生的"transition"组件完成, 目前实现的效果是单向移动渐变动画.</strong>
+                        <strong>手势切换其实是Segment组件和Slides组件的结合</strong>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cum et ex facilis mollitia nesciunt omnis suscipit ullam. Ab at delectus deserunt, doloribus ex nihil praesentium quibusdam reiciendis ullam voluptatibus?</p>
                         <img src="./img/orange_1.jpeg">
@@ -58,7 +58,7 @@
                 <Slide padding class="slide">
                     <!--content_3-->
                     <section class="content_3">
-                        <strong>这里的动画使用的是Vue原生的"transition"组件完成, 目前实现的效果是单向移动渐变动画.</strong>
+                        <strong>手势切换其实是Segment组件和Slides组件的结合</strong>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A at aut ea eos esse est itaque iure, iusto, libero nam nostrum pariatur quasi quibusdam quis sed sequi tenetur vel veniam.</p>
                         <img src="./img/pear_1.jpeg">
