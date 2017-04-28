@@ -14,8 +14,7 @@
             </Toolbar>
         </Header>
         <Content class="outer-content">
-            <Slides class="swiper" ref="slides"
-                    :resistanceRatio="0"
+            <Slides ref="slides" :resistanceRatio="0"
                     @onSlideChangeEnd="onSlideChangeEndHandler">
                 <!-- 幻灯内容 -->
                 <Slide padding class="slide">
@@ -78,10 +77,8 @@
     </Page>
 </template>
 <style scoped lang="scss">
-    .swiper {
-        .slide {
-            overflow: scroll;
-        }
+    .slide {
+        overflow: scroll;
     }
 </style>
 <script>

@@ -3,7 +3,11 @@
         <div class="swiper-wrapper">
             <slot></slot>
         </div>
-        <div class="swiper-pagination"></div>
+        <!-- Add Pagination -->
+        <div v-if="pagination" class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div v-if="prevButton" class="swiper-button-prev"></div>
+        <div v-if="nextButton" class="swiper-button-next"></div>
     </div>
 </template>
 <style lang="scss">
