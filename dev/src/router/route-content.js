@@ -7,7 +7,7 @@ export default [
     path: '/content',
     name: 'content',
     component  (resolve) {
-      require(['@/example/content.vue'], resolve)
+      require(['@/example/content/content.vue'], resolve)
     }
   },
   {

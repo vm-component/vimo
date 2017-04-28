@@ -111,6 +111,9 @@ h4 {
 }
 
 h4.name {
+  white-space: nowrap;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
   color: #fff;
   background: $theme-light-3;
   box-shadow: 0 .25em .5em #d3d3d3;
@@ -502,21 +505,20 @@ footer {
   white-space: nowrap;
 }
 
-.params td , table td{
+.params td, table td {
   border-top: 1px solid #eee
 }
 
-table td.last, table th.last{
-  white-space: normal!important;
+table td.last, table th.last {
+  white-space: normal !important;
 }
 
-
-.params thead tr, .props thead tr , table tr{
+.params thead tr, .props thead tr, table tr {
   background-color: #fff;
   font-weight: bold;
 }
 
-.params .params thead tr, .props .props thead tr , table tr{
+.params .params thead tr, .props .props thead tr, table tr {
   background-color: #fff;
   font-weight: bold;
 }
@@ -685,8 +687,8 @@ span.param-type, .params td .param-type, .param-type dd {
 
 @media only screen and (min-width: 320px) and (max-width: 780px) {
 
-  table{
-    display: block!important;
+  table {
+    display: block !important;
   }
 
   body {
@@ -764,6 +766,10 @@ span.param-type, .params td .param-type, .param-type dd {
   footer {
     margin-left: 0;
   }
+
+  .tag-source{
+    display: none;
+  }
 }
 
 /** Add a '#' to static members */
@@ -775,7 +781,6 @@ span.param-type, .params td .param-type, .param-type dd {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 1400px) {
-
 
   #main {
     .content {

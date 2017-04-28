@@ -34,6 +34,7 @@
 </style>
 <script type="text/ecmascript-6">
   import { Slides, Slide } from 'vimo/components/slides'
+
   export default{
     name: 'name',
     data(){

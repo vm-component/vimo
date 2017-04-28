@@ -2,7 +2,8 @@
  * 路由配置表
  * */
 
-import contentChidren from './route-content'
+import contentRoutes from './route-content'
+import segmentRoutes from './route-segment'
 
 let routes = [
   // index
@@ -369,13 +370,7 @@ let routes = [
   },
 
   // ----  component/Tabs组件 ----
-  {
-    path: '/segment',
-    name: 'segment',
-    component  (resolve) {
-      require(['@/example/segment.vue'], resolve)
-    }
-  },
+
   {
     path: '/tabs',
     name: 'tabs',
@@ -656,7 +651,8 @@ let routes = [
   }
 ]
 
-routes = routes.concat(contentChidren)
+routes = routes.concat(contentRoutes)
+routes = routes.concat(segmentRoutes)
 
 export default {
   mode: 'hash', //   "hash" | "history" | "abstract";

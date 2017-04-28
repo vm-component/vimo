@@ -85,6 +85,9 @@ h4 {
   color: #4d4e53; }
 
 h4.name {
+  white-space: nowrap;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
   color: #fff;
   background: #426d5c;
   box-shadow: 0 .25em .5em #d3d3d3;
@@ -599,7 +602,10 @@ span.param-type, .params td .param-type, .param-type dd {
           display: none; }
 
   footer {
-    margin-left: 0; } }
+    margin-left: 0; }
+
+  .tag-source {
+    display: none; } }
 /** Add a '#' to static members */
 [data-type="member"] a::before {
   content: '#';

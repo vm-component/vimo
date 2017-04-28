@@ -1,3 +1,7 @@
-let SlidesComponent = require('./slides.vue');
-let SlideComponent = require('./slide.vue');
-export { SlidesComponent as Slides, SlideComponent as Slide }
+/**
+ * Created by Hsiang on 2017/4/28.
+ */
+import Slide from './slide.vue'
+import Slides from './slides.vue'
+export { Slides, Slide }
+
