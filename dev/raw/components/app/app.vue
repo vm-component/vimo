@@ -145,8 +145,8 @@
        * this.$app && this.$app.setDisableScroll(false) ->立即解除锁定
        * */
       setDisableScroll (isScrollDisabled, duration = 0) {
-        this.isScrollDisabled = isScrollDisabled
         if (duration > 0 && isScrollDisabled) {
+          this.isScrollDisabled = isScrollDisabled
           window.clearTimeout(scrollDisTimer)
           scrollDisTimer = window.setTimeout(() => {
             this.isScrollDisabled = false
