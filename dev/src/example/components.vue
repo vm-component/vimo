@@ -60,9 +60,9 @@
                         <Icon slot="item-left" name="image"></Icon>
                         <span>图片 (Img)</span>
                     </Item>
-                    <Item button :to="{name: 'swiper'}">
+                    <Item button :to="{name: 'slides'}">
                         <Icon slot="item-left" name="image"></Icon>
-                        <span>轮播 (Swiper)</span>
+                        <span>轮播 (Slides)</span>
                     </Item>
                 </ItemGroup>
 

@@ -170,10 +170,10 @@ let routes = [
     }
   },
   {
-    path: '/swiper',
-    name: 'swiper',
+    path: '/slides',
+    name: 'slides',
     component  (resolve) {
-      require(['@/example/swiper.vue'], resolve)
+      require(['@/example/slides.vue'], resolve)
     }
   },
 

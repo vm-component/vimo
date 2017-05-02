@@ -209,7 +209,7 @@ export function getProps () {
     switch (valueType) {
       case 'number':
         tmp = {
-          type: Number,
+          type: [Number, String],
           default: value
         }
         break
@@ -221,7 +221,7 @@ export function getProps () {
         break
       case 'boolean':
         tmp = {
-          type: Boolean,
+          type: [Boolean, Number],
           default: value
         }
         break

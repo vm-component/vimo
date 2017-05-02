@@ -1,13 +1,17 @@
 <template>
     <div class="swiper-container" :id="slideId" :class="[slideId]">
+        <slot name="parallax"></slot>
         <div class="swiper-wrapper">
             <slot></slot>
         </div>
         <!-- Add Pagination -->
-        <div v-if="pagination" class="swiper-pagination"></div>
+        <div v-if="pagination" :class="paginationClass"></div>
         <!-- Add Arrows -->
-        <div v-if="prevButton" class="swiper-button-prev"></div>
-        <div v-if="nextButton" class="swiper-button-next"></div>
+        <div v-if="prevButton" :class="prevButtonClass"></div>
+        <div v-if="nextButton" :class="nextButtonClass"></div>
+        <!-- Add Scrollbar -->
+        <div v-if="scrollbar" :class="scrollbarClass"></div>
+
     </div>
 </template>
 <style lang="scss">
@@ -63,7 +67,40 @@
     computed: {
       slideId(){
         return 'slides-' + this.id;
-      }
+      },
+      // 指示标志的class
+      paginationClass(){
+        if (this.pagination[0] === '.') {
+          return this.pagination.substr(1)
+        } else {
+          console.error('The props of pagination in Slides component need dot in front, like `.swiper-pagination`. ')
+          return null
+        }
+      },
+      nextButtonClass(){
+        if (this.nextButton[0] === '.') {
+          return this.nextButton.substr(1)
+        } else {
+          console.error('The props of nextButton in Slides component need dot in front, like `.swiper-button-next`. ')
+          return null
+        }
+      },
+      prevButtonClass(){
+        if (this.prevButton[0] === '.') {
+          return this.prevButton.substr(1)
+        } else {
+          console.error('The props of prevButton in Slides component need dot in front, like `.swiper-button-prev`. ')
+          return null
+        }
+      },
+      scrollbarClass(){
+        if (this.scrollbar[0] === '.') {
+          return this.scrollbar.substr(1)
+        } else {
+          console.error('The props of scrollbar in Slides component need dot in front, like `.swiper-scrollbar`. ')
+          return null
+        }
+      },
     },
     methods: {
       /**
@@ -75,7 +112,7 @@
           this.swiperInstance = new Swiper(this.$el, assign(this._props, getEvents(this)))
           this.init = true
         }
-      },
+      }
     },
     mounted() {
       this.initSlides();
