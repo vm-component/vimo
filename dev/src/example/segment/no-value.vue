@@ -41,6 +41,7 @@
     </Page>
 </template>
 <style lang="scss">
+
 </style>
 <script type="text/ecmascript-6">
   import { Segment, SegmentButton } from 'vimo/components/segment'

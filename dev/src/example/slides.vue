@@ -7,7 +7,7 @@
         </Header>
         <Content padding class="outer-content">
             <h1>Introduction</h1>
-            <p>Slides组件是Swiper插件的移植和拓展, Swiper初始化传递的属性对应Vue组件的props, Swiper属性中定义的钩子事件对应Vue组件的事件系统. 两者无缝对接, 使用上没有差异.</p>
+            <p>Slides组件是 <strong>Swiper插件</strong> 的移植和拓展, Swiper初始化传递的属性对应Vue组件的props, Swiper属性中定义的钩子事件对应Vue组件的事件系统. 两者无缝对接, 使用上没有差异.</p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam consequuntur cumque earum exercitationem, id ipsa laboriosam laudantium magnam mollitia perferendis provident, quia quo recusandae reprehenderit saepe sunt totam vitae!</p>
 
@@ -18,7 +18,6 @@
                 <Slide class="slide">Slide 2</Slide>
                 <Slide class="slide">Slide 3</Slide>
             </Slides>
-
 
             <h5>Responsive / Fullscreen + Pagination</h5>
             <Slides class="swiper"

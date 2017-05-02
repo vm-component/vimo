@@ -7,16 +7,21 @@
 </template>
 <script>
   /**
-   * @component Component/SegmentButton
+   * @component SegmentButton
    * @description
+   *
+   * ## 小标签 / SegmentButton
    *
    * Segment组件的子组件SegmentButton, 两者配合使用, 属于嵌套关系.
    *
    * @property {String} value - 当前SegmentButton的值, 如果父元素的value和这个相同, 这个当前被选中
+   * @property {Boolean} [disabled=false] - 当前SegmentButton的禁用状态
+   * @property {String} [mode='ios'] - 当前样式模式
    *
-   * @slot 空 - 当前button的name值, 如果value没提供, 则使用name作为value
+   * @slot 空 - 当前button的显示值, 如果没有提供value值, 建议不要嵌套过多的结构.
    *
    * @fires component:Segment#onSelect
+   * @see component:Segment
    *
    * */
   import { isTrueProperty } from '../../util/util'

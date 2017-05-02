@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>components/toolbar/toolbar-title.vue - Documentation</title>
+    <title>SegmentButton - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/prettify/prettify.js"></script>
@@ -56,7 +56,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">components/toolbar/toolbar-title.vue</h1>
+        <h1 class="page-title">SegmentButton</h1>
         
 
         
@@ -64,181 +64,348 @@
 
 
 
-    <section>
+<section class="page-content">
+
+    <section class="content">
+        <header>
+            
+        </header>
+
         <article>
-            <pre class="prettyprint source linenums"><code>&lt;template>
-    &lt;div class="ion-title title" :class="[titleClass]">
-        &lt;div class="toolbar-title" :class="[toolbarTitleClass]">
-            &lt;span>{{titleInner}}&lt;/span>
-        &lt;/div>
-    &lt;/div>
-&lt;/template>
-&lt;script>
-  /**
-   * @component Title
-   * @description
-   *
-   *
-   * ## 文档标题 / Title
-   *
-   * 设置顶部的title及document.title, 请使用ref获取Title组件的setTitle方法, 使用该方法会同步设置document.title(默认)
-   *
-   * ### 等级
-   *
-   * 只有在Navbar组件中的Title组件才会自动更新`document.title`的值,
-   *
-   *
-   * ### 如何引入
-   *
-   * ```
-   * // 引入
-   * import { Toolbar, Buttons, Title } from 'vimo/components/toolbar'
-   * // 安装
-   * Vue.component(Toolbar.name, Toolbar)
-   * Vue.component(Title.name, Title)
-   * Vue.component(Buttons.name, Buttons)
-   * ```
-   *
-   * @props {String} [mode=ios] - 模式
-   * @props {String} [title] - 标题
-   *
-   * @see component:Toolbar
-   * @usage
-   * &lt;template>
-   *  &lt;Page>
-   *    &lt;Header>
-   *      &lt;Navbar>
-   *        &lt;Title ref="title">Demo&lt;/Title>
-   *      &lt;Navbar>
-   *    &lt;/Header>
-   *    &lt;Content>
-   *      &lt;h1>这里是内容&lt;/h1>
-   *    &lt;/Content>
-   *  &lt;/Page>
-   * &lt;/template>
-   *
-   * ...
-   *
-   * computed: {
-   *   titleComponent(){
-   *     return this.$refs.title
-   *   }
-   * },
-   * methods: {
-   *   setAllTitle(){
-   *      this.titleComponent.setTitle('title')
-   * }
-   *
-   * */
-  export default{
-    name: 'Title',
-    data(){
-      return {
-        titleInner: this.title,
-        isInit: false
-      }
-    },
-    props: {
-      /**
-       * mode 按钮风格
-       * */
-      mode: {
-        type: String,
-        default(){ return window.VM &amp;&amp; window.VM.config.get('mode') || 'ios' }
-      },
-      /**
-       * 设置的title值
-       * */
-      title: [String]
-    },
-    computed: {
-      titleClass () {
-        return `title-${this.mode}`
-      },
-      toolbarTitleClass () {
-        return `toolbar-title-${this.mode}`
-      },
-    },
-    methods: {
-      /**
-       * @function getTitle
-       * @description
-       * 获取Title组件中的title, 兼容各种模式
-       * @return {String}
-       * */
-      getTitle(){
-        if (this.isInit) {
-          return this.titleInner
-        } else {
-          let _title = '';
-          /**
-           * 组件获取了传入的title值，之后通过全局注册的$setTitle方法
-           * 设置document.title（此处做了兼容）
-           * */
-          if (!!this.title) {
-            // prop传入title值
-            // eg: &lt;Title title="Toolbar">&lt;/Title>
-            _title = this.title.trim();
-          } else if (!!this.$slots.default &amp;&amp; !!this.$slots.default[0] &amp;&amp; !!this.$slots.default[0].text) {
-            // 如果是直接写在ion-title中的值
-            // eg: &lt;Title>Toolbar&lt;/Title>
-            _title = this.$slots.default[0].text.trim();
-          } else if (!!this.$slots.default &amp;&amp; !!this.$slots.default[0] &amp;&amp; !!this.$slots.default[0].tag &amp;&amp; !!this.$slots.default[0].children[0].text) {
-            // 如果是这届下载ion-title中的值，并且包含一层标签的情况
-            // eg: &lt;Title>
-            //      &lt;span>Toolbar&lt;/span>
-            //      &lt;span>-&lt;/span>
-            //      &lt;span>Test&lt;/span>
-            //    &lt;/Title>
-            // -> Toolbar-Test
-            this.$slots.default.forEach((item) => {
-              if (!!item.children &amp;&amp; item.children.length > 0 &amp;&amp; !!item.children[0] &amp;&amp; !!item.children[0].text) {
-                _title += item.children[0].text.trim()
-              }
-            })
-          }
-          return _title
-        }
-      },
+            <div class="container-overview">
 
-      /**
-       * @function setTitle
-       * @description
-       * 修改Header的title
-       * @param {String} title - title
-       * @param {boolean} [changeDocTitle=true] - 是否设置doc的title, 默认是同步设置的
-       * */
-      setTitle (title, changeDocTitle = true) {
-        this.titleInner = title;
-        if (changeDocTitle) {
-          // 设置document的title, 这部分由$app处理
-          this.$app &amp;&amp; this.$app.setDocTitle(title);
-        }
-      },
+                
+                <div class="description"><h2>小标签 / SegmentButton</h2><p>Segment组件的子组件SegmentButton, 两者配合使用, 属于嵌套关系.</p></div>
+                
 
-      /**
-       * 初始化
-       * 只在Navbar中的Title才会具有更新Title的特性!!!
-       * 且, 一个Page只能拥有一个Navbar, 当在Navbar中设置Title, 则Title的方法
-       * 将赋予页面Page(docTitle),
-       * @private
-       * */
-      init(){
-        this.titleInner = this.getTitle()
-        if (!!this.$parent.$options._componentTag &amp;&amp; this.$parent.$options._componentTag.toLowerCase() === 'navbar' &amp;&amp; document.title !== this.titleInner) {
-          this.setTitle(this.titleInner)
-        }
-        this.isInit = true
-      }
-    },
-    mounted(){
-      this.init()
-    }
-  }
-&lt;/script>
-</code></pre>
+                
+                
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="components_segment_segment-button.vue.html">components/segment/segment-button.vue</a>
+                    , <a href="components_segment_segment-button.vue.html#line2">line 2</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <section class="details__inner">
+        <dt class="tag-see">参考:</dt>
+        <dd class="tag-see">
+            <ul>
+                <li><a href="component-Segment.html">component:Segment</a></li>
+                </ul>
+        </dd>
+    </section>
+    
+
+    
+</dl>
+
+
+
+
+
+<h3 class="subsection-title">插槽 / Slots:</h3>
+
+
+
+
+<table class="slots props">
+    <thead>
+    <tr>
+        
+        <th>名称 / Name</th>
+        
+
+        
+
+        
+
+        <th class="last">描述 / Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>空</code></td>
+            
+
+
+
+            
+
+            
+
+            <td class="description last">当前button的显示值, 如果没有提供value值, 建议不要嵌套过多的结构.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<h3 class="subsection-title">对外事件 / Fires:</h3>
+<ul>
+    <li><a href="component-Segment.html#event:onSelect">component:Segment#event:onSelect</a></li>
+    </ul>
+
+
+
+
+<h5>属性 / Properties:</h5>
+
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>名称 / Name</th>
+        
+
+        <th>类型 / Type</th>
+
+        
+        <th>属性 / Attributes</th>
+        
+
+        
+        <th>默认值 / Default</th>
+        
+
+        <th class="last">描述 / Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>当前SegmentButton的值, 如果父元素的value和这个相同, 这个当前被选中</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>disabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>当前SegmentButton的禁用状态</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'ios'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>当前样式模式</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+                <!---->
+                <!--<div class="description"><h2>小标签 / SegmentButton</h2><p>Segment组件的子组件SegmentButton, 两者配合使用, 属于嵌套关系.</p></div>-->
+                <!---->
+
+                
+                
+            </div>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
         </article>
     </section>
+
+    
+
+</section>
+
+<script>
+  ;(function () {
+    document.getElementById('js_choose_ios').addEventListener('click', function () {
+      console.log('js_choose_ios')
+      var $showCaseBox = document.getElementById('js_showcase__box')
+      if (!_hasClass($showCaseBox, 'ios')) {
+        _removeClass($showCaseBox, 'md')
+        _addClass($showCaseBox, 'ios')
+      }
+
+    })
+    document.getElementById('js_choose_md').addEventListener('click', function () {
+      console.log('js_choose_md')
+      var $showCaseBox = document.getElementById('js_showcase__box')
+      if (!_hasClass($showCaseBox, 'md')) {
+        _removeClass($showCaseBox, 'ios')
+        _addClass($showCaseBox, 'md')
+      }
+    })
+
+    function _hasClass (obj, cls) {
+      return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+    }
+
+    function _addClass (obj, cls) {
+      if (!_hasClass(obj, cls)) {
+        obj.className += ' ' + cls
+      }
+    }
+
+    function _removeClass (obj, cls) {
+      if (_hasClass(obj, cls)) {
+        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+        obj.className = obj.className.replace(reg, ' ').trim()
+      }
+    }
+  })()
+</script>
+
 
 
 

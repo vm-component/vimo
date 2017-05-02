@@ -4,14 +4,17 @@
             <Navbar>
                 <Title>组件异步加载</Title>
             </Navbar>
-            <Toolbar>
-                <!--content-->
-                <Segment v-model="fruit" @onChange="onChangeHandler">
-                    <SegmentButton v-for="(seg, index) in segmentList" :value="seg.value" @onSelect="onSelectHandler"
-                                   :key="index">
-                        <span>{{seg.name}}</span>
-                    </SegmentButton>
-                </Segment>
+            <Toolbar class="dashBox">
+                <section class="dashLine">
+                    <!--content-->
+                    <Segment v-model="fruit" @onChange="onChangeHandler">
+                        <SegmentButton v-for="(seg, index) in segmentList" :value="seg.value"
+                                       @onSelect="onSelectHandler"
+                                       :key="index">
+                            <span>{{seg.name}}</span>
+                        </SegmentButton>
+                    </Segment>
+                </section>
             </Toolbar>
         </Header>
         <Content padding>
@@ -44,6 +47,16 @@
     </Page>
 </template>
 <style lang="scss">
+    .dashBox {
+        padding: 0;
+    }
+
+    .dashLine {
+        height: 38px;
+        width: 100%;
+        margin: 3px 0;
+        border: 1px dashed #000;
+    }
 </style>
 <script type="text/ecmascript-6">
   import { Segment, SegmentButton } from 'vimo/components/segment'

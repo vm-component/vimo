@@ -25,7 +25,8 @@
    *
    * ## 轮播组件 / Slides
    *
-   * 这部分是移植Swiper插件, 因此两者的API完全移植, 即:  Swiper初始化传入的参数/发出的事件都可在Slides中使用
+   * 这部分是移植Swiper插件, 因此两者的API完全移植, 即:  Swiper初始化传入的参数/发出的事件都可在Slides中使用. 具体如下:
+   *
    *
    *
    * 事件:
@@ -47,6 +48,7 @@
    *
    * !!如果slides的数据是异步的话, 请在onInit上绑定初始化Slides的操作
    *
+   * @demo http://xiangsongtao.com/vimo/#/slides
    * @see http://idangero.us/swiper/api/
    *
    * */
