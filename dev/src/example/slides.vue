@@ -7,7 +7,8 @@
         </Header>
         <Content padding class="outer-content">
             <h1>Introduction</h1>
-            <p>Slides组件是 <strong>Swiper插件</strong> 的移植和拓展, Swiper初始化传递的属性对应Vue组件的props, Swiper属性中定义的钩子事件对应Vue组件的事件系统. 两者无缝对接, 使用上没有差异.</p>
+            <p>Slides组件是 <strong>Swiper插件</strong>
+               的移植和拓展, Swiper初始化传递的属性对应Vue组件的props, Swiper属性中定义的钩子事件对应Vue组件的事件系统. 两者无缝对接, 使用上没有差异.</p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam consequuntur cumque earum exercitationem, id ipsa laboriosam laudantium magnam mollitia perferendis provident, quia quo recusandae reprehenderit saepe sunt totam vitae!</p>
 
@@ -689,4 +690,14 @@
     activated () {},
     components: {Slides, Slide}
   }
+
+  var a = {
+    methods: {
+      onInitHandler(swiperInstance){
+        console.debug('Swiper实例: ')
+        console.debug(swiperInstance)
+      }
+    }
+  }
 </script>
+

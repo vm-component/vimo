@@ -54,6 +54,8 @@
       "../dev/raw/base/platform.js",
 
       "../dev/raw/components/segment",
+      "../dev/raw/components/slides",
+      "../dev/raw/components/slide",
 
 
       "../dev/raw/components/grid",

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Navbar - Documentation</title>
+    <title>components/slides/interface.js - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/prettify/prettify.js"></script>
@@ -56,7 +56,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">Navbar</h1>
+        <h1 class="page-title">components/slides/interface.js</h1>
         
 
         
@@ -64,416 +64,316 @@
 
 
 
-<section class="page-content">
-
-    <section class="content">
-        <header>
-            
-        </header>
-
+    <section>
         <article>
-            <div class="container-overview">
-
-                
-                <div class="description"><h2>导航条 / Navbar</h2><h3>特别之处</h3><p>导航条和工具条的属性类似, 只是导航条多了后退按钮, 且在当前业务页面中, <strong>Navbar有且必须只有一个</strong>, 也只有这个组件中的Title组件才有控制<code>document.title</code>的能力.</p>
-<p>Navbar一般是放在Header组件中使用, 并且在Navbar组件中经常和Title组件组合使用.</p>
-<p>因为Navbar和Toolbar很相似, 其位置属性完全一样. 包括: <strong>start/end/left/end</strong></p>
-<h3>后退按钮显示时机</h3><p>因为Vimo内建导航历史记录, 当历史记录中有上一条历史时显示后退按钮,反之, 不显示后退按钮. 当然也可以通过<code>hideBackButton</code>属性控制</p>
-<h3>点击后退</h3><p>点击后退执行的是 <code>window.history.back()</code> 方法, 这个和点击后退按钮的效果是一样的.</p>
-<h3>如何引入</h3><pre class="prettyprint source"><code>// 引入
-import { Navbar } from 'vimo/components/navbar'
-// 安装
-Vue.component(Navbar.name, Navbar)</code></pre></div>
-                
-
-                
-                
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="components_navbar_navbar.vue.html">components/navbar/navbar.vue</a>
-                    , <a href="components_navbar_navbar.vue.html#line2">line 2</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <section class="details__inner">
-        <dt class="tag-see">参考:</dt>
-        <dd class="tag-see">
-            <ul>
-                <li><a href="component-Toolbar.html">component:Toolbar</a></li>
-                
-                <li><a href="History.html">History</a></li>
-                </ul>
-        </dd>
-    </section>
-    
-
-    
-</dl>
-
-
-<h3 class="subsection-title">传入属性 / Props:</h3>
-
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>名称 / Name</th>
-        
-
-        <th>类型 / Type</th>
-
-        
-        <th>属性 / Attributes</th>
-        
-
-        
-        <th>默认值 / Default</th>
-        
-
-        <th class="last">描述 / Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>mode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>ios</code>
-                
-                </td>
-            
-
-            <td class="description last">模式</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">颜色</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>hideBackButton</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last">是否显示后退按钮</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<h3 class="subsection-title">插槽 / Slots:</h3>
-
-
-
-
-<table class="slots props">
-    <thead>
-    <tr>
-        
-        <th>名称 / Name</th>
-        
-
-        
-        <th>属性 / Attributes</th>
-        
-
-        
-
-        <th class="last">描述 / Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>空</code></td>
-            
-
-
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">作为内容, 比如Title/Searchbar/Segment放置的位置</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>buttons</code></td>
-            
-
-
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">按钮组, 别忘记加[left]/[right]/[start]/[end]属性标记位置</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-<h3 class="subsection-title">用法 / Usages</h3>
-
-    <pre class="prettyprint"><code>&lt;template>
- &lt;Page>
-   &lt;Header>
-     &lt;Navbar :hideBackButton="false" color="danger">
-       &lt;Title>Demo&lt;/Title>
-       &lt;Button left icon-only role="bar-button" menutoggle slot="buttons">
-           &lt;Icon class="icon" name="menu">&lt;/Icon>
-       &lt;/Button>
-     &lt;Navbar>
-   &lt;/Header>
-   &lt;Content>
-     &lt;h1>这里是内容&lt;/h1>
-   &lt;/Content>
- &lt;/Page>
-&lt;/template></code></pre>
-
-
-
-                <!---->
-                <!--<div class="description"><h2>导航条 / Navbar</h2><h3>特别之处</h3><p>导航条和工具条的属性类似, 只是导航条多了后退按钮, 且在当前业务页面中, <strong>Navbar有且必须只有一个</strong>, 也只有这个组件中的Title组件才有控制<code>document.title</code>的能力.</p>
-<p>Navbar一般是放在Header组件中使用, 并且在Navbar组件中经常和Title组件组合使用.</p>
-<p>因为Navbar和Toolbar很相似, 其位置属性完全一样. 包括: <strong>start/end/left/end</strong></p>
-<h3>后退按钮显示时机</h3><p>因为Vimo内建导航历史记录, 当历史记录中有上一条历史时显示后退按钮,反之, 不显示后退按钮. 当然也可以通过<code>hideBackButton</code>属性控制</p>
-<h3>点击后退</h3><p>点击后退执行的是 <code>window.history.back()</code> 方法, 这个和点击后退按钮的效果是一样的.</p>
-<h3>如何引入</h3><pre class="prettyprint source"><code>// 引入
-import { Navbar } from 'vimo/components/navbar'
-// 安装
-Vue.component(Navbar.name, Navbar)</code></pre></div>-->
-                <!---->
-
-                
-                
-            </div>
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
+            <pre class="prettyprint source linenums"><code>/**
+ * 获取组件的props对象,
+ * 这里根据swiper提供的defaults对象生成props格式的数据
+ * @return {Object}
+ * @private
+ * */
+export function getProps () {
+  const defaults = {
+    direction: 'horizontal',
+    touchEventsTarget: 'container',
+    initialSlide: 0,
+    speed: 300,
+    // autoplay
+    autoplay: false,
+    autoplayDisableOnInteraction: true,
+    autoplayStopOnLast: false,
+    // To support iOS's swipe-to-go-back gesture (when being used in-app, with UIWebView).
+    iOSEdgeSwipeDetection: false,
+    iOSEdgeSwipeThreshold: 20,
+    // Free mode
+    freeMode: false,
+    freeModeMomentum: true,
+    freeModeMomentumRatio: 1,
+    freeModeMomentumBounce: true,
+    freeModeMomentumBounceRatio: 1,
+    freeModeMomentumVelocityRatio: 1,
+    freeModeSticky: false,
+    freeModeMinimumVelocity: 0.02,
+    // Autoheight
+    autoHeight: false,
+    // Set wrapper width
+    setWrapperSize: false,
+    // Virtual Translate
+    virtualTranslate: false,
+    // Effects
+    effect: 'slide', // 'slide' or 'fade' or 'cube' or 'coverflow' or 'flip'
+    coverflow: {
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true
+    },
+    flip: {
+      slideShadows: true,
+      limitRotation: true
+    },
+    cube: {
+      slideShadows: true,
+      shadow: true,
+      shadowOffset: 20,
+      shadowScale: 0.94
+    },
+    fade: {
+      crossFade: false
+    },
+    // Parallax
+    parallax: false,
+    // Zoom
+    zoom: false,
+    zoomMax: 3,
+    zoomMin: 1,
+    zoomToggle: true,
+    // Scrollbar
+    scrollbar: null,
+    scrollbarHide: true,
+    scrollbarDraggable: false,
+    scrollbarSnapOnRelease: false,
+    // Keyboard Mousewheel
+    keyboardControl: false,
+    mousewheelControl: false,
+    mousewheelReleaseOnEdges: false,
+    mousewheelInvert: false,
+    mousewheelForceToAxis: false,
+    mousewheelSensitivity: 1,
+    mousewheelEventsTarged: 'container',
+    // Hash Navigation
+    hashnav: false,
+    hashnavWatchState: false,
+    // History
+    history: false,
+    // Commong Nav State
+    replaceState: false,
+    // Breakpoints
+    breakpoints: undefined,
+    // Slides grid
+    spaceBetween: 0,
+    slidesPerView: 1,
+    slidesPerColumn: 1,
+    slidesPerColumnFill: 'column',
+    slidesPerGroup: 1,
+    centeredSlides: false,
+    slidesOffsetBefore: 0, // in px
+    slidesOffsetAfter: 0, // in px
+    // Round length
+    roundLengths: false,
+    // Touches
+    touchRatio: 1,
+    touchAngle: 45,
+    simulateTouch: true,
+    shortSwipes: true,
+    longSwipes: true,
+    longSwipesRatio: 0.5,
+    longSwipesMs: 300,
+    followFinger: true,
+    onlyExternal: false,
+    threshold: 0,
+    touchMoveStopPropagation: true,
+    touchReleaseOnEdges: false,
+    // Unique Navigation Elements
+    uniqueNavElements: true,
+    // Pagination
+    pagination: null,
+    paginationElement: 'span',
+    paginationClickable: false,
+    paginationHide: false,
+    paginationBulletRender: null,
+    paginationProgressRender: null,
+    paginationFractionRender: null,
+    paginationCustomRender: null,
+    paginationType: 'bullets', // 'bullets' or 'progress' or 'fraction' or 'custom'
+    // Resistance
+    resistance: true,
+    resistanceRatio: 0.85,
+    // Next/prev buttons
+    nextButton: null,
+    prevButton: null,
+    // Progress
+    watchSlidesProgress: false,
+    watchSlidesVisibility: false,
+    // Cursor
+    grabCursor: false,
+    // Clicks
+    preventClicks: true,
+    preventClicksPropagation: true,
+    slideToClickedSlide: false,
+    // Lazy Loading
+    lazyLoading: false,
+    lazyLoadingInPrevNext: false,
+    lazyLoadingInPrevNextAmount: 1,
+    lazyLoadingOnTransitionStart: false,
+    // Images
+    preloadImages: true,
+    updateOnImagesReady: true,
+    // loop
+    loop: false,
+    loopAdditionalSlides: 0,
+    loopedSlides: null,
+    // Control
+    control: undefined,
+    controlInverse: false,
+    controlBy: 'slide', // or 'container'
+    normalizeSlideIndex: true,
+    // Swiping/no swiping
+    allowSwipeToPrev: true,
+    allowSwipeToNext: true,
+    swipeHandler: null, // '.swipe-handler',
+    noSwiping: true,
+    noSwipingClass: 'swiper-no-swiping',
+    // Passive Listeners
+    passiveListeners: true,
+    // NS
+    containerModifierClass: 'swiper-container-', // NEW
+    slideClass: 'swiper-slide',
+    slideActiveClass: 'swiper-slide-active',
+    slideDuplicateActiveClass: 'swiper-slide-duplicate-active',
+    slideVisibleClass: 'swiper-slide-visible',
+    slideDuplicateClass: 'swiper-slide-duplicate',
+    slideNextClass: 'swiper-slide-next',
+    slideDuplicateNextClass: 'swiper-slide-duplicate-next',
+    slidePrevClass: 'swiper-slide-prev',
+    slideDuplicatePrevClass: 'swiper-slide-duplicate-prev',
+    wrapperClass: 'swiper-wrapper',
+    bulletClass: 'swiper-pagination-bullet',
+    bulletActiveClass: 'swiper-pagination-bullet-active',
+    buttonDisabledClass: 'swiper-button-disabled',
+    paginationCurrentClass: 'swiper-pagination-current',
+    paginationTotalClass: 'swiper-pagination-total',
+    paginationHiddenClass: 'swiper-pagination-hidden',
+    paginationProgressbarClass: 'swiper-pagination-progressbar',
+    paginationClickableClass: 'swiper-pagination-clickable', // NEW
+    paginationModifierClass: 'swiper-pagination-', // NEW
+    lazyLoadingClass: 'swiper-lazy',
+    lazyStatusLoadingClass: 'swiper-lazy-loading',
+    lazyStatusLoadedClass: 'swiper-lazy-loaded',
+    lazyPreloaderClass: 'swiper-lazy-preloader',
+    notificationClass: 'swiper-notification',
+    preloaderClass: 'preloader',
+    zoomContainerClass: 'swiper-zoom-container',
+
+    // Observer
+    observer: false,
+    observeParents: false,
+    // Accessibility
+    a11y: false,
+    prevSlideMessage: 'Previous slide',
+    nextSlideMessage: 'Next slide',
+    firstSlideMessage: 'This is the first slide',
+    lastSlideMessage: 'This is the last slide',
+    paginationBulletMessage: 'Go to slide {{index}}',
+    // Callbacks
+    runCallbacksOnInit: true
+  }
+  let props = {}
+  for (let key in defaults) {
+    let value = defaults[key]
+    let valueType = typeof value
+    let tmp = null
+    switch (valueType) {
+      case 'number':
+        tmp = {
+          type: [Number, String],
+          default: value
+        }
+        break
+      case 'string':
+        tmp = {
+          type: String,
+          default: value
+        }
+        break
+      case 'boolean':
+        tmp = {
+          type: [Boolean, Number],
+          default: value
+        }
+        break
+      case 'object':
+        if (value) {
+          tmp = {
+            type: Object,
+            default(){
+              return JSON.parse(JSON.stringify(value))
+            }
+          }
+        } else {
+          // Number String Function
+          tmp = {
+            type: [Object, Number, String, Function, Array],
+            default(){
+              return null
+            }
+          }
+        }
+        break
+      case 'function':
+        tmp = {
+          type: Function,
+          default(){
+            return value
+          }
+        }
+        break
+      case 'undefined':
+        tmp = [Object]
+        break
+      default:
+        tmp = [Object]
+        console.debug('这个属性未找到::interface.js::getProps()')
+        console.debug('key: ' + key)
+        console.debug('value: ' + value)
+        console.debug('valueType: ' + valueType)
+        break
+    }
+    props[key] = tmp
+  }
+  return props
+}
+
+/**
+ * 根据事件钩子获取, 将swiper的默认参数和时间
+ * @param {Object} slideComponent - slide的组件实例 -> this
+ * */
+export function getEvents (slideComponent) {
+  console.assert(slideComponent, 'The method of getEvents() need params of slideComponent!')
+  return {
+    onInit (swiper) { slideComponent.$emit('onInit', swiper) },
+    onDestroy (swiper) { slideComponent.$emit('onDestroy', swiper) },
+    onBeforeResize (swiper) { slideComponent.$emit('onBeforeResize', swiper) },
+    onAfterResize (swiper) { slideComponent.$emit('onAfterResize', swiper) },
+    onClick (swiper, e) { slideComponent.$emit('onClick', swiper, e) },
+    onTap (swiper, e) { slideComponent.$emit('onTap', swiper, e) },
+    onDoubleTap (swiper, e) { slideComponent.$emit('onDoubleTap', swiper, e) },
+    onSliderMove (swiper, e) { slideComponent.$emit('onSliderMove', swiper, e) },
+    onSlideChangeStart (swiper) { slideComponent.$emit('onSlideChangeStart', swiper) },
+    onSlideChangeEnd (swiper) { slideComponent.$emit('onSlideChangeEnd', swiper) },
+    onTransitionStart (swiper) { slideComponent.$emit('onTransitionStart', swiper) },
+    onTransitionEnd (swiper) { slideComponent.$emit('onTransitionEnd', swiper) },
+    onImagesReady (swiper) { slideComponent.$emit('onImagesReady', swiper) },
+    onProgress (swiper, progress) { slideComponent.$emit('onProgress', swiper, progress) },
+    onTouchStart (swiper, e) { slideComponent.$emit('onTouchStart', swiper, e) },
+    onTouchMove (swiper, e) { slideComponent.$emit('onTouchMove', swiper, e) },
+    onTouchMoveOpposite (swiper, e) { slideComponent.$emit('onTouchMoveOpposite', swiper, e) },
+    onTouchEnd (swiper, e) { slideComponent.$emit('onTouchEnd', swiper, e) },
+    onReachBeginning (swiper) { slideComponent.$emit('onReachBeginning', swiper) },
+    onReachEnd (swiper) { slideComponent.$emit('onReachEnd', swiper) },
+    onSetTransition (swiper, duration) { slideComponent.$emit('onSetTransition', swiper, duration) },
+    onSetTranslate (swiper, translate) { slideComponent.$emit('onSetTranslate', swiper, translate) },
+    onAutoplayStart (swiper) { slideComponent.$emit('onAutoplayStart', swiper) },
+    onAutoplayStop (swiper) { slideComponent.$emit('onAutoplayStop', swiper) },
+    onLazyImageLoad (swiper, slide, image) { slideComponent.$emit('onLazyImageLoad', swiper, slide, image) },
+    onLazyImageReady (swiper, slide, image) { slideComponent.$emit('onLazyImageReady', swiper, slide, image) },
+    onKeyPress (swiper, keyCode) { slideComponent.$emit('onLazyImageReady', swiper, keyCode) }
+  }
+}
+</code></pre>
         </article>
     </section>
-
-    
-
-</section>
-
-<script>
-  ;(function () {
-    document.getElementById('js_choose_ios').addEventListener('click', function () {
-      console.log('js_choose_ios')
-      var $showCaseBox = document.getElementById('js_showcase__box')
-      if (!_hasClass($showCaseBox, 'ios')) {
-        _removeClass($showCaseBox, 'md')
-        _addClass($showCaseBox, 'ios')
-      }
-
-    })
-    document.getElementById('js_choose_md').addEventListener('click', function () {
-      console.log('js_choose_md')
-      var $showCaseBox = document.getElementById('js_showcase__box')
-      if (!_hasClass($showCaseBox, 'md')) {
-        _removeClass($showCaseBox, 'ios')
-        _addClass($showCaseBox, 'md')
-      }
-    })
-
-    function _hasClass (obj, cls) {
-      return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
-    }
-
-    function _addClass (obj, cls) {
-      if (!_hasClass(obj, cls)) {
-        obj.className += ' ' + cls
-      }
-    }
-
-    function _removeClass (obj, cls) {
-      if (_hasClass(obj, cls)) {
-        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
-        obj.className = obj.className.replace(reg, ' ').trim()
-      }
-    }
-  })()
-</script>
-
 
 
 
