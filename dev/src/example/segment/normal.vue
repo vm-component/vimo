@@ -10,6 +10,8 @@
                     <SegmentButton value="apple" @onSelect="onSelectHandler">Apple</SegmentButton>
                     <SegmentButton value="orange" @onSelect="onSelectHandler">Orange</SegmentButton>
                     <SegmentButton value="pear" @onSelect="onSelectHandler">Pear</SegmentButton>
+                    <SegmentButton value="disabled" :disabled="true" @onSelect="onSelectHandler">Disabled
+                    </SegmentButton>
                 </Segment>
             </Toolbar>
         </Header>
