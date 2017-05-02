@@ -114,8 +114,8 @@
 
       // -------- Radio --------
       /**
-       * @private
        * radio组件点击时执行这个命令
+       * @private
        * */
       onRadioChange(value){
         this.radioComponentList.forEach((radioComponent) => {

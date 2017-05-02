@@ -63,10 +63,7 @@
     props: {
       // 固定值
       value: [String],
-      disabled: {
-        type: Boolean,
-        default(){return false}
-      },
+      disabled: [Boolean],
       color: [String],
       mode: {
         type: String,
