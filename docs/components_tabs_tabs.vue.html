@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>components/app/app.vue - Documentation</title>
+    <title>components/tabs/tabs.vue - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/prettify/prettify.js"></script>
@@ -56,7 +56,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">components/app/app.vue</h1>
+        <h1 class="page-title">components/tabs/tabs.vue</h1>
         
 
         
@@ -67,256 +67,354 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>&lt;template>
-    &lt;article class="ion-app" :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
-        &lt;!--app-root start-->
-        &lt;section class="app-root">
-            &lt;slot>&lt;/slot>
+    &lt;article class="ion-tabs tabs" :class="[modeClass,colorClass]"
+             :tabsLayout="tabsLayout"
+             :tabsHighlight="tabsHighlight"
+             :tabsPlacement="tabsPlacement">
+        &lt;section class="tabs-content" ref="tabsContent">
+            &lt;!--tabbar-->
+            &lt;div class="tabbar" role="tablist" ref="tabbar" :tabsLayout="tabsLayout">
+                &lt;slot name="tab">&lt;/slot>
+                &lt;div ref="tabHighlight" class="tab-highlight">&lt;/div>
+            &lt;/div>
+            &lt;!--tabs-content-wrap-->
+            &lt;div ref="tabsContentWrap" class="tabs-content-wrap">
+                &lt;section class="wrap-inner">
+                    &lt;slot>&lt;/slot>
+                &lt;/section>
+            &lt;/div>
         &lt;/section>
-        &lt;!--modal portal-->
-        &lt;aside id="modalPortal">&lt;/aside>
-        &lt;!--蒙层指示,action-sheet,choose-sheet,picker等 sheetPortal-->
-        &lt;aside id="sheetPortal">&lt;/aside>
-        &lt;!--alert portal-->
-        &lt;aside id="alertPortal">&lt;/aside>
-        &lt;!--loading portal-->
-        &lt;aside id="loadingPortal">&lt;/aside>
-        &lt;!--toast portal-->
-        &lt;aside id="toastPortal">&lt;/aside>
-        &lt;!--当页面被点击的时候，防止在动画的过程中再次点击页面导致bug的蒙层，全局最高！z-index=99999-->
-        &lt;aside class="click-block"
-               :class="[{'click-block-enabled':isClickBlockEnabled}]">&lt;/aside>
     &lt;/article>
 &lt;/template>
 &lt;style lang="scss">
-    @import './app.scss';
-    @import './app.ios.scss';
-    @import './app.md.scss';
-    @import './ios-transition.scss';
-    @import './fade-bottom-transition.scss';
-    @import './fade-right-transition.scss';
-    @import './zoom-transition.scss';
+    @import "./tabs.scss";
+    @import "./tabs.ios.scss";
+    @import "./tabs.md.scss";
 &lt;/style>
 &lt;script>
   /**
-   * @component Base/App
+   * @component Tabs
    * @description
    *
-   *  ## 基础组件 / App组件
+   * ## 大标签 / Tabs
    *
-   * App组件是Vimo框架的根组件,用于管理及控制整个页面的状态.
-   * 控制App行为的方法已挂载到`vue.prototype.$app`上, 所以在页面中直接像这样使用, 例如:
+   * ### 概述
    *
-   * ```
-   * this.$app.setTitle('Hello World');
-   * ```
+   * Tabs是一个使用`$router.replace`进行页面导航的组件，其中Tab组件中传入`props`定义每个tab的结构/样式/路由位子等信息。 Tabs使用场景类似于"栏目切换"， 如果你使用的是IOS手机，请参考"App Store"应用。下图也许能更直观的表达Tabs的职责范围。
    *
-   * 此外, 弹出层挂载点也在此组件中列举, 可以用id搜索到这些挂载点:
-   *
-   * - modalPortal
-   * - sheetPortal
-   * - alertPortal
-   * - loadingPortal
-   * - toastPortal
-   *
-   * ### 何为基础组件
-   *
-   * 因为业务的复杂多样, 如果组件全部加载, 会造成初始化的下载包过大, 所以基础组件在安装Vimo的时候就全局安装, 不需要在业务中再次安装. 除此之外的组件则要按需引入.
-   *
-   * 这里规定的基础组件为: **App/Nav/Page/Header/Footer/Content**, 一共6个.
-   *
-   * ### 可在全局使用的公共样式
-   *
-   * -Text Alignment
-   *    - [text-left]          - 文本左对齐
-   *    - [text-center]        - 文本居中
-   *    - [text-right]         - 文本右对齐
-   *    - [text-justify]       - 文本右对齐
-   *    - [text-nowrap]        - 文本不换行
+   * ![tabs的设计](../asset/tabs.png)
    *
    *
-   * -Text Transformation
-   *    - [text-uppercase]     - 文本大写
-   *    - [text-lowercase]     - 文本小写
-   *    - [text-capitalize]    - 文本首字母大写
+   * ### 使用规则
    *
-   * -Normal
-   *    - [padding]         - 结构增加padding, 默认16px
-   *    - [no-padding]      - 结构去除padding
-   *    - [hidden]      - display:none
-   *    - .hidden       - display:none
+   * 1. Tabs和Tab必须组合使用
+   * 2. Tab组件需要增加`slot="tab"`插槽标记
+   * 3. Tabs组件必须在Page组件中，而且子路由也是一个Page包裹的页面
+   * 4. 页面路由插槽`&lt;router-view>&lt;/router-view>`写在Tabs中，是否开启`keep-alive`由业务自己决定
+   * 5. 页面进入究竟激活那个子页面由路由规则决定
+   * 6. `tabsHighlight`特性只能在`md`模式下使用
    *
-   * @props {String} [mode='ios'] - 模式
    *
-   * @demo http://xiangsongtao.com/vimo/#/app
+   * @props {String=} color                        - 颜色
+   * @props {String} [mode='ios']                  - 模式
+   * @props {Boolean} [tabsHighlight='false']      - tab下面是否显示选中bar
+   * @props {String} [tabsLayout='icon-top']       - tabbar的样式，可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
+   * @props {String} [tabsPlacement='bottom']      - tabbar的位置，可选配置: top, bottom
+   *
+   * @slot tab - Tab组件的插槽
+   *
+   * @fires component:Tabs#onTabChange
+   *
+   * @demo http://xiangsongtao.com/vimo/#/tabs
+   * @usage
+   *
+   * &lt;Page>
+   *    &lt;Tabs tabsLayout="icon-top" tabsPlacement="bottom" @onTabChange="onTabChange" ref=tabs>
+   *        &lt;router-view>&lt;/router-view>
+   *        &lt;Tab slot="tab" :to="{name:'tabsBottom.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger" tabIcon="person">&lt;/Tab>
+   *        &lt;Tab slot="tab" :to="{name:'tabsBottom.demoTab2'}" tabBadge="2" tabTitle="Cars" tabBadgeStyle="dark" tabIcon="car">&lt;/Tab>
+   *        &lt;Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true">&lt;/Tab>
+   *    &lt;/Tabs>
+   * &lt;/Page>
+   *
+   * ...
+   * computed: {
+   *   tabs(){
+   *    // 获取tabs的实例
+   *    return this.$refs.tabs
+   *   }
+   * },
+   * methods: {
+   *    onTabChange(index){
+   *      console.debug('事件 -> onTabChange-selectedIndex:' + index);
+   *      console.debug('当前选择index的tab实例:')
+   *      console.debug(this.tabs.getByIndex(index))
+   *      console.debug('获取当前在激活状态的tab实例:')
+   *      console.debug(this.tabs.getSelected())
+   *      console.debug('由Tabs组件获取当前激活的index:' + this.tabs.getActivatedIndex());
+   *      console.debug('3s后选择第一个')
+   *      clearTimeout(this.timer)
+   *      this.timer = setTimeout(()=>{
+   *        this.tabs.select(0)
+   *      },3000)
+   *    },
+   *  },
+   *
    * */
-
-  import { ClickBlock } from './click-block'
-  import { setElementClass } from '../../util/util'
-  const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
-  const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
-  const ACTIVE_SCROLLING_TIME = 100
-  const clickBlockInstance = new ClickBlock()
-  let scrollDisTimer = null                     // 计时器
+  import { parsePxUnit, firstUpperCase, setElementClass } from '../../util/util'
   export default{
-    name: 'App',
-    data(){
-      return {
-        disabledTimeRecord: 0,        // 禁用计时
-        scrollTimeRecord: 0,        // 滚动计时
-        isScrollDisabled: false, // 控制页面是否能滚动
-        isClickBlockEnabled: false, // 控制是否激活 '冷冻'效果 click-block-enabled
-      }
-    },
+    name: 'Tabs',
     props: {
+      color: [String],
       mode: {
         type: String,
-        default(){ return window.VM &amp;&amp; window.VM.config.get('mode') || 'ios' }
+        default(){ return window.VM &amp;&amp; window.VM.config.get('mode', 'ios') || 'ios' }
+      },
+      // tab下面是否显示选中bar
+      tabsHighlight: {
+        type: Boolean,
+        default(){ return window.VM &amp;&amp; window.VM.config.getBoolean('tabsHighlight', false)}
+      },
+      // tabbar的样式: icon和title的放置位置
+      // 可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
+      tabsLayout: {
+        type: String,
+        default: 'icon-top'
+      },
+      // tabbar的位置 top, bottom
+      tabsPlacement: {
+        type: String,
+        default: 'bottom'
+      },
+    },
+    data(){
+      return {
+        isInit: false, // 当前组件初始化状态
+        tabElementWidth: 0, // 每个tab的宽度, 用于tabHighLight
+        tabSlots: null,
+        tabbarElement: null, // tabbar元素
+        tabsContentElement: null,
+        tabsContentWrapElement: null,
+        tabHighlightEle: null, // TabHighlight元素
+        selectedIndex: -1, // 内部使用的, 表示当前处于激活的Tab的index
+      }
+    },
+    watch: {
+      $route(){
+        if (!this.isInit) return
+        let _index = this.getActivatedIndex()
+        if (this.selectedIndex !== _index) {
+          this.selectedIndex = _index
+          this.tabHighlightSelect(this.selectedIndex)
+          /**
+           * @event component:Tabs#onTabChange
+           * @description tabs切换触发
+           * @property {string}
+           */
+          this.$emit('onTabChange', _index)
+        }
       }
     },
     computed: {
+      // 环境样式
       modeClass () {
-        return `${this.mode}`
+        return `tabs-${this.mode}`
       },
-      platformClass(){
-        return `platform-${this.mode}`
-      },
-      hoverClass(){
-        let _isMobile = !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)
-        return _isMobile ? 'disable-hover' : 'enable-hover'
+      // 颜色
+      colorClass () {
+        return !!this.color ? (`tabs-${this.mode}-${this.color}`) : ''
       },
     },
     methods: {
-      // -------- public --------
-
+      // ------ public ------
       /**
-       * @function setEnabled
+       * @function getByIndex
        * @description
-       * 设置当前页面是否能点击滑动, 一般使用在像ActionSheet/Alert/Modal等弹出会出现transition动画,
-       * 当transition动画进行中，页面是锁定的不能点击，因此使用该函数设定App的状态, 保证动画过程中, 用户不会操作页面
-       * @param {boolean} isEnabled  - `true` for enabled, `false` for disabled
-       * @param {number} duration - isEnabled=false的过期时间 当 `isEnabled` 设置为`false`, 则duration之后，`isEnabled`将自动设为`true`
-       *
-       * @example
-       * this.$app &amp;&amp; this.$app.setEnabled(false, 400) -> 400ms内页面不可点击, 400ms过后可正常使用
-       * this.$app &amp;&amp; this.$app.setEnabled(true) -> 64ms后解除锁定
+       * 获取第几个index的Tab组件实例
+       * @param {number} index - 第几个index
+       * @return {Tab}
        * */
-      setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
-        this.disabledTimeRecord = (isEnabled ? 0 : Date.now() + duration)
-        if (isEnabled) {
-          // disable the click block if it's enabled, or the duration is tiny
-          clickBlockInstance.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS)
-        } else {
-          // show the click block for duration + some number
-          clickBlockInstance.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS)
+      getByIndex(index){
+        if (!!this.tabSlots[index]) {
+          return this.tabSlots[index].componentInstance
         }
       },
 
       /**
-       * @function isEnabled
+       * @function getActivatedIndex
        * @description
-       * 查看App当前的激活(禁用)状态
-       * @return {boolean}
-       */
-      isEnabled() {
-        if (this.disabledTimeRecord === 0) return true
-        return (this.disabledTimeRecord &lt; Date.now())
-      },
-
-      /**
-       * @function setDisableScroll
-       * @description
-       * 是否点击滚动, 这个需要自己设置时间解锁
-       * @param {Boolean} isScrollDisabled - 是否禁止滚动点击 true:禁止滚动/false:可以滚动
-       * @param {number} duration - 时间过后则自动解锁
-       * @example
-       * this.$app &amp;&amp; this.$app.setDisableScroll(true, 400) -> 400ms内页面不可滚动, 400ms过后可正常使用
-       * this.$app &amp;&amp; this.$app.setDisableScroll(false) ->立即解除锁定
+       * 获取当前被选中Tab实例的index
+       * @return {number}
        * */
-      setDisableScroll (isScrollDisabled, duration = 0) {
-        if (duration > 0 &amp;&amp; isScrollDisabled) {
-          this.isScrollDisabled = isScrollDisabled
-          window.clearTimeout(scrollDisTimer)
-          scrollDisTimer = window.setTimeout(() => {
-            this.isScrollDisabled = false
-          }, duration)
-        }
-      },
-      /**
-       * @function isScrolling
-       * @description
-       * 判断现在app是否在scroll状态, scroll状态可能是任意一个页面的状态, 这个isScroll作为全局的scroll判断
-       * @return {boolean}
-       */
-      isScrolling() {
-        if (this.scrollTimeRecord === 0) return false
-        if (this.scrollTimeRecord &lt; Date.now()) {
-          this.scrollTimeRecord = 0
-          return false
-        }
-        return true
-      },
-
-      /**
-       * @function setScrolling
-       * @description
-       * 设置当前App级别是否在滚动, 例如: 这个函数由scroll-view的实例调用, 反应当前的conent
-       * 正在滚动... 滚动的有效时间为ACTIVE_SCROLLING_TIME, 超时后将判断为不再滚动, 由
-       * isScrolling进行判断
-       */
-      setScrolling() {
-        this.scrollTimeRecord = Date.now() + ACTIVE_SCROLLING_TIME
-      },
-
-      /**
-       * @function setClass
-       * @description
-       * 设置app的class, 比如全局颜色替换或者结构变更
-       * @param {string} className
-       * @param {boolean} isAdd
-       */
-      setClass(className, isAdd) {
-        setElementClass(this.$el, className, isAdd)
-      },
-
-      /**
-       * @function setDocTitle
-       * @description
-       * 设置document.title的值
-       * */
-      setDocTitle(val){
-        // 以下代码可以解决以上问题，不依赖jq
-        let _docTitle = document.title
-        if (val !== _docTitle) {
-          // 利用iframe的onload事件刷新页面
-          document.title = val
-          let iframe = document.createElement('iframe')
-          iframe.src = 'static/img/favicon.ico'
-          iframe.style.visibility = 'hidden'
-          iframe.style.width = '1px'
-          iframe.style.height = '1px'
-          iframe.onload = function () {
-            window.setTimeout(function () {
-              document.body.removeChild(iframe)
-            }, 0)
+      getActivatedIndex(){
+        for (let i = 0, len = this.tabSlots.length; len > i; i++) {
+          let tabIns = this.tabSlots[i].componentInstance
+          if (tabIns.to.name === this.$route.name || tabIns.to.path === this.$route.path) {
+            return i
           }
-          document.body.appendChild(iframe)
+        }
+        return 0
+      },
+
+      /**
+       * @function getSelected
+       * @description
+       * 获取当前选中的Tab实例
+       * @return {Tab}
+       * */
+      getSelected(){
+        return this.getByIndex(this.getActivatedIndex())
+      },
+
+      /**
+       * @function select
+       * @description
+       * 根据传入值选中Tab
+       * @param {number/Tab} tabOrIndex - 传入的Tab实例或者Tab的序号
+       * @return {Tab}
+       * */
+      select(tabOrIndex){
+        let tabIns = tabOrIndex
+        if (typeof tabOrIndex === 'number') {
+          tabIns = this.getByIndex(tabOrIndex)
+        }
+        if (tabIns === this.getSelected()) {
+          return tabIns
+        } else {
+          this.$router.replace(tabIns.to)
+          return tabIns
         }
       },
-    },
-    created(){
+
+      // ------ private ------
+
       /**
-       * $app对外方法
+       * 获取每个tab的宽度, 因为是平均, 故用除法就行
+       * @private
        * */
-      let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
-      proto.$app = this
+      getTabElementWidth(){
+        let _count = this.tabSlots.length
+        let _warpWidth = this.tabbarElement.offsetWidth
+        return _warpWidth / _count
+      },
+
+      /**
+       * 第一次进入是的初始化
+       * @private
+       */
+      initTabs(){
+        if (this.isInit) return
+
+        // 获取tabbar元素
+        this.tabSlots = this.$slots.tab
+        this.tabbarElement = this.$refs.tabbar
+        this.tabElementWidth = this.getTabElementWidth()
+        this.selectedIndex = this.getActivatedIndex()
+
+        this.tabHighlightEle = this.$refs.tabHighlight
+        this.tabsContentElement = this.$refs.tabsContent
+        this.tabsContentWrapElement = this.$refs.tabsContentWrap
+
+        // 计算属性盒子的尺寸
+        this.computeTabsContentStyle()
+        this.computeTabsContentWrapStyle()
+
+        // 激活当前选中的Highlight
+        if (this.tabsHighlight) {
+          this.tabHighlightSelect(this.selectedIndex)
+        }
+
+        this.isInit = true
+      },
+
+      /**
+       * 计算stabs-content的样式
+       * 因为这部分首一下因素影响：fullscreen、Header，Footer
+       * @private
+       * */
+      computeTabsContentStyle () {
+        let _styleType = 'margin'
+        let headerBarHeight = 0
+        let footerBarHeight = 0
+        let computedStyle
+        let children = this.$parent.$children
+        let ele
+        let tagName
+
+        children.forEach((child) => {
+          ele = child.$el
+          tagName = child.$options._componentTag.toLowerCase()
+          if (tagName === 'header') {
+            // this.headerElement = ele
+            computedStyle = getComputedStyle(ele)
+            headerBarHeight = parsePxUnit(computedStyle.height)
+          } else if (tagName === 'footer') {
+            // this.footerElement = ele
+            computedStyle = getComputedStyle(ele)
+            footerBarHeight = parsePxUnit(computedStyle.height)
+          }
+        })
+
+        if (headerBarHeight > 0) {
+          this.tabsContentElement.style.marginTop = headerBarHeight + 'px'
+        }
+        if (footerBarHeight > 0) {
+          this.tabsContentElement.style.marginBottom = footerBarHeight + 'px'
+        }
+      },
+
+      /**
+       * 计算stabs-content-wrap的样式
+       * 这部分的因素影响：tabbar的位置及高度
+       * @private
+       * */
+      computeTabsContentWrapStyle(){
+        let tabBarHeight = getComputedStyle(this.tabbarElement).height
+        tabBarHeight = parsePxUnit(tabBarHeight)
+        let _styleType = 'margin' + firstUpperCase(this.tabsPlacement)
+        if (tabBarHeight > 0) {
+          this.tabsContentWrapElement.style[_styleType] = tabBarHeight + 'px'
+        }
+        this.setTabbarPosition(this.tabsPlacement)
+      },
+
+      /**
+       * 给TabBar定位
+       * @param {string} position - top, bottom
+       * @private
+       */
+      setTabbarPosition(position) {
+        position = !!position &amp;&amp; position.toLowerCase()
+        if (position === 'bottom') {
+          this.tabbarElement.style.bottom = '0px'
+          this.tabbarElement.style.top = 'auto'
+        } else {
+          this.tabbarElement.style.top = '0px'
+          this.tabbarElement.style.bottom = 'auto'
+        }
+        this.tabbarElement.classList.add('show-tabbar')
+      },
+
+      /**
+       * 下滑线定位
+       * @param {number} index
+       * @private
+       */
+      tabHighlightSelect(index){
+        if (this.mode !== 'md') return
+        let _offsetLeft = this.tabElementWidth * index
+        let transform = `translate3d(${_offsetLeft}px,0,0) scaleX(${this.tabElementWidth})`
+        setElementClass(this.tabHighlightEle, 'animate', true)
+        this.tabHighlightEle.style[VM.platform.css.transform] = transform
+      },
     },
-    mounted(){
-      console.assert(!!clickBlockInstance, 'clickBlockInstance实例不存在, 请检查!')
-      this.isClickBlockEnabled = true
-    }
+    mounted () {
+      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'page', 'Tabs component must place in Page Component')
+      // 初始化
+      this.initTabs()
+    },
   }
 &lt;/script>
-
 </code></pre>
         </article>
     </section>

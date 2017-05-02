@@ -56,6 +56,26 @@
    *
    * 这里规定的基础组件为: **App/Nav/Page/Header/Footer/Content**, 一共6个.
    *
+   * ### 可在全局使用的公共样式
+   *
+   * -Text Alignment
+   *    - [text-left]          - 文本左对齐
+   *    - [text-center]        - 文本居中
+   *    - [text-right]         - 文本右对齐
+   *    - [text-justify]       - 文本右对齐
+   *    - [text-nowrap]        - 文本不换行
+   *
+   *
+   * -Text Transformation
+   *    - [text-uppercase]     - 文本大写
+   *    - [text-lowercase]     - 文本小写
+   *    - [text-capitalize]    - 文本首字母大写
+   *
+   * -Normal
+   *    - [padding]         - 结构增加padding, 默认16px
+   *    - [no-padding]      - 结构去除padding
+   *    - [hidden]      - display:none
+   *    - .hidden       - display:none
    *
    * @props {String} [mode='ios'] - 模式
    *
