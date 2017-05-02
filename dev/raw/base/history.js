@@ -67,9 +67,10 @@ export class History {
    * @private
    * */
   _pushHistory (Vue, {to, from, next}) {
-    this._h.push(to)
+
     if (this._isPageChange({to, from})) {
       this._d = 'forward'
+      this._h.push(to)
       this._emit(Vue, 'onNavEnter', {to, from, next})
     } else {
       this._d = ''
@@ -85,9 +86,10 @@ export class History {
    * */
   _popHistory (Vue, {to, from, next}) {
     // 激活了浏览器的后退,这里只需要更新状态
-    this._h.pop()
+
     if (this._isPageChange({to, from})) {
       this._d = 'backward'
+      this._h.pop()
       this._emit(Vue, 'onNavLeave', {to, from, next})
     } else {
       this._d = ''
@@ -120,7 +122,7 @@ export class History {
   _isPageChange ({to, from}) {
     let _isFromPage = from.matched.length === 1
     let _isToPage = to.matched.length === 1
-    return _isFromPage || _isToPage
+    return (_isFromPage || _isToPage)
   }
 
   // -------- public --------

@@ -5,34 +5,31 @@
         <Icon v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
         <span v-if="tabTitle" class="tab-button-text">{{tabTitle}}</span>
         <Badge v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
-        <!--<div class="button-effect"></div>-->
     </a>
 </template>
 <script>
   /**
-   * @component Component/Tab
+   * @component Tab
    * @description
+   *
+   * ## 大标签 / Tab
    *
    * 还是需要再声明下，Tab组件必须和Tabs组件配合使用， Tab组件内部与路由`$router`结合,
    * Tab点击切换使用的是`$router.replace(this.to)`处理的， 因此应该包含:to属性用于跳转。
    *
    *
-   * @property {Boolean} [enabled] - 是否能选择
-   * @property {Object} to - 路由跳转，必填
-   * @property {Boolean} [show=true] - 是否显示
-   * @property {String} [tabBadge] - 徽章显示值
-   * @property {String} [tabBadgeStyle] - 徽章颜色
-   * @property {String} [tabIcon] - tab的IconName
-   * @property {String} [tabTitle] - tab的tabTitle
+   * @props {Boolean} [enabled] - 是否能选择
+   * @props {Object} to - 路由跳转，必填
+   * @props {Boolean} [show=true] - 是否显示
+   * @props {String} [tabBadge] - 徽章显示值
+   * @props {String} [tabBadgeStyle] - 徽章颜色
+   * @props {String} [tabIcon] - tab的IconName
+   * @props {String} [tabTitle] - tab的tabTitle
    *
-   * @fires onTabSelect - Tab被点击时触发，传递当前Tab的this
+   * @fires component:Tabs#onTabSelect
    *
-   * @example
-   *
-   <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
-   *
-   *
-   *
+   * @usage
+   * <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
    *
    * */
   let _tabId = -1;
@@ -56,25 +53,13 @@
         default: true,
       },
       // 徽章显示值
-      tabBadge: {
-        type: String,
-        default: '',
-      },
+      tabBadge: [String],
       // 徽章颜色
-      tabBadgeStyle: {
-        type: String,
-        default: '',
-      },
+      tabBadgeStyle: [String],
       // tab的IconName
-      tabIcon: {
-        type: String,
-        default: '',
-      },
+      tabIcon: [String],
       // tab的tabTitle
-      tabTitle: {
-        type: String,
-        default: '',
-      },
+      tabTitle: [String],
     },
     data(){
       return {
@@ -115,6 +100,11 @@
       tabClickHandler(){
         if (this.enabled) {
           this.$router.replace(this.to);
+          /**
+           * @event component:Tabs#onTabSelect
+           * @description Tab选中时触发
+           * @property {string}
+           */
           this.$emit('onTabSelect', this)
         }
       },

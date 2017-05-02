@@ -1,6 +1,10 @@
 <template>
   <Page>
-
+    <Header>
+      <Navbar>
+        <Title>下划线</Title>
+      </Navbar>
+    </Header>
     <Tabs mode="md" :tabsHighlight="true" tabsLayout="icon-top" tabsPlacement="bottom">
       <router-view></router-view>
       <Tab slot="tab" :to="{name:'tabHighLight.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger"

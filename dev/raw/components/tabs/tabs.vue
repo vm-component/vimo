@@ -1,6 +1,8 @@
 <template>
-    <article class="ion-tabs tabs" :class="[modeClass,colorClass]" :tabsLayout="tabsLayout"
-             :tabsHighlight="tabsHighlight">
+    <article class="ion-tabs tabs" :class="[modeClass,colorClass]"
+             :tabsLayout="tabsLayout"
+             :tabsHighlight="tabsHighlight"
+             :tabsPlacement="tabsPlacement">
         <section class="tabs-content" ref="tabsContent">
             <!--tabbar-->
             <div class="tabbar" role="tablist" ref="tabbar" :tabsLayout="tabsLayout">
@@ -23,84 +25,79 @@
 </style>
 <script>
   /**
-   * @component Component/Tabs
+   * @component Tabs
    * @description
-   * ----
-   * Tabs是一个使用`$router.replace`进行页面导航的组件，其中Tab组件中传入`props`定义每个tab的结构/样式/路由位子等信息。
    *
-   * Tabs使用场景类似于"栏目切换"， 如果你使用的是IOS手机，请参考"App Store"应用。下图也许能更直观的表达Tabs的职责范围。
+   * ## 大标签 / Tabs
+   *
+   * ### 概述
+   *
+   * Tabs是一个使用`$router.replace`进行页面导航的组件，其中Tab组件中传入`props`定义每个tab的结构/样式/路由位子等信息。 Tabs使用场景类似于"栏目切换"， 如果你使用的是IOS手机，请参考"App Store"应用。下图也许能更直观的表达Tabs的职责范围。
    *
    * ![tabs的设计](../asset/tabs.png)
    *
-   * Tabs中嵌入的自路由页面应该是不包含Navbar组件的Page页面，可以包括Footer和Header，这个由业务确定。
    *
-   * Tabs组件是使用规则如下：
+   * ### 使用规则
    *
    * 1. Tabs和Tab必须组合使用
    * 2. Tab组件需要增加`slot="tab"`插槽标记
    * 3. Tabs组件必须在Page组件中，而且子路由也是一个Page包裹的页面
    * 4. 页面路由插槽`<router-view></router-view>`写在Tabs中，是否开启`keep-alive`由业务自己决定
-   * 5. 页面进入究竟激活那个子页面由路由规则`route.js`决定
+   * 5. 页面进入究竟激活那个子页面由路由规则决定
    * 6. `tabsHighlight`特性只能在`md`模式下使用
    *
-   * ##### Slots
-   * - tab - Tab组件的插槽
    *
-   * @fires onTabChange - 当切换Tab时触发
+   * @props {String=} color                        - 颜色
+   * @props {String} [mode='ios']                  - 模式
+   * @props {Boolean} [tabsHighlight='false']      - tab下面是否显示选中bar
+   * @props {String} [tabsLayout='icon-top']       - tabbar的样式，可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
+   * @props {String} [tabsPlacement='bottom']      - tabbar的位置，可选配置: top, bottom
    *
+   * @slot tab - Tab组件的插槽
    *
-   * @property {String=} color                        - 颜色
-   * @property {String} [mode='ios']                  - 模式
-   * @property {Boolean} [tabsHighlight='false']      - tab下面是否显示选中bar
-   * @property {String} [tabsLayout='icon-top']       - tabbar的样式，可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
-   * @property {String} [tabsPlacement='bottom']      - tabbar的位置，可选配置: top, bottom
+   * @fires component:Tabs#onTabChange
    *
-   * @example
+   * @demo http://xiangsongtao.com/vimo/#/tabs
+   * @usage
    *
-   <Page>
-   <Tabs tabsLayout="icon-top" tabsPlacement="bottom" @onTabChange="onTabChange" ref=tabs>
-   <router-view></router-view>
-   <Tab slot="tab" :to="{name:'tabsBottom.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger" tabIcon="person"></Tab>
-   <Tab slot="tab" :to="{name:'tabsBottom.demoTab2'}" tabBadge="2" tabTitle="Cars" tabBadgeStyle="dark" tabIcon="car"></Tab>
-   <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
-   </Tabs>
-   </Page>
+   * <Page>
+   *    <Tabs tabsLayout="icon-top" tabsPlacement="bottom" @onTabChange="onTabChange" ref=tabs>
+   *        <router-view></router-view>
+   *        <Tab slot="tab" :to="{name:'tabsBottom.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger" tabIcon="person"></Tab>
+   *        <Tab slot="tab" :to="{name:'tabsBottom.demoTab2'}" tabBadge="2" tabTitle="Cars" tabBadgeStyle="dark" tabIcon="car"></Tab>
+   *        <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
+   *    </Tabs>
+   * </Page>
    *
-   * @example
-   *
-   computed: {
-     tabs(){
-      // 获取tabs的实例
-      return this.$refs.tabs
-     }
-   },
-   methods: {
-      onTabChange(index){
-        console.debug('事件 -> onTabChange-selectedIndex:' + index);
-        console.debug('当前选择index的tab实例:')
-        console.debug(this.tabs.getByIndex(index))
-        console.debug('获取当前在激活状态的tab实例:')
-        console.debug(this.tabs.getSelected())
-        console.debug('由Tabs组件获取当前激活的index:' + this.tabs.getActivatedIndex());
-
-        console.debug('3s后选择第一个')
-        clearTimeout(this.timer)
-        this.timer = setTimeout(()=>{
-          this.tabs.select(0)
-        },3000)
-      },
-    },
+   * ...
+   * computed: {
+   *   tabs(){
+   *    // 获取tabs的实例
+   *    return this.$refs.tabs
+   *   }
+   * },
+   * methods: {
+   *    onTabChange(index){
+   *      console.debug('事件 -> onTabChange-selectedIndex:' + index);
+   *      console.debug('当前选择index的tab实例:')
+   *      console.debug(this.tabs.getByIndex(index))
+   *      console.debug('获取当前在激活状态的tab实例:')
+   *      console.debug(this.tabs.getSelected())
+   *      console.debug('由Tabs组件获取当前激活的index:' + this.tabs.getActivatedIndex());
+   *      console.debug('3s后选择第一个')
+   *      clearTimeout(this.timer)
+   *      this.timer = setTimeout(()=>{
+   *        this.tabs.select(0)
+   *      },3000)
+   *    },
+   *  },
    *
    * */
-  import { parsePxUnit, firstUpperCase } from '../../util/util'
-  import { setElementClass } from '../../util/util'
+  import { parsePxUnit, firstUpperCase, setElementClass } from '../../util/util'
   export default{
     name: 'Tabs',
     props: {
-      color: {
-        type: String,
-        default: ''
-      },
+      color: [String],
       mode: {
         type: String,
         default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
@@ -114,14 +111,13 @@
       // 可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
       tabsLayout: {
         type: String,
-        default: 'icon-top',
+        default: 'icon-top'
       },
       // tabbar的位置 top, bottom
       tabsPlacement: {
         type: String,
-        default: 'bottom',
+        default: 'bottom'
       },
-
     },
     data(){
       return {
@@ -142,6 +138,11 @@
         if (this.selectedIndex !== _index) {
           this.selectedIndex = _index
           this.tabHighlightSelect(this.selectedIndex)
+          /**
+           * @event component:Tabs#onTabChange
+           * @description tabs切换触发
+           * @property {string}
+           */
           this.$emit('onTabChange', _index)
         }
       }
@@ -221,6 +222,7 @@
 
       /**
        * 获取每个tab的宽度, 因为是平均, 故用除法就行
+       * @private
        * */
       getTabElementWidth(){
         let _count = this.tabSlots.length
@@ -229,7 +231,8 @@
       },
 
       /**
-       * 第一次进入是的初始化,
+       * 第一次进入是的初始化
+       * @private
        */
       initTabs(){
         if (this.isInit) return
@@ -259,6 +262,7 @@
       /**
        * 计算stabs-content的样式
        * 因为这部分首一下因素影响：fullscreen、Header，Footer
+       * @private
        * */
       computeTabsContentStyle () {
         let _styleType = 'margin'
@@ -294,6 +298,7 @@
       /**
        * 计算stabs-content-wrap的样式
        * 这部分的因素影响：tabbar的位置及高度
+       * @private
        * */
       computeTabsContentWrapStyle(){
         let tabBarHeight = getComputedStyle(this.tabbarElement).height
@@ -308,6 +313,7 @@
       /**
        * 给TabBar定位
        * @param {string} position - top, bottom
+       * @private
        */
       setTabbarPosition(position) {
         position = !!position && position.toLowerCase()
@@ -324,6 +330,7 @@
       /**
        * 下滑线定位
        * @param {number} index
+       * @private
        */
       tabHighlightSelect(index){
         if (this.mode !== 'md') return

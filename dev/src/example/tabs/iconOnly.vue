@@ -1,6 +1,10 @@
 <template>
   <Page>
-
+    <Header>
+      <Navbar>
+        <Title>只有ICON</Title>
+      </Navbar>
+    </Header>
     <Tabs tabsLayout="title-hide" tabsPlacement="bottom">
       <router-view></router-view>
       <Tab slot="tab" :to="{name:'iconOnly.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger"

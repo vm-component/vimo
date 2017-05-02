@@ -1,6 +1,10 @@
 <template>
   <Page>
-
+    <Header>
+      <Navbar>
+        <Title>只有文字的Tab</Title>
+      </Navbar>
+    </Header>
     <Tabs tabsLayout="icon-hide" tabsPlacement="bottom">
       <router-view></router-view>
       <Tab slot="tab" :to="{name:'titleOnly.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger"

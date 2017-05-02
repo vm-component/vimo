@@ -298,7 +298,7 @@ footer {
   margin-bottom: 1em;
   margin-top: 1em; }
   .description img {
-    width: 100%; }
+    max-width: 100%; }
 
 .code-caption {
   font-style: italic;

@@ -55,7 +55,7 @@
 
       "../dev/raw/components/segment",
       "../dev/raw/components/slides",
-      "../dev/raw/components/slide",
+      "../dev/raw/components/tabs",
 
 
       "../dev/raw/components/grid",

@@ -88,11 +88,11 @@
                 <ItemGroup>
                     <Item button :to="{name: 'segment'}">
                         <Icon slot="item-left" name="book"></Icon>
-                        <span>分段 (Segment)</span>
+                        <span>小标签 (Segment)</span>
                     </Item>
                     <Item button :to="{name: 'tabs'}">
                         <Icon slot="item-left" name="star"></Icon>
-                        <span>标签页 (Tabs)</span>
+                        <span>大标签 (Tabs)</span>
                     </Item>
                 </ItemGroup>
 
