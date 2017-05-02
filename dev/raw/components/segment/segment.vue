@@ -37,6 +37,16 @@
    * 如果不使用`v-model`指令, 通过`value`属性可设置初始选中状态, 但是使用了`v-model`指令时, 动态改变value将不会触发`onChange事件`, 因为事件的触发原则是组件内部变动通知外部, 但是外部改变value不是内部行为, 这点切记.
    *
    *
+   * ### 如何使用
+   *
+   * ```
+   * // 引入
+   * import { Segment, SegmentButton } from 'vimo/components/segment'
+   * // 安装
+   * Vue.component(Segment.name, Segment)
+   * Vue.component(SegmentButton.name, SegmentButton)
+   * ```
+   *
    * @props {String} color - 颜色
    * @props {String} mode - 样式模式
    * @props {String} value - 当前Segment的value, 用于触发制定value的子组件

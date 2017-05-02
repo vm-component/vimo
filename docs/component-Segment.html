@@ -84,7 +84,12 @@
 <li>子组件根据传入的value设置自己的状态</li>
 </ol>
 <h3>异步加载子组件</h3><p>父组件通过被动的的方式获取对子组件的控制权, 便于异步动态初始化子组件的情形. 子组件的value是子组件的标示, 当value没有值时, 通过SegmentButton组件中的text内容获取唯一标示.</p>
-<h3>支持<code>v-model</code>指令</h3><p>如果不使用<code>v-model</code>指令, 通过<code>value</code>属性可设置初始选中状态, 但是使用了<code>v-model</code>指令时, 动态改变value将不会触发<code>onChange事件</code>, 因为事件的触发原则是组件内部变动通知外部, 但是外部改变value不是内部行为, 这点切记.</p></div>
+<h3>支持<code>v-model</code>指令</h3><p>如果不使用<code>v-model</code>指令, 通过<code>value</code>属性可设置初始选中状态, 但是使用了<code>v-model</code>指令时, 动态改变value将不会触发<code>onChange事件</code>, 因为事件的触发原则是组件内部变动通知外部, 但是外部改变value不是内部行为, 这点切记.</p>
+<h3>如何使用</h3><pre class="prettyprint source"><code>// 引入
+import { Segment, SegmentButton } from 'vimo/components/segment'
+// 安装
+Vue.component(Segment.name, Segment)
+Vue.component(SegmentButton.name, SegmentButton)</code></pre></div>
                 
 
                 
@@ -279,7 +284,12 @@
 <li>子组件根据传入的value设置自己的状态</li>
 </ol>
 <h3>异步加载子组件</h3><p>父组件通过被动的的方式获取对子组件的控制权, 便于异步动态初始化子组件的情形. 子组件的value是子组件的标示, 当value没有值时, 通过SegmentButton组件中的text内容获取唯一标示.</p>
-<h3>支持<code>v-model</code>指令</h3><p>如果不使用<code>v-model</code>指令, 通过<code>value</code>属性可设置初始选中状态, 但是使用了<code>v-model</code>指令时, 动态改变value将不会触发<code>onChange事件</code>, 因为事件的触发原则是组件内部变动通知外部, 但是外部改变value不是内部行为, 这点切记.</p></div>-->
+<h3>支持<code>v-model</code>指令</h3><p>如果不使用<code>v-model</code>指令, 通过<code>value</code>属性可设置初始选中状态, 但是使用了<code>v-model</code>指令时, 动态改变value将不会触发<code>onChange事件</code>, 因为事件的触发原则是组件内部变动通知外部, 但是外部改变value不是内部行为, 这点切记.</p>
+<h3>如何使用</h3><pre class="prettyprint source"><code>// 引入
+import { Segment, SegmentButton } from 'vimo/components/segment'
+// 安装
+Vue.component(Segment.name, Segment)
+Vue.component(SegmentButton.name, SegmentButton)</code></pre></div>-->
                 <!---->
 
                 
@@ -325,7 +335,7 @@
             <ul class="dummy">
                 <li>
                     <a href="components_segment_segment.vue.html">components/segment/segment.vue</a>
-                    , <a href="components_segment_segment.vue.html#line124">line 124</a>
+                    , <a href="components_segment_segment.vue.html#line134">line 134</a>
                 </li>
             </ul>
         </dd>

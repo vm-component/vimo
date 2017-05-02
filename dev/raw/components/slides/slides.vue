@@ -44,6 +44,17 @@
    *
    * 具体用法请参考Demo, Swiper API请参考下面的文档.
    *
+   *
+   * ### 如何使用
+   *
+   * ```
+   * // 引入
+   * import { Slides, Slide } from 'vimo/components/slides'
+   * // 安装
+   * Vue.component(Slides.name, Slides)
+   * Vue.component(Slide.name, Slide)
+   * ```
+   *
    * @slot [parallax] - 当定义视差时, 需要这个插槽
    *
    * @usage

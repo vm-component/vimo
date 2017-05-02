@@ -34,7 +34,7 @@
    *
    * 这里是Page组件的父容器, 而且转场动画也是在这里执行.
    *
-   * 转场动画是使用css3的特性完成的, 也就是说Vimo不提供手势转场动画. 按照在props中的说明, 可提供这几类已写好的专场动画, 如果项目需要定制, 则特换自定义的动画即可, 动画定义在Nav组件的文件中.
+   * 转场动画是使用css3的特性完成的, 也就是说Vimo不提供手势转场动画. 按照在props中的说明, 可提供这几类已写好的专场动画, 如果项目需要定制, 则特换自定义的动画即可, 动画定义在App组件的文件夹中.
    *
    * @props {String} [animate] - 转场动画的名称, 可以是这里的一种: ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
    *
