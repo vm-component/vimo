@@ -34,8 +34,7 @@
    *
    * Tabs是一个使用`$router.replace`进行页面导航的组件，其中Tab组件中传入`props`定义每个tab的结构/样式/路由位子等信息。 Tabs使用场景类似于"栏目切换"， 如果你使用的是IOS手机，请参考"App Store"应用。下图也许能更直观的表达Tabs的职责范围。
    *
-   * ![tabs的设计](../asset/tabs.png)
-   *
+   * ![tabs的设计](https://github.com/DTFE/Vimo/blob/master/dev/static/img/tabs.png?raw=true)
    *
    * ### 使用规则
    *
@@ -71,7 +70,7 @@
    *
    * ...
    * computed: {
-   *   tabs(){
+   *   tabsComponent(){
    *    // 获取tabs的实例
    *    return this.$refs.tabs
    *   }
@@ -80,14 +79,14 @@
    *    onTabChange(index){
    *      console.debug('事件 -> onTabChange-selectedIndex:' + index);
    *      console.debug('当前选择index的tab实例:')
-   *      console.debug(this.tabs.getByIndex(index))
+   *      console.debug(this.tabsComponent.getByIndex(index))
    *      console.debug('获取当前在激活状态的tab实例:')
-   *      console.debug(this.tabs.getSelected())
-   *      console.debug('由Tabs组件获取当前激活的index:' + this.tabs.getActivatedIndex());
+   *      console.debug(this.tabsComponent.getSelected())
+   *      console.debug('由Tabs组件获取当前激活的index:' + this.tabsComponent.getActivatedIndex());
    *      console.debug('3s后选择第一个')
    *      clearTimeout(this.timer)
    *      this.timer = setTimeout(()=>{
-   *        this.tabs.select(0)
+   *        this.tabsComponent.select(0)
    *      },3000)
    *    },
    *  },
@@ -260,12 +259,12 @@
       },
 
       /**
-       * 计算stabs-content的样式
+       * 计算tabs-content的样式
        * 因为这部分首一下因素影响：fullscreen、Header，Footer
        * @private
        * */
       computeTabsContentStyle () {
-        let _styleType = 'margin'
+//        let _styleType = 'margin'
         let headerBarHeight = 0
         let footerBarHeight = 0
         let computedStyle

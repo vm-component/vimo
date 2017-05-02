@@ -24,7 +24,7 @@ npm install vimo
 
 ## 组件清单
 
-![组件清单](https://github.com/DTFE/Vimo/blob/master/dev/static/vimo_components.png?raw=true)
+![组件清单](https://github.com/DTFE/Vimo/blob/master/dev/static/img/vimo_components.png?raw=true)
 
 ## 框架技术清单(主要部分)
 
