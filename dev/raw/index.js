@@ -45,6 +45,8 @@ export default {
 
     // add logo
     addLogo(VERSION, Vue.version)
+
+    window.VM.version = VERSION
   }
 }
 

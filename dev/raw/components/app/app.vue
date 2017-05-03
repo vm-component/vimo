@@ -1,5 +1,6 @@
 <template>
-    <article class="ion-app" :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
+    <article class="ion-app" :version="version"
+             :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
         <!--app-root start-->
         <section class="app-root">
             <slot></slot>
@@ -88,6 +89,7 @@
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
   const ACTIVE_SCROLLING_TIME = 100
   const clickBlockInstance = new ClickBlock()
+
   let scrollDisTimer = null                     // 计时器
   export default{
     name: 'App',
@@ -97,6 +99,8 @@
         scrollTimeRecord: 0,        // 滚动计时
         isScrollDisabled: false, // 控制页面是否能滚动
         isClickBlockEnabled: false, // 控制是否激活 '冷冻'效果 click-block-enabled
+
+        version: window.VM && window.VM.version
       }
     },
     props: {
