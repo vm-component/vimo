@@ -1,12 +1,15 @@
 /**
- * @component Component/Toast
+ * @component Toast
  * @description
  *
- * Toast是移动端比较灵活的通知组件, 可以用它来处理反馈信息或者展示系统消息.
- * Toast组件可以出现在内容的上面/下面/中间, 可以定时关闭, 也可以手动点击Toast的关闭按钮, 形式较为灵活.
+ * ## 弹出层 / Toast提示组件
+ *
+ * Toast是移动端比较灵活的通知组件, 可以用它来处理反馈信息或者展示系统消息. Toast组件可以出现在内容的上面/下面/中间, 可以定时关闭, 也可以手动点击Toast的关闭按钮, 形式较为灵活.
+ *
+ * ### 还有
  *
  * Toast组件本身并不是单例对象, 但是调用指纹都为`this.$toast('Toast Bottom Only String')`, 因此可能会问:
- * 如何程序关闭toast呢? 目前, 关闭Toast只有三个方法,
+ * 如何程序关闭toast呢? 目前, 关闭Toast只有三个方法:
  *
  * 1. duration 过期时间
  * 2. showCloseButton 关闭按钮
@@ -15,8 +18,11 @@
  *
  * 因此使用Toast需要知道这一点.
  *
- * 此外, 在Toast的传入参数中定义`onDismiss`回调函数, 可以在Toast关闭及动画结束后可以进行一些操作.
- * `dismissOnPageChange`表示如果路由切换自动关闭Toast, 这个属性默认值为`false`.
+ *
+ * ### 此外
+ *
+ * - 在Toast的传入参数中定义`onDismiss`回调函数, 可以在Toast关闭及动画结束后可以进行一些操作.
+ * - `dismissOnPageChange`表示如果路由切换自动关闭Toast, 这个属性默认值为`false`.
  *
  * ### 实例化Toast的方法
  *
@@ -60,18 +66,17 @@
  })
  *```
  *
+ * @props {string} message - Toast显示的message, 如果文本过程则折行并自动撑开容器
+ * @props {number} [duration=3000] - Toast开启时间, 过期后关闭
+ * @props {string} [position="bottom"] - Toast开启放置的位置. 可以是: "top", "middle", "bottom".
+ * @props {string} [cssClass] - 额外的样式定义, 多个样式使用空格隔开
+ * @props {boolean} [showCloseButton=false] - 是否显示关闭按钮
+ * @props {string} [closeButtonText='Close'] - 关闭按钮的文字, 这里默认是Close
+ * @props {boolean} [dismissOnPageChange=false] - 当导航切换时, 是否自动关闭, 默认不关闭
+ * @props {string} [mode='ios'] - 模式
+ * @props {string} [onDismiss=noop] - 当关闭动画结束时执行的函数
  *
- * #### 4. Options对象
- *
- * @property {string} message - The message for the toast. Long strings will wrap and the toast container will expand.
- * @property {number} [duration=3000] - How many milliseconds to wait before hiding the toast.
- * @property {string} [position="bottom"] - The position of the toast on the screen. Accepted values: "top", "middle", "bottom".
- * @property {string} [cssClass] - Additional classes for custom styles, separated by spaces.
- * @property {boolean} [showCloseButton=false] - Whether or not to show a button to close the toast.
- * @property {string} [closeButtonText='Close'] - Text to display in the close button.
- * @property {boolean} [dismissOnPageChange=false] - Whether to dismiss the toast when navigating to a new page or nav back.
- * @property {string} [mode='ios'] - mode
- * @property {string} [onDismiss=noop] - execute when dismiss animate finished
+ * @demo http://xiangsongtao.com/vimo/#/toast
  */
 
 import Vue from 'vue'

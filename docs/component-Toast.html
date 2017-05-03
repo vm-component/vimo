@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>components/toast/toast.vue - Documentation</title>
+    <title>Toast - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/prettify/prettify.js"></script>
@@ -56,7 +56,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">components/toast/toast.vue</h1>
+        <h1 class="page-title">Toast</h1>
         
 
         
@@ -64,162 +64,597 @@
 
 
 
-    <section>
+<section class="page-content">
+
+    <section class="content">
+        <header>
+            
+        </header>
+
         <article>
-            <pre class="prettyprint source linenums"><code>&lt;template>
-    &lt;div class="toast" :class="[modeClass,cssClass]">
-        &lt;transition :name="transitionClass"
-                    v-on:before-enter="_beforeEnter"
-                    v-on:after-enter="_afterEnter"
-                    v-on:before-leave="_beforeLeave"
-                    v-on:after-leave="_afterLeave">
-            &lt;div v-show="isActive" class="toast-wrapper" :class="[positionClass]">
-                &lt;div class="toast-container">
-                    &lt;div class="toast-message" id="toast-hdr" v-if="message">{{message}}&lt;/div>
-                    &lt;Button class="toast-button" clear v-if="showCloseButton" @click="cbClick()">
-                        &lt;span>{{closeButtonText}}&lt;/span>
-                    &lt;/Button>
-                &lt;/div>
-            &lt;/div>
-        &lt;/transition>
-    &lt;/div>
-&lt;/template>
-&lt;style scoped lang="scss">
-    @import "./toast";
-    @import "./toast.ios";
-    @import "./toast.md";
-&lt;/style>
-&lt;script type="text/babel">
-  import { registerListener } from '../../util/util'
-  import { Button } from '../button'
-  export default {
-    data() {
-      return {
-        message: '', // String
-        duration: null, // Number
-        position: 'bottom',
-        cssClass: null,
-        showCloseButton: false,
-        closeButtonText: 'Close', // the text of close button
-        dismissOnPageChange: false, // whether to close component when page change
-        onDismiss: null, // execute when component closed and animate done
-        mode: 'ios', // ios?android
+            <div class="container-overview">
 
-        // component state
-        isActive: false, // open state
-
-        // prmiseCallback
-        presentCallback: null,
-        dismissCallback: null,
-        timer: null, // timer
-        unreg: null,
-      }
-    },
-    computed: {
-      // set mode class of ActionSheet
-      modeClass () {
-        return `toast-${this.mode}`
-      },
-      // position class
-      positionClass () {
-        return `toast-${this.position}`
-      },
-      transitionClass(){
-        return `toast-${this.position}-${this.mode}`
-      }
-    },
-    methods: {
-      // -------- private --------
-      /**
-       *  @private
-       * Animate Hooks
-       * */
-      _beforeEnter () {
-        this.$app &amp;&amp; this.$app.setEnabled(false, 400)
-      },
-      _afterEnter (el) {
-        this.presentCallback(el);
-      },
-      _beforeLeave () {
-        this.$app &amp;&amp; this.$app.setEnabled(false, 400)
-      },
-      _afterLeave (el) {
-        this.dismissCallback(el);
-        // 删除DOM
-        this.$el.remove()
-      },
-
-      /**
-       *  @private
-       * click close button to close
-       * */
-      cbClick() {
-        return this.dismiss().then(() => {
-          !!this.onDismiss &amp;&amp; this.onDismiss()
-        })
-      },
-
-      /**
-       * @private
-       * the handler of dismiss the page when route change
-       */
-      dismissOnPageChangeHandler(){
-        if (this.isActive) {
-          if (!this.dismissOnPageChange) {
-            return
-          }
-          if (this.showCloseButton) {
-            this.cbClick()
-          } else if (this.timer) {
-            window.clearTimeout(this.timer);
-            this.timer = null;
-            this.dismiss().then(() => {
-              !!this.onDismiss &amp;&amp; this.onDismiss()
-            })
-          }
-        }
-        this.unreg &amp;&amp; this.unreg();
-      },
-
-      // -------- public --------
-      /**
-       * open current component instance
-       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
-       */
-      present () {
-        this.isActive = true;
-        if (!this.showCloseButton) {
-          this.timer = window.setTimeout(() => {
-            this.timer = null;
-            this.dismiss().then(() => {
-              !!this.onDismiss &amp;&amp; this.onDismiss()
-            })
-          }, this.duration)
-        }
-        return new Promise((resolve) => {this.presentCallback = resolve})
-      },
-
-      /**
-       * close current component instance
-       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
-       */
-      dismiss () {
-        this.isActive = false; // move
-        return new Promise((resolve) => {this.dismissCallback = resolve})
-      },
-    },
-    mounted(){
-      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
-    },
-    components: {
-      Button
+                
+                <div class="description"><h2>弹出层 / Toast提示组件</h2><p>Toast是移动端比较灵活的通知组件, 可以用它来处理反馈信息或者展示系统消息. Toast组件可以出现在内容的上面/下面/中间, 可以定时关闭, 也可以手动点击Toast的关闭按钮, 形式较为灵活.</p>
+<h3>还有</h3><p>Toast组件本身并不是单例对象, 但是调用指纹都为<code>this.$toast('Toast Bottom Only String')</code>, 因此可能会问:<br>如何程序关闭toast呢? 目前, 关闭Toast只有三个方法:</p>
+<ol>
+<li>duration 过期时间</li>
+<li>showCloseButton 关闭按钮</li>
+<li>当上面两个都设置了, 则只执行第二个配置</li>
+<li><code>let toast = this.$toast('Toast Bottom Only String')</code>返回toast实例, 执行<code>toast.dismiss()</code>执行关闭</li>
+</ol>
+<p>因此使用Toast需要知道这一点.</p>
+<h3>此外</h3><ul>
+<li>在Toast的传入参数中定义<code>onDismiss</code>回调函数, 可以在Toast关闭及动画结束后可以进行一些操作.</li>
+<li><code>dismissOnPageChange</code>表示如果路由切换自动关闭Toast, 这个属性默认值为<code>false</code>.</li>
+</ul>
+<h3>实例化Toast的方法</h3><h4>1. 只传入Message</h4><pre class="prettyprint source"><code> this.$toast('Bottom was added successfully')</code></pre><h4>2. 传入Message和Duration</h4><pre class="prettyprint source"><code> this.$toast('Bottom was added successfully',1000)</code></pre><h4>3. 传入Options对象</h4><pre class="prettyprint source"><code> this.$toast({
+    message: 'Bottom was added successfully',
+    duration: 3000,
+    position: 'bottom',
+    dismissOnPageChange: true,
+    onDismiss () {
+      console.debug('2 onDismiss in promise success!')
     }
-  };
-&lt;/script>
-</code></pre>
+ })
+
+ this.$toast({
+    message: 'Top with Button was added successfully',
+    duration: 3000, // 这个不生效
+    position: 'top',
+    showCloseButton: true,
+    closeButtonText: '好的',
+    cssClass: 'showCloseBtnToastCssClass',
+    dismissOnPageChange: true,
+    onDismiss () {
+      console.debug('5 onDismiss in promise success!')
+    }
+ })</code></pre></div>
+                
+
+                
+                
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="components_toast_toast.js.html">components/toast/toast.js</a>
+                    , <a href="components_toast_toast.js.html#line1">line 1</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+<h3 class="subsection-title">传入属性 / Props:</h3>
+
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>名称 / Name</th>
+        
+
+        <th>类型 / Type</th>
+
+        
+        <th>属性 / Attributes</th>
+        
+
+        
+        <th>默认值 / Default</th>
+        
+
+        <th class="last">描述 / Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Toast显示的message, 如果文本过程则折行并自动撑开容器</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>duration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>3000</code>
+                
+                </td>
+            
+
+            <td class="description last">Toast开启时间, 过期后关闭</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>position</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>"bottom"</code>
+                
+                </td>
+            
+
+            <td class="description last">Toast开启放置的位置. 可以是: "top", "middle", "bottom".</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cssClass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">额外的样式定义, 多个样式使用空格隔开</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>showCloseButton</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last">是否显示关闭按钮</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>closeButtonText</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'Close'</code>
+                
+                </td>
+            
+
+            <td class="description last">关闭按钮的文字, 这里默认是Close</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dismissOnPageChange</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last">当导航切换时, 是否自动关闭, 默认不关闭</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'ios'</code>
+                
+                </td>
+            
+
+            <td class="description last">模式</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onDismiss</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>noop</code>
+                
+                </td>
+            
+
+            <td class="description last">当关闭动画结束时执行的函数</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!---->
+                <!--<div class="description"><h2>弹出层 / Toast提示组件</h2><p>Toast是移动端比较灵活的通知组件, 可以用它来处理反馈信息或者展示系统消息. Toast组件可以出现在内容的上面/下面/中间, 可以定时关闭, 也可以手动点击Toast的关闭按钮, 形式较为灵活.</p>
+<h3>还有</h3><p>Toast组件本身并不是单例对象, 但是调用指纹都为<code>this.$toast('Toast Bottom Only String')</code>, 因此可能会问:<br>如何程序关闭toast呢? 目前, 关闭Toast只有三个方法:</p>
+<ol>
+<li>duration 过期时间</li>
+<li>showCloseButton 关闭按钮</li>
+<li>当上面两个都设置了, 则只执行第二个配置</li>
+<li><code>let toast = this.$toast('Toast Bottom Only String')</code>返回toast实例, 执行<code>toast.dismiss()</code>执行关闭</li>
+</ol>
+<p>因此使用Toast需要知道这一点.</p>
+<h3>此外</h3><ul>
+<li>在Toast的传入参数中定义<code>onDismiss</code>回调函数, 可以在Toast关闭及动画结束后可以进行一些操作.</li>
+<li><code>dismissOnPageChange</code>表示如果路由切换自动关闭Toast, 这个属性默认值为<code>false</code>.</li>
+</ul>
+<h3>实例化Toast的方法</h3><h4>1. 只传入Message</h4><pre class="prettyprint source"><code> this.$toast('Bottom was added successfully')</code></pre><h4>2. 传入Message和Duration</h4><pre class="prettyprint source"><code> this.$toast('Bottom was added successfully',1000)</code></pre><h4>3. 传入Options对象</h4><pre class="prettyprint source"><code> this.$toast({
+    message: 'Bottom was added successfully',
+    duration: 3000,
+    position: 'bottom',
+    dismissOnPageChange: true,
+    onDismiss () {
+      console.debug('2 onDismiss in promise success!')
+    }
+ })
+
+ this.$toast({
+    message: 'Top with Button was added successfully',
+    duration: 3000, // 这个不生效
+    position: 'top',
+    showCloseButton: true,
+    closeButtonText: '好的',
+    cssClass: 'showCloseBtnToastCssClass',
+    dismissOnPageChange: true,
+    onDismiss () {
+      console.debug('5 onDismiss in promise success!')
+    }
+ })</code></pre></div>-->
+                <!---->
+
+                
+                
+            </div>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
         </article>
     </section>
+
+    
+    <aricle class="showcase">
+        <div id="js_showcase__box" class="showcase__box ios">
+            <div class="showcase__choose">
+                <span id="js_choose_ios" class="">IOS</span>
+                <span id="js_choose_md" class="">Android</span>
+            </div>
+            <div class="showcase__box--md">
+                <iframe frameborder="0" seamless
+                        src="http://xiangsongtao.com/vimo/#/toast?vmMode=md"></iframe>
+            </div>
+            <div class="showcase__box--ios">
+                <iframe frameborder="0" seamless
+                        src="http://xiangsongtao.com/vimo/#/toast?vmMode=ios"></iframe>
+            </div>
+        </div>
+    </aricle>
+    
+
+</section>
+
+<script>
+  ;(function () {
+    document.getElementById('js_choose_ios').addEventListener('click', function () {
+      console.log('js_choose_ios')
+      var $showCaseBox = document.getElementById('js_showcase__box')
+      if (!_hasClass($showCaseBox, 'ios')) {
+        _removeClass($showCaseBox, 'md')
+        _addClass($showCaseBox, 'ios')
+      }
+
+    })
+    document.getElementById('js_choose_md').addEventListener('click', function () {
+      console.log('js_choose_md')
+      var $showCaseBox = document.getElementById('js_showcase__box')
+      if (!_hasClass($showCaseBox, 'md')) {
+        _removeClass($showCaseBox, 'ios')
+        _addClass($showCaseBox, 'md')
+      }
+    })
+
+    function _hasClass (obj, cls) {
+      return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+    }
+
+    function _addClass (obj, cls) {
+      if (!_hasClass(obj, cls)) {
+        obj.className += ' ' + cls
+      }
+    }
+
+    function _removeClass (obj, cls) {
+      if (_hasClass(obj, cls)) {
+        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+        obj.className = obj.className.replace(reg, ' ').trim()
+      }
+    }
+  })()
+</script>
+
 
 
 
