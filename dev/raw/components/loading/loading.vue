@@ -66,6 +66,7 @@
    * @props {string} [mode='ios'] - 模式
    *
    * @demo http://xiangsongtao.com/vimo/#/loading
+   * @see component:Indicator
    * @usage
    *
    * // 只显示菊花
