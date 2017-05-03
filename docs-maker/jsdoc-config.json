@@ -87,8 +87,34 @@
       "../dev/raw/components/indicator",
 
 
+      "../dev/raw/components/infinite-scroll",
+      "../dev/raw/components/refresher",
+
+
       "../dev/raw/components/list",
       "../dev/raw/components/item",
+      "../dev/raw/components/avatar",
+      "../dev/raw/components/thumbnail",
+      "../dev/raw/components/note",
+
+      "../dev/raw/components/label",
+      "../dev/raw/components/input",
+      "../dev/raw/components/checkbox",
+      "../dev/raw/components/radio",
+      "../dev/raw/components/range",
+      "../dev/raw/components/searchbar",
+      "../dev/raw/components/select",
+      "../dev/raw/components/toggle",
+
+
+      "../dev/raw/components/spinner",
+      "../dev/raw/components/img",
+      "../dev/raw/components/icon",
+      "../dev/raw/components/card",
+      "../dev/raw/components/button",
+      "../dev/raw/components/badge",
+      "../dev/raw/components/backdrop",
+      "../dev/raw/components/menus",
 
 
       "../dev/raw/components/grid",

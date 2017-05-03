@@ -25,42 +25,29 @@
 
 <script>
   /**
-   * @component Component/Backdrop
+   * @component Backdrop
    * @description
-   * 背景变黑的组件, 可以实例化也可以模板式调用!
-   *
-   * #### 实例化调用
    *
    *
-   * ```
-   <Content padding>
-   <h3>BackDrop组件</h3>
-   <h5>可以实例化调用也可以模板式调用</h5>
-   <p>打开Backdrop, 4000ms之后关闭, 或者点击关闭</p>
-   <Button block @click="present">打开Backdrop</Button>
-   </Content>
-   * ```
-   * ```
-   present(){
-        const _this = this;
-        let _timer;
-        _this.$backdrop.present({
-          bdClick () {
-            clearTimeout(_timer)
-            _this.$backdrop.dismiss()
-          }
-        });
-        _timer = setTimeout(function () {
-          _this.$backdrop.dismiss()
-        }, 4000);
-      },
-   *```
+   * ## Backdrop背景暗化组件
    *
-   * #### 模板调用
-   * ```
-   <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive"></Backdrop>
-   * ```
+   * 一般是用来进行背景遮罩的. 比如Alert/Actionsheet组件等用到.
    *
+   *
+   * @props {Boolean} [enableBackdropDismiss=true] - 是否能点击背景关闭操作, 设置`backdrop-no-tappable` 样式(不重要)
+   * @props {Boolean} [isActive=false] - 组件是否激活
+   * @props {Function} [bdClick=noop] - 点击背景的处理方式
+   * @props {Number} [top=0] - 偏移量
+   * @props {Number} [left=0] - 偏移量
+   * @props {Boolean} [fixed=false] - 是否设置position：fixed
+   *
+   * @fires component:Backdrop#onShown
+   * @fires component:Backdrop#onHidden
+   *
+   * @demo http://xiangsongtao.com/vimo/#/backdrop
+   *
+   * @usage
+   * <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive"></Backdrop>
    * */
   export default{
     name: 'Backdrop',
@@ -73,8 +60,7 @@
     },
     props: {
       /**
-       * 这个是给组件式调用, 实例化调用则不操作此变量
-       * 即, 使用实例化方法: present/dismiss不受enableBackdropDismiss的限制
+       * 这个是给组件式调用
        * */
       enableBackdropDismiss: {
         type: Boolean,
@@ -83,10 +69,7 @@
       /**
        * 控制backdrop的显示隐藏
        * */
-      isActive: {
-        type: Boolean,
-        default: false
-      },
+      isActive: [Boolean],
       /**
        * 点击背景的处理方式
        * */
@@ -96,7 +79,6 @@
           return function () {}
         }
       },
-
       /**
        * backdrop偏移量, 用于定制化显示
        * */
@@ -109,10 +91,7 @@
         default: 0
       },
       // 设置position：fixed
-      fixed: {
-        type: Boolean,
-        default: false
-      }
+      fixed: [Boolean]
     },
     watch: {
       isActive () {
@@ -124,11 +103,19 @@
        * 过渡钩子
        * @private
        */
-      _beforeEnter (el) {
-        this.$emit('onBackdropShown');
+      _beforeEnter () {
+        /**
+         * @event component:Backdrop#onShown
+         * @description 当Backdrop打开时触发
+         */
+        this.$emit('onShown')
       },
-      _afterLeave (el) {
-        this.$emit('onBackdropHidden');
+      _afterLeave () {
+        /**
+         * @event component:Backdrop#onHidden
+         * @description 当Backdrop关闭时触发
+         */
+        this.$emit('onHidden')
       }
     }
   }

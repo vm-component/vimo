@@ -13,18 +13,73 @@
 <style lang="scss"></style>
 <script>
   /**
-   * @name ItemSliding
-   * @component Component/ItemSliding
+   * @component ItemSliding
    * @description
    *
-   * item滑动选择
+   * ## 列表组件 / ItemSliding滑动选择组件
    *
-   * 组件说明：
-   * 对外事件：
-   * onDrag - 拖动时触发
-   * onSwipe - 滑动超过按钮最大距离+SWIPE_MARGIN时触发，不管方向
-   * onSwipeRight - 向右滑动 超过按钮最大距离+SWIPE_MARGIN时触发
-   * onSwipeLeft - 向左滑动 超过按钮最大距离+SWIPE_MARGIN时触发
+   * 这个组件是对Item组件的拓展, 当左右滑动时出现可选择的按钮, 这个组件在部分安卓机上卡顿明显, 使用起来效果不太好, 但是在IOS上很流畅.
+   *
+   *
+   * ### 子组件ItemOptions
+   *
+   * ItemOptions只能在ItemSliding组件中使用
+   *
+   * ### 如何使用
+   *
+   * ```
+   * // 引入
+   * import { List } from 'vimo/components/list'
+   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
+   * import { Note } from 'vimo/components/note'
+   * import { Avatar } from 'vimo/components/avatar'
+   * import { Label } from 'vimo/components/label'
+   * // 安装
+   * export default{
+   *   components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label}
+   * }
+   * ```
+   *
+   *
+   * @props {Boolean} disabled - 是否禁用
+   *
+   * @fires component:ItemSliding#onDrag
+   * @fires component:ItemSliding#onSwipe
+   * @fires component:ItemSliding#onSwipeRight
+   * @fires component:ItemSliding#onSwipeLeft
+   *
+   * @demo http://xiangsongtao.com/vimo/#/slidingList
+   * @see component:ItemOptions
+   *
+   * @usage
+   *
+   * <ItemSliding>
+   *    <Item>
+   *        <Avatar slot="item-left">
+   *            <img src="./img/avatar-ts-woody.png">
+   *        </Avatar>
+   *        <Label>
+   *            <h2>两边都有按钮</h2>
+   *            <p>试试 ↔️️ 都滑动</p>
+   *        </Label>
+   *    </Item>
+   *    <ItemOptions side="left">
+   *        <Button color="primary" @click="clickText">
+   *            <Icon name="text"></Icon>
+   *            <span>Text</span>
+   *        </Button>
+   *        <Button color="secondary" @click="clickCall">
+   *            <Icon name="call"></Icon>
+   *            <span>Call</span>
+   *        </Button>
+   *            </ItemOptions>
+   *            <ItemOptions side="right">
+   *        <Button color="primary" @click="clickEmail">
+   *            <Icon name="mail"></Icon>
+   *            <span>Email</span>
+   *        </Button>
+   *    </ItemOptions>
+   * </ItemSliding>
    * */
   import { pointerCoord, transitionEnd } from '../../util/util.js'
 
@@ -88,6 +143,8 @@
     methods: {
 
       /**
+       * @function getOpenAmount
+       * @description
        * 获取ion-item的开启值
        * @return {number}
        * */
@@ -96,6 +153,8 @@
       },
 
       /**
+       * @function getSlidingPercent
+       * @description
        * 获取开口的百分比
        * @return {number}
        * */
@@ -111,6 +170,8 @@
       },
 
       /**
+       * @function openLeftOptions
+       * @description
        * 开启左边的选项卡
        * @return {any} ins - 开启的组件示例的this，默认是当前组件自己的this
        * */
@@ -134,6 +195,8 @@
       },
 
       /**
+       * @function openRightOptions
+       * @description
        * 开启右边的选项卡
        * @return {any} ins - 开启的组件示例的this，默认是当前组件自己的this
        * */
@@ -157,6 +220,8 @@
       },
 
       /**
+       * @function close
+       * @description
        * 关闭当前的sliding
        * */
       close() {
@@ -198,7 +263,6 @@
         this.firstTimestamp = new Date().getTime()
         this.startSliding(this.firstCoord.x)
         this.$eventBus && this.$eventBus.$emit('onItemSlidingOpen', this)
-
         this.isDraggingFromStart = true
       },
 
@@ -476,6 +540,12 @@
         }
 
         this.setItemTransformX(-openAmount)
+
+        /**
+         * @event component:ItemSliding#onDrag
+         * @description 正在拖动时触发
+         * @property {ItemSlidingComponent} this - 当前ItemSliding实例
+         */
         this.$emit('onDrag', this)
       },
 
@@ -513,9 +583,28 @@
        * */
       fireSwipeEvent() {
         if (this.state & SLIDING_STATE.SwipeRight) {
+
+          /**
+           * @event component:ItemSliding#onSwipe
+           * @description 当滑动超过一定阈值时触发, 这个事件不确定方向
+           * @property {ItemSlidingComponent} this - 当前ItemSliding实例
+           */
+
+          /**
+           * @event component:ItemSliding#onSwipeLeft
+           * @description 向左滑动 超过按钮最大距离+SWIPE_MARGIN时触
+           * @property {ItemSlidingComponent} this - 当前ItemSliding实例
+           */
           this.$emit('onSwipe', this)
           this.$emit('onSwipeLeft', this)
         } else if (this.state & SLIDING_STATE.SwipeLeft) {
+
+          /**
+           * @event component:ItemSliding#onSwipeRight
+           * @description 向右滑动 超过按钮最大距离+SWIPE_MARGIN时触发
+           * @property {ItemSlidingComponent} this - 当前ItemSliding实例
+           */
+
           this.$emit('onSwipe', this)
           this.$emit('onSwipeRight', this)
         }
