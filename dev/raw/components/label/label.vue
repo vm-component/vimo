@@ -14,15 +14,14 @@
    * @description
    *
    * Label组件主要是放在Item组件中使用, 用于标记Input组件/Toggle组件/Checkbox组件等From组件
-   * @property {String} mode - 模式
-   * @property {String} color - 颜色
-   * @property {String} fixed - 固定在input旁边
-   * @property {String} floating - 浮动在input上面, 点击input时浮动到上面
-   * @property {String} stacked - 永远在input的上面
+   * @props {String} mode - 模式
+   * @props {String} color - 颜色
+   * @props {String} fixed - 固定在input旁边
+   * @props {String} floating - 浮动在input上面, 点击input时浮动到上面
+   * @props {String} stacked - 永远在input的上面
    *
    * */
-  import { setElementClass } from '../../util/util'
-  import { isTrueProperty } from '../../util/util'
+  import { setElementClass, isTrueProperty } from '../../util/util'
   export default{
     name: 'Label',
     data(){
@@ -41,20 +40,13 @@
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: {
-        type: String,
-        default: '',
-      },
+      color: [String],
 
       /**
        * 规定 label 字段所属的一个或多个表单。
        * */
-      form: {
-        type: String,
-        default: '',
-      },
+      form: [String],
     },
-    watch: {},
     computed: {
       // 环境样式
       modeClass () {
@@ -64,10 +56,7 @@
       colorClass () {
         return !!this.color ? (`label-${this.mode}-${this.color}`) : ''
       }
-
     },
-    methods: {},
-    created () {},
     mounted () {
       /**
        * 可以是fixed/floating/stacked，这个和input与label的位置相关
