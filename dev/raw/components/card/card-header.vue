@@ -12,6 +12,6 @@
         componentName: 'card-header'
       }
     },
-    extend: mixin
+    extends: mixin
   }
 </script>

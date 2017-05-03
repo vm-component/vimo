@@ -12,6 +12,6 @@
         componentName: 'card-content'
       }
     },
-    extend: mixin
+    extends: mixin
   }
 </script>

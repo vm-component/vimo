@@ -9,15 +9,13 @@
             <List>
                 <!--header-->
                 <ListHeader>
-                    Contents
-
-
+                    <span>Contents</span>
                 </ListHeader>
                 <!--group-->
                 <ItemGroup>
-                    <Item button :to="{name:'cards.basicCards'}">Basic Cards</Item>
-                    <Item button :to="{name:'cards.listsInCards'}">Lists In Cards</Item>
-                    <Item button :to="{name:'cards.advancedCards'}">Advanced Cards</Item>
+                    <Item button :to="{name:'cards.basicCards'}">基础卡片</Item>
+                    <Item button :to="{name:'cards.listsInCards'}">Card与List组合</Item>
+                    <Item button :to="{name:'cards.advancedCards'}">更丰富的Card</Item>
                 </ItemGroup>
             </List>
         </Content>
@@ -30,17 +28,7 @@
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item } from 'vimo/components/item'
   export default{
-    name: 'name',
-    data(){
-      return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
+    name: 'cards',
     components: {
       List, ListHeader, ItemGroup, Item, Card
     }

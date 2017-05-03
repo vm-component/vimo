@@ -23,6 +23,6 @@ export default {
     // 颜色
     colorClass () {
       return !!this.color ? (`${this.componentName}-${this.mode}-${this.color}`) : ''
-    },
+    }
   }
 }

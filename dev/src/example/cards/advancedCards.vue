@@ -17,28 +17,28 @@
                     <p>
                         The most popular industrial group ever, and largely
                         responsible for bringing the music to a mass audience.
-                      </p>
+                    </p>
                 </CardContent>
-                    <Row>
-                        <Column>
-                            <Button small clear>
-                                <Icon class="icon" name="star"></Icon>
-                                <span>Favourite</span>
-                            </Button>
-                        </Column>
-                        <Column>
-                            <Button small clear>
-                                <Icon class="icon" name="car"></Icon>
-                                <span>Music</span>
-                            </Button>
-                        </Column>
-                        <Column>
-                            <Button small clear>
-                                <Icon class="icon" name="share"></Icon>
-                                <span>Share</span>
-                            </Button>
-                        </Column>
-                    </Row>
+                <Row>
+                    <Column>
+                        <Button small clear>
+                            <Icon class="icon" name="star"></Icon>
+                            <span>Favourite</span>
+                        </Button>
+                    </Column>
+                    <Column>
+                        <Button small clear>
+                            <Icon class="icon" name="car"></Icon>
+                            <span>Music</span>
+                        </Button>
+                    </Column>
+                    <Column>
+                        <Button small clear>
+                            <Icon class="icon" name="share"></Icon>
+                            <span>Share</span>
+                        </Button>
+                    </Column>
+                </Row>
             </Card>
 
             <!--card type 2-->
@@ -76,19 +76,20 @@
                     </Label>
                 </Item>
                 <img src="./img/advance-card-bttf.png">
-                <Card-content>
-                    <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a
-            DeLorean?! Whoa. This is heavy.</p>
-                </Card-content>
+                <CardContent>
+                    <p>
+                        Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a
+                        DeLorean?! Whoa. This is heavy.</p>
+                </CardContent>
                 <Row>
                     <Column>
-                        <Button clear  small>
+                        <Button clear small>
                             <Icon name="thumbs-up"></Icon>
                             <div>12 Likes</div>
                         </Button>
                     </Column>
                     <Column>
-                        <Button clear  small>
+                        <Button clear small>
                             <Icon name="text"></Icon>
                             <div>4 Comments</div>
                         </Button>

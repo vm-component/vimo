@@ -6,6 +6,7 @@ import contentRoutes from './route-content'
 import segmentRoutes from './route-segment'
 import tabsRoutes from './route-tabs'
 import listRoutes from './route-list'
+import cardRoutes from './route-card'
 
 let routes = [
   // index
@@ -87,11 +88,11 @@ let routes = [
       require(['@/example/alert.vue'], resolve)
     }
   },
-  {
-    path: '/popover',
-    name: 'popover',
-    component: require('@/example/popover.vue')
-  },
+  // {
+  //   path: '/popover',
+  //   name: 'popover',
+  //   component: require('@/example/popover.vue')
+  // },
   {
     path: '/backdrop',
     name: 'backdrop',
@@ -179,35 +180,6 @@ let routes = [
     }
   },
 
-  // cards
-  {
-    path: '/cards',
-    name: 'cards',
-    component  (resolve) {
-      require(['@/example/cards.vue'], resolve)
-    }
-  },
-  {
-    path: '/basicCards',
-    name: 'cards.basicCards',
-    component  (resolve) {
-      require(['@/example/cards/basicCards.vue'], resolve)
-    }
-  },
-  {
-    path: '/listsInCards',
-    name: 'cards.listsInCards',
-    component  (resolve) {
-      require(['@/example/cards/listsInCards.vue'], resolve)
-    }
-  },
-  {
-    path: '/advancedCards',
-    name: 'cards.advancedCards',
-    component  (resolve) {
-      require(['@/example/cards/advancedCards.vue'], resolve)
-    }
-  },
 
   // ----  component/Form组件 ----
 
@@ -340,6 +312,7 @@ routes = routes.concat(contentRoutes)
 routes = routes.concat(segmentRoutes)
 routes = routes.concat(tabsRoutes)
 routes = routes.concat(listRoutes)
+routes = routes.concat(cardRoutes)
 
 export default {
   mode: 'hash', //   "hash" | "history" | "abstract";
