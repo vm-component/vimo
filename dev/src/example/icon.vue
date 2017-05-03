@@ -1,94 +1,152 @@
 <template>
-  <Page>
-    <Header>
-      <Navbar>
-        <Title>Icon</Title>
-      </Navbar>
-    </Header>
-    <Content padding class="iconDemo">
+    <Page>
+        <Header>
+            <Navbar>
+                <Title>Icon</Title>
+            </Navbar>
+        </Header>
+        <Content padding class="iconDemo">
+            <h1>Introduction</h1>
+            <p>Vimo的Icon可以使用ionicons或者自定义图标(需要以icon-开头)</p>
 
-      <h5>Vimo的Icon可以使用ionicons/自定义(需要以icon-开头)</h5>
+            <h4>关于状态</h4>
+            <Grid>
+                <Row>
+                    <Column col-4 align-self-center>默认状态:</Column>
+                    <Column col-8 align-self-center>
+                        <Icon color="primary" name="book"></Icon>
+                    </Column>
+                </Row>
+                <Row>
+                    <Column col-4 align-self-center>激活状态:</Column>
+                    <Column col-8 align-self-center>
+                        <Icon color="primary" name="book" :isActive="true"></Icon>
+                    </Column>
+                </Row>
+                <Row>
+                    <Column col-4 align-self-center>非激活状态:</Column>
+                    <Column col-8 align-self-center>
+                        <Icon color="primary" name="book" :isActive="false"></Icon>
+                    </Column>
+                </Row>
+            </Grid>
 
-      <p>IonIcon</p>
-      <Icon color="primary" name="star"></Icon>
-
-      <!--icon icon-ios icon-ios-primary ion-ios-ionic-->
-      <h5>book的普通状态和激活状态, 默认情况下为激活状态</h5>
-      <p>(-outline尾缀只有ios平台有, 其他平台需要自己定义activeClass)</p>
-
-      <Grid>
-        <Row>
-          <Column col-4 align-self-center>默认状态:</Column>
-          <Column col-8 align-self-center>
-            <Icon color="primary" name="book"></Icon>
-          </Column>
-        </Row>
-        <Row>
-          <Column col-4 align-self-center>激活状态:</Column>
-          <Column col-8 align-self-center>
-            <Icon color="primary" name="book" :isActive="true"></Icon>
-          </Column>
-        </Row>
-        <Row>
-          <Column col-4 align-self-center>非激活状态:</Column>
-          <Column col-8 align-self-center>
-            <Icon color="primary" name="book" :isActive="false"></Icon>
-          </Column>
-        </Row>
-      </Grid>
-
-      <p>自定义activeName, 原来是star, 激活状态为ios-book</p>
-      <Grid>
-        <Row>
-          <Column col-4 align-self-center>激活状态:</Column>
-          <Column col-8 align-self-center>
-            <Icon color="primary" name="star" :isActive="true" activeName="ios-book"></Icon>
-          </Column>
-        </Row>
-        <Row>
-          <Column col-4 align-self-center>非激活状态:</Column>
-          <Column col-8 align-self-center>
-            <Icon color="primary" name="star" :isActive="false" activeName="ios-book"></Icon>
-          </Column>
-        </Row>
-      </Grid>
+            <h4>自定义激活状态</h4>
+            <Grid>
+                <Row>
+                    <Column col-4 align-self-center>激活状态:</Column>
+                    <Column col-8 align-self-center>
+                        <Icon color="primary" name="star" :isActive="true" activeName="ios-book"></Icon>
+                    </Column>
+                </Row>
+                <Row>
+                    <Column col-4 align-self-center>非激活状态:</Column>
+                    <Column col-8 align-self-center>
+                        <Icon color="primary" name="star" :isActive="false" activeName="ios-book"></Icon>
+                    </Column>
+                </Row>
+            </Grid>
 
 
-      <p>也可以使用图片icon, 记得在name中传入icon的class, 像下面这样</p>
+            <h4>自定义Icon</h4>
 
-      <Icon name="icon-vue"></Icon>
+            <Icon name="icon-vue"></Icon>
+            <Icon name="icon-vimo"></Icon>
+            <Icon name="icon-alipay"></Icon>
+            <Icon name="icon-wechat"></Icon>
 
+            <h4>全平台显示一致</h4>
+            <Icon name="md-star"></Icon>
 
-      <p>在ios平台显示ios-book, 在md平台显示md-star</p>
-      <Icon ios="ios-book" md="md-star"></Icon>
+            <h4>Logo Icons</h4>
+            <Grid class="expo">
+                <Row justify-content-center align-items-center v-for="(modeIcon,index1) in logoIconList" :key="index1">
+                    <Column text-center v-for="(icon,index2) in modeIcon" :key="index2">
+                        <Icon :name="'logo-'+icon"></Icon>
+                        <p>logo-{{icon}}</p>
+                    </Column>
+                </Row>
+            </Grid>
 
-      <p>在全平台都显示md-star</p>
-      <Icon name="md-star"></Icon>
-
-
-      <p>剩余的图标参考IonIcons, <a href="http://ionicons.com/">点击这里</a></p>
-
-    </Content>
-  </Page>
+            <h4>Mode Icons</h4>
+            <Grid class="expo">
+                <Row justify-content-center align-items-center v-for="(modeIcon,index1) in modeIconList" :key="index1">
+                    <Column text-center v-for="(icon,index2) in modeIcon" :key="index2">
+                        <Icon :name="icon"></Icon>
+                        <p>{{icon}}</p>
+                    </Column>
+                </Row>
+            </Grid>
+        </Content>
+    </Page>
 </template>
 <style lang="scss">
-  .iconDemo .icon {
-    font-size: 40px;
-  }
+    .iconDemo .icon {
+        font-size: 40px;
+    }
 
-  .icon-vue {
-    height: 40px;
-    width: 40px;
-    background: url('../assets/img/vue.png') no-repeat center center/cover;
-  }
+    .icon-vue {
+        height: 30px;
+        width: 30px;
+        background: url('../assets/img/vue.png') no-repeat center center/cover;
+    }
+    .icon-vimo {
+        height: 30px;
+        width: 30px;
+        background: url('../assets/img/vimo.png') no-repeat center center/cover;
+    }
 
+    .icon-alipay {
+        height: 30px;
+        width: 40px;
+        background: url('../assets/img/alipay.png') no-repeat center center/cover;
+    }
+    .icon-wechat {
+        height: 30px;
+        width: 36px;
+        background: url('../assets/img/wechat.png') no-repeat center center/cover;
+    }
 
+    .expo {
+        .ion-icon {
+            font-size: 28px;
+        }
+        p {
+            margin: 5px 0 0 0;
+        }
+    }
 </style>
 <script type="text/ecmascript-6">
+  import modeIcons from 'ionicons/dist/data/mode-icons.json'
+  import logoIcons from 'ionicons/dist/data/logo-icons.json'
   export default{
     data(){
-      return {}
+      return {
+        modeIconList: [],
+        logoIconList: [],
+      }
     },
-    components: {},
+    methods: {
+      getIcons(icons){
+        let count = 0
+        let tmps = []
+        let totals = []
+        for (let key in icons) {
+          count++
+          if (count % 4 !== 0) {
+            tmps.push(key)
+          } else {
+            totals.push(tmps)
+            tmps = []
+          }
+        }
+        return totals
+      },
+    },
+    created(){
+      this.modeIconList = this.getIcons(modeIcons)
+      this.logoIconList = this.getIcons(logoIcons)
+    },
+    components: {}
   }
 </script>
