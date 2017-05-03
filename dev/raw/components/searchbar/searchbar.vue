@@ -33,7 +33,6 @@
                    :autocomplete="autocompleteValue"
                    :autocorrect="autocorrectValue"
                    :spellcheck="spellcheckValue">
-
             <!--input右边的关闭按钮-->
             <Button clear
                     class="searchbar-clear-icon"
@@ -61,28 +60,78 @@
 </style>
 <script>
   /**
-   * @component Component/SearchBar
+   * @component SearchBar
    * @description
    * 搜索条
    *
-   * @property {String} color - The predefined color to use. For example: "primary", "secondary", "danger".
-   * @property {String} mode - 模式
-   * @property {String} cancelButtonText - Set the the cancel button text. Default: "Cancel".
-   * @property {Boolean} showCancelButton - Whether to show the cancel button or not. Default: "false".
-   * @property {Number} debounce - How long, in milliseconds, to wait to trigger the onInput event after each keystroke. Default 250.
-   * @property {String} placeholder - Set the input's placeholder. Default "Search".
-   * @property {String} autocomplete - autocomplete
-   * @property {String} autocorrect - autocorrect
-   * @property {Boolean} spellcheck - spellcheck
-   * @property {String} type - Set the type of the input. Values: "text", "password", "email", "number", "search", "tel", "url". Default "search".
-   * @property {Boolean} animated - Configures if the searchbar is animated or no. By default, animation is false.
+   * ## 表单组件 / SearchBar搜索条组件
+   *
+   * 搜索组件, 一般是放在Header组件的Toolbar组件中, 当然也可以放置在任何位置
    *
    *
-   * @fires onInput
-   * @fires onFocus
-   * @fires onBlur
-   * @fires onClear
-   * @fires onCancel
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { Searchbar } from 'vimo/components/searchbar'
+   * // 安装
+   * Vue.component(Searchbar.name, Searchbar)
+   * // 或者
+   * export default{
+   *   components: {
+   *    Searchbar
+   *  }
+   * }
+   * ```
+   *
+   * @props {String} [color] - 颜色
+   * @props {String} [mode='ios'] - 模式
+   * @props {String} [cancelButtonText='Cancel'] - 取消按钮的文本
+   * @props {Boolean} [showCancelButton=false] - 是否显示cancelButton
+   * @props {Number} [debounce=0] - 等待多久触发onInput事件
+   * @props {String} [placeholder='Search'] - 设置placeholder的值.
+   * @props {String} [autocomplete] - 自动完成
+   * @props {String} [autocorrect] - 自动纠错
+   * @props {Boolean} [spellcheck] - 拼写检查
+   * @props {String} [type='search'] - 设置input配型, 可以是: "text", "password", "email", "number", "search", "tel", "url".
+   * @props {Boolean} [animated=false] - 是否启动点击动画
+   *
+   *
+   * @fires component:SearchBar#onInput
+   * @fires component:SearchBar#onFocus
+   * @fires component:SearchBar#onBlur
+   * @fires component:SearchBar#onClear
+   * @fires component:SearchBar#onCancel
+   *
+   *
+   * @demo http://xiangsongtao.com/vimo/#/searchbar
+   *
+   * @usage
+   * <template>
+   *    <Page>
+   *    <Header>
+   *        <Navbar>
+   *            <Title>Searchbar</Title>
+   *        </Navbar>
+   *        <Toolbar>
+   *            <Searchbar :animated="true"
+   *                placeholder="Search"
+   *                :debounce="0"
+   *                v-model="myInput"
+   *                :showCancelButton="true"
+   *                cancelButtonText="取消"
+   *                @onInput="onInput"
+   *                @onFocus="onFocus"
+   *                @onBlur="onBlur"
+   *                @onCancel="onCancel"
+   *                @onClear="onClear"></Searchbar>
+   *         </Toolbar>
+   *     </Header>
+   *    <Content padding>
+   *        <p>Search debounce: 100</p>
+   *        <p>Search Value: {{myInput}}</p>
+   *    </Content>
+   *    </Page>
+   * </template>
    * */
   import { Button } from '../button'
   import { Icon } from '../icon'
@@ -113,10 +162,7 @@
       /**
        * The predefined color to use. For example: "primary", "secondary", "danger".
        * */
-      color: {
-        type: String,
-        default: '',
-      },
+      color: [String],
       /**
        * The mode to apply to this component. Mode can be ios, wp, or md.
        * */
@@ -134,10 +180,7 @@
       /**
        * Whether to show the cancel button or not. Default: "false".
        * */
-      showCancelButton: {
-        type: Boolean,
-        default: false,
-      },
+      showCancelButton: [Boolean],
       /**
        * How long, in milliseconds, to wait to trigger the onInput event after each keystroke. Default 250.
        * */
@@ -190,10 +233,7 @@
       /**
        * Set the input value.
        * */
-      value: {
-        type: String,
-        default: '',
-      }
+      value: [String]
     },
     computed: {
       // props处理
@@ -217,8 +257,8 @@
     methods: {
 
       /**
-       * @private
        * Update the Searchbar input value when the input changes
+       * @private
        */
       onInputHandler ($event) {
         let _valueInner = $event.target ? $event.target.value : ''
@@ -236,25 +276,36 @@
             this.$emit('input', this.valueInner)
           }, this.debounce)
         } else {
+
+          /**
+           * @event component:SearchBar#onInput
+           * @description input事件
+           * @property {object} $event - 事件对象
+           */
           this.$emit('onInput', $event)
           this.$emit('input', this.valueInner)
         }
       },
 
       /**
-       * @private
        * Sets the Searchbar to focused and active on input focus.
+       * @private
        */
       onFocusHandler ($event) {
+        /**
+         * @event component:SearchBar#onFocus
+         * @description focus事件
+         * @property {object} $event - 事件对象
+         */
         this.$emit('onFocus', $event)
         this.sbHasFocus = true
         this.positionElements()
       },
 
       /**
-       * @private
        * Sets the Searchbar to not focused and checks if it should align left
        * based on whether there is a value in the searchbar or not.
+       * @private
        */
       onBlurHandler ($event) {
         // shouldBlur: 是否真正的blur, 因为当点击clearBtn时, 需要再次focus, 所以等到16*4ms后, 判断是否blue
@@ -266,6 +317,11 @@
             this.sbHasFocus = true
             this.searchbarInput.focus()
           } else {
+            /**
+             * @event component:SearchBar#onBlur
+             * @description blur事件
+             * @property {object} $event - 事件对象
+             */
             this.$emit('onBlur', $event)
             this.sbHasFocus = false
             this.positionElements()
@@ -274,11 +330,16 @@
         }, 16 * 4)
       },
       /**
-       * @private
        * Clears the input field and triggers the control change.
+       * @private
        */
       clearInput ($event) {
         this.searchbarInput.focus()
+        /**
+         * @event component:SearchBar#onClear
+         * @description clear事件
+         * @property {object} $event - 事件对象
+         */
         this.$emit('onClear', $event)
         this.shouldBlur = false
         if (this.valueInner) {
@@ -288,12 +349,17 @@
         }
       },
       /**
-       * @private
        * Clears the input field and tells the input to blur since
        * the clearInput function doesn't want the input to blur
        * then calls the custom cancel function if the user passed one in.
+       * @private
        */
       cancelSearchbar ($event) {
+        /**
+         * @event component:SearchBar#onCancel
+         * @description cancel事件
+         * @property {object} $event - 事件对象
+         */
         this.$emit('onCancel', $event)
         if (this.valueInner) {
           this.valueInner = null
@@ -304,8 +370,8 @@
       },
 
       /**
-       * @private
        * 当focus时, 设置搜索框的icon/placeholder/cancel button的位置 (ios only)
+       * @private
        */
       positionElements() {
         let isAnimated = this.animated
@@ -372,8 +438,8 @@
       },
 
       /**
-       * @private
        * Show the iOS Cancel button on focus, hide it offscreen otherwise
+       * @private
        */
       positionCancelButton() {
         if (!this.cancelButton) {
@@ -405,6 +471,5 @@
     components: {
       Button, Icon
     }
-
   }
 </script>

@@ -10,15 +10,29 @@
 </style>
 <script>
   /**
-   * @component Component/Label
+   * @component Label
    * @description
    *
+   * ## 表单组件 / Label组件
+   *
+   * ### 说明
+   *
    * Label组件主要是放在Item组件中使用, 用于标记Input组件/Toggle组件/Checkbox组件等From组件
+   *
+   * ### 使用场景
+   *
+   * input组件/Item包裹content部分等.
+   *
    * @props {String} mode - 模式
    * @props {String} color - 颜色
    * @props {String} fixed - 固定在input旁边
    * @props {String} floating - 浮动在input上面, 点击input时浮动到上面
    * @props {String} stacked - 永远在input的上面
+   *
+   * @slot 空 - 可以嵌入任何结构
+   * @see component:Input
+   * @see component:Item
+   *
    *
    * */
   import { setElementClass, isTrueProperty } from '../../util/util'

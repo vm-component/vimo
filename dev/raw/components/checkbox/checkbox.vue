@@ -16,18 +16,43 @@
 </style>
 <script type="text/ecmascript-6">
   /**
-   * @component Component/Checkbox
+   * @component Checkbox
    * @description
-   * 复选框(检查框)组件
    *
-   * > !!! 使用v-modal切换状态, 不支持checked属性
+   * ## 表单组件 / Checkbox复选框(检查框)组件
+   *
+   * ### 注意
+   *
+   * 使用v-modal切换状态, 不支持checked属性
    *
    *
-   * @property {String} mode - 模式
-   * @property {String} color - 颜色
-   * @property {Boolean} disabled - 单向选择, 点击且换并不对父组件传递
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { Checkbox } from 'vimo/components/checkbox'
+   * // 安装
+   * Vue.component(Checkbox.name, Checkbox)
+   * // 或者
+   * export default{
+   *   components: {
+   *    Checkbox
+   *  }
+   * }
+   *```
    *
-   * @fire onChange - 点按选择时触发
+   * @props {String} [mode='ios'] - 模式
+   * @props {String} [color] - 颜色
+   * @props {Boolean} [disabled=false] - 单向选择, 点击且换并不对父组件传递
+   * @props {Boolean} [value=false] - 当前值
+   *
+   * @fires component:Checkbox#onChange
+   * @demo http://xiangsongtao.com/vimo/#/checkbox
+   *
+   * @usage
+   * <Item>
+   *    <Label>Danger</Label>
+   *    <Checkbox slot="item-left" color="danger" v-model="testModal" :disabled="testDisabled" @onChange="onCheckboxChange"></Checkbox>
+   * </Item>
    * */
   import { setElementClass, isTrueProperty } from '../../util/util'
   export default{
@@ -41,14 +66,8 @@
       }
     },
     props: {
-      disabled: {
-        type: Boolean,
-        default(){return false}
-      },
-      value: {
-        type: Boolean,
-        default(){return false}
-      },
+      disabled: [Boolean],
+      value: [Boolean],
       color: [String],
       mode: {
         type: String,
@@ -76,6 +95,11 @@
         if (isChecked !== this.checkedValue) {
           this.checkedValue = isChecked;
           if (this.init) {
+            /**
+             * @event component:Checkbox#onChange
+             * @description 点按选择时触发
+             * @property {boolean} value - 当前值
+             */
             this.$emit('onChange', this.checkedValue);
             this.$emit('input', this.checkedValue)
           }

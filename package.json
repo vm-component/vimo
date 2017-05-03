@@ -4,13 +4,6 @@
   "description": "A Vue2.x Project For Mobile&HyBrid",
   "author": "向松涛 <280304286@163.com>",
   "private": false,
-  "scripts": {
-    "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
-  },
   "dependencies": {
     "better-picker": "^1.1.3",
     "fastclick": "^1.0.6",

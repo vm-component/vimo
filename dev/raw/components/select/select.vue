@@ -18,21 +18,62 @@
     @import "select.ios";
     @import "select.md";
 </style>
-<script type="text/ecmascript-6">
+<script>
   /**
    * @name Select
-   * @component Component/Select
+   * @component Select
    * @description
    *
-   * 选择组件
+   * ## 表单组件 / Select选择组件
+   *
+   * ### 说明
    *
    * 如果在Select中使用了`v-model`指令时, Option中的`checked`属性将不起作用, 因为两者的使用逻辑是冲突的!
+   *
    * `v-model`是在Select组件中使用数据控制, 而`checked`是在Option中使用checked属性控制.
    *
-   * 对外事件:
-   * onChange: 选中的值发生变化
-   * onCancel: 点击取消
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { Select, Option } from 'vimo/components/select'
+   * // 安装
+   * Vue.component(Select.name, Select)
+   * Vue.component(Option.name, Option)
+   * // 或者
+   * export default{
+   *   components: {
+   *     Select, Option
+   *  }
+   * }
+   * ```
+   * @props {String} [cancelText='Cancel'] - cancel按钮显示文本
+   * @props {String} [cancelText='OK'] - OK按钮显示文本
+   * @props {Boolean} [disabled='false'] - OK按钮显示文本
+   * @props {String} [interface='alert'] - 显示界面类型, 可以是'action-sheet','alert'两个
+   * @props {Boolean} [multiple='false'] - 单选多选,默认为单选
+   * @props {String} [placeholder] - 当未选择时显示的值
+   * @props {Object} [selectOptions] - select组件掉用alert和action-sheet组件的, 这个是针对传入的参数 title/subTitle/message/cssClass/enableBackdropDismiss等
+   * @props {String} [selectedText] - 选择组件的文本提示, 代替选择的option选项
+   * @props {String} [mode='ios'] - 模式
+   * @props {Object|String|Array} [value='ios'] - 组件值
    *
+   * @fires component:Select#onChange
+   * @fires component:Select#onCancel
+   * @fires component:Select#onSelect
+   *
+   * @demo http://xiangsongtao.com/vimo/#/select
+   *
+   * @usage
+   * <Item>
+   *    <Label>Gender</Label>
+   *    <Select item-right placeholder="Select" interface="alert"
+   *            @ onChange="onChange"
+   *            @ onSelect="onSelect"
+   *            @ onCancel="onCancel">
+   *        <Option value="f" checked>Female</Option>
+   *        <Option value="m">Male</Option>
+   *    </Select>
+   * </Item>
    * */
   import { setElementClass, isTrueProperty, isBlank, isCheckedProperty } from '../../util/util'
   import { ActionSheet } from '../action-sheet'
@@ -70,10 +111,7 @@
         default(){return 'alert'}
       },
       // 单选多选,默认为单选
-      multiple: {
-        type: Boolean,
-        default(){return false}
-      },
+      multiple: [Boolean],
       // 当未选择时显示的值
       placeholder: [String],
       // select组件掉用alert和action-sheet组件的, 这个是针对传入的参数
@@ -137,6 +175,12 @@
           text: this.cancelText,
           role: 'cancel',
           handler: () => {
+
+
+            /**
+             * @event component:Select#onCancel
+             * @description 点击取消的时间
+             */
             this.$emit('onCancel', null)
           }
         }]
@@ -163,6 +207,18 @@
               text: input.label,
               handler: () => {
                 this.onChange(input.optionValue)
+
+                /**
+                 * @event component:Select#onChange
+                 * @description 值发生变化时触发
+                 * @property {any} value - 变化值
+                 */
+
+                /**
+                 * @event component:Select#onSelect
+                 * @description 点击选择时触发
+                 * @property {any} value - 变化值
+                 */
                 this.$emit('onChange', input.optionValue)
                 this.$emit('input', input.optionValue)
                 this.$emit('onSelect', input.optionValue)
@@ -228,8 +284,8 @@
       },
 
       /**
-       * @private
        * 当用户点击选择时
+       * @private
        * */
       onChange(value){
         console.debug('select, onChange value:', value)
@@ -238,8 +294,8 @@
       },
 
       /**
-       * @private
        * 更新子组件option的状态
+       * @private
        * */
       updOpts(){
         this.texts = []

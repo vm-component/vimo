@@ -177,7 +177,7 @@
     methods: {
       test(){
         //      alert(this.$platform._platforms)
-        this.$platform.do('scanCode', function (data) {})
+//        this.$platform.do('scanCode', function (data) {})
       }
     },
     created(){},

@@ -33,8 +33,7 @@
                     v-if="typeValue ==='textarea'"></textarea>
         </div>
 
-        <Button
-                v-if="clearInput && typeValue!=='textarea' && hasValue()"
+        <Button v-if="clearInput && typeValue!=='textarea' && hasValue()"
                 clear
                 class="text-input-clear-icon"
                 @click="clearTextInput()"></Button>
@@ -47,18 +46,44 @@
 </style>
 <script>
   /**
-   * @name Input/Textarea
+   * @component Input
    * @description
    *
-   * Input组件只能对以下类型的type作出相应 : `text`,`password`, `email`, `number`, `search`, `tel`, and `url`.
-   * 但是不适用一下类型: `checkbox`, `radio`, `toggle`, `range`, `select`, etc.
-   * 当然, input直接使用也没问题
+   * ## 表单组件 Input/Textarea输入框
    *
-   * 此外, Textarea组件和Input组件公用此文件
+   * ### 注意
    *
-   * @fires onBlur
-   * @fires onFocus
-   * @fires onInput
+   * Input组件只能对以下类型的type作出相应 : `text`,`password`, `email`, `number`, `search`, `tel`, and `url`. 但是不适用一下类型: `checkbox`, `radio`, `toggle`, `range`, `select`, etc. 当然, input直接使用也没问题.
+   *
+   * 此外, Textarea组件和Input组件两者的使用个逻辑相似.
+   *
+   *
+   *
+   *
+   *
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { Input, Textarea } from 'vimo/components/input'
+   * // 安装
+   * Vue.component(Input.name, Input)
+   * Vue.component(Textarea.name, Textarea)
+   * // 或者
+   * export default{
+   *   components: {
+   *     Input, Textarea
+   *  }
+   * }
+   * ```
+   *
+   * @fires component:Input#onBlur
+   * @fires component:Input#onFocus
+   * @fires component:Input#onInput
+   *
+   * @demo http://xiangsongtao.com/vimo/#/input
+   * @usage
+   * <Input placeholder="Text Input">
+   * <Textarea @onBlur="onBlur($event)" @onFocus="onFocus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>
    *
    * */
   import { hasFocus, setElementClass } from '../../util/util'
@@ -84,32 +109,23 @@
        * 如果为true, 当输入值的时候一个清除按钮会在input右边出现, 点击按钮则清除输入
        * textarea没有这个特性
        * */
-      clearInput: {
-        type: Boolean,
-        default: false,
-      },
+      clearInput: [Boolean],
 
       /**
        * 如果为true, 当再次输入的时候会清空上次的输入, 如果type为password时默认为true, 其余情况默认为false
        * 默认值的变更, 需要js控制
        * */
-      clearOnEdit: {
-        type: Boolean,
-        default: false,
-      },
+      clearOnEdit: [Boolean],
 
       /**
        * 如果为true, 用户无法输入
        * */
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
+      disabled: [Boolean],
 
       /**
        * 设置最大值, 只对type=number有效
        * */
-      max:  [Number],
+      max: [Number],
 
       /**
        * 设置最小值, 只对type=number有效
@@ -132,18 +148,12 @@
       /**
        * 当前平台
        * */
-      placeholder: {
-        type: String,
-        default: '',
-      },
+      placeholder: [String],
 
       /**
        * 只读模式, 不能修改
        * */
-      readonly: {
-        type: Boolean,
-        default: false,
-      },
+      readonly: [Boolean],
 
       /**
        * 输入的类型: "text", "password", "email", "number", "search", "tel", or "url"
@@ -156,10 +166,7 @@
       /**
        * 内容输入值
        * */
-      value: {
-        type: String,
-        default: '',
-      },
+      value: [String],
 
       debounce: {
         type: Number,
@@ -196,19 +203,25 @@
       },
 
       /**
-       * @private
        * 监听并发送blur事件
+       * @private
        */
       inputBlurred($event){
         // debug: clearInput会在onBlur之后,造成blur后点击clearInput失效, 故需要延迟blur
         window.setTimeout(() => {
           if (this.shouldBlur) {
             // 向父组件Item添加标记
-            this.setItemHasFocusClass(false);
+            this.setItemHasFocusClass(false)
+
+            /**
+             * @event  component:Input#onBlur
+             * @description blur事件
+             * @property {object} $event - 事件对象
+             */
             this.$emit('onBlur', $event);
             // 如果是clearOnEdit模式， blur时还有值的情况下，定一个flag
             if (this.clearOnEditValue && this.hasValue()) {
-              this.didBlurAfterEdit = true;
+              this.didBlurAfterEdit = true
             }
           } else {
             this.shouldBlur = true
@@ -217,19 +230,24 @@
       },
 
       /**
-       * @private
        * 监听并发送focus事件
+       * @private
        */
       inputFocused($event){
         // 向父组件Item添加标记
         this.setItemHasFocusClass(true);
         this.setFocus();
+        /**
+         * @event  component:Input#onFocus
+         * @description focus事件
+         * @property {object} $event - 事件对象
+         */
         this.$emit('onFocus', $event)
       },
 
       /**
-       * @private
        * 监听input事件, 更新input的value(inputValue)
+       * @private
        */
       inputChanged($event){
         const _this = this;
@@ -240,6 +258,11 @@
         window.clearTimeout(_this.timer);
         _this.timer = window.setTimeout(function () {
           // 组件对外事件
+          /**
+           * @event  component:Input#onInput
+           * @description input事件
+           * @property {object} $event - 事件对象
+           */
           _this.$emit('onInput', $event);
           // 通知父组件的v-model
           _this.$emit('input', _this.inputValue);
