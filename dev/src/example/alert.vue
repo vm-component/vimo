@@ -21,9 +21,7 @@
 <script type="text/ecmascript-6">
   export default{
     data(){
-      return {
-        a: 1,
-      }
+      return {}
     },
     watch: {},
     computed: {},
@@ -32,25 +30,16 @@
         const _this = this;
         _this.$alert.present({
           title: 'Alert',
-          // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
-          message: '收到这个通知的人希望你今天能搞定这个alert组件',
-          cssClass: 'alertCssOuterMain  ',
+          message: '这是一个警告框, 点击背景可关闭. ',
           enableBackdropDismiss: true,
-          //buttons:['1','2','3']
           buttons: [
             {
               text: '确定',
               role: '',
-              handler: (value) => {
-                _this.$alert.dismiss().then(function (data) {
-                  console.debug('button3 click dismiss ')
-                  console.debug(data)
-                });
-              }
+              handler: (value) => {}
             }
           ]
         });
-
       },
       confirm () {
         const _this = this;

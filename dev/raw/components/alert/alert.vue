@@ -83,32 +83,52 @@
 </style>
 <script>
   /**
-   * @component Component/Alert
+   * @component Alert
    * @description
    *
-   * 提醒是向用户提供选择特定操作或操作列表的一种很好的方法。他们还可以向用户提供重要信息，或要求他们做出决定（或多个决定）。
+   * ## 对话框 / Alert
    *
-   * 提醒还可以包括几个不同的输入，其数据可以传递回应用程序。输入可以用作提示用户提供信息的简单方法。Radios、checkboxes 和 text inputs都可以接受，但不能混用。
+   * 对话框作为和用户交互的弹出层组件, 向用户提供操作选择或操作列表, 让使用者作出决定。 这里的对话框可以是: Alert/Confirm/Radios/Checkboxes/Input等.
    *
-   * 例如，提醒可以具有所有单选按钮输入或所有复选框输入，但是相同的警报不能混合 Radios 和 checkboxes。
-   * 然而，待办事项，不同类型的“文本”，“输入可以混合使用，例如url，email，text等，
-   * 如果您需要的不符合提醒的话，我们建议构建一个模式内的形式指引的范围内复杂的表单UI代替。
+   * 这里需要注意的是, Select组件使用的就是Radio/Checkboxes这两模式的封装, 但是单选多选两者只能选一个模式出现. 另外, 对于Input类文本输入, 可以混合使用, 比如url，email，text等，如果确认表单过多, 请单独开一页或者用modal组件处理.
    *
    *
+   * @props {String} title              - 初始化Alert Instance的数据
+   * @props {string} [subTitle]         - 初始化Alert Instance的数据
+   * @props {string} [message]          - 初始化Alert Instance的数据
+   * @props {string} [cssClass]         - Additional classes for custom styles, separated by spaces
+   * @props {Array} [buttons]           - button数组，包含全部role
+   * @props {string} buttons.text           - button显示的名字
+   * @props {string} buttons.handler        - button点击的处理函数, 默认是关闭当前组件
+   * @props {string} buttons.role           - button的角色, 比如:cancel/null
+   * @props {string} buttons.cssClass       - 给button增加样式class
+   *
+   * @props {Array} [inputs]            - 如果alert中有input等form
+   * @props {Array} inputs.type             - input的类型, 比如: text, tel, number, etc.
+   * @props {Array} inputs.name             - 名称
+   * @props {Array} inputs.placeholder      - 站位名
+   * @props {Array} inputs.value            - 值
+   * @props {Array} inputs.label            - 标签名
+   * @props {Array} inputs.checked          - 是否选中
+   * @props {Array} inputs.id               - id编号
+   *
+   * @props {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
+   * @props {String} [mode=ios]                     - 样式模式
    *
    *
-   * @property {String} title                    - 初始化Alert Instance的数据
-   * @property {string} [subTitle]                  - 初始化Alert Instance的数据
-   * @property {string} [message]                   - 初始化Alert Instance的数据
-   * @property {string} [cssClass]                  - Additional classes for custom styles, separated by spaces
-   * @property {Array} [buttons]                   - button数组，包含全部role
-   * @property {Array} [inputs]                    - 如果alert中有input等form
-   * @property {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
-   * @property {String} [mode=ios]                     - 样式模式
+   * ### 关于buttons属性的说明
    *
    *
    *
-   * @example
+   *
+   *
+   * ### 关于inputs属性的说明
+   *
+   *
+   *
+   *
+   * @demo http://xiangsongtao.com/vimo/#/alert
+   * @usage
    *
    * 1. 简单的alert
    *
@@ -179,8 +199,8 @@
       return {
 
         /**
-         * @private
          * Alert State
+         * @private
          * */
         inputsForDispaly: [], // inputs数据再加工
         isActive: false,  // 是否活动状态
@@ -213,8 +233,8 @@
       // -------- private --------
 
       /**
-       * @private
        * ActionSheet Animate Hooks
+       * @private
        * */
       _beforeEnter () {
         this.enabled = false; // 不允许过渡中途操作
@@ -245,11 +265,11 @@
       },
 
       /**
-       * @private
        * @function bdClick
        * @description
        * 点击backdrop,关闭actionsheet，
        * 如存在cancel按钮，点击按钮关闭actionsheet
+       * @private
        * */
       bdClick () {
         if (this.enabled && this.enableBackdropDismiss && this.buttonsForDisplay.length > 0) {
@@ -263,11 +283,11 @@
       },
 
       /**
-       * @private
        * @function btnClick
        * @description
        * 点击下方的按钮
        * @param {object} button  - button数组，包含全部role
+       * @private
        * */
       btnClick (button) {
         if (!this.enabled) {
@@ -291,11 +311,11 @@
       },
 
       /**
-       * @private
        * @function rbClick
        * @description
        * Radio Button Click
        * @param {object} checkedInput  - Radio 选中项
+       * @private
        * */
       rbClick (checkedInput) {
         const _this = this;
@@ -310,11 +330,11 @@
       },
 
       /**
-       * @private
        * @function cbClick
        * @description
        * CheckBox Button Click
        * @param {object} checkedInput  - CheckBox 选中项
+       * @private
        * */
       cbClick (checkedInput) {
         const _this = this;
@@ -328,9 +348,8 @@
       },
 
       /**
-       * @private
-       * @private
        * 获取inputs中的信息
+       * @private
        * */
       getValues () {
         if (this.inputType === 'radio' && this.inputsForDispaly.length > 0) {
@@ -362,8 +381,8 @@
       },
 
       /**
-       * @private
        * ActionSheet启动之前去除focus效果，因为存在键盘
+       * @private
        * */
       focusOutActiveElement () {
         // only button？
@@ -376,8 +395,8 @@
       /**
        * @function present
        * @description
-       * 打开, 默认是自动开启的
-       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+       * 打开组件
+       * @returns {Promise} 当关闭动画执行完毕后触发resolved
        */
       present () {
         const _this = this;
@@ -388,8 +407,8 @@
       /**
        * @function dismiss
        * @description
-       * 关闭
-       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+       * 关闭组件
+       * @returns {Promise} 当关闭动画执行完毕后触发resolved
        */
       dismiss () {
         const _this = this;
@@ -403,6 +422,7 @@
 
       /**
        * inputs数组初始化组件
+       * @private
        * */
       init(){
         const _this = this;
@@ -461,7 +481,7 @@
       dismissOnPageChangeHandler(){
         this.isActive && this.dismiss();
         this.unreg && this.unreg();
-      },
+      }
     },
     created(){
       this.init()
