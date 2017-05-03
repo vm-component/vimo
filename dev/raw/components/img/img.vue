@@ -19,23 +19,45 @@
 </style>
 <script>
   /**
-   * @name Img
-   * @component Component/Img
+   * @component Img
    * @description
+   *
+   * ## 其他 / Img图片加载组件
+   *
+   * ### 介绍
+   *
    * Img组件, 用于实现Img按需加载的功能. 当滚动到将要显示的位置的时候再加载图片
    *
+   * ### 注意
    *
-   * **注意:** Img组件只能在Content组件中使用!
+   * - Img组件只能在Content组件中使用!
+   * - 当滚动到确定位置后, img未下载完则有滚动到别处, 这样的请求也会被中断
+   * - 当图片加载完毕, 滚动超过阈值则隐藏不显示, 这样做是为了降低内存使用
    *
    *
-   * @property {String} [alt='image']         - 图片的alt属性
-   * @property {(Number|String)} [height=0]   - 图片的高度
-   * @property {String} src                   - 图片的src地址
-   * @property {(Number|String)} [width=0]    - 图片的宽度
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { Img } from 'vimo/components/img'
+   * // 安装
+   * Vue.component(Img.name, Img)
+   * // 或者
+   * export default{
+   *   components: {
+   *    Img
+   *  }
+   * }
+   * ```
    *
-   * @example
    *
-   <Img width="100%" height="200" src="static/1.jpg">
+   * @props {String} [alt='image']         - 图片的alt属性
+   * @props {(Number|String)} [height=0]   - 图片的高度
+   * @props {String} src                   - 图片的src地址
+   * @props {(Number|String)} [width=0]    - 图片的宽度
+   *
+   * @demo http://xiangsongtao.com/vimo/#/img
+   * @usage
+   * <Img width="100%" height="200" src="static/1.jpg">
    *
    * */
   import { isPresent } from'../../util/util'
@@ -43,10 +65,7 @@
   export default{
     name: 'Img',
     props: {
-      src: {
-        type: String,
-        default: '',
-      },
+      src: [String],
       alt: {
         type: String,
         default: 'image',
@@ -92,11 +111,10 @@
         this.initSrcValue()
       }
     },
-    computed: {},
     methods: {
       /**
-       * @private
        * 组件初始化操作
+       * @private
        * */
       init(){
 
@@ -130,9 +148,9 @@
       },
 
       /**
-       * @private
        * 重置src请求,将img的src置空, 撤去渲染结果
        * 当前组件的src记录在this.src中, 如果未加载, 则将this.src=>this._requestingSrc, 表示图片需要下载.
+       * @private
        * */
       reset(){
         if (this._requestingSrc && !this._renderedSrc && !this._hasLoaded) {
@@ -142,15 +160,15 @@
           this._requestingSrc = null;
         }
         if (this._renderedSrc) {
-          // 当图片已经渲染出来显示过了, 则将其隐藏就行了
+          // 当图片已经渲染出来显示过了, 则将其隐藏就行了, 这样做是为了降低内存使用
           // console.warn(`hideImg ${this._renderedSrc} ${Date.now()}`);
-          // this.setLoaded(false);
+           this.setLoaded(false);
         }
       },
 
       /**
-       * @private
        * 更新
+       * @private
        * */
       update(){
         // 图片的更新需要受到Content组件的控制 => Img组件的canRequest和canRender两个值
@@ -184,16 +202,16 @@
       },
 
       /**
-       * @private
        * 设置DOM控制
+       * @private
        * */
       setLoaded(isLoaded){
         this.isLoaded = !!isLoaded;
       },
 
       /**
-       * @private
        * 设置imgbox的尺寸值
+       * @private
        * */
       setDims() {
         // 发生变化才更新
@@ -212,8 +230,8 @@
       },
 
       /**
-       * @private
        * 初始化/改变prop中src值时的处理函数
+       * @private
        * */
       initSrcValue(){
         // 重置src请求,将img的src置空, 撤去渲染结果
@@ -229,19 +247,19 @@
       },
 
       /**
-       * @private
        * 真正设置img元素src的函数, 设置意味着即将进行img下载
        * @param {string} srcAttr - 将要加载的img的src属性值
+       * @private
        * */
       srcAttr(srcAttr){
         this.srcValue = srcAttr
       },
 
       /**
-       * @private
        * 将传入的height和width转为正确格式
        * @param {any} val
        * @return {string}
+       * @private
        */
       getUnitValue(val) {
         if (isPresent(val)) {
@@ -261,8 +279,8 @@
       },
 
       /**
-       * @private
        * 获取当前组件的尺寸及距离页面的位置
+       * @private
        * */
       getBounds() {
         if (!this._rect) {
@@ -274,8 +292,8 @@
       },
 
       /**
-       * @private
        * 获取从图片底部到页面顶部的距离
+       * @private
        * */
       getBottom(){
         const bounds = this.getBounds();
@@ -283,8 +301,8 @@
       },
 
       /**
-       * @private
        * 获取从图片顶部到页面顶部的距离
+       * @private
        * */
       getTop(){
         const bounds = this.getBounds();
@@ -299,6 +317,4 @@
       this._content && this._content.removeImg(this);
     }
   }
-
-
 </script>

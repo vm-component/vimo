@@ -7,13 +7,19 @@
 </style>
 <script>
   /**
-   * @component Component/Icon
+   * @component Icon
    * @description
    *
-   * 因为Vimo是对Ionic的移植, 故Icon组件也是使用ionicons图标, ionicons地址[点这里](http://ionicons.com/),
-   * ionicon根据ios和Android提供了两种同类型不同风格的图标(windows模式使用的是ios图标).
+   * ## 其他 / Icon组件
+   *
+   *
+   * ### 感谢IONIC
+   *
+   * 因为Vimo是对Ionic的移植, 故Icon组件也是使用ionicons图标, ionicons地址[点这里](http://ionicons.com/), ionicon根据ios和Android提供了两种同类型不同风格的图标.
    *
    * 另外,ionicon的图标不多, 但是包含了大多数移动端使用场景的icon, 故这部分没有用font-awesome替换.
+   *
+   * ### 支持自定义
    *
    * 如果有需要其他类型的图片可以使用自定义图标. 这里, icon可以支持ionicons/自定义imgClass:
    *
@@ -41,13 +47,32 @@
    *  <Icon name="home" activeName="star"></Icon>  -->  设定激活的class图标
    * ```
    *
-   * @property {String} [mode='ios'] - 模式
-   * @property {String} [color] - 颜色
-   * @property {String} [name] - icon的名称
-   * @property {String} [activeName] - Icon激活状态的Icon名称(默认只有ios有, 会在name后面加后缀: `${this.name}-outline`, 其他平台的需要自己传入值)
-   * @property {Boolean} [isActive=true] - 表示是否未激活状态, 默认是激活状态
-   * @property {String} [ios] - 强制使用ios的Icon
-   * @property {String} [md] - 强制使用md的Icon
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { Icon } from 'vimo/components/icon'
+   * // 安装
+   * Vue.component(Icon.name, Icon)
+   * // 或者
+   * export default{
+   *   components: {
+   *    Icon
+   *  }
+   * }
+   * ```
+   *
+   *
+   *
+   * @props {String} [mode='ios'] - 模式
+   * @props {String} [color] - 颜色
+   * @props {String|Boolean} [name] - icon的名称, 如果传入false, 则影藏图标
+   * @props {String} [activeName] - Icon激活状态的Icon名称(默认只有ios有, 会在name后面加后缀: `${this.name}-outline`, 其他平台的需要自己传入值)
+   * @props {Boolean} [isActive=true] - 表示是否未激活状态, 默认是激活状态
+   * @props {String} [ios] - 强制使用ios的Icon
+   * @props {String} [md] - 强制使用md的Icon
+   *
+   *
+   * @demo http://xiangsongtao.com/vimo/#/icon
    *
    * */
   export default{
@@ -72,7 +97,7 @@
       /**
        * icon的名字, 默认的名字
        * */
-      name: [String],
+      name: [String,Boolean],
 
       /**
        * 激活状态的图标样式,

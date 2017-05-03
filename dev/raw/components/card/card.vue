@@ -9,6 +9,15 @@
     @import "card.md.scss";
 </style>
 <script>
+  /**
+   * @component Card
+   * @description
+   *
+   * ## 卡片组件 / Card组件
+   *
+   *
+   * */
+  import mixin from './mixin'
   export default{
     name: 'Card',
     data(){
@@ -16,32 +25,6 @@
         componentName: 'card'
       }
     },
-    props: {
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: {
-        type: String,
-        default: '',
-      },
-      /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       * */
-      mode: {
-        type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
-      },
-    },
-    watch: {},
-    computed: {
-      // 环境样式
-      modeClass () {
-        return `${this.componentName} ${this.componentName}-${this.mode}`
-      },
-      // 颜色
-      colorClass () {
-        return !!this.color ? (`${this.componentName}-${this.mode}-${this.color}`) : ''
-      },
-    }
+    extend: mixin
   }
 </script>
