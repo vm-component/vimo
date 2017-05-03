@@ -23,53 +23,70 @@
 </style>
 <script>
   /**
-   * @component Component/Toggle
+   * @component Toggle
    * @description
    *
-   *  > !!! 使用 v-model 切换状态, 不支持checked属性
+   * ## 表单组件 / Toggle开关组件
    *
-   * Toggle组件和Checkbox组件的功能类似, 但是Toggle组件在移动端更加好看, 也更加易用.
    *
-   * Toggle可以设置颜色, 当然不同模式下的样式还是不一样的, 感兴趣的可以切换试试.
+   * ### 注意
    *
-   * @property {String} [mode='ios'] - 模式: "ios", "md", or "wp"
-   * @property {String} [color] - 颜色: "primary", "secondary", "danger", "light", and "dark"
-   * @property {Boolean} [disabled=false] - 禁用状态
+   * 使用 v-model 切换状态, 不支持checked属性
    *
-   * @fires onChange - Toggle组件切换时发出的事件, 传递当前的选中状态
+   * ### 说明
    *
-   * @example
+   * Toggle组件和Checkbox组件的功能类似, 但是Toggle组件在移动端更加好看, 也更加易用. Toggle可以设置颜色, 当然不同模式下的样式还是不一样的, 感兴趣的可以切换试试.
    *
-   <List>
-   <ListHeader>
-   普通使用
-   </ListHeader>
-   <Item>
-   Toggle Normal
-   <Toggle slot="item-right"></Toggle>
-   </Item>
-   <Item>
-   Red Toggle
-   <Toggle slot="item-right" color="danger"></Toggle>
-   </Item>
-   <Item>
-   Toggle Open
-   <Toggle slot="item-right"></Toggle>
-   </Item>
-   <Item>
-   Toggle Close
-   <Toggle slot="item-right"></Toggle>
-   </Item>
-   <Item>
-   Toggle Disabled
-   <Toggle slot="item-right" v-model="checked"></Toggle>
-   </Item>
-   </List>
+   *
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { Toggle } from 'vimo/components/toggle'
+   * // 安装
+   * Vue.component(Toggle.name, Toggle)
+   * // 或者
+   * export default{
+   *   components: {
+   *    Toggle
+   *  }
+   * }
+   * ```
+   *
+   * @props {String} [mode='ios'] - 模式: "ios", "md"
+   * @props {String} [color] - 颜色: "primary", "secondary", "danger", "light", and "dark"
+   * @props {Boolean} [disabled=false] - 禁用状态
+   *
+   * @fires component:Toggle#onChange
+   * @demo http://10.88.1.19:8084/#/toggle
+   * @usage
+   * <List>
+   *    <ListHeader>
+   *        普通使用
+   *    </ListHeader>
+   *    <Item>
+   *        Toggle Normal
+   *        <Toggle slot="item-right"></Toggle>
+   *    </Item>
+   *    <Item>
+   *        Red Toggle
+   *        <Toggle slot="item-right" color="danger"></Toggle>
+   *    </Item>
+   *    <Item>
+   *        Toggle Open
+   *        <Toggle slot="item-right"></Toggle>
+   *    </Item>
+   *    <Item>
+   *        Toggle Close
+   *        <Toggle slot="item-right"></Toggle>
+   *    </Item>
+   *    <Item>
+   *        Toggle Disabled
+   *        <Toggle slot="item-right" v-model="checked"></Toggle>
+   *    </Item>
+   * </List>
    *
    * */
-  import { setElementClass } from '../../util/util';
-  import { isTrueProperty } from '../../util/util';
-
+  import { setElementClass, isTrueProperty } from '../../util/util';
   export default{
     name: 'Toggle',
     data(){
@@ -153,6 +170,12 @@
         if (isChecked !== this.isChecked) {
           this.isChecked = isChecked;
           if (this.init) {
+
+            /**
+             * @event component:Toggle#onChange
+             * @description Toggle组件切换时发出的事件, 传递当前的选中状态
+             * @property {Boolean} isChecked - 是否选中
+             */
             this.$emit('onChange', isChecked);
             this.$emit('input', isChecked)
           }

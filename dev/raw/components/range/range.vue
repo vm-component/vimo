@@ -47,12 +47,47 @@
 <script>
   /**
    *
-   * 对外事件:
-   * onChange
+   * @component Range
+   * @description
    *
-   * 如果debounce的值大于0, 则认为触发onChange事件是在松开knob之后,
-   * 并在debounce时间之后触发
-   * 否则随着knob的拖动而触发onChange事件
+   * ## 表单组件 / Range滑块组件
+   *
+   *
+   * ### 注意
+   *
+   * 如果debounce的值大于0, 则认为触发onChange事件是在松开knob之后, 并在debounce时间之后触发, 否则随着knob的拖动而触发onChange事件.
+   *
+   * @props {String} [color] - 颜色
+   * @props {Number} [debounce=0] - 触发onChange的等待时间
+   * @props {Boolean} [disabled=false] - 是否禁用
+   * @props {Boolean} [dualKnobs=false] - 选择的拖动按钮, 默认是一个, true为两个
+   * @props {Number} [max=100] - range的最大值
+   * @props {Number} [min=0] - range的最小值
+   * @props {String} [mode='ios'] - 模式
+   * @props {Boolean} [pin=false] - 当拖动knob时显示大头针提示
+   * @props {Boolean} [snaps=false] - 类似于卡槽, 如果为true, 则在range上画标尺, 并且拖动中knob只能停留在标尺标记处
+   * @props {Number} [step=1] - 移动的步伐/粒度
+   * @props {String| Number| Object} [value] - v-model对应的值, 需要出发input事件
+   *
+   * @slot range-right - 在range组件右边, 一般放Icon
+   * @slot range-left - 在range组件左边, 一般放Icon
+   *
+   * @fires component:Range#onChange
+   * @demo http://10.88.1.19:8084/#/range
+   *
+   * @usage
+   * <List>
+   *    <ListHeader>
+   *        <span>Brightness</span>
+   *        <Badge slot="item-right">{{brightness}}</Badge>
+   *    </ListHeader>
+   *    <Item>
+   *         <Range v-model="brightness">
+   *            <Icon slot="range-left" small name="sunny"></Icon>
+   *            <Icon slot="range-right" name="sunny"></Icon>
+   *        </Range>
+   *    </Item>
+   * </List>
    *
    * */
   import RangeKnobHandle from './range-knob-handle.vue'
@@ -90,10 +125,7 @@
       /**
        * 颜色: "primary", "secondary", "danger", "light", and "dark"
        */
-      color: {
-        type: String,
-        default: '',
-      },
+      color: [String],
       /**
        * 触发onChange的等待时间
        * */
@@ -104,17 +136,11 @@
       /**
        * 是否禁用
        * */
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
+      disabled: [Boolean],
       /**
        * 选择的拖动按钮, 默认是一个, true为两个
        * */
-      dualKnobs: {
-        type: Boolean,
-        default: false,
-      },
+      dualKnobs: [Boolean],
       /**
        * range的最大值
        * */
@@ -139,18 +165,12 @@
       /**
        * 当拖动knob时显示大头针提示
        * */
-      pin: {
-        type: Boolean,
-        default: false,
-      },
+      pin: [Boolean],
       /**
        * 类似于卡槽, 如果为true, 则在range上画标尺,
        * 并且拖动中knob只能停留在标尺标记处
        * */
-      snaps: {
-        type: Boolean,
-        default: false,
-      },
+      snaps: [Boolean],
       /**
        * 移动的步伐/粒度
        * */
@@ -163,11 +183,8 @@
        * v-model对应的值,
        * 需要出发input事件
        */
-      value: {
-        type: [String, Number, Object],
-      },
+      value: [String, Number, Object],
     },
-    watch: {},
     computed: {
       // 环境样式
       modeClass () {
@@ -273,6 +290,12 @@
             const _this = this;
             _this._timer && window.clearTimeout(_this._timer);
             _this._timer = window.setTimeout(function () {
+
+              /**
+               * @event component:Range#onChange
+               * @description 值发生变化时触发
+               * @property {any} value - 触发的值
+               */
               _this.$emit('onChange', _this.valueInner)
             }, _this.debounce)
 

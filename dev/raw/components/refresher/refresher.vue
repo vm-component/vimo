@@ -8,60 +8,74 @@
 </style>
 <script>
   /**
-   * @component Component/Refresher
+   * @component Refresher
    * @description
    *
-   * Refresher组件是在Content组件下使用, 并提供了下拉刷新的功能. 使用前需要将Refresher组件放在Content组件内所有内容的前面, 并加上`slot="refresher"`属性.
+   * ## 数据加载 / Refresher下拉刷新组件
    *
-   * 如果Refresher组件使用完毕希望禁用, 请使用`enabled`属性, 而不是使用`v-if`指令.
+   * ### 说明
    *
-   * 事件传递组件的this, 可用的两个方法为: complete/cancel
+   * Refresher组件是在Content组件下使用, 并提供了下拉刷新的功能. 使用前需要将Refresher组件放在Content组件内所有内容的前面, 并加上`slot="refresher"`属性. 如果Refresher组件使用完毕希望禁用, 请使用`enabled`属性, 而不是使用`v-if`指令.
    *
-   * @property {Number} [closeDuration=280] - 回复到 inactive 状态的动画时间
-   * @property {Boolean} [enabled=true] - 组件是否可用
-   * @property {Number} [pullMax=200] - 下拉的最大值, 超过则直接进入 refreshing状态
-   * @property {Number} [pullMin=70] - 下拉进入refreshing状态的最小值
-   * @property {Number} [snapbackDuration=280] - 回复到 refreshing 状态的动画时间
+   * ### 事件
    *
-   * @fires onRefresh - 进入 refreshing 状态时触发, 事件传递组件的this
-   * @fires onPull - 下拉并且看到了refresher, 事件传递组件的this
-   * @fires onStart - 开始下拉的事件, 事件传递组件的this
+   * 事件传递组件的this, 可用的两个方法为: complete/cancel. 当然可以使用ref获取组件的实例
    *
-   * @example
+   * ### 注意
    *
-   <Page>
-   <Header>
-   <Navbar>
-   <Title>Refresher</Title>
-   </Navbar>
-   </Header>
-   <Content>
-   <Refresher slot="refresher" @onRefresh="doRefresh($event)" @onPull="doPulling($event)">
-   <RefresherContent pullingText="下拉刷新..." refreshingText="正在刷新..."></RefresherContent>
-   </Refresher>
-   <List>
-   <Item v-for="i in list">{{i}}</Item>
-   </List>
-   </Content>
-   </Page>
+   * 目前这个组件只适合在原生滚动下使用, 当使用js滚动时会异常
    *
-   * @example
+   * ### 关于指示器RefresherContent
    *
-   methods: {
-      doRefresh(ins){
-        console.debug('doRefresh $event')
-        let _start = this.i;
-        setTimeout(() => {
-          for (; (10 + _start) > this.i; this.i++) {
-            this.list.unshift(`item - ${this.i}`)
-          }
-          // 当前异步完成
-          ins.complete();
-          console.debug('onInfinite-complete')
-        }, 500)
-
-      },
-    },
+   * 这个组件是可以定制化的
+   *
+   * @props {Number} [closeDuration=280] - 回复到 inactive 状态的动画时间
+   * @props {Boolean} [enabled=true] - 组件是否可用
+   * @props {Number} [pullMax=200] - 下拉的最大值, 超过则直接进入 refreshing状态
+   * @props {Number} [pullMin=70] - 下拉进入refreshing状态的最小值
+   * @props {Number} [snapbackDuration=280] - 回复到 refreshing 状态的动画时间
+   *
+   * @fires component:Refresher#onRefresh - 进入 refreshing 状态时触发, 事件传递组件的this
+   * @fires component:Refresher#onPull - 下拉并且看到了refresher, 事件传递组件的this
+   * @fires component:Refresher#onStart - 开始下拉的事件, 事件传递组件的this
+   *
+   * @slot 空 - 指示器RefresherContent组件的插槽
+   *
+   * @demo http://10.88.1.19:8084/#/refresher
+   * @see component:Base/Content
+   * @usage
+   * <Page>
+   *    <Header>
+   *        <Navbar>
+   *            <Title>Refresher</Title>
+   *        </Navbar>
+   *    </Header>
+   *    <Content>
+   *        <Refresher slot="refresher" @onRefresh="doRefresh($event)" @onPull="doPulling($event)">
+   *            <RefresherContent pullingText="下拉刷新..." refreshingText="正在刷新..."></RefresherContent>
+   *            </Refresher>
+   *        <List>
+   *            <Item v-for="i in list">{{i}}</Item>
+   *        </List>
+   *    </Content>
+   * </Page>
+   *
+   *
+   * // ...
+   *
+   * methods: {
+   *    doRefresh(ins){
+   *      let _start = this.i;
+   *      setTimeout(() => {
+   *        for (; (10 + _start) > this.i; this.i++) {
+   *          this.list.unshift(`item - ${this.i}`)
+   *        }
+   *        // 当前异步完成
+   *        ins.complete();
+   *        console.debug('onInfinite-complete')
+   *      }, 500)
+   *    },
+   *  },
    * */
 
   const STATE_INACTIVE = 'inactive'
@@ -358,10 +372,20 @@
         // 对外发送 onStart 事件
         if (!this.didStart) {
           this.didStart = true
+          /**
+           * @event component:Refresher#onStart
+           * @description 开始下拉的事件, 事件传递组件的this
+           * @property {RefreshComponent} this - 组件实例
+           */
           this.$emit('onStart', this)
         }
 
         // 对外发送 onPull 事件
+        /**
+         * @event component:Refresher#onPull
+         * @description 下拉并且看到了refresher, 事件传递组件的this
+         * @property {RefreshComponent} this - 组件实例
+         */
         this.$emit('onPull', this)
 
         // do nothing if the delta is less than the pull threshold
@@ -399,6 +423,11 @@
         this.setCss(this.pullMin, (this.snapbackDuration + 'ms'), true, '')
 
         // 发送事件 onRefresh
+        /**
+         * @event component:Refresher#onRefresh
+         * @description 进入 refreshing 状态时触发, 事件传递组件的this
+         * @property {RefreshComponent} this - 组件实例
+         */
         this.$emit('onRefresh', this)
       },
       /**
