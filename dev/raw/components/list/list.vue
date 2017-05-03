@@ -33,6 +33,30 @@
    * ### item-sliding功能
    * 支持item-sliding（**此功能已开发完毕，但还需修改, 暂时不建议使用**）
    *
+
+   *
+   * ### 如何使用
+   *
+   * ```
+   * // 引入
+   * import { List } from 'vimo/components/list'
+   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
+   * // 安装
+   * Vue.component(List.name, List)
+   * Vue.component(ListHeader.name, ListHeader)
+   * Vue.component(ItemGroup.name, ItemGroup)
+   * Vue.component(Item.name, Item)
+   * Vue.component(ItemSliding.name, ItemSliding)
+   * Vue.component(ItemOptions.name, ItemOptions)
+   * Vue.component(ItemDivider.name, ItemDivider)
+   * // 或者
+   * export default{
+   *   components: {
+   *    List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
+   *  }
+   * }
+   * ```
+   *
    * @props {string} [mode=ios]        - 样式模式
    * @props {Boolean} [sliding=false]  - 是否需要item-silding(开在开发)
    * @props {Boolean} [radioGroup]  - 是否为radioGroup
@@ -41,6 +65,72 @@
    *
    * @demo http://xiangsongtao.com/vimo/#/list
    * @see component:Item
+   *
+   * @usage
+   * // 普通使用
+   * <template>
+   *    <Page>
+   *        <Header>
+   *            <Navbar>
+   *                <Title>List</Title>
+   *            </Navbar>
+   *         </Header>
+   *        <Content class="outer-content">
+   *            <List>
+   *                <!--header-->
+   *                <ListHeader>
+   *                    <span>Contents</span>
+   *                </ListHeader>
+   *                <!--group-->
+   *                <ItemGroup>
+   *                    <Item button to="list.listForAll">ListForAll</Item>
+   *                    <Item button :to="{name:'list.basicList'}">BasicList</Item>
+   *                    <Item button :to="{name:'list.noLine'}">NoLine</Item>
+   *                    <Item button :to="{name:'list.insetList'}">InsetList</Item>
+   *                    <Item button :to="{name:'list.listDividers'}">ListDividers</Item>
+   *                    <Item button :to="{name:'list.listHeaders'}">listHeaders</Item>
+   *                    <Item button :to="{name:'list.iconList'}">IconList</Item>
+   *                    <Item button :to="{name:'list.avatarList'}">AvatarList</Item>
+   *                    <Item button :to="{name:'list.multi-lineList'}">Multi-lineList</Item>
+   *                    <Item button :to="{name:'list.slidingList'}">SlidingList</Item>
+   *                    <Item button :to="{name:'list.reorder'}">Reorder</Item>
+   *                    <Item button :to="{name:'list.thumbnailList'}">ThumbnailList</Item>
+   *                </ItemGroup>
+   *            </List>
+   *        </Content>
+   *    </Page>
+   * </template>
+   *
+   * // 多列布局(两列三行)
+   * <List>
+   *    <ListHeader>
+   *        <span>today</span>
+   *    </ListHeader>
+   *    <Item>
+   *        <Avatar slot="item-left">
+   *            <img src="./img/avatar-ts-woody.png">
+   *        </Avatar>
+   *        <Label>
+   *            <h2>Woody</h2>
+   *            <h3>Hello world</h3>
+   *            <h4>This is third line</h4>
+   *            <p>This town ain't big enough for the two of us!</p>
+   *        </Label>
+   *    </Item>
+   *    <Item>
+   *        <Avatar slot="item-left">
+   *            <img src="./img/avatar-ts-buzz.png">
+   *        </Avatar>
+   *        <Label>
+   *            <h2>Buzz Lightyear</h2>
+   *            <h3>Hello world</h3>
+   *            <p>My eyeballs could have been sucked from their sockets!</p>
+   *        </Label>
+   *    </Item>
+   * </List>
+   *
+   *
+   *
    */
   import { isTrueProperty } from '../../util/util'
   export default{

@@ -101,6 +101,30 @@
    * ### item-sliding功能
    * 支持item-sliding（**此功能已开发完毕，但还需修改, 暂时不建议使用**）
    *
+
+   *
+   * ### 如何使用
+   *
+   * ```
+   * // 引入
+   * import { List } from 'vimo/components/list'
+   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
+   * // 安装
+   * Vue.component(List.name, List)
+   * Vue.component(ListHeader.name, ListHeader)
+   * Vue.component(ItemGroup.name, ItemGroup)
+   * Vue.component(Item.name, Item)
+   * Vue.component(ItemSliding.name, ItemSliding)
+   * Vue.component(ItemOptions.name, ItemOptions)
+   * Vue.component(ItemDivider.name, ItemDivider)
+   * // 或者
+   * export default{
+   *   components: {
+   *    List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
+   *  }
+   * }
+   * ```
+   *
    * @props {string} [mode=ios]        - 样式模式
    * @props {Boolean} [sliding=false]  - 是否需要item-silding(开在开发)
    * @props {Boolean} [radioGroup]  - 是否为radioGroup
@@ -109,6 +133,72 @@
    *
    * @demo http://xiangsongtao.com/vimo/#/list
    * @see component:Item
+   *
+   * @usage
+   * // 普通使用
+   * &lt;template>
+   *    &lt;Page>
+   *        &lt;Header>
+   *            &lt;Navbar>
+   *                &lt;Title>List&lt;/Title>
+   *            &lt;/Navbar>
+   *         &lt;/Header>
+   *        &lt;Content class="outer-content">
+   *            &lt;List>
+   *                &lt;!--header-->
+   *                &lt;ListHeader>
+   *                    &lt;span>Contents&lt;/span>
+   *                &lt;/ListHeader>
+   *                &lt;!--group-->
+   *                &lt;ItemGroup>
+   *                    &lt;Item button to="list.listForAll">ListForAll&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.basicList'}">BasicList&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.noLine'}">NoLine&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.insetList'}">InsetList&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.listDividers'}">ListDividers&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.listHeaders'}">listHeaders&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.iconList'}">IconList&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.avatarList'}">AvatarList&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.multi-lineList'}">Multi-lineList&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.slidingList'}">SlidingList&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.reorder'}">Reorder&lt;/Item>
+   *                    &lt;Item button :to="{name:'list.thumbnailList'}">ThumbnailList&lt;/Item>
+   *                &lt;/ItemGroup>
+   *            &lt;/List>
+   *        &lt;/Content>
+   *    &lt;/Page>
+   * &lt;/template>
+   *
+   * // 多列布局(两列三行)
+   * &lt;List>
+   *    &lt;ListHeader>
+   *        &lt;span>today&lt;/span>
+   *    &lt;/ListHeader>
+   *    &lt;Item>
+   *        &lt;Avatar slot="item-left">
+   *            &lt;img src="./img/avatar-ts-woody.png">
+   *        &lt;/Avatar>
+   *        &lt;Label>
+   *            &lt;h2>Woody&lt;/h2>
+   *            &lt;h3>Hello world&lt;/h3>
+   *            &lt;h4>This is third line&lt;/h4>
+   *            &lt;p>This town ain't big enough for the two of us!&lt;/p>
+   *        &lt;/Label>
+   *    &lt;/Item>
+   *    &lt;Item>
+   *        &lt;Avatar slot="item-left">
+   *            &lt;img src="./img/avatar-ts-buzz.png">
+   *        &lt;/Avatar>
+   *        &lt;Label>
+   *            &lt;h2>Buzz Lightyear&lt;/h2>
+   *            &lt;h3>Hello world&lt;/h3>
+   *            &lt;p>My eyeballs could have been sucked from their sockets!&lt;/p>
+   *        &lt;/Label>
+   *    &lt;/Item>
+   * &lt;/List>
+   *
+   *
+   *
    */
   import { isTrueProperty } from '../../util/util'
   export default{

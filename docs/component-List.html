@@ -78,7 +78,24 @@
                 <div class="description"><h2>列表组件 / List</h2><h3>概述</h3><p>list有多重种风格的样式，有ios/android等等,对应ios/md模式.</p>
 <h3>拓展</h3><p>此外, List组件也是<code>radioGroup</code>的管理域. 因为单选的确定需要一个父集. radio的使用需要开启<code>radioGroup</code>. 同时, v-model/事件等才能正常运行. 因为, List组件是radio-group的受体, 当点击radio时, radio向外寻找到这里, 传递v-model信息.</p>
 <p>radio对外事件: onChange</p>
-<h3>item-sliding功能</h3><p>支持item-sliding（<strong>此功能已开发完毕，但还需修改, 暂时不建议使用</strong>）</p></div>
+<h3>item-sliding功能</h3><p>支持item-sliding（<strong>此功能已开发完毕，但还需修改, 暂时不建议使用</strong>）</p>
+<h3>如何使用</h3><pre class="prettyprint source"><code>// 引入
+import { List } from 'vimo/components/list'
+import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
+// 安装
+Vue.component(List.name, List)
+Vue.component(ListHeader.name, ListHeader)
+Vue.component(ItemGroup.name, ItemGroup)
+Vue.component(Item.name, Item)
+Vue.component(ItemSliding.name, ItemSliding)
+Vue.component(ItemOptions.name, ItemOptions)
+Vue.component(ItemDivider.name, ItemDivider)
+// 或者
+export default{
+  components: {
+   List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
+ }
+}</code></pre></div>
                 
 
                 
@@ -364,12 +381,94 @@
 
 
 
+<h3 class="subsection-title">用法 / Usages</h3>
+
+    <pre class="prettyprint"><code>// 普通使用
+&lt;template>
+   &lt;Page>
+       &lt;Header>
+           &lt;Navbar>
+               &lt;Title>List&lt;/Title>
+           &lt;/Navbar>
+        &lt;/Header>
+       &lt;Content class="outer-content">
+           &lt;List>
+               &lt;!--header-->
+               &lt;ListHeader>
+                   &lt;span>Contents&lt;/span>
+               &lt;/ListHeader>
+               &lt;!--group-->
+               &lt;ItemGroup>
+                   &lt;Item button to="list.listForAll">ListForAll&lt;/Item>
+                   &lt;Item button :to="{name:'list.basicList'}">BasicList&lt;/Item>
+                   &lt;Item button :to="{name:'list.noLine'}">NoLine&lt;/Item>
+                   &lt;Item button :to="{name:'list.insetList'}">InsetList&lt;/Item>
+                   &lt;Item button :to="{name:'list.listDividers'}">ListDividers&lt;/Item>
+                   &lt;Item button :to="{name:'list.listHeaders'}">listHeaders&lt;/Item>
+                   &lt;Item button :to="{name:'list.iconList'}">IconList&lt;/Item>
+                   &lt;Item button :to="{name:'list.avatarList'}">AvatarList&lt;/Item>
+                   &lt;Item button :to="{name:'list.multi-lineList'}">Multi-lineList&lt;/Item>
+                   &lt;Item button :to="{name:'list.slidingList'}">SlidingList&lt;/Item>
+                   &lt;Item button :to="{name:'list.reorder'}">Reorder&lt;/Item>
+                   &lt;Item button :to="{name:'list.thumbnailList'}">ThumbnailList&lt;/Item>
+               &lt;/ItemGroup>
+           &lt;/List>
+       &lt;/Content>
+   &lt;/Page>
+&lt;/template>
+
+// 多列布局(两列三行)
+&lt;List>
+   &lt;ListHeader>
+       &lt;span>today&lt;/span>
+   &lt;/ListHeader>
+   &lt;Item>
+       &lt;Avatar slot="item-left">
+           &lt;img src="./img/avatar-ts-woody.png">
+       &lt;/Avatar>
+       &lt;Label>
+           &lt;h2>Woody&lt;/h2>
+           &lt;h3>Hello world&lt;/h3>
+           &lt;h4>This is third line&lt;/h4>
+           &lt;p>This town ain't big enough for the two of us!&lt;/p>
+       &lt;/Label>
+   &lt;/Item>
+   &lt;Item>
+       &lt;Avatar slot="item-left">
+           &lt;img src="./img/avatar-ts-buzz.png">
+       &lt;/Avatar>
+       &lt;Label>
+           &lt;h2>Buzz Lightyear&lt;/h2>
+           &lt;h3>Hello world&lt;/h3>
+           &lt;p>My eyeballs could have been sucked from their sockets!&lt;/p>
+       &lt;/Label>
+   &lt;/Item>
+&lt;/List></code></pre>
+
+
 
                 <!---->
                 <!--<div class="description"><h2>列表组件 / List</h2><h3>概述</h3><p>list有多重种风格的样式，有ios/android等等,对应ios/md模式.</p>
 <h3>拓展</h3><p>此外, List组件也是<code>radioGroup</code>的管理域. 因为单选的确定需要一个父集. radio的使用需要开启<code>radioGroup</code>. 同时, v-model/事件等才能正常运行. 因为, List组件是radio-group的受体, 当点击radio时, radio向外寻找到这里, 传递v-model信息.</p>
 <p>radio对外事件: onChange</p>
-<h3>item-sliding功能</h3><p>支持item-sliding（<strong>此功能已开发完毕，但还需修改, 暂时不建议使用</strong>）</p></div>-->
+<h3>item-sliding功能</h3><p>支持item-sliding（<strong>此功能已开发完毕，但还需修改, 暂时不建议使用</strong>）</p>
+<h3>如何使用</h3><pre class="prettyprint source"><code>// 引入
+import { List } from 'vimo/components/list'
+import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
+// 安装
+Vue.component(List.name, List)
+Vue.component(ListHeader.name, ListHeader)
+Vue.component(ItemGroup.name, ItemGroup)
+Vue.component(Item.name, Item)
+Vue.component(ItemSliding.name, ItemSliding)
+Vue.component(ItemOptions.name, ItemOptions)
+Vue.component(ItemDivider.name, ItemDivider)
+// 或者
+export default{
+  components: {
+   List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
+ }
+}</code></pre></div>-->
                 <!---->
 
                 

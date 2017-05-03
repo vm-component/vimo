@@ -8,8 +8,7 @@
         <Content class="outer-content">
             <List>
                 <ListHeader>
-                    today
-
+                    <span>today</span>
                 </ListHeader>
                 <Item>
                     <Avatar slot="item-left">

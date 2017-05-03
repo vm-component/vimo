@@ -78,40 +78,7 @@
    * @see http://router.vuejs.org/zh-cn/index.html
    *
    *
-   * @usage
-   *
-   * <template>
-   *    <Page>
-   *        <Header>
-   *            <Navbar>
-   *                <Title>List</Title>
-   *            </Navbar>
-   *         </Header>
-   *        <Content class="outer-content">
-   *            <List>
-   *                <!--header-->
-   *                <ListHeader>
-   *                    <span>Contents</span>
-   *                </ListHeader>
-   *                <!--group-->
-   *                <ItemGroup>
-   *                    <Item button to="list.listForAll">ListForAll</Item>
-   *                    <Item button :to="{name:'list.basicList'}">BasicList</Item>
-   *                    <Item button :to="{name:'list.noLine'}">NoLine</Item>
-   *                    <Item button :to="{name:'list.insetList'}">InsetList</Item>
-   *                    <Item button :to="{name:'list.listDividers'}">ListDividers</Item>
-   *                    <Item button :to="{name:'list.listHeaders'}">listHeaders</Item>
-   *                    <Item button :to="{name:'list.iconList'}">IconList</Item>
-   *                    <Item button :to="{name:'list.avatarList'}">AvatarList</Item>
-   *                    <Item button :to="{name:'list.multi-lineList'}">Multi-lineList</Item>
-   *                    <Item button :to="{name:'list.slidingList'}">SlidingList</Item>
-   *                    <Item button :to="{name:'list.reorder'}">Reorder</Item>
-   *                    <Item button :to="{name:'list.thumbnailList'}">ThumbnailList</Item>
-   *                </ItemGroup>
-   *            </List>
-   *        </Content>
-   *    </Page>
-   * </template>
+
    *
    * */
 
