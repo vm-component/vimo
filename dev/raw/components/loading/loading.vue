@@ -33,33 +33,74 @@
 </style>
 <script>
   /**
-   * @component Component/Loading
+   * @component Loading
    * @description
-   * Loading组件
    *
-   * 通过present开启, 如果没设置duration, 则需要手动dismiss.
+   * ## 弹出层 / Loading组件(大Loading)
    *
-   * @property {string} [spinner='ios'] - 菊花样式
-   * @property {string} [content] - 内容
-   * @property {string} [cssClass] - 自定义样式
-   * @property {boolean} [showBackdrop=false] - 是否显示黑色背景
-   * @property {number} [duration=5000] - loading持续时间, 如果为0则无效, 默认提供5000ms持续时间
-   * @property {boolean} [dismissOnPageChange=false] - 页面切换是否关闭loading
+   * Loading也有大小之分
    *
-   * @example
+   * ### 关于大小Loading的问题
    *
-   const _this = this;
-   _this.$loading.present({
-    content: '正在加载, 4000ms后自动关闭...',
-    cssClass: 'cssClass',
-    dismissOnPageChange: true, // url变化后关闭loading
-    showBackdrop: true,
-  });
-   setTimeout(function () {
-    _this.$loading.dismiss().then(function () {
-      console.debug('dismiss in promise success!')
-    })
-  }, 4000);
+   * Loading的使用场景是这样的: 当用户访问数据/资源加载/需要等待操作的需求下使用, 完整的情况下需要向用户说明我这次Loading是做什么, 比如Loading是提示"**正在请求资源, 请稍后!**", 有时我们并不需提示, 只需要显示菊花图即可, 因为频繁的显示大Loading还是很烦的, 这里需要介绍下Indicator组件, 他是继承Loading组件, 但是只显示菊花图, 而且调用也简单, 不必每次传入参数.
+   *
+   * ### 弹出层
+   *
+   * - Loading通过present开启, 如果没设置duration, 则需要手动dismiss, 但是最多开启5000ms, 这部分可通过`maxLoadingDuration`在config设置
+   * - Vimo的弹出层都是独立于页面的, 但也不是`body`的直接子元素, 而是挂载在App组件中的. 这样做是有考量的.
+   * - 组件相应路由切换, 路由切换则自动关闭
+   *
+   * ### 用法
+   *
+   * - 不传参数则显示菊花
+   * - 传入string则显示string
+   * - 参考下面的示例
+   *
+   *
+   * @props {string} [spinner='ios'] - 菊花样式
+   * @props {string} [content] - 内容
+   * @props {string} [cssClass] - 自定义样式
+   * @props {boolean} [showBackdrop=false] - 是否显示黑色背景
+   * @props {number} [duration=5000] - loading持续时间, 如果为0则无效, 默认提供5000ms持续时间
+   * @props {boolean} [dismissOnPageChange=true] - 页面切换是否关闭loading
+   * @props {string} [mode='ios'] - 模式
+   *
+   * @demo http://xiangsongtao.com/vimo/#/loading
+   * @usage
+   *
+   * // 只显示菊花
+   * spinnerOnly(){
+   *      this.$loading.present();
+   *      setTimeout(() => {
+   *        this.$loading.dismiss().then(() => {
+   *          console.debug('dismiss in promise success!')
+   *        })
+   *      }, 1000)
+   *    },
+   *
+   * // 是显示name
+   * stringOnly(){
+   *      this.$loading.present('只传入了String');
+   *      setTimeout(() => {
+   *        this.$loading.dismiss().then(() => {
+   *          console.debug('dismiss in promise success!')
+   *        })
+   *      }, 1000)
+   *    },
+   *
+   * // 普通的
+   * showDefault () {
+   *      this.$loading.present({
+   *        content: '正在加载, 6000ms后自动关闭...',
+   *        dismissOnPageChange: false, // url变化后关闭loading(默认)
+   *        showBackdrop: true,
+   *      });
+   *      setTimeout(() => {
+   *        this.$loading.dismiss().then(() => {
+   *          console.debug('dismiss in promise success!')
+   *        })
+   *      }, 6000);
+   *    },
    *
    * */
   import { registerListener } from '../../util/util'
@@ -81,7 +122,7 @@
       duration: {
         type: Number,
         default(){
-          return 5000
+          return window.VM && window.VM.config.get('maxLoadingDuration', 5000)
         }
       },
       dismissOnPageChange: {
@@ -95,9 +136,6 @@
     },
     data(){
       return {
-        /**
-         * 组件状态
-         * */
         isActive: false, // 开启状态
 
         // promise
@@ -151,8 +189,11 @@
 
       // -------- public --------
       /**
-       * 开启实例
-       * @returns {Promise} transitionEnd结束后返回promise
+       * @function present
+       * @description
+       * 打开Loading
+       * @param {Object} options - 给组件props传参的对象, 这部分在loading.js中定义
+       * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
        */
       present () {
         const _this = this;
@@ -167,9 +208,11 @@
       },
 
       /**
-       * 关闭实例
-       * @returns {Promise} transitionEnd结束后返回promise
-       */
+       * @function dismiss
+       * @description
+       * 关闭Loading
+       * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
+       * */
       dismiss () {
         const _this = this;
         _this.isActive = false; // 动起来

@@ -46,7 +46,7 @@
    * @component ActionSheet
    * @description
    *
-   * ## 弹出层 / ActionSheet
+   * ## 弹出层 / ActionSheet确认单组件
    *
    * ### 简介
    *

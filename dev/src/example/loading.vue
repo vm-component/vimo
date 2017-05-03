@@ -54,137 +54,130 @@
       return {}
     },
     methods: {
+      // 只显示菊花
       spinnerOnly(){
         this.$loading.present();
         setTimeout(() => {
-          this.$loading.dismiss().then(function () {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000)
       },
+      // 是显示name
       stringOnly(){
         this.$loading.present('只传入了String');
         setTimeout(() => {
-          this.$loading.dismiss().then(function () {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000)
       },
       // 普通的
       showDefault () {
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           content: '正在加载, 6000ms后自动关闭...',
           dismissOnPageChange: false, // url变化后关闭loading(默认)
           showBackdrop: true,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 6000);
       },
-
       dismissWhenChangeUrl(){
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           content: '正在加载, 6000ms后自动关闭...',
           dismissOnPageChange: true, // url变化后关闭loading
           showBackdrop: true,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 6000);
 
       },
       showIos () {
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           spinner: 'ios',
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
           showBackdrop: true,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000);
       },
       showIosSmall () {
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           spinner: 'ios-small',
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
           showBackdrop: true,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000);
       },
       showBubbles () {
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           spinner: 'bubbles',
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
           showBackdrop: true,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000);
       },
       showCircles () {
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           spinner: 'circles',
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
           showBackdrop: true,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000);
       },
       showCrescent () {
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           spinner: 'crescent',
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
           showBackdrop: true,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000);
       },
       showDots () {
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           spinner: 'dots',
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
           showBackdrop: true,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000);
@@ -192,15 +185,14 @@
 
       // 打开没backdrop的loading
       showNoBackDrop () {
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
           showBackdrop: false,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000);
@@ -208,31 +200,30 @@
 
       // 同时开启两个
       showOther () {
-        const _this = this;
         // 第一个
-        _this.$loading.present({
+        this.$loading.present({
           content: '正在加载, 这个是开启的第一个, 没有Backdrop.',
           cssClass: 'cssClass',
           showBackdrop: false,
         });
 
         // 第二个
-        setTimeout(function () {
-          _this.$loading.present({
+        setTimeout(() => {
+          this.$loading.present({
             content: '正在加载, 这个是开启的第二个, 打开Backdrop.',
             cssClass: 'cssClass',
             showBackdrop: true,
           });
 
           // 第三个
-          setTimeout(function () {
-            _this.$loading.present({
+          setTimeout(() => {
+            this.$loading.present({
               content: '正在加载, 这个是开启的第三个, 没有Backdrop.',
               cssClass: 'cssClass',
               showBackdrop: false,
             });
-            setTimeout(function () {
-              _this.$loading.dismiss().then(function () {
+            setTimeout(() => {
+              this.$loading.dismiss().then(() => {
                 console.debug('所有Loading都关闭了');
               })
             }, 2000)
@@ -242,15 +233,14 @@
 
       // 没有spinner
       showNoSpinner () {
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           spinner: 'hide',
           content: '正在加载, 这个loading没有Spnner.',
           cssClass: 'cssClass',
           showBackdrop: true,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000);
@@ -258,15 +248,14 @@
 
       // 自定义内容
       showCusContent () {
-        const _this = this;
-        _this.$loading.present({
+        this.$loading.present({
           spinner: 'hide',
           content: '<p>你好Vimo</p>',
           cssClass: 'cssClass',
           showBackdrop: true,
         });
-        setTimeout(function () {
-          _this.$loading.dismiss().then(function () {
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
         }, 1000);

@@ -86,7 +86,7 @@
    * @component Alert
    * @description
    *
-   * ## 对话框 / Alert
+   * ## 对话框 / Alert对话框组件
    *
    * 对话框作为和用户交互的弹出层组件, 向用户提供操作选择或操作列表, 让使用者作出决定。 这里的对话框可以是: Alert/Confirm/Radios/Checkboxes/Input等.
    *

@@ -35,6 +35,9 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHideOnSubPages: false,
       pageTransition: 'zoom-transition', // 'zoom-transition'
       scrollAssist: false,
+      maxLoadingDuration: 5000, // loading组件最大开启时间
+
+
       inputCloning: true,
       autoFocusAssist: 'immediate'
     },
@@ -64,6 +67,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       pageTransition: 'fade-right-transition', // 'ios-transition'
       statusbarPadding: false,
       scrollAssist: false,                      // 是否开启滚动辅助(jsScroll)
+      maxLoadingDuration: 5000, // loading组件最大开启时间
 
       activator: 'highlight',
       pickerRotateFactor: -0.46,
