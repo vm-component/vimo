@@ -8,7 +8,6 @@
   export default{
     /**
      *
-     *
      * @fires onItemReorder {from: 0, to: 4}
      * */
     name: 'ItemGroup',

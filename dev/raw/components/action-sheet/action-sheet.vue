@@ -155,17 +155,17 @@
     data(){
       return {
         /**
-         * @private
          * ActionSheet State
+         * @private
          * */
         isActive: false,  // ActionSheet 开启状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
 
         /**
-         * @private
          * ActionSheet 计算属性
          * 因为实例化后computed也就无效了，
          * 故这部分在watch处理
+         * @private
          * */
         normalButtons: [], // 普通按钮组
         cancelButton: null, // 取消按钮(组)，一般放在下面

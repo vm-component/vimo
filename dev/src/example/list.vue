@@ -9,10 +9,7 @@
             <List>
                 <!--header-->
                 <ListHeader>
-                    Contents
-
-
-
+                    <span>Contents</span>
                 </ListHeader>
                 <!--group-->
                 <ItemGroup>

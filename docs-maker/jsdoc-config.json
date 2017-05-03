@@ -87,6 +87,10 @@
       "../dev/raw/components/indicator",
 
 
+      "../dev/raw/components/list",
+      "../dev/raw/components/item",
+
+
       "../dev/raw/components/grid",
 
       "../dev/raw/components/toolbar",

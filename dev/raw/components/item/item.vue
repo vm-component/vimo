@@ -11,7 +11,7 @@
     computed: {
       listHeaderClass () {
         return `item-block`
-      },
+      }
     }
   }
 </script>

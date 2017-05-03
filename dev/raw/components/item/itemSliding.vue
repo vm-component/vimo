@@ -169,8 +169,8 @@
       // ------------- @private -------------
 
       /**
-       * @private
        * 判断是否能拖动
+       * @private
        * */
       canDrag(){
         if (this.disabled) return false
@@ -189,9 +189,9 @@
       },
 
       /**
-       * @private
        * onDragStart
        * @param {any} ev
+       * @private
        */
       onDragStart(ev){
         this.firstCoord = pointerCoord(ev)
@@ -203,9 +203,9 @@
       },
 
       /**
-       * @private
        * onDragMove
        * @param {any} ev
+       * @private
        */
       onDragMove(ev){
         if (!this.canDrag()) return
@@ -227,9 +227,9 @@
       },
 
       /**
-       * @private
        * onDragEnd
        * @param {any} ev
+       * @private
        */
       onDragEnd(ev){
         let coordX = pointerCoord(ev).x
@@ -246,8 +246,8 @@
       },
 
       /**
-       * @private
        * 获取方向
+       * @private
        */
       getDirection(start, end) {
 
@@ -274,8 +274,8 @@
       },
 
       /**
-       * @private
        * 初始化：获取子组件实例，ItemSideFlags状态变更
+       * @private
        * */
       init(){
         // 获取子组件实例
@@ -310,10 +310,9 @@
       },
 
       /**
-       * @private
        * 设置起始点，因为有原始点与options点
-       * @private
        * @param {number} startX
+       * @private
        * */
       startSliding(startX) {
         if (this.unregister) {
@@ -328,11 +327,10 @@
       },
 
       /**
-       * @private
        * 计算openAmount，算入阻尼，最后执行item定位
-       * @private
        * @param {number} x
        * @return {number}
+       * @private
        */
       moveSliding(x){
 
@@ -370,11 +368,10 @@
       },
 
       /**
-       * @private
        * 松手后的移动特性决定最终停在哪个位置
-       * @private
        * @param {number} velocity 移动速度(惯性)
        * @return {number}
+       * @private
        */
       endSliding(velocity){
         // 松手后的停留点
@@ -398,7 +395,6 @@
       },
 
       /**
-       * @private
        * 计算子组件的左右options的宽度
        * @private
        * */
@@ -419,8 +415,8 @@
 
       /**
        * 获取options子组件的side属性对应的ItemSideFlags值
-       * @private
        * @param {any} ins options子组件的实例
+       * @private
        * */
       getSides(ins) {
         if (ins.side === 'left') {
@@ -432,9 +428,9 @@
 
       /**
        * 根据openAmount设置item的开闭位置
-       * @private
        * @param {number} openAmount
        * @param {boolean} isFinal - 是否关闭
+       * @private
        * */
       setOpenAmount(openAmount, isFinal) {
         if (this.unregister) {
@@ -484,8 +480,8 @@
       },
 
       /**
-       * @private
        * @param {SLIDING_STATE} state
+       * @private
        * */
       setState  (state) {
         if (state === this.state) return
@@ -501,8 +497,8 @@
 
       /**
        * 设置子组件ion-item的transformX属性
-       * @private
        * @param {number} val
+       * @private
        * */
       setItemTransformX(val = 0){
         if (this.itemComponent) {
@@ -512,8 +508,8 @@
 
       /**
        * 对外发出swipe事件，
-       * @private
        * @param {number} val
+       * @private
        * */
       fireSwipeEvent() {
         if (this.state & SLIDING_STATE.SwipeRight) {
@@ -533,11 +529,11 @@
 
   /**
    * 根据传入条件判断是否执行swipeReset
-   * @private
    * @param {boolean} isResetDirection
    * @param {boolean} isMovingFast
    * @param {boolean} isOnResetZone
    * @return {boolean}
+   * @private
    */
   function swipeShouldReset (isResetDirection, isMovingFast, isOnResetZone) {
     // The logic required to know when the sliding item should close (openAmount=0)

@@ -63,8 +63,8 @@
     methods: {
       // -------- private --------
       /**
-       *  @private
        * Animate Hooks
+       * @private
        * */
       _beforeEnter () {
         this.$app && this.$app.setEnabled(false, 400)
@@ -82,8 +82,8 @@
       },
 
       /**
-       *  @private
        * click close button to close
+       * @private
        * */
       cbClick() {
         return this.dismiss().then(() => {
@@ -92,8 +92,8 @@
       },
 
       /**
-       * @private
        * the handler of dismiss the page when route change
+       * @private
        */
       dismissOnPageChangeHandler(){
         if (this.isActive) {

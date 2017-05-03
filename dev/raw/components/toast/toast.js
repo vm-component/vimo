@@ -101,9 +101,9 @@ class Toast extends ToastConstructor {
 }
 
 /**
- * @private
  * 创建ToastInstance, 并且根据传参指纹构建对象
  * @param {any} arguments - 传入参数
+ * @private
  * */
 function ToastFactory () {
   let _args = Array.from(arguments)
@@ -176,7 +176,6 @@ function ToastFactory () {
 }
 
 /**
- * @private
  * 对外的Toast构建部分
  * @function present
  * @description 打开Toast
@@ -189,6 +188,7 @@ function ToastFactory () {
  * @param {string} [args.closeButtonText='Close'] - Text to display in the close button.
  * @param {boolean} [args.dismissOnPageChange=false] - Whether to dismiss the toast when navigating to a new page or nav back.
  * @return {ToastInstance} 返回Toast的实例
+ * @private
  * */
 
 export default function (...args) {
