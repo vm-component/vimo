@@ -220,22 +220,27 @@
        * 设置document.title的值
        * */
       setDocTitle(val){
-        // 以下代码可以解决以上问题，不依赖jq
-        let _docTitle = document.title
-        if (val !== _docTitle) {
-          // 利用iframe的onload事件刷新页面
+        // 不在壳子中则正常显示
+        if (this.$platform.platforms().length <= 2) {
           document.title = val
-          let iframe = document.createElement('iframe')
-          iframe.src = 'static/img/favicon.ico'
-          iframe.style.visibility = 'hidden'
-          iframe.style.width = '1px'
-          iframe.style.height = '1px'
-          iframe.onload = function () {
-            window.setTimeout(function () {
-              document.body.removeChild(iframe)
-            }, 0)
+        } else {
+          // 以下代码可以解决以上问题，不依赖jq
+          let _docTitle = document.title
+          if (val !== _docTitle) {
+            // 利用iframe的onload事件刷新页面
+            document.title = val
+            let iframe = document.createElement('iframe')
+            iframe.src = 'static/img/favicon.ico'
+            iframe.style.visibility = 'hidden'
+            iframe.style.width = '1px'
+            iframe.style.height = '1px'
+            iframe.onload = function () {
+              window.setTimeout(function () {
+                document.body.removeChild(iframe)
+              }, 0)
+            }
+            document.body.appendChild(iframe)
           }
-          document.body.appendChild(iframe)
         }
       },
     },
