@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Loading - Documentation</title>
+    <title>Modal - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/prettify/prettify.js"></script>
@@ -56,7 +56,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">Loading</h1>
+        <h1 class="page-title">Modal</h1>
         
 
         
@@ -75,17 +75,13 @@
             <div class="container-overview">
 
                 
-                <div class="description"><h2>弹出层 / Loading组件(大Loading)</h2><p>Loading也有大小之分</p>
-<h3>关于大小Loading的问题</h3><p>Loading的使用场景是这样的: 当用户访问数据/资源加载/需要等待操作的需求下使用, 完整的情况下需要向用户说明我这次Loading是做什么, 比如Loading是提示&quot;<strong>正在请求资源, 请稍后!</strong>&quot;, 有时我们并不需提示, 只需要显示菊花图即可, 因为频繁的显示大Loading还是很烦的, 这里需要介绍下Indicator组件, 他是继承Loading组件, 但是只显示菊花图, 而且调用也简单, 不必每次传入参数.</p>
-<h3>弹出层</h3><ul>
-<li>Loading通过present开启, 如果没设置duration, 则需要手动dismiss, 但是最多开启5000ms, 这部分可通过<code>maxLoadingDuration</code>在config设置</li>
-<li>Vimo的弹出层都是独立于页面的, 但也不是<code>body</code>的直接子元素, 而是挂载在App组件中的. 这样做是有考量的.</li>
-<li>组件相应路由切换, 路由切换则自动关闭</li>
-</ul>
-<h3>用法</h3><ul>
-<li>不传参数则显示菊花</li>
-<li>传入string则显示string</li>
-<li>参考下面的示例</li>
+                <div class="description"><h2>弹出层 / Modal弹出页组件</h2><h2>补充</h2><p>Model组件用于当前页面的补充, 相当于在当前页面上再来弹一个页面, 这里并不改变路由, 但是会改变H5 history的popstate, 每打开一个Modal则新增一个历史记录, 可以通过后退关闭最后一次打开的modal.</p>
+<h2>注意点</h2><ul>
+<li>在modal中如果跳转到另一页之前希望能先关闭当前modal再操作</li>
+<li>modal不会再url中留下记录</li>
+<li>modal只是装菜的盘子, 盘子中的菜通过<code>template</code>传入, 数据通过<code>modalData</code>传入,</li>
+<li><code>onDismiss</code>会在modal关闭后触发.</li>
+<li>开启的页面就是完整的Page页面, 别无其他</li>
 </ul></div>
                 
 
@@ -99,8 +95,8 @@
         <dd class="tag-source">
             <ul class="dummy">
                 <li>
-                    <a href="components_loading_loading.vue.html">components/loading/loading.vue</a>
-                    , <a href="components_loading_loading.vue.html#line2">line 2</a>
+                    <a href="components_modal_modal.js.html">components/modal/modal.js</a>
+                    , <a href="components_modal_modal.js.html#line1">line 1</a>
                 </li>
             </ul>
         </dd>
@@ -135,303 +131,9 @@
     
 
     
-    <section class="details__inner">
-        <dt class="tag-see">参考:</dt>
-        <dd class="tag-see">
-            <ul>
-                <li><a href="component-Indicator.html">component:Indicator</a></li>
-                </ul>
-        </dd>
-    </section>
-    
 
     
 </dl>
-
-
-<h3 class="subsection-title">传入属性 / Props:</h3>
-
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>名称 / Name</th>
-        
-
-        <th>类型 / Type</th>
-
-        
-        <th>属性 / Attributes</th>
-        
-
-        
-        <th>默认值 / Default</th>
-        
-
-        <th class="last">描述 / Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>spinner</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>'ios'</code>
-                
-                </td>
-            
-
-            <td class="description last">菊花样式</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>content</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">内容</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cssClass</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">自定义样式</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>showBackdrop</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last">是否显示黑色背景</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>5000</code>
-                
-                </td>
-            
-
-            <td class="description last">loading持续时间, 如果为0则无效, 默认提供5000ms持续时间</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>dismissOnPageChange</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>true</code>
-                
-                </td>
-            
-
-            <td class="description last">页面切换是否关闭loading</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>mode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;可选参数 / optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>'ios'</code>
-                
-                </td>
-            
-
-            <td class="description last">模式</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -448,54 +150,35 @@
 
 <h3 class="subsection-title">用法 / Usages</h3>
 
-    <pre class="prettyprint"><code>// 只显示菊花
-spinnerOnly(){
-     this.$loading.present();
-     setTimeout(() => {
-       this.$loading.dismiss().then(() => {
-         console.debug('dismiss in promise success!')
-       })
-     }, 1000)
-   },
+    <pre class="prettyprint"><code>// 开启
+openModal(){
+       this.$modal.present({
+         template: modalPageComponent_1,
+         modalData: {hello: 'Page1Data'},
+         onDismiss (data) {
+           console.debug('得到了modal1的关闭信息')
+           console.debug(JSON.stringify(data))
+         }
+   })
+},
 
-// 是显示name
-stringOnly(){
-     this.$loading.present('只传入了String');
-     setTimeout(() => {
-       this.$loading.dismiss().then(() => {
-         console.debug('dismiss in promise success!')
+// 关闭
+closeModal(){
+       this.$modal.dismiss({
+         result: 'modal 1 dismissed success!'
        })
-     }, 1000)
-   },
-
-// 普通的
-showDefault () {
-     this.$loading.present({
-       content: '正在加载, 6000ms后自动关闭...',
-       dismissOnPageChange: false, // url变化后关闭loading(默认)
-       showBackdrop: true,
-     });
-     setTimeout(() => {
-       this.$loading.dismiss().then(() => {
-         console.debug('dismiss in promise success!')
-       })
-     }, 6000);
-   },</code></pre>
+}</code></pre>
 
 
 
                 <!---->
-                <!--<div class="description"><h2>弹出层 / Loading组件(大Loading)</h2><p>Loading也有大小之分</p>
-<h3>关于大小Loading的问题</h3><p>Loading的使用场景是这样的: 当用户访问数据/资源加载/需要等待操作的需求下使用, 完整的情况下需要向用户说明我这次Loading是做什么, 比如Loading是提示&quot;<strong>正在请求资源, 请稍后!</strong>&quot;, 有时我们并不需提示, 只需要显示菊花图即可, 因为频繁的显示大Loading还是很烦的, 这里需要介绍下Indicator组件, 他是继承Loading组件, 但是只显示菊花图, 而且调用也简单, 不必每次传入参数.</p>
-<h3>弹出层</h3><ul>
-<li>Loading通过present开启, 如果没设置duration, 则需要手动dismiss, 但是最多开启5000ms, 这部分可通过<code>maxLoadingDuration</code>在config设置</li>
-<li>Vimo的弹出层都是独立于页面的, 但也不是<code>body</code>的直接子元素, 而是挂载在App组件中的. 这样做是有考量的.</li>
-<li>组件相应路由切换, 路由切换则自动关闭</li>
-</ul>
-<h3>用法</h3><ul>
-<li>不传参数则显示菊花</li>
-<li>传入string则显示string</li>
-<li>参考下面的示例</li>
+                <!--<div class="description"><h2>弹出层 / Modal弹出页组件</h2><h2>补充</h2><p>Model组件用于当前页面的补充, 相当于在当前页面上再来弹一个页面, 这里并不改变路由, 但是会改变H5 history的popstate, 每打开一个Modal则新增一个历史记录, 可以通过后退关闭最后一次打开的modal.</p>
+<h2>注意点</h2><ul>
+<li>在modal中如果跳转到另一页之前希望能先关闭当前modal再操作</li>
+<li>modal不会再url中留下记录</li>
+<li>modal只是装菜的盘子, 盘子中的菜通过<code>template</code>传入, 数据通过<code>modalData</code>传入,</li>
+<li><code>onDismiss</code>会在modal关闭后触发.</li>
+<li>开启的页面就是完整的Page页面, 别无其他</li>
 </ul></div>-->
                 <!---->
 
@@ -523,7 +206,7 @@ showDefault () {
 
     
 
-    <h4 class="name" id="~dismiss"><span class="type-signature">(inner) </span>dismiss<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="~dismiss"><span class="type-signature">(inner) </span>dismiss<span class="signature">(dataBack)</span><span class="type-signature"></span></h4>
 
     
 
@@ -537,8 +220,8 @@ showDefault () {
         <dd class="tag-source">
             <ul class="dummy">
                 <li>
-                    <a href="components_loading_loading.vue.html">components/loading/loading.vue</a>
-                    , <a href="components_loading_loading.vue.html#line178">line 178</a>
+                    <a href="components_modal_modal.js.html">components/modal/modal.js</a>
+                    , <a href="components_modal_modal.js.html#line154">line 154</a>
                 </li>
             </ul>
         </dd>
@@ -593,128 +276,7 @@ showDefault () {
 
 
 <div class="description">
-    <p>关闭Loading</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---->
-
-
-
-
-
-
-
-
-<h5>返回 / Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>结果返回Promise, 当动画完毕后执行resolved</p>
-</div>
-
-
-
-<!--<dl class="param-type">-->
-    <!--<dt>-->
-        <!--Type: 
-<span class="param-type">Promise</span>
-
--->
-    <!--</dt>-->
-<!--</dl>-->
-
-    
-
-
-            
-            
-
-    
-
-    <h4 class="name" id="~present"><span class="type-signature">(inner) </span>present<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="components_loading_loading.vue.html">components/loading/loading.vue</a>
-                    , <a href="components_loading_loading.vue.html#line159">line 159</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="description">
-    <p>打开Loading</p>
+    <p>全局注册dismiss方法<br>dismiss关闭最后一次打开的Modal, 并执行onDismiss函数, 就酱, 因为, modal是覆盖式的显示在页面上, 即使给定关闭的modal名字, 也无使用意义. <code>dataBack</code>数据将由外部<code>onDismiss</code>接收</p>
 </div>
 
 
@@ -752,13 +314,13 @@ showDefault () {
 
         <tr>
             
-                <td class="name"><code>options</code></td>
+                <td class="name"><code>dataBack</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">any</span>
 
 
             
@@ -768,7 +330,7 @@ showDefault () {
 
             
 
-            <td class="description last"><p>给组件props传参的对象, 这部分在loading.js中定义</p></td>
+            <td class="description last"><p>modal调用dismiss传递向外的数据</p></td>
         </tr>
 
     
@@ -788,25 +350,419 @@ showDefault () {
 
 
 
-<h5>返回 / Returns:</h5>
 
-        
-<div class="param-desc">
-    <p>结果返回Promise, 当动画完毕后执行resolved</p>
+
+            
+            
+
+    
+
+    <h4 class="name" id="~present"><span class="type-signature">(inner) </span>present<span class="signature">(options)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="components_modal_modal.js.html">components/modal/modal.js</a>
+                    , <a href="components_modal_modal.js.html#line81">line 81</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>开启Modal方法<br>如果不懂想下: 桌子(页面)/菜盘(modal)/菜(template)的关系, 开启后获取Modal实例, 并将template初始化后挂在到Modal上, 然后注册urlChange事件. 在之后记录开启的Modal信息, 然后执行modal实例的_present开启.</p>
 </div>
 
 
 
-<!--<dl class="param-type">-->
-    <!--<dt>-->
-        <!--Type: 
-<span class="param-type">Promise</span>
 
--->
-    <!--</dt>-->
-<!--</dl>-->
+
+
+
+
+
+    <h5>示例 / Example</h5>
+    
+    <pre class="prettyprint"><code>传入参数示例:
+{
+ template:require('*.vue'),  // modal页面
+ modalData:{...},            // 传给modal的数据
+ onDismiss(data){....},      // 关闭model执行的操作, data是关闭时传入的参数
+}</code></pre>
+
+
+
+
+    <h5>参数 / Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>名称 / Name</th>
+        
+
+        <th>类型 / Type</th>
+
+        
+
+        
+
+        <th class="last">描述 / Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>参数 / Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>名称 / Name</th>
+        
+
+        <th>类型 / Type</th>
+
+        
+        <th>属性 / Attributes</th>
+        
+
+        
+        <th>默认值 / Default</th>
+        
+
+        <th class="last">描述 / Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>template</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">VueComponent</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>modal页面</p></td>
+        </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>modalData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>传给modal的数据</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onDismiss</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>关闭model执行的操作, data是关闭时传入的参数</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'ios'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>模式</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>名称(未启用)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>position</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>位置(未启用)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<!---->
+
+
+
+
+
+
+
+
 
 
             
@@ -827,11 +783,11 @@ showDefault () {
             </div>
             <div class="showcase__box--md">
                 <iframe frameborder="0" seamless
-                        src="http://xiangsongtao.com/vimo/#/loading?vmMode=md"></iframe>
+                        src="http://xiangsongtao.com/vimo/#/modal?vmMode=md"></iframe>
             </div>
             <div class="showcase__box--ios">
                 <iframe frameborder="0" seamless
-                        src="http://xiangsongtao.com/vimo/#/loading?vmMode=ios"></iframe>
+                        src="http://xiangsongtao.com/vimo/#/modal?vmMode=ios"></iframe>
             </div>
         </div>
     </aricle>

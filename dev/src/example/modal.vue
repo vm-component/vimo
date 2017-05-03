@@ -15,14 +15,11 @@
   </Page>
 </template>
 <style lang="scss">
-  .main {
-
-  }
+  .main {}
 </style>
 <script type="text/ecmascript-6">
   import modalPageComponent_1 from './modal-page/modal-page-1.vue';
   import modalPageComponent_2 from './modal-page/modal-page-2.vue';
-
   export default{
     data(){
       return {}
@@ -33,8 +30,6 @@
     methods: {
       openModal_1(){
         this.$modal.present({
-          name:'modal_1',
-          position:'bottom',
           template: modalPageComponent_1,
           modalData: {hello: 'Page1Data'},
           onDismiss (data) {
@@ -45,8 +40,6 @@
       },
       openModal_2(){
         this.$modal.present({
-          name:'modal_2',
-          position:'right',
           template: modalPageComponent_2,
           modalData: {hello: 'Page2Data'},
           onDismiss (data) {

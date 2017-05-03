@@ -21,18 +21,13 @@
     @import "./modal.md";
 </style>
 <script>
-  /**
-   * @component Component/Modal
-   * @description
-   *
-   * Model组件用于当前页面的补充
-   * */
+
   import { Backdrop } from '../backdrop'
   export default{
     name: 'Modal',
     props: {
-      name: [String],
-      position: [String],
+      name: [String],       // 名称, 还未使用
+      position: [String],   // 开启位置, 还未使用
       mode: {
         type: String,
         default(){return window.VM && window.VM.config.get('mode', 'ios') || 'ios'}
@@ -43,7 +38,6 @@
         enabled: false,
         bdDismiss: false,
         isActive: false,
-//        mode: window.VM && window.VM.config.get('mode', 'ios') || 'ios',
 
         // promise
         presentCallback: null,
