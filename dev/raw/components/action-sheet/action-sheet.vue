@@ -18,7 +18,6 @@
                             <span>{{title}}</span>
                             <div class="action-sheet-sub-title" v-if="subTitle">{{subTitle}}</div>
                         </div>
-
                         <div class="action-sheet-buttons">
                             <Button role="action-sheet-button" @click="click(b)" v-for="(b,index) of normalButtons"
                                     :key="index"
@@ -44,75 +43,88 @@
 </template>
 <script>
   /**
-   * @component Component/ActionSheet
+   * @component ActionSheet
    * @description
    *
-   * ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭.
+   * ## 弹出层 / ActionSheet
    *
-   * 它显示在应用内容的顶层，必须由用户手动关闭，然后他们才能恢复与应用的互动。
-   * 有一些简单的方法可以取消操作表，例如点击背景幕或者点击桌面上的退出键,
-   * 也就是说, ActionSheet能监听url的变化做出关闭的动作。
+   * ### 简介
    *
-   * 如果选择后需要翻页, 希望能在promise回调中执行, 保证ActionSheet的动画
-   *
-   * @property {String} [title]                     - ActionSheet的标题
-   * @property {string} [subTitle]                  - ActionSheet的副标题
-   * @property {string} [cssClass]                  - Additional classes for custom styles, separated by spaces
-   * @property {Array} [buttons]                   - button数组，包含全部role
-   * @property {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
-   * @property {string} [mode=ios]                     - 样式模式
-   *
-   * @example
+   * ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭. 可以把它当做**确认单组件**, 或者**单选组件**, 但是按钮建议不超过6个, 如果超过了组件也能正确处理, 比如滚动选择.
    *
    *
-   const _this = this;
-   _this.$actionSheet.present({
-    title: '请选择操作',
-    subTitle: '注意，选择后不能撤销！',
-    cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
-    enableBackdropDismiss: true,
-    buttons: [
-      {
-        text: '删除',
-        role: 'destructive',
-        icon: 'trash',
-        cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
-        handler: () => {
-          console.log('Destructive clicked');
-        }
-      },
-      {
-        text: '分享',
-        icon: 'share',
-        handler: () => {
-          console.log('Archive1 clicked');
-        }
-      },
-      {
-        text: '播放',
-        icon: 'play',
-        handler: () => {
-          console.log('Archive4 clicked');
-        }
-      },
-      {
-        text: '取消',
-        role: 'cancel',
-        icon: 'close',
-        handler: () => {
-          _this.$actionSheet.dismiss().then(function (data) {
-            console.debug('promise的退出方式')
-          });
-        }
-      }
-    ]
-  })
+   * ### 关于buttons属性
+   * - role属性: 可以是cancel(关闭)/destructive(警告/删除)/null, destructive在IOS下有用, 样式为红色字体
+   * - icon属性: 具体参考Icon组件的写法
+   *
+   * ### 注意点
+   *
+   * - 组件挂载点在App组件中定义, 是在业务页面之上, 且开启loading/toast都不会遮盖他.
+   * - 弹出层默认都是根据路由相应的, 当路由切换则弹层自动关闭, 这部分可用`dismissOnPageChange`修改.
+   * - 可以点击背景关闭组件, 这个在`enableBackdropDismiss`中定义.
+   * - 建议在关闭动画Promise之后处理请他业务, 这样动画会顺滑一些, 这里监听动画的关闭不是使用setTimeout, 而是监听transitionEnd事件, 因此更可靠.
+   *
+   * @props {String} [title]                        - ActionSheet的标题
+   * @props {string} [subTitle]                     - ActionSheet的副标题
+   * @props {string} [cssClass]                     - Additional classes for custom styles, separated by spaces
+   * @props {Boolean} [enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
+   * @props {Boolean} [dismissOnPageChange=true]    - 路由切换关闭组件
+   * @props {string} [mode=ios]                     - 样式模式
+   * @props {Array} [buttons]                       - button数组，包含全部role
+   * @props {Array} buttons.text                       - button显示文本
+   * @props {Array} buttons.icon                       - button显示的icon的name, 具体参考Icon组件
+   * @props {Array} buttons.role                       - 可以是cancel(关闭)/destructive(警告/删除)/null
+   * @props {Array} buttons.handler                    - 默认是关闭组件
+   * @props {Array} buttons.cssClass                   - 自定义样式
+   *
+   *
+   * @demo http://xiangsongtao.com/vimo/#/action-sheet
+   * @usage
+   *
+   * this.$actionSheet.present({
+   *  title: '请选择操作',
+   *  subTitle: '注意，选择后不能撤销！',
+   *  cssClass: 'ActionSheetCssClass1 ActionSheetCssClass2',
+   *  enableBackdropDismiss: true,
+   *  buttons: [
+   *    {
+   *      text: '删除',
+   *      role: 'destructive',
+   *      icon: 'trash',
+   *      cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
+   *      handler: () => {
+   *        console.log('Destructive clicked');
+   *      }
+   *    },
+   *    {
+   *      text: '分享',
+   *      icon: 'share',
+   *      handler: () => {
+   *        console.log('Archive1 clicked');
+   *      }
+   *    },
+   *    {
+   *      text: '播放',
+   *      icon: 'play',
+   *      handler: () => {
+   *        console.log('Archive4 clicked');
+   *      }
+   *    },
+   *    {
+   *      text: '取消',
+   *      role: 'cancel',
+   *      icon: 'close',
+   *      handler: () => {
+   *        this.$actionSheet.dismiss().then(function (data) {
+   *          console.debug('promise的退出方式')
+   *        });
+   *      }
+   *    }
+   *  ]
+   * })
    *
    */
 
-  /**
-   * 使用实例模式的话，props和data无区别。
-   * */
   import { registerListener } from '../../util/util'
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
@@ -173,8 +185,8 @@
     },
     methods: {
       /**
-       * @private
        * ActionSheet Animate Hooks
+       * @private
        * */
       _beforeEnter () {
         this.enabled = false; // 不允许过渡中途操作
@@ -201,8 +213,8 @@
       },
 
       /**
-       * @private
        * ActionSheet启动之前去除focus效果，因为存在键盘
+       * @private
        * */
       _focusOutActiveElement () {
         // only button？
@@ -211,13 +223,13 @@
       },
 
       /**
-       * @private
        * @function bdClick
        * @description
        * 点击backdrop,关闭actionsheet
        *
        * 如存在cancel按钮，点击按钮关闭actionsheet
        * Backdrop Click Handler, If cancelButton defined, then action cancelButton handler.
+       * @private
        */
       bdClick () {
         let _this = this;
@@ -231,11 +243,11 @@
       },
 
       /**
-       * @private
        * @function click
        * @description
        * 点击下方按钮
        * @param {object} button Button Click Handler
+       * @private
        */
       click (button) {
         const _this = this;
@@ -262,8 +274,9 @@
       /**
        * @function present
        * @description
-       * 打开ActionSheet, 默认是自动开启的
-       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
+       * 打开ActionSheet
+       * @param {Object} options - 给组件props传参的对象, 这部分在actionsheet.js中定义
+       * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
        */
       present () {
         const _this = this;
@@ -279,7 +292,7 @@
        * @function dismiss
        * @description
        * 关闭ActionSheet
-       * @return {Promise} Returns a promise which is resolved when the transition has completed.
+       * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
        * */
       dismiss () {
         const _this = this;
@@ -329,8 +342,8 @@
       },
 
       /**
-       * @private
        * 初始化buttons
+       * @private
        * */
       init(){
         let arr = this.buttons

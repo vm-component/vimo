@@ -18,7 +18,7 @@
 <style scoped lang="scss">
 
 </style>
-<script type="text/ecmascript-6">
+<script>
   export default{
     data(){
       return {}
@@ -27,8 +27,7 @@
     computed: {},
     methods: {
       alert () {
-        const _this = this;
-        _this.$alert.present({
+        this.$alert.present({
           title: 'Alert',
           message: '这是一个警告框, 点击背景可关闭. ',
           enableBackdropDismiss: true,
@@ -39,23 +38,20 @@
               handler: (value) => {}
             }
           ]
-        });
+        })
       },
       confirm () {
-        const _this = this;
-        _this.$alert.present({
+        this.$alert.present({
           title: 'Confirm',
-          // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
-          message: '收到这个通知的人希望你今天能搞定这个alert组件',
-          cssClass: 'alertCssOuterMain  ',
+          message: '这个是一个确认对话框, 包含取消按钮.',
+          cssClass: 'alertCssOuterMain',
           enableBackdropDismiss: true,
-          //buttons:['1','2','3']
           buttons: [
             {
               text: '取消',
               role: 'cancel',
               icon: 'icon-Destructive',
-              cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
+              cssClass: '',
               handler: () => {
                 console.debug('button2 click');
               }
@@ -64,10 +60,10 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _this.$alert.dismiss().then(function (data) {
+                this.$alert.dismiss().then(function (data) {
                   console.debug('button3 click')
                   console.debug(data)
-                });
+                })
               }
             }
           ]
@@ -75,35 +71,29 @@
         // confirm.present()
       },
       threeBtn () {
-        const _this = this;
-        _this.$alert.present({
-          title: 'ThreeBtn',
-          // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
-          message: '<span style="color:red">收到这个通知的人希望你今天能搞定这个alert组件</span>',
-          cssClass: 'alertCssOuterMain  ',
+        this.$alert.present({
+          title: '三个按钮',
+          message: '当传入的button超过三个时, 则纵向显示, 且这个message也可以传入html结构',
           enableBackdropDismiss: false,
-          //buttons:['1','2','3']
           buttons: [
             {
-              text: 'Button1_不清楚',
+              text: '不清楚',
               role: '',
-              handler: (value) => {
-              }
+              handler: (value) => {}
             },
             {
-              text: 'Button2_取消',
+              text: '取消',
               role: 'cancel',
-              handler: (value) => {
-              }
+              handler: (value) => {}
             },
             {
-              text: 'Button3_确定',
+              text: '确定',
               role: '',
               handler: (value) => {
-                _this.$alert.dismiss().then(function (data) {
+                this.$alert.dismiss().then(function (data) {
                   console.debug('button3 click')
                   console.debug(data)
-                });
+                })
               }
             }
           ]
@@ -111,12 +101,9 @@
         // threeBtn.present()
       },
       input () {
-        const _this = this;
-        _this.$alert.present({
+        this.$alert.present({
           title: '登录iTunes Store',
-          // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
           message: '请输入您Apple ID"apple@icloud.com"的密码',
-          cssClass: 'alertCssOuterMain  ',
           enableBackdropDismiss: true,
           inputs: [
             {
@@ -130,16 +117,14 @@
             {
               text: '取消',
               role: 'cancel',
-              handler: () => {
-              }
+              handler: () => {}
             },
             {
-              text: '好',
+              text: '确定',
               role: '',
               handler: (value) => {
-                _this.$alert.present({
+                this.$alert.present({
                   title: '请确认',
-                  // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                   message: '您输入的信息：' + JSON.stringify(value),
                   cssClass: '',
                   enableBackdropDismiss: true,
@@ -148,7 +133,7 @@
                       text: '确定',
                       role: 'cancel',
                       handler: (value) => {
-                        _this.$alert.dismiss().then(function (msg) {
+                        this.$alert.dismiss().then(function (msg) {
                           console.log('alert input2 dismiss promise')
                         })
                       }
@@ -156,7 +141,7 @@
                   ]
                 }).then(function () {
                   console.log('alert input2 present promise')
-                });
+                })
               }
             }
           ]
@@ -165,12 +150,10 @@
         });
       },
       checkbox () {
-        const _this = this;
-        _this.$alert.present({
+        this.$alert.present({
           title: 'checkbox',
-          subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
-          message: 'checkbox',
-          cssClass: 'alertCssOuterMain',
+          subTitle: '这个是多选组件, 这里是subTitle属性的值.',
+          message: '这里是message传递的信息.',
           enableBackdropDismiss: true,
           inputs: [
             {
@@ -228,10 +211,9 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _this.$alert.dismiss().then(function (msg) {
-                  _this.$alert.present({
+                this.$alert.dismiss().then((msg) => {
+                  this.$alert.present({
                     title: '请确认',
-                    // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                     message: '您输入的信息：' + JSON.stringify(value),
                     cssClass: '',
                     enableBackdropDismiss: true,
@@ -251,11 +233,9 @@
       },
       radio () {
         const _this = this;
-        _this.$alert.present({
+        this.$alert.present({
           title: 'radio',
-          // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
-          message: 'radio',
-          cssClass: 'alertCssOuterMain  ',
+          message: '这个是单选组件',
           enableBackdropDismiss: true,
           inputs: [
             {
@@ -294,7 +274,7 @@
               value: 'radio4_value',
               label: 'radio4_label',
               checked: false,
-              handler: function (val) {
+              handler: (val) => {
                 console.log('radio4 clicked');
                 console.log(val)
               }
@@ -312,10 +292,9 @@
               text: '确定',
               role: '',
               handler: (value) => {
-                _this.$alert.dismiss().then(function (msg) {
-                  _this.$alert.present({
+                this.$alert.dismiss().then((msg) => {
+                  this.$alert.present({
                     title: '请确认',
-                    // subTitle: '收到这个通知的人希望你今天能搞定这个alert组件',
                     message: '您输入的信息：' + JSON.stringify(value),
                     cssClass: '',
                     enableBackdropDismiss: true,
@@ -343,6 +322,5 @@
     deactivated(){},
     components: {}
   }
-
 </script>
 

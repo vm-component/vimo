@@ -7,24 +7,22 @@
         </Header>
         <Content padding>
             <Button block @click="showActionSheet1()" color="primary">
-                <span>Basic Action Sheet</span>
+                <span>最近简单的</span>
             </Button>
             <Button block @click="showActionSheet2()" color="primary">
-                <span>No Cancel Action Sheet</span>
+                <span>没有Cancel的Actionsheet</span>
             </Button>
             <Button block @click="showActionSheet3()" color="primary">
-                <span> Action Sheet With Icon</span>
+                <span>带有Icon的Actionsheet</span>
             </Button>
 
             <Button block @click="showActionSheet4()" color="primary">
-                <span>Action Sheet With More Buttons</span>
+                <span>Button很多</span>
             </Button>
         </Content>
     </Page>
 </template>
-
-<!--这个是actionsheet的模拟-->
-<script type="text/ecmascript-6">
+<script>
   export default{
     name: 'action-sheet',
     data () {
@@ -193,7 +191,7 @@
         const _this = this;
         _this.$actionSheet.present({
           title: '请选择操作',
-          subTitle: '这个是无脑的需求',
+          subTitle: '这里按钮很多, 请滚动选择!',
           enableBackdropDismiss: true,
           buttons: [
 
