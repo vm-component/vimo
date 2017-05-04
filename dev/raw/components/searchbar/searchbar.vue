@@ -58,7 +58,7 @@
     @import "./searchbar.ios";
     @import "./searchbar.md";
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component SearchBar
    * @description
@@ -137,7 +137,7 @@
   import { Icon } from '../icon'
   export default{
     name: 'Searchbar',
-    data(){
+    data () {
       return {
         isCancelVisible: false,
         sbHasFocus: false,
@@ -154,7 +154,7 @@
         valueInner: this.value,
         timer: '',
 
-        placeHolderTextWidth: null, // number eg: 44
+        placeHolderTextWidth: null // number eg: 44
 
       }
     },
@@ -168,14 +168,14 @@
        * */
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
       },
       /**
        * Set the the cancel button text. Default: "Cancel".
        * */
       cancelButtonText: {
         type: String,
-        default: 'Cancel',
+        default: 'Cancel'
       },
       /**
        * Whether to show the cancel button or not. Default: "false".
@@ -186,49 +186,49 @@
        * */
       debounce: {
         type: Number,
-        default: 0,
+        default: 0
       },
       /**
        * Set the input's placeholder. Default "Search".
        * */
       placeholder: {
         type: String,
-        default: 'Search',
+        default: 'Search'
       },
       /**
        * Set the input's autocomplete property. Values: "on", "off". Default "off".
        * */
       autocomplete: {
         type: String,
-        default: 'off',
+        default: 'off'
       },
       /**
        * Set the input's autocorrect property. Values: "on", "off". Default "off".
        * */
       autocorrect: {
         type: String,
-        default: 'off',
+        default: 'off'
       },
       /**
        * Set the input's spellcheck property. Values: true, false. Default false.
        * */
       spellcheck: {
         type: [String, Boolean],
-        default: false,
+        default: false
       },
       /**
        * Set the type of the input. Values: "text", "password", "email", "number", "search", "tel", "url". Default "search".
        * */
       type: {
         type: String,
-        default: 'search',
+        default: 'search'
       },
       /**
        * Configures if the searchbar is animated or no. By default, animation is false.
        * */
       animated: {
         type: Boolean,
-        default: false,
+        default: false
       },
       /**
        * Set the input value.
@@ -251,8 +251,8 @@
         return this.mode ? `searchbar-${this.mode}` : ''
       },
       colorClass () {
-        return !!this.color ? `searchbar-${this.mode}-${this.color}` : ''
-      },
+        return this.color ? `searchbar-${this.mode}-${this.color}` : ''
+      }
     },
     methods: {
 
@@ -276,7 +276,6 @@
             this.$emit('input', this.valueInner)
           }, this.debounce)
         } else {
-
           /**
            * @event component:SearchBar#onInput
            * @description input事件
@@ -373,7 +372,7 @@
        * 当focus时, 设置搜索框的icon/placeholder/cancel button的位置 (ios only)
        * @private
        */
-      positionElements() {
+      positionElements () {
         let isAnimated = this.animated
         let prevAlignLeft = this.shouldAlignLeft
         let shouldAlignLeft = (!isAnimated || (this.valueInner && this.valueInner.toString().trim() !== '') || this.sbHasFocus === true)
@@ -389,10 +388,10 @@
         if (isAnimated) {
           this.positionCancelButton()
         }
-        this.shouldAnimated = this.animated;
+        this.shouldAnimated = this.animated
       },
 
-      positionPlaceholder() {
+      positionPlaceholder () {
         let inputEle = this.searchbarInput
         let iconEle = this.searchbarIcon
         console.assert(inputEle, 'The input element is undefined, please check!::<Function>positionPlaceholder():inputEle')
@@ -441,7 +440,7 @@
        * Show the iOS Cancel button on focus, hide it offscreen otherwise
        * @private
        */
-      positionCancelButton() {
+      positionCancelButton () {
         if (!this.cancelButton) {
           return
         }
@@ -460,7 +459,6 @@
           }
         }
       }
-
     },
     mounted () {
       this.searchbarIcon = this.$refs.searchbarIcon

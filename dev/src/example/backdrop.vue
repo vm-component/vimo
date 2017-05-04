@@ -29,16 +29,16 @@
 
             <p>在下面的DIV中显示Backdrop, 点击关闭(模板式)</p>
             <div id="backdropInDiv">
-                <Backdrop :isActive="isActiveInner" :bdClick="function(){isActiveInner=!isActiveInner}"></Backdrop>
+                <Backdrop :isActive="isActiveInner" :bdClick="function () {isActiveInner=!isActiveInner}"></Backdrop>
                 <span>Hello, Vimo!</span>
             </div>
             <Button block @click="isActiveInner=!isActiveInner">打开Backdrop</Button>
 
             <!--当前的幕布-->
-            <Backdrop :isActive="isActive" :bdClick="function(){isActive=!isActive}" :top="top" :left="left" :fixed="true"></Backdrop>
+            <Backdrop :isActive="isActive" :bdClick="function () {isActive=!isActive}" :top="top" :left="left"
+                      :fixed="true"></Backdrop>
         </Content>
     </Page>
-
 </template>
 
 <style lang="scss">
@@ -52,9 +52,9 @@
         position: relative;
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   export default{
-    data(){
+    data () {
       return {
         isActive: false,
         isActiveInner: false,
@@ -63,33 +63,31 @@
       }
     },
     methods: {
-      present(){
+      present () {
         this.isActive = true
         this.top = 0
         this.left = 0
       },
-      presentWithTopWhite(){
+      presentWithTopWhite () {
         this.top = 100
         this.left = 0
         this.isActive = true
       },
-      presentWithRightWhite(){
+      presentWithRightWhite () {
         this.top = 0
         this.left = -100
         this.isActive = true
       },
-      presentWithBottomWhite(){
-
+      presentWithBottomWhite () {
         this.top = -100
         this.left = 0
         this.isActive = true
       },
-      presentWithLeftWhite(){
+      presentWithLeftWhite () {
         this.top = 0
         this.left = 100
         this.isActive = true
-
-      },
+      }
     }
   }
 </script>

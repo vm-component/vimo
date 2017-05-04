@@ -5,43 +5,41 @@
 
 /// @prop - Order of the toolbar elements
 $toolbar-order-ios: (
-  back-button: 0,
-  menu-toggle-start: 1,
-  buttons-left: 2,
-  buttons-start: 3,
-  content: 4,
-  buttons-end: 5,
-  buttons-right: 6,
-  menu-toggle-end: 7,
+        back-button: 0,
+        menu-toggle-start: 1,
+        buttons-left: 2,
+        buttons-start: 3,
+        content: 4,
+        buttons-end: 5,
+        buttons-right: 6,
+        menu-toggle-end: 7,
 );
 
 /// @prop - Font size of the toolbar button
-$toolbar-ios-button-font-size:              17px !default;
+$toolbar-ios-button-font-size: 17px !default;
 
 /// @prop - Font size of the toolbar title
-$toolbar-ios-title-font-size:               17px !default;
+$toolbar-ios-title-font-size: 17px !default;
 
 /// @prop - Font weight of the toolbar title
-$toolbar-ios-title-font-weight:             600 !default;
+$toolbar-ios-title-font-weight: 600 !default;
 
 /// @prop - Text alignment of the toolbar title
-$toolbar-ios-title-text-align:              center !default;
+$toolbar-ios-title-text-align: center !default;
 
 /// @prop - Text color of the toolbar title
-$toolbar-ios-title-text-color:              color-contrast($colors-ios, $toolbar-ios-background) !default;
+$toolbar-ios-title-text-color: color-contrast($colors-ios, $toolbar-ios-background) !default;
 
 /// @prop - Text color of the toolbar button
-$toolbar-ios-button-color:                  color-contrast($colors-ios, $toolbar-ios-background, ios) !default;
+$toolbar-ios-button-color: color-contrast($colors-ios, $toolbar-ios-background, ios) !default;
 
 /// @prop - Border radius of the toolbar button
-$toolbar-ios-button-border-radius:          4px !default;
+$toolbar-ios-button-border-radius: 4px !default;
 
 /// @prop - Height of the navigation bar
-$navbar-ios-height:                         $toolbar-ios-height !default;
+$navbar-ios-height: $toolbar-ios-height !default;
 
-$button-ios-strong-font-weight:800;
-
-
+$button-ios-strong-font-weight: 800;
 
 .toolbar-ios {
   padding: $toolbar-ios-padding;
@@ -51,14 +49,12 @@ $button-ios-strong-font-weight:800;
   min-height: $toolbar-ios-height;
 }
 
-
 // iOS Toolbar Background
 // --------------------------------------------------
 
 .toolbar-background-ios {
   background: $toolbar-ios-background;
 }
-
 
 // iOS Header / Footer Borders
 // --------------------------------------------------
@@ -85,7 +81,6 @@ $button-ios-strong-font-weight:800;
   border-top-width: 0;
 }
 
-
 // iOS Toolbar Content
 // --------------------------------------------------
 
@@ -95,7 +90,6 @@ $button-ios-strong-font-weight:800;
 
   min-width: 0;
 }
-
 
 // toolbar-title.vue
 // --------------------------------------------------
@@ -146,7 +140,6 @@ $button-ios-strong-font-weight:800;
   }
 }
 
-
 // iOS Toolbar Button Placement
 // --------------------------------------------------
 
@@ -171,7 +164,6 @@ $button-ios-strong-font-weight:800;
 
   text-align: right;
 }
-
 
 // iOS Toolbar Button Default
 // --------------------------------------------------
@@ -204,7 +196,6 @@ $button-ios-strong-font-weight:800;
   }
 
 }
-
 
 // iOS Toolbar Button Outline
 // --------------------------------------------------
@@ -242,7 +233,6 @@ $button-ios-strong-font-weight:800;
 
 }
 
-
 // iOS Toolbar Button Solid
 // --------------------------------------------------
 
@@ -276,7 +266,6 @@ $button-ios-strong-font-weight:800;
 
 }
 
-
 // iOS Toolbar Button Icon
 // --------------------------------------------------
 
@@ -302,6 +291,7 @@ $button-ios-strong-font-weight:800;
   padding: 0;
   min-width: .9em;
 }
+
 .bar-button-ios.icon-only {
   padding: 0;
   min-width: .9em;
@@ -315,6 +305,7 @@ $button-ios-strong-font-weight:800;
 
   pointer-events: none;
 }
+
 .bar-button-ios.icon-only .ion-icon {
   padding: 0 .1em;
 
@@ -355,7 +346,6 @@ $button-ios-strong-font-weight:800;
   letter-spacing: -.01em;
 }
 
-
 // iOS Toolbar Menu Toggle
 // --------------------------------------------------
 
@@ -379,7 +369,6 @@ $button-ios-strong-font-weight:800;
   order: map-get($toolbar-order-ios, menu-toggle-end);
 }
 
-
 // iOS Toolbar Color Generation
 // --------------------------------------------------
 
@@ -392,7 +381,6 @@ $button-ios-strong-font-weight:800;
   @include ios-bar-button-outline($color-name, $color-base, $color-contrast);
   @include ios-bar-button-solid($color-name, $color-base, $color-contrast);
 }
-
 
 // iOS strong Button
 // --------------------------------------------------

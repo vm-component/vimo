@@ -4,74 +4,72 @@
 // --------------------------------------------------
 
 /// @prop - Border bottom width of the checkbox
-$checkbox-md-border-bottom-width:        1px !default;
+$checkbox-md-border-bottom-width: 1px !default;
 
 /// @prop - Border bottom style of the checkbox
-$checkbox-md-border-bottom-style:        solid !default;
+$checkbox-md-border-bottom-style: solid !default;
 
 /// @prop - Border bottom color of the checkbox
-$checkbox-md-border-bottom-color:        $list-md-border-color !default;
+$checkbox-md-border-bottom-color: $list-md-border-color !default;
 
 /// @prop - Padding of the checkbox
-$checkbox-md-padding:                    $item-md-padding-top ($item-md-padding-right / 2) $item-md-padding-bottom 0 !default;
+$checkbox-md-padding: $item-md-padding-top ($item-md-padding-right / 2) $item-md-padding-bottom 0 !default;
 
 /// @prop - Margin of the checkbox
-$checkbox-md-margin:                     0 !default;
+$checkbox-md-margin: 0 !default;
 
 /// @prop - Opacity of the disabled checkbox
-$checkbox-md-disabled-opacity:           .3 !default;
+$checkbox-md-disabled-opacity: .3 !default;
 
 /// @prop - Background color of the checkbox icon when off
-$checkbox-md-icon-background-color-off:  $list-md-background-color !default;
+$checkbox-md-icon-background-color-off: $list-md-background-color !default;
 
 /// @prop - Background color of the checkbox icon when on
-$checkbox-md-icon-background-color-on:   color($colors-md, primary) !default;
+$checkbox-md-icon-background-color-on: color($colors-md, primary) !default;
 
 /// @prop - Size of the checkbox icon
-$checkbox-md-icon-size:                  16px !default;
+$checkbox-md-icon-size: 16px !default;
 
 /// @prop - Width of the checkbox icon checkmark
-$checkbox-md-icon-checkmark-width:       2px !default;
+$checkbox-md-icon-checkmark-width: 2px !default;
 
 /// @prop - Style of the checkbox icon checkmark
-$checkbox-md-icon-checkmark-style:       solid !default;
+$checkbox-md-icon-checkmark-style: solid !default;
 
 /// @prop - Color of the checkbox icon checkmark
-$checkbox-md-icon-checkmark-color:       color-contrast($colors-md, $checkbox-md-icon-background-color-on) !default;
+$checkbox-md-icon-checkmark-color: color-contrast($colors-md, $checkbox-md-icon-background-color-on) !default;
 
 /// @prop - Border width of the checkbox icon
-$checkbox-md-icon-border-width:          2px !default;
+$checkbox-md-icon-border-width: 2px !default;
 
 /// @prop - Border style of the checkbox icon
-$checkbox-md-icon-border-style:          solid !default;
+$checkbox-md-icon-border-style: solid !default;
 
 /// @prop - Border radius of the checkbox icon
-$checkbox-md-icon-border-radius:         2px !default;
+$checkbox-md-icon-border-radius: 2px !default;
 
 /// @prop - Border color of the checkbox icon when off
-$checkbox-md-icon-border-color-off:      darken($list-md-border-color, 40%) !default;
+$checkbox-md-icon-border-color-off: darken($list-md-border-color, 40%) !default;
 
 /// @prop - Border color of the checkbox icon when on
-$checkbox-md-icon-border-color-on:       color($colors-md, primary) !default;
+$checkbox-md-icon-border-color-on: color($colors-md, primary) !default;
 
 /// @prop - Transition duration of the checkbox
-$checkbox-md-transition-duration:        280ms !default;
+$checkbox-md-transition-duration: 280ms !default;
 
 /// @prop - Transition easing of the checkbox
-$checkbox-md-transition-easing:          cubic-bezier(.4, 0, .2, 1) !default;
+$checkbox-md-transition-easing: cubic-bezier(.4, 0, .2, 1) !default;
 
 /// @prop - Margin of the left checkbox item
-$checkbox-md-item-left-margin:           $item-md-padding-media-top 36px $item-md-padding-media-bottom 4px !default;
+$checkbox-md-item-left-margin: $item-md-padding-media-top 36px $item-md-padding-media-bottom 4px !default;
 
 /// @prop - Margin of the right checkbox item
-$checkbox-md-item-right-margin:          11px 10px 10px 0 !default;
-
+$checkbox-md-item-right-margin: 11px 10px 10px 0 !default;
 
 .checkbox-md {
   position: relative;
   display: inline-block;
 }
-
 
 // Material Design Checkbox Outer Square: Unchecked
 // -----------------------------------------
@@ -93,7 +91,6 @@ $checkbox-md-item-right-margin:          11px 10px 10px 0 !default;
   transition-timing-function: $checkbox-md-transition-easing;
 }
 
-
 // Material Design Checkbox Outer Square: Checked
 // -----------------------------------------
 
@@ -101,7 +98,6 @@ $checkbox-md-item-right-margin:          11px 10px 10px 0 !default;
   border-color: $checkbox-md-icon-border-color-on;
   background-color: $checkbox-md-icon-background-color-on;
 }
-
 
 // Material Design Checkbox Inner Checkmark: Checked
 // -----------------------------------------
@@ -122,7 +118,6 @@ $checkbox-md-item-right-margin:          11px 10px 10px 0 !default;
   transform: rotate(45deg);
 }
 
-
 // Material Design Checkbox: Disabled
 // -----------------------------------------
 
@@ -132,7 +127,6 @@ $checkbox-md-item-right-margin:          11px 10px 10px 0 !default;
 
   pointer-events: none;
 }
-
 
 // Material Design Checkbox Within An Item
 // -----------------------------------------
@@ -152,7 +146,6 @@ $checkbox-md-item-right-margin:          11px 10px 10px 0 !default;
   margin-left: 0;
 }
 
-
 // Material Design Checkbox Color Mixin
 // --------------------------------------------------
 
@@ -168,7 +161,6 @@ $checkbox-md-item-right-margin:          11px 10px 10px 0 !default;
   }
 
 }
-
 
 // Generate Material Design Checkbox Colors
 // --------------------------------------------------

@@ -22,7 +22,7 @@
         </Content>
     </Page>
 </template>
-<script>
+<script type="text/javascript">
   export default{
     name: 'action-sheet',
     data () {
@@ -30,7 +30,7 @@
     },
     methods: {
       showActionSheet1 () {
-        const _this = this;
+        const _this = this
         _this.$actionSheet.present({
           title: '请选择操作',
           subTitle: '注意，选择后不能撤销！',
@@ -42,7 +42,7 @@
               role: 'destructive',
               cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
               handler: () => {
-                console.log('Destructive clicked');
+                console.log('Destructive clicked')
                 _this.$actionSheet.present({
                   title: '请选择操作',
                   subTitle: '注意，选择后不能撤销！',
@@ -54,19 +54,19 @@
                       role: 'destructive',
                       cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
                       handler: () => {
-                        console.log('Destructive clicked');
+                        console.log('Destructive clicked')
                       }
                     },
                     {
                       text: '翻转2',
                       handler: () => {
-                        console.log('Archive1 clicked');
+                        console.log('Archive1 clicked')
                       }
                     },
                     {
                       text: '增加2',
                       handler: () => {
-                        console.log('Archive4 clicked');
+                        console.log('Archive4 clicked')
                       }
                     },
                     {
@@ -75,7 +75,7 @@
                       handler: () => {
                         _this.$actionSheet.dismiss().then(function (data) {
                           console.debug('promise的退出方式')
-                        });
+                        })
                       }
                     }
                   ]
@@ -87,13 +87,13 @@
             {
               text: '翻转',
               handler: () => {
-                console.log('翻转 clicked');
+                console.log('翻转 clicked')
               }
             },
             {
               text: '增加',
               handler: () => {
-                console.log('增加 clicked');
+                console.log('增加 clicked')
               }
             },
             {
@@ -103,17 +103,16 @@
                 console.debug('取消 clicked')
                 _this.$actionSheet.dismiss().then(function (data) {
                   console.debug('promise的退出方式')
-                });
+                })
               }
             }
           ]
         }).then(function () {
           console.log('actionsheet1 present')
         })
-
       },
       showActionSheet2 () {
-        const _this = this;
+        const _this = this
         _this.$actionSheet.present({
           title: '请选择型号',
           subTitle: '必须选择, 点击backdrop不能取消',
@@ -125,26 +124,26 @@
               role: 'destructive',
               cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
               handler: () => {
-                console.log('Destructive clicked');
+                console.log('Destructive clicked')
               }
             },
             {
               text: 'MacMini',
               handler: () => {
-                console.log('Archive1 clicked');
+                console.log('Archive1 clicked')
               }
             },
             {
               text: 'iPhone',
               handler: () => {
-                console.log('Archive4 clicked');
+                console.log('Archive4 clicked')
               }
             }
           ]
-        });
+        })
       },
       showActionSheet3 () {
-        const _this = this;
+        const _this = this
         _this.$actionSheet.present({
           title: '请选择操作',
           subTitle: '注意，选择后不能撤销！',
@@ -157,21 +156,21 @@
               icon: 'trash',
               cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
               handler: () => {
-                console.log('Destructive clicked');
+                console.log('Destructive clicked')
               }
             },
             {
               text: '分享',
               icon: 'share',
               handler: () => {
-                console.log('Archive1 clicked');
+                console.log('Archive1 clicked')
               }
             },
             {
               text: '播放',
               icon: 'play',
               handler: () => {
-                console.log('Archive4 clicked');
+                console.log('Archive4 clicked')
               }
             },
             {
@@ -181,14 +180,14 @@
               handler: () => {
                 _this.$actionSheet.dismiss().then(function (data) {
                   console.debug('promise的退出方式')
-                });
+                })
               }
             }
           ]
         })
       },
       showActionSheet4 () {
-        const _this = this;
+        const _this = this
         _this.$actionSheet.present({
           title: '请选择操作',
           subTitle: '这里按钮很多, 请滚动选择!',
@@ -222,16 +221,14 @@
               handler: () => {
                 _this.$actionSheet.dismiss().then(function (data) {
                   console.debug('promise的退出方式')
-                });
+                })
               }
             }
           ]
         })
-      },
-    },
-
+      }
+    }
   }
-
 </script>
 
 <style lang="scss"></style>

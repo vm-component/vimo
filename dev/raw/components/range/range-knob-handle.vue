@@ -1,6 +1,6 @@
 <template>
     <div class="range-knob-handle" role="slider"
-         :style="{left:x}"
+         :style="{left:left}"
          :class="{'range-knob-pressed':pressed,
        'range-knob-min':rangeKnobMin,'range-knob-max':rangeKnobMax}">
         <div class="range-pin" v-if="pin" role="presentation">{{val}}</div>
@@ -8,7 +8,7 @@
     </div>
 </template>
 <style lang="scss"></style>
-<script>
+<script type="text/javascript">
   /**
    * @name 处理range按钮业务的组件
    *
@@ -20,50 +20,41 @@
    * */
   export default{
     name: 'RangeKnobHandle',
-    data(){
+    data () {
       return {}
     },
     props: {
       ratio: {
         type: Number,
-        default: 0,
+        default: 0
       },
       val: {
         type: Number,
-        default: 0,
+        default: 0
       },
-      pin: {
-        type: Boolean,
-        default: false,
-      },
-      pressed: {
-        type: Boolean,
-        default: false,
-      },
+      pin: [Boolean],
+      pressed: [Boolean],
       min: {
         type: Number,
-        default: 0,
+        default: 0
       },
       max: {
         type: Number,
-        default: 100,
+        default: 100
       },
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
+      disabled: [Boolean]
     },
-    watch: {},
     computed: {
-      x(){
+      left () {
         return `${this.ratio * 100}%`
       },
-      rangeKnobMin(){
+      rangeKnobMin () {
         return this.val === this.min || this.val === undefined
       },
-      rangeKnobMax(){
+      rangeKnobMax () {
         return this.val === this.max
-      },
+      }
     }
   }
 </script>
+

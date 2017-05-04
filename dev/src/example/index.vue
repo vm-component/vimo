@@ -165,23 +165,23 @@
         }
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import vimo from 'vimo'
   export default{
     name: 'index',
-    data(){
+    data () {
       return {
-        vimo: vimo,
+        vimo: vimo
       }
     },
     methods: {
-      test(){
+      test () {
         //      alert(this.$platform._platforms)
 //        this.$platform.do('scanCode', function (data) {})
       }
     },
-    created(){},
-    mounted(){
+    created () {},
+    mounted () {
     }
   }
 </script>

@@ -58,22 +58,22 @@
         border: 1px dashed #000;
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Segment, SegmentButton } from 'vimo/components/segment'
   export default{
     name: 'async',
-    data(){
+    data () {
       return {
         segmentList: [],
         fruit: 'apple',
         onChangeValue: null,
-        onSelectValue: null,
+        onSelectValue: null
       }
     },
     watch: {},
     computed: {},
     methods: {
-      getSegmentData(){
+      getSegmentdata () {
         if (this.segmentList.length === 0) {
           this.segmentList = [
             {
@@ -91,7 +91,7 @@
           ]
         }
       },
-      addSegmentBtn(){
+      addSegmentBtn () {
         if (this.segmentList.length === 3) {
           this.segmentList.push({
             value: 'banana',
@@ -99,11 +99,11 @@
           })
         }
       },
-      onChangeHandler(val){
+      onChangeHandler (val) {
         console.debug('当前的Segment值发生变化: ' + val)
         this.onChangeValue = val
       },
-      onSelectHandler(val){
+      onSelectHandler (val) {
         console.debug('点击了SegmentButton按钮, 这个按钮的值: ' + val)
         this.onSelectValue = val
       }

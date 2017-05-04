@@ -29,7 +29,7 @@
     @import './fade-right-transition.scss';
     @import './zoom-transition.scss';
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Base/App
    * @description
@@ -93,7 +93,7 @@
   let scrollDisTimer = null                     // 计时器
   export default{
     name: 'App',
-    data(){
+    data () {
       return {
         disabledTimeRecord: 0,        // 禁用计时
         scrollTimeRecord: 0,        // 滚动计时
@@ -106,20 +106,20 @@
     props: {
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
       }
     },
     computed: {
       modeClass () {
         return `${this.mode}`
       },
-      platformClass(){
+      platformClass () {
         return `platform-${this.mode}`
       },
-      hoverClass(){
-        let _isMobile = !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)
+      hoverClass () {
+        let _isMobile = navigator.userAgent.match(/AppleWebKit.*Mobile.*/)
         return _isMobile ? 'disable-hover' : 'enable-hover'
-      },
+      }
     },
     methods: {
       // -------- public --------
@@ -153,7 +153,7 @@
        * 查看App当前的激活(禁用)状态
        * @return {boolean}
        */
-      isEnabled() {
+      isEnabled () {
         if (this.disabledTimeRecord === 0) return true
         return (this.disabledTimeRecord < Date.now())
       },
@@ -183,7 +183,7 @@
        * 判断现在app是否在scroll状态, scroll状态可能是任意一个页面的状态, 这个isScroll作为全局的scroll判断
        * @return {boolean}
        */
-      isScrolling() {
+      isScrolling () {
         if (this.scrollTimeRecord === 0) return false
         if (this.scrollTimeRecord < Date.now()) {
           this.scrollTimeRecord = 0
@@ -199,7 +199,7 @@
        * 正在滚动... 滚动的有效时间为ACTIVE_SCROLLING_TIME, 超时后将判断为不再滚动, 由
        * isScrolling进行判断
        */
-      setScrolling() {
+      setScrolling () {
         this.scrollTimeRecord = Date.now() + ACTIVE_SCROLLING_TIME
       },
 
@@ -210,7 +210,7 @@
        * @param {string} className
        * @param {boolean} isAdd
        */
-      setClass(className, isAdd) {
+      setClass (className, isAdd) {
         setElementClass(this.$el, className, isAdd)
       },
 
@@ -219,7 +219,7 @@
        * @description
        * 设置document.title的值
        * */
-      setDocTitle(val){
+      setDocTitle (val) {
         // 不在壳子中则正常显示
         if (this.$platform.platforms().length <= 2) {
           document.title = val
@@ -242,17 +242,17 @@
             document.body.appendChild(iframe)
           }
         }
-      },
+      }
     },
-    created(){
+    created () {
       /**
        * $app对外方法
        * */
       let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
       proto.$app = this
     },
-    mounted(){
-      console.assert(!!clickBlockInstance, 'clickBlockInstance实例不存在, 请检查!')
+    mounted () {
+      console.assert(clickBlockInstance, 'clickBlockInstance实例不存在, 请检查!')
       this.isClickBlockEnabled = true
     }
   }

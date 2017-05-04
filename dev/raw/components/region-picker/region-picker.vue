@@ -25,7 +25,7 @@
         text-overflow: ellipsis;
     }
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Components/RegionPicker
    * @description
@@ -40,7 +40,7 @@
   import { registerListener } from '../../util/util'
   export default{
     name: 'RegionPicker',
-    data(){
+    data () {
       return {
         provinceCol: [],            // 省份显示的数据列表
         cityCol: [],                // 城市显示的数据列表
@@ -49,25 +49,25 @@
         lastSelectCityArrs: [],     // 上一次城市选择的值 ['110000', '110100', '110101']
 
         isInit: false,
-        unreg: null,
+        unreg: null
       }
     },
     props: {
       selectedCity: {
         value: Array,
-        default(){
+        default () {
           return ['110000', '110100', '110101']
         }
       },
       title: {
         value: String,
-        default(){
+        default () {
           return ''
         }
       }
     },
     watch: {
-      selectedCity(val){
+      selectedCity (val) {
         if (this.isInit) {
           this.reset(val)
         } else {
@@ -88,7 +88,7 @@
       },
       // 获取城市列表 520D00
       getCityCol (provinceCode) {
-        if (!provinceCode)return
+        if (!provinceCode) return
         let city = []
         regions.forEach((item) => {
           let _org = item.item_code.substring(0, 3) + item.item_code.substring(4)
@@ -102,7 +102,7 @@
       },
       // 获取地区县市列表 520Dxx
       getRegionCol (cityCode) {
-        if (!cityCode)return
+        if (!cityCode) return
         let region = []
         regions.forEach((item) => {
           if (item.item_code && item.item_code.substr(0, 4) === cityCode.substr(0, 4) && item.item_code.substr(4) !== '00') {
@@ -112,32 +112,31 @@
         return region
       },
       // 格式化数据
-      formatData(item){
-        if (!item)return
+      formatData (item) {
+        if (!item) return
         return {
           code: item.item_code,
           value: item.item_code,
           text: item.item_name,
-          name: item.item_name,
+          name: item.item_name
         }
       },
       // 传入城市的code返回他在arr中的index
-      getIndexByCode(code, arr){
+      getIndexByCode (code, arr) {
         for (var i = 0, len = arr.length; len > i; i++) {
           if (arr[i].code === code) {
             return i
-            break
           }
         }
       },
 
       // 当组件被点击时, 开启picker
-      compClickHandler(){
-        this.picker && this.picker.show();
+      compClickHandler () {
+        this.picker && this.picker.show()
       },
 
       // isLegal
-      isLegal(dataArr){
+      isLegal (dataArr) {
         let provinceCode = dataArr[0] && dataArr[0].code
         let cityCode = dataArr[1] && dataArr[1].code
         let regionCode = dataArr[2] && dataArr[2].code
@@ -156,7 +155,7 @@
       },
 
       // 初始化
-      init(cityArrs){
+      init (cityArrs) {
         if (this.isInit) return
         this.isInit = true
         if (!cityArrs || !cityArrs[0] || !cityArrs[1] || !cityArrs[2]) {
@@ -197,7 +196,6 @@
             this.regionCol = this.getRegionCol(this.cityCol[0].code)
             this.picker.refillColumn(1, this.cityCol)
             this.picker.refillColumn(2, this.regionCol)
-
           } else if (selectedVal === 1) {
             // 第一列选中, 城市选择
             this.regionCol = this.getRegionCol(this.cityCol[selectedIndex].code)
@@ -207,7 +205,7 @@
       },
 
       // 重置
-      reset(){
+      reset () {
         // 设置index
         let i0 = this.getIndexByCode(this.lastSelectCityArrs[0], this.provinceCol)
         let i1 = this.getIndexByCode(this.lastSelectCityArrs[1], this.cityCol)
@@ -217,12 +215,12 @@
       },
 
       // 检查初始化传入的值是否合法
-      checkValue(arrs){
-        return !!arrs && Array.isArray(arrs) && arrs.length === 3
+      checkValue (arrs) {
+        return arrs && Array.isArray(arrs) && arrs.length === 3
       },
 
       // 页面切换关闭picker, 清除dom残留
-      dismissOnPageChangeHandler(){
+      dismissOnPageChangeHandler () {
         let nodes = document.querySelectorAll('body>.picker')
         this.unreg && this.unreg()
         nodes.forEach((node) => {
@@ -230,7 +228,7 @@
           if (isHide) {
             node.parentNode.removeChild(node)
           } else {
-            !!this.picker && !!this.picker.hide && this.picker.hide();
+            this.picker && this.picker.hide && this.picker.hide()
             window.setTimeout(() => {
               node && node.parentNode && node.parentNode.removeChild && node.parentNode.removeChild(node)
             }, 550)
@@ -243,9 +241,9 @@
         this.init(this.selectedCity)
       }
     },
-    mounted(){
+    mounted () {
       // 监听页面变化
-      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: true});
+      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: true})
     }
   }
 </script>

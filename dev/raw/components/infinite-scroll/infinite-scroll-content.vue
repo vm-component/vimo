@@ -8,7 +8,7 @@
         </div>
     </div>
 </template>
-<script>
+<script type="text/javascript">
   /**
    * @component InfiniteScrollContent
    * @description
@@ -29,17 +29,17 @@
       // loading的旋转图标
       loadingSpinner: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('infiniteLoadingSpinner', window.VM.config.get('spinner', 'ios')) || 'ios' }
+        default () { return window.VM && window.VM.config.get('infiniteLoadingSpinner', window.VM.config.get('spinner', 'ios')) || 'ios' }
       },
       // loading的文字
       loadingText: {
         type: String,
-        default: 'Loading more data...',
-      },
+        default: 'Loading more data...'
+      }
     },
-    data(){
+    data () {
       return {
-        state: 'loading',
+        state: 'loading'
       }
     }
   }

@@ -1,9 +1,7 @@
 <template>
     <App>
-
         <!--<img class="statusbar-img statusbar-img-ios" src="./assets/img/ios-statusbar.png">-->
         <!--<img class="statusbar-img statusbar-img-md" src="./assets/img/android-statusbar.png">-->
-
         <!--menu menu-->
         <Menus id="menu" side="left">
             <Header>
@@ -40,7 +38,7 @@
         </Nav>
     </App>
 </template>
-<script>
+<script type="text/javascript">
   /**
    * @name App.vue
    * @description
@@ -55,7 +53,6 @@
       Menus, List, ListHeader, ItemGroup, Item
     }
   }
-
 </script>
 <style lang="scss">
     .statusbar-img {
@@ -82,6 +79,5 @@
         height: auto;
         z-index: 999;
     }
-
 
 </style>

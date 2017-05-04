@@ -7,7 +7,7 @@
         <Badge v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
     </a>
 </template>
-<script>
+<script type="text/javascript">
   /**
    * @component Tab
    * @description
@@ -32,7 +32,7 @@
    * <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
    *
    * */
-  let _tabId = -1;
+  let _tabId = -1
   import { Badge } from '../badge'
   export default{
     name: 'Tab',
@@ -40,7 +40,7 @@
       // 是否能选择
       enabled: {
         type: Boolean,
-        default: true,
+        default: true
       },
       // 路由跳转
       to: {
@@ -50,7 +50,7 @@
       // 是否显示
       show: {
         type: Boolean,
-        default: true,
+        default: true
       },
       // 徽章显示值
       tabBadge: [String],
@@ -59,47 +59,47 @@
       // tab的IconName
       tabIcon: [String],
       // tab的tabTitle
-      tabTitle: [String],
+      tabTitle: [String]
     },
-    data(){
+    data () {
       return {
         disHover: window.VM && window.VM.config.getBoolean('hoverCSS', false),
         index: ++_tabId,
-        isActive: false, // 这个值具有滞后性, 只代表当前的页面的状态, 不能用于其他
+        isActive: false // 这个值具有滞后性, 只代表当前的页面的状态, 不能用于其他
       }
     },
     computed: {
-      hasTitle(){
-        return !!this.tabTitle
+      hasTitle () {
+        return this.tabTitle
       },
-      tabId(){
+      tabId () {
         return `tabId-${this.index}`
       },
-      hasIcon(){
-        return !!this.tabIcon
+      hasIcon () {
+        return this.tabIcon
       },
-      hasTitleOnly(){
-        return !!this.tabTitle && !this.tabIcon
+      hasTitleOnly () {
+        return this.tabTitle && !this.tabIcon
       },
-      hasIconOnly(){
-        return !!this.tabIcon && !this.tabTitle
+      hasIconOnly () {
+        return this.tabIcon && !this.tabTitle
       },
-      hasBadge(){
-        return !!this.tabBadge
-      },
+      hasBadge () {
+        return this.tabBadge
+      }
     },
     watch: {
-      $route(){
+      $route () {
         this.refreshMatchState()
       }
     },
     methods: {
-      isMatch(){
+      isMatch () {
         return this.to.name === this.$route.name || this.to.path === this.$route.path
       },
-      tabClickHandler(){
+      tabClickHandler () {
         if (this.enabled) {
-          this.$router.replace(this.to);
+          this.$router.replace(this.to)
           /**
            * @event component:Tabs#onTabSelect
            * @description Tab选中时触发
@@ -108,12 +108,12 @@
           this.$emit('onTabSelect', this)
         }
       },
-      refreshMatchState(){
-        this.isActive = this.isMatch();
+      refreshMatchState () {
+        this.isActive = this.isMatch()
       }
     },
-    created(){
-      this.refreshMatchState();
+    created () {
+      this.refreshMatchState()
       console.assert(this.$parent.$options._componentTag.toLowerCase() === 'tabs', 'Tab component must combine with Tabs')
     },
     components: {Badge}

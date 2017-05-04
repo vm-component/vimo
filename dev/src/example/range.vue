@@ -88,14 +88,14 @@
 </template>
 <style scoped lang="scss">
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { Range } from 'vimo/components/range'
   import { Badge } from 'vimo/components/badge'
   import { ListHeader, Item } from 'vimo/components/item'
   export default{
     name: 'range',
-    data(){
+    data () {
       return {
 
         brightness: 20,
@@ -104,13 +104,13 @@
         structure: {lower: 33, upper: 60},
 
         disableRange: 10,
-        disabled: false,
+        disabled: false
 
       }
     },
     props: {},
     watch: {
-      structure(val){
+      structure (val) {
         console.log('structure val:')
         console.log(val)
       }
@@ -118,16 +118,16 @@
     computed: {},
     methods: {
 
-      onChange(value) {
-        console.log('Changed', JSON.stringify(value));
+      onChange (value) {
+        console.log('Changed', JSON.stringify(value))
       },
-      disableToggle(){
-        this.disabled = !this.disabled;
+      disableToggle () {
+        this.disabled = !this.disabled
       }
     },
-    created(){},
-    mounted(){},
-    activated(){},
+    created () {},
+    mounted () {},
+    activated () {},
     components: {List, ListHeader, Item, Range, Badge}
   }
 </script>

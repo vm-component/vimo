@@ -1,11 +1,11 @@
-<script>
-  import ItemMixin from './itemMixin.vue';
+<script type="text/javascript">
+  import ItemMixin from './itemMixin.vue'
   export default{
     mixins: [ItemMixin],
     name: 'Item',
-    data(){
+    data () {
       return {
-        itemTypeName: 'item',
+        itemTypeName: 'item'
       }
     },
     computed: {

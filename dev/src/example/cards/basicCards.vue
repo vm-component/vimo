@@ -39,14 +39,15 @@
             <Card>
                 <CardContent>
                     <CardTitle>CardTitle</CardTitle>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid asperiores autem consequuntur cumque doloribus earum eligendi illum laboriosam molestiae nam natus nemo nisi obcaecati odio, officia praesentium, veniam voluptates.</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid asperiores autem consequuntur cumque doloribus earum eligendi illum laboriosam molestiae nam natus nemo nisi obcaecati odio, officia praesentium, veniam voluptates.</p>
                 </CardContent>
             </Card>
 
         </Content>
     </Page>
 </template>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Card, CardContent, CardHeader, CardTitle } from 'vimo/components/card'
   import { Note } from 'vimo/components/note'
   import { Item } from 'vimo/components/item'

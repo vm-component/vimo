@@ -4,8 +4,7 @@
 // --------------------------------------------------
 
 /// @prop - Margin of the label
-$label-ios-margin:             $item-ios-padding-top ($item-ios-padding-right / 2) $item-ios-padding-bottom 0 !default;
-
+$label-ios-margin: $item-ios-padding-top ($item-ios-padding-right / 2) $item-ios-padding-bottom 0 !default;
 
 // iOS Default Label
 // --------------------------------------------------
@@ -13,7 +12,6 @@ $label-ios-margin:             $item-ios-padding-top ($item-ios-padding-right / 
 .label-ios {
   margin: $label-ios-margin;
 }
-
 
 // iOS Default Label Inside An Input/Select Item
 // --------------------------------------------------
@@ -25,7 +23,6 @@ $label-ios-margin:             $item-ios-padding-top ($item-ios-padding-right / 
 
   width: calc(100% - (#{$item-ios-padding-right} / 2) - #{$item-ios-padding-left});
 }
-
 
 // iOS Stacked & Floating Labels
 // --------------------------------------------------
@@ -54,7 +51,6 @@ $label-ios-margin:             $item-ios-padding-top ($item-ios-padding-right / 
   margin-top: $item-ios-padding-media-top - 2;
   margin-bottom: $item-ios-padding-media-bottom - 2;
 }
-
 
 // Generate iOS Label colors
 // --------------------------------------------------

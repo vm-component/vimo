@@ -46,15 +46,16 @@
     </Page>
 </template>
 <style scoped lang="scss"></style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { Note } from 'vimo/components/note'
   import { Avatar } from 'vimo/components/avatar'
   import { Label } from 'vimo/components/label'
   import { Toggle } from 'vimo/components/toggle'
+
   export default{
-    data(){
+    data () {
       return {
         list: [
           'NoLine 1',
@@ -70,22 +71,15 @@
           'NoLine 11',
           'NoLine 12',
           'NoLine 13',
-          'NoLine 14',
+          'NoLine 14'
         ]
       }
     },
-    watch: {},
-    computed: {},
     methods: {
-      onClickHandler(){
-
+      onClickHandler () {
         alert('click click')
       }
-
     },
-    created() {},
-    mounted () {},
-    activated () {},
     components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label, Toggle}
   }
 </script>

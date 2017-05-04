@@ -47,16 +47,16 @@
         padding: 15px;
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
 
   export default{
-    data(){
+    data () {
       return {}
     },
     methods: {
       // 只显示菊花
-      spinnerOnly(){
-        this.$loading.present();
+      spinnerOnly () {
+        this.$loading.present()
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
@@ -64,8 +64,8 @@
         }, 1000)
       },
       // 是显示name
-      stringOnly(){
-        this.$loading.present('只传入了String');
+      stringOnly () {
+        this.$loading.present('只传入了String')
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
@@ -77,26 +77,25 @@
         this.$loading.present({
           content: '正在加载, 6000ms后自动关闭...',
           dismissOnPageChange: false, // url变化后关闭loading(默认)
-          showBackdrop: true,
-        });
+          showBackdrop: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 6000);
+        }, 6000)
       },
-      dismissWhenChangeUrl(){
+      dismissWhenChangeUrl () {
         this.$loading.present({
           content: '正在加载, 6000ms后自动关闭...',
           dismissOnPageChange: true, // url变化后关闭loading
-          showBackdrop: true,
-        });
+          showBackdrop: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 6000);
-
+        }, 6000)
       },
       showIos () {
         this.$loading.present({
@@ -104,13 +103,13 @@
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
-          showBackdrop: true,
-        });
+          showBackdrop: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 1000);
+        }, 1000)
       },
       showIosSmall () {
         this.$loading.present({
@@ -118,13 +117,13 @@
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
-          showBackdrop: true,
-        });
+          showBackdrop: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 1000);
+        }, 1000)
       },
       showBubbles () {
         this.$loading.present({
@@ -132,13 +131,13 @@
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
-          showBackdrop: true,
-        });
+          showBackdrop: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 1000);
+        }, 1000)
       },
       showCircles () {
         this.$loading.present({
@@ -146,13 +145,13 @@
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
-          showBackdrop: true,
-        });
+          showBackdrop: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 1000);
+        }, 1000)
       },
       showCrescent () {
         this.$loading.present({
@@ -160,13 +159,13 @@
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
-          showBackdrop: true,
-        });
+          showBackdrop: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 1000);
+        }, 1000)
       },
       showDots () {
         this.$loading.present({
@@ -174,13 +173,13 @@
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
-          showBackdrop: true,
-        });
+          showBackdrop: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 1000);
+        }, 1000)
       },
 
       // 打开没backdrop的loading
@@ -189,13 +188,13 @@
           content: '正在加载, 1000ms后自动关闭...',
           cssClass: 'cssClass',
           dismissOnPageChange: true, // url变化后关闭loading
-          showBackdrop: false,
-        });
+          showBackdrop: false
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 1000);
+        }, 1000)
       },
 
       // 同时开启两个
@@ -204,27 +203,27 @@
         this.$loading.present({
           content: '正在加载, 这个是开启的第一个, 没有Backdrop.',
           cssClass: 'cssClass',
-          showBackdrop: false,
-        });
+          showBackdrop: false
+        })
 
         // 第二个
         setTimeout(() => {
           this.$loading.present({
             content: '正在加载, 这个是开启的第二个, 打开Backdrop.',
             cssClass: 'cssClass',
-            showBackdrop: true,
-          });
+            showBackdrop: true
+          })
 
           // 第三个
           setTimeout(() => {
             this.$loading.present({
               content: '正在加载, 这个是开启的第三个, 没有Backdrop.',
               cssClass: 'cssClass',
-              showBackdrop: false,
-            });
+              showBackdrop: false
+            })
             setTimeout(() => {
               this.$loading.dismiss().then(() => {
-                console.debug('所有Loading都关闭了');
+                console.debug('所有Loading都关闭了')
               })
             }, 2000)
           }, 2000)
@@ -237,13 +236,13 @@
           spinner: 'hide',
           content: '正在加载, 这个loading没有Spnner.',
           cssClass: 'cssClass',
-          showBackdrop: true,
-        });
+          showBackdrop: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 1000);
+        }, 1000)
       },
 
       // 自定义内容
@@ -252,14 +251,14 @@
           spinner: 'hide',
           content: '<p>你好Vimo</p>',
           cssClass: 'cssClass',
-          showBackdrop: true,
-        });
+          showBackdrop: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 1000);
-      },
-    },
+        }, 1000)
+      }
+    }
   }
 </script>

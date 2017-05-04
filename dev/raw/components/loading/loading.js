@@ -2,10 +2,10 @@
  * Created by Hsiang on 2016/12/26.
  */
 import Vue from 'vue'
+import { getInsertPosition } from '../../util/getInsertPosition'
+import { getPresentDismissIns } from '../../util/getPresentDismissIns'
 import { isString } from '../../util/util'
 import loadingComponent from './loading.vue'
-import { getPresentDismissIns } from '../../util/getPresentDismissIns'
-import { getInsertPosition } from '../../util/getInsertPosition'
 const Loading = Vue.extend(loadingComponent)
 
 // -------- function --------

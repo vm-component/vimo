@@ -13,10 +13,10 @@
 // --------------------------------------------------
 
 /// @prop - Height of the Statusbar
-$cordova-ios-statusbar-padding:                         20px !default;
+$cordova-ios-statusbar-padding: 20px !default;
 
 /// @prop - The breakpoint when a modal becomes inset
-$cordova-ios-statusbar-padding-modal-max-width:         $cordova-statusbar-padding-modal-max-width !default;
+$cordova-ios-statusbar-padding-modal-max-width: $cordova-statusbar-padding-modal-max-width !default;
 
 // Cordova mixins are in the main cordova file
 .ios {

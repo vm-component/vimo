@@ -224,11 +224,11 @@
 
 
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Segment, SegmentButton } from 'vimo/components/segment'
   import { Searchbar } from 'vimo/components/searchbar'
   export default{
-    data(){
+    data () {
       return {
         relationship8: 'friend1',
         relationship9: 'friend2',
@@ -237,47 +237,46 @@
     },
     methods: {
 
-      onSegmentChange8: function (val) {
-        this.relationship8 = val;
+      onSegmentChange8 (val) {
+        this.relationship8 = val
       },
-      onSelectChangeFriend1: function (val) {
+      onSelectChangeFriend1 (val) {
         console.debug('segment8 friend1 select:' + val)
       },
-      onSelectChangeFriend2: function (val) {
+      onSelectChangeFriend2 (val) {
         console.debug('segment8 friend2 select:' + val)
       },
-      onSegmentChange9: function (val) {
-        this.relationship9 = val;
+      onSegmentChange9 (val) {
+        this.relationship9 = val
       },
-
-      //10
-      onInput: function ($event) {
-        console.debug('outer-onInput:');
+      onInput ($event) {
+        console.debug('outer-onInput:')
       },
-      onCancel: function ($event) {
-        console.debug('outer-onCancel:');
+      onCancel ($event) {
+        console.debug('outer-onCancel:')
       },
-      onClear: function ($event) {
-        console.debug('outer-onClear:');
+      onClear ($event) {
+        console.debug('outer-onClear:')
       },
-      onBlur: function ($event) {
-        console.debug('outer-onBlur:');
+      onBlur ($event) {
+        console.debug('outer-onBlur:')
       },
-      onFocus: function ($event) {
-        console.debug('outer-onFocus:');
+      onFocus ($event) {
+        console.debug('outer-onFocus:')
       }
 
     },
-    created: function () {
+    created () {
     },
-    mounted: function () {
+    mounted () {
       console.debug('this.count-toolbar')
       console.debug(this.count)
     },
-    activated: function () {
+    activated () {
     },
     components: {
       Segment, SegmentButton, Searchbar
     }
   }
 </script>
+

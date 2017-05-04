@@ -21,46 +21,46 @@
 <style scoped lang="scss">
 
 </style>
-<script>
+<script type="text/javascript">
   export default{
     name: 'name',
-    data(){
+    data () {
       return {}
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
-      openIndicatorInfinity(){
+      openIndicatorInfinity () {
         this.$indicator.present()
       },
 
-      openIndicator1000(){
+      openIndicator1000 () {
         this.$indicator.present()
         setTimeout(() => {
           this.$indicator.dismiss()
         }, 1000)
       },
 
-      openIndicator300(){
+      openIndicator300 () {
         this.$indicator.present()
         setTimeout(() => {
           this.$indicator.dismiss()
         }, 300)
       },
 
-      openIndicator100(){
+      openIndicator100 () {
         this.$indicator.present()
         setTimeout(() => {
           this.$indicator.dismiss()
         }, 100)
       },
-      openIndicator20(){
+      openIndicator20 () {
         this.$indicator.present()
         setTimeout(() => {
           this.$indicator.dismiss()
         }, 20)
-      },
+      }
     },
     created () {},
     mounted () {},

@@ -93,37 +93,37 @@
 <style scoped lang="scss">
 
 </style>
-<script>
+<script type="text/javascript">
   export default{
     name: 'name',
-    data(){
+    data () {
       return {}
     },
     props: {},
     watch: {},
     computed: {
-      headerComponent(){
+      headerComponent () {
         return this.$refs.header
       },
-      footerComponent(){
+      footerComponent () {
         return this.$refs.footer
       },
-      contentComponent(){
+      contentComponent () {
         return this.$refs.content
-      },
+      }
     },
     methods: {
-      hideHeader(){
+      hideHeader () {
         this.headerComponent.toggle()
       },
-      hideFooter(){
+      hideFooter () {
         this.footerComponent.toggle()
       },
-      hideBoth(){
+      hideBoth () {
         this.footerComponent.toggle()
         this.headerComponent.toggle()
       },
-      onScrollHandler(ev){
+      onScrollHandler (ev) {
         if (ev.directionY === 'down' && ev.scrollTop > 0) {
           this.footerComponent.hide()
           this.headerComponent.hide()

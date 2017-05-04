@@ -4,13 +4,11 @@
 // --------------------------------------------------
 
 /// @prop - Text color of the note
-$note-md-color:      darken($list-md-border-color, 10%) !default;
-
+$note-md-color: darken($list-md-border-color, 10%) !default;
 
 .note-md {
   color: $note-md-color;
 }
-
 
 // Generate Material Design Note Colors
 // --------------------------------------------------

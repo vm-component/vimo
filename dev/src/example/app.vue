@@ -15,40 +15,40 @@
 
             <Button block @click="$app.setEnabled(false,3000)">3秒内页面无法点击(setEnabled)</Button>
             <Button block @click="$app.setDisableScroll(true,3000)">3秒内页面无法滚动(setDisableScroll)</Button>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
 
-                <h6>注意: </h6>
-                <p>方法this.$app.setDocTitle(val)只能设置document.title的值, Header中的Title组件请额外处理. 比如下面的按钮.</p>
-                <Button block @click="setDocTitle()">设置DocTitle为当前时间</Button>
-                <Button block @click="setAllTitle()">两者同时设置</Button>
+            <h6>注意: </h6>
+            <p>方法this.$app.setDocTitle(val)只能设置document.title的值, Header中的Title组件请额外处理. 比如下面的按钮.</p>
+            <Button block @click="setDocTitle()">设置DocTitle为当前时间</Button>
+            <Button block @click="setAllTitle()">两者同时设置</Button>
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
 
-                <section slot="fixedBottom" class="stateBar">
-                    <Grid no-padding>
-                        <Row no-padding>
-                            <Column>
-                                <strong text-danger>App状态:</strong>
-                                <p>isScrolling: {{isScrolling}}</p>
-                                <p>isEnabled: {{isEnabled}}</p>
-                            </Column>
-                        </Row>
-                    </Grid>
-                </section>
+            <section slot="fixedBottom" class="stateBar">
+                <Grid no-padding>
+                    <Row no-padding>
+                        <Column>
+                            <strong text-danger>App状态:</strong>
+                            <p>isScrolling: {{isScrolling}}</p>
+                            <p>isEnabled: {{isEnabled}}</p>
+                        </Column>
+                    </Row>
+                </Grid>
+            </section>
         </Content>
     </Page>
 </template>
@@ -61,41 +61,41 @@
         }
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   let intervalTimer = null
   export default{
-    data(){
+    data () {
       return {
         isScrolling: false,
         isEnabled: false,
 
-        isDisabled: false,
+        isDisabled: false
       }
     },
     computed: {
-      titleComponent(){
+      titleComponent () {
         return this.$refs.title
       }
     },
     methods: {
-      getTime(){
+      getTime () {
         return new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds()
       },
-      setDocTitle(){
+      setDocTitle () {
         this.$app.setDocTitle(this.getTime())
       },
-      setAllTitle(){
+      setAllTitle () {
         this.setDocTitle()
         this.titleComponent.setTitle(this.getTime())
       },
-      disableScroll(){
-        const _this = this;
+      disableScroll () {
+        const _this = this
         if (!_this.isDisabled) {
-          _this.$app.disableScroll(true);
-          _this.isDisabled = true;
+          _this.$app.disableScroll(true)
+          _this.isDisabled = true
           setTimeout(function () {
-            _this.$app.disableScroll(false);
-            _this.isDisabled = false;
+            _this.$app.disableScroll(false)
+            _this.isDisabled = false
           }, 3000)
         }
       }
@@ -112,7 +112,7 @@
     },
     activated () {
     },
-    destroyed(){
+    destroyed () {
       window.clearInterval(intervalTimer)
     },
     components: {}

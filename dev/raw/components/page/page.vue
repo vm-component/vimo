@@ -56,7 +56,7 @@
     }
 
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Base/Page
    * @description
@@ -84,12 +84,12 @@
   let initPageZIndex = 1000
   export default{
     name: 'Page',
-    data(){
+    data () {
       return {
         pageZIndex: 0
       }
     },
-    created(){
+    created () {
       let direction = this.$history.getDirection()
       if (direction === 'forward') {
         this.pageZIndex = ++initPageZIndex

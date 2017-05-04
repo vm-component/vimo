@@ -4,14 +4,14 @@
 // --------------------------------------------------
 
 /// @prop - Background color for the modal
-$modal-ios-background-color:          $background-ios-color !default;
+$modal-ios-background-color: $background-ios-color !default;
 
 /// @prop - Border radius for the modal
-$modal-ios-border-radius:             10px !default;
+$modal-ios-border-radius: 10px !default;
 
 .ios .modal-wrapper {
   // hidden by default to prevent flickers, the animation will show it
-  transition: all cubic-bezier(0.36,0.66,0.04,1) 400ms;
+  transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 400ms;
   @media only screen and (min-width: $modal-inset-min-width) and (min-height: $modal-inset-min-height-small) {
     overflow: hidden;
 

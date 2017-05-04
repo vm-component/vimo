@@ -113,58 +113,58 @@
         }
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Segment, SegmentButton } from 'vimo/components/segment'
   export default{
-    data(){
+    data () {
       return {
         scrollState: '',
         // scroll
         ev: {
           scrollTop: 0,
-          directionY: 'down',
+          directionY: 'down'
         }
       }
     },
     watch: {},
     computed: {
-      contentComponent(){
+      contentComponent () {
         return this.$refs.content
       },
-      titleComponent(){
+      titleComponent () {
         return this.$refs.title
-      },
+      }
     },
     methods: {
-      setTitle(val){
+      setTitle (val) {
         this.titleComponent.setTitle(val)
       },
       scrollToTop () {
-        this.contentComponent.scrollToTop();
+        this.contentComponent.scrollToTop()
       },
       scrollToBottom () {
-        this.contentComponent.scrollToBottom();
+        this.contentComponent.scrollToBottom()
       },
 
-      onScrollStartHandler(ev){
+      onScrollStartHandler (ev) {
         this.scrollState = '滚动开始'
       },
       // 滚动
-      onScrollHandler(ev){
+      onScrollHandler (ev) {
         this.ev = ev
         this.scrollState = '滚动中...'
       },
-      onScrollEndtHandler(ev){
+      onScrollEndtHandler (ev) {
         this.scrollState = '滚动结束'
       },
 
-      scrollBottomBy400(){
+      scrollBottomBy400 () {
         this.contentComponent.scrollBy(0, 400).then(function () {
           console.log('scrollBottomBy400 done')
         })
       },
 
-      scrollToElement(){
+      scrollToElement () {
         this.contentComponent.scrollToElement(document.getElementById('scrollToHere'), 300, null, true).then(function () {
           console.log('scrollToElement done')
         })

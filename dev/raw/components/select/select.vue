@@ -18,7 +18,7 @@
     @import "select.ios";
     @import "select.md";
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @name Select
    * @component Select
@@ -81,7 +81,7 @@
   let id = 0
   export default{
     name: 'Select',
-    data(){
+    data () {
       return {
         isDisabled: this.disabled,      // 内部 禁用
         id: `rb-${id++}`,               // id
@@ -90,25 +90,25 @@
         texts: [],                      // 回显的数组
         text: null,                     // 回显的string, 已texts为基
         timer: null,                    // setTimeout
-        values: [],                     // options中所有选中的value数组
+        values: []                     // options中所有选中的value数组
       }
     },
     props: {
       // cancel按钮显示文本
       cancelText: {
         type: String,
-        default(){return 'Cancel'}
+        default () { return 'Cancel' }
       },
       // OK按钮显示文本
       okText: {
         type: String,
-        default(){return 'OK'}
+        default () { return 'OK' }
       },
       disabled: [Boolean],
       // 显示界面类型, 可以是'action-sheet','alert'两个
       interface: {
         type: String,
-        default(){return 'alert'}
+        default () { return 'alert' }
       },
       // 单选多选,默认为单选
       multiple: [Boolean],
@@ -118,19 +118,19 @@
       // title/subTitle/message/cssClass/enableBackdropDismiss等
       selectOptions: {
         type: Object,
-        default(){return {}}
+        default () { return {} }
       },
       // 选择组件的文本提示, 代替选择的option选项
       selectedText: [String],
       // 模式
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
       },
-      value: [Object, String, Array],
+      value: [Object, String, Array]
     },
     watch: {
-      disabled(val){
+      disabled (val) {
         this.setDisabled(isTrueProperty(val))
       }
     },
@@ -143,7 +143,7 @@
       /**
        * 设置当前radio的禁用状态
        * */
-      setDisabled(isDisabled){
+      setDisabled (isDisabled) {
         this.isDisabled = isDisabled
         this.itemComponent && setElementClass(this.itemComponent.$el, 'item-select-disabled', isDisabled)
       },
@@ -151,7 +151,7 @@
       /**
        * 点击组件时触发
        * */
-      onPointerDownHandler($event){
+      onPointerDownHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
         this.open()
@@ -160,7 +160,7 @@
       /**
        * 组件开启
        * */
-      open(){
+      open () {
         var selectCssClass
         if (this.isDisabled) {
           return
@@ -175,8 +175,6 @@
           text: this.cancelText,
           role: 'cancel',
           handler: () => {
-
-
             /**
              * @event component:Select#onCancel
              * @description 点击取消的时间
@@ -234,11 +232,8 @@
 
           // 初始化并开启
           ActionSheet.present(selectOptions)
-
         } else {
-
           this.interface = 'alert'
-
           // 从option中获取input参数
           selectOptions.inputs = this.optionComponents.map(input => {
             return {
@@ -287,7 +282,7 @@
        * 当用户点击选择时
        * @private
        * */
-      onChange(value){
+      onChange (value) {
         console.debug('select, onChange value:', value)
         this.values = (Array.isArray(value) ? value : isBlank(value) ? [] : [value])
         this.updOpts()
@@ -297,7 +292,7 @@
        * 更新子组件option的状态
        * @private
        * */
-      updOpts(){
+      updOpts () {
         this.texts = []
         if (this.optionComponents) {
           this.optionComponents.forEach(option => {
@@ -317,7 +312,7 @@
       /**
        * 由子组件调用, 将自己的this传递给父组件
        * */
-      recordOption(optionComponent){
+      recordOption (optionComponent) {
         this.optionComponents.push(optionComponent)
         if (isBlank(this.value)) {
           this.values = this.optionComponents.filter(o => o.isChecked).map(o => o.optionValue)

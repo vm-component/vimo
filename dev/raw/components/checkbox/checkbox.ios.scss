@@ -4,53 +4,51 @@
 // --------------------------------------------------
 
 /// @prop - Background color of the checkbox when off
-$checkbox-ios-background-color-off:       $list-ios-background-color !default;
+$checkbox-ios-background-color-off: $list-ios-background-color !default;
 
 /// @prop - Background color of the checkbox when on
-$checkbox-ios-background-color-on:        color($colors-ios, primary) !default;
+$checkbox-ios-background-color-on: color($colors-ios, primary) !default;
 
 /// @prop - Size of the checkbox icon
-$checkbox-ios-icon-size:                  21px !default;
+$checkbox-ios-icon-size: 21px !default;
 
 /// @prop - Border color of the checkbox icon when off
-$checkbox-ios-icon-border-color-off:      $list-ios-border-color !default;
+$checkbox-ios-icon-border-color-off: $list-ios-border-color !default;
 
 /// @prop - Border color of the checkbox icon when on
-$checkbox-ios-icon-border-color-on:       $checkbox-ios-background-color-on !default;
+$checkbox-ios-icon-border-color-on: $checkbox-ios-background-color-on !default;
 
 /// @prop - Border width of the checkbox icon
-$checkbox-ios-icon-border-width:          1px !default;
+$checkbox-ios-icon-border-width: 1px !default;
 
 /// @prop - Border style of the checkbox icon
-$checkbox-ios-icon-border-style:          solid !default;
+$checkbox-ios-icon-border-style: solid !default;
 
 /// @prop - Border radius of the checkbox icon
-$checkbox-ios-icon-border-radius:         50% !default;
+$checkbox-ios-icon-border-radius: 50% !default;
 
 /// @prop - Width of the checkbox icon checkmark
-$checkbox-ios-icon-checkmark-width:       1px !default;
+$checkbox-ios-icon-checkmark-width: 1px !default;
 
 /// @prop - Style of the checkbox icon checkmark
-$checkbox-ios-icon-checkmark-style:       solid !default;
+$checkbox-ios-icon-checkmark-style: solid !default;
 
 /// @prop - Color of the checkbox icon checkmark
-$checkbox-ios-icon-checkmark-color:       color-contrast($colors-ios, $checkbox-ios-background-color-on) !default;
+$checkbox-ios-icon-checkmark-color: color-contrast($colors-ios, $checkbox-ios-background-color-on) !default;
 
 /// @prop - Opacity of the disabled checkbox
-$checkbox-ios-disabled-opacity:           .3 !default;
+$checkbox-ios-disabled-opacity: .3 !default;
 
 /// @prop - Margin of the left checkbox item
-$checkbox-ios-item-left-margin:           $item-ios-padding-media-top $item-ios-padding-right $item-ios-padding-media-bottom 2px !default;
+$checkbox-ios-item-left-margin: $item-ios-padding-media-top $item-ios-padding-right $item-ios-padding-media-bottom 2px !default;
 
 /// @prop - Margin of the right checkbox item
-$checkbox-ios-item-right-margin:          10px 8px 9px 0 !default;
-
+$checkbox-ios-item-right-margin: 10px 8px 9px 0 !default;
 
 .checkbox-ios {
   position: relative;
   display: inline-block;
 }
-
 
 // iOS Checkbox Outer Circle: Unchecked
 // -----------------------------------------
@@ -68,7 +66,6 @@ $checkbox-ios-item-right-margin:          10px 8px 9px 0 !default;
   background-color: $checkbox-ios-background-color-off;
 }
 
-
 // iOS Checkbox Outer Circle: Checked
 // -----------------------------------------
 
@@ -76,7 +73,6 @@ $checkbox-ios-item-right-margin:          10px 8px 9px 0 !default;
   border-color: $checkbox-ios-icon-border-color-on;
   background-color: $checkbox-ios-background-color-on;
 }
-
 
 // iOS Checkbox Inner Checkmark: Checked
 // -----------------------------------------
@@ -97,7 +93,6 @@ $checkbox-ios-item-right-margin:          10px 8px 9px 0 !default;
   transform: rotate(45deg);
 }
 
-
 // iOS Checkbox: Disabled
 // -----------------------------------------
 
@@ -107,7 +102,6 @@ $checkbox-ios-item-right-margin:          10px 8px 9px 0 !default;
 
   pointer-events: none;
 }
-
 
 // iOS Checkbox Within An Item
 // -----------------------------------------
@@ -122,7 +116,6 @@ $checkbox-ios-item-right-margin:          10px 8px 9px 0 !default;
 .item.item-ios .checkbox-ios[item-right] {
   margin: $checkbox-ios-item-right-margin;
 }
-
 
 // iOS Checkbox Color Mixin
 // --------------------------------------------------
@@ -139,7 +132,6 @@ $checkbox-ios-item-right-margin:          10px 8px 9px 0 !default;
   }
 
 }
-
 
 // Generate iOS Checkbox Colors
 // --------------------------------------------------

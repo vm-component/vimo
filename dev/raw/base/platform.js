@@ -15,12 +15,12 @@
  *
  * **业务使用的方法应该由当前的平台提供**
  *
- * 平台在初始化完毕时, 执行`src/config/platform-configs.js`定义的`onBridgeReady`钩子, 通过在传入`plt`实例上, 执行`registerMethod`方法注册当前平台对应的方法. 例如微信JSSDK中的`chooseImg`和`scanCode`方法(其他平台同理):
+ * 平台在初始化完毕时, 执行`src/config/platform-configs.js`定义的`onBridgeReady`钩子, 通过在传入`plt`实例上, 执行`registerMethod`方法注册当前平台对应的方法.
+ *   例如微信JSSDK中的`chooseImg`和`scanCode`方法(其他平台同理):
  *
  * ```
  * onBridgeReady(plt){
- *
- *  // this.$platform.do('chooseImage',function(result){})
+ *  // this.$platform.do('chooseImage',function (result) {})
  *  plt.registerMethod('chooseImage', function (callback) {
  *    wx.chooseImage({
  *      count: 1, // 默认9
@@ -57,7 +57,6 @@
  *
  *
  */
-
 
 /**
  * 结构体定义
@@ -447,13 +446,11 @@ class Platform {
     // the second time it is measured it is correct.
     // Hopefully this check will not be needed in the future
     if (this._isPortrait === null || this._isPortrait === false && this.win['innerWidth'] < this.win['innerHeight']) {
-
       // we're keeping track of portrait and landscape dimensions
       // separately because the virtual keyboard can really mess
       // up accurate values when the keyboard is up
       if (win.screen.width > 0 && win.screen.height > 0) {
         if (win['innerWidth'] < win['innerHeight']) {
-
           // the device is in portrait
           if (this._pW <= win['innerWidth']) {
             // console.debug('setting _isPortrait to true');
@@ -465,7 +462,6 @@ class Platform {
             this._isPortrait = true
             this._pH = win['innerHeight']
           }
-
         } else {
           if (this._lW > win['innerWidth']) {
             // Special case: keyboard is open and device is in portrait
@@ -484,7 +480,6 @@ class Platform {
             this._lH = win['innerHeight']
           }
         }
-
       }
     }
   }
@@ -651,21 +646,18 @@ class Platform {
 
   /** @private */
   init () {
-
     // 计算屏幕尺寸
     this._calcDim()
 
     this._platforms = []
-    let rootPlatformNode //根节点Node;
-    let enginePlatformNode //engine节点Node;
-
+    let rootPlatformNode // 根节点Node;
+    let enginePlatformNode // engine节点Node;
     // figure out the most specific platform and active engine
     let tmpPlatform // 临时缓存Node;
 
     // 找到rootPlatformNode
     // 找到enginePlatformNode
     for (let platformName in this._registry) {
-
       // 将platformName对用的配置转化为Node对象, 返回rootNode
       tmpPlatform = this.matchPlatform(platformName)
       if (tmpPlatform) {
@@ -676,7 +668,6 @@ class Platform {
           // because it matched then this should be the active engine
           // you cannot have more than one active engine
           enginePlatformNode = tmpPlatform
-
         } else if (!rootPlatformNode || tmpPlatform.depth > rootPlatformNode.depth) {
           // only find the root node for platforms that are not engines
           // set this node as the root since we either don't already
@@ -695,7 +686,6 @@ class Platform {
     // hierarchy of active platforms and settings
 
     if (rootPlatformNode) {
-
       // check if we found an engine node (cordova/node-webkit/etc)
       // 如果是在壳子中,则将壳子的节点放置为rootNode
       if (enginePlatformNode) {
@@ -726,7 +716,6 @@ class Platform {
 
       // 在这里初始化平台
       while (platformNode) {
-
         platformNode.beforeInitialize(this)
 
         platformNode.initialize(this)
@@ -786,7 +775,6 @@ class PlatformNode {
     this.c = registry[platformName] // platform-registry配置中的平台设置;
     this.name = platformName // 当前节点的名称;
     this.isEngine = this.c && this.c.isEngine  // boolean; 是否是在壳子中
-
   }
 
   // 获取settings配置
@@ -836,7 +824,7 @@ class PlatformNode {
         if (!v.major) v.major = '0'
         if (!v.minor) v.minor = '0'
         if (!v.third) v.third = '0'
-        const str = v.major + '.' + v.minor + ( !!v.third ? ('.' + v.third) : '')
+        const str = v.major + '.' + v.minor + (v.third ? ('.' + v.third) : '')
         return {
           str: str,
           num: parseFloat(str),
@@ -856,7 +844,6 @@ class PlatformNode {
   getRoot (p) {
     // 判断当前平台是否和当前的Node匹配
     if (this.isMatch(p)) {
-
       // 获得 父集名称 列表
       let parents = this.getSubsetParents(this.name)
 
@@ -973,7 +960,7 @@ function getCss (docEle) {
   var keys = ['webkitTransform', '-webkit-transform', 'webkit-transform', 'transform']
 
   for (i = 0; i < keys.length; i++) {
-    if (docEle.style [keys[i]] !== undefined) {
+    if (docEle.style[keys[i]] !== undefined) {
       css.transform = keys[i]
       break
     }

@@ -47,7 +47,6 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fuga iste iusto nihil officia possimus sit ullam. Aperiam architecto dolor ex harum iste laboriosam nostrum possimus quibusdam. Provident, sequi similique?</p>
 
 
-
             <div slot="fixedBottom" padding class="fixedContent">
                 <strong>业务有需求将部分内容固定到顶部或者固定到底部, 这部分固定内容不随页面的滚动而移动, 就像这样.</strong>
             </div>
@@ -59,16 +58,17 @@
         background: rgba(256, 256, 256, 0.95);
 
     }
-    .fixedTop{
-        top:150px;
+
+    .fixedTop {
+        top: 150px;
         position: absolute;
         background: rgba(145, 255, 191, 0.95);
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   export default{
     name: 'name',
-    data(){
+    data () {
       return {}
     },
     props: {},

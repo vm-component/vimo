@@ -1,5 +1,3 @@
-/* eslint-disable no-new */
-import AttachFastClick from './assets/js/fastclick'
 import 'ionicons/dist/css/ionicons.css'
 import vimo from 'vimo'
 // 全局组件
@@ -18,9 +16,11 @@ import { Toast } from 'vimo/components/toast'
 import { Buttons, Title, Toolbar } from 'vimo/components/toolbar'
 import Vue from 'vue'
 import App from './App.vue'
+import AttachFastClick from './assets/js/fastclick'
 import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
 import router from './router'
+/* eslint-disable no-new */
 new AttachFastClick(document.body)
 
 // Vue.config.productionTip = false;
@@ -56,9 +56,8 @@ new Vue({
   template: '<App/>',
   created () {
     this.$platform.ready().then((data) => {
-      console.debug(data)
+      // console.debug(data)
     })
   },
-  mounted () {},
   components: {App}
 })

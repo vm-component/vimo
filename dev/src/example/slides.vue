@@ -125,22 +125,22 @@
             <!--<h5>Fade Effect</h5>-->
             <!--<small>这里有问题</small>-->
             <!--<Slides class="swiper"-->
-                    <!--nextButton=".swiper-button-next"-->
-                    <!--prevButton=".swiper-button-prev"-->
-                    <!--pagination=".swiper-pagination"-->
-                    <!--:paginationClickable="true"-->
-                    <!--:watchSlidesProgress="true"-->
-                    <!--effect="fade">-->
-                <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_1.jpg">-->
-                <!--</Slide>-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_2.jpg">-->
-                <!--</Slide>-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_3.jpg">-->
-                <!--</Slide>-->
+            <!--nextButton=".swiper-button-next"-->
+            <!--prevButton=".swiper-button-prev"-->
+            <!--pagination=".swiper-pagination"-->
+            <!--:paginationClickable="true"-->
+            <!--:watchSlidesProgress="true"-->
+            <!--effect="fade">-->
+            <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_1.jpg">-->
+            <!--</Slide>-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_2.jpg">-->
+            <!--</Slide>-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_3.jpg">-->
+            <!--</Slide>-->
             <!--</Slides>-->
 
             <h5>3D Cube Effect</h5>
@@ -187,22 +187,22 @@
             <!--<h5>3D Flip Effect</h5>-->
             <!--<small>这里有问题</small>-->
             <!--<Slides class="swiper flipEffect"-->
-                    <!--effect="flip"-->
-                    <!--nextButton=".swiper-button-next"-->
-                    <!--prevButton=".swiper-button-prev"-->
-                    <!--pagination=".swiper-pagination"-->
-                    <!--:watchSlidesProgress="true"-->
-                    <!--:grabCursor="false">-->
-                <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_1.jpg">-->
-                <!--</Slide>-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_2.jpg">-->
-                <!--</Slide>-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_3.jpg">-->
-                <!--</Slide>-->
+            <!--effect="flip"-->
+            <!--nextButton=".swiper-button-next"-->
+            <!--prevButton=".swiper-button-prev"-->
+            <!--pagination=".swiper-pagination"-->
+            <!--:watchSlidesProgress="true"-->
+            <!--:grabCursor="false">-->
+            <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_1.jpg">-->
+            <!--</Slide>-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_2.jpg">-->
+            <!--</Slide>-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_3.jpg">-->
+            <!--</Slide>-->
             <!--</Slides>-->
 
             <h5>Keyboard Control / Mousewheel Control</h5>
@@ -614,14 +614,11 @@
     }
 
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Slides, Slide } from 'vimo/components/slides'
-
-  import Swiper from 'vimo/components/slides/swiper.js'
-
   export default{
     name: 'name',
-    data(){
+    data () {
       return {
         coverflow: {
           rotate: 50,
@@ -631,7 +628,7 @@
           slideShadows: true
         },
         paginationBulletRender: function (swiper, index, className) {
-          return '<span class="' + className + '">' + (index + 1) + '</span>';
+          return '<span class="' + className + '">' + (index + 1) + '</span>'
         },
         breakpoints: {
           1024: {
@@ -654,42 +651,42 @@
         dynamicData: [
           'Slide 1',
           'Slide 2',
-          'Slide 3',
-        ],
+          'Slide 3'
+        ]
 
       }
     },
     computed: {
-      swiper() {
+      swiper () {
         return this.$refs.mySwiperA
       },
-      dynamicSlidesComponent(){
+      dynamicSlidesComponent () {
         return this.$refs.dynamicSlides.swiperInstance
       }
     },
     methods: {
       // dynamic Slides
-      addSlide(){
+      addSlide () {
         let item = 'Slide ' + (this.dynamicData.length + 1)
         this.dynamicData.push(item)
         this.$nextTick(() => {
           this.dynamicSlidesComponent.update()
         })
       },
-      removeSlide(){
+      removeSlide () {
         this.dynamicData.pop()
         this.$nextTick(() => {
           this.dynamicSlidesComponent.update(true)
         })
       },
 
-      onInit(ins){
+      onInit (ins) {
         console.debug('Swiper实例: ')
         console.debug(ins)
       }
     },
     created () {
-      const _this = this;
+      const _this = this
       _this.data = _this.data1
     },
     mounted () {},

@@ -186,79 +186,79 @@
 <style lang="scss">
 
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { Note } from 'vimo/components/note'
   import { Avatar } from 'vimo/components/avatar'
   import { Label } from 'vimo/components/label'
   export default{
-    data(){
+    data () {
       return {
         slidingPercent: 0,
         openAmount: 0,
-        disabled: false,
+        disabled: false
 
       }
     },
     watch: {},
     computed: {
-      itemSlidingComponent(){
+      itemSlidingComponent () {
         return this.$refs.itemSlidingComponent
       }
     },
     methods: {
-      clickText(){
+      clickText () {
         alert('clickText')
       },
-      clickCall(){
+      clickCall () {
         alert('clickCall')
       },
-      clickEmail(){
+      clickEmail () {
         alert('clickEmail')
       },
-      clickDelete(){
+      clickDelete () {
         alert('clickDelete')
       },
       // 事件监听
-      slidingDrag(ins){
+      slidingDrag (ins) {
         if (ins.state === 8) {
           console.log('正在拖动，向右滑动')
         } else if (ins.state === 16) {
           console.log('正在拖动，向左滑动')
         }
       },
-      slidingSwipe(ins){
+      slidingSwipe (ins) {
         console.debug('触发了滑动的最大限度值，但不知道左右')
       },
-      slidingDragLeft(ins){
-        console.debug('slidingDragLeft：向左滑动超过了swiper阈值');
+      slidingDragLeft (ins) {
+        console.debug('slidingDragLeft：向左滑动超过了swiper阈值')
       },
-      slidingDragRight(ins){
+      slidingDragRight (ins) {
         console.debug('slidingDragRight：向右滑动超过了swiper阈值，500ms后会执行自动关闭')
         setTimeout(() => {
-          ins.close();
+          ins.close()
         }, 500)
       },
 
       // 测试
-      closeItem(){
+      closeItem () {
         this.itemSlidingComponent.close()
       },
-      openRightOptions(){
+      openRightOptions () {
         this.itemSlidingComponent.openRightOptions()
       },
-      openLeftOptions(){
+      openLeftOptions () {
         this.itemSlidingComponent.openLeftOptions()
       },
-      getSlidingPercent(){
+      getSlidingPercent () {
         this.slidingPercent = this.itemSlidingComponent.getSlidingPercent()
       },
-      getOpenAmount(){
+      getOpenAmount () {
         this.openAmount = this.itemSlidingComponent.getOpenAmount()
-      },
+      }
     },
-    created() {},
+    created () {},
     mounted () {
       console.debug(this.itemSlidingComponent)
     },

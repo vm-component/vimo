@@ -31,7 +31,7 @@
         }
     }
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Loading
    * @description
@@ -70,7 +70,7 @@
    * @usage
    *
    * // 只显示菊花
-   * spinnerOnly(){
+   * spinnerOnly () {
    *      this.$loading.present();
    *      setTimeout(() => {
    *        this.$loading.dismiss().then(() => {
@@ -80,7 +80,7 @@
    *    },
    *
    * // 是显示name
-   * stringOnly(){
+   * stringOnly () {
    *      this.$loading.present('只传入了String');
    *      setTimeout(() => {
    *        this.$loading.dismiss().then(() => {
@@ -112,30 +112,30 @@
     props: {
       spinner: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('spinner', 'ios') || 'ios' }
+        default () { return window.VM && window.VM.config.get('spinner', 'ios') || 'ios' }
       },
       content: [String],
       cssClass: [String],
       showBackdrop: {
         type: Boolean,
-        default(){ return true }
+        default () { return true }
       },
       duration: {
         type: Number,
-        default(){
+        default () {
           return window.VM && window.VM.config.get('maxLoadingDuration', 5000)
         }
       },
       dismissOnPageChange: {
         type: Boolean,
-        default(){ return true }
+        default () { return true }
       },
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
       }
     },
-    data(){
+    data () {
       return {
         isActive: false, // 开启状态
 
@@ -144,7 +144,7 @@
         dismissCallback: null,
 
         timer: null,
-        unreg: null,
+        unreg: null
       }
     },
     computed: {
@@ -155,7 +155,7 @@
       showSpinner () {
         return this.spinner !== 'hide'
       },
-      transitionClass(){
+      transitionClass () {
         return `loading-${this.mode}`
       }
     },
@@ -166,26 +166,26 @@
        * ActionSheet Animate Hooks
        * */
       _beforeEnter () {
-        this.$app && this.$app.setEnabled(false, 200);
+        this.$app && this.$app.setEnabled(false, 200)
       },
       _afterEnter (el) {
-        this.presentCallback(el);
+        this.presentCallback(el)
       },
       _beforeLeave () {
-        this.$app && this.$app.setEnabled(false, 200);
+        this.$app && this.$app.setEnabled(false, 200)
       },
       _afterLeave (el) {
         // 删除DOM
         this.$el.remove()
-        this.dismissCallback(el);
+        this.dismissCallback(el)
       },
       /**
        * @private
        * */
-      dismissOnPageChangeHandler(){
-        this.isActive && this.dismiss();
+      dismissOnPageChangeHandler () {
+        this.isActive && this.dismiss()
         this.timer && window.clearTimeout(this.timer)
-        this.unreg && this.unreg();
+        this.unreg && this.unreg()
       },
 
       // -------- public --------
@@ -197,15 +197,15 @@
        * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
        */
       present () {
-        const _this = this;
-        _this.isActive = true;
+        const _this = this
+        _this.isActive = true
         if (parseInt(this.duration) > 0) {
           this.timer && window.clearTimeout(this.timer)
           this.timer = window.setTimeout(() => {
-            this.dismiss();
-          }, this.duration);
+            this.dismiss()
+          }, this.duration)
         }
-        return new Promise((resolve) => {this.presentCallback = resolve})
+        return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
       /**
@@ -215,16 +215,16 @@
        * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
        * */
       dismiss () {
-        const _this = this;
-        _this.isActive = false; // 动起来
+        const _this = this
+        _this.isActive = false // 动起来
         this.timer && window.clearTimeout(this.timer)
-        return new Promise((resolve) => {this.dismissCallback = resolve})
-      },
+        return new Promise((resolve) => { this.dismissCallback = resolve })
+      }
     },
-    created(){
+    created () {
       if (this.dismissOnPageChange) {
-        this.unreg && this.unreg();
-        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+        this.unreg && this.unreg()
+        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
       }
     },
     components: {

@@ -42,7 +42,7 @@
  * 第三优先级(Config):
  * 在src/config/app-configs.js中根属性中设置
  * export default {
- *    domain: '', 
+ *    domain: '',
  *    mode: 'ios'
  * }
  *
@@ -98,7 +98,9 @@ const URL_CONFIG_PREFIX = 'vm'
 
 class Config {
   constructor () {
-    /**@private*/
+    /**
+     * @private
+     * */
     this._c = {} // cache 获取配置的缓存对象, 可用的config只有调用的时候才知道!
     this._s = {} // setting superlative 最高级配置 用户在初始化时自己的配置config
     this.plt // Platform 当前平台的实例
@@ -130,22 +132,30 @@ class Config {
     // 如果已缓存则取缓存值
     if (!isDefined(this._c[key])) {
       if (!isDefined(key)) {
+        // eslint-disable-next-line no-throw-literal
         throw 'config key is not defined'
       }
 
       // 如果查询的值之前查过, 则使用缓存值
       // 如果之前没查过, 则查询配置, 查询顺序如下:
       // url_params > config > plt._register[platform]
-      let userPlatformValue = undefined //  config[platforms][platform][key]
+      let userPlatformValue //  config[platforms][platform][key]
       let userDefaultValue = this._s[key] // config[key]
-      let platformValue = undefined // this.plt._registry[platformName].setting[key]
+      let platformValue // this.plt._registry[platformName].setting[key]
       let configObj = null
 
       if (platform) {
         // 如果配置信息是定义在queryParam中的话, 读取并注册到_c中, 查询的关键字key是小写
         var queryStringValue = platform.getQueryParam(URL_CONFIG_PREFIX + key)
         if (isDefined(queryStringValue)) {
-          return this._c[key] = (queryStringValue === 'true' ? true : queryStringValue === 'false' ? false : queryStringValue)
+          if (queryStringValue === 'true') {
+            this._c[key] = true
+          } else if (queryStringValue === 'false') {
+            this._c[key] = false
+          } else {
+            this._c[key] = queryStringValue
+          }
+          return this._c[key]
         }
 
         // 获取激活的platform, 此时已经知道层级关系, 最后一个为最重要的, 例如: ['mobile','ios','wechat']
@@ -166,7 +176,6 @@ class Config {
           // 在[mode].setting中
           configObj = platform.getPlatformConfig(activePlatformKeys[i])
           if (configObj && configObj.settings) {
-
             if (isDefined(configObj.settings[key])) {
               // found a setting for this platform
               platformValue = configObj.settings[key]
@@ -178,10 +187,7 @@ class Config {
       // 缓存查询的的结果
       // 返回优先级: 用户自在config.platforms中定义 >  用户在config中定义   > platform中定义
       // eg: config[platforms][platformName][key] > config[key]  > this.plt._registry[platformName].setting[key]
-      this._c[key] = isDefined(userPlatformValue) ? userPlatformValue :
-        isDefined(userDefaultValue) ? userDefaultValue :
-          isDefined(platformValue) ? platformValue :
-            null
+      this._c[key] = isDefined(userPlatformValue) ? userPlatformValue : isDefined(userDefaultValue) ? userDefaultValue : isDefined(platformValue) ? platformValue : null
     }
 
     var rtnVal = this._c[key]

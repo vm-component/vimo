@@ -61,32 +61,29 @@
     </Page>
 </template>
 
-<script type="text/ecmascript-6">
-  import modalPageComponent_3 from './modal-page-3.vue';
-
+<script type="text/javascript">
+  import modalPageComponent3 from './modal-page-3.vue'
   export default{
     name: 'model1',
-    data(){
+    data () {
       return {
-        modalData: null,
+        modalData: null
       }
     },
-    props: {},
-    watch: {},
     computed: {
-      content(){
+      content () {
         return this.$refs.content
       }
     },
     methods: {
-      closeModal(){
+      closeModal () {
         this.$modal.dismiss({
           result: 'modal 1 dismissed success!'
         })
       },
-      openOtherModal(){
+      openOtherModal () {
         this.$modal.present({
-          template: modalPageComponent_3,
+          template: modalPageComponent3,
           modalData: {hello: 'Page3Data'},
           onDismiss (data) {
             console.debug('得到了modal3的关闭信息')
@@ -94,27 +91,27 @@
           }
         })
       },
-      scrollToBottom(){
-        this.content.scrollToBottom();
+      scrollToBottom () {
+        this.content.scrollToBottom()
       },
-      scrollToTop(){
-        this.content.scrollToTop();
+      scrollToTop () {
+        this.content.scrollToTop()
       }
     },
-    created(){
+    created () {
       console.debug('！！！！modal-page.vue-created！！！！')
     },
-    mounted(){
+    mounted () {
       console.debug('！！！！modal-page.vue-mounted！！！！')
       console.log('modal-page获得的外部数据!!!')
       console.log(this.$options.modalData)
       console.log(JSON.stringify(this.$options.modalData))
       this.modalData = JSON.stringify(this.$options.modalData)
     },
-    activated(){
+    activated () {
       console.debug('！！！！modal-page.vue-activated！！！！')
     },
-    updated(){
+    updated () {
       console.debug('！！！！modal-page.vue-updated！！！！')
     },
     components: {}

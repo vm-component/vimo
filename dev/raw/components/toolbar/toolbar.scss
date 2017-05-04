@@ -81,7 +81,6 @@
   pointer-events: auto;
 }
 
-
 // Transparent Toolbar
 // --------------------------------------------------
 
@@ -90,7 +89,6 @@
   background: transparent;
 }
 
-
 // TODO this is a temp hack to fix segment overlapping ion-nav-item
 .ion-buttons,
 .bar-button-menutoggle {
@@ -98,7 +96,6 @@
 
   transform: translateZ(0);
 }
-
 
 // Navbar
 // --------------------------------------------------

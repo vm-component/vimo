@@ -12,7 +12,6 @@
                     setting
 
 
-
                     <Button slot="item-right" clear>
                         <Icon name="cog"></Icon>
                     </Button>
@@ -24,7 +23,6 @@
                         Airplane Mode
 
 
-
                         <Toggle slot="item-right" @ionChange="toggleChange"
                                 :checked="toggleValue"></Toggle>
                     </Item>
@@ -32,7 +30,6 @@
                     <Item button>
                         <Icon slot="item-left" color="primary" name="wifi"></Icon>
                         Wi-Fi
-
 
 
                         <Note slot="item-right">The Interwebz</Note>
@@ -43,14 +40,12 @@
                         Bluetooth
 
 
-
                         <Note slot="item-right">Off</Note>
                     </Item>
                 </ItemGroup>
                 <!--divider-->
                 <ItemDivider color="primary">
                     Other Setting
-
 
 
                     <Button slot="item-right" outline color="light">Clear</Button>
@@ -62,13 +57,11 @@
                     Cellular
 
 
-
                 </Item>
                 <!--button属性会在右边增加向右箭头-->
                 <Item button>
                     <Icon slot="item-left" color="secondary" name="link"></Icon>
                     Personal Hotspot
-
 
 
                     <Note slot="item-right">Off</Note>
@@ -82,7 +75,6 @@
                     Silence Phone
 
 
-
                 </ListHeader>
                 <!--button属性会在右边增加向右箭头-->
                 <Item>
@@ -92,7 +84,6 @@
                 <!--button属性会在右边增加向右箭头-->
                 <Item>
                     Only while phone is locked
-
 
 
                 </Item>
@@ -137,7 +128,7 @@
 
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { Note } from 'vimo/components/note'
@@ -145,10 +136,10 @@
   import { Label } from 'vimo/components/label'
   import { Toggle } from 'vimo/components/toggle'
   export default{
-    data(){
+    data () {
       return {
         toggleValue: true,
-        silencePhone: 'always',
+        silencePhone: 'always'
       }
     },
     watch: {

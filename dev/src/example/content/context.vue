@@ -38,8 +38,8 @@
 
     }
 </style>
-<script>
+<script type="text/javascript">
   export default{
-    name: 'context',
+    name: 'context'
   }
 </script>

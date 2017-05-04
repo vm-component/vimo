@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <!--group cancel-->
-                    <div class="action-sheet-group" v-if="!!cancelButton">
+                    <div class="action-sheet-group" v-if="cancelButton">
                         <Button role="action-sheet-button" @click="click(cancelButton)"
                                 class="action-sheet-cancel" :class="cancelButton.cssClass">
                             <Icon :name="cancelButton.icon" v-if="cancelButton.icon"
@@ -41,7 +41,7 @@
         </transition>
     </div>
 </template>
-<script>
+<script type="text/javascript">
   /**
    * @component ActionSheet
    * @description
@@ -124,7 +124,6 @@
    * })
    *
    */
-
   import { registerListener } from '../../util/util'
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
@@ -137,22 +136,22 @@
       cssClass: [String],
       buttons: {
         type: Array,
-        default(){return []}
+        default () { return [] }
       },
       enableBackdropDismiss: {
         type: Boolean,
-        default(){return true}
+        default () { return true }
       },
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
       },
       dismissOnPageChange: {
         type: Boolean,
-        default(){return true}
+        default () { return true }
       }
     },
-    data(){
+    data () {
       return {
         /**
          * ActionSheet State
@@ -174,14 +173,14 @@
         presentCallback: null,
         dismissCallback: null,
 
-        unreg: null,
+        unreg: null
       }
     },
     computed: {
       // 设置ActionSheet的风格
       modeClass: function () {
         return `action-sheet-${this.mode}`
-      },
+      }
     },
     methods: {
       /**
@@ -189,27 +188,27 @@
        * @private
        * */
       _beforeEnter () {
-        this.enabled = false; // 不允许过渡中途操作
+        this.enabled = false // 不允许过渡中途操作
         this.$app && this.$app.setEnabled(false, 400)
       },
       _afterEnter (el) {
-        this.enabled = true;
-        this.presentCallback(el);
-        this._focusOutActiveElement();
-        let focusableEle = document.querySelector('button');
+        this.enabled = true
+        this.presentCallback(el)
+        this._focusOutActiveElement()
+        let focusableEle = document.querySelector('button')
         if (focusableEle) {
-          focusableEle.focus();
+          focusableEle.focus()
         }
       },
       _beforeLeave () {
-        this.enabled = false;
+        this.enabled = false
         this.$app && this.$app.setEnabled(false, 400)
       },
       _afterLeave (el) {
-        this.enabled = true;
-        this.dismissCallback(el);
+        this.enabled = true
+        this.dismissCallback(el)
         // 删除DOM
-        this.$el.remove();
+        this.$el.remove()
       },
 
       /**
@@ -218,8 +217,8 @@
        * */
       _focusOutActiveElement () {
         // only button？
-        const activeElement = document.activeElement;
-        activeElement && activeElement.blur && activeElement.blur();
+        const activeElement = document.activeElement
+        activeElement && activeElement.blur && activeElement.blur()
       },
 
       /**
@@ -232,10 +231,10 @@
        * @private
        */
       bdClick () {
-        let _this = this;
+        let _this = this
         if (_this.enabled && _this.enableBackdropDismiss) {
           if (_this.cancelButton) {
-            _this.click(this.cancelButton);
+            _this.click(this.cancelButton)
           } else {
             _this.dismiss()
           }
@@ -250,16 +249,16 @@
        * @private
        */
       click (button) {
-        const _this = this;
+        const _this = this
         if (!_this.enabled) {
-          return;
+          return
         }
-        let shouldDismiss = true;
+        let shouldDismiss = true
         if (button.handler) {
           // a handler has been provided, execute it
           if (button.handler() === false) {
             // if the return value of the handler is false then do not dismiss
-            shouldDismiss = false;
+            shouldDismiss = false
           }
         }
 
@@ -267,7 +266,7 @@
         // 如果是在dismissing中，则意味着正在关闭，
         // 这里不必进行
         if (_this.enabled && shouldDismiss) {
-          _this.dismiss();
+          _this.dismiss()
         }
       },
 
@@ -279,13 +278,13 @@
        * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
        */
       present () {
-        const _this = this;
-        _this.isActive = true;
+        const _this = this
+        _this.isActive = true
 
         console.debug('this.buttons present')
         console.debug(this.buttons)
 
-        return new Promise((resolve) => {this.presentCallback = resolve})
+        return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
       /**
@@ -295,13 +294,13 @@
        * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
        * */
       dismiss () {
-        const _this = this;
+        const _this = this
         if (!_this.enabled) {
           return false
         }
-        _this.enabled = false;
-        _this.isActive = false; // 动起来
-        return new Promise((resolve) => {this.dismissCallback = resolve})
+        _this.enabled = false
+        _this.isActive = false // 动起来
+        return new Promise((resolve) => { this.dismissCallback = resolve })
       },
       // /**
       //  * @private
@@ -336,59 +335,59 @@
       /**
        * @private
        * */
-      dismissOnPageChangeHandler(){
-        this.isActive && this.dismiss();
-        this.unreg && this.unreg();
+      dismissOnPageChangeHandler () {
+        this.isActive && this.dismiss()
+        this.unreg && this.unreg()
       },
 
       /**
        * 初始化buttons
        * @private
        * */
-      init(){
+      init () {
         let arr = this.buttons
-        let _this = this;
-        let _buttons = [];
+        let _this = this
+        let _buttons = []
         if (!Array.isArray(arr)) {
           return
         }
         arr.forEach(function (button) {
           if (typeof button === 'string') {
-            button = {text: button};
+            button = {text: button}
           }
 
           if (!button.cssClass) {
-            button.cssClass = '';
+            button.cssClass = ''
           } else {
             // 去除收尾空格
-            button.cssClass = button.cssClass.trim();
+            button.cssClass = button.cssClass.trim()
           }
 
           if (button.role === 'cancel') {
-            _this.cancelButton = button;
+            _this.cancelButton = button
           } else {
             if (button.role === 'destructive') {
-              button.cssClass = (button.cssClass + ' ' || '') + 'action-sheet-destructive';
+              button.cssClass = (button.cssClass + ' ' || '') + 'action-sheet-destructive'
             } else if (button.role === 'selected') {
-              button.cssClass = (button.cssClass + ' ' || '') + 'action-sheet-selected';
+              button.cssClass = (button.cssClass + ' ' || '') + 'action-sheet-selected'
             }
-            _buttons.push(button);
+            _buttons.push(button)
           }
-        });
-        _this.normalButtons = _buttons;
+        })
+        _this.normalButtons = _buttons
       }
     },
-    created(){
+    created () {
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
-        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
       }
     },
     components: {
       Backdrop,
       Button,
-      Icon,
+      Icon
     }
   }
 </script>

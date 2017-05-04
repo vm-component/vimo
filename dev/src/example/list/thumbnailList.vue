@@ -37,7 +37,7 @@
 <style scoped lang="scss">
 
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { Note } from 'vimo/components/note'
@@ -45,15 +45,18 @@
   import { Label } from 'vimo/components/label'
   import { Thumbnail } from 'vimo/components/thumbnail'
   export default{
-    data(){
-      return {}
-    },
-    watch: {},
-    computed: {},
-    methods: {},
-    created() {},
-    mounted () {},
-    activated () {},
-    components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label,Thumbnail}
+    components: {
+      List,
+      ListHeader,
+      ItemGroup,
+      Item,
+      ItemSliding,
+      ItemOptions,
+      ItemDivider,
+      Note,
+      Avatar,
+      Label,
+      Thumbnail
+    }
   }
 </script>

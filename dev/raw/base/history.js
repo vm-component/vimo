@@ -67,7 +67,6 @@ export class History {
    * @private
    * */
   _pushHistory (Vue, {to, from, next}) {
-
     if (this._isPageChange({to, from})) {
       this._d = 'forward'
       this._h.push(to)

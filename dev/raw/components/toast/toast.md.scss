@@ -4,17 +4,16 @@
 // --------------------------------------------------
 
 /// @prop - Background of the toast wrapper
-$toast-md-background:                            #333 !default;
+$toast-md-background: #333 !default;
 
 /// @prop - Color of the toast title
-$toast-md-title-color:                           #fff !default;
+$toast-md-title-color: #fff !default;
 
 /// @prop - Font size of the toast title
-$toast-md-title-font-size:                       15px !default;
+$toast-md-title-font-size: 15px !default;
 
 /// @prop - Padding of the toast title
-$toast-md-title-padding:                         19px 16px 17px !default;
-
+$toast-md-title-padding: 19px 16px 17px !default;
 
 .toast-md .toast-wrapper {
   position: absolute;
@@ -33,17 +32,17 @@ $toast-md-title-padding:                         19px 16px 17px !default;
 
 .toast-md .toast-wrapper.toast-top {
   top: 0;
-  transition: all cubic-bezier(.36,.66,.04,1) 400ms;
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
 }
 
 .toast-md .toast-wrapper.toast-bottom {
   bottom: 0;
-  transition: all cubic-bezier(.36,.66,.04,1) 400ms;
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
 }
 
 .toast-md .toast-wrapper.toast-middle {
-  top:38.2%;
-  transition: all cubic-bezier(.36,.66,.04,1) 400ms;
+  top: 38.2%;
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
 }
 
 .toast-md .toast-message {

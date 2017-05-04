@@ -21,11 +21,11 @@
     @import "./toast.ios";
     @import "./toast.md";
 </style>
-<script type="text/babel">
+<script type="text/javascript">
   import { registerListener } from '../../util/util'
   import { Button } from '../button'
   export default {
-    data() {
+    data () {
       return {
         message: '', // String
         duration: null, // Number
@@ -44,7 +44,7 @@
         presentCallback: null,
         dismissCallback: null,
         timer: null, // timer
-        unreg: null,
+        unreg: null
       }
     },
     computed: {
@@ -56,7 +56,7 @@
       positionClass () {
         return `toast-${this.position}`
       },
-      transitionClass(){
+      transitionClass () {
         return `toast-${this.position}-${this.mode}`
       }
     },
@@ -70,13 +70,13 @@
         this.$app && this.$app.setEnabled(false, 400)
       },
       _afterEnter (el) {
-        this.presentCallback(el);
+        this.presentCallback(el)
       },
       _beforeLeave () {
         this.$app && this.$app.setEnabled(false, 400)
       },
       _afterLeave (el) {
-        this.dismissCallback(el);
+        this.dismissCallback(el)
         // 删除DOM
         this.$el.remove()
       },
@@ -85,9 +85,9 @@
        * click close button to close
        * @private
        * */
-      cbClick() {
+      cbClick () {
         return this.dismiss().then(() => {
-          !!this.onDismiss && this.onDismiss()
+          this.onDismiss && this.onDismiss()
         })
       },
 
@@ -95,7 +95,7 @@
        * the handler of dismiss the page when route change
        * @private
        */
-      dismissOnPageChangeHandler(){
+      dismissOnPageChangeHandler () {
         if (this.isActive) {
           if (!this.dismissOnPageChange) {
             return
@@ -103,14 +103,14 @@
           if (this.showCloseButton) {
             this.cbClick()
           } else if (this.timer) {
-            window.clearTimeout(this.timer);
-            this.timer = null;
+            window.clearTimeout(this.timer)
+            this.timer = null
             this.dismiss().then(() => {
-              !!this.onDismiss && this.onDismiss()
+              this.onDismiss && this.onDismiss()
             })
           }
         }
-        this.unreg && this.unreg();
+        this.unreg && this.unreg()
       },
 
       // -------- public --------
@@ -119,16 +119,16 @@
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
       present () {
-        this.isActive = true;
+        this.isActive = true
         if (!this.showCloseButton) {
           this.timer = window.setTimeout(() => {
-            this.timer = null;
+            this.timer = null
             this.dismiss().then(() => {
-              !!this.onDismiss && this.onDismiss()
+              this.onDismiss && this.onDismiss()
             })
           }, this.duration)
         }
-        return new Promise((resolve) => {this.presentCallback = resolve})
+        return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
       /**
@@ -136,16 +136,16 @@
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
       dismiss () {
-        this.isActive = false; // move
-        return new Promise((resolve) => {this.dismissCallback = resolve})
-      },
+        this.isActive = false // move
+        return new Promise((resolve) => { this.dismissCallback = resolve })
+      }
     },
-    mounted(){
+    mounted () {
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
     },
     components: {
       Button
     }
-  };
+  }
 </script>

@@ -4,45 +4,44 @@
 // --------------------------------------------------
 
 /// @prop - Font size of the item text
-$item-ios-body-text-font-size:            17px !default;
+$item-ios-body-text-font-size: 17px !default;
 
 /// @prop - Margin of the item paragraph
-$item-ios-paragraph-margin:               0 0 2px !default;
+$item-ios-paragraph-margin: 0 0 2px !default;
 
 /// @prop - Font size of the item paragraph
-$item-ios-paragraph-font-size:            14px !default;
+$item-ios-paragraph-font-size: 14px !default;
 
 /// @prop - Color of the item paragraph
-$item-ios-paragraph-text-color:           #8e9093 !default;
+$item-ios-paragraph-text-color: #8e9093 !default;
 
 /// @prop - Size of the avatar in the item
-$item-ios-avatar-size:                    36px !default;
+$item-ios-avatar-size: 36px !default;
 
 /// @prop - Size of the thumbnail in the item
-$item-ios-thumbnail-size:                 56px !default;
+$item-ios-thumbnail-size: 56px !default;
 
 /// @prop - Shows the detail arrow icon on an item
-$item-ios-detail-push-show:               true !default;
+$item-ios-detail-push-show: true !default;
 
 /// @prop - Color of the detail arrow icon
-$item-ios-detail-push-color:              $list-ios-border-color !default;
+$item-ios-detail-push-color: $list-ios-border-color !default;
 
 /// @prop - Icon for the detail arrow
-$item-ios-detail-push-svg:                "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' fill='#{$item-ios-detail-push-color}'/></svg>" !default;
+$item-ios-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' fill='#{$item-ios-detail-push-color}'/></svg>" !default;
 
 /// @prop - Background for the divider
-$item-ios-divider-background:             #f7f7f7 !default;
+$item-ios-divider-background: #f7f7f7 !default;
 
 /// @prop - Color for the divider
-$item-ios-divider-color:                  #222 !default;
+$item-ios-divider-color: #222 !default;
 
 /// @prop - Padding for the divider
-$item-ios-divider-padding:                5px 15px !default;
+$item-ios-divider-padding: 5px 15px !default;
 
 /// @prop - Background for the sliding content
 //$item-ios-sliding-content-background:     $list-ios-background-color !default;
-$item-ios-sliding-content-background:     #eee !default;
-
+$item-ios-sliding-content-background: #eee !default;
 
 // iOS Item
 // --------------------------------------------------
@@ -115,7 +114,6 @@ $item-ios-sliding-content-background:     #eee !default;
   border-bottom: $hairlines-width solid $list-ios-border-color;
 }
 
-
 // iOS Item Media
 // --------------------------------------------------
 
@@ -157,7 +155,6 @@ $item-ios-sliding-content-background:     #eee !default;
   margin: ($item-ios-padding-right / 2);
 }
 
-
 // iOS Item Avatar
 // --------------------------------------------------
 
@@ -176,7 +173,6 @@ $item-ios-sliding-content-background:     #eee !default;
   overflow: hidden;
 }
 
-
 // iOS Item Thumbnail
 // --------------------------------------------------
 
@@ -191,14 +187,12 @@ $item-ios-sliding-content-background:     #eee !default;
   height: $item-ios-thumbnail-size;
 }
 
-
 // iOS Item Detail Push
 // --------------------------------------------------
 
 // Only show the forward arrow icon if true
 @if $item-ios-detail-push-show == true {
   .item-ios[detail-push] .item-inner,
-
   [button].item-ios:not([detail-none]) .item-inner,
   button.item-ios:not([detail-none]) .item-inner,
   a.item-ios:not([detail-none]) .item-inner {
@@ -212,7 +206,6 @@ $item-ios-sliding-content-background:     #eee !default;
   }
 }
 
-
 // iOS Item Group
 // --------------------------------------------------
 
@@ -225,7 +218,6 @@ $item-ios-sliding-content-background:     #eee !default;
   border: 0;
 }
 
-
 // iOS Item Divider
 // --------------------------------------------------
 
@@ -235,7 +227,6 @@ $item-ios-sliding-content-background:     #eee !default;
   color: $item-ios-divider-color;
   background-color: $item-ios-divider-background;
 }
-
 
 // Generate iOS Item and Item Divider Colors
 // --------------------------------------------------
@@ -257,11 +248,10 @@ $item-ios-sliding-content-background:     #eee !default;
     }
 
     &:active {
-     background-color: color-shade($color-base);
+      background-color: color-shade($color-base);
     }
   }
 }
-
 
 // iOS Item Sliding
 // --------------------------------------------------

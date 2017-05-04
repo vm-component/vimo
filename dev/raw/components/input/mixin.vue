@@ -44,7 +44,7 @@
     @import "./input.ios.scss";
     @import "./input.md.scss";
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Input
    * @description
@@ -137,11 +137,11 @@
   import { hasFocus, setElementClass, isPresent, isFunction } from '../../util/util'
   import { Button } from '../../components/button'
   export default{
-    data(){
+    data () {
       return {
         inputValue: this.value, // 内部value值
         typeValue: this.type, // 内部type值
-        checkValue: this.check || !!this.regex, // 内部check值, 判断是否需要验证结果
+        checkValue: this.check || this.regex, // 内部check值, 判断是否需要验证结果
 
         itemComponent: null, // 外部item组件实例 -> 修改class
         inputElement: null, // 当前输入的主体, input/textarea
@@ -150,7 +150,7 @@
 
         clearOnEditValue: this.clearOnEdit, // 内部维护的clearOnEdit副本, 因为会修改的
         didBlurAfterEdit: false, // clearOnEdit状态唤起的标志
-        shouldBlur: true, // 点击清楚按钮时使用
+        shouldBlur: true // 点击清楚按钮时使用
       }
     },
     props: {
@@ -191,7 +191,7 @@
        * */
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
       },
 
       placeholder: [String],
@@ -206,7 +206,7 @@
        * */
       type: {
         type: String,
-        default: 'text',
+        default: 'text'
       },
 
       /**
@@ -216,7 +216,7 @@
 
       debounce: {
         type: Number,
-        default: 0,
+        default: 0
       },
 
       // 自定义输入结果验证的正则表达式
@@ -235,17 +235,16 @@
       modeClass () {
         return `input input-${this.mode}`
       },
-      textInputClass(){
+      textInputClass () {
         return `text-input text-input-${this.mode}`
-      },
+      }
 
     },
     methods: {
       /**
        * 执行验证, 如果错误则设置ng-invalid, 正确则设置ng-valid
        * */
-      verification(){
-
+      verification () {
         if (!this.checkValue) return
 
         let result = this.getVerifyResult(this.inputValue, this.typeValue)
@@ -265,7 +264,7 @@
        * @param {String} type - 待验证的值的类型
        * @private
        * */
-      getVerifyResult(value, type = 'text'){
+      getVerifyResult (value, type = 'text') {
         const regexps = this.$config.get('regexps')
 
         if (!value) {
@@ -301,14 +300,14 @@
       /**
        * 当该组件被点击的时候触发, 扩大focus触发范围
        */
-      clickToFocus(){
+      clickToFocus () {
         this.setFocus()
       },
 
       /**
        * 设置当前组件为focus状态
        * */
-      setFocus(){
+      setFocus () {
         if (!hasFocus(this.inputElement)) {
           this.inputElement.focus()
         }
@@ -318,7 +317,7 @@
        * 监听并发送blur事件
        * @private
        */
-      inputBlurred($event){
+      inputBlurred ($event) {
         // debug: clearInput会在onBlur之后,造成blur后点击clearInput失效, 故需要延迟blur
         window.setTimeout(() => {
           if (this.shouldBlur) {
@@ -330,7 +329,7 @@
              * @description blur事件
              * @property {object} $event - 事件对象
              */
-            this.$emit('onBlur', $event);
+            this.$emit('onBlur', $event)
             // 如果是clearOnEdit模式， blur时还有值的情况下，定一个flag
             if (this.clearOnEditValue && this.hasValue()) {
               this.didBlurAfterEdit = true
@@ -348,10 +347,10 @@
        * 监听并发送focus事件
        * @private
        */
-      inputFocused($event){
+      inputFocused ($event) {
         // 向父组件Item添加标记
-        this.setItemHasFocusClass(true);
-        this.setFocus();
+        this.setItemHasFocusClass(true)
+        this.setFocus()
         /**
          * @event  component:Input#onFocus
          * @description focus事件
@@ -365,13 +364,13 @@
        * 监听input事件, 更新input的value(inputValue)
        * @private
        */
-      inputChanged($event){
-        const _this = this;
-        _this.inputValue = !!$event && !!$event.target ? $event.target.value : '';
-        _this.setItemHasValueClass();
+      inputChanged ($event) {
+        const _this = this
+        _this.inputValue = $event && $event.target ? $event.target.value : ''
+        _this.setItemHasValueClass()
 
         // debounce
-        window.clearTimeout(_this.timer);
+        window.clearTimeout(_this.timer)
         _this.timer = window.setTimeout(function () {
           // 组件对外事件
           /**
@@ -379,54 +378,53 @@
            * @description input事件
            * @property {object} $event - 事件对象
            */
-          _this.$emit('onInput', $event);
+          _this.$emit('onInput', $event)
           // 通知父组件的v-model
-          _this.$emit('input', _this.inputValue);
+          _this.$emit('input', _this.inputValue)
         }, _this.debounce)
       },
 
       /**
        * 键盘按下事件
        * */
-      onKeydown(){
+      onKeydown () {
         if (this.clearOnEditValue) {
-          this.checkClearOnEdit();
+          this.checkClearOnEdit()
         }
       },
 
-      checkClearOnEdit(){
+      checkClearOnEdit () {
         if (!this.clearOnEditValue) {
-          return;
+          return
         }
 
         // clearOnEdit模式激活,并且input有值
         if (this.didBlurAfterEdit && this.hasValue()) {
-          this.inputValue = '';
-          this.inputChanged();
+          this.inputValue = ''
+          this.inputChanged()
         }
 
         // 重置标记
-        this.didBlurAfterEdit = false;
+        this.didBlurAfterEdit = false
       },
 
       /**
        * 点击清除输入项
        * */
-      clearTextInput(){
-        this.inputValue = '';
-        this.inputChanged();
+      clearTextInput () {
+        this.inputValue = ''
+        this.inputChanged()
         this.shouldBlur = false
 
         this.setFocus()
-        this.setItemHasFocusClass(true);
-
+        this.setItemHasFocusClass(true)
       },
 
       /**
        *  设置父组件Item被点中时的class
        */
-      setItemHasFocusClass(isFocus){
-        const _this = this;
+      setItemHasFocusClass (isFocus) {
+        const _this = this
         if (_this.itemComponent) {
           setElementClass(_this.itemComponent.$el, 'input-has-focus', isFocus)
           _this.$nextTick(function () {
@@ -438,7 +436,7 @@
       /**
        *  设置父组件Item有值时的class
        */
-      setItemHasValueClass(){
+      setItemHasValueClass () {
         if (this.itemComponent) {
           setElementClass(this.itemComponent.$el, 'input-has-value', this.hasValue())
         }
@@ -447,20 +445,20 @@
       /**
        * 判断input是否有value
        * */
-      hasValue() {
-        const inputValue = this.inputValue;
-        return (inputValue !== null && inputValue !== undefined && inputValue !== '');
+      hasValue () {
+        const inputValue = this.inputValue
+        return (inputValue !== null && inputValue !== undefined && inputValue !== '')
       }
     },
-    created(){
+    created () {
       // 当在textarea组件下，强制设置type=textarea
       if (this.$options._componentTag.toLowerCase() === 'textarea') {
-        this.typeValue = 'textarea';
+        this.typeValue = 'textarea'
       }
 
       // 默认情况下, 如果password有值, 则点击执行清空
       if (this.type === 'password') {
-        this.clearOnEditValue = true;
+        this.clearOnEditValue = true
       }
     },
     mounted () {
@@ -475,13 +473,13 @@
 
       // 找到外部item实例
       if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
-        this.itemComponent = this.$parent;
+        this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-textarea', (this.typeValue === 'textarea'))
         setElementClass(this.itemComponent.$el, 'item-input', true)
       }
 
       // 初始化时,判断是否有value
-      this.setItemHasValueClass();
+      this.setItemHasValueClass()
     },
     components: {
       Button

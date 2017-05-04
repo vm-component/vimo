@@ -75,12 +75,12 @@
     .transitionBox {
         position: relative;
         width: 100%;
-        top:0;
+        top: 0;
         left: 0;
         right: 0;
-        bottom:0;
+        bottom: 0;
         .content_1, .content_2, .content_3 {
-            border:1px solid transparent;
+            border: 1px solid transparent;
         }
     }
 
@@ -105,30 +105,30 @@
         z-index: 0;
     }
 </style>
-<script>
+<script type="text/javascript">
   import { Segment, SegmentButton } from 'vimo/components/segment'
   export default{
     name: 'Animate',
-    data(){
+    data () {
       return {
         fruit: 'apple'
       }
     },
     watch: {
-      fruit(){
+      fruit () {
         this.contentComponent.scrollToTop(0)
       }
     },
     computed: {
-      contentComponent(){
+      contentComponent () {
         return this.$refs.content
       }
     },
     methods: {
-      onChangeHandler(val){
+      onChangeHandler (val) {
         console.debug('当前的Segment值发生变化: ' + val)
       },
-      onSelectHandler(val){
+      onSelectHandler (val) {
         console.debug('点击了SegmentButton按钮, 这个按钮的值: ' + val)
       }
     },

@@ -161,44 +161,42 @@
 </template>
 <style lang="scss">
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Label } from 'vimo/components/label'
   import { Input, Textarea } from 'vimo/components/input'
   import { List } from 'vimo/components/list'
   import { ListHeader, Item } from 'vimo/components/item'
+
   export default{
     name: 'name',
-    data(){
+    data () {
       return {
         testValue: 'hello',
         testDisabled: false,
-        canSubmit: false,
+        canSubmit: false
       }
     },
     methods: {
-      checkValue(){
+      checkValue () {
         console.log('checkHandler')
         this.$nextTick(() => {
           this.canSubmit = document.querySelectorAll('.simSubmit .ng-valid').length === 2
         })
       },
-      onBlur($event){
+      onBlur ($event) {
         console.debug('onBlur')
       },
-      onFocus($event){
+      onFocus ($event) {
         console.debug('onFocus')
         console.debug($event)
       },
-      onInput($event){
+      onInput ($event) {
         console.debug('onInput')
       },
-      disableToggle(){
-        this.testDisabled = !this.testDisabled;
+      disableToggle () {
+        this.testDisabled = !this.testDisabled
       }
     },
-    created(){},
-    mounted(){},
-    activated(){},
     components: {Label, List, ListHeader, Item, Input, Textarea}
   }
 </script>

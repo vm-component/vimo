@@ -28,7 +28,7 @@
 
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { Note } from 'vimo/components/note'
@@ -36,7 +36,7 @@
   import { Label } from 'vimo/components/label'
   export default{
     name: 'reorder',
-    data(){
+    data () {
       return {
         songs: [
           {
@@ -88,23 +88,17 @@
         editing: false
       }
     },
-    props: {},
-    watch: {},
-    computed: {},
     methods: {
-      toggleEdit(){
-        this.editing = !this.editing;
+      toggleEdit () {
+        this.editing = !this.editing
         if (this.editing) {
-          this.editButton = 'Done';
+          this.editButton = 'Done'
         } else {
-          this.editButton = 'Edit';
+          this.editButton = 'Edit'
         }
       },
-      reorderData(){}
+      reorderdata () {}
     },
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
     components: {
       List,
       ListHeader,
@@ -115,8 +109,7 @@
       ItemDivider,
       Note,
       Avatar,
-      Label,
-      ItemGroup
+      Label
     }
   }
 </script>

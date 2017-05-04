@@ -20,7 +20,7 @@
         transform: translateY(100%);
     }
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Base/Footer
    * @description
@@ -43,20 +43,20 @@
     props: {
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
-      },
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
+      }
     },
     computed: {
       modeClass () {
         return `footer-${this.mode}`
-      },
+      }
     },
 
-    data(){
+    data () {
       return {
         // -------- public --------
         isHide: false,
-        style: {},
+        style: {}
       }
     },
     methods: {
@@ -66,7 +66,7 @@
        * @description
        * 隐藏Footer
        * */
-      hide(){
+      hide () {
         this.isHide = true
       },
 
@@ -75,7 +75,7 @@
        * @description
        * 显示Footer
        * */
-      show(){
+      show () {
         this.isHide = false
       },
 
@@ -84,7 +84,7 @@
        * @description
        * Toggle显示Footer
        * */
-      toggle(){
+      toggle () {
         this.isHide = !this.isHide
       },
 
@@ -95,7 +95,7 @@
        * @description
        * 设置Footer的样式
        * */
-      setStyle(style){
+      setStyle (style) {
         this.style = style
       }
     }

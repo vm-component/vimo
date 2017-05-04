@@ -27,21 +27,11 @@
 <style scoped lang="scss">
 
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Tabs, Tab } from 'vimo/components/tabs'
   import { List } from 'vimo/components/list'
   import { Item, ListHeader } from 'vimo/components/item'
-
   export default{
-    data(){
-      return {}
-    },
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {},
-    mounted () {},
-    activated () {},
     components: {Tabs, Tab, List, Item, ListHeader}
   }
 </script>

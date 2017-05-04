@@ -16,6 +16,7 @@ if (!('remove' in Element.prototype)) {
 
 // 如果array的find函数不支持
 if (!Array.prototype.find) {
+  // eslint-disable-next-line no-extend-native
   Array.prototype.find = function (predicate) {
     'use strict'
     if (this == null) {
@@ -38,7 +39,6 @@ if (!Array.prototype.find) {
     return undefined
   }
 }
-
 
 // RequestAnimationFrame的兼容腻子(Android 4.3 and below)
 /*! @author Paul Irish */

@@ -22,7 +22,7 @@
         opacity: 0
     }
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Backdrop
    * @description
@@ -49,11 +49,11 @@
    * */
   export default{
     name: 'Backdrop',
-    data(){
+    data () {
       return {
         // 定义本地参数
         isActiveLocal: false, // 控制权由present/dismiss控制
-        count: 0, // 记录开启数目
+        count: 0 // 记录开启数目
       }
     },
     props: {
@@ -73,7 +73,7 @@
        * */
       bdClick: {
         type: Function,
-        default(){
+        default () {
           return function () {}
         }
       },
@@ -93,8 +93,8 @@
     },
     watch: {
       isActive () {
-        this.isActiveLocal = this.isActive;
-      },
+        this.isActiveLocal = this.isActive
+      }
     },
     methods: {
       /**

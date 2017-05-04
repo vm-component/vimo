@@ -4,15 +4,15 @@
 // --------------------------------------------------
 
 /// @prop - Text color of the label
-$label-md-text-color:                 #999 !default;
+$label-md-text-color: #999 !default;
 
 /// @prop - Text color of the label when it has focused
-$label-md-text-color-focused:         color($colors-md, primary) !default;
+$label-md-text-color-focused: color($colors-md, primary) !default;
 
 /// @prop - Margin of the label
-$label-md-margin:                     $item-md-padding-top ($item-md-padding-right / 2) $item-md-padding-bottom 0 !default;
-$item-md-body-text-font-size:         12px;
-$item-md-body-text-line-height:       100%;
+$label-md-margin: $item-md-padding-top ($item-md-padding-right / 2) $item-md-padding-bottom 0 !default;
+$item-md-body-text-font-size: 12px;
+$item-md-body-text-line-height: 100%;
 
 // Material Design Default Label
 // --------------------------------------------------
@@ -34,7 +34,6 @@ $item-md-body-text-line-height:       100%;
 .item-datetime .label-md {
   color: $label-md-text-color;
 }
-
 
 // Material Design Stacked & Floating Labels
 // --------------------------------------------------
@@ -70,7 +69,6 @@ $item-md-body-text-line-height:       100%;
   margin-top: $item-md-padding-media-top - 2;
   margin-bottom: $item-md-padding-media-bottom - 2;
 }
-
 
 // Generate Material Design Label colors
 // --------------------------------------------------

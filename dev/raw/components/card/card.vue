@@ -8,7 +8,7 @@
     @import "card.ios.scss";
     @import "card.md.scss";
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Card
    * @description
@@ -72,7 +72,7 @@
   import mixin from './mixin'
   export default{
     name: 'Card',
-    data(){
+    data () {
       return {
         componentName: 'card'
       }

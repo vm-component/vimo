@@ -128,7 +128,7 @@
     }
 
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Card, CardContent, CardHeader, CardTitle } from 'vimo/components/card'
   import { Note } from 'vimo/components/note'
   import { Avatar } from 'vimo/components/avatar'

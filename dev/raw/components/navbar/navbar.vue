@@ -18,7 +18,7 @@
 <style lang="scss">
     // style from toolbar
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Navbar
    * @description
@@ -81,19 +81,19 @@
   import { Icon } from '../icon'
   export default{
     name: 'Navbar',
-    data(){
+    data () {
       return {
         hideBb: false,
         bbIcon: window.VM && window.VM.config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
         backText: window.VM && window.VM.config.get('backButtonText', 'Back') || 'Back',
         hideNavBar: window.VM && window.VM.config.getBoolean('hideNavBar', false),
-        statusbarPadding: window.VM && window.VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
+        statusbarPadding: window.VM && window.VM.config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
       }
     },
     props: {
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark
@@ -110,7 +110,7 @@
       },
       // 颜色
       colorClass () {
-        return !!this.color ? (`toolbar-${this.mode}-${this.color}`) : ''
+        return this.color ? (`toolbar-${this.mode}-${this.color}`) : ''
       },
       backButtonClass () {
         return `back-button-${this.mode}`
@@ -126,7 +126,7 @@
       },
       toolbarContentClass () {
         return `toolbar-content-${this.mode}`
-      },
+      }
 
     },
     methods: {
@@ -134,7 +134,7 @@
         $event.preventDefault()
         $event.stopPropagation()
         window.history.back()
-      },
+      }
     },
     created () {
       this.hideBb = !this.$history.canGoBack()

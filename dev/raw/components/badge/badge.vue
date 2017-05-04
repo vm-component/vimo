@@ -8,7 +8,7 @@
     @import "badge.ios.scss";
     @import "badge.md.scss";
 </style>
-<script>
+<script type="text/javascript">
 
   /**
    * @component Badge
@@ -26,7 +26,7 @@
    * */
   export default{
     name: 'Badge',
-    data(){
+    data () {
       return {}
     },
     props: {
@@ -39,8 +39,8 @@
        * */
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
-      },
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
+      }
     },
     computed: {
       // 环境样式
@@ -49,7 +49,7 @@
       },
       // 颜色
       colorClass () {
-        return !!this.color ? (`badge-${this.mode}-${this.color}`) : ''
+        return this.color ? (`badge-${this.mode}-${this.color}`) : ''
       }
     }
   }

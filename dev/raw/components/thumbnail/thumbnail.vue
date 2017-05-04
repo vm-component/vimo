@@ -3,7 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<script>
+<script type="text/javascript">
   /**
    * @component Thumbnail
    * @description

@@ -14,7 +14,7 @@
     @import "./list.ios.scss";
     @import "./list.md.scss";
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component List
    * @description
@@ -135,10 +135,10 @@
   import { isTrueProperty } from '../../util/util'
   export default{
     name: 'List',
-    data(){
+    data () {
       return {
         // -------- Radio --------
-        radioComponentList: [],
+        radioComponentList: []
       }
     },
     props: {
@@ -147,7 +147,7 @@
        * */
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
       },
       /**
        * shouldEnable whether the item-sliding should be enabled or not
@@ -157,24 +157,24 @@
       // -------- Radio --------
       radioGroup: [Boolean],
       value: [String],
-      disabled: [Boolean],
+      disabled: [Boolean]
     },
     watch: {
-      value(val){
+      value (val) {
         this.onRadioChange(val)
       },
-      disabled(isDisabled){
+      disabled (isDisabled) {
         if (isTrueProperty(this.radioGroup)) {
           this.disableAllRadio(isDisabled)
           this.onRadioChange(null)
         }
-      },
+      }
     },
     computed: {
       // 环境样式
       modeClass () {
-        return `list-${this.mode}`;
-      },
+        return `list-${this.mode}`
+      }
     },
     methods: {
 //      /**
@@ -192,7 +192,7 @@
        * radio组件点击时执行这个命令
        * @private
        * */
-      onRadioChange(value){
+      onRadioChange (value) {
         this.radioComponentList.forEach((radioComponent) => {
           if (!radioComponent.isDisabled) {
             radioComponent.setChecked(value)
@@ -206,7 +206,7 @@
        * 禁用全部radio
        * @private
        * */
-      disableAllRadio(isDisable){
+      disableAllRadio (isDisable) {
         this.radioComponentList.forEach((radioComponent) => {
           radioComponent.setDisabled(isDisable)
         })
@@ -216,7 +216,7 @@
        * 让radio组件记录自己
        * @private
        * */
-      recordRadio(radioComponent){
+      recordRadio (radioComponent) {
         this.radioComponentList.push(radioComponent)
       }
     },

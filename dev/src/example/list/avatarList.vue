@@ -5,7 +5,7 @@
                 <Title>AvatarList</Title>
             </Navbar>
         </Header>
-        <Content class="list-avatar-page outer-content" >
+        <Content class="list-avatar-page outer-content">
             <List>
                 <ListHeader>
                     <span>today</span>
@@ -69,22 +69,16 @@
         }
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { Note } from 'vimo/components/note'
   import { Avatar } from 'vimo/components/avatar'
   import { Label } from 'vimo/components/label'
   export default{
-    data(){
+    data () {
       return {}
     },
-    watch: {},
-    computed: {},
-    methods: {},
-    created() {},
-    mounted () {},
-    activated () {},
     components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label}
   }
 </script>

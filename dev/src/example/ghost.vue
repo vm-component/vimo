@@ -1,37 +1,37 @@
 <template>
-  <Page>
-     <Header>
-      <Navbar>
-        <Title>Ghost</Title>
-      </Navbar>
-    </Header>
-    <Content padding>
-    
-      <Ghost>
-        CREATE MY ACCOUNT
-      </Ghost>
-      
-    </Content>
-  </Page>
+    <Page>
+        <Header>
+            <Navbar>
+                <Title>Ghost</Title>
+            </Navbar>
+        </Header>
+        <Content padding>
+
+            <Ghost>
+                CREATE MY ACCOUNT
+            </Ghost>
+
+        </Content>
+    </Page>
 </template>
 <style lang="scss">
-  .main {
+    .main {
 
-  }
+    }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   export default{
     name: 'ghostvue',
-    data(){
+    data () {
       return {}
     },
     props: {},
     watch: {},
     computed: {},
     methods: {},
-    created(){},
-    mounted(){},
-    activated(){},
+    created () {},
+    mounted () {},
+    activated () {},
     components: {}
   }
 </script>

@@ -5,41 +5,39 @@
 
 /// @prop - Order of the toolbar elements
 $toolbar-order-md: (
-  back-button: 0,
-  menu-toggle-start: 1,
-  buttons-left: 2,
-  content: 3,
-  buttons-start: 4,
-  buttons-end: 5,
-  buttons-right: 6,
-  menu-toggle-end: 7,
+        back-button: 0,
+        menu-toggle-start: 1,
+        buttons-left: 2,
+        content: 3,
+        buttons-start: 4,
+        buttons-end: 5,
+        buttons-right: 6,
+        menu-toggle-end: 7,
 );
 
 /// @prop - Font size of the toolbar title
-$toolbar-md-title-font-size:             20px !default;
+$toolbar-md-title-font-size: 20px !default;
 
 /// @prop - Text color of the toolbar title
-$toolbar-md-title-text-color:            color-contrast($colors-md, $toolbar-md-background, md) !default;
+$toolbar-md-title-text-color: color-contrast($colors-md, $toolbar-md-background, md) !default;
 
 /// @prop - Font size of the toolbar button
-$toolbar-md-button-font-size:            14px !default;
+$toolbar-md-button-font-size: 14px !default;
 
 /// @prop - Text color of the toolbar button
-$toolbar-md-button-color:                $toolbar-md-title-text-color !default;
+$toolbar-md-button-color: $toolbar-md-title-text-color !default;
 
 /// @prop - Border radius of the toolbar button
-$toolbar-md-button-border-radius:        2px !default;
+$toolbar-md-button-border-radius: 2px !default;
 
 /// @prop - Height of the navigation bar
-$navbar-md-height:                       $toolbar-md-height !default;
-
+$navbar-md-height: $toolbar-md-height !default;
 
 .toolbar-md {
   padding: $toolbar-md-padding;
 
   min-height: $toolbar-md-height;
 }
-
 
 // Material Design Toolbar Background
 // --------------------------------------------------
@@ -48,7 +46,6 @@ $navbar-md-height:                       $toolbar-md-height !default;
   border-color: $toolbar-md-border-color;
   background: $toolbar-md-background;
 }
-
 
 // Material Design Header / Footer / Tabs Box Shadow
 // --------------------------------------------------
@@ -149,7 +146,6 @@ $navbar-md-height:                       $toolbar-md-height !default;
   }
 }
 
-
 // Material Design Toolbar Button Placement
 // --------------------------------------------------
 
@@ -178,7 +174,6 @@ $navbar-md-height:                       $toolbar-md-height !default;
 
   text-align: right;
 }
-
 
 // Material Design Toolbar Button Default
 // --------------------------------------------------
@@ -222,7 +217,6 @@ $navbar-md-height:                       $toolbar-md-height !default;
   }
 
 }
-
 
 // Material Design Toolbar Button Outline
 // --------------------------------------------------
@@ -268,7 +262,6 @@ $navbar-md-height:                       $toolbar-md-height !default;
 
 }
 
-
 // Material Design Toolbar Button Solid
 // --------------------------------------------------
 
@@ -299,7 +292,6 @@ $navbar-md-height:                       $toolbar-md-height !default;
   }
 
 }
-
 
 // Material Design Toolbar Button Icon
 // --------------------------------------------------
@@ -337,7 +329,6 @@ $navbar-md-height:                       $toolbar-md-height !default;
   pointer-events: none;
 }
 
-
 // Material Design Toolbar Back Button
 // --------------------------------------------------
 
@@ -357,7 +348,6 @@ $navbar-md-height:                       $toolbar-md-height !default;
   font-weight: normal;
   text-align: left;
 }
-
 
 // Material Design Toolbar Menu Toggle
 // --------------------------------------------------
@@ -386,7 +376,6 @@ $navbar-md-height:                       $toolbar-md-height !default;
   min-width: 28px;
 }
 
-
 // Material Design Toolbar Color Generation
 // --------------------------------------------------
 
@@ -399,7 +388,6 @@ $navbar-md-height:                       $toolbar-md-height !default;
   @include md-bar-button-outline($color-name, $color-base, $color-contrast);
   @include md-bar-button-solid($color-name, $color-base, $color-contrast);
 }
-
 
 // MD strong Button
 // --------------------------------------------------

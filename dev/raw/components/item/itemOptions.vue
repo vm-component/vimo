@@ -3,7 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<script>
+<script type="text/javascript">
   /**
    * @component ItemOptions
    * @description
@@ -20,7 +20,7 @@
    * */
   export default{
     name: 'ItemOptions',
-    data(){
+    data () {
       return {}
     },
     props: {
@@ -28,19 +28,19 @@
       side: {
         type: String,
         default: 'right'
-      },
+      }
     },
     methods: {
       /**
        * 计算这个options的宽度
        * @private
        * */
-      width(){
+      width () {
         // let _display = this.$el.display;
         // this.$el.display = 'block';
-        let _offsetWidth = this.$el.offsetWidth;
+        let _offsetWidth = this.$el.offsetWidth
         // this.$el.display = _display;
-        return _offsetWidth;
+        return _offsetWidth
       }
     }
   }

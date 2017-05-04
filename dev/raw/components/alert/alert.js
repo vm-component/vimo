@@ -2,9 +2,9 @@
  * Created by Hsiang on 2016/12/23.
  */
 import Vue from 'vue'
-import alertComponent from './alert.vue'
-import { getPresentDismissIns } from '../../util/getPresentDismissIns'
 import { getInsertPosition } from '../../util/getInsertPosition'
+import { getPresentDismissIns } from '../../util/getPresentDismissIns'
+import alertComponent from './alert.vue'
 const Alert = Vue.extend(alertComponent)
 
 // ---------- functions ----------

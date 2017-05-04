@@ -35,58 +35,58 @@
 
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { InfiniteScroll, InfiniteScrollContent } from 'vimo/components/infinite-scroll'
   import { List } from 'vimo/components/list'
   import { Item } from 'vimo/components/item'
 
   export default{
     name: 'page',
-    data(){
+    data () {
       return {
         i: 0,
-        list: [],
+        list: []
       }
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
-      onInfinite(infiniteScroll){
+      onInfinite (infiniteScroll) {
         console.debug('onInfinite')
-        let _start = this.i;
+        let _start = this.i
         if (_start < 400) {
           setTimeout(() => {
             for (; (10 + _start) > this.i; this.i++) {
               this.list.push(`item - ${this.i}`)
             }
             // 当前异步完成
-            infiniteScroll.complete();
+            infiniteScroll.complete()
             console.debug('onInfinite-complete')
           }, 500)
         } else {
           // 当前异步结束, 没有新数据了
-          infiniteScroll.enable(false);
+          infiniteScroll.enable(false)
           console.debug('onInfinite-enable-false')
         }
       },
-      onInfinitePromise(){
-        console.debug('Begin async operation');
+      onInfinitePromise () {
+        console.debug('Begin async operation')
         return new Promise((resolve) => {
-          let _start = this.i;
+          let _start = this.i
           setTimeout(() => {
             for (; (10 + _start) > this.i; this.i++) {
               this.list.push(`item - ${this.i}`)
             }
-            console.debug('Async operation has ended');
+            console.debug('Async operation has ended')
             // resolve就是infiniteScroll.complete();
-            resolve();
-          }, 500);
+            resolve()
+          }, 500)
         })
       }
     },
     created () {
-      for (; 15 > this.i; this.i++) {
+      for (; this.i < 15; this.i++) {
         this.list.push(`item - ${this.i}`)
       }
     },

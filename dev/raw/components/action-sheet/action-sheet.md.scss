@@ -4,55 +4,55 @@
 // --------------------------------------------------
 
 /// @prop - Text align of the action sheet
-$action-sheet-md-text-align:                            left !default;
+$action-sheet-md-text-align: left !default;
 
 /// @prop - Background color of the action sheet
-$action-sheet-md-background:                            #fafafa !default;
+$action-sheet-md-background: #fafafa !default;
 
 /// @prop - Bottom margin of the action sheet button group
-$action-sheet-md-group-margin-bottom:                   8px !default;
+$action-sheet-md-group-margin-bottom: 8px !default;
 
 /// @prop - Color of the action sheet title
-$action-sheet-md-title-color:                           #757575 !default;
+$action-sheet-md-title-color: #757575 !default;
 
 /// @prop - Font size of the action sheet title
-$action-sheet-md-title-font-size:                       16px !default;
+$action-sheet-md-title-font-size: 16px !default;
 
 /// @prop - Padding of the action sheet title
-$action-sheet-md-title-padding:                         11px 16px 17px !default;
+$action-sheet-md-title-padding: 11px 16px 17px !default;
 
 /// @prop - Minimum height of the action sheet button
-$action-sheet-md-button-min-height:                     48px !default;
+$action-sheet-md-button-min-height: 48px !default;
 
 /// @prop - Text color of the action sheet button
-$action-sheet-md-button-text-color:                     #222 !default;
+$action-sheet-md-button-text-color: #222 !default;
 
 /// @prop - Font size of the action sheet button
-$action-sheet-md-button-font-size:                      16px !default;
+$action-sheet-md-button-font-size: 16px !default;
 
 /// @prop - Padding of the action sheet button
-$action-sheet-md-button-padding:                        0 16px !default;
+$action-sheet-md-button-padding: 0 16px !default;
 
 /// @prop - Background color of the action sheet button
-$action-sheet-md-button-background:                     transparent !default;
+$action-sheet-md-button-background: transparent !default;
 
 /// @prop - Background color of the action sheet activated button
-$action-sheet-md-button-background-activated:           #f1f1f1 !default;
+$action-sheet-md-button-background-activated: #f1f1f1 !default;
 
 /// @prop - Font size of the icon in the action sheet button
-$action-sheet-md-icon-font-size:                        24px !default;
+$action-sheet-md-icon-font-size: 24px !default;
 
 /// @prop - Width of the icon in the action sheet button
-$action-sheet-md-icon-width:                            23px !default;
+$action-sheet-md-icon-width: 23px !default;
 
 /// @prop - Text align of the icon in the action sheet button
-$action-sheet-md-icon-text-align:                       center !default;
+$action-sheet-md-icon-text-align: center !default;
 
 /// @prop - Vertical align of the icon in the action sheet button
-$action-sheet-md-icon-vertical-align:                   middle !default;
+$action-sheet-md-icon-vertical-align: middle !default;
 
 /// @prop - Margin of the icon in the action sheet button
-$action-sheet-md-icon-margin:                           0 32px 0 0 !default;
+$action-sheet-md-icon-margin: 0 32px 0 0 !default;
 
 .action-sheet-md .action-sheet-container {
   padding: 8px 0;
@@ -68,12 +68,12 @@ $action-sheet-md-icon-margin:                           0 32px 0 0 !default;
   color: $action-sheet-md-title-color;
 
   // 源文件没对此处理
-  .action-sheet-sub-title{
+  .action-sheet-sub-title {
     margin-top: 2%;
     font-size: 77%;
     //color: #8f8f8f;
     line-height: 130%;
-    max-width:90%;
+    max-width: 90%;
     margin-left: 0;
     margin-right: auto;
   }

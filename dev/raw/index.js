@@ -1,3 +1,4 @@
+
 import { setupConfig } from './base/config'
 import { History } from './base/history'
 import { setupPlatform } from './base/platform'
@@ -8,7 +9,6 @@ import { Nav } from './components/nav'
 import { Page } from './components/page'
 // polyfill
 import './util/polyfill'
-
 /**
  * @name initVimo
  * @description Vimo框架安装
@@ -45,11 +45,10 @@ export default {
 
     // add logo
     addLogo(VERSION, Vue.version)
-
     window.VM.version = VERSION
   }
 }
-
+/* eslint-disable operator-linebreak */
 function addLogo (vimoVer, vueVer) {
   // logo
   var vimoLogo = {

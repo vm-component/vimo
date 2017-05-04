@@ -8,7 +8,7 @@
     @import './segment.ios.scss';
     @import './segment.md.scss';
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Segment
    * @description
@@ -88,7 +88,7 @@
        * */
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
       },
       disabled: [Boolean]
     },
@@ -97,7 +97,7 @@
         // value的缓存值，因为props的value不能直接修改
         childComponents: [],
         timer: null,
-        theValue: this.value,
+        theValue: this.value
       }
     },
     watch: {
@@ -113,8 +113,8 @@
       },
       // 颜色
       colorClass () {
-        return !!this.color ? (`segment-${this.mode}-${this.color}`) : ''
-      },
+        return this.color ? (`segment-${this.mode}-${this.color}`) : ''
+      }
     },
     methods: {
 
@@ -124,7 +124,7 @@
        * @param {Object} childComponent - 子组件实例(子组件的this)
        * @private
        * */
-      recordChild(childComponent){
+      recordChild (childComponent) {
         this.childComponents.push(childComponent)
         this.onChildChange(this.value)
       },
@@ -134,7 +134,7 @@
        * @param {string} value - 当前子组件的点击值
        * @private
        * */
-      onChildChange(value){
+      onChildChange (value) {
         this.timer && window.clearTimeout(this.timer)
         this.timer = setTimeout(() => {
           // 更新子组件状态
@@ -154,13 +154,13 @@
        * 更新子组件状态
        * @private
        * */
-      refreshChildState(value){
+      refreshChildState (value) {
         this.childComponents.forEach((childComponent) => {
           if (!childComponent.isDisabled) {
             childComponent.setState(value)
           }
         })
-      },
+      }
     }
   }
 </script>

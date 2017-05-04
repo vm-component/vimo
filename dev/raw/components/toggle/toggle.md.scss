@@ -4,53 +4,52 @@
 // --------------------------------------------------
 
 /// @prop - Color of the active toggle
-$toggle-md-active-color:                 color($colors-md, primary) !default;
+$toggle-md-active-color: color($colors-md, primary) !default;
 
 /// @prop - Width of the toggle track
-$toggle-md-track-width:                  36px !default;
+$toggle-md-track-width: 36px !default;
 
 /// @prop - Height of the toggle track
-$toggle-md-track-height:                 14px !default;
+$toggle-md-track-height: 14px !default;
 
 /// @prop - Background color of the toggle track
-$toggle-md-track-background-color-off:   $list-md-border-color !default;
+$toggle-md-track-background-color-off: $list-md-border-color !default;
 
 /// @prop - Background color of the checked toggle track
-$toggle-md-track-background-color-on:    lighten($toggle-md-active-color, 25%) !default;
+$toggle-md-track-background-color-on: lighten($toggle-md-active-color, 25%) !default;
 
 /// @prop - Width of the toggle handle
-$toggle-md-handle-width:                 20px !default;
+$toggle-md-handle-width: 20px !default;
 
 /// @prop - Height of the toggle handle
-$toggle-md-handle-height:                20px !default;
+$toggle-md-handle-height: 20px !default;
 
 /// @prop - Border radius of the toggle handle
-$toggle-md-handle-border-radius:         50% !default;
+$toggle-md-handle-border-radius: 50% !default;
 
 /// @prop - Box shadow of the toggle handle
-$toggle-md-handle-box-shadow:            0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12) !default;
+$toggle-md-handle-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12) !default;
 
 /// @prop - Background color of the toggle handle
-$toggle-md-handle-background-color-off:  $background-md-color !default;
+$toggle-md-handle-background-color-off: $background-md-color !default;
 
 /// @prop - Background color of the checked toggle handle
-$toggle-md-handle-background-color-on:   $toggle-md-active-color !default;
+$toggle-md-handle-background-color-on: $toggle-md-active-color !default;
 
 /// @prop - Margin of the toggle
-$toggle-md-media-margin:                 0 !default;
+$toggle-md-media-margin: 0 !default;
 
 /// @prop - Transition duration of the toggle icon
-$toggle-md-transition-duration:          300ms !default;
+$toggle-md-transition-duration: 300ms !default;
 
 /// @prop - Opacity of the disabled toggle
-$toggle-md-disabled-opacity:             .3 !default;
+$toggle-md-disabled-opacity: .3 !default;
 
 /// @prop - Padding of the toggle positioned on the left in an item
-$toggle-md-item-left-padding:            12px 18px 12px 2px !default;
+$toggle-md-item-left-padding: 12px 18px 12px 2px !default;
 
 /// @prop - Padding of the toggle positioned on the right in an item
-$toggle-md-item-right-padding:           12px ($item-md-padding-right / 2) 12px $item-md-padding-left !default;
-
+$toggle-md-item-right-padding: 12px ($item-md-padding-right / 2) 12px $item-md-padding-left !default;
 
 // Material Design Toggle
 // -----------------------------------------
@@ -58,7 +57,6 @@ $toggle-md-item-right-padding:           12px ($item-md-padding-right / 2) 12px 
 .toggle-md {
   position: relative;
 }
-
 
 // Material Design Toggle Background Track: Unchecked
 // -----------------------------------------
@@ -77,7 +75,6 @@ $toggle-md-item-right-padding:           12px ($item-md-padding-right / 2) 12px 
 
   pointer-events: none;
 }
-
 
 // Material Design Toggle Inner Knob: Unchecked
 // -----------------------------------------
@@ -99,14 +96,12 @@ $toggle-md-item-right-padding:           12px ($item-md-padding-right / 2) 12px 
   transition-property: transform, background-color;
 }
 
-
 // Material Design Toggle Background Track: Checked
 // -----------------------------------------
 
 .toggle-md .toggle-checked {
   background-color: $toggle-md-track-background-color-on;
 }
-
 
 // Material Design Toggle Inner Knob: Checked
 // -----------------------------------------
@@ -115,7 +110,6 @@ $toggle-md-item-right-padding:           12px ($item-md-padding-right / 2) 12px 
   background-color: $toggle-md-handle-background-color-on;
   transform: translate3d($toggle-md-track-width - $toggle-md-handle-width, 0, 0);
 }
-
 
 // Material Design Toggle: Disabled
 // -----------------------------------------
@@ -130,7 +124,6 @@ $toggle-md-item-right-padding:           12px ($item-md-padding-right / 2) 12px 
 .toggle-md.toggle-disabled .ion-radio {
   opacity: $toggle-md-disabled-opacity;
 }
-
 
 // Material Design Toggle Within An Item
 // -----------------------------------------
@@ -150,7 +143,6 @@ $toggle-md-item-right-padding:           12px ($item-md-padding-right / 2) 12px 
   margin-left: 0;
 }
 
-
 // Material Design Color Mixin
 // --------------------------------------------------
 
@@ -165,7 +157,6 @@ $toggle-md-item-right-padding:           12px ($item-md-padding-right / 2) 12px 
   }
 
 }
-
 
 // Generate Material Design Toggle Auxiliary Colors
 // --------------------------------------------------

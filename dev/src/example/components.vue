@@ -172,8 +172,8 @@
                         <span>Picker</span>
                     </Item>
                     <!--<Item button :to="{name: 'popover'}">-->
-                        <!--<Icon slot="item-left" name="ios-flame"></Icon>-->
-                        <!--<span>Popover</span>-->
+                    <!--<Icon slot="item-left" name="ios-flame"></Icon>-->
+                    <!--<span>Popover</span>-->
                     <!--</Item>-->
 
 
@@ -195,30 +195,30 @@
                     </Item>
                 </ItemGroup>
 
-                <!--Demo-->
-                <ListHeader>
-                    <span>Demo</span>
-                </ListHeader>
-                <!--group-->
-                <ItemGroup>
-                    <Item button :to="{name: 'demo'}">Demo</Item>
-                    <Item button :to="{name: 'demo_banshi'}">办事指南</Item>
-                    <Item button :to="{name: 'ghostvue'}">ghost</Item>
-                    <Item button :to="{name: 'gl-input'}">GL-Input</Item>
-                    <Item button :to="{name: 'log'}">Log</Item>
-                </ItemGroup>
+                <!--&lt;!&ndash;Demo&ndash;&gt;-->
+                <!--<ListHeader>-->
+                    <!--<span>Demo</span>-->
+                <!--</ListHeader>-->
+                <!--&lt;!&ndash;group&ndash;&gt;-->
+                <!--<ItemGroup>-->
+                    <!--<Item button :to="{name: 'demo'}">Demo</Item>-->
+                    <!--<Item button :to="{name: 'demo_banshi'}">办事指南</Item>-->
+                    <!--<Item button :to="{name: 'ghostvue'}">ghost</Item>-->
+                    <!--<Item button :to="{name: 'gl-input'}">GL-Input</Item>-->
+                    <!--<Item button :to="{name: 'log'}">Log</Item>-->
+                <!--</ItemGroup>-->
             </List>
         </Content>
     </Page>
 </template>
 <style scoped lang="scss">
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item } from 'vimo/components/item'
   export default{
     name: 'name',
-    data(){
+    data () {
       return {}
     },
     props: {},

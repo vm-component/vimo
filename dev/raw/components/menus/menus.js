@@ -63,7 +63,7 @@
    *    methods: {
    *     open: function () {
    *       this.$menu.open('aaa');
-   *       this.$$eventBus.$on("onMenuOpen", function(){
+   *       this.$$eventBus.$on("onMenuOpen", function () {
    *         //...
    *       })
    *     }
@@ -81,7 +81,6 @@
  * @event component:Menus#onMenuClosed
  * @description menu关闭动画完毕,可通过$eventBus.#on()去监听。
  */
-
 
 /**
  * @property
@@ -162,7 +161,6 @@
     * })
  */
 
-
 import { urlChange } from '../../util/util'
 export function recordMenuInstance (instance) {
   // 如果没安装
@@ -199,15 +197,13 @@ class Menus {
   open (id) {
     let _successCb
     let _errorCb
-
     if (this.currentMenuId) {
       this.close().then(() => {
-          // debug: 如果不加nextTick, 部分手机连续动画会出错
-          window.setTimeout(() => {
-            _openMenu(this, id)
-          }, 16 * 10)
-        }
-      )
+        // debug: 如果不加nextTick, 部分手机连续动画会出错
+        window.setTimeout(() => {
+          _openMenu(this, id)
+        }, 16 * 10)
+      })
     } else {
       _openMenu(this, id)
     }
@@ -216,9 +212,9 @@ class Menus {
       if (_this.menuIns[id]) {
         _this.currentMenuId = id
         _this.menuIns[id].openMenu()
-        !!_successCb && _successCb()
+        _successCb && _successCb()
       } else {
-        !!_errorCb && _errorCb()
+        _errorCb && _errorCb()
       }
 
       // for url change

@@ -3,12 +3,11 @@
 // Alerts
 // --------------------------------------------------
 
-$alert-min-width:                 250px !default;
-$alert-max-height:                90% !default;
+$alert-min-width: 250px !default;
+$alert-max-height: 90% !default;
 
-$alert-button-line-height:        20px !default;
-$alert-button-font-size:          14px !default;
-
+$alert-button-line-height: 20px !default;
+$alert-button-font-size: 14px !default;
 
 .alert {
   position: absolute;
@@ -24,7 +23,6 @@ $alert-button-font-size:          14px !default;
   justify-content: center;
 
   contain: strict;
-
 
 }
 

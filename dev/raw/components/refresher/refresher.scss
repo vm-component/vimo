@@ -4,23 +4,22 @@
 // --------------------------------------------------
 
 /// @prop - Height of the refresher
-$refresher-height:             70px !default;
+$refresher-height: 70px !default;
 
 /// @prop - Color of the refresher icon
-$refresher-icon-color:         #000 !default;
+$refresher-icon-color: #000 !default;
 
 /// @prop - Font size of the refresher icon
-$refresher-icon-font-size:     30px !default;
+$refresher-icon-font-size: 30px !default;
 
 /// @prop - Text color of the refresher content
-$refresher-text-color:         #000 !default;
+$refresher-text-color: #000 !default;
 
 /// @prop - Font size of the refresher content
-$refresher-text-font-size:     16px !default;
+$refresher-text-font-size: 16px !default;
 
 /// @prop - Border color of the refresher
-$refresher-border-color:       #ddd !default;
-
+$refresher-border-color: #ddd !default;
 
 .ion-refresher {
   position: absolute;
@@ -46,7 +45,6 @@ $refresher-border-color:       #ddd !default;
   border-top: 1px solid $refresher-border-color; /*no*/
   transition: transform 320ms cubic-bezier(.36, .66, .04, 1);
 }
-
 
 // Refresher Content
 // --------------------------------------------------
@@ -95,7 +93,6 @@ $refresher-border-color:       #ddd !default;
   fill: $refresher-icon-color;
 }
 
-
 // Refresher Content States
 // --------------------------------------------------
 .ion-refresher[state=pulling] .ion-refresher-content {
@@ -103,6 +100,7 @@ $refresher-border-color:       #ddd !default;
     display: block;
   }
 }
+
 .ion-refresher[state=ready] .ion-refresher-content {
   .refresher-pulling {
     display: block;
@@ -112,11 +110,13 @@ $refresher-border-color:       #ddd !default;
     transform: rotate(180deg);
   }
 }
+
 .ion-refresher[state=refreshing] .ion-refresher-content {
   .refresher-refreshing {
     display: block;
   }
 }
+
 .ion-refresher[state=cancelling] .ion-refresher-content {
   .refresher-pulling {
     display: block;
@@ -126,6 +126,7 @@ $refresher-border-color:       #ddd !default;
     transform: scale(0);
   }
 }
+
 .ion-refresher[state=completing] .ion-refresher-content {
   .refresher-refreshing {
     display: block;

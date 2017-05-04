@@ -1,2 +1,2 @@
-import Content from './content.vue';
+import Content from './content.vue'
 export { Content }

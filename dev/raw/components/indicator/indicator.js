@@ -15,14 +15,13 @@
  * @demo http://xiangsongtao.com/vimo/#/indicator
  * @usage
  * // 开启300ms后关闭
- * openIndicator300(){
+ * openIndicator300 () {
  *      this.$indicator.present()
  *      setTimeout(() => {
  *        this.$indicator.dismiss()
  *      }, 300)
  * },
  * */
-
 
 import Vue from 'vue'
 import { getInsertPosition } from '../../util/getInsertPosition'
@@ -57,18 +56,18 @@ function getPresentDismissIns () {
      * 如果上一个实例是开启状态, 则自动关闭后开启新的
      * @return {Promise} - 开启动画结束的promise
      * */
-    present(){
+    present () {
       return new Promise((resolve) => {
         if (this._i) {
           if (this._i.isActive) {
             resolve()
           } else {
             this._i = LoadingFactory(options)
-            this._i.present().then(() => {resolve()})
+            this._i.present().then(() => { resolve() })
           }
         } else {
           this._i = LoadingFactory(options)
-          this._i.present().then(() => {resolve()})
+          this._i.present().then(() => { resolve() })
         }
       })
     },
@@ -77,10 +76,10 @@ function getPresentDismissIns () {
      * 关闭组件
      * @return {Promise} - 关闭动画结束的promise
      * */
-    dismiss(){
+    dismiss () {
       return new Promise((resolve) => {
         if (this._i && this._i.isActive) {
-          this._i.dismiss().then(() => {resolve()})
+          this._i.dismiss().then(() => { resolve() })
         } else {
           resolve()
         }

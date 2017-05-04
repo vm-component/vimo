@@ -27,18 +27,18 @@
         background: #fff;
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Refresher, RefresherContent } from 'vimo/components/refresher'
   import { List } from 'vimo/components/list'
   import { Item } from 'vimo/components/item'
   export default{
     name: 'name',
-    data(){
+    data () {
       return {
         i: 0,
         list: [],
 
-        enabled: true,
+        enabled: true
       }
     },
     props: {},
@@ -46,26 +46,24 @@
     computed: {},
     methods: {
       //
-      toggleDisabled(){
+      toggleDisabled () {
         this.enabled = !this.enabled
       },
-
-      doRefresh(ins){
+      doRefresh (ins) {
         console.debug('doRefresh $event')
-        let _start = this.i;
+        let _start = this.i
         setTimeout(() => {
           for (; (10 + _start) > this.i; this.i++) {
             this.list.unshift(`item - ${this.i}`)
           }
           // 当前异步完成
-          ins.complete();
+          ins.complete()
           console.debug('onInfinite-complete')
         }, 500)
-
-      },
+      }
     },
-    created(){
-      for (; 15 > this.i; this.i++) {
+    created () {
+      for (; this.i < 15; this.i++) {
         this.list.unshift(`item - ${this.i}`)
       }
     },

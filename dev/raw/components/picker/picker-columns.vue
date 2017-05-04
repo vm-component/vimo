@@ -10,14 +10,14 @@
     @import "picker.md";
     @import "picker.ios";
 </style>
-<script>
+<script type="text/javascript">
   export default{
     name: 'PickerColumns',
-    data(){
+    data () {
       return {}
     },
     props: {
-      columns:[Array]
+      columns: [Array]
     },
     watch: {},
     computed: {},

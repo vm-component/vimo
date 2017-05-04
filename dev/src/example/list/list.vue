@@ -35,14 +35,14 @@
 
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   export default{
-    data(){
+    data () {
       return {
         toggleValue: true,
-        silencePhone: 'always',
+        silencePhone: 'always'
       }
     },
     watch: {

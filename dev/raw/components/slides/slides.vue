@@ -18,7 +18,7 @@
     @import "./slides.scss";
 </style>
 
-<script>
+<script type="text/javascript">
   /**
    * @component Slides
    * @description
@@ -101,23 +101,23 @@
   import Swiper from './swiper.js'
   import { assign } from '../../util/util'
   import { getProps, getEvents } from './interface'
-  let slidesId = -1;
+  let slidesId = -1
   export default {
     name: 'Slides',
     props: getProps(),
-    data(){
+    data () {
       return {
         swiperInstance: null,
         id: ++slidesId,
-        init: false,
+        init: false
       }
     },
     computed: {
-      slideId(){
-        return 'slides-' + this.id;
+      slideId () {
+        return 'slides-' + this.id
       },
       // 指示标志的class
-      paginationClass(){
+      paginationClass () {
         if (this.pagination[0] === '.') {
           return this.pagination.substr(1)
         } else {
@@ -125,7 +125,7 @@
           return null
         }
       },
-      nextButtonClass(){
+      nextButtonClass () {
         if (this.nextButton[0] === '.') {
           return this.nextButton.substr(1)
         } else {
@@ -133,7 +133,7 @@
           return null
         }
       },
-      prevButtonClass(){
+      prevButtonClass () {
         if (this.prevButton[0] === '.') {
           return this.prevButton.substr(1)
         } else {
@@ -141,31 +141,31 @@
           return null
         }
       },
-      scrollbarClass(){
+      scrollbarClass () {
         if (this.scrollbar[0] === '.') {
           return this.scrollbar.substr(1)
         } else {
           console.error('The props of scrollbar in Slides component need dot in front, like `.swiper-scrollbar`. ')
           return null
         }
-      },
+      }
     },
     methods: {
       /**
        * 初始化swiper
        * @private
        * */
-      initSlides(){
+      initSlides () {
         if (!this.init) {
           this.swiperInstance = new Swiper(this.$el, assign(this._props, getEvents(this)))
           this.init = true
         }
       }
     },
-    mounted() {
-      this.initSlides();
+    mounted () {
+      this.initSlides()
     },
-    destroy() {
+    destroy () {
       this.swiperInstance && this.swiperInstance.destroy()
     }
   }

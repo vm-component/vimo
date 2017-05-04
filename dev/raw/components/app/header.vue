@@ -20,7 +20,7 @@
         transform: translateY(-100%);
     }
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Base/Header
    * @description
@@ -45,19 +45,19 @@
     props: {
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
-      },
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
+      }
     },
     computed: {
       modeClass () {
         return `header-${this.mode}`
-      },
+      }
     },
-    data(){
+    data () {
       return {
         // -------- public --------
         isHide: false,
-        style: {},
+        style: {}
       }
     },
     methods: {
@@ -67,7 +67,7 @@
        * @description
        * 隐藏Header
        * */
-      hide(){
+      hide () {
         this.isHide = true
       },
 
@@ -76,7 +76,7 @@
        * @description
        * 显示Header
        * */
-      show(){
+      show () {
         this.isHide = false
       },
 
@@ -85,7 +85,7 @@
        * @description
        * Toggle显示Header
        * */
-      toggle(){
+      toggle () {
         this.isHide = !this.isHide
       },
 
@@ -96,7 +96,7 @@
        * @description
        * 设置Header的样式
        * */
-      setStyle(style){
+      setStyle (style) {
         this.style = style
       }
     }

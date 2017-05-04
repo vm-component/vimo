@@ -1,9 +1,9 @@
 <template>
     <div class="spinner" :class=[colorClass,nameClass,pausedClass]>
-        <svg v-if="!!circles && circles.length>0" viewBox="0 0 64 64" v-for="i in circles" :style="i.style">
+        <svg v-if="circles && circles.length>0" viewBox="0 0 64 64" v-for="i in circles" :style="i.style">
             <circle :r="i.r" transform="translate(32,32)"></circle>
         </svg>
-        <svg v-if="!!lines && lines.length>0" viewBox="0 0 64 64" v-for="i in lines" :style="i.style">
+        <svg v-if="lines && lines.length>0" viewBox="0 0 64 64" v-for="i in lines" :style="i.style">
             <line :y1="i.y1" :y2="i.y2" transform="translate(32,32)"></line>
         </svg>
     </div>
@@ -13,7 +13,7 @@
     @import './spinner.ios';
     @import './spinner.md';
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Spinner
    * @description
@@ -69,7 +69,7 @@
       // mode 按钮平台 ios/window/android
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
       },
 
       // name 风格
@@ -82,14 +82,14 @@
       // paused 是否暂停
       paused: [Boolean]
     },
-    data() {
+    data () {
       return {
         isInit: false,
         // svg动画数组
         lines: [],
         circles: [],
         // ios/ios-small/bubbles/circles/crescent/dots
-        nameClass: null,
+        nameClass: null
       }
     },
     watch: {
@@ -104,70 +104,67 @@
     computed: {
       // primary、secondary、danger、light、dark
       colorClass () {
-        return !!this.color ? `spinner-${this.mode}-${this.color}` : null
+        return this.color ? `spinner-${this.mode}-${this.color}` : null
       },
       // 设置Alert的风格
       modeClass () {
-        return !!this.mode ? `spinner-${this.mode}` : null
+        return this.mode ? `spinner-${this.mode}` : null
       },
       pausedClass () {
-        return !!this.paused ? "spinner-paused" : null
+        return this.paused ? 'spinner-paused' : null
       }
     },
     methods: {
       load () {
-        const _this = this;
+        const _this = this
         if (_this.isInit) {
-
           // 因为会涉及到再次渲染，故提前制空
-          _this.lines = [];
-          _this.circles = [];
+          _this.lines = []
+          _this.circles = []
 
           // 如果指定了name，则使用指定的name。
           // 如果没指定name，则根据设备别使用默认的name
-          let name;
-          if (!!_this.name) {
-            name = _this.name;
+          let name
+          if (_this.name) {
+            name = _this.name
           } else {
             if (_this.mode === 'ios') {
-              name = 'ios';
+              name = 'ios'
             } else if (_this.mode === 'md') {
-              name = 'crescent';
+              name = 'crescent'
             } else if (_this.mode === 'wp') {
-              name = 'circles';
+              name = 'circles'
             } else {
-              name = VM.config.get('spinner', 'ios');
+              name = window.VM.config.get('spinner', 'ios')
             }
           }
-          const spinner = SPINNERS[name];
+          const spinner = SPINNERS[name]
 
           if (spinner) {
             if (spinner.lines) {
               for (let i = 0, l = spinner.lines; i < l; i++) {
-                _this.lines.push(this._loadEle(spinner, i, l));
+                _this.lines.push(this._loadEle(spinner, i, l))
               }
-
             } else if (spinner.circles) {
               for (let i = 0, l = spinner.circles; i < l; i++) {
-                _this.circles.push(this._loadEle(spinner, i, l));
+                _this.circles.push(this._loadEle(spinner, i, l))
               }
             }
-            _this.nameClass = `spinner-${name} spinner-${_this.mode}-${name}`;
+            _this.nameClass = `spinner-${name} spinner-${_this.mode}-${name}`
           }
         }
-
       },
-      _loadEle(spinner, index, total) {
-        let duration = parseInt(this.duration) || spinner.dur;
-        let data = spinner.fn(duration, index, total);
-        data.style['animation-duration'] = parseInt(duration) + 'ms';
-        return data;
+      _loadEle (spinner, index, total) {
+        let duration = parseInt(this.duration) || spinner.dur
+        let data = spinner.fn(duration, index, total)
+        data.style['animation-duration'] = parseInt(duration) + 'ms'
+        return data
       }
 
     },
     created () {
-      this.isInit = true;
-      this.load();
+      this.isInit = true
+      this.load()
     }
   }
 
@@ -176,8 +173,8 @@
       dur: 1000,
       lines: 12,
       fn (dur, index, total) {
-        const transform = 'rotate(' + (30 * index + (index < 6 ? 180 : -180)) + 'deg)';
-        const animationDelay = -(dur - ((dur / total) * index)) + 'ms';
+        const transform = 'rotate(' + (30 * index + (index < 6 ? 180 : -180)) + 'deg)'
+        const animationDelay = -(dur - ((dur / total) * index)) + 'ms'
         return {
           y1: 17,
           y2: 29,
@@ -187,7 +184,7 @@
             animationDelay: animationDelay,
             webkitAnimationDelay: animationDelay
           }
-        };
+        }
       }
     },
 
@@ -195,8 +192,8 @@
       dur: 1000,
       lines: 12,
       fn (dur, index, total) {
-        const transform = 'rotate(' + (30 * index + (index < 6 ? 180 : -180)) + 'deg)';
-        const animationDelay = -(dur - ((dur / total) * index)) + 'ms';
+        const transform = 'rotate(' + (30 * index + (index < 6 ? 180 : -180)) + 'deg)'
+        const animationDelay = -(dur - ((dur / total) * index)) + 'ms'
         return {
           y1: 12,
           y2: 20,
@@ -206,7 +203,7 @@
             animationDelay: animationDelay,
             webkitAnimationDelay: animationDelay
           }
-        };
+        }
       }
     },
 
@@ -214,7 +211,7 @@
       dur: 1000,
       circles: 9,
       fn (dur, index, total) {
-        const animationDelay = -(dur - ((dur / total) * index)) + 'ms';
+        const animationDelay = -(dur - ((dur / total) * index)) + 'ms'
         return {
           r: 5,
           style: {
@@ -223,7 +220,7 @@
             animationDelay: animationDelay,
             webkitAnimationDelay: animationDelay
           }
-        };
+        }
       }
     },
 
@@ -231,7 +228,7 @@
       dur: 1000,
       circles: 8,
       fn (dur, index, total) {
-        const animationDelay = -(dur - ((dur / total) * index)) + 'ms';
+        const animationDelay = -(dur - ((dur / total) * index)) + 'ms'
         return {
           r: 5,
           style: {
@@ -240,7 +237,7 @@
             animationDelay: animationDelay,
             webkitAnimationDelay: animationDelay
           }
-        };
+        }
       }
     },
 
@@ -251,7 +248,7 @@
         return {
           r: 26,
           style: {}
-        };
+        }
       }
     },
 
@@ -259,7 +256,7 @@
       dur: 750,
       circles: 3,
       fn (dur, index, total) {
-        const animationDelay = -(110 * index) + 'ms';
+        const animationDelay = -(110 * index) + 'ms'
         return {
           r: 6,
           style: {
@@ -267,9 +264,9 @@
             animationDelay: animationDelay,
             webkitAnimationDelay: animationDelay
           }
-        };
+        }
       }
     }
 
-  };
+  }
 </script>

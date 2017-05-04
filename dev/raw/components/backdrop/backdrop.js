@@ -15,7 +15,7 @@
 //       })
 //       // 插入DOM中
 //       _insertPosition = document.getElementById('backdropPortal')
-//       if (!!_insertPosition) {
+//       if (_insertPosition) {
 //         _insertPosition.appendChild(this._i.$el)
 //       } else {
 //         document.body.appendChild(this._i.$el)

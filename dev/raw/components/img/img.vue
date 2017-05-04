@@ -17,7 +17,7 @@
         opacity: 0
     }
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Img
    * @description
@@ -60,26 +60,25 @@
    * <Img width="100%" height="200" src="static/1.jpg">
    *
    * */
-  import { isPresent } from'../../util/util'
-  import { registerListener } from'../../util/util'
+  import { isPresent, registerListener } from '../../util/util'
   export default{
     name: 'Img',
     props: {
       src: [String],
       alt: {
         type: String,
-        default: 'image',
+        default: 'image'
       },
       width: {
         type: [Number, String],
-        default: 0,
+        default: 0
       },
       height: {
         type: [Number, String],
-        default: 0,
-      },
+        default: 0
+      }
     },
-    data(){
+    data () {
       return {
         isLoaded: false,      // 判断DOM是否显示img
         srcValue: null,       // 内部使用的src值
@@ -97,17 +96,17 @@
         _imgElement: null,    // img标签元素
         _unreg: null,         // {function} 解除当前的注册事件
         _wQ: this.getUnitValue(this.width) || 0,  // 记录最新的尺寸值
-        _hQ: this.getUnitValue(this.height) || 0, // 记录最新的尺寸值
+        _hQ: this.getUnitValue(this.height) || 0 // 记录最新的尺寸值
       }
     },
     watch: {
-      width(){
+      width () {
         this.setDims()
       },
-      height(){
+      height () {
         this.setDims()
       },
-      src(){
+      src () {
         this.initSrcValue()
       }
     },
@@ -116,35 +115,34 @@
        * 组件初始化操作
        * @private
        * */
-      init(){
-
+      init () {
         // 获取img元素
-        this._imgElement = this.$refs.img;
+        this._imgElement = this.$refs.img
 
         // 设置组件的尺寸
-        this.setDims();
+        this.setDims()
 
         // 根据src初始化部分参数
-        this.initSrcValue();
+        this.initSrcValue()
 
         // 获取Page组件中的Content组件this
         // mounted的触发顺序是从最内层向外进行的, 故如果获取$vnode中的context, 则得不到有效值
         // 目前只能沿着继承顺序查找
-        let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || [];
+        let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
         _pageComponentChildrenList.forEach((component) => {
           if (component.$options._componentTag.toLowerCase() === 'content') {
-            this._content = component;
-            this._content.addImg(this);
+            this._content = component
+            this._content.addImg(this)
           }
-        });
+        })
 
         console.assert(this._content, 'Img组件必须在Content组件中才能正常工作!')
 
         // 对img元素监听load事件, 事件结束解绑
         this._unreg = registerListener(this._imgElement, 'load', () => {
-          this._hasLoaded = true; // img loaded success!
-          this.update();
-        }, {passive: true});
+          this._hasLoaded = true // img loaded success!
+          this.update()
+        }, {passive: true})
       },
 
       /**
@@ -152,17 +150,17 @@
        * 当前组件的src记录在this.src中, 如果未加载, 则将this.src=>this._requestingSrc, 表示图片需要下载.
        * @private
        * */
-      reset(){
+      reset () {
         if (this._requestingSrc && !this._renderedSrc && !this._hasLoaded) {
           // 图片在请求下载阶段, 但是还未下载完毕, 这时就直接断掉下载过程
           // console.warn(`abortRequest ${this._requestingSrc} ${Date.now()}`);
-          this.srcAttr(null);
-          this._requestingSrc = null;
+          this.srcAttr(null)
+          this._requestingSrc = null
         }
         if (this._renderedSrc) {
           // 当图片已经渲染出来显示过了, 则将其隐藏就行了, 这样做是为了降低内存使用
           // console.warn(`hideImg ${this._renderedSrc} ${Date.now()}`);
-           this.setLoaded(false);
+          this.setLoaded(false)
         }
       },
 
@@ -170,31 +168,31 @@
        * 更新
        * @private
        * */
-      update(){
+      update () {
         // 图片的更新需要受到Content组件的控制 => Img组件的canRequest和canRender两个值
         if (this.src && this._content && this._content.isImgsUpdatable()) {
           if (this.canRequest && (this.src !== this._renderedSrc && this.src !== this._requestingSrc) && !this._hasLoaded) {
             // 图片没请求过也没下载过页面渲染过的情况
             // 第一次加载图片,先下载吧
-            this._requestingSrc = this.src;
-            this.setLoaded(false);
-            this.srcAttr(this.src);
+            this._requestingSrc = this.src
+            this.setLoaded(false)
+            this.srcAttr(this.src)
             // 更新图片的尺寸
-            this.setDims();
+            this.setDims()
             // console.debug(`Img request ${this.src} ${Date.now()}`);
           }
 
           if (this.canRender && this._hasLoaded) {
             if (this.src !== this._renderedSrc) {
               // 已经下载但是从未显示的情况, 第一次显示
-              this._renderedSrc = this.src;
+              this._renderedSrc = this.src
               // 更新图片的尺寸
-              this.setDims();
-              this.srcAttr(this.src);
-              this.setLoaded(true);
+              this.setDims()
+              this.srcAttr(this.src)
+              this.setLoaded(true)
             } else {
               // 已经下载过, 也显示过
-              this.setLoaded(true);
+              this.setLoaded(true)
             }
             // console.debug(`Img show ${this.src} ${Date.now()}`);
           }
@@ -205,26 +203,25 @@
        * 设置DOM控制
        * @private
        * */
-      setLoaded(isLoaded){
-        this.isLoaded = !!isLoaded;
+      setLoaded (isLoaded) {
+        this.isLoaded = isLoaded
       },
 
       /**
        * 设置imgbox的尺寸值
        * @private
        * */
-      setDims() {
+      setDims () {
         // 发生变化才更新
-        this._wQ = this.getUnitValue(this.width) || 0;
-        this._hQ = this.getUnitValue(this.height) || 0;
+        this._wQ = this.getUnitValue(this.width) || 0
+        this._hQ = this.getUnitValue(this.height) || 0
 
         if (this.w !== this._wQ || this.h !== this._hQ) {
-
           if (this.w !== this._wQ) {
-            this.w = this._wQ;
+            this.w = this._wQ
           }
           if (this.h !== this._hQ) {
-            this.h = this._hQ;
+            this.h = this._hQ
           }
         }
       },
@@ -233,17 +230,17 @@
        * 初始化/改变prop中src值时的处理函数
        * @private
        * */
-      initSrcValue(){
+      initSrcValue () {
         // 重置src请求,将img的src置空, 撤去渲染结果
-        this.reset();
+        this.reset()
         if (this.src.indexOf('data:') === 0) {
           // 如果使用的是datauri, 则意味着图片已经下载完毕
-          this._hasLoaded = true;
+          this._hasLoaded = true
         } else {
           // 普通的src连接, 意味着图片还未下载
-          this._hasLoaded = false;
+          this._hasLoaded = false
         }
-        this.update();
+        this.update()
       },
 
       /**
@@ -251,7 +248,7 @@
        * @param {string} srcAttr - 将要加载的img的src属性值
        * @private
        * */
-      srcAttr(srcAttr){
+      srcAttr (srcAttr) {
         this.srcValue = srcAttr
       },
 
@@ -261,60 +258,59 @@
        * @return {string}
        * @private
        */
-      getUnitValue(val) {
+      getUnitValue (val) {
         if (isPresent(val)) {
           if (typeof val === 'string') {
             if (val.indexOf('%') > -1 || val.indexOf('px') > -1) {
-              return val;
+              return val
             }
             if (val.length) {
-              return val + 'px';
+              return val + 'px'
             }
-
           } else if (typeof val === 'number') {
-            return val + 'px';
+            return val + 'px'
           }
         }
-        return '';
+        return ''
       },
 
       /**
        * 获取当前组件的尺寸及距离页面的位置
        * @private
        * */
-      getBounds() {
+      getBounds () {
         if (!this._rect) {
           // 需要等待DOM更新完毕
-          this._rect = this.$el.getBoundingClientRect();
+          this._rect = this.$el.getBoundingClientRect()
           // console.debug(`img getBounds, ${this.src}, read, ${this._rect.top} - ${this._rect.bottom}`);
         }
-        return this._rect;
+        return this._rect
       },
 
       /**
        * 获取从图片底部到页面顶部的距离
        * @private
        * */
-      getBottom(){
-        const bounds = this.getBounds();
-        return bounds && bounds.bottom || 0;
+      getBottom () {
+        const bounds = this.getBounds()
+        return bounds && bounds.bottom || 0
       },
 
       /**
        * 获取从图片顶部到页面顶部的距离
        * @private
        * */
-      getTop(){
-        const bounds = this.getBounds();
-        return bounds && bounds.top || 0;
-      },
+      getTop () {
+        const bounds = this.getBounds()
+        return bounds && bounds.top || 0
+      }
     },
     mounted () {
-      this.init();
+      this.init()
     },
-    destroy(){
-      this._unreg && this._unreg();
-      this._content && this._content.removeImg(this);
+    destroy () {
+      this._unreg && this._unreg()
+      this._content && this._content.removeImg(this)
     }
   }
 </script>

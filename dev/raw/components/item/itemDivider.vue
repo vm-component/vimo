@@ -1,21 +1,21 @@
-<script>
-  import ItemMixin from './itemMixin.vue';
+<script type="text/javascript">
+  import ItemMixin from './itemMixin.vue'
   export default{
     mixins: [ItemMixin],
     name: 'ItemDivider',
-    data(){
+    data () {
       return {
-        itemTypeName: 'item-divider',
+        itemTypeName: 'item-divider'
       }
     },
     computed: {
       // 颜色
       colorClass () {
-        return !!this.color ? (`${this.itemTypeName}-${this.mode}-${this.color}`) : ''
+        return this.color ? (`${this.itemTypeName}-${this.mode}-${this.color}`) : ''
       },
       listHeaderClass () {
         return `ion-${this.itemTypeName} ${this.itemTypeName} ${this.itemTypeName}-${this.mode}`
-      },
+      }
     }
   }
 </script>

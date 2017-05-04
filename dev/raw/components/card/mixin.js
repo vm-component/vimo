@@ -12,8 +12,8 @@ export default {
      * */
     mode: {
       type: String,
-      default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
-    },
+      default () { return window.VM && window.VM.config.get('mode') || 'ios' }
+    }
   },
   computed: {
     // 环境样式
@@ -22,7 +22,7 @@ export default {
     },
     // 颜色
     colorClass () {
-      return !!this.color ? (`${this.componentName}-${this.mode}-${this.color}`) : ''
+      return this.color ? (`${this.componentName}-${this.mode}-${this.color}`) : ''
     }
   }
 }

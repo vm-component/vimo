@@ -4,14 +4,13 @@
 // --------------------------------------------------
 
 /// @prop - Color of the input highlight when valid
-$text-input-highlight-color-valid:       #32db64 !default;
+$text-input-highlight-color-valid: #32db64 !default;
 
 /// @prop - Color of the input highlight when invalid
-$text-input-highlight-color-invalid:     #f53d3d !default;
+$text-input-highlight-color-invalid: #f53d3d !default;
 
 /// @prop - Color of the input placeholder
-$text-input-placeholder-color:           #999 !default;
-
+$text-input-placeholder-color: #999 !default;
 
 // Input/Textarea Wrapper
 // --------------------------------------------------
@@ -31,14 +30,12 @@ $text-input-placeholder-color:           #999 !default;
   position: static;
 }
 
-
 // Textarea Within An Item
 // --------------------------------------------------
 
 .item.item-textarea {
   align-items: stretch;
 }
-
 
 // Native Text Input
 // --------------------------------------------------
@@ -75,7 +72,6 @@ input.text-input:-webkit-autofill {
   resize: none;
 }
 
-
 // Input Cover: Unfocused
 // --------------------------------------------------
 // The input cover is the div that actually receives the
@@ -98,7 +94,6 @@ input.text-input:-webkit-autofill {
   pointer-events: none;
 }
 
-
 // Input Cover: Focused
 // --------------------------------------------------
 // When the input has focus, then the input cover should be hidden
@@ -117,7 +112,6 @@ input.text-input:-webkit-autofill {
 .input-has-focus button {
   pointer-events: auto;
 }
-
 
 // Scroll Assist Input
 // --------------------------------------------------
@@ -138,7 +132,6 @@ input.text-input:-webkit-autofill {
 
   pointer-events: none;
 }
-
 
 // Clear Input Icon
 // --------------------------------------------------

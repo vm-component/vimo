@@ -6,56 +6,56 @@ export default [
   {
     path: '/content',
     name: 'content',
-    component  (resolve) {
+    component (resolve) {
       require(['@/example/content/content.vue'], resolve)
     }
   },
   {
     path: '/content_context',
     name: 'contentContext',
-    component  (resolve) {
+    component (resolve) {
       require(['@/example/content/context.vue'], resolve)
     }
   },
   {
     path: '/content_fixed',
     name: 'contentFixed',
-    component  (resolve) {
+    component (resolve) {
       require(['@/example/content/fixed.vue'], resolve)
     }
   },
   {
     path: '/content_fullscreen',
     name: 'contentFullscreen',
-    component  (resolve) {
+    component (resolve) {
       require(['@/example/content/fullscreen.vue'], resolve)
     }
   },
   {
     path: '/content_hideBars',
     name: 'contentHideBars',
-    component  (resolve) {
+    component (resolve) {
       require(['@/example/content/hideBars.vue'], resolve)
     }
   },
   {
     path: '/content_scroll',
     name: 'contentScroll',
-    component  (resolve) {
+    component (resolve) {
       require(['@/example/content/scroll.vue'], resolve)
     }
   },
   {
     path: '/content_setBarStyle',
     name: 'contentSetBarStyle',
-    component  (resolve) {
+    component (resolve) {
       require(['@/example/content/setBarStyle.vue'], resolve)
     }
   },
   {
     path: '/content_jsScroll',
     name: 'contentJsScroll',
-    component  (resolve) {
+    component (resolve) {
       require(['@/example/content/jsScroll.vue'], resolve)
     }
   }

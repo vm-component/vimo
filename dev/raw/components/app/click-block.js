@@ -11,9 +11,9 @@ const CLICK_BLOCK_POSITION = '.ion-app > .click-block'
 export class ClickBlock {
 
   constructor () {
-    /**@param {number} _tmr - setTimeout record*/
+    // setTimeout record
     this._tmr = 0
-    /**@param {boolean} _showing - */
+    // _showing
     this._showing = false
     this.clickBlockElement = this._getClickBlockElement()
   }
@@ -59,6 +59,6 @@ export class ClickBlock {
    * @param {boolean} add
    * */
   _setElementClass (className, add) {
-    !!this.clickBlockElement && setElementClass(this.clickBlockElement, className, add)
+    this.clickBlockElement && setElementClass(this.clickBlockElement, className, add)
   }
 }

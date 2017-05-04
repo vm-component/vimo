@@ -5,13 +5,20 @@
            exercitationem fugiat, libero magni nam. Aperiam aspernatur cum illum maiores maxime natus perspiciatis quae,
            quam ullam veniam.</p>
         <img src="../cards/img/card-saopaolo.png">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
     </Content>
 </template>
 <style lang="scss">
@@ -19,21 +26,9 @@
 
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Tabs, Tab } from 'vimo/components/tabs'
   export default{
-    data(){
-      return {}
-    },
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {
-    },
-    mounted () {
-    },
-    activated () {
-    },
     components: {Tabs, Tab}
   }
 </script>

@@ -114,7 +114,7 @@ export const isArray = Array.isArray
  * @return {Boolean}
  * @static
  * */
-export const isPlainObject = (val) => isObject(val) && Object.getPrototypeOf(val) == Object.prototype
+export const isPlainObject = (val) => isObject(val) && Object.getPrototypeOf(val) === Object.prototype
 
 /**
  * @function isPrimitive
@@ -162,19 +162,17 @@ export function isTrueProperty (val) {
 export function isCheckedProperty (a, b) {
   if (a === undefined || a === null || a === '') {
     return (b === undefined || b === null || b === '')
-
   } else if (a === true || a === 'true') {
     return (b === true || b === 'true')
-
   } else if (a === false || a === 'false') {
     return (b === false || b === 'false')
-
   } else if (a === 0 || a === '0') {
     return (b === 0 || b === '0')
   }
 
   // not using strict comparison on purpose
-  return (a == b) // tslint:disable-line
+  // eslint-disable-next-line eqeqeq
+  return (a == b)
 }
 
 /**
@@ -221,7 +219,7 @@ export function registerListener (ele, eventName, callback, opts, unregisterList
   // Test via a getter in the options object to see if the passive property is accessed
   let uiEvtOpts
   try {
-    var opts = Object.defineProperty({}, 'passive', {
+    opts = Object.defineProperty({}, 'passive', {
       get: function () {
         uiEvtOpts = true
       }
@@ -294,7 +292,6 @@ export function docReady (callback) {
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     callback()
-
   } else {
     document.addEventListener('DOMContentLoaded', completed, false)
     window.addEventListener('load', completed, false)
@@ -430,7 +427,6 @@ export function setElementClass (ele, className, add) {
       obj.className = obj.className.replace(reg, ' ').trim()
     }
   }
-
 }
 
 /**
@@ -474,41 +470,39 @@ export function assign (...args) {
  * @return {object} - 最终结果
  */
 export function merge (dst, ...args) {
-
-  /**
-   * 对象合并
-   * @param {any} dst
-   * @param {Array} objs
-   * @param {boolean} deep
-   * @private
-   * */
-  function _baseExtend (dst, objs, deep) {
-    const isObject = (val) => typeof val === 'object'
-    const isFunction = (val) => typeof val === 'function'
-    const isArray = Array.isArray
-    for (var i = 0, ii = objs.length; i < ii; ++i) {
-      var obj = objs[i]
-      if (!obj || !isObject(obj) && !isFunction(obj)) continue
-      var keys = Object.keys(obj)
-      for (var j = 0, jj = keys.length; j < jj; j++) {
-        var key = keys[j]
-        var src = obj[key]
-
-        if (deep && isObject(src)) {
-          if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {}
-          _baseExtend(dst[key], [src], true)
-        } else {
-          dst[key] = src
-        }
-      }
-    }
-
-    return dst
-  }
-
   return _baseExtend(dst, [].slice.call(arguments, 1), true)
 }
 
+/**
+ * 对象合并
+ * @param {any} dst
+ * @param {Array} objs
+ * @param {boolean} deep
+ * @private
+ * */
+function _baseExtend (dst, objs, deep) {
+  const isObject = (val) => typeof val === 'object'
+  const isFunction = (val) => typeof val === 'function'
+  const isArray = Array.isArray
+  for (var i = 0, ii = objs.length; i < ii; ++i) {
+    var obj = objs[i]
+    if (!obj || !isObject(obj) && !isFunction(obj)) continue
+    var keys = Object.keys(obj)
+    for (var j = 0, jj = keys.length; j < jj; j++) {
+      var key = keys[j]
+      var src = obj[key]
+
+      if (deep && isObject(src)) {
+        if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {}
+        _baseExtend(dst[key], [src], true)
+      } else {
+        dst[key] = src
+      }
+    }
+  }
+
+  return dst
+}
 /**
  * 对象深度拷贝, 只处理对象, 使用: `JSON.parse(JSON.stringify(obj))`方法
  * @param {object} obj - 拷贝的对象

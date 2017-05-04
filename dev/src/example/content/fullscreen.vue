@@ -46,11 +46,11 @@
 
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Searchbar } from 'vimo/components/searchbar'
   export default{
     name: 'name',
-    data(){
+    data () {
       return {}
     },
     props: {},

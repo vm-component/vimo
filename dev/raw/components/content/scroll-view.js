@@ -21,7 +21,7 @@ export class ScrollView {
     this.scroll = (ev) => {}       // 滚动进行的回调, 传入ev参数, 一般用于事件操作
     this.scrollEnd = (ev) => {}    // 滚动结束的回调, 传入ev参数, 一般用于事件操作
 
-    this.transform = !!window.VM && !!window.VM.platform && !!window.VM.platform.css ? window.VM.platform.css.transform : 'webkitTransform'
+    this.transform = window.VM && window.VM.platform && window.VM.platform.css ? window.VM.platform.css.transform : 'webkitTransform'
 
     this._el = null                   // scrollElement 当前滚动实例的元素
     this._cel = null                  // contentElement 当前滚动实例的元素
@@ -103,7 +103,6 @@ export class ScrollView {
      * @param {UIEvent} scrollEvent
      * */
     function scrollCallback (scrollEvent) {
-
       ev.timeStamp = scrollEvent.timeStamp
 
       // 获取当前的 scrollTop
@@ -233,7 +232,6 @@ export class ScrollView {
 
     // scroll scrolling
     self._jsScrollInstance.on('scroll', () => {
-
       ev.timeStamp = new Date().getTime()
 
       // 获取当前的 scrollTop
@@ -446,9 +444,7 @@ export class ScrollView {
         done()
         self._scrollToEndTimer = null
       }, duration)
-
     } else {
-
       // scroll animation loop w/ easing
       // credit https://gist.github.com/dezinezync/5487119
       if (duration < 32) {
@@ -470,6 +466,7 @@ export class ScrollView {
       let stopScroll = false
 
       // scroll loop
+      // eslint-disable-next-line no-inner-declarations
       function step () {
         attempts++
 
@@ -500,7 +497,6 @@ export class ScrollView {
           // do not use DomController here
           // must use window.requestAnimationFrame in order to fire in the next frame
           window.requestAnimationFrame(step)
-
         } else {
           stopScroll = true
           self.isScrolling = false

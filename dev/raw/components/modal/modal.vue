@@ -20,7 +20,7 @@
     @import "./modal.ios";
     @import "./modal.md";
 </style>
-<script>
+<script type="text/javascript">
 
   import { Backdrop } from '../backdrop'
   export default{
@@ -30,10 +30,10 @@
       position: [String],   // 开启位置, 还未使用
       mode: {
         type: String,
-        default(){return window.VM && window.VM.config.get('mode', 'ios') || 'ios'}
-      },
+        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+      }
     },
-    data(){
+    data () {
       return {
         enabled: false,
         bdDismiss: false,
@@ -41,11 +41,11 @@
 
         // promise
         presentCallback: null,
-        dismissCallback: null,
+        dismissCallback: null
       }
     },
     computed: {
-      transitionClass(){
+      transitionClass () {
         return `modal-${this.mode}`
       }
     },
@@ -75,16 +75,16 @@
       /**
        * 开启关闭值操作当前的组件
        * */
-      _present(){
+      _present () {
         const _this = this
         _this.isActive = true
         console.debug(_this.isActive)
-        return new Promise((resolve) => {this.presentCallback = resolve})
+        return new Promise((resolve) => { this.presentCallback = resolve })
       },
-      _dismiss(){
+      _dismiss () {
         this.isActive = false
-        return new Promise((resolve) => {this.dismissCallback = resolve})
-      },
+        return new Promise((resolve) => { this.dismissCallback = resolve })
+      }
     },
     components: {
       'Backdrop': Backdrop

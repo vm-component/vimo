@@ -15,17 +15,17 @@
 
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   export default{
-	data(){
-	  return {}
-	},
-	watch     : {},
-	computed  : {},
-	methods   : {},
-	created () {},
-	mounted () {},
-	activated () {},
-	components: {}
+    data () {
+      return {}
+    },
+    watch: {},
+    computed: {},
+    methods: {},
+    created () {},
+    mounted () {},
+    activated () {},
+    components: {}
   }
 </script>

@@ -27,7 +27,8 @@
                 </Item>
                 <Item>
                     <Label>Disabled</Label>
-                    <Checkbox slot="item-left" :disabled="displayData.disabled" v-model="displayData.disabled"></Checkbox>
+                    <Checkbox slot="item-left" :disabled="displayData.disabled"
+                              v-model="displayData.disabled"></Checkbox>
                 </Item>
                 <ListHeader>使用 v-modal 绑定</ListHeader>
                 <Item>
@@ -67,7 +68,7 @@
 
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { Item, ListHeader } from 'vimo/components/item'
   import { Label } from 'vimo/components/label'
@@ -75,7 +76,7 @@
   import { Toggle } from 'vimo/components/toggle'
   export default{
     name: 'name',
-    data(){
+    data () {
       return {
 
         displayData: {
@@ -83,17 +84,17 @@
           primary: true,
           dark: false,
           light: true,
-          disabled: true,
+          disabled: true
         },
 
         testModal: true,
-        testDisabled: false,
+        testDisabled: false
       }
     },
     props: {},
     watch: {
       displayData: {
-        handler(){
+        handler () {
           console.debug(JSON.parse(JSON.stringify(this.displayData)))
         },
         deep: true
@@ -101,13 +102,13 @@
     },
     computed: {},
     methods: {
-      onCheckboxChange(val){
+      onCheckboxChange (val) {
         console.debug('onCheckboxChange:' + val)
       }
     },
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
+    created () {},
+    mounted () {},
+    activated () {},
     components: {List, Item, ListHeader, Checkbox, Label, Toggle}
   }
 </script>

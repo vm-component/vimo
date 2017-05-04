@@ -14,7 +14,7 @@
         </div>
     </div>
 </template>
-<script>
+<script type="text/javascript">
   /**
    * @component RefresherContent
    * @description
@@ -39,7 +39,7 @@
     props: {
       pullingIcon: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('ionPullIcon', 'arrow-down') || 'arrow-down' }
+        default () { return window.VM && window.VM.config.get('ionPullIcon', 'arrow-down') || 'arrow-down' }
       },
       pullingText: {
         type: String,
@@ -47,12 +47,12 @@
       },
       refreshingSpinner: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('ionRefreshingSpinner', window.VM && window.VM.config.get('spinner', 'ios')) || 'ios' }
+        default () { return window.VM && window.VM.config.get('ionRefreshingSpinner', window.VM && window.VM.config.get('spinner', 'ios')) || 'ios' }
       },
       refreshingText: {
         type: String,
         default: '正在刷新'
-      },
+      }
     },
     components: {
       Icon, Spinner

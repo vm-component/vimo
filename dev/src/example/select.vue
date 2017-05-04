@@ -127,14 +127,14 @@
 <style scoped lang="scss">
 
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { Item, ListHeader } from 'vimo/components/item'
   import { Label } from 'vimo/components/label'
   import { Select, Option } from 'vimo/components/select'
   export default{
     name: 'name',
-    data(){
+    data () {
       return {
         gaming: 'nes',
         gamingNoValue: '',
@@ -160,21 +160,20 @@
             code: 'GHS',
             name: 'Ghana Cedi'
           }
-        ],
+        ]
       }
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
-      onChange(value){
+      onChange (value) {
         console.debug('外部监听 onChange 事件, 返回值: ' + value)
-
       },
-      onSelect(value){
+      onSelect (value) {
         console.debug('外部监听 onSelect 事件, 返回值: ' + value)
       },
-      onCancel(value){
+      onCancel (value) {
         console.debug('外部监听 onCancel 事件, 返回值: ' + value)
       }
     },

@@ -1,24 +1,24 @@
 <template>
-  <Page>
-    <Header>
-      <Navbar>
-        <Title>介绍</Title>
-      </Navbar>
-    </Header>
-    <Content padding>
-      这里是介绍
+    <Page>
+        <Header>
+            <Navbar>
+                <Title>介绍</Title>
+            </Navbar>
+        </Header>
+        <Content padding>
+            这里是介绍
 
-    </Content>
-  </Page>
+        </Content>
+    </Page>
 </template>
 <style scoped lang="scss">
-  .main {
+    .main {
 
-  }
+    }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   export default{
-    data(){
+    data () {
       return {}
     },
     watch: {},

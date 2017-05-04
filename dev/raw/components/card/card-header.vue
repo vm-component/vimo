@@ -3,11 +3,11 @@
         <slot></slot>
     </div>
 </template>
-<script>
+<script type="text/javascript">
   import mixin from './mixin'
   export default{
     name: 'CardHeader',
-    data(){
+    data () {
       return {
         componentName: 'card-header'
       }

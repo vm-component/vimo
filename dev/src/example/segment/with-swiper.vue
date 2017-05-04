@@ -81,31 +81,31 @@
         overflow: scroll;
     }
 </style>
-<script>
+<script type="text/javascript">
   import { Segment, SegmentButton } from 'vimo/components/segment'
   import { Slides, Slide } from 'vimo/components/slides'
   export default{
     name: 'WithSwiper',
-    data(){
+    data () {
       return {
         fruit: 'apple',
         dir: ['apple', 'orange', 'pear']
       }
     },
     watch: {
-      fruit(){
-        this.swiperInstance.slideTo(this.dir.indexOf(this.fruit));
+      fruit () {
+        this.swiperInstance.slideTo(this.dir.indexOf(this.fruit))
       }
     },
     computed: {
-      swiperInstance(){
+      swiperInstance () {
         return this.$refs.slides.swiperInstance
       }
     },
     methods: {
-      onSlideChangeEndHandler(swiper){
+      onSlideChangeEndHandler (swiper) {
         this.fruit = this.dir[swiper.activeIndex]
-      },
+      }
     },
     components: {Segment, SegmentButton, Slides, Slide}
   }

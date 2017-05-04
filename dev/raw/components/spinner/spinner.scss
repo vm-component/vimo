@@ -26,7 +26,6 @@
   animation-play-state: paused;
 }
 
-
 // Spinner: ios / ios-small
 // --------------------------------------------------
 
@@ -41,7 +40,6 @@
   animation: spinner-fade-out 1s linear infinite;
 }
 
-
 // Spinner: bubbles
 // --------------------------------------------------
 
@@ -49,14 +47,12 @@
   animation: spinner-scale-out 1s linear infinite;
 }
 
-
 // Spinner: circles
 // --------------------------------------------------
 
 .spinner-circles svg {
   animation: spinner-fade-out 1s linear infinite;
 }
-
 
 // Spinner: crescent
 // --------------------------------------------------
@@ -72,7 +68,6 @@
   animation: spinner-rotate 1s linear infinite;
 }
 
-
 // Spinner: dots
 // --------------------------------------------------
 
@@ -86,27 +81,47 @@
   animation: spinner-dots 1s linear infinite;
 }
 
-
 // Animation Keyframes
 // --------------------------------------------------
 
 @keyframes spinner-fade-out {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes spinner-scale-out {
-  0% { transform: scale(1, 1); }
-  100% { transform: scale(0, 0); }
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(0, 0);
+  }
 }
 
 @keyframes spinner-rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spinner-dots {
-  0% { opacity: .9; transform: scale(1, 1); }
-  50% { opacity: .3; transform: scale(.4, .4); }
-  100% { opacity: .9; transform: scale(1, 1); }
+  0% {
+    opacity: .9;
+    transform: scale(1, 1);
+  }
+  50% {
+    opacity: .3;
+    transform: scale(.4, .4);
+  }
+  100% {
+    opacity: .9;
+    transform: scale(1, 1);
+  }
 }

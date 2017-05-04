@@ -15,14 +15,14 @@
     </Page>
 </template>
 <style scoped lang="scss"></style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { Note } from 'vimo/components/note'
   import { Avatar } from 'vimo/components/avatar'
   import { Label } from 'vimo/components/label'
   export default{
-    data(){
+    data () {
       return {
         list: [
           'Item 1',
@@ -38,14 +38,14 @@
           'Item 11',
           'Item 12',
           'Item 13',
-          'Item 14',
+          'Item 14'
         ]
       }
     },
     watch: {},
     computed: {},
     methods: {},
-    created() {},
+    created () {},
     mounted () {},
     activated () {},
     components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label}

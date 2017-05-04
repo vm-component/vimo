@@ -1,51 +1,47 @@
 <template>
-  <Page>
-    <Header>
-      <Toolbar>
-        <Button start slot="button" role="bar-button" @click="closeModal">
-          Close
-        </Button>
-        <Title>Modal Page 2</Title>
-      </Toolbar>
-    </Header>
-    <Content padding>
-      <h3>Hello, 这里是 Modal Page 2 的页面!</h3>
-      <p>传入的数据为: {{modalData}}</p>
-      <Button block @click="closeModal">关闭Modal</Button>
-    </Content>
-  </Page>
+    <Page>
+        <Header>
+            <Toolbar>
+                <Button start slot="button" role="bar-button" @click="closeModal">
+                    Close
+                </Button>
+                <Title>Modal Page 2</Title>
+            </Toolbar>
+        </Header>
+        <Content padding>
+            <h3>Hello, 这里是 Modal Page 2 的页面!</h3>
+            <p>传入的数据为: {{modalData}}</p>
+            <Button block @click="closeModal">关闭Modal</Button>
+        </Content>
+    </Page>
 </template>
 
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   export default{
-    data(){
+    data () {
       return {
-        modalData:null,
+        modalData: null
       }
     },
-    props: {},
-    watch: {},
-    computed: {},
     methods: {
-      closeModal(){
+      closeModal () {
         this.$modal.dismiss({
-          result:'modal 2 dismissed success!'
+          result: 'modal 2 dismissed success!'
         })
-      },
+      }
     },
-    created(){
+    created () {
       console.debug('modal-page.vue-created')
     },
-    mounted(){
+    mounted () {
       console.debug('modal-page.vue-mounted')
       console.log('modal-page获得的外部数据!!!')
       console.log(this.$options.modalData)
       this.modalData = JSON.stringify(this.$options.modalData)
     },
-    activated(){
+    activated () {
       console.debug('modal-page.vue-activated')
-    },
-    components: {}
+    }
   }
 </script>
 <style lang="scss"></style>

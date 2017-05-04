@@ -18,9 +18,9 @@
 <style scoped lang="scss">
 
 </style>
-<script>
+<script type="text/javascript">
   export default{
-    data(){
+    data () {
       return {}
     },
     watch: {},
@@ -53,7 +53,7 @@
               icon: 'icon-Destructive',
               cssClass: '',
               handler: () => {
-                console.debug('button2 click');
+                console.debug('button2 click')
               }
             },
             {
@@ -67,7 +67,7 @@
               }
             }
           ]
-        });
+        })
         // confirm.present()
       },
       threeBtn () {
@@ -97,7 +97,7 @@
               }
             }
           ]
-        });
+        })
         // threeBtn.present()
       },
       input () {
@@ -110,8 +110,8 @@
               type: 'password',
               name: 'password',
               placeholder: '密码',
-              value: '',
-            },
+              value: ''
+            }
           ],
           buttons: [
             {
@@ -147,7 +147,7 @@
           ]
         }).then(function () {
           console.log('alert input1 present promise')
-        });
+        })
       },
       checkbox () {
         this.$alert.present({
@@ -173,7 +173,7 @@
               checked: false,
               disabled: true,
               handler: function (val) {
-                console.log('checkbox2 clicked');
+                console.log('checkbox2 clicked')
                 console.log(val)
               }
             },
@@ -183,7 +183,7 @@
               label: 'checkbox3_label',
               checked: true,
               handler: function (val) {
-                console.log('checkbox3 clicked');
+                console.log('checkbox3 clicked')
                 console.log(val)
               }
             },
@@ -193,10 +193,10 @@
               label: 'checkbox4_label',
               checked: false,
               handler: function (val) {
-                console.log('checkbox4 clicked');
+                console.log('checkbox4 clicked')
                 console.log(val)
               }
-            },
+            }
           ],
           buttons: [
             {
@@ -224,15 +224,14 @@
                         handler: (value) => {}
                       }
                     ]
-                  });
+                  })
                 })
               }
             }
           ]
-        });
+        })
       },
       radio () {
-        const _this = this;
         this.$alert.present({
           title: 'radio',
           message: '这个是单选组件',
@@ -255,7 +254,7 @@
               checked: false,
               disabled: true,
               handler: function (val) {
-                console.log('radio2 clicked');
+                console.log('radio2 clicked')
                 console.log(val)
               }
             },
@@ -265,7 +264,7 @@
               label: 'radio3_label',
               checked: false,
               handler: function (val) {
-                console.log('radio3 clicked');
+                console.log('radio3 clicked')
                 console.log(val)
               }
             },
@@ -275,10 +274,10 @@
               label: 'radio4_label',
               checked: false,
               handler: (val) => {
-                console.log('radio4 clicked');
+                console.log('radio4 clicked')
                 console.log(val)
               }
-            },
+            }
           ],
           buttons: [
             {
@@ -305,13 +304,13 @@
                         handler: (value) => {}
                       }
                     ]
-                  });
+                  })
                 })
               }
             }
           ]
-        });
-      },
+        })
+      }
     },
     created () {
     },
@@ -319,7 +318,7 @@
     },
     activated () {
     },
-    deactivated(){},
+    deactivated () {},
     components: {}
   }
 </script>

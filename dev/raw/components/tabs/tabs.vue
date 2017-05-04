@@ -23,7 +23,7 @@
     @import "./tabs.ios.scss";
     @import "./tabs.md.scss";
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Tabs
    * @description
@@ -70,7 +70,7 @@
    *
    * ...
    * computed: {
-   *   tabsComponent(){
+   *   tabsComponent () {
    *    // 获取tabs的实例
    *    return this.$refs.tabs
    *   }
@@ -99,12 +99,12 @@
       color: [String],
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
       },
       // tab下面是否显示选中bar
       tabsHighlight: {
         type: Boolean,
-        default(){ return window.VM && window.VM.config.getBoolean('tabsHighlight', false)}
+        default () { return window.VM && window.VM.config.getBoolean('tabsHighlight', false) }
       },
       // tabbar的样式: icon和title的放置位置
       // 可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
@@ -116,9 +116,9 @@
       tabsPlacement: {
         type: String,
         default: 'bottom'
-      },
+      }
     },
-    data(){
+    data () {
       return {
         isInit: false, // 当前组件初始化状态
         tabElementWidth: 0, // 每个tab的宽度, 用于tabHighLight
@@ -127,11 +127,11 @@
         tabsContentElement: null,
         tabsContentWrapElement: null,
         tabHighlightEle: null, // TabHighlight元素
-        selectedIndex: -1, // 内部使用的, 表示当前处于激活的Tab的index
+        selectedIndex: -1 // 内部使用的, 表示当前处于激活的Tab的index
       }
     },
     watch: {
-      $route(){
+      $route () {
         if (!this.isInit) return
         let _index = this.getActivatedIndex()
         if (this.selectedIndex !== _index) {
@@ -153,8 +153,8 @@
       },
       // 颜色
       colorClass () {
-        return !!this.color ? (`tabs-${this.mode}-${this.color}`) : ''
-      },
+        return this.color ? (`tabs-${this.mode}-${this.color}`) : ''
+      }
     },
     methods: {
       // ------ public ------
@@ -165,8 +165,8 @@
        * @param {number} index - 第几个index
        * @return {Tab}
        * */
-      getByIndex(index){
-        if (!!this.tabSlots[index]) {
+      getByIndex (index) {
+        if (this.tabSlots[index]) {
           return this.tabSlots[index].componentInstance
         }
       },
@@ -177,7 +177,7 @@
        * 获取当前被选中Tab实例的index
        * @return {number}
        * */
-      getActivatedIndex(){
+      getActivatedIndex () {
         for (let i = 0, len = this.tabSlots.length; len > i; i++) {
           let tabIns = this.tabSlots[i].componentInstance
           if (tabIns.to.name === this.$route.name || tabIns.to.path === this.$route.path) {
@@ -193,7 +193,7 @@
        * 获取当前选中的Tab实例
        * @return {Tab}
        * */
-      getSelected(){
+      getSelected () {
         return this.getByIndex(this.getActivatedIndex())
       },
 
@@ -204,7 +204,7 @@
        * @param {number/Tab} tabOrIndex - 传入的Tab实例或者Tab的序号
        * @return {Tab}
        * */
-      select(tabOrIndex){
+      select (tabOrIndex) {
         let tabIns = tabOrIndex
         if (typeof tabOrIndex === 'number') {
           tabIns = this.getByIndex(tabOrIndex)
@@ -223,7 +223,7 @@
        * 获取每个tab的宽度, 因为是平均, 故用除法就行
        * @private
        * */
-      getTabElementWidth(){
+      getTabElementWidth () {
         let _count = this.tabSlots.length
         let _warpWidth = this.tabbarElement.offsetWidth
         return _warpWidth / _count
@@ -233,7 +233,7 @@
        * 第一次进入是的初始化
        * @private
        */
-      initTabs(){
+      initTabs () {
         if (this.isInit) return
 
         // 获取tabbar元素
@@ -299,7 +299,7 @@
        * 这部分的因素影响：tabbar的位置及高度
        * @private
        * */
-      computeTabsContentWrapStyle(){
+      computeTabsContentWrapStyle () {
         let tabBarHeight = getComputedStyle(this.tabbarElement).height
         tabBarHeight = parsePxUnit(tabBarHeight)
         let _styleType = 'margin' + firstUpperCase(this.tabsPlacement)
@@ -314,8 +314,8 @@
        * @param {string} position - top, bottom
        * @private
        */
-      setTabbarPosition(position) {
-        position = !!position && position.toLowerCase()
+      setTabbarPosition (position) {
+        position = position && position.toLowerCase()
         if (position === 'bottom') {
           this.tabbarElement.style.bottom = '0px'
           this.tabbarElement.style.top = 'auto'
@@ -331,18 +331,18 @@
        * @param {number} index
        * @private
        */
-      tabHighlightSelect(index){
+      tabHighlightSelect (index) {
         if (this.mode !== 'md') return
         let _offsetLeft = this.tabElementWidth * index
         let transform = `translate3d(${_offsetLeft}px,0,0) scaleX(${this.tabElementWidth})`
         setElementClass(this.tabHighlightEle, 'animate', true)
-        this.tabHighlightEle.style[VM.platform.css.transform] = transform
-      },
+        this.tabHighlightEle.style[window.VM.platform.css.transform] = transform
+      }
     },
     mounted () {
       console.assert(this.$parent.$options._componentTag.toLowerCase() === 'page', 'Tabs component must place in Page Component')
       // 初始化
       this.initTabs()
-    },
+    }
   }
 </script>

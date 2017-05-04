@@ -5,7 +5,7 @@
         <!--<div class="button-effect"></div>-->
     </div>
 </template>
-<script>
+<script type="text/javascript">
   /**
    * @component SegmentButton
    * @description
@@ -27,14 +27,14 @@
   import { isTrueProperty } from '../../util/util'
   export default{
     name: 'SegmentButton',
-    data(){
+    data () {
       return {
         theValue: null, // 当前环境的value副本
 
         isInit: false,
         parentComponent: null, // 父组件实例
         isSelected: false, // 标志当前是否选中
-        isDisabled: false,
+        isDisabled: false
       }
     },
     props: {
@@ -48,11 +48,11 @@
        * */
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
-      },
+        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+      }
     },
     watch: {
-      disabled(val){
+      disabled (val) {
         this.setDisabled(isTrueProperty(val))
       }
     },
@@ -61,7 +61,7 @@
        * 设置当前组件的禁用状态
        * @private
        * */
-      setDisabled(isDisabled){
+      setDisabled (isDisabled) {
         this.setState(null)
         this.isDisabled = isDisabled
       },
@@ -70,7 +70,7 @@
        * 设置当前子组件选中状态
        * @private
        * */
-      setState(stateValue){
+      setState (stateValue) {
         let isSelected = (stateValue === this.theValue) && !this.isDisabled
         if (this.isSelected !== isSelected) {
           this.isSelected = isSelected
@@ -79,7 +79,7 @@
            * @description 当子元素被点击选中的时触发
            * @property {string} value - 当前传入的值
            */
-          this.isInit && this.isSelected && this.$emit('onSelect', this.theValue);
+          this.isInit && this.isSelected && this.$emit('onSelect', this.theValue)
         }
       },
 
@@ -100,20 +100,20 @@
        * @return {String}
        * @private
        * */
-      getValue(){
+      getValue () {
         if (this.isInit) {
           return this.theValue
         } else {
           let _value = ''
-          if (!!this.value) {
+          if (this.value) {
             // prop传入title值
             _value = this.value.trim()
-          } else if (!!this.$slots.default && !!this.$slots.default[0] && !!this.$slots.default[0].text) {
+          } else if (this.$slots.default && this.$slots.default[0] && this.$slots.default[0].text) {
             // 如果是直接写在slot中的值
-            _value = this.$slots.default[0].text.trim();
-          } else if (!!this.$slots.default && !!this.$slots.default[0] && !!this.$slots.default[0].tag && !!this.$slots.default[0].children[0].text) {
+            _value = this.$slots.default[0].text.trim()
+          } else if (this.$slots.default && this.$slots.default[0] && this.$slots.default[0].tag && this.$slots.default[0].children[0].text) {
             this.$slots.default.forEach((item) => {
-              if (!!item.children && item.children.length > 0 && !!item.children[0] && !!item.children[0].text) {
+              if (item.children && item.children.length > 0 && item.children[0] && item.children[0].text) {
                 _value += item.children[0].text.trim()
               }
             })
@@ -122,8 +122,7 @@
         }
       }
     },
-    mounted(){
-
+    mounted () {
       // find parent component
       if (this.$parent.$options._componentTag.toLowerCase() === 'segment') {
         this.parentComponent = this.$parent

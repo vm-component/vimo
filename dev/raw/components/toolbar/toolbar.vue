@@ -14,7 +14,7 @@
     @import './toolbar.ios.scss';
     @import './toolbar.md.scss';
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Toolbar
    * @description
@@ -98,9 +98,9 @@
    * */
   export default{
     name: 'Toolbar',
-    data(){
+    data () {
       return {
-        statusbarPadding: window.VM && window.VM.config.getBoolean('statusbarPadding', false), // 是否有statusbar的padding
+        statusbarPadding: window.VM && window.VM.config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
       }
     },
     props: {
@@ -109,7 +109,7 @@
        * */
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark
@@ -119,7 +119,7 @@
     computed: {
       // 颜色
       colorClass () {
-        return !!this.color ? (`toolbar-${this.mode}-${this.color}`) : ''
+        return this.color ? (`toolbar-${this.mode}-${this.color}`) : ''
       },
       // 环境样式
       modeClass () {

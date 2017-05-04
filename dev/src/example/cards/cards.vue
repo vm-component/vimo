@@ -23,7 +23,7 @@
 </template>
 <style scoped lang="scss">
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Card } from 'vimo/components/card'
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item } from 'vimo/components/item'

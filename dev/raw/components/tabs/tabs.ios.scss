@@ -4,35 +4,34 @@
 // --------------------------------------------------
 
 /// @prop - Border on the tabbar (border-top when [tabsPlacement=bottom] and border-bottom when [tabsPlacement=top])
-$tabs-ios-border:                   $hairlines-width solid $tabs-ios-border-color !default;
+$tabs-ios-border: $hairlines-width solid $tabs-ios-border-color !default;
 
 /// @prop - Padding on the tab button
-$tabs-ios-tab-padding:              0 2px !default;
+$tabs-ios-tab-padding: 0 2px !default;
 
 /// @prop - Max width of the tab button
-$tabs-ios-tab-max-width:            240px !default;
+$tabs-ios-tab-max-width: 240px !default;
 
 /// @prop - Minimum height of the tab button
-$tabs-ios-tab-min-height:           49px !default;
+$tabs-ios-tab-min-height: 49px !default;
 
 /// @prop - Text color of the inactive tab button
-$tabs-ios-tab-text-color:           $tabs-ios-tab-color-inactive !default;
+$tabs-ios-tab-text-color: $tabs-ios-tab-color-inactive !default;
 
 /// @prop - Text color of the active tab button
-$tabs-ios-tab-text-color-active:    $tabs-ios-tab-color-active !default;
+$tabs-ios-tab-text-color-active: $tabs-ios-tab-color-active !default;
 
 /// @prop - Icon color of the inactive tab button
-$tabs-ios-tab-icon-color:           $tabs-ios-tab-color-inactive !default;
+$tabs-ios-tab-icon-color: $tabs-ios-tab-color-inactive !default;
 
 /// @prop - Icon color of the active tab button
-$tabs-ios-tab-icon-color-active:    $tabs-ios-tab-color-active !default;
+$tabs-ios-tab-icon-color-active: $tabs-ios-tab-color-active !default;
 
 /// @prop - Font size of the tab button text
-$tabs-ios-tab-font-size:            10px !default;
+$tabs-ios-tab-font-size: 10px !default;
 
 /// @prop - Size of the tab button icon
-$tabs-ios-tab-icon-size:            30px !default;
-
+$tabs-ios-tab-icon-size: 30px !default;
 
 .tabs-ios .tabbar {
   justify-content: center;
@@ -123,11 +122,10 @@ $tabs-ios-tab-icon-size:            30px !default;
 .tabs-ios .tab-button.icon-only {
   min-height: $tabs-ios-tab-min-height - 8;
   // added
-  .icon{
+  .icon {
     line-height: inherit;
   }
 }
-
 
 // iOS Tabbar Color Mixin
 // --------------------------------------------------
@@ -152,7 +150,6 @@ $tabs-ios-tab-icon-size:            30px !default;
   }
 
 }
-
 
 // iOS Tabbar Color Generation
 // --------------------------------------------------

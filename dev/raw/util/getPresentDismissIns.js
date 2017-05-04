@@ -19,18 +19,18 @@ export function getPresentDismissIns (Factory) {
      * @return {Promise} - 开启动画结束的promise
      * @private
      * */
-    present(options){
+    present (options) {
       return new Promise((resolve) => {
         if (this._i && this._i.isActive) {
           this._i.dismiss().then(() => {
             this._i = Factory(options)
             // 自动开启
-            this._i.present().then(() => {resolve()})
+            this._i.present().then(() => { resolve() })
           })
         } else {
           this._i = Factory(options)
           // 自动开启
-          this._i.present().then(() => {resolve()})
+          this._i.present().then(() => { resolve() })
         }
       })
     },
@@ -40,10 +40,10 @@ export function getPresentDismissIns (Factory) {
      * @return {Promise} - 关闭动画结束的promise
      * @private
      * */
-    dismiss(){
+    dismiss () {
       return new Promise((resolve) => {
         if (this._i && this._i.isActive) {
-          this._i.dismiss().then(() => {resolve()})
+          this._i.dismiss().then(() => { resolve() })
         } else {
           resolve()
         }

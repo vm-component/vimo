@@ -4,7 +4,7 @@
             <Navbar>
                 <Title>
                     Toggle
-                  </Title>
+                </Title>
             </Navbar>
         </Header>
         <Content>
@@ -64,39 +64,39 @@
     </Page>
 </template>
 <style scoped lang="scss"></style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, Item } from 'vimo/components/item'
   import { Toggle } from 'vimo/components/toggle'
   export default{
     name: 'toggle',
-    data(){
+    data () {
       return {
         displayData: {
           danger: false,
           primary: true,
           dark: false,
           light: true,
-          disabled: true,
+          disabled: true
         },
 
         checked: true,
-        disabled: false,
+        disabled: false
       }
     },
     props: {},
     watch: {
       displayData: {
-        handler(){
+        handler () {
           console.debug(JSON.parse(JSON.stringify(this.displayData)))
         },
         deep: true
       }
     },
     methods: {
-      toggleChange(val){
+      toggleChange (val) {
         console.debug('toogle changed, value:' + val)
-      },
+      }
     },
     components: {
       List, ListHeader, Item, Toggle

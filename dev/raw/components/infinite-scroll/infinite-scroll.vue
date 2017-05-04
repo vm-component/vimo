@@ -6,7 +6,7 @@
 <style lang="scss">
     @import "./infinite-scroll.scss";
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component InfiniteScroll
    * @description
@@ -100,19 +100,19 @@
    *  // ....
    * */
 
-  const STATE_ENABLED = 'enabled';
-  const STATE_DISABLED = 'disabled';
-  const STATE_LOADING = 'loading';
+  const STATE_ENABLED = 'enabled'
+  const STATE_DISABLED = 'disabled'
+  const STATE_LOADING = 'loading'
   import { setElementClass } from '../../util/util'
   export default{
     name: 'InfiniteScroll',
-    data(){
+    data () {
       return {
         contentComponent: null, // Content组件的实例
         _lastCheck: 0,  // 节流, 少于32ms的事件变动不必监听
         _init: false,   // 组件是否初始化
 
-        state: STATE_ENABLED, // 内部状态
+        state: STATE_ENABLED // 内部状态
       }
     },
     props: {
@@ -124,16 +124,16 @@
       // 阈值
       threshold: {
         type: String,
-        default: '15%', // 15%  150px
-      },
+        default: '15%' // 15%  150px
+      }
     },
     computed: {
       // 阈值
-      _thr(){
-        return this.threshold;
+      _thr () {
+        return this.threshold
       },
       // 阈值(px单位)
-      _thrPx(){
+      _thrPx () {
         if (this.threshold.indexOf('%') > -1) {
           return 0
         } else {
@@ -141,13 +141,13 @@
         }
       },
       // 阈值(百分比)
-      _thrPc(){
+      _thrPc () {
         if (this.threshold.indexOf('%') > -1) {
           return (parseFloat(this.threshold) / 100)
         } else {
           return 0
         }
-      },
+      }
     },
     methods: {
       // -------- public --------
@@ -158,10 +158,10 @@
        * 比如在异步情况下通过AJAX获取数据增加新行列, 数据获取完毕更新UI后, 执行`complete()`这个方法,
        * 表示loading已经完成, InfiniteScroll组件的状态将由`loading` 转为 `enabled`.
        * */
-      complete(){
+      complete () {
         this.$nextTick(() => {
           if (this.state === STATE_LOADING) {
-            this.state = STATE_ENABLED;
+            this.state = STATE_ENABLED
             // 重新计算尺寸, 必须
             this.contentComponent.resize()
           }
@@ -175,9 +175,9 @@
        * 需要在`onInfinite` 事件的回调中执行 `infiniteScroll.enable(false)`.
        * @param {boolean} shouldEnable - 组件当前状态, 如果为`false`, 则移除scroll的所有监听函数, 并隐藏组件
        */
-      enable(shouldEnable){
-        this.state = (shouldEnable ? STATE_ENABLED : STATE_DISABLED);
-        this._setListeners(shouldEnable);
+      enable (shouldEnable) {
+        this.state = (shouldEnable ? STATE_ENABLED : STATE_DISABLED)
+        this._setListeners(shouldEnable)
       },
 
       /**
@@ -200,7 +200,7 @@
        *
        * @example
        * // ...
-       *   doInfinite(){
+       *   doInfinite () {
        *     console.log('Begin async operation');
        *     return new Promise((resolve) => {
        *       setTimeout(() => {
@@ -214,9 +214,9 @@
        * }
        * // ...
        */
-      waitFor(action) {
-        const enable = this.complete.bind(this);
-        action.then(enable, enable);
+      waitFor (action) {
+        const enable = this.complete.bind(this)
+        action.then(enable, enable)
       },
 
       // -------- private --------
@@ -225,15 +225,15 @@
        * @param {boolean} shouldListen - 是否监听
        * @private
        */
-      _setListeners(shouldListen) {
+      _setListeners (shouldListen) {
         if (this._init) {
           if (shouldListen) {
             // 监听Content组件的onScroll事件
             // NOTICE: 这里是监听的是Content组件自己内部维护的事件`onScroll`
-            this.contentComponent.$on('onScroll', this._onScroll);
+            this.contentComponent.$on('onScroll', this._onScroll)
           } else {
             // 解除onScroll事件监听(Content组件)
-            this.contentComponent.$off('onScroll', this._onScroll);
+            this.contentComponent.$off('onScroll', this._onScroll)
           }
         }
       },
@@ -243,38 +243,37 @@
        * @return {Number} - 1:loading/disabled; 2:还在滚动呢; 3:没有滚动高度; 5:loading状态; 6:一般滚动状态
        * @private
        * */
-      _onScroll(ev) {
-
+      _onScroll (ev) {
         if (this.state === STATE_LOADING || this.state === STATE_DISABLED) {
-          return 1;
+          return 1
         }
 
         if (this._lastCheck + 32 > ev.timeStamp) {
           // 少于32ms的事件变动不必监听
-          return 2;
+          return 2
         }
-        this._lastCheck = ev.timeStamp;
+        this._lastCheck = ev.timeStamp
 
-        const infiniteHeight = this.$el.scrollHeight;
+        const infiniteHeight = this.$el.scrollHeight
         if (!infiniteHeight) {
           // 如果滚动高度不存在则什么都不做
-          return 3;
+          return 3
         }
 
-        const d = this.contentComponent.getContentDimensions();
+        const d = this.contentComponent.getContentDimensions()
 
-        let reloadY = d.contentHeight;
+        let reloadY = d.contentHeight
         if (this._thrPc) {
-          reloadY += (reloadY * this._thrPc);
+          reloadY += (reloadY * this._thrPc)
         } else {
-          reloadY += this._thrPx;
+          reloadY += this._thrPx
         }
 
-        const distanceFromInfinite = ((d.scrollHeight - infiniteHeight) - d.scrollTop) - reloadY;
+        const distanceFromInfinite = ((d.scrollHeight - infiniteHeight) - d.scrollTop) - reloadY
 
         if (distanceFromInfinite < 0) {
           if (this.state !== STATE_LOADING && this.state !== STATE_DISABLED) {
-            this.state = STATE_LOADING;
+            this.state = STATE_LOADING
 
             /**
              * @event component:InfiniteScroll#onInfinite
@@ -283,35 +282,34 @@
              * */
             this.$emit('onInfinite', this)
           }
-          return 5;
+          return 5
         }
-        return 6;
+        return 6
       },
 
       /**
        * 初始化
        * */
-      _init(){
-
-        let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || [];
+      _init () {
+        let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
         _pageComponentChildrenList.forEach((component) => {
           if (component.$options._componentTag.toLowerCase() === 'content') {
-            this.contentComponent = component;
+            this.contentComponent = component
           }
-        });
-        console.assert(this.contentComponent, 'InfiniteScroll组件必须要在Content组件下使用');
-        setElementClass(this.contentComponent.$el, 'has-infinite-scroll', true);
+        })
+        console.assert(this.contentComponent, 'InfiniteScroll组件必须要在Content组件下使用')
+        setElementClass(this.contentComponent.$el, 'has-infinite-scroll', true)
 
-        this._init = true;
-        this._setListeners(this.state !== STATE_DISABLED);
-      },
+        this._init = true
+        this._setListeners(this.state !== STATE_DISABLED)
+      }
 
     },
     mounted () {
-      this._init();
+      this._init()
     },
-    destroy(){
-      this._setListeners(false);
+    destroy () {
+      this._setListeners(false)
     }
   }
 

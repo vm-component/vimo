@@ -13,7 +13,7 @@
                     <h3 class="alert-sub-title" v-if="subTitle">{{subTitle}}</h3>
                 </div>
                 <div class="alert-message" v-html="message"></div>
-                <div v-if="!!inputs && inputs.length>0">
+                <div v-if="inputs && inputs.length>0">
                     <div v-if="inputType==='radio'" class="alert-radio-group" role="radiogroup">
                         <Button role="alert-radio-button" v-for="(i,index) in inputsForDispaly" @click="rbClick(i)"
                                 :key="index"
@@ -81,7 +81,7 @@
     }
 
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Alert
    * @description
@@ -227,7 +227,7 @@
       // Array button数组，包含全部role
       buttons: {
         type: Array,
-        default(){return []}
+        default () { return [] }
       },
       // 如果alert中有input等form
       // input类型 -> text/tel/number/email ....
@@ -237,23 +237,23 @@
       // type/value/label/checked/disabled
       inputs: {
         type: Array,
-        default(){return []}
+        default () { return [] }
       },
       // Boolean 允许点击backdrop关闭actionsheet
       enableBackdropDismiss: {
         type: Boolean,
-        default(){return true}
+        default () { return true }
       },
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
       },
       dismissOnPageChange: {
         type: Boolean,
-        default(){return true}
+        default () { return true }
       }
     },
-    data(){
+    data () {
       return {
 
         /**
@@ -264,12 +264,12 @@
         isActive: false,  // 是否活动状态
         enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
 
-        inputType: null,// Alert中含有的input类型，radio、checkbox
+        inputType: null, // Alert中含有的input类型，radio、checkbox
         isAlertTop: false, // 是否将alert放到顶部，用于input输入时显示虚拟键盘
 
         dismissCallback: null,
         presentCallback: null,
-        unreg: null, // url变化关闭的注册函数
+        unreg: null // url变化关闭的注册函数
       }
     },
     computed: {
@@ -281,11 +281,11 @@
         // 如果是string则转化为对象
         return this.buttons.map(button => {
           if (typeof button === 'string') {
-            return {text: button};
+            return {text: button}
           }
-          return button;
-        });
-      },
+          return button
+        })
+      }
     },
     methods: {
       // -------- private --------
@@ -295,31 +295,31 @@
        * @private
        * */
       _beforeEnter () {
-        this.enabled = false; // 不允许过渡中途操作
-        this.$app && this.$app.setEnabled(false, 200);
+        this.enabled = false // 不允许过渡中途操作
+        this.$app && this.$app.setEnabled(false, 200)
       },
       _afterEnter (el) {
-        this.enabled = true;
+        this.enabled = true
 
         // 执行开启的promise
-        this.presentCallback(el);
+        this.presentCallback(el)
 
-        this.focusOutActiveElement();
-        let focusableEle = this.$el.querySelector('input');
+        this.focusOutActiveElement()
+        let focusableEle = this.$el.querySelector('input')
         if (focusableEle) {
-          focusableEle.focus();
+          focusableEle.focus()
         }
       },
       _beforeLeave () {
-        this.enabled = false;
-        this.$app && this.$app.setEnabled(false, 200);
+        this.enabled = false
+        this.$app && this.$app.setEnabled(false, 200)
       },
       _afterLeave (el) {
-        this.enabled = true;
+        this.enabled = true
         // 执行关闭的promise
-        this.dismissCallback(el);
+        this.dismissCallback(el)
         // 移除DOM
-        this.$el.remove();
+        this.$el.remove()
       },
 
       /**
@@ -331,11 +331,11 @@
        * */
       bdClick () {
         if (this.enabled && this.enableBackdropDismiss && this.buttonsForDisplay.length > 0) {
-          let cancelBtn = this.buttonsForDisplay.find(b => b.role === 'cancel');
+          let cancelBtn = this.buttonsForDisplay.find(b => b.role === 'cancel')
           if (cancelBtn) {
-            this.btnClick(cancelBtn);
+            this.btnClick(cancelBtn)
           } else {
-            this.dismiss();
+            this.dismiss()
           }
         }
       },
@@ -349,22 +349,22 @@
        * */
       btnClick (button) {
         if (!this.enabled) {
-          return;
+          return
         }
 
-        let shouldDismiss = true;
+        let shouldDismiss = true
 
         if (button.handler) {
           // a handler has been provided, execute it
           // pass the handler the values from the inputs
           if (button.handler(this.getValues()) === false) {
             // if the return value of the handler is false then do not dismiss
-            shouldDismiss = false;
+            shouldDismiss = false
           }
         }
 
         if (shouldDismiss) {
-          this.dismiss();
+          this.dismiss()
         }
       },
 
@@ -376,13 +376,13 @@
        * @private
        * */
       rbClick (checkedInput) {
-        const _this = this;
+        const _this = this
         if (_this.enabled) {
           _this.inputsForDispaly.forEach(input => {
-            input.checked = (checkedInput === input);
-          });
+            input.checked = (checkedInput === input)
+          })
           if (checkedInput.handler) {
-            checkedInput.handler(checkedInput);
+            checkedInput.handler(checkedInput)
           }
         }
       },
@@ -395,12 +395,12 @@
        * @private
        * */
       cbClick (checkedInput) {
-        const _this = this;
+        const _this = this
         if (_this.enabled) {
-          checkedInput.checked = !checkedInput.checked;
+          checkedInput.checked = !checkedInput.checked
           if (checkedInput.handler) {
             // 简单的对象拷贝
-            checkedInput.handler(JSON.parse(JSON.stringify(checkedInput)));
+            checkedInput.handler(JSON.parse(JSON.stringify(checkedInput)))
           }
         }
       },
@@ -413,29 +413,29 @@
         if (this.inputType === 'radio' && this.inputsForDispaly.length > 0) {
           // this is an alert with radio buttons (single value select)
           // return the one value which is checked, otherwise undefined
-          const checkedInput = this.inputsForDispaly.find(i => i.checked);
-          return checkedInput ? checkedInput.value : undefined;
+          const checkedInput = this.inputsForDispaly.find(i => i.checked)
+          return checkedInput ? checkedInput.value : undefined
         }
 
         if (this.inputType === 'checkbox' && this.inputsForDispaly.length > 0) {
           // this is an alert with checkboxes (multiple value select)
           // return an array of all the checked values
-          return this.inputsForDispaly.filter(i => i.checked).map(i => i.value.trim());
+          return this.inputsForDispaly.filter(i => i.checked).map(i => i.value.trim())
         }
 
         // this is an alert with text inputs
         // return an object of all the values with the input name as the key
         // input因为不能使用v-model，故通过id获取里面的信息
-        const values = {};
+        const values = {}
         this.inputsForDispaly.forEach(i => {
-          let _$id = document.getElementById(i.id);
-          if (!!_$id && !!_$id.value) {
-            values[i.name] = _$id.value.trim();
+          let _$id = document.getElementById(i.id)
+          if (_$id && _$id.value) {
+            values[i.name] = _$id.value.trim()
           } else {
-            values[i.name] = null;
+            values[i.name] = null
           }
-        });
-        return values;
+        })
+        return values
       },
 
       /**
@@ -444,8 +444,8 @@
        * */
       focusOutActiveElement () {
         // only button？
-        const activeElement = document.activeElement;
-        activeElement && activeElement.blur && activeElement.blur();
+        const activeElement = document.activeElement
+        activeElement && activeElement.blur && activeElement.blur()
       },
 
       // -------- public --------
@@ -458,9 +458,9 @@
        * @returns {Promise} 当关闭动画执行完毕后触发resolved
        */
       present () {
-        const _this = this;
-        _this.isActive = true;
-        return new Promise((resolve) => {this.presentCallback = resolve})
+        const _this = this
+        _this.isActive = true
+        return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
       /**
@@ -470,83 +470,83 @@
        * @returns {Promise} 当关闭动画执行完毕后触发resolved
        */
       dismiss () {
-        const _this = this;
+        const _this = this
         if (!_this.enabled) {
           return false
         }
-        _this.enabled = false;
-        _this.isActive = false; // 动起来
-        return new Promise((resolve) => {this.dismissCallback = resolve})
+        _this.enabled = false
+        _this.isActive = false // 动起来
+        return new Promise((resolve) => { this.dismissCallback = resolve })
       },
 
       /**
        * inputs数组初始化组件
        * @private
        * */
-      init(){
-        const _this = this;
+      init () {
+        const _this = this
         if (!_this.inputs || _this.inputs.length === 0) {
           return []
         }
         // 传入数据处理
-        let _inputs = [];
+        let _inputs = []
         _inputs = _this.inputs.map((input, index) => {
           return {
             type: input.type || 'text',
-            name: !!(input.name) ? input.name : index,
-            placeholder: !!(input.placeholder) ? input.placeholder : '',
-            value: !!(input.value) ? input.value : '',
+            name: (input.name) ? input.name : index,
+            placeholder: (input.placeholder) ? input.placeholder : '',
+            value: (input.value) ? input.value : '',
             label: input.label,
-            checked: !!input.checked,
-            disabled: !!input.disabled,
+            checked: input.checked,
+            disabled: input.disabled,
             id: `alert-input-${index}`, // used for input -> text/tel/number/password
-            handler: !!(input.handler) ? input.handler : null,
-          };
-        });
+            handler: (input.handler) ? input.handler : null
+          }
+        })
 
-        let inputTypes = [];
+        let inputTypes = []
         _inputs.forEach(input => {
           if (inputTypes.indexOf(input.type) < 0) {
-            inputTypes.push(input.type);
+            inputTypes.push(input.type)
           }
-        });
+        })
         if (inputTypes.length > 1 && (inputTypes.indexOf('checkbox') > -1 || inputTypes.indexOf('radio') > -1)) {
-          console.warn(`Alert cannot mix input types: ${(inputTypes.join('/'))}. Please see alert docs for more info.`);
-          console.warn(`Alert 组件不能包含复合的input类型: ${(inputTypes.join('/'))}. 请再次阅读说明文档.`);
+          console.warn(`Alert cannot mix input types: ${(inputTypes.join('/'))}. Please see alert docs for more info.`)
+          console.warn(`Alert 组件不能包含复合的input类型: ${(inputTypes.join('/'))}. 请再次阅读说明文档.`)
         }
 
-        _this.inputType = inputTypes.length ? inputTypes[0] : null;
+        _this.inputType = inputTypes.length ? inputTypes[0] : null
 
-        const checkedInput = _inputs.find(input => input.checked);
+        // const checkedInput = _inputs.find(input => input.checked)
 
-        const NON_TEXT_INPUT_REGEX = /^(radio|checkbox|range|file|submit|reset|color|image|button)$/i;
+        const NON_TEXT_INPUT_REGEX = /^(radio|checkbox|range|file|submit|reset|color|image|button)$/i
 
-        const hasTextInput = (_inputs.length && _inputs.some(i => !(NON_TEXT_INPUT_REGEX.test(i.type))));
+        const hasTextInput = (_inputs.length && _inputs.some(i => !(NON_TEXT_INPUT_REGEX.test(i.type))))
         // if (hasTextInput && this._platform.is('mobile')) {
         if (hasTextInput) {
           // this alert has a text input and it's on a mobile device so we should align
           // the alert up high because we need to leave space for the virtual keboard
           // this also helps prevent the layout getting all messed up from
           // the browser trying to scroll the input into a safe area
-          _this.isAlertTop = true;
+          _this.isAlertTop = true
         }
 
-        _this.inputsForDispaly = _inputs;
+        _this.inputsForDispaly = _inputs
       },
 
       /**
        * @private
        * */
-      dismissOnPageChangeHandler(){
-        this.isActive && this.dismiss();
-        this.unreg && this.unreg();
+      dismissOnPageChangeHandler () {
+        this.isActive && this.dismiss()
+        this.unreg && this.unreg()
       }
     },
-    created(){
+    created () {
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
-        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false});
+        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
       }
     },
     components: {

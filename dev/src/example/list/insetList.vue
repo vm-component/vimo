@@ -1,30 +1,30 @@
 <template>
-  <Page>
-    <Header>
-      <Navbar>
-        <Title>InsetList</Title>
-      </Navbar>
-    </Header>
-    <Content class="outer-content">
-      <List inset>
-        <Item button v-for="(item,index) in list" :key="index">
-          {{item}}
-        </Item>
-      </List>
-    </Content>
-  </Page>
+    <Page>
+        <Header>
+            <Navbar>
+                <Title>InsetList</Title>
+            </Navbar>
+        </Header>
+        <Content class="outer-content">
+            <List inset>
+                <Item button v-for="(item,index) in list" :key="index">
+                    {{item}}
+                </Item>
+            </List>
+        </Content>
+    </Page>
 </template>
 <style scoped lang="scss">
 
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { Note } from 'vimo/components/note'
   import { Avatar } from 'vimo/components/avatar'
   import { Label } from 'vimo/components/label'
   export default{
-    data(){
+    data () {
       return {
         list: [
           'InsetList 1',
@@ -40,16 +40,10 @@
           'InsetList 11',
           'InsetList 12',
           'InsetList 13',
-          'InsetList 14',
+          'InsetList 14'
         ]
       }
     },
-    watch: {},
-    computed: {},
-    methods: {},
-    created() {},
-    mounted () {},
-    activated () {},
     components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label}
   }
 </script>

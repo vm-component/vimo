@@ -4,44 +4,43 @@
 // --------------------------------------------------
 
 /// @prop - Text color of the activated segment button
-$segment-button-md-text-color-activated:       $toolbar-md-active-color !default;
+$segment-button-md-text-color-activated: $toolbar-md-active-color !default;
 
 /// @prop - Border color of the activated segment button
-$segment-button-md-border-color-activated:     $toolbar-md-active-color !default;
+$segment-button-md-border-color-activated: $toolbar-md-active-color !default;
 
 /// @prop - Width of the bottom border on the segment button
-$segment-button-md-border-bottom-width:        2px !default;
+$segment-button-md-border-bottom-width: 2px !default;
 
 /// @prop - Color of the bottom border on the segment button
-$segment-button-md-border-bottom-color:        rgba(#000, .10) !default;
+$segment-button-md-border-bottom-color: rgba(#000, .10) !default;
 
 /// @prop - Opacity of the segment button
-$segment-button-md-opacity:                    .7 !default;
+$segment-button-md-opacity: .7 !default;
 
 /// @prop - Opacity of the activated segment button
-$segment-button-md-opacity-activated:          1 !default;
+$segment-button-md-opacity-activated: 1 !default;
 
 /// @prop - Opacity of the disabled segment button
-$segment-button-md-opacity-disabled:           .3 !default;
+$segment-button-md-opacity-disabled: .3 !default;
 
 /// @prop - Padding of the segment button
-$segment-button-md-padding:                    0 6px !default;
+$segment-button-md-padding: 0 6px !default;
 
 /// @prop - Height of the segment button
-$segment-button-md-height:                     42px !default;
+$segment-button-md-height: 42px !default;
 
 /// @prop - Line height of the segment button
-$segment-button-md-line-height:                40px !default;
+$segment-button-md-line-height: 40px !default;
 
 /// @prop - Font size of the segment button
-$segment-button-md-font-size:                  12px !default;
+$segment-button-md-font-size: 12px !default;
 
 /// @prop - Size of an icon in the segment button
-$segment-button-md-icon-size:                  26px !default;
+$segment-button-md-icon-size: 26px !default;
 
 /// @prop - Line height of an icon in the segment button
-$segment-button-md-icon-line-height:           $segment-button-md-line-height !default;
-
+$segment-button-md-icon-line-height: $segment-button-md-line-height !default;
 
 .segment-md .segment-button {
   flex: 1;
@@ -96,7 +95,6 @@ $segment-button-md-icon-line-height:           $segment-button-md-line-height !d
 
 }
 
-
 // Material Design Segment Button Mixin
 // --------------------------------------------------
 
@@ -114,7 +112,6 @@ $segment-button-md-icon-line-height:           $segment-button-md-line-height !d
   }
 
 }
-
 
 // Material Design Segment Color Generation
 // --------------------------------------------------

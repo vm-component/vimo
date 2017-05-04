@@ -5,7 +5,7 @@
         </div>
     </div>
 </template>
-<script>
+<script type="text/javascript">
   /**
    * @component Slide
    * @description

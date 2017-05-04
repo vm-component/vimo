@@ -6,7 +6,7 @@
 <style lang="scss">
     @import "grid.scss";
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Grid
    * @description
@@ -93,6 +93,6 @@
    * </Grid>
    * */
   export default{
-    name: 'Grid',
+    name: 'Grid'
   }
 </script>

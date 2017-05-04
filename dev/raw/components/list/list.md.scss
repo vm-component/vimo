@@ -4,50 +4,49 @@
 // --------------------------------------------------
 
 /// @prop - Margin top of the list
-$list-md-margin-top:             16px !default;
+$list-md-margin-top: 16px !default;
 
 /// @prop - Margin right of the list
-$list-md-margin-right:           0 !default;
+$list-md-margin-right: 0 !default;
 
 /// @prop - Margin bottom of the list
-$list-md-margin-bottom:          16px !default;
+$list-md-margin-bottom: 16px !default;
 
 /// @prop - Margin left of the list
-$list-md-margin-left:            0 !default;
+$list-md-margin-left: 0 !default;
 
 /// @prop - Margin top of the inset list
-$list-inset-md-margin-top:       16px !default;
+$list-inset-md-margin-top: 16px !default;
 
 /// @prop - Margin right of the inset list
-$list-inset-md-margin-right:     16px !default;
+$list-inset-md-margin-right: 16px !default;
 
 /// @prop - Margin bottom of the inset list
-$list-inset-md-margin-bottom:    16px !default;
+$list-inset-md-margin-bottom: 16px !default;
 
 /// @prop - Margin left of the inset list
-$list-inset-md-margin-left:      16px !default;
+$list-inset-md-margin-left: 16px !default;
 
 /// @prop - Border radius of the inset list
-$list-inset-md-border-radius:    2px !default;
+$list-inset-md-border-radius: 2px !default;
 
 /// @prop - Margin bottom of the header in a list
-$list-md-header-margin-bottom:   13px !default;
+$list-md-header-margin-bottom: 13px !default;
 
 /// @prop - Padding left of the header in a list
-$list-md-header-padding-left:    $item-md-padding-left !default;
+$list-md-header-padding-left: $item-md-padding-left !default;
 
 /// @prop - Minimum height of the header in a list
-$list-md-header-min-height:      45px !default;
+$list-md-header-min-height: 45px !default;
 
 /// @prop - Border top of the header in a list
-$list-md-header-border-top:      1px solid $list-md-border-color !default;
+$list-md-header-border-top: 1px solid $list-md-border-color !default;
 
 /// @prop - Font size of the header in a list
-$list-md-header-font-size:       14px !default;
+$list-md-header-font-size: 14px !default;
 
 /// @prop - Text color of the header in a list
-$list-md-header-color:           #757575 !default;
-
+$list-md-header-color: #757575 !default;
 
 // Material Design Default List
 // --------------------------------------------------
@@ -108,7 +107,6 @@ $list-md-header-color:           #757575 !default;
   margin-top: -$list-md-margin-top;
 }
 
-
 // Material Design Inset List
 // --------------------------------------------------
 
@@ -143,7 +141,6 @@ $list-md-header-color:           #757575 !default;
   background-color: $list-md-background-color;
 }
 
-
 // Material Design No Lines List
 // --------------------------------------------------
 
@@ -152,7 +149,6 @@ $list-md-header-color:           #757575 !default;
 .list-md[no-lines] .item .item-inner {
   border-width: 0;
 }
-
 
 // Material Design List Header
 // --------------------------------------------------
@@ -167,7 +163,6 @@ $list-md-header-color:           #757575 !default;
   font-size: $list-md-header-font-size;
   color: $list-md-header-color;
 }
-
 
 // Generate Material Design List Header Colors
 // --------------------------------------------------

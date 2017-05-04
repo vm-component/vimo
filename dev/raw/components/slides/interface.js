@@ -229,7 +229,7 @@ export function getProps () {
         if (value) {
           tmp = {
             type: Object,
-            default(){
+            default () {
               return JSON.parse(JSON.stringify(value))
             }
           }
@@ -237,7 +237,7 @@ export function getProps () {
           // Number String Function
           tmp = {
             type: [Object, Number, String, Function, Array],
-            default(){
+            default () {
               return null
             }
           }
@@ -246,7 +246,7 @@ export function getProps () {
       case 'function':
         tmp = {
           type: Function,
-          default(){
+          default () {
             return value
           }
         }

@@ -26,10 +26,10 @@
 </template>
 <style scoped lang="scss">
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Searchbar } from 'vimo/components/searchbar'
   export default{
-    data(){
+    data () {
       return {
         myInput: ''
       }
@@ -42,19 +42,19 @@
     computed: {},
     methods: {
       onInput ($event) {
-        console.debug('outer-onInput:');
+        console.debug('outer-onInput:')
       },
       onCancel ($event) {
-        console.debug('outer-onCancel:');
+        console.debug('outer-onCancel:')
       },
       onClear ($event) {
-        console.debug('outer-onClear:');
+        console.debug('outer-onClear:')
       },
       onBlur ($event) {
-        console.debug('outer-onBlur:');
+        console.debug('outer-onBlur:')
       },
       onFocus ($event) {
-        console.debug('outer-onFocus:');
+        console.debug('outer-onFocus:')
       }
     },
     created () {

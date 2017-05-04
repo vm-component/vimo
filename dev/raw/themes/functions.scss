@@ -1,4 +1,3 @@
-
 // Color Functions
 // --------------------------------------------------
 
@@ -9,7 +8,6 @@
 
   @return (red($color-value) * .299 + green($color-value) * .587 + blue($color-value) * .114) / 255 * 100%;
 }
-
 
 @function color-inverse($color-value, $dark: #000, $light: #fff) {
   @if (type-of($color-value) != color) {
@@ -58,7 +56,6 @@
 
   @return color-inverse($color-value, $dark, $light);
 }
-
 
 @function color-shade($color-value, $amount:8%) {
   @if (type-of($color-value) != color) {
@@ -118,7 +115,6 @@
   @return map-merge($colors-map, ());
 }
 
-
 // String Replace Function
 // --------------------------------------------------
 
@@ -132,7 +128,6 @@
   @return $string;
 }
 
-
 // URL Encode Function
 // --------------------------------------------------
 
@@ -141,7 +136,6 @@
   $encoded: str-replace($spaces, "#", "%23");
   @return $encoded;
 }
-
 
 // Fetch nested keys
 // @param {Map} $map - Map
@@ -157,7 +151,6 @@
   @return $map;
 }
 
-
 // Fetch map color value
 // @param {Map} $map - Map
 // @param {String} $color-name - Color name to get
@@ -172,8 +165,8 @@
 
   // If we were given a map we need to grab the value
   // of the key that is passed or the base key
-  @if(type-of($color-value) == map) {
-    @if($color-key) {
+  @if (type-of($color-value) == map) {
+    @if ($color-key) {
       $color-value: map-fetch($map, $color-name, $color-key);
     } @else {
       $color-value: map-fetch($map, $color-name, base);
@@ -244,7 +237,7 @@
       $color-value: color-inverse(map-get($color-value, base));
     }
 
-  } @elseif ($custom-contrast-mode) {
+  } @else if ($custom-contrast-mode) {
     // If a mode was passed we need to call
     // the custom inverse function to get the inverse
     // color based on the mode
@@ -266,7 +259,6 @@
   @return $color-value;
 }
 
-
 // Create a list using the colors map
 // @param {Map} $colors - colors map
 // @return {List} $color-name, $color-base, $color-contrast
@@ -278,7 +270,7 @@
     $color-base: null;
     $color-contrast: null;
 
-    @if(type-of($color-value) == map) {
+    @if (type-of($color-value) == map) {
       $color-base: map-get($color-value, base);
       $color-contrast: map-get($color-value, contrast);
     } @else {

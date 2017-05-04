@@ -97,15 +97,15 @@
 
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   export default{
-    data(){
+    data () {
       return {}
     },
     methods: {
       primary: function () {
-        alert('primary');
+        alert('primary')
       }
-    },
+    }
   }
 </script>

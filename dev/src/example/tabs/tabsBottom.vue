@@ -17,42 +17,35 @@
     </Page>
 </template>
 <style scoped lang="scss"></style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
+
   import { Tabs, Tab } from 'vimo/components/tabs'
   export default{
     name: 'name',
-    data(){
+    data () {
       return {
-        timer: null,
+        timer: null
       }
     },
-    props: {},
-    watch: {},
     computed: {
-      tabsComponent(){
+      tabsComponent () {
         return this.$refs.tabs
       }
     },
-    methods: {
-      onTabChange(index){
-        console.debug('事件 -> onTabChange-selectedIndex:' + index);
-        console.debug('当前选择index的tab实例:')
-        console.debug(this.tabsComponent.getByIndex(index))
-        console.debug('获取当前在激活状态的tab实例:')
-        console.debug(this.tabsComponent.getSelected())
-        console.debug('由Tabs组件获取当前激活的index:' + this.tabsComponent.getActivatedIndex());
+    onTabChange (index) {
+      console.debug('事件 -> onTabChange-selectedIndex:' + index)
+      console.debug('当前选择index的tab实例:')
+      console.debug(this.tabsComponent.getByIndex(index))
+      console.debug('获取当前在激活状态的tab实例:')
+      console.debug(this.tabsComponent.getSelected())
+      console.debug('由Tabs组件获取当前激活的index:' + this.tabsComponent.getActivatedIndex())
 
 //        console.debug('3s后选择第一个')
 //        clearTimeout(this.timer)
 //        this.timer = setTimeout(()=>{
 //          this.tabsComponent.select(0)
 //        },3000)
-
-      },
     },
-    created () {},
-    mounted () {},
-    activated () {},
     components: {Tabs, Tab}
   }
 </script>

@@ -24,7 +24,7 @@
         }
     }
 </style>
-<script>
+<script type="text/javascript">
 
   /**
    * @component Base/Nav
@@ -44,7 +44,7 @@
     props: {
       animate: [String]
     },
-    data(){
+    data () {
       return {
         // -------- Nav --------
         // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition
@@ -58,16 +58,16 @@
 
         isMenuOpen: false, // ion-menu开启
         menuId: null, // menuId
-        menuType: '', // "overlay", "reveal", "push"  这里只处理 reveal/push
+        menuType: '', // overlay/reveal/push  这里只处理 reveal/push
         menuSide: 'left', // 方向
         menuContentClass: null,
         menuContentTypeClass: null,
-        transform: !!VM && !!VM.platform && !!VM.platform.css ? VM.platform.css.transform : 'webkitTransform',
+        transform: window.VM && window.VM.platform && window.VM.platform.css ? window.VM.platform.css.transform : 'webkitTransform'
       }
     },
     computed: {
-      pageTransition(){
-        if (!!this.animate) {
+      pageTransition () {
+        if (this.animate) {
           return `${this.animate}-${this.pageTransitionDirection}`
         } else {
           return `${this.pageTransitionName}-${this.pageTransitionDirection}`
@@ -80,7 +80,7 @@
        * 初始化导航
        * @private
        * */
-      initNav(){
+      initNav () {
         // pageTransitionName 传值问题
         let _pageTransitionName = this.$config.get('pageTransition')
         if (!_pageTransitionName) {
@@ -110,7 +110,7 @@
        * 点击nav关闭Menu
        * @private
        * */
-      tapToCloseMenu(){
+      tapToCloseMenu () {
         const _this = this
         _this.$nextTick(function () {
           _this.isMenuOpen && _this.$menus.close()
@@ -121,8 +121,8 @@
        * 设置Menu的信息
        * @private
        * */
-      setMenuInfo(menuId){
-        if (!!menuId) {
+      setMenuInfo (menuId) {
+        if (menuId) {
           this.menuId = menuId
           this.menuSide = this.$menus.menuIns[menuId].side
           this.menuType = this.$menus.menuIns[menuId].type
@@ -135,7 +135,7 @@
        * 初始化menu组件对应的监听处理
        * @private
        * */
-      initMenu(){
+      initMenu () {
         let _translateX
         const _this = this
         // 监听menu的组件事件
@@ -158,9 +158,7 @@
               _this.menuStyleObj[_this.transform] = `translateX(-${_translateX}px)`
             }
           }
-
         })
-
         _this.$eventBus.$on('onMenuClosing', function (menuId) {
           _this.isMenuOpen = false
           if (_this.menuType === 'reveal' || _this.menuType === 'push') {
@@ -172,7 +170,7 @@
         })
       }
     },
-    created(){
+    created () {
       // 初始化menu组件对应的监听处理
       this.initMenu()
 

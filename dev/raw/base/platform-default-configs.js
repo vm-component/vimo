@@ -22,7 +22,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         // 负整数
         negativeInteger: /^-[1-9]\d*$/,
         // 邮箱
-        email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        email: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
         // IP地址
         ip: /(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)/,
         // 身份证
@@ -112,7 +112,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
             // 检查生日日期是否正确
             dtmBirth = new Date(arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4])
             bGoodDay
-            bGoodDay = (dtmBirth.getFullYear() === Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() === Number(arrSplit[4]))
+            bGoodDay = (dtmBirth.getFullYear() === Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) === Number(arrSplit[3])) && (dtmBirth.getDate() === Number(arrSplit[4]))
             if (!bGoodDay) {
               console.debug('输入的身份证号里出生日期不对！')
               return false
@@ -153,7 +153,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         // 网址URL, 必须以(https|http|ftp|rtsp|mms)开头
         url: /^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/
       },
-      jsScrollOptions:{
+      jsScrollOptions: {
         bounce: false,              // 关闭滚动回弹
         bindToWrapper: true,        // 绑定scroll事件到当前容器而不是window上
         mouseWheel: true,           // 可以鼠标滚轮滚动
@@ -167,7 +167,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
 
         click: true,       // 如果开启则需要双击才能触发click事件(当前引用了fastclick)
         probeType: 3        // 实时监听每一次滚动, 2: 手指点击页面才触发滚动
-      },
+      }
     }
   },
   android: {
@@ -195,10 +195,10 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       inputCloning: true,
       autoFocusAssist: 'immediate'
     },
-    isMatch(plt) {
+    isMatch (plt) {
       return plt.isPlatformMatch('android', ['android', 'silk'], ['windows phone'])
     },
-    versionParser(plt) {
+    versionParser (plt) {
       return plt.matchUserAgentVersion(/Android (\d+).(\d+)?/)
     }
   },
@@ -233,10 +233,10 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tapPolyfill: isIosUIWebView,
       virtualScrollEventAssist: isIosUIWebView
     },
-    isMatch(plt) {
+    isMatch (plt) {
       return plt.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone'])
     },
-    versionParser(plt) {
+    versionParser (plt) {
       return plt.matchUserAgentVersion(/OS (\d+)_(\d+)?/)
     }
   },
@@ -312,19 +312,19 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         })
       }
     },
-    onBridgeReady(plt){},
+    onBridgeReady (plt) {},
     settings: {
       hideNavBar: true
     },
-    isMatch(plt) {
+    isMatch (plt) {
       return plt.isPlatformMatch('wechat', ['micromessenger'])
     },
-    versionParser(plt) {
+    versionParser (plt) {
       return plt.matchUserAgentVersion(/micromessenger\/(\d+).(\d+).(\d+)?/i)
     }
   },
   alipay: {
-    initialize(plt){
+    initialize (plt) {
       /**
        * 支付宝的userAgent中包含了网络类型和当前语言
        * AlipayDefined(nt:WIFI,ws:320|548|2.0)
@@ -348,19 +348,19 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       // 触发外层的ready
       plt.triggerReady('alipay Init Success!')
     },
-    onBridgeReady(plt){},
+    onBridgeReady (plt) {},
     settings: {
       hideNavBar: true
     },
-    isMatch(plt) {
+    isMatch (plt) {
       return plt.isPlatformMatch('alipay', ['alipay', 'alipayclient'])
     },
-    versionParser(plt) {
+    versionParser (plt) {
       return plt.matchUserAgentVersion(/alipayclient\/(\d+).(\d+).(\d+)?/i)
     }
   },
   dingtalk: {
-    initialize(plt){
+    initialize (plt) {
       /**
        * 钉钉的userAgent中包含了网络类型和当前语言
        * AlipayDefined(nt:WIFI,ws:320|548|2.0)
@@ -374,19 +374,19 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       this.onBridgeReady(plt)
       plt.triggerReady('dingtalk Init Success!')
     },
-    onBridgeReady(plt){},
+    onBridgeReady (plt) {},
     settings: {
       hideNavBar: true
     },
-    isMatch(plt) {
+    isMatch (plt) {
       return plt.isPlatformMatch('dingtalk')
     },
-    versionParser(plt) {
+    versionParser (plt) {
       return plt.matchUserAgentVersion(/dingtalk\/(\d+).(\d+).(\d+)?/i)
     }
   },
   qq: {
-    initialize(plt){
+    initialize (plt) {
       // 获取网络类型
       // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
       let val = plt.userAgent().match(/NetType\/(\w+)/i)
@@ -398,14 +398,14 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       // 触发外层的ready
       plt.triggerReady('qq Init Success!')
     },
-    onBridgeReady(plt){},
+    onBridgeReady (plt) {},
     settings: {
       hideNavBar: true
     },
-    isMatch(plt) {
+    isMatch (plt) {
       return plt.isPlatformMatch('qq')
     },
-    versionParser(plt) {
+    versionParser (plt) {
       return plt.matchUserAgentVersion(/qq\/(\d+).(\d+).(\d+)?/i)
     }
   }

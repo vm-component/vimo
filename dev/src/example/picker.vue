@@ -30,8 +30,9 @@
             </p>
             <Grid>
                 <Row justify-content-center>
-                    <RegionPicker :selectedCity="['520000', '520100', '520103']" @onSelected="onSelectedHandler" style="width: 100%">
-                       <Button block><span>点击选择城市(同步)</span></Button>
+                    <RegionPicker :selectedCity="['520000', '520100', '520103']" @onSelected="onSelectedHandler"
+                                  style="width: 100%">
+                        <Button block><span>点击选择城市(同步)</span></Button>
                     </RegionPicker>
                 </Row>
             </Grid>
@@ -48,23 +49,23 @@
 <style scoped lang="scss">
 
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { RegionPicker } from 'vimo/components/region-picker'
   export default{
     name: 'name',
-    data(){
+    data () {
       return {
         province: null,
         city: null,
         region: null,
-        dataAsync: [],
+        dataAsync: []
       }
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
-      onSelectedHandler(data){
+      onSelectedHandler (data) {
         console.debug('城市三级选择的结果:')
         console.debug(data)
         this.province = data[0]

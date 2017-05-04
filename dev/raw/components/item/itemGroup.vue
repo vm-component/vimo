@@ -3,52 +3,39 @@
         <slot></slot>
     </div>
 </template>
-<script>
+<script type="text/javascript">
   import { isTrueProperty } from '../../util/util'
   export default{
-    /**
-     *
-     * @fires onItemReorder {from: 0, to: 4}
-     * */
     name: 'ItemGroup',
     props: {
       reorder: [Boolean]
     },
-    data(){
+    data () {
       return {
-        enableReorder: false,   //
-        visibleReorder: false,  //
+        enableReorder: false,
+        visibleReorder: false,
 
         lastToIndex: -1,
         element: null,
-        reorderGesture: true,
+        reorderGesture: true
       }
     },
     watch: {
-      reorder(val){
-
-        let enabled = isTrueProperty(val);
-
+      reorder (val) {
+        let enabled = isTrueProperty(val)
         if (!enabled) {
-          this.visibleReorder = false;
-          window.setTimeout(() => this.enableReorder = false, 400)
-
+          this.visibleReorder = false
+          window.setTimeout(() => { this.enableReorder = false }, 400)
         } else if (enabled) {
-          console.debug('enableReorderItems');
+          console.debug('enableReorderItems')
 
-          this.enableReorder = true;
+          this.enableReorder = true
 
           window.setTimeout(() => {
-            this.visibleReorder = true;
+            this.visibleReorder = true
           }, 16)
-
         }
-
       }
-    },
-    mounted(){
-
     }
-
   }
 </script>

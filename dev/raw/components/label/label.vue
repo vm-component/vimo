@@ -11,7 +11,7 @@
     @import "./label.ios.scss";
     @import "./label.md.scss";
 </style>
-<script>
+<script type="text/javascript">
   /**
    * @component Label
    * @description
@@ -41,9 +41,9 @@
   import { setElementClass } from '../../util/util'
   export default{
     name: 'Label',
-    data(){
+    data () {
       return {
-        itemComponent: null, // 父元素Item实例
+        itemComponent: null // 父元素Item实例
       }
     },
     props: {
@@ -52,7 +52,7 @@
        * */
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark
@@ -62,7 +62,7 @@
       // label格式
       fixed: [Boolean],
       floating: [Boolean],
-      stacked: [Boolean],
+      stacked: [Boolean]
     },
     computed: {
       // 环境样式
@@ -71,7 +71,7 @@
       },
       // 颜色
       colorClass () {
-        return !!this.color ? (`label-${this.mode}-${this.color}`) : ''
+        return this.color ? (`label-${this.mode}-${this.color}`) : ''
       }
     },
     mounted () {
@@ -82,7 +82,7 @@
        * stacked: floating的特例, 不管有没有值, 都浮动到上部
        * */
       if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
-        this.itemComponent = this.$parent;
+        this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-label-fixed', this.fixed)
         setElementClass(this.itemComponent.$el, 'item-label-floating', this.floating)
         setElementClass(this.itemComponent.$el, 'item-label-stacked', this.stacked)

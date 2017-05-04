@@ -8,18 +8,20 @@
         <Content padding>
             <h1>IMG Lazyload</h1>
             <p>只有需要加载的图片才会下载显示, 已下载完毕的图片会等到合适位置才显示.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius expedita officia quam reiciendis similique suscipit vel. Assumenda, cum error eum, fuga nobis pariatur placeat praesentium qui, repellendus repudiandae similique veritatis.</p>
-            <Img width="100%" height="200" :src="'static/background/' + i + '.jpg'" v-for="i in totalCount" :key="i"></Img>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius expedita officia quam reiciendis similique suscipit vel. Assumenda, cum error eum, fuga nobis pariatur placeat praesentium qui, repellendus repudiandae similique veritatis.</p>
+            <Img width="100%" height="200" :src="'static/background/' + i + '.jpg'" v-for="i in totalCount"
+                 :key="i"></Img>
         </Content>
     </Page>
 </template>
 <style scoped lang="scss">
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Img } from 'vimo/components/img'
   export default{
     name: 'name',
-    data(){
+    data () {
       return {
         totalCount: 24
       }

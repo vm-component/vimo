@@ -421,10 +421,10 @@
         outline: 1px solid #a9a9a9;
     }
 </style>
-<script>
+<script type="text/javascript">
   export default{
     name: 'name',
-    data(){
+    data () {
       return {}
     },
     props: {},

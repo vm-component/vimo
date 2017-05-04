@@ -18,7 +18,7 @@
  *
  * @usage
  * // 开启
- * openModal(){
+ * openModal () {
  *        this.$modal.present({
  *          template: modalPageComponent_1,
  *          modalData: {hello: 'Page1Data'},
@@ -30,7 +30,7 @@
  * },
  *
  * // 关闭
- * closeModal(){
+ * closeModal () {
  *        this.$modal.dismiss({
  *          result: 'modal 1 dismissed success!'
  *        })
@@ -61,7 +61,8 @@ function ModalFactory (options) {
 
 /**
  * 开启Modal方法
- * 如果不懂想下: 桌子(页面)/菜盘(modal)/菜(template)的关系, 开启后获取Modal实例, 并将template初始化后挂在到Modal上, 然后注册urlChange事件. 在之后记录开启的Modal信息, 然后执行modal实例的_present开启.
+ * 如果不懂想下: 桌子(页面)/菜盘(modal)/菜(template)的关系, 开启后获取Modal实例, 并将template初始化后挂在到Modal上, 然后注册urlChange事件. 在之后记录开启的Modal信息,
+ * 然后执行modal实例的_present开启.
  *
  * @param {object} options
  * @param {VueComponent} options.template - modal页面
@@ -109,9 +110,7 @@ function present (options = {}) {
   // 初始化用户自定义弹层的页面
   // 需要异步执行，便于Content组件完成初始化
   window.setTimeout(function () {
-
     templateInstance = new Template({el, modalData})
-
     // 增加浏览器历史记录
     window.history.pushState({
       id: templateInstance._uid
@@ -128,7 +127,7 @@ function present (options = {}) {
   })
 
   // 如果是第一次进入则监听url变化
-  if (unRegisterUrlChange.length == 0) {
+  if (unRegisterUrlChange.length === 0) {
     registerListener(window, 'popstate', function () {
       if (navState === 0) {
         // 总是关闭最后一次创建的modal
@@ -142,13 +141,14 @@ function present (options = {}) {
     }, {}, unRegisterUrlChange)
   }
 
-  window.setTimeout(() => {navState = 0}, 400)
+  window.setTimeout(() => { navState = 0 }, 400)
   return presentPromise
 }
 
 /**
  * 全局注册dismiss方法
- * dismiss关闭最后一次打开的Modal, 并执行onDismiss函数, 就酱, 因为, modal是覆盖式的显示在页面上, 即使给定关闭的modal名字, 也无使用意义. `dataBack`数据将由外部`onDismiss`接收
+ * dismiss关闭最后一次打开的Modal, 并执行onDismiss函数, 就酱, 因为, modal是覆盖式的显示在页面上, 即使给定关闭的modal名字, 也无使用意义.
+ * `dataBack`数据将由外部`onDismiss`接收
  * @param {any} dataBack -  modal调用dismiss传递向外的数据
  * */
 function dismiss (dataBack) {

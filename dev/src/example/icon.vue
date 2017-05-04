@@ -90,6 +90,7 @@
         width: 30px;
         background: url('../assets/img/vue.png') no-repeat center center/cover;
     }
+
     .icon-vimo {
         height: 30px;
         width: 30px;
@@ -101,6 +102,7 @@
         width: 40px;
         background: url('../assets/img/alipay.png') no-repeat center center/cover;
     }
+
     .icon-wechat {
         height: 30px;
         width: 36px;
@@ -116,18 +118,18 @@
         }
     }
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import modeIcons from 'ionicons/dist/data/mode-icons.json'
   import logoIcons from 'ionicons/dist/data/logo-icons.json'
   export default{
-    data(){
+    data () {
       return {
         modeIconList: [],
-        logoIconList: [],
+        logoIconList: []
       }
     },
     methods: {
-      getIcons(icons){
+      getIcons (icons) {
         let count = 0
         let tmps = []
         let totals = []
@@ -141,9 +143,9 @@
           }
         }
         return totals
-      },
+      }
     },
-    created(){
+    created () {
       this.modeIconList = this.getIcons(modeIcons)
       this.logoIconList = this.getIcons(logoIcons)
     },

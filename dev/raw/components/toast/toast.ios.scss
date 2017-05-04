@@ -4,20 +4,19 @@
 // --------------------------------------------------
 
 /// @prop - Background of the toast wrapper
-$toast-ios-background:                            rgba(0, 0, 0, .9) !default;
+$toast-ios-background: rgba(0, 0, 0, .9) !default;
 
 /// @prop - Border radius of the toast wrapper
-$toast-ios-border-radius:                         6.5px !default;
+$toast-ios-border-radius: 6.5px !default;
 
 /// @prop - Color of the toast title
-$toast-ios-title-color:                           #fff !default;
+$toast-ios-title-color: #fff !default;
 
 /// @prop - Font size of the toast title
-$toast-ios-title-font-size:                       14px !default;
+$toast-ios-title-font-size: 14px !default;
 
 /// @prop - Padding of the toast title
-$toast-ios-title-padding:                         15px !default;
-
+$toast-ios-title-padding: 15px !default;
 
 .toast-ios .toast-wrapper {
   position: absolute;
@@ -33,17 +32,17 @@ $toast-ios-title-padding:                         15px !default;
 
 .toast-ios .toast-wrapper.toast-top {
   top: 10px;
-  transition: all cubic-bezier(.36,.66,.04,1) 400ms;
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
 }
 
 .toast-ios .toast-wrapper.toast-bottom {
   bottom: 10px;
-  transition: all cubic-bezier(.36,.66,.04,1) 400ms;
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
 }
 
 .toast-ios .toast-wrapper.toast-middle {
-  top:38.2%;
-  transition: opacity cubic-bezier(.36,.66,.04,1) 400ms;
+  top: 38.2%;
+  transition: opacity cubic-bezier(.36, .66, .04, 1) 400ms;
 }
 
 .toast-ios .toast-message {

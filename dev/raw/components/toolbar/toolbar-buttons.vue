@@ -4,7 +4,7 @@
     </div>
 </template>
 <style lang="scss"></style>
-<script>
+<script type="text/javascript">
   /**
    * @component Buttons
    * @description
@@ -37,7 +37,7 @@
        * */
       mode: {
         type: String,
-        default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
       }
     },
     computed: {

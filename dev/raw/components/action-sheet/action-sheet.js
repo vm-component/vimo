@@ -2,9 +2,9 @@
  * Created by Hsiang on 2016/12/23.
  */
 import Vue from 'vue'
-import actionSheetComponent from './action-sheet.vue'
-import { getPresentDismissIns } from '../../util/getPresentDismissIns'
 import { getInsertPosition } from '../../util/getInsertPosition'
+import { getPresentDismissIns } from '../../util/getPresentDismissIns'
+import actionSheetComponent from './action-sheet.vue'
 const ActionSheet = Vue.extend(actionSheetComponent)
 
 // ---------- functions ----------

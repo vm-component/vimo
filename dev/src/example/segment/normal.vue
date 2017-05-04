@@ -44,24 +44,24 @@
 </template>
 <style lang="scss">
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { Segment, SegmentButton } from 'vimo/components/segment'
   export default{
-    data(){
+    data () {
       return {
         fruit: 'apple',
         onChangeValue: null,
-        onSelectValue: null,
+        onSelectValue: null
       }
     },
     watch: {},
     computed: {},
     methods: {
-      onChangeHandler(val){
+      onChangeHandler (val) {
         console.debug('当前的Segment值发生变化: ' + val)
         this.onChangeValue = val
       },
-      onSelectHandler(val){
+      onSelectHandler (val) {
         console.debug('点击了SegmentButton按钮, 这个按钮的值: ' + val)
         this.onSelectValue = val
       }

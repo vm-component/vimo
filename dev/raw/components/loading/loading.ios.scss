@@ -4,44 +4,43 @@
 // --------------------------------------------------
 
 /// @prop - Padding of the loading wrapper
-$loading-ios-padding:                   24px 34px !default;
+$loading-ios-padding: 24px 34px !default;
 
 /// @prop - Max width of the loading wrapper
-$loading-ios-max-width:                 270px !default;
+$loading-ios-max-width: 270px !default;
 
 /// @prop - Maximum height of the loading wrapper
-$loading-ios-max-height:                90% !default;
+$loading-ios-max-height: 90% !default;
 
 /// @prop - Border radius of the loading wrapper
-$loading-ios-border-radius:             8px !default;
+$loading-ios-border-radius: 8px !default;
 
 /// @prop - Text color of the loading wrapper
-$loading-ios-text-color:                #000 !default;
+$loading-ios-text-color: #000 !default;
 
 /// @prop - Background of the loading wrapper
-$loading-ios-background:                #f8f8f8 !default;
+$loading-ios-background: #f8f8f8 !default;
 
 /// @prop - Font weight of the loading content
-$loading-ios-content-font-weight:       bold !default;
+$loading-ios-content-font-weight: bold !default;
 
 /// @prop - Color of the loading spinner
-$loading-ios-spinner-color:             #69717d !default;
+$loading-ios-spinner-color: #69717d !default;
 
 /// @prop - Color of the ios loading spinner
-$loading-ios-spinner-ios-color:         $loading-ios-spinner-color !default;
+$loading-ios-spinner-ios-color: $loading-ios-spinner-color !default;
 
 /// @prop - Color of the bubbles loading spinner
-$loading-ios-spinner-bubbles-color:     $loading-ios-spinner-color !default;
+$loading-ios-spinner-bubbles-color: $loading-ios-spinner-color !default;
 
 /// @prop - Color of the circles loading spinner
-$loading-ios-spinner-circles-color:     $loading-ios-spinner-color !default;
+$loading-ios-spinner-circles-color: $loading-ios-spinner-color !default;
 
 /// @prop - Color of the crescent loading spinner
-$loading-ios-spinner-crescent-color:    $loading-ios-spinner-color !default;
+$loading-ios-spinner-crescent-color: $loading-ios-spinner-color !default;
 
 /// @prop - Color of the dots loading spinner
-$loading-ios-spinner-dots-color:        $loading-ios-spinner-color !default;
-
+$loading-ios-spinner-dots-color: $loading-ios-spinner-color !default;
 
 .loading-ios .loading-wrapper {
   padding: $loading-ios-padding;
@@ -58,7 +57,6 @@ $loading-ios-spinner-dots-color:        $loading-ios-spinner-color !default;
   transition: all ease-in-out 200ms;
 }
 
-
 // iOS Loading Content
 // -----------------------------------------
 
@@ -69,7 +67,6 @@ $loading-ios-spinner-dots-color:        $loading-ios-spinner-color !default;
 .loading-ios .loading-spinner + .loading-content {
   margin-left: 16px;
 }
-
 
 // iOS Loading Spinner fill colors
 // -----------------------------------------
@@ -95,16 +92,17 @@ $loading-ios-spinner-dots-color:        $loading-ios-spinner-color !default;
   fill: $loading-ios-spinner-dots-color;
 }
 
-
 // transitioName = 'loading-ios'
 .loading-ios-enter-active, .loading-ios-leave-active {
   transform: scale(1);
   opacity: 1;
 }
+
 .loading-ios-enter {
   transform: scale(1.1);
   opacity: 0.01;
 }
+
 .loading-ios-leave-active {
   transform: scale(0.9);
   opacity: 0;

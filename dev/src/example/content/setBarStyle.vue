@@ -81,26 +81,26 @@
 <style scoped lang="scss">
 
 </style>
-<script>
+<script type="text/javascript">
   import { clamp } from 'vimo/util/util'
   export default{
     name: 'setBarStyle',
-    data(){
+    data () {
       return {}
     },
     props: {},
     watch: {},
     computed: {
-      headerComponent(){
+      headerComponent () {
         return this.$refs.header
       }
     },
     methods: {
-      onScrollHandler(ev){
+      onScrollHandler (ev) {
         const TOP = 200
         let precent = 1 - clamp(0, ev.scrollTop / TOP, 1)
         this.headerComponent.setStyle({
-          opacity: precent,
+          opacity: precent
         })
       }
     },

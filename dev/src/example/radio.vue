@@ -71,7 +71,7 @@
 </template>
 <style lang="scss">
 </style>
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, Item } from 'vimo/components/item'
   import { Label } from 'vimo/components/label'
@@ -80,7 +80,7 @@
 
   export default{
     name: 'radio',
-    data(){
+    data () {
       return {
         fruits: 'default',
         isAppleDisabled: false,
@@ -97,9 +97,9 @@
     watch: {},
     computed: {},
     methods: {
-      onSelectHandler(val){
+      onSelectHandler (val) {
         console.debug('当前选择的是: ' + val)
-      },
+      }
 
     },
     created: function () {

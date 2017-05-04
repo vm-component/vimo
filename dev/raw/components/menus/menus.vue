@@ -53,13 +53,13 @@
     }
 
 </style>
-<script>
+<script type="text/javascript">
   import { firstUpperCase } from '../../util/util'
   import { recordMenuInstance } from './menus'
   import { Backdrop } from '../backdrop'
   export default{
     name: 'Menus',
-    data(){
+    data () {
       return {
         isOpen: false, // menu-inner 动画控制
         showMenu: false, // 整体menu显示控制
@@ -68,7 +68,7 @@
 
         // promise
         presentCallback: null,
-        dismissCallback: null,
+        dismissCallback: null
       }
     },
     props: {
@@ -85,7 +85,7 @@
         default: 'left'
       },
       /**
-       * menu打开的类型: "overlay", "reveal", "push"
+       * menu打开的类型: overlay/reveal/push
        * */
       type: {
         type: String,
@@ -99,67 +99,67 @@
       enabled: {
         type: Boolean,
         default: true
-      },
+      }
     },
     methods: {
       // 过渡钩子
       _beforeEnter (el) {
-        this.$app && this.$app.setEnabled(false, 300);
+        this.$app && this.$app.setEnabled(false, 300)
       },
       _afterEnter (el) {
-        this.presentCallback(el);
+        this.presentCallback(el)
       },
-      _beforeLeave(){
-        this.$app && this.$app.setEnabled(false, 300);
+      _beforeLeave () {
+        this.$app && this.$app.setEnabled(false, 300)
       },
       _afterLeave (el) {
-        this.$eventBus && this.$eventBus.$emit('onMenuClosed', this.id);
-        this.dismissCallback(el);
-        this.showMenu = false;
+        this.$eventBus && this.$eventBus.$emit('onMenuClosed', this.id)
+        this.dismissCallback(el)
+        this.showMenu = false
       },
 
       /**
        * open
        * @return {promise}
        * */
-      openMenu(){
-        const _this = this;
-        if (!_this.enabled) return;
+      openMenu () {
+        const _this = this
+        if (!_this.enabled) return
 
-        _this.showMenu = true;
+        _this.showMenu = true
         if (_this.type === 'overlay') {
-          _this.showBackdrop = true;
+          _this.showBackdrop = true
           // 确定左右动画
-          _this.animationName = 'slideIn' + firstUpperCase(_this.side);
+          _this.animationName = 'slideIn' + firstUpperCase(_this.side)
         }
 
         if (_this.type === 'push') {
           // _this.showBackdrop = true;
           // 确定左右动画
-          _this.animationName = 'slideIn' + firstUpperCase(_this.side);
+          _this.animationName = 'slideIn' + firstUpperCase(_this.side)
         }
 
-        _this.isOpen = true;
-        this.$eventBus && this.$eventBus.$emit('onMenuOpen', this.id);
-        return new Promise((resolve) => {this.presentCallback = resolve});
+        _this.isOpen = true
+        this.$eventBus && this.$eventBus.$emit('onMenuOpen', this.id)
+        return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
       /**
        * close
        * @return {promise}
        * */
-      closeMenu(){
-        const _this = this;
-        if (!_this.enabled) return;
-        _this.showBackdrop = false;
-        _this.isOpen = false;
-        _this.$eventBus && _this.$eventBus.$emit('onMenuClosing', _this.id);
-        return new Promise((resolve) => {this.dismissCallback = resolve});
-      },
+      closeMenu () {
+        const _this = this
+        if (!_this.enabled) return
+        _this.showBackdrop = false
+        _this.isOpen = false
+        _this.$eventBus && _this.$eventBus.$emit('onMenuClosing', _this.id)
+        return new Promise((resolve) => { this.dismissCallback = resolve })
+      }
     },
-    created(){
+    created () {
       // 记录当前实例
-      recordMenuInstance(this);
+      recordMenuInstance(this)
     },
     components: {
       'Backdrop': Backdrop

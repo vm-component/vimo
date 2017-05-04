@@ -80,7 +80,7 @@
  */
 
 import Vue from 'vue'
-import { isNumber, isString, isObject, isPresent, isFunction } from '../../util/util'
+import { isFunction, isNumber, isObject, isPresent, isString } from '../../util/util'
 import toastComponent from './toast.vue'
 const ToastConstructor = Vue.extend(toastComponent)
 const POSITIONS = ['top', 'middle', 'bottom']
@@ -95,7 +95,7 @@ class Toast extends ToastConstructor {
     super(options)
     // params
     if (isObject(options)) {
-      for (let key in options)  this[key] = options[key]
+      for (let key in options) this[key] = options[key]
     }
   }
 }
@@ -117,7 +117,7 @@ function ToastFactory () {
   let closeButtonText = 'Close'
   let dismissOnPageChange = false
   let onDismiss = noop
-  let mode = window.VM && window.VM.config && VM.config.get('mode', 'ios') || 'ios'
+  let mode = window.VM && window.VM.config && window.VM.config.get('mode', 'ios') || 'ios'
 
   // get el position
   _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body
@@ -145,20 +145,19 @@ function ToastFactory () {
     cssClass = isPresent(_args[0].cssClass) ? _args[0].cssClass.trim() : cssClass
 
     // closeButton
-    if (!!_args[0].showCloseButton) duration = null
-    showCloseButton = !!_args[0].showCloseButton
+    if (_args[0].showCloseButton) duration = null
+    showCloseButton = _args[0].showCloseButton
 
     closeButtonText = isPresent(_args[0].closeButtonText) ? _args[0].closeButtonText.trim() : closeButtonText
 
     // dismissOnPageChange
-    dismissOnPageChange = !!_args[0].dismissOnPageChange
+    dismissOnPageChange = _args[0].dismissOnPageChange
 
     // onDismiss
     onDismiss = (isPresent(_args[0].onDismiss) && isFunction(_args[0].onDismiss)) ? _args[0].onDismiss : onDismiss
 
     // mode
     mode = isPresent(_args[0].mode) ? _args[0].mode.trim() : mode
-
   }
 
   return new Toast({
@@ -180,13 +179,16 @@ function ToastFactory () {
  * @function present
  * @description 打开Toast
  * @param {object} args - 传入参数
- * @param {string} args.message - The message for the toast. Long strings will wrap and the toast container will expand.
+ * @param {string} args.message - The message for the toast. Long strings will wrap and the toast container will
+ *   expand.
  * @param {number} [args.duration=3000] - How many milliseconds to wait before hiding the toast.
- * @param {string} [args.position="bottom"] - The position of the toast on the screen. Accepted values: "top", "middle", "bottom".
+ * @param {string} [args.position="bottom"] - The position of the toast on the screen. Accepted values: "top",
+ *   "middle", "bottom".
  * @param {string} [args.cssClass] - Additional classes for custom styles, separated by spaces.
  * @param {boolean} [args.showCloseButton=false] - Whether or not to show a button to close the toast.
  * @param {string} [args.closeButtonText='Close'] - Text to display in the close button.
- * @param {boolean} [args.dismissOnPageChange=false] - Whether to dismiss the toast when navigating to a new page or nav back.
+ * @param {boolean} [args.dismissOnPageChange=false] - Whether to dismiss the toast when navigating to a new page or
+ *   nav back.
  * @return {ToastInstance} 返回Toast的实例
  * @private
  * */
