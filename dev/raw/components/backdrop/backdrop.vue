@@ -37,7 +37,7 @@
    * @props {Function} [bdClick=noop] - 点击背景的处理方式
    * @props {Number} [top=0] - 偏移量
    * @props {Number} [left=0] - 偏移量
-   * @props {Boolean} [fixed=false] - 是否设置position：fixed
+   * @props {Boolean} [fixed=false] - 是否设置position：fixed, 防止滚动的时候幕布移动
    *
    * @fires component:Backdrop#onShown
    * @fires component:Backdrop#onHidden
@@ -88,7 +88,7 @@
         type: Number,
         default: 0
       },
-      // 设置position：fixed
+      // 设置position：fixed, 防止滚动的时候幕布移动
       fixed: [Boolean]
     },
     watch: {

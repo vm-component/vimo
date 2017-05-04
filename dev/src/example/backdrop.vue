@@ -34,10 +34,10 @@
             </div>
             <Button block @click="isActiveInner=!isActiveInner">打开Backdrop</Button>
 
+            <!--当前的幕布-->
             <Backdrop :isActive="isActive" :bdClick="function(){isActive=!isActive}" :top="top" :left="left" :fixed="true"></Backdrop>
         </Content>
     </Page>
-
 
 </template>
 
