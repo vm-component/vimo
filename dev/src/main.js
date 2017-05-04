@@ -1,7 +1,6 @@
 /* eslint-disable no-new */
 import AttachFastClick from './assets/js/fastclick'
 import 'ionicons/dist/css/ionicons.css'
-
 import vimo from 'vimo'
 // 全局组件
 import { ActionSheet } from 'vimo/components/action-sheet'

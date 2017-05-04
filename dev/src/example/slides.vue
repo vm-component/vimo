@@ -122,29 +122,29 @@
             </Slides>
 
 
-            <h5>Fade Effect</h5>
-            <small>这里有问题</small>
-            <Slides class="swiper"
-                    nextButton=".swiper-button-next"
-                    prevButton=".swiper-button-prev"
-                    pagination=".swiper-pagination"
-                    :paginationClickable="true"
-                    :watchSlidesProgress="true"
-                    effect="fade">
-                <!-- 幻灯内容 -->
-                <Slide class="slide">
-                    <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
-                    <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
-                    <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+            <!--<h5>Fade Effect</h5>-->
+            <!--<small>这里有问题</small>-->
+            <!--<Slides class="swiper"-->
+                    <!--nextButton=".swiper-button-next"-->
+                    <!--prevButton=".swiper-button-prev"-->
+                    <!--pagination=".swiper-pagination"-->
+                    <!--:paginationClickable="true"-->
+                    <!--:watchSlidesProgress="true"-->
+                    <!--effect="fade">-->
+                <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_1.jpg">-->
+                <!--</Slide>-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_2.jpg">-->
+                <!--</Slide>-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_3.jpg">-->
+                <!--</Slide>-->
+            <!--</Slides>-->
 
             <h5>3D Cube Effect</h5>
-            <Slides class="swiper"
+            <Slides class="swiper cubeEffect"
                     :watchSlidesProgress="true"
                     :virtualTranslate="true"
                     :resistanceRatio="0"
@@ -184,26 +184,26 @@
             </Slides>
 
 
-            <h5>3D Flip Effect</h5>
-            <small>这里有问题</small>
-            <Slides class="swiper flipEffect"
-                    effect="flip"
-                    nextButton=".swiper-button-next"
-                    prevButton=".swiper-button-prev"
-                    pagination=".swiper-pagination"
-                    :watchSlidesProgress="true"
-                    :grabCursor="false">
-                <!-- 幻灯内容 -->
-                <Slide class="slide">
-                    <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
-                    <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
-                    <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+            <!--<h5>3D Flip Effect</h5>-->
+            <!--<small>这里有问题</small>-->
+            <!--<Slides class="swiper flipEffect"-->
+                    <!--effect="flip"-->
+                    <!--nextButton=".swiper-button-next"-->
+                    <!--prevButton=".swiper-button-prev"-->
+                    <!--pagination=".swiper-pagination"-->
+                    <!--:watchSlidesProgress="true"-->
+                    <!--:grabCursor="false">-->
+                <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_1.jpg">-->
+                <!--</Slide>-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_2.jpg">-->
+                <!--</Slide>-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_3.jpg">-->
+                <!--</Slide>-->
+            <!--</Slides>-->
 
             <h5>Keyboard Control / Mousewheel Control</h5>
             <p>这部分在移动端不适用</p>
@@ -551,7 +551,7 @@
             top: 0;
             width: 130%;
             height: 100%;
-            background: url(../../static/img/scenery_2.jpg) no-repeat center center/cover
+            background: url(../../static/img/scenery_3.jpg) no-repeat center center/cover
         }
         .swiper-slide {
             background: transparent !important;
@@ -570,6 +570,10 @@
         }
     }
 
+    .cubeEffect {
+
+    }
+
     .flipEffect.swiper {
         width: 250px !important;
         /*height: 250px !important;*/
@@ -580,7 +584,7 @@
         }
 
         .swiper-wrapper {
-            transform: translate3d(0px, 0, 0) !important;
+            /*transform: translate3d(0px, 0, 0) !important;*/
         }
     }
 
@@ -612,6 +616,8 @@
 </style>
 <script type="text/ecmascript-6">
   import { Slides, Slide } from 'vimo/components/slides'
+
+  import Swiper from 'vimo/components/slides/swiper.js'
 
   export default{
     name: 'name',
@@ -690,14 +696,4 @@
     activated () {},
     components: {Slides, Slide}
   }
-
-  var a = {
-    methods: {
-      onInitHandler(swiperInstance){
-        console.debug('Swiper实例: ')
-        console.debug(swiperInstance)
-      }
-    }
-  }
 </script>
-
