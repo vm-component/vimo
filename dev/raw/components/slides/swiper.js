@@ -5357,8 +5357,3 @@
  ===========================*/
 
 export default window.Swiper
-
-//# sourceMappingURL=maps/swiper.js.map
-
-
-/* eslint-enable */

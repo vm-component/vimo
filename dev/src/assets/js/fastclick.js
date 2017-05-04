@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 ;(function () {
   'use strict'
 
@@ -831,4 +830,3 @@
     window.FastClick = FastClick
   }
 }())
-/* eslint-enable */
