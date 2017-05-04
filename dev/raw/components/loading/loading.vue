@@ -2,10 +2,10 @@
     <div class="ion-loading" :class="[modeClass,cssClass]">
         <Backdrop :isActive="isActive && showBackdrop" :enableBackdropDismiss="false"></Backdrop>
         <transition :name="transitionClass"
-                    v-on:before-enter="_beforeEnter"
-                    v-on:after-enter="_afterEnter"
-                    v-on:before-leave="_beforeLeave"
-                    v-on:after-leave="_afterLeave">
+                    @before-enter="beforeEnter"
+                    @after-enter="afterEnter"
+                    @before-leave="beforeLeave"
+                    @after-leave="afterLeave">
             <div class="loading-wrapper" v-show="isActive">
                 <div v-if="showSpinner" class="loading-spinner">
                     <Spinner :name="spinner"></Spinner>
@@ -143,6 +143,7 @@
         presentCallback: null,
         dismissCallback: null,
 
+        startTime: null,
         timer: null,
         unreg: null
       }
@@ -161,29 +162,28 @@
     },
     methods: {
       // -------- private --------
-
       /**
        * ActionSheet Animate Hooks
        * */
-      _beforeEnter () {
+      beforeEnter () {
         this.$app && this.$app.setEnabled(false, 200)
       },
-      _afterEnter (el) {
-        this.presentCallback(el)
+      afterEnter () {
+        this.presentCallback()
       },
-      _beforeLeave () {
+      beforeLeave () {
         this.$app && this.$app.setEnabled(false, 200)
       },
-      _afterLeave (el) {
+      afterLeave () {
         // 删除DOM
+        this.dismissCallback()
         this.$el.remove()
-        this.dismissCallback(el)
       },
       /**
        * @private
        * */
       dismissOnPageChangeHandler () {
-        this.isActive && this.dismiss()
+        this.dismiss()
         this.timer && window.clearTimeout(this.timer)
         this.unreg && this.unreg()
       },
@@ -197,8 +197,8 @@
        * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
        */
       present () {
-        const _this = this
-        _this.isActive = true
+        this.startTime = new Date().getTime()
+        this.isActive = true
         if (parseInt(this.duration) > 0) {
           this.timer && window.clearTimeout(this.timer)
           this.timer = window.setTimeout(() => {
@@ -215,9 +215,19 @@
        * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
        * */
       dismiss () {
-        const _this = this
-        _this.isActive = false // 动起来
-        this.timer && window.clearTimeout(this.timer)
+        let timeGap = 220 - new Date().getTime() + this.startTime
+        if (timeGap > 0) {
+          // bugFixed: 还未完全开启就执行关闭时导致原dom无法删除的bug
+          this.isActive = false // 动起来
+          this.$nextTick(() => {
+            this.timer && window.clearTimeout(this.timer)
+            this.dismissCallback()
+            this.$el.remove()
+          })
+        } else {
+          this.isActive = false // 动起来
+          this.timer && window.clearTimeout(this.timer)
+        }
         return new Promise((resolve) => { this.dismissCallback = resolve })
       }
     },

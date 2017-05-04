@@ -42,7 +42,7 @@ function LoadingFactory (options) {
 const options = {
   cssClass: 'indicator',
   showBackdrop: false,
-  duration: window.VM && window.VM.config.get('maxIndicatorDuration', 10000),
+  duration: window.VM && window.VM.config.get('maxIndicatorDuration', 30000),
   mode: 'ios'
 }
 
@@ -54,22 +54,12 @@ function getPresentDismissIns () {
      * 开启组件
      * @desc
      * 如果上一个实例是开启状态, 则自动关闭后开启新的
-     * @return {Promise} - 开启动画结束的promise
      * */
     present () {
-      return new Promise((resolve) => {
-        if (this._i) {
-          if (this._i.isActive) {
-            resolve()
-          } else {
-            this._i = LoadingFactory(options)
-            this._i.present().then(() => { resolve() })
-          }
-        } else {
-          this._i = LoadingFactory(options)
-          this._i.present().then(() => { resolve() })
-        }
-      })
+      if (!this._i || !this._i.isActive) {
+        this._i = LoadingFactory(options)
+        this._i.present()
+      }
     },
 
     /**
@@ -77,13 +67,9 @@ function getPresentDismissIns () {
      * @return {Promise} - 关闭动画结束的promise
      * */
     dismiss () {
-      return new Promise((resolve) => {
-        if (this._i && this._i.isActive) {
-          this._i.dismiss().then(() => { resolve() })
-        } else {
-          resolve()
-        }
-      })
+      if (this._i && this._i.isActive) {
+        this._i.dismiss()
+      }
     }
   }
 }

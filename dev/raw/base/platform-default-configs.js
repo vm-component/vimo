@@ -14,6 +14,8 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   mobile: {
     settings: {
       mode: 'md',
+      maxLoadingDuration: 10000, // loading组件最大开启时间
+      maxIndicatorDuration: 30000, // indicator组件最大开启时间
       regexps: {
         // 整数(包含正负)
         integer: /^-?[1-9]\d*$/,
@@ -188,10 +190,8 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
       pageTransition: 'zoom-transition', // 'zoom-transition'
-      scrollAssist: false,
-      maxLoadingDuration: 5000, // loading组件最大开启时间
-      maxIndicatorDuration: 10000, // indicator组件最大开启时间
 
+      scrollAssist: false,
       inputCloning: true,
       autoFocusAssist: 'immediate'
     },
@@ -221,8 +221,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       pageTransition: 'fade-right-transition', // 'ios-transition'
       statusbarPadding: false,
       scrollAssist: false,                      // 是否开启滚动辅助(jsScroll)
-      maxLoadingDuration: 5000, // loading组件最大开启时间
-      maxIndicatorDuration: 10000, // indicator组件最大开启时间
 
       activator: 'highlight',
       pickerRotateFactor: -0.46,

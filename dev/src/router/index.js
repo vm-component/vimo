@@ -1,3 +1,4 @@
+import { Indicator } from 'vimo/components/indicator'
 import Vue from 'vue'
 import Router from 'vue-router'
 import options from './route-opt.js'
@@ -13,12 +14,14 @@ Vue.use(Router)
  * onRouteChangeAfter: 页面变化后的事件.
  *
  * */
-// router.beforeEach((to, from, next) => {
-//     next()
-//   }
-// )
+router.beforeEach((to, from, next) => {
+
+  Indicator.present()
+
+  next()
+})
 //
-// router.afterEach((to, from) => {
-// })
+router.afterEach((to, from) => {
+})
 
 export default router
