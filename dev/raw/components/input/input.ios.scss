@@ -31,7 +31,8 @@ $text-input-ios-input-clear-icon-svg:      "<svg xmlns='http://www.w3.org/2000/s
 $text-input-ios-input-clear-icon-size:     18px !default;
 
 /// @prop - Show the focus highlight when the input has focus
-$text-input-ios-show-focus-highlight:      false !default;
+//$text-input-ios-show-focus-highlight:      false !default;
+$text-input-ios-show-focus-highlight:      true !default;
 
 /// @prop - Show the valid highlight when it is valid and has a value
 $text-input-ios-show-valid-highlight:      $text-input-ios-show-focus-highlight !default;

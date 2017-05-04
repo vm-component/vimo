@@ -1,31 +1,29 @@
-// 配置
+/* eslint-disable no-new */
+import AttachFastClick from './assets/js/fastclick'
+import 'ionicons/dist/css/ionicons.css'
 
-import router from './router'
-import Vue from 'vue'
-import App from './App.vue'
-import PLATFORM_CONFIGS from './config/platform-configs'
-import APP_CONFIGS from './config/app-configs'
-import AttachFastClick from 'fastclick'
 import vimo from 'vimo'
 // 全局组件
 import { ActionSheet } from 'vimo/components/action-sheet'
-import { Loading } from 'vimo/components/loading'
-import { Indicator } from 'vimo/components/indicator'
 import { Alert } from 'vimo/components/alert'
-import { Toast } from 'vimo/components/toast'
-import { Modal } from 'vimo/components/modal'
-import { Icon } from 'vimo/components/icon'
 import { Backdrop } from 'vimo/components/backdrop'
-import { Spinner } from 'vimo/components/spinner'
-import { Column, Grid, Row } from 'vimo/components/grid'
 import { Button } from 'vimo/components/button'
+import { Column, Grid, Row } from 'vimo/components/grid'
+import { Icon } from 'vimo/components/icon'
+import { Indicator } from 'vimo/components/indicator'
+import { Loading } from 'vimo/components/loading'
+import { Modal } from 'vimo/components/modal'
 import { Navbar } from 'vimo/components/navbar'
-import { Toolbar, Buttons, Title } from 'vimo/components/toolbar'
-
-import 'ionicons/dist/css/ionicons.css'
-
-/* eslint-disable no-new */
+import { Spinner } from 'vimo/components/spinner'
+import { Toast } from 'vimo/components/toast'
+import { Buttons, Title, Toolbar } from 'vimo/components/toolbar'
+import Vue from 'vue'
+import App from './App.vue'
+import APP_CONFIGS from './config/app-configs'
+import PLATFORM_CONFIGS from './config/platform-configs'
+import router from './router'
 new AttachFastClick(document.body)
+
 // Vue.config.productionTip = false;
 // 平台基础安装
 Vue.use(vimo, {

@@ -1,5 +1,3 @@
-
-
 /**
  * @module Util
  * @description
@@ -80,7 +78,7 @@ export const isUndefined = (val) => typeof val === 'undefined'
  * @return {Boolean}
  * @static
  * */
-export const isPresent = (val) => val !== undefined && val !== null
+export const isPresent = (val) => val !== undefined && val !== null && val !== ''
 
 /**
  * @function isBlank

@@ -59,8 +59,6 @@
    *
    *
    *
-   *
-   *
    * ### 如何引入
    * ```
    * // 引入
@@ -76,6 +74,56 @@
    * }
    * ```
    *
+   *
+   * ### 关于输入验证
+   *
+   * - 只在blur阶段才进行
+   * - `check`默认关闭, check只是作为内部正误标示, 对外提交不起作用
+   * - 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名, 这样的话, 验证位置就会统一.
+   * - 如果check开启, 但是regex无值, 则使用内置判断.
+   * - 如果regex有值, 则自动开启check
+   * - 内部验证的type有: integer/positiveInteger/negativeInteger/mobile/email/ip/idCard
+   *
+   * ### 内置的验证type
+   *
+   * 名称    | 类型              | 说明
+   * ------|-----------------|------------------------------------------------------------------------------
+   * 整数    | integer         |
+   * 正整数   | positiveInteger |
+   * 负整数   | negativeInteger |
+   * 邮箱    | email           |
+   * IP地址  | ip              |
+   * 身份证   | idCard          | 严格验证
+   * 密码    | password        | 密码需6-18位，以字母开头可含数字
+   * 国内电话  | tel             | 正确格式为：XXXX-XXXXXXX，XXXX- XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。
+   * 国内手机号 | mobile          | 13/14/15/18/17开头
+   * 验证汉字  | cn              |
+   * 验证码   | securityCode    | 至少4位
+   * 昵称    | nickName        | 可由中英文字母、数字、"-"、"_"组成。
+   * QQ号码  | qq              | qq: 1-9开头，最少5位。
+   * 网址URL | url             | 网址URL, 必须以(https,http,ftp,rtsp,mms)开头
+   *
+   *
+   *
+   *
+   *
+   * @props {Boolean} [clearInput] - 如果为true, 当输入值的时候一个清除按钮会在input右边出现, 点击按钮则清除输入. textarea没有这个特性
+   * @props {Boolean} [clearOnEdit] -  如果为true, 当再次输入的时候会清空上次的输入, 如果type为password时默认为true, 其余情况默认为false, 默认值的变更, 需要js控制
+   * @props {Boolean} [disabled] -  如果为true, 用户无法输入
+   * @props {Number} [max] -  设置最大值, 只对type=number有效
+   * @props {Number} [min] -  设置最小值, 只对type=number有效
+   * @props {Number} [step] - 设置数字变化的阶梯值, 只对type=number有效
+   * @props {String} [mode='ios'] - 当前平台
+   * @props {String} [placeholder] - 占位文字
+   * @props {Boolean} [readonly] - 只读模式, 不能修改
+   * @props {String} [type='text'] - 输入的类型: "text", "password", "email", "number", "search", "tel", or "url"
+   * @props {*} [value] - 内容输入值
+   * @props {Number} [debounce=0] - 触发间隔
+   * @props {RegExp} [regex] - 自定义正则
+   * @props {Boolean} [check] -  是否check输入结果, 如果regex有值, 则开启, 否自关闭. 如果check开启, 但是regex无值, 则使用内置判断. 默认关闭check, check只是作为内部正误标示, 对外提交不起作用, 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名, 这样的话, 验证位置就会统一.
+   *
+   *
+   *
    * @fires component:Input#onBlur
    * @fires component:Input#onFocus
    * @fires component:Input#onInput
@@ -86,13 +134,14 @@
    * <Textarea @onBlur="onBlur($event)" @onFocus="onFocus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>
    *
    * */
-  import { hasFocus, setElementClass } from '../../util/util'
+  import { hasFocus, setElementClass, isPresent, isFunction } from '../../util/util'
   import { Button } from '../../components/button'
   export default{
     data(){
       return {
         inputValue: this.value, // 内部value值
-        typeValue: this.type, // 内部value值
+        typeValue: this.type, // 内部type值
+        checkValue: this.check || !!this.regex, // 内部check值, 判断是否需要验证结果
 
         itemComponent: null, // 外部item组件实例 -> 修改class
         inputElement: null, // 当前输入的主体, input/textarea
@@ -145,9 +194,6 @@
         default(){ return window.VM && window.VM.config.get('mode') || 'ios' }
       },
 
-      /**
-       * 当前平台
-       * */
       placeholder: [String],
 
       /**
@@ -171,8 +217,18 @@
       debounce: {
         type: Number,
         default: 0,
-      }
+      },
 
+      // 自定义输入结果验证的正则表达式
+      regex: [RegExp],
+
+      // 是否check输入结果, 如果regex有值, 则开启, 否自关闭.
+      // 如果check开启, 但是regex无值, 则使用内置判断
+      // 默认关闭check
+      // check只是作为内部正误标示, 对外提交不起作用
+      // 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名
+      // 这样的话, 验证位置就会统一.
+      check: [Boolean]
     },
     computed: {
 
@@ -185,12 +241,68 @@
 
     },
     methods: {
+      /**
+       * 执行验证, 如果错误则设置ng-invalid, 正确则设置ng-valid
+       * */
+      verification(){
+
+        if (!this.checkValue) return
+
+        let result = this.getVerifyResult(this.inputValue, this.typeValue)
+        if (result === null) return
+        if (result) {
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', true)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', false)
+        } else {
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', false)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', true)
+        }
+      },
+
+      /**
+       * 获取验证结果
+       * @param {*} value - 待验证的值
+       * @param {String} type - 待验证的值的类型
+       * @private
+       * */
+      getVerifyResult(value, type = 'text'){
+        const regexps = this.$config.get('regexps')
+
+        if (!value) {
+          console.debug('当前没有值, 验证跳过, 返回true!')
+          return null
+        }
+
+        let _regex = this.regex
+        if (!_regex) {
+          _regex = regexps[type]
+        }
+
+        // 如果没有正则信息则返回true, 表示不验证
+        if (!isPresent(_regex)) {
+          console.debug('未找到匹配type:' + type + '的regex, 验证跳过, 返回true!')
+          return null
+        }
+
+        // 如果是函数则执行判断
+        if (isFunction(_regex)) {
+          return _regex(value)
+        }
+
+        // 判断是不是正则
+        let _tmpType = Object.prototype.toString.call(_regex).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
+        if (_tmpType !== 'regexp') {
+          console.debug('regex:' + _regex + '不是正则, 是:' + _tmpType + '类型, 验证跳过, 返回true!')
+          return null
+        }
+        return _regex.test(value)
+      },
 
       /**
        * 当该组件被点击的时候触发, 扩大focus触发范围
        */
       clickToFocus(){
-        this.setFocus();
+        this.setFocus()
       },
 
       /**
@@ -223,6 +335,9 @@
             if (this.clearOnEditValue && this.hasValue()) {
               this.didBlurAfterEdit = true
             }
+
+            // 验证输入结果
+            this.verification()
           } else {
             this.shouldBlur = true
           }
@@ -243,6 +358,7 @@
          * @property {object} $event - 事件对象
          */
         this.$emit('onFocus', $event)
+        this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-touched', true)
       },
 
       /**

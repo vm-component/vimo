@@ -210,21 +210,8 @@ export class ScrollView {
 
     self._el.parentElement.classList.add('js-scroll')
 
-    self._jsScrollInstance = new IScroll(contentElement, {
-      bounce: true,              // 关闭滚动回弹
-      bindToWrapper: true,        // 绑定scroll事件到当前容器而不是window上
-      mouseWheel: true,           // 可以鼠标滚轮滚动
-      disablePointer: true,
-
-      scrollbars: true,
-      fadeScrollbars: true,
-      interactiveScrollbars: false,
-      resizeScrollbars: true,
-      shrinkScrollbars: 'clip',
-
-      click: false,       // 如果开启则需要双击才能触发click事件(当前引用了fastclick)
-      probeType: 3        // 实时监听每一次滚动, 2: 手指点击页面才触发滚动
-    })
+    let config = window.VM && window.VM.config && window.VM.config.get('jsScrollOptions', {}) || {}
+    self._jsScrollInstance = new IScroll(contentElement, config)
 
     // scroll start
     self._jsScrollInstance.on('scrollStart', () => {
@@ -331,7 +318,7 @@ export class ScrollView {
     if (this._js) {
       return this._jsScrollInstance.scrollerHeight
     } else {
-      return this._el.scrollHeight
+      return this._el && this._el.scrollHeight
     }
   }
 
@@ -343,7 +330,7 @@ export class ScrollView {
     if (this._js) {
       return this._jsScrollInstance.scrollerWidth
     } else {
-      return this._el.scrollWidth
+      return this._el && this._el.scrollWidth
     }
   }
 
@@ -356,7 +343,7 @@ export class ScrollView {
     if (this._js) {
       return this._jsScrollInstance.y * -1
     } else {
-      return this._el.scrollTop
+      return this._el && this._el.scrollTop
     }
   }
 
@@ -369,7 +356,7 @@ export class ScrollView {
     if (this._js) {
       return this._jsScrollInstance.x * -1
     } else {
-      return this._el.scrollLeft
+      return this._el && this._el.scrollLeft
     }
   }
 

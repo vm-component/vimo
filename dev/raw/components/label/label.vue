@@ -1,5 +1,8 @@
 <template>
-    <label class="ion-label label" :class="[modeClass,colorClass]" :form="form">
+    <label class="ion-label label" :class="[modeClass,colorClass]"
+           :fixed="fixed"
+           :floating="floating"
+           :stacked="stacked">
         <slot></slot>
     </label>
 </template>
@@ -35,7 +38,7 @@
    *
    *
    * */
-  import { setElementClass, isTrueProperty } from '../../util/util'
+  import { setElementClass } from '../../util/util'
   export default{
     name: 'Label',
     data(){
@@ -56,10 +59,10 @@
        * */
       color: [String],
 
-      /**
-       * 规定 label 字段所属的一个或多个表单。
-       * */
-      form: [String],
+      // label格式
+      fixed: [Boolean],
+      floating: [Boolean],
+      stacked: [Boolean],
     },
     computed: {
       // 环境样式
@@ -80,10 +83,9 @@
        * */
       if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
         this.itemComponent = this.$parent;
-        setElementClass(this.itemComponent.$el, 'item-label-fixed', isTrueProperty(this.$el.getAttribute('fixed')))
-        setElementClass(this.itemComponent.$el, 'item-label-floating', isTrueProperty(this.$el.getAttribute('floating')))
-        setElementClass(this.itemComponent.$el, 'item-label-stacked', isTrueProperty(this.$el.getAttribute('stacked')))
-        setElementClass(this.itemComponent.$el, 'item-label-inset', isTrueProperty(this.$el.getAttribute('inset')))
+        setElementClass(this.itemComponent.$el, 'item-label-fixed', this.fixed)
+        setElementClass(this.itemComponent.$el, 'item-label-floating', this.floating)
+        setElementClass(this.itemComponent.$el, 'item-label-stacked', this.stacked)
         this.itemComponent.labelComponent = this
       }
     }
