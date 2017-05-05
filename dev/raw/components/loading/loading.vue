@@ -133,7 +133,7 @@
     data () {
       return {
         isActive: false, // 开启状态
-        isEnable: false, // 组件当前是否进入正常状态的标示(正常显示状态 和 正常退出状态)
+        enabled: false, // 组件当前是否进入正常状态的标示(正常显示状态 和 正常退出状态)
 
         // promise
         presentCallback: null,
@@ -163,31 +163,27 @@
        * */
       beforeEnter () {
         this.$app && this.$app.setEnabled(false, 200)
-        this.isEnable = false
+        this.enabled = false
       },
       afterEnter () {
         this.presentCallback()
-        this.isEnable = true
+        this.enabled = true
       },
       beforeLeave () {
         this.$app && this.$app.setEnabled(false, 200)
-        this.isEnable = false
+        this.enabled = false
       },
       afterLeave () {
         // 删除DOM
         this.dismissCallback()
         this.$el.remove()
-        this.isEnable = true
+        this.enabled = true
       },
       /**
        * @private
        * */
       dismissOnPageChangeHandler () {
-        console.log('dismissOnPageChangeHandler')
-        this.$nextTick(() => {
-          this.dismiss()
-          this.timer && window.clearTimeout(this.timer)
-        })
+        this.isActive && this.dismiss()
       },
 
       // -------- public --------
@@ -220,11 +216,11 @@
         this.isActive = false // 动起来
         this.timer && window.clearTimeout(this.timer)
         this.unreg && this.unreg()
-        if (!this.isEnable) {
+        if (!this.enabled) {
           this.$nextTick(() => {
             this.$el.remove()
             this.dismissCallback()
-            this.isEnable = true
+            this.enabled = true
           })
         }
         return new Promise((resolve) => { this.dismissCallback = resolve })

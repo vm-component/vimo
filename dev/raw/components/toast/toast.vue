@@ -63,6 +63,8 @@
       return {
         // component state
         isActive: false, // open state
+        enabled: false, // 组件当前是否进入正常状态的标示(正常显示状态 和 正常退出状态)
+
         // prmiseCallback
         presentCallback: null,
         dismissCallback: null,
@@ -91,17 +93,21 @@
        * */
       beforeEnter () {
         this.$app && this.$app.setEnabled(false, 400)
+        this.enabled = false
       },
-      afterEnter (el) {
-        this.presentCallback(el)
+      afterEnter () {
+        this.presentCallback()
+        this.enabled = true
       },
       beforeLeave () {
         this.$app && this.$app.setEnabled(false, 400)
+        this.enabled = false
       },
-      afterLeave (el) {
-        this.dismissCallback(el)
+      afterLeave () {
+        this.dismissCallback()
         // 删除DOM
         this.$el.remove()
+        this.enabled = true
       },
 
       /**
@@ -120,18 +126,18 @@
        */
       dismissOnPageChangeHandler () {
         if (this.isActive) {
-          if (!this.dismissOnPageChange) {
-            return
-          }
           if (this.showCloseButton) {
             this.cbClick()
-          } else if (this.timer) {
+          }
+
+          if (this.timer) {
             window.clearTimeout(this.timer)
             this.timer = null
             this.dismiss().then(() => {
               this.onDismiss && this.onDismiss()
             })
           }
+
         }
         this.unreg && this.unreg()
       },
@@ -160,12 +166,22 @@
        */
       dismiss () {
         this.isActive = false // move
+        if (!this.enabled) {
+          this.$nextTick(() => {
+            this.dismissCallback()
+            this.$el.remove()
+            this.enabled = true
+          })
+        }
         return new Promise((resolve) => { this.dismissCallback = resolve })
       }
     },
     mounted () {
-      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
+      if (this.dismissOnPageChange) {
+        // mounted before data ready, so no need to judge the `dismissOnPageChange` value
+        this.unreg && this.unreg()
+        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
+      }
     },
     components: {
       Button

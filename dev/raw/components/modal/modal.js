@@ -99,7 +99,7 @@ function present (options = {}) {
 
   let modalInstance = ModalFactory(modalOptions)
   // 启动modal，启动需要比页面启动早，否则content组件无法初始化！！
-  let presentPromise = modalInstance._present()
+  let presentPromise = modalInstance.present()
 
   // 执行内嵌页面的初始化
   let Template = Vue.extend(template)
@@ -132,7 +132,7 @@ function present (options = {}) {
       if (navState === 0) {
         // 总是关闭最后一次创建的modal
         let _lastModal = modalArr.pop()
-        _lastModal && _lastModal.modalInstance._dismiss()
+        _lastModal && _lastModal.modalInstance.dismiss()
         // 如果是最后一个则解绑urlChange
         if (modalArr.length === 0) {
           unregisterAllListener()
@@ -166,7 +166,7 @@ function dismiss (dataBack) {
 
     window.history.back(-1)
     // window.setTimeout(() => {navState = 0}, 400)
-    lastModalInstance._dismiss().then(() => {
+    lastModalInstance.dismiss().then(() => {
       navState = 0
 
       // 执行注册的onDismiss回调

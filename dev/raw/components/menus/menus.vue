@@ -103,18 +103,18 @@
     },
     methods: {
       // 过渡钩子
-      beforeEnter (el) {
+      beforeEnter () {
         this.$app && this.$app.setEnabled(false, 300)
       },
-      afterEnter (el) {
-        this.presentCallback(el)
+      afterEnter () {
+        this.presentCallback()
       },
       beforeLeave () {
         this.$app && this.$app.setEnabled(false, 300)
       },
-      afterLeave (el) {
+      afterLeave () {
         this.$eventBus && this.$eventBus.$emit('onMenuClosed', this.id)
-        this.dismissCallback(el)
+        this.dismissCallback()
         this.showMenu = false
       },
 

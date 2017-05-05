@@ -295,31 +295,30 @@
        * @private
        * */
       beforeEnter () {
-        this.enabled = false // 不允许过渡中途操作
         this.$app && this.$app.setEnabled(false, 200)
+        this.enabled = false // 不允许过渡中途操作
       },
-      afterEnter (el) {
-        this.enabled = true
-
+      afterEnter () {
         // 执行开启的promise
-        this.presentCallback(el)
+        this.presentCallback()
 
         this.focusOutActiveElement()
         let focusableEle = this.$el.querySelector('input')
         if (focusableEle) {
           focusableEle.focus()
         }
+        this.enabled = true
       },
       beforeLeave () {
-        this.enabled = false
         this.$app && this.$app.setEnabled(false, 200)
+        this.enabled = false
       },
-      afterLeave (el) {
-        this.enabled = true
+      afterLeave () {
         // 执行关闭的promise
-        this.dismissCallback(el)
+        this.dismissCallback()
         // 移除DOM
         this.$el.remove()
+        this.enabled = true
       },
 
       /**
@@ -467,11 +466,15 @@
        * @returns {Promise} 当关闭动画执行完毕后触发resolved
        */
       dismiss () {
-        if (!this.enabled) {
-          return false
-        }
-        this.enabled = false
         this.isActive = false // 动起来
+        this.unreg && this.unreg()
+        if (!this.enabled) {
+          this.$nextTick(() => {
+            this.dismissCallback()
+            this.$el.remove()
+            this.enabled = true
+          })
+        }
         return new Promise((resolve) => { this.dismissCallback = resolve })
       },
 
@@ -541,6 +544,7 @@
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
+        this.unreg && this.unreg()
         this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
       }
     },

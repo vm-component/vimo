@@ -54,33 +54,40 @@
        * Animate Hooks
        * */
       beforeEnter () {
-        this.enabled = false // 不允许过渡中途操作
         this.$app && this.$app.setEnabled(false, 400)
+        this.enabled = false // 不允许过渡中途操作
       },
-      afterEnter (el) {
+      afterEnter () {
+        this.presentCallback()
         this.enabled = true
-        this.presentCallback(el)
       },
       beforeLeave () {
-        this.enabled = false
         this.$app && this.$app.setEnabled(false, 400)
+        this.enabled = false
       },
-      afterLeave (el) {
-        this.enabled = true
-        this.dismissCallback(el)
+      afterLeave () {
+        this.dismissCallback()
         // 删除DOM
         this.$el.remove()
+        this.enabled = true
       },
 
       /**
        * 开启关闭值操作当前的组件
        * */
-      _present () {
+      present () {
         this.isActive = true
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
-      _dismiss () {
+      dismiss () {
         this.isActive = false
+        if (!this.enabled) {
+          this.$nextTick(() => {
+            this.dismissCallback()
+            this.$el.remove()
+            this.enabled = true
+          })
+        }
         return new Promise((resolve) => { this.dismissCallback = resolve })
       }
     },
