@@ -103,7 +103,7 @@ class Config {
      * */
     this._c = {} // cache 获取配置的缓存对象, 可用的config只有调用的时候才知道!
     this._s = {} // setting superlative 最高级配置 用户在初始化时自己的配置config
-    this.plt // Platform 当前平台的实例
+    this.plt = null // Platform 当前平台的实例
   }
 
   /**
@@ -263,7 +263,6 @@ class Config {
         this._s.platforms[arg0][arg1] = args[2]
         delete this._c[arg1] // clear cache
         break
-
     }
 
     return this
@@ -287,7 +286,6 @@ class Config {
    */
   settings (arg0, arg1) {
     switch (arguments.length) {
-
       case 0:
         return this._s
 

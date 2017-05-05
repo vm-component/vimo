@@ -28,7 +28,6 @@
  */
 
 export class History {
-
   constructor (Vue, router) {
     this._h = []                // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
     this._d = 'forward'         // forward/backward

@@ -92,25 +92,25 @@ class Platform {
     })
 
     this._versions = {} // 当前平台的版本信息列表 PlatformVersion
-    this._dir // string 文字方向 ;
-    this._lang // string 文字;
+    this._dir = null // string 文字方向 ;
+    this._lang = null // string 文字;
 
-    this._qp // QueryParams [[初始化时]]!!! 的url查询实例 {data:{}};
+    this._qp = null // QueryParams [[初始化时]]!!! 的url查询实例 {data:{}};
 
-    this._bPlt // string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
-    this._ua // string userAgent;
+    this._bPlt = null // string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
+    this._ua = null // string userAgent;
 
-    this._readyPromise // Promise<any> Ready的promise;
-    this._readyResolve // any;
+    this._readyPromise = null // Promise<any> Ready的promise;
+    this._readyResolve = null // any;
 
-    this._resizeTm // any setTimeout 定时过后执行_onResizes中的回调函数;
+    this._resizeTm = null // any setTimeout 定时过后执行_onResizes中的回调函数;
     this._onResizes = [] // Array<Function> = [] resize时执行的回调列表;
 
     // this._bbActions = [] // BackButtonAction[] = [] 后退按钮上注册的回调列表;
 
-    this._default // string 如果rootNode不存则使用默认的配置
+    this._default = null // string 如果rootNode不存则使用默认的配置
     this._platforms = [] // : string[] = []; 当前平台的key 例如: "mobile/ios/mobileweb"
-    this._registry // {[name:string] : PlatformConfig}; platform-registry中的config列表->登记处
+    this._registry = null // {[name:string] : PlatformConfig}; platform-registry中的config列表->登记处
 
     this._pW = 0 // Portrait模式的设备Width
     this._pH = 0 // Portrait模式的设备Height
@@ -144,22 +144,6 @@ class Platform {
   setCssProps (docElement) {
     this.css = getCss(docElement)
   }
-
-  // /**
-  //  * 获取当前平台支持的css, 只包含以下属性:
-  //  * - transform
-  //  * - transition
-  //  * - transitionDuration
-  //  * - transitionDelay
-  //  * - transitionTimingFn
-  //  * - transitionStart
-  //  * - transitionEnd
-  //  * - transformOrigin
-  //  * - animationDelay
-  //  * */
-  // css () {
-  //   return this.css
-  // }
 
   /**
    * 判断当前平台是否匹配
@@ -333,9 +317,7 @@ class Platform {
   do (methodName, any = {}) {
     if (!this._rm[methodName]) {
       console.warn(`${methodName} has not registered, please check the registerMethod() in platform-configs.js and the platform list is ${this._platforms}`)
-      return
     } else {
-      alert('registerMethod - scanCode - do')
       this._rm[methodName](any)
     }
   }
@@ -445,7 +427,7 @@ class Platform {
     // even when the device is in portrait but
     // the second time it is measured it is correct.
     // Hopefully this check will not be needed in the future
-    if (this._isPortrait === null || this._isPortrait === false && this.win['innerWidth'] < this.win['innerHeight']) {
+    if ((this._isPortrait === null || this._isPortrait === false) && this.win['innerWidth'] < this.win['innerHeight']) {
       // we're keeping track of portrait and landscape dimensions
       // separately because the virtual keyboard can really mess
       // up accurate values when the keyboard is up
@@ -761,16 +743,15 @@ class Platform {
  * @private
  * */
 class PlatformNode {
-
   /**
    * 读取c中的配置信息
    * @param {PlatformConfig} registry
    * @param {string} platformName
    * */
   constructor (registry, platformName) {
-    this.parent // 父节点
-    this.child // 子节点
-    this.depth // number 当前节点的深度;
+    this.parent = null // 父节点
+    this.child = null // 子节点
+    this.depth = null // number 当前节点的深度;
     this.registry = registry
     this.c = registry[platformName] // platform-registry配置中的平台设置;
     this.name = platformName // 当前节点的名称;
@@ -793,7 +774,7 @@ class PlatformNode {
    * @return {boolean}
    * */
   isMatch (p) {
-    return this.c.isMatch && this.c.isMatch(p) || false
+    return this.c.isMatch && this.c.isMatch(p)
   }
 
   /**
@@ -887,7 +868,6 @@ class PlatformNode {
 
     return parentPlatformNames
   }
-
 }
 /**
  * 获取url参数的类

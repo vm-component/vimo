@@ -8,8 +8,8 @@
 require('es6-promise').polyfill()
 
 // fixed Object #<HTMLDivElement> has no method 'remove'
-if (!('remove' in Element.prototype)) {
-  Element.prototype.remove = function () {
+if (!('remove' in window.Element.prototype)) {
+  window.Element.prototype.remove = function () {
     this.parentNode.removeChild(this)
   }
 }
@@ -49,9 +49,8 @@ if (!Array.prototype.find) {
     window.requestAnimationFrame = function (callback) {
       var currTime = Date.now()
       var timeToCall = Math.max(0, 16 - (currTime - rafLastTime))
-
       var id = window.setTimeout(function () {
-        callback(currTime + timeToCall)
+        callback && callback(currTime + timeToCall)
       }, timeToCall)
 
       rafLastTime = currTime + timeToCall

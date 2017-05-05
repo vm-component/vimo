@@ -13,7 +13,6 @@ const FRAME_MS = (1000 / 60)
 const EVENT_OPTS = {passive: true}
 
 export class ScrollView {
-
   constructor () {
     this.isScrolling = false       // 判断正在滚动
     this.initialized = false       // 判断是否已完成初始化
@@ -209,7 +208,7 @@ export class ScrollView {
 
     self._el.parentElement.classList.add('js-scroll')
 
-    let config = window.VM && window.VM.config && window.VM.config.get('jsScrollOptions', {}) || {}
+    let config = window.VM && window.VM.config && window.VM.config.get('jsScrollOptions', {})
     self._jsScrollInstance = new IScroll(contentElement, config)
 
     // scroll start
@@ -395,7 +394,7 @@ export class ScrollView {
       this._jsScrollInstance.destroy()
       this._jsScrollInstance = null
     } else {
-      this._endTmr && window.clearTimeout(self._endTmr)
+      this._endTmr && window.clearTimeout(this._endTmr)
       this._lsn && this._lsn()
       this._lsn = null
     }
@@ -419,8 +418,7 @@ export class ScrollView {
    * @return {Promise}
    */
   scrollTo (x = 0, y = 0, duration = 300, done) {
-    const self = this
-    const el = self._el
+    const el = this._el
     let promise
     if (done === undefined) {
       // only create a promise if a done callback wasn't provided
@@ -437,19 +435,19 @@ export class ScrollView {
     }
 
     if (this._js) {
-      self._jsScrollInstance.scrollTo(x, y * -1, duration)
+      this._jsScrollInstance.scrollTo(x, y * -1, duration)
       // iscroll do not has callback
-      self._scrollToEndTimer && window.clearTimeout(self._scrollToEndTimer)
-      self._scrollToEndTimer = window.setTimeout(() => {
+      this._scrollToEndTimer && window.clearTimeout(this._scrollToEndTimer)
+      this._scrollToEndTimer = window.setTimeout(() => {
         done()
-        self._scrollToEndTimer = null
+        this._scrollToEndTimer = null
       }, duration)
     } else {
       // scroll animation loop w/ easing
       // credit https://gist.github.com/dezinezync/5487119
       if (duration < 32) {
-        self.setTop(y)
-        self.setLeft(x)
+        this.setTop(y)
+        this.setLeft(x)
         done()
         return promise
       }
@@ -458,7 +456,7 @@ export class ScrollView {
       const fromX = el.scrollLeft
 
       const maxAttempts = (duration / 16) + 100
-      const transform = self.transform
+      const transform = this.transform
 
       let startTime // number
       let timeStamp
@@ -467,11 +465,11 @@ export class ScrollView {
 
       // scroll loop
       // eslint-disable-next-line no-inner-declarations
-      function step () {
+      let step = () => {
         attempts++
 
-        if (!self._el || stopScroll || attempts > maxAttempts) {
-          self.isScrolling = false;
+        if (!this._el || stopScroll || attempts > maxAttempts) {
+          this.isScrolling = false;
           (el.style)[transform] = ''
           done()
           return
@@ -486,11 +484,11 @@ export class ScrollView {
         let easedT = (--time) * time * time + 1
 
         if (fromY !== y) {
-          self.setTop((easedT * (y - fromY)) + fromY)
+          this.setTop((easedT * (y - fromY)) + fromY)
         }
 
         if (fromX !== x) {
-          self.setLeft(Math.floor((easedT * (x - fromX)) + fromX))
+          this.setLeft(Math.floor((easedT * (x - fromX)) + fromX))
         }
 
         if (easedT < 1) {
@@ -499,14 +497,14 @@ export class ScrollView {
           window.requestAnimationFrame(step)
         } else {
           stopScroll = true
-          self.isScrolling = false
+          this.isScrolling = false
           // (el.style)[transform] = '';
           done()
         }
       }
 
       // 准备开始滚动循环
-      self.isScrolling = true
+      this.isScrolling = true
       startTime = new Date().getTime()
       // 开始第一帧
       window.requestAnimationFrame(step)
@@ -596,5 +594,4 @@ export class ScrollView {
 
     return this.scrollTo(x, y, duration, done)
   }
-
 }

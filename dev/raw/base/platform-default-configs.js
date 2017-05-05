@@ -88,7 +88,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
 
             // 检查生日日期是否正确
             dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4])
-            bGoodDay
             bGoodDay = (dtmBirth.getYear() === Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) === Number(arrSplit[3])) && (dtmBirth.getDate() === Number(arrSplit[4]))
             if (!bGoodDay) {
               console.debug('输入的身份证号里出生日期不对！')
@@ -113,7 +112,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
 
             // 检查生日日期是否正确
             dtmBirth = new Date(arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4])
-            bGoodDay
             bGoodDay = (dtmBirth.getFullYear() === Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) === Number(arrSplit[3])) && (dtmBirth.getDate() === Number(arrSplit[4]))
             if (!bGoodDay) {
               console.debug('输入的身份证号里出生日期不对！')
