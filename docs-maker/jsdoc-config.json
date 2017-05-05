@@ -86,10 +86,8 @@
       "../dev/raw/components/toast",
       "../dev/raw/components/indicator",
 
-
       "../dev/raw/components/infinite-scroll",
       "../dev/raw/components/refresher",
-
 
       "../dev/raw/components/list",
       "../dev/raw/components/item",
@@ -114,7 +112,6 @@
       "../dev/raw/components/badge",
       "../dev/raw/components/backdrop",
       "../dev/raw/components/menus",
-
 
       "../dev/raw/components/grid",
 
@@ -154,7 +151,7 @@
       },
       {
         "name": "代码规范 / Code Standard",
-        "link": "#"
+        "link": "https://github.com/DTFE/vimo-code-style/blob/master/README.md"
       },
       {
         "name": "常见问题 / Question",
