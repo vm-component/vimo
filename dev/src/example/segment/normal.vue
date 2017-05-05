@@ -73,4 +73,3 @@
     components: {Segment, SegmentButton}
   }
 </script>
-

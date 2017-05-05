@@ -415,7 +415,7 @@
             } else {
               let tempSpan = document.createElement('span')
               tempSpan.innerHTML = this.placeholder
-              tempSpan.style.fontSize = getComputedStyle(inputEle).fontSize
+              tempSpan.style.fontSize = window.getComputedStyle(inputEle).fontSize
               tempSpan.style.display = 'inline'
               document.body.appendChild(tempSpan)
 

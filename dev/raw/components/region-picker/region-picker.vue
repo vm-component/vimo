@@ -224,7 +224,7 @@
         let nodes = document.querySelectorAll('body>.picker')
         this.unreg && this.unreg()
         nodes.forEach((node) => {
-          let isHide = getComputedStyle(node).display === 'none'
+          let isHide = window.getComputedStyle(node).display === 'none'
           if (isHide) {
             node.parentNode.removeChild(node)
           } else {

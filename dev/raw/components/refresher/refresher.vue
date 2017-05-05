@@ -78,6 +78,7 @@
    *  },
    * */
 
+  import { setElementClass, registerListener, pointerCoord } from '../../util/util'
   const STATE_INACTIVE = 'inactive'
   const STATE_PULLING = 'pulling'
   const STATE_READY = 'ready'
@@ -85,7 +86,6 @@
   const STATE_CANCELLING = 'cancelling'
   const STATE_COMPLETING = 'completing'
   const DAMP = 0.5// 滑动阻尼
-  import { setElementClass, registerListener, pointerCoord } from '../../util/util'
   export default{
     name: 'Refresher',
     data () {

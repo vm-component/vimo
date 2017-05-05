@@ -408,11 +408,11 @@
           tagName = child.$options._componentTag.toLowerCase()
           if (tagName === 'header') {
             this.headerElement = scrollEvent.headerElement = ele
-            computedStyle = getComputedStyle(this.headerElement)
+            computedStyle = window.getComputedStyle(this.headerElement)
             this.headerBarHeight = parsePxUnit(computedStyle.height)
           } else if (tagName === 'footer') {
             this.footerElement = scrollEvent.footerElement = ele
-            computedStyle = getComputedStyle(this.footerElement)
+            computedStyle = window.getComputedStyle(this.footerElement)
             this.footerBarHeight = parsePxUnit(computedStyle.height)
           }
         })
@@ -420,7 +420,7 @@
         // 获取Content信息
         scrollEvent.contentElement = this.$el
         if (this.isFullscreen) {
-          computedStyle = getComputedStyle(this.$el)
+          computedStyle = window.getComputedStyle(this.$el)
           this._pTop = parsePxUnit(computedStyle.paddingTop)
           this._pBottom = parsePxUnit(computedStyle.paddingBottom)
         }
@@ -701,4 +701,3 @@
     }
   }
 </script>
-

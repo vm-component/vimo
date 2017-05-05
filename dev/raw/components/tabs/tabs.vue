@@ -277,11 +277,11 @@
           tagName = child.$options._componentTag.toLowerCase()
           if (tagName === 'header') {
             // this.headerElement = ele
-            computedStyle = getComputedStyle(ele)
+            computedStyle = window.getComputedStyle(ele)
             headerBarHeight = parsePxUnit(computedStyle.height)
           } else if (tagName === 'footer') {
             // this.footerElement = ele
-            computedStyle = getComputedStyle(ele)
+            computedStyle = window.getComputedStyle(ele)
             footerBarHeight = parsePxUnit(computedStyle.height)
           }
         })
@@ -300,7 +300,7 @@
        * @private
        * */
       computeTabsContentWrapStyle () {
-        let tabBarHeight = getComputedStyle(this.tabbarElement).height
+        let tabBarHeight = window.getComputedStyle(this.tabbarElement).height
         tabBarHeight = parsePxUnit(tabBarHeight)
         let _styleType = 'margin' + firstUpperCase(this.tabsPlacement)
         if (tabBarHeight > 0) {

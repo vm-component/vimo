@@ -293,7 +293,7 @@
        * */
       getBottom () {
         const bounds = this.getBounds()
-        return bounds && bounds.bottom || 0
+        return (bounds && bounds.bottom) || 0
       },
 
       /**
@@ -302,7 +302,7 @@
        * */
       getTop () {
         const bounds = this.getBounds()
-        return bounds && bounds.top || 0
+        return (bounds && bounds.top) || 0
       }
     },
     mounted () {

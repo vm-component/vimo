@@ -116,5 +116,15 @@
     "not ie <= 8",
     "iOS >= 5",
     "Android >= 4"
-  ]
+  ],
+  "standard": {
+    "ignore": [
+      "/build/",
+      "/config/",
+      "/dist/",
+      "/node_modules/",
+      "/src/assets/",
+      "/static/"
+    ]
+  }
 }

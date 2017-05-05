@@ -100,10 +100,10 @@
    *  // ....
    * */
 
+  import { setElementClass } from '../../util/util'
   const STATE_ENABLED = 'enabled'
   const STATE_DISABLED = 'disabled'
   const STATE_LOADING = 'loading'
-  import { setElementClass } from '../../util/util'
   export default{
     name: 'InfiniteScroll',
     data () {

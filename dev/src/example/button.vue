@@ -94,7 +94,6 @@
 <style scoped lang="scss">
     .buttons {
         text-align: center;
-
     }
 </style>
 <script type="text/javascript">
@@ -104,7 +103,7 @@
     },
     methods: {
       primary: function () {
-        alert('primary')
+        console.log('primary')
       }
     }
   }
