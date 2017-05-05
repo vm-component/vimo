@@ -1,6 +1,10 @@
 # Vimo
 ---
 
+[![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 > 一套针对HyBrid平台开发的H5框架
 
 ## 框架解决的问题
