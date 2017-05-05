@@ -70,10 +70,8 @@
         onSelectValue: null
       }
     },
-    watch: {},
-    computed: {},
     methods: {
-      getSegmentdata () {
+      getSegmentData () {
         if (this.segmentList.length === 0) {
           this.segmentList = [
             {
@@ -107,11 +105,7 @@
         console.debug('点击了SegmentButton按钮, 这个按钮的值: ' + val)
         this.onSelectValue = val
       }
-
     },
-    created () {},
-    mounted () {},
-    activated () {},
     components: {Segment, SegmentButton}
   }
 </script>

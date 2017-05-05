@@ -80,25 +80,11 @@
  */
 
 import Vue from 'vue'
-import { isFunction, isNumber, isObject, isPresent, isString } from '../../util/util'
+import { isObject, isString } from '../../util/util'
 import toastComponent from './toast.vue'
-const ToastConstructor = Vue.extend(toastComponent)
-const POSITIONS = ['top', 'middle', 'bottom']
-const noop = () => {}
+const Toast = Vue.extend(toastComponent)
 const DOM_INSERT_POSITION = 'toastPortal' // 插入的DOM位置
 const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback选项
-
-// ---------- functions ----------
-
-class Toast extends ToastConstructor {
-  constructor (options) {
-    super(options)
-    // params
-    if (isObject(options)) {
-      for (let key in options) this[key] = options[key]
-    }
-  }
-}
 
 /**
  * 创建ToastInstance, 并且根据传参指纹构建对象
@@ -107,70 +93,32 @@ class Toast extends ToastConstructor {
  * */
 function ToastFactory () {
   let _args = Array.from(arguments)
-  let el = null
-  let _insertPosition = null
-  let message = 'This is Message!'
-  let duration = 3000
-  let position = 'bottom'
-  let cssClass = null
-  let showCloseButton = false
-  let closeButtonText = 'Close'
-  let dismissOnPageChange = false
-  let onDismiss = noop
-  let mode = window.VM && window.VM.config && window.VM.config.get('mode', 'ios') || 'ios'
+  let propsData = {}
 
   // get el position
-  _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body
-  el = _insertPosition.appendChild(document.createElement('div'))
+  let _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body
+  let el = _insertPosition.appendChild(document.createElement('div'))
 
   if (_args.length === 2) {
-    // this.$toast.present("String",1000)
-    message = isPresent(_args[0]) && _args[0].toString().trim() || message
-    duration = isNumber(_args[1]) && parseInt(_args[1]) || duration
+    propsData = {
+      message: _args[0],
+      duration: _args[1]
+    }
   }
 
   if (_args.length === 1 && isString(_args[0])) {
-    // this.$toast.present("String")
-    message = isPresent(_args[0]) && _args[0].toString().trim() || message
+    propsData = {
+      message: _args[0]
+    }
   }
 
   if (_args.length === 1 && isObject(_args[0])) {
-    // this.$toast.present({...})
-    message = isPresent(_args[0].message) && _args[0].message.toString().trim() || message
-    duration = isNumber(_args[0].duration) && parseInt(_args[0].duration) || duration
-    // position
-    position = isPresent(_args[0].position) && POSITIONS.indexOf(_args[0].position) > -1 ? _args[0].position : position
-
-    // cssClass
-    cssClass = isPresent(_args[0].cssClass) ? _args[0].cssClass.trim() : cssClass
-
-    // closeButton
-    if (_args[0].showCloseButton) duration = null
-    showCloseButton = _args[0].showCloseButton
-
-    closeButtonText = isPresent(_args[0].closeButtonText) ? _args[0].closeButtonText.trim() : closeButtonText
-
-    // dismissOnPageChange
-    dismissOnPageChange = _args[0].dismissOnPageChange
-
-    // onDismiss
-    onDismiss = (isPresent(_args[0].onDismiss) && isFunction(_args[0].onDismiss)) ? _args[0].onDismiss : onDismiss
-
-    // mode
-    mode = isPresent(_args[0].mode) ? _args[0].mode.trim() : mode
+    propsData = _args[0]
   }
 
   return new Toast({
     el,
-    message,
-    duration,
-    position,
-    cssClass,
-    showCloseButton,
-    closeButtonText,
-    dismissOnPageChange,
-    onDismiss,
-    mode
+    propsData: propsData
   })
 }
 

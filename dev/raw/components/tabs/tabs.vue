@@ -99,12 +99,12 @@
       color: [String],
       mode: {
         type: String,
-        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+        default () { return this.$config.get('mode') || 'ios' }
       },
       // tab下面是否显示选中bar
       tabsHighlight: {
         type: Boolean,
-        default () { return window.VM && window.VM.config.getBoolean('tabsHighlight', false) }
+        default () { return this.$config.getBoolean('tabsHighlight', false) }
       },
       // tabbar的样式: icon和title的放置位置
       // 可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
@@ -336,7 +336,7 @@
         let _offsetLeft = this.tabElementWidth * index
         let transform = `translate3d(${_offsetLeft}px,0,0) scaleX(${this.tabElementWidth})`
         setElementClass(this.tabHighlightEle, 'animate', true)
-        this.tabHighlightEle.style[window.VM.platform.css.transform] = transform
+        this.tabHighlightEle.style[this.$platform.css.transform] = transform
       }
     },
     mounted () {

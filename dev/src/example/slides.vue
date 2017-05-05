@@ -681,8 +681,8 @@
       },
 
       onInit (ins) {
-        console.debug('Swiper实例: ')
-        console.debug(ins)
+//        console.debug('Swiper实例: ')
+//        console.debug(ins)
       }
     },
     created () {

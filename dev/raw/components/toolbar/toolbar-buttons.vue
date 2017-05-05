@@ -32,12 +32,9 @@
   export default{
     name: 'Buttons',
     props: {
-      /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       * */
       mode: {
         type: String,
-        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return this.$config.get('mode') || 'ios' }
       }
     },
     computed: {

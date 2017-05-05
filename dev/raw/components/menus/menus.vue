@@ -90,7 +90,7 @@
       type: {
         type: String,
         default () {
-          return window.VM && window.VM.config.get('menuType', 'overlay')
+          return this.$config.get('menuType', 'overlay')
         }
       },
       /**

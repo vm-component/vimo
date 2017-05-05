@@ -15,13 +15,11 @@ Vue.use(Router)
  *
  * */
 router.beforeEach((to, from, next) => {
-
   Indicator.present()
-
   next()
 })
 //
-router.afterEach((to, from) => {
-})
+// router.afterEach((to, from) => {
+// })
 
 export default router

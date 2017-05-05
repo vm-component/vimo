@@ -83,7 +83,7 @@
        * */
       mode: {
         type: String,
-        default () { return window.VM && window.VM.config.get('iconMode') || 'ios' }
+        default () { return this.$config.get('iconMode') || 'ios' }
       },
       /**
        * 按钮color：

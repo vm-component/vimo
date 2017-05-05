@@ -126,7 +126,7 @@
     props: {
       enableJsScroll: {
         type: Boolean,
-        default () { return window.VM && window.VM.config.getBoolean('scrollAssist', false) }
+        default () { return this.$config.getBoolean('scrollAssist', false) }
       },
       fullscreen: {
         type: Boolean,
@@ -134,7 +134,7 @@
       },
       mode: {
         type: String,
-        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+        default () { return this.$config.get('mode') || 'ios' }
       }
     },
     data () {
@@ -156,7 +156,7 @@
         footerBarHeight: 0,
 
         // 是否有statusbar的padding, 高度固定为20px
-        statusbarPadding: window.VM && window.VM.config.getBoolean('statusbarPadding', false),
+        statusbarPadding: this.$config.getBoolean('statusbarPadding', false),
 
         _scroll: null,  // 滚动的实例
         _cTop: 0,       // content top

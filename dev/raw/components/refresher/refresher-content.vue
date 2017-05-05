@@ -39,7 +39,7 @@
     props: {
       pullingIcon: {
         type: String,
-        default () { return window.VM && window.VM.config.get('ionPullIcon', 'arrow-down') || 'arrow-down' }
+        default () { return this.$config.get('ionPullIcon', 'arrow-down') || 'arrow-down' }
       },
       pullingText: {
         type: String,
@@ -47,7 +47,7 @@
       },
       refreshingSpinner: {
         type: String,
-        default () { return window.VM && window.VM.config.get('ionRefreshingSpinner', window.VM && window.VM.config.get('spinner', 'ios')) || 'ios' }
+        default () { return this.$config.get('ionRefreshingSpinner', this.$config.get('spinner', 'ios')) || 'ios' }
       },
       refreshingText: {
         type: String,

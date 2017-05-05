@@ -29,7 +29,7 @@
       // loading的旋转图标
       loadingSpinner: {
         type: String,
-        default () { return window.VM && window.VM.config.get('infiniteLoadingSpinner', window.VM.config.get('spinner', 'ios')) || 'ios' }
+        default () { return this.$config.get('infiniteLoadingSpinner', this.$config.get('spinner', 'ios')) || 'ios' }
       },
       // loading的文字
       loadingText: {

@@ -147,7 +147,7 @@
        * */
       mode: {
         type: String,
-        default () { return window.VM && window.VM.config.get('mode') || 'ios' }
+        default () { return this.$config.get('mode') || 'ios' }
       },
       /**
        * shouldEnable whether the item-sliding should be enabled or not

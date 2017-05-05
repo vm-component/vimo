@@ -62,7 +62,7 @@
         menuSide: 'left', // 方向
         menuContentClass: null,
         menuContentTypeClass: null,
-        transform: window.VM && window.VM.platform && window.VM.platform.css ? window.VM.platform.css.transform : 'webkitTransform'
+        transform: this.$platform.css ? this.$platform.css.transform : 'webkitTransform'
       }
     },
     computed: {

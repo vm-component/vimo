@@ -153,12 +153,9 @@
         type: Number,
         default: 0
       },
-      /**
-       * 模式: "ios", "md", or "wp"
-       * */
       mode: {
         type: String,
-        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+        default () { return this.$config.get('mode') || 'ios' }
       },
       /**
        * 当拖动knob时显示大头针提示

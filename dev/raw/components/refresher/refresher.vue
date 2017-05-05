@@ -466,7 +466,7 @@
        **/
       setCss (y, duration, overflowVisible, delay) {
         this.appliedStyles = (y > 0)
-        const Css = window.VM && window.VM.platform && window.VM.platform.css
+        const Css = this.$platform.css
         console.assert(Css, '无法获取platform中的css样式定义,refresher/refresher.vue::<Function>setCss()')
         this.contentComponent.setScrollElementStyle(Css.transform, ((y > 0) ? 'translateY(' + y + 'px) translateZ(0px)' : 'translateZ(0px)'))
         this.contentComponent.setScrollElementStyle(Css.transitionDuration, duration)

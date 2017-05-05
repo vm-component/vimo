@@ -1,4 +1,3 @@
-
 import { setupConfig } from './base/config'
 import { History } from './base/history'
 import { setupPlatform } from './base/platform'

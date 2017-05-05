@@ -145,21 +145,21 @@ class Platform {
     this.css = getCss(docElement)
   }
 
-  /**
-   * 获取当前平台支持的css, 只包含以下属性:
-   * - transform
-   * - transition
-   * - transitionDuration
-   * - transitionDelay
-   * - transitionTimingFn
-   * - transitionStart
-   * - transitionEnd
-   * - transformOrigin
-   * - animationDelay
-   * */
-  css () {
-    return this.css
-  }
+  // /**
+  //  * 获取当前平台支持的css, 只包含以下属性:
+  //  * - transform
+  //  * - transition
+  //  * - transitionDuration
+  //  * - transitionDelay
+  //  * - transitionTimingFn
+  //  * - transitionStart
+  //  * - transitionEnd
+  //  * - transformOrigin
+  //  * - animationDelay
+  //  * */
+  // css () {
+  //   return this.css
+  // }
 
   /**
    * 判断当前平台是否匹配

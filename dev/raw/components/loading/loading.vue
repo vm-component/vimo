@@ -112,7 +112,7 @@
     props: {
       spinner: {
         type: String,
-        default () { return window.VM && window.VM.config.get('spinner', 'ios') || 'ios' }
+        default () { return this.$config.get('spinner', 'ios') || 'ios' }
       },
       content: [String],
       cssClass: [String],
@@ -123,7 +123,7 @@
       duration: {
         type: Number,
         default () {
-          return window.VM && window.VM.config.get('maxLoadingDuration', 5000)
+          return this.$config.get('maxLoadingDuration', 5000)
         }
       },
       dismissOnPageChange: {
@@ -132,7 +132,7 @@
       },
       mode: {
         type: String,
-        default () { return window.VM && window.VM.config.get('mode', 'ios') || 'ios' }
+        default () { return this.$config.get('mode') || 'ios' }
       }
     },
     data () {

@@ -25,21 +25,44 @@
   import { registerListener } from '../../util/util'
   import { Button } from '../button'
   export default {
+    props: {
+      message: {
+        type: String,
+        require: true
+      },
+      duration: {
+        type: Number,
+        default: 3000
+      },
+      position: {
+        type: String,
+        default: 'bottom',
+        validator (value) {
+          return ['top', 'middle', 'bottom'].indexOf(value) > -1
+        }
+      },
+      cssClass: String,
+      showCloseButton: Boolean,
+      closeButtonText: {
+        type: String,
+        default: 'Close'
+      },
+      // whether to close component when page change
+      dismissOnPageChange: Boolean,
+      // execute when component closed and animate done
+      onDismiss: {
+        type: Function,
+        default () { return function () {} }
+      },
+      mode: {
+        type: String,
+        default () { return this.$config.get('mode', 'ios') }
+      }
+    },
     data () {
       return {
-        message: '', // String
-        duration: null, // Number
-        position: 'bottom',
-        cssClass: null,
-        showCloseButton: false,
-        closeButtonText: 'Close', // the text of close button
-        dismissOnPageChange: false, // whether to close component when page change
-        onDismiss: null, // execute when component closed and animate done
-        mode: 'ios', // ios?android
-
         // component state
         isActive: false, // open state
-
         // prmiseCallback
         presentCallback: null,
         dismissCallback: null,
