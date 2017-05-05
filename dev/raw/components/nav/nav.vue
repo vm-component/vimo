@@ -111,15 +111,16 @@
         if (this.showIndicatorWhenPageChange) {
           // 前进则显示
           this.$eventBus.$on('onNavEnter', () => {
-            this.$nextTick(() => {
+            window.setTimeout(() => {
               Indicator.present()
-            })
+            }, 0)
           })
 
+          // must wait a second
           this.$eventBus.$on('afterEach', () => {
-            this.$nextTick(() => {
+            window.setTimeout(() => {
               Indicator.dismiss()
-            })
+            }, 16 * 3)
           })
         }
       },

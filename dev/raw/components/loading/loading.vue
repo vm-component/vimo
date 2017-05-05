@@ -133,6 +133,7 @@
     data () {
       return {
         isActive: false, // 开启状态
+        isEnable: false, // 组件当前是否进入正常状态的标示(正常显示状态 和 正常退出状态)
 
         // promise
         presentCallback: null,
@@ -162,17 +163,21 @@
        * */
       beforeEnter () {
         this.$app && this.$app.setEnabled(false, 200)
+        this.isEnable = false
       },
       afterEnter () {
         this.presentCallback()
+        this.isEnable = true
       },
       beforeLeave () {
         this.$app && this.$app.setEnabled(false, 200)
+        this.isEnable = false
       },
       afterLeave () {
         // 删除DOM
         this.dismissCallback()
         this.$el.remove()
+        this.isEnable = true
       },
       /**
        * @private
@@ -182,7 +187,6 @@
         this.$nextTick(() => {
           this.dismiss()
           this.timer && window.clearTimeout(this.timer)
-          this.unreg && this.unreg()
         })
       },
 
@@ -213,18 +217,15 @@
        * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
        * */
       dismiss () {
-        let timeGap = 220 - new Date().getTime() + this.startTime
-        if (timeGap > 0) {
-          // bugFixed: 还未完全开启就执行关闭时导致原dom无法删除的bug
-          this.isActive = false // 动起来
+        this.isActive = false // 动起来
+        this.timer && window.clearTimeout(this.timer)
+        this.unreg && this.unreg()
+        if (!this.isEnable) {
           this.$nextTick(() => {
-            this.timer && window.clearTimeout(this.timer)
-            this.dismissCallback()
             this.$el.remove()
+            this.dismissCallback()
+            this.isEnable = true
           })
-        } else {
-          this.isActive = false // 动起来
-          this.timer && window.clearTimeout(this.timer)
         }
         return new Promise((resolve) => { this.dismissCallback = resolve })
       }
