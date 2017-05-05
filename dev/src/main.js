@@ -61,4 +61,3 @@ new Vue({
   },
   components: {App}
 })
-
