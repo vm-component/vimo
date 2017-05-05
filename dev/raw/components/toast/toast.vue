@@ -165,15 +165,19 @@
        * @returns {Promise} Returns a promise which is resolved when the transition has completed.
        */
       dismiss () {
-        this.isActive = false // move
-        if (!this.enabled) {
-          this.$nextTick(() => {
-            this.dismissCallback()
-            this.$el.remove()
-            this.enabled = true
-          })
+        if (this.isActive) {
+          this.isActive = false // move
+          if (!this.enabled) {
+            this.$nextTick(() => {
+              this.dismissCallback()
+              this.$el.remove()
+              this.enabled = true
+            })
+          }
+          return new Promise((resolve) => { this.dismissCallback = resolve })
+        } else {
+          return new Promise((resolve) => { resolve() })
         }
-        return new Promise((resolve) => { this.dismissCallback = resolve })
       }
     },
     mounted () {

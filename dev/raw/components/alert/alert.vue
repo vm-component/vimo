@@ -466,16 +466,20 @@
        * @returns {Promise} 当关闭动画执行完毕后触发resolved
        */
       dismiss () {
-        this.isActive = false // 动起来
-        this.unreg && this.unreg()
-        if (!this.enabled) {
-          this.$nextTick(() => {
-            this.dismissCallback()
-            this.$el.remove()
-            this.enabled = true
-          })
+        if (this.isActive) {
+          this.isActive = false // 动起来
+          this.unreg && this.unreg()
+          if (!this.enabled) {
+            this.$nextTick(() => {
+              this.dismissCallback()
+              this.$el.remove()
+              this.enabled = true
+            })
+          }
+          return new Promise((resolve) => { this.dismissCallback = resolve })
+        } else {
+          return new Promise((resolve) => { resolve() })
         }
-        return new Promise((resolve) => { this.dismissCallback = resolve })
       },
 
       /**

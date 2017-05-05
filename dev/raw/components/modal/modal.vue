@@ -80,15 +80,19 @@
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
       dismiss () {
-        this.isActive = false
-        if (!this.enabled) {
-          this.$nextTick(() => {
-            this.dismissCallback()
-            this.$el.remove()
-            this.enabled = true
-          })
+        if (this.isActive) {
+          this.isActive = false
+          if (!this.enabled) {
+            this.$nextTick(() => {
+              this.dismissCallback()
+              this.$el.remove()
+              this.enabled = true
+            })
+          }
+          return new Promise((resolve) => { this.dismissCallback = resolve })
+        } else {
+          return new Promise((resolve) => { resolve() })
         }
-        return new Promise((resolve) => { this.dismissCallback = resolve })
       }
     },
     components: {

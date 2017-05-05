@@ -188,8 +188,8 @@
        * @private
        * */
       beforeEnter () {
-        this.$app && this.$app.setEnabled(false, 400)
         this.enabled = false // 不允许过渡中途操作
+        this.$app && this.$app.setEnabled(false, 400)
       },
       afterEnter () {
         this.presentCallback()
@@ -201,8 +201,8 @@
         this.enabled = true
       },
       beforeLeave () {
-        this.$app && this.$app.setEnabled(false, 400)
         this.enabled = false
+        this.$app && this.$app.setEnabled(false, 400)
       },
       afterLeave () {
         this.dismissCallback()
@@ -276,6 +276,7 @@
        * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
        */
       present () {
+        console.log('action-sheet.vue present')
         this.isActive = true
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
@@ -287,16 +288,20 @@
        * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
        * */
       dismiss () {
-        this.isActive = false // 动起来
-        this.unreg && this.unreg()
-        if (!this.enabled) {
-          this.$nextTick(() => {
-            this.dismissCallback()
-            this.$el.remove()
-            this.enabled = true
-          })
+        if (this.isActive) {
+          this.isActive = false // 动起来
+          this.unreg && this.unreg()
+          if (!this.enabled) {
+            this.$nextTick(() => {
+              this.dismissCallback()
+              this.$el.remove()
+              this.enabled = true
+            })
+          }
+          return new Promise((resolve) => { this.dismissCallback = resolve })
+        } else {
+          return new Promise((resolve) => { resolve() })
         }
-        return new Promise((resolve) => { this.dismissCallback = resolve })
       },
 
       /**

@@ -213,17 +213,21 @@
        * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
        * */
       dismiss () {
-        this.isActive = false // 动起来
-        this.timer && window.clearTimeout(this.timer)
-        this.unreg && this.unreg()
-        if (!this.enabled) {
-          this.$nextTick(() => {
-            this.$el.remove()
-            this.dismissCallback()
-            this.enabled = true
-          })
+        if (this.isActive) {
+          this.isActive = false // 动起来
+          this.timer && window.clearTimeout(this.timer)
+          this.unreg && this.unreg()
+          if (!this.enabled) {
+            this.$nextTick(() => {
+              this.$el.remove()
+              this.dismissCallback()
+              this.enabled = true
+            })
+          }
+          return new Promise((resolve) => { this.dismissCallback = resolve })
+        } else {
+          return new Promise((resolve) => { resolve() })
         }
-        return new Promise((resolve) => { this.dismissCallback = resolve })
       }
     },
     created () {
