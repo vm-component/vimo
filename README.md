@@ -1,7 +1,7 @@
 <h1 align="center">
-  <a href="https://standardjs.com"><img src="https://cdn.rawgit.com/feross/standard/master/sticker.svg" alt="Standard - JavaScript 代码规范" width="200"></a>
+  <a href="/#/"><img src="https://github.com/DTFE/Vimo/blob/master/dev/static/img/vimo.png?raw=true" alt="vimo" width="200"></a>
   <br>
-  Vimo Hybrid
+  Vimo For Hybrid
   <br>
   <br>
 </h1>
