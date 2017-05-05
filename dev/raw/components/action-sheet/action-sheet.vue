@@ -294,36 +294,7 @@
         this.isActive = false // 动起来
         return new Promise((resolve) => { this.dismissCallback = resolve })
       },
-      // /**
-      //  * @private
-      //  * @function setTitle
-      //  * @description
-      //  * 设置 Action sheet title
-      //  * @param {string} title Action sheet title
-      //  */
-      // setTitle (title) {
-      //   this.title = title;
-      // },
-      // /**
-      //  * @private
-      //  * @function setSubTitle
-      //  * @description
-      //  * 设置 Action sheet subtitle
-      //  * @param {string} subTitle Action sheet subtitle
-      //  */
-      // setSubTitle (subTitle) {
-      //   this.subTitle = subTitle;
-      // },
-      // /**
-      //  * @private
-      //  * @function addButton
-      //  * @description
-      //  * 增加button
-      //  * @param {object} button Action sheet button
-      //  */
-      // addButton (button) {
-      //   this.buttons.push(button);
-      // },
+
       /**
        * @private
        * */
