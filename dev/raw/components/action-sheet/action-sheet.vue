@@ -231,12 +231,11 @@
        * @private
        */
       bdClick () {
-        let _this = this
-        if (_this.enabled && _this.enableBackdropDismiss) {
-          if (_this.cancelButton) {
-            _this.click(this.cancelButton)
+        if (this.enabled && this.enableBackdropDismiss) {
+          if (this.cancelButton) {
+            this.click(this.cancelButton)
           } else {
-            _this.dismiss()
+            this.dismiss()
           }
         }
       },
@@ -249,8 +248,7 @@
        * @private
        */
       click (button) {
-        const _this = this
-        if (!_this.enabled) {
+        if (!this.enabled) {
           return
         }
         let shouldDismiss = true
@@ -265,8 +263,8 @@
         // 当前不是在过渡动画中(dismissing中)，
         // 如果是在dismissing中，则意味着正在关闭，
         // 这里不必进行
-        if (_this.enabled && shouldDismiss) {
-          _this.dismiss()
+        if (this.enabled && shouldDismiss) {
+          this.dismiss()
         }
       },
 
@@ -278,12 +276,7 @@
        * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
        */
       present () {
-        const _this = this
-        _this.isActive = true
-
-        console.debug('this.buttons present')
-        console.debug(this.buttons)
-
+        this.isActive = true
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
@@ -294,12 +287,11 @@
        * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
        * */
       dismiss () {
-        const _this = this
-        if (!_this.enabled) {
+        if (!this.enabled) {
           return false
         }
-        _this.enabled = false
-        _this.isActive = false // 动起来
+        this.enabled = false
+        this.isActive = false // 动起来
         return new Promise((resolve) => { this.dismissCallback = resolve })
       },
       // /**
@@ -346,12 +338,11 @@
        * */
       init () {
         let arr = this.buttons
-        let _this = this
         let _buttons = []
         if (!Array.isArray(arr)) {
           return
         }
-        arr.forEach(function (button) {
+        arr.forEach((button) => {
           if (typeof button === 'string') {
             button = {text: button}
           }
@@ -364,7 +355,7 @@
           }
 
           if (button.role === 'cancel') {
-            _this.cancelButton = button
+            this.cancelButton = button
           } else {
             if (button.role === 'destructive') {
               button.cssClass = (button.cssClass + ' ' || '') + 'action-sheet-destructive'
@@ -374,7 +365,7 @@
             _buttons.push(button)
           }
         })
-        _this.normalButtons = _buttons
+        this.normalButtons = _buttons
       }
     },
     created () {

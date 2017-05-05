@@ -76,9 +76,7 @@
        * 开启关闭值操作当前的组件
        * */
       _present () {
-        const _this = this
-        _this.isActive = true
-        console.debug(_this.isActive)
+        this.isActive = true
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
       _dismiss () {

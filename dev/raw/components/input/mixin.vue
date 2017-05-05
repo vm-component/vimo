@@ -365,23 +365,22 @@
        * @private
        */
       inputChanged ($event) {
-        const _this = this
-        _this.inputValue = $event && $event.target ? $event.target.value : ''
-        _this.setItemHasValueClass()
+        this.inputValue = $event && $event.target ? $event.target.value : ''
+        this.setItemHasValueClass()
 
         // debounce
-        window.clearTimeout(_this.timer)
-        _this.timer = window.setTimeout(function () {
+        window.clearTimeout(this.timer)
+        this.timer = window.setTimeout(() => {
           // 组件对外事件
           /**
            * @event  component:Input#onInput
            * @description input事件
            * @property {object} $event - 事件对象
            */
-          _this.$emit('onInput', $event)
+          this.$emit('onInput', $event)
           // 通知父组件的v-model
-          _this.$emit('input', _this.inputValue)
-        }, _this.debounce)
+          this.$emit('input', this.inputValue)
+        }, this.debounce)
       },
 
       /**
@@ -424,12 +423,8 @@
        *  设置父组件Item被点中时的class
        */
       setItemHasFocusClass (isFocus) {
-        const _this = this
-        if (_this.itemComponent) {
-          setElementClass(_this.itemComponent.$el, 'input-has-focus', isFocus)
-          _this.$nextTick(function () {
-
-          })
+        if (this.itemComponent) {
+          setElementClass(this.itemComponent.$el, 'input-has-focus', isFocus)
         }
       },
 

@@ -116,23 +116,22 @@
     },
     methods: {
       load () {
-        const _this = this
-        if (_this.isInit) {
+        if (this.isInit) {
           // 因为会涉及到再次渲染，故提前制空
-          _this.lines = []
-          _this.circles = []
+          this.lines = []
+          this.circles = []
 
           // 如果指定了name，则使用指定的name。
           // 如果没指定name，则根据设备别使用默认的name
           let name
-          if (_this.name) {
-            name = _this.name
+          if (this.name) {
+            name = this.name
           } else {
-            if (_this.mode === 'ios') {
+            if (this.mode === 'ios') {
               name = 'ios'
-            } else if (_this.mode === 'md') {
+            } else if (this.mode === 'md') {
               name = 'crescent'
-            } else if (_this.mode === 'wp') {
+            } else if (this.mode === 'wp') {
               name = 'circles'
             } else {
               name = this.$config.get('spinner', 'ios')
@@ -143,14 +142,14 @@
           if (spinner) {
             if (spinner.lines) {
               for (let i = 0, l = spinner.lines; i < l; i++) {
-                _this.lines.push(this._loadEle(spinner, i, l))
+                this.lines.push(this._loadEle(spinner, i, l))
               }
             } else if (spinner.circles) {
               for (let i = 0, l = spinner.circles; i < l; i++) {
-                _this.circles.push(this._loadEle(spinner, i, l))
+                this.circles.push(this._loadEle(spinner, i, l))
               }
             }
-            _this.nameClass = `spinner-${name} spinner-${_this.mode}-${name}`
+            this.nameClass = `spinner-${name} spinner-${this.mode}-${name}`
           }
         }
       },

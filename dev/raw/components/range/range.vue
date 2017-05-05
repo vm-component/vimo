@@ -282,16 +282,15 @@
           ev.stopPropagation()
 
           if (this.debounce > 0) {
-            const _this = this
-            _this._timer && window.clearTimeout(_this._timer)
-            _this._timer = window.setTimeout(function () {
+            this._timer && window.clearTimeout(this._timer)
+            this._timer = window.setTimeout(() => {
               /**
                * @event component:Range#onChange
                * @description 值发生变化时触发
                * @property {any} value - 触发的值
                */
-              _this.$emit('onChange', _this.valueInner)
-            }, _this.debounce)
+              this.$emit('onChange', this.valueInner)
+            }, this.debounce)
           }
 
           // update the active knob's position

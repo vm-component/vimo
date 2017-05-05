@@ -75,7 +75,7 @@
       /**
        * 当前menu的id
        * */
-      id: [String],
+      id: String,
       /**
        * menu从哪个位置出来, left/right
        * 默认:"left"
@@ -120,40 +120,43 @@
 
       /**
        * open
-       * @return {promise}
+       * @return {Promise}
        * */
       openMenu () {
-        const _this = this
-        if (!_this.enabled) return
+        if (!this.enabled) {
+          this.presentCallback()
+        } else {
+          this.showMenu = true
+          if (this.type === 'overlay') {
+            this.showBackdrop = true
+            // 确定左右动画
+            this.animationName = 'slideIn' + firstUpperCase(this.side)
+          }
 
-        _this.showMenu = true
-        if (_this.type === 'overlay') {
-          _this.showBackdrop = true
-          // 确定左右动画
-          _this.animationName = 'slideIn' + firstUpperCase(_this.side)
+          if (this.type === 'push') {
+            // this.showBackdrop = true;
+            // 确定左右动画
+            this.animationName = 'slideIn' + firstUpperCase(this.side)
+          }
+
+          this.isOpen = true
+          this.$eventBus && this.$eventBus.$emit('onMenuOpen', this.id)
         }
-
-        if (_this.type === 'push') {
-          // _this.showBackdrop = true;
-          // 确定左右动画
-          _this.animationName = 'slideIn' + firstUpperCase(_this.side)
-        }
-
-        _this.isOpen = true
-        this.$eventBus && this.$eventBus.$emit('onMenuOpen', this.id)
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
       /**
        * close
-       * @return {promise}
+       * @return {Promise}
        * */
       closeMenu () {
-        const _this = this
-        if (!_this.enabled) return
-        _this.showBackdrop = false
-        _this.isOpen = false
-        _this.$eventBus && _this.$eventBus.$emit('onMenuClosing', _this.id)
+        if (!this.enabled) {
+          this.dismissCallback()
+        } else {
+          this.showBackdrop = false
+          this.isOpen = false
+          this.$eventBus && this.$eventBus.$emit('onMenuClosing', this.id)
+        }
         return new Promise((resolve) => { this.dismissCallback = resolve })
       }
     },

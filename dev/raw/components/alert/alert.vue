@@ -376,9 +376,8 @@
        * @private
        * */
       rbClick (checkedInput) {
-        const _this = this
-        if (_this.enabled) {
-          _this.inputsForDispaly.forEach(input => {
+        if (this.enabled) {
+          this.inputsForDispaly.forEach(input => {
             input.checked = (checkedInput === input)
           })
           if (checkedInput.handler) {
@@ -395,8 +394,7 @@
        * @private
        * */
       cbClick (checkedInput) {
-        const _this = this
-        if (_this.enabled) {
+        if (this.enabled) {
           checkedInput.checked = !checkedInput.checked
           if (checkedInput.handler) {
             // 简单的对象拷贝
@@ -458,8 +456,7 @@
        * @returns {Promise} 当关闭动画执行完毕后触发resolved
        */
       present () {
-        const _this = this
-        _this.isActive = true
+        this.isActive = true
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
@@ -470,12 +467,11 @@
        * @returns {Promise} 当关闭动画执行完毕后触发resolved
        */
       dismiss () {
-        const _this = this
-        if (!_this.enabled) {
+        if (!this.enabled) {
           return false
         }
-        _this.enabled = false
-        _this.isActive = false // 动起来
+        this.enabled = false
+        this.isActive = false // 动起来
         return new Promise((resolve) => { this.dismissCallback = resolve })
       },
 
@@ -484,13 +480,12 @@
        * @private
        * */
       init () {
-        const _this = this
-        if (!_this.inputs || _this.inputs.length === 0) {
+        if (!this.inputs || this.inputs.length === 0) {
           return []
         }
         // 传入数据处理
         let _inputs = []
-        _inputs = _this.inputs.map((input, index) => {
+        _inputs = this.inputs.map((input, index) => {
           return {
             type: input.type || 'text',
             name: (input.name) ? input.name : index,
@@ -515,7 +510,7 @@
           console.warn(`Alert 组件不能包含复合的input类型: ${(inputTypes.join('/'))}. 请再次阅读说明文档.`)
         }
 
-        _this.inputType = inputTypes.length ? inputTypes[0] : null
+        this.inputType = inputTypes.length ? inputTypes[0] : null
 
         // const checkedInput = _inputs.find(input => input.checked)
 
@@ -528,10 +523,10 @@
           // the alert up high because we need to leave space for the virtual keboard
           // this also helps prevent the layout getting all messed up from
           // the browser trying to scroll the input into a safe area
-          _this.isAlertTop = true
+          this.isAlertTop = true
         }
 
-        _this.inputsForDispaly = _inputs
+        this.inputsForDispaly = _inputs
       },
 
       /**

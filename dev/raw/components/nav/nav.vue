@@ -111,9 +111,8 @@
        * @private
        * */
       tapToCloseMenu () {
-        const _this = this
-        _this.$nextTick(function () {
-          _this.isMenuOpen && _this.$menus.close()
+        this.$nextTick(() => {
+          this.isMenuOpen && this.$menus.close()
         })
       },
 
@@ -137,11 +136,10 @@
        * */
       initMenu () {
         let _translateX
-        const _this = this
         // 监听menu的组件事件
-        _this.$eventBus.$on('onMenuOpen', function (menuId) {
-          _this.setMenuInfo(menuId)
-          _this.isMenuOpen = true
+        this.$eventBus.$on('onMenuOpen', (menuId) => {
+          this.setMenuInfo(menuId)
+          this.isMenuOpen = true
 
           // 获取开口读, 宽度小于340px的的屏幕开口度为264px
           // 大于340px的屏幕开口度为304px
@@ -151,22 +149,22 @@
             _translateX = 264
           }
 
-          if (_this.menuType === 'reveal' || _this.menuType === 'push') {
-            if (_this.menuSide === 'left') {
-              _this.menuStyleObj[_this.transform] = `translateX(${_translateX}px)`
+          if (this.menuType === 'reveal' || this.menuType === 'push') {
+            if (this.menuSide === 'left') {
+              this.menuStyleObj[this.transform] = `translateX(${_translateX}px)`
             } else {
-              _this.menuStyleObj[_this.transform] = `translateX(-${_translateX}px)`
+              this.menuStyleObj[this.transform] = `translateX(-${_translateX}px)`
             }
           }
         })
-        _this.$eventBus.$on('onMenuClosing', function (menuId) {
-          _this.isMenuOpen = false
-          if (_this.menuType === 'reveal' || _this.menuType === 'push') {
-            _this.menuStyleObj[_this.transform] = 'translateX(0)'
+        this.$eventBus.$on('onMenuClosing', (menuId) => {
+          this.isMenuOpen = false
+          if (this.menuType === 'reveal' || this.menuType === 'push') {
+            this.menuStyleObj[this.transform] = 'translateX(0)'
           }
         })
-        _this.$eventBus.$on('onMenuClosed', function () {
-          _this.menuContentTypeClass = null
+        this.$eventBus.$on('onMenuClosed', () => {
+          this.menuContentTypeClass = null
         })
       }
     },
