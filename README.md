@@ -7,10 +7,12 @@
 </h1>
 
 <p align="center">
-  <a href="https://travis-ci.org/feross/standard"><img src="https://img.shields.io/travis/feross/standard/master.svg" alt="travis"></a>
-  <a href="https://www.npmjs.com/package/standard"><img src="https://img.shields.io/npm/v/standard.svg" alt="npm version"></a>
-  <a href="https://www.npmjs.com/package/eslint-config-standard"><img src="https://img.shields.io/npm/dm/eslint-config-standard.svg" alt="npm downloads"></a>
-  <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard - JavaScript Style Guide"></a>
+  <a href="https://www.npmjs.com/package/vimo"><img src="https://img.shields.io/npm/v/vimo.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/vimo"><img src="https://img.shields.io/npm/dm/vimo.svg" alt="npm downloads"></a>
+  <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="standardjs"></a>
+    <a href="#"><img src="https://img.shields.io/github/license/DTFE/Vimo.svg" alt="liense"></a>
+  
+
 </p>
 
 <h4 align="center">A H5 Platform For Hybrid</h4>
@@ -19,14 +21,13 @@
 
 
 ## Demo
-<p align="center">
-  <a href="http://xiangsongtao.com/vimo">http://xiangsongtao.com/vimo</a>
-</p>
 
 <p align="center">
   <img src="https://github.com/DTFE/Vimo/blob/master/dev/static/img/vimo_qrcode.png?raw=true" alt="vimo" width="200">
 </p>
-
+<p align="center">
+  <a href="http://xiangsongtao.com/vimo">http://xiangsongtao.com/vimo</a>
+</p>
 
 ## 框架解决的问题
 
