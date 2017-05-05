@@ -196,3 +196,13 @@ export class History {
     }
   }
 }
+
+export function setupHistory (Vue, router) {
+  if (window['VM'] && window['VM']['history']) {
+    return window['VM']['history']
+  } else {
+    // 全局注册
+    window['VM'] = window['VM'] || {}
+    window['VM']['history'] = new History(Vue, router)
+  }
+}

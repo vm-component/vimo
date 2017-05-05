@@ -1,5 +1,5 @@
 import { setupConfig } from './base/config'
-import { History } from './base/history'
+import { setupHistory } from './base/history'
 import { setupPlatform } from './base/platform'
 // Core
 import { App, Footer, Header } from './components/app'
@@ -17,22 +17,19 @@ export default {
   installed: false,
   version: VERSION,
   install (Vue, options = {}) {
-    window.VM = {}
-    // init base (config/platform)
-    setupConfig(options.custConf, setupPlatform(options.pltConf))
+    window.VM = {
+      version: VERSION
+    }
+    // init base (config/platform/history)
+    const platform = setupPlatform(options.pltConf)
+    const config = setupConfig(options.custConf, platform)
+    const history = setupHistory(Vue, options.router)
 
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = new Vue()
-    Vue.prototype.$config = window.VM.config
-    Vue.prototype.$platform = window.VM.platform
-    // 监听route变化, 内建历史记录
-    Vue.prototype.$history = window.VM.history = new History(Vue, options.router)
-
-    // 安装必要组件
-    if (!window.VM) {
-      console.error('Component install need VM!::<Function>install()')
-      return false
-    }
+    Vue.prototype.$config = config
+    Vue.prototype.$platform = platform
+    Vue.prototype.$history = history // 监听route变化, 内建历史记录
 
     // 全局注册的组件(核心组件)
     Vue.component(App.name, App)
@@ -44,7 +41,6 @@ export default {
 
     // add logo
     addLogo(VERSION, Vue.version)
-    window.VM.version = VERSION
   }
 }
 /* eslint-disable operator-linebreak */
