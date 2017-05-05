@@ -18,6 +18,12 @@
 <br>
 
 
+## Demo
+
+<p align="center">
+<img src="https://github.com/DTFE/Vimo/blob/master/dev/static/img/vimo_qrcode.png?raw=true" alt="vimo" width="200">
+</p>
+
 
 ## 框架解决的问题
 
