@@ -1,8 +1,8 @@
 <template>
     <transition
             name="backdrop"
-            v-on:before-enter="_beforeEnter"
-            v-on:after-leave="_afterLeave">
+            @before-enter="beforeEnter"
+            @after-leave="afterLeave">
         <div class="ion-backdrop"
              @click="bdClick"
              :class="{'backdrop-no-tappable':!enableBackdropDismiss,'fixed':fixed}"
@@ -101,14 +101,14 @@
        * 过渡钩子
        * @private
        */
-      _beforeEnter () {
+      beforeEnter () {
         /**
          * @event component:Backdrop#onShown
          * @description 当Backdrop打开时触发
          */
         this.$emit('onShown')
       },
-      _afterLeave () {
+      afterLeave () {
         /**
          * @event component:Backdrop#onHidden
          * @description 当Backdrop关闭时触发

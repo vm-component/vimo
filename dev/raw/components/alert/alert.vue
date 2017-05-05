@@ -3,10 +3,10 @@
         <Backdrop @click.native="bdClick()" :enableBackdropDismiss="enableBackdropDismiss"
                   :isActive="isActive"></Backdrop>
         <transition name="alert"
-                    v-on:before-enter="_beforeEnter"
-                    v-on:after-enter="_afterEnter"
-                    v-on:before-leave="_beforeLeave"
-                    v-on:after-leave="_afterLeave">
+                    @before-enter="beforeEnter"
+                    @after-enter="afterEnter"
+                    @before-leave="beforeLeave"
+                    @after-leave="afterLeave">
             <div class="alert-wrapper" v-show="isActive">
                 <div class="alert-head">
                     <h2 class="alert-title" v-if="title">{{title}}</h2>
@@ -294,11 +294,11 @@
        * ActionSheet Animate Hooks
        * @private
        * */
-      _beforeEnter () {
+      beforeEnter () {
         this.enabled = false // 不允许过渡中途操作
         this.$app && this.$app.setEnabled(false, 200)
       },
-      _afterEnter (el) {
+      afterEnter (el) {
         this.enabled = true
 
         // 执行开启的promise
@@ -310,11 +310,11 @@
           focusableEle.focus()
         }
       },
-      _beforeLeave () {
+      beforeLeave () {
         this.enabled = false
         this.$app && this.$app.setEnabled(false, 200)
       },
-      _afterLeave (el) {
+      afterLeave (el) {
         this.enabled = true
         // 执行关闭的promise
         this.dismissCallback(el)

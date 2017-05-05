@@ -6,10 +6,10 @@
         <!--actionsheet wrap-->
         <transition
                 name="action-sheet"
-                v-on:before-enter="_beforeEnter"
-                v-on:after-enter="_afterEnter"
-                v-on:before-leave="_beforeLeave"
-                v-on:after-leave="_afterLeave">
+                @before-enter="beforeEnter"
+                @after-enter="afterEnter"
+                @before-leave="beforeLeave"
+                @after-leave="afterLeave">
             <div class="action-sheet-wrapper" v-show="isActive">
                 <div class="action-sheet-container">
                     <!--group normal-->
@@ -187,11 +187,11 @@
        * ActionSheet Animate Hooks
        * @private
        * */
-      _beforeEnter () {
+      beforeEnter () {
         this.enabled = false // 不允许过渡中途操作
         this.$app && this.$app.setEnabled(false, 400)
       },
-      _afterEnter (el) {
+      afterEnter (el) {
         this.enabled = true
         this.presentCallback(el)
         this._focusOutActiveElement()
@@ -200,11 +200,11 @@
           focusableEle.focus()
         }
       },
-      _beforeLeave () {
+      beforeLeave () {
         this.enabled = false
         this.$app && this.$app.setEnabled(false, 400)
       },
-      _afterLeave (el) {
+      afterLeave (el) {
         this.enabled = true
         this.dismissCallback(el)
         // 删除DOM

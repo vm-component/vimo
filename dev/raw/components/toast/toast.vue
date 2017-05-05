@@ -1,10 +1,10 @@
 <template>
     <div class="toast" :class="[modeClass,cssClass]">
         <transition :name="transitionClass"
-                    v-on:before-enter="_beforeEnter"
-                    v-on:after-enter="_afterEnter"
-                    v-on:before-leave="_beforeLeave"
-                    v-on:after-leave="_afterLeave">
+                    @before-enter="beforeEnter"
+                    @after-enter="afterEnter"
+                    @before-leave="beforeLeave"
+                    @after-leave="afterLeave">
             <div v-show="isActive" class="toast-wrapper" :class="[positionClass]">
                 <div class="toast-container">
                     <div class="toast-message" id="toast-hdr" v-if="message">{{message}}</div>
@@ -89,16 +89,16 @@
        * Animate Hooks
        * @private
        * */
-      _beforeEnter () {
+      beforeEnter () {
         this.$app && this.$app.setEnabled(false, 400)
       },
-      _afterEnter (el) {
+      afterEnter (el) {
         this.presentCallback(el)
       },
-      _beforeLeave () {
+      beforeLeave () {
         this.$app && this.$app.setEnabled(false, 400)
       },
-      _afterLeave (el) {
+      afterLeave (el) {
         this.dismissCallback(el)
         // 删除DOM
         this.$el.remove()

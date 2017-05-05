@@ -11,10 +11,10 @@
                 :class="{'show-backdrop':showBackdrop}"></Backdrop>
         <transition
                 :name="animationName"
-                v-on:before-enter="_beforeEnter"
-                v-on:after-enter="_afterEnter"
-                v-on:before-leave="_beforeLeave"
-                v-on:after-leave="_afterLeave">
+                @before-enter="beforeEnter"
+                @after-enter="afterEnter"
+                @before-leave="beforeLeave"
+                @after-leave="afterLeave">
             <div class="menu-inner" v-if="isOpen">
                 <slot></slot>
             </div>
@@ -103,16 +103,16 @@
     },
     methods: {
       // 过渡钩子
-      _beforeEnter (el) {
+      beforeEnter (el) {
         this.$app && this.$app.setEnabled(false, 300)
       },
-      _afterEnter (el) {
+      afterEnter (el) {
         this.presentCallback(el)
       },
-      _beforeLeave () {
+      beforeLeave () {
         this.$app && this.$app.setEnabled(false, 300)
       },
-      _afterLeave (el) {
+      afterLeave (el) {
         this.$eventBus && this.$eventBus.$emit('onMenuClosed', this.id)
         this.dismissCallback(el)
         this.showMenu = false

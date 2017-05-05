@@ -4,10 +4,10 @@
                   :isActive="isActive"></Backdrop>
         <transition
                 :name="transitionClass"
-                v-on:before-enter="_beforeEnter"
-                v-on:after-enter="_afterEnter"
-                v-on:before-leave="_beforeLeave"
-                v-on:after-leave="_afterLeave">
+                @before-enter="beforeEnter"
+                @after-enter="afterEnter"
+                @before-leave="beforeLeave"
+                @after-leave="afterLeave">
             <div class="modal-wrapper" v-show="isActive">
                 <!--用户自定义的port位置-->
                 <div class="modalPageLoadPort"></div>
@@ -53,19 +53,19 @@
       /**
        * Animate Hooks
        * */
-      _beforeEnter () {
+      beforeEnter () {
         this.enabled = false // 不允许过渡中途操作
         this.$app && this.$app.setEnabled(false, 400)
       },
-      _afterEnter (el) {
+      afterEnter (el) {
         this.enabled = true
         this.presentCallback(el)
       },
-      _beforeLeave () {
+      beforeLeave () {
         this.enabled = false
         this.$app && this.$app.setEnabled(false, 400)
       },
-      _afterLeave (el) {
+      afterLeave (el) {
         this.enabled = true
         this.dismissCallback(el)
         // 删除DOM
