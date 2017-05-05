@@ -1,7 +1,7 @@
 <h1 align="center">
   <a href="/#/"><img src="https://github.com/DTFE/Vimo/blob/master/dev/static/img/vimo.png?raw=true" alt="vimo" width="200"></a>
   <br>
-  Vimo For Hybrid
+  Hello Vimo
   <br>
   <br>
 </h1>
@@ -13,7 +13,7 @@
   <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard - JavaScript Style Guide"></a>
 </p>
 
-<h4 align="center">一套针对HyBrid平台开发的H5框架</h4>
+<h4 align="center">A H5 Platform For Hybrid</h4>
 
 <br>
 
