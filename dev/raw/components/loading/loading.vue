@@ -120,12 +120,7 @@
         type: Boolean,
         default () { return true }
       },
-      duration: {
-        type: Number,
-        default () {
-          return this.$config.get('maxLoadingDuration', 5000)
-        }
-      },
+      duration: Number,
       dismissOnPageChange: {
         type: Boolean,
         default () { return true }
@@ -183,9 +178,12 @@
        * @private
        * */
       dismissOnPageChangeHandler () {
-        this.dismiss()
-        this.timer && window.clearTimeout(this.timer)
-        this.unreg && this.unreg()
+        console.log('dismissOnPageChangeHandler')
+        this.$nextTick(() => {
+          this.dismiss()
+          this.timer && window.clearTimeout(this.timer)
+          this.unreg && this.unreg()
+        })
       },
 
       // -------- public --------
@@ -199,7 +197,7 @@
       present () {
         this.startTime = new Date().getTime()
         this.isActive = true
-        if (parseInt(this.duration) > 0) {
+        if (parseInt(this.duration) > 16) {
           this.timer && window.clearTimeout(this.timer)
           this.timer = window.setTimeout(() => {
             this.dismiss()

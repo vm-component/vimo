@@ -14,8 +14,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   mobile: {
     settings: {
       mode: 'md',
-      maxLoadingDuration: 10000, // loading组件最大开启时间
-      maxIndicatorDuration: 30000, // indicator组件最大开启时间
+      // maxLoadingDuration: 30000, // loading组件最大开启时间
       regexps: {
         // 整数(包含正负)
         integer: /^-?[1-9]\d*$/,

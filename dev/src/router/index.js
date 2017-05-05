@@ -14,12 +14,20 @@ Vue.use(Router)
  * onRouteChangeAfter: 页面变化后的事件.
  *
  * */
-router.beforeEach((to, from, next) => {
-  Indicator.present()
-  next()
-})
-//
+// router.beforeEach((to, from, next) => {
+//   Vue.nextTick(() => {
+//     if (Vue.prototype.$history.canGoBack() && Vue.prototype.$history.getDirection() === 'forward') {
+//       Indicator.present()
+//     }
+//   })
+//   next()
+// })
+// //
 // router.afterEach((to, from) => {
+//   Vue.nextTick(() => {
+//     'use strict'
+//     Indicator.dismiss()
+//   })
 // })
 
 export default router

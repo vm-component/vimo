@@ -27,9 +27,6 @@
     data () {
       return {}
     },
-    props: {},
-    watch: {},
-    computed: {},
     methods: {
       openIndicatorInfinity () {
         this.$indicator.present()

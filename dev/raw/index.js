@@ -20,13 +20,14 @@ export default {
     window.VM = {
       version: VERSION
     }
+    // 全局事件总线（各个组件共用）中央事件总线
+    Vue.prototype.$eventBus = new Vue()
+
     // init base (config/platform/history)
     const platform = setupPlatform(options.pltConf)
     const config = setupConfig(options.custConf, platform)
     const history = setupHistory(Vue, options.router)
 
-    // 全局事件总线（各个组件共用）中央事件总线
-    Vue.prototype.$eventBus = new Vue()
     Vue.prototype.$config = config
     Vue.prototype.$platform = platform
     Vue.prototype.$history = history // 监听route变化, 内建历史记录
@@ -41,6 +42,7 @@ export default {
 
     // add logo
     addLogo(VERSION, Vue.version)
+    this.installed = true
   }
 }
 /* eslint-disable operator-linebreak */

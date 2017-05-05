@@ -42,7 +42,6 @@ function LoadingFactory (options) {
 const options = {
   cssClass: 'indicator',
   showBackdrop: false,
-  duration: window.VM && window.VM.config.get('maxIndicatorDuration', 30000),
   mode: 'ios'
 }
 

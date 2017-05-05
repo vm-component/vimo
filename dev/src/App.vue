@@ -31,7 +31,7 @@
                 </List>
             </Content>
         </Menus>
-        <Nav>
+        <Nav :showIndicatorWhenPageChange="true">
             <!--<keep-alive>-->
             <router-view></router-view>
             <!--</keep-alive>-->

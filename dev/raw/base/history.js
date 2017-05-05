@@ -57,6 +57,15 @@ export class History {
           }
         }
       })
+
+      this._r.beforeEach((to, from, next) => {
+        Vue.prototype.$eventBus.$emit('beforeEach', {to, from})
+        next()
+      })
+
+      this._r.afterEach((to, from) => {
+        Vue.prototype.$eventBus.$emit('afterEach', {to, from})
+      })
     }
   }
 
@@ -202,7 +211,9 @@ export function setupHistory (Vue, router) {
     return window['VM']['history']
   } else {
     // 全局注册
+    const history = new History(Vue, router)
     window['VM'] = window['VM'] || {}
-    window['VM']['history'] = new History(Vue, router)
+    window['VM']['history'] = history
+    return history
   }
 }

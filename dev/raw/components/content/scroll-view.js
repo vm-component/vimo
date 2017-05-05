@@ -20,7 +20,7 @@ export class ScrollView {
     this.scroll = (ev) => {}       // 滚动进行的回调, 传入ev参数, 一般用于事件操作
     this.scrollEnd = (ev) => {}    // 滚动结束的回调, 传入ev参数, 一般用于事件操作
 
-    this.transform = window.VM && window.VM.platform && window.VM.platform.css ? window.VM.platform.css.transform : 'webkitTransform'
+    this.transform = window.VM.platform.css.transform
 
     this._el = null                   // scrollElement 当前滚动实例的元素
     this._cel = null                  // contentElement 当前滚动实例的元素
@@ -208,7 +208,7 @@ export class ScrollView {
 
     self._el.parentElement.classList.add('js-scroll')
 
-    let config = window.VM && window.VM.config && window.VM.config.get('jsScrollOptions', {})
+    let config = window.VM.config.get('jsScrollOptions', {})
     self._jsScrollInstance = new IScroll(contentElement, config)
 
     // scroll start

@@ -25,7 +25,6 @@
     }
 </style>
 <script type="text/javascript">
-
   /**
    * @component Base/Nav
    * @description
@@ -39,10 +38,14 @@
    * @props {String} [animate] - 转场动画的名称, 可以是这里的一种: ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
    *
    * */
+  import { Indicator } from 'vimo/components/indicator'
   export default{
     name: 'Nav',
     props: {
-      animate: [String]
+      // 转场动画名称
+      animate: String,
+      // 转场是否开启Indicator
+      showIndicatorWhenPageChange: Boolean
     },
     data () {
       return {
@@ -103,6 +106,22 @@
           this.$app && this.$app.setEnabled(false, 500)
           next()
         })
+
+        // 页面切换显示Indicator
+        if (this.showIndicatorWhenPageChange) {
+          // 前进则显示
+          this.$eventBus.$on('onNavEnter', () => {
+            this.$nextTick(() => {
+              Indicator.present()
+            })
+          })
+
+          this.$eventBus.$on('afterEach', () => {
+            this.$nextTick(() => {
+              Indicator.dismiss()
+            })
+          })
+        }
       },
 
       // ----------- Menu -----------
