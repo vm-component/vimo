@@ -46,11 +46,11 @@ if (!Array.prototype.find) {
 (function () {
   var rafLastTime = 0
   if (!window.requestAnimationFrame) {
-    window.requestAnimationFrame = function (callback) {
+    window.requestAnimationFrame = function (cbs) {
       var currTime = Date.now()
       var timeToCall = Math.max(0, 16 - (currTime - rafLastTime))
       var id = window.setTimeout(function () {
-        callback && callback(currTime + timeToCall)
+        cbs && cbs(currTime + timeToCall)
       }, timeToCall)
 
       rafLastTime = currTime + timeToCall

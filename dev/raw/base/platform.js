@@ -87,6 +87,7 @@ import { PLATFORM_DEFAULT_CONFIGS } from './platform-default-configs'
 
 class Platform {
   constructor () {
+    // Ready的promise;
     this._readyPromise = new Promise((resolve) => {
       this._readyResolve = resolve
     })
@@ -100,13 +101,8 @@ class Platform {
     this._bPlt = null // string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
     this._ua = null // string userAgent;
 
-    this._readyPromise = null // Promise<any> Ready的promise;
-    this._readyResolve = null // any;
-
     this._resizeTm = null // any setTimeout 定时过后执行_onResizes中的回调函数;
     this._onResizes = [] // Array<Function> = [] resize时执行的回调列表;
-
-    // this._bbActions = [] // BackButtonAction[] = [] 后退按钮上注册的回调列表;
 
     this._default = null // string 如果rootNode不存则使用默认的配置
     this._platforms = [] // : string[] = []; 当前平台的key 例如: "mobile/ios/mobileweb"
@@ -415,7 +411,6 @@ class Platform {
    * @private
    */
   _calcDim () {
-    var win = window
     // we're caching window dimensions so that
     // we're not forcing many layouts
     // if _isPortrait is null then that means
@@ -427,39 +422,39 @@ class Platform {
     // even when the device is in portrait but
     // the second time it is measured it is correct.
     // Hopefully this check will not be needed in the future
-    if ((this._isPortrait === null || this._isPortrait === false) && this.win['innerWidth'] < this.win['innerHeight']) {
+    if (!this._isPortrait && window['innerWidth'] < window['innerHeight']) {
       // we're keeping track of portrait and landscape dimensions
       // separately because the virtual keyboard can really mess
       // up accurate values when the keyboard is up
-      if (win.screen.width > 0 && win.screen.height > 0) {
-        if (win['innerWidth'] < win['innerHeight']) {
+      if (window.screen.width > 0 && window.screen.height > 0) {
+        if (window['innerWidth'] < window['innerHeight']) {
           // the device is in portrait
-          if (this._pW <= win['innerWidth']) {
+          if (this._pW <= window['innerWidth']) {
             // console.debug('setting _isPortrait to true');
             this._isPortrait = true
-            this._pW = win['innerWidth']
+            this._pW = window['innerWidth']
           }
-          if (this._pH <= win['innerHeight']) {
+          if (this._pH <= window['innerHeight']) {
             // console.debug('setting _isPortrait to true');
             this._isPortrait = true
-            this._pH = win['innerHeight']
+            this._pH = window['innerHeight']
           }
         } else {
-          if (this._lW > win['innerWidth']) {
+          if (this._lW > window['innerWidth']) {
             // Special case: keyboard is open and device is in portrait
             // console.debug('setting _isPortrait to true while keyboard is open and device is portrait');
             this._isPortrait = true
           }
           // the device is in landscape
-          if (this._lW <= win['innerWidth']) {
+          if (this._lW <= window['innerWidth']) {
             // console.debug('setting _isPortrait to false');
             this._isPortrait = false
-            this._lW = win['innerWidth']
+            this._lW = window['innerWidth']
           }
-          if (this._lH <= win['innerHeight']) {
+          if (this._lH <= window['innerHeight']) {
             // console.debug('setting _isPortrait to false');
             this._isPortrait = false
-            this._lH = win['innerHeight']
+            this._lH = window['innerHeight']
           }
         }
       }
