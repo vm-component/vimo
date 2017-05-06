@@ -13,18 +13,19 @@
                 </ListHeader>
                 <!--group-->
                 <ItemGroup>
-                    <Item button to="list.listForAll">ListForAll</Item>
-                    <Item button :to="{name:'list.basicList'}">BasicList</Item>
-                    <Item button :to="{name:'list.noLine'}">NoLine</Item>
-                    <Item button :to="{name:'list.insetList'}">InsetList</Item>
-                    <Item button :to="{name:'list.listDividers'}">ListDividers</Item>
-                    <Item button :to="{name:'list.listHeaders'}">listHeaders</Item>
-                    <Item button :to="{name:'list.iconList'}">IconList</Item>
-                    <Item button :to="{name:'list.avatarList'}">AvatarList</Item>
-                    <Item button :to="{name:'list.multi-lineList'}">Multi-lineList</Item>
-                    <Item button :to="{name:'list.slidingList'}">SlidingList</Item>
-                    <Item button :to="{name:'list.reorder'}">Reorder</Item>
-                    <Item button :to="{name:'list.thumbnailList'}">ThumbnailList</Item>
+                    <Item detail-push to="list.listForAll">ListForAll</Item>
+                    <Item detail-push :to="{name:'list.basicList'}">BasicList</Item>
+                    <Item detail-push :to="{name:'list.noLine'}">NoLine</Item>
+                    <Item detail-push :to="{name:'list.insetList'}">InsetList</Item>
+                    <Item detail-push :to="{name:'list.listDividers'}">ListDividers</Item>
+                    <Item detail-push :to="{name:'list.listHeaders'}">listHeaders</Item>
+                    <Item detail-push :to="{name:'list.iconList'}">IconList</Item>
+                    <Item detail-push :to="{name:'list.avatarList'}">AvatarList</Item>
+                    <Item detail-push :to="{name:'list.multi-lineList'}">Multi-lineList</Item>
+                    <Item detail-push :to="{name:'list.slidingList'}">SlidingList</Item>
+                    <Item detail-push :to="{name:'list.reorder'}">Reorder</Item>
+                    <Item detail-push :to="{name:'list.thumbnailList'}">ThumbnailList</Item>
+                    <Item detail-push :to="{name:'list.collapse'}">折叠列表</Item>
                 </ItemGroup>
             </List>
         </Content>

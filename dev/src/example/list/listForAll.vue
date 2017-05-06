@@ -30,8 +30,6 @@
                     <Item button>
                         <Icon slot="item-left" color="primary" name="wifi"></Icon>
                         Wi-Fi
-
-
                         <Note slot="item-right">The Interwebz</Note>
                     </Item>
                     <!--button属性会在右边增加向右箭头-->

@@ -7,7 +7,7 @@
         </Header>
         <Content class="outer-content">
             <List inset>
-                <Item button v-for="(item,index) in list" :key="index">
+                <Item detail-push v-for="(item,index) in list" :key="index">
                     {{item}}
                 </Item>
             </List>

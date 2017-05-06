@@ -2,6 +2,7 @@
  * Created by Hsiang on 2017/1/16.
  */
 import Item from './item.vue'
+import ItemCollapse from './itemCollapse.vue'
 import ItemDivider from './itemDivider.vue'
 import ItemGroup from './itemGroup.vue'
 import ItemOptions from './itemOptions.vue'
@@ -12,6 +13,7 @@ export {
   ListHeader,
   ItemDivider,
   ItemGroup,
+  ItemCollapse,
   ItemSliding,
   ItemOptions
 }

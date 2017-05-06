@@ -95,5 +95,12 @@ export default [
     component (resolve) {
       require(['@/example/list/ThumbnailList.vue'], resolve)
     }
+  },
+  {
+    path: '/collapseList',
+    name: 'list.collapse',
+    component (resolve) {
+      require(['@/example/list/collapse.vue'], resolve)
+    }
   }
 ]

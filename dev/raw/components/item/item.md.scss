@@ -22,7 +22,7 @@ $item-md-avatar-size: 40px !default;
 $item-md-thumbnail-size: 80px !default;
 
 /// @prop - Shows the detail arrow icon on an item
-$item-md-detail-push-show: false !default;
+$item-md-detail-push-show: true !default;
 
 /// @prop - Color of the detail arrow icon
 $item-md-detail-push-color: $list-md-border-color !default;
@@ -68,7 +68,8 @@ $item-md-sliding-content-background: #eee !default;
 //.item-md:active {
 //  background-color: $list-md-activated-background-color;
 //}
-.item-md[button]:active {
+.item-md[button]:active,
+.item-md[detail-push]:active {
   background-color: $list-md-activated-background-color;
   transition-duration: 0ms;
 }
@@ -125,6 +126,7 @@ $item-md-sliding-content-background: #eee !default;
 // Only show the forward arrow icon if true
 @if $item-md-detail-push-show == true {
   .item-md[detail-push] .item-inner,
+  [button].item-md:not([detail-none]) .item-inner,
   button.item-md:not([detail-none]) .item-inner,
   a.item-md:not([detail-none]) .item-inner {
     @include svg-background-image($item-md-detail-push-svg);
@@ -219,7 +221,7 @@ $item-md-sliding-content-background: #eee !default;
   border-top-width: 0;
 }
 
-.ion-item-group .item-md:last-child .item-inner,
+.ion-item-group .item-md:last-child:not(.item-collapse-open) .item-inner,
 .ion-item-group .item-md .item-wrapper:last-child .item-inner {
   border: 0;
 }
@@ -275,4 +277,52 @@ $item-md-sliding-content-background: #eee !default;
 .item-md .ion-reorder {
   font-size: 1.5em;
   opacity: .3;
+}
+
+// Material Design Item Collapse
+// --------------------------------------------------
+
+.item-md.item-collapse > .item-block:active {
+  background-color: $list-md-activated-background-color;
+  transition-duration: 0ms;
+}
+
+.item-md.item-collapse > .item-block > .item-inner {
+  position: relative;
+  padding-right: 32px;
+}
+
+.item-md.item-collapse .item-arrow {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  margin-top: -7px;
+
+  @include svg-background-image($item-md-detail-push-svg);
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 14px 14px;
+
+  transition: all ease 200ms;
+}
+
+.item-md.item-collapse.item-collapse-open .item-arrow {
+  transform: rotate(90deg);
+}
+
+.ion-item-group .item-collapse > .item-collapse-inner{
+  overflow: hidden;
+}
+.ion-item-group .item-collapse > .item-collapse-inner .item-md .item-inner,
+.ion-item-group .item-collapse > .item-collapse-inner .item-md:last-child .item-inner {
+  border-bottom: $hairlines-width solid $list-md-border-color;
+}
+
+.ion-item-group .item-md:last-child {
+  .item-collapse-inner .item-md:last-child .item-inner {
+    border: 0;
+  }
 }

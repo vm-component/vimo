@@ -24,13 +24,13 @@
 
             <List>
                 <ListHeader>Character</ListHeader>
-                <Item button :to="{name:'contentContext'}">文本</Item>
-                <Item button :to="{name:'contentFixed'}">内容固定</Item>
-                <Item button :to="{name:'contentFullscreen'}">全屏模式</Item>
-                <Item button :to="{name:'contentHideBars'}">隐藏头尾Bar</Item>
-                <Item button :to="{name:'contentSetBarStyle'}">设置Bar的样式</Item>
-                <Item button :to="{name:'contentScroll'}">滚动内容(原生滚动)</Item>
-                <Item button :to="{name:'contentJsScroll'}">滚动内容(集成jsScroll)</Item>
+                <Item detail-push :to="{name:'contentContext'}">文本</Item>
+                <Item detail-push :to="{name:'contentFixed'}">内容固定</Item>
+                <Item detail-push :to="{name:'contentFullscreen'}">全屏模式</Item>
+                <Item detail-push :to="{name:'contentHideBars'}">隐藏头尾Bar</Item>
+                <Item detail-push :to="{name:'contentSetBarStyle'}">设置Bar的样式</Item>
+                <Item detail-push :to="{name:'contentScroll'}">滚动内容(原生滚动)</Item>
+                <Item detail-push :to="{name:'contentJsScroll'}">滚动内容(集成jsScroll)</Item>
             </List>
         </Content>
     </Page>
