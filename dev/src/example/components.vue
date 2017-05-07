@@ -35,7 +35,7 @@
                 </ListHeader>
                 <ItemGroup>
                     <Item detail-push :to="{name:'platform'}">
-                        <Icon slot="item-left" name="logo-apple"></Icon>
+                        <Icon slot="item-left" md="logo-android"  ios="logo-apple"></Icon>
                         <span>平台</span>
                         <Note slot="item-right">Platform</Note>
                     </Item>

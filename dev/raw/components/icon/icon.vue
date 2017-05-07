@@ -167,7 +167,7 @@
       },
       update () {
         let iconName
-        this.hidden = !this.name
+        this.hidden = !this.name && !this.ios && !this.md
         if (this.hidden) return
 
         if (this.isActive && this.activeName) {
