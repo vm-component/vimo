@@ -12,6 +12,22 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam consequuntur cumque earum exercitationem, id ipsa laboriosam laudantium magnam mollitia perferendis provident, quia quo recusandae reprehenderit saepe sunt totam vitae!</p>
 
+
+            <h5>Async</h5>
+
+            <Slides class="swiper async">
+                <!-- 幻灯内容 -->
+                <Slide class="slide" v-for="(item,index) in asyncIimageList" :key="index">
+                    <img :src="item" alt="asyncImg">
+                </Slide>
+            </Slides>
+
+            <Grid no-padding>
+                <Row justify-content-center>
+                    <Button outline small @click="loadAsyncImg">Load Img</Button>
+                </Row>
+            </Grid>
+
             <h5>Default Setup</h5>
             <Slides class="swiper">
                 <!-- 幻灯内容 -->
@@ -525,6 +541,10 @@
 
 </style>
 <style lang="scss">
+    .async {
+        background: #fff;
+    }
+
     .customizedPagination {
         .swiper-pagination-bullet {
             width: 20px;
@@ -620,6 +640,7 @@
     name: 'name',
     data () {
       return {
+        asyncIimageList: [],
         coverflow: {
           rotate: 50,
           stretch: 0,
@@ -653,7 +674,6 @@
           'Slide 2',
           'Slide 3'
         ]
-
       }
     },
     computed: {
@@ -665,6 +685,9 @@
       }
     },
     methods: {
+      loadAsyncImg () {
+        this.asyncIimageList = ['../../static/img/scenery_1.jpg', '../../static/img/scenery_2.jpg', '../../static/img/scenery_3.jpg']
+      },
       // dynamic Slides
       addSlide () {
         let item = 'Slide ' + (this.dynamicData.length + 1)
@@ -689,7 +712,8 @@
       const _this = this
       _this.data = _this.data1
     },
-    mounted () {},
+    mounted () {
+    },
     activated () {},
     components: {Slides, Slide}
   }

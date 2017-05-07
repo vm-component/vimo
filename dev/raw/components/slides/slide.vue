@@ -19,6 +19,17 @@
    *
    * */
   export default {
-    name: 'Slide'
+    name: 'Slide',
+    data () {
+      return {
+        slidesComponent: null
+      }
+    },
+    created () {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'slides') {
+        this.slidesComponent = this.$parent
+        this.slidesComponent.initSlides()
+      }
+    }
   }
 </script>

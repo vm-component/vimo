@@ -107,6 +107,7 @@
     props: getProps(),
     data () {
       return {
+        timer: null,
         swiperInstance: null,
         id: ++slidesId,
         init: false
@@ -156,14 +157,15 @@
        * @private
        * */
       initSlides () {
-        if (!this.init) {
-          this.swiperInstance = new Swiper(this.$el, assign(this._props, getEvents(this)))
-          this.init = true
-        }
+        this.timer && window.clearTimeout(this.timer)
+        this.timer = window.setTimeout(() => {
+          if (!this.init) {
+            console.log('initSlides')
+            this.swiperInstance = new Swiper(this.$el, assign(this._props, getEvents(this)))
+            this.init = true
+          }
+        }, 0)
       }
-    },
-    mounted () {
-      this.initSlides()
     },
     destroy () {
       this.swiperInstance && this.swiperInstance.destroy()
