@@ -81,16 +81,21 @@
                         <span>菊花图</span>
                         <Note slot="item-right">Spinner</Note>
                     </Item>
+                    <Item detail-push :to="{name: 'badge'}">
+                        <Icon slot="item-left" name="ribbon"></Icon>
+                        <span>徽章</span>
+                        <Note slot="item-right">Badge</Note>
+                    </Item>
                     <Item detail-push :to="{name: 'cards'}">
                         <Icon slot="item-left" name="calendar"></Icon>
                         <span>卡片</span>
                         <Note slot="item-right">Cards</Note>
                     </Item>
-                    <!--<Item detail-push :to="{name: 'fab'}">-->
-                    <!--<Icon slot="item-left" name="basketball"></Icon>-->
-                    <!--<span>Fab</span>-->
-                    <!--<Note slot="item-right">Fab</Note>-->
-                    <!--</Item>-->
+                    <Item detail-push :to="{name: 'fab'}">
+                        <Icon slot="item-left" name="basketball"></Icon>
+                        <span>Fab</span>
+                        <Note slot="item-right">Fab</Note>
+                    </Item>
                     <Item detail-push :to="{name: 'img'}">
                         <Icon slot="item-left" name="image"></Icon>
                         <span>图片</span>

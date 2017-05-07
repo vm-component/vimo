@@ -101,21 +101,21 @@ a {
   display: block;
 }
 
-.fixed-content [fixed] {
+[fixed] {
   position: absolute;
-  width: 100%;
-  // if move to fixed-content class, then page can not click
-  z-index: $z-index-fixed-content;
+  z-index: $z-index-fixed-content; // 999
   transform: translateZ(0);
 }
 
 // fixed Position
-.fixed-content [fixed][top] {
+.fixed-content [fixedTop] {
+  width: 100%;
   top: 0;
 }
 
-.fixed-content [fixed][bottom] {
+.fixed-content [fixedBottom] {
   bottom: 0;
+  width: 100%;
 }
 
 // Content Padding

@@ -181,6 +181,13 @@ let routes = [
     }
   },
   {
+    path: '/badge',
+    name: 'badge',
+    component (resolve) {
+      require(['@/example/badge.vue'], resolve)
+    }
+  },
+  {
     path: '/fab',
     name: 'fab',
     component (resolve) {

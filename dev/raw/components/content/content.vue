@@ -1,20 +1,19 @@
 <template>
     <article content class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
+
         <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
             <!--默认是能滚动的内容-->
             <!--原生滚动-->
             <slot></slot>
         </section>
+
         <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
+            <!--Fixed-->
+            <slot name="fixed"></slot>
             <!--Fixed Top-->
-            <div fixed top>
-                <slot name="fixed"></slot>
-                <slot name="fixedTop"></slot>
-            </div>
+            <slot name="fixedTop"></slot>
             <!--Fixed Bottom-->
-            <div fixed bottom>
-                <slot name="fixedBottom"></slot>
-            </div>
+            <slot name="fixedBottom"></slot>
         </section>
         <slot name="refresher"></slot>
     </article>
@@ -564,6 +563,29 @@
     },
     mounted () {
       this.init()
+
+
+
+      // 为slot="fixed"/slot="fixedTop"/slot="fixedBottom"的沟槽设定属性
+      if (this.$slots && this.$slots['fixed']) {
+        this.$slots['fixed'].forEach(function (item) {
+          item.elm.setAttribute('fixed', '')
+        })
+      }
+      if (this.$slots && this.$slots['fixedTop']) {
+        this.$slots['fixedTop'].forEach(function (item) {
+          item.elm.setAttribute('fixed', '')
+          item.elm.setAttribute('fixedTop', '')
+        })
+      }
+      if (this.$slots && this.$slots['fixedBottom']) {
+        this.$slots['fixedBottom'].forEach(function (item) {
+          item.elm.setAttribute('fixed', '')
+          item.elm.setAttribute('fixedBottom', '')
+        })
+      }
+
+
     },
     destroyed () {
       this._scroll.destroy()

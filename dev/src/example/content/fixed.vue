@@ -16,7 +16,6 @@
                 <strong>或者固定到页面的某个位置. 这部分使用的都是slot属性: fixed(默认在上)/fixedTop/fixedBottom </strong>
             </div>
 
-
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fuga iste iusto nihil officia possimus sit ullam. Aperiam architecto dolor ex harum iste laboriosam nostrum possimus quibusdam. Provident, sequi similique?</p>
             <p>
