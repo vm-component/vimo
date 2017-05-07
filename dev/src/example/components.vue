@@ -14,55 +14,94 @@
                 <!--group-->
                 <ItemGroup>
                     <Item detail-push :to="{name: 'app'}">
-                        <Icon slot="item-left" name="browsers"></Icon>
-                        <span>整体 (App)</span>
+                        <Icon slot="item-left" name="apps"></Icon>
+                        <span>根组件</span>
+                        <Note slot="item-right">App</Note>
+                    </Item>
+                    <Item detail-push :to="{name: 'nav'}">
+                        <Icon slot="item-left" name="navigate"></Icon>
+                        <span>导航</span>
+                        <Note slot="item-right">Nav</Note>
                     </Item>
                     <Item detail-push :to="{name: 'content'}">
-                        <Icon slot="item-left" name="chatboxes"></Icon>
-                        <span>布局 (Content)</span>
+                        <Icon slot="item-left" name="paper"></Icon>
+                        <span>页面</span>
+                        <Note slot="item-right">Page</Note>
                     </Item>
 
                 </ItemGroup>
 
+                <ListHeader>
+                    <span>公共服务</span>
+                </ListHeader>
+                <ItemGroup>
+
+                    <Item detail-push>
+                        <Icon slot="item-left" name="logo-apple"></Icon>
+                        <span>平台</span>
+                        <Note slot="item-right">Platform</Note>
+                    </Item>
+
+                    <Item detail-push>
+                        <Icon slot="item-left" name="settings"></Icon>
+                        <span>配置</span>
+                        <Note slot="item-right">Config</Note>
+                    </Item>
+
+                    <Item detail-push>
+                        <Icon slot="item-left" name="logo-buffer"></Icon>
+                        <span>历史记录</span>
+                        <Note slot="item-right">History</Note>
+                    </Item>
+                </ItemGroup>
                 <!--通用组件-->
                 <ListHeader>通用组件</ListHeader>
                 <!--group-->
                 <ItemGroup>
                     <Item detail-push :to="{name: 'toolbar'}">
                         <Icon slot="item-left" name="briefcase"></Icon>
-                        <span>工具条 (Toolbar)</span>
+                        <span>工具条</span>
+                        <Note slot="item-right">Toolbar</Note>
                     </Item>
                     <Item detail-push :to="{name: 'grid'}">
-                        <Icon slot="item-left" name="keypad"></Icon>
-                        <span>栅格 (Grid)</span>
+                        <Icon slot="item-left" name="grid"></Icon>
+                        <span>栅格</span>
+                        <Note slot="item-right">Grid</Note>
                     </Item>
                     <Item detail-push :to="{name: 'button'}">
                         <Icon slot="item-left" name="download"></Icon>
-                        <span>按钮 (Button)</span>
+                        <span>按钮</span>
+                        <Note slot="item-right">Button</Note>
                     </Item>
                     <Item detail-push :to="{name: 'icon'}">
-                        <Icon slot="item-left" name="color-filter"></Icon>
-                        <span>图标 (Icon)</span>
+                        <Icon slot="item-left" name="ionitron"></Icon>
+                        <span>图标</span>
+                        <Note slot="item-right">Icon</Note>
                     </Item>
                     <Item detail-push :to="{name: 'spinner'}">
                         <Icon slot="item-left" name="medical"></Icon>
-                        <span>菊花图 (Spinner)</span>
+                        <span>菊花图</span>
+                        <Note slot="item-right">Spinner</Note>
                     </Item>
                     <Item detail-push :to="{name: 'cards'}">
                         <Icon slot="item-left" name="calendar"></Icon>
-                        <span>卡片 (Cards)</span>
+                        <span>卡片</span>
+                        <Note slot="item-right">Cards</Note>
                     </Item>
-                    <Item detail-push :to="{name: 'fab'}">
-                        <Icon slot="item-left" name="basketball"></Icon>
-                        <span>Fab</span>
-                    </Item>
+                    <!--<Item detail-push :to="{name: 'fab'}">-->
+                        <!--<Icon slot="item-left" name="basketball"></Icon>-->
+                        <!--<span>Fab</span>-->
+                        <!--<Note slot="item-right">Fab</Note>-->
+                    <!--</Item>-->
                     <Item detail-push :to="{name: 'img'}">
                         <Icon slot="item-left" name="image"></Icon>
-                        <span>图片 (Img)</span>
+                        <span>图片</span>
+                        <Note slot="item-right">Img</Note>
                     </Item>
                     <Item detail-push :to="{name: 'slides'}">
-                        <Icon slot="item-left" name="image"></Icon>
-                        <span>轮播 (Slides)</span>
+                        <Icon slot="item-left" name="photos"></Icon>
+                        <span>轮播</span>
+                        <Note slot="item-right">Slides</Note>
                     </Item>
                 </ItemGroup>
 
@@ -71,15 +110,18 @@
                 <ItemGroup>
                     <Item detail-push :to="{name: 'list'}">
                         <Icon slot="item-left" name="list"></Icon>
-                        <span>列表 (List)</span>
+                        <span>列表</span>
+                        <Note slot="item-right">List</Note>
                     </Item>
                     <Item detail-push :to="{name: 'infinite-scroll'}">
-                        <Icon slot="item-left" name="car"></Icon>
-                        <span>无限滚动 (InfiniteScroll)</span>
+                        <Icon slot="item-left" name="arrow-dropup-circle"></Icon>
+                        <span>无限滚动</span>
+                        <Note slot="item-right">InfiniteScroll</Note>
                     </Item>
                     <Item detail-push :to="{name: 'refresher'}">
-                        <Icon slot="item-left" name="book"></Icon>
-                        <span>下拉刷新 (Refresher)</span>
+                        <Icon slot="item-left" name="arrow-dropdown-circle"></Icon>
+                        <span>下拉刷新</span>
+                        <Note slot="item-right">Refresher</Note>
                     </Item>
                 </ItemGroup>
 
@@ -88,11 +130,13 @@
                 <ItemGroup>
                     <Item detail-push :to="{name: 'segment'}">
                         <Icon slot="item-left" name="book"></Icon>
-                        <span>小标签 (Segment)</span>
+                        <span>小标签</span>
+                        <Note slot="item-right">Segment</Note>
                     </Item>
                     <Item detail-push :to="{name: 'tabs'}">
-                        <Icon slot="item-left" name="star"></Icon>
-                        <span>大标签 (Tabs)</span>
+                        <Icon slot="item-left" name="link"></Icon>
+                        <span>大标签</span>
+                        <Note slot="item-right">Tabs</Note>
                     </Item>
                 </ItemGroup>
 
@@ -101,34 +145,41 @@
                 <ListHeader>Form组件</ListHeader>
                 <ItemGroup>
                     <Item detail-push :to="{name: 'toggle'}">
-                        <Icon slot="item-left" name="settings"></Icon>
-                        <span>开关 (Toggle)</span>
+                        <Icon slot="item-left" name="swap"></Icon>
+                        <span>开关</span>
+                        <Note slot="item-right">Toggle</Note>
                     </Item>
                     <Item detail-push :to="{name: 'checkbox'}">
-                        <Icon slot="item-left" name="checkmark"></Icon>
-                        <span>复选框 (Checkbox)</span>
+                        <Icon slot="item-left" name="checkbox"></Icon>
+                        <span>复选框</span>
+                        <Note slot="item-right">Checkbox</Note>
                     </Item>
                     <Item detail-push :to="{name: 'radio'}">
-                        <Icon slot="item-left" name="flask"></Icon>
-                        <span>单选框 (Radio)</span>
+                        <Icon slot="item-left" name="radio-button-on"></Icon>
+                        <span>单选框</span>
+                        <Note slot="item-right">Radio</Note>
                     </Item>
 
                     <Item detail-push :to="{name: 'select'}">
-                        <Icon slot="item-left" name="pie"></Icon>
-                        <span>选择弹层 (Select)</span>
+                        <Icon slot="item-left" name="list-box"></Icon>
+                        <span>选择弹层</span>
+                        <Note slot="item-right">Select</Note>
                     </Item>
 
                     <Item detail-push :to="{name: 'input'}">
-                        <Icon slot="item-left" name="cart"></Icon>
-                        <span>输入框 (Input)</span>
+                        <Icon slot="item-left" name="backspace"></Icon>
+                        <span>输入框</span>
+                        <Note slot="item-right">Input</Note>
                     </Item>
                     <Item detail-push :to="{name: 'range'}">
-                        <Icon slot="item-left" name="book"></Icon>
-                        <span>范围选择 (Range)</span>
+                        <Icon slot="item-left" name="options"></Icon>
+                        <span>范围选择</span>
+                        <Note slot="item-right">Range</Note>
                     </Item>
                     <Item detail-push :to="{name: 'searchbar'}">
                         <Icon slot="item-left" name="search"></Icon>
-                        <span>搜索栏 (SearchBar)</span>
+                        <span>搜索栏</span>
+                        <Note slot="item-right">SearchBar</Note>
                     </Item>
                 </ItemGroup>
 
@@ -140,36 +191,44 @@
                 <!--group-->
                 <ItemGroup>
                     <Item detail-push :to="{name: 'actionSheet'}">
-                        <Icon slot="item-left" name="list"></Icon>
-                        <span>选择单 (ActionSheet)</span>
+                        <Icon slot="item-left" name="list-box"></Icon>
+                        <span>选择单</span>
+                        <Note slot="item-right">ActionSheet</Note>
                     </Item>
                     <Item detail-push :to="{name: 'alert'}">
-                        <Icon slot="item-left" name="albums"></Icon>
-                        <span>提示框 (Alert)</span>
+                        <Icon slot="item-left" name="alert"></Icon>
+                        <span>提示框</span>
+                        <Note slot="item-right">Alert</Note>
                     </Item>
                     <Item detail-push :to="{name: 'backdrop'}">
                         <Icon slot="item-left" name="barcode"></Icon>
-                        <span>幕布 (Backdrop)</span>
+                        <span>幕布</span>
+                        <Note slot="item-right">Backdrop</Note>
                     </Item>
                     <Item detail-push :to="{name: 'loading'}">
                         <Icon slot="item-left" name="refresh"></Icon>
-                        <span>加载提示 (Loading)</span>
+                        <span>加载提示</span>
+                        <Note slot="item-right">Loading</Note>
                     </Item>
                     <Item detail-push :to="{name: 'indicator'}">
-                        <Icon slot="item-left" name="refresh"></Icon>
-                        <span>指示器 (Indicator)</span>
+                        <Icon slot="item-left" name="more"></Icon>
+                        <span>指示器</span>
+                        <Note slot="item-right">Indicator</Note>
                     </Item>
                     <Item detail-push :to="{name: 'modal'}">
-                        <Icon slot="item-left" name="photos"></Icon>
-                        <span>弹出页 (Modal)</span>
+                        <Icon slot="item-left" name="chatboxes"></Icon>
+                        <span>弹出页</span>
+                        <Note slot="item-right">Modal</Note>
                     </Item>
                     <Item detail-push :to="{name: 'toast'}">
-                        <Icon slot="item-left" name="cloud"></Icon>
-                        <span>通知 (Toast)</span>
+                        <Icon slot="item-left" name="information-circle"></Icon>
+                        <span>通知</span>
+                        <Note slot="item-right">Toast</Note>
                     </Item>
                     <Item detail-push :to="{name: 'city-picker'}">
-                        <Icon slot="item-left" name="cloud"></Icon>
+                        <Icon slot="item-left" name="basket"></Icon>
                         <span>Picker</span>
+                        <Note slot="item-right">Picker</Note>
                     </Item>
                     <!--<Item detail-push :to="{name: 'popover'}">-->
                     <!--<Icon slot="item-left" name="ios-flame"></Icon>-->
@@ -186,26 +245,34 @@
                 <!--group-->
                 <ItemGroup>
                     <Item detail-push :to="{name: 'storage'}">
-                        <Icon slot="item-left" name="list"></Icon>
-                        <span>本地存储 (Storage)</span>
+                        <Icon slot="item-left" name="filing"></Icon>
+                        <span>本地存储</span>
+                        <Note slot="item-right">Storage</Note>
                     </Item>
                     <Item detail-push :to="{name: 'position'}">
-                        <Icon slot="item-left" name="list"></Icon>
-                        <span>获取位置 (Position)</span>
+                        <Icon slot="item-left" name="pin"></Icon>
+                        <span>获取位置</span>
+                        <Note slot="item-right">Geo</Note>
+                    </Item>
+
+                    <Item detail-push>
+                        <Icon slot="item-left" name="analytics"></Icon>
+                        <span>日志</span>
+                        <Note slot="item-right">Log</Note>
                     </Item>
                 </ItemGroup>
 
                 <!--&lt;!&ndash;Demo&ndash;&gt;-->
                 <!--<ListHeader>-->
-                    <!--<span>Demo</span>-->
+                <!--<span>Demo</span>-->
                 <!--</ListHeader>-->
                 <!--&lt;!&ndash;group&ndash;&gt;-->
                 <!--<ItemGroup>-->
-                    <!--<Item detail-push :to="{name: 'demo'}">Demo</Item>-->
-                    <!--<Item detail-push :to="{name: 'demo_banshi'}">办事指南</Item>-->
-                    <!--<Item detail-push :to="{name: 'ghostvue'}">ghost</Item>-->
-                    <!--<Item detail-push :to="{name: 'gl-input'}">GL-Input</Item>-->
-                    <!--<Item detail-push :to="{name: 'log'}">Log</Item>-->
+                <!--<Item detail-push :to="{name: 'demo'}">Demo</Item>-->
+                <!--<Item detail-push :to="{name: 'demo_banshi'}">办事指南</Item>-->
+                <!--<Item detail-push :to="{name: 'ghostvue'}">ghost</Item>-->
+                <!--<Item detail-push :to="{name: 'gl-input'}">GL-Input</Item>-->
+                <!--<Item detail-push :to="{name: 'log'}">Log</Item>-->
                 <!--</ItemGroup>-->
             </List>
         </Content>
@@ -216,6 +283,7 @@
 <script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item } from 'vimo/components/item'
+  import { Note } from 'vimo/components/note'
   export default{
     name: 'name',
     data () {
@@ -229,7 +297,7 @@
     mounted () {},
     activated () {},
     components: {
-      List, ListHeader, ItemGroup, Item
+      List, ListHeader, ItemGroup, Item, Note
     }
   }
 </script>

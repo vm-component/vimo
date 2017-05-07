@@ -48,20 +48,21 @@
             <List>
                 <ListHeader>手风琴列表(只开启一个)</ListHeader>
                 <ItemGroup accordion>
-                    <ItemCollapse title="ThisIsTitle1">
+                    <ItemCollapse title="This Is Title1">
                         <Item>subItem1</Item>
                         <Item>subItem2</Item>
                         <Item>subItem3</Item>
                     </ItemCollapse>
                     <ItemCollapse>
                         <template slot="item-title">
-                            ThisIsTitle2
+                            This Is Title2 &ensp;
+                            <Icon name="information-circle"></Icon>
                         </template>
                         <Item detail-push>subItem1</Item>
                         <Item detail-push>subItem2</Item>
                         <Item detail-push>subItem3</Item>
                     </ItemCollapse>
-                    <ItemCollapse title="ThisIsTitle3">
+                    <ItemCollapse title="This Is Title3">
                         <Item detail-push>subItem1</Item>
                         <Item detail-push>subItem2</Item>
                         <Item detail-push>subItem3</Item>

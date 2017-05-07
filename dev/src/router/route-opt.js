@@ -62,7 +62,11 @@ let routes = [
       require(['@/example/app.vue'], resolve)
     }
   },
-
+  {
+    path: '/nav',
+    name: 'nav',
+    component: require('@/example/nav.vue')
+  },
   {
     path: '/toolbar',
     name: 'toolbar',

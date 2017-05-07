@@ -7,7 +7,7 @@
         </Header>
         <Content padding>
             <Button block @click="showActionSheet1()" color="primary">
-                <span>最近简单的</span>
+                <span>最简单的</span>
             </Button>
             <Button block @click="showActionSheet2()" color="primary">
                 <span>没有Cancel的Actionsheet</span>

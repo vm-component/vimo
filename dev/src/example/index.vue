@@ -29,16 +29,12 @@
                             <h1>VIMO</h1>
                             <p>v{{vimo.version}}</p>
                             <p>基于Vue2.x的移动端Hybrid框架</p>
-                            <div class="vimo__text--iframe">
-                                <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=star&amp;count=true"
-                                        frameborder="0" scrolling="0" width="110px" height="20px"
-                                        class="enter-transition"
-                                        style=""></iframe>
-                                <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=fork&amp;count=true"
-                                        frameborder="0" scrolling="0" width="95px" height="20px"
-                                        class="enter-transition"
-                                        style=""></iframe>
-                            </div>
+                            <a href="#"><img
+                                    src="https://img.shields.io/github/stars/DTFE/vimo.svg?style=social&label=Star"
+                                    alt="Star"></a>
+                            <a href="#"><img
+                                    src="https://img.shields.io/github/forks/DTFE/vimo.svg?style=social&label=Fork"
+                                    alt="Fork"></a>
                         </Column>
                     </Row>
 
@@ -60,7 +56,6 @@
                     </section>
                 </div>
             </section>
-
         </Content>
     </Page>
 </template>
@@ -97,14 +92,14 @@
                             font-size: 12px;
                             color: #2c3e50;
                         }
-                        .vimo__text--iframe {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            iframe {
-                                width: 90px;
-                            }
-                        }
+                        /*.vimo__text--iframe {*/
+                        /*display: flex;*/
+                        /*justify-content: center;*/
+                        /*align-items: center;*/
+                        /*iframe {*/
+                        /*width: 90px;*/
+                        /*}*/
+                        /*}*/
 
                     }
                     .vimo__btns {

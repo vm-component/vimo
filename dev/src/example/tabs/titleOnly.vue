@@ -20,7 +20,7 @@
 <script type="text/javascript">
   import { Tabs, Tab } from 'vimo/components/tabs'
   export default{
-    name: 'Tabs',
+    name: 'name',
     components: {Tabs, Tab}
   }
 </script>

@@ -51,7 +51,7 @@
       return {
         // -------- Nav --------
         // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition
-        pageTransitionName: this.$config.get('pageTransition', 'zoom-transition'),
+        pageTransitionName: this.$config.get('pageTransition'),
         pageTransitionDirection: '',
 
         // ----------- Menu -----------
@@ -85,14 +85,12 @@
        * */
       initNav () {
         // pageTransitionName 传值问题
-        let _pageTransitionName = this.$config.get('pageTransition')
-        if (!_pageTransitionName) {
+        if (!this.pageTransitionName) {
           if (this.$config.get('mode') === 'ios') {
-            _pageTransitionName = 'fade-right-transition'
+            this.pageTransitionName = 'fade-right-transition'
           } else {
-            _pageTransitionName = 'zoom-transition'
+            this.pageTransitionName = 'zoom-transition'
           }
-          this.pageTransitionName = _pageTransitionName
         }
 
         // nav 动画切换部分
@@ -109,18 +107,13 @@
 
         // 页面切换显示Indicator
         if (this.showIndicatorWhenPageChange) {
-          // 前进则显示
-          this.$eventBus.$on('onNavEnter', () => {
-            window.setTimeout(() => {
-              Indicator.present()
-            }, 0)
+          this.$router.beforeEach((to, from, next) => {
+            Indicator.present()
+            next()
           })
 
-          // must wait a second
-          this.$eventBus.$on('afterEach', () => {
-            window.setTimeout(() => {
-              Indicator.dismiss()
-            }, 16 * 3)
+          this.$router.afterEach(() => {
+            Indicator.dismiss()
           })
         }
       },

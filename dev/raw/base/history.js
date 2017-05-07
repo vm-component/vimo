@@ -34,10 +34,14 @@ export class History {
     this._r = router            // vur-router实例
     this.isAppCompInit = false  // App组件是否已完成Init, 表示基础页面是否准备完毕
     this.length = 0
+    this.isActive = false       // 当前处于路由激活状态
 
     // 监听路由变化, 维护本地历史记录
+    // 路由切换前
     if (this._r) {
       this._r.beforeEach((to, from, next) => {
+        this.isActive = true
+
         let stackLength = this._h.length
         if (stackLength <= 1) {
           /**
@@ -56,15 +60,6 @@ export class History {
             this._popHistory(Vue, {to, from, next})
           }
         }
-      })
-
-      this._r.beforeEach((to, from, next) => {
-        Vue.prototype.$eventBus.$emit('beforeEach', {to, from})
-        next()
-      })
-
-      this._r.afterEach((to, from) => {
-        Vue.prototype.$eventBus.$emit('afterEach', {to, from})
       })
     }
   }
