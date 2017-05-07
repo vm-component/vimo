@@ -116,7 +116,7 @@ class Platform {
 
     this._nt = null // 记录网络类型
 
-    this._rm = [] // 平台注册的方法对象, key为方法名, value为对应的函数, registerMethod/do
+    this._rm = {} // 平台注册的方法对象, key为方法名, value为对应的函数, registerMethod/do
 
     this.css = {
       transform: null,
@@ -298,7 +298,7 @@ class Platform {
    * @param {function} methodFunction - 方法函数
    * */
   registerMethod (methodName, methodFunction) {
-    if (!methodName) return
+    if (!methodName) return this._rm
     if (this._rm[methodName]) {
       console.warn(`'${methodName}' had been registered, please check the registerMethod() in platform-configs.js and the platform list is ${this._platforms}`)
     }

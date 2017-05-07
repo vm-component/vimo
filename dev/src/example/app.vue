@@ -7,7 +7,7 @@
         </Header>
         <Content class="outer-content" padding>
 
-            <h1>Introduction</h1>
+            <h5>简介</h5>
             <p>
                 该组件是业务页面的父组件，业务页面挂载、页面状态、弹出层挂载安插等，都是在此组件中完成。
                 组件注册初始化时，会将App组件实例插入到Vue.prototype中，便于业务页面对App组件的操控。
@@ -22,7 +22,7 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
 
-            <h6>注意: </h6>
+            <h5>注意: </h5>
             <p>方法this.$app.setDocTitle(val)只能设置document.title的值, Header中的Title组件请额外处理. 比如下面的按钮.</p>
             <Button block @click="setDocTitle()">设置DocTitle为当前时间</Button>
             <Button block @click="setAllTitle()">两者同时设置</Button>

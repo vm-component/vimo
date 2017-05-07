@@ -28,7 +28,6 @@
                         <span>页面</span>
                         <Note slot="item-right">Page</Note>
                     </Item>
-
                 </ItemGroup>
 
                 <ListHeader>
@@ -36,7 +35,7 @@
                 </ListHeader>
                 <ItemGroup>
 
-                    <Item detail-push>
+                    <Item detail-push :to="{name:'platform'}">
                         <Icon slot="item-left" name="logo-apple"></Icon>
                         <span>平台</span>
                         <Note slot="item-right">Platform</Note>
@@ -89,9 +88,9 @@
                         <Note slot="item-right">Cards</Note>
                     </Item>
                     <!--<Item detail-push :to="{name: 'fab'}">-->
-                        <!--<Icon slot="item-left" name="basketball"></Icon>-->
-                        <!--<span>Fab</span>-->
-                        <!--<Note slot="item-right">Fab</Note>-->
+                    <!--<Icon slot="item-left" name="basketball"></Icon>-->
+                    <!--<span>Fab</span>-->
+                    <!--<Note slot="item-right">Fab</Note>-->
                     <!--</Item>-->
                     <Item detail-push :to="{name: 'img'}">
                         <Icon slot="item-left" name="image"></Icon>

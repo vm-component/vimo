@@ -14,7 +14,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   mobile: {
     settings: {
       mode: 'md',
-      // maxLoadingDuration: 30000, // loading组件最大开启时间
+      showIndicatorWhenPageChange: true, // 页面切换是否显示Indicator提示
       regexps: {
         // 整数(包含正负)
         integer: /^-?[1-9]\d*$/,
@@ -294,7 +294,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
             plt.triggerReady('wechat')
           }
 
-          if (typeof WeixinJSBridge === 'undefined') {
+          if (typeof window.WeixinJSBridge === 'undefined') {
             if (document.addEventListener) {
               document.addEventListener('WeixinJSBridgeReady', beforeBridgeReady, false)
             } else if (document.attachEvent) {

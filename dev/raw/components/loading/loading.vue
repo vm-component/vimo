@@ -46,7 +46,7 @@
    *
    * ### 弹出层
    *
-   * - Loading通过present开启, 如果没设置duration, 则需要手动dismiss, 但是最多开启5000ms, 这部分可通过`maxLoadingDuration`在config设置
+   * - Loading通过present开启, 如果没设置duration, 则需要手动dismiss,
    * - Vimo的弹出层都是独立于页面的, 但也不是`body`的直接子元素, 而是挂载在App组件中的. 这样做是有考量的.
    * - 组件相应路由切换, 路由切换则自动关闭
    *

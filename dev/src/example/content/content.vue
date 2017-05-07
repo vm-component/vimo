@@ -7,6 +7,7 @@
         </Header>
         <Content class="outer-content">
             <div padding>
+                <h5>简介</h5>
                 <p>
                     Content组件是Vimo的基础布局组件, 属于三明治结构的中间层, 承接业务展示的部分. 其中, Header/Footer分别为基础布局的头和尾.
                 </p>
