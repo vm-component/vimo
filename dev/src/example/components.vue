@@ -34,20 +34,19 @@
                     <span>公共服务</span>
                 </ListHeader>
                 <ItemGroup>
-
                     <Item detail-push :to="{name:'platform'}">
                         <Icon slot="item-left" name="logo-apple"></Icon>
                         <span>平台</span>
                         <Note slot="item-right">Platform</Note>
                     </Item>
 
-                    <Item detail-push>
+                    <Item detail-push :to="{name:'config'}">
                         <Icon slot="item-left" name="settings"></Icon>
                         <span>配置</span>
                         <Note slot="item-right">Config</Note>
                     </Item>
 
-                    <Item detail-push>
+                    <Item detail-push :to="{name:'history'}">
                         <Icon slot="item-left" name="logo-buffer"></Icon>
                         <span>历史记录</span>
                         <Note slot="item-right">History</Note>

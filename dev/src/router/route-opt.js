@@ -52,6 +52,20 @@ let routes = [
       require(['@/example/equipment.vue'], resolve)
     }
   },
+  {
+    path: '/config',
+    name: 'config',
+    component (resolve) {
+      require(['@/example/config.vue'], resolve)
+    }
+  },
+  {
+    path: '/history',
+    name: 'history',
+    component (resolve) {
+      require(['@/example/history.vue'], resolve)
+    }
+  },
 
   // ----  component ----
   // ----  component/base ----

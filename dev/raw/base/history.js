@@ -32,16 +32,13 @@ export class History {
     this._h = []                // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
     this._d = 'forward'         // forward/backward
     this._r = router            // vur-router实例
-    this.isAppCompInit = false  // App组件是否已完成Init, 表示基础页面是否准备完毕
+    this.isInit = false  // App组件是否已完成Init, 表示基础页面是否准备完毕
     this.length = 0
-    this.isActive = false       // 当前处于路由激活状态
 
     // 监听路由变化, 维护本地历史记录
     // 路由切换前
     if (this._r) {
       this._r.beforeEach((to, from, next) => {
-        this.isActive = true
-
         let stackLength = this._h.length
         if (stackLength <= 1) {
           /**
@@ -88,7 +85,6 @@ export class History {
    * */
   _popHistory (Vue, {to, from, next}) {
     // 激活了浏览器的后退,这里只需要更新状态
-
     if (this._isPageChange({to, from})) {
       this._d = 'backward'
       this._h.pop()
@@ -102,11 +98,10 @@ export class History {
   }
 
   _emit (Vue, eventName, {to, from, next}) {
-    if (!this.isAppCompInit) {
-      this.isAppCompInit = true
+    if (!this.isInit) {
       next()
     } else {
-      !!Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit(eventName, {to, from, next})
+      Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit(eventName, {to, from, next})
     }
   }
 
@@ -125,6 +120,13 @@ export class History {
     let _isFromPage = from.matched.length === 1
     let _isToPage = to.matched.length === 1
     return (_isFromPage || _isToPage)
+  }
+
+  /**
+   * 这个由Nav组件控制, Nav组件判断
+   * */
+  _init () {
+    this.isInit = true
   }
 
   // -------- public --------

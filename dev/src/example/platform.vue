@@ -5,7 +5,7 @@
                 <Title>Platform</Title>
             </Navbar>
         </Header>
-        <Content padding>
+        <Content padding class="outer-content">
             <h5>简介</h5>
             <p>
                 我们常会遇到一套代码在不同平台上跑的需求, 例如<strong>操作平台区别</strong>: IOS/Andriod, 或者是使用的<strong>HyBrid类型</strong>: Wechat/Alipay/DingTalk/QQ/DaHan等.

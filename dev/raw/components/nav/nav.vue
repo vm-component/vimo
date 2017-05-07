@@ -103,6 +103,9 @@
             Indicator.dismiss()
           })
         }
+
+        // 告知history已完成初始化
+        this.$history._init()
       },
 
       // ----------- Menu -----------
@@ -174,6 +177,9 @@
 
       //  初始化导航
       this.initNav()
+    },
+    mounted () {
+
     }
   }
 </script>
