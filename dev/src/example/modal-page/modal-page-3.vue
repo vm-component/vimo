@@ -9,7 +9,7 @@
             </Toolbar>
         </Header>
         <Content padding>
-            <h3>Hello, 这里是 Modal Page 3 的页面!</h3>
+            <h5>Hello, 这里是 Modal Page 3 的页面!</h5>
             <p>传入的数据为: {{modalData}}</p>
             <Button block @click="closeModal">关闭Modal</Button>
         </Content>
