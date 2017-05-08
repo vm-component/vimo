@@ -80,7 +80,7 @@
       openSetting ($event) {
         Popover.present({
           ev: $event,                           // 事件
-          component: TextTool,                      // 传入组件
+          component: TextTool,                  // 传入组件
           data: {
             contentEle: this.$refs.content.$el  // 传入数据, 内部通过`this.$options.$data`获取这个data
           }
