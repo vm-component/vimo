@@ -276,7 +276,7 @@
        * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
        */
       present () {
-        console.log('action-sheet.vue present')
+//        console.log('action-sheet.vue present')
         this.isActive = true
         return new Promise((resolve) => { this.presentCallback = resolve })
       },

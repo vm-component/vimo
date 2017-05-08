@@ -110,11 +110,12 @@ let routes = [
       require(['@/example/alert.vue'], resolve)
     }
   },
-  // {
-  //   path: '/popover',
-  //   name: 'popover',
-  //   component: require('@/example/popover.vue')
-  // },
+  {
+    path: '/popover',
+    name: 'popover',
+    component: require('@/example/popover/popover.vue')
+  },
+
   {
     path: '/backdrop',
     name: 'backdrop',

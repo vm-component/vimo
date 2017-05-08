@@ -4,22 +4,9 @@
  * 用户自定义配置
  */
 export default {
-  ios: {
-    settings: {
-      statusbarPadding: false,
-      pageTransition: 'fade-right-transition'  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
-    }
-  },
-  android: {
-    settings: {
-      statusbarPadding: false,
-      pageTransition: 'zoom-transition' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
-    }
-  },
+  ios: {},
+  android: {},
   wechat: {
-    settings: {
-      hideNavBar: true
-    },
     onBridgeReady (plt) {
       // this.$platform.do('chooseImage',function(result){})
       plt.registerMethod('chooseImage', function (callback) {
@@ -49,26 +36,11 @@ export default {
     }
   },
   alipay: {
-    settings: {
-      hideNavBar: true
-    },
     onBridgeReady (plt) {
       console.debug('alipay onBridgeReady')
     }
   },
-  dingtalk: {
-    settings: {
-      hideNavBar: true
-    }
-  },
-  qq: {
-    settings: {
-      hideNavBar: true
-    }
-  },
-  dtdream: {
-    settings: {
-      hideNavBar: true
-    }
-  }
+  dingtalk: {},
+  qq: {},
+  dtdream: {}
 }

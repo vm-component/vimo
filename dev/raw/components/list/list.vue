@@ -138,7 +138,9 @@
     data () {
       return {
         // -------- Radio --------
-        radioComponentList: []
+        radioComponentList: [],
+        isSendOut: false,
+        timer: null
       }
     },
     props: {
@@ -161,7 +163,15 @@
     },
     watch: {
       value (val) {
-        this.onRadioChange(val)
+        if (this.isSendOut) {
+          this.isSendOut = false
+        } else {
+          this.radioComponentList.forEach((radioComponent) => {
+            if (!radioComponent.isDisabled) {
+              radioComponent.setChecked(val)
+            }
+          })
+        }
       },
       disabled (isDisabled) {
         if (isTrueProperty(this.radioGroup)) {
@@ -198,6 +208,7 @@
             radioComponent.setChecked(value)
           }
         })
+        this.isSendOut = true
         this.$emit('input', value)
         this.$emit('onChange', value)
       },
@@ -218,13 +229,21 @@
        * */
       recordRadio (radioComponent) {
         this.radioComponentList.push(radioComponent)
+
+        this.timer && window.clearTimeout(this.timer)
+        this.timer = window.setTimeout(() => {
+          this.radioComponentList.forEach((radioComponent) => {
+            if (!radioComponent.isDisabled) {
+              radioComponent.setChecked(this.value)
+            }
+          })
+        }, 0)
       }
     },
     mounted () {
       // -------- Radio --------
       // 内部定义了Radio组件
       if (isTrueProperty(this.radioGroup)) {
-        this.onRadioChange(this.value)
         this.disableAllRadio(this.disabled)
       }
     }

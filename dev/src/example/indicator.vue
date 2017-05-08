@@ -30,6 +30,9 @@
     methods: {
       openIndicatorInfinity () {
         this.$indicator.present()
+        setTimeout(() => {
+          this.$indicator.dismiss()
+        }, 10000)
       },
 
       openIndicator1000 () {

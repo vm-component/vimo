@@ -177,9 +177,6 @@
         // 初始化禁用状态
         this.setDisabled(this.disabled)
 
-        // 初始化的时候向 radioGroupComponent 告知自己在值
-        !this.isDisabled && this.radioGroupComponent && this.radioGroupComponent.onRadioChange(this.value)
-
         this.isInit = true
       }
     },

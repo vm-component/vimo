@@ -6,7 +6,7 @@
             </Navbar>
         </Header>
         <Content>
-            <List radio-group v-model="fruits" :disabled="isListDisabled">
+            <List radio-group v-model="fruits" :disabled="isListDisabled" @onChange="onChangeHandler">
                 <ListHeader>Fruits</ListHeader>
                 <Item>
                     <Label>Apple</Label>
@@ -39,6 +39,11 @@
                 <Button @click="isListDisabled=!isListDisabled" outline small>Set List Disabled</Button>
             </div>
 
+            <div padding>
+                <h5>注意</h5>
+                <p>如果是点击则触发onSelect和onChange, 如果是改变v-model的值, 则只触发onSelect的值.</p>
+            </div>
+
             <List radio-group v-model="currencies">
                 <ListHeader>Dynamic Data(currencies)</ListHeader>
                 <Item v-for="(item,index) in dynamicCurrencies" :key="index">
@@ -51,6 +56,7 @@
             </div>
             <div text-center>
                 <p text-center>当前选择: {{currencies}}</p>
+                <Button @click="addDynamicCurrencies" outline small>加载数据</Button>
                 <Button @click="currencies='USD'" outline small>Select USD</Button>
                 <Button @click="currencies='EUR'" outline small>Select EUR</Button>
             </div>
@@ -97,15 +103,19 @@
     watch: {},
     computed: {},
     methods: {
+      onChangeHandler (val) {
+        console.debug('当前v-model变化, 值: ' + val)
+      },
       onSelectHandler (val) {
         console.debug('当前选择的是: ' + val)
+      },
+      addDynamicCurrencies () {
+        this.dynamicCurrencies = ['USD', 'EUR']
       }
 
     },
     created: function () {
-      setTimeout(() => {
-        this.dynamicCurrencies = ['USD', 'EUR']
-      }, 100)
+
     },
     mounted: function () {},
     activated: function () {},

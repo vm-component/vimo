@@ -35,7 +35,7 @@
                 </ListHeader>
                 <ItemGroup>
                     <Item detail-push :to="{name:'platform'}">
-                        <Icon slot="item-left" md="logo-android"  ios="logo-apple"></Icon>
+                        <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
                         <span>平台</span>
                         <Note slot="item-right">Platform</Note>
                     </Item>
@@ -93,7 +93,7 @@
                     </Item>
                     <Item detail-push :to="{name: 'fab'}">
                         <Icon slot="item-left" name="basketball"></Icon>
-                        <span>Fab</span>
+                        <span>浮动按钮</span>
                         <Note slot="item-right">Fab</Note>
                     </Item>
                     <Item detail-push :to="{name: 'img'}">
@@ -233,12 +233,11 @@
                         <span>Picker</span>
                         <Note slot="item-right">Picker</Note>
                     </Item>
-                    <!--<Item detail-push :to="{name: 'popover'}">-->
-                    <!--<Icon slot="item-left" name="ios-flame"></Icon>-->
-                    <!--<span>Popover</span>-->
-                    <!--</Item>-->
-
-
+                    <Item detail-push :to="{name: 'popover'}">
+                        <Icon slot="item-left" name="text"></Icon>
+                        <span>弹出对话</span>
+                        <Note slot="item-right">Popover</Note>
+                    </Item>
                 </ItemGroup>
 
                 <!--模块-->
