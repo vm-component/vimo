@@ -200,7 +200,7 @@
                     </Item>
                     <Item detail-push :to="{name: 'alert'}">
                         <Icon slot="item-left" name="alert"></Icon>
-                        <span>提示框</span>
+                        <span>对话框</span>
                         <Note slot="item-right">Alert</Note>
                     </Item>
                     <Item detail-push :to="{name: 'backdrop'}">
@@ -235,7 +235,7 @@
                     </Item>
                     <Item detail-push :to="{name: 'popover'}">
                         <Icon slot="item-left" name="text"></Icon>
-                        <span>弹出对话</span>
+                        <span>提示框</span>
                         <Note slot="item-right">Popover</Note>
                     </Item>
                 </ItemGroup>
