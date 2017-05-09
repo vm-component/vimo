@@ -9,36 +9,56 @@
             <div padding>
                 <h5>简介</h5>
                 <p>Log服务是用于截断console并显示的插件, 该服务自带展开界面. 但是在默认情况下不初始化界面组件. 如果配置要求开启则另当别论.</p>
-                <Button block @click="$log.init()">初始化Log界面</Button>
+                <p>点击初始化Log界面后, log开启的按钮就在左下角.</p>
+                <Button :disabled="isInit" block @click="initLogPage">初始化Log界面</Button>
                 <Button block @click="$log.open()">展开Log界面</Button>
             </div>
-            <h5 class="testTitle">测试</h5>
-            <div padding class="testBox">
-                <div class="testBox__each log">
+            <List>
+                <ListHeader>测试</ListHeader>
+                <Item class="log">
                     <span>console.log(new Date())</span>
-                    <Button outline small @click="printLog">Print</Button>
-                </div>
-                <div class="testBox__each debug">
+                    <Button slot="item-right" outline small @click="printLog">Print</Button>
+                </Item>
+                <Item class="debug">
                     <span>console.debug(new Date())</span>
-                    <Button outline small @click="printDebug">Print</Button>
-                </div>
-                <div class="testBox__each info">
+                    <Button slot="item-right" outline small @click="printDebug">Print</Button>
+                </Item>
+                <Item class="info">
                     <span>console.info(new Date())</span>
-                    <Button outline small @click="printInfo">Print</Button>
-                </div>
-                <div class="testBox__each warn">
+                    <Button slot="item-right" outline small @click="printInfo">Print</Button>
+                </Item>
+                <Item class="warn">
                     <span>console.warn(new Date())</span>
-                    <Button outline small @click="printWarn">Print</Button>
-                </div>
-                <div class="testBox__each error">
+                    <Button slot="item-right" outline small @click="printWarn">Print</Button>
+                </Item>
+                <Item class="error">
                     <span>console.error(new Date())</span>
-                    <Button outline small @click="printError">Print</Button>
-                </div>
-                <div class="testBox__each assert">
+                    <Button slot="item-right" outline small @click="printError">Print</Button>
+                </Item>
+                <Item class="assert">
                     <span>console.assert(new Date())</span>
-                    <Button outline small @click="printAssert">Print</Button>
-                </div>
-            </div>
+                    <Button slot="item-right" outline small @click="printAssert">Print</Button>
+                </Item>
+            </List>
+            <List>
+                <ListHeader>特殊错误</ListHeader>
+                <Item class="error">
+                    <span>JSON.parse error</span>
+                    <Button slot="item-right" outline small @click="jsonError">Print</Button>
+                </Item>
+                <Item class="error">
+                    <span>特殊序列化的错误</span>
+                    <Button slot="item-right" outline small @click="editedError">Print</Button>
+                </Item>
+                <Item class="error">
+                    <span>url解析错误</span>
+                    <Button slot="item-right" outline small @click="decodeUrlError">Print</Button>
+                </Item>
+                <Item class="error">
+                    <span>在window上监听error事件(最终)</span>
+                    <Button slot="item-right" outline small @click="withoutTryCatch">Print</Button>
+                </Item>
+            </List>
         </Content>
     </Page>
 </template>
@@ -73,33 +93,26 @@
     .assert {
         color: $assert
     }
-
-    .testTitle {
-        padding: 0 16px;
-        margin: 0;
-        line-height: 130%
-    }
-
-    .testBox {
-        .testBox__each {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    }
 </style>
 <script type="text/javascript">
+  import { List } from 'vimo/components/list'
+  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   export default{
     name: 'name',
     data () {
       return {
-        stata: null
+        stata: null,
+        isInit: this.$log._isLogPageInit
       }
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
+      initLogPage () {
+        this.$log.init()
+        this.isInit = true
+      },
       printLog () {
         console.log(new Date())
       },
@@ -117,14 +130,36 @@
       },
       printAssert () {
         console.assert(false, new Date())
+      },
+      jsonError () {
+        try {
+          JSON.parse('123.,.')
+        } catch (err) {
+          console.error(err)
+        }
+      },
+      editedError () {
+        console.info('参数顺序: msg/errName/script/line')
+        console.error('未得到ajax的数据', 'AJAX TIMEOUT/FAIL', './getData.js::<Function>getInfo()', '12')
+      },
+      decodeUrlError (){
+        try {
+          window.decodeURI('%2')
+        } catch (err) {
+          console.error(err)
+        }
+      },
+      withoutTryCatch () {
+        window.decodeURI('%2')
       }
-
     },
     created () {},
     mounted () {
-      console.debug(this.$log)
+//      console.debug(this.$log)
     },
     activated () {},
-    components: {}
+    components: {
+      List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
+    }
   }
 </script>

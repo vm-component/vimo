@@ -11,6 +11,7 @@
  * 1. 打印记录日志
  *    API:
  *    // 打开日志界面
+ *    $log.init() // 初始化界面
  *    $log.open()
  *    $log.close()
  *    // 日志记录
@@ -24,10 +25,6 @@
  *    $log.warn(string,script)  // 警告, 但是不影响运行
  *    $log.error(string,script) // 错误, 可能终止运行
  *    $log.assert(true,string,script)  // 断言, 如果为false则报错, 不同于error
- *
- *    $log.sendAbnormal(object) // 包括当前的信息及之前节流的信息一并发送
- *    $log.clean() // 清楚历史记录
- *
  *
  *    // 日志会截获系统的console
  *    截获console.log
@@ -44,15 +41,21 @@
  *
  *    其余通过友盟的u-web完成(访问统计)
  *
- *
  */
 const HAS_CONSOLE = typeof window.console !== 'undefined'
+// const isBoolean = (val) => typeof val === 'boolean'
+// const isString = (val) => typeof val === 'string'
+// const isNumber = (val) => typeof val === 'number'
+// const isPresent = (val) => val !== undefined && val !== null
+// const isBlank = (val) => val === undefined || val === null || val === ''
+// const isObject = (val) => typeof val === 'object'
+// const isPlainObject = (val) => isObject(val) && Object.getPrototypeOf(val) == Object.prototype
+// const isArray = Array.isArray
 
 export default{
   /**
-   * @param {object} Vue -
+   * @param {object} Vue - Vue
    * @param {object} options - 参数
-   * @param {boolean=true} options.isDev        - 是否为开发状态
    * @param {boolean=true} options.needLogPage  - 是否为开启日志界面
    * */
   install (Vue, options = {}) {
@@ -65,7 +68,7 @@ export default{
     if (HAS_CONSOLE) {
       let console = window.console
       let typeLists = ['log', 'debug', 'info', 'error', 'warn', 'assert']
-      typeLists.forEach(function (type) {
+      typeLists.forEach((type) => {
         let typeFn = console[type].bind(console)
         console[type] = function () {
           var args = Array.prototype.slice.call(arguments)
@@ -73,7 +76,6 @@ export default{
           // 这里不是console真正发出的位置
           // ---------- !注意! ---------
           typeFn.apply(null, arguments)
-          // options.isDev && typeFn.apply(null, arguments)
           _ins[type](...args)
         }
       })
@@ -98,10 +100,9 @@ export default{
       return true
     }
 
+    // 这个错误一般发出: Script error.
     window.addEventListener('error', function (err) {
-      // TODO: 需要验证
-      console.error('addEventListener--error')
-      console.error(err)
+      _ins.error(normalizeError(err))
     })
   }
 }
@@ -110,20 +111,16 @@ export default{
  * @name Log
  * @description
  * 日志记录类
- *
- * @param {object}        options               - 参数
- * @param {boolean=true}  options.isDev         - 模式
- * @param {boolean=false}  options.needLogPage   - 需要日志页面
+ * @param {object} options - 参数
  * */
 class Log {
   constructor (Vue, options) {
     this._v = Vue
     this._isLogPageInit = false // 是否初始化了log页面
     this._logPageInstance = null // log页面的实例
-    this._dev = !!options.isDev  // 开发模式, 此模式下: log信息会打印到console, assert会自动debugger
     this._history = []// 日志记录数组
 
-    if (this.needLogPage) {
+    if (options.needLogPage) {
       this.init()
     }
   }
@@ -141,11 +138,9 @@ class Log {
         // 放在body里面
         el: document.body.appendChild(document.createElement('div'))
       })
-    } else {
-      return this._logPageInstance
     }
-
-    console.log(this._logPageInstance)
+    this._logPageInstance.setRecordList(this._history)
+    return this._logPageInstance
   }
 
   /**
@@ -231,6 +226,7 @@ class Log {
   /**
    * 记录类型为warn的日志
    * 传参类似error
+   * 用法和error类似
    * */
   warn () {
     return this._recordTypeAssemble('warn', ...arguments)
@@ -250,23 +246,6 @@ class Log {
   }
 
   // -------- logs history --------
-
-  /**
-   * 实例内部处理
-   * */
-  clean () {
-    this._history = []
-  }
-
-  // /**
-  //  * 立即发送错误
-  //  * data + 待发送的信息
-  //  * @param {object=} data - 发送的错误信息
-  //  * */
-  // sendAbnormal (data) {
-  //   // TODO: 发送异常信息
-  //
-  // }
 
   /**
    * 获取当前全部的log记录
@@ -289,20 +268,21 @@ class Log {
    * @param {string=} stack     - 出错代码的列号
    * */
   _recordTypeAssemble (type, message, errorName, script, line, stack) {
-
     let args = Array.prototype.slice.call(arguments)
-
     if (args.length === 2) {
-      if (typeof args[1] === 'object' && (type === 'error' || type === 'warn' || type === 'assert')) {
-        // _recordTypeAssemble('error', rawErr)
-        let formatted = normalizeError(args[1])
-        message = formatted['message']
-        errorName = formatted['name']
-        script = formatted['script']
-        line = formatted['line']
-        stack = formatted['stack']
-      } else {
-        message = args[1]
+      if (type === 'error' || type === 'warn' || type === 'assert') {
+        let abnormalType = Object.prototype.toString.call(args[1]).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
+        if (abnormalType === 'object' || abnormalType === 'error') {
+          // _recordTypeAssemble('error', rawErr)
+          let formatted = normalizeError(args[1])
+          message = formatted['message']
+          errorName = formatted['name']
+          script = formatted['script']
+          line = formatted['line']
+          stack = formatted['stack']
+        } else {
+          message = args[1].toString()
+        }
       }
     }
 
@@ -326,11 +306,6 @@ class Log {
       stack: stack,                 // Stack trace (as a string)
       line: line                   // The line number the error occured on
     })
-
-    // assert 模式下使用debugger
-    if (this._dev && type === 'assert') {
-      debugger
-    }
 
     return _str
   }
@@ -382,7 +357,7 @@ class Log {
       this._history.push(record)
     }
 
-    !!this._logPageInstance && this._logPageInstance.setRecordList(this._history)
+    this._logPageInstance && this._logPageInstance.setRecordList(this._history)
   }
 }
 

@@ -45,6 +45,9 @@
                 <button :class="{'active':selectType==='assert'}" class="assert" @click="segmentClick('assert')">
                     ASSERT
                 </button>
+                <!--<button class="clear" @click="clear()">-->
+                    <!--CLEAR-->
+                <!--</button>-->
             </div>
             <div class="logBox__footer--buttons right">
                 <button class="close" @click="close()">close</button>
@@ -389,6 +392,10 @@
         this.recordList = list
       },
 
+//      clear () {
+//        this.recordList = []
+//      },
+
       /**
        * @private
        * 点击segment按钮切换不同type
@@ -402,6 +409,7 @@
           this.selectType = 'all'
         }
       },
+
 
       /**
        * @private
