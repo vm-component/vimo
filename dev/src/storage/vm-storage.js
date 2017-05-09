@@ -9,13 +9,58 @@
  *
  * NOTICE: This is written by ES2015! You will need babel to compile or run `npm dev`.
  *
- * ### for Babel
+ * @property
+ *
+ * ## 安装
  *
  * ```
- * npm install --global babel-cli
- * npm install --save-dev babel-preset-es2015
+ * import storage from './storage/vm-storage'
+ * Vue.use(storage, {
+ *    prefix: 'vimo-'
+  * })
  *
  * ```
+ *
+ * ## 方法
+ *
+ * ### set(key,[value])
+ *
+ * #### 1. 如果value有值, 且不为空
+ *
+ * 设置这个key-value值, 且value只能接受Object/Array/String(可序列化为Object或者Array的String).
+ * 在浏览器中存储String, 在App中存储序列化后的Object/Array
+ *
+ * #### 2. 如果value为空
+ *
+ * 删除这个key对应的键值对, 类似于 `remove` 方法
+ *
+ * ### get([key])
+ *
+ * #### 1. 如果传入key
+ *
+ * 查询对应的值, 返回的值是序列化之后的值, 即Object/Array
+ *
+ * #### 2. 如果没传入key
+ *
+ * 返回全部存储数据
+ *
+ * ### clear()
+ *
+ * 清除全部
+ *
+ * ### remove(key)
+ *
+ * 移除键值对
+ *
+ * ### supported()
+ *
+ * 返回是否支持本地存储
+ *
+ * ## 回退处理
+ *
+ * 如果浏览器不支持, 会自动降级, 键值对将存在内存中, 效果类似于内存中的变量, 当app关闭, 存储值消失.
+ *
+ *
  */
 const VERSION = '0.1.6'
 const isBoolean = (val) => typeof val === 'boolean'

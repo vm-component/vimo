@@ -6,18 +6,9 @@
             </Navbar>
         </Header>
         <Content padding>
-
-
-
-
-
-
             <h5>简要</h5>
-
             <p>vm-storage插件主要是简化操作本地存储, 并且在项目初始化的时候将需要的数据序列化到内存中存储, 方法有: get/set/remove/clear/supported等.</p>
-
             <p>前缀用于区分app作用于, 且Storage只能存储以下类型: String(能序列化的)/Object/Array这三类.</p>
-
             <h5>localStorage</h5>
             <Grid>
                 <Row>
@@ -46,8 +37,6 @@
                     </Column>
                 </Row>
             </Grid>
-
-
             <h5>SessionStorage</h5>
             <Grid>
                 <Row>
@@ -125,11 +114,7 @@
           this.sessionStorageList[k] = window.sessionStorage.getItem(k)
         }
       }
-
-
-      console.log(this.$sessionStorage)
       this.$sessionStorage.set('innerUse', ['a', 'b'])
-      let data = this.$sessionStorage.get('innerUse')
     },
     mounted () {
     },

@@ -1,6 +1,34 @@
 /**
  * Created by Hsiang on 2017/5/8.
  *
+ *
+ * @property {object} options - options
+ *
+ *
+ * ## 方法
+ *
+ * #### getCurrentPosition()
+ *
+ * 获取当前地理坐标, 默认使用h5模式, 也可以是: h5/qMap/bMap/aMap, 只能是这几个. 方法返回promise
+ *
+ * #### watchPosition()
+ *
+ * 订阅模式, 当位置坐标发生变化, 则触发回调. 使用此方法前需要先执行getCurrentPosition(). 方法返回订阅id
+ *
+ * ```
+ * this.getGeolocationByH5().then(() => {
+ *    this.h5Timer = this.$geo.watchPosition((position) => {
+ *       this.h5Geo = position
+ *    })
+ * })
+ *
+ * ```
+ *
+ * #### clearWatch(id)
+ *
+ * 取消订阅
+ *
+ *
  */
 const VERSION = '0.0.1'
 export default {

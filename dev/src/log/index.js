@@ -1,56 +1,105 @@
 /**
  * Created by Hsiang on 2017/3/6.
- *    // APP日志监控 = 日志记录/发送 + 埋点记录/发送 服务(单向服务)
  *
- *    定位:
- *    $log用于搜集app对外的日志记录, 包括console级别的记录 + 埋点记录, 其中,console级别的记录根据
- *    console等级, 可以对外发布监控信息, 比如$log.error/$log.assert/$log.warn触发会对外发送错误记录
+ * App日志查看组件
  *
- *    // 使用日志服务
+ * $log用于搜集app在控制台打印的系统信息
  *
- * 1. 打印记录日志
- *    API:
- *    // 打开日志界面
- *    $log.init() // 初始化界面
- *    $log.open()
- *    $log.close()
- *    // 日志记录
- *
- *    // 常规
- *    $log.log(string)          // 信息输出
- *    $log.debug(string,script) // 调试信息, 不计入异常
- *    $log.info(string,script)  //
- *
- *    // 异常
- *    $log.warn(string,script)  // 警告, 但是不影响运行
- *    $log.error(string,script) // 错误, 可能终止运行
- *    $log.assert(true,string,script)  // 断言, 如果为false则报错, 不同于error
- *
- *    // 日志会截获系统的console
- *    截获console.log
- *    截获console.debug
- *    截获console.info
- *    截获console.error
- *    截获console.warn
- *    截获console.assert
+ * @property {options} -  参数
+ * @property {boolean=false} options.needLogPage  - 是否为开启日志界面, 如果为false, 则需要手动`this.$log.init()`
  *
  *
- * 2. 提供埋点服务
- *    // 用户唯一的uuid提前获取
- *    $analytics('type', id, other) // 点击监听注册 data-analysis-id="_id" -> 处理方式
+ * ## 关于console截断
  *
- *    其余通过友盟的u-web完成(访问统计)
+ * log服务会截断console, 并且将console传入参数进行搜集并显示, 故在开发中, console的触发位置将会在插件内, 这点需要注意!
+ *
+ *
+ * ## 关于全局错误兜底
+ *
+ * 是的, 插件在内部对`window.onerror`和`window.addEventListener('error', function (err) {})`进行兜底, 不过还是建议在可能出错的地方进行try/catch处理.
+ *
+ *
+ * ## try/catch的err序列化处理
+ *
+ * 一般来说, 返回的err是原始数据, 这里需要对这个err兼容处理, 以便其返回的api能与插件处理的api吻合, 这个比较简单, 插件已考虑到这个问题, 写法如下: 用console.error(err)就行了.
+ *
+ * ```
+ * try {
+ *    window.decodeURI('%2')
+ * } catch (err) {
+ *    console.error(err)
+ * }
+ * ```
+ *
+ *
+ * ## 安装
+ *
+ * ```
+ * import log from './log'
+ * Vue.use(log, {
+ *  needLogPage: false, // 初始化是否显示log页面
+ * })
+ * ```
+ *
+ * ## 方法
+ *
+ * ### 1. 初始化log界面
+ *
+ *```
+ * this.$log.init() // 初始化界面
+ *```
+ *
+ * ### 2. 显示隐藏log界面
+ *
+ *```
+ * this.$log.open()
+ * this.$log.close()
+ *```
+ *
+ * ### 3. 可用方法
+ *
+ *```
+ * console.log(string)
+ * this.$log.log(string)
+ *
+ * console.debug(string)
+ * this.$log.debug(string)
+ *
+ * console.info(string)
+ * this.$log.info(string)
+ *
+ * console.warn(any) // 警告, 但是不影响运行
+ * this.$log.warn(any)
+ *
+ * console.error(any)  // 错误, 可能终止运行
+ * this.$log.error(any)
+ *
+ * console.assert(boolean, any) // 断言, 如果为false则报错, 不同于error
+ * this.$log.assert(boolean,any)
+ *```
+ *
+ * ## error/warn/assert中的any类型
+ *
+ * 1. 可以是error对象, 比如try/catch返回的err
+ * 2. 可以是string, 普通显示
+ * 3. 复杂点的string序列: message, errorName, script, line, 例如
+ *
+ * ```
+ * console.error('未得到ajax的数据','AJAX TIMEOUT/FAIL','./getData.js::<Function>getInfo()','12')
+ * console.assert(false, '断言错误, 这个值必须是String','AJAX ASSERT','./getData.js::<Function>getInfo()','12')
+ * ```
+ *
+ * ### 4. 获取全部错误记录
+ *
+ * ```
+ * this.$log.getHistory
+ * ```
+ *
+ *
+ *
  *
  */
 const HAS_CONSOLE = typeof window.console !== 'undefined'
-// const isBoolean = (val) => typeof val === 'boolean'
-// const isString = (val) => typeof val === 'string'
-// const isNumber = (val) => typeof val === 'number'
-// const isPresent = (val) => val !== undefined && val !== null
-// const isBlank = (val) => val === undefined || val === null || val === ''
-// const isObject = (val) => typeof val === 'object'
-// const isPlainObject = (val) => isObject(val) && Object.getPrototypeOf(val) == Object.prototype
-// const isArray = Array.isArray
 
 export default{
   /**
