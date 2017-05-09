@@ -20,8 +20,9 @@ import AttachFastClick from './assets/js/fastclick'
 import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
 
-import geo from './geo/vm-geo'
+import geo from './geolocation/vm-geo'
 import router from './router'
+import storage from './storage/vm-storage'
 Vue.use(geo, {
   enableHighAccuracy: true, // 是否要求高精度地理位置信息
   maximumAge: 10000,         // 设置缓存时间为1s，1s后重新获取地理位置信息
@@ -37,6 +38,10 @@ Vue.use(geo, {
   aMap: {
     key: '8d1ba642a3a3046d1ee087e0f8b490a2'
   }
+})
+
+Vue.use(storage, {
+  prefix: 'vimo-'
 })
 
 /* eslint-disable no-new */

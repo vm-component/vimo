@@ -254,7 +254,7 @@
                     <Item detail-push :to="{name: 'geo'}">
                         <Icon slot="item-left" name="pin"></Icon>
                         <span>获取位置</span>
-                        <Note slot="item-right">Geo</Note>
+                        <Note slot="item-right">Geolocation</Note>
                     </Item>
 
                     <Item detail-push>

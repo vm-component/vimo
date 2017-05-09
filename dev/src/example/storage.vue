@@ -2,21 +2,33 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>本地存储</Title>
+                <Title>Storage</Title>
             </Navbar>
         </Header>
         <Content padding>
-            <h4>LocalStorage</h4>
+
+
+
+
+
+
+            <h5>简要</h5>
+
+            <p>vm-storage插件主要是简化操作本地存储, 并且在项目初始化的时候将需要的数据序列化到内存中存储, 方法有: get/set/remove/clear/supported等.</p>
+
+            <p>前缀用于区分app作用于, 且Storage只能存储以下类型: String(能序列化的)/Object/Array这三类.</p>
+
+            <h5>localStorage</h5>
             <Grid>
                 <Row>
-                    <Column col-6>前缀:</Column>
-                    <Column col-6>{{$localStorage._prefix}}</Column>
+                    <Column col-4>前缀:</Column>
+                    <Column col-8>{{$localStorage._p}}</Column>
                 </Row>
                 <Row>
-                    <Column col-6>Storage中:</Column>
-                    <Column col-6>
+                    <Column col-4>Storage中:</Column>
+                    <Column col-8>
                         <div class="detailBox"
-                             v-for="(value,key) in $localStorage"
+                             v-for="(value,key) in $localStorage.get()"
                              v-if="key.indexOf('_') !== 0">
                             <Row><span class="detailBox__title">{{key}}:</span></Row>
                             <Row><span class="detailBox__value">{{value}}</span></Row>
@@ -25,31 +37,29 @@
                 </Row>
 
                 <Row>
-                    <Column col-6>localStorage中:</Column>
-                    <Column col-6>
+                    <Column col-4>localStorage中:</Column>
+                    <Column col-8>
                         <div class="detailBox" v-for="(value,key) in localStorageList">
                             <Row><span class="detailBox__title">{{key}}:</span></Row>
                             <Row><span class="detailBox__value">{{value}}</span></Row>
                         </div>
                     </Column>
                 </Row>
-
-
             </Grid>
 
 
-            <h4>SessionStorage</h4>
+            <h5>SessionStorage</h5>
             <Grid>
                 <Row>
-                    <Column col-6>前缀:</Column>
-                    <Column col-6>{{$sessionStorage._prefix}}</Column>
+                    <Column col-4>前缀:</Column>
+                    <Column col-8>{{$sessionStorage._p}}</Column>
                 </Row>
 
                 <Row>
-                    <Column col-6>Storage中:</Column>
-                    <Column col-6>
+                    <Column col-4>Storage中:</Column>
+                    <Column col-8>
                         <div class="detailBox"
-                             v-for="(value,key) in $sessionStorage"
+                             v-for="(value,key) in $sessionStorage.get()"
                              v-if="key.indexOf('_') !== 0">
                             <Row><span class="detailBox__title">{{key}}:</span></Row>
                             <Row><span class="detailBox__value">{{value}}</span></Row>
@@ -58,8 +68,8 @@
                 </Row>
 
                 <Row>
-                    <Column col-6>sessionStorage中:</Column>
-                    <Column col-6>
+                    <Column col-4>sessionStorage中:</Column>
+                    <Column col-8>
                         <div class="detailBox" v-for="(value,key) in sessionStorageList">
                             <Row><span class="detailBox__title">{{key}}:</span></Row>
                             <Row><span class="detailBox__value">{{value}}</span></Row>
@@ -81,6 +91,11 @@
         }
         .detailBox__value {
             color: #333;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; //显示的行数
+            -webkit-box-orient: vertical;
         }
     }
 </style>
@@ -110,10 +125,13 @@
           this.sessionStorageList[k] = window.sessionStorage.getItem(k)
         }
       }
+
+
+      console.log(this.$sessionStorage)
+      this.$sessionStorage.set('innerUse', ['a', 'b'])
+      let data = this.$sessionStorage.get('innerUse')
     },
     mounted () {
-      this.$localStorage.setItem('innerUse', ['a', 'b'])
-      // window.localStorage.setItem('outerUse', 'NotInStorage')
     },
     activated () {},
     components: {}

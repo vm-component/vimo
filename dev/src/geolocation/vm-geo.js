@@ -1,8 +1,6 @@
 /**
  * Created by Hsiang on 2017/5/8.
  *
- *
- *
  */
 const VERSION = '0.0.1'
 export default {
@@ -14,13 +12,11 @@ export default {
 
 const isString = (val) => typeof val === 'string'
 const isFunction = (val) => typeof val === 'function'
-
 const H5 = 'h5'
 const Q_MAP = 'qMap' // 腾讯地图
 const B_MAP = 'bMap' // 百度地图
 const A_MAP = 'aMap' // 高的地图(阿里地图)
 const MAP = [H5, Q_MAP, A_MAP, B_MAP]
-
 const ERROR_TYPE = {
   1: 'PERMISSION_DENIED',
   2: 'POSITION_UNAVAILABLE',
@@ -320,6 +316,8 @@ class Geolocation {
     this._qMapGeolocation && this._qMapGeolocation.clearWatch(id)
   }
 
+  // -------- private --------
+
   /**
    * 使用 aMap 模式进行 watchPosition()
    * @param {Function} sucCallback  - 成功回调
@@ -354,7 +352,6 @@ class Geolocation {
     }
   }
 
-  // -------- private --------
   /**
    * 使用 地图 模式获取地理位置信息
    * @param {Function} successFn  - 成功回调
