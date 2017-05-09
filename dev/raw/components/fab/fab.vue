@@ -32,13 +32,15 @@
    * @props {Boolean} edge - Used to place the container between the content and the header/footer
    *
    * */
+  import { registerListener } from '../../util/util'
   export default{
     name: 'Fab',
-    data(){
+    data () {
       return {
-        listsActive: false,
-        mainFabButtonComponent: null, // FAB的主要button, 这个必须有
-        fabListComponents: [] // list
+        unreg: null,                    // 页面切换则关闭组件的计时器
+        listsActive: false,             // 组件开闭状态
+        mainFabButtonComponent: null,   // FAB的主要FabButton组件, 这个必须有
+        fabListComponents: []           // FabList 组件
       }
     },
     props: {
@@ -50,8 +52,6 @@
       center: Boolean,
       edge: Boolean
     },
-    watch: {},
-    computed: {},
     methods: {
 
       /**
@@ -100,6 +100,15 @@
         this.listsActive = isActive
       },
 
+      /**
+       * 页面切换关闭组件
+       * @private
+       * */
+      dismissOnPageChangeHandler () {
+        this.setActiveLists(false)
+        this.unreg && this.unreg()
+      },
+
       // ------ public ------
       /**
        *
@@ -108,7 +117,9 @@
         this.setActiveLists(false)
       }
     },
-    created () {},
+    created () {
+      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
+    },
     mounted () {
       this.$children.forEach((child) => {
         if (child.$options._componentTag.toLowerCase() === 'fabbutton') {
@@ -127,6 +138,7 @@
 
       // 给主按钮绑定click事件
       this.mainFabButtonComponent.$el.addEventListener('click', this.clickHandler.bind(this))
+
     },
     activated () {},
     components: {}

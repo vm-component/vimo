@@ -207,11 +207,11 @@ export function transitionEnd (el, callback) {
 
 /**
  *
- * 给addEventListener增加passive属性, 如果不支持将降级使用!!opts.capture
+ * 给addEventListener增加passive属性, 如果不支持将降级使用!!opts.capture, 事件的关闭需要自己手动解除, 切记!!
  * @param {any} ele                               - 监听的元素
  * @param {string} eventName                      - 监听的名称
  * @param {function} callback                     - 回调
- * @param {object=} opts EventListenerOptions     - addEventListener的第三个参数
+ * @param {object} opts                            - addEventListener的第三个参数 EventListenerOptions
  * @param {array} unregisterListenersCollection   - 如果提供Function[], 则unReg将压如这个列表中
  * @return {Function}                             - 返回removeEventListener的函数
  */

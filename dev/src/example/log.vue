@@ -47,7 +47,7 @@
                     <Button slot="item-right" outline small @click="jsonError">Print</Button>
                 </Item>
                 <Item class="error">
-                    <span>特殊序列化的错误</span>
+                    <span>自定义错误</span>
                     <Button slot="item-right" outline small @click="editedError">Print</Button>
                 </Item>
                 <Item class="error">
