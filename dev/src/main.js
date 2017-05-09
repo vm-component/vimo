@@ -21,6 +21,7 @@ import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
 
 import geo from './geolocation/vm-geo'
+import log from './log'
 import router from './router'
 import storage from './storage/vm-storage'
 Vue.use(geo, {
@@ -43,6 +44,8 @@ Vue.use(geo, {
 Vue.use(storage, {
   prefix: 'vimo-'
 })
+
+Vue.use(log, {})
 
 /* eslint-disable no-new */
 new AttachFastClick(document.body)

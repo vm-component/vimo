@@ -293,7 +293,13 @@ let routes = [
       require(['@/example/geo.vue'], resolve)
     }
   },
-
+  {
+    path: '/log',
+    name: 'log',
+    component (resolve) {
+      require(['@/example/log.vue'], resolve)
+    }
+  },
 
 
   // demo

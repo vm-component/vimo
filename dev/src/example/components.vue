@@ -257,7 +257,7 @@
                         <Note slot="item-right">Geolocation</Note>
                     </Item>
 
-                    <Item detail-push>
+                    <Item detail-push :to="{name: 'log'}">
                         <Icon slot="item-left" name="analytics"></Icon>
                         <span>日志</span>
                         <Note slot="item-right">Log</Note>
