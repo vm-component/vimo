@@ -82,21 +82,23 @@
       return {
         isLoaded: false,      // 判断DOM是否显示img
         srcValue: null,       // 内部使用的src值
-        w: this._wQ,          // 当前渲染的尺寸值
-        h: this._hQ,          // 当前渲染的尺寸值
+        w: this.wQ,          // 当前渲染的尺寸值
+        h: this.hQ,          // 当前渲染的尺寸值
 
         canRequest: false,    // 这个值是由content组件控制的!
         canRender: false,     // 这个值是由content组件控制的!
 
-        _content: null,       // 当前页面的Content组件
-        _hasLoaded: false,    // 判断图片是否真正下载完毕
-        _requestingSrc: null, // 当前正在请求的src
-        _renderedSrc: null,   // 已经下载完毕渲染完毕的src
-        _rect: null,          // 当前组件与页面的位置关系
-        _imgElement: null,    // img标签元素
-        _unreg: null,         // {function} 解除当前的注册事件
-        _wQ: this.getUnitValue(this.width) || 0,  // 记录最新的尺寸值
-        _hQ: this.getUnitValue(this.height) || 0 // 记录最新的尺寸值
+        contentComponent: null,       // 当前页面的Content组件
+        hasLoaded: false,    // 判断图片是否真正下载完毕
+        requestingSrc: null, // 当前正在请求的src
+        renderedSrc: null,   // 已经下载完毕渲染完毕的src
+        rect: null,          // 当前组件与页面的位置关系
+        imgElement: null,    // img标签元素
+        wQ: this.getUnitValue(this.width) || 0,  // 记录最新的尺寸值
+        hQ: this.getUnitValue(this.height) || 0, // 记录最新的尺寸值
+
+        unRegLoadImg: null,         // {function} 解除当前的注册事件
+        unRegPageChange: null       // 页面切换的解绑函数
       }
     },
     watch: {
@@ -117,7 +119,7 @@
        * */
       init () {
         // 获取img元素
-        this._imgElement = this.$refs.img
+        this.imgElement = this.$refs.img
 
         // 设置组件的尺寸
         this.setDims()
@@ -131,35 +133,44 @@
         let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
         _pageComponentChildrenList.forEach((component) => {
           if (component.$options._componentTag.toLowerCase() === 'content') {
-            this._content = component
-            this._content.addImg(this)
+            this.contentComponent = component
+            this.contentComponent.addImg(this)
           }
         })
 
-        console.assert(this._content, 'Img组件必须在Content组件中才能正常工作!')
+        console.assert(this.contentComponent, 'Img组件必须在Content组件中才能正常工作!')
 
         // 对img元素监听load事件, 事件结束解绑
-        this._unreg = registerListener(this._imgElement, 'load', () => {
-          this._hasLoaded = true // img loaded success!
+        this.unRegLoadImg = registerListener(this.imgElement, 'load', () => {
+          this.unRegLoadImg && this.unRegLoadImg()
+          this.unRegPageChange && this.unRegPageChange()
+          this.hasLoaded = true // img loaded success!
           this.update()
         }, {passive: true})
+
+        // 监听页面变化, 如果图片没下载完毕, 页面则果断终止下载, 如果已下载则不再需要此监听
+        this.unRegPageChange = registerListener(window, 'popstate', () => {
+          this.unRegLoadImg && this.unRegLoadImg()
+          this.unRegPageChange && this.unRegPageChange()
+          this.reset()
+        }, {capture: false})
       },
 
       /**
        * 重置src请求,将img的src置空, 撤去渲染结果
-       * 当前组件的src记录在this.src中, 如果未加载, 则将this.src=>this._requestingSrc, 表示图片需要下载.
+       * 当前组件的src记录在this.src中, 如果未加载, 则将this.src=>this.requestingSrc, 表示图片需要下载.
        * @private
        * */
       reset () {
-        if (this._requestingSrc && !this._renderedSrc && !this._hasLoaded) {
+        if (this.requestingSrc && !this.renderedSrc && !this.hasLoaded) {
           // 图片在请求下载阶段, 但是还未下载完毕, 这时就直接断掉下载过程
-          // console.warn(`abortRequest ${this._requestingSrc} ${Date.now()}`);
+          // console.warn(`abortRequest ${this.requestingSrc} ${Date.now()}`);
           this.srcAttr(null)
-          this._requestingSrc = null
+          this.requestingSrc = null
         }
-        if (this._renderedSrc) {
+        if (this.renderedSrc) {
           // 当图片已经渲染出来显示过了, 则将其隐藏就行了, 这样做是为了降低内存使用
-          // console.warn(`hideImg ${this._renderedSrc} ${Date.now()}`);
+          // console.warn(`hideImg ${this.renderedSrc} ${Date.now()}`);
           this.setLoaded(false)
         }
       },
@@ -170,11 +181,11 @@
        * */
       update () {
         // 图片的更新需要受到Content组件的控制 => Img组件的canRequest和canRender两个值
-        if (this.src && this._content && this._content.isImgsUpdatable()) {
-          if (this.canRequest && (this.src !== this._renderedSrc && this.src !== this._requestingSrc) && !this._hasLoaded) {
+        if (this.src && this.contentComponent && this.contentComponent.isImgsUpdatable()) {
+          if (this.canRequest && (this.src !== this.renderedSrc && this.src !== this.requestingSrc) && !this.hasLoaded) {
             // 图片没请求过也没下载过页面渲染过的情况
             // 第一次加载图片,先下载吧
-            this._requestingSrc = this.src
+            this.requestingSrc = this.src
             this.setLoaded(false)
             this.srcAttr(this.src)
             // 更新图片的尺寸
@@ -182,10 +193,10 @@
             // console.debug(`Img request ${this.src} ${Date.now()}`);
           }
 
-          if (this.canRender && this._hasLoaded) {
-            if (this.src !== this._renderedSrc) {
+          if (this.canRender && this.hasLoaded) {
+            if (this.src !== this.renderedSrc) {
               // 已经下载但是从未显示的情况, 第一次显示
-              this._renderedSrc = this.src
+              this.renderedSrc = this.src
               // 更新图片的尺寸
               this.setDims()
               this.srcAttr(this.src)
@@ -213,15 +224,15 @@
        * */
       setDims () {
         // 发生变化才更新
-        this._wQ = this.getUnitValue(this.width) || 0
-        this._hQ = this.getUnitValue(this.height) || 0
+        this.wQ = this.getUnitValue(this.width) || 0
+        this.hQ = this.getUnitValue(this.height) || 0
 
-        if (this.w !== this._wQ || this.h !== this._hQ) {
-          if (this.w !== this._wQ) {
-            this.w = this._wQ
+        if (this.w !== this.wQ || this.h !== this.hQ) {
+          if (this.w !== this.wQ) {
+            this.w = this.wQ
           }
-          if (this.h !== this._hQ) {
-            this.h = this._hQ
+          if (this.h !== this.hQ) {
+            this.h = this.hQ
           }
         }
       },
@@ -235,10 +246,10 @@
         this.reset()
         if (this.src.indexOf('data:') === 0) {
           // 如果使用的是datauri, 则意味着图片已经下载完毕
-          this._hasLoaded = true
+          this.hasLoaded = true
         } else {
           // 普通的src连接, 意味着图片还未下载
-          this._hasLoaded = false
+          this.hasLoaded = false
         }
         this.update()
       },
@@ -279,12 +290,12 @@
        * @private
        * */
       getBounds () {
-        if (!this._rect) {
+        if (!this.rect) {
           // 需要等待DOM更新完毕
-          this._rect = this.$el.getBoundingClientRect()
-          // console.debug(`img getBounds, ${this.src}, read, ${this._rect.top} - ${this._rect.bottom}`);
+          this.rect = this.$el.getBoundingClientRect()
+          // console.debug(`img getBounds, ${this.src}, read, ${this.rect.top} - ${this.rect.bottom}`);
         }
-        return this._rect
+        return this.rect
       },
 
       /**
@@ -307,10 +318,6 @@
     },
     mounted () {
       this.init()
-    },
-    destroy () {
-      this._unreg && this._unreg()
-      this._content && this._content.removeImg(this)
     }
   }
 </script>
