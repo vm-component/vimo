@@ -18,16 +18,16 @@
                 <strong>Keys:</strong>
                 <Grid>
                     <Row>
-                        <Column>aMap Key:</Column>
-                        <Column>{{$geo._s.aMap.key}}</Column>
+                        <Column col-4>aMap Key:</Column>
+                        <Column clo-8 no-break>{{$geo._s.aMap.key}}</Column>
                     </Row>
                     <Row>
-                        <Column>bMap Key:</Column>
-                        <Column>{{$geo._s.bMap.key}}</Column>
+                        <Column col-4>bMap Key:</Column>
+                        <Column clo-8 no-break>{{$geo._s.bMap.key}}</Column>
                     </Row>
                     <Row>
-                        <Column>qMap Key:</Column>
-                        <Column>{{$geo._s.qMap.key}}</Column>
+                        <Column col-4>qMap Key:</Column>
+                        <Column clo-8 no-break>{{$geo._s.qMap.key}}</Column>
                     </Row>
                 </Grid>
                 <strong>Options:</strong>
@@ -61,19 +61,19 @@
             <div padding class="name__content">
                 <Grid>
                     <Row>
-                        <Column col-3>lat:</Column>
+                        <Column col-4>lat:</Column>
                         <Column v-if="h5Geo">{{h5Geo.lat}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>lng:</Column>
+                        <Column col-4>lng:</Column>
                         <Column v-if="h5Geo">{{h5Geo.lng}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>mapType:</Column>
+                        <Column col-4>mapType:</Column>
                         <Column v-if="h5Geo">{{h5Geo.mapType}}</Column>
                     </Row>
                     <Row v-if="h5Err">
-                        <Column col-3>err:</Column>
+                        <Column col-4>err:</Column>
                         <Column>{{h5Err}}</Column>
                     </Row>
                 </Grid>
@@ -88,25 +88,25 @@
             <div padding class="name__content">
                 <Grid>
                     <Row>
-                        <Column col-3>lat:</Column>
+                        <Column col-4>lat:</Column>
                         <Column v-if="qMapGeo">{{qMapGeo.lat}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>lng:</Column>
+                        <Column col-4>lng:</Column>
                         <Column v-if="qMapGeo">{{qMapGeo.lng}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>mapType:</Column>
+                        <Column col-4>mapType:</Column>
                         <Column v-if="qMapGeo">{{qMapGeo.mapType}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>address:</Column>
+                        <Column col-4>address:</Column>
                         <Column v-if="qMapGeo">
                             {{qMapGeo.full.province}}{{qMapGeo.full.city}}{{qMapGeo.full.addr}}
                         </Column>
                     </Row>
                     <Row v-if="qMapErr">
-                        <Column col-3>err:</Column>
+                        <Column col-4>err:</Column>
                         <Column>{{qMapErr}}</Column>
                     </Row>
                 </Grid>
@@ -121,25 +121,25 @@
             <div padding class="name__content">
                 <Grid>
                     <Row>
-                        <Column col-3>lat:</Column>
+                        <Column col-4>lat:</Column>
                         <Column v-if="aMapGeo">{{aMapGeo.lat}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>lng:</Column>
+                        <Column col-4>lng:</Column>
                         <Column v-if="aMapGeo">{{aMapGeo.lng}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>mapType:</Column>
+                        <Column col-4>mapType:</Column>
                         <Column v-if="aMapGeo">{{aMapGeo.mapType}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>address:</Column>
+                        <Column col-4>address:</Column>
                         <Column v-if="aMapGeo">
                             {{aMapGeo.full.formattedAddress}}
                         </Column>
                     </Row>
                     <Row v-if="aMapErr">
-                        <Column col-3>err:</Column>
+                        <Column col-4>err:</Column>
                         <Column>{{aMapErr}}</Column>
                     </Row>
                 </Grid>
@@ -155,25 +155,25 @@
             <div padding class="name__content">
                 <Grid>
                     <Row>
-                        <Column col-3>lat:</Column>
+                        <Column col-4>lat:</Column>
                         <Column v-if="bMapGeo">{{bMapGeo.lat}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>lng:</Column>
+                        <Column col-4>lng:</Column>
                         <Column v-if="bMapGeo">{{bMapGeo.lng}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>mapType:</Column>
+                        <Column col-4>mapType:</Column>
                         <Column v-if="bMapGeo">{{bMapGeo.mapType}}</Column>
                     </Row>
                     <Row>
-                        <Column col-3>address:</Column>
+                        <Column col-4>address:</Column>
                         <Column v-if="bMapGeo">
                             {{bMapGeo.full.address.province}}{{bMapGeo.full.address.city}}{{bMapGeo.full.address.district}}{{bMapGeo.full.address.street}}
                         </Column>
                     </Row>
                     <Row v-if="bMapErr">
-                        <Column col-3>err:</Column>
+                        <Column col-4>err:</Column>
                         <Column>{{bMapErr}}</Column>
                     </Row>
                 </Grid>
@@ -194,6 +194,13 @@
     }
     .name__content{
         background:#fff;
+    }
+
+    [no-break]{
+        display:block; //如果是块儿级元素可以不用加
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>
 <script type="text/javascript">
