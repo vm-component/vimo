@@ -287,12 +287,15 @@ let routes = [
     }
   },
   {
-    path: '/position',
-    name: 'position',
+    path: '/geo',
+    name: 'geo',
     component (resolve) {
-      require(['@/example/position.vue'], resolve)
+      require(['@/example/geo.vue'], resolve)
     }
   },
+
+
+
   // demo
   {
     path: '/gl-input',

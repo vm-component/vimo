@@ -251,7 +251,7 @@
                         <span>本地存储</span>
                         <Note slot="item-right">Storage</Note>
                     </Item>
-                    <Item detail-push :to="{name: 'position'}">
+                    <Item detail-push :to="{name: 'geo'}">
                         <Icon slot="item-left" name="pin"></Icon>
                         <span>获取位置</span>
                         <Note slot="item-right">Geo</Note>
