@@ -7,6 +7,7 @@ import contentRoutes from './route-content'
 import listRoutes from './route-list'
 import segmentRoutes from './route-segment'
 import tabsRoutes from './route-tabs'
+import scrollRoutes from './route-scroll'
 
 let routes = [
   {
@@ -332,6 +333,7 @@ routes = routes.concat(segmentRoutes)
 routes = routes.concat(tabsRoutes)
 routes = routes.concat(listRoutes)
 routes = routes.concat(cardRoutes)
+routes = routes.concat(scrollRoutes)
 
 export default {
   mode: 'hash', //   "hash" | "history" | "abstract";

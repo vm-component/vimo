@@ -248,6 +248,19 @@ export function registerListener (ele, eventName, callback, opts, unregisterList
   return unReg
 }
 
+export function isPassive () {
+  var supportsPassiveOption = false
+  try {
+    addEventListener('test', null, Object.defineProperty({}, 'passive', {
+      get: function () {
+        supportsPassiveOption = true
+      }
+    }))
+  } catch (e) {}
+  return supportsPassiveOption
+}
+
+
 /**
  * urlChange注册，绑定的函数触发后会自动解绑
  * @param {function} callback - 回调函数

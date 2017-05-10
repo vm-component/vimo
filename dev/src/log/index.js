@@ -371,7 +371,9 @@ class Log {
     }
 
     if (typeof msg === 'object') {
-      msg = JSON.stringify(msg, null, 2)
+      try {
+        msg = JSON.stringify(msg)
+      } catch (err) {}
     }
 
     if (typeof msg !== 'string') {

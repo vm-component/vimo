@@ -7,7 +7,7 @@
         </Header>
         <Content class="outer-content" padding>
 
-            <h5>简介</h5>
+            <h5 here>简介</h5>
             <p>
                 该组件是业务页面的父组件，业务页面挂载、页面状态、弹出层挂载安插等，都是在此组件中完成。
                 组件注册初始化时，会将App组件实例插入到Vue.prototype中，便于业务页面对App组件的操控。
