@@ -59,12 +59,7 @@
           return ['110000', '110100', '110101']
         }
       },
-      title: {
-        value: String,
-        default () {
-          return ''
-        }
-      }
+      title: [String]
     },
     watch: {
       selectedCity (val) {
@@ -239,8 +234,6 @@
       if (this.checkValue(this.selectedCity)) {
         this.init(this.selectedCity)
       }
-    },
-    mounted () {
       // 监听页面变化
       this.unreg = hashChange(this.dismissOnPageChangeHandler)
     }
