@@ -5,8 +5,7 @@
                 <Title>City</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" ref="content"
-                 :enableJsScroll="$route.query.enableJsScroll">
+        <Content class="outer-content" ref="content" :enableJsScroll="enableJsScroll">
             <List>
                 <ItemGroup v-for="(classify,index) in cityList" :key="index">
                     <ItemDivider color="light" class="itemGroup" :id="classify.name | getClassifyId">
@@ -17,8 +16,15 @@
             </List>
             <div slot="fixedTop" class="shortcut" ref="shortcut"
                  @touchstart="onTouchShortcut"
+                 @touchend="onTouchEndShortcut"
                  @touchmove="onTouchShortcut">
                 <div class="shortcut__item" :data-id="item" v-for="item in shortcutList">{{item}}</div>
+            </div>
+
+            <div slot="fixedTop" class="centered" :class="{'show':(isTouching && selectedId)}">
+                <div class="centered__inner">
+                    <span>{{selectedId}}</span>
+                </div>
             </div>
         </Content>
     </Page>
@@ -28,13 +34,47 @@
         font-size: 14px;
     }
 
+    .centered {
+        top: 50%;
+        left: 50%;
+        background: red;
+        height: 0;
+        width: 0;
+        .centered__inner {
+            width: 60px;
+            height: 60px;
+            margin-left: -30px;
+            margin-top: -60px;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    .centered.show {
+        .centered__inner {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
     .shortcut {
         display: flex;
+        justify-content: center;
+        align-items: flex-end;
         position: absolute;
         top: 50%;
-        right: 2px;
+        right: 0;
         flex-direction: column;
-        width: 16px;
+        width: 46px;
+        padding-right: 2px;
         transform: translateY(-50%);
         z-index: 999;
         .shortcut__item {
@@ -46,6 +86,15 @@
             font-size: 12px;
         }
     }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .2s
+    }
+
+    .fade-enter, .fade-leave-active {
+        transition-delay: 200ms;
+        opacity: 0
+    }
 </style>
 <script type="text/javascript">
   import CITY_LIST from './cityList'
@@ -56,9 +105,12 @@
     name: 'cityList',
     data () {
       return {
-        shortcutMatrix: null,
-        cityList: CITY_LIST,
-        shortcutList: []
+        isTouching: false,      // 正在touching shortcut
+        selectedId: null,       // 当前选择的id
+        enableJsScroll: false,  // scroll引擎
+        shortcutMatrix: null,   // shortcutElement的尺寸矩阵
+        cityList: CITY_LIST,    // 数据源
+        shortcutList: []        // shortcut 的数组 A->Z
       }
     },
     filters: {
@@ -67,9 +119,6 @@
       }
     },
     computed: {
-      enableJsScroll(){
-        return this.$route.query.enableJsScroll === 'true'
-      },
       shortcutElement () {
         return this.$refs.shortcut
       },
@@ -78,18 +127,39 @@
       }
     },
     methods: {
+      /**
+       * 触摸开始和移动
+       * */
       onTouchShortcut (ev) {
+        ev.preventDefault()
+        ev.stopPropagation()
+
+        this.isTouching = true
         let index = this.getSelectedIndex(ev)
-        let id = this.shortcutList[index]
-        let el = document.getElementById('city-' + id)
+        this.selectedId = this.shortcutList[index]
+        let el = document.getElementById('city-' + this.selectedId)
         this.contentComponent.scrollToElement(el, 0, null, 0)
       },
+
+      /**
+       * 触摸停止
+       * */
+      onTouchEndShortcut (ev) {
+        this.isTouching = false
+        ev.preventDefault()
+        ev.stopPropagation()
+      },
+
+      /**
+       * 由数据初始化 shortcut
+       * */
       initShortCut () {
         this.cityList.forEach((group) => {
           var name = group.name.substr(0, 1)
           this.shortcutList.push(name)
         })
       },
+
       /**
        * 根据传入的ev值获取当前在Shortcut上点击的是第几个item
        * */
@@ -101,6 +171,7 @@
       }
     },
     created () {
+      this.enableJsScroll = this.$route.query.enableJsScroll
       this.initShortCut()
     },
     mounted () {

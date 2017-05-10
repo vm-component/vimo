@@ -118,13 +118,16 @@
    * </template>
    *
    * */
-  import { transitionEnd, parsePxUnit } from '../../util/util'
+  import { transitionEnd, parsePxUnit, isString, isBoolean } from '../../util/util'
   import { ScrollView } from './scroll-view'
   export default{
     name: 'Content',
     props: {
       enableJsScroll: {
-        type: Boolean,
+        type: [Boolean, String],
+        validator (value) {
+          return isBoolean(value) || (isString(value) && (value === 'true' || value === 'false'))
+        },
         default () { return this.$config.getBoolean('scrollAssist', false) }
       },
       fullscreen: {
@@ -320,7 +323,7 @@
         // 设置为js滚动模式, 强制使用全屏模式
         if (this.enableJsScroll) {
           this._scroll._js = true
-          this.isFullscreen = true
+          // this.isFullscreen = true
         }
 
         /**

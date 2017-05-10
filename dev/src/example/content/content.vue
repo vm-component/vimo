@@ -18,7 +18,7 @@
                 </p>
 
                 <p>
-                    另外, Content组件也支持JsScroll, 这部分使用的IScroll插件.
+                    另外, Content组件也支持JsScroll, 这部分使用的IScroll插件. 原生滚动和JS滚动两者可以无缝切换
                 </p>
 
             </div>
