@@ -564,8 +564,6 @@
     mounted () {
       this.init()
 
-
-
       // 为slot="fixed"/slot="fixedTop"/slot="fixedBottom"的沟槽设定属性
       if (this.$slots && this.$slots['fixed']) {
         this.$slots['fixed'].forEach(function (item) {
@@ -584,8 +582,6 @@
           item.elm.setAttribute('fixedBottom', '')
         })
       }
-
-
     },
     destroyed () {
       this._scroll.destroy()

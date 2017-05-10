@@ -222,34 +222,34 @@ export function hashChange (callback) {
   return unReg
 }
 
-/**
- * urlChange注册，绑定的函数触发后会自动解绑
- * @param {function} callback - 回调函数
- * @return {function} - 解绑函数
- * */
-export function urlChange (callback) {
-  const URL_EVENT = ['hashchange', 'popstate']
-  URL_EVENT.forEach(function (eventName) {
-    window.addEventListener(eventName, onEvent)
-  })
-
-  return unregister
-
-  function unregister () {
-    URL_EVENT.forEach(function (eventName) {
-      window.removeEventListener(eventName, onEvent)
-    })
-  }
-
-  /**
-   * @param {UIEvent} ev
-   * */
-  function onEvent (ev) {
-    // auto unregister
-    unregister()
-    callback(ev)
-  }
-}
+// /**
+//  * urlChange注册，绑定的函数触发后会自动解绑
+//  * @param {function} callback - 回调函数
+//  * @return {function} - 解绑函数
+//  * */
+// export function urlChange (callback) {
+//   const URL_EVENT = ['hashchange', 'popstate']
+//   URL_EVENT.forEach(function (eventName) {
+//     window.addEventListener(eventName, onEvent)
+//   })
+//
+//   return unregister
+//
+//   function unregister () {
+//     URL_EVENT.forEach(function (eventName) {
+//       window.removeEventListener(eventName, onEvent)
+//     })
+//   }
+//
+//   /**
+//    * @param {UIEvent} ev
+//    * */
+//   function onEvent (ev) {
+//     // auto unregister
+//     unregister()
+//     callback(ev)
+//   }
+// }
 
 /**
  *
@@ -257,8 +257,10 @@ export function urlChange (callback) {
  * @param {any} ele                               - 监听的元素
  * @param {string} eventName                      - 监听的名称
  * @param {function} callback                     - 回调
- * @param {object} [opts]                            - addEventListener的第三个参数 EventListenerOptions
- * @param {array} [unregisterListenersCollection]   - 如果提供Function[], 则unReg将压如这个列表中
+ * @param {object} [opts]                         - addEventListener的第三个参数 EventListenerOptions
+ * @param {object} [opts.capture]                 - capture
+ * @param {object} [opts.passive]                 - passive
+ * @param {array} [unregisterListenersCollection] - 如果提供Function[], 则unReg将压如这个列表中
  * @return {Function}                             - 返回removeEventListener的函数
  */
 export function registerListener (ele, eventName, callback, opts, unregisterListenersCollection) {

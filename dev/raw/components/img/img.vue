@@ -49,7 +49,6 @@
    * }
    * ```
    *
-   *
    * @props {String} [alt='image']         - 图片的alt属性
    * @props {(Number|String)} [height=0]   - 图片的高度
    * @props {String} src                   - 图片的src地址
@@ -309,6 +308,11 @@
     },
     mounted () {
       this.init()
+    },
+    destroyed () {
+      this.unRegLoadImg && this.unRegLoadImg()
+      this.unRegLoadImg = null
+      this.reset()
     }
   }
 </script>

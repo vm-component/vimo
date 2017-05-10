@@ -58,6 +58,7 @@
    *
    * */
   import IScroll from 'iscroll/build/iscroll'
+  import { isPassive } from '../../util/util'
   let hasPointer = !!(window.PointerEvent || window.MSPointerEvent) // IE10 is prefixed
   let hasTouch = 'ontouchstart' in window
   export default{
@@ -159,45 +160,15 @@
     methods: {},
     created () {},
     mounted () {
-//      let config = {
-//        bounce: true,              // 关闭滚动回弹
-//        bindToWrapper: true,        // 绑定scroll事件到当前容器而不是window上
-//        mouseWheel: true,           // 可以鼠标滚轮滚动
-//        disablePointer: false,
-//
-//        scrollbars: true,
-//        fadeScrollbars: true,
-//        interactiveScrollbars: false,
-//        resizeScrollbars: true,
-//        shrinkScrollbars: 'clip',
-//
-//        click: true
-//      }
-
-      console.log(this)
+      // 初始化实例
       let propsData = JSON.parse(JSON.stringify(this.$options.propsData))
-//      let propsData = JSON.parse(JSON.stringify(this._props))
       this.iScrollInstance = new IScroll(this.$el, propsData)
 
-//       -------- 这部分不优雅 --------
-      document.addEventListener('touchmove', function (e) { e.preventDefault() }, isPassive() ? {
+      // 触摸滚动事件不向外传递
+      this.$el.addEventListener('touchmove', function (e) { e.preventDefault() }, isPassive() ? {
         capture: false,
         passive: false
       } : false)
-
-      function isPassive () {
-        var supportsPassiveOption = false
-        try {
-          addEventListener('test', null, Object.defineProperty({}, 'passive', {
-            get: function () {
-              supportsPassiveOption = true
-            }
-          }))
-        } catch (e) {}
-        return supportsPassiveOption
-      }
-
-      // -------- 这部分不优雅 --------
     }
   }
 </script>

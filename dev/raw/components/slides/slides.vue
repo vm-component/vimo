@@ -164,6 +164,9 @@
           }
         }, 0)
       }
+    },
+    destroyed () {
+      this.swiperInstance && this.swiperInstance.destroy()
     }
   }
 </script>

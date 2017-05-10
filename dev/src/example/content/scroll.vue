@@ -6,7 +6,7 @@
             </Navbar>
         </Header>
         <Content class="outer-content" ref="content" padding :fullscreen="false"
-                 :enableJsScroll="false"
+                 :enableJsScroll="$route.query.enableJsScroll"
                  @onScrollStart="onScrollStartHandler"
                  @onScrollEnd="onScrollEndtHandler"
                  @onScroll="onScrollHandler">

@@ -53,10 +53,10 @@ export default [
     }
   },
   {
-    path: '/content_jsScroll',
-    name: 'contentJsScroll',
+    path: '/content_city',
+    name: 'contentCity',
     component (resolve) {
-      require(['@/example/content/jsScroll.vue'], resolve)
+      require(['@/example/content/city.vue'], resolve)
     }
   }
 ]

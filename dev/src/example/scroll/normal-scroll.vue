@@ -8,7 +8,7 @@
         <Content padding class="outer-content ">
 
             <div class="demo">
-                <Scroll :bounce="false">
+                <Scroll :bounce="true">
                     <li>123</li>
                     <li>123</li>
                     <li>123</li>
@@ -46,6 +46,27 @@
                     <li>123</li>
                 </Scroll>
             </div>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus doloremque ea ex, excepturi facere fugiat in ipsa ipsum iure nisi odit officiis quas quasi suscipit totam veritatis voluptatem voluptates.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus doloremque ea ex, excepturi facere fugiat in ipsa ipsum iure nisi odit officiis quas quasi suscipit totam veritatis voluptatem voluptates.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus doloremque ea ex, excepturi facere fugiat in ipsa ipsum iure nisi odit officiis quas quasi suscipit totam veritatis voluptatem voluptates.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus doloremque ea ex, excepturi facere fugiat in ipsa ipsum iure nisi odit officiis quas quasi suscipit totam veritatis voluptatem voluptates.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus doloremque ea ex, excepturi facere fugiat in ipsa ipsum iure nisi odit officiis quas quasi suscipit totam veritatis voluptatem voluptates.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus doloremque ea ex, excepturi facere fugiat in ipsa ipsum iure nisi odit officiis quas quasi suscipit totam veritatis voluptatem voluptates.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus doloremque ea ex, excepturi facere fugiat in ipsa ipsum iure nisi odit officiis quas quasi suscipit totam veritatis voluptatem voluptates.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus doloremque ea ex, excepturi facere fugiat in ipsa ipsum iure nisi odit officiis quas quasi suscipit totam veritatis voluptatem voluptates.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus doloremque ea ex, excepturi facere fugiat in ipsa ipsum iure nisi odit officiis quas quasi suscipit totam veritatis voluptatem voluptates.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus doloremque ea ex, excepturi facere fugiat in ipsa ipsum iure nisi odit officiis quas quasi suscipit totam veritatis voluptatem voluptates.</p>
         </Content>
     </Page>
 </template>
