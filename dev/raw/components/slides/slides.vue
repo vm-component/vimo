@@ -42,7 +42,7 @@
    *
    * ### 最后
    *
-   * 具体用法请参考Demo, Swiper API请参考下面的文档.
+   * 具体用法请参考Demo, Swiper API请参考下面的文档. 另外, Swiper实例化会对resize事件监听, 这是因为存在屏幕翻转的情况.
    *
    *
    * ### 如何使用
@@ -99,19 +99,17 @@
    *
    * */
   import Swiper from './swiper.js'
-  import { assign, registerListener } from '../../util/util'
+  import { assign } from '../../util/util'
   import { getProps, getEvents } from './interface'
-  let slidesId = -1
   export default {
     name: 'Slides',
     props: getProps(),
     data () {
       return {
-        unRegPageChange: null,
-        timer: null,
-        swiperInstance: null,
-        id: ++slidesId,
-        init: false
+        timer: null,            // 子组件注册的计时器
+        swiperInstance: null,   // Swiper插件的实例
+        id: this._uid,          // 当前组件的id
+        init: false             // 是否初始化
       }
     },
     computed: {
@@ -166,12 +164,6 @@
           }
         }, 0)
       }
-    },
-    created(){
-      this.unRegPageChange = registerListener(window, 'popstate', () => {
-        this.unRegPageChange && this.unRegPageChange()
-        this.swiperInstance && this.swiperInstance.destroy()
-      }, {capture: false})
     }
   }
 </script>
