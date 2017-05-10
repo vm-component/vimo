@@ -218,6 +218,7 @@ class Menus {
       }
 
       // for url change
+      // url变化关闭menu组件
       _this._unReg && _this._unReg()
       _this._unReg = urlChange(() => {
         _this.close()

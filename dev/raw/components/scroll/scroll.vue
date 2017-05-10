@@ -159,7 +159,6 @@
     methods: {},
     created () {},
     mounted () {
-
 //      let config = {
 //        bounce: true,              // 关闭滚动回弹
 //        bindToWrapper: true,        // 绑定scroll事件到当前容器而不是window上
@@ -177,6 +176,7 @@
 
       console.log(this)
       let propsData = JSON.parse(JSON.stringify(this.$options.propsData))
+//      let propsData = JSON.parse(JSON.stringify(this._props))
       this.iScrollInstance = new IScroll(this.$el, propsData)
 
 //       -------- 这部分不优雅 --------

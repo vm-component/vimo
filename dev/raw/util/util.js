@@ -206,60 +206,21 @@ export function transitionEnd (el, callback) {
 }
 
 /**
- *
- * 给addEventListener增加passive属性, 如果不支持将降级使用!!opts.capture, 事件的关闭需要自己手动解除, 切记!!
- * @param {any} ele                               - 监听的元素
- * @param {string} eventName                      - 监听的名称
- * @param {function} callback                     - 回调
- * @param {object} [opts]                            - addEventListener的第三个参数 EventListenerOptions
- * @param {array} [unregisterListenersCollection]   - 如果提供Function[], 则unReg将压如这个列表中
- * @return {Function}                             - 返回removeEventListener的函数
- */
-export function registerListener (ele, eventName, callback, opts, unregisterListenersCollection) {
-  // Test via a getter in the options object to see if the passive property is accessed
-  let uiEvtOpts
-  try {
-    opts = Object.defineProperty({}, 'passive', {
-      get: function () {
-        uiEvtOpts = true
-      }
-    })
-    window.addEventListener('optsTest', null, opts)
-  } catch (e) { }
+ * hashChange，hash变化后执行回调, 并自动解绑
+ * @param {function} callback - 回调函数
+ * @return {function} - 解绑函数
+ * */
+export function hashChange (callback) {
+  let unReg = null
 
-  // use event listener options when supported
-  // otherwise it's just a boolean for the "capture" arg
-  const listenerOpts = uiEvtOpts ? {
-    'capture': !!opts.capture,
-    'passive': !!opts.passive
-  } : !!opts.capture
-
-  // use the native addEventListener
-  ele['addEventListener'](eventName, callback, listenerOpts)
-
-  let unReg = function unregisterListener () {
-    ele['removeEventListener'](eventName, callback, listenerOpts)
+  const onHashChange = (ev) => {
+    unReg && unReg()
+    callback(ev)
   }
 
-  if (unregisterListenersCollection && Array.isArray(unregisterListenersCollection)) {
-    unregisterListenersCollection.push(unReg)
-  }
-
+  unReg = registerListener(window, 'hashchange', onHashChange, {})
   return unReg
 }
-
-export function isPassive () {
-  var supportsPassiveOption = false
-  try {
-    addEventListener('test', null, Object.defineProperty({}, 'passive', {
-      get: function () {
-        supportsPassiveOption = true
-      }
-    }))
-  } catch (e) {}
-  return supportsPassiveOption
-}
-
 
 /**
  * urlChange注册，绑定的函数触发后会自动解绑
@@ -288,6 +249,54 @@ export function urlChange (callback) {
     unregister()
     callback(ev)
   }
+}
+
+/**
+ *
+ * 给addEventListener增加passive属性, 如果不支持将降级使用!!opts.capture, 事件的关闭需要自己手动解除, 切记!!
+ * @param {any} ele                               - 监听的元素
+ * @param {string} eventName                      - 监听的名称
+ * @param {function} callback                     - 回调
+ * @param {object} [opts]                            - addEventListener的第三个参数 EventListenerOptions
+ * @param {array} [unregisterListenersCollection]   - 如果提供Function[], 则unReg将压如这个列表中
+ * @return {Function}                             - 返回removeEventListener的函数
+ */
+export function registerListener (ele, eventName, callback, opts, unregisterListenersCollection) {
+  // use event listener options when supported
+  // otherwise it's just a boolean for the "capture" arg
+  const listenerOpts = isPassive() ? {
+    'capture': !!opts.capture,
+    'passive': !!opts.passive
+  } : !!opts.capture
+
+  // use the native addEventListener
+  ele['addEventListener'](eventName, callback, listenerOpts)
+
+  let unReg = function unregisterListener () {
+    ele['removeEventListener'](eventName, callback, listenerOpts)
+  }
+
+  if (unregisterListenersCollection && Array.isArray(unregisterListenersCollection)) {
+    unregisterListenersCollection.push(unReg)
+  }
+
+  return unReg
+}
+
+/**
+ * 判断的当前浏览器是否支持isPassive属性
+ * @return {Boolean}
+ * */
+export function isPassive () {
+  var supportsPassiveOption = false
+  try {
+    addEventListener('test', null, Object.defineProperty({}, 'passive', {
+      get: function () {
+        supportsPassiveOption = true
+      }
+    }))
+  } catch (e) {}
+  return supportsPassiveOption
 }
 
 /**

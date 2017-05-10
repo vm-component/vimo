@@ -99,7 +99,7 @@
    * */
   import Vue from 'vue'
   import { Backdrop } from '../backdrop'
-  import { registerListener, parsePxUnit, isObject } from '../../util/util'
+  import { hashChange, parsePxUnit, isObject } from '../../util/util'
   import { List } from '../list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from '../item'
   const POPOVER_IOS_BODY_PADDING = 2
@@ -119,7 +119,7 @@
       }
     },
     props: {
-      component: [Object,String],
+      component: [Object, String],
       data: [Object],
       ev: [Object, MouseEvent], // 点击元素的事件
       mode: {
@@ -220,13 +220,6 @@
       present () {
         this.isActive = true
         return new Promise((resolve) => { this.presentCallback = resolve })
-      },
-
-      /**
-       * @private
-       * */
-      dismissOnPageChangeHandler () {
-        this.isActive && this.dismiss()
       },
 
       /**
@@ -362,12 +355,13 @@
     created () {
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
-        this.unreg && this.unreg()
-        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
+        this.unreg = hashChange(() => {
+          this.isActive && this.dismiss()
+        })
       }
 
       // 计算位置
-      // bugFix: 需要的等待两帧才能获取高度值
+      // bugFix: 需要的等待1,2帧才能获取高度值
       // 渲染传入的组件
       setTimeout(() => {
         if (this.mode === 'ios') {

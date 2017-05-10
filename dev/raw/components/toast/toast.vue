@@ -22,7 +22,7 @@
     @import "./toast.md";
 </style>
 <script type="text/javascript">
-  import { registerListener } from '../../util/util'
+  import { hashChange } from '../../util/util'
   import { Button } from '../button'
   export default {
     props: {
@@ -139,7 +139,6 @@
           }
 
         }
-        this.unreg && this.unreg()
       },
 
       // -------- public --------
@@ -183,8 +182,7 @@
     mounted () {
       if (this.dismissOnPageChange) {
         // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-        this.unreg && this.unreg()
-        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
+        this.unreg = hashChange(this.dismissOnPageChangeHandler)
       }
     },
     components: {

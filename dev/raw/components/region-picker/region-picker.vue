@@ -37,7 +37,7 @@
    * */
   import Picker from 'better-picker'
   import regions from './regions.json'
-  import { registerListener } from '../../util/util'
+  import { hashChange } from '../../util/util'
   export default{
     name: 'RegionPicker',
     data () {
@@ -222,7 +222,6 @@
       // 页面切换关闭picker, 清除dom残留
       dismissOnPageChangeHandler () {
         let nodes = document.querySelectorAll('body>.picker')
-        this.unreg && this.unreg()
         nodes.forEach((node) => {
           let isHide = window.getComputedStyle(node).display === 'none'
           if (isHide) {
@@ -243,7 +242,7 @@
     },
     mounted () {
       // 监听页面变化
-      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: true})
+      this.unreg = hashChange(this.dismissOnPageChangeHandler)
     }
   }
 </script>

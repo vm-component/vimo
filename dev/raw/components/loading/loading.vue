@@ -104,7 +104,7 @@
    *    },
    *
    * */
-  import { registerListener } from '../../util/util'
+  import { hashChange } from '../../util/util'
   import { Backdrop } from '../backdrop'
   import { Spinner } from '../spinner'
   export default{
@@ -179,12 +179,6 @@
         this.$el.remove()
         this.enabled = true
       },
-      /**
-       * @private
-       * */
-      dismissOnPageChangeHandler () {
-        this.isActive && this.dismiss()
-      },
 
       // -------- public --------
       /**
@@ -232,8 +226,9 @@
     },
     created () {
       if (this.dismissOnPageChange) {
-        this.unreg && this.unreg()
-        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
+        this.unreg = hashChange(() => {
+          this.isActive && this.dismiss()
+        })
       }
     },
     components: {

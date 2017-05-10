@@ -124,7 +124,7 @@
    * })
    *
    */
-  import { registerListener } from '../../util/util'
+  import { hashChange } from '../../util/util'
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
   import { Icon } from '../icon'
@@ -157,8 +157,8 @@
          * ActionSheet State
          * @private
          * */
-        isActive: false,  // ActionSheet 开启状态
-        enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
+        isActive: false,    // ActionSheet 开启状态
+        enabled: false,     // 是否在过渡态的状态判断，如果在动画中则为false
 
         /**
          * ActionSheet 计算属性
@@ -166,14 +166,14 @@
          * 故这部分在watch处理
          * @private
          * */
-        normalButtons: [], // 普通按钮组
+        normalButtons: [],  // 普通按钮组
         cancelButton: null, // 取消按钮(组)，一般放在下面
 
         // promise
         presentCallback: null,
         dismissCallback: null,
 
-        unreg: null
+        unreg: null         // 页面变化的解绑函数
       }
     },
     computed: {
@@ -305,13 +305,6 @@
       },
 
       /**
-       * @private
-       * */
-      dismissOnPageChangeHandler () {
-        this.isActive && this.dismiss()
-      },
-
-      /**
        * 初始化buttons
        * @private
        * */
@@ -351,8 +344,9 @@
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
-        this.unreg && this.unreg()
-        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
+        this.unreg = hashChange(() => {
+          this.isActive && this.dismiss()
+        })
       }
     },
     components: {

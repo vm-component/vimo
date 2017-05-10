@@ -5,44 +5,47 @@
                 <Title>Title</Title>
             </Navbar>
         </Header>
-        <Content padding class="outer-content demo">
-            <Scroll>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-            </Scroll>
+        <Content padding class="outer-content ">
+
+            <div class="demo">
+                <Scroll :bounce="false">
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                </Scroll>
+            </div>
         </Content>
     </Page>
 </template>
@@ -51,9 +54,9 @@
         border: 1px solid #ddd;
         overflow: hidden;
         position: relative;
-        width: 100%;
-        height: 100%;
-        li{
+        width: 300px;
+        height: 40vh;
+        li {
             height: 50px;
         }
     }

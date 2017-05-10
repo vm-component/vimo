@@ -216,7 +216,7 @@
    */
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
-  import { registerListener } from '../../util/util'
+  import { hashChange } from '../../util/util'
   export default{
     name: 'Alert',
     props: {
@@ -260,16 +260,16 @@
          * Alert State
          * @private
          * */
-        inputsForDispaly: [], // inputs数据再加工
-        isActive: false,  // 是否活动状态
-        enabled: false, // 是否在过渡态的状态判断，如果在动画中则为false
+        inputsForDispaly: [],   // inputs数据再加工
+        isActive: false,        // 是否活动状态
+        enabled: false,         // 是否在过渡态的状态判断，如果在动画中则为false
 
-        inputType: null, // Alert中含有的input类型，radio、checkbox
-        isAlertTop: false, // 是否将alert放到顶部，用于input输入时显示虚拟键盘
+        inputType: null,        // Alert中含有的input类型，radio、checkbox
+        isAlertTop: false,      // 是否将alert放到顶部，用于input输入时显示虚拟键盘
 
         dismissCallback: null,
         presentCallback: null,
-        unreg: null // url变化关闭的注册函数
+        unreg: null             // url变化关闭的注册函数
       }
     },
     computed: {
@@ -534,22 +534,15 @@
         }
 
         this.inputsForDispaly = _inputs
-      },
-
-      /**
-       * @private
-       * */
-      dismissOnPageChangeHandler () {
-        this.isActive && this.dismiss()
-        this.unreg && this.unreg()
       }
     },
     created () {
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
-        this.unreg && this.unreg()
-        this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
+        this.unreg = hashChange(() => {
+          this.isActive && this.dismiss()
+        })
       }
     },
     components: {
