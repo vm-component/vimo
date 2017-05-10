@@ -273,8 +273,11 @@ class Storage {
 
 export default {
   version: VERSION,
+  installed: false,
   install (Vue, options) {
+    if (this.installed) return
     Vue.prototype['$localStorage'] = new Storage('localStorage', options)
     Vue.prototype['$sessionStorage'] = new Storage('sessionStorage', options)
+    this.installed = true
   }
 }

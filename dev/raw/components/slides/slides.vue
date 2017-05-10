@@ -99,7 +99,7 @@
    *
    * */
   import Swiper from './swiper.js'
-  import { assign } from '../../util/util'
+  import { assign, registerListener } from '../../util/util'
   import { getProps, getEvents } from './interface'
   let slidesId = -1
   export default {
@@ -107,6 +107,7 @@
     props: getProps(),
     data () {
       return {
+        unRegPageChange: null,
         timer: null,
         swiperInstance: null,
         id: ++slidesId,
@@ -160,15 +161,17 @@
         this.timer && window.clearTimeout(this.timer)
         this.timer = window.setTimeout(() => {
           if (!this.init) {
-            console.log('initSlides')
             this.swiperInstance = new Swiper(this.$el, assign(this._props, getEvents(this)))
             this.init = true
           }
         }, 0)
       }
     },
-    destroy () {
-      this.swiperInstance && this.swiperInstance.destroy()
+    created(){
+      this.unRegPageChange = registerListener(window, 'popstate', () => {
+        this.unRegPageChange && this.unRegPageChange()
+        this.swiperInstance && this.swiperInstance.destroy()
+      }, {capture: false})
     }
   }
 </script>

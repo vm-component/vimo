@@ -17,6 +17,7 @@ export default {
   installed: false,
   version: VERSION,
   install (Vue, options = {}) {
+    if (this.installed) return
     window.VM = {
       version: VERSION
     }

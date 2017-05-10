@@ -164,7 +164,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         resizeScrollbars: true,
         shrinkScrollbars: 'clip',
 
-        click: true,       // 如果开启则需要双击才能触发click事件(当前引用了fastclick)
+        click: true,
         probeType: 3        // 实时监听每一次滚动, 2: 手指点击页面才触发滚动
       }
     }
@@ -188,7 +188,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHideOnSubPages: false,
       pageTransition: 'zoom-transition', // 'zoom-transition'
 
-      scrollAssist: false,
+      scrollAssist: false, // Content组件是否开启jsScroll
       inputCloning: true,
       autoFocusAssist: 'immediate'
     },
@@ -217,7 +217,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHideOnSubPages: false,
       pageTransition: 'fade-right-transition', // 'ios-transition'
       statusbarPadding: false,
-      scrollAssist: false,                      // 是否开启滚动辅助(jsScroll)
+      scrollAssist: false, // Content组件是否开启jsScroll
 
       activator: 'highlight',
       pickerRotateFactor: -0.46,
