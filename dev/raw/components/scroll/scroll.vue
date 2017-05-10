@@ -154,28 +154,6 @@
         default: typeof window.onmousedown === 'undefined'
       }
     },
-//    props: [
-//      'resizeScrollbars',
-//      'mouseWheelSpeed',
-//      'snapThreshold',
-//      'disablePointer',
-//      'disableTouch',
-//      'disableMouse',
-//      'startX',
-//      'startY',
-//      'scrollY',
-//      'directionLockThreshold',
-//      'momentum',
-//      'bounce',
-//      'bounceTime',
-//      'bounceEasing',
-//      'preventDefault',
-//      'preventDefaultException',
-//      'HWCompositing',
-//      'useTransition',
-//      'useTransform',
-//      'bindToWrapper'
-//    ],
     watch: {},
     computed: {},
     methods: {},
@@ -200,7 +178,6 @@
       console.log(this)
       let propsData = JSON.parse(JSON.stringify(this.$options.propsData))
       this.iScrollInstance = new IScroll(this.$el, propsData)
-
 
 //       -------- 这部分不优雅 --------
       document.addEventListener('touchmove', function (e) { e.preventDefault() }, isPassive() ? {

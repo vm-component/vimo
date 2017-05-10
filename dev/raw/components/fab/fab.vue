@@ -23,6 +23,8 @@
    *
    * ## 其他 / 浮动按钮组件(FAB)
    *
+   * 组件关闭需要自己手动执行
+   *
    * @props {Boolean} top - Places the container on the top of the content
    * @props {Boolean} bottom - Places the container on the bottom of the content
    * @props {Boolean} left - Places the container on the left
@@ -32,12 +34,10 @@
    * @props {Boolean} edge - Used to place the container between the content and the header/footer
    *
    * */
-  import { registerListener } from '../../util/util'
   export default{
     name: 'Fab',
     data () {
       return {
-        unreg: null,                    // 页面切换则关闭组件的计时器
         listsActive: false,             // 组件开闭状态
         mainFabButtonComponent: null,   // FAB的主要FabButton组件, 这个必须有
         fabListComponents: []           // FabList 组件
@@ -100,25 +100,13 @@
         this.listsActive = isActive
       },
 
-      /**
-       * 页面切换关闭组件
-       * @private
-       * */
-      dismissOnPageChangeHandler () {
-        this.setActiveLists(false)
-        this.unreg && this.unreg()
-      },
-
       // ------ public ------
       /**
-       *
+       * 关闭组件
        * */
       close () {
         this.setActiveLists(false)
       }
-    },
-    created () {
-      this.unreg = registerListener(window, 'popstate', this.dismissOnPageChangeHandler, {capture: false})
     },
     mounted () {
       this.$children.forEach((child) => {
@@ -138,9 +126,6 @@
 
       // 给主按钮绑定click事件
       this.mainFabButtonComponent.$el.addEventListener('click', this.clickHandler.bind(this))
-
-    },
-    activated () {},
-    components: {}
+    }
   }
 </script>
