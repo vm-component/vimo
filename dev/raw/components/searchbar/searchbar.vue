@@ -271,9 +271,10 @@
         if (this.debounce > 16) {
           window.clearTimeout(this.timer)
           this.timer = window.setTimeout(() => {
-            this.$emit('onInput', $event)
             // 通知父组件的v-model
             this.$emit('input', this.valueInner)
+
+            this.$emit('onInput', $event)
           }, this.debounce)
         } else {
           /**
@@ -281,8 +282,8 @@
            * @description input事件
            * @property {object} $event - 事件对象
            */
-          this.$emit('onInput', $event)
           this.$emit('input', this.valueInner)
+          this.$emit('onInput', $event)
         }
       },
 

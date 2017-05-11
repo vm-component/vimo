@@ -7,31 +7,40 @@
             <Toolbar>
                 <Searchbar :animated="true"
                            placeholder="Search"
-                           :debounce="0"
+                           :debounce="100"
+                           @onInput="onInputHandler"
                            v-model="myInput"
                            :showCancelButton="true"
-                           cancelButtonText="取消"
-                           @onInput="onInput"
-                           @onFocus="onFocus"
-                           @onBlur="onBlur"
-                           @onCancel="onCancel"
-                           @onClear="onClear"></Searchbar>
+                           cancelButtonText="取消"></Searchbar>
             </Toolbar>
         </Header>
-        <Content padding>
-            <p>Search debounce: 100</p>
-            <p>Search Value: {{myInput}}</p>
+        <Content class="outer-content">
+            <div padding>
+                <p>Search debounce: 100</p>
+                <p no-margin>Search Value: {{myInput}}</p>
+            </div>
+
+            <List>
+                <ItemGroup>
+                    <Item detail-push v-for="(city,index) in filteredList" :key="index">{{city.name}}</Item>
+                </ItemGroup>
+            </List>
         </Content>
     </Page>
 </template>
 <style scoped lang="scss">
 </style>
 <script type="text/javascript">
+  import { List } from 'vimo/components/list'
+  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { Searchbar } from 'vimo/components/searchbar'
+  import cityList from './content/cityList'
   export default{
     data () {
       return {
-        myInput: ''
+        myInput: '',
+        cityList: [],
+        filteredList: []
       }
     },
     watch: {
@@ -41,28 +50,35 @@
     },
     computed: {},
     methods: {
-      onInput ($event) {
-        console.debug('outer-onInput:')
-      },
-      onCancel ($event) {
-        console.debug('outer-onCancel:')
-      },
-      onClear ($event) {
-        console.debug('outer-onClear:')
-      },
-      onBlur ($event) {
-        console.debug('outer-onBlur:')
-      },
-      onFocus ($event) {
-        console.debug('outer-onFocus:')
+      onInputHandler ($event) {
+        this.filteredList = this.cityList.filter((item) => {
+          if (this.myInput) {
+            let index = item.tags.toLowerCase().indexOf(this.myInput.toLowerCase())
+            return index > -1
+          }
+          return true
+        })
       }
     },
     created () {
+      let tmp = []
+      cityList.forEach((item) => {
+        tmp = Array.concat(tmp, item.cities)
+      })
+
+      let obj = {}
+      tmp.forEach((item) => {
+        if (!obj[item.cityid]) {
+          this.cityList.push(item)
+          obj[item.cityid] = item
+        }
+      })
+      obj = null
+      this.onInputHandler()
     },
-    mounted () {
-    },
+    mounted () {},
     activated () {
     },
-    components: {Searchbar}
+    components: {Searchbar, List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider}
   }
 </script>
