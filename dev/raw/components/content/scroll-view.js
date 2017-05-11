@@ -210,6 +210,7 @@ export class ScrollView {
 
   /**
    * 使用iScroll的解决方案
+   * 备用的全套方案
    * @private
    * */
   enableIScroll () {
