@@ -151,15 +151,15 @@
       },
       checkbox () {
         this.$alert.present({
-          title: 'checkbox',
-          subTitle: '这个是多选组件, 这里是subTitle属性的值.',
-          message: '这里是message传递的信息.',
+          title: '水果来了',
+//          subTitle: '<small>必须选择不能取消</small>',
+          message: '选择你喜欢吃的水果',
           enableBackdropDismiss: true,
           inputs: [
             {
               type: 'checkbox',
-              value: '  checkbox1_value  ',
-              label: '  checkbox1_label  ',
+              value: 'apple',
+              label: '苹果',
               checked: true,
               handler: function (val) {
                 console.log('checkbox1 clicked')
@@ -168,8 +168,8 @@
             },
             {
               type: 'checkbox',
-              value: 'checkbox2_value',
-              label: 'checkbox2_label',
+              value: 'pear',
+              label: '梨',
               checked: false,
               disabled: true,
               handler: function (val) {
@@ -179,8 +179,8 @@
             },
             {
               type: 'checkbox',
-              value: 'checkbox3_value',
-              label: 'checkbox3_label',
+              value: 'banana',
+              label: '香蕉',
               checked: true,
               handler: function (val) {
                 console.log('checkbox3 clicked')
@@ -189,8 +189,8 @@
             },
             {
               type: 'checkbox',
-              value: 'checkbox4_value',
-              label: 'checkbox4_label',
+              value: 'orange',
+              label: '橘子',
               checked: false,
               handler: function (val) {
                 console.log('checkbox4 clicked')
@@ -233,14 +233,14 @@
       },
       radio () {
         this.$alert.present({
-          title: 'radio',
-          message: '这个是单选组件',
+          title: '水果来了',
+          message: '你只能选择一个',
           enableBackdropDismiss: true,
           inputs: [
             {
               type: 'radio',
-              value: 'radio1_value',
-              label: 'radio1_label',
+              value: 'apple',
+              label: '苹果',
               checked: true,
               handler: function (val) {
                 console.log('radio clicked')
@@ -249,8 +249,8 @@
             },
             {
               type: 'radio',
-              value: 'radio2_value',
-              label: 'radio2_label',
+              value: 'pear',
+              label: '梨',
               checked: false,
               disabled: true,
               handler: function (val) {
@@ -260,8 +260,8 @@
             },
             {
               type: 'radio',
-              value: 'radio3_value',
-              label: 'radio3_label',
+              value: 'banana',
+              label: '香蕉',
               checked: false,
               handler: function (val) {
                 console.log('radio3 clicked')
@@ -270,8 +270,8 @@
             },
             {
               type: 'radio',
-              value: 'radio4_value',
-              label: 'radio4_label',
+              value: 'orange',
+              label: '橘子',
               checked: false,
               handler: (val) => {
                 console.log('radio4 clicked')

@@ -10,7 +10,7 @@
             <div class="alert-wrapper" v-show="isActive">
                 <div class="alert-head">
                     <h2 class="alert-title" v-if="title">{{title}}</h2>
-                    <h3 class="alert-sub-title" v-if="subTitle">{{subTitle}}</h3>
+                    <h3 class="alert-sub-title" v-if="subTitle" v-html="subTitle"></h3>
                 </div>
                 <div class="alert-message" v-html="message"></div>
                 <div v-if="inputs && inputs.length>0">
