@@ -2,6 +2,11 @@
     <Page>
         <Header>
             <Toolbar>
+                <Buttons end slot="buttons">
+                    <Button role="bar-button" type="solid" @click="$modal.dismiss()">
+                        Close
+                    </Button>
+                </Buttons>
                 <Title>隐私政策</Title>
             </Toolbar>
         </Header>

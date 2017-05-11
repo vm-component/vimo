@@ -35,9 +35,9 @@
 
 </style>
 <script type="text/javascript">
-  import modalPageComponent from './modal-page/modal-page.vue'
-  import modalAlbumComponent from './modal-page/modal-album.vue'
-  import modalLoginComponent from './modal-page/modal-login.vue'
+  import modalPageComponent from './modal-page.vue'
+  import modalAlbumComponent from './modal-album.vue'
+  import modalLoginComponent from './modal-login.vue'
   export default{
     data () {
       return {

@@ -26,12 +26,9 @@
             </List>
 
             <Grid>
-                <Row>
-                    <Column>
+                <Row justify-content-center>
+                    <Column col-6>
                         <Button block @click="login">登录</Button>
-                    </Column>
-                    <Column>
-                        <Button block outline color="danger" @click="closeModal">返回</Button>
                     </Column>
                 </Row>
                 <Row>
@@ -52,7 +49,7 @@
 
     .secret {
         text-decoration: underline;
-        color: #333;
+        color: #387ef5;
     }
 </style>
 <script type="text/javascript">

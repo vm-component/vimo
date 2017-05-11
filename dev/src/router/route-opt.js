@@ -142,7 +142,7 @@ let routes = [
     path: '/modal',
     name: 'modal',
     component (resolve) {
-      require(['@/example/modal.vue'], resolve)
+      require(['@/example/modal/modal.vue'], resolve)
     }
   },
   {
