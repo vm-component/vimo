@@ -7,14 +7,10 @@
 </template>
 <style scoped lang="scss">
     .wrapper {
-        position: absolute;
-        z-index: 1;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        position: relative;
         width: 100%;
-        background: #ccc;
+        height: 100%;
+        z-index: 1;
         overflow: hidden;
         .scroller {
             position: absolute;
@@ -54,121 +50,84 @@
    * - 滑动可切换的tab组件, 能更具我外接触发滚动祖选择等.
    * - 横向的跑马灯, 根据指令切换到某个位置.
    *
-   * Scroll组件是对IScroll组件的封装, 组件书写完毕及初始化完毕, props就是传入的参数, 通过ref获取组件实例进行操作, 因此使用逻辑完全一致.
+   * Scroll组件是对 better-scroll 组件的封装, 组件书写完毕及初始化完毕, props就是传入的参数, 通过ref获取组件实例进行操作, 因此使用逻辑完全一致.
+   *
+   *
+   * ## 获取jsScroll的实例
+   * ```
+   * <Scroll ref="scroll">内容</Scroll>
+   *
+   * computed: {
+   *    scrollComponent () {
+   *        return this.$refs.scroll.jsScrollInstance
+   *    }
+   * }
+   * ```
+   *
+   * ## 组件关闭自动销毁
    *
    * */
-  import IScroll from 'iscroll/build/iscroll'
-  import { isPassive } from '../../util/util'
-  let hasPointer = !!(window.PointerEvent || window.MSPointerEvent) // IE10 is prefixed
-  let hasTouch = 'ontouchstart' in window
+  import JsScroll from 'better-scroll/build/bscroll.js'
+  import props from './props'
   export default{
     name: 'Scroll',
     data () {
       return {
-        iScrollInstance: null
+        jsScrollInstance: null
       }
     },
-    props: {
-      resizeScrollbars: {
-        type: Boolean,
-        default: true
-      },
-      mouseWheelSpeed: {
-        type: Number,
-        default: 20
-      },
-      snapThreshold: {
-        type: Number,
-        default: 0.334
-      },
-      disablePointer: {
-        type: Boolean,
-        default: hasPointer
-      },
-      disableTouch: {
-        type: Boolean,
-        default: hasPointer || hasTouch
-      },
-      disableMouse: {
-        type: Boolean,
-        default: hasPointer || hasTouch
-      },
-      startX: {
-        type: Number,
-        default: 0
-      },
-      startY: {
-        type: Number,
-        default: 0
-      },
-      scrollY: {
-        type: Boolean,
-        default: true
-      },
-      directionLockThreshold: {
-        type: Number,
-        default: 5
-      },
-      momentum: {
-        type: Boolean,
-        default: true
-      },
-      // bounce
-      bounce: {
-        type: Boolean,
-        default: true
-      },
-      bounceTime: {
-        type: Number,
-        default: 600
-      },
-      bounceEasing: {
-        type: String,
-        default: ''
-      },
-      // prevent
-      preventDefault: {
-        type: Boolean,
-        default: true
-      },
-      preventDefaultException: {
-        type: Object,
-        default () {
-          return {tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT)$/}
-        }
-      },
-      // 结构
-      HWCompositing: {
-        type: Boolean,
-        default: true
-      },
-      useTransition: {
-        type: Boolean,
-        default: true
-      },
-      useTransform: {
-        type: Boolean,
-        default: true
-      },
-      bindToWrapper: {
-        type: Boolean,
-        default: typeof window.onmousedown === 'undefined'
-      }
-    },
+    props: props,
     watch: {},
     computed: {},
-    methods: {},
+    methods: {
+      initEvent () {
+        // 滚动开始之前触发
+        this.jsScrollInstance.on('beforeScrollStart', (ev) => {
+          this.$emit('beforeScrollStart', ev)
+        })
+        // 滚动时触发
+        this.jsScrollInstance.on('scrollStart', (ev) => {
+          this.$emit('scrollStart', ev)
+        })
+        // 滚动时触发
+        this.jsScrollInstance.on('scroll', (ev) => {
+          this.$emit('scroll', ev)
+        })
+        // 取消滚动时触发
+        this.jsScrollInstance.on('scrollCancel', (ev) => {
+          this.$emit('scrollCancel', ev)
+        })
+        // 滚动结束时触发
+        this.jsScrollInstance.on('scrollEnd', (ev) => {
+          this.$emit('scrollEnd', ev)
+        })
+        // 手指移开屏幕时触发
+        this.jsScrollInstance.on('touchEnd', (ev) => {
+          this.$emit('touchEnd', ev)
+        })
+        // 触发了 fastclick 时的回调函数
+        this.jsScrollInstance.on('flick', (ev) => {
+          this.$emit('flick', ev)
+        })
+        // 当 better-scroll 刷新时触发
+        this.jsScrollInstance.on('refresh', (ev) => {
+          this.$emit('refresh', ev)
+        })
+        // 销毁 better-scroll 实例时触发
+        this.jsScrollInstance.on('destroy', (ev) => {
+          this.$emit('destroy', ev)
+        })
+      }
+    },
     created () {},
     mounted () {
       // 初始化实例
       let propsData = JSON.parse(JSON.stringify(this.$options.propsData))
-      this.iScrollInstance = new IScroll(this.$el, propsData)
-
-      // 触摸滚动事件不向外传递
-      this.$el.addEventListener('touchmove', function (e) { e.preventDefault() }, isPassive() ? {
-        capture: false,
-        passive: false
-      } : false)
+      this.jsScrollInstance = new JsScroll(this.$el, propsData)
+      this.initEvent()
+    },
+    destroyed () {
+      this.jsScrollInstance.destroy()
     }
   }
 </script>

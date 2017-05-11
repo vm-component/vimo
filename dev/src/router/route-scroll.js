@@ -16,5 +16,12 @@ export default [
     component (resolve) {
       require(['@/example/scroll/normal-scroll.vue'], resolve)
     }
+  },
+  {
+    path: '/city_scroll',
+    name: 'cityScroll',
+    component (resolve) {
+      require(['@/example/scroll/city-scroll.vue'], resolve)
+    }
   }
 ]
