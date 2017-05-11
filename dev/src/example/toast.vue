@@ -6,6 +6,8 @@
             </Navbar>
         </Header>
         <Content padding>
+            <h5>简介</h5>
+            <p>Toast用于将应用状态传递给用户, 提示一般自动关闭.</p>
 
             <p>传参指纹: this.$toast('显示Toast提示')</p>
             <Button block @click="toastBottomOnlyString()">只传入String</Button>
@@ -14,11 +16,11 @@
             <Button block @click="toastBottomWithStringAndDuration()">String + Duration(1000)</Button>
 
             <p>传参指纹: this.$toast({...})</p>
-            <Button id="top" block @click="toastTop($event)">Toast Top</Button>
-            <Button block @click="toastButtom()">Toast Bottom</Button>
-            <Button block @click="toastMiddle()">Toast Middle</Button>
-            <Button block @click="toastMiddleWithBtn()">Toast Middle With Button</Button>
-            <Button block @click="showCloseBtnToast()">Toast Top With Button</Button>
+            <Button id="top" block @click="toastTop($event)">顶部出现</Button>
+            <Button block @click="toastButtom()">底部出现</Button>
+            <Button block @click="toastMiddle()">显示在中间</Button>
+            <Button block @click="toastMiddleWithBtn()">显示在中间 + 按钮</Button>
+            <Button block @click="showCloseBtnToast()">显示在顶部 + 按钮</Button>
         </Content>
     </Page>
 </template>

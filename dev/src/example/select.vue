@@ -5,7 +5,13 @@
                 <Title>Select</Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content class="outer-content">
+
+            <div padding>
+                <h5>简介</h5>
+                <p>Select组件用于单类型数据但多选, 如果是多类型数据选择, 请选Picker组件.</p>
+            </div>
+
             <List>
                 <ListHeader>单选</ListHeader>
                 <Item>
@@ -76,10 +82,11 @@
                         <Option>SNES</Option>
                     </Select>
                 </Item>
-                <div text-cente padding>
-                    <p text-center>Gaming选中值: {{gamingNoValue}}</p>
-                </div>
             </List>
+            <div text-cente padding>
+                <p text-center>Gaming选中值: {{gamingNoValue}}</p>
+            </div>
+
 
             <List>
                 <ListHeader>
@@ -96,15 +103,14 @@
                         <Option value="snes" disabled>SNES</Option>
                     </Select>
                 </Item>
-
-                <div text-cente padding>
-                    <p text-center>Gaming选中值: {{gaming}}</p>
-                    <small>
-                        <span>  * Option中checked是NES/Nintendo64/PlayStation, 而v-model中的值是Option中checked是选中的是NES, 优先使用v-modal中的值</span>
-                    </small>
-                </div>
             </List>
 
+            <div text-cente padding>
+                <p text-center>Gaming选中值: {{gaming}}</p>
+                <small>
+                    <span>  * Option中checked是NES/Nintendo64/PlayStation, 而v-model中的值是Option中checked是选中的是NES, 优先使用v-modal中的值</span>
+                </small>
+            </div>
             <List>
                 <ListHeader>
                     <span>单选 (v-model && v-for)</span>
@@ -117,10 +123,10 @@
                         </Option>
                     </Select>
                 </Item>
-                <div text-cente padding>
-                    <p text-center>Currency选中值: {{currency}}</p>
-                </div>
             </List>
+            <div text-cente padding>
+                <p text-center>Currency选中值: {{currency}}</p>
+            </div>
         </Content>
     </Page>
 </template>
@@ -129,7 +135,7 @@
 </style>
 <script type="text/javascript">
   import { List } from 'vimo/components/list'
-  import { Item, ListHeader } from 'vimo/components/item'
+  import { Item, ListHeader, ItemGroup } from 'vimo/components/item'
   import { Label } from 'vimo/components/label'
   import { Select, Option } from 'vimo/components/select'
   export default{
@@ -180,6 +186,6 @@
     created: function () {},
     mounted: function () {},
     activated: function () {},
-    components: {List, Item, ListHeader, Label, Select, Option}
+    components: {List, Item, ListHeader, Label, Select, Option, ItemGroup}
   }
 </script>

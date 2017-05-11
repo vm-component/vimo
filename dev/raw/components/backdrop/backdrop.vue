@@ -5,6 +5,7 @@
             @after-leave="afterLeave">
         <div class="ion-backdrop"
              @click="bdClick"
+             @touchmove="onTouchMoveHandler($event)"
              :class="{'backdrop-no-tappable':!enableBackdropDismiss,'fixed':fixed}"
              :style="{'left':left+'px','top':top+'px'}"
              v-show="isActiveLocal"></div>
@@ -114,6 +115,10 @@
          * @description 当Backdrop关闭时触发
          */
         this.$emit('onHidden')
+      },
+      onTouchMoveHandler ($event) {
+        $event.preventDefault()
+        $event.stopPropagation()
       }
     }
   }
