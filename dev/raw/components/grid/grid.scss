@@ -75,3 +75,56 @@ $grid-padding-widths: (
 }
 
 @include make-grid-columns();
+
+// sudoku
+// --------------------------------------------------
+[sudoku] {
+  @mixin hairline() {
+    content: "";
+    position: absolute;
+    background-color: #ddd;
+    display: block;
+    transform-origin: 0 0;
+  }
+
+  .row {
+    position: relative;
+  }
+  .row::before {
+    @include hairline();
+    transform: scaleY(.5);
+    height: 1px;
+    width: 100%;
+
+    left: 0;
+    right: auto;
+    top: 0;
+    bottom: auto;
+  }
+  .row:nth-last-child(1)::after {
+    @include hairline();
+    transform: scaleY(.5);
+    height: 1px;
+    width: 100%;
+
+    left: 0;
+    right: auto;
+    bottom: 0;
+    top: auto;
+  }
+
+  .col::before {
+    @include hairline();
+    transform: scaleX(.5);
+    height: 100%;
+    width: 1px;
+
+    top: 0;
+    bottom: auto;
+    left: 0;
+    right: auto;
+  }
+  .col:nth-child(1)::before {
+    content: none;
+  }
+}
