@@ -70,6 +70,7 @@
       openAlbum () {
         this.$modal.present({
           component: modalAlbumComponent,
+          mode: 'zoom',
           data: {
             img: [
               'static/background/1.jpg',

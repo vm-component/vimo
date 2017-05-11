@@ -73,8 +73,6 @@ function ModalFactory (options) {
  *
  *
  * @param {string} [options.mode='ios'] - 模式
- * @param {string} [options.name] - 名称(未启用)
- * @param {string} [options.position] - 位置(未启用)
  * @example
  * 传入参数示例:
  * {

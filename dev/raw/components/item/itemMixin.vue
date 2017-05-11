@@ -39,7 +39,18 @@
    *
    * 列表组件中的每一个Item将在这里定义, 其中包括**Item/ListHeader/ItemGroup/ItemDivider**等, 他们的使用方式基本一样, 这里统一说明.
    *
+   *
+   * ### ItemDivider组件
+   *
+   * 加 `[sticky]` 属性可实现吸顶效果
+   *
    * ### 如何使用
+   *
+   * ### Item组件
+   *
+   * - 加 `[no-lines]` 属性可去除边框
+   * - 在item中的Icon上加属性`[large],[small]`可控制大小
+   *
    *
    * ```
    * // 引入

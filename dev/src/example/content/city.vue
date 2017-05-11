@@ -5,10 +5,10 @@
                 <Title>City</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" ref="content" :enableJsScroll="enableJsScroll">
+        <Content class="outer-content" ref="content">
             <List>
                 <ItemGroup v-for="(classify,index) in cityList" :key="index">
-                    <ItemDivider color="light" class="itemGroup" :id="classify.name | getClassifyId">
+                    <ItemDivider sticky color="light" class="itemGroup" :id="classify.name | getClassifyId">
                         {{classify.name}}
                     </ItemDivider>
                     <Item v-for="city in classify.cities" :key="city.cityid">{{city.name}}</Item>

@@ -19,6 +19,18 @@
     @import "./modal";
     @import "./modal.ios";
     @import "./modal.md";
+
+    // transitioName = 'modal-zoom'
+    .modal-zoom-enter-active, .modal-zoom-leave-active {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .modal-zoom-enter, .modal-zoom-leave-active {
+        transform: scale(0.85);
+        opacity: 0.01;
+    }
+
 </style>
 <script type="text/javascript">
   import Vue from 'vue'
@@ -26,8 +38,6 @@
   export default{
     name: 'Modal',
     props: {
-      name: [String],       // 名称, 还未使用
-      position: [String],   // 开启位置, 还未使用
       mode: {
         type: String,
         default () { return this.$config.get('mode') || 'ios' }
