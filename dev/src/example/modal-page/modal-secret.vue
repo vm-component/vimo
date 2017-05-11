@@ -1,9 +1,9 @@
 <template>
     <Page>
         <Header>
-            <Navbar>
+            <Toolbar>
                 <Title>隐私政策</Title>
-            </Navbar>
+            </Toolbar>
         </Header>
         <Content padding class="outer-content">
             <p><strong>Apple 隐私政策已于 2016 年 9 月 12 日更新</strong></p>

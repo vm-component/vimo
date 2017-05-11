@@ -1,9 +1,14 @@
 <template>
     <Page>
         <Header>
-            <Navbar>
+            <Toolbar>
+                <Buttons end slot="buttons">
+                    <Button role="bar-button" type="solid" @click="closeModal">
+                        Close
+                    </Button>
+                </Buttons>
                 <Title>Login</Title>
-            </Navbar>
+            </Toolbar>
         </Header>
         <Content padding>
             <List>

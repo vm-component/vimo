@@ -2,9 +2,11 @@
     <Page>
         <Header>
             <Toolbar>
-                <Button right slot="button" role="bar-button" @click="closeModal">
-                    Close
-                </Button>
+                <Buttons end slot="buttons">
+                    <Button role="bar-button" type="solid" @click="closeModal">
+                        Close
+                    </Button>
+                </Buttons>
                 <Title>测试页面</Title>
             </Toolbar>
         </Header>
