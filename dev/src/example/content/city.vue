@@ -18,7 +18,7 @@
                  @touchstart="onTouchShortcut"
                  @touchend="onTouchEndShortcut"
                  @touchmove="onTouchShortcut">
-                <div class="shortcut__item" :data-id="item" v-for="item in shortcutList">{{item}}</div>
+                <div class="shortcut__item" :data-id="item" v-for="item in shortcutList">{{item.name}}</div>
             </div>
 
             <div slot="fixedTop" class="centered" :class="{'show':(isTouching && selectedId)}">
@@ -136,18 +136,17 @@
 
         this.isTouching = true
         let index = this.getSelectedIndex(ev)
-        this.selectedId = this.shortcutList[index]
-        let el = document.getElementById('city-' + this.selectedId)
-        this.contentComponent.scrollToElement(el, 0, null, 0)
+        this.selectedId = this.shortcutList[index].name
+        this.contentComponent.scrollTo(0, this.shortcutList[index].top, 0)
       },
 
       /**
        * 触摸停止
        * */
       onTouchEndShortcut (ev) {
-        this.isTouching = false
         ev.preventDefault()
         ev.stopPropagation()
+        this.isTouching = false
       },
 
       /**
@@ -156,7 +155,10 @@
       initShortCut () {
         this.cityList.forEach((group) => {
           var name = group.name.substr(0, 1)
-          this.shortcutList.push(name)
+          this.shortcutList.push({
+            name: name,
+            top: 0
+          })
         })
       },
 
@@ -176,6 +178,10 @@
     },
     mounted () {
       this.shortcutMatrix = this.shortcutElement.getBoundingClientRect()
+      this.shortcutList.forEach((item) => {
+        let el = document.getElementById('city-' + item.name)
+        item.top = el.offsetTop + 1
+      })
     },
     components: {
       List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
