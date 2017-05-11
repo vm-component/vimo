@@ -107,7 +107,7 @@
                         <Note slot="item-right">Slides</Note>
                     </Item>
                     <Item detail-push :to="{name: 'scroll'}">
-                        <Icon slot="item-left" name="photos"></Icon>
+                        <Icon slot="item-left" name="flash"></Icon>
                         <span>滚动</span>
                         <Note slot="item-right">Scroll</Note>
                     </Item>

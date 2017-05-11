@@ -1,6 +1,6 @@
 <template>
     <div class="ion-modal">
-        <Backdrop :enableBackdropDismiss="false"
+        <Backdrop :enableBackdropDismiss="enableBackdropDismiss" :hidden="!showBackdrop" :bdClick="bdClick"
                   :isActive="isActive"></Backdrop>
         <transition
                 :name="transitionClass"
@@ -10,7 +10,7 @@
                 @after-leave="afterLeave">
             <div class="modal-wrapper" v-show="isActive">
                 <!--用户自定义的port位置-->
-                <div class="modalPageLoadPort"></div>
+                <div class="modalPageLoadPort" ref="modalViewport"></div>
             </div>
         </transition>
     </div>
@@ -21,7 +21,7 @@
     @import "./modal.md";
 </style>
 <script type="text/javascript">
-
+  import Vue from 'vue'
   import { Backdrop } from '../backdrop'
   export default{
     name: 'Modal',
@@ -31,6 +31,20 @@
       mode: {
         type: String,
         default () { return this.$config.get('mode') || 'ios' }
+      },
+
+      // 放入的页面组件
+      component: Object,
+      // 传递给页面的数据
+      data: Object,
+      onDismiss: Function,
+      showBackdrop: {
+        type: Boolean,
+        default: true
+      },
+      enableBackdropDismiss: {
+        type: Boolean,
+        default: true
       }
     },
     data () {
@@ -47,23 +61,37 @@
     computed: {
       transitionClass () {
         return `modal-${this.mode}`
+      },
+      modalViewportElement () {
+        return this.$refs.modalViewport
       }
     },
     methods: {
+
+      /**
+       * 点击backdrop
+       * @private
+       * */
+      bdClick () {
+        if (this.enabled && this.enableBackdropDismiss) {
+          this.dismiss()
+        }
+      },
+
       /**
        * Animate Hooks
        * */
       beforeEnter () {
-        this.$app && this.$app.setEnabled(false, 400)
         this.enabled = false // 不允许过渡中途操作
+        this.$app && this.$app.setEnabled(false, 400)
       },
       afterEnter () {
         this.presentCallback()
         this.enabled = true
       },
       beforeLeave () {
-        this.$app && this.$app.setEnabled(false, 400)
         this.enabled = false
+        this.$app && this.$app.setEnabled(false, 400)
       },
       afterLeave () {
         this.dismissCallback()
@@ -79,9 +107,12 @@
         this.isActive = true
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
-      dismiss () {
+      dismiss (dataBack) {
         if (this.isActive) {
           this.isActive = false
+
+          this.onDismiss && this.onDismiss(dataBack)
+
           if (!this.enabled) {
             this.$nextTick(() => {
               this.dismissCallback()
@@ -94,6 +125,17 @@
           return new Promise((resolve) => { resolve() })
         }
       }
+    },
+    mounted () {
+      // 页面挂载
+      const Component = Vue.extend(this.component)
+      setTimeout(() => {
+        // eslint-disable-next-line no-new
+        new Component({
+          el: this.modalViewportElement,
+          $data: this.data
+        })
+      }, 0)
     },
     components: {
       'Backdrop': Backdrop

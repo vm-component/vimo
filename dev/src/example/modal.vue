@@ -6,47 +6,85 @@
             </Navbar>
         </Header>
         <Content padding>
+            <h5>简介</h5>
 
-            <Button block @click="openModal_1">点击打开Modal_1</Button>
-            <Button block @click="openModal_2">点击打开Modal_2</Button>
+            <p>Modal组件是对当页内容的补充, 用于较多数据的展示和操作, 比如相册查看/登录/大段信息提示等</p>
 
 
+            <Button block @click="openModal">点击打开Modal</Button>
+
+            <h5>相册查看</h5>
+            <p>这一页将需要查看的数据传给Modal组件, Modal组件使用Slides组件对图片轮播</p>
+            <Button block @click="openAlbum">打开相册</Button>
+            <hr>
+            <h5>登录:</h5>
+            <p>弹出完整的页面进行登录操作, 点击登录按钮传出登录数据用于验证, 或者在modal层验证也行.</p>
+            <Button block @click="openLogin">登录</Button>
+            <p><strong>返回的登录数据</strong></p>
+            <p>用户名: {{username}}</p>
+            <p>密码: {{password}}</p>
         </Content>
     </Page>
 </template>
 <style lang="scss">
-    .main {
+    .login {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 30px 10px;
     }
+
 </style>
 <script type="text/javascript">
-  import modalPageComponent1 from './modal-page/modal-page-1.vue'
-  import modalPageComponent2 from './modal-page/modal-page-2.vue'
+  import modalPageComponent from './modal-page/modal-page.vue'
+  import modalAlbumComponent from './modal-page/modal-album.vue'
+  import modalLoginComponent from './modal-page/modal-login.vue'
   export default{
     data () {
-      return {}
+      return {
+        username: '你好Vimo',
+        password: '123456'
+      }
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
-      openModal_1 () {
+      openLogin () {
+        const _this = this
         this.$modal.present({
-          template: modalPageComponent1,
-          modalData: {hello: 'Page1Data'},
+          component: modalLoginComponent,
+          data: {
+            username: this.username,
+            password: this.password
+          },
+          showBackdrop: true,
+          enableBackdropDismiss: false,
           onDismiss (data) {
-            console.debug('得到了modal1的关闭信息')
-            console.debug(JSON.stringify(data))
+            if (data) {
+              _this.username = data.username
+              _this.password = data.password
+            }
           }
         })
       },
-      openModal_2 () {
+      openAlbum () {
         this.$modal.present({
-          template: modalPageComponent2,
-          modalData: {hello: 'Page2Data'},
-          onDismiss (data) {
-            console.debug('得到了modal2的关闭信息')
-            console.debug(JSON.stringify(data))
-          }
+          component: modalAlbumComponent,
+          data: {
+            img: [
+              'static/background/1.jpg',
+              'static/background/2.jpg',
+              'static/background/3.jpg',
+              'static/background/4.jpg'
+            ]
+          },
+          showBackdrop: true,
+          enableBackdropDismiss: true
+        })
+      },
+      openModal () {
+        this.$modal.present({
+          component: modalPageComponent
         })
       }
     },

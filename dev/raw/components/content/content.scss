@@ -101,7 +101,7 @@ a {
   display: block;
 }
 
-[fixed] {
+.fixed-content [fixed] {
   position: absolute;
   z-index: $z-index-fixed-content; // 999
   transform: translateZ(0);
