@@ -28,7 +28,8 @@ const DEFAULT = {
   },
   HWCompositing: true,
   useTransition: true,
-  useTransform: true
+  useTransform: true,
+  probeType: 1
 }
 
 function defaultDataToProps (defaults) {

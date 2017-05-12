@@ -23,5 +23,12 @@ export default [
     component (resolve) {
       require(['@/example/scroll/city-scroll.vue'], resolve)
     }
+  },
+  {
+    path: '/user_center_scroll',
+    name: 'userCenterScroll',
+    component (resolve) {
+      require(['@/example/scroll/user-center.vue'], resolve)
+    }
   }
 ]

@@ -67,7 +67,7 @@
    * ## 组件关闭自动销毁
    *
    * */
-  import JsScroll from 'better-scroll/build/bscroll.js'
+  import JsScroll from 'better-scroll/build/bscroll'
   import props from './props'
   export default{
     name: 'Scroll',

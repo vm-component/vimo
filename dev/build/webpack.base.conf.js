@@ -2,7 +2,7 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
-
+var manifestPlugin = require('pwa-manifest-webpack-plugin')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -65,5 +65,17 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+// eslint-disable-next-line new-cap
+    new manifestPlugin({
+      name: 'CropChat',
+      description: 'CropChat - Image Messenger Application',
+      display: 'fullscreen',
+      icon: {
+        src: path.resolve('static/img/vimo.png'),
+        sizes: [200]
+      }
+    })
+  ]
 }

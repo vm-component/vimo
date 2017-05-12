@@ -21,6 +21,7 @@
     "hammerjs": "^2.0.8",
     "iscroll": "^5.2.0",
     "lodash.throttle": "^4.1.1",
+    "pwa-manifest-webpack-plugin": "^1.0.3",
     "standard": "^10.0.2",
     "swiper": "^3.4.2",
     "vue": "^2.2.2",
