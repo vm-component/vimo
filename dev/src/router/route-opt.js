@@ -8,6 +8,7 @@ import listRoutes from './route-list'
 import segmentRoutes from './route-segment'
 import tabsRoutes from './route-tabs'
 import scrollRoutes from './route-scroll'
+import pickerRoutes from './route-picker'
 
 let routes = [
   {
@@ -152,13 +153,7 @@ let routes = [
       require(['@/example/toast.vue'], resolve)
     }
   },
-  {
-    path: '/picker',
-    name: 'city-picker',
-    component (resolve) {
-      require(['@/example/picker.vue'], resolve)
-    }
-  },
+
   // ----  component/通用组件 ----
 
   {
@@ -334,6 +329,7 @@ routes = routes.concat(tabsRoutes)
 routes = routes.concat(listRoutes)
 routes = routes.concat(cardRoutes)
 routes = routes.concat(scrollRoutes)
+routes = routes.concat(pickerRoutes)
 
 export default {
   mode: 'hash', //   "hash" | "history" | "abstract";

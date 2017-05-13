@@ -47,7 +47,8 @@ $picker-max-width: 500px !default;
   width: $picker-width;
   max-width: $picker-max-width;
 
-  transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 0%, 0);
+  //transform: translate3d(0, 100%, 0);
 
   contain: strict;
 }
@@ -125,6 +126,8 @@ $picker-max-width: 500px !default;
 
   will-change: transform;
   contain: strict;
+
+  transform: translate3d(-9999px, 0px, 0px);
 }
 
 .picker-opt.picker-opt-disabled {

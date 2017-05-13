@@ -233,7 +233,7 @@
                         <span>通知</span>
                         <Note slot="item-right">Toast</Note>
                     </Item>
-                    <Item detail-push :to="{name: 'city-picker'}">
+                    <Item detail-push :to="{name: 'picker'}">
                         <Icon slot="item-left" name="basket"></Icon>
                         <span>Picker</span>
                         <Note slot="item-right">Picker</Note>

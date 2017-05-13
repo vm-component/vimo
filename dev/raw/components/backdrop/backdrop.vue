@@ -53,7 +53,7 @@
     data () {
       return {
         // 定义本地参数
-        isActiveLocal: false, // 控制权由present/dismiss控制
+        isActiveLocal: this.isActive, // 控制权由present/dismiss控制
         count: 0 // 记录开启数目
       }
     },
@@ -120,6 +120,6 @@
         $event.preventDefault()
         $event.stopPropagation()
       }
-    }
+    },
   }
 </script>
