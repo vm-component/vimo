@@ -12,7 +12,6 @@
                     Pick组件用于多列数据选择场景, 比如城市三级/时间选择/自定义多列选择等.
                 </p>
             </div>
-
             <List>
                 <ListHeader>Character</ListHeader>
                 <Item detail-push :to="{name:'timePicker'}">日期选择</Item>

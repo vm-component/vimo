@@ -1,34 +1,47 @@
 <template>
     <div class="ion-picker-cmp" :class="[modeClass,cssClass]">
-        <Backdrop :enableBackdropDismiss="true" :isActive="true" :bdClick="bdClick"></Backdrop>
-        <!--<ion-backdrop (click)="bdClick()"></ion-backdrop>-->
-        <div class="picker-wrapper" v-if="data">
-            <div class="picker-toolbar">
-                <div v-for="(b,index) in data.buttons"
-                     :key="index"
-                     class="picker-toolbar-button"
-                     :class="[b.cssRole]">
-                    <Button @click="btnClick(b)" :class="b.cssClass" class="picker-button" clear>
-                        {{b.text}}
-                    </Button>
+        <Backdrop :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive" :bdClick="bdClick"></Backdrop>
+        <transition
+                name="picker"
+                @before-enter="beforeEnter"
+                @after-enter="afterEnter"
+                @before-leave="beforeLeave"
+                @after-leave="afterLeave">
+            <div class="picker-wrapper" v-show="isActive">
+                <div class="picker-toolbar">
+                    <div v-for="(b,index) in data.buttons"
+                         :key="index"
+                         class="picker-toolbar-button"
+                         :class="[b.cssRole]">
+                        <Button @click="btnClick(b)" :class="b.cssClass" class="picker-button" clear>{{b.text}}</Button>
+                    </div>
+                </div>
+                <div class="picker-columns">
+                    <div class="picker-above-highlight"></div>
+                    <PickerCol v-for="(c,index) in data.columns"
+                               :index="index"
+                               :key="c.name"
+                               :col="c"
+                               @onChange="colChange"></PickerCol>
+                    <div class="picker-below-highlight"></div>
                 </div>
             </div>
-            <div class="picker-columns">
-                <div class="picker-above-highlight"></div>
-                <PickerCol v-for="(c,index) in data.columns"
-                           :index="index"
-                           :key="c.name"
-                           :col="c"
-                           @onChange="colChange"></PickerCol>
-                <div class="picker-below-highlight"></div>
-            </div>
-        </div>
+        </transition>
     </div>
 </template>
 <style lang="scss">
-    @import "./picker";
-    @import "./picker.ios";
-    @import "./picker.md";
+    @import "./picker.scss";
+    @import "./picker.ios.scss";
+    @import "./picker.md.scss";
+
+    // transitioName = 'picker'
+    .picker-enter-active, .picker-leave-active {
+        transform: translateY(0%);
+    }
+
+    .picker-enter, .picker-leave-active {
+        transform: translateY(100%);
+    }
 </style>
 <script type="text/javascript">
   /**
@@ -71,30 +84,41 @@
    *
    *
    *
+   * @props {Object} data - 组件初始化的数据
+   * @props {String} [mode='ios'] - 模式
+   * @props {String} [cssClass] - 样式
+   * @props {Boolean} [enableBackdropDismiss=true] - 点击backdrop是否能关闭
+   * @props {Function} [onChange=noop] - picker数据变化时触发, 某一个col变化也触发, 返回最新值
+   * @props {Function} [onSelect=noop] - 某一列发生变化时触发
    *
+   *
+   * @fires onChange
+   * @fires onSelect
    * */
-  import { Backdrop } from '../backdrop'
-  import { Button } from '../button'
   import { isString, isPresent, isNumber } from '../../util/util'
   import PickerCol from './picker-col.vue'
+  import { Backdrop } from '../backdrop'
+  import { Button } from '../button'
   export default{
     name: 'Picker',
     data () {
       return {
-        isActive: true,
-        id: this._uid,
-        enabled: true,
-        lastClick: 0,
+        isActive: false,        // 控制当前组件的激活状态
+        enabled: true,          // 是否不在动画中(是否为可行为状态)
+//        lastClick: 0,           // 最后一次点击的时间
 
-        dismissCallback: null,
-        presentCallback: null,
+        dismissCallback: null,  // 关闭的回调
+        presentCallback: null,  // 打开的回调
 
-        cols: [],  //  每列的数据
-        timer: null
+        cols: [],               // 每列的数据
+        timer: null             // 计时器
       }
     },
     props: {
-      data: Object,
+      data: {
+        type: Object,
+        required: true
+      },
       mode: {
         type: String,
         default () { return this.$config.get('mode') || 'ios' }
@@ -103,7 +127,9 @@
       enableBackdropDismiss: {
         type: Boolean,
         default: true
-      }
+      },
+      onChange: Function,
+      onSelect: Function
     },
     watch: {
       data () {
@@ -116,28 +142,65 @@
       }
     },
     methods: {
+      /**
+       * Component Animate Hooks
+       * @private
+       * */
+      beforeEnter () {
+        this.enabled = false // 不允许过渡中途操作
+        this.$app && this.$app.setEnabled(false, 400)
+      },
+      afterEnter () {
+        this.presentCallback()
+        this.enabled = true
+      },
+      beforeLeave () {
+        this.enabled = false
+        this.$app && this.$app.setEnabled(false, 400)
+      },
+      afterLeave () {
+        this.dismissCallback()
+        // 删除DOM
+        this.$el.remove()
+        this.enabled = true
+      },
+
+      /**
+       * 背景backdrop点击
+       * @private
+       * */
       bdClick () {
-        if (this.enabled && this.data.enableBackdropDismiss) {
-          this.lastClick = Date.now()
+        if (this.enabled && this.enableBackdropDismiss) {
           this.dismiss()
         }
       },
 
+      /**
+       * 开启
+       * @private
+       * */
+      present () {
+        this.isActive = true
+        return new Promise((resolve) => { this.presentCallback = resolve })
+      },
+
+      /**
+       * 关闭
+       * @private
+       * */
       dismiss () {
         this.isActive = false
         return new Promise((resolve) => { this.dismissCallback = resolve })
       },
 
       /**
-       * 标题左右的两个按钮点击
+       * 标题左右的两个按钮点击(取消/确定)
+       * @private
        * */
       btnClick (button) {
         if (!this.enabled) {
           return
         }
-
-        // keep the time of the most recent button click
-        this.lastClick = Date.now()
 
         let shouldDismiss = true
 
@@ -157,11 +220,11 @@
 
       /**
        * 获取当前选择的值, 有多少列返回多少列的数据
-       *
        * @return {Array} selected - selected
        * @return {String} selected.text - text
        * @return {String} selected.value - value
        * @return {String} selected.columnIndex - columnIndex
+       * @private
        * */
       getSelected () {
         let selected = {}
@@ -175,14 +238,26 @@
         })
         return selected
       },
+
       /**
        * 当选择变化,对外发送事件
+       * @private
        * */
-      colChange (data, index) {
-        this.$emit('onSelect', data, index)
-        this.$emit('onChange', this.getSelected())
+      colChange (data) {
+        // col发生变化时触发onSelect事件, 传递触发col的信息
+        this.$emit('onSelect', data)
+        this.onSelect && this.onSelect(data)
+
+        // col发生变化, 则获取当前选中的整体数据, 触发onChange事件
+        let selectedData = this.getSelected()
+        this.$emit('onChange', selectedData)
+        this.onChange && this.onChange(selectedData)
       },
 
+      /**
+       * 如果设置的选中值与显示不一致, 使用这个刷新, 他会更新滚动位置
+       * @private
+       * */
       refresh () {
         this.cols.forEach(column => {
           column.refresh()
@@ -192,11 +267,11 @@
       /**
        * data数据格式化
        *
-       * > 在this.data原值上操作
+       * PS: 在this.data原值上操作
        *
        * - data.buttons: 如果传入的string字符串数组, 则button的文本将是这个字符串
        * - data.buttons: 如过role定义了, 则加上cssRole: `picker-toolbar-${button.role}`
-       * - columns -> column.options: 如果不是对象, 则将其toString后转给text/value
+       * - columns -> column.options: 如果不是对象, 则将传入的值toString后转给text/value
        *
        * @private
        * */
@@ -210,7 +285,6 @@
           if (button.role) {
             // role: cancel / button
             button.cssRole = `picker-toolbar-${button.role}`
-
           }
           return button
         })
@@ -233,29 +307,39 @@
               if (isString(inputOpt) || isNumber(inputOpt)) {
                 opt.text = inputOpt.toString()
                 opt.value = inputOpt
-
               } else {
                 opt.text = isPresent(inputOpt.text) ? inputOpt.text : inputOpt.value
                 opt.value = isPresent(inputOpt.value) ? inputOpt.value : inputOpt.text
               }
             }
-
             return opt
           })
           return column
         })
       },
 
+      /**
+       * 由子组件调用, 用于记录自己
+       * @private
+       * */
       recordChildComponent (childComponent) {
         this.cols.push(childComponent)
+      },
+
+      // ------- 动态添加数据接口 --------
+      /**
+       * 动态添加修改列数据时,对某一列数据修改并刷新显示
+       * */
+      resetColumn (index) {
+        console.log('resetColumn index: ' + index)
+        window.setTimeout(() => {
+          this.cols[index].update(0, 0, false, false)
+        }, 0)
       }
     },
     created () {
       this.normalizeData()
     },
-    mounted () {
-    },
-    activated () {},
     components: {Backdrop, PickerCol, Button}
   }
 </script>

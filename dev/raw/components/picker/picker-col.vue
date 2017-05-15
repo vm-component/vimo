@@ -25,7 +25,7 @@
 </template>
 <style lang="scss"></style>
 <script type="text/javascript">
-  import { pointerCoord, clamp } from '../../util/util'
+  import { pointerCoord, clamp, parsePxUnit } from '../../util/util'
   const PICKER_OPT_SELECTED = 'picker-opt-selected'
   const DECELERATION_FRICTION = 0.97
   const FRAME_MS = (1000 / 60)
@@ -38,7 +38,7 @@
         isInit: false,
         rotateFactor: this.$config.getNumber('pickerRotateFactor', 0),
         scaleFactor: this.$config.getNumber('pickerScaleFactor', 1),
-        pickerComponent: null, // 父组件 Picker 实例
+        pickerComponent: null,          // 父组件 Picker 实例
 
         y: 0,
         colHeight: 0,
@@ -51,14 +51,14 @@
         minY: 0,
         maxY: 0,
         lastIndex: 0,
-        lastTempIndex: 0, // 记录当前col选中的index
+        lastTempIndex: 0,               // 记录当前col选中的index
         debouncer: null,
         events: null
       }
     },
     props: {
-      index: Number,
-      col: [Object]
+      index: Number,    // 当前组件的序号
+      col: [Object]     // 这一列的数据
     },
     computed: {
       colEle () {
@@ -68,13 +68,11 @@
     methods: {
 
       /**
-       * 滚动开始
+       * 拖动事件处理
        * @return {Boolean}
+       * @private
        * */
       pointerStart (ev) {
-        console.debug('picker, pointerStart', ev.type, this.startY)
-//        this._haptic.gestureSelectionStart();
-
         // We have to prevent default in order to block scrolling under the picker
         // but we DO NOT have to stop propagation, since we still want
         // some "click" events to capture
@@ -112,8 +110,6 @@
         let currentY = pointerCoord(ev).y
         this.pos.push(currentY, Date.now())
 
-//        this.$nextTick(() => {
-        console.log('pointerMove')
         if (this.startY === null) {
           return
         }
@@ -139,23 +135,15 @@
 
         let currentIndex = Math.max(Math.abs(Math.round(y / this.optHeight)), 0)
         if (currentIndex !== this.lastTempIndex) {
-          // Trigger a haptic event for physical feedback that the index has changed
-//          this._haptic.gestureSelectionChanged()
           this.lastTempIndex = currentIndex
         }
-//        })
       },
       pointerEnd (ev) {
         ev.preventDefault()
-//        this.debouncer.cancel();
-
-//        this.debouncer && window.clearTimeout(this.debouncer)
-//        this.debouncer = null
 
         if (this.startY === null) {
           return
         }
-        console.debug('picker, pointerEnd', ev.type)
 
         this.velocity = 0
 
@@ -203,6 +191,7 @@
 
       /**
        * 减速器
+       * @private
        * */
       decelerate () {
         let y = 0
@@ -254,6 +243,7 @@
 
       /**
        * 点击选项时触发选择, 并滚动到指定位置
+       * @private
        * */
       optClick (ev, index) {
         if (!this.velocity) {
@@ -265,6 +255,7 @@
 
       /**
        * 设置当前的选择
+       * @private
        * */
       setSelected (selectedIndex, duration) {
         // if there is a selected index, then figure out it's y position
@@ -273,11 +264,8 @@
 
         window.cancelAnimationFrame(this.rafId)
         this.velocity = 0
-
         // so what y position we're at
-//        this.$nextTick(() => {
         this.update(y, duration, true, true)
-//        })
       },
 
       /**
@@ -285,6 +273,7 @@
        * @param {number} duration - duration
        * @param {boolean} saveY - saveY
        * @param {boolean} emitChange - emitChange
+       * @private
        * */
       update (y, duration, saveY, emitChange) {
         // ensure we've got a good round number :)
@@ -305,6 +294,7 @@
         const parent = this.colEle
         const children = parent.children
         const length = children.length
+        console.assert(this.optHeight > 0, '这个值optHeight不能为0')
         const selectedIndex = this.col.selectedIndex = Math.min(Math.max(Math.round(-y / this.optHeight), 0), length - 1)
 
         const durationStr = (duration === 0) ? null : duration + 'ms'
@@ -380,11 +370,12 @@
             this.lastIndex = this.col.selectedIndex
 
             let selectedOption = this.col.options[this.col.selectedIndex]
+
             let data = {
               text: selectedOption.text,
               value: selectedOption.value,
               disabled: selectedOption.disabled,
-              column: this.index
+              columnIndex: this.index
             }
             this.isInit && this.$emit('onChange', data)
           }
@@ -393,6 +384,7 @@
 
       /**
        * 如果设置的选中值与显示不一致, 使用这个刷新, 他会更新滚动位置
+       * @private
        * */
       refresh () {
         let min = this.col.options.length - 1
@@ -413,20 +405,21 @@
         }
       },
 
+      /**
+       * @private
+       * */
       init () {
         // get the height of one option
-        this.optHeight = (this.colEle.firstElementChild ? this.colEle.firstElementChild.clientHeight : 0)
+        this.optHeight = parsePxUnit(window.getComputedStyle(this.colEle.firstElementChild).height)
 
-        if (this.$parent.$options._componentTag.toLowerCase() === 'picker') {
+        if (this.$parent.$options.name.toLowerCase() === 'picker') {
           this.pickerComponent = this.$parent
         }
-
         console.assert(this.pickerComponent, 'PickerCol组件需要在Picker组件内部使用, 请检查.')
         this.pickerComponent.recordChildComponent(this)
 
         // set the scroll position for the selected option
         this.setSelected(this.col.selectedIndex, 0)
-
         this.isInit = true
       }
     },

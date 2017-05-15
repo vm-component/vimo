@@ -47,9 +47,8 @@ $picker-max-width: 500px !default;
   width: $picker-width;
   max-width: $picker-max-width;
 
-  transform: translate3d(0, 0%, 0);
-  //transform: translate3d(0, 100%, 0);
-
+  // added
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
   contain: strict;
 }
 
