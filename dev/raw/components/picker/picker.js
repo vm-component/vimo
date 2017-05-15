@@ -19,4 +19,8 @@ methods.resetColumn = (index) => {
   methods._i && methods._i.resetColumn(index)
 }
 
+methods.refresh = () => {
+  methods._i && methods._i.refresh()
+}
+
 export default methods

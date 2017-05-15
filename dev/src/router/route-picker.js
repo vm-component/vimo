@@ -4,6 +4,13 @@
  */
 export default [
   {
+    path: '/basic_picker',
+    name: 'basicPicker',
+    component (resolve) {
+      require(['@/example/picker/basic-picker.vue'], resolve)
+    }
+  },
+  {
     path: '/picker',
     name: 'picker',
     component (resolve) {

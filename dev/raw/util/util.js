@@ -99,6 +99,24 @@ export const isBlank = (val) => val === undefined || val === null
 export const isObject = (val) => typeof val === 'object'
 
 /**
+ * @function isDate
+ * @description 判断传入值为 Date类型
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isDate = (val) => Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase() === 'date'
+
+/**
+ * @function isRegexp
+ * @description 判断传入值为 Regexp
+ * @param {*} val - 判断值
+ * @return {Boolean}
+ * @static
+ * */
+export const isRegexp = (val) => Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase() === 'regexp'
+
+/**
  * @function isArray
  * @description 判断传入值为 Array
  * @param {*} val - 判断值

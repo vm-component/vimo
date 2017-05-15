@@ -23,7 +23,7 @@
 //   dayShortNames ? : string[]
 // }
 
-import { isBlank, isPresent, isString } from './util'
+import { isBlank, isDate, isPresent, isString } from '../../util/util'
 const FORMAT_YYYY = 'YYYY'
 const FORMAT_YY = 'YY'
 const FORMAT_MMMM = 'MMMM'
@@ -325,18 +325,45 @@ export function isLeapYear (year) {
 export function parseDate (val) {
   // manually parse IS0 cuz Date.parse cannot be trusted
   // ISO 8601 format: 1994-12-15T13:47:20Z
-  let parse
+  // new Date()
+  // new Date().toString()
+  // new Date('2017/01/01')
 
-  if (isPresent(val) && val !== '') {
-    // try parsing for just time first, HH:MM
-    parse = TIME_REGEXP.exec(val)
-    if (isPresent(parse)) {
-      // adjust the array so it fits nicely with the datetime parse
-      parse.unshift(undefined, undefined)
-      parse[2] = parse[3] = undefined
-    } else {
-      // try parsing for full ISO datetime
-      parse = ISO_8601_REGEXP.exec(val)
+  let parse
+  if (isPresent(val)) {
+    if (val !== '') {
+      // try parsing for just time first, HH:MM
+      parse = TIME_REGEXP.exec(val)
+      if (isPresent(parse)) {
+        // adjust the array so it fits nicely with the datetime parse
+        parse.unshift(undefined, undefined)
+        parse[2] = parse[3] = undefined
+      } else {
+        // try parsing for full ISO datetime
+        parse = ISO_8601_REGEXP.exec(val)
+      }
+
+      // try to pase string to Date Object
+      if (isBlank(parse)) {
+        let dateValue = new Date(val)
+        if (isPresent(dateValue)) {
+          val = dateValue
+        }
+      }
+    }
+
+    // if val is a Date Object
+    if (Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase() === 'date') {
+      parse = [
+        '',
+        val.getFullYear(),
+        val.getMonth() + 1,
+        val.getDate(),
+        val.getHours(),
+        val.getMinutes(),
+        val.getSeconds(),
+        val.getMilliseconds()
+      ]
     }
   }
 
@@ -379,16 +406,18 @@ export function parseDate (val) {
  * @params {DateTimeData} existingData - existingData
  * @params {*} newData - newData
  * */
-export function updateDate (existingData, newData) {
+export function updateDate (existingData = {}, newData) {
+  !existingData && (existingData = {})
   if (isPresent(newData) && newData !== '') {
-    if (isString(newData)) {
+    if (isString(newData) || isDate(newData)) {
       // new date is a string, and hopefully in the ISO format
       // convert it to our DateTimeData if a valid ISO
       newData = parseDate(newData)
+
       if (newData) {
         // successfully parsed the ISO string to our DateTimeData
         Object.assign(existingData, newData)
-        return
+        return existingData
       }
     } else if ((isPresent(newData.year) || isPresent(newData.hour) || isPresent(newData.month) || isPresent(newData.day) || isPresent(newData.minute) || isPresent(newData.second))) {
       // newData is from of a datetime picker's selected values
@@ -409,9 +438,8 @@ export function updateDate (existingData, newData) {
         (existingData)[k] = newData[k].value
       }
 
-      return
+      return existingData
     }
-
     // eww, invalid data
     console.warn(`Error parsing date: "${newData}". Please provide a valid ISO 8601 datetime format: https://www.w3.org/TR/NOTE-datetime`)
   } else {
@@ -420,6 +448,8 @@ export function updateDate (existingData, newData) {
       delete (existingData)[k]
     }
   }
+
+  return existingData
 }
 
 /**

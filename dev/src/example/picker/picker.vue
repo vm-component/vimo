@@ -14,6 +14,7 @@
             </div>
             <List>
                 <ListHeader>Character</ListHeader>
+                <Item detail-push :to="{name:'basicPicker'}">Pick基础组件</Item>
                 <Item detail-push :to="{name:'timePicker'}">日期选择</Item>
                 <Item detail-push :to="{name:'cityPicker'}">城市联动</Item>
                 <Item detail-push>自定义数据</Item>

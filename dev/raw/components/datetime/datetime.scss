@@ -1,9 +1,9 @@
-@import "../../themes/ionic.globals";
+@import "../../themes/globals";
 
 // DateTime
 // --------------------------------------------------
 
-ion-datetime {
+.ion-datetime {
   display: flex;
   overflow: hidden;
 }
@@ -23,14 +23,14 @@ ion-datetime {
 }
 
 .datetime-disabled,
-.item-datetime-disabled ion-label {
+.item-datetime-disabled .ion-label {
   opacity: .4;
 
   pointer-events: none;
 }
 
-.item-label-stacked ion-datetime,
-.item-label-floating ion-datetime {
+.item-label-stacked .ion-datetime,
+.item-label-floating .ion-datetime {
   padding-left: 0;
 
   width: 100%;

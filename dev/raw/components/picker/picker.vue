@@ -9,7 +9,7 @@
                 @after-leave="afterLeave">
             <div class="picker-wrapper" v-show="isActive">
                 <div class="picker-toolbar">
-                    <div v-for="(b,index) in data.buttons"
+                    <div v-for="(b,index) in buttons"
                          :key="index"
                          class="picker-toolbar-button"
                          :class="[b.cssRole]">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="picker-columns">
                     <div class="picker-above-highlight"></div>
-                    <PickerCol v-for="(c,index) in data.columns"
+                    <PickerCol v-for="(c,index) in columns"
                                :index="index"
                                :key="c.name"
                                :col="c"
@@ -84,7 +84,8 @@
    *
    *
    *
-   * @props {Object} data - 组件初始化的数据
+   * @props {Object} buttons - 组件初始化的数据
+   * @props {Object} columns - 组件初始化的数据
    * @props {String} [mode='ios'] - 模式
    * @props {String} [cssClass] - 样式
    * @props {Boolean} [enableBackdropDismiss=true] - 点击backdrop是否能关闭
@@ -115,8 +116,12 @@
       }
     },
     props: {
-      data: {
-        type: Object,
+      buttons: {
+        type: Array,
+        required: true
+      },
+      columns: {
+        type: Array,
         required: true
       },
       mode: {
@@ -129,12 +134,13 @@
         default: true
       },
       onChange: Function,
-      onSelect: Function
+      onSelect: Function,
+      onDismiss: Function
     },
     watch: {
-      data () {
-        this.normalizeData()
-      }
+//      columns () {
+//        this.normalizeData()
+//      }
     },
     computed: {
       modeClass () {
@@ -190,6 +196,7 @@
        * */
       dismiss () {
         this.isActive = false
+        this.onDismiss && this.onDismiss()
         return new Promise((resolve) => { this.dismissCallback = resolve })
       },
 
@@ -228,7 +235,7 @@
        * */
       getSelected () {
         let selected = {}
-        this.data.columns.forEach((col, index) => {
+        this.columns.forEach((col, index) => {
           let selectedColumn = col.options[col.selectedIndex]
           selected[col.name] = {
             text: selectedColumn ? selectedColumn.text : null,
@@ -269,16 +276,15 @@
        *
        * PS: 在this.data原值上操作
        *
-       * - data.buttons: 如果传入的string字符串数组, 则button的文本将是这个字符串
-       * - data.buttons: 如过role定义了, 则加上cssRole: `picker-toolbar-${button.role}`
+       * - this.buttons: 如果传入的string字符串数组, 则button的文本将是这个字符串
+       * - this.buttons: 如过role定义了, 则加上cssRole: `picker-toolbar-${button.role}`
        * - columns -> column.options: 如果不是对象, 则将传入的值toString后转给text/value
        *
        * @private
        * */
       normalizeData () {
         // normalize the data
-        let data = this.data
-        data.buttons = data.buttons.map(button => {
+        this.buttons = this.buttons.map(button => {
           if (isString(button)) {
             return {text: button}
           }
@@ -290,7 +296,7 @@
         })
 
         // clean up dat data
-        data.columns = data.columns.map(column => {
+        this.columns = this.columns.map(column => {
           if (!isPresent(column.options)) {
             column.options = []
           }
@@ -335,7 +341,8 @@
         window.setTimeout(() => {
           this.cols[index].update(0, 0, false, false)
         }, 0)
-      }
+      },
+
     },
     created () {
       this.normalizeData()
