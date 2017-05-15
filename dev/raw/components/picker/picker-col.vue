@@ -276,6 +276,13 @@
        * @private
        * */
       update (y, duration, saveY, emitChange) {
+
+        this.optHeight = this.getOptHeight()
+
+        if (this.optHeight === 0) {
+          return
+        }
+
         // ensure we've got a good round number :)
         y = Math.round(y)
 
@@ -370,14 +377,15 @@
             this.lastIndex = this.col.selectedIndex
 
             let selectedOption = this.col.options[this.col.selectedIndex]
-
-            let data = {
-              text: selectedOption.text,
-              value: selectedOption.value,
-              disabled: selectedOption.disabled,
-              columnIndex: this.index
+            if (selectedOption) {
+              let data = {
+                text: selectedOption.text,
+                value: selectedOption.value,
+                disabled: selectedOption.disabled,
+                columnIndex: this.index
+              }
+              this.isInit && this.$emit('onChange', data)
             }
-            this.isInit && this.$emit('onChange', data)
           }
         }
       },
@@ -405,12 +413,22 @@
         }
       },
 
+      getOptHeight () {
+        // get the height of one option
+        let height
+        if (this.colEle && this.colEle.firstElementChild) {
+          height = parsePxUnit(window.getComputedStyle(this.colEle.firstElementChild).height)
+        } else {
+          height = 0
+        }
+        return height
+      },
+
       /**
        * @private
        * */
       init () {
-        // get the height of one option
-        this.optHeight = parsePxUnit(window.getComputedStyle(this.colEle.firstElementChild).height)
+        this.optHeight = this.getOptHeight()
 
         if (this.$parent.$options.name.toLowerCase() === 'picker') {
           this.pickerComponent = this.$parent

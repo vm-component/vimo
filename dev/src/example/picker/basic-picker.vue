@@ -7,6 +7,9 @@
         </Header>
         <Content padding class="outer-content">
 
+            <h5>简介</h5>
+            <p>Picker组件将顶部的button和每列的属性都发放给外部进行自定义, 此外, 每列的columns可以附加前缀和后缀, 比如说明这列是Hour, 右边列是Minus等, 另外, 列的宽度也可定义.</p>
+
             <Button block @click="twoColumns">2 Columns</Button>
             <Button block @click="prefixLabel">Prefix Label</Button>
             <Button block @click="suffixLabel">Suffix Label</Button>

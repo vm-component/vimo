@@ -6,46 +6,7 @@
             </Navbar>
         </Header>
         <Content padding>
-
-            <h4>自定义</h4>
-            <h5 text-center>
-                <span>选择结果: </span>
-            </h5>
-            <Button block>点击选择</Button>
-
-            <h4>城市三级联动</h4>
-            <p text-center>
-                <span>选择结果: </span>
-            <p text-center>
-                <span v-if="province">城市名:</span>
-                <span v-if="province">{{province.name}}</span>
-                <span v-if="city">{{city.name}}</span>
-                <span v-if="region">{{region.name}}</span>
-            </p>
-            <p text-center>
-                <span v-if="province">城市code:</span>
-                <span v-if="province">{{province.code}}</span>
-                <span v-if="city">{{city.code}}</span>
-                <span v-if="region">{{region.code}}</span>
-            </p>
-            <Grid>
-                <Row justify-content-center>
-                    <RegionPicker :selectedCity="['520000', '520100', '520103']" @onSelected="onSelectedHandler"
-                                  style="width: 100%">
-                        <Button block><span>点击选择城市(同步)</span></Button>
-                    </RegionPicker>
-                </Row>
-            </Grid>
-            <Grid>
-                <Row justify-content-center>
-                    <RegionPicker :selectedCity="dataAsync" @onSelected="onSelectedHandler" style="width: 100%">
-                        <Button block :disabled="dataAsync.length!=3"><span>点击选择城市(异步3s)</span></Button>
-                    </RegionPicker>
-                </Row>
-            </Grid>
-
-            <Button @click="openCityPicker">城市选择(Picker组件)</Button>
-
+            <Button block @click="openCityPicker">城市选择(Picker组件)</Button>
         </Content>
     </Page>
 </template>
@@ -59,23 +20,28 @@
 
   import citys from './citys.json'
 
+  import { isArray } from 'vimo/util/util'
+
   let columns = [
     {
-      name: 'province',
-      align: 'left',
-      selectedIndex: 0,
+      name: 'prov',
+      align: 'right',
+      selectedIndex: 5,
+      optionsWidth: '80px',
       options: []
     },
     {
       name: 'city',
       align: '',
-      selectedIndex: 0,
+      selectedIndex: 1,
+      optionsWidth: '80px',
       options: []
     },
     {
-      name: 'region',
-      align: 'right',
-      selectedIndex: 0,
+      name: 'district',
+      align: 'left',
+      selectedIndex: 1,
+      optionsWidth: '80px',
       options: []
     }
   ]
@@ -84,60 +50,52 @@
     name: 'name',
     data () {
       return {
+        selectedData: null,
         province: null,
         city: null,
-        region: null,
-        dataAsync: [],
-
-        pickerData: null,
-
-        pickerComponent: null
+        district: null
       }
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
+      /**
+       * 打开由Picker组件实现的城市选择器
+       * */
       openCityPicker () {
         let buttons = [
           {
             role: 'cancel',
             text: '取消',
-            cssClass: 'cancel-cssClass',
             handler: null
           },
           {
-            role: '',
             text: '确定',
-            cssClass: 'success-cssClass',
             handler: (data) => {
               console.log(data)
             }
           }
         ]
         columns[0].options = this.getProvince()
-        columns[1].options = this.getCity(columns[0].options[0].value)
-        columns[2].options = this.getRegion(columns[1].options[0].value)
-        let data = {
-          buttons, columns
+        if (columns[0].options[0]) {
+          columns[1].options = this.getCity(columns[0].options[columns[0].selectedIndex].value)
+        } else {
+          columns[1].options = []
         }
+
+        if (columns[1].options[0]) {
+          columns[2].options = this.getRegion(columns[1].options[columns[1].selectedIndex].value)
+        } else {
+          columns[2].options = []
+        }
+
         Picker.present({
-          data: data,
+          buttons,
+          columns,
           onSelect: this.onSelectHandler,
           onChange: this.onChangeHandler
         })
-      },
-      onSelectedHandler (data) {
-//        console.debug('城市三级选择的结果:')
-//        console.debug(data)
-        this.province = data[0]
-        this.city = data[1]
-        this.region = data[2]
-      },
-
-      onChangeHandler (data) {
-        console.debug('onChangeHandler')
-        console.debug(data)
       },
 
       /**
@@ -149,7 +107,10 @@
 
         if (data.columnIndex === 0) {
           columns[1].options = this.getCity(data.value)
-          columns[2].options = this.getRegion(columns[1].options[0].value)
+          if (columns[1].options[0]) {
+            columns[2].options = this.getRegion(columns[1].options[0].value)
+          }
+
           Picker.resetColumn(1)
           Picker.resetColumn(2)
         }
@@ -165,10 +126,10 @@
        * */
       getProvince () {
         let tmp = []
-        citys.forEach((province) => {
+        citys && citys.forEach((province) => {
           tmp.push({
             text: province.name,
-            value: province.code,
+            value: province.name,
             disabled: false
           })
         })
@@ -178,43 +139,53 @@
       /**
        * 获取格式化好的 城市数据
        * */
-      getCity (provinceCode) {
+      getCity (provinceName) {
         let tmp = []
-        citys.forEach((province) => {
-          if (province.code === provinceCode) {
-            province.sub.forEach((city) => {
-              tmp.push({
-                text: city.name,
-                value: city.code,
-                disabled: false
-              })
-            })
+        this.selectedProvince = null
+        for (let i = 0, len = citys.length; len > i; i++) {
+          if (citys[i].name === provinceName) {
+            this.selectedProvince = citys[i] // 比如河北的全部城市源数据
+            break
           }
-        })
+        }
+
+        if (this.selectedProvince && isArray(this.selectedProvince.sub)) {
+          this.selectedProvince.sub.forEach((city) => {
+            tmp.push({
+              text: city.name,
+              value: city.name,
+              disabled: false
+            })
+          })
+        }
+
         return tmp
       },
 
       /**
        * 获取格式化好的 地区数据
        * */
-      getRegion (cityCode) {
+      getRegion (cityName) {
         let tmp = []
-        let provinceCode = cityCode.substr(0, 3) + '000'
-        citys.forEach((province) => {
-          if (province.code === provinceCode) {
-            province.sub.forEach((city) => {
-              if (city.code === cityCode) {
-                city.sub.forEach((region) => {
-                  tmp.push({
-                    text: region.name,
-                    value: region.code,
-                    disabled: false
-                  })
-                })
-              }
+        if (this.selectedProvince && isArray(this.selectedProvince.sub)) {
+          this.selectedCity = null
+          this.selectedProvince.sub.forEach((city) => {
+            if (city.name === cityName) {
+              this.selectedCity = city
+            }
+          })
+
+          if (this.selectedCity && isArray(this.selectedCity.sub)) {
+            this.selectedCity.sub.forEach((district) => {
+              tmp.push({
+                text: district.name,
+                value: district.name,
+                disabled: false
+              })
             })
           }
-        })
+        }
+
         return tmp
       }
     },

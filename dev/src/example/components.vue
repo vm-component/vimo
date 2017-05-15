@@ -235,7 +235,7 @@
                     </Item>
                     <Item detail-push :to="{name: 'picker'}">
                         <Icon slot="item-left" name="basket"></Icon>
-                        <span>Picker</span>
+                        <span>单多列选择器</span>
                         <Note slot="item-right">Picker</Note>
                     </Item>
                     <Item detail-push :to="{name: 'popover'}">

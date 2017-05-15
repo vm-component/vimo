@@ -68,7 +68,6 @@
             }
           ]
         })
-        // confirm.present()
       },
       threeBtn () {
         this.$alert.present({

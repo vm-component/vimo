@@ -1,13 +1,17 @@
 <template>
-    <div class="ion-datetime" @click="clickHandler($event)">
+    <div class="ion-datetime" @click="clickHandler($event)"
+         :displayFormat="displayFormat"
+         :pickerFormat="pickerFormat"
+         :min="min"
+         :max="max">
         <div v-if="!text" class="datetime-text datetime-placeholder">{{placeholder}}</div>
         <div v-if="text" class="datetime-text">{{text}}</div>
-        <button
+        <Button
                 type="button"
                 :id="_uid"
-                ion-button="item-cover"
+                role="item-cover"
                 class="item-cover">
-        </button>
+        </Button>
     </div>
 </template>
 <style lang="scss">
@@ -16,8 +20,22 @@
     @import "datetime.md.scss";
 </style>
 <script type="text/javascript">
+  /**
+   * @component Datetime
+   * @description
+   *
+   * ## 公共组件 / Datetime时间选择组件
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   * */
   import { isBlank, isPresent, isTrueProperty, isArray, isString, setElementClass } from '../../util/util'
   import { Picker } from '../picker'
+  import { Button } from '../button'
   import {
     dateValueRange,
     renderDateTime,
@@ -40,22 +58,23 @@
     data () {
       return {
         itemComponent: null, // 父组件Item实例
-        _disabled: this.disabled,
-        _labelId: '',
+        theDisabled: this.disabled,
         text: '',
-        _fn: function () {},
-        _isOpen: false,
         theMin: this.min,
         theMax: this.max,
-        _value: {},
+        theValue: {},
         locale: {}
       }
     },
     props: {
       min: String,                      //  ISO 8601 datetime 的时间格式, 1996-12-19
       max: String,                      //  ISO 8601 datetime 的时间格式, 1996-12-19
+
       displayFormat: String,            // 外部 显示的格式
       pickerFormat: String,             // picker 显示的格式
+      placeholder: String,
+      value: [String, Object, Date],
+
       cancelText: {                     // 取消的显示文本
         type: String,
         default: 'Cancel'
@@ -75,28 +94,27 @@
       monthShortNames: [String, Array],          // 每个月 的短名字
       dayNames: [String, Array],                  // 每天 的显示名字
       dayShortNames: [String, Array],            // 每天 的显示名字
+
       pickerOptions: {
         type: Object,
-        default(){ return {} }
+        default () { return {} }
       },
-      placeholder: String,
+
       mode: {
         type: String,
         default () { return this.$config.get('mode') || 'ios' }
-      },
-      value: [String, Object, Date]
+      }
     },
     watch: {
       disabled (val) {
-        this._disabled = isTrueProperty(val)
-        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-datetime-disabled', this._disabled)
+        this.theDisabled = isTrueProperty(val)
+        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-datetime-disabled', this.theDisabled)
       },
       value (val) {
-        this._value = parseDate(val)
+        this.theValue = parseDate(val)
         this.onChange(val)
       }
     },
-    computed: {},
     methods: {
       clickHandler ($event) {
         if ($event.detail === 0) {
@@ -107,12 +125,11 @@
         $event.stopPropagation()
         this.open()
       },
+
       open () {
-        if (this._disabled) {
+        if (this.theDisabled) {
           return
         }
-
-        console.debug('datetime, open picker')
 
         // the user may have assigned some options specifically for the alert
         const pickerOptions = JSON.parse(JSON.stringify(this.pickerOptions))
@@ -130,11 +147,7 @@
             handler: (data) => {
               console.debug('datetime, done', data)
               this.onChange(data)
-
-              let value = convertDataToISO(this._value)
-              console.debug('------+------')
-              console.log(this._value)
-              console.log(value)
+              let value = convertDataToISO(this.theValue)
 
               this.$emit('input', value)
               this.$emit('onChange', data)
@@ -150,13 +163,10 @@
           this.validate(pickerOptions)
           Picker.refresh()
         }
-        pickerOptions.onDismiss = () => {
-          this._isOpen = false
-        }
+        pickerOptions.onDismiss = () => {}
 
         Picker.present(pickerOptions)
 
-        this._isOpen = true
         Picker.refresh()
       },
 
@@ -215,8 +225,8 @@
               // cool, we've loaded up the columns with options
               // preselect the option for this column
               var selected
-              if (this._value) {
-                selected = column.options.find(opt => opt.value === getValueFromFormat(this._value, format))
+              if (this.theValue) {
+                selected = column.options.find(opt => opt.value === getValueFromFormat(this.theValue, format))
               }
               if (selected) {
                 // set the select index for this column's options
@@ -336,7 +346,6 @@
               columns[i] = opt.text.length
             }
           })
-
         })
 
         if (columns.length === 2) {
@@ -357,18 +366,7 @@
        * @private
        */
       setValue (newData) {
-        console.log('---- setValue ----')
-        console.log(this._value)
-        // debugger
-        this._value = updateDate(this._value, newData)
-        console.log(this._value)
-      },
-
-      /**
-       * @private
-       */
-      getValue () {
-        return this._value
+        this.theValue = updateDate(this.theValue, newData)
       },
 
       /**
@@ -386,14 +384,14 @@
       updateText () {
         // create the text of the formatted data
         const template = this.displayFormat || this.pickerFormat || DEFAULT_FORMAT
-        this.text = renderDateTime(template, this._value, this.locale)
+        this.text = renderDateTime(template, this.theValue, this.locale)
       },
 
       /**
        * @private
        */
-      writeValue (val) {
-        console.debug('datetime, writeValue', val)
+      onChange(val) {
+        console.debug('datetime, onChange w/out formControlName', val)
         this.setValue(val)
         this.updateText()
         this.checkHasValue(val)
@@ -449,49 +447,16 @@
         max.hour = max.hour || 23
         max.minute = max.minute || 59
         max.second = max.second || 59
-      },
-
-      /**
-       * @private
-       */
-      registerOnChange (fn) {
-        this._fn = fn
-        this.onChange = (val) => {
-          console.debug('datetime, onChange', val)
-          this.setValue(val)
-          this.updateText()
-          this.checkHasValue(val)
-
-          // convert DateTimeData value to iso datetime format
-          fn(convertDataToISO(this._value))
-
-        }
-      },
-
-      /**
-       * @private
-       */
-      onChange(val) {
-        // onChange used when there is not an formControlName
-        console.debug('datetime, onChange w/out formControlName', val)
-        // // debugger
-        this.setValue(val)
-        this.updateText()
-        this.checkHasValue(val)
-//        this.onTouched()
       }
-
     },
-    created(){
-
-      this._value = parseDate(this.value)
-
+    created () {
+      this.theValue = parseDate(this.value)
     },
-    mounted(){
+    mounted () {
       if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
         this.itemComponent = this.$parent
       }
-      console.assert(this.itemComponent, 'Datetime组件需要在Item组件内部使用')
+      console.assert(this.itemComponent, 'The component of Datetime must in Item component.')
       setElementClass(this.itemComponent.$el, 'item-datetime', true)
 
       // first see if locale names were provided in the inputs
@@ -504,8 +469,9 @@
 
       // update how the datetime value is displayed as formatted text
       this.updateText()
+      this.checkHasValue(this.theValue)
     },
-    components: {}
+    components: {Button}
   }
 
   /**
@@ -544,7 +510,6 @@
   }
 
   /**
-   * @private
    * Use to convert a string of comma separated strings or
    * an array of strings, and clean up any user input
    * @example
