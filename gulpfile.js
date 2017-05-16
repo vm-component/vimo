@@ -9,7 +9,7 @@ var del = require('del')
 var gulpLoadPlugins = require('gulp-load-plugins')
 var $ = gulpLoadPlugins()
 
-//clean
+// clean
 gulp.task('clean', del.bind(null, ['publish']))
 
 // vimo发布
@@ -18,13 +18,12 @@ gulp.task('copy', ['clean'], function () {
   gulp.src(['*.md', 'package.json'])
   .pipe(gulp.dest('publish'))
 
-
   return gulp.src('dev/raw/**/**/*.*')
-  .pipe(gulp.dest('publish'))
+  .pipe(gulp.dest('publish/src'))
 })
 
 gulp.task('babel', ['copy'], function () {
-  gulp.src('publish/**/**/*.js')
+  gulp.src('publish/src/**/**/*.js')
   .pipe(babel({presets: ['es2015']}))
   .pipe($.uglify())
   .pipe(gulp.dest('publish'))

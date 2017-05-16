@@ -2,13 +2,29 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Picker</Title>
+                <Title>城市选择器</Title>
             </Navbar>
         </Header>
         <Content padding>
-            <strong>当前选择的值</strong>
-            <p>{{province}}-{{city}}-{{district}}</p>
-            <Button block @click="openCityPicker">城市选择(Picker组件)</Button>
+
+            <h5>简介</h5>
+            <p>
+                城市选择器使用的是本地数据库进行地址匹配, 这里使用了两套方案进行选择, 一种使用的是Picker组件, 另一种使用的是对better-picker插件的封装.
+            </p>
+
+            <p>另外, 两套组件使用的数据库已不一样: Picker组件使用的较为完整, 但是缺少cityCode字段; better-picker使用的是带有cityCode的数据库, 但是不是很全.</p>
+
+
+            <h5>Picker组件</h5>
+
+            <p><strong>当前选择的值</strong>: {{province}}-{{city}}-{{district}}</p>
+            <Button block @click="openCityPicker">城市选择</Button>
+
+
+            <h5>Better-Picker组件</h5>
+            <p><strong>初始值: </strong>{{bSelectedCode}}</p>
+            <p><strong>当前选择的值</strong>: {{bProvince}}-{{bCity}}-{{bDistrict}}</p>
+            <Button block @click="openCityBetterPicker">城市选择</Button>
         </Content>
     </Page>
 </template>
@@ -20,7 +36,6 @@
   import { Picker } from 'vimo/components/picker'
   import citys from './citys.json'
   import { isArray } from 'vimo/util/util'
-
   let columns = [
     {
       name: 'province',
@@ -53,7 +68,13 @@
         selectedCity: null,
         province: '广东',
         city: '广州',
-        district: '海珠区'
+        district: '海珠区',
+
+        // -----
+        bSelectedCode: ['140000', '140100', '140106'],
+        bProvince: '',
+        bCity: '',
+        bDistrict: ''
       }
     },
     props: {},
@@ -199,6 +220,25 @@
         }
 
         return tmp
+      },
+
+      // ----- better-picker -----
+      openCityBetterPicker () {
+        const _this = this
+        RegionPicker.present({
+          selectedCity: _this.bSelectedCode,
+          title: '请选择',
+          onSelect (data) {
+            console.log(data)
+            _this.bProvince = `${data[0].name}`
+            _this.bCity = `${data[1].name}`
+            _this.bDistrict = `${data[2].name}`
+            _this.bSelectedCode = [data[0].value, data[1].value, data[2].value]
+          },
+          onCancel (data) {
+            console.log('onCancel:' + JSON.stringify(data))
+          }
+        })
       }
     },
     created () {

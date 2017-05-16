@@ -16,7 +16,7 @@ var reload = browserSync.reload
 var jsdocConfig = require('./jsdoc-config.json')
 var plumber = require('gulp-plumber')
 
-//clean
+// clean
 // gulp.task('clean-doc', del.bind(['../docs/*'], {force: true}))
 gulp.task('clean-doc', function (cb) {
   return del(['../docs/*'], {force: true})

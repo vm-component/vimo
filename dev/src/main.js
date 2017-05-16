@@ -45,9 +45,9 @@ Vue.use(storage, {
   prefix: 'vimo-'
 })
 
-// Vue.use(log, {
-//   needLogPage: false, // 初始化是否显示log页面
-// })
+Vue.use(log, {
+  needLogPage: false // 初始化是否显示log页面
+})
 
 /* eslint-disable no-new */
 new AttachFastClick(document.body)

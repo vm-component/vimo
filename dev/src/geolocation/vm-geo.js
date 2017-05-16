@@ -430,6 +430,7 @@ class Geolocation {
 
     if (!this._aMapGeolocation) {
       this._getScript('//webapi.amap.com/maps?v=1.3&key=' + this._s[A_MAP].key).then(() => {
+        if (typeof window.AMap === 'undefined') return
         let map = new window.AMap.Map('')
         map.plugin('AMap.Geolocation', () => {
           /**
@@ -468,6 +469,7 @@ class Geolocation {
 
     if (!this._bMapGeolocation) {
       this._getScript('//api.map.baidu.com/getscript?v=2.0&ak=' + this._s[B_MAP].key + '&services=&t=' + (+new Date())).then(() => {
+        if (!window.BMap) return
         this._bMapGeolocation = new window.BMap.Geolocation()
         _getCurrentPosition()
       }, (err) => { errorFn && errorFn(err) })
@@ -498,6 +500,7 @@ class Geolocation {
          * @params {string} key - 开发密钥(key)
          * @params {string} referer - 调用来源，一般为您的应用名称
          * */
+        if (!window.qq) return
         this._qMapGeolocation = new window.qq.maps.Geolocation(this._s[Q_MAP].key, this._s[Q_MAP].name)
         _getCurrentPosition()
       }, (err) => { errorFn && errorFn(err) })

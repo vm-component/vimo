@@ -8,14 +8,18 @@
 </style>
 <script type="text/javascript">
   /**
-   *
    * @component FabList
    * @description
    *
-   * ## 其他 / 浮动按钮组件(FAB) - 盒子
+   * ## 浮层组件 / FAB浮动按钮组件 - 盒子
+   *
+   * 这个组件为Fab组件的子组件, 用法及说明参考下方链接.
    *
    * @props {String} [side='bottom'] - 内部按钮展开方向, 默认向下
    * @props {String} [mode='ion'] - 模式
+   *
+   * @see component:Fab
+   * @demo http://xiangsongtao.com/vimo/#/fab
    * */
   import { setElementClass, isTrueProperty } from '../../util/util'
   export default{
@@ -36,10 +40,7 @@
         default () { return this.$config.get('mode') }
       }
     },
-    watch: {},
-    computed: {},
     methods: {
-
       /**
        * @param {Boolean} val - val
        * @private
@@ -73,7 +74,6 @@
         setElementClass(this.$el, className, add)
       }
     },
-    created () {},
     mounted () {
       this.$children.forEach((child) => {
         if (child.$options._componentTag.toLowerCase() === 'fabbutton') {
@@ -91,8 +91,6 @@
         fab.setElementClass(className, true)
       })
 
-    },
-    activated () {},
-    components: {}
+    }
   }
 </script>

@@ -71,11 +71,6 @@
   import { Popover } from 'vimo/components/popover'
   import TextTool from './textTool.vue'
   export default{
-    data () {
-      return {}
-    },
-    watch: {},
-    computed: {},
     methods: {
       openSetting ($event) {
         Popover.present({
@@ -93,13 +88,6 @@
         })
       }
     },
-    created () {
-    },
-    mounted () {
-    },
-    activated () {
-    },
-    deactivated () {},
     components: {Popover, List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider}
   }
 </script>

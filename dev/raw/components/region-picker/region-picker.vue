@@ -1,7 +1,5 @@
 <template>
-    <div @click="compClickHandler()">
-        <slot></slot>
-    </div>
+    <div></div>
 </template>
 <style lang="scss">
     .picker .picker-panel .wheel-wrapper .wheel .wheel-scroll {
@@ -37,7 +35,7 @@
    * */
   import Picker from 'better-picker'
   import regions from './regions.json'
-  import { hashChange } from '../../util/util'
+  import { hashChange, transitionEnd } from '../../util/util'
   export default{
     name: 'RegionPicker',
     data () {
@@ -49,7 +47,10 @@
         lastSelectCityArrs: [],     // 上一次城市选择的值 ['110000', '110100', '110101']
 
         isInit: false,
-        unreg: null
+        unreg: null,
+
+        pickerElement: null,
+        pickerPanelElement: null
       }
     },
     props: {
@@ -59,7 +60,9 @@
           return ['110000', '110100', '110101']
         }
       },
-      title: [String]
+      title: [String],
+      onSelect: Function,
+      onCancel: Function
     },
     watch: {
       selectedCity (val) {
@@ -126,8 +129,13 @@
       },
 
       // 当组件被点击时, 开启picker
-      compClickHandler () {
+      present () {
         this.picker && this.picker.show()
+        return new Promise((resolve) => {
+          transitionEnd(this.pickerPanelElement, function () {
+            resolve()
+          })
+        })
       },
 
       // isLegal
@@ -153,6 +161,15 @@
       init (cityArrs) {
         if (this.isInit) return
         this.isInit = true
+
+        // 清楚残余
+        let pickerElements = document.querySelectorAll('body>.picker')
+        if (pickerElements.length > 0) {
+          pickerElements.forEach((ele) => {
+            ele.remove()
+          })
+        }
+
         if (!cityArrs || !cityArrs[0] || !cityArrs[1] || !cityArrs[2]) {
           cityArrs = ['110000', '110100', '110101']
         }
@@ -164,13 +181,48 @@
         this.selectedIndex[0] = this.getIndexByCode(cityArrs[0], this.provinceCol)
         this.selectedIndex[1] = this.getIndexByCode(cityArrs[1], this.cityCol)
         this.selectedIndex[2] = this.getIndexByCode(cityArrs[2], this.regionCol)
+
         this.picker = new Picker({
           data: [this.provinceCol, this.cityCol, this.regionCol],
           selectedIndex: this.selectedIndex,
           title: this.title
         })
 
+        this.pickerElement = null
+        this.pickerPanelElement = null
+
+        // 记录dom
+        pickerElements = document.querySelectorAll('body>.picker')
+
+        if (pickerElements.length === 1) {
+          this.pickerElement = pickerElements[0]
+        } else if (pickerElements.length > 1) {
+          this.pickerElement = pickerElements[pickerElements.length - 1]
+          pickerElements.forEach((ele) => {
+            ele.remove()
+          })
+        }
+        console.assert(this.pickerElement, 'we need this.pickerElement')
+        this.pickerPanelElement = this.pickerElement.querySelector('.picker-panel')
+
+        this.picker.on('picker.cancel', () => {
+          this.$el.remove()
+          transitionEnd(this.pickerPanelElement, () => {
+            this.onCancel && this.onCancel(null)
+            this.pickerElement.remove()
+            this.pickerElement = null
+            this.pickerPanelElement = null
+            let pickerElements = document.querySelectorAll('body>.picker')
+            if (pickerElements.length > 0) {
+              pickerElements.forEach((ele) => {
+                ele.remove()
+              })
+            }
+          })
+        })
+
         this.picker.on('picker.select', (selectedVal, selectedIndex) => {
+          this.$el.remove()
           let dataArr = []
           let _p = this.provinceCol[selectedIndex[0]]
           let _c = this.cityCol[selectedIndex[1]]
@@ -179,8 +231,15 @@
           dataArr.push(_c)
           dataArr.push(_d)
           if (this.isLegal(dataArr)) {
-            this.$emit('onSelected', JSON.parse(JSON.stringify(dataArr)))
+            let data = JSON.parse(JSON.stringify(dataArr))
+            this.$emit('onSelected', data)
+            this.onSelect && this.onSelect(data)
           }
+
+          transitionEnd(this.pickerPanelElement, () => {
+            this.pickerElement.remove()
+
+          })
         })
 
         this.picker.on('picker.change', (selectedVal, selectedIndex) => {
@@ -197,6 +256,7 @@
             this.picker.refillColumn(2, this.regionCol)
           }
         })
+
       },
 
       // 重置
@@ -216,18 +276,11 @@
 
       // 页面切换关闭picker, 清除dom残留
       dismissOnPageChangeHandler () {
-        let nodes = document.querySelectorAll('body>.picker')
-        nodes.forEach((node) => {
-          let isHide = window.getComputedStyle(node).display === 'none'
-          if (isHide) {
-            node.parentNode.removeChild(node)
-          } else {
-            this.picker && this.picker.hide && this.picker.hide()
-            window.setTimeout(() => {
-              node && node.parentNode && node.parentNode.removeChild && node.parentNode.removeChild(node)
-            }, 550)
-          }
-        })
+
+        this.picker && this.picker.hide()
+        setTimeout(() => {
+          this.pickerElement.remove()
+        }, 500)
       }
     },
     created () {

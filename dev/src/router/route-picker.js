@@ -37,12 +37,5 @@ export default [
     component (resolve) {
       require(['@/example/picker/datetime-range-picker.vue'], resolve)
     }
-  },
-  {
-    path: '/datetime_label_picker',
-    name: 'datetimeLabelPicker',
-    component (resolve) {
-      require(['@/example/picker/datetime-label-picker.vue'], resolve)
-    }
   }
 ]

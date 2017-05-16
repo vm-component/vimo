@@ -30,7 +30,6 @@
   const DECELERATION_FRICTION = 0.97
   const FRAME_MS = (1000 / 60)
   const MAX_PICKER_SPEED = 60
-
   export default{
     name: 'PickerCol',
     data () {

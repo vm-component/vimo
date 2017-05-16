@@ -72,19 +72,58 @@
 
 </style>
 <script type="text/javascript">
-
   /**
-   * @compoennt Popover
+   * @component Popover
    * @description
    *
-   * ## 弹出层组件 Popover/弹出提示组件
+   * ## 弹出层组件 / Popover提示框组件
+   *
+   * ### 简介
+   *
+   * 这个组件适用于对组件中某部分进行弹出提示, 比如:
+   *
+   * - 单词点击弹出翻译
+   * - 点击按钮弹出可选择的操作(和Fab有点类似, 但是Popover可自定义程度高, 但是显示内容建议小于Modal组件)
+   *
+   * ### 传入模板的弹出层组件
+   *
+   * Popover的实现和Modal组件相似, 都需要传入`*.vue`模板文件, 具体事例参考usage
    *
    *
-   * ## 子组件如何获取数据
+   * ### 子组件如何获取数据
    *
-   * 在组件中使用: `this.$options.$data` 获取传入data
+   * 在组件中使用: `this.$options.$data` 获取传入data. 例如Usage中的示例, 子组件获取data中的contentEle数据这样操作:
+   *
+   * ```
+   * this.contentEle = this.$options.$data.contentEle
+   * ```
    *
    *
+   * @usage
+   * import { List } from 'vimo/components/list'
+   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
+   * import { Popover } from 'vimo/components/popover'
+   * import TextTool from './textTool.vue'
+   * export default{
+   *  methods: {
+   *    openSetting ($event) {
+   *      Popover.present({
+   *        ev: $event,                           // 事件
+   *        component: TextTool,                  // 传入组件
+   *        data: {
+   *          contentEle: this.$refs.content.$el  // 传入数据, 内部通过`this.$options.$data`获取这个data
+   *        }
+   *      })
+   *    },
+   *    specialText ($event, text) {
+   *      Popover.present({
+   *        ev: $event,
+   *        component: `<p style="padding:0 14px;" text-center>You choose the word of <strong>${text}</strong>.</p>`
+   *      })
+   *    }
+   *  },
+   *  components: {Popover, List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider}
+   * }
    *
    * @props {String} cssClass - 额外的样式
    * @props {mode} [mode='ios'] - 模式
@@ -96,15 +135,13 @@
    * @props {Object} data - 传给popover内部显示的vue组件的数据, 内部组件通过`this.$options.$data`获取
    * @props {Object|MouseEvent} ev - 点击元素的事件, $event, 这个值的传入可以计算popover放置的位置
    *
+   * @demo http://xiangsongtao.com/vimo/#/popover
    * */
   import Vue from 'vue'
   import { Backdrop } from '../backdrop'
   import { hashChange, parsePxUnit, isObject } from '../../util/util'
-  import { List } from '../list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from '../item'
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
-
   export default{
     name: 'Popover',
     data () {
@@ -195,7 +232,9 @@
       },
 
       /**
-       * @private
+       * @function dismiss
+       * @description
+       * 关闭组件
        * */
       dismiss () {
         if (this.isActive) {
@@ -215,7 +254,9 @@
       },
 
       /**
-       * @private
+       * @function present
+       * @description
+       * 开启组件
        * */
       present () {
         this.isActive = true
@@ -361,7 +402,7 @@
       }
 
       // 计算位置
-      // bugFix: 需要的等待1,2帧才能获取高度值
+      // bugFix: 需要的等待异步再获取高度值
       // 渲染传入的组件
       setTimeout(() => {
         if (this.mode === 'ios') {
@@ -383,6 +424,6 @@
         this.htmlComponent = this.component
       }
     },
-    components: {Backdrop, List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider}
+    components: {Backdrop}
   }
 </script>
