@@ -43,7 +43,7 @@
    * @fires component:Backdrop#onShown
    * @fires component:Backdrop#onHidden
    *
-   * @demo http://xiangsongtao.com/vimo/#/backdrop
+   * @demo https://dtfe.github.io/vimo-demo/#/backdrop
    *
    * @usage
    * <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive"></Backdrop>

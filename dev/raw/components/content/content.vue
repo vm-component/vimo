@@ -84,7 +84,7 @@
    *
    * Content组件中也可以加入下拉刷新和上拉加载的功能, 具体请参考示例.
    *
-   * @demo http://xiangsongtao.com/vimo/#/content
+   * @demo https://dtfe.github.io/vimo-demo/#/content
    *
    *
    * @slot 空                slot为空则将内容插入到scroll中

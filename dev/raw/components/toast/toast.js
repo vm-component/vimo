@@ -76,7 +76,7 @@
  * @props {string} [mode='ios'] - 模式
  * @props {string} [onDismiss=noop] - 当关闭动画结束时执行的函数
  *
- * @demo http://xiangsongtao.com/vimo/#/toast
+ * @demo https://dtfe.github.io/vimo-demo/#/toast
  */
 
 import Vue from 'vue'

@@ -41,7 +41,7 @@
    *
    * @slot 空 - 指示器RefresherContent组件的插槽
    *
-   * @demo http://xiangsongtao.com/vimo/#/refresher
+   * @demo https://dtfe.github.io/vimo-demo/#/refresher
    * @see component:Base/Content
    * @usage
    * <Page>

@@ -48,7 +48,7 @@
    * @fires component:ItemSliding#onSwipeRight
    * @fires component:ItemSliding#onSwipeLeft
    *
-   * @demo http://xiangsongtao.com/vimo/#/slidingList
+   * @demo https://dtfe.github.io/vimo-demo/#/slidingList
    * @see component:ItemOptions
    *
    * @usage

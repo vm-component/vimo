@@ -80,7 +80,7 @@
    *
    * @props {String} [mode='ios'] - 模式
    *
-   * @demo http://xiangsongtao.com/vimo/#/app
+   * @demo https://dtfe.github.io/vimo-demo/#/app
    * */
 
   import { ClickBlock } from './click-block'

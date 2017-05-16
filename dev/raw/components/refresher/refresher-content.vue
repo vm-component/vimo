@@ -29,7 +29,7 @@
    * @props {String} [refreshingText='正在刷新'] -正在刷新的文字
    *
    * @see component:Refresher
-   * @demo http://xiangsongtao.com/vimo/#/refresher
+   * @demo https://dtfe.github.io/vimo-demo/#/refresher
    * */
 
   import { Icon } from '../icon'

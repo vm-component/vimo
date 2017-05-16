@@ -63,9 +63,6 @@
    * @props {String} [value]  - 支持v-model
    * @props {Boolean} [disabled=false]  - 当前radio的禁用状态
    *
-   * @demo http://xiangsongtao.com/vimo/#/list
-   * @see component:Item
-   *
    * @usage
    * // 普通使用
    * <template>
@@ -130,7 +127,8 @@
    * </List>
    *
    *
-   *
+   * @see component:Item
+   * @demo https://dtfe.github.io/vimo-demo/#/list
    */
   import { isTrueProperty } from '../../util/util'
   export default{

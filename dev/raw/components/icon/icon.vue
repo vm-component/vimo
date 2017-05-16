@@ -72,7 +72,7 @@
    * @props {String} [md] - 强制使用md的Icon
    *
    *
-   * @demo http://xiangsongtao.com/vimo/#/icon
+   * @demo https://dtfe.github.io/vimo-demo/#/icon
    *
    * */
   export default{

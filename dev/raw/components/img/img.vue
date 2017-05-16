@@ -54,7 +54,7 @@
    * @props {String} src                   - 图片的src地址
    * @props {(Number|String)} [width=0]    - 图片的宽度
    *
-   * @demo http://xiangsongtao.com/vimo/#/img
+   * @demo https://dtfe.github.io/vimo-demo/#/img
    * @usage
    * <Img width="100%" height="200" src="static/1.jpg">
    *

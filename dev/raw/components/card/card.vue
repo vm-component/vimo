@@ -66,7 +66,7 @@
    *
    * @slot 空 - 默认嵌入全部内容
    *
-   * @demo http://xiangsongtao.com/vimo/#/cards
+   * @demo https://dtfe.github.io/vimo-demo/#/cards
    *
    * */
   import mixin from './mixin'

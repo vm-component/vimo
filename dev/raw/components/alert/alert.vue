@@ -138,7 +138,7 @@
    * @props {String} [mode=ios]                     - 样式模式
    *
    *
-   * @demo http://xiangsongtao.com/vimo/#/alert
+   * @demo https://dtfe.github.io/vimo-demo/#/alert
    * @usage
    * // Alert
    * this.$alert.present({

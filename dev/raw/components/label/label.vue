@@ -33,10 +33,8 @@
    * @props {String} stacked - 永远在input的上面
    *
    * @slot 空 - 可以嵌入任何结构
-   * @see component:Input
    * @see component:Item
-   *
-   *
+   * @see component:Input
    * */
   import { setElementClass } from '../../util/util'
   export default{

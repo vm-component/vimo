@@ -65,7 +65,7 @@
    * @props {String} title - picker的title
    * @props {Function} onSelect - 点击确定触发的钩子
    * @props {Function} onCancel - 点击取消触发的钩子
-   * @demo http://xiangsongtao.com/vimo/#/city_picker
+   * @demo https://dtfe.github.io/vimo-demo/#/city_picker
    *
    * */
   import Picker from 'better-picker'

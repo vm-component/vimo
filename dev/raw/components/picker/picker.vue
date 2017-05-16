@@ -109,7 +109,7 @@
    *  import { Picker } from 'vimo/components/picker'
    * ```
    *
-   * @demo http://xiangsongtao.com/vimo/#/picker
+   * @demo https://dtfe.github.io/vimo-demo/#/picker
    * */
   import { isString, isPresent, isNumber, hashChange } from '../../util/util'
   import PickerCol from './picker-col.vue'

@@ -81,7 +81,7 @@
    * @props {Boolean} edge - 设置放置位置, 放在Header/Footer组件与Content组件交界处
    *
    *
-   * @demo http://xiangsongtao.com/vimo/#/fab
+   * @demo https://dtfe.github.io/vimo-demo/#/fab
    * */
   export default{
     name: 'Fab',

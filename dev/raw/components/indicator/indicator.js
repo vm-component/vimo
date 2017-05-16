@@ -12,7 +12,7 @@
  *
  * @see component:Loading
  *
- * @demo http://xiangsongtao.com/vimo/#/indicator
+ * @demo https://dtfe.github.io/vimo-demo/#/indicator
  * @usage
  * // 开启300ms后关闭
  * openIndicator300 () {

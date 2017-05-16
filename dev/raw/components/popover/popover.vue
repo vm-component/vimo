@@ -135,7 +135,7 @@
    * @props {Object} data - 传给popover内部显示的vue组件的数据, 内部组件通过`this.$options.$data`获取
    * @props {Object|MouseEvent} ev - 点击元素的事件, $event, 这个值的传入可以计算popover放置的位置
    *
-   * @demo http://xiangsongtao.com/vimo/#/popover
+   * @demo https://dtfe.github.io/vimo-demo/#/popover
    * */
   import Vue from 'vue'
   import { Backdrop } from '../backdrop'

@@ -97,7 +97,7 @@
    *
    * @see https://www.npmjs.com/package/better-scroll
    * @see https://github.com/ustbhuangyi/better-scroll
-   * @demo http://xiangsongtao.com/vimo/#/scroll
+   * @demo https://dtfe.github.io/vimo-demo/#/scroll
    * */
   import JsScroll from 'better-scroll/build/bscroll'
   import props from './props'

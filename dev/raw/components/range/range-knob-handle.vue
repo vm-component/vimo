@@ -9,15 +9,6 @@
 </template>
 <style lang="scss"></style>
 <script type="text/javascript">
-  /**
-   * @name 处理range按钮业务的组件
-   *
-   *
-   * 对外事件:
-   * onIncrease
-   * onDecrease
-   *
-   * */
   export default{
     name: 'RangeKnobHandle',
     data () {

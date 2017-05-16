@@ -25,7 +25,7 @@
    * @props {String} color - 颜色
    *
    * @see component:Fab
-   * @demo http://xiangsongtao.com/vimo/#/fab
+   * @demo https://dtfe.github.io/vimo-demo/#/fab
    * */
   import { Icon } from '../icon'
   import { setElementClass } from '../../util/util'

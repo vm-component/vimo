@@ -66,6 +66,8 @@
    *        </ItemCollapse>
    *    </ItemGroup>
    * </List>
+   *
+   * @demo https://dtfe.github.io/vimo-demo/#/collapseList
    * */
   import Velocity from 'velocity-animate/velocity'
   import { isString, isObject } from 'vimo/util/util'

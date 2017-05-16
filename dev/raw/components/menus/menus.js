@@ -35,7 +35,7 @@
  * @fires component:Menus#onMenuClosing
  * @fires component:Menus#onMenuClosed
  *
- * @demo http://xiangsongtao.com/vimo
+ * @demo https://dtfe.github.io/vimo-demo
  *
  * @usage
  *

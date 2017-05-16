@@ -58,7 +58,7 @@
    *
    * @props {Boolean} [strong]       - 样式加强
    *
-   * @demo http://xiangsongtao.com/vimo/#/button
+   * @demo https://dtfe.github.io/vimo-demo/#/button
    * @usage
    * <Button full>full</Button>
    * <Button outline full color="secondary">outline + full</Button>

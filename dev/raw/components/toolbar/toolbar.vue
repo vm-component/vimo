@@ -63,7 +63,7 @@
    *
    * @slot [空] 作为内容, 比如Title/Searchbar/Segment放置的位置
    * @slot [buttons] 按钮组, 别忘记加[left]/[right]/[start]/[end]属性标记位置
-   * @demo http://xiangsongtao.com/vimo/#/toolbar
+   * @demo https://dtfe.github.io/vimo-demo/#/toolbar
    *
    *
    * @usage

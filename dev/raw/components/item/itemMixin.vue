@@ -51,6 +51,11 @@
    * - 加 `[no-lines]` 属性可去除边框
    * - 在item中的Icon上加属性`[large],[small]`可控制大小
    *
+   * ### 关于跳转
+   *
+   * item组件将使用v-router的router-link组件中的部分同名方法, 并执行对应的跳转
+   *
+   * - props: to/append/replace
    *
    * ```
    * // 引入
@@ -84,22 +89,13 @@
    * @slot item-left - 放置在左边
    * @slot item-right - 放置在左边
    *
-   * @demo http://xiangsongtao.com/vimo/#/list
+   * @demo https://dtfe.github.io/vimo-demo/#/list
    * @see component:List
    * @see http://router.vuejs.org/zh-cn/index.html
    *
-   *
-
-   *
    * */
-
   import { isTrueProperty, isPresent, isString } from '../../util/util'
   import { Icon } from '../icon'
-  /**
-   * item组件将使用v-router的router-link组件中的部分同名方法, 并执行对应的跳转
-   * props: to/append/replace
-   *
-   * */
   export default{
     data () {
       return {

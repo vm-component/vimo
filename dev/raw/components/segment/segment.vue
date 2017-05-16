@@ -52,7 +52,7 @@
    * @props {String} value - 当前Segment的value, 用于触发制定value的子组件
    *
    * @fires component:Segment#onChange
-   * @demo http://xiangsongtao.com/vimo/#/segment
+   * @demo https://dtfe.github.io/vimo-demo/#/segment
    *
    *
    * @usage

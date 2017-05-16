@@ -65,7 +65,7 @@
    * @props {boolean} [dismissOnPageChange=true] - 页面切换是否关闭loading
    * @props {string} [mode='ios'] - 模式
    *
-   * @demo http://xiangsongtao.com/vimo/#/loading
+   * @demo https://dtfe.github.io/vimo-demo/#/loading
    * @see component:Indicator
    * @usage
    *

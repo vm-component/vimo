@@ -57,7 +57,7 @@
    *
    * @fires component:InfiniteScroll#onInfinite
    *
-   * @demo http://xiangsongtao.com/vimo/#/infinite-scroll
+   * @demo https://dtfe.github.io/vimo-demo/#/infinite-scroll
    * @see component:Base/Content
    *
    * @usage

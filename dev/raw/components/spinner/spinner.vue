@@ -49,7 +49,7 @@
    * @props {String} [duration] - 旋转动画的持续时间
    * @props {Boolean} [paused] - 是否暂停
    *
-   * @demo http://xiangsongtao.com/vimo/#/spinner
+   * @demo https://dtfe.github.io/vimo-demo/#/spinner
    *
    * @usage
    * <Spinner></Spinner>

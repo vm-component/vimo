@@ -15,7 +15,7 @@
    * @slot 空 - 默认填充位置, 可放置按钮
    *
    *
-   * @demo http://xiangsongtao.com/vimo/#/slidingList
+   * @demo https://dtfe.github.io/vimo-demo/#/slidingList
    * @see component:ItemSliding
    * */
   export default{

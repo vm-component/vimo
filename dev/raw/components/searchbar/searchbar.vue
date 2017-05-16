@@ -103,7 +103,7 @@
    * @fires component:SearchBar#onCancel
    *
    *
-   * @demo http://xiangsongtao.com/vimo/#/searchbar
+   * @demo https://dtfe.github.io/vimo-demo/#/searchbar
    *
    * @usage
    * <template>

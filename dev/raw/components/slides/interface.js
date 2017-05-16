@@ -270,6 +270,7 @@ export function getProps () {
 /**
  * 根据事件钩子获取, 将swiper的默认参数和时间
  * @param {Object} slideComponent - slide的组件实例 -> this
+ * @private
  * */
 export function getEvents (slideComponent) {
   console.assert(slideComponent, 'The method of getEvents() need params of slideComponent!')

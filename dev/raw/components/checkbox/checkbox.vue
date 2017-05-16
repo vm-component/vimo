@@ -46,7 +46,7 @@
    * @props {Boolean} [value=false] - 当前值
    *
    * @fires component:Checkbox#onChange
-   * @demo http://xiangsongtao.com/vimo/#/checkbox
+   * @demo https://dtfe.github.io/vimo-demo/#/checkbox
    *
    * @usage
    * <Item>

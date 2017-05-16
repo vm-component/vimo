@@ -56,7 +56,7 @@
    *
    * @fires component:Tabs#onTabChange
    *
-   * @demo http://xiangsongtao.com/vimo/#/tabs
+   * @demo https://dtfe.github.io/vimo-demo/#/tabs
    * @usage
    *
    * <Page>

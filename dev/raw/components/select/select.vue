@@ -61,7 +61,7 @@
    * @fires component:Select#onCancel
    * @fires component:Select#onSelect
    *
-   * @demo http://xiangsongtao.com/vimo/#/select
+   * @demo https://dtfe.github.io/vimo-demo/#/select
    *
    * @usage
    * <Item>

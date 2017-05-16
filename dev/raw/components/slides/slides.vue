@@ -94,7 +94,7 @@
    *
    *
    *
-   * @demo http://xiangsongtao.com/vimo/#/slides
+   * @demo https://dtfe.github.io/vimo-demo/#/slides
    * @see http://idangero.us/swiper/api/
    *
    * */

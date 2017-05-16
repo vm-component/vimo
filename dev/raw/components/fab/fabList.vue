@@ -19,7 +19,7 @@
    * @props {String} [mode='ion'] - 模式
    *
    * @see component:Fab
-   * @demo http://xiangsongtao.com/vimo/#/fab
+   * @demo https://dtfe.github.io/vimo-demo/#/fab
    * */
   import { setElementClass, isTrueProperty } from '../../util/util'
   export default{

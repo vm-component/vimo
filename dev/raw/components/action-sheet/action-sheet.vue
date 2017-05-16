@@ -77,8 +77,7 @@
    * @props {Array} buttons.handler                    - 默认是关闭组件
    * @props {Array} buttons.cssClass                   - 自定义样式
    *
-   *
-   * @demo http://xiangsongtao.com/vimo/#/action-sheet
+   * @demo https://dtfe.github.io/vimo-demo/#/action-sheet
    * @usage
    *
    * this.$actionSheet.present({

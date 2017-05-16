@@ -57,7 +57,7 @@
    * @props {Boolean} [disabled=false] - 禁用状态
    *
    * @fires component:Toggle#onChange
-   * @demo http://xiangsongtao.com/vimo/#/toggle
+   * @demo https://dtfe.github.io/vimo-demo/#/toggle
    * @usage
    * <List>
    *    <ListHeader>

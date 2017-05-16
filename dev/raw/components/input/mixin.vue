@@ -128,7 +128,7 @@
    * @fires component:Input#onFocus
    * @fires component:Input#onInput
    *
-   * @demo http://xiangsongtao.com/vimo/#/input
+   * @demo https://dtfe.github.io/vimo-demo/#/input
    * @usage
    * <Input placeholder="Text Input">
    * <Textarea @onBlur="onBlur($event)" @onFocus="onFocus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>

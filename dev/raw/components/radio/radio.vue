@@ -59,7 +59,7 @@
    * @props {Boolean} [disabled=false] - 单向选择, 点击且换并不对父组件传递
    *
    * @fire component:Radio#onSelect - 点按选择时触发
-   * @demo http://xiangsongtao.com/vimo/#/radio
+   * @demo https://dtfe.github.io/vimo-demo/#/radio
    * @usage
    * <List radio-group v-model="fruits" :disabled="isListDisabled">
    *    <ListHeader>Fruits</ListHeader>

@@ -77,7 +77,7 @@
    * Vue.component(Column.name, Column)
    * ```
    *
-   * @demo http://xiangsongtao.com/vimo/#/grid
+   * @demo https://dtfe.github.io/vimo-demo/#/grid
    * @usage
    * <Grid no-padding>
    *    <Row justify-content-center align-items-center>
