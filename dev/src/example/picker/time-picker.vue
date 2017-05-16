@@ -14,7 +14,6 @@
                     时间选择器可以根据指定的日期格式选择制定日期, 或者指定的时间段. 通过v-model可以穿入如下类型: Date日起对象/ISO格式的时间String/能转化为Date对象的字符串 这三类. 但是v-model返回的数据都是ISO格式日期String, 如果期望返回每个column返回的详细结果, 请监听onChange事件.</p>
             </div>
 
-
             <List>
                 <ListHeader>Choose Date</ListHeader>
                 <Item>

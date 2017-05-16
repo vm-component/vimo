@@ -59,7 +59,6 @@
       options: []
     }
   ]
-
   export default{
     name: 'name',
     data () {

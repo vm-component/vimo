@@ -25,12 +25,47 @@
 </style>
 <script type="text/javascript">
   /**
-   * @component Components/RegionPicker
+   * @component RegionPicker
    * @description
-   * 地址三级列表选择
    *
-   * @property {Array} selectedCity - 当前选择的城市array, 传入的是code值
-   * @property {String} title - picker的title
+   * ## 地址选择 / 城市三级组件RegionPicker
+   *
+   * ### 简介
+   *
+   * 这个组件使用的是本地数据库, 将better-picker组件封装而来的. 组件支持cityCode获取及筛选, 但是数据库不全, 比如新疆没有库尔勒的选择.
+   *
+   * ### 不足
+   *
+   * 这个组件初始化时挂载到`body`之下的, 因此打乱了Vimo组件的挂载约定, 这部分需要对源码修改才能改进.
+   *
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { RegionPicker } from 'vimo/components/region-picker'
+   * // 使用
+   * openCityBetterPicker () {
+   *      RegionPicker.present({
+   *        selectedCity: ['110000', '110100', '110101'],
+   *        title: '请选择',
+   *        onSelect (data) {
+   *          console.log('onSelect:' + JSON.stringify(data))
+   *        },
+   *        onCancel (data) {
+   *          console.log('onCancel:' + JSON.stringify(data))
+   *        }
+   *      })
+   *    }
+   * ```
+   *
+   * ### Picker组件封装
+   *
+   * 城市三级选择组件也是用了Picker组件尝试, 但是没有封装, 请参考Demo.
+   *
+   * @props {Array} selectedCity - 当前选择的城市array, 传入的是code值, 默认为: ['110000', '110100', '110101']
+   * @props {String} title - picker的title
+   * @props {Function} onSelect - 点击确定触发的钩子
+   * @props {Function} onCancel - 点击取消触发的钩子
+   * @demo http://xiangsongtao.com/vimo/#/city_picker
    *
    * */
   import Picker from 'better-picker'

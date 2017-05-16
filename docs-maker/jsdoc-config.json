@@ -35,36 +35,29 @@
     "include1": [
       "../README.md",
       "../dev/raw/util",
-
       "../dev/raw/base/config.js",
       "../dev/raw/base/history.js",
       "../dev/raw/base/platform.js",
-
       "../dev/raw/components/app",
       "../dev/raw/components/content",
       "../dev/raw/components/page",
       "../dev/raw/components/nav",
-
       "../dev/raw/components/segment",
       "../dev/raw/components/slides",
       "../dev/raw/components/tabs",
-
       "../dev/raw/components/alert",
       "../dev/raw/components/action-sheet",
       "../dev/raw/components/loading",
       "../dev/raw/components/modal",
       "../dev/raw/components/toast",
       "../dev/raw/components/indicator",
-
       "../dev/raw/components/infinite-scroll",
       "../dev/raw/components/refresher",
-
       "../dev/raw/components/list",
       "../dev/raw/components/item",
       "../dev/raw/components/avatar",
       "../dev/raw/components/thumbnail",
       "../dev/raw/components/note",
-
       "../dev/raw/components/label",
       "../dev/raw/components/input",
       "../dev/raw/components/checkbox",
@@ -73,7 +66,6 @@
       "../dev/raw/components/searchbar",
       "../dev/raw/components/select",
       "../dev/raw/components/toggle",
-
       "../dev/raw/components/spinner",
       "../dev/raw/components/img",
       "../dev/raw/components/icon",
@@ -82,9 +74,7 @@
       "../dev/raw/components/badge",
       "../dev/raw/components/backdrop",
       "../dev/raw/components/menus",
-
       "../dev/raw/components/grid",
-
       "../dev/raw/components/toolbar",
       "../dev/raw/components/navbar",
       "../dev/raw/components/scroll",
@@ -100,8 +90,8 @@
       "../dev/raw/components/fab",
       "../dev/raw/components/popover",
       "../dev/raw/components/picker",
-      "../dev/raw/components/region-picker",
-      "../dev/raw/components/datetime"
+      "../dev/raw/components/datetime",
+      "../dev/raw/components/region-picker"
     ],
     "exclude": [
       "gulpfile.js"
