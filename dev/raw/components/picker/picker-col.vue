@@ -12,7 +12,7 @@
         </div>
         <div class="picker-opts" ref="colEle"
              :style="{'maxWidth':col.optionsWidth}">
-            <button v-for="(o,index) in col.options" :key="o.value"
+            <button v-for="(o,index) in col.options" :key="index"
                     :class="{'picker-opt-disabled':o.disabled}"
                     class="picker-opt"
                     disable-activated
@@ -51,9 +51,7 @@
         minY: 0,
         maxY: 0,
         lastIndex: 0,
-        lastTempIndex: 0,               // 记录当前col选中的index
-        debouncer: null,
-        events: null
+        lastTempIndex: 0               // 记录当前col选中的index
       }
     },
     props: {
@@ -301,9 +299,7 @@
         const parent = this.colEle
         const children = parent.children
         const length = children.length
-        console.assert(this.optHeight > 0, '这个值optHeight不能为0')
-        const selectedIndex = this.col.selectedIndex = Math.min(Math.max(Math.round(-y / this.optHeight), 0), length - 1)
-
+        const selectedIndex = Math.min(Math.max(Math.round(-y / this.optHeight), 0), length - 1)
         const durationStr = (duration === 0) ? null : duration + 'ms'
         const scaleStr = `scale(${this.scaleFactor})`
 
@@ -368,6 +364,10 @@
         }
 
         if (emitChange) {
+          // only in emitChange state can change the selectedIndex value
+          // 防止在滚动中不停的修改selectedIndex的值发生选中错误, 只有在滚动彻底停止的时候才发送事件
+          this.col.selectedIndex = selectedIndex
+
           if (this.lastIndex === undefined) {
             // have not set a last index yet
             this.lastIndex = this.col.selectedIndex
@@ -413,6 +413,17 @@
         }
       },
 
+      /**
+       * 这一列数据重置
+       * @private
+       * */
+      reset () {
+        this.col.selectedIndex = 0
+        window.setTimeout(() => {
+          this.update(0, 0, false, false)
+          this.refresh()
+        }, 0)
+      },
       getOptHeight () {
         // get the height of one option
         let height

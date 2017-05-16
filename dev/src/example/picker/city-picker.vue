@@ -6,6 +6,8 @@
             </Navbar>
         </Header>
         <Content padding>
+            <strong>当前选择的值</strong>
+            <p>{{province}}-{{city}}-{{district}}</p>
             <Button block @click="openCityPicker">城市选择(Picker组件)</Button>
         </Content>
     </Page>
@@ -15,32 +17,29 @@
 </style>
 <script type="text/javascript">
   import { RegionPicker } from 'vimo/components/region-picker'
-
   import { Picker } from 'vimo/components/picker'
-
   import citys from './citys.json'
-
   import { isArray } from 'vimo/util/util'
 
   let columns = [
     {
-      name: 'prov',
+      name: 'province',
       align: 'right',
-      selectedIndex: 5,
+      selectedIndex: 0,
       optionsWidth: '80px',
       options: []
     },
     {
       name: 'city',
       align: '',
-      selectedIndex: 1,
+      selectedIndex: 0,
       optionsWidth: '80px',
       options: []
     },
     {
       name: 'district',
       align: 'left',
-      selectedIndex: 1,
+      selectedIndex: 0,
       optionsWidth: '80px',
       options: []
     }
@@ -50,10 +49,11 @@
     name: 'name',
     data () {
       return {
-        selectedData: null,
-        province: null,
-        city: null,
-        district: null
+        selectedProvince: null,
+        selectedCity: null,
+        province: '广东',
+        city: '广州',
+        district: '海珠区'
       }
     },
     props: {},
@@ -74,22 +74,29 @@
             text: '确定',
             handler: (data) => {
               console.log(data)
+              this.province = data.province.value
+              this.city = data.city.value
+              this.district = data.district.value
             }
           }
         ]
         columns[0].options = this.getProvince()
+        columns[0].selectedIndex = this.getItemIndex(this.province, columns[0].options)
+
         if (columns[0].options[0]) {
           columns[1].options = this.getCity(columns[0].options[columns[0].selectedIndex].value)
+          columns[1].selectedIndex = this.getItemIndex(this.city, columns[1].options)
         } else {
           columns[1].options = []
+          columns[1].selectedIndex = 0
         }
-
         if (columns[1].options[0]) {
           columns[2].options = this.getRegion(columns[1].options[columns[1].selectedIndex].value)
+          columns[2].selectedIndex = this.getItemIndex(this.district, columns[2].options)
         } else {
           columns[2].options = []
+          columns[2].selectedIndex = 0
         }
-
         Picker.present({
           buttons,
           columns,
@@ -98,19 +105,24 @@
         })
       },
 
+      getItemIndex (name, list) {
+        for (let i = 0, len = list.length; len > i; i++) {
+          if (name === list[i].text) {
+            return i
+          }
+        }
+        return 0
+      },
+
       /**
        * 当单列变化时的处理函数
        * */
       onSelectHandler (data) {
-        console.debug('onSelectHandler')
-        console.debug(data)
-
         if (data.columnIndex === 0) {
           columns[1].options = this.getCity(data.value)
           if (columns[1].options[0]) {
             columns[2].options = this.getRegion(columns[1].options[0].value)
           }
-
           Picker.resetColumn(1)
           Picker.resetColumn(2)
         }

@@ -97,6 +97,7 @@
    * @fires onSelect
    * */
   import { isString, isPresent, isNumber } from '../../util/util'
+  import { hashChange } from '../../util/util'
   import PickerCol from './picker-col.vue'
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
@@ -106,13 +107,13 @@
       return {
         isActive: false,        // 控制当前组件的激活状态
         enabled: true,          // 是否不在动画中(是否为可行为状态)
-//        lastClick: 0,           // 最后一次点击的时间
 
         dismissCallback: null,  // 关闭的回调
         presentCallback: null,  // 打开的回调
 
         cols: [],               // 每列的数据
-        timer: null             // 计时器
+        timer: null,            // 计时器
+        unreg: null             // 页面切换关闭组件的解绑函数
       }
     },
     props: {
@@ -133,14 +134,13 @@
         type: Boolean,
         default: true
       },
+      dismissOnPageChange: {
+        type: Boolean,
+        default: true
+      },
       onChange: Function,
       onSelect: Function,
       onDismiss: Function
-    },
-    watch: {
-//      columns () {
-//        this.normalizeData()
-//      }
     },
     computed: {
       modeClass () {
@@ -196,6 +196,7 @@
        * */
       dismiss () {
         this.isActive = false
+        this.unreg && this.unreg()
         this.onDismiss && this.onDismiss()
         return new Promise((resolve) => { this.dismissCallback = resolve })
       },
@@ -337,15 +338,18 @@
        * 动态添加修改列数据时,对某一列数据修改并刷新显示
        * */
       resetColumn (index) {
-        console.log('resetColumn index: ' + index)
-        window.setTimeout(() => {
-          this.cols[index].update(0, 0, false, false)
-        }, 0)
-      },
-
+        this.cols[index].reset()
+      }
     },
     created () {
       this.normalizeData()
+
+      // dismissOnPageChange
+      if (this.dismissOnPageChange) {
+        this.unreg = hashChange(() => {
+          this.isActive && this.dismiss()
+        })
+      }
     },
     components: {Backdrop, PickerCol, Button}
   }
