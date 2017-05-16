@@ -35,7 +35,7 @@
  * @fires component:Menus#onMenuClosing
  * @fires component:Menus#onMenuClosed
  *
- * @demo https://dtfe.github.io/vimo-demo
+ * @demo https://dtfe.github.io/vimo-demo/#/
  *
  * @usage
  *
@@ -83,8 +83,6 @@
  */
 
 /**
- * @property
- * @private
  * menu.vue: Menu组件的模板文件, 方法只用于维护自身状态
  * menu.js:  组件全局安装及实例注册, 用于在Vue.prototype.$menu上共享方法
  *
@@ -102,7 +100,6 @@
  * onMenuOpen: menu开启事件, 传递menuId
  * onMenuClosing: menu触发关闭事件,正在关闭...
  * onMenuClosed: menu关闭动画完毕
- *
  *
  * */
 
