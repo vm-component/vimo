@@ -73,7 +73,7 @@
    * @slot range-left - 在range组件左边, 一般放Icon
    *
    * @fires component:Range#onChange
-   * @demo http://10.88.1.19:8084/#/range
+   * @demo http://xiangsongtao.com/vimo/#/range
    *
    * @usage
    * <List>

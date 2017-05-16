@@ -57,7 +57,7 @@
    *
    * @fires component:InfiniteScroll#onInfinite
    *
-   * @demo http://10.88.1.19:8084/#/infinite-scroll
+   * @demo http://xiangsongtao.com/vimo/#/infinite-scroll
    * @see component:Base/Content
    *
    * @usage

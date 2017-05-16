@@ -57,7 +57,7 @@
    * @props {Boolean} [disabled=false] - 禁用状态
    *
    * @fires component:Toggle#onChange
-   * @demo http://10.88.1.19:8084/#/toggle
+   * @demo http://xiangsongtao.com/vimo/#/toggle
    * @usage
    * <List>
    *    <ListHeader>

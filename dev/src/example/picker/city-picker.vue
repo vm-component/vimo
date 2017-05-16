@@ -122,6 +122,8 @@
           columns,
           onSelect: this.onSelectHandler,
           onChange: this.onChangeHandler
+        }).then(() => {
+          console.debug('Picker.present')
         })
       },
 

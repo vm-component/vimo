@@ -1,28 +1,32 @@
 /* eslint-disable camelcase */
-// export
-// interface
-// DateTimeData
-// {
-//   year ? : number
-//   month ? : number
-//   day ? : number
-//   hour ? : number
-//   minute ? : number
-//   second ? : number
-//   millisecond ? : number
-//   tzOffset ? : number
-// }
-//
-// export
-// interface
-// LocaleData
-// {
-//   monthNames ? : string[]
-//   monthShortNames ? : string[]
-//   dayNames ? : string[]
-//   dayShortNames ? : string[]
-// }
 
+/**
+ * @typedef {Object} DateTimeData   - DateTimeData
+ * @property {number} year - year
+ * @property {number} month - month
+ * @property {number} day - day
+ * @property {number} hour - hour
+ * @property {number} minute - minute
+ * @property {number} second - second
+ * @property {number} millisecond - millisecond
+ * @property {number} tzOffset - tzOffset
+ * */
+
+/**
+ * @typedef {Object} LocaleData   - LocaleData
+ * @property {string[]} monthNames - monthNames
+ * @property {string[]} monthShortNames - monthShortNames
+ * @property {string[]} dayNames - dayNames
+ * @property {string[]} dayShortNames - dayShortNames
+ * */
+
+/**
+ * @module datetime-util
+ * @description
+ *
+ * ## Datetime组件使用的日期工具
+ *
+ * */
 import { isBlank, isDate, isPresent, isString } from '../../util/util'
 const FORMAT_YYYY = 'YYYY'
 const FORMAT_YY = 'YY'
@@ -166,8 +170,8 @@ export function renderDateTime (template, value, locale) {
 /**
  * @param {string} format - format
  * @param {*} value - value
- * @param DateTimeData date - date
- * @param LocaleData locale - locale
+ * @param {DateTimeData} date - date
+ * @param {LocaleData} locale - locale
  * @return {string}
  * */
 export function renderTextFormat (format, value, date, locale) {
@@ -230,9 +234,9 @@ export function renderTextFormat (format, value, date, locale) {
 }
 
 /**
- * @params {string} format - format
- * @params {DateTimeData} min - min
- * @params {DateTimeData} max - max
+ * @param {string} format - format
+ * @param {DateTimeData} min - min
+ * @param {DateTimeData} max - max
  * @return {Array}
  * */
 export function dateValueRange (format, min, max) {
@@ -282,9 +286,9 @@ export function dateValueRange (format, min, max) {
 }
 
 /**
- * @params {number} year - year
- * @params {number} month - month
- * @params {number} day - day
+ * @param {number} year - year
+ * @param {number} month - month
+ * @param {number} day - day
  * @return {number}
  * */
 export function dateSortValue (year, month, day) {
@@ -292,7 +296,7 @@ export function dateSortValue (year, month, day) {
 }
 
 /**
- * @params {DateTimeData} data - data
+ * @param {DateTimeData} data - data
  * @return {number}
  * */
 export function dateDataSortValue (data) {
@@ -303,15 +307,15 @@ export function dateDataSortValue (data) {
 }
 
 /**
- * @params {number} month - month
- * @params {number} year - year
+ * @param {number} month - month
+ * @param {number} year - year
  * @return {number}
  * */
 export function daysInMonth (month, year) {
   return (month === 4 || month === 6 || month === 9 || month === 11) ? 30 : (month === 2) ? isLeapYear(year) ? 29 : 28 : 31
 }
 /**
- * @params {number} year - year
+ * @param {number} year - year
  * @return {boolean}
  * */
 export function isLeapYear (year) {
@@ -319,7 +323,7 @@ export function isLeapYear (year) {
 }
 
 /**
- * @params {*} val - val
+ * @param {*} val - val
  * @return {DateTimeData}
  * */
 export function parseDate (val) {
@@ -403,8 +407,8 @@ export function parseDate (val) {
   }
 }
 /**
- * @params {DateTimeData} existingData - existingData
- * @params {*} newData - newData
+ * @param {DateTimeData} existingData - existingData
+ * @param {*} newData - newData
  * */
 export function updateDate (existingData = {}, newData) {
   !existingData && (existingData = {})
@@ -453,7 +457,7 @@ export function updateDate (existingData = {}, newData) {
 }
 
 /**
- * @params {string} template - template
+ * @param {string} template - template
  * @retrun {array}
  * */
 export function parseTemplate (template) {
@@ -489,8 +493,8 @@ export function parseTemplate (template) {
   return formats
 }
 /**
- * @params {DateTimeData} date - date
- * @params {string} format - format
+ * @param {DateTimeData} date - date
+ * @param {string} format - format
  * */
 export function getValueFromFormat (date, format) {
   if (format === FORMAT_A || format === FORMAT_a) {
@@ -502,7 +506,7 @@ export function getValueFromFormat (date, format) {
   return (date)[convertFormatToKey(format)]
 }
 /**
- * @params {string} format - format
+ * @param {string} format - format
  * @return {string}
  * */
 export function convertFormatToKey (format) {
@@ -515,7 +519,7 @@ export function convertFormatToKey (format) {
 }
 
 /**
- * @params {DateTimeData} data - data
+ * @param {DateTimeData} data - data
  * @return {string}
  * */
 export function convertDataToISO (data) {
@@ -573,25 +577,23 @@ export function convertDataToISO (data) {
   return rtn
 }
 /**
- * @params {number} val - val
+ * @param {number} val - val
  * @return {string}
  * */
 function twoDigit (val) {
   return ('0' + (isPresent(val) ? Math.abs(val) : '0')).slice(-2)
 }
 /**
- * @params {number} val - val
+ * @param {number} val - val
  * @return {string}
  * */
 function threeDigit (val) {
   return ('00' + (isPresent(val) ? Math.abs(val) : '0')).slice(-3)
 }
 /**
- * @params {number} val - val
+ * @param {number} val - val
  * @return {string}
  * */
 function fourDigit (val) {
   return ('000' + (isPresent(val) ? Math.abs(val) : '0')).slice(-4)
 }
-
-

@@ -111,8 +111,8 @@ $checkbox-md-item-right-margin: 11px 10px 10px 0 !default;
   height: 10px;
 
   border-width: $checkbox-md-icon-checkmark-width;
-  border-top-width: 0;
-  border-left-width: 0;
+  border-top-width: 0 !important;
+  border-left-width: 0 !important;
   border-style: $checkbox-md-icon-checkmark-style;
   border-color: $checkbox-md-icon-checkmark-color;
   transform: rotate(45deg);

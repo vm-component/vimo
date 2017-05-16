@@ -158,7 +158,7 @@
     },
     computed: {
       modeClass () {
-        return `picker picker-${this.mode}`
+        return `picker-${this.mode}`
       }
     },
     methods: {
@@ -382,6 +382,7 @@
       if (pickerCmpElements.length > 0) {
         pickerCmpElements.forEach((ele) => {
           ele.remove()
+          alert('beforeMount find Picker opened!')
         })
       }
     },

@@ -86,8 +86,8 @@ $checkbox-ios-item-right-margin: 10px 8px 9px 0 !default;
   height: 9px;
 
   border-width: $checkbox-ios-icon-checkmark-width;
-  border-top-width: 0;
-  border-left-width: 0;
+  border-top-width: 0 !important;
+  border-left-width: 0 !important;
   border-style: $checkbox-ios-icon-checkmark-style;
   border-color: $checkbox-ios-icon-checkmark-color;
   transform: rotate(45deg);

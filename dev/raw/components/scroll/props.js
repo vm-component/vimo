@@ -1,6 +1,3 @@
-/**
- * Created by Hsiang on 2017/5/11.
- */
 const DEFAULT = {
   startX: 0,
   startY: 0,

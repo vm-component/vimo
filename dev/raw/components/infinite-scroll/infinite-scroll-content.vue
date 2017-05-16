@@ -21,7 +21,7 @@
    * @props {String} [loadingText='Loading more data...'] - loading的文字
    *
    * @see component:InfiniteScroll
-   * @demo http://10.88.1.19:8084/#/infinite-scroll
+   * @demo http://xiangsongtao.com/vimo/#/infinite-scroll
    * */
   export default{
     name: 'InfiniteScrollContent',

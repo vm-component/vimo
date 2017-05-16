@@ -640,6 +640,9 @@
 </style>
 <script type="text/javascript">
   import { Slides, Slide } from 'vimo/components/slides'
+  import scenery1 from '../../static/img/scenery_1.jpg'
+  import scenery2 from '../../static/img/scenery_2.jpg'
+  import scenery3 from '../../static/img/scenery_3.jpg'
   export default{
     name: 'name',
     data () {
@@ -690,7 +693,7 @@
     },
     methods: {
       loadAsyncImg () {
-        this.asyncIimageList = ['../../static/img/scenery_1.jpg', '../../static/img/scenery_2.jpg', '../../static/img/scenery_3.jpg']
+        this.asyncIimageList = [scenery1, scenery2, scenery3]
       },
       // dynamic Slides
       addSlide () {

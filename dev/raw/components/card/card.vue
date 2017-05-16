@@ -66,7 +66,7 @@
    *
    * @slot 空 - 默认嵌入全部内容
    *
-   * @demo http://10.88.1.19:8084/#/cards
+   * @demo http://xiangsongtao.com/vimo/#/cards
    *
    * */
   import mixin from './mixin'

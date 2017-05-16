@@ -32,7 +32,7 @@
     "hardwrap": true
   },
   "source": {
-    "include1": [
+    "include": [
       "../README.md",
       "../dev/raw/util",
       "../dev/raw/base/config.js",
@@ -84,7 +84,7 @@
       "../dev/raw/components/fab",
       "../dev/raw/components/datetime"
     ],
-    "include": [
+    "include3": [
       "../README.md",
       "../dev/raw/components/scroll",
       "../dev/raw/components/fab",
