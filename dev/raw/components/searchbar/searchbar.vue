@@ -3,7 +3,7 @@
          :class="[
          modeClass,colorClass,
          {'searchbar-has-focus': sbHasFocus},
-         {'searchbar-has-value':valueInner},
+         {'searchbar-has-value':theValue},
          {'searchbar-animated':shouldAnimated},
          {'searchbar-active':sbHasFocus},
          {'searchbar-show-cancel':showCancelButton},
@@ -27,7 +27,7 @@
                    @input="onInputHandler($event)"
                    @blur="onBlurHandler($event)"
                    @focus="onFocusHandler($event)"
-                   :value="valueInner"
+                   :value="theValue"
                    :placeholder="placeholder"
                    :type="type"
                    :autocomplete="autocompleteValue"
@@ -151,7 +151,7 @@
         cancelButton: '',
 
         // 外部的value映射
-        valueInner: this.value,
+        theValue: this.value,
         timer: '',
 
         placeHolderTextWidth: null // number eg: 44
@@ -235,6 +235,12 @@
        * */
       value: [String]
     },
+    watch: {
+      value (val) {
+        this.theValue = val
+        this.positionElements()
+      }
+    },
     computed: {
       // props处理
       autocompleteValue () {
@@ -263,16 +269,16 @@
       onInputHandler ($event) {
         let _valueInner = $event.target ? $event.target.value : ''
         if (_valueInner) {
-          this.valueInner = _valueInner
+          this.theValue = _valueInner
         } else {
-          this.valueInner = null
+          this.theValue = null
         }
 
         if (this.debounce > 16) {
           window.clearTimeout(this.timer)
           this.timer = window.setTimeout(() => {
             // 通知父组件的v-model
-            this.$emit('input', this.valueInner)
+            this.$emit('input', this.theValue)
 
             this.$emit('onInput', $event)
           }, this.debounce)
@@ -282,7 +288,7 @@
            * @description input事件
            * @property {object} $event - 事件对象
            */
-          this.$emit('input', this.valueInner)
+          this.$emit('input', this.theValue)
           this.$emit('onInput', $event)
         }
       },
@@ -342,9 +348,9 @@
          */
         this.$emit('onClear', $event)
         this.shouldBlur = false
-        if (this.valueInner) {
-          this.valueInner = null
-          this.$emit('input', this.valueInner)
+        if (this.theValue) {
+          this.theValue = null
+          this.$emit('input', this.theValue)
           this.$emit('onInput', $event)
         }
       },
@@ -361,9 +367,9 @@
          * @property {object} $event - 事件对象
          */
         this.$emit('onCancel', $event)
-        if (this.valueInner) {
-          this.valueInner = null
-          this.$emit('input', this.valueInner)
+        if (this.theValue) {
+          this.theValue = null
+          this.$emit('input', this.theValue)
           this.$emit('onInput', $event)
         }
         this.shouldBlur = true
@@ -376,7 +382,7 @@
       positionElements () {
         let isAnimated = this.animated
         let prevAlignLeft = this.shouldAlignLeft
-        let shouldAlignLeft = (!isAnimated || (this.valueInner && this.valueInner.toString().trim() !== '') || this.sbHasFocus === true)
+        let shouldAlignLeft = (!isAnimated || (this.theValue && this.theValue.toString().trim() !== '') || this.sbHasFocus === true)
         this.shouldAlignLeft = shouldAlignLeft
 
         if (this.mode !== 'ios') {
