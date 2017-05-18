@@ -78,7 +78,7 @@
       /**
        * 接收value信息
        * */
-      value: [String],
+      value: [String, Number],
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
@@ -103,6 +103,8 @@
     watch: {
       value (value) {
         // 更新子组件状态
+        console.log('value')
+        console.log(value)
         this.refreshChildState(value)
       }
     },
@@ -126,28 +128,29 @@
        * */
       recordChild (childComponent) {
         this.childComponents.push(childComponent)
-        this.onChildChange(this.value)
+
+        this.timer && window.clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          // 更新子组件状态
+          this.refreshChildState(this.value)
+        }, 0)
       },
 
       /**
-       * 子组件点击是操作此函数
+       * 子组件点击时操作此函数
        * @param {string} value - 当前子组件的点击值
        * @private
        * */
       onChildChange (value) {
-        this.timer && window.clearTimeout(this.timer)
-        this.timer = setTimeout(() => {
-          // 更新子组件状态
-          this.refreshChildState(value)
-
-          this.$emit('input', value)
-          /**
-           * @event component:Segment#onChange
-           * @description 子元素 样式更新后发送onChange事件，并传入value变化值
-           * @property {string} value - 滚动事件对象
-           */
-          this.$emit('onChange', value)
-        }, 0)
+        // 更新子组件状态
+        this.refreshChildState(value)
+        this.$emit('input', value)
+        /**
+         * @event component:Segment#onChange
+         * @description 子元素 样式更新后发送onChange事件，并传入value变化值
+         * @property {string} value - 滚动事件对象
+         */
+        this.$emit('onChange', value)
       },
 
       /**

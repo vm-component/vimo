@@ -13,6 +13,14 @@ import './util/polyfill'
  * @description Vimo框架安装
  */
 const VERSION = '0.3.7'
+const addLogo = (vimoVer, vueVer) => {
+  // logo
+  var vimoLogo = {
+    info: 'Powered by Vimo@' + vimoVer + ' and based on Vue@' + vueVer + ' \n源代码请访问GitHub https://github.com/DTFE/Vimo'
+  }
+  window.console && console.info && console.info(vimoLogo.info)
+}
+
 export default {
   installed: false,
   version: VERSION,
@@ -45,19 +53,4 @@ export default {
     addLogo(VERSION, Vue.version)
     this.installed = true
   }
-}
-/* eslint-disable operator-linebreak */
-function addLogo (vimoVer, vueVer) {
-  // logo
-  var vimoLogo = {
-    info: '源代码请访问GitHub https://github.com/DTFE/Vimo \nPowered by Vue' + vueVer,
-    logo: '\n'
-    + '  __      __ _____ __  __  ____   \n'
-    + '  \\ \\    / /|_   _|  \\/  |/ __ \\  \n'
-    + '   \\ \\  / /   | | | \\  / | |  | | \n'
-    + '    \\ \\/ /    | | | |\\/| | |  | | \n'
-    + '     \\  /    _| |_| |  | | |__| | \n'
-    + '      \\/    |_____|_|  |_|\\____/  v' + vimoVer
-  }
-  window.console && console.info && console.info(vimoLogo.logo + '\n' + vimoLogo.info)
 }

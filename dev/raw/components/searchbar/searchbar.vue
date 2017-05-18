@@ -91,6 +91,7 @@
    * @props {String} [placeholder='Search'] - 设置placeholder的值.
    * @props {String} [autocomplete] - 自动完成
    * @props {String} [autocorrect] - 自动纠错
+   * @props {String|Boolean} [autofocus] - 如果是boolean类型, 则立即判断, 如果是Number, 则等待dom完毕定时后自动focus
    * @props {Boolean} [spellcheck] - 拼写检查
    * @props {String} [type='search'] - 设置input配型, 可以是: "text", "password", "email", "number", "search", "tel", "url".
    * @props {Boolean} [animated=false] - 是否启动点击动画
@@ -135,6 +136,7 @@
    * */
   import { Button } from '../button'
   import { Icon } from '../icon'
+  import { isNumber, isBoolean } from '../../util/util'
   export default{
     name: 'Searchbar',
     data () {
@@ -209,6 +211,8 @@
         type: String,
         default: 'off'
       },
+
+      autofocus: [Boolean, Number],
       /**
        * Set the input's spellcheck property. Values: true, false. Default false.
        * */
@@ -472,6 +476,16 @@
       this.searchbarInput = this.$refs.searchbarInput
       this.cancelButton = this.$refs.cancelButton.$el
       this.positionElements()
+
+      if (isBoolean(this.autofocus)) {
+        this.searchbarInput.focus()
+      }
+
+      if (isNumber(this.autofocus)) {
+        window.setTimeout(() => {
+          this.searchbarInput.focus()
+        }, this.autofocus)
+      }
     },
     components: {
       Button, Icon

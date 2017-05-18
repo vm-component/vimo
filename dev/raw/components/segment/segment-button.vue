@@ -14,7 +14,7 @@
    *
    * Segment组件的子组件SegmentButton, 两者配合使用, 属于嵌套关系.
    *
-   * @property {String} value - 当前SegmentButton的值, 如果父元素的value和这个相同, 这个当前被选中
+   * @property {String|Number} value - 当前SegmentButton的值, 如果父元素的value和这个相同, 这个当前被选中
    * @property {Boolean} [disabled=false] - 当前SegmentButton的禁用状态
    * @property {String} [mode='ios'] - 当前样式模式
    *
@@ -24,7 +24,7 @@
    * @see component:Segment
    *
    * */
-  import { isTrueProperty } from '../../util/util'
+  import { isTrueProperty, isString, isNumber, isPresent } from '../../util/util'
   export default{
     name: 'SegmentButton',
     data () {
@@ -41,7 +41,7 @@
       /**
        * 当前button的激活值
        * */
-      value: [String],
+      value: [String, Number],
       disabled: [Boolean],
       /**
        * mode 按钮风格 ios/window/android/we/alipay
@@ -104,10 +104,13 @@
         if (this.isInit) {
           return this.theValue
         } else {
-          let _value = ''
-          if (this.value) {
+          let _value
+          if (isPresent(this.value)) {
             // prop传入title值
-            _value = this.value.trim()
+            _value = this.value
+            if (isString(this.value)) {
+              _value = this.value.trim()
+            }
           } else if (this.$slots.default && this.$slots.default[0] && this.$slots.default[0].text) {
             // 如果是直接写在slot中的值
             _value = this.$slots.default[0].text.trim()
@@ -136,7 +139,6 @@
 
       // define value
       this.theValue = this.getValue()
-
       this.setDisabled(this.disabled)
 
       this.isInit = true
