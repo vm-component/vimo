@@ -13,6 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "autosize": "^3.0.20",
     "better-picker": "^1.1.2",
     "better-scroll": "^0.1.15",
     "es6-promise": "^4.1.0",
