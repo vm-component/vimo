@@ -143,13 +143,13 @@
       onChangeHandler (event) {
         let input = event.target
         const fixImage = (file, callback) => {
-          //加载资源
+          // 加载资源
           canvasResize(file, {
-            width: 640,//最大的尺寸,如果比这小是不会出现放大的情况的,文章宽度为710px
+            width: 640,// 最大的尺寸,如果比这小是不会出现放大的情况的,文章宽度为710px
             height: 0,
             crop: false,
             quality: 80,
-            //rotate: 90,
+            // rotate: 90,
             callback (data, width, height) {
               // 将图片改为二进制文件,准备上传
               let _blob = canvasResize('dataURLtoBlob', data)

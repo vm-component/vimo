@@ -116,6 +116,11 @@
                         <span>滚动</span>
                         <Note slot="item-right">Scroll</Note>
                     </Item>
+                    <Item detail-push :to="{name: 'feedback'}">
+                        <Icon slot="item-left" name="flash"></Icon>
+                        <span>反馈</span>
+                        <Note slot="item-right">Feedback</Note>
+                    </Item>
                 </ItemGroup>
 
                 <!--List组件-->

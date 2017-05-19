@@ -212,6 +212,14 @@ let routes = [
       require(['@/example/slides-lite.vue'], resolve)
     }
   },
+  {
+    path: '/feedback',
+    name: 'feedback',
+    component (resolve) {
+      require(['@/example/feedback.vue'], resolve)
+    }
+  },
+
   // ----  component/Form组件 ----
 
   {
