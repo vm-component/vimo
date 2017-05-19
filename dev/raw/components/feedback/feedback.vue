@@ -46,9 +46,13 @@
    * @props {String} [placeholder='请输入您的反馈...'] - placeholder
    * @props {Number} [maxlength=300] - 文本输入的最大长度
    * @props {Number} [maximage=300] - 图片上传的最大个数
+   *
    * @props {Object} value - 传入传出数据
    * @props {String} value.text - 传入传出文本
    * @props {Array} value.images - 传入传出图片信息
+   * @props {Array} value.images.code - base64格式的图片
+   * @props {Array} value.images.blob - 修正方向及大小的二进制blob
+   * @props {Array} value.images.file - 图片file句柄
    *
    * */
   import './fixImage'
@@ -172,7 +176,6 @@
                 file: file // 源文件 file
               }
               this.pushImageData(imgData)
-              this.$indicator.dismiss()
             }
             reader.readAsDataURL(_blob)
           })
