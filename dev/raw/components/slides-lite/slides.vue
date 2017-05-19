@@ -1,30 +1,60 @@
-<style scoped>
-    .slides-lite.container {
-        overflow: hidden;
-        visibility: hidden;
-        position: relative;
-        margin-left: auto;
-        margin-right: auto;
-        z-index: 1;
-        width: 100%;
-        padding: 0;
-        display: flex;
-    }
-
-    .slides-lite.container .wrapper {
-        overflow: hidden;
-        position: relative;
-        display: flex;
-        flex-wrap: nowrap;
-        width: 100%;
-        height: 100%;
-        padding: 0;
+<style scoped lang="scss">
+    .slides-lite {
+        &.container {
+            overflow: hidden;
+            visibility: hidden;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 1;
+            width: 100%;
+            padding: 0;
+            display: flex;
+            .wrapper {
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                flex-wrap: nowrap;
+                width: 100%;
+                height: 100%;
+                padding: 0;
+            }
+        }
+        .swiper-pagination {
+            position: absolute;
+            text-align: center;
+            -webkit-transition: 300ms;
+            transition: 300ms;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            z-index: 10;
+            pointer-events: none;
+            &.swiper-pagination-bullets {
+                bottom: 10px;
+                left: 0;
+                width: 100%;
+            }
+            .swiper-pagination-bullet {
+                margin: 0 5px;
+                &.swiper-pagination-bullet-active {
+                    opacity: 1;
+                    background: #007aff;
+                }
+            }
+        }
     }
 </style>
 <template>
-    <div class="slides-lite container">
+    <div class="slides-lite container" :id="slideId">
         <div class='wrapper'>
             <slot></slot>
+        </div>
+        <!-- Add Pagination -->
+        <div v-if="pagination && swiper && swiper.slides && swiper.slides.length>0"
+             :class="{'swiper-pagination':pagination}"
+             class="swiper-pagination-bullets">
+            <span class="swiper-pagination-bullet" v-for="(item,index) in swiper.slides"
+                  :class="{'swiper-pagination-bullet-active':swiper.activeIndex === index}"></span>
         </div>
     </div>
 </template>
@@ -76,11 +106,12 @@
    * */
   import Swipe from 'swipe-js-iso'
   export default {
-    name: 'Slides',
+    name: 'SlidesLite',
     props: {
+      pagination: String,                                       // 指示器的class, 且只支持'.swiper-pagination'
       initialSlide: {type: Number, default: 0},                 // 初始的index
       speed: {type: Number, default: 400},                      // 速度
-      autoplay: {type: Number, default: 3000},                  // 自动播放时间
+      autoplay: {type: Number, default: 0},                     // 自动播放时间
       loop: {type: Boolean, default: false},                    // 循环
       touchMoveStopPropagation: {type: Boolean, default: false} // 是否冒泡
     },
@@ -91,6 +122,11 @@
         timer: null, // 初始化的计时器
         swipe: null, // swipe-js-iso 实例
         swiper: null // 模拟 Swiper 接口的部分
+      }
+    },
+    computed: {
+      slideId () {
+        return 'slidesLite-' + this.id
       }
     },
     methods: {

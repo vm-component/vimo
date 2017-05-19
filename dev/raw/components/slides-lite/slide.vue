@@ -7,7 +7,6 @@
         pointer-events: none;
         height: 100%;
         box-sizing: border-box;
-        font-size: inherit;
     }
 
     .slide-lite.slide img {
@@ -24,9 +23,9 @@
 </template>
 <script type="text/javascript">
   export default {
-    name: 'Slide',
+    name: 'SlideLite',
     mounted () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'slides') {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'slideslite') {
         // 告知父组件进行初始化
         this.$parent.initSlides()
       }
