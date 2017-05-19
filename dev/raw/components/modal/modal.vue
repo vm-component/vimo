@@ -31,6 +31,16 @@
         opacity: 0.01;
     }
 
+    // transitioName = 'modal-fade'
+    .modal-fade-enter-active, .modal-fade-leave-active {
+        opacity: 1;
+    }
+
+    .modal-fade-enter, .modal-fade-leave-active {
+        opacity: 0.01;
+    }
+
+
 </style>
 <script type="text/javascript">
   import Vue from 'vue'

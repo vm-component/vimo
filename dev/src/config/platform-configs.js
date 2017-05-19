@@ -4,6 +4,13 @@
  * 用户自定义配置
  */
 export default {
+  mobile: {
+    // 'use strict'
+    // // this.$platform.do('picker',{},function(result){})
+    //   plt.registerMethod('picker',{}, function (callback) {
+    //     Picker.present({})
+    //   })
+  },
   ios: {},
   android: {},
   wechat: {

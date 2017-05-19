@@ -29,7 +29,7 @@
             </Grid>
 
             <h5>Default Setup</h5>
-            <Slides class="swiper">
+            <Slides class="swiper" ref="defaultSwiper">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">Slide 1</Slide>
                 <Slide class="slide">Slide 2</Slide>
@@ -490,7 +490,6 @@
                 </Slide>
             </Slides>
 
-
         </Content>
     </Page>
 </template>
@@ -688,7 +687,10 @@
         return this.$refs.mySwiperA
       },
       dynamicSlidesComponent () {
-        return this.$refs.dynamicSlides.swiperInstance
+        return this.$refs.dynamicSlides.swiper
+      },
+      defaultSwiperComponent () {
+        return this.$refs.defaultSwiper
       }
     },
     methods: {
@@ -699,6 +701,7 @@
       addSlide () {
         let item = 'Slide ' + (this.dynamicData.length + 1)
         this.dynamicData.push(item)
+        // 更新组件
         this.$nextTick(() => {
           this.dynamicSlidesComponent.update()
         })
@@ -720,6 +723,11 @@
       _this.data = _this.data1
     },
     mounted () {
+//      defaultSwiperComponent
+
+      setInterval(() => {
+        console.log(this.defaultSwiperComponent.swiper)
+      }, 2000)
     },
     activated () {},
     components: {Slides, Slide}

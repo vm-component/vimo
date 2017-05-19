@@ -44,6 +44,15 @@
    *
    * 具体用法请参考Demo, Swiper API请参考下面的文档. 另外, Swiper实例化会对resize事件监听, 这是因为存在屏幕翻转的情况.
    *
+   * ### 如何获取swiper示例
+   *
+   * 使用ref获取组件实例
+   *
+   * ```
+   *  dynamicSlidesComponent () {
+   *     return this.$refs.dynamicSlides.swiper
+   *   }
+   * ```
    *
    * ### 如何使用
    *
@@ -86,9 +95,9 @@
    * .....
    *
    * methods: {
-   *    onInitHandler(swiperInstance){
+   *    onInitHandler(swiper){
    *      console.debug('Swiper实例: ')
-   *      console.debug(swiperInstance)
+   *      console.debug(swiper)
    *    }
    *  }
    *
@@ -107,7 +116,7 @@
     data () {
       return {
         timer: null,            // 子组件注册的计时器
-        swiperInstance: null,   // Swiper插件的实例
+        swiper: null,   // Swiper插件的实例
         id: this._uid,          // 当前组件的id
         init: false             // 是否初始化
       }
@@ -159,14 +168,18 @@
         this.timer && window.clearTimeout(this.timer)
         this.timer = window.setTimeout(() => {
           if (!this.init) {
-            this.swiperInstance = new Swiper(this.$el, assign(this._props, getEvents(this)))
+            // 未初始化则创建实例
+            this.swiper = new Swiper(this.$el, assign(this._props, getEvents(this)))
             this.init = true
+          } else {
+            // 已创建实例, 则更新实例
+            this.swiper && this.swiper.update(true)
           }
         }, 0)
       }
     },
     destroyed () {
-      this.swiperInstance && this.swiperInstance.destroy()
+      this.swiper && this.swiper.destroy()
     }
   }
 </script>

@@ -75,7 +75,7 @@ export class ScrollView {
       this._cel = ele.parentElement
       if (this._js) {
         // this.enableIScroll()
-        this.enableBScroll()
+        this.enableJsScroll()
       } else {
         this.enableNativeScrolling()
       }
@@ -194,11 +194,11 @@ export class ScrollView {
 
   /**
    * 使用bScroll的解决方案
-   * jsScrol: COntent组件支持, 但是不触发滚动相关的事件
+   * jsScrol: Content组件支持, 但是不触发滚动相关的事件
    * @private
    * */
-  enableBScroll () {
-    console.debug(`ScrollView, enableBScroll`)
+  enableJsScroll () {
+    console.debug(`ScrollView, enableJsScroll`)
     // 给父元素增加class
     const contentElement = this._el.parentElement
     const JsScroll = require('better-scroll/build/bscroll.js')

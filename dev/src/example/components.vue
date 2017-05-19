@@ -106,6 +106,11 @@
                         <span>轮播</span>
                         <Note slot="item-right">Slides</Note>
                     </Item>
+                    <Item detail-push :to="{name: 'slidesLite'}">
+                        <Icon slot="item-left" name="photos"></Icon>
+                        <span>轮播(Lite)</span>
+                        <Note slot="item-right">SlidesLite</Note>
+                    </Item>
                     <Item detail-push :to="{name: 'scroll'}">
                         <Icon slot="item-left" name="flash"></Icon>
                         <span>滚动</span>

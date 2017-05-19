@@ -153,11 +153,8 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         url: /^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/
       },
       jsScrollOptions: {
-        // bounce: false,              // 关闭滚动回弹
-        // bindToWrapper: true,        // 绑定scroll事件到当前容器而不是window上
-        // mouseWheel: true,           // 可以鼠标滚轮滚动
-        // click: true,
-        probeType: 3        // 实时监听每一次滚动, 2: 手指点击页面才触发滚动
+        bounce: true,              // 关闭滚动回弹
+        bindToWrapper: true,        // 绑定scroll事件到当前容器而不是window上
       }
     }
   },

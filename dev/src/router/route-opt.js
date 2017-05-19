@@ -205,7 +205,13 @@ let routes = [
       require(['@/example/slides.vue'], resolve)
     }
   },
-
+  {
+    path: '/slides-lite',
+    name: 'slidesLite',
+    component (resolve) {
+      require(['@/example/slides-lite.vue'], resolve)
+    }
+  },
   // ----  component/Form组件 ----
 
   {
