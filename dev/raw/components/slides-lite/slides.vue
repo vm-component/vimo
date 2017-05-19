@@ -67,8 +67,6 @@
    *
    * 参考的项目源自`swipe-js-iso`, 详情转向下方链接, 此外 为了保证和Slide组件接口的一致性, 将同操作和同属性的接口改成和Slides一致的名称
    *
-   * 可用属性               | 原名 |
-   * initialSlide           | startSlide |
    *
    * ### 对照表
    *
@@ -80,6 +78,7 @@
    loop                          | continuous                   | Boolean    | true          | create an infinite feel with no endpoints
    -                             | disableScroll                | Boolean    | false         | stop any touches on this container from scrolling the page(点击拖动轮播是否能滚动页面,pc上可以,移动端不起作用)
    touchMoveStopPropagation      | stopPropagation              | Boolean    | false         | stop event propagation
+   pagination                    | -                            | String     | ''            | 只能是'.swiper-pagination'
 
    *
    *
