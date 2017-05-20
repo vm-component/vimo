@@ -1,3 +1,3 @@
-import SlideLite from './slide.vue'
-import SlidesLite from './slides.vue'
-export { SlideLite, SlidesLite }
+import Slide from './slide.vue'
+import Slides from './slides.vue'
+export { Slide, Slides }

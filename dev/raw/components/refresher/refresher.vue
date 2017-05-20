@@ -248,8 +248,6 @@
        * @param {TouchEvent} ev - 点击事件
        * */
       pointerDownHandler (ev) {
-        console.log('pointerDownHandler')
-
         // 如果多点触摸, 则直接返回
         if (ev.touches && ev.touches.length > 1) {
           return false

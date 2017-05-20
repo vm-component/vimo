@@ -1,6 +1,6 @@
-<style scoped lang="scss">
+<style lang="scss">
     .slides-lite {
-        &.container {
+        &.slides-container {
             overflow: hidden;
             visibility: hidden;
             position: relative;
@@ -10,7 +10,7 @@
             width: 100%;
             padding: 0;
             display: flex;
-            .wrapper {
+            .slides-wrapper {
                 overflow: hidden;
                 position: relative;
                 display: flex;
@@ -23,12 +23,9 @@
         .swiper-pagination {
             position: absolute;
             text-align: center;
-            -webkit-transition: 300ms;
             transition: 300ms;
-            -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
             z-index: 10;
-            pointer-events: none;
             &.swiper-pagination-bullets {
                 bottom: 10px;
                 left: 0;
@@ -36,6 +33,12 @@
             }
             .swiper-pagination-bullet {
                 margin: 0 5px;
+                width: 8px;
+                height: 8px;
+                display: inline-block;
+                border-radius: 100%;
+                background: #000;
+                opacity: .2;
                 &.swiper-pagination-bullet-active {
                     opacity: 1;
                     background: #007aff;
@@ -45,8 +48,8 @@
     }
 </style>
 <template>
-    <div class="slides-lite container" :id="slideId">
-        <div class='wrapper'>
+    <div class="slides-lite slides-container" :id="slideId">
+        <div class='slides-wrapper'>
             <slot></slot>
         </div>
         <!-- Add Pagination -->
@@ -105,7 +108,7 @@
    * */
   import Swipe from 'swipe-js-iso'
   export default {
-    name: 'SlidesLite',
+    name: 'Slides123',
     props: {
       pagination: String,                                       // 指示器的class, 且只支持'.swiper-pagination'
       initialSlide: {type: Number, default: 0},                 // 初始的index
@@ -125,7 +128,7 @@
     },
     computed: {
       slideId () {
-        return 'slidesLite-' + this.id
+        return 'slidesLite-' + this._uid
       }
     },
     methods: {

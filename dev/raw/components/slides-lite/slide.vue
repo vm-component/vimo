@@ -1,15 +1,14 @@
-<style scoped>
-    .slide-lite.slide {
+<style lang="scss">
+    .slide-lite {
         width: 100%;
         position: relative;
         flex: 0 0 auto;
         opacity: 1;
-        pointer-events: none;
         height: 100%;
         box-sizing: border-box;
     }
 
-    .slide-lite.slide img {
+    .slide-lite img {
         width: auto;
         height: auto;
         max-width: 100%;
@@ -17,15 +16,15 @@
     }
 </style>
 <template>
-    <div class="slide-lite slide">
+    <div class="slide-lite">
         <slot></slot>
     </div>
 </template>
 <script type="text/javascript">
   export default {
-    name: 'SlideLite',
+    name: 'Slide',
     mounted () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'slideslite') {
+      if (this.$parent.$options._componentTag.toLowerCase().indexOf('slides') > -1) {
         // 告知父组件进行初始化
         this.$parent.initSlides()
       }
