@@ -23,7 +23,15 @@
         </transition>
     </div>
 </template>
-<style lang="scss"></style>
+<style lang="scss">
+    .item-collapse-inner {
+        z-index: 1;
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        position: relative;
+        transition: height ease 300ms, opacity ease 300ms;
+    }
+</style>
 <script type="text/javascript">
   /**
    * @component ItemCollapse
@@ -69,19 +77,18 @@
    *
    * @demo https://dtfe.github.io/vimo-demo/#/collapseList
    * */
-  import Velocity from 'velocity-animate/velocity'
-  import { isString, isObject } from 'vimo/util/util'
+  import { isString, isObject, transitionEnd } from '../../util/util'
   import ItemMixin from './itemMixin.vue'
   export default{
     name: 'ItemCollapse',
     mixins: [ItemMixin],
     data () {
       return {
-        isInit: false,
-        itemGroupComponent: null,
-        isActive: false,
-        height: null,
-        id: this._uid
+        enable: true,               // 标记当前是否在动画状态
+        isInit: false,              // 是否初始化
+        itemGroupComponent: null,   // 父组件ItemGroup
+        isActive: false,            // 当前组件状态
+        height: null                // 未展开的内容高度
       }
     },
     props: {
@@ -94,21 +101,39 @@
     },
     methods: {
       beforeEnter (el) {
+        this.enable = false
         el.style.opacity = 0
         el.style.height = 0
       },
       enter (el, done) {
-        Velocity(el, {opacity: 1, height: this.height}, {duration: 300, complete: done})
+        // 必须异步执行
+        window.setTimeout(() => {
+          el.style.opacity = 1
+          el.style.height = this.height + 'px'
+          transitionEnd(el, () => {
+            this.enable = true
+            done()
+          })
+        }, 0)
       },
       leave (el, done) {
-        Velocity(el, {opacity: 0, height: 0}, {duration: 300, complete: done})
+        // 必须异步执行
+        window.setTimeout(() => {
+          el.style.opacity = 0
+          el.style.height = 0
+          this.enable = false
+          transitionEnd(el, () => {
+            done()
+            this.enable = true
+          })
+        }, 0)
       },
 
       /**
        * 点击时
        * */
       onPointerDownHandler () {
-        this.itemGroupComponent.onItemCollapseChange(this.id)
+        this.enable && this.itemGroupComponent.onItemCollapseChange(this._uid)
       }
     },
     created () {

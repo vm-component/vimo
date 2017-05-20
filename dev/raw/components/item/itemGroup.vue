@@ -31,7 +31,7 @@
       },
       onItemCollapseChange (id) {
         this.itemCollapseList.forEach((itemCollapse) => {
-          let state = (parseInt(id) === parseInt(itemCollapse.id))
+          let state = (parseInt(id) === parseInt(itemCollapse._uid))
           if (state) {
             itemCollapse.isActive = !itemCollapse.isActive
           } else if (this.accordion) {
