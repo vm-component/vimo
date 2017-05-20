@@ -219,7 +219,13 @@ let routes = [
       require(['@/example/feedback.vue'], resolve)
     }
   },
-
+  {
+    path: '/scroll-segment',
+    name: 'scrollSegment',
+    component (resolve) {
+      require(['@/example/scroll-segment.vue'], resolve)
+    }
+  },
   // ----  component/Form组件 ----
 
   {

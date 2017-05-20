@@ -107,7 +107,7 @@
                         <Note slot="item-right">Slides</Note>
                     </Item>
                     <Item detail-push :to="{name: 'slidesLite'}">
-                        <Icon slot="item-left" name="photos"></Icon>
+                        <Icon slot="item-left" name="film"></Icon>
                         <span>轮播(Lite)</span>
                         <Note slot="item-right">SlidesLite</Note>
                     </Item>
@@ -117,9 +117,14 @@
                         <Note slot="item-right">Scroll</Note>
                     </Item>
                     <Item detail-push :to="{name: 'feedback'}">
-                        <Icon slot="item-left" name="flash"></Icon>
+                        <Icon slot="item-left" name="archive"></Icon>
                         <span>反馈</span>
                         <Note slot="item-right">Feedback</Note>
+                    </Item>
+                    <Item detail-push :to="{name: 'scrollSegment'}">
+                        <Icon slot="item-left" name="flash"></Icon>
+                        <span>滚动段</span>
+                        <Note slot="item-right">ScrollSegment</Note>
                     </Item>
                 </ItemGroup>
 
