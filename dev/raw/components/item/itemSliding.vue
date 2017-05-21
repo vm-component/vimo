@@ -112,6 +112,7 @@
     name: 'ItemSliding',
     data () {
       return {
+        timer: null,
         isDragging: false,                      // 是否正在左右滑动
         isDraggingConfirm: false,               // 当次滚动方向确认与否
         isDraggingFromStart: false,             // 滚动是否从start开始
@@ -309,6 +310,12 @@
         this.isDragging = false
         this.isDraggingConfirm = false
         this.isDraggingFromStart = false
+
+        if (this.openAmount === 0 && !this.unregister) {
+          // 如果点击结束后, 组件未开启, 且未动画, 则设为disabled状态
+          this.activeClass = {'active-slide': false}
+          this.state = SLIDING_STATE.Disabled
+        }
       },
 
       /**
@@ -540,13 +547,23 @@
        * */
       setState  (state) {
         if (state === this.state) return
+        this.timer && window.clearTimeout(this.timer)
         this.activeClass = {
-          'active-slide': (state !== SLIDING_STATE.Disabled),
+          'active-slide': true,
           'active-options-right': (state & SLIDING_STATE.Right),
           'active-options-left': (state & SLIDING_STATE.Left),
           'active-swipe-right': (state & SLIDING_STATE.SwipeRight),
           'active-swipe-left': (state & SLIDING_STATE.SwipeLeft)
         }
+
+        // bugFix
+        if (state === SLIDING_STATE.Disabled) {
+          this.timer && window.clearTimeout(this.timer)
+          this.timer = window.setTimeout(() => {
+            this.activeClass['active-slide'] = false
+          }, 16 * 4)
+        }
+
         this.state = state
       },
 
