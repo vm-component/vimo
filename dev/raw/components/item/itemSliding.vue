@@ -547,6 +547,7 @@
        * */
       setState  (state) {
         if (state === this.state) return
+
         this.timer && window.clearTimeout(this.timer)
         this.activeClass = {
           'active-slide': true,
@@ -558,7 +559,6 @@
 
         // bugFix
         if (state === SLIDING_STATE.Disabled) {
-          this.timer && window.clearTimeout(this.timer)
           this.timer = window.setTimeout(() => {
             this.activeClass['active-slide'] = false
           }, 16 * 4)
