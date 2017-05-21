@@ -112,9 +112,9 @@
     name: 'ItemSliding',
     data () {
       return {
-        isDragging: false,                      // 是否正在滑动
-        isDraggingConfirm: false,               // 单次滚动方向确认
-        isDraggingFromStart: false,
+        isDragging: false,                      // 是否正在左右滑动
+        isDraggingConfirm: false,               // 当次滚动方向确认与否
+        isDraggingFromStart: false,             // 滚动是否从start开始
 
         itemComponent: null,                     // 父组件Item的实例
         ListComponent: null,                     // 父组件List的实例
@@ -240,15 +240,11 @@
       canDrag () {
         if (this.disabled) return false
 
-        // debug
-        if (this.openAmount === 0 && this.state === SLIDING_STATE.Disabled) {
-          this.unregister && this.unregister()
+        // 表示还在动画transition中
+        if (this.unregister) {
+          this.unregister()
           this.unregister = null
         }
-
-        if (this.unregister) return false
-
-        if (!this.isDraggingFromStart) return false
 
         return true
       },
@@ -259,6 +255,7 @@
        * @private
        */
       onDragStart (ev) {
+        if (!this.canDrag()) return
         this.firstCoord = pointerCoord(ev)
         this.firstTimestamp = new Date().getTime()
         this.startSliding(this.firstCoord.x)
@@ -273,20 +270,25 @@
        */
       onDragMove (ev) {
         if (!this.canDrag()) return
+        if (!this.isDraggingFromStart) return false
         let coordX = pointerCoord(ev).x
-        if (this.isDragging && this.isDraggingConfirm) {
-          ev.preventDefault()
-          this.moveSliding(coordX)
-        } else {
-          if (Math.abs(coordX - this.firstCoord.x) > MAX_DELTAX && !this.isDraggingConfirm) {
-            let directionCode = this.getDirection(this.firstCoord, pointerCoord(ev))
-            this.isDraggingConfirm = true
-            if (directionCode === DIRECTION_LEFT || directionCode === DIRECTION_RIGHT) {
-              this.isDragging = true
-            } else {
-              this.isDragging = false
-            }
+
+        // 判断当前的移动是滚动还是组件的左右移动
+        if (!this.isDraggingConfirm && Math.abs(coordX - this.firstCoord.x) > MAX_DELTAX) {
+          this.isDraggingConfirm = true
+
+          let directionCode = this.getDirection(this.firstCoord, pointerCoord(ev))
+          if (directionCode === DIRECTION_LEFT || directionCode === DIRECTION_RIGHT) {
+            this.isDragging = true
+            ev.preventDefault()
+          } else {
+            this.isDragging = false
           }
+        }
+
+        if (this.isDraggingConfirm && this.isDragging) {
+          this.moveSliding(coordX)
+          ev.preventDefault()
         }
       },
 
@@ -377,11 +379,6 @@
        * @private
        * */
       startSliding (startX) {
-        if (this.unregister) {
-          this.unregister()
-          this.unregister = null
-        }
-
         if (this.openAmount === 0) {
           this.setState(SLIDING_STATE.Enabled)
         }
@@ -489,19 +486,29 @@
       /**
        * 根据openAmount设置item的开闭位置
        * @param {number} openAmount
-       * @param {boolean} isFinal - 是否关闭
+       * @param {boolean} isFinal - 是否关闭(随手拖动 还是 松手关闭)
        * @private
        * */
       setOpenAmount (openAmount, isFinal) {
-        if (this.unregister) {
-          this.unregister()
-          this.unregister = null
-        }
-
         this.openAmount = openAmount
-        if (isFinal) {
-          this.setItemTransformX(0)
+        if (isFinal && !this.unregister) {
+          // 松手关闭状态, 可以是到起始位置, 也可以是到中途点
+          this.unregister && this.unregister()
+          if (openAmount === 0) {
+            // 动画过程禁止点击操作
+            this.unregister = transitionEnd(this.itemComponent.$el, () => {
+              this.setState(SLIDING_STATE.Disabled)
+              this.unregister = null
+            })
+            this.setItemTransformX(0)
+          } else {
+            this.unregister = transitionEnd(this.itemComponent.$el, () => {
+              this.unregister = null
+            })
+            this.setItemTransformX(-openAmount)
+          }
         } else {
+          // 随手滚动阶段
           if (openAmount > 0) {
             let state = (openAmount >= (this.optsWidthRightSide + SWIPE_MARGIN))
               ? SLIDING_STATE.Right | SLIDING_STATE.SwipeRight
@@ -513,33 +520,15 @@
               : SLIDING_STATE.Left
             this.setState(state)
           }
+
+          this.setItemTransformX(-openAmount)
+          /**
+           * @event component:ItemSliding#onDrag
+           * @description 正在拖动时触发
+           * @property {ItemSlidingComponent} this - 当前ItemSliding实例
+           */
+          this.$emit('onDrag', this)
         }
-
-        if (openAmount === 0) {
-          if (this.unregister) {
-            this.unregister()
-            this.unregister = null
-          }
-
-          // 动画过程禁止点击操作
-//          this.$app && this.$app.setEnabled(false, 400)
-          this.unregister = transitionEnd(this.itemComponent.$el, () => {
-            this.setState(SLIDING_STATE.Disabled)
-            this.unregister = null
-          })
-
-          this.setItemTransformX(0)
-          return
-        }
-
-        this.setItemTransformX(-openAmount)
-
-        /**
-         * @event component:ItemSliding#onDrag
-         * @description 正在拖动时触发
-         * @property {ItemSlidingComponent} this - 当前ItemSliding实例
-         */
-        this.$emit('onDrag', this)
       },
 
       /**
@@ -565,7 +554,9 @@
        * */
       setItemTransformX (val = 0) {
         if (this.itemComponent) {
-          this.itemComponent.$el.style.transform = `translate3d(${val}px, 0px, 0px)`
+          window.requestAnimationFrame(() => {
+            this.itemComponent.$el.style.transform = `translate3d(${val >> 0}px, 0px, 0px)`
+          })
         }
       },
 
