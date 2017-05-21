@@ -613,6 +613,10 @@
     mounted () {
       // 此时子组件才初始化完毕
       this.init()
+    },
+    destroyed () {
+      this.$eventBus && this.$eventBus.$off('onItemSlidingOpen')
+      this.$eventBus && this.$eventBus.$off('onScroll')
     }
   }
 

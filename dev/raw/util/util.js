@@ -196,10 +196,10 @@ export function isCheckedProperty (a, b) {
 /**
  * transitionEnd事件注册，绑定的函数触发后会自动解绑
  * @param {HTMLElement} el      - 绑定的元素
- * @param {Function} callback   - 绑定的函数
+ * @param {Function} callbackFn   - 绑定的函数
  * @return {Function}           - 取消绑定的函数
  * */
-export function transitionEnd (el, callback) {
+export function transitionEnd (el, callbackFn) {
   const unRegs = []
 
   function unregister () {
@@ -210,8 +210,8 @@ export function transitionEnd (el, callback) {
 
   function onTransitionEnd (ev) {
     if (el === ev.target) {
+      callbackFn && callbackFn(ev)
       unregister()
-      callback(ev)
     }
   }
 
