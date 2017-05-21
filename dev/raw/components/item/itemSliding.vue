@@ -491,8 +491,11 @@
        * */
       setOpenAmount (openAmount, isFinal) {
         this.openAmount = openAmount
-        if (isFinal && !this.unregister) {
-          // 松手关闭状态, 可以是到起始位置, 也可以是到中途点
+        if (isFinal) {
+          // 松手关闭状态, 可以是到起始位置, 也可以是到中途点, 全部打回初始状态
+          this.isDragging = false
+          this.isDraggingConfirm = false
+          this.isDraggingFromStart = false
           this.unregister && this.unregister()
           if (openAmount === 0) {
             // 动画过程禁止点击操作
