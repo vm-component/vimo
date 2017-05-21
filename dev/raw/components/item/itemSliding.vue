@@ -522,7 +522,7 @@
           }
 
           // 动画过程禁止点击操作
-          this.$app && this.$app.setEnabled(false, 400)
+//          this.$app && this.$app.setEnabled(false, 400)
           this.unregister = transitionEnd(this.itemComponent.$el, () => {
             this.setState(SLIDING_STATE.Disabled)
             this.unregister = null
