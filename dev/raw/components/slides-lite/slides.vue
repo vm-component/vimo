@@ -108,7 +108,7 @@
    * */
   import Swipe from 'swipe-js-iso'
   export default {
-    name: 'Slides123',
+    name: 'Slides',
     props: {
       pagination: String,                                       // 指示器的class, 且只支持'.swiper-pagination'
       initialSlide: {type: Number, default: 0},                 // 初始的index

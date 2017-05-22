@@ -19,11 +19,13 @@ gulp.task('copy', ['clean'], function () {
   .pipe(gulp.dest('publish'))
 
   return gulp.src('dev/raw/**/**/*.*')
-  .pipe(gulp.dest('publish/src'))
+  .pipe(gulp.dest('publish'))
 })
 
 gulp.task('babel', ['copy'], function () {
-  gulp.src('publish/src/**/**/*.js')
+  gulp.src([
+    'publish/**/**/*.js',
+  ])
   .pipe(babel({presets: ['es2015']}))
   .pipe($.uglify())
   .pipe(gulp.dest('publish'))

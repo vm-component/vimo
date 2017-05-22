@@ -130,9 +130,7 @@
       dismiss (dataBack) {
         if (this.isActive) {
           this.isActive = false
-
           this.onDismiss && this.onDismiss(dataBack)
-
           if (!this.enabled) {
             this.$nextTick(() => {
               this.dismissCallback()

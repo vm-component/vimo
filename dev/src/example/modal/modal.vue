@@ -60,6 +60,7 @@
           showBackdrop: true,
           enableBackdropDismiss: false,
           onDismiss (data) {
+            console.log(data)
             if (data) {
               _this.username = data.username
               _this.password = data.password
@@ -85,7 +86,10 @@
       },
       openModal () {
         this.$modal.present({
-          component: modalPageComponent
+          component: modalPageComponent,
+          onDismiss () {
+            console.log('onDismiss')
+          }
         })
       }
     },

@@ -5,7 +5,8 @@
  * 滚动引擎根据配置切换使用原生滚动或者使用js滚动, js滚动使用IScroll插件完成.
  *
  * */
-// import IScroll from 'iscroll/build/iscroll-probe'
+import JsScroll from 'better-scroll/build/bscroll.js'
+// import JsScroll from 'iscroll/build/iscroll-probe'
 import { isBoolean, isNumber, isPresent, registerListener } from '../../util/util'
 
 const SCROLL_END_DEBOUNCE_MS = 80
@@ -201,7 +202,6 @@ export class ScrollView {
     console.debug(`ScrollView, enableJsScroll`)
     // 给父元素增加class
     const contentElement = this._el.parentElement
-    const JsScroll = require('better-scroll/build/bscroll.js')
     this._js = true
     this._el.parentElement.classList.add('js-scroll')
     let config = window.VM.config.get('jsScrollOptions', {})
@@ -221,7 +221,6 @@ export class ScrollView {
     const self = this
     const ev = self.ev
     const positions = [] // number[]
-    const JsScroll = require('iscroll/build/iscroll-probe')
 
     self._js = true
     ev.isJsScroll = true

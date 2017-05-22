@@ -12,7 +12,7 @@ import './util/polyfill'
  * @name initVimo
  * @description Vimo框架安装
  */
-const VERSION = '0.3.7'
+const VERSION = '0.4.0'
 const addLogo = (vimoVer, vueVer) => {
   // logo
   var vimoLogo = {
