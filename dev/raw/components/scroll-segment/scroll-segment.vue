@@ -1,5 +1,5 @@
 <template>
-    <div class="vm-scroll-segment" @touchstart="onPointerDownHandler">
+    <div class="vm-scroll-segment">
         <div class="scroll-segment-outer" ref="scrollSegmentOuter">
             <div class="scroll-segment-wrap" ref="scrollSegmentWrap">
                 <slot></slot>
@@ -17,7 +17,7 @@
             overflow-x: scroll;
             overflow-y: hidden;
             position: relative;
-            height: calc( 100% + 10px );
+            height: calc(100% + 10px);
             -webkit-overflow-scrolling: touch;
             &::-webkit-scrollbar {
                 display: none;
@@ -29,7 +29,7 @@
             height: 100%;
             flex-direction: row;
             flex-wrap: nowrap;
-            background: #333;
+            /*background: #333;*/
         }
     }
 </style>
@@ -44,7 +44,6 @@
       return {
         min: 0,
         max: 0,
-
         rafId: null,
         childComponents: [], // 子组件列表
         wrapRect: null, // 滚动部分的尺寸
@@ -56,20 +55,23 @@
         type: String,
         default: 'segment-button-active'
       },
+      // 选中的index, 而不是子组件的_uid
       value: {
         type: Number,
         default: 0
-      },
-      isHorizontal: {
-        type: Boolean,
-        default: true
       }
     },
-    watch: {},
+    watch: {
+      value (val, oldValue) {
+        let selectedComponent = this.childComponents[val]
+        if (selectedComponent) {
+          this.refresh(selectedComponent._uid, selectedComponent.rect)
+        } else {
+          this.$emit('input', oldValue)
+        }
+      }
+    },
     computed: {
-      directionClass () {
-        return this.isHorizontal ? 'vm-horizontal' : 'vm-vertical'
-      },
       outerElement () {
         return this.$refs.scrollSegmentOuter
       },
@@ -78,10 +80,6 @@
       }
     },
     methods: {
-      onPointerDownHandler () {
-        window.cancelAnimationFrame(this.rafId)
-      },
-
       /**
        * 记录组组件
        * @private
@@ -102,25 +100,26 @@
        * @param {Number} rect.bottom - rect.bottom
        * */
       refresh (id, rect) {
+        window.cancelAnimationFrame(this.rafId)
 
         // 设置子组件的class状态
-        this.childComponents.forEach((child) => {
+        for (let i = 0, len = this.childComponents.length; len > i; i++) {
+          let child = this.childComponents[i]
           child.setState(id)
-        })
+          if (id === child._uid) {
+            this.$emit('input', i)
+          }
+        }
+
         let contentWidth = this.contentRect.width
         let contentLeft = this.contentRect.left
 
         let itemWidth = rect.width
         let itemLeft = rect.left - contentLeft
 
-        let wrapWidth = this.wrapRect.width
-        let wrapLeft = this.wrapRect.left
-
         let target = itemLeft - contentWidth / 2 + itemWidth / 2
         // 滚动的实际值, 必须在最大最小值之间(warp的滚动最大最小值)
         target = clamp(this.min, target, this.max)
-
-//        debugger
 
         // 调整scrollLeft的位置
         const step = () => {
@@ -134,8 +133,6 @@
           if (Math.abs(to) > 0) {
             this.rafId = window.requestAnimationFrame(step)
           } else {
-//            !!callback && callback()
-            console.log('done')
             window.cancelAnimationFrame(this.rafId)
           }
         }
@@ -148,17 +145,8 @@
           target = this.max
         }
         this.rafId = window.requestAnimationFrame(step)
-      },
-
-      update () {
-
-      },
-
-      init () {
-
       }
     },
-    created () {},
     mounted () {
       // 获取当前组件的尺寸及距离页面的位置
       // height/width right/left/top/bottom
@@ -181,8 +169,6 @@
       let height = this.$el.getBoundingClientRect().height
       this.$el.style.height = height + 'px'
       this.wrapElement.style.height = height + 'px'
-    },
-    activated () {},
-    components: {}
+    }
   }
 </script>

@@ -12,7 +12,7 @@
     }
 
     .segment-button-active {
-        background: #ddd;
+        /*background: #ddd;*/
     }
 </style>
 <script type="text/javascript">
@@ -43,10 +43,9 @@
         this.scrollSegmentComponent.refresh(this._uid, this.rect)
       },
       setState (id) {
-        this.isActive = this._uid === id
+        this.isActive = (this._uid === id)
       }
     },
-    created () {},
     mounted () {
       if (this.$parent.$options._componentTag.toLowerCase() === 'scrollsegment') {
         this.scrollSegmentComponent = this.$parent

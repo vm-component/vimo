@@ -1,4 +1,4 @@
-import { Indicator } from 'vimo/components/indicator'
+// import { Indicator } from 'vimo/components/indicator'
 import Vue from 'vue'
 import Router from 'vue-router'
 import options from './route-opt.js'

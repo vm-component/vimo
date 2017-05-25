@@ -445,29 +445,29 @@ export function focusOutActiveElement () {
  * */
 export function setElementClass (ele, className, add) {
   if (add) {
-    _addClass(ele, className)
+    addClass(ele, className)
   } else {
-    _removeClass(ele, className)
+    removeClass(ele, className)
   }
+}
 
-  /**
-   * 元素的class操作
-   * */
-  function _hasClass (obj, cls) {
-    return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+/**
+ * 元素的class操作
+ * */
+export function hasClass (obj, cls) {
+  return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+}
+
+export function addClass (obj, cls) {
+  if (!hasClass(obj, cls)) {
+    obj.className += ' ' + cls
   }
+}
 
-  function _addClass (obj, cls) {
-    if (!_hasClass(obj, cls)) {
-      obj.className += ' ' + cls
-    }
-  }
-
-  function _removeClass (obj, cls) {
-    if (_hasClass(obj, cls)) {
-      var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
-      obj.className = obj.className.replace(reg, ' ').trim()
-    }
+export function removeClass (obj, cls) {
+  if (hasClass(obj, cls)) {
+    var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+    obj.className = obj.className.replace(reg, ' ').trim()
   }
 }
 

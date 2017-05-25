@@ -225,8 +225,6 @@
     .main {
         height: 100%;
     }
-
-
 </style>
 <script type="text/javascript">
   import { Segment, SegmentButton } from 'vimo/components/segment'

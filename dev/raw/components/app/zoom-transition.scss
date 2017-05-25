@@ -32,8 +32,7 @@ $TRANSFORM_ORIGIN: center center;
 /*    zoom-transition-backward    */
 
 // 进入的页面
-.zoom-transition-backward-enter {
-}
+.zoom-transition-backward-enter {}
 
 .zoom-transition-backward-enter-active {
   transform-origin: $TRANSFORM_ORIGIN;

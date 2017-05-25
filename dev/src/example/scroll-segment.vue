@@ -162,7 +162,29 @@
                 <div class="space"></div>
             </section>
 
+            <Grid>
+                <Row>
+                    <Column>
+                        <Button @click="changedValue--">change -- </Button>
+                    </Column>
+                    <Column>
+                        {{changedValue}}
+                    </Column>
+                    <Column>
+                        <Button @click="changedValue++">change ++ </Button>
+                    </Column>
+                </Row>
+            </Grid>
         </Content>
+        <Footer>
+            <section class="header-scroll">
+                <ScrollSegment v-model="changedValue">
+                    <ScrollSegmentButton v-for="i in 10" :key="i">
+                        <div class="srollSegmentButton">{{i}}</div>
+                    </ScrollSegmentButton>
+                </ScrollSegment>
+            </section>
+        </Footer>
     </Page>
 </template>
 <style scoped lang="scss">
@@ -235,7 +257,9 @@
     name: 'name',
     components: {ScrollSegment, ScrollSegmentButton},
     data () {
-      return {}
+      return {
+        changedValue: 3
+      }
     },
     props: {},
     watch: {},
