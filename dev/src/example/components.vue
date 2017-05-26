@@ -122,7 +122,7 @@
                         <Note slot="item-right">Feedback</Note>
                     </Item>
                     <Item detail-push :to="{name: 'scrollSegment'}">
-                        <Icon slot="item-left" name="flash"></Icon>
+                        <Icon slot="item-left" name="egg"></Icon>
                         <span>滚动段</span>
                         <Note slot="item-right">ScrollSegment</Note>
                     </Item>

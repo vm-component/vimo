@@ -102,6 +102,11 @@
       refresh (id, rect) {
         window.cancelAnimationFrame(this.rafId)
 
+        // fixBug: 弹性滚动时不触发refresh
+        if (this.outerElement.scrollLeft < 0 || this.outerElement.scrollLeft > (this.outerElement.scrollWidth - this.outerElement.offsetWidth)) {
+          return
+        }
+
         // 设置子组件的class状态
         for (let i = 0, len = this.childComponents.length; len > i; i++) {
           let child = this.childComponents[i]
