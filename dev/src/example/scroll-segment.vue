@@ -2,49 +2,30 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>ScrollSegment</Title>
+                <Title>网易新闻</Title>
             </Navbar>
-            <section class="header-scroll">
-                <ScrollSegment :value="2">
-                    <ScrollSegmentButton>
-                        <div class="srollSegmentButton">0</div>
-                    </ScrollSegmentButton>
-                    <ScrollSegmentButton>
-                        <div class="srollSegmentButton">1</div>
-                    </ScrollSegmentButton>
-                    <ScrollSegmentButton>
-                        <div class="srollSegmentButton">2</div>
-                    </ScrollSegmentButton>
-                    <ScrollSegmentButton>
-                        <div class="srollSegmentButton">3</div>
-                    </ScrollSegmentButton>
-                    <ScrollSegmentButton>
-                        <div class="srollSegmentButton">4</div>
-                    </ScrollSegmentButton>
-                    <ScrollSegmentButton>
-                        <div class="srollSegmentButton">5</div>
-                    </ScrollSegmentButton>
-                    <ScrollSegmentButton>
-                        <div class="srollSegmentButton">6</div>
-                    </ScrollSegmentButton>
-                    <ScrollSegmentButton>
-                        <div class="srollSegmentButton">7</div>
-                    </ScrollSegmentButton>
-                    <ScrollSegmentButton>
-                        <div class="srollSegmentButton">8</div>
-                    </ScrollSegmentButton>
-                    <ScrollSegmentButton>
-                        <div class="srollSegmentButton">9</div>
+            <section class="scrollBar">
+                <ScrollSegment v-model="newIndex">
+                    <ScrollSegmentButton v-for="(item, index) in arrs" :key="index">
+                        <div class="scrollBar__btn">{{item}}</div>
                     </ScrollSegmentButton>
                 </ScrollSegment>
             </section>
         </Header>
         <Content class="outer-content">
 
-            <h1>123</h1>
+            <div padding>
+                <h4>简介</h4>
+                <p>这个组件专注于提供水平滚动的业务需求, 比如像上方的滚动选择条. 通过给value传递index确定初始化时, 哪个btn将被选中.</p>
+                <p>
+                    此外, 监听组件的onChange事件可也判断是哪个Btn被选择. 比如当前的新闻类别为: <strong>{{newIndex}} {{arrs[newIndex]}}</strong>
+                </p>
+                <p>组件是根据组件的的中心定位, 当左右两边或有障碍物时, 居中效果会有偏移.</p>
+                <p>另外, 只有在手机上才能体验到左右回弹的效果.</p>
+            </div>
 
             <section class="horizontal">
-                <div class="space"></div>
+                <div class="space">Space</div>
                 <div class="content">
                     <div class="contentInner">
                         <ScrollSegment :value="2">
@@ -119,10 +100,10 @@
                         </ScrollSegment>
                     </div>
                 </div>
-                <div class="space"></div>
+                <div class="space">Space</div>
             </section>
             <section class="horizontal">
-                <div class="space"></div>
+                <div class="space">Space</div>
                 <div class="content">
                     <div class="contentInner">
                         <ScrollSegment :value="2">
@@ -159,37 +140,70 @@
                         </ScrollSegment>
                     </div>
                 </div>
-                <div class="space"></div>
+                <div class="space">Space</div>
             </section>
 
-            <Grid>
+            <div padding>
+                <h4>异步子组件</h4>
+                <p>可以通过增加value值实现手动控制,</p>
+            </div>
+            <Grid no-padding>
                 <Row>
-                    <Column>
-                        <Button @click="changedValue--">change -- </Button>
+                    <Column class="colBox">
+                        <Button outline small @click="changedValue--">Minus -- </Button>
                     </Column>
-                    <Column>
-                        {{changedValue}}
+                    <Column class="colBox">
+                        Value: {{changedValue}}
                     </Column>
-                    <Column>
-                        <Button @click="changedValue++">change ++ </Button>
+                    <Column class="colBox">
+                        <Button outline small @click="changedValue++">Add ++ </Button>
                     </Column>
                 </Row>
-            </Grid>
-        </Content>
-        <Footer>
-            <section class="header-scroll">
-                <ScrollSegment v-model="changedValue">
+                <ScrollSegment v-model="changedValue" class="header-scroll">
                     <ScrollSegmentButton v-for="i in 10" :key="i">
                         <div class="srollSegmentButton">{{i}}</div>
                     </ScrollSegmentButton>
                 </ScrollSegment>
-            </section>
-        </Footer>
+            </Grid>
+        </Content>
     </Page>
 </template>
 <style scoped lang="scss">
-    * {
-        outline: 1px solid #ddd;
+    .scrollBar {
+        width: 100%;
+        height: 38px;
+        background: #fff;
+        position: relative;
+        .scrollBar__btn {
+            width: 60px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 0 0 38px;
+            box-sizing: border-box;
+        }
+        .segment-button-active {
+            color: red;
+            font-size: 1.2em;
+        }
+
+        &:before, &:after {
+            content: '';
+            height: 100%;
+            width: 20px;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+        }
+        &:before {
+            left: 0;
+            background: linear-gradient(to right, white 30%, rgba(255, 255, 255, 0.2) 100%);
+        }
+        &:after {
+            right: 0;
+            background: linear-gradient(to left, white 30%, rgba(255, 255, 255, 0.2) 100%);
+        }
     }
 
     .horizontal {
@@ -198,12 +212,18 @@
         align-items: center;
         height: 44px;
         width: 100%;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+        margin-bottom: 30px;
         .space {
             display: inline-flex;
             width: 50px;
             height: 100%;
-            background: #000;
+            background: #737373;
             flex: 0 0 50px;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
         }
         .content {
             display: flex;
@@ -220,7 +240,7 @@
                 box-sizing: border-box;
             }
             .srollSegmentButton {
-                width: 100px;
+                width: 60px;
                 height: 100%;
                 display: flex;
                 justify-content: center;
@@ -230,6 +250,9 @@
                 box-sizing: border-box;
             }
         }
+        .segment-button-active {
+            background: #ddd;
+        }
 
     }
 
@@ -237,8 +260,11 @@
         width: 100%;
         height: 44px;
         background: #fff;
+        margin: 20px auto 30px;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
         .srollSegmentButton {
-            width: 100px;
+            width: 80px;
             height: 100%;
             display: flex;
             justify-content: center;
@@ -247,9 +273,16 @@
             flex: 0 0 100px;
             box-sizing: border-box;
         }
+        .segment-button-active {
+            background: #ddd;
+        }
     }
 
-
+    .colBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 <script type="text/javascript">
   import { ScrollSegment, ScrollSegmentButton } from 'vimo/components/scroll-segment'
@@ -258,11 +291,17 @@
     components: {ScrollSegment, ScrollSegmentButton},
     data () {
       return {
-        changedValue: 3
+        changedValue: 3,
+        arrs: ['头条', '科技', '独家', '搞笑', '娱乐', '体育', '视频', '财经', '汽车'],
+        newIndex: 2
       }
     },
     props: {},
-    watch: {},
+    watch: {
+      newIndex (val) {
+        console.log(val)
+      }
+    },
     computed: {},
     methods: {},
     created () {},

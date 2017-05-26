@@ -1,5 +1,5 @@
 <template>
-    <section class="feedback__inputBox">
+    <section class="vm-feedback feedback__inputBox">
         <!--textarea-->
         <div class="feedback__inputBox--textareaBox">
             <textarea :placeholder="placeholder"
@@ -195,8 +195,8 @@
     }
   }
 </script>
-<style scoped lang="scss">
-    .feedback__inputBox {
+<style lang="scss">
+    .vm-feedback.feedback__inputBox {
         border-bottom: 1px solid #f2f2f2;
         width: 100%;
         background: #fff;

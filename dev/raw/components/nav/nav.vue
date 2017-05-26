@@ -11,7 +11,7 @@
         <div class="nav-decor"></div>
     </nav>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
 
     .ion-nav {
         .click-cover {

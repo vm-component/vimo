@@ -16,7 +16,7 @@
         </transition>
     </div>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     @import "./toast";
     @import "./toast.ios";
     @import "./toast.md";

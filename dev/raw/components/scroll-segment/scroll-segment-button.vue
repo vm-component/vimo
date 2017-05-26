@@ -3,7 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     .vm-scroll-segment-button {
         position: relative;
         display: block;
@@ -12,7 +12,6 @@
     }
 
     .segment-button-active {
-        /*background: #ddd;*/
     }
 </style>
 <script type="text/javascript">
@@ -31,9 +30,6 @@
         scrollSegmentComponent: null
       }
     },
-    props: {},
-    watch: {},
-    computed: {},
     methods: {
       /**
        * 当点击当前元素
@@ -54,8 +50,6 @@
         // 获取当前组件的尺寸及距离页面的位置
         this.rect = this.$el.getBoundingClientRect()
       }
-    },
-    activated () {},
-    components: {}
+    }
   }
 </script>

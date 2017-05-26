@@ -53,7 +53,7 @@
         </Button>
     </div>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     @import "./searchbar";
     @import "./searchbar.ios";
     @import "./searchbar.md";

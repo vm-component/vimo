@@ -7,7 +7,7 @@
         </div>
     </div>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     .vm-scroll-segment {
         height: 100%;
         width: 100%;
