@@ -126,6 +126,11 @@
                         <span>滚动段</span>
                         <Note slot="item-right">ScrollSegment</Note>
                     </Item>
+                    <Item detail-push :to="{name: 'noticeBar'}">
+                        <Icon slot="item-left" name="egg"></Icon>
+                        <span>提示条</span>
+                        <Note slot="item-right">NoticeBar</Note>
+                    </Item>
                 </ItemGroup>
 
                 <!--List组件-->

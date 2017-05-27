@@ -5,10 +5,10 @@
 import cardRoutes from './route-card'
 import contentRoutes from './route-content'
 import listRoutes from './route-list'
+import pickerRoutes from './route-picker'
+import scrollRoutes from './route-scroll'
 import segmentRoutes from './route-segment'
 import tabsRoutes from './route-tabs'
-import scrollRoutes from './route-scroll'
-import pickerRoutes from './route-picker'
 
 let routes = [
   {
@@ -226,6 +226,14 @@ let routes = [
       require(['@/example/scroll-segment.vue'], resolve)
     }
   },
+  {
+    path: '/notice-bar',
+    name: 'noticeBar',
+    component (resolve) {
+      require(['@/example/notice-bar.vue'], resolve)
+    }
+  },
+
   // ----  component/Form组件 ----
 
   {
@@ -316,7 +324,6 @@ let routes = [
       require(['@/example/log.vue'], resolve)
     }
   },
-
 
   // demo
   {
