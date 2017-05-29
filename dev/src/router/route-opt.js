@@ -233,7 +233,20 @@ let routes = [
       require(['@/example/notice-bar.vue'], resolve)
     }
   },
-
+  {
+    path: '/separation',
+    name: 'separation',
+    component (resolve) {
+      require(['@/example/separation.vue'], resolve)
+    }
+  },
+  {
+    path: '/slide-box',
+    name: 'slideBox',
+    component (resolve) {
+      require(['@/example/slide-box.vue'], resolve)
+    }
+  },
   // ----  component/Form组件 ----
 
   {

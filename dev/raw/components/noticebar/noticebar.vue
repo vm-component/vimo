@@ -12,7 +12,7 @@
         <div class="vm-action" v-if="actionClass" @click="close" :class="actionClass"></div>
     </div>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     .vm-noticebar {
         height: 35px;
         width: 100%;
@@ -220,7 +220,6 @@
         default:
           this.actionClass = ''
       }
-
     },
     mounted () {
       var wrapRect = this.noticeBarWrapElement.getBoundingClientRect()
