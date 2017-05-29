@@ -240,7 +240,6 @@
        * */
       checking () {
         this.state = STATE_CHECKING
-
       },
 
       /**

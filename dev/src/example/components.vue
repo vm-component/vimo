@@ -137,7 +137,7 @@
                         <Note slot="item-right">Separation</Note>
                     </Item>
                     <Item detail-push :to="{name: 'slideBox'}">
-                        <Icon slot="item-left" name="remove"></Icon>
+                        <Icon slot="item-left" name="key"></Icon>
                         <span>SlideBox</span>
                         <Note slot="item-right">SlideBox</Note>
                     </Item>
