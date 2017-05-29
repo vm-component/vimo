@@ -133,12 +133,12 @@
                     </Item>
                     <Item detail-push :to="{name: 'separation'}">
                         <Icon slot="item-left" name="remove"></Icon>
-                        <span>Separation</span>
+                        <span>分割段</span>
                         <Note slot="item-right">Separation</Note>
                     </Item>
                     <Item detail-push :to="{name: 'slideBox'}">
                         <Icon slot="item-left" name="key"></Icon>
-                        <span>SlideBox</span>
+                        <span>滑动验证</span>
                         <Note slot="item-right">SlideBox</Note>
                     </Item>
 
