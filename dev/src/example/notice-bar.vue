@@ -44,7 +44,7 @@
 <script type="text/javascript">
   import { NoticeBar } from 'vimo/components/noticebar'
   export default{
-    name: 'noticeBar',
+    name: 'notice-bar',
     components: {NoticeBar},
     data () {
       return {}

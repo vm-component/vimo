@@ -160,9 +160,22 @@
 </style>
 <script type="text/javascript">
   /**
+   * @component SlideBox
+   * @description
+   *
+   * ## 滑动验证组件 / SlideBox
+   *
+   * ### 介绍
+   *
+   * 这是一个仿照淘宝注册的一个验证组件, 向右滑动到底部意味着用户确认协议可以继续向下进行. 组件一共有以下几种状态, 且状态只能维持其一, 且一下状态的切换由业务自己控制:
+   *
+   *  - checking
+   *  - cancelling
+   *  - completing
+   *  - failing
    *
    *
-   * 组件的状态, 同一时间只能保持一个
+   * 下面是组件的全部状态, 同一时间只能保持一个
    *
    * - inactive     // 初始状态
    * - sliding      // 滑动状态
@@ -171,6 +184,42 @@
    * - completing   // 验证通过状态
    * - failing      // 验证失败状态
    *
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { SlideBox } from 'vimo/components/slide-box'
+   * // 安装
+   * Vue.component(SlideBox.name, SlideBox)
+   * // 或者
+   * export default{
+   *   components: {
+   *     SlideBox
+   *  }
+   * }
+   * ```
+   *
+   * ### 如果获取组件实例
+   *
+   * - 通过ref标记获取
+   * - 监听组件的`onSlideEnd`事件, 事件传递组件实例
+   *
+   *
+   * @demo https://dtfe.github.io/vimo-demo/#/slide-box
+   * @fires component:SlideBox#onSlideEnd
+   * @usage
+   *
+   * <p>向右滑动进入验证状态, 1s后重置</p>
+   * <SlideBox @onSlideEnd="onSlideEndHandler"></SlideBox>
+   *
+   * methods: {
+   *    // 向右滑动进入验证状态, 4s后重置
+   *    onSlideEndHandler (ins) {
+   *      ins.checking()
+   *      setTimeout(() => {
+   *        ins.cancel()
+   *      }, 1000)
+   *    },
+   *  }
    *
    * */
   import { pointerCoord, clamp, transitionEnd } from '../../util/util'
@@ -181,21 +230,16 @@
   const STATE_COMPLETING = 'completing'     // 验证通过状态
   const STATE_FAILING = 'failing'           // 验证失败状态
   export default{
-    name: 'name',
+    name: 'SlideBox',
     data () {
       return {
-        timer: null,
-        unReg: null,
-        start: 0,
-        min: 0,             // 可移动的最小距离
-        max: 0,             // 可移动的最大距离
+        timer: null,            // 计时器
+        unReg: null,            // 动画完毕的解绑函数
+        min: 0,                 // 可移动的最小距离
+        max: 0,                 // 可移动的最大距离
 
-        translateX: null,         // 向右移动数值
-
-        isReleasing: false,    // 当前输入btn释放状态
-
+        translateX: null,       // 向右移动数值
         state: STATE_INACTIVE, // 初始状态
-
         boxRect: null,      // 外容器的尺寸数据
         btnRect: null       // 初始化时的btn的尺寸
       }
@@ -229,8 +273,9 @@
     },
     methods: {
       // ------ public ------
-
       /**
+       * @function cancel
+       * @description
        * 验证取消, 滑动到底部
        * */
       cancel () {
@@ -254,6 +299,8 @@
       },
 
       /**
+       * @function checking
+       * @description
        * 进入验证状态
        * */
       checking () {
@@ -261,6 +308,8 @@
       },
 
       /**
+       * @function complete
+       * @description
        * 验证完成
        * */
       complete () {
@@ -268,6 +317,8 @@
       },
 
       /**
+       * @function fail
+       * @description
        * 验证失败, 等待2s后重置
        * */
       fail () {
@@ -292,6 +343,11 @@
       onPointerEndHandler () {
         if (this.state !== STATE_SLIDING) return
         if (this.translateX === this.min) {
+          /**
+           * @event component:SlideBox#onSlideEnd
+           * @description 滚动到最右侧时触发
+           * @property {VueComponent} this - 组件实例
+           */
           this.$emit('onSlideEnd', this)
         } else {
           this.cancel()

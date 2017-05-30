@@ -26,9 +26,7 @@
                 <Icon name="text" small></Icon>
                 <span>亲, 看完了</span>
             </Separation>
-            <Separation>
-                <span>分享</span>
-            </Separation>
+            <Separation>分享</Separation>
         </Content>
     </Page>
 </template>

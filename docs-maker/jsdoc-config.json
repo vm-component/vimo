@@ -82,7 +82,10 @@
       "../dev/raw/components/popover",
       "../dev/raw/components/picker",
       "../dev/raw/components/fab",
-      "../dev/raw/components/datetime"
+      "../dev/raw/components/datetime",
+      "../dev/raw/components/separation",
+      "../dev/raw/components/noticebar",
+      "../dev/raw/components/slide-box"
     ],
     "include3": [
       "../README.md",
