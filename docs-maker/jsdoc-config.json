@@ -85,6 +85,7 @@
       "../dev/raw/components/datetime",
       "../dev/raw/components/separation",
       "../dev/raw/components/noticebar",
+      "../dev/raw/components/scroll-segment",
       "../dev/raw/components/slide-box"
     ],
     "include3": [

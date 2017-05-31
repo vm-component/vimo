@@ -143,6 +143,42 @@
                 <div class="space">Space</div>
             </section>
 
+            <section class="horizontal">
+                <div class="content">
+                    <div class="contentInner">
+                        <ScrollSegment :value="2">
+                            <ScrollSegmentButton>
+                                <div class="srollSegmentButton">鱼香肉丝</div>
+                            </ScrollSegmentButton>
+                            <ScrollSegmentButton>
+                                <div class="srollSegmentButton">红烧狮子头</div>
+                            </ScrollSegmentButton>
+                            <ScrollSegmentButton>
+                                <div class="srollSegmentButton">卷了三个鸡蛋的煎饼果子</div>
+                            </ScrollSegmentButton>
+                            <ScrollSegmentButton>
+                                <div class="srollSegmentButton">新疆烤肉和香酥烤全羊</div>
+                            </ScrollSegmentButton>
+                            <ScrollSegmentButton>
+                                <div class="srollSegmentButton">土家酱饼</div>
+                            </ScrollSegmentButton>
+                            <ScrollSegmentButton>
+                                <div class="srollSegmentButton">杭椒牛柳</div>
+                            </ScrollSegmentButton>
+                            <ScrollSegmentButton>
+                                <div class="srollSegmentButton">鸡蛋灌饼</div>
+                            </ScrollSegmentButton>
+                            <ScrollSegmentButton>
+                                <div class="srollSegmentButton">超级辣的BT变态烤翅</div>
+                            </ScrollSegmentButton>
+                            <ScrollSegmentButton>
+                                <div class="srollSegmentButton">啤酒</div>
+                            </ScrollSegmentButton>
+                        </ScrollSegment>
+                    </div>
+                </div>
+            </section>
+
             <div padding>
                 <h4>异步子组件</h4>
                 <p>可以通过增加value值实现手动控制,</p>
@@ -240,14 +276,16 @@
                 box-sizing: border-box;
             }
             .srollSegmentButton {
-                width: 60px;
+                min-width: 60px;
                 height: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 outline: 1px solid #ddd;
-                flex: 0 0 100px;
+                /*flex: 0 0 100px;*/
                 box-sizing: border-box;
+                white-space: nowrap;
+                padding: 0 20px;
             }
         }
         .segment-button-active {
