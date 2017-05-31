@@ -240,34 +240,20 @@ export function hashChange (callback) {
   return unReg
 }
 
-// /**
-//  * urlChange注册，绑定的函数触发后会自动解绑
-//  * @param {function} callback - 回调函数
-//  * @return {function} - 解绑函数
-//  * */
-// export function urlChange (callback) {
-//   const URL_EVENT = ['hashchange', 'popstate']
-//   URL_EVENT.forEach(function (eventName) {
-//     window.addEventListener(eventName, onEvent)
-//   })
-//
-//   return unregister
-//
-//   function unregister () {
-//     URL_EVENT.forEach(function (eventName) {
-//       window.removeEventListener(eventName, onEvent)
-//     })
-//   }
-//
-//   /**
-//    * @param {UIEvent} ev
-//    * */
-//   function onEvent (ev) {
-//     // auto unregister
-//     unregister()
-//     callback(ev)
-//   }
-// }
+/**
+ * urlChange(popstate)注册，绑定的函数触发后会自动解绑
+ * @param {function} callback - 回调函数
+ * @return {function} - 解绑函数
+ * */
+export function urlChange (callback) {
+  let unReg = null
+  const onStateChange = (ev) => {
+    unReg && unReg()
+    callback(ev)
+  }
+  unReg = registerListener(window, 'popstate', onStateChange, {})
+  return unReg
+}
 
 /**
  *

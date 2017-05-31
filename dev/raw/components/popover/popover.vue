@@ -139,7 +139,7 @@
    * */
   import Vue from 'vue'
   import { Backdrop } from '../backdrop'
-  import { hashChange, parsePxUnit, isObject } from '../../util/util'
+  import { urlChange, parsePxUnit, isObject } from '../../util/util'
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
   export default{
@@ -396,7 +396,7 @@
     created () {
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
-        this.unreg = hashChange(() => {
+        this.unreg = urlChange(() => {
           this.isActive && this.dismiss()
         })
       }

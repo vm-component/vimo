@@ -123,7 +123,7 @@
    * })
    *
    */
-  import { hashChange } from '../../util/util'
+  import { urlChange } from '../../util/util'
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
   import { Icon } from '../icon'
@@ -343,7 +343,7 @@
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
-        this.unreg = hashChange(() => {
+        this.unreg = urlChange(() => {
           this.isActive && this.dismiss()
         })
       }

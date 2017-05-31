@@ -154,7 +154,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       },
       jsScrollOptions: {
         bounce: true,              // 关闭滚动回弹
-        bindToWrapper: true,        // 绑定scroll事件到当前容器而不是window上
+        bindToWrapper: true        // 绑定scroll事件到当前容器而不是window上
       }
     }
   },

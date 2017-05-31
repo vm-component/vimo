@@ -12,8 +12,11 @@
             <!--按钮-->
             <div class="track-btn" ref="slideBoxBtn"
                  @touchstart="onPointerStartHandler($event)"
+                 @mousedown="onPointerStartHandler($event)"
                  @touchmove="onPointerMoveHandler($event)"
-                 @touchend="onPointerEndHandler($event)">
+                 @mousemove="onPointerMoveHandler($event)"
+                 @touchend="onPointerEndHandler($event)"
+                 @mouseup="onPointerEndHandler($event)">
                 <i class="icon-arrow-right"
                    v-if="state === 'inactive' || state === 'sliding' || state === 'cancelling'"></i>
                 <i class="icon-ok" v-if="state === 'completing'"></i>
@@ -339,6 +342,10 @@
         let coord = pointerCoord($event)
         let left = coord.x - this.boxRect.left - this.pointerStart >> 0
         this.translateX = this.max - clamp(this.min, left, this.max)
+
+        if (this.translateX === this.min) {
+          this.$emit('onSlideEnd', this)
+        }
       },
       onPointerEndHandler () {
         if (this.state !== STATE_SLIDING) return

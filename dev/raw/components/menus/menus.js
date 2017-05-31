@@ -158,7 +158,7 @@
     * })
  */
 
-import { hashChange } from '../../util/util'
+import { urlChange } from '../../util/util'
 export function recordMenuInstance (instance) {
   // 如果没安装
   let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(instance))
@@ -217,7 +217,7 @@ class Menus {
       // for url change
       // url变化关闭menu组件
       _this._unReg && _this._unReg()
-      _this._unReg = hashChange(() => {
+      _this._unReg = urlChange(() => {
         _this.close()
       })
     }

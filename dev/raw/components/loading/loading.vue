@@ -104,7 +104,7 @@
    *    },
    *
    * */
-  import { hashChange } from '../../util/util'
+  import { urlChange } from '../../util/util'
   import { Backdrop } from '../backdrop'
   import { Spinner } from '../spinner'
   export default{
@@ -226,7 +226,7 @@
     },
     created () {
       if (this.dismissOnPageChange) {
-        this.unreg = hashChange(() => {
+        this.unreg = urlChange(() => {
           this.isActive && this.dismiss()
         })
       }

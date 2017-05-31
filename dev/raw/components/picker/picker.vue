@@ -111,7 +111,7 @@
    *
    * @demo https://dtfe.github.io/vimo-demo/#/picker
    * */
-  import { isString, isPresent, isNumber, hashChange } from '../../util/util'
+  import { isString, isPresent, isNumber, urlChange } from '../../util/util'
   import PickerCol from './picker-col.vue'
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
@@ -372,7 +372,7 @@
 
       // dismissOnPageChange
       if (this.dismissOnPageChange) {
-        this.unreg = hashChange(() => {
+        this.unreg = urlChange(() => {
           this.isActive && this.dismiss()
         })
       }
