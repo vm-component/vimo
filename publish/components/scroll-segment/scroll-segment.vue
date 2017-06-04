@@ -1,5 +1,5 @@
 <template>
-    <div class="vm-scroll-segment" @touchstart="onPointerDownHandler">
+    <div class="vm-scroll-segment">
         <div class="scroll-segment-outer" ref="scrollSegmentOuter">
             <div class="scroll-segment-wrap" ref="scrollSegmentWrap">
                 <slot></slot>
@@ -7,7 +7,7 @@
         </div>
     </div>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     .vm-scroll-segment {
         height: 100%;
         width: 100%;
@@ -17,7 +17,7 @@
             overflow-x: scroll;
             overflow-y: hidden;
             position: relative;
-            height: calc( 100% + 10px );
+            height: calc(100% + 10px);
             -webkit-overflow-scrolling: touch;
             &::-webkit-scrollbar {
                 display: none;
@@ -29,13 +29,78 @@
             height: 100%;
             flex-direction: row;
             flex-wrap: nowrap;
-            background: #333;
+            /*background: #333;*/
         }
     }
 </style>
 <script type="text/javascript">
   /**
-   * @props {String} [activeClass] - button被选中的样式
+   * @component ScrollSegment
+   * @description
+   *
+   * ## 滑动片段组件 / ScrollSegment
+   *
+   * ### 介绍
+   *
+   * 该组件提供了一个可横向滚动的盒子, 子组件`ScrollSegmentButton`作为每一项在其中可滚动. 比如用在横向的Segment选择, 比如网易新闻的不同新闻类别;或者电影的横向滚动清单等. 当点击某一个`ScrollSegmentButton`子组件时, 该组件滚动到中间. 需要注意的是, 该组件提供水平方向的滚动, 且子组件的长度并不是固定的, 任意长度都能点击后移动到中间.
+   *
+   *
+   * ### v-model控制初始值
+   *
+   * 通过v-model控制初始值, 当值发生变化时, 组件也能同步更新位置. 如果设置的值超过子组件的数量边界(0 -> length-1), 则设置的值不生效.
+   *
+   *
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { ScrollSegment, ScrollSegmentButton } from 'vimo/components/scroll-segment'
+   * // 安装
+   * Vue.component(ScrollSegment.name, ScrollSegment)
+   * Vue.component(ScrollSegmentButton.name, ScrollSegmentButton)
+   * // 或者
+   * export default{
+   *   components: {
+   *     ScrollSegment, ScrollSegmentButton
+   *  }
+   * }
+   * ```
+   *
+   * @props {String} [activeClass='segment-button-active'] - 子组件激活时添加的class
+   * @props {Number} [value=0] - 子组件初始值
+   *
+   * @demo https://dtfe.github.io/vimo-demo/#/scroll-segment
+   * @usage
+   *
+   * <ScrollSegment :value="2">
+   *    <ScrollSegmentButton>
+   *        <div class="srollSegmentButton">鱼香肉丝</div>
+   *    </ScrollSegmentButton>
+   *    <ScrollSegmentButton>
+   *        <div class="srollSegmentButton">红烧狮子头</div>
+   *    </ScrollSegmentButton>
+   *    <ScrollSegmentButton>
+   *        <div class="srollSegmentButton">卷了三个鸡蛋的煎饼果子</div>
+   *    </ScrollSegmentButton>
+   *    <ScrollSegmentButton>
+   *        <div class="srollSegmentButton">新疆烤肉和香酥烤全羊</div>
+   *    </ScrollSegmentButton>
+   *    <ScrollSegmentButton>
+   *        <div class="srollSegmentButton">土家酱饼</div>
+   *    </ScrollSegmentButton>
+   *    <ScrollSegmentButton>
+   *        <div class="srollSegmentButton">杭椒牛柳</div>
+   *    </ScrollSegmentButton>
+   *    <ScrollSegmentButton>
+   *        <div class="srollSegmentButton">鸡蛋灌饼</div>
+   *    </ScrollSegmentButton>
+   *    <ScrollSegmentButton>
+   *        <div class="srollSegmentButton">超级辣的BT变态烤翅</div>
+   *    </ScrollSegmentButton>
+   *     <ScrollSegmentButton>
+   *        <div class="srollSegmentButton">啤酒</div>
+   *    </ScrollSegmentButton>
+   * </ScrollSegment>
+   *
    * */
   import { clamp } from '../../util/util'
   export default{
@@ -44,7 +109,6 @@
       return {
         min: 0,
         max: 0,
-
         rafId: null,
         childComponents: [], // 子组件列表
         wrapRect: null, // 滚动部分的尺寸
@@ -56,20 +120,23 @@
         type: String,
         default: 'segment-button-active'
       },
+      // 选中的index, 而不是子组件的_uid
       value: {
         type: Number,
         default: 0
-      },
-      isHorizontal: {
-        type: Boolean,
-        default: true
       }
     },
-    watch: {},
+    watch: {
+      value (val, oldValue) {
+        let selectedComponent = this.childComponents[val]
+        if (selectedComponent) {
+          this.refresh(selectedComponent._uid, selectedComponent.rect)
+        } else {
+          this.$emit('input', oldValue)
+        }
+      }
+    },
     computed: {
-      directionClass () {
-        return this.isHorizontal ? 'vm-horizontal' : 'vm-vertical'
-      },
       outerElement () {
         return this.$refs.scrollSegmentOuter
       },
@@ -78,10 +145,6 @@
       }
     },
     methods: {
-      onPointerDownHandler () {
-        window.cancelAnimationFrame(this.rafId)
-      },
-
       /**
        * 记录组组件
        * @private
@@ -100,27 +163,34 @@
        * @param {Number} rect.left - rect.left
        * @param {Number} rect.top - rect.top
        * @param {Number} rect.bottom - rect.bottom
+       * @private
        * */
       refresh (id, rect) {
+        window.cancelAnimationFrame(this.rafId)
+
+        // fixBug: 弹性滚动时不触发refresh
+        if (this.outerElement.scrollLeft < 0 || this.outerElement.scrollLeft > (this.outerElement.scrollWidth - this.outerElement.offsetWidth)) {
+          return
+        }
 
         // 设置子组件的class状态
-        this.childComponents.forEach((child) => {
+        for (let i = 0, len = this.childComponents.length; len > i; i++) {
+          let child = this.childComponents[i]
           child.setState(id)
-        })
+          if (id === child._uid) {
+            this.$emit('input', i)
+          }
+        }
+
         let contentWidth = this.contentRect.width
         let contentLeft = this.contentRect.left
 
         let itemWidth = rect.width
         let itemLeft = rect.left - contentLeft
 
-        let wrapWidth = this.wrapRect.width
-        let wrapLeft = this.wrapRect.left
-
         let target = itemLeft - contentWidth / 2 + itemWidth / 2
         // 滚动的实际值, 必须在最大最小值之间(warp的滚动最大最小值)
         target = clamp(this.min, target, this.max)
-
-//        debugger
 
         // 调整scrollLeft的位置
         const step = () => {
@@ -134,8 +204,6 @@
           if (Math.abs(to) > 0) {
             this.rafId = window.requestAnimationFrame(step)
           } else {
-//            !!callback && callback()
-            console.log('done')
             window.cancelAnimationFrame(this.rafId)
           }
         }
@@ -148,17 +216,8 @@
           target = this.max
         }
         this.rafId = window.requestAnimationFrame(step)
-      },
-
-      update () {
-
-      },
-
-      init () {
-
       }
     },
-    created () {},
     mounted () {
       // 获取当前组件的尺寸及距离页面的位置
       // height/width right/left/top/bottom
@@ -181,8 +240,6 @@
       let height = this.$el.getBoundingClientRect().height
       this.$el.style.height = height + 'px'
       this.wrapElement.style.height = height + 'px'
-    },
-    activated () {},
-    components: {}
+    }
   }
 </script>

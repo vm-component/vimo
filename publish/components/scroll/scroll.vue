@@ -1,12 +1,12 @@
 <template>
-    <div class="wrapper">
+    <div class="vm-scroll wrapper">
         <div class="scroller">
             <slot></slot>
         </div>
     </div>
 </template>
-<style scoped lang="scss">
-    .wrapper {
+<style lang="scss">
+    .vm-scroll.wrapper {
         position: relative;
         width: 100%;
         height: 100%;

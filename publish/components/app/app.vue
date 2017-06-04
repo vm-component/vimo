@@ -28,6 +28,7 @@
     @import './fade-bottom-transition.scss';
     @import './fade-right-transition.scss';
     @import './zoom-transition.scss';
+    @import './fade-transition.scss';
 </style>
 <script type="text/javascript">
   /**
@@ -230,7 +231,8 @@
             // 利用iframe的onload事件刷新页面
             document.title = val
             let iframe = document.createElement('iframe')
-            iframe.src = 'static/img/favicon.ico'
+            // 空白图片
+            iframe.src = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
             iframe.style.visibility = 'hidden'
             iframe.style.width = '1px'
             iframe.style.height = '1px'

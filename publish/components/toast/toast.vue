@@ -16,13 +16,13 @@
         </transition>
     </div>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     @import "./toast";
     @import "./toast.ios";
     @import "./toast.md";
 </style>
 <script type="text/javascript">
-  import { hashChange } from '../../util/util'
+  import { urlChange } from '../../util/util'
   import { Button } from '../button'
   export default {
     props: {
@@ -182,7 +182,7 @@
     mounted () {
       if (this.dismissOnPageChange) {
         // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-        this.unreg = hashChange(this.dismissOnPageChangeHandler)
+        this.unreg = urlChange(this.dismissOnPageChangeHandler)
       }
     },
     components: {

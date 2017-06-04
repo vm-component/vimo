@@ -8,7 +8,7 @@
         </svg>
     </div>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     @import './spinner';
     @import './spinner.ios';
     @import './spinner.md';

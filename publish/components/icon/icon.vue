@@ -47,6 +47,9 @@
    *  <Icon name="home" activeName="star"></Icon>  --  设定激活的class图标
    * ```
    *
+   * ### 可使用的Class
+   * [small] - 小一版的icon
+   *
    * ### 如何引入
    * ```
    * // 引入

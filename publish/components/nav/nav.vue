@@ -11,7 +11,7 @@
         <div class="nav-decor"></div>
     </nav>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
 
     .ion-nav {
         .click-cover {
@@ -35,7 +35,7 @@
    *
    * 转场动画是使用css3的特性完成的, 也就是说Vimo不提供手势转场动画. 按照在props中的说明, 可提供这几类已写好的专场动画, 如果项目需要定制, 则特换自定义的动画即可, 动画定义在App组件的文件夹中.
    *
-   * @props {String} [pageTransition] - 转场动画的名称, 可以是这里的一种: ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+   * @props {String} [pageTransition] - 转场动画的名称, 可以是这里的一种: ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition/fade-transition
    * @props {Boolean} [showIndicatorWhenPageChange=true] - 页面切换是否显示Indicator
    *
    * */
@@ -44,7 +44,7 @@
     name: 'Nav',
     props: {
       // 转场动画名称
-      // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition
+      // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition/fade-transition
       pageTransition: {
         type: String,
         default () { return this.$config.get('pageTransition') }

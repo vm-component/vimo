@@ -1,6 +1,6 @@
 <template>
     <div class="ion-navbar toolbar"
-         :class="[modeClass,colorClass,{'statusbar-padding':statusbarPadding}]" v-if="!hideNavBar">
+         :class="[modeClass,colorClass,{'statusbar-padding':statusbarPadding}]" v-show="!hideNavBar">
         <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
         <!--show-back-button-->
         <Button @click="backButtonClickHandler" role="bar-button" class="back-button"

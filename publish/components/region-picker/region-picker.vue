@@ -70,7 +70,7 @@
    * */
   import Picker from 'better-picker'
   import regions from './regions.json'
-  import { hashChange, transitionEnd } from '../../util/util'
+  import { urlChange, transitionEnd } from '../../util/util'
   export default{
     name: 'RegionPicker',
     data () {
@@ -323,7 +323,7 @@
         this.init(this.selectedCity)
       }
       // 监听页面变化
-      this.unreg = hashChange(this.dismissOnPageChangeHandler)
+      this.unreg = urlChange(this.dismissOnPageChangeHandler)
     }
   }
 </script>
