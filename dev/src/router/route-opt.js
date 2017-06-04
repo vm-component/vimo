@@ -247,6 +247,20 @@ let routes = [
       require(['@/example/slide-box.vue'], resolve)
     }
   },
+  {
+    path: '/deeplink',
+    name: 'deeplink',
+    component (resolve) {
+      require(['@/example/deeplink/deeplink.vue'], resolve)
+    }
+  },
+  {
+    path: '/oia-page',
+    name: 'oiaPage',
+    component (resolve) {
+      require(['@/example/deeplink/oia-page.vue'], resolve)
+    }
+  },
   // ----  component/Form组件 ----
 
   {
