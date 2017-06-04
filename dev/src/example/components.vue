@@ -141,7 +141,11 @@
                         <span>滑动验证</span>
                         <Note slot="item-right">SlideBox</Note>
                     </Item>
-
+                    <Item detail-push :to="{name: 'deeplink'}">
+                        <Icon slot="item-left" name="key"></Icon>
+                        <span>跳转到App</span>
+                        <Note slot="item-right">Deeplink</Note>
+                    </Item>
                 </ItemGroup>
 
                 <!--List组件-->
