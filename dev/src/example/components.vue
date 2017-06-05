@@ -142,7 +142,7 @@
                         <Note slot="item-right">SlideBox</Note>
                     </Item>
                     <Item detail-push :to="{name: 'deeplink'}">
-                        <Icon slot="item-left" name="key"></Icon>
+                        <Icon slot="item-left" name="link"></Icon>
                         <span>跳转到App</span>
                         <Note slot="item-right">Deeplink</Note>
                     </Item>

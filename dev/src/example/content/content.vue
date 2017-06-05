@@ -19,7 +19,6 @@
                     另外, Content组件也支持JsScroll, 这部分使用的better-scroll插件. 原生滚动具有全套事件, 但是jsScroll则没有事件系统
                 </p>
             </div>
-
             <List>
                 <ListHeader>Character</ListHeader>
                 <Item detail-push :to="{name:'contentContext'}">文本</Item>
@@ -38,13 +37,13 @@
 <script type="text/javascript">
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-
   export default{
     data () {
       return {}
     },
     components: {
       List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
-    }
+    },
+    mounted () {}
   }
 </script>
