@@ -145,8 +145,8 @@
 
                         <h5 class="titleColor">已缓存配置</h5>
                         <Row v-for="(value,key) in cachedConfig" :key="key">
-                            <Column col-4><strong>{{key}}:</strong></Column>
-                            <Column col-8>
+                            <Column col-5><strong>{{key}}:</strong></Column>
+                            <Column col-7>
                                 {{value}}
                             </Column>
                         </Row>
@@ -494,7 +494,6 @@
   import JsScroll from './iscroll'
   import { Grid, Row, Column } from 'vimo/components/grid'
   import { Button } from 'vimo/components/button'
-  import { Toast } from 'vimo/components/toast'
   export default{
     name: 'LogBox',
     components: {Grid, Row, Column, Button},
