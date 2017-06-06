@@ -100,7 +100,7 @@
                     <Column col-8>
                         <div class="detailBox" v-for="key in thisKeysOfRegisterMethod"
                              v-if="thisKeysOfRegisterMethod.length > 0">
-                            <Row><span class="detailBox__title">function <strong>{{key}}</strong>()</span></Row>
+                            <Row><span class="detailBox__title"><strong>{{key}}</strong></span></Row>
                         </div>
                         <div class="detailBox" v-if="thisKeysOfRegisterMethod.length === 0">无</div>
                     </Column>

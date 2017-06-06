@@ -84,7 +84,6 @@
 
 import { defaults, isObject, removeArrayItem } from '../util/util'
 import { PLATFORM_DEFAULT_CONFIGS } from './platform-default-configs'
-
 class Platform {
   constructor () {
     // Ready的promise;
@@ -222,7 +221,7 @@ class Platform {
    * @private
    */
   beforeReady () {
-    this.triggerReady('No Platform Initialization Process!')
+    this.triggerReady('H5 Initialization Process!')
   }
 
   /**
@@ -300,7 +299,7 @@ class Platform {
   registerMethod (methodName, methodFunction) {
     if (!methodName) return this._rm
     if (this._rm[methodName]) {
-      console.warn(`'${methodName}' had been registered, please check the registerMethod() in platform-configs.js and the platform list is ${this._platforms}`)
+      console.warn(`[${methodName}] had been registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
     }
     this._rm[methodName] = methodFunction
   }
@@ -309,12 +308,13 @@ class Platform {
    * 执行当前平台的方法, 请参考上面的说明.
    * @param {string} methodName - 方法名称
    * @param {any} [any={}] - 根据对应的 registerMethod 传入正确的参数(function/object)
+   * @return {Promise}
    * */
   do (methodName, any = {}) {
     if (!this._rm[methodName]) {
-      console.warn(`${methodName} has not registered, please check the registerMethod() in platform-configs.js and the platform list is ${this._platforms}`)
+      console.warn(`[${methodName}] isn't registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
     } else {
-      this._rm[methodName](any)
+      return this._rm[methodName](any)
     }
   }
 

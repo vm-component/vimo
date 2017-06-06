@@ -236,14 +236,44 @@ export const PLATFORM_DEFAULT_CONFIGS = {
        * */
       let val
       const _this = this
-      let jsSDKUrl = this.settings['jsSDKUrl'] || 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
+      let jsSDKUrl = this.settings['jsSDKUrl']
       let splitArr = jsSDKUrl.split('//')
       if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
         splitArr[0] = 'https:'
       } else {
         splitArr[0] = 'http:'
       }
-      loadScript(splitArr.join('//'))
+
+      /**
+       * 在ready之前进行处理
+       * 执行用户定义的onBridgeReady钩子
+       * */
+      plt.beforeReady = () => {
+        loadScript(splitArr.join('//'), () => {
+          // document 准备好后才能启动监听
+          docReady(() => {
+            function beforeBridgeReady () {
+              // 解除绑定
+              if (document.removeEventListener) {
+                document.removeEventListener('WeixinJSBridgeReady', beforeBridgeReady)
+              }
+
+              // 执行自定义的bridge ready钩子
+              _this.bridgeReady(plt)
+              // 触发平台的统一ready事件
+              plt.triggerReady('Wechat Init Success!')
+            }
+
+            if (typeof window.WeixinJSBridge === 'undefined') {
+              if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', beforeBridgeReady, false)
+              }
+            } else {
+              beforeBridgeReady()
+            }
+          })
+        })
+      }
 
       /**
        * 微信的userAgent中包含了网络类型和当前语言
@@ -259,45 +289,11 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setLang(val[1].toString().toLowerCase(), true)
       }
-
-      /**
-       * 在ready之前进行处理
-       * 执行用户定义的onBridgeReady钩子
-       * */
-      plt.beforeReady = () => {
-        // document 准备好后才能启动监听
-        docReady(() => {
-          function beforeBridgeReady () {
-            // 解除绑定
-            if (document.removeEventListener) {
-              document.removeEventListener('WeixinJSBridgeReady', beforeBridgeReady)
-            } else if (document.detachEvent) {
-              document.detachEvent('WeixinJSBridgeReady', beforeBridgeReady)
-              document.detachEvent('onWeixinJSBridgeReady', beforeBridgeReady)
-            }
-
-            // 执行自定义的bridge ready钩子
-            _this.onBridgeReady(plt)
-
-            // 触发平台的统一ready事件
-            plt.triggerReady('wechat')
-          }
-
-          if (typeof window.WeixinJSBridge === 'undefined') {
-            if (document.addEventListener) {
-              document.addEventListener('WeixinJSBridgeReady', beforeBridgeReady, false)
-            } else if (document.attachEvent) {
-              document.attachEvent('WeixinJSBridgeReady', beforeBridgeReady)
-              document.attachEvent('onWeixinJSBridgeReady', beforeBridgeReady)
-            }
-          } else {
-            beforeBridgeReady()
-          }
-        })
-      }
     },
-    onBridgeReady (plt) {},
+    // 由业务完成部分
+    bridgeReady (plt) {},
     settings: {
+      jsSDKUrl: '//res.wx.qq.com/open/js/jweixin-1.0.0.js',
       hideNavBar: true
     },
     isMatch (plt) {
@@ -310,11 +306,52 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   alipay: {
     initialize (plt) {
       /**
+       * 加载JSSDK
+       * */
+      let val
+      const _this = this
+      let jsSDKUrl = this.settings['jsSDKUrl']
+      let splitArr = jsSDKUrl.split('//')
+      if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
+        splitArr[0] = 'https:'
+      } else {
+        splitArr[0] = 'http:'
+      }
+
+      /**
+       * 在ready之前进行处理
+       * 执行用户定义的onBridgeReady钩子
+       * */
+      plt.beforeReady = () => {
+        'use strict'
+        loadScript(splitArr.join('//'), () => {
+          docReady(() => {
+            function beforeBridgeReady () {
+              // 解除绑定
+              if (document.removeEventListener) {
+                document.removeEventListener('AlipayJSBridgeReady', beforeBridgeReady)
+              }
+              // 执行自定义的bridge ready钩子
+              _this.bridgeReady(plt)
+              // 触发平台的统一ready事件
+              plt.triggerReady('alipay Init Success!')
+            }
+            if (typeof window.AlipayJSBridge === 'undefined') {
+              if (document.addEventListener) {
+                document.addEventListener('AlipayJSBridgeReady', beforeBridgeReady, false)
+              }
+            } else {
+              beforeBridgeReady()
+            }
+          })
+        })
+      }
+
+      /**
        * 支付宝的userAgent中包含了网络类型和当前语言
        * AlipayDefined(nt:WIFI,ws:320|548|2.0)
        * Language/zh-Hans
        * */
-      let val
       // 获取网络类型
       val = plt.userAgent().match(/AlipayDefined\(nt:(\w+),/i)
       if (!!val && val.length > 0 && !!val[1]) {
@@ -327,13 +364,11 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setLang(val[1].toString().toLowerCase(), true)
       }
-
-      this.onBridgeReady(plt)
-      // 触发外层的ready
-      plt.triggerReady('alipay Init Success!')
     },
-    onBridgeReady (plt) {},
+    // 由业务完成部分
+    bridgeReady (plt) {},
     settings: {
+      jsSDKUrl: '//a.alipayobjects.com/g/h5-lib/alipayjsapi/3.0.2/alipayjsapi.min.js',
       hideNavBar: true
     },
     isMatch (plt) {
@@ -354,11 +389,11 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setLang(val[1].toString().toLowerCase(), true)
       }
-
-      this.onBridgeReady(plt)
+      this.bridgeReady(plt)
       plt.triggerReady('dingtalk Init Success!')
     },
-    onBridgeReady (plt) {},
+    // 由业务完成部分
+    bridgeReady (plt) {},
     settings: {
       hideNavBar: true
     },
@@ -378,11 +413,13 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         plt.setNetType(val[1].toString().toLowerCase())
       }
 
-      this.onBridgeReady(plt)
+      this.bridgeReady(plt)
       // 触发外层的ready
       plt.triggerReady('qq Init Success!')
     },
-    onBridgeReady (plt) {},
+
+    // 由业务完成部分
+    bridgeReady (plt) {},
     settings: {
       hideNavBar: true
     },
