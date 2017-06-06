@@ -102,12 +102,15 @@
 const HAS_CONSOLE = typeof window.console !== 'undefined'
 
 export default{
+  version: '0.0.1',
+  installed: false,
   /**
    * @param {object} Vue - Vue
    * @param {object} options - 参数
    * @param {boolean=true} options.needLogPage  - 是否为开启日志界面
    * */
   install (Vue, options = {}) {
+    if (this.installed) return
     let _ins = new Log(Vue, options)
     Vue.prototype.$log = _ins
 
@@ -153,6 +156,7 @@ export default{
     window.addEventListener('error', function (err) {
       _ins.error(normalizeError(err))
     })
+    this.installed = true
   }
 }
 
@@ -211,10 +215,6 @@ class Log {
    * 记录类型为log的日志
    * @param {any} msg - 传入的记录信息
    * @return {string} - 返回传入的msg
-   * @example
-   * ```js
-   *  this.$log.log('这个是打log测试');
-   * ```
    * */
   log (msg) {
     return this._recordTypeAssemble('log', msg)
@@ -224,10 +224,6 @@ class Log {
    * 记录类型为debug的日志
    * @param {any} msg - 传入的记录信息
    * @return {string} - 返回传入的msg
-   * @example
-   * ```js
-   *  this.$log.debug('这个是打debug测试');
-   * ```
    * */
   debug (msg) {
     return this._recordTypeAssemble('debug', msg)
@@ -237,10 +233,6 @@ class Log {
    * 记录类型为info的日志
    * @param {any} msg - 传入的记录信息
    * @return {string} - 返回传入的msg
-   * @example
-   * ```js
-   *  this.$log.debug('这个是打info测试');
-   * ```
    * */
   info (msg) {
     return this._recordTypeAssemble('info', msg)

@@ -42,16 +42,16 @@
     <meta name="format-detection" content="telephone=no email=no">
     <meta name="application-name" content="Vimo">
 
-
+    <script src="https://publicexprod.alipay.com/deliveraddress/selectAddress.js"></script>
     <!--测试deeplink的meta-->
     <!--<meta name="apple-itunes-app" content="app-id=432274380" data-react-helmet="true">-->
     <!--<meta name="apple-itunes-app" content="app-id=432274380, app-argument=zhihu://questions/34831949" data-react-helmet="true">-->
-    <!--<script>-->
-      <!--window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {-->
-        <!--var text = 'window.onerror:' + errorMessage + '-' + scriptURI + '-' + lineNumber + '-' + columnNumber + '-' + errorObj-->
-        <!--alert(text)-->
-      <!--}-->
-    <!--</script>-->
+    <script>
+      window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
+        var text = 'window.onerror:' + errorMessage + '-' + scriptURI + '-' + lineNumber + '-' + columnNumber + '-' + errorObj
+        alert(text)
+      }
+    </script>
     <!--<script>-->
     <!--(function(doc, win) {-->
     <!--var docEl = doc.documentElement,-->

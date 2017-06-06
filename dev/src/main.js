@@ -46,7 +46,7 @@ Vue.use(storage, {
 })
 
 Vue.use(log, {
-  needLogPage: false // 初始化是否显示log页面
+  needLogPage: true // 初始化是否显示log页面
 })
 
 /* eslint-disable no-new */
@@ -85,7 +85,8 @@ new Vue({
   template: '<App/>',
   created () {
     this.$platform.ready().then((data) => {
-      // console.debug(data)
+      'use strict'
+      console.log(data)
     })
   },
   components: {App}

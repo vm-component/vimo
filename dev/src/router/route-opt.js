@@ -88,7 +88,11 @@ let routes = [
     name: 'platform',
     component: require('@/example/platform.vue')
   },
-
+  {
+    path: '/platform-api',
+    name: 'platformApi',
+    component: require('@/example/platform-api.vue')
+  },
   {
     path: '/toolbar',
     name: 'toolbar',
