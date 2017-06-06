@@ -95,9 +95,6 @@
  * this.$log.getHistory
  * ```
  *
- *
- *
- *
  */
 const HAS_CONSOLE = typeof window.console !== 'undefined'
 

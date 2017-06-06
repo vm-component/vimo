@@ -1,5 +1,6 @@
 /**
  * Created by Hsiang on 2017/6/6.
+ * 在这里类似于wx等专属在window上的变量已可以使用
  */
 export function wechatBridge (plt) {
   // this.$platform.do('chooseImage',function(result){})

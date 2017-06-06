@@ -82,7 +82,7 @@
  *
  * */
 
-import { defaults, isObject, removeArrayItem } from '../util/util'
+import { defaults, isObject } from '../util/util'
 import { PLATFORM_DEFAULT_CONFIGS } from './platform-default-configs'
 class Platform {
   constructor () {
@@ -100,8 +100,8 @@ class Platform {
     this._bPlt = null // string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
     this._ua = null // string userAgent;
 
-    this._resizeTm = null // any setTimeout 定时过后执行_onResizes中的回调函数;
-    this._onResizes = [] // Array<Function> = [] resize时执行的回调列表;
+    // this._resizeTm = null // any setTimeout 定时过后执行_onResizes中的回调函数;
+    // this._onResizes = [] // Array<Function> = [] resize时执行的回调列表;
 
     this._default = null // string 如果rootNode不存则使用默认的配置
     this._platforms = [] // : string[] = []; 当前平台的key 例如: "mobile/ios/mobileweb"
@@ -411,89 +411,73 @@ class Platform {
    * @private
    */
   _calcDim () {
-    // we're caching window dimensions so that
-    // we're not forcing many layouts
-    // if _isPortrait is null then that means
-    // the dimensions needs to be looked up again
-    // this also has to cover an edge case that only
-    // happens on iOS 10 (not other versions of iOS)
-    // where window.innerWidth is always bigger than
-    // window.innerHeight when it is first measured,
-    // even when the device is in portrait but
-    // the second time it is measured it is correct.
-    // Hopefully this check will not be needed in the future
-    if (!this._isPortrait && window['innerWidth'] < window['innerHeight']) {
-      // we're keeping track of portrait and landscape dimensions
-      // separately because the virtual keyboard can really mess
-      // up accurate values when the keyboard is up
-      if (window.screen.width > 0 && window.screen.height > 0) {
-        if (window['innerWidth'] < window['innerHeight']) {
-          // the device is in portrait
-          if (this._pW <= window['innerWidth']) {
-            // console.debug('setting _isPortrait to true');
-            this._isPortrait = true
-            this._pW = window['innerWidth']
-          }
-          if (this._pH <= window['innerHeight']) {
-            // console.debug('setting _isPortrait to true');
-            this._isPortrait = true
-            this._pH = window['innerHeight']
-          }
-        } else {
-          if (this._lW > window['innerWidth']) {
-            // Special case: keyboard is open and device is in portrait
-            // console.debug('setting _isPortrait to true while keyboard is open and device is portrait');
-            this._isPortrait = true
-          }
-          // the device is in landscape
-          if (this._lW <= window['innerWidth']) {
-            // console.debug('setting _isPortrait to false');
-            this._isPortrait = false
-            this._lW = window['innerWidth']
-          }
-          if (this._lH <= window['innerHeight']) {
-            // console.debug('setting _isPortrait to false');
-            this._isPortrait = false
-            this._lH = window['innerHeight']
-          }
+    if (window.screen.width > 0 && window.screen.height > 0) {
+      if (window['innerWidth'] < window['innerHeight']) {
+        // the device is in portrait
+        if (this._pW <= window['innerWidth']) {
+          // console.debug('setting _isPortrait to true');
+          this._isPortrait = true
+          this._pW = window['innerWidth']
+        }
+        if (this._pH <= window['innerHeight']) {
+          // console.debug('setting _isPortrait to true');
+          this._isPortrait = true
+          this._pH = window['innerHeight']
+        }
+      } else {
+        if (this._lW > window['innerWidth']) {
+          // Special case: keyboard is open and device is in portrait
+          // console.debug('setting _isPortrait to true while keyboard is open and device is portrait');
+          this._isPortrait = true
+        }
+        // the device is in landscape
+        if (this._lW <= window['innerWidth']) {
+          // console.debug('setting _isPortrait to false');
+          this._isPortrait = false
+          this._lW = window['innerWidth']
+        }
+        if (this._lH <= window['innerHeight']) {
+          // console.debug('setting _isPortrait to false');
+          this._isPortrait = false
+          this._lH = window['innerHeight']
         }
       }
     }
   }
 
-  /**
-   * @private
-   */
-  windowResize () {
-    clearTimeout(this._resizeTm)
+  // /**
+  //  * @private
+  //  */
+  // windowResize () {
+  //   clearTimeout(this._resizeTm)
+  //
+  //   this._resizeTm = window.setTimeout(() => {
+  //     this._isPortrait = null
+  //     // 等待时间后执行resize的注册事件列表
+  //     for (let i = 0; i < this._onResizes.length; i++) {
+  //       try {
+  //         !!this._onResizes[i] && typeof this._onResizes[i] === 'function' && this._onResizes[i]()
+  //       } catch (e) {
+  //         console.error(e)
+  //       }
+  //     }
+  //   }, 200)
+  // }
 
-    this._resizeTm = setTimeout(() => {
-      this._isPortrait = null
-      // 等待时间后执行resize的注册事件列表
-      for (let i = 0; i < this._onResizes.length; i++) {
-        try {
-          !!this._onResizes[i] && typeof this._onResizes[i] === 'function' && this._onResizes[i]()
-        } catch (e) {
-          console.error(e)
-        }
-      }
-    }, 200)
-  }
-
-  /**
-   * 注册resize事件的回调函数,存入_onResizes中
-   * @param {Function} cb
-   * @return {Function}
-   * @private
-   */
-  onResize (cb) {
-    const self = this
-    self._onResizes.push(cb)
-
-    return function () {
-      removeArrayItem(self._onResizes, cb)
-    }
-  }
+  // /**
+  //  * 注册resize事件的回调函数,存入_onResizes中
+  //  * @param {Function} cb
+  //  * @return {Function}
+  //  * @private
+  //  */
+  // onResize (cb) {
+  // const self = this
+  // self._onResizes.push(cb)
+  //
+  // return function () {
+  //   removeArrayItem(self._onResizes, cb)
+  // }
+  // }
 
   // Platform Registry
   // **********************************************
@@ -597,7 +581,7 @@ class Platform {
    * @private
    */
   isPlatformMatch (queryStringName, userAgentAtLeastHas, userAgentMustNotHave = []) {
-    // platform可以取值的参数: ios/android/iphone/ipad/windows
+    // platform可以取值的参数: ios/android/iphone/
     const queryValue = this._qp.get('platform')
     if (queryValue) {
       return this.testQuery(queryValue, queryStringName)

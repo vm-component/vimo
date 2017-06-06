@@ -2,8 +2,9 @@
     <section class="logBox" :class="{'active':isActive}">
         <article ref="listBox" class="logBox__article">
             <section class="recordList">
-                <!--each start-->
-                <div class="recordItem" v-for="item in reComputeRecordList" :class="[setTypeClass(item.type)]">
+                <!--console each start-->
+                <div class="recordItem" v-for="item in recordList" :class="[setTypeClass(item.type)]"
+                     v-if="selectType==='console'">
                     <div class="recordItem__count">
                         <span v-if="parseInt(item.count)>99">99+</span>
                         <span v-else>{{item.count}}</span>
@@ -30,32 +31,152 @@
                         </div>
                     </div>
                 </div>
-                <!--each end-->
+                <!--console each end-->
+
+                <!-- vimo info start-->
+                <div class="recordItem" v-if="selectType==='vimo' && platform">
+                    <Grid>
+                        <!-- platform -->
+                        <Row>
+                            <Column col-4><strong>isReady:</strong></Column>
+                            <Column col-8 v-if="isPlatformReady">
+                                <strong class="isReady">TRUE</strong>
+                            </Column>
+                            <Column col-8 v-else>
+                                <strong class="isNotReady">FALSE</strong>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column col-4><strong>设备平台:</strong></Column>
+                            <Column col-8>{{platform.navigatorPlatform()}}</Column>
+                        </Row>
+                        <Row>
+                            <Column col-4><strong>文字方向:</strong></Column>
+                            <Column col-8>{{platform.dir()}}</Column>
+                        </Row>
+                        <Row>
+                            <Column col-4><strong>设备语言:</strong></Column>
+                            <Column col-8>{{platform.lang()}}</Column>
+                        </Row>
+                        <Row>
+                            <Column col-4><strong>网路类型:</strong></Column>
+                            <Column col-8>{{platform.netType() || '未检测到'}}</Column>
+                        </Row>
+                        <Row>
+                            <Column col-4><strong>屏幕方向:</strong></Column>
+                            <Column col-8>
+                                {{platform.isPortrait() === null ? '未检测到' : platform.isPortrait() === true ? '竖屏' : '横屏'}}
+                            </Column>
+                        </Row>
+
+                        <!--屏幕尺寸-->
+                        <Row v-if="platform._isPortrait !== null">
+                            <Column col-4><strong>屏幕尺寸:</strong></Column>
+                            <Column col-8>
+                                <Row>高度: {{platform.height()}}px</Row>
+                                <Row>宽度: {{platform.width()}}px</Row>
+                            </Column>
+                        </Row>
+
+                        <Row>
+                            <Column col-4><strong>平台等级:</strong></Column>
+                            <Column col-8>
+                                <strong>{{platform.platforms().join(' -> ')}}</strong>
+                            </Column>
+                        </Row>
+
+                        <Row>
+                            <Column col-4><strong>地址栏参数:</strong></Column>
+
+                            <Column col-8 v-if="JSON.stringify(platform._qp.data) !== '{}'">
+                                <div class="detailBox" v-for="(value,key) in platform._qp.data">
+                                    <Row><span class="detailBox__title">{{key}}: </span><span
+                                            class="detailBox__value">{{value}}</span></Row>
+                                </div>
+                            </Column>
+                            <Column col-8 v-else>
+                                <Row>无参数</Row>
+                            </Column>
+                        </Row>
+
+                        <Row>
+                            <Column col-4><strong>UserAgent:</strong></Column>
+                            <Column col-8>{{platform.userAgent()}}</Column>
+                        </Row>
+                        <Row>
+                            <Column col-4><strong>平台版本:</strong></Column>
+                            <Column col-8>
+                                <div class="detailBox" v-for="(value,key) in platform.versions()" v-if="!!value">
+                                    <Row><span class="detailBox__title">{{key}}: </span><span
+                                            class="detailBox__value">{{value.str}}</span>
+                                    </Row>
+                                </div>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column col-4><strong>CSS属性:</strong></Column>
+                            <Column col-8>
+                                <div class="detailBox" v-for="(value,key) in platform.css">
+                                    <Row><span class="detailBox__title"><strong>{{key}}:</strong></span></Row>
+                                    <Row><span class="detailBox__value">{{value}}</span></Row>
+                                </div>
+                            </Column>
+                        </Row>
+
+                        <Row>
+                            <Column col-4><strong>平台方法:</strong></Column>
+                            <Column col-8>
+                                <div class="detailBox" v-for="key in thisKeysOfRegisterMethod"
+                                     v-if="thisKeysOfRegisterMethod.length > 0">
+                                    <Row><span class="detailBox__title"><strong>{{key}}</strong></span></Row>
+                                </div>
+                                <div class="detailBox" v-if="thisKeysOfRegisterMethod.length === 0">无</div>
+                            </Column>
+                        </Row>
+
+                        <h5>当前用户配置</h5>
+                        <Row v-for="(value,key) in settingConfig" :key="key">
+                            <Column col-4><strong>{{key}}:</strong></Column>
+                            <Column col-8>
+                                {{value}}
+                            </Column>
+                        </Row>
+
+                        <h5>已缓存配置</h5>
+                        <Row v-for="(value,key) in cachedConfig" :key="key">
+                            <Column col-4><strong>{{key}}:</strong></Column>
+                            <Column col-8>
+                                {{value}}
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Button block @click="refreshVimoData">Refresh</Button>
+                            </Column>
+                        </Row>
+                    </Grid>
+                </div>
+
+                <!-- platform info end-->
+
             </section>
         </article>
         <footer class="logBox__footer">
             <div class="logBox__footer--buttons left">
-                <button :class="{'active':selectType==='log'}" class="log" @click="segmentClick('log')">LOG</button>
-                <button :class="{'active':selectType==='info'}" class="info" @click="segmentClick('info')">info</button>
-                <button :class="{'active':selectType==='debug'}" class="debug" @click="segmentClick('debug')">DEBUG
+                <Button>123</Button>
+                <button :class="{'active':selectType==='console'}" @click="segmentClick('console')" class="log">
+                    CONSOLE
                 </button>
-                <button :class="{'active':selectType==='warn'}" class="warn" @click="segmentClick('warn')">WARN</button>
-                <button :class="{'active':selectType==='error'}" class="error" @click="segmentClick('error')">ERROR
+                <button :class="{'active':selectType==='vimo'}" @click="segmentClick('vimo')" class="debug">
+                    VIMO
                 </button>
-                <button :class="{'active':selectType==='assert'}" class="assert" @click="segmentClick('assert')">
-                    ASSERT
-                </button>
-                <!--<button class="clear" @click="clear()">-->
-                    <!--CLEAR-->
-                <!--</button>-->
             </div>
             <div class="logBox__footer--buttons right">
                 <button class="close" @click="close()">close</button>
             </div>
         </footer>
         <aside class="logBox__aside" @click="open()">
-            <span>open</span>
-            <span>logs</span>
+            <span>OPEN</span>
         </aside>
     </section>
 </template>
@@ -96,6 +217,9 @@
             align-items: center;
             padding: 0 2px;
             color: #fff;
+            z-index: 9;
+
+            background: #333;
             .logBox__footer--buttons {
                 height: 80%;
                 display: flex;
@@ -110,7 +234,7 @@
                     border: 0;
                     outline: none;
                     color: #fff;
-                    padding: 0 2px;
+                    padding: 0 10px;
                     box-sizing: border-box;
                     transition: all ease 200ms;
                     font-size: 12px;
@@ -204,13 +328,15 @@
         }
         .logBox__article {
             flex: 1;
-            overflow: scroll;
+            overflow: hidden;
             width: 100%;
-            -webkit-overflow-scrolling: touch;
+            /*-webkit-overflow-scrolling: touch;*/
             .recordList {
-                padding-top: 5px;
+                padding: 0 5px;
+                position: absolute;
+                top: 0;
                 .recordItem {
-                    padding: 5px;
+                    padding: 5px 0;
                     display: flex;
                     justify-content: flex-start;
                     align-items: flex-start;
@@ -345,27 +471,41 @@
             cursor: pointer;
         }
     }
+
+    .isReady {
+        color: $info;
+    }
+
+    .isNotReady {
+        color: $warn;
+    }
 </style>
 <script type="text/javascript">
+  import JsScroll from './iscroll'
+  import { Grid, Row, Column } from 'vimo/components/grid'
+  import { Button } from 'vimo/components/button'
+  import { Toast } from 'vimo/components/toast'
   export default{
     name: 'LogBox',
+    components: {Grid, Row, Column, Button},
     data () {
       return {
+        jsScrollInstance: null,         // js滚动的实例，iscroll实例
+        thisKeysOfRegisterMethod: [],   // 已注册的方法列表
+        platform: null,                 // platform信息
+        config: null,                   // config信息
+        isPlatformReady: false,              // 平台是否初始化完毕
+        cachedConfig: [],
+        settingConfig: [],
+
         isActive: false, // 是否打开
-        selectType: 'all', // 默认选中全部
-        listBoxElement: null, // 列表盒子的dom
+        selectType: 'console', // 默认选中全部
         recordList: []
       }
     },
     computed: {
-      reComputeRecordList () {
-        return this.recordList.filter((item) => {
-          this.scrollBottom()
-          if (this.selectType === 'all') {
-            return true
-          }
-          return item.type === this.selectType.toLowerCase()
-        })
+      listBoxElement () {
+        return this.$refs.listBox
       }
     },
     methods: {
@@ -375,6 +515,7 @@
        * */
       open () {
         this.isActive = true
+        this.refresh()
       },
 
       /**
@@ -386,15 +527,30 @@
       },
 
       /**
+       * 刷新iscroll
+       * @private
+       * */
+      refresh () {
+        this.$nextTick(() => {
+          this.jsScrollInstance.refresh()
+        })
+      },
+
+      /**
        * @private
        * */
       setRecordList (list) {
         this.recordList = list
+        this.refresh()
+        if (this.selectType === 'console') {
+          this.scrollToBottom()
+        }
       },
 
-//      clear () {
-//        this.recordList = []
-//      },
+      clear () {
+        this.recordList = []
+        this.refresh()
+      },
 
       /**
        * @private
@@ -402,14 +558,14 @@
        * @param {string} type - all表示全部
        * */
       segmentClick (type) {
-        type = type.toString().toLowerCase()
-        if (type && this.selectType !== type) {
-          this.selectType = type
+        this.selectType = type.toString().toLowerCase()
+        this.refresh()
+        if (this.selectType === 'console') {
+          this.scrollToBottom()
         } else {
-          this.selectType = 'all'
+          this.scrollToTop()
         }
       },
-
 
       /**
        * @private
@@ -426,20 +582,71 @@
 
       /**
        * @private
-       * 滚动到底部, 不需要动画
+       * 滚动到底部
        * 执行需要等待DOM更新为完毕
        * */
-      scrollBottom () {
+      scrollToBottom () {
         this.$nextTick(() => {
-          if (this.listBoxElement) {
-            this.listBoxElement.scrollTop = this.listBoxElement.scrollHeight
-          }
+          this.jsScrollInstance.scrollTo(0, this.jsScrollInstance.wrapperHeight - this.jsScrollInstance.scrollerHeight, 300)
         })
+      },
+
+      /**
+       * @private
+       * 滚动到底部
+       * 执行需要等待DOM更新为完毕
+       * */
+      scrollToTop () {
+        this.$nextTick(() => {
+          this.jsScrollInstance.scrollTo(0, 0, 300)
+        })
+      },
+
+      initJsScroll () {
+        // js滚动
+        this.jsScrollInstance = new JsScroll(this.listBoxElement, {
+          bounce: true,
+          bindToWrapper: true,
+          mouseWheel: true,
+          scrollbars: false
+        })
+      },
+      refreshVimoData () {
+        this.getVimoData()
+        alert('更新完毕')
+      },
+      getVimoData () {
+        // 等待vimo初始化
+        const init = () => {
+          if (document.removeEventListener) {
+            document.removeEventListener('VimoReady', init)
+          }
+
+          window.VM && window.VM.platform.ready().then(() => {
+            this.isPlatformReady = true
+          })
+
+          this.platform = window.VM.platform
+
+          this.cachedConfig = window.VM.config._c
+          this.settingConfig = window.VM.config._s
+
+          this.thisKeysOfRegisterMethod = Object.keys(window.VM.platform.registerMethod())
+          this.refresh()
+        }
+
+        if (typeof window.VM === 'undefined') {
+          if (document.addEventListener) {
+            document.addEventListener('VimoReady', init, false)
+          }
+        } else {
+          init()
+        }
       }
     },
     mounted () {
-      // 获取滚动的box
-      this.listBoxElement = this.$refs.listBox
+      this.initJsScroll()
+      this.getVimoData()
     }
   }
   // Date Format

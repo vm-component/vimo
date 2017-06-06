@@ -51,6 +51,12 @@ export default {
 
     // add logo
     addLogo(VERSION, Vue.version)
+
+    // ready event for VimoReady
+    var ev = document.createEvent('HTMLEvents');
+    ev.initEvent('VimoReady', false, false);
+    document.dispatchEvent(ev)
+
     this.installed = true
   }
 }
