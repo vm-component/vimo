@@ -246,7 +246,7 @@
       },
       mode: {
         type: String,
-        default () { return this.$config.get('mode', 'ios') || 'ios' }
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
       dismissOnPageChange: {
         type: Boolean,

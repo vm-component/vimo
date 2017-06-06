@@ -84,16 +84,16 @@
     data () {
       return {
         hideBb: false,
-        bbIcon: this.$config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
-        backText: this.$config.get('backButtonText', 'Back') || 'Back',
-        hideNavBar: this.$config.getBoolean('hideNavBar', false),
-        statusbarPadding: this.$config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
+        bbIcon: this.$config && this.$config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
+        backText: this.$config && this.$config.get('backButtonText', 'Back') || 'Back',
+        hideNavBar: this.$config && this.$config.getBoolean('hideNavBar', false),
+        statusbarPadding: this.$config && this.$config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
       }
     },
     props: {
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark

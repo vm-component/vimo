@@ -69,7 +69,7 @@
       // mode 按钮平台 ios/window/android
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
 
       // name 风格
@@ -134,7 +134,7 @@
             } else if (this.mode === 'wp') {
               name = 'circles'
             } else {
-              name = this.$config.get('spinner', 'ios')
+              name = this.$config && this.$config.get('spinner', 'ios')
             }
           }
           const spinner = SPINNERS[name]

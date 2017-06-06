@@ -100,7 +100,7 @@
     name: 'Toolbar',
     data () {
       return {
-        statusbarPadding: this.$config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
+        statusbarPadding: this.$config && this.$config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
       }
     },
     props: {
@@ -109,7 +109,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark

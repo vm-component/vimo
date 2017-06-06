@@ -37,6 +37,7 @@
                 <div class="recordItem" v-if="selectType==='vimo' && platform">
                     <Grid>
                         <!-- platform -->
+                        <h5 class="titleColor">当前平台信息</h5>
                         <Row>
                             <Column col-4><strong>isReady:</strong></Column>
                             <Column col-8 v-if="isPlatformReady">
@@ -134,7 +135,7 @@
                             </Column>
                         </Row>
 
-                        <h5>当前用户配置</h5>
+                        <h5 class="titleColor">当前用户配置</h5>
                         <Row v-for="(value,key) in settingConfig" :key="key">
                             <Column col-4><strong>{{key}}:</strong></Column>
                             <Column col-8>
@@ -142,7 +143,7 @@
                             </Column>
                         </Row>
 
-                        <h5>已缓存配置</h5>
+                        <h5 class="titleColor">已缓存配置</h5>
                         <Row v-for="(value,key) in cachedConfig" :key="key">
                             <Column col-4><strong>{{key}}:</strong></Column>
                             <Column col-8>
@@ -158,12 +159,10 @@
                 </div>
 
                 <!-- platform info end-->
-
             </section>
         </article>
         <footer class="logBox__footer">
             <div class="logBox__footer--buttons left">
-                <Button>123</Button>
                 <button :class="{'active':selectType==='console'}" @click="segmentClick('console')" class="log">
                     CONSOLE
                 </button>
@@ -479,6 +478,17 @@
     .isNotReady {
         color: $warn;
     }
+
+    .titleColor {
+        color: $debug;
+    }
+
+    .button-md,
+    .button-ios {
+        background-color: $debug;
+    }
+
+
 </style>
 <script type="text/javascript">
   import JsScroll from './iscroll'

@@ -50,7 +50,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark

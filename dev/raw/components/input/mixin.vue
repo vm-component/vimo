@@ -191,7 +191,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
 
       placeholder: [String],
@@ -265,7 +265,7 @@
        * @private
        * */
       getVerifyResult (value, type = 'text') {
-        const regexps = this.$config.get('regexps')
+        const regexps = this.$config && this.$config.get('regexps')
 
         if (!value) {
           console.debug('当前没有值, 验证跳过, 返回true!')

@@ -161,7 +161,7 @@
       ev: [Object, MouseEvent], // 点击元素的事件
       mode: {
         type: String,
-        default () { return this.$config.get('mode') }
+        default () { return this.$config && this.$config.get('mode') }
       },
       cssClass: String,
       showBackdrop: {

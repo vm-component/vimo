@@ -99,12 +99,12 @@
       color: [String],
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
       // tab下面是否显示选中bar
       tabsHighlight: {
         type: Boolean,
-        default () { return this.$config.getBoolean('tabsHighlight', false) }
+        default () { return this.$config && this.$config.getBoolean('tabsHighlight', false) }
       },
       // tabbar的样式: icon和title的放置位置
       // 可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.

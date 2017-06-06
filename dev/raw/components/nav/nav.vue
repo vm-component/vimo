@@ -47,12 +47,12 @@
       // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition/fade-transition
       pageTransition: {
         type: String,
-        default () { return this.$config.get('pageTransition') }
+        default () { return this.$config && this.$config.get('pageTransition') }
       },
       // 转场是否开启Indicator
       showIndicatorWhenPageChange: {
         type: Boolean,
-        default () { return this.$config.getBoolean('showIndicatorWhenPageChange') }
+        default () { return this.$config && this.$config.getBoolean('showIndicatorWhenPageChange') }
       }
     },
     data () {

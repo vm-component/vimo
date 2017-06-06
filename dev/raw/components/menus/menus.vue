@@ -90,7 +90,7 @@
       type: {
         type: String,
         default () {
-          return this.$config.get('menuType', 'overlay')
+          return this.$config && this.$config.get('menuType', 'overlay')
         }
       },
       /**

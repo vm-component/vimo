@@ -63,7 +63,7 @@
     },
     data () {
       return {
-        disHover: this.$config.getBoolean('hoverCSS', false),
+        disHover: this.$config && this.$config.getBoolean('hoverCSS', false),
         index: ++_tabId,
         isActive: false // 这个值具有滞后性, 只代表当前的页面的状态, 不能用于其他
       }

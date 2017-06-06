@@ -128,7 +128,7 @@
         validator (value) {
           return isBoolean(value) || (isString(value) && (value === 'true' || value === 'false'))
         },
-        default () { return this.$config.getBoolean('scrollAssist', false) }
+        default () { return this.$config && this.$config.getBoolean('scrollAssist', false) }
       },
       fullscreen: {
         type: Boolean,
@@ -136,7 +136,7 @@
       },
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     data () {
@@ -158,7 +158,7 @@
         footerBarHeight: 0,
 
         // 是否有statusbar的padding, 高度固定为20px
-        statusbarPadding: this.$config.getBoolean('statusbarPadding', false),
+        statusbarPadding: this.$config && this.$config.getBoolean('statusbarPadding', false),
 
         _scroll: null,  // 滚动的实例
         _cTop: 0,       // content top
@@ -557,10 +557,10 @@
     },
     created () {
       // 页面进入前完成非DOM操作部分
-      this.statusbarPadding = this.$config.getBoolean('statusbarPadding', false)
-      this._imgReqBfr = this.$config.getNumber('imgRequestBuffer', 1400)
-      this._imgRndBfr = this.$config.getNumber('imgRenderBuffer', 600)
-      this._imgVelMax = this.$config.getNumber('imgVelocityMax', 3)
+      this.statusbarPadding = this.$config && this.$config.getBoolean('statusbarPadding', false)
+      this._imgReqBfr = this.$config && this.$config.getNumber('imgRequestBuffer', 1400)
+      this._imgRndBfr = this.$config && this.$config.getNumber('imgRenderBuffer', 600)
+      this._imgVelMax = this.$config && this.$config.getNumber('imgVelocityMax', 3)
       this._scroll = new ScrollView()
       this._imgs = []
     },

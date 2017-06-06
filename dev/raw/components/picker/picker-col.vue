@@ -35,8 +35,8 @@
     data () {
       return {
         isInit: false,
-        rotateFactor: this.$config.getNumber('pickerRotateFactor', 0),
-        scaleFactor: this.$config.getNumber('pickerScaleFactor', 1),
+        rotateFactor: this.$config && this.$config.getNumber('pickerRotateFactor', 0),
+        scaleFactor: this.$config && this.$config.getNumber('pickerScaleFactor', 1),
         pickerComponent: null,          // 父组件 Picker 实例
 
         y: 0,

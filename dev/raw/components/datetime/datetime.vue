@@ -152,7 +152,7 @@
 
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     watch: {
@@ -521,7 +521,7 @@
       // if neither were provided then it will use default English names
       const NAMES = ['monthNames', 'monthShortNames', 'dayNames', 'dayShortNames']
       NAMES.forEach(type => {
-        (this).locale[type] = convertToArrayOfStrings(isPresent((this)[type]) ? (this)[type] : this.$config.get(type), type)
+        (this).locale[type] = convertToArrayOfStrings(isPresent((this)[type]) ? (this)[type] : this.$config && this.$config.get(type), type)
       })
 
       // update how the datetime value is displayed as formatted text

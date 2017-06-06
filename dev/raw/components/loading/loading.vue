@@ -112,7 +112,7 @@
     props: {
       spinner: {
         type: String,
-        default () { return this.$config.get('spinner', 'ios') || 'ios' }
+        default () { return this.$config && this.$config.get('spinner', 'ios') || 'ios' }
       },
       content: [String],
       cssClass: [String],
@@ -127,7 +127,7 @@
       },
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     data () {
