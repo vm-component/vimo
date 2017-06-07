@@ -26,11 +26,13 @@ export default {
   version: VERSION,
   install (Vue, options = {}) {
     if (this.installed) return
+    const eventBus = new Vue()
     window.VM = {
-      version: VERSION
+      version: VERSION,
+      eventBus: eventBus
     }
     // 全局事件总线（各个组件共用）中央事件总线
-    Vue.prototype.$eventBus = new Vue()
+    Vue.prototype.$eventBus = eventBus
 
     // init base (config/platform/history)
     const platform = setupPlatform(options.pltConf)
@@ -53,8 +55,8 @@ export default {
     addLogo(VERSION, Vue.version)
 
     // ready event for VimoReady
-    var ev = document.createEvent('HTMLEvents');
-    ev.initEvent('VimoReady', false, false);
+    var ev = document.createEvent('HTMLEvents')
+    ev.initEvent('VimoReady', false, false)
     document.dispatchEvent(ev)
 
     this.installed = true

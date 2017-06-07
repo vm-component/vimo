@@ -1,7 +1,10 @@
 <template>
     <div class="ion-navbar toolbar"
-         :class="[modeClass,colorClass,{'statusbar-padding':statusbarPadding}]" v-show="!hideNavBar">
-        <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
+         :class="[modeClass,colorClass,{'statusbar-padding':statusbarPadding}]"
+         v-show="!hideNavBar">
+        <div class="toolbar-background"
+             :style="{backgroundColor:backgroundColor,borderBottomColor:borderBottomColor}"
+             :class="[toolbarBackgroundClass]"></div>
         <!--show-back-button-->
         <Button @click="backButtonClickHandler" role="bar-button" class="back-button"
                 :class="[backButtonClass,{'show-back-button':!hideBackButton}]" v-if="!hideBb">
@@ -83,6 +86,9 @@
     name: 'Navbar',
     data () {
       return {
+        backgroundColor: null,
+        borderBottomColor: null,
+
         hideBb: false,
         bbIcon: this.$config && this.$config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
         backText: this.$config && this.$config.get('backButtonText', 'Back') || 'Back',
@@ -127,13 +133,37 @@
       toolbarContentClass () {
         return `toolbar-content-${this.mode}`
       }
-
     },
     methods: {
       backButtonClickHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
         window.history.back()
+      },
+      setBackgroundColor (color) {
+        this.backgroundColor = color
+        if (this.$platform.is('alipay')) {
+          window.ap && window.ap.setNavigationBar({
+            backgroundColor: color
+          })
+        }
+      },
+      setBorderBottomColor (color) {
+        this.borderBottomColor = color
+        if (this.$platform.is('alipay')) {
+          window.ap && window.ap.setNavigationBar({
+            borderBottomColor: color
+          })
+        }
+      },
+      reset () {
+        this.backgroundColor = null
+        this.borderBottomColor = null
+        if (this.$platform.is('alipay')) {
+          window.ap && window.ap.setNavigationBar({
+            reset: true
+          })
+        }
       }
     },
     created () {

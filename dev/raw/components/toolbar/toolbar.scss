@@ -48,16 +48,19 @@
   align-items: center;
 
   transform: translateZ(0);
+
+  justify-content: flex-start;
 }
 
 .toolbar-title {
-  display: block;
   overflow: hidden;
-
   width: 100%;
-
   text-overflow: ellipsis;
   white-space: nowrap;
+  img {
+    vertical-align: middle;
+    max-width: 234px;
+  }
 }
 
 // toolbar-buttons.vue

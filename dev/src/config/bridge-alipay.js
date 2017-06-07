@@ -108,4 +108,19 @@ export function alipayBridge (plt) {
       resolve()
     })
   })
+
+  /**
+   * 导航栏部分
+   * */
+  // 监听顶部点击
+  window.ap.onTitleClick(() => {
+    plt.emit('titleClick')
+  })
+
+  // 页面切换就重置导航栏的修改样式
+  plt.on('onRouteChangeBefore', () => {
+    window.ap.setNavigationBar({
+      reset: true
+    })
+  })
 }

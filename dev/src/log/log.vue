@@ -334,6 +334,8 @@
                 padding: 0 5px;
                 position: absolute;
                 top: 0;
+                width: 100%;
+                overflow: hidden;
                 .recordItem {
                     padding: 5px 0;
                     display: flex;
@@ -433,6 +435,8 @@
                         }
                         .recordItem__info--message {
                             font-size: 12px;
+                            white-space: pre-wrap;
+                            overflow: hidden;
                             .name {
                                 color: #fff;
                                 text-transform: capitalize;

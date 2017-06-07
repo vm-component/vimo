@@ -128,6 +128,31 @@ class Platform {
       transformOrigin: null,
       animationDelay: null
     }
+
+    /**
+     * @function on
+     * @description
+     * 事件监听，继承Vue的事件接口
+     * */
+    this.on = window.VM.eventBus.$on.bind(window.VM.eventBus)
+    /**
+     * @function once
+     * @description
+     * 事件监听一次，继承Vue的事件接口
+     * */
+    this.once = window.VM.eventBus.$once.bind(window.VM.eventBus)
+    /**
+     * @function emit
+     * @description
+     * 事件发射，继承Vue的事件接口
+     * */
+    this.emit = window.VM.eventBus.$emit.bind(window.VM.eventBus)
+    /**
+     * @function off
+     * @description
+     * 事件解绑，继承Vue的事件接口
+     * */
+    this.off = window.VM.eventBus.$off.bind(window.VM.eventBus)
   }
 
   // Methods
@@ -291,6 +316,9 @@ class Platform {
     return this._nt
   }
 
+  // 平台方法及事件注册函数
+  // **********************************************
+
   /**
    * 注册当前平台的方法, 请参考上面的说明.
    * @param {string} methodName - 方法名称
@@ -310,7 +338,7 @@ class Platform {
    * @param {any} [any={}] - 根据对应的 registerMethod 传入正确的参数(function/object)
    * @return {Promise}
    * */
-  do (methodName, any = {}) {
+  do (methodName, any = {}, context = this) {
     if (!this._rm[methodName]) {
       console.warn(`[${methodName}] isn't registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
     } else {

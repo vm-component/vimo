@@ -9,7 +9,7 @@
             <Scroll :probeType="3" ref="scroll" class="scrollBox">
                 <List>
                     <ItemGroup v-for="(classify,index) in cityList" :key="index">
-                        <ItemDivider color="light" class="itemGroup" :id="classify.name | getClassifyId">
+                        <ItemDivider sticky color="light" class="itemGroup" :id="classify.name | getClassifyId">
                             {{classify.name}}
                         </ItemDivider>
                         <Item v-for="city in classify.cities" :key="city.cityid">{{city.name}}</Item>
@@ -18,14 +18,8 @@
             </Scroll>
             <div slot="fixedTop" class="shortcut" ref="shortcut"
                  @touchstart="onTouchShortcut"
-                 @touchend="onTouchEndShortcut"
                  @touchmove="onTouchShortcut">
                 <div class="shortcut__item" :data-id="item" v-for="item in shortcutList">{{item.name}}</div>
-            </div>
-            <div slot="fixedTop" class="centered" :class="{'show':(isTouching && selectedId)}">
-                <div class="centered__inner">
-                    <span>{{selectedId}}</span>
-                </div>
             </div>
         </Content>
     </Page>
@@ -44,37 +38,6 @@
 
     .itemGroup {
         font-size: 14px;
-    }
-
-    .centered {
-        top: 50%;
-        left: 50%;
-        background: red;
-        height: 0;
-        width: 0;
-        .centered__inner {
-            width: 60px;
-            height: 60px;
-            margin-left: -30px;
-            margin-top: -60px;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            visibility: hidden;
-        }
-    }
-
-    .centered.show {
-        .centered__inner {
-            opacity: 1;
-            visibility: visible;
-        }
     }
 
     .shortcut {
@@ -118,8 +81,8 @@
     name: 'cityList',
     data () {
       return {
-        isTouching: false,      // 正在touching shortcut
-        selectedId: null,       // 当前选择的id
+//        isTouching: false,      // 正在touching shortcut
+//        selectedId: null,       // 当前选择的id
         enableJsScroll: false,  // scroll引擎
         shortcutMatrix: null,   // shortcutElement的尺寸矩阵
         cityList: CITY_LIST,    // 数据源
@@ -150,19 +113,10 @@
         ev.preventDefault()
         ev.stopPropagation()
 
-        this.isTouching = true
+//        this.isTouching = true
         let index = this.getSelectedIndex(ev)
-        this.selectedId = this.shortcutList[index].name
+//        this.selectedId = this.shortcutList[index].name
         this.scrollComponent.jsScrollInstance.scrollTo(0, this.shortcutList[index].top * -1, 0)
-      },
-
-      /**
-       * 触摸停止
-       * */
-      onTouchEndShortcut (ev) {
-        ev.preventDefault()
-        ev.stopPropagation()
-        this.isTouching = false
       },
 
       /**

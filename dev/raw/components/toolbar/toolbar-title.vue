@@ -1,7 +1,9 @@
 <template>
     <div class="ion-title title" :class="[titleClass]">
-        <div class="toolbar-title" :class="[toolbarTitleClass]">
-            <span>{{titleInner}}</span>
+        <div class="toolbar-title"
+             :class="[toolbarTitleClass]"
+             :style="{color:titleColor}"
+             @click="titleClick" v-html="titleInner">
         </div>
     </div>
 </template>
@@ -66,8 +68,10 @@
     name: 'Title',
     data () {
       return {
+        titleColor: null,
         titleInner: this.title,
-        isInit: false
+        isInit: false,
+        isTitleInNavbar: false // 这个title组件在navbar中
       }
     },
     props: {
@@ -137,14 +141,54 @@
        * @function setTitle
        * @description
        * 修改Header的title
-       * @param {String} title - title
+       * @param {String|Object} title - title
+       * @param {String|Object} title.title - title
+       * @param {String|Object} title.image - image
        * @param {boolean} [changeDocTitle=true] - 是否设置doc的title, 默认是同步设置的
        * */
       setTitle (title, changeDocTitle = true) {
-        this.titleInner = title
+        let _title = {}
+        if (typeof title === 'string') {
+          _title.title = title
+          this.titleInner = title
+        } else if (typeof title === 'object' && title.image) {
+          _title.title = null
+          _title.image = title.image
+          this.titleInner = `<img src="${title.image}">`
+        }
+
         if (changeDocTitle) {
-          // 设置document的title, 这部分由$app处理
-          this.$app && this.$app.setDocTitle(title)
+          if (this.$platform.is('alipay')) {
+            console.log(_title)
+            window.ap && window.ap.setNavigationBar(_title)
+          } else {
+            // 设置document的title, 这部分由$app处理
+            this.$app && this.$app.setDocTitle(_title.title)
+          }
+        }
+      },
+
+      /**
+       * @function setTitleColor
+       * @description
+       * 设置Title文字的颜色
+       * @param {String} color - color, 例如 #ff0000
+       * */
+      setTitleColor (color) {
+        this.titleColor = color
+      },
+
+      /**
+       * @function reset
+       * @description
+       * 重置Title文字的颜色
+       * */
+      reset () {
+        this.titleColor = null
+        if (this.$platform.is('alipay')) {
+          window.ap && window.ap.setNavigationBar({
+            reset: true
+          })
         }
       },
 
@@ -157,11 +201,25 @@
        * */
       init () {
         this.titleInner = this.getTitle()
-        if (this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'navbar' && document.title !== this.titleInner) {
-          this.setTitle(this.titleInner)
+        if (this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'navbar') {
+          if (document.title !== this.titleInner) {
+            this.setTitle(this.titleInner)
+          }
+          this.isTitleInNavbar = true
         }
         this.isInit = true
+      },
+
+      /**
+       * 点击标题时触发事件
+       * @private
+       * */
+      titleClick () {
+        if (this.isTitleInNavbar) {
+          this.$eventBus.$emit('titleClick')
+        }
       }
+
     },
     mounted () {
       this.init()

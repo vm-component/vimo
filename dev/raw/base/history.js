@@ -12,8 +12,8 @@
  *
  * router路由在页面切换的时候会发出两个事件:
  *
- * - onRouteChangeBefore(router.beforeEach): 路由器切换之前
- * - onRouteChangeAfter(router.afterEach): 路由切换之后, 页面进入渲染阶段
+ * - onRouteChangeBefore( -> router.beforeEach): 路由器切换之前
+ * - onRouteChangeAfter( -> router.afterEach): 路由切换之后, 页面进入渲染阶段
  *
  * 需要根据上面的onRouteChangeBefore事件, 判断导航级别(而不是页面的生命周期)的切换事件:
  *
@@ -38,6 +38,15 @@ export class History {
     // 监听路由变化, 维护本地历史记录
     // 路由切换前
     if (this._r) {
+
+      this._r.beforeEach((to, from, next) => {
+        this._emit(Vue, 'onRouteChangeBefore', {to, from, next})
+        next()
+      })
+      this._r.afterEach((to, from) => {
+        this._emit(Vue, 'onRouteChangeAfter', {to, from})
+      })
+
       this._r.beforeEach((to, from, next) => {
         let stackLength = this._h.length
         if (stackLength <= 1) {
