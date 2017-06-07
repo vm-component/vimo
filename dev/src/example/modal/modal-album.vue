@@ -1,21 +1,32 @@
 <template>
     <Page>
         <Content padding class="outer-content ">
-            <section slot="fixedTop" class="albumBox">
-                <div class="albumBox__inner">
-                    <Slides class="slides" @onTap="onTapHandler"
-                            @onSlideChangeEnd="onSlideChangeEndHandler">
-                        <Slide class="Slide" v-for="(item,index) in imgs" :key="index">
-                            <img :src="item">
-                        </Slide>
-                    </Slides>
-                    <p text-center class="info">{{selected}}</p>
-                </div>
+            <section slot="fixedTop" class="albumBox" @click="onTapHandler">
+                <transition name="fade">
+                    <div class="albumBox__inner" v-show="imgs.length>0">
+                        <p text-center class="info">{{activeIndex + 1}} / {{imgs.length}}</p>
+                        <Slides class="slides" :preloadImages="false" :lazyLoading="true"
+                                @onSlideChangeEnd="onSlideChangeEndHandler">
+                            <Slide class="slide" v-for="(item,index) in imgs" :key="index">
+                                <img :data-src="item" class="swiper-lazy">
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </Slide>
+                        </Slides>
+                    </div>
+                </transition>
             </section>
         </Content>
     </Page>
 </template>
 <style scoped lang="scss">
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 300ms
+    }
+
+    .fade-enter, .fade-leave-active {
+        opacity: 0
+    }
+
     .albumBox {
         background: #000;
         display: flex;
@@ -24,13 +35,12 @@
         height: 100%;
         width: 100%;
         .albumBox__inner {
-            margin-bottom: 80px;
-            height: 250px;
             width: 100%;
+            height: 100%;
             .slides {
                 height: 100%;
                 width: 100%;
-                .Slide {
+                .slide {
                     width: 100%;
                     height: 100%;
                     display: flex;
@@ -40,45 +50,46 @@
                         width: 100%;
                     }
                 }
-
             }
             .info {
-                height: 30px;
+                position: fixed;
+                bottom: 30px;
+                width: 100%;
+                text-align: center;
                 color: #fff;
+                margin: 0;
+                font-weight: bold;
+                z-index: 10;
             }
         }
     }
 </style>
 <script type="text/javascript">
-
   import { Slides, Slide } from 'vimo/components/slides'
   export default{
-    name: 'name',
+    name: 'previewImage',
     data () {
       return {
         selected: '',
-        imgs: []
+        imgs: [],
+        activeIndex: 0
       }
     },
-    props: {},
-    watch: {},
-    computed: {},
     methods: {
       onSlideChangeEndHandler (instance) {
-        this.selected = this.imgs[instance.activeIndex]
+        this.activeIndex = instance.activeIndex
+        this.selected = this.imgs[this.activeIndex]
       },
       onTapHandler () {
         this.$modal.dismiss()
       }
     },
     created () {
-      this.imgs = this.$options.$data.img
-      this.selected = this.imgs[0]
+      window.setTimeout(() => {
+        this.imgs = this.$options.$data.img
+        this.selected = this.imgs[this.activeIndex]
+      }, 100)
     },
-    mounted () {
-    },
-    activated () {},
-    components: {Slides, Slide},
-    destroyed () {}
+    components: {Slides, Slide}
   }
 </script>

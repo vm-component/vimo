@@ -77,7 +77,8 @@
               'static/background/1.jpg',
               'static/background/2.jpg',
               'static/background/3.jpg',
-              'static/background/4.jpg'
+              'static/background/4.jpg',
+              'static/background/25.jpg'
             ]
           },
           showBackdrop: true,
