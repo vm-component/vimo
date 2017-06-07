@@ -33,6 +33,13 @@
    * Vue.component(Buttons.name, Buttons)
    * ```
    *
+   *
+   * ### 如果在支付宝中
+   * 如果在支付宝中, 则使用支付宝的方式这只title及其壳子的title
+   *
+   * - setTitle
+   * - reset
+   *
    * @props {String} [mode=ios] - 模式
    * @props {String} [title] - 标题
    *

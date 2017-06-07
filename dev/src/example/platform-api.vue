@@ -206,28 +206,10 @@
         this.titleComponent.setTitle({
           image: 'https://zos.alipayobjects.com/rmsportal/jFCQxeOXeKTQUfhrQFOo.png'
         })
-//        window.ap.setNavigationBar({
-//          title: null,
-//          image: 'https://zos.alipayobjects.com/rmsportal/jFCQxeOXeKTQUfhrQFOo.png'
-//        })
       },
       btnBgColor () {
         this.titleComponent.setTitle('设置导航栏背景色', true)
-        let color = '#ED4A4D'
-        this.navbarComponent.setBackgroundColor(color)
-        // 根据背景计算文字颜色
-        let colorLite = color.substring(1)
-        if (colorLite.length === 3) {
-          colorLite = colorLite[0] + colorLite[0] + colorLite[1] + colorLite[1] + colorLite[2] + colorLite[2]
-        }
-        let r = parseInt(colorLite[0] + colorLite[1], 16)
-        let g = parseInt(colorLite[2] + colorLite[3], 16)
-        let b = parseInt(colorLite[4] + colorLite[5], 16)
-        if (r < 170 || g < 170 || b < 170) {
-          this.titleComponent.setTitleColor('#fff')
-        } else {
-          this.titleComponent.setTitleColor('#000')
-        }
+        this.navbarComponent.setBackgroundColor('#ED4A4D')
       },
       btnBorderColor () {
         this.titleComponent.setTitle('设置导航栏底部边框色', true)
@@ -239,7 +221,6 @@
         this.titleComponent.reset()
       }
     },
-    created () {},
     mounted () {
       this.$platform.on('titleClick', () => {
         alert('点击了顶部title, 确定后取消绑定')

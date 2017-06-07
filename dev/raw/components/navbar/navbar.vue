@@ -55,6 +55,14 @@
    * Vue.component(Navbar.name, Navbar)
    * ```
    *
+   * ### 如果在支付宝中
+   *
+   * 如果在支付宝中, 设置H5的样式也同样适用于对支付宝壳子的导航栏的操作. 当路由切换, 则重置之前的设置. 可用的方法:
+   *
+   * - setBackgroundColor
+   * - setBorderBottomColor
+   * - reset
+   *
    * @see component:Toolbar
    * @see History
    *
@@ -138,19 +146,54 @@
       }
     },
     methods: {
+      /**
+       * @private
+       * */
       backButtonClickHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
         window.history.back()
       },
+
+      /**
+       * @function setBackgroundColor
+       * @description
+       * 设置Navbar背景颜色
+       * @param {String} color - 颜色, 比如: #DDDDDD
+       * */
       setBackgroundColor (color) {
         this.backgroundColor = color
+
+        let titleComponent = this.$children[0]
+        if (titleComponent && titleComponent.$options._componentTag.toLowerCase() === 'title') {
+          // 根据背景计算文字颜色
+          let colorLite = color.substring(1)
+          if (colorLite.length === 3) {
+            colorLite = colorLite[0] + colorLite[0] + colorLite[1] + colorLite[1] + colorLite[2] + colorLite[2]
+          }
+          let r = parseInt(colorLite[0] + colorLite[1], 16)
+          let g = parseInt(colorLite[2] + colorLite[3], 16)
+          let b = parseInt(colorLite[4] + colorLite[5], 16)
+          if (r < 170 || g < 170 || b < 170) {
+            titleComponent.setTitleColor && titleComponent.setTitleColor('#fff')
+          } else {
+            titleComponent.setTitleColor && titleComponent.setTitleColor('#000')
+          }
+        }
+
         if (this.$platform.is('alipay')) {
           window.ap && window.ap.setNavigationBar({
             backgroundColor: color
           })
         }
       },
+
+      /**
+       * @function setBorderBottomColor
+       * @description
+       * 设置borderBottom的颜色
+       * @param {String} color - 颜色, 比如: #DDDDDD
+       * */
       setBorderBottomColor (color) {
         this.borderBottomColor = color
         if (this.$platform.is('alipay')) {
@@ -159,6 +202,12 @@
           })
         }
       },
+
+      /**
+       * @function reset
+       * @description
+       * 重置之前的样式设置
+       * */
       reset () {
         this.backgroundColor = null
         this.borderBottomColor = null
