@@ -38,13 +38,12 @@ export class History {
     // 监听路由变化, 维护本地历史记录
     // 路由切换前
     if (this._r) {
-
       this._r.beforeEach((to, from, next) => {
-        this._emit(Vue, 'onRouteChangeBefore', {to, from, next})
+        Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onRouteChangeBefore')
         next()
       })
-      this._r.afterEach((to, from) => {
-        this._emit(Vue, 'onRouteChangeAfter', {to, from})
+      this._r.afterEach(() => {
+        Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onRouteChangeAfter')
       })
 
       this._r.beforeEach((to, from, next) => {
