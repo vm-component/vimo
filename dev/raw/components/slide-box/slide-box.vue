@@ -340,9 +340,8 @@
         if (this.state !== STATE_SLIDING) return
         $event.preventDefault()
         let coord = pointerCoord($event)
-        let left = coord.x - this.boxRect.left - this.pointerStart >> 0
+        let left = coord.x - this.$el.offsetLeft - this.pointerStart >> 0
         this.translateX = this.max - clamp(this.min, left, this.max)
-
         if (this.translateX === this.min) {
           this.$emit('onSlideEnd', this)
         }
@@ -363,6 +362,7 @@
     },
     mounted () {
       this.boxRect = this.$el.getBoundingClientRect()
+      // offsetLeft
       this.btnRect = this.slideBoxBtnElement.getBoundingClientRect()
       this.translateX = this.max = this.boxRect.width - this.btnRect.width >> 0
     }
