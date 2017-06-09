@@ -1,5 +1,5 @@
 <template>
-    <div :class="[itemClass,listHeaderClass,colorClass]" @click="directTo()">
+    <div class="ion-item" :class="[itemClass,listHeaderClass,colorClass]" @click="directTo()">
         <!--以下组件显示在此处：[item-left],ion-checkbox:not([item-right])-->
         <slot name="item-left"></slot>
 
@@ -135,7 +135,7 @@
     },
     computed: {
       itemClass () {
-        return `item item-${this.mode}`
+        return `item-${this.mode}`
       },
       colorClass () {
         return this.color ? (`item-${this.mode}-${this.color}`) : ''

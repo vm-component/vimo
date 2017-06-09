@@ -166,7 +166,6 @@
 
         if (changeDocTitle) {
           if (this.$platform.is('alipay')) {
-            console.log(_title)
             window.ap && window.ap.setNavigationBar(_title)
           } else {
             // 设置document的title, 这部分由$app处理

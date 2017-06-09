@@ -3,11 +3,11 @@
         <Content padding class="outer-content ">
             <section slot="fixedTop" class="albumBox" @click="onTapHandler">
                 <transition name="fade">
-                    <div class="albumBox__inner" v-show="imgs.length>0">
-                        <p text-center class="info">{{activeIndex + 1}} / {{imgs.length}}</p>
-                        <Slides class="slides" :preloadImages="false" :lazyLoading="true"
+                    <div class="albumBox__inner" v-show="images.length>0">
+                        <p text-center class="info">{{activeIndex + 1}} / {{images.length}}</p>
+                        <Slides class="slides" :preloadImages="false" :lazyLoading="true" :initialSlide="activeIndex"
                                 @onSlideChangeEnd="onSlideChangeEndHandler">
-                            <Slide class="slide" v-for="(item,index) in imgs" :key="index">
+                            <Slide class="slide" v-for="(item,index) in images" :key="index">
                                 <img :data-src="item" class="swiper-lazy">
                                 <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                             </Slide>
@@ -65,30 +65,29 @@
     }
 </style>
 <script type="text/javascript">
+  // 不适用lite是因为其不支持图片懒加载
   import { Slides, Slide } from 'vimo/components/slides'
   export default{
     name: 'previewImage',
     data () {
       return {
         selected: '',
-        imgs: [],
-        activeIndex: 0
+        images: [],
+        activeIndex: 2 // initIndex
       }
     },
     methods: {
       onSlideChangeEndHandler (instance) {
         this.activeIndex = instance.activeIndex
-        this.selected = this.imgs[this.activeIndex]
+        this.selected = this.images[this.activeIndex]
       },
       onTapHandler () {
         this.$modal.dismiss()
       }
     },
     created () {
-      window.setTimeout(() => {
-        this.imgs = this.$options.$data.img
-        this.selected = this.imgs[this.activeIndex]
-      }, 100)
+      this.images = this.$options.$data.img
+      this.selected = this.images[this.activeIndex]
     },
     components: {Slides, Slide}
   }

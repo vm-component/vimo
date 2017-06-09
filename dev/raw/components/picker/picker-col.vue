@@ -130,7 +130,7 @@
 
         this.update(y, 0, false, false)
 
-        let currentIndex = Math.max(Math.abs(Math.round(y / this.optHeight)), 0)
+        let currentIndex = Math.max(Math.abs((y / this.optHeight) >> 0), 0)
         if (currentIndex !== this.lastTempIndex) {
           this.lastTempIndex = currentIndex
         }
@@ -205,7 +205,7 @@
             ? Math.max(this.velocity, 1)
             : Math.min(this.velocity, -1)
 
-          y = Math.round(this.y - this.velocity)
+          y = (this.y - this.velocity) >> 0
 
           if (y > this.minY) {
             // whoops, it's trying to scroll up farther than the options we have!
@@ -234,7 +234,7 @@
           this.decelerate()
         }
 
-        let currentIndex = Math.max(Math.abs(Math.round(y / this.optHeight)), 0)
+        let currentIndex = Math.max(Math.abs((y / this.optHeight) >> 0), 0)
         this.lastTempIndex = currentIndex
       },
 
@@ -268,7 +268,7 @@
       /**
        * @param {number} y - y
        * @param {number} duration - duration
-       * @param {boolean} saveY - saveY
+       * @param {boolean} saveY - saveY 如果在滚动中则不记录Y
        * @param {boolean} emitChange - emitChange
        * @private
        * */
@@ -281,7 +281,7 @@
         }
 
         // ensure we've got a good round number :)
-        y = Math.round(y)
+        y = y >> 0
 
         let i
         let button
@@ -298,7 +298,7 @@
         const parent = this.colEle
         const children = parent.children
         const length = children.length
-        const selectedIndex = Math.min(Math.max(Math.round(-y / this.optHeight), 0), length - 1)
+        const selectedIndex = Math.min(Math.max((-y / this.optHeight) >> 0, 0), length - 1)
         const durationStr = (duration === 0) ? null : duration + 'ms'
         const scaleStr = `scale(${this.scaleFactor})`
 
@@ -419,7 +419,7 @@
       reset () {
         this.col.selectedIndex = 0
         window.setTimeout(() => {
-          this.update(0, 0, false, false)
+          this.update(0, 0, true, false)
           this.refresh()
         }, 0)
       },

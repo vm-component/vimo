@@ -20,6 +20,14 @@ let routes = [
     component: require('@/example/index.vue')
   },
   {
+    path: '/demo',
+    name: 'demo',
+    meta: {
+      root: true
+    },
+    component: require('@/example/demo/demo.vue')
+  },
+  {
     path: '/components',
     name: 'components',
     component: require('@/example/components.vue')
@@ -265,6 +273,14 @@ let routes = [
       require(['@/example/deeplink/oia-page.vue'], resolve)
     }
   },
+  // {
+  //   path: '/city-selector',
+  //   name: 'citySelector',
+  //   component (resolve) {
+  //     require(['@/example/city-selector.vue'], resolve)
+  //   }
+  // },
+
   // ----  component/Form组件 ----
 
   {

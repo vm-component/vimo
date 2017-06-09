@@ -85,7 +85,6 @@ new Vue({
   template: '<App/>',
   created () {
     this.$platform.ready().then((data) => {
-      'use strict'
       console.log(data)
     })
   },

@@ -226,6 +226,10 @@
         alert('点击了顶部title, 确定后取消绑定')
         this.$platform.off('titleClick')
       })
+
+
+
+//      window.ap.showNavigationBarLoading();
     },
     activated () {},
     deactivate () {},
