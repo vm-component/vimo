@@ -273,6 +273,14 @@ let routes = [
       require(['@/example/deeplink/oia-page.vue'], resolve)
     }
   },
+  {
+    path: '/preview-image',
+    name: 'previewImage',
+    component (resolve) {
+      require(['@/example/preview-image.vue'], resolve)
+    }
+  },
+
   // {
   //   path: '/city-selector',
   //   name: 'citySelector',

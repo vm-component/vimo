@@ -150,6 +150,11 @@
                         <span>跳转到App</span>
                         <Note slot="item-right">Deeplink</Note>
                     </Item>
+                    <Item detail-push :to="{name: 'previewImage'}">
+                        <Icon slot="item-left" name="link"></Icon>
+                        <span>图片预览</span>
+                        <Note slot="item-right">PreviewImage</Note>
+                    </Item>
                     <!--<Item detail-push :to="{name: 'citySelector'}">-->
                     <!--<Icon slot="item-left" name="link"></Icon>-->
                     <!--<span>城市选择</span>-->

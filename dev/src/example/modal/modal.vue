@@ -36,8 +36,8 @@
 </style>
 <script type="text/javascript">
   import modalPageComponent from './modal-page.vue'
-  import modalAlbumComponent from './modal-album.vue'
   import modalLoginComponent from './modal-login.vue'
+  import { PreviewImage } from 'vimo/components/preview-image'
   export default{
     data () {
       return {
@@ -69,20 +69,13 @@
         })
       },
       openAlbum () {
-        this.$modal.present({
-          component: modalAlbumComponent,
-          mode: 'zoom',
-          data: {
-            img: [
-              'static/background/1.jpg',
-              'static/background/2.jpg',
-              'static/background/3.jpg',
-              'static/background/4.jpg',
-              'static/background/25.jpg'
-            ]
-          },
-          showBackdrop: true,
-          enableBackdropDismiss: true
+        PreviewImage({
+          current: 0,
+          urls: [
+            'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
+            'https://img.alicdn.com/tps/TB1pfG4IFXXXXc6XXXXXXXXXXXX.jpg',
+            'https://img.alicdn.com/tps/TB1h9xxIFXXXXbKXXXXXXXXXXXX.jpg'
+          ]
         })
       },
       openModal () {
