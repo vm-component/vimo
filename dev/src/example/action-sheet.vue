@@ -6,6 +6,8 @@
             </Navbar>
         </Header>
         <Content padding>
+            <h5>ActionSheet确认单组件</h5>
+            <p>如果按钮组超过9个，则原生组件无法实现，只能使用H5组件</p>
             <Button block @click="showActionSheet1()" color="primary">
                 <span>最简单的</span>
             </Button>
@@ -40,9 +42,9 @@
             {
               text: '再弹一次',
               role: 'destructive',
-              cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
+              cssClass: 'DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
               handler: () => {
-                console.log('Destructive clicked')
+                console.log('再弹一次 clicked')
                 _this.$actionSheet.present({
                   title: '请选择操作',
                   subTitle: '注意，选择后不能撤销！',
@@ -50,32 +52,30 @@
                   enableBackdropDismiss: true,
                   buttons: [
                     {
-                      text: '删除2',
+                      text: '删除',
                       role: 'destructive',
                       cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
                       handler: () => {
-                        console.log('Destructive clicked')
+                        console.log('删除2 clicked')
                       }
                     },
                     {
-                      text: '翻转2',
+                      text: '苹果',
                       handler: () => {
-                        console.log('Archive1 clicked')
+                        console.log('苹果 clicked')
                       }
                     },
                     {
-                      text: '增加2',
+                      text: '香蕉',
                       handler: () => {
-                        console.log('Archive4 clicked')
+                        console.log('香蕉 clicked')
                       }
                     },
                     {
-                      text: '取消2',
+                      text: '不确定',
                       role: 'cancel',
                       handler: () => {
-                        _this.$actionSheet.dismiss().then(function (data) {
-                          console.debug('promise的退出方式')
-                        })
+                        console.log('不确定 clicked')
                       }
                     }
                   ]
@@ -101,14 +101,11 @@
               role: 'cancel',
               handler: () => {
                 console.debug('取消 clicked')
-                _this.$actionSheet.dismiss().then(function (data) {
-                  console.debug('promise的退出方式')
-                })
               }
             }
           ]
         }).then(function () {
-          console.log('actionsheet1 present')
+          console.log('请选择操作 present promise')
         })
       },
       showActionSheet2 () {
@@ -121,7 +118,6 @@
           buttons: [
             {
               text: 'MacBook Pro',
-              role: 'destructive',
               cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
               handler: () => {
                 console.log('Destructive clicked')
@@ -193,7 +189,6 @@
           subTitle: '这里按钮很多, 请滚动选择!',
           enableBackdropDismiss: true,
           buttons: [
-
             {text: '按钮1', handler: () => {}},
             {text: '按钮2', handler: () => {}},
             {text: '按钮3', handler: () => {}},
@@ -214,7 +209,6 @@
             {text: '按钮18', handler: () => {}},
             {text: '按钮19', handler: () => {}},
             {text: '按钮20', handler: () => {}},
-
             {
               text: '取消',
               role: 'cancel',
