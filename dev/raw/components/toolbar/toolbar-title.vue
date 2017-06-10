@@ -42,7 +42,7 @@
    *
    * @props {String} [mode=ios] - 模式
    * @props {String} [title] - 标题
-   *
+   * @fires component:Title#onTitleClick
    * @see component:Toolbar
    * @usage
    * <template>
@@ -222,13 +222,27 @@
        * */
       titleClick () {
         if (this.isTitleInNavbar) {
-          this.$eventBus.$emit('titleClick')
+          /**
+           * @event component:Title#onTitleClick
+           * @description 点击title时触发
+           */
+          this.$emit('onTitleClick')
         }
       }
-
     },
     mounted () {
       this.init()
+
+      let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
+      if (this.isTitleInNavbar && isAlipayReady) {
+        /**
+         * @event component:Title#onTitleClick
+         * @description 点击title时触发
+         */
+        document.addEventListener('titleClick', () => {
+          this.$emit('onTitleClick')
+        }, false)
+      }
     }
   }
 </script>
