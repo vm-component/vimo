@@ -93,6 +93,7 @@ const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback选项
  * @private
  * */
 function ToastFactory () {
+
   let _args = Array.from(arguments)
   let propsData = {}
 
@@ -117,10 +118,21 @@ function ToastFactory () {
     propsData = _args[0]
   }
 
-  return new Toast({
-    el,
-    propsData: propsData
-  })
+  let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
+  if (isAlipayReady) {
+    window.AlipayJSBridge.call('toast', {
+      content: propsData.message,
+      type: propsData.type,
+      duration: propsData.duration || 2000
+    }, function () {
+      propsData.onDismiss()
+    })
+  } else {
+    return new Toast({
+      el,
+      propsData: propsData
+    })
+  }
 }
 
 /**
@@ -141,7 +153,6 @@ function ToastFactory () {
  * @return {ToastInstance} 返回Toast的实例
  * @private
  * */
-
 export default function (...args) {
   let _instance = ToastFactory(...args)
   // 自动开启

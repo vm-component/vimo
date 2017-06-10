@@ -7,16 +7,15 @@ export function alipayBridge (plt) {
    * ps: toast建议使用duration关闭
    * */
   // toast
-  plt.registerMethod('toast', (options) => {
-    window.ap.showToast({
-      content: options.message,
-      type: options.type,
-      duration: options.duration || 2000
-    }, function () {
-      options.onDismiss()
-    })
-  })
-
+  // plt.registerMethod('toast', (options) => {
+  //   window.ap.showToast({
+  //     content: options.message,
+  //     type: options.type,
+  //     duration: options.duration || 2000
+  //   }, function () {
+  //     options.onDismiss()
+  //   })
+  // })
   // action-sheet
   // plt.registerMethod('actionSheet', (options) => {
   //   let items = []
@@ -46,7 +45,6 @@ export function alipayBridge (plt) {
   //     resolve()
   //   })
   // })
-
   // // alert
   // plt.registerMethod('alert', (options) => {
   //   return new Promise((resolve) => {
