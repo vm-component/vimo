@@ -27,6 +27,9 @@
             <Button block @click="setDocTitle()">设置DocTitle为当前时间</Button>
             <Button block @click="setAllTitle()">两者同时设置</Button>
 
+            <p>点击Title能触发</p>
+            <!--<Button block @click="clickTitle()">点击title</Button>-->
+
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
             <p>

@@ -28,6 +28,11 @@
                         <span>页面</span>
                         <Note slot="item-right">Page</Note>
                     </Item>
+                    <Item detail-push :to="{name: 'title'}">
+                        <Icon slot="item-left" name="paper"></Icon>
+                        <span>标题</span>
+                        <Note slot="item-right">Title</Note>
+                    </Item>
                 </ItemGroup>
 
                 <ListHeader>

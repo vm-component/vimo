@@ -87,6 +87,13 @@ let routes = [
     }
   },
   {
+    path: '/title',
+    name: 'title',
+    component (resolve) {
+      require(['@/example/title.vue'], resolve)
+    }
+  },
+  {
     path: '/nav',
     name: 'nav',
     component: require('@/example/nav.vue')

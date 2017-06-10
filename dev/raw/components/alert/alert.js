@@ -61,7 +61,6 @@ function getPresentDismissIns (Factory) {
         })
 
         return new Promise((resolve) => {
-          // window.ap.confirm({
           window.AlipayJSBridge.call('confirm', {
             title: options.title,
             message: options.message,

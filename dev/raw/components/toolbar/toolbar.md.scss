@@ -108,6 +108,10 @@ $navbar-md-height: $toolbar-md-height !default;
   font-size: $toolbar-md-title-font-size;
   font-weight: 500;
   color: $toolbar-md-title-text-color;
+  img{
+    vertical-align: middle;
+    max-height: $toolbar-md-height - 8;
+  }
 }
 
 @mixin md-toolbar-theme($color-name, $color-base, $color-contrast) {

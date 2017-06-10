@@ -181,9 +181,10 @@
           }
         }
 
-        if (this.$platform.is('alipay')) {
-          window.ap && window.ap.setNavigationBar({
-            backgroundColor: color
+        if (this.$platform.is('alipay') && window.AlipayJSBridge) {
+          window.AlipayJSBridge.call('setTitleColor', {
+            color: parseInt(color.substr(1), 16), // 十进制
+            reset: false // (可选,默认为false)  是否重置title颜色为默认颜色。
           })
         }
       },
@@ -196,9 +197,9 @@
        * */
       setBorderBottomColor (color) {
         this.borderBottomColor = color
-        if (this.$platform.is('alipay')) {
-          window.ap && window.ap.setNavigationBar({
-            borderBottomColor: color
+        if (this.$platform.is('alipay') && window.AlipayJSBridge) {
+          window.AlipayJSBridge.call('setBarBottomLineColor', {
+            color: parseInt(color.substr(1), 16)
           })
         }
       },

@@ -3,8 +3,7 @@
         <div class="toolbar-title"
              :class="[toolbarTitleClass]"
              :style="{color:titleColor}"
-             @click="titleClick" v-html="titleInner">
-        </div>
+             @click="titleClick" v-html="titleInner"></div>
     </div>
 </template>
 <script type="text/javascript">
@@ -166,10 +165,10 @@
 
         if (changeDocTitle) {
           if (this.$platform.is('alipay')) {
-            window.ap && window.ap.setNavigationBar(_title)
+            window.AlipayJSBridge.call('setTitle', _title)
           } else {
             // 设置document的title, 这部分由$app处理
-            this.$app && this.$app.setDocTitle(_title.title)
+            _title.title && this.$app && this.$app.setDocTitle(_title.title)
           }
         }
       },

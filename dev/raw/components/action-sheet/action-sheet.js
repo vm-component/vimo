@@ -38,7 +38,6 @@ function getPresentDismissIns (Factory) {
         let cancelButton = {}
         let destructiveButtonIndex = -1
         for (let i = 0; options.buttons.length > i; i++) {
-
           if (options.buttons[i].role === 'cancel') {
             cancelButton = options.buttons[i]
             options.buttons.splice(i, 1)
@@ -49,7 +48,6 @@ function getPresentDismissIns (Factory) {
           } else {
             items.push(options.buttons[i].text)
           }
-
         }
 
         return new Promise((resolve) => {

@@ -101,6 +101,11 @@ $button-ios-strong-font-weight: 800;
   color: $toolbar-ios-title-text-color;
 
   pointer-events: auto;
+  img {
+    vertical-align: middle;
+    max-width: 234px;
+    max-height: $toolbar-ios-height;
+  }
 }
 
 .toolbar-ios .ion-title {
