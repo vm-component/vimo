@@ -47,6 +47,10 @@
                                 <strong class="isNotReady">FALSE</strong>
                             </Column>
                         </Row>
+
+                        <!--AlipayJSBridge/ap-->
+
+
                         <Row>
                             <Column col-4><strong>设备平台:</strong></Column>
                             <Column col-8>{{platform.navigatorPlatform()}}</Column>

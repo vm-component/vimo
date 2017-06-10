@@ -6,6 +6,8 @@
             </Navbar>
         </Header>
         <Content padding>
+            <h5>对话框</h5>
+            <p>如果没有原生支持的情况下使用H5组件，组件使用H5接口指纹。</p>
             <Button block @click="alert()">Alert</Button>
             <Button color="danger" block @click="confirm()">Confirm</Button>
             <Button color="secondary" block @click="threeBtn()">Three Button</Button>
@@ -29,7 +31,7 @@
       alert () {
         this.$alert.present({
           title: 'Alert',
-          message: '这是一个警告框, 点击背景可关闭. ',
+          message: '这是一个警告框. ',
           enableBackdropDismiss: true,
           buttons: [
             {

@@ -19,9 +19,9 @@
 import { Modal } from '../modal'
 import PreviewImageComponent from './preview-image.vue'
 export function PreviewImage (options) {
-  if (window.VM.platform.is('alipay')) {
+  if (window.VM.platform.is('alipay') && window.ap) {
     // alipay环境使用壳子方法
-    window.ap && window.ap.previewImage({
+    window.ap.previewImage({
       current: options.current || 0,
       urls: options.urls
     })
