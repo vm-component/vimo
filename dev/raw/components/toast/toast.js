@@ -120,7 +120,7 @@ function ToastFactory () {
 
   let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
   if (isAlipayReady) {
-    window.AlipayJSBridge.call('toast', {
+    return window.AlipayJSBridge.call('toast', {
       content: propsData.message,
       type: propsData.type,
       duration: propsData.duration || 2000
