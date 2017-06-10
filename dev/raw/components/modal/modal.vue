@@ -27,7 +27,7 @@
     }
 
     .modal-zoom-enter, .modal-zoom-leave-active {
-        transform: scale(0.85);
+        transform: scale(0.9);
         opacity: 0.01;
     }
 

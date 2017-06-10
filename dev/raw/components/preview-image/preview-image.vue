@@ -1,11 +1,12 @@
 <template>
     <Page>
         <Content padding class="outer-content ">
-            <section slot="fixedTop" class="previewImage" @click="onTapHandler">
+            <section slot="fixedTop" class="previewImage">
                 <transition name="previewImage">
                     <div class="previewImage__inner" v-show="images.length>0">
                         <p text-center class="info">{{activeIndex + 1}} / {{images.length}}</p>
                         <Slides class="slides" :preloadImages="false" :lazyLoading="true" :initialSlide="activeIndex"
+                                @onTap="onTapHandler" @onDoubleTap="onDoubleTapHandler" @onClick="onClickHandler" :zoom="true"
                                 @onSlideChangeEnd="onSlideChangeEndHandler">
                             <Slide class="slide" v-for="(item,index) in images" :key="index">
                                 <img :data-src="item" class="swiper-lazy">
@@ -81,8 +82,14 @@
         this.activeIndex = instance.activeIndex
         this.selected = this.images[this.activeIndex]
       },
-      onTapHandler () {
+      onClickHandler () {
         this.$modal.dismiss()
+      },
+      onTapHandler () {
+        console.log('onTapHandler')
+      },
+      onDoubleTapHandler () {
+        console.log('onDoubleTapHandler')
       }
     },
     created () {
