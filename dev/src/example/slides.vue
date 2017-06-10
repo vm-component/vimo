@@ -141,22 +141,43 @@
             <!--<h5>Fade Effect</h5>-->
             <!--<small>这里有问题</small>-->
             <!--<Slides class="swiper"-->
-            <!--nextButton=".swiper-button-next"-->
-            <!--prevButton=".swiper-button-prev"-->
-            <!--pagination=".swiper-pagination"-->
-            <!--:paginationClickable="true"-->
-            <!--:watchSlidesProgress="true"-->
-            <!--effect="fade">-->
-            <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
-            <!--<Slide class="slide">-->
-            <!--<img src="../../static/img/scenery_1.jpg">-->
-            <!--</Slide>-->
-            <!--<Slide class="slide">-->
-            <!--<img src="../../static/img/scenery_2.jpg">-->
-            <!--</Slide>-->
-            <!--<Slide class="slide">-->
-            <!--<img src="../../static/img/scenery_3.jpg">-->
-            <!--</Slide>-->
+                    <!--nextButton=".swiper-button-next"-->
+                    <!--prevButton=".swiper-button-prev"-->
+                    <!--pagination=".swiper-pagination"-->
+                    <!--:paginationClickable="true"-->
+                    <!--:watchSlidesProgress="true"-->
+                    <!--effect="fade">-->
+                <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_1.jpg">-->
+                <!--</Slide>-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_2.jpg">-->
+                <!--</Slide>-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_3.jpg">-->
+                <!--</Slide>-->
+            <!--</Slides>-->
+
+            <!--<h5>3D Flip Effect</h5>-->
+            <!--<small>这里有问题</small>-->
+            <!--<Slides class="swiper flipEffect"-->
+                    <!--effect="flip"-->
+                    <!--nextButton=".swiper-button-next"-->
+                    <!--prevButton=".swiper-button-prev"-->
+                    <!--pagination=".swiper-pagination"-->
+                    <!--:watchSlidesProgress="true"-->
+                    <!--:grabCursor="false">-->
+                <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_1.jpg">-->
+                <!--</Slide>-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_2.jpg">-->
+                <!--</Slide>-->
+                <!--<Slide class="slide">-->
+                    <!--<img src="../../static/img/scenery_3.jpg">-->
+                <!--</Slide>-->
             <!--</Slides>-->
 
             <h5>3D Cube Effect</h5>
@@ -200,26 +221,7 @@
             </Slides>
 
 
-            <!--<h5>3D Flip Effect</h5>-->
-            <!--<small>这里有问题</small>-->
-            <!--<Slides class="swiper flipEffect"-->
-            <!--effect="flip"-->
-            <!--nextButton=".swiper-button-next"-->
-            <!--prevButton=".swiper-button-prev"-->
-            <!--pagination=".swiper-pagination"-->
-            <!--:watchSlidesProgress="true"-->
-            <!--:grabCursor="false">-->
-            <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
-            <!--<Slide class="slide">-->
-            <!--<img src="../../static/img/scenery_1.jpg">-->
-            <!--</Slide>-->
-            <!--<Slide class="slide">-->
-            <!--<img src="../../static/img/scenery_2.jpg">-->
-            <!--</Slide>-->
-            <!--<Slide class="slide">-->
-            <!--<img src="../../static/img/scenery_3.jpg">-->
-            <!--</Slide>-->
-            <!--</Slides>-->
+
 
             <h5>Keyboard Control / Mousewheel Control</h5>
             <p>这部分在移动端不适用</p>
@@ -578,6 +580,8 @@
         }
         .swiper-slide {
             background: transparent !important;
+            flex-direction: column;
+            display: flex;
         }
         .swiper-slide .title {
             font-size: 41px;
