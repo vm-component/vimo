@@ -89,23 +89,22 @@ export function alipayBridge (plt) {
   // })
 
   // loading
-  plt.registerMethod('loading', (options) => {
-    return new Promise((resolve) => {
-      window.ap.showLoading({
-        delay: options.delay || 0,
-        content: options.content || ''
-      })
-      resolve()
-    })
-  })
-
-  // loading.dismiss
-  plt.registerMethod('loading.dismiss', () => {
-    return new Promise((resolve) => {
-      window.ap.hideLoading()
-      resolve()
-    })
-  })
+  // plt.registerMethod('loading', (options) => {
+  //   return new Promise((resolve) => {
+  //     window.ap.showLoading({
+  //       delay: options.delay || 0,
+  //       content: options.content || ''
+  //     })
+  //     resolve()
+  //   })
+  // })
+  // // loading.dismiss
+  // plt.registerMethod('loading.dismiss', () => {
+  //   return new Promise((resolve) => {
+  //     window.ap.hideLoading()
+  //     resolve()
+  //   })
+  // })
 
   /**
    * 导航栏部分
