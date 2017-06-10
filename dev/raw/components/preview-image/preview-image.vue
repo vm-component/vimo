@@ -58,7 +58,9 @@
             }
             .info {
                 position: fixed;
-                bottom: 30px;
+                bottom: 0;
+                padding: 20px 0;
+                background: rgba(0, 0, 0, 0.7);
                 width: 100%;
                 text-align: center;
                 color: #fff;
