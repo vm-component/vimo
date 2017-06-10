@@ -8,6 +8,10 @@
  *
  * 点击图片显示预览效果
  *
+ * ### 其他
+ *
+ * 如果实在支付宝环境，则使用支付宝的组件
+ *
  * @params {Number} current - 当前index
  * @params {Array} urls - 图片链接
  *
