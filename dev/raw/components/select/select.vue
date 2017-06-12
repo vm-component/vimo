@@ -6,6 +6,7 @@
             <div class="select-icon-inner"></div>
         </div>
         <button aria-haspopup="true" @click="onPointerDownHandler($event)"
+                ref="button"
                 :id="id"
                 ion-button="item-cover"
                 class="item-cover">
@@ -54,8 +55,8 @@
    *  }
    * }
    * ```
-   * @props {String} [cancelText='Cancel'] - cancel按钮显示文本
-   * @props {String} [cancelText='OK'] - OK按钮显示文本
+   * @props {String} [cancelText='取消'] - cancel按钮显示文本
+   * @props {String} [cancelText='确认'] - OK按钮显示文本
    * @props {Boolean} [disabled='false'] - OK按钮显示文本
    * @props {String} [interface='alert'] - 显示界面类型, 可以是'action-sheet','alert'两个
    * @props {Boolean} [multiple='false'] - 单选多选,默认为单选
@@ -105,12 +106,12 @@
       // cancel按钮显示文本
       cancelText: {
         type: String,
-        default () { return 'Cancel' }
+        default () { return '取消' }
       },
       // OK按钮显示文本
       okText: {
         type: String,
-        default () { return 'OK' }
+        default () { return '确认' }
       },
       disabled: [Boolean],
       // 显示界面类型, 可以是'action-sheet','alert'两个
@@ -145,6 +146,9 @@
     computed: {
       modeClass () {
         return `select select-${this.mode}`
+      },
+      buttonElement () {
+        return this.$refs.button
       }
     },
     methods: {
@@ -332,12 +336,15 @@
         }, 0)
       }
     },
-    created () {},
     mounted () {
       // 找到外部item实例
       if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-select', true)
+      } else {
+        // 如果不在item中的话, 则button填充满整个组件. 否则填充整个Item组件.
+        this.$el.style.position = 'relative'
+        this.buttonElement.style.cssText = 'position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: transparent;cursor: pointer;'
       }
 
       if (!isBlank(this.value)) {
