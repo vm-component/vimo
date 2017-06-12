@@ -3,7 +3,6 @@
 </template>
 <script type="text/javascript">
   import { isBlank } from '../../util/util'
-
   export default{
     name: 'Option',
     data () {

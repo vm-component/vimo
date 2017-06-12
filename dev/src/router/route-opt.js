@@ -289,12 +289,22 @@ let routes = [
   },
 
   // {
-  //   path: '/city-selector',
-  //   name: 'citySelector',
+  //   path: '/content_city',
+  //   name: 'contentCity',
   //   component (resolve) {
-  //     require(['@/example/city-selector.vue'], resolve)
+  //     require(['@/example/content/city.vue'], resolve)
   //   }
-  // },
+  // }
+
+
+
+  {
+    path: '/city-selector',
+    name: 'citySelector',
+    component (resolve) {
+      require(['@/example/city-selector/city-selector.vue'], resolve)
+    }
+  },
 
   // ----  component/Form组件 ----
 

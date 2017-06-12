@@ -117,12 +117,15 @@
                 </ListHeader>
                 <Item>
                     <Label>Currency</Label>
-                    <Select v-model="currency">
+                    <Select v-model="currency" v-if="hideCurrency">
                         <Option :value="cur" v-for="(cur,index) in currencies" :key="index">
                             <span>{{cur.symbol}} ({{cur.code}}) {{cur.name}}</span>
                         </Option>
                     </Select>
                 </Item>
+                <div padding>
+                    <Button block @click="toggleData">Toggle Data</Button>
+                </div>
             </List>
             <div text-cente padding>
                 <p text-center>Currency选中值: {{currency}}</p>
@@ -145,6 +148,7 @@
         gaming: 'nes',
         gamingNoValue: '',
         currency: '',
+        hideCurrency: true,
         currencies: [
           {
             symbol: '$',
@@ -166,6 +170,60 @@
             code: 'GHS',
             name: 'Ghana Cedi'
           }
+        ],
+        currencies1: [
+          {
+            symbol: '$',
+            code: 'USD',
+            name: 'US Dollar'
+          },
+          {
+            symbol: '€',
+            code: 'EUR',
+            name: 'Euro'
+          },
+          {
+            symbol: '£',
+            code: 'FKP',
+            name: 'Falkland Islands Pound'
+          },
+          {
+            symbol: '¢',
+            code: 'GHS',
+            name: 'Ghana Cedi'
+          }
+        ],
+        currencies2: [
+          {
+            symbol: '$',
+            code: 'USD',
+            name: 'US Dollar'
+          },
+          {
+            symbol: '€',
+            code: 'EUR',
+            name: 'Euro'
+          },
+          {
+            symbol: '£',
+            code: 'FKP',
+            name: 'Falkland Islands Pound'
+          },
+          {
+            symbol: '¢',
+            code: 'GHS',
+            name: 'Ghana Cedi'
+          },
+          {
+            symbol: '￥',
+            code: 'CN',
+            name: '元'
+          },
+          {
+            symbol: '€',
+            code: 'EUR',
+            name: 'Euro'
+          }
         ]
       }
     },
@@ -181,6 +239,21 @@
       },
       onCancel (value) {
         console.debug('外部监听 onCancel 事件, 返回值: ' + value)
+      },
+
+      toggleData () {
+        this.hideCurrency = false
+        setTimeout(() => {
+          if (this.currencies.length === 4) {
+            this.currencies = this.currencies2
+            console.log(this.currencies)
+            this.hideCurrency = true
+          } else {
+            this.currencies = this.currencies1
+            console.log(this.currencies)
+            this.hideCurrency = true
+          }
+        }, 0)
       }
     },
     created: function () {},

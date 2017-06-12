@@ -28,7 +28,7 @@
                 <Item detail-push :to="{name:'contentSetBarStyle'}">设置Bar的样式</Item>
                 <Item detail-push :to="{name:'contentScroll',query:{enableJsScroll:false}}">滚动内容(原生滚动)</Item>
                 <Item detail-push :to="{name:'contentScroll',query:{enableJsScroll:true}}">滚动内容(JS滚动)</Item>
-                <Item detail-push :to="{name:'contentCity'}">城市列表(原生滚动)</Item>
+                <!--<Item detail-push :to="{name:'contentCity'}">城市列表(原生滚动)</Item>-->
             </List>
         </Content>
     </Page>

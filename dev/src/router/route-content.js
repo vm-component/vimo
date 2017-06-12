@@ -52,11 +52,11 @@ export default [
       require(['@/example/content/setBarStyle.vue'], resolve)
     }
   },
-  {
-    path: '/content_city',
-    name: 'contentCity',
-    component (resolve) {
-      require(['@/example/content/city.vue'], resolve)
-    }
-  }
+  // {
+  //   path: '/content_city',
+  //   name: 'contentCity',
+  //   component (resolve) {
+  //     require(['@/example/content/city.vue'], resolve)
+  //   }
+  // }
 ]

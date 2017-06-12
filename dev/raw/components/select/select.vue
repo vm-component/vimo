@@ -32,6 +32,14 @@
    *
    * `v-model`是在Select组件中使用数据控制, 而`checked`是在Option中使用checked属性控制.
    *
+   * ### 数据源
+   *
+   * Option组件中的数据可以是使用`v-for`异步填入的, 但是Select组件只希望只有一次异步操作, 如果多次异步操作会带来部分Option组件未更新的情况, 如果需要多次异步填入数据, 可以使用下面的一种方法:
+   *
+   * - 使用Alert/ActionSheet组件替代
+   * - 使用多个Select组件根据异步个数平行排列, 使用`v-show-else`区分显示
+   * - 使用`v-if`开关控制, 当需要异步切换数据源时, 使用`v-if`关闭组件, 当数据到来时再开启, 让Select组件从新渲染加载
+   *
    * ### 如何引入
    * ```
    * // 引入
@@ -335,8 +343,6 @@
       if (!isBlank(this.value)) {
         this.values.push(this.value)
       }
-    },
-    activated () {},
-    components: {}
+    }
   }
 </script>
