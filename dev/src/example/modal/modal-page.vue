@@ -10,7 +10,7 @@
                 <Title>测试页面</Title>
             </Toolbar>
         </Header>
-        <Content padding ref="content">
+        <Content padding ref="content" >
             <h5>说明</h5>
             <p>Hello, 这里是 Modal 测试页面, 这个页面具有Page组件的完整特性!</p>
             <Button block @click="closeModal">关闭Modal</Button>
@@ -70,4 +70,8 @@
     }
   }
 </script>
-<style lang="scss"></style>
+<style scoped lang="scss">
+    *{
+        outline:1px solid #000;
+    }
+</style>

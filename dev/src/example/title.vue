@@ -3,6 +3,10 @@
         <Header>
             <Navbar ref="navbar">
                 <Title ref="title" @onTitleClick="onTitleClickHandler">TitleTitleTitleTitleTitleTitleTitle</Title>
+                <!--menutoggle-->
+                <Button right icon-only role="bar-button" menutoggle slot="buttons" @click="openSetting($event)">
+                    <Icon class="icon" name="menu" color="dark"></Icon>
+                </Button>
             </Navbar>
         </Header>
         <Content class="outer-content" padding>
@@ -20,6 +24,8 @@
             <Button block @click="setBorderBottomColor">改变底边框颜色</Button>
             <Button block @click="reset">重置</Button>
 
+            <p>Navbar创建右上角按钮</p>
+            <Button block @click="setOptionMenu">设置右上角按钮</Button>
 
         </Content>
     </Page>
@@ -30,6 +36,7 @@
     }
 </style>
 <script type="text/javascript">
+  import { Popover } from 'vimo/components/popover'
   export default{
     data () {
       return {}
@@ -72,10 +79,65 @@
       },
       setBorderBottomColor () {
         this.navbarComponent.setBorderBottomColor('#000')
+      },
+
+      openSetting ($event) {
+        Popover.present({
+          ev: $event,                           // 事件
+          component: `<p style="padding:0 14px;" text-center>You choose the word of <strong>123</strong>.</p>`,
+          data: {
+//            contentEle: this.$refs.content.$el  // 传入数据, 内部通过`this.$options.$data`获取这个data
+          }
+        })
+      },
+
+      setOptionMenu () {
+//        setOptionMenu
+
+//        window.AlipayJSBridge.call('setOptionMenu', {
+//          title: '按钮',
+//          redDot: '5', // -1表示不显示，0表示显示红点，1-99表示在红点上显示的数字
+//          color: '#ff00ff00' // 必须以＃开始ARGB颜色值
+//        })
+
+        window.AlipayJSBridge.call('setOptionMenu', {
+          // 显示的时候是从后往前显示的
+          menus: [
+            {
+              title : '按钮',
+              redDot : '5', // -1表示不显示，0表示显示红点，1-99表示在红点上显示的数字
+              color : '#ff00ff00', // 必须以＃开始ARGB颜色值
+            },
+            {
+              icontype: 'scan',
+              redDot: '-1' // -1表示不显示，0表示显示红点，1-99表示在红点上显示的数字
+            },
+            {
+              icontype: 'user',
+              redDot: '-1' // -1表示不显示，0表示显示红点，1-99表示在红点上显示的数字
+            },
+            {
+              icontype: 'scan',
+              redDot: '-1' // -1表示不显示，0表示显示红点，1-99表示在红点上显示的数字
+            },
+            {
+              icontype: 'user',
+              redDot: '-1' // -1表示不显示，0表示显示红点，1-99表示在红点上显示的数字
+            }
+          ],
+          override: true //在需要设置多个option的情况下，是否保留默认的optionMenu
+        })
+
+        // 必须强制调用一把刷新界面
+        window.AlipayJSBridge.call('showOptionMenu')
+
       }
+
     },
     created () {},
-    mounted () {},
+    mounted () {
+
+    },
     activated () {},
     components: {}
   }

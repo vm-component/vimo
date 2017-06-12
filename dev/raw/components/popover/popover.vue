@@ -336,6 +336,7 @@
 
         // If ev was passed, use that for target element
         let targetDim = ev && ev.target && ev.target.getBoundingClientRect()
+        console.log(targetDim)
 
         let targetTop = (targetDim && 'top' in targetDim) ? targetDim.top : (bodyHeight / 2) - (popoverHeight / 2)
         let targetLeft = (targetDim && 'left' in targetDim) ? targetDim.left : (bodyWidth / 2)
@@ -400,17 +401,6 @@
           this.isActive && this.dismiss()
         })
       }
-
-      // 计算位置
-      // bugFix: 需要的等待异步再获取高度值
-      // 渲染传入的组件
-      setTimeout(() => {
-        if (this.mode === 'ios') {
-          this.iosPositionView(this.$el, this.ev)
-        } else {
-          this.mdPositionView(this.$el, this.ev)
-        }
-      }, 0)
     },
     mounted () {
       if (isObject(this.component)) {
@@ -422,6 +412,14 @@
       } else {
         // 如果 this.component 是html模板string的话
         this.htmlComponent = this.component
+      }
+
+      // 计算位置
+      // 渲染传入的组件
+      if (this.mode === 'ios') {
+        this.iosPositionView(this.$el, this.ev)
+      } else {
+        this.mdPositionView(this.$el, this.ev)
       }
     },
     components: {Backdrop}
