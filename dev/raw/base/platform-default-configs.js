@@ -7,7 +7,7 @@
  */
 import { docReady } from '../util/util'
 //  platform supported list
-export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq']
+export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq', 'dtdream']
 
 // platform default configs
 export const PLATFORM_DEFAULT_CONFIGS = {
@@ -336,6 +336,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
               // 触发平台的统一ready事件
               plt.triggerReady('alipay Init Success!')
             }
+
             if (typeof window.AlipayJSBridge === 'undefined') {
               if (document.addEventListener) {
                 document.addEventListener('AlipayJSBridgeReady', beforeBridgeReady, false)
@@ -428,6 +429,24 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     },
     versionParser (plt) {
       return plt.matchUserAgentVersion(/qq\/(\d+).(\d+).(\d+)?/i)
+    }
+  },
+  dtdream: {
+    initialize (plt) {
+      this.bridgeReady(plt)
+      plt.triggerReady('dtdream Init Success!')
+    },
+    // 由业务完成部分
+    bridgeReady (plt) {},
+    settings: {
+      hideNavBar: true
+    },
+    isMatch (plt) {
+      return plt.isPlatformMatch('dtdream')
+    },
+    versionParser (plt) {
+      // 无用
+      return plt.matchUserAgentVersion(/dtdream\/(\d+).(\d+).(\d+)?/i)
     }
   }
 }
