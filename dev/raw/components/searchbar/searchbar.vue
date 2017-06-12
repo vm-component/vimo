@@ -22,7 +22,6 @@
 
             <!--input左边的search按钮-->
             <div ref="searchbarIcon" class="searchbar-search-icon"></div>
-
             <input ref="searchbarInput" class="searchbar-input" id="searchbarInput"
                    @input="onInputHandler($event)"
                    @blur="onBlurHandler($event)"
@@ -42,8 +41,7 @@
         </div>
 
         <!--取消按钮，点击input时出现，只对IOS，md在search icon位置显示，wp没有-->
-        <Button
-                ref="cancelButton"
+        <Button ref="cancelButton"
                 mode="ios"
                 clear
                 @click="cancelSearchbar($event)"
@@ -83,18 +81,18 @@
    * }
    * ```
    *
-   * @props {String} [color] - 颜色
-   * @props {String} [mode='ios'] - 模式
-   * @props {String} [cancelButtonText='Cancel'] - 取消按钮的文本
-   * @props {Boolean} [showCancelButton=false] - 是否显示cancelButton
-   * @props {Number} [debounce=0] - 等待多久触发onInput事件
-   * @props {String} [placeholder='Search'] - 设置placeholder的值.
-   * @props {String} [autocomplete] - 自动完成
-   * @props {String} [autocorrect] - 自动纠错
-   * @props {String|Boolean} [autofocus] - 如果是boolean类型, 则立即判断, 如果是Number, 则等待dom完毕定时后自动focus
-   * @props {Boolean} [spellcheck] - 拼写检查
-   * @props {String} [type='search'] - 设置input配型, 可以是: "text", "password", "email", "number", "search", "tel", "url".
-   * @props {Boolean} [animated=false] - 是否启动点击动画
+   * @props {String} [color]                        - 颜色
+   * @props {String} [mode='ios']                   - 模式
+   * @props {String} [cancelButtonText='Cancel']    - 取消按钮的文本
+   * @props {Boolean} [showCancelButton=false]      - 是否显示cancelButton(只在focus状态才显示cancelBtn, 且cancelBtn只对组件作用, 如果要赋予业务能力, 请在右侧自己实现cancelBtn)
+   * @props {Number} [debounce=0]                   - 等待多久触发onInput事件
+   * @props {String} [placeholder='Search']         - 设置placeholder的值.
+   * @props {String} [autocomplete]                 - 自动完成
+   * @props {String} [autocorrect]                  - 自动纠错
+   * @props {String|Boolean} [autofocus]            - 如果是boolean类型, 则立即判断, 如果是Number, 则等待dom完毕定时后自动focus
+   * @props {Boolean} [spellcheck]                  - 拼写检查
+   * @props {String} [type='search']                - 设置input配型, 可以是: "text", "password", "email", "number", "search", "tel", "url".
+   * @props {Boolean} [animated=false]              - 是否启动点击动画
    *
    *
    * @fires component:SearchBar#onInput
@@ -477,11 +475,11 @@
       this.cancelButton = this.$refs.cancelButton.$el
       this.positionElements()
 
-      if (isBoolean(this.autofocus)) {
+      if (isBoolean(this.autofocus) && this.autofocus) {
         this.searchbarInput.focus()
       }
 
-      if (isNumber(this.autofocus)) {
+      if (isNumber(this.autofocus) && this.autofocus > 0) {
         window.setTimeout(() => {
           this.searchbarInput.focus()
         }, this.autofocus)

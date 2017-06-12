@@ -19,7 +19,6 @@
                 <p>Search debounce: 100</p>
                 <p no-margin>Search Value: {{myInput}}</p>
             </div>
-
             <List>
                 <ItemGroup>
                     <Item detail-push v-for="(city,index) in filteredList" :key="index">{{city.name}}</Item>
