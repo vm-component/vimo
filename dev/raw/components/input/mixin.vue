@@ -136,6 +136,7 @@
    * */
   import { hasFocus, setElementClass, isPresent, isFunction } from '../../util/util'
   import { Button } from '../../components/button'
+  import Autosize from 'autosize'
   export default{
     data () {
       return {
@@ -460,6 +461,7 @@
       // 当在textarea组件下，强制设置type=textarea
       if (this.typeValue === 'textarea') {
         this.inputElement = this.$refs['textarea']
+        Autosize(this.inputElement)
       } else {
         this.inputElement = this.$refs['input']
       }
