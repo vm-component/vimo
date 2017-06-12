@@ -23,6 +23,7 @@
    * @see component:InfiniteScroll
    * @demo https://dtfe.github.io/vimo-demo/#/infinite-scroll
    * */
+  import { Spinner } from '../spinner'
   export default{
     name: 'InfiniteScrollContent',
     props: {
@@ -41,6 +42,7 @@
       return {
         state: 'loading'
       }
-    }
+    },
+    components: {Spinner}
   }
 </script>

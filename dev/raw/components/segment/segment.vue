@@ -103,8 +103,6 @@
     watch: {
       value (value) {
         // 更新子组件状态
-        console.log('value')
-        console.log(value)
         this.refreshChildState(value)
       }
     },
