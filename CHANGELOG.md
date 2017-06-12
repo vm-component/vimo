@@ -8,6 +8,7 @@ Vimo Is still in development stage (2017/04/23), plans to release version 1.0.0 
 
 目前还在开发阶段(2017/04/23), 计划在2017/06/01发布1.0.0版本, 在此期间需要项目对此框架测试, 其中不乏一些组件的bug修复和API的变更, 如果对您的业务造成不便请谅解!
 
+- 0.4.3 - 修复modal组件弹出层显示的bug; 
 - 0.4.2 - 增加noticebar/separation/slide-box组件; 修复微信等浏览器无法更新title的问题; 修复弹出层组件无法在created钩子中触发的bug;
 - 0.4.1 - 修复slides的name问题
 - 0.3.8 - 增加Pick/Datetime/Slid-lite等组件，并修复诸多组件bug.
