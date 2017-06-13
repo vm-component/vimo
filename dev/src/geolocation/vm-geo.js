@@ -36,19 +36,8 @@
  *
  * 取消订阅
  *
- *
- *
- *
- *
  */
-const VERSION = '0.0.1'
-export default {
-  version: VERSION,
-  install (Vue, options) {
-    Vue.prototype['$geo'] = new Geolocation(options)
-  }
-}
-
+const VERSION = '0.1.0'
 const isString = (val) => typeof val === 'string'
 const isFunction = (val) => typeof val === 'function'
 const H5 = 'h5'
@@ -56,12 +45,12 @@ const ALIPAY = 'alipay'
 const Q_MAP = 'qMap' // 腾讯地图
 const B_MAP = 'bMap' // 百度地图
 const A_MAP = 'aMap' // 高的地图(阿里地图)
-const MAP = [H5, Q_MAP, A_MAP, B_MAP, ALIPAY]
 const ERROR_TYPE = {
   1: 'PERMISSION_DENIED',
   2: 'POSITION_UNAVAILABLE',
   3: 'TIMEOUT'
 }
+
 class Geolocation {
   /**
    * @param {Object} options - 初始化的参数, 需要填入不同类型的Map信息
@@ -110,18 +99,15 @@ class Geolocation {
   getCurrentPosition (type) {
     /**
      * 如果是在支付宝环境中, 则强制使用支付宝方案.
+     * 需要实时计算
      * */
-    let isAlipayReady = window.VM.platform.is('alipay') && (window.AlipayJSBridge || window.ap)
+    let isAlipayReady = this._ua.indexOf('alipay') > -1 && window.AlipayJSBridge
     if (!type) {
       if (isAlipayReady) {
         type = ALIPAY
       } else {
         type = H5
       }
-    }
-
-    if (MAP.indexOf(type) === -1) {
-      console.info(`[GEO]: 当前获取地理位置的方案${type}在列表[${MAP}]中未找到, 请检查你使用的方案!`)
     }
 
     if (type === H5 && this.isIos && !this.isHttps) {
@@ -164,36 +150,37 @@ class Geolocation {
       const errorFn = (err) => {
         let errType = Object.prototype.toString.call(err).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
         if (errType === 'event') {
-          console.warn(`[SCRIPT LOADED ERROR]:${err.target.src}`)
+          console.warn(`[GEO]: 脚本加载错误 ${err.target.src}`)
           reject(err)
           return
         }
 
         if (errType === 'string') {
-          console.warn(`[MESSAGE]:${err}`)
+          console.warn(`[GEO]: ${err}`)
           reject(err)
           return
         }
 
         switch (type) {
           case H5:
-            err = `[CODE]:${err.code};[TYPE]:${ERROR_TYPE[err.code]};[MESSAGE]:${err.message}`
+            // alert(JSON.stringify(err))
+            err = `[GEO]: CODE->${err.code}; INFO->${ERROR_TYPE[err.code]}; MESSAGE->${err.message}`
             console.warn(err)
             break
           case A_MAP:
-            err = `[INFO]:${err.info};[MESSAGE]:${err.message}`
+            err = `[GEO]: INFO->${err.info}; MESSAGE->${err.message}`
             console.warn(err)
             break
           case B_MAP:
-            err = `[ERR]:${JSON.stringify(err)}`
+            err = `[GEO]: ${JSON.stringify(err)}`
             console.warn(err)
             break
           case Q_MAP:
-            err = `[ERR]:${JSON.stringify(err)}`
+            err = `[GEO]: ${JSON.stringify(err)}`
             console.warn(err)
             break
           default:
-            err = `[INFO]:${err.info};[MESSAGE]:${err.message}`
+            err = `[GEO]: INFO->${err.info}; MESSAGE->${err.message}`
             console.warn(err)
             break
         }
@@ -269,7 +256,7 @@ class Geolocation {
 
     if (type === H5 && this.isIos && !this.isHttps) {
       type = this._s.fallBack
-      console.info('[MESSAGE]:watchPosition() - > 如果在IOS下使用的不是HTTPS, 则使用备选方案\'' + type + '\'!')
+      console.info('[MESSAGE]:WatchPosition() - > 如果在IOS下使用的不是HTTPS, 则使用备选方案\'' + type + '\'!')
     }
 
     /**
@@ -303,36 +290,36 @@ class Geolocation {
     const errorFn = (err) => {
       let errType = Object.prototype.toString.call(err).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
       if (errType === 'event') {
-        console.warn(`[SCRIPT LOADED ERROR]:${err.target.src}`)
+        console.warn(`[GEO]: 脚本加载错误 ${err.target.src}`)
         errCallback && errCallback(err)
         return
       }
 
       if (errType === 'string') {
-        console.warn(`[MESSAGE]:${err}`)
+        console.warn(`[GEO]: ${err}`)
         errCallback && errCallback(err)
         return
       }
 
       switch (type) {
         case H5:
-          err = `[CODE]:${err.code};[TYPE]:${ERROR_TYPE[err.code]};[MESSAGE]:${err.message}`
+          err = `[GEO]: CODE->${err.code}; TYPE->${ERROR_TYPE[err.code]}; MESSAGE->${err.message}`
           console.warn(err)
           break
         case A_MAP:
-          err = `[INFO]:${err.info};[MESSAGE]:${err.message}`
+          err = `[GEO]: INFO->${err.info}; MESSAGE->${err.message}`
           console.warn(err)
           break
         case B_MAP:
-          err = `[ERR]:${JSON.stringify(err)}`
+          err = `[GEO]: ${JSON.stringify(err)}`
           console.warn(err)
           break
         case Q_MAP:
-          err = `[ERR]:${JSON.stringify(err)}`
+          err = `[GEO]: ${JSON.stringify(err)}`
           console.warn(err)
           break
         default:
-          err = `[INFO]:${err.info};[MESSAGE]:${err.message}`
+          err = `[GEO]: INFO->${err.info}; MESSAGE->${err.message}`
           console.warn(err)
           break
       }
@@ -359,7 +346,7 @@ class Geolocation {
           break
       }
     } else {
-      errCallback && errCallback('The map type of \'' + type + '\' must have key!')
+      errCallback && errCallback(`必须要为地图类型'${type}'提供key!`)
     }
     return watchId
   }
@@ -417,7 +404,7 @@ class Geolocation {
    * @param {Object} options   - 配置参数
    * @private
    * */
-  _useAlipayLocation (sucCallback, errCallback, options = {}) {
+  _useAlipayLocation (sucCallback, errCallback) {
     window.AlipayJSBridge && window.AlipayJSBridge.call('getLocation', function (result) {
       if (result.error) {
         errCallback(result.errorMessage)
@@ -591,5 +578,15 @@ class Geolocation {
       }
       document.body.appendChild(sc)
     })
+  }
+}
+
+export default {
+  version: VERSION,
+  installed: false,
+  install (Vue, options) {
+    if (this.installed) return
+    Vue.prototype['$geo'] = new Geolocation(options)
+    this.installed = true
   }
 }

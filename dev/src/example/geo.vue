@@ -8,7 +8,7 @@
         <Content class="outer-content">
             <div padding>
                 <h5>简介</h5>
-                <p>this.$geo支持四种方式获取当前地理位置信息: H5原生方式/腾讯地图/高德地图/百度地图. 默认情况下, ISO平台在HTTP模式下不能使用原生获取地理位置.</p>
+                <p>this.$geo支持四种方式获取当前地理位置信息: H5原生方式/腾讯地图/高德地图/百度地图. 默认情况下, IOS平台在HTTP模式下不能使用原生获取地理位置.</p>
             </div>
 
 
@@ -274,37 +274,25 @@
         })
       }
     },
-    created () {},
     mounted () {
-      setTimeout(() => {
-        console.log(this.$geo)
-        this.getGeolocationByH5().then(() => {
-          this.h5Timer = this.$geo.watchPosition((position) => {
-            this.h5Geo = position
-          })
-        })
+      this.$platform.ready().then(() => {
+        this.getGeolocationByH5().then(() => {})
         this.getGeolocationByqMap().then(() => {
           this.qMapTimer = this.$geo.watchPosition('qMap', (position) => {
             this.qMapGeo = position
           })
-        })
+        });
         this.getGeolocationByaMap().then(() => {
           this.aMapTimer = this.$geo.watchPosition('aMap', (position) => {
             this.aMapGeo = position
           })
-        })
-        this.getGeolocationBybMap().then(() => {
-          this.bMapTimer = this.$geo.watchPosition('bMap', (position) => {
-            this.bMapGeo = position
-          })
-        })
-      }, 1001)
+        });
+        this.getGeolocationBybMap().then(() => {})
+      })
     },
     destroyed () {
-      this.$geo.clearWatch(this.h5Timer)
       this.$geo.clearWatch(this.qMapTimer)
       this.$geo.clearWatch(this.aMapTimer)
-      this.$geo.clearWatch(this.bMapTimer)
     },
     activated () {},
     components: {}
