@@ -212,7 +212,7 @@
       reset () {
         this.backgroundColor = null
         this.borderBottomColor = null
-        if (this.$platform.is('alipay')) {
+        if (this.$platform.is('alipay') && window.AlipayJSBridge) {
           window.ap && window.ap.setNavigationBar({
             reset: true
           })

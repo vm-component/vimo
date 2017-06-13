@@ -120,20 +120,6 @@ class Geolocation {
       }
     }
 
-    // if (isAlipayReady) {
-    //   return new Promise((resolve, reject) => {
-    //     window.AlipayJSBridge.call('getLocation', function (result) {
-    //       if (result.error) {
-    //         console.error(result.errorMessage)
-    //         reject()
-    //         return
-    //       }
-    //
-    //       console.debug(JSON.stringify(result))
-    //
-    //       //
-    // 四个直辖市（北京，上海，重庆，天津）返回的city为空字符串，可以通过result.province来获取，所以建议result.city?result.city:result.province这样来获取city
-    // resolve() }) }) } else {  }
     if (MAP.indexOf(type) === -1) {
       console.info(`[GEO]: 当前获取地理位置的方案${type}在列表[${MAP}]中未找到, 请检查你使用的方案!`)
     }

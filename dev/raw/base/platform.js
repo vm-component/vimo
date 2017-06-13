@@ -87,8 +87,9 @@ import { PLATFORM_DEFAULT_CONFIGS } from './platform-default-configs'
 class Platform {
   constructor () {
     // Ready的promise;
-    this._readyPromise = new Promise((resolve) => {
+    this._readyPromise = new Promise((resolve, reject) => {
       this._readyResolve = resolve
+      this._readyReject = reject
     })
 
     this._versions = {} // 当前平台的版本信息列表 PlatformVersion
@@ -222,13 +223,21 @@ class Platform {
   }
 
   /**
-   *
    * 当平台准备完毕的时执行resolve方法, 这段函数执行后, 执行ready
    * @param {string} readySource - resolve中传入的数据
    * @private
    */
   triggerReady (readySource) {
     this._readyResolve(readySource)
+  }
+
+  /**
+   * 平台初始化失败的回调
+   * @param {string} rejectSource - reject中传入的数据
+   * @private
+   */
+  triggerFail (rejectSource) {
+    this._readyReject(rejectSource)
   }
 
   /**

@@ -194,17 +194,18 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding:0 16px;
-        background:#e0e0e0;
+        padding: 0 16px;
+        background: #e0e0e0;
         height: 35px;
-        margin:0;
-    }
-    .name__content{
-        background:#fff;
+        margin: 0;
     }
 
-    [no-break]{
-        display:block; //如果是块儿级元素可以不用加
+    .name__content {
+        background: #fff;
+    }
+
+    [no-break] {
+        display: block; //如果是块儿级元素可以不用加
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -275,27 +276,29 @@
     },
     created () {},
     mounted () {
-      console.log(this.$geo)
-      this.getGeolocationByH5().then(() => {
-        this.h5Timer = this.$geo.watchPosition((position) => {
-          this.h5Geo = position
+      setTimeout(() => {
+        console.log(this.$geo)
+        this.getGeolocationByH5().then(() => {
+          this.h5Timer = this.$geo.watchPosition((position) => {
+            this.h5Geo = position
+          })
         })
-      })
-      this.getGeolocationByqMap().then(() => {
-        this.qMapTimer = this.$geo.watchPosition('qMap', (position) => {
-          this.qMapGeo = position
+        this.getGeolocationByqMap().then(() => {
+          this.qMapTimer = this.$geo.watchPosition('qMap', (position) => {
+            this.qMapGeo = position
+          })
         })
-      })
-      this.getGeolocationByaMap().then(() => {
-        this.aMapTimer = this.$geo.watchPosition('aMap', (position) => {
-          this.aMapGeo = position
+        this.getGeolocationByaMap().then(() => {
+          this.aMapTimer = this.$geo.watchPosition('aMap', (position) => {
+            this.aMapGeo = position
+          })
         })
-      })
-      this.getGeolocationBybMap().then(() => {
-        this.bMapTimer = this.$geo.watchPosition('bMap', (position) => {
-          this.bMapGeo = position
+        this.getGeolocationBybMap().then(() => {
+          this.bMapTimer = this.$geo.watchPosition('bMap', (position) => {
+            this.bMapGeo = position
+          })
         })
-      })
+      }, 1001)
     },
     destroyed () {
       this.$geo.clearWatch(this.h5Timer)

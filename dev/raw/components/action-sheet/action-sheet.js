@@ -35,7 +35,11 @@ function getPresentDismissIns (Factory) {
 
       if (isAlipayReady && options.buttons.length < 9) {
         let items = []
-        let cancelButton = {}
+        let cancelButton = {
+          text: '取消',
+          role: 'cancel',
+          handler: () => {}
+        }
         let destructiveButtonIndex = -1
         for (let i = 0; options.buttons.length > i; i++) {
           if (options.buttons[i].role === 'cancel') {
@@ -50,6 +54,7 @@ function getPresentDismissIns (Factory) {
           }
         }
 
+        options.buttons.push(cancelButton)
         return new Promise((resolve) => {
           window.AlipayJSBridge.call('actionSheet', {
             title: options.title,
@@ -58,6 +63,9 @@ function getPresentDismissIns (Factory) {
             destructiveBtnIndex: destructiveButtonIndex
           }, function (res) {
             // index标示用户点击的按钮，在actionSheet中的位置，从0开始
+
+            console.debug('res')
+            console.debug(JSON.stringify(res))
             if (res.index !== -1) {
               options.buttons[res.index].handler()
             } else {

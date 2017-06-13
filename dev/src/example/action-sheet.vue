@@ -48,7 +48,7 @@
                 _this.$actionSheet.present({
                   title: '请选择操作',
                   subTitle: '注意，选择后不能撤销！',
-                  cssClass: '  ActionSheetCssClass1 ActionSheetCssClass2  ',
+                  cssClass: 'ActionSheetCssClass1 ActionSheetCssClass2  ',
                   enableBackdropDismiss: true,
                   buttons: [
                     {
@@ -120,19 +120,19 @@
               text: 'MacBook Pro',
               cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
               handler: () => {
-                console.log('Destructive clicked')
+                console.log('MacBook Pro clicked')
               }
             },
             {
               text: 'MacMini',
               handler: () => {
-                console.log('Archive1 clicked')
+                console.log('MacMini clicked')
               }
             },
             {
               text: 'iPhone',
               handler: () => {
-                console.log('Archive4 clicked')
+                console.log('iPhone clicked')
               }
             }
           ]
@@ -152,21 +152,21 @@
               icon: 'trash',
               cssClass: '  DestructiveBtnCssClass1 DestructiveBtnCssClass2 ',
               handler: () => {
-                console.log('Destructive clicked')
+                console.log('删除 clicked')
               }
             },
             {
               text: '分享',
               icon: 'share',
               handler: () => {
-                console.log('Archive1 clicked')
+                console.log('分享 clicked')
               }
             },
             {
               text: '播放',
               icon: 'play',
               handler: () => {
-                console.log('Archive4 clicked')
+                console.log('播放 clicked')
               }
             },
             {
@@ -175,7 +175,7 @@
               icon: 'close',
               handler: () => {
                 _this.$actionSheet.dismiss().then(function (data) {
-                  console.debug('promise的退出方式')
+                  console.debug('取消 promise的退出方式')
                 })
               }
             }

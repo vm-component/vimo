@@ -8,7 +8,7 @@
 import { docReady } from '../util/util'
 //  platform supported list
 export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq', 'dtdream']
-
+const TIMEOUT = 10000 // 平台初始化需要的最大时间
 // platform default configs
 export const PLATFORM_DEFAULT_CONFIGS = {
   mobile: {
@@ -262,6 +262,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
               _this.bridgeReady(plt)
               // 触发平台的统一ready事件
               plt.triggerReady('Wechat Init Success!')
+              plt.timer && window.clearTimeout(plt.timer)
             }
 
             if (typeof window.WeixinJSBridge === 'undefined') {
@@ -273,6 +274,10 @@ export const PLATFORM_DEFAULT_CONFIGS = {
             }
           })
         })
+
+        plt.timer = window.setTimeout(() => {
+          plt.triggerFail('Wechat Init Timeout!')
+        }, TIMEOUT)
       }
 
       /**
@@ -334,7 +339,8 @@ export const PLATFORM_DEFAULT_CONFIGS = {
               // 执行自定义的bridge ready钩子
               _this.bridgeReady(plt)
               // 触发平台的统一ready事件
-              plt.triggerReady('alipay Init Success!')
+              plt.triggerReady('Alipay Init Success!')
+              plt.timer && window.clearTimeout(plt.timer)
             }
 
             if (typeof window.AlipayJSBridge === 'undefined') {
@@ -346,6 +352,10 @@ export const PLATFORM_DEFAULT_CONFIGS = {
             }
           })
         })
+
+        plt.timer = window.setTimeout(() => {
+          plt.triggerFail('Alipay Init Timeout!')
+        }, TIMEOUT)
       }
 
       /**

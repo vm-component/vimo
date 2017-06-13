@@ -164,7 +164,7 @@
         }
 
         if (changeDocTitle) {
-          if (this.$platform.is('alipay')) {
+          if (this.$platform.is('alipay') && window.AlipayJSBridge) {
             window.AlipayJSBridge.call('setTitle', _title)
           } else {
             // 设置document的title, 这部分由$app处理
@@ -190,7 +190,7 @@
        * */
       reset () {
         this.titleColor = null
-        if (this.$platform.is('alipay')) {
+        if (this.$platform.is('alipay') && window.AlipayJSBridge) {
           window.ap && window.ap.setNavigationBar({
             reset: true
           })

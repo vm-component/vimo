@@ -86,6 +86,9 @@ new Vue({
   created () {
     this.$platform.ready().then((data) => {
       console.log(data)
+      if (this.$platform.is('android')) {
+        document.getElementsByTagName('style')[0].innerHTML += '* {transition: none !important}'
+      }
     })
   },
   components: {App}

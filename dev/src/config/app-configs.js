@@ -14,7 +14,8 @@ export default {
     },
     android: {
       statusbarPadding: false,
-      pageTransition: 'zoom-transition' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+      showIndicatorWhenPageChange: false,
+      pageTransition: '' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     },
     alipay: {
       hideNavBar: true
