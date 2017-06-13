@@ -30,7 +30,6 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     present (options) {
-
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
 
       /**
@@ -67,7 +66,7 @@ function getPresentDismissIns (Factory) {
             okButton: confirmButton.text || '确定',
             cancelButton: cancelButton.text || '取消'
           }, function (result) {
-            if (result.confirm) {
+            if (result.ok) {
               confirmButton.handler && confirmButton.handler()
             } else {
               cancelButton.handler && cancelButton.handler()

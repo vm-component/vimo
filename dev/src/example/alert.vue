@@ -37,7 +37,9 @@
             {
               text: '确定',
               role: '',
-              handler: (value) => {}
+              handler: (value) => {
+                console.log('Alert 确定 click')
+              }
             }
           ]
         })
@@ -55,16 +57,15 @@
               icon: 'icon-Destructive',
               cssClass: '',
               handler: () => {
-                console.debug('button2 click')
+                console.debug('Confirm 取消 click')
               }
             },
             {
               text: '确定',
               role: '',
-              handler: (value) => {
-                this.$alert.dismiss().then(function (data) {
-                  console.debug('button3 click')
-                  console.debug(data)
+              handler: () => {
+                this.$alert.dismiss().then(function () {
+                  console.debug('Confirm 确定 click')
                 })
               }
             }
@@ -80,20 +81,23 @@
             {
               text: '不清楚',
               role: '',
-              handler: (value) => {}
+              handler: () => {
+                console.debug('Three 不清楚 click')
+              }
             },
             {
               text: '取消',
               role: 'cancel',
-              handler: (value) => {}
+              handler: () => {
+                console.debug('Three 取消 click')
+              }
             },
             {
               text: '确定',
               role: '',
-              handler: (value) => {
+              handler: () => {
                 this.$alert.dismiss().then(function (data) {
-                  console.debug('button3 click')
-                  console.debug(data)
+                  console.debug('Three 确定 click')
                 })
               }
             }
@@ -122,7 +126,6 @@
             },
             {
               text: '确定',
-              role: '',
               handler: (value) => {
                 this.$alert.present({
                   title: '请确认',
@@ -134,20 +137,20 @@
                       text: '确定',
                       role: 'cancel',
                       handler: (value) => {
-                        this.$alert.dismiss().then(function (msg) {
-                          console.log('alert input2 dismiss promise')
+                        this.$alert.dismiss().then(function () {
+                          console.log('Alert 确定 click')
                         })
                       }
                     }
                   ]
                 }).then(function () {
-                  console.log('alert input2 present promise')
+                  console.log('Alert present promise')
                 })
               }
             }
           ]
         }).then(function () {
-          console.log('alert input1 present promise')
+          console.log('Input present!')
         })
       },
       checkbox () {
