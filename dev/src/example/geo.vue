@@ -53,7 +53,7 @@
 
 
             <h5 class="name">
-                <span>H5原生方式:</span>
+                <span>默认方式:</span>
                 <Button small outline @click="getGeolocationByH5" :disabled="!h5Geo">
                     重新获取
                 </Button>
@@ -72,12 +72,19 @@
                         <Column col-4>mapType:</Column>
                         <Column v-if="h5Geo">{{h5Geo.mapType}}</Column>
                     </Row>
+                    <Row v-if="h5Geo && h5Geo.full">
+                        <Column col-4>address:</Column>
+                        <Column>
+                            {{h5Geo.full.province}} {{h5Geo.full.city}}
+                        </Column>
+                    </Row>
                     <Row v-if="h5Err">
                         <Column col-4>err:</Column>
                         <Column>{{h5Err}}</Column>
                     </Row>
                 </Grid>
             </div>
+
 
             <h5 class="name">
                 <span>腾讯地图:</span>

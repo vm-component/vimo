@@ -4,6 +4,14 @@
  *
  * @property {object} options - options
  *
+ * ## 特殊情况
+ *
+ * 默认我们的H5是在各种浏览器中运行, 通过H5的api或者是地图服务提供上提供的获取地理位置接口得到当前的经纬度.
+ *
+ * 如果运行在支付宝中, 则可以绕过以上方式, 使用支付宝提供的hybrid接口获取用户当前位置, 这样来说是比较快捷方便的.
+ *
+ * 因此, 如果在支付宝中, 则只是用支付宝方案获取地理位置信息.
+ *
  *
  * ## 方法
  *
@@ -29,6 +37,9 @@
  * 取消订阅
  *
  *
+ *
+ *
+ *
  */
 const VERSION = '0.0.1'
 export default {
@@ -41,10 +52,11 @@ export default {
 const isString = (val) => typeof val === 'string'
 const isFunction = (val) => typeof val === 'function'
 const H5 = 'h5'
+const ALIPAY = 'alipay'
 const Q_MAP = 'qMap' // 腾讯地图
 const B_MAP = 'bMap' // 百度地图
 const A_MAP = 'aMap' // 高的地图(阿里地图)
-const MAP = [H5, Q_MAP, A_MAP, B_MAP]
+const MAP = [H5, Q_MAP, A_MAP, B_MAP, ALIPAY]
 const ERROR_TYPE = {
   1: 'PERMISSION_DENIED',
   2: 'POSITION_UNAVAILABLE',
@@ -91,18 +103,44 @@ class Geolocation {
 
   /**
    * 获取地理位置
-   * @param {string} [type='h5'] - map类型
+   * 如果没指定获取类型, 且在支付宝中则使用支付宝方案, 如果不是则使用H5方案
+   * @param {string} [type] - map类型
    * @return {Promise}
    * */
-  getCurrentPosition (type = H5) {
+  getCurrentPosition (type) {
+    /**
+     * 如果是在支付宝环境中, 则强制使用支付宝方案.
+     * */
+    let isAlipayReady = window.VM.platform.is('alipay') && (window.AlipayJSBridge || window.ap)
+    if (!type) {
+      if (isAlipayReady) {
+        type = ALIPAY
+      } else {
+        type = H5
+      }
+    }
+
+    // if (isAlipayReady) {
+    //   return new Promise((resolve, reject) => {
+    //     window.AlipayJSBridge.call('getLocation', function (result) {
+    //       if (result.error) {
+    //         console.error(result.errorMessage)
+    //         reject()
+    //         return
+    //       }
+    //
+    //       console.debug(JSON.stringify(result))
+    //
+    //       //
+    // 四个直辖市（北京，上海，重庆，天津）返回的city为空字符串，可以通过result.province来获取，所以建议result.city?result.city:result.province这样来获取city
+    // resolve() }) }) } else {  }
     if (MAP.indexOf(type) === -1) {
-      console.error('The type of \'' + type + '\' not found in [' + MAP + '], so it\'s use \'aMap\' instead!')
-      type = 'aMap'
+      console.info(`[GEO]: 当前获取地理位置的方案${type}在列表[${MAP}]中未找到, 请检查你使用的方案!`)
     }
 
     if (type === H5 && this.isIos && !this.isHttps) {
       type = this._s.fallBack
-      console.info('[MESSAGE]:getCurrentPosition() -> 如果在IOS下使用的不是HTTPS, 则使用备选方案\'' + type + '\'!')
+      console.info(`[GEO]: 方法 getCurrentPosition() -> 如果在IOS下使用的不是HTTPS, 则使用备选方案'${type}'!`)
     }
 
     return new Promise((resolve, reject) => {
@@ -123,6 +161,9 @@ class Geolocation {
             break
           case Q_MAP:
             position = {lat: pos.lat, lng: pos.lng, mapType: Q_MAP, full: pos}
+            break
+          case ALIPAY:
+            position = {lat: pos.latitude, lng: pos.longitude, mapType: ALIPAY, full: pos}
             break
           default:
             position = {lat: pos.position.lat, lng: pos.position.lng, mapType: A_MAP, full: pos}
@@ -186,9 +227,12 @@ class Geolocation {
         if (this.isSupported) {
           this._h5Location(successFn, errorFn, posOptions)
         } else {
-          console.info('[MESSAGE]:当前设备不支持\'navigator.geolocation\', 使用备选方案\'' + this._s.fallBack + '\'!')
+          console.info(`[GEO]:当前设备不支持'window.navigator.geolocation', 这里使用备选方案'${this._s.fallBack}'!`)
           this._useMapLocation(successFn, errorFn, posOptions, this._s.fallBack)
         }
+      } else if (type === ALIPAY) {
+        // 使用alipay壳子的方案
+        this._useAlipayLocation(successFn, errorFn, posOptions, type)
       } else {
         this._useMapLocation(successFn, errorFn, posOptions, type)
       }
@@ -378,6 +422,24 @@ class Geolocation {
       this._qMapLocation(sucCallback, errCallback, options)
       return 0
     }
+  }
+
+  /**
+   * 使用alipay壳子的方案
+   * @param {Function} sucCallback  - 成功回调
+   * @param {Function} errCallback    - 失败回调
+   * @param {Object} options   - 配置参数
+   * @private
+   * */
+  _useAlipayLocation (sucCallback, errCallback, options = {}) {
+    window.AlipayJSBridge && window.AlipayJSBridge.call('getLocation', function (result) {
+      if (result.error) {
+        errCallback(result.errorMessage)
+        return
+      }
+      // 四个直辖市（北京，上海，重庆，天津）返回的city为空字符串，可以通过result.province来获取，所以建议result.city?result.city:result.province这样来获取city
+      sucCallback(result)
+    })
   }
 
   /**
