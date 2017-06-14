@@ -251,8 +251,12 @@
       // 这样的话, 验证位置就会统一.
       check: [Boolean]
     },
+    watch: {
+      value (val) {
+        this.inputValue = val
+      }
+    },
     computed: {
-
       modeClass () {
         return `input input-${this.mode}`
       },

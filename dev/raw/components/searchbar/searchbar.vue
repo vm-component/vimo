@@ -146,9 +146,9 @@
         shouldAnimated: false,
 
         // 三个元素的id的document实例
-        searchbarIcon: '',
-        searchbarInput: '',
-        cancelButton: '',
+        searchbarIconElement: '',
+        searchbarInputElement: '',
+        cancelButtonElement: '',
 
         // 外部的value映射
         theValue: this.value,
@@ -264,6 +264,17 @@
     },
     methods: {
 
+      // -------- public --------
+      /**
+       * @function setFocus
+       * @description
+       * 手动设置当前input的focus状态
+       */
+      setFocus () {
+        this.searchbarInputElement.focus()
+      },
+
+      // -------- private --------
       /**
        * Update the Searchbar input value when the input changes
        * @private
@@ -323,7 +334,7 @@
         window.setTimeout(() => {
           if (!this.shouldBlur) {
             this.sbHasFocus = true
-            this.searchbarInput.focus()
+            this.searchbarInputElement.focus()
           } else {
             /**
              * @event component:SearchBar#onBlur
@@ -342,7 +353,7 @@
        * @private
        */
       clearInput ($event) {
-        this.searchbarInput.focus()
+        this.searchbarInputElement.focus()
         /**
          * @event component:SearchBar#onClear
          * @description clear事件
@@ -401,8 +412,8 @@
       },
 
       positionPlaceholder () {
-        let inputEle = this.searchbarInput
-        let iconEle = this.searchbarIcon
+        let inputEle = this.searchbarInputElement
+        let iconEle = this.searchbarIconElement
         console.assert(inputEle, 'The input element is undefined, please check!::<Function>positionPlaceholder():inputEle')
         console.assert(iconEle, 'The icon element is undefined, please check!::<Function>positionPlaceholder():iconEle')
         if (!inputEle || !iconEle) {
@@ -414,7 +425,7 @@
           iconEle.removeAttribute('style')
         } else {
           if (this.sbHasFocus) {
-            this.searchbarInput.blur()
+            this.searchbarInputElement.blur()
           }
 
           if (this.placeHolderTextWidth === null) {
@@ -450,12 +461,12 @@
        * @private
        */
       positionCancelButton () {
-        if (!this.cancelButton) {
+        if (!this.cancelButtonElement) {
           return
         }
         let showShowCancel = this.sbHasFocus
         if (showShowCancel !== this.isCancelVisible) {
-          let cancelStyleEle = this.cancelButton
+          let cancelStyleEle = this.cancelButtonElement
           let cancelStyle = cancelStyleEle.style
           this.isCancelVisible = showShowCancel
           if (showShowCancel) {
@@ -470,18 +481,18 @@
       }
     },
     mounted () {
-      this.searchbarIcon = this.$refs.searchbarIcon
-      this.searchbarInput = this.$refs.searchbarInput
-      this.cancelButton = this.$refs.cancelButton.$el
+      this.searchbarIconElement = this.$refs.searchbarIcon
+      this.searchbarInputElement = this.$refs.searchbarInput
+      this.cancelButtonElement = this.$refs.cancelButton.$el
       this.positionElements()
 
       if (isBoolean(this.autofocus) && this.autofocus) {
-        this.searchbarInput.focus()
+        this.setFocus()
       }
 
       if (isNumber(this.autofocus) && this.autofocus > 0) {
         window.setTimeout(() => {
-          this.searchbarInput.focus()
+          this.setFocus()
         }, this.autofocus)
       }
     },
