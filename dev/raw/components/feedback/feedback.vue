@@ -2,7 +2,7 @@
     <section class="vm-feedback feedback__inputBox">
         <!--textarea-->
         <div class="feedback__inputBox--textareaBox">
-            <textarea :placeholder="placeholder"
+            <Textarea :placeholder="placeholder"
                       ref="textarea"
                       v-model="value.text"
                       :name="name"
@@ -11,7 +11,7 @@
                       :disabled="disabled"
                       :autofocus="autofocus"
                       :maxlength="maxlength"
-                      @input="inputHandler"></textarea>
+                      @onInput="inputHandler"></Textarea>
         </div>
         <p class="feedback__text">{{textCount}}/{{maxlength}}</p>
         <!--image 1~3| && word count-->
@@ -22,8 +22,7 @@
                 <div class="delete" @click="removeImage(index)"></div>
             </div>
             <!--input-->
-            <div class="image empty"
-                 v-show="value.images.length < maximage">
+            <div class="image empty" v-show="value.images.length < maximage" @click="addFile">
                 <input @change="onChangeHandler" class="file" type="file">
             </div>
         </div>
@@ -57,10 +56,11 @@
    * */
   import './fixImage'
   import { isString, isArray } from '../../util/util'
-  import Autosize from 'autosize'
+  import { Textarea } from '../input'
   export default{
     name: 'Feedback',
-    data(){
+    components: { Textarea },
+    data () {
       return {}
     },
     props: {
@@ -87,13 +87,13 @@
       value: {
         type: Object,
         required: true,
-        validator: function (value) {
+        validator (value) {
           return isString(value.text) && isArray(value.images)
         }
       }
     },
     computed: {
-      textareaElement () {
+      textareaComponent () {
         return this.$refs.textarea
       },
       // 计算输入数
@@ -108,7 +108,7 @@
        * 更新textarea组件
        * */
       update () {
-        Autosize.update(this.textareaElement)
+        this.textareaComponent.update()
       },
       /**
        * @function destroy
@@ -116,10 +116,17 @@
        * 销毁textarea组件
        * */
       destroy () {
-        Autosize.destroy(this.textareaElement)
+        this.textareaComponent.destroy()
       },
 
       // -------- private -------
+
+      /**
+       * @private
+       * */
+      addFile () {
+
+      },
 
       /**
        * @private
@@ -146,22 +153,21 @@
        * */
       onChangeHandler (event) {
         let input = event.target
-        const fixImage = (file, callback) => {
+        let fixImage = (file, callback) => {
           // 加载资源
-          canvasResize(file, {
-            width: 640,// 最大的尺寸,如果比这小是不会出现放大的情况的,文章宽度为710px
+          window.canvasResize(file, {
+            width: 640, // 最大的尺寸,如果比这小是不会出现放大的情况的,文章宽度为710px
             height: 0,
             crop: false,
             quality: 80,
             // rotate: 90,
             callback (data, width, height) {
               // 将图片改为二进制文件,准备上传
-              let _blob = canvasResize('dataURLtoBlob', data)
+              let _blob = window.canvasResize('dataURLtoBlob', data)
               !!callback && callback(_blob)
             }
           })
         }
-
         if (input.files && input.files[0]) {
           let file = input.files[0]
           if (!input.files[0].type.match('image.*')) {
@@ -190,9 +196,7 @@
         this.value.images.splice(index, 1)
       }
     },
-    mounted(){
-      Autosize(this.textareaElement)
-    }
+    mounted () {}
   }
 </script>
 <style lang="scss">
@@ -207,21 +211,21 @@
             width: 100%;
             padding: 10px;
             background: #fff;
-            textarea {
-                width: 100%;
-                padding: 0;
-                border: none;
-                font-size: 14px;
-                color: #000;
-                height: 91px;
-                line-height: 130%;
-                background: transparent;
-                border-radius: 3px;
-                resize: none;
-                border: 0;
-                -webkit-appearance: none;
-                outline: none
-            }
+            /*textarea {*/
+            /*width: 100%;*/
+            /*padding: 0;*/
+            /*border: none;*/
+            /*font-size: 14px;*/
+            /*color: #000;*/
+            /*height: 91px;*/
+            /*line-height: 130%;*/
+            /*background: transparent;*/
+            /*border-radius: 3px;*/
+            /*resize: none;*/
+            /*border: 0;*/
+            /*-webkit-appearance: none;*/
+            /*outline: none*/
+            /*}*/
         }
         .feedback__text {
             color: #8b8b8b;
