@@ -15,7 +15,7 @@ export default {
     android: {
       statusbarPadding: false,
       showIndicatorWhenPageChange: false,
-      pageTransition: '' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+      pageTransition: 'zoom-transition' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     },
     alipay: {
       hideNavBar: true
