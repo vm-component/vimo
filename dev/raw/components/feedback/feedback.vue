@@ -19,10 +19,11 @@
             <div class="image"
                  v-for="(item,index) in value.images" :key="index"
                  :style="{backgroundImage:'url('+item.code+')'}">
+                <div class="preview" @click="previewImage(index)"></div>
                 <div class="delete" @click="removeImage(index)"></div>
             </div>
             <!--input-->
-            <div class="image empty" v-show="value.images.length < maximage" @click="addFile">
+            <div class="image empty" v-show="value.images.length < maximage" @click="addFile($event)">
                 <input @change="onChangeHandler" class="file" type="file">
             </div>
         </div>
@@ -57,9 +58,10 @@
   import './fixImage'
   import { isString, isArray } from '../../util/util'
   import { Textarea } from '../input'
+  import { PreviewImage } from '../preview-image'
   export default{
     name: 'Feedback',
-    components: { Textarea },
+    components: {Textarea},
     data () {
       return {}
     },
@@ -121,11 +123,45 @@
 
       // -------- private -------
 
+      previewImage (index) {
+        let images = []
+        this.value.images.forEach((image) => {
+          images.push(image.code)
+        })
+
+        PreviewImage({
+          isH5: true,
+          current: index || 0,
+          urls: images || []
+        })
+      },
+
       /**
        * @private
        * */
-      addFile () {
-
+      addFile ($event) {
+        let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
+        if (isAlipayReady) {
+          // 阻止h5的input的触发
+          $event.preventDefault()
+          $event.stopPropagation()
+          console.debug('使用支付宝上传方法, 单词上传一张.')
+          window.ap.chooseImage(1, (res) => {
+            window.ap.compressImage({
+              apFilePaths: res.apFilePaths,
+              level: 0
+            }, (result) => {
+              if (result.apFilePaths[0]) {
+                let imgData = {
+                  code: result.apFilePaths[0],
+                  blob: result.apFilePaths[0], // 转化的二进制图片文件
+                  file: result.apFilePaths[0] // 源文件 file
+                }
+                this.pushImageData(imgData)
+              }
+            })
+          })
+        }
       },
 
       /**
@@ -256,7 +292,6 @@
 
                 border: 1px solid #eee;
 
-                /*background-image: url();*/
                 background-repeat: no-repeat;
                 background-color: #eee;
                 background-position: center center;
@@ -270,12 +305,19 @@
                     min-height: 100%;
                 }
             }
+            .preview {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                z-index: 1;
+            }
             .delete {
                 position: absolute;
                 height: 25px;
                 width: 25px;
                 top: -5px;
                 right: -5px;
+                z-index: 2;
                 &:before {
                     content: '';
                     position: absolute;
@@ -285,6 +327,7 @@
                     border-radius: 100%;
                     top: 0;
                     right: 0;
+                    z-index: 3;
                 }
                 &:after {
                     content: '';
@@ -294,6 +337,7 @@
                     background: #fff;
                     top: 7px;
                     right: 3px;
+                    z-index: 4;
                 }
             }
             .empty {
