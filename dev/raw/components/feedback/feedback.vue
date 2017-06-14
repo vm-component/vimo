@@ -123,6 +123,9 @@
 
       // -------- private -------
 
+      /**
+       * 图片预览
+       * */
       previewImage (index) {
         let images = []
         this.value.images.forEach((image) => {
@@ -174,6 +177,7 @@
           this.$emit('input', this.value)
         }
       },
+
       /**
        * 图片数据推入
        * @private
@@ -231,8 +235,7 @@
       removeImage (index) {
         this.value.images.splice(index, 1)
       }
-    },
-    mounted () {}
+    }
   }
 </script>
 <style lang="scss">
@@ -374,5 +377,4 @@
             }
         }
     }
-
 </style>

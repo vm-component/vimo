@@ -12,9 +12,9 @@
  *
  * 如果实在支付宝环境，则使用支付宝的组件
  *
- * @params {Number} current - 当前index
- * @params {Array} urls - 图片链接
- * @params {Array} [isH5=false] - 是否使用h5组件, false为自动, true为强制使用h5组件
+ * @params {Number} [current=0]     - 当前index
+ * @params {Array} [urls]           - 图片链接
+ * @params {Array} [isH5=false]     - 是否使用h5组件, false为自动, true为强制使用h5组件
  *
  * */
 import { Modal } from '../modal'
