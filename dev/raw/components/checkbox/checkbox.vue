@@ -3,11 +3,10 @@
         <div class="checkbox-icon" :class="{'checkbox-checked':checkedValue}">
             <div class="checkbox-inner"></div>
         </div>
-        <button role="checkbox" @click="onPointerDownHandler()"
+        <Button role="item-cover" @click="onPointerDownHandler()"
                 type="button"
-                ion-button="item-cover"
                 class="item-cover">
-        </button>
+        </Button>
     </div>
 </template>
 <style lang="scss">
@@ -55,8 +54,10 @@
    * </Item>
    * */
   import { setElementClass, isTrueProperty } from '../../util/util'
+  import { Button } from '../button'
   export default{
     name: 'Checkbox',
+    components: {Button},
     data () {
       return {
         checkedValue: this.value,           // 内部维护的checked
