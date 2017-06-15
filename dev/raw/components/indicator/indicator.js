@@ -12,6 +12,8 @@
  *
  * @see component:Loading
  *
+ * @props {Boolean} isReverse - 是否反色
+ *
  * @demo https://dtfe.github.io/vimo-demo/#/indicator
  * @usage
  * // 开启300ms后关闭
@@ -21,6 +23,17 @@
  *        this.$indicator.dismiss()
  *      }, 300)
  * },
+ *
+ *
+ * // 反色
+ * openIndicator300 () {
+ *      this.$indicator.present(true)
+ *      setTimeout(() => {
+ *        this.$indicator.dismiss()
+ *      }, 300)
+ * },
+ *
+ *
  * */
 
 import Vue from 'vue'
@@ -39,12 +52,6 @@ function LoadingFactory (options) {
   return new Loading({el, propsData: options})
 }
 
-const options = {
-  cssClass: 'indicator',
-  showBackdrop: false,
-  mode: 'ios'
-}
-
 function getPresentDismissIns () {
   return {
     _i: null, // instance 组件实例
@@ -53,10 +60,17 @@ function getPresentDismissIns () {
      * 开启组件
      * @desc
      * 如果上一个实例是开启状态, 则自动关闭后开启新的
+     * @param {Boolean} isReverse - 是否反色
      * */
-    present () {
+    present (isReverse = false) {
       if (!this._i || !this._i.isActive) {
-        this._i = LoadingFactory(options)
+        let cssClass = 'indicator'
+        if (isReverse) { cssClass += ' reverse' }
+        this._i = LoadingFactory({
+          cssClass: cssClass,
+          showBackdrop: false,
+          mode: 'ios'
+        })
         this._i.present()
       }
     },

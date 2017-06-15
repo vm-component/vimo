@@ -11,6 +11,7 @@
             <p>如果路由切换则关闭组件</p>
             <Button block @click="openIndicatorInfinity">Open infinity(max 10s)</Button>
             <Button block @click="openIndicator1000">Open 1000ms</Button>
+            <Button block @click="openIndicatorReverse1000">Open 1000ms In Reverse Color</Button>
             <Button block @click="openIndicator300">Open 300ms</Button>
             <Button block @click="openIndicator100">Open 100ms</Button>
             <Button block @click="openIndicator20">Open 20ms</Button>
@@ -37,6 +38,13 @@
 
       openIndicator1000 () {
         this.$indicator.present()
+        setTimeout(() => {
+          this.$indicator.dismiss()
+        }, 1000)
+      },
+
+      openIndicatorReverse1000 () {
+        this.$indicator.present(true)
         setTimeout(() => {
           this.$indicator.dismiss()
         }, 1000)

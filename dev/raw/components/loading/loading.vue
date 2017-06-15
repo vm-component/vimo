@@ -24,9 +24,25 @@
         .loading-wrapper {
             background: rgba(0, 0, 0, 0.9);
             color: #fff;
-            padding: 13px 15px;
+            padding: 13px 13px;
             circle, line {
                 stroke: #fff !important;
+            }
+            .loading-spinner {
+                height: 30px;
+                width: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .indicator.reverse {
+        .loading-wrapper {
+            background: rgba(256, 256, 256, 0.9);
+            circle, line {
+                stroke: #000 !important;
             }
         }
     }
