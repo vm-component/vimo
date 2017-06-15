@@ -17,6 +17,7 @@
             overflow-x: scroll;
             overflow-y: hidden;
             position: relative;
+            // for hide scroll bar
             height: calc(100% + 10px);
             -webkit-overflow-scrolling: touch;
             &::-webkit-scrollbar {
@@ -26,10 +27,10 @@
 
         .scroll-segment-wrap {
             display: inline-flex;
-            height: 100%;
             flex-direction: row;
             flex-wrap: nowrap;
-            /*background: #333;*/
+            // for hide scroll bar
+            height: calc(100% - 10px);
         }
     }
 </style>
