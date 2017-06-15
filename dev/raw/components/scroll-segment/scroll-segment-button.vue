@@ -16,9 +16,7 @@
 </style>
 <script type="text/javascript">
   /**
-   *
    * onSelect事件
-   *
    * */
   export default{
     name: 'ScrollSegmentButton',
@@ -36,6 +34,7 @@
        * */
       clickHandler ($event) {
         this.$emit('click', $event)
+        this.$emit('onSelect', $event)
         this.scrollSegmentComponent.refresh(this._uid, this.rect)
       },
       setState (id) {
@@ -48,7 +47,10 @@
         this.scrollSegmentComponent.record(this)
         this.activeClass = this.scrollSegmentComponent.activeClass
         // 获取当前组件的尺寸及距离页面的位置
-        this.rect = this.$el.getBoundingClientRect()
+        this.rect = {
+          left: this.$el.offsetLeft,
+          width: this.$el.offsetWidth
+        }
       }
     }
   }

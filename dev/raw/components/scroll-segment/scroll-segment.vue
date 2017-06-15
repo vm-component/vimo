@@ -107,12 +107,16 @@
     name: 'ScrollSegment',
     data () {
       return {
+        isInit: false,
+        timer: null,
+
         min: 0,
         max: 0,
         rafId: null,
-        childComponents: [], // 子组件列表
-        wrapRect: null, // 滚动部分的尺寸
-        contentRect: null // 当前组件盒子的尺寸
+        childComponents: [],        // 子组件列表
+        wrapRect: null,             // 滚动部分的尺寸
+        contentRect: null,          // 当前组件盒子的尺寸
+        sendInputFromInner: false   // 当前组件盒子的尺寸
       }
     },
     props: {
@@ -128,6 +132,12 @@
     },
     watch: {
       value (val, oldValue) {
+
+        if (this.sendInputFromInner) {
+          this.sendInputFromInner = false
+          return
+        }
+
         let selectedComponent = this.childComponents[val]
         if (selectedComponent) {
           this.refresh(selectedComponent._uid, selectedComponent.rect)
@@ -151,6 +161,11 @@
        * */
       record (childComponent) {
         this.childComponents.push(childComponent)
+        console.assert(!this.isInit, 'ScrollSegment组件为异步组件, 且因为机制问题只能异步一次, 如果场景特殊请使用v-if关闭组件后再开启. ')
+        window.clearTimeout(this.timer)
+        this.timer = window.setTimeout(() => {
+          this.isInit = true
+        }, 0)
       },
 
       /**
@@ -167,6 +182,7 @@
        * */
       refresh (id, rect) {
         window.cancelAnimationFrame(this.rafId)
+        this.rafId = null
 
         // fixBug: 弹性滚动时不触发refresh
         if (this.outerElement.scrollLeft < 0 || this.outerElement.scrollLeft > (this.outerElement.scrollWidth - this.outerElement.offsetWidth)) {
@@ -179,6 +195,7 @@
           child.setState(id)
           if (id === child._uid) {
             this.$emit('input', i)
+            this.sendInputFromInner = true
           }
         }
 
@@ -205,6 +222,7 @@
             this.rafId = window.requestAnimationFrame(step)
           } else {
             window.cancelAnimationFrame(this.rafId)
+            this.rafId = null
           }
         }
 
@@ -220,9 +238,16 @@
     },
     mounted () {
       // 获取当前组件的尺寸及距离页面的位置
-      // height/width right/left/top/bottom
-      this.contentRect = this.outerElement.getBoundingClientRect()
-      this.wrapRect = this.wrapElement.getBoundingClientRect()
+      // width left
+      this.contentRect = {
+        left: this.outerElement.offsetLeft,
+        width: this.outerElement.offsetWidth
+      }
+
+      this.wrapRect = {
+        left: this.wrapElement.offsetLeft,
+        width: this.wrapElement.offsetWidth
+      }
 
       // 边界
       this.min = 0
@@ -233,7 +258,7 @@
       this.childComponents.forEach((child) => {
         child.setState(selectedComponent._uid)
       })
-      let target = selectedComponent.rect.left - this.contentRect.left - this.contentRect.width / 2 + selectedComponent.rect.width / 2
+      let target = selectedComponent.rect.left - this.contentRect.width / 2 + selectedComponent.rect.width / 2
       this.outerElement.scrollLeft = clamp(this.min, target, this.max)
 
       // 隐藏scrollbar
