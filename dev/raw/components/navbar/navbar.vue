@@ -102,7 +102,7 @@
 
         hideBb: false,
         bbIcon: this.$config && this.$config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
-        backText: this.$config && this.$config.get('backButtonText', 'Back') || 'Back',
+        backText: this.$config && this.$config.get('backButtonText', '返回') || '返回',
         hideNavBar: this.$config && this.$config.getBoolean('hideNavBar', false),
         statusbarPadding: this.$config && this.$config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
       }
