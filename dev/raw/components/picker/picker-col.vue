@@ -108,6 +108,7 @@
         this.pos.push(currentY, Date.now())
 
         if (this.startY === null) {
+          console.error('pointerMove this.startY === null')
           return
         }
 
@@ -118,12 +119,10 @@
           // scrolling up higher than scroll area
           y = Math.pow(y, 0.8)
           this.bounceFrom = y
-
         } else if (y < this.maxY) {
           // scrolling down below scroll area
           y += Math.pow(this.maxY - y, 0.9)
           this.bounceFrom = y
-
         } else {
           this.bounceFrom = 0
         }
@@ -139,6 +138,7 @@
         ev.preventDefault()
 
         if (this.startY === null) {
+          console.error('pointerEnd this.startY === null')
           return
         }
 

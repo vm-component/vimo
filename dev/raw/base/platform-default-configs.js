@@ -13,7 +13,7 @@ const TIMEOUT = 10000 // 平台初始化需要的最大时间
 export const PLATFORM_DEFAULT_CONFIGS = {
   mobile: {
     settings: {
-      mode: 'md',
+      mode: 'ios',
       showIndicatorWhenPageChange: true, // 页面切换是否显示Indicator提示
       regexps: {
         // 整数(包含正负)

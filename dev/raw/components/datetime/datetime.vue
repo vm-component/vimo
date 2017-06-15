@@ -64,8 +64,8 @@
    * @props {String} [pickerFormat] - picker 显示的格式
    * @props {String} [placeholder] - placeholder
    * @props {String|Object|Date} value - value
-   * @props {String} [cancelText='Cancel'] - 取消的显示文本
-   * @props {String} [doneText='Done'] - 确定的显示文本
+   * @props {String} [cancelText='取消'] - 取消的显示文本
+   * @props {String} [doneText='确认'] - 确定的显示文本
    * @props {String|Array} [yearValues] - 显示可以选择的 年 信息, 例如: "2024,2020,2016,2012,2008"
    * @props {String|Array} [monthValues] - 显示可以选择的 月 信息, 例如: "6,7,8"
    * @props {String|Array} [dayValues] - 显示可以选择的 月 信息, 例如: "6,7,8"
@@ -103,6 +103,7 @@
     dateDataSortValue
   } from './datetime-util'
   const DEFAULT_FORMAT = 'MMM D, YYYY'
+  //  const DEFAULT_FORMAT = 'YYYY/MM/DD'
   export default{
     name: 'Datetime',
     data () {
@@ -127,11 +128,11 @@
 
       cancelText: {                     // 取消的显示文本
         type: String,
-        default: 'Cancel'
+        default: '取消'
       },
       doneText: {                       // 确定的显示文本
         type: String,
-        default: 'Done'
+        default: '确认'
       },
 
       yearValues: [String, Array],      // 显示可以选择的 年 信息, 例如: "2024,2020,2016,2012,2008"

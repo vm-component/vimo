@@ -10,6 +10,7 @@
             <h5>简介</h5>
             <p>Picker组件将顶部的button和每列的属性都发放给外部进行自定义, 此外, 每列的columns可以附加前缀和后缀, 比如说明这列是Hour, 右边列是Minus等, 另外, 列的宽度也可定义.</p>
 
+            <Button block @click="oneColumns">1 Columns</Button>
             <Button block @click="twoColumns">2 Columns</Button>
             <Button block @click="prefixLabel">Prefix Label</Button>
             <Button block @click="suffixLabel">Suffix Label</Button>
@@ -39,6 +40,45 @@
     watch: {},
     computed: {},
     methods: {
+      oneColumns () {
+        Picker.present({
+          buttons: [
+            {
+              text: '取消',
+              role: 'cancel'
+            },
+            {
+              text: '确认',
+              handler: (data) => {
+                this.smoothie = `${data.flavor1.value}`
+              }
+            }
+          ],
+          columns: [
+            {
+              name: 'flavor1',
+              options: [
+                {text: 'Mango'},
+                {text: 'Banana'},
+                {text: 'Cherry'},
+                {text: 'Strawberry'},
+                {text: 'Raspberry'},
+                {text: 'Blueberry'},
+                {text: 'Peach'},
+                {text: 'Coconut'},
+                {text: 'Pineapple'},
+                {text: 'Honeydew'},
+                {text: 'Watermelon'},
+                {text: 'Grape'},
+                {text: 'Avocado'},
+                {text: 'Kiwi'},
+                {text: 'Orange'},
+                {text: 'Papaya'}
+              ]
+            }
+          ]
+        })
+      },
       twoColumns () {
         Picker.present({
           buttons: [

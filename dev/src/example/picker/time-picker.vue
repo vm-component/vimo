@@ -7,7 +7,6 @@
         </Header>
         <Content class="outer-content">
 
-
             <div padding>
                 <h5>简介</h5>
                 <p>
@@ -16,6 +15,10 @@
 
             <List>
                 <ListHeader>Choose Date</ListHeader>
+                <Item>
+                    <Label>Default</Label>
+                    <Datetime slot="item-right"></Datetime>
+                </Item>
                 <Item>
                     <Label>MMMM</Label>
                     <Datetime slot="item-right" displayFormat="MMMM" v-model="monthOnly"></Datetime>
@@ -47,13 +50,12 @@
                 </Item>
 
                 <Item>
-                    <Label>DDD. MMM DD, YY (custom locale)</Label>
-                    <Datetime slot="item-right" v-model="operaReleased" min="1990-02" max="2000"
+                    <Label>DDD. MMM DD, YY(本地)</Label>
+                    <Datetime slot="item-right" v-model="operaReleased" min="1990-02" max="2018"
                               displayFormat="DDD. MMM DD, YY"
-                              monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des"
+                              monthShortNames="一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月"
                               :dayShortNames="customShortDay"></Datetime>
                 </Item>
-
                 <Item>
                     <Label>D MMM YYYY H:mm</Label>
                     <Datetime slot="item-right" displayFormat="D MMM YYYY H:mm" min="1997" max="2010"
@@ -170,13 +172,13 @@
         specificDaysMonthsYears: '',
         leapYearsArray: [2020, 2016, 2008, 2004, 2000, 1996],
         customShortDay: [
-          's\u00f8n',
-          'man',
-          'tir',
-          'ons',
-          'tor',
-          'fre',
-          'l\u00f8r'
+          '周一',
+          '周二',
+          '周三',
+          '周四',
+          '周五',
+          '周六',
+          '周日'
         ]
       }
     },
