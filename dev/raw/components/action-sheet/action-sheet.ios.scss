@@ -87,12 +87,6 @@ $action-sheet-ios-button-cancel-font-weight: 600 !default;
 
   border-radius: $action-sheet-ios-border-radius;
   background: $action-sheet-ios-background;
-
-  .action-sheet-buttons {
-    max-height: 258px;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-  }
 }
 
 .action-sheet-ios .action-sheet-group:last-child {
@@ -113,7 +107,6 @@ $action-sheet-ios-button-cancel-font-weight: 600 !default;
   .action-sheet-sub-title {
     margin-top: 3%;
     font-size: 77%;
-    //color: #8f8f8f;
     line-height: 130%;
     max-width: 90%;
     margin-left: auto;

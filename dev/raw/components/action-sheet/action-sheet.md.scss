@@ -110,13 +110,6 @@ $action-sheet-md-icon-margin: 0 32px 0 0 !default;
 
 .action-sheet-md .action-sheet-group {
   overflow: hidden;
-
-  .action-sheet-buttons {
-    max-height: 265px;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-  }
-
 }
 
 .action-sheet-md .action-sheet-group .button-inner {
