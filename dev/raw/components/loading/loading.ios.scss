@@ -51,10 +51,8 @@ $loading-ios-spinner-dots-color: $loading-ios-spinner-color !default;
   border-radius: $loading-ios-border-radius;
   color: $loading-ios-text-color;
   background: $loading-ios-background;
-
-  margin-bottom: 44px;
   // addStyle
-  transition: all ease-in-out 200ms;
+  transition: transform ease-in-out 200ms, opacity ease-in-out 200ms;
 }
 
 // iOS Loading Content

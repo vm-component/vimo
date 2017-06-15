@@ -58,7 +58,7 @@ $loading-md-spinner-dots-color: $loading-md-spinner-color !default;
 
   box-shadow: $loading-md-box-shadow;
   // addStyle
-  transition: all ease-in-out 200ms;
+  transition: transform ease-in-out 200ms, opacity ease-in-out 200ms;
 }
 
 // Material Design Loading Content
