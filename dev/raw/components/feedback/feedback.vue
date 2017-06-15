@@ -250,21 +250,6 @@
             width: 100%;
             padding: 10px;
             background: #fff;
-            /*textarea {*/
-            /*width: 100%;*/
-            /*padding: 0;*/
-            /*border: none;*/
-            /*font-size: 14px;*/
-            /*color: #000;*/
-            /*height: 91px;*/
-            /*line-height: 130%;*/
-            /*background: transparent;*/
-            /*border-radius: 3px;*/
-            /*resize: none;*/
-            /*border: 0;*/
-            /*-webkit-appearance: none;*/
-            /*outline: none*/
-            /*}*/
         }
         .feedback__text {
             color: #8b8b8b;
@@ -313,6 +298,8 @@
                 width: 100%;
                 position: absolute;
                 z-index: 1;
+                left: 0;
+                top: 0;
             }
             .delete {
                 position: absolute;
