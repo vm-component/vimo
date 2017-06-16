@@ -31,8 +31,10 @@ function getPresentDismissIns (Factory) {
      * */
     present (options) {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
-      if (isAlipayReady && options.buttons.length < 9) {
-        console.info('ActionSheet 组件使用Alipay模式!')
+      let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
+
+      // 如果btn太多, 则原生组件放不下
+      if (options.buttons.length < 9) {
         let items = []
         let cancelButton = {
           text: '取消',
@@ -54,39 +56,65 @@ function getPresentDismissIns (Factory) {
         }
 
         options.buttons.push(cancelButton)
-        return new Promise((resolve) => {
-          window.AlipayJSBridge && window.AlipayJSBridge.call('actionSheet', {
-            title: options.title,
-            btns: items,
-            cancelBtn: cancelButton.text || '取消',
-            destructiveBtnIndex: destructiveButtonIndex
-          }, function (res) {
-            // index标示用户点击的按钮，在actionSheet中的位置，从0开始
-            if (res.index !== -1) {
-              options.buttons[res.index] && options.buttons[res.index].handler && options.buttons[res.index].handler()
-            } else {
-              cancelButton.handler && cancelButton.handler()
-            }
-          })
 
-          resolve()
-        })
-      } else {
-        console.info('ActionSheet 组件使用H5模式!')
-        return new Promise((resolve) => {
-          if (this._i && this._i.isActive) {
-            this._i.dismiss().then(() => {
-              this._i = Factory(options)
-              // 自动开启
-              this._i.present().then(() => { resolve() })
+        if (isAlipayReady) {
+          console.info('ActionSheet 组件使用Alipay模式!')
+          return new Promise((resolve) => {
+            window.AlipayJSBridge && window.AlipayJSBridge.call('actionSheet', {
+              title: options.title || '',
+              btns: items || [],
+              cancelBtn: cancelButton.text || '取消',
+              destructiveBtnIndex: destructiveButtonIndex || -1
+            }, function (res) {
+              // index标示用户点击的按钮，在actionSheet中的位置，从0开始
+              if (res.index !== -1) {
+                options.buttons[res.index] && options.buttons[res.index].handler && options.buttons[res.index].handler()
+              } else {
+                cancelButton.handler && cancelButton.handler()
+              }
             })
-          } else {
+
+            resolve()
+          })
+        }
+
+        if (isDingTalkReady) {
+          console.info('ActionSheet 组件使用DingTalk模式!')
+          return new Promise((resolve) => {
+            window.dd.device.notification.actionSheet({
+              title: options.title || '',
+              cancelButton: cancelButton.text || '取消',
+              otherButtons: items || [],
+              onSuccess (result) {
+                // onSuccess将在点击button之后回调
+                // {buttonIndex: 0 //被点击按钮的索引值，Number，从0开始, 取消按钮为-1 }
+                if (result.buttonIndex !== -1) {
+                  options.buttons[result.buttonIndex] && options.buttons[result.buttonIndex].handler && options.buttons[result.buttonIndex].handler()
+                } else {
+                  cancelButton.handler && cancelButton.handler()
+                }
+              }
+            })
+
+            resolve()
+          })
+        }
+      }
+
+      console.info('ActionSheet 组件使用H5模式!')
+      return new Promise((resolve) => {
+        if (this._i && this._i.isActive) {
+          this._i.dismiss().then(() => {
             this._i = Factory(options)
             // 自动开启
             this._i.present().then(() => { resolve() })
-          }
-        })
-      }
+          })
+        } else {
+          this._i = Factory(options)
+          // 自动开启
+          this._i.present().then(() => { resolve() })
+        }
+      })
 
     },
 
