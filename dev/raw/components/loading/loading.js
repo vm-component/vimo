@@ -34,7 +34,7 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     present (options = {}) {
-      let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
+      let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
       if (isAlipayReady) {
         return new Promise((resolve) => {
           if (isString(options)) {
@@ -70,20 +70,17 @@ function getPresentDismissIns (Factory) {
      * */
     dismiss () {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
-      if (isAlipayReady) {
-        return new Promise((resolve) => {
+      return new Promise((resolve) => {
+        if (isAlipayReady) {
           window.AlipayJSBridge.call('hideLoading')
+        }
+
+        if (this._i && this._i.isActive) {
+          this._i.dismiss().then(() => { resolve() })
+        } else {
           resolve()
-        })
-      } else {
-        return new Promise((resolve) => {
-          if (this._i && this._i.isActive) {
-            this._i.dismiss().then(() => { resolve() })
-          } else {
-            resolve()
-          }
-        })
-      }
+        }
+      })
     }
   }
 }

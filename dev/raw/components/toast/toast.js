@@ -118,7 +118,7 @@ function ToastFactory () {
     propsData = _args[0]
   }
 
-  let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
+  let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !propsData.isH5
   if (isAlipayReady) {
     return {
       present () {

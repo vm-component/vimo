@@ -14,13 +14,14 @@
  *
  * @params {Number} [current=0]     - 当前index
  * @params {Array} [urls]           - 图片链接
- * @params {Array} [isH5=false]     - 是否使用h5组件, false为自动, true为强制使用h5组件
+ * @params {Array} [isH5=false]     - 是否使用h5组件, false为自动, true为强制使用h5组件(isForceH5)
  *
  * */
 import { Modal } from '../modal'
 import PreviewImageComponent from './preview-image.vue'
 export function PreviewImage (options) {
-  if (window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5) {
+  let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
+  if (isAlipayReady) {
     // alipay环境使用壳子方法
     window.ap.previewImage({
       current: options.current || 0,

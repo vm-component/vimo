@@ -12,6 +12,7 @@
 
             <Button block @click="oneColumns">1 Columns</Button>
             <Button block @click="twoColumns">2 Columns</Button>
+            <Button block @click="threeColumns">3 Columns</Button>
             <Button block @click="prefixLabel">Prefix Label</Button>
             <Button block @click="suffixLabel">Suffix Label</Button>
             <Button block @click="columnSizes">Columns with sizes</Button>
@@ -57,6 +58,7 @@
           columns: [
             {
               name: 'flavor1',
+              selectedIndex: 2,
               options: [
                 {text: 'Mango'},
                 {text: 'Banana'},
@@ -90,6 +92,9 @@
               text: 'Done',
               handler: (data) => {
                 this.smoothie = `${data.flavor1.value} ${data.flavor2.value}`
+                console.log(data)
+                console.log(data)
+                console.log(JSON.stringify(data))
               }
             }
           ],
@@ -97,6 +102,7 @@
             {
               name: 'flavor1',
               align: 'right',
+              selectedIndex: 1,
               options: [
                 {text: 'Mango'},
                 {text: 'Banana'},
@@ -119,6 +125,97 @@
             {
               name: 'flavor2',
               align: 'left',
+              selectedIndex: 3,
+              options: [
+                {text: 'Banana'},
+                {text: 'Orange'},
+                {text: 'Grape'},
+                {text: 'Watermelon'},
+                {text: 'Strawberry'},
+                {text: 'Papaya'},
+                {text: 'Kiwi'},
+                {text: 'Cherry'},
+                {text: 'Raspberry'},
+                {text: 'Mango'},
+                {text: 'Pineapple'},
+                {text: 'Peach'},
+                {text: 'Avocado'},
+                {text: 'Honeydew'},
+                {text: 'Blueberry'},
+                {text: 'Coconut'}
+              ]
+            }
+          ]
+        })
+      },
+      threeColumns () {
+        Picker.present({
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel'
+            },
+            {
+              text: 'Done',
+              handler: (data) => {
+                this.smoothie = `${data.flavor1.value} ${data.flavor2.value}`
+                console.log(data)
+                console.log(data)
+                console.log(JSON.stringify(data))
+              }
+            }
+          ],
+          columns: [
+            {
+              name: 'flavor1',
+              align: 'right',
+              selectedIndex: 1,
+              options: [
+                {text: 'Mango'},
+                {text: 'Banana'},
+                {text: 'Cherry'},
+                {text: 'Strawberry'},
+                {text: 'Raspberry'},
+                {text: 'Blueberry'},
+                {text: 'Peach'},
+                {text: 'Coconut'},
+                {text: 'Pineapple'},
+                {text: 'Honeydew'},
+                {text: 'Watermelon'},
+                {text: 'Grape'},
+                {text: 'Avocado'},
+                {text: 'Kiwi'},
+                {text: 'Orange'},
+                {text: 'Papaya'}
+              ]
+            },
+            {
+              name: 'flavor2',
+              align: 'left',
+              selectedIndex: 3,
+              options: [
+                {text: 'Banana'},
+                {text: 'Orange'},
+                {text: 'Grape'},
+                {text: 'Watermelon'},
+                {text: 'Strawberry'},
+                {text: 'Papaya'},
+                {text: 'Kiwi'},
+                {text: 'Cherry'},
+                {text: 'Raspberry'},
+                {text: 'Mango'},
+                {text: 'Pineapple'},
+                {text: 'Peach'},
+                {text: 'Avocado'},
+                {text: 'Honeydew'},
+                {text: 'Blueberry'},
+                {text: 'Coconut'}
+              ]
+            },
+            {
+              name: 'flavor3',
+              align: 'left',
+              selectedIndex: 5,
               options: [
                 {text: 'Banana'},
                 {text: 'Orange'},
@@ -143,6 +240,7 @@
       },
       prefixLabel () {
         Picker.present({
+          isH5: true,
           buttons: [
             {
               text: 'Nerp',
@@ -184,6 +282,7 @@
       },
       suffixLabel () {
         Picker.present({
+          isH5: true,
           buttons: [
             {
               text: 'No',
@@ -250,6 +349,7 @@
         }
 
         Picker.present({
+          isH5: true,
           buttons: [
             {
               text: 'Cancel',

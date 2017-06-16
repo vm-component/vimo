@@ -30,7 +30,7 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     present (options) {
-      let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
+      let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
       if (isAlipayReady && options.buttons.length < 9) {
         let items = []
         let cancelButton = {

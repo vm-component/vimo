@@ -222,6 +222,7 @@
           Picker.refresh()
         }
         pickerOptions.onDismiss = () => {}
+        pickerOptions.isH5 = true // 强制使用h5模式
 
         Picker.present(pickerOptions)
 

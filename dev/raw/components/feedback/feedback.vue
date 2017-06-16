@@ -46,6 +46,7 @@
    * @props {String} [placeholder='请输入您的反馈...'] - placeholder
    * @props {Number} [maxlength=300] - 文本输入的最大长度
    * @props {Number} [maximage=300] - 图片上传的最大个数
+   * @props {Boolean} [isH5=false] - 是否强制使用H5模式
    *
    * @props {Object} value - 传入传出数据
    * @props {String} value.text - 传入传出文本
@@ -92,7 +93,8 @@
         validator (value) {
           return isString(value.text) && isArray(value.images)
         }
-      }
+      },
+      isH5: Boolean
     },
     computed: {
       textareaComponent () {
@@ -143,7 +145,7 @@
        * @private
        * */
       addFile ($event) {
-        let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
+        let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !this.isH5
         if (isAlipayReady) {
           // 阻止h5的input的触发
           $event.preventDefault()
