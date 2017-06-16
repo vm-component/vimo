@@ -21,13 +21,16 @@ import { Modal } from '../modal'
 import PreviewImageComponent from './preview-image.vue'
 export function PreviewImage (options) {
   let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
+  // alipay模式只能显示完整url路径的图片, 不能显示base64格式的图片
   if (isAlipayReady) {
     // alipay环境使用壳子方法
+    console.info('PreviewImage 组件使用Alipay模式!')
     window.ap.previewImage({
       current: options.current || 0,
       urls: options.urls
     })
   } else {
+    console.info('PreviewImage 组件使用H5模式!')
     Modal.present({
       component: PreviewImageComponent,
       mode: 'zoom',

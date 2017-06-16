@@ -150,7 +150,7 @@
           // 阻止h5的input的触发
           $event.preventDefault()
           $event.stopPropagation()
-          console.debug('使用支付宝上传方法, 单词上传一张.')
+          console.info('Feedback 组件使用Alipay模式, 单次上传一张.')
           window.ap.chooseImage(1, (res) => {
             window.ap.compressImage({
               apFilePaths: res.apFilePaths,
@@ -166,6 +166,8 @@
               }
             })
           })
+        } else {
+          console.info('Feedback 组件使用H5模式!')
         }
       },
 

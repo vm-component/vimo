@@ -33,7 +33,7 @@ function getPresentDismissIns (Factory) {
     present (options) {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
       if (isAlipayReady && (options.columns.length === 1 || options.columns.length === 2)) {
-      // if (true) {
+        console.info('Picker 组件使用Alipay模式!')
         return new Promise((resolve) => {
           /**
            * normalize the data
@@ -169,6 +169,7 @@ function getPresentDismissIns (Factory) {
           resolve()
         })
       } else {
+        console.info('Picker 组件使用H5模式!')
         return new Promise((resolve) => {
           if (this._i && this._i.isActive) {
             this._i.dismiss().then(() => {

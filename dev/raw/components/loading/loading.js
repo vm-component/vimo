@@ -36,6 +36,7 @@ function getPresentDismissIns (Factory) {
     present (options = {}) {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
       if (isAlipayReady) {
+        console.info('Loading 组件使用Alipay模式!')
         return new Promise((resolve) => {
           if (isString(options)) {
             options = {content: options}
@@ -47,6 +48,7 @@ function getPresentDismissIns (Factory) {
           resolve()
         })
       } else {
+        console.info('Loading 组件使用H5模式!')
         return new Promise((resolve) => {
           if (this._i && this._i.isActive) {
             this._i.dismiss().then(() => {

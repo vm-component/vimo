@@ -32,6 +32,7 @@ function getPresentDismissIns (Factory) {
     present (options) {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
       if (isAlipayReady && options.buttons.length < 9) {
+        console.info('ActionSheet 组件使用Alipay模式!')
         let items = []
         let cancelButton = {
           text: '取消',
@@ -71,6 +72,7 @@ function getPresentDismissIns (Factory) {
           resolve()
         })
       } else {
+        console.info('ActionSheet 组件使用H5模式!')
         return new Promise((resolve) => {
           if (this._i && this._i.isActive) {
             this._i.dismiss().then(() => {

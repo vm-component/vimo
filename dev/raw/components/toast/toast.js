@@ -120,6 +120,7 @@ function ToastFactory () {
 
   let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !propsData.isH5
   if (isAlipayReady) {
+    console.info('Toast 组件使用Alipay模式!')
     return {
       present () {
         window.ap.showToast({
@@ -135,6 +136,7 @@ function ToastFactory () {
       }
     }
   } else {
+    console.info('Toast 组件使用H5模式!')
     return new Toast({
       el,
       propsData: propsData

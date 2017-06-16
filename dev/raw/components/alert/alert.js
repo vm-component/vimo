@@ -36,6 +36,7 @@ function getPresentDismissIns (Factory) {
        * 如果是alipay环境
        * */
       if (isAlipayReady && options.buttons.length === 1) {
+        console.info('Alert 组件使用Alipay模式!')
         // alert
         return new Promise((resolve) => {
           window.AlipayJSBridge.call('alert', {
@@ -48,6 +49,7 @@ function getPresentDismissIns (Factory) {
           resolve()
         })
       } else if (isAlipayReady && options.buttons.length === 2 && !options.inputs) {
+        console.info('Alert 组件使用Alipay模式!')
         // confirm
         let cancelButton = {}
         let confirmButton = {}
@@ -75,6 +77,7 @@ function getPresentDismissIns (Factory) {
           resolve()
         })
       } else if (isAlipayReady && options.buttons.length === 2 && options.inputs.length === 1 && (options.inputs[0].type !== 'radio' || options.inputs[0].type !== 'checkbox')) {
+        console.info('Alert 组件使用Alipay模式!')
         // prompt
         let cancelButton = {}
         let confirmButton = {}
@@ -109,6 +112,7 @@ function getPresentDismissIns (Factory) {
         /**
          * 以上如果未全部匹配则使用H5组件
          * */
+        console.info('Alert 组件使用H5模式!')
         return new Promise((resolve) => {
           if (this._i && this._i.isActive) {
             this._i.dismiss().then(() => {
