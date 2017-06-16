@@ -17,6 +17,7 @@
             <Button block @click="openActionSheet">打开ActionSheet</Button>
             <Button block @click="openAlert">打开Alert</Button>
             <Button block @click="openConfirm">打开Confirm</Button>
+            <Button block @click="openPrompt">打开Prompt</Button>
             <Button block @click="openLoading">打开Loading</Button>
 
             <h5>导航栏</h5>
@@ -154,7 +155,7 @@
         })
       },
       openAlert () {
-        this.$platform.do('alert', {
+        this.$alert.present({
           title: '温馨提示',
           message: '您的快递到了！',
           buttons: [
@@ -168,7 +169,7 @@
         })
       },
       openConfirm () {
-        this.$platform.do('confirm', {
+        this.$alert.present({
           title: '温馨提示',
           message: '您是否想查询快递单号：\n1234567890',
           buttons: [
@@ -186,6 +187,54 @@
               }
             }
           ]
+        })
+      },
+      openPrompt () {
+        this.$alert.present({
+          title: '登录iTunes Store',
+          message: '请输入您Apple ID"apple@icloud.com"的密码',
+          enableBackdropDismiss: true,
+          inputs: [
+            {
+              type: 'password',
+              name: 'password',
+              placeholder: '密码',
+              value: ''
+            }
+          ],
+          buttons: [
+            {
+              text: '取消',
+              role: 'cancel',
+              handler: () => {}
+            },
+            {
+              text: '确定',
+              handler: (value) => {
+                this.$alert.present({
+                  title: '请确认',
+                  message: '您输入的信息：' + JSON.stringify(value),
+                  cssClass: '',
+                  enableBackdropDismiss: true,
+                  buttons: [
+                    {
+                      text: '确定',
+                      role: 'cancel',
+                      handler: (value) => {
+                        this.$alert.dismiss().then(function () {
+                          console.log('Alert 确定 click')
+                        })
+                      }
+                    }
+                  ]
+                }).then(function () {
+                  console.log('Alert present promise')
+                })
+              }
+            }
+          ]
+        }).then(function () {
+          console.log('Input present!')
         })
       },
       openLoading () {
@@ -226,8 +275,6 @@
         alert('点击了顶部title, 确定后取消绑定')
         this.$platform.off('titleClick')
       })
-
-
 
 //      window.ap.showNavigationBarLoading();
     },

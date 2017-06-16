@@ -31,102 +31,168 @@ function getPresentDismissIns (Factory) {
      * */
     present (options) {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
+      let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
+
+      // alert 模式
+      if (options.buttons.length === 1) {
+        if (isAlipayReady) {
+          console.info('Alert 组件使用Alipay模式!')
+          // alert
+          return new Promise((resolve) => {
+            window.AlipayJSBridge.call('alert', {
+              title: options.title || '',
+              message: options.message || '',
+              button: options.buttons[0].text || '确定'
+            }, function () {
+              options.buttons[0] && options.buttons[0].handler && options.buttons[0].handler()
+            })
+            resolve()
+          })
+        }
+
+        if (isDingTalkReady) {
+          console.info('Alert 组件使用DingTalk模式!')
+          // alert
+          return new Promise((resolve) => {
+            window.dd.device.notification.alert({
+              title: options.title || '',
+              message: options.message || '',
+              buttonName: options.buttons[0].text || '确定',
+              onSuccess () {
+                options.buttons[0] && options.buttons[0].handler && options.buttons[0].handler()
+              }
+            })
+            resolve()
+          })
+        }
+      }
+
+      // confirm 模式
+      if (options.buttons.length === 2 && !options.inputs) {
+        let cancelButton = {}
+        let confirmButton = {}
+        options.buttons.forEach((button) => {
+          if (button.role === 'cancel') {
+            cancelButton = button
+          } else {
+            confirmButton = button
+          }
+        })
+
+        if (isAlipayReady) {
+          console.info('Confirm 组件使用Alipay模式!')
+          return new Promise((resolve) => {
+            window.AlipayJSBridge.call('confirm', {
+              title: options.title || '',
+              message: options.message || '',
+              okButton: confirmButton.text || '确定',
+              cancelButton: cancelButton.text || '取消'
+            }, function (result) {
+              if (result.ok) {
+                confirmButton.handler && confirmButton.handler()
+              } else {
+                cancelButton.handler && cancelButton.handler()
+              }
+            })
+            resolve()
+          })
+        }
+
+        if (isDingTalkReady) {
+          console.info('Confirm 组件使用DingTalk模式!')
+          return new Promise((resolve) => {
+            window.dd.device.notification.confirm({
+              message: options.message || '',
+              title: options.title || '',
+              buttonLabels: [cancelButton.text || '取消', confirmButton.text || '确定'],
+              onSuccess (result) {
+                // onSuccess将在点击button之后回调
+                // {buttonIndex: 0 //被点击按钮的索引值，Number类型，从0开始}
+                if (result.buttonIndex === 0) {
+                  cancelButton.handler && cancelButton.handler()
+                } else {
+                  confirmButton.handler && confirmButton.handler()
+                }
+              }
+            })
+            resolve()
+          })
+        }
+      }
+
+      // prompt 模式
+      if (options.buttons.length === 2 && options.inputs.length === 1 && (options.inputs[0].type !== 'radio' || options.inputs[0].type !== 'checkbox')) {
+        let cancelButton = {}
+        let confirmButton = {}
+        options.buttons.forEach((button) => {
+          if (button.role === 'cancel') {
+            cancelButton = button
+          } else {
+            confirmButton = button
+          }
+        })
+
+        if (isAlipayReady) {
+          console.info('Prompt 组件使用Alipay模式!')
+          return new Promise((resolve) => {
+            window.AlipayJSBridge.call('prompt', {
+              title: options.title || '',
+              message: options.message || '',
+              okButton: confirmButton.text || '确定',
+              cancelButton: cancelButton.text || '取消',
+              placeholder: options.inputs[0].placeholder
+            }, function (result) {
+              // result.ok     bool型  用户是否点击确定
+              // result.inputValue     用户输入的内容
+              if (result.ok) {
+                confirmButton.handler && confirmButton.handler({[options.inputs[0].name]: result.inputValue})
+              } else {
+                cancelButton.handler && cancelButton.handler({[options.inputs[0].name]: result.inputValue})
+              }
+            })
+            resolve()
+          })
+        }
+
+        if (isDingTalkReady) {
+          console.info('Prompt 组件使用DingTalk模式!')
+          return new Promise((resolve) => {
+            window.dd.device.notification.prompt({
+              title: options.title || '',
+              message: options.message || '',
+              buttonLabels: [cancelButton.text || '取消', confirmButton.text || '确定'],
+              onSuccess (result) {
+                // onSuccess将在点击button之后回调
+                // {buttonIndex: 0, value: ''}
+                if (result.buttonIndex === 0) {
+                  cancelButton.handler && cancelButton.handler({[options.inputs[0].name]: result.value})
+                } else {
+                  confirmButton.handler && confirmButton.handler({[options.inputs[0].name]: result.value})
+                }
+              }
+            })
+            resolve()
+          })
+        }
+      }
 
       /**
-       * 如果是alipay环境
+       * 以上如果未全部匹配则使用H5组件
        * */
-      if (isAlipayReady && options.buttons.length === 1) {
-        console.info('Alert 组件使用Alipay模式!')
-        // alert
-        return new Promise((resolve) => {
-          window.AlipayJSBridge.call('alert', {
-            title: options.title,
-            message: options.message,
-            button: options.buttons[0].text || '确定'
-          }, function () {
-            options.buttons[0] && options.buttons[0].handler && options.buttons[0].handler()
-          })
-          resolve()
-        })
-      } else if (isAlipayReady && options.buttons.length === 2 && !options.inputs) {
-        console.info('Alert 组件使用Alipay模式!')
-        // confirm
-        let cancelButton = {}
-        let confirmButton = {}
-        options.buttons.forEach((button) => {
-          if (button.role === 'cancel') {
-            cancelButton = button
-          } else {
-            confirmButton = button
-          }
-        })
-
-        return new Promise((resolve) => {
-          window.AlipayJSBridge.call('confirm', {
-            title: options.title,
-            message: options.message,
-            okButton: confirmButton.text || '确定',
-            cancelButton: cancelButton.text || '取消'
-          }, function (result) {
-            if (result.ok) {
-              confirmButton.handler && confirmButton.handler()
-            } else {
-              cancelButton.handler && cancelButton.handler()
-            }
-          })
-          resolve()
-        })
-      } else if (isAlipayReady && options.buttons.length === 2 && options.inputs.length === 1 && (options.inputs[0].type !== 'radio' || options.inputs[0].type !== 'checkbox')) {
-        console.info('Alert 组件使用Alipay模式!')
-        // prompt
-        let cancelButton = {}
-        let confirmButton = {}
-        options.buttons.forEach((button) => {
-          if (button.role === 'cancel') {
-            cancelButton = button
-          } else {
-            confirmButton = button
-          }
-        })
-
-        return new Promise((resolve) => {
-          window.AlipayJSBridge.call('prompt', {
-            title: options.title,
-            message: options.message,
-            okButton: confirmButton.text || '确定',
-            cancelButton: cancelButton.text || '取消',
-            placeholder: options.inputs[0].placeholder
-          }, function (result) {
-            // result.ok     bool型  用户是否点击确定
-            // result.inputValue     用户输入的内容
-            if (result.ok) {
-              confirmButton.handler && confirmButton.handler({[options.inputs[0].name]: result.inputValue})
-            } else {
-              cancelButton.handler && cancelButton.handler({[options.inputs[0].name]: result.inputValue})
-            }
-          })
-
-          resolve()
-        })
-      } else {
-        /**
-         * 以上如果未全部匹配则使用H5组件
-         * */
-        console.info('Alert 组件使用H5模式!')
-        return new Promise((resolve) => {
-          if (this._i && this._i.isActive) {
-            this._i.dismiss().then(() => {
-              this._i = Factory(options)
-              // 自动开启
-              this._i.present().then(() => { resolve() })
-            })
-          } else {
+      console.info('Alert 组件使用H5模式!')
+      return new Promise((resolve) => {
+        if (this._i && this._i.isActive) {
+          this._i.dismiss().then(() => {
             this._i = Factory(options)
             // 自动开启
             this._i.present().then(() => { resolve() })
-          }
-        })
-      }
+          })
+        } else {
+          this._i = Factory(options)
+          // 自动开启
+          this._i.present().then(() => { resolve() })
+        }
+      })
     },
 
     /**

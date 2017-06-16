@@ -392,6 +392,38 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   dingtalk: {
     initialize (plt) {
       /**
+       * 加载JSSDK
+       * */
+      const _this = this
+      let jsSDKUrl = this.settings['jsSDKUrl']
+      let splitArr = jsSDKUrl.split('//')
+      if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
+        splitArr[0] = 'https:'
+      } else {
+        splitArr[0] = 'http:'
+      }
+
+      /**
+       * 在ready之前进行处理
+       * 执行用户定义的onBridgeReady钩子
+       * */
+      plt.beforeReady = () => {
+        'use strict'
+        loadScript(splitArr.join('//'), () => {
+          docReady(() => {
+            // 执行自定义的bridge ready钩子
+            _this.bridgeReady(plt)
+            plt.triggerReady('Dingtalk Init Success!')
+            plt.timer && window.clearTimeout(plt.timer)
+          })
+        })
+
+        plt.timer = window.setTimeout(() => {
+          plt.triggerFail('Dingtalk Init Timeout!')
+        }, TIMEOUT)
+      }
+
+      /**
        * 钉钉的userAgent中包含了网络类型和当前语言
        * AlipayDefined(nt:WIFI,ws:320|548|2.0)
        * Language/zh-Hans
@@ -400,12 +432,11 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setLang(val[1].toString().toLowerCase(), true)
       }
-      this.bridgeReady(plt)
-      plt.triggerReady('dingtalk Init Success!')
     },
     // 由业务完成部分
     bridgeReady (plt) {},
     settings: {
+      jsSDKUrl: '//g.alicdn.com/dingding/open-develop/1.5.1/dingtalk.js',
       hideNavBar: true
     },
     isMatch (plt) {
