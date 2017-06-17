@@ -81,7 +81,8 @@
     methods: {
       // 界面组件部分
       openToast () {
-        this.$platform.do('toast', {
+        this.$toast({
+          type: 'success',
           message: '这里弹出的是弱提示',
           duration: 3000,
           onDismiss () {
@@ -90,7 +91,7 @@
         })
       },
       openActionSheet () {
-        this.$platform.do('actionSheet', {
+        this.$actionSheet.present({
           title: '请选择操作',
           buttons: [
             {
@@ -98,7 +99,7 @@
               role: 'destructive',
               handler: () => {
                 console.log('再弹一次 clicked')
-                this.$platform.do('actionSheet', {
+                this.$actionSheet.present({
                   title: '请选择操作',
                   buttons: [
                     {
@@ -151,7 +152,7 @@
             }
           ]
         }).then(function () {
-          console.log('actionsheet 开启')
+          console.log('actionsheet 开启 promise')
         })
       },
       openAlert () {
@@ -238,12 +239,12 @@
         })
       },
       openLoading () {
-        this.$platform.do('loading', {
+        this.$loading.present({
           content: '正在加载'
         })
 
         window.setTimeout(() => {
-          this.$platform.do('loading.dismiss')
+          this.$loading.dismiss('loading.dismiss')
         }, 3000)
       },
 

@@ -35,34 +35,48 @@ function getPresentDismissIns (Factory) {
      * */
     present (options = {}) {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
+      let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
+
+      if (isString(options)) {
+        options = {content: options}
+      }
+
       if (isAlipayReady) {
         console.info('Loading 组件使用Alipay模式!')
         return new Promise((resolve) => {
-          if (isString(options)) {
-            options = {content: options}
-          }
           window.AlipayJSBridge.call('showLoading', {
             delay: options.delay || 0,
             text: options.content || ''
           })
           resolve()
         })
-      } else {
-        console.info('Loading 组件使用H5模式!')
+      }
+
+      if (isDingTalkReady) {
+        console.info('Loading 组件使用DingTalk模式!')
         return new Promise((resolve) => {
-          if (this._i && this._i.isActive) {
-            this._i.dismiss().then(() => {
-              this._i = Factory(options)
-              // 自动开启
-              this._i.present().then(() => { resolve() })
-            })
-          } else {
+          window.dd.device.notification.showPreloader({
+            text: options.content || '',
+            showIcon: true // 是否显示icon，默认true
+          })
+          resolve()
+        })
+      }
+
+      console.info('Loading 组件使用H5模式!')
+      return new Promise((resolve) => {
+        if (this._i && this._i.isActive) {
+          this._i.dismiss().then(() => {
             this._i = Factory(options)
             // 自动开启
             this._i.present().then(() => { resolve() })
-          }
-        })
-      }
+          })
+        } else {
+          this._i = Factory(options)
+          // 自动开启
+          this._i.present().then(() => { resolve() })
+        }
+      })
     },
 
     /**
@@ -72,9 +86,18 @@ function getPresentDismissIns (Factory) {
      * */
     dismiss () {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
+      let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd
       return new Promise((resolve) => {
         if (isAlipayReady) {
           window.AlipayJSBridge.call('hideLoading')
+        }
+
+        if (isAlipayReady) {
+          window.AlipayJSBridge.call('hideLoading')
+        }
+
+        if (isDingTalkReady) {
+          window.dd.device.notification.hidePreloader()
         }
 
         if (this._i && this._i.isActive) {
