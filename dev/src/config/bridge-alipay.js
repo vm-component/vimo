@@ -115,9 +115,9 @@ export function alipayBridge (plt) {
   // })
 
   // 页面切换就重置导航栏的修改样式
-  plt.on('onRouteChangeBefore', () => {
-    window.ap.setNavigationBar({
-      reset: true
-    })
-  })
+  // plt.on('onRouteChangeBefore', () => {
+  //   window.ap.setNavigationBar({
+  //     reset: true
+  //   })
+  // })
 }

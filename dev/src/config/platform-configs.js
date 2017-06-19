@@ -6,19 +6,19 @@
 export default {
   mobile: {
     beforeInitialize (plt) {
-      require('./bridge-h5')['h5Bridge'](plt)
+      // require('./bridge-h5')['h5Bridge'](plt)
     }
   },
   ios: {},
   android: {},
   wechat: {
     bridgeReady (plt) {
-      require('./bridge-wechat')['wechatBridge'](plt)
+      // require('./bridge-wechat')['wechatBridge'](plt)
     }
   },
   alipay: {
     bridgeReady (plt) {
-      require('./bridge-alipay')['alipayBridge'](plt)
+      // require('./bridge-alipay')['alipayBridge'](plt)
     }
   },
   dingtalk: {},

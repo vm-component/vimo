@@ -336,7 +336,6 @@
 
         // If ev was passed, use that for target element
         let targetDim = ev && ev.target && ev.target.getBoundingClientRect()
-        console.log(targetDim)
 
         let targetTop = (targetDim && 'top' in targetDim) ? targetDim.top : (bodyHeight / 2) - (popoverHeight / 2)
         let targetLeft = (targetDim && 'left' in targetDim) ? targetDim.left : (bodyWidth / 2)

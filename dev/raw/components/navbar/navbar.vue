@@ -5,17 +5,21 @@
         <div class="toolbar-background"
              :style="{backgroundColor:backgroundColor,borderBottomColor:borderBottomColor}"
              :class="[toolbarBackgroundClass]"></div>
+
+        <!--first-->
+        <div class="toolbar-content" :class="[toolbarContentClass]">
+            <slot></slot>
+        </div>
+
         <!--show-back-button-->
         <Button @click="backButtonClickHandler" role="bar-button" class="back-button"
                 :class="[backButtonClass,{'show-back-button':!hideBackButton}]" v-if="!hideBb">
             <Icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></Icon>
             <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
         </Button>
+
         <!--buttons/menuToggle-->
         <slot name="buttons"></slot>
-        <div class="toolbar-content" :class="[toolbarContentClass]">
-            <slot></slot>
-        </div>
     </div>
 </template>
 <style lang="scss">
@@ -55,6 +59,11 @@
    * Vue.component(Navbar.name, Navbar)
    * ```
    *
+   * ### 导航条的三种模式
+   *
+   * - 顶级单例模式: 这个对应Alipay/Dingtalk/Wechat等平台, 因为H5是单页应用, 故Navbar不随业务页面切换而改变, 故在H5模式时, 需要设置顶级模式, 保证业务共用一个Navbar. 此时的Navbar组件在App组件中设置
+   * - 正常模式: 表示业务页面管理自己的Navbar, 不同业务页面定义的Navbar不冲突不相干, 此外只有在Navbar中的 Title组件才能改变页面Title属性
+   *
    * ### 如果在支付宝中
    *
    * 如果在支付宝中, 设置H5的样式也同样适用于对支付宝壳子的导航栏的操作. 当路由切换, 则重置之前的设置. 可用的方法:
@@ -90,9 +99,10 @@
    *  </Page>
    * </template>
    * */
-
+  import { Popover } from '../popover'
   import { Button } from '../button'
   import { Icon } from '../icon'
+  import MenuOptions from './menu-options.vue'
   export default{
     name: 'Navbar',
     data () {
@@ -143,9 +153,26 @@
       },
       toolbarContentClass () {
         return `toolbar-content-${this.mode}`
+      },
+      popMenuComponent () {
+        return this.$refs.popMenu
       }
     },
     methods: {
+      showPopMenu (dataList) {
+        if (dataList && Array.isArray(dataList) && dataList.length > 0) {
+          Popover.present({
+            ev: {
+              target: this.popMenuComponent.$el
+            }, // 事件
+            cssClass: 'popMenu',
+            component: MenuOptions,                  // 传入组件
+            data: {
+              menusData: dataList  // 传入数据, 内部通过`this.$options.$data`获取这个data
+            }
+          })
+        }
+      },
       /**
        * @private
        * */
@@ -158,12 +185,11 @@
       /**
        * @function setBackgroundColor
        * @description
-       * 设置Navbar背景颜色
+       * 设置Navbar背景颜色, 目前支持h5/Alipay/
        * @param {String} color - 颜色, 比如: #DDDDDD
        * */
       setBackgroundColor (color) {
         this.backgroundColor = color
-
         let titleComponent = this.$children[0]
         if (titleComponent && titleComponent.$options._componentTag.toLowerCase() === 'title') {
           // 根据背景计算文字颜色
@@ -174,6 +200,7 @@
           let r = parseInt(colorLite[0] + colorLite[1], 16)
           let g = parseInt(colorLite[2] + colorLite[3], 16)
           let b = parseInt(colorLite[4] + colorLite[5], 16)
+
           if (r < 170 || g < 170 || b < 170) {
             titleComponent.setTitleColor && titleComponent.setTitleColor('#fff')
           } else {
@@ -182,10 +209,14 @@
         }
 
         if (this.$platform.is('alipay') && window.AlipayJSBridge) {
-          window.AlipayJSBridge.call('setTitleColor', {
-            color: parseInt(color.substr(1), 16), // 十进制
-            reset: false // (可选,默认为false)  是否重置title颜色为默认颜色。
+          window.ap.setNavigationBar({
+            backgroundColor: color
           })
+        }
+
+        // 告知App组件下的Title组件更新状态
+        if (this.$navbar && this !== this.$navbar && this.$platform.platforms().length === 3) {
+          this.$navbar && this.$navbar.setBackgroundColor(color)
         }
       },
 
@@ -198,8 +229,8 @@
       setBorderBottomColor (color) {
         this.borderBottomColor = color
         if (this.$platform.is('alipay') && window.AlipayJSBridge) {
-          window.AlipayJSBridge.call('setBarBottomLineColor', {
-            color: parseInt(color.substr(1), 16)
+          window.ap.setNavigationBar({
+            borderBottomColor: color
           })
         }
       },
@@ -217,10 +248,18 @@
             reset: true
           })
         }
+      },
+
+      /**
+       * 手动设置是否显示后退按钮
+       * @private
+       * */
+      refreshBackButtonStatus () {
+        this.hideBb = !this.$history.canGoBack()
       }
     },
     created () {
-      this.hideBb = !this.$history.canGoBack()
+      this.refreshBackButtonStatus()
     },
     components: {
       Button, Icon

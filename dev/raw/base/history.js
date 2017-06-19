@@ -32,7 +32,7 @@ export class History {
     this._h = []                // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
     this._d = 'forward'         // forward/backward
     this._r = router            // vur-router实例
-    this.isInit = false  // App组件是否已完成Init, 表示基础页面是否准备完毕
+    this.isInit = false         // App组件是否已完成Init, 表示基础页面是否准备完毕
     this.length = 0
 
     // 监听路由变化, 维护本地历史记录

@@ -79,6 +79,17 @@ Vue.prototype.$toast = Toast
 Vue.prototype.$modal = Modal
 Vue.prototype.$indicator = Indicator
 
+if (process.env.NODE_ENV === 'development') {
+  // 开发模式显示navbar, 真正情况下见config中的app-configs.js和platform-configs.js文件
+  window.VM.config && window.VM.config.set('alipay', 'hideNavBar', false)
+  window.VM.config && window.VM.config.set('dingtalk', 'hideNavBar', false)
+  window.VM.config && window.VM.config.set('qq', 'hideNavBar', false)
+  window.VM.config && window.VM.config.set('dtdream', 'hideNavBar', false)
+  window.VM.config && window.VM.config.set('wechat', 'hideNavBar', false)
+} else {
+
+}
+
 new Vue({
   el: '#app',
   router,

@@ -7,12 +7,12 @@
         </Header>
         <Content padding class="outer-content">
             <h5>
-                <span>当前平台：</span>
-                <small>{{$platform.platforms().join(' -> ')}}</small>
+                当前平台：{{platformName}}
             </h5>
+            <p>Vimo框架会识别当前的平台 <strong>根据平台提供的JSSDK开启特定平台的组件</strong>, 比如下方列出的组件会根据平台展现不同的特性, <strong>默认使用H5模式</strong>, 目前支持Alipay和Dingtalk两个平台, 你可以试下在这两个平台打开这个页面体验下面的设置方法.
+            </p>
 
-            <h5>界面组件</h5>
-
+            <h5>弹窗组件</h5>
             <Button block @click="openToast">打开Toast</Button>
             <Button block @click="openActionSheet">打开ActionSheet</Button>
             <Button block @click="openAlert">打开Alert</Button>
@@ -21,41 +21,22 @@
             <Button block @click="openLoading">打开Loading</Button>
 
             <h5>导航栏</h5>
-
             <Button block @click="btnTitle">设置标题文字</Button>
             <Button block @click="btnImage">设置标题图片(url)</Button>
             <Button block @click="btnBgColor">设置导航栏背景色</Button>
             <Button block @click="btnBorderColor">设置导航栏底边颜色</Button>
             <Button block @click="btnReset">重置导航栏</Button>
 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquid animi cumque cupiditate dolorem earum eligendi ipsa modi nobis possimus, provident quis quod reprehenderit sunt tempora ut veritatis, voluptas. Laboriosam.</p>
+            <h5>导航栏菜单</h5>
+            <Button block @click="showOptionButton">显示右侧按钮</Button>
+            <Button block @click="hideOptionButton">隐藏右侧按钮</Button>
+            <Button block @click="setOptionButton">设置右侧按钮</Button>
+            <Button block @click="showPopMenu">显示右侧按钮菜单</Button>
+            <Button block @click="setOptionsBtnAndPopMenu">设置右侧按钮和PopMenu菜单</Button>
+
+            <h5>选择器Picker</h5>
+
+            <h5>图片</h5>
         </Content>
     </Page>
 </template>
@@ -66,7 +47,9 @@
   export default{
     name: 'name',
     data () {
-      return {}
+      return {
+        platformName: 'H5'
+      }
     },
     props: {},
     watch: {},
@@ -79,11 +62,13 @@
       }
     },
     methods: {
-      // 界面组件部分
+      /**
+       * 弹窗组件
+       * */
       openToast () {
         this.$toast({
           type: 'success',
-          message: '这里弹出的是弱提示',
+          message: '这里弹出的是弱提示, 3s后关闭!',
           duration: 3000,
           onDismiss () {
             console.debug('Toast 关闭')
@@ -248,9 +233,11 @@
         }, 3000)
       },
 
-      // 导航栏部分
+      /**
+       * 导航栏部分
+       * */
       btnTitle () {
-        this.titleComponent.setTitle('支付宝-AlipayJSAPI', true)
+        this.titleComponent.setTitle('Hello Vimo', true)
       },
       btnImage () {
         this.titleComponent.setTitle({
@@ -269,13 +256,103 @@
         this.titleComponent.setTitle('重置导航栏样式', true)
         this.navbarComponent.reset()
         this.titleComponent.reset()
-      }
+      },
+
+      /**
+       * 导航栏右侧按钮相关
+       * */
+      showOptionButton () {
+        this.navbarComponent.showOptionButton()
+      },
+      hideOptionButton () {
+        this.navbarComponent.hideOptionButton()
+      },
+      setOptionButton () {
+
+        this.navbarComponent.setOptionButton({
+          items: [{
+            title: '', // 必填
+            icon: '', // 按钮图标，支持 base64
+            type: 'user', // 按钮图标类型，与 title、icon 三选一。支持 user / filter / search / add / settings / scan / info / help / locate / more
+            color: '#ED4A4D', // '#ED4A4D'
+            badge: '', // 按钮红色气泡，默认 -1。其中 0 表示小红点，-1 表示不显示，其他值展示出来
+            handler () {
+
+            }
+          }],
+        })
+        window.ap.setOptionButton({
+          items: [{
+            title: '完成', // 必填
+            icon: '', // 按钮图标，支持 base64
+            type: 'user', // 按钮图标类型，与 title、icon 三选一。支持 user / filter / search / add / settings / scan / info / help / locate / more
+            color: '#ED4A4D', // '#ED4A4D'
+            badge: '' // 按钮红色气泡，默认 -1。其中 0 表示小红点，-1 表示不显示，其他值展示出来
+          }],
+          onClick: function (data) {
+            // index 被点击的菜单项的索引，从0开始，从左到右
+            ap.alert('你点击了「完成」，它是第' + data.index + '个 optionButton')
+          },
+          success: function (res) {
+            ap.showToast('设置成功')
+          },
+          fail: function (res) {
+            ap.showToast('设置失败')
+          }
+        })
+      },
+      showPopMenu () {
+        let data = [
+          {
+            title: '只有文字'
+          },
+          {
+            title: '周边美食',
+            icon: 'https://zos.alipayobjects.com/rmsportal/mzorSIxVEdkTuxumzzau.png',
+            badge: '-1',
+            handler () {
+              console.log('index:0 选择了: 周边美食')
+            }
+          },
+          {
+            title: '购物攻略',
+            icon: 'https://zos.alipayobjects.com/rmsportal/UoBNIZJosEXNQtAxCEUg.png',
+            badge: '100',
+            handler () {
+              console.log('index:1 选择了: 购物攻略')
+            }
+          },
+          {
+            title: '摄影技巧',
+            icon: 'https://zos.alipayobjects.com/rmsportal/QJeWMNUFFiDCQawMLPTr.png',
+            badge: '12',
+            handler () {
+              console.log('index:2 选择了: 摄影技巧')
+            }
+          },
+          {
+            title: '搞笑段子',
+            icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAQlBMVEUAAAC/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7++vr6/v78Ycp3SAAAAFXRSTlMAEPAwwCDQYEDgsIBwkJ+gf1CPb09zkeEOAAAFLUlEQVR42rzZ25KrIBAF0M0dFWM02f//qyeTmgpliaj05KzXaGgutjTikIGAg5iaIRAjpOIAgSQPIE0QGAdIDRYCdoSU1RDQFlKkQTNDQiiSAc0CGSGTSMEqnMgEmZ7s0Kwje8iQgkVg+AKRmRSM4sCXGRITXzwaeb5MEFCaPxyaOP7QEAh8G9Fk5FtAO0tJJzTfLJo5/poFw0c6QRL41TUmAeEQRH6klhz6EdFEeX5o1fAAfXRK2j7pDS4x67sbInCeKzrigqi50hlco27c6N3p4Htu3BzOMzfNklvECfHGEn0zOEUFz13dw6HKPTru8kHhgAs9D/iH22/d80AfKj2Ii+cp3fLcdEU9l46n+HssxP5cLC/xSzD4ZcLieYldng7Z3LOJnRWgZssm/QxkJvX62u0p4iOmnlfoPhhsmXR2DYwRG3E8uwaSwS6X/HHru/eb4xh8cjjgUuVfdG59LwZdiT23Xhen+rKp20slU8R5rhDC5GR3S9+GBhcYzRXvBPuB3H5zBL5tR9Kt22+PoFOSquBtaKzLhJWBlXRBafGuGFHUhZA3xc18fU/s4uN+f0RXHwIvrw0nFKiHz3uUYoSTvDZUfDOFX+6azPS9EIKpDJ/sfCBv++uFQ5eHTzQHY+Uhz/Rcrs8DIJ0Dc9i+t8VkZfii/v6UTHmu9ApQI6nVF07JhsIkTlzpP1nLFq4cIBO3pbnjmstZK25L9Pj3Z8U91/KV9IWzYinLcm7I1KexbbDaQ2q05eyYhXwiwvT33wvSVJuBvFdwuvTiG4e//2ZkubE846KLB3pphpQKm2e7ZvvVTCxijVXb74ZyghH4CssKje/rWWHxfYEVCd+nWGEgIZ8Dj//BcVeEkAv/irWzXUlBIACgxV6AoN331v//6nQnMzEGLFAkcx59EOICtZA9EVmduYreeuMTFC5rS0Qy/Cg4g/5YTVNs0liSBurUZol2HvkCb7uyqSTVqO7KazC9N5VFjZmNiksm1+/LBLp8mZvPC8rh6YRU1TyufwoiHjOjKNjhS1IUKcTVKSx2r73Vh2elIoO4PAUwuMS4oGEePsOwi9tYy0Nlals7l3f+r+T/O54oNri27ExzLaVejnkDDPv+RajComfBC2yUxZM6b18/iD/bV9CSrvKNT2C+PQH9T7A2AU9T+fYEAk2UiidQfgPR0SxS6fpCQAfqJWkKrxY6OBREdxqUpAmsEPJ44SzZWUAkepqMAOEshIzlVq0sPUobgBcdxb1zWlsjF0mPka9aLIvnu2EuWk9Dkiiri8cSpq1vVCZJGrRHa4FLo9LZVimipyH+XwyR2ZgMmc16Dy9GGuS5kUZ4Lm42S7g1umNDHl+0uLjIXbhwf/Ry/LIRZ9q5g3Brb38+vUS7pmGK9lTJlSfdY7DE0CF+Bz/KPZm0o5o31Bh8xZj0QYwR6+0zoanG9VXfrIFBKKnG99aepIMhb6pzUPDMNnIXeqrzl8pvm4BbTOBykpJn19PLzHa1moZ0TrJP4XJ2jFCViJN/oZdwmjiJqX5x/FtBh99MPC+YHh2nKPOVcNPUhHAqUQcZNoeidpZAU4/En1vpJfXHe/vIWmtL3bxonH2ZTCpgKZpMQYOjqRw0LTTRAh1WmmaFLokmSQN9qenvf/7fKNXVs3zjRk70iZUetQq4ynl6jHfQxPYkxvPjgaBuWDBwH1oaZBHGODs0vINxapV0i1wVPIQPMvn+yrg75SKZDDxOLZq66KhgFoyrJoZdIwqYTeESo/6gv/RHigsquO4PrWwzz9ROC40AAAAASUVORK5CYII=',
+            badge: '0',
+            handler () {
+              console.log('index:3 选择了: 搞笑段子')
+            }
+          }
+        ]
+        this.navbarComponent.showPopMenu(data)
+      },
+      setOptionsBtnAndPopMenu () {}
     },
     mounted () {
       this.$platform.on('titleClick', () => {
         alert('点击了顶部title, 确定后取消绑定')
         this.$platform.off('titleClick')
       })
+
+      let platforms = this.$platform.platforms()
+      if (platforms.length === 3) {
+        this.platformName = platforms[2].toUpperCase()
+      }
 
 //      window.ap.showNavigationBarLoading();
     },

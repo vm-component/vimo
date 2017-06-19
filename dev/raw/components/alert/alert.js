@@ -121,7 +121,7 @@ function getPresentDismissIns (Factory) {
       }
 
       // prompt 模式
-      if (options.buttons.length === 2 && options.inputs.length === 1 && (options.inputs[0].type !== 'radio' || options.inputs[0].type !== 'checkbox')) {
+      if (options.buttons.length === 2 && options.inputs && options.inputs.length === 1 && (options.inputs[0].type !== 'radio' || options.inputs[0].type !== 'checkbox')) {
         let cancelButton = {}
         let confirmButton = {}
         options.buttons.forEach((button) => {

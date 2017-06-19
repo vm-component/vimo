@@ -14,7 +14,6 @@ export default {
     },
     android: {
       statusbarPadding: false,
-      showIndicatorWhenPageChange: false,
       pageTransition: 'zoom-transition' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     },
     alipay: {
@@ -30,6 +29,5 @@ export default {
       hideNavBar: true
     }
   },
-  domain: '', // http://gamma-member.tesir.top
-  scrollAssist: false
+  domain: '' // http://gamma-member.tesir.top
 }

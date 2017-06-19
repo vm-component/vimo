@@ -28,5 +28,4 @@ export function wechatBridge (plt) {
       }
     })
   })
-
 }

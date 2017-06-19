@@ -2,6 +2,19 @@
     <article class="ion-app" :version="version"
              :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
         <!--app-root start-->
+
+
+        <!--Navbar顶级模式, 适配于Alipay/Dingtalk/Wechat, 也只在平台级环境开放-->
+        <Header no-border v-if="$platform.platforms().length === 3">
+            <Navbar ref="navbar">
+                <Title ref="title">Welcome</Title>
+                <Button slot="buttons" @click="showPopMenu($event)" class="" right role="bar-button" menutoggle
+                        ref="popMenu">
+                    <Icon class="icon" name="icon-dots"></Icon>
+                </Button>
+            </Navbar>
+        </Header>
+
         <section class="app-root">
             <slot></slot>
         </section>
@@ -29,6 +42,23 @@
     @import './fade-right-transition.scss';
     @import './zoom-transition.scss';
     @import './fade-transition.scss';
+
+    $color: color($colors, primary);
+    $dots-svg: "<svg t='1497703040194' viewBox='0 0 1026 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='2519' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24'><path d='M110.98112 510.74048m-110.98112 0a21.676 21.676 0 1 0 221.96224 0 21.676 21.676 0 1 0-221.96224 0Z' p-id='2520' fill='fg-color'></path><path d='M512.93184 510.74048m-110.98112 0a21.676 21.676 0 1 0 221.96224 0 21.676 21.676 0 1 0-221.96224 0Z' p-id='2521' fill='fg-color'></path><path d='M914.87744 510.74048m-110.98112 0a21.676 21.676 0 1 0 221.96224 0 21.676 21.676 0 1 0-221.96224 0Z' p-id='2522' fill='fg-color'></path></svg>";
+    @mixin options-icon($svg-icon, $fg-color) {
+        $svg: str-replace($svg-icon, 'fg-color', $fg-color);
+        @include svg-background-image($svg);
+    }
+
+    .icon-dots {
+        height: 30px;
+        width: 30px;
+        @include options-icon($dots-svg, $color);
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+
 </style>
 <script type="text/javascript">
   /**
@@ -120,6 +150,12 @@
       hoverClass () {
         let _isMobile = navigator.userAgent.match(/AppleWebKit.*Mobile.*/)
         return _isMobile ? 'disable-hover' : 'enable-hover'
+      },
+      titleComponent () {
+        return this.$refs.title
+      },
+      navbarComponent () {
+        return this.$refs.navbar
       }
     },
     methods: {
@@ -254,8 +290,18 @@
       proto.$app = this
     },
     mounted () {
-      console.assert(clickBlockInstance, 'clickBlockInstance实例不存在, 请检查!')
       this.isClickBlockEnabled = true
+
+      // 启用Navbar组件的顶级模式, 需要将Navbar实例和Title实例注入到root中便于其他组件调用
+      if (this.$platform.platforms().length === 3) {
+        let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
+        proto.$title = this.titleComponent
+        proto.$navbar = this.navbarComponent
+
+        this.$eventBus.$on('onRouteChangeAfter', () => {
+          this.navbarComponent && this.navbarComponent.refreshBackButtonStatus()
+        })
+      }
     }
   }
 </script>

@@ -77,7 +77,8 @@
         titleColor: null,
         titleInner: this.title,
         isInit: false,
-        isTitleInNavbar: false // 这个title组件在navbar中
+        isTitleInNavbar: false, // 这个title组件在navbar中
+        isHeaderInApp: false // 包裹当前组件的Header在App组件中
       }
     },
     props: {
@@ -146,7 +147,7 @@
       /**
        * @function setTitle
        * @description
-       * 修改Header的title
+       * 修改Header的title, 目前可用平台: H5/Alipay/Dingtalk
        * @param {String|Object} title - title
        * @param {String|Object} title.title - title
        * @param {String|Object} title.image - image
@@ -164,12 +165,24 @@
         }
 
         if (changeDocTitle) {
-          if (this.$platform.is('alipay') && window.AlipayJSBridge) {
-            window.AlipayJSBridge.call('setTitle', _title)
-          } else {
-            // 设置document的title, 这部分由$app处理
-            _title.title && this.$app && this.$app.setDocTitle(_title.title)
+          if (window.VM.platform.is('alipay') && window.AlipayJSBridge) {
+            window.ap.setNavigationBar(_title)
+            return
           }
+
+          if (window.VM.platform.is('dingtalk') && window.dd) {
+            window.dd.biz.navigation.setTitle({
+              title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
+            })
+          }
+
+          // 设置document的title, 这部分由$app处理
+          _title.title && this.$app && this.$app.setDocTitle(_title.title)
+        }
+
+        // 告知App组件下的Title组件更新状态
+        if (this.$title && this !== this.$title && this.$platform.platforms().length === 3) {
+          this.$title && this.$title.setTitle(title, changeDocTitle)
         }
       },
 
@@ -186,7 +199,7 @@
       /**
        * @function reset
        * @description
-       * 重置Title文字的颜色
+       * 重置Title文字的颜色, 目前可用平台: Alipay
        * */
       reset () {
         this.titleColor = null
@@ -206,12 +219,21 @@
        * */
       init () {
         this.titleInner = this.getTitle()
-        if (this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'navbar') {
-          if (document.title !== this.titleInner) {
-            this.setTitle(this.titleInner)
+        if (this.$parent.$options._componentTag) {
+
+          let navbarComponent = this.$parent
+          if (navbarComponent.$options._componentTag.toLowerCase() === 'navbar') {
+            if (document.title !== this.titleInner) {
+              this.setTitle(this.titleInner)
+            }
+            this.isTitleInNavbar = true
           }
-          this.isTitleInNavbar = true
+
+          if (navbarComponent.$parent.$parent.$options._componentTag.toLowerCase() === 'app') {
+            this.isHeaderInApp = true
+          }
         }
+
         this.isInit = true
       },
 
@@ -236,7 +258,7 @@
       if (this.isTitleInNavbar && isAlipayReady) {
         /**
          * @event component:Title#onTitleClick
-         * @description 点击title时触发
+         * @description 点击title时触发, 目前可用平台: H5/Alipay/
          */
         document.addEventListener('titleClick', () => {
           this.$emit('onTitleClick')
