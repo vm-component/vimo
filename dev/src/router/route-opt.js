@@ -302,7 +302,7 @@ let routes = [
     path: '/city-selector',
     name: 'citySelector',
     component (resolve) {
-      require(['@/example/city-selector/city-selector.vue'], resolve)
+      require(['@/example/city-selector/city.vue'], resolve)
     }
   },
 
