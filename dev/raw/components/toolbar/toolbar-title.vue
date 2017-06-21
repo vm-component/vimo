@@ -167,22 +167,20 @@
         if (changeDocTitle) {
           if (window.VM.platform.is('alipay') && window.AlipayJSBridge) {
             window.ap.setNavigationBar(_title)
-            return
-          }
 
-          if (window.VM.platform.is('dingtalk') && window.dd) {
+          } else if (window.VM.platform.is('dingtalk') && window.dd) {
             window.dd.biz.navigation.setTitle({
               title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
             })
+          } else {
+            // 设置document的title, 这部分由$app处理
+            _title.title && this.$app && this.$app.setDocTitle(_title.title)
           }
 
-          // 设置document的title, 这部分由$app处理
-          _title.title && this.$app && this.$app.setDocTitle(_title.title)
-        }
-
-        // 告知App组件下的Title组件更新状态
-        if (this.$title && this !== this.$title && this.$platform.platforms().length === 3) {
-          this.$title && this.$title.setTitle(title, changeDocTitle)
+          // 告知App组件下的Title组件更新状态(模拟title)
+          if (this.$title && this !== this.$title) {
+            this.$title.setTitle(title, changeDocTitle)
+          }
         }
       },
 
@@ -207,6 +205,11 @@
           window.ap && window.ap.setNavigationBar({
             reset: true
           })
+        }
+
+        // 告知App组件下的Title组件更新状态
+        if (this.$title && this !== this.$title && this.$platform.platforms().length === 3) {
+          this.$title.titleColor = null
         }
       },
 
@@ -260,7 +263,7 @@
          * @event component:Title#onTitleClick
          * @description 点击title时触发, 目前可用平台: H5/Alipay/
          */
-        document.addEventListener('titleClick', () => {
+        window.document.addEventListener('titleClick', () => {
           this.$emit('onTitleClick')
         }, false)
       }

@@ -68,7 +68,7 @@
       openToast () {
         this.$toast({
           type: 'success',
-          message: '这里弹出的是弱提示, 3s后关闭!',
+          message: '支付成功',
           duration: 3000,
           onDismiss () {
             console.debug('Toast 关闭')
@@ -268,38 +268,17 @@
         this.navbarComponent.hideOptionButton()
       },
       setOptionButton () {
-
-        this.navbarComponent.setOptionButton({
-          items: [{
-            title: '', // 必填
-            icon: '', // 按钮图标，支持 base64
-            type: 'user', // 按钮图标类型，与 title、icon 三选一。支持 user / filter / search / add / settings / scan / info / help / locate / more
-            color: '#ED4A4D', // '#ED4A4D'
-            badge: '', // 按钮红色气泡，默认 -1。其中 0 表示小红点，-1 表示不显示，其他值展示出来
-            handler () {
-
-            }
-          }],
-        })
-        window.ap.setOptionButton({
-          items: [{
-            title: '完成', // 必填
-            icon: '', // 按钮图标，支持 base64
-            type: 'user', // 按钮图标类型，与 title、icon 三选一。支持 user / filter / search / add / settings / scan / info / help / locate / more
-            color: '#ED4A4D', // '#ED4A4D'
-            badge: '' // 按钮红色气泡，默认 -1。其中 0 表示小红点，-1 表示不显示，其他值展示出来
-          }],
-          onClick: function (data) {
-            // index 被点击的菜单项的索引，从0开始，从左到右
-            ap.alert('你点击了「完成」，它是第' + data.index + '个 optionButton')
-          },
-          success: function (res) {
-            ap.showToast('设置成功')
-          },
-          fail: function (res) {
-            ap.showToast('设置失败')
-          }
-        })
+//        this.navbarComponent.setOptionButton({
+//          items: [{
+//            title: '', // 必填
+//            icon: '', // 按钮图标，支持 base64
+//            type: 'user', // 按钮图标类型，与 title、icon 三选一。支持 user / filter / search / add / settings / scan / info / help / locate / more
+//            color: '#ED4A4D', // '#ED4A4D'
+//            badge: '', // 按钮红色气泡，默认 -1。其中 0 表示小红点，-1 表示不显示，其他值展示出来
+//            handler () {
+//            }
+//          }]
+//        })
       },
       showPopMenu () {
         let data = [
@@ -341,7 +320,28 @@
         ]
         this.navbarComponent.showPopMenu(data)
       },
-      setOptionsBtnAndPopMenu () {}
+      setOptionsBtnAndPopMenu () {
+        let _this = this
+        window.ap.setOptionButton({
+          items: [{
+            title: '', // 必填
+            icon: '', // 按钮图标，支持 base64
+            type: 'more', // 按钮图标类型，与 title、icon 三选一。支持 user / filter / search / add / settings / scan / info / help / locate / more
+            color: '#000', // '#ED4A4D'
+            badge: '' // 按钮红色气泡，默认 -1。其中 0 表示小红点，-1 表示不显示，其他值展示出来
+          }],
+          onClick (data) {
+            // index 被点击的菜单项的索引，从0开始，从左到右
+            _this.showPopMenu()
+          },
+          success (res) {
+            ap.showToast('设置成功')
+          },
+          fail (res) {
+            ap.showToast('设置失败')
+          }
+        })
+      }
     },
     mounted () {
       this.$platform.on('titleClick', () => {

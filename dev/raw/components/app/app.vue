@@ -3,13 +3,12 @@
              :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
         <!--app-root start-->
 
-
-        <!--Navbar顶级模式, 适配于Alipay/Dingtalk/Wechat, 也只在平台级环境开放-->
-        <Header no-border v-if="$platform.platforms().length === 3">
+        <!--Navbar顶级模式, 适配于Alipay/Dingtalk/Wechat, 也只在平台级环境开放, 用于模拟在壳子中的场景-->
+        <Header v-if="$platform.platforms().length === 3">
             <Navbar ref="navbar">
                 <Title ref="title">Welcome</Title>
-                <Button slot="buttons" @click="showPopMenu($event)" class="" right role="bar-button" menutoggle
-                        ref="popMenu">
+                <Button slot="buttons" class="" right role="bar-button" menutoggle
+                        ref="popMenuButton">
                     <Icon class="icon" name="icon-dots"></Icon>
                 </Button>
             </Navbar>
@@ -156,6 +155,9 @@
       },
       navbarComponent () {
         return this.$refs.navbar
+      },
+      popMenuButtonComponent () {
+        return this.$refs.popMenuButton
       }
     },
     methods: {

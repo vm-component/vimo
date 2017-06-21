@@ -20,6 +20,9 @@
 
         <!--buttons/menuToggle-->
         <slot name="buttons"></slot>
+
+        <!--right button placeholder-->
+        <div ref="rightButtonPlaceholder" style="width: 30px;bottom:0;height:1px; position: absolute;right:9px;"></div>
     </div>
 </template>
 <style lang="scss">
@@ -103,6 +106,7 @@
   import { Button } from '../button'
   import { Icon } from '../icon'
   import MenuOptions from './menu-options.vue'
+  import { isArray, isString, isObject } from '../../util/util'
   export default{
     name: 'Navbar',
     data () {
@@ -154,25 +158,73 @@
       toolbarContentClass () {
         return `toolbar-content-${this.mode}`
       },
-      popMenuComponent () {
-        return this.$refs.popMenu
+      rightButtonPlaceholderElement () {
+        return this.$refs.rightButtonPlaceholder
       }
     },
     methods: {
-      showPopMenu (dataList) {
-        if (dataList && Array.isArray(dataList) && dataList.length > 0) {
-          Popover.present({
-            ev: {
-              target: this.popMenuComponent.$el
-            }, // 事件
-            cssClass: 'popMenu',
-            component: MenuOptions,                  // 传入组件
-            data: {
-              menusData: dataList  // 传入数据, 内部通过`this.$options.$data`获取这个data
+
+      showOptionButton () {
+        ap.showOptionButton();
+      },
+      hideOptionButton () {
+        ap.hideOptionButton();
+      },
+      setOptionButton () {},
+
+
+      /**
+       * @function showPopMenu
+       * @description
+       * 设置右侧弹出的按钮菜单, 右侧可以没有按钮, 但是pop固定在右上角
+       * @param {Array} dataList - menu的数据数组
+       * @param {Boolean} isH5 - 是否强制使用H5模式
+       * */
+      showPopMenu (dataList, isH5 = false) {
+        let tmps = []
+        if (dataList && isArray(dataList)) {
+          dataList.forEach((item) => {
+            if (isString(item)) {
+              // ['菜单一', '菜单二', '菜单三']
+              tmps.push({
+                title: item
+              })
+            } else {
+              // [{title:'1'}, {title:'2'}, {title:'3'},]
+              tmps.push(item)
             }
           })
         }
+
+        // 显示navbar最右侧的按钮
+        let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !isH5
+        let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !isH5
+
+        if (isAlipayReady) {
+          window.ap.showPopMenu({
+            items: tmps
+          }, function (res) {
+            let selectedItem = tmps[res.index]
+            selectedItem.handler && selectedItem.handler()
+          })
+          return
+        }
+
+        Popover.present({
+          ev: {
+            target: this.rightButtonPlaceholderElement
+          }, // 事件
+          cssClass: 'popMenu',
+          component: MenuOptions,                  // 传入组件
+          data: {
+            menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
+          }
+        })
       },
+
+
+
+
       /**
        * @private
        * */
@@ -233,6 +285,10 @@
             borderBottomColor: color
           })
         }
+        // 告知App组件下的Title组件更新状态
+        if (this.$navbar && this !== this.$navbar && this.$platform.platforms().length === 3) {
+          this.$navbar.setBorderBottomColor(color)
+        }
       },
 
       /**
@@ -247,6 +303,12 @@
           window.ap && window.ap.setNavigationBar({
             reset: true
           })
+        }
+
+        // 告知App组件下的Title组件更新状态
+        if (this.$navbar && this !== this.$navbar && this.$platform.platforms().length === 3) {
+          this.$navbar.backgroundColor = null
+          this.$navbar.borderBottomColor = null
         }
       },
 
