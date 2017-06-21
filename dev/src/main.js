@@ -97,6 +97,14 @@ new Vue({
   created () {
     this.$platform.ready().then((data) => {
       console.log(data)
+
+
+      window.VM.config && window.VM.config.set('alipay', 'hideNavBar', true)
+      window.VM.config && window.VM.config.set('dingtalk', 'hideNavBar', true)
+      window.VM.config && window.VM.config.set('qq', 'hideNavBar', true)
+      window.VM.config && window.VM.config.set('dtdream', 'hideNavBar', true)
+      window.VM.config && window.VM.config.set('wechat', 'hideNavBar', true)
+
     })
   },
   components: {App}

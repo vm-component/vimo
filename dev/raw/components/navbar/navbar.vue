@@ -196,6 +196,7 @@
           })
         }
 
+
         // 显示navbar最右侧的按钮
         let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !isH5
         let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !isH5

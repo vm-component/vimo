@@ -3,8 +3,8 @@
              :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
         <!--app-root start-->
 
-        <!--Navbar顶级模式, 适配于Alipay/Dingtalk/Wechat, 也只在平台级环境开放, 用于模拟在壳子中的场景-->
-        <Header v-if="$platform.platforms().length === 3">
+        <!--Navbar顶级模式, 适配于Alipay/Dingtalk/Wechat, 也只在平台级环境开放, 用于模拟在壳子中的场景, 真实环境下会隐藏-->
+        <Header v-if="$platform.platforms().length === 3 && !$config.getBoolean('hideNavBar')">
             <Navbar ref="navbar">
                 <Title ref="title">Welcome</Title>
                 <Button slot="buttons" class="" right role="bar-button" menutoggle
@@ -292,6 +292,7 @@
       proto.$app = this
     },
     mounted () {
+      // 设置当前可点击
       this.isClickBlockEnabled = true
 
       // 启用Navbar组件的顶级模式, 需要将Navbar实例和Title实例注入到root中便于其他组件调用
