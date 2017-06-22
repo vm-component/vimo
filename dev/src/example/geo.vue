@@ -288,7 +288,7 @@
           })
         });
         this.getGeolocationBybMap().then(() => {})
-      })
+      }, () => {})
     },
     destroyed () {
       this.$geo.clearWatch(this.qMapTimer)

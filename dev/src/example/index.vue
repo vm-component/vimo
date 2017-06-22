@@ -5,13 +5,12 @@
             <!--menutoggle-->
             <Navbar :hideBackButton="true">
                 <!--menutoggle-->
-                <Buttons left slot="buttons">
-                    <Button color="dark" @click="$menus.open('menu')" role="bar-button"
-                            menutoggle>
-                        <Icon class="icon" name="menu"></Icon>
+                <Buttons right slot="buttons">
+                    <Button @click="$menus.toggle('menu')" role="bar-button" menutoggle>
+                        <Icon name="more"></Icon>
                     </Button>
                 </Buttons>
-                <Title>Welcome</Title>
+                <Title @onTitleClick="onTitleClickHandler">Welcome</Title>
             </Navbar>
         </Header>
         <Content padding class="content">
@@ -170,9 +169,8 @@
       }
     },
     methods: {
-      test () {
-        //      alert(this.$platform._platforms)
-//        this.$platform.do('scanCode', function (data) {})
+      onTitleClickHandler () {
+        alert('你点击了标题')
       }
     },
     created () {},

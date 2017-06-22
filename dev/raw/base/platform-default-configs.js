@@ -328,7 +328,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
        * 执行用户定义的onBridgeReady钩子
        * */
       plt.beforeReady = () => {
-        'use strict'
         loadScript(splitArr.join('//'), () => {
           docReady(() => {
             function beforeBridgeReady () {
@@ -352,7 +351,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
             }
           })
         })
-
         plt.timer = window.setTimeout(() => {
           plt.triggerFail('Alipay Init Timeout!')
         }, TIMEOUT)

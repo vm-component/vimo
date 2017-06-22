@@ -128,7 +128,7 @@
     mounted () {
       this.$platform.ready().then(() => {
         this.thisKeysOfRegisterMethod = Object.keys(this.$platform.registerMethod())
-      })
+      }, () => {})
     },
     activated () {},
     components: {}

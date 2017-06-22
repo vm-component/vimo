@@ -54,7 +54,7 @@
           this.cachedConfig = this.$config._c
           this.settingConfig = this.$config._s
         }, 100)
-      })
+      }, () => {})
     },
     activated () {},
     components: {}

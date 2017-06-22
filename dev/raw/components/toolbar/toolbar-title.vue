@@ -166,8 +166,7 @@
 
         if (changeDocTitle) {
           if (window.VM.platform.is('alipay') && window.AlipayJSBridge) {
-            window.ap.setNavigationBar(_title)
-
+            window.AlipayJSBridge.call('setTitle', _title)
           } else if (window.VM.platform.is('dingtalk') && window.dd) {
             window.dd.biz.navigation.setTitle({
               title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
@@ -175,11 +174,6 @@
           } else {
             // 设置document的title, 这部分由$app处理
             _title.title && this.$app && this.$app.setDocTitle(_title.title)
-          }
-
-          // 告知App组件下的Title组件更新状态(模拟title)
-          if (this.$title && this !== this.$title) {
-            this.$title.setTitle(title, changeDocTitle)
           }
         }
       },
@@ -202,14 +196,7 @@
       reset () {
         this.titleColor = null
         if (this.$platform.is('alipay') && window.AlipayJSBridge) {
-          window.ap && window.ap.setNavigationBar({
-            reset: true
-          })
-        }
-
-        // 告知App组件下的Title组件更新状态
-        if (this.$title && this !== this.$title && this.$platform.platforms().length === 3) {
-          this.$title.titleColor = null
+          window.ap && window.ap.setNavigationBar({reset: true})
         }
       },
 
@@ -223,7 +210,6 @@
       init () {
         this.titleInner = this.getTitle()
         if (this.$parent.$options._componentTag) {
-
           let navbarComponent = this.$parent
           if (navbarComponent.$options._componentTag.toLowerCase() === 'navbar') {
             if (document.title !== this.titleInner) {
@@ -231,12 +217,10 @@
             }
             this.isTitleInNavbar = true
           }
-
           if (navbarComponent.$parent.$parent.$options._componentTag.toLowerCase() === 'app') {
             this.isHeaderInApp = true
           }
         }
-
         this.isInit = true
       },
 
@@ -256,7 +240,6 @@
     },
     mounted () {
       this.init()
-
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
       if (this.isTitleInNavbar && isAlipayReady) {
         /**

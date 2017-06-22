@@ -1,8 +1,16 @@
 <template>
     <Page>
         <Header>
-            <Navbar ref="navbar">
-                <Title ref="title">Alipay API Test</Title>
+            <Navbar ref="navbar" color="primary">
+                <Title ref="title" @onTitleClick="onTitleClickHandler">API Test</Title>
+                <Buttons right slot="buttons">
+                    <Button color="dark" @click="personHandler" role="bar-button">
+                        <Icon name="icon-vue"></Icon>
+                    </Button>
+                    <Button @click="moreHandler" color="dark" role="bar-button">
+                        <Icon name="help"></Icon>
+                    </Button>
+                </Buttons>
             </Navbar>
         </Header>
         <Content padding class="outer-content">
@@ -12,7 +20,7 @@
             <p>Vimo框架会识别当前的平台 <strong>根据平台提供的JSSDK开启特定平台的组件</strong>, 比如下方列出的组件会根据平台展现不同的特性, <strong>默认使用H5模式</strong>, 目前支持Alipay和Dingtalk两个平台, 你可以试下在这两个平台打开这个页面体验下面的设置方法.
             </p>
 
-            <h5>弹窗组件</h5>
+            <h5 text-danger class="text-danger">弹窗组件</h5>
             <Button block @click="openToast">打开Toast</Button>
             <Button block @click="openActionSheet">打开ActionSheet</Button>
             <Button block @click="openAlert">打开Alert</Button>
@@ -23,27 +31,43 @@
             <h5>导航栏</h5>
             <Button block @click="btnTitle">设置标题文字</Button>
             <Button block @click="btnImage">设置标题图片(url)</Button>
-            <Button block @click="btnBgColor">设置导航栏背景色</Button>
-            <Button block @click="btnBorderColor">设置导航栏底边颜色</Button>
             <Button block @click="btnReset">重置导航栏</Button>
 
             <h5>导航栏菜单</h5>
-            <Button block @click="showOptionButton">显示右侧按钮</Button>
-            <Button block @click="hideOptionButton">隐藏右侧按钮</Button>
-            <Button block @click="setOptionButton">设置右侧按钮</Button>
             <Button block @click="showPopMenu">显示右侧按钮菜单</Button>
-            <Button block @click="setOptionsBtnAndPopMenu">设置右侧按钮和PopMenu菜单</Button>
-
             <h5>选择器Picker</h5>
-
             <h5>图片</h5>
         </Content>
     </Page>
 </template>
 <style scoped lang="scss">
+    .icon-vue {
+        height: 30px;
+        width: 30px;
+        box-sizing: content-box;
+        background: url('http://cn.vuejs.org/images/logo.png') no-repeat left center/30px 30px;
+    }
 
+    .icon-vimo {
+        height: 30px;
+        width: 30px;
+        background: url('../assets/img/vimo.png') no-repeat center center/30px 30px;
+    }
+
+    .icon-alipay {
+        height: 30px;
+        width: 40px;
+        background: url('../assets/img/alipay.png') no-repeat center center/cover;
+    }
+
+    .icon-wechat {
+        height: 30px;
+        width: 36px;
+        background: url('../assets/img/wechat.png') no-repeat center center/cover;
+    }
 </style>
 <script type="text/javascript">
+  import { Badge } from 'vimo/components/badge'
   export default{
     name: 'name',
     data () {
@@ -62,6 +86,12 @@
       }
     },
     methods: {
+      personHandler () {
+        alert('person')
+      },
+      moreHandler () {
+        alert('more')
+      },
       /**
        * 弹窗组件
        * */
@@ -244,46 +274,16 @@
           image: 'https://zos.alipayobjects.com/rmsportal/jFCQxeOXeKTQUfhrQFOo.png'
         })
       },
-      btnBgColor () {
-        this.titleComponent.setTitle('设置导航栏背景色', true)
-        this.navbarComponent.setBackgroundColor('#ED4A4D')
-      },
-      btnBorderColor () {
-        this.titleComponent.setTitle('设置导航栏底部边框色', true)
-        this.navbarComponent.setBorderBottomColor('#108ee9')
-      },
       btnReset () {
         this.titleComponent.setTitle('重置导航栏样式', true)
         this.navbarComponent.reset()
         this.titleComponent.reset()
       },
-
-      /**
-       * 导航栏右侧按钮相关
-       * */
-      showOptionButton () {
-        this.navbarComponent.showOptionButton()
-      },
-      hideOptionButton () {
-        this.navbarComponent.hideOptionButton()
-      },
-      setOptionButton () {
-//        this.navbarComponent.setOptionButton({
-//          items: [{
-//            title: '', // 必填
-//            icon: '', // 按钮图标，支持 base64
-//            type: 'user', // 按钮图标类型，与 title、icon 三选一。支持 user / filter / search / add / settings / scan / info / help / locate / more
-//            color: '#ED4A4D', // '#ED4A4D'
-//            badge: '', // 按钮红色气泡，默认 -1。其中 0 表示小红点，-1 表示不显示，其他值展示出来
-//            handler () {
-//            }
-//          }]
-//        })
-      },
       showPopMenu () {
         let data = [
           {
-            title: '只有文字'
+            type: 'filter',
+            title: 'filter'
           },
           {
             title: '周边美食',
@@ -320,45 +320,19 @@
         ]
         this.navbarComponent.showPopMenu(data)
       },
-      setOptionsBtnAndPopMenu () {
-        let _this = this
-        window.ap.setOptionButton({
-          items: [{
-            title: '', // 必填
-            icon: '', // 按钮图标，支持 base64
-            type: 'more', // 按钮图标类型，与 title、icon 三选一。支持 user / filter / search / add / settings / scan / info / help / locate / more
-            color: '#000', // '#ED4A4D'
-            badge: '' // 按钮红色气泡，默认 -1。其中 0 表示小红点，-1 表示不显示，其他值展示出来
-          }],
-          onClick (data) {
-            // index 被点击的菜单项的索引，从0开始，从左到右
-            _this.showPopMenu()
-          },
-          success (res) {
-            ap.showToast('设置成功')
-          },
-          fail (res) {
-            ap.showToast('设置失败')
-          }
-        })
+      onTitleClickHandler () {
+        alert('你点击了 platform-api.vue 页面的标题')
       }
     },
     mounted () {
-      this.$platform.on('titleClick', () => {
-        alert('点击了顶部title, 确定后取消绑定')
-        this.$platform.off('titleClick')
-      })
-
       let platforms = this.$platform.platforms()
       if (platforms.length === 3) {
         this.platformName = platforms[2].toUpperCase()
       }
-
-//      window.ap.showNavigationBarLoading();
     },
     activated () {},
     deactivate () {},
-    components: {},
+    components: {Badge},
     destroyed () {}
   }
 </script>

@@ -641,7 +641,7 @@
 
           window.VM && window.VM.platform.ready().then(() => {
             this.isPlatformReady = true
-          })
+          }, () => {})
 
           this.platform = window.VM.platform
 

@@ -62,7 +62,7 @@
    * @props {String} [color] - 颜色
    *
    * @slot [空] 作为内容, 比如Title/Searchbar/Segment放置的位置
-   * @slot [buttons] 按钮组, 别忘记加[left]/[right]/[start]/[end]属性标记位置
+   * @slot [buttons] 按钮组, 别忘记加[left]/[right]/[end]属性标记位置
    * @demo https://dtfe.github.io/vimo-demo/#/toolbar
    *
    *
