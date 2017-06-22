@@ -32,7 +32,9 @@ function getPresentDismissIns (Factory) {
     present (options) {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
       let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
-
+      if (!options.buttons) {
+        options.buttons = []
+      }
       // alert 模式
       if (options.buttons.length === 1) {
         if (isAlipayReady) {

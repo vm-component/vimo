@@ -7,8 +7,8 @@
                     <Button color="dark" @click="personHandler" role="bar-button">
                         <Icon name="icon-vue"></Icon>
                     </Button>
-                    <Button @click="moreHandler" color="dark" role="bar-button">
-                        <Icon name="help"></Icon>
+                    <Button @click="showPopMenu" role="bar-button">
+                        <Icon name="icon-more"></Icon>
                     </Button>
                 </Buttons>
             </Navbar>
@@ -31,6 +31,8 @@
             <h5>导航栏</h5>
             <Button block @click="btnTitle">设置标题文字</Button>
             <Button block @click="btnImage">设置标题图片(url)</Button>
+            <Button block @click="showOptionButton">显示右侧按钮</Button>
+            <Button block @click="hideOptionButton">隐藏右侧按钮</Button>
             <Button block @click="btnReset">重置导航栏</Button>
 
             <h5>导航栏菜单</h5>
@@ -46,6 +48,13 @@
         width: 30px;
         box-sizing: content-box;
         background: url('http://cn.vuejs.org/images/logo.png') no-repeat left center/30px 30px;
+    }
+
+    .icon-more {
+        height: 30px;
+        width: 30px;
+        box-sizing: content-box;
+        background: url('https://avatars0.githubusercontent.com/u/26055200?v=3&s=200') no-repeat left center/30px 30px;
     }
 
     .icon-vimo {
@@ -87,10 +96,18 @@
     },
     methods: {
       personHandler () {
-        alert('person')
-      },
-      moreHandler () {
-        alert('more')
+        this.$alert.present({
+          title: '快上车',
+          message: '老司机要开车了, 系好安全带!',
+          buttons: [
+            {
+              text: '系好了',
+              handler: () => {
+                console.log('系好了 clicked')
+              }
+            }
+          ]
+        })
       },
       /**
        * 弹窗组件
@@ -282,10 +299,6 @@
       showPopMenu () {
         let data = [
           {
-            type: 'filter',
-            title: 'filter'
-          },
-          {
             title: '周边美食',
             icon: 'https://zos.alipayobjects.com/rmsportal/mzorSIxVEdkTuxumzzau.png',
             badge: '-1',
@@ -319,6 +332,12 @@
           }
         ]
         this.navbarComponent.showPopMenu(data)
+      },
+      showOptionButton () {
+        this.navbarComponent.showOptionButton()
+      },
+      hideOptionButton() {
+        this.navbarComponent.hideOptionButton()
       },
       onTitleClickHandler () {
         alert('你点击了 platform-api.vue 页面的标题')

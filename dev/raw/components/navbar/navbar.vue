@@ -210,6 +210,26 @@
     },
     methods: {
       /**
+       * @function showOptionButton
+       * @description
+       * 设置导航条右侧按钮显示(只是对alipay平台的), dingtalk通过url改变
+       * */
+      showOptionButton () {
+        if (this.isAlipayReady) {
+          window.ap && window.ap.showOptionButton()
+        }
+      },
+      /**
+       * @function hideOptionButton
+       * @description
+       * 设置导航条右侧按钮隐藏(只是对alipay平台的), dingtalk通过url改变
+       * */
+      hideOptionButton () {
+        if (this.isAlipayReady) {
+          window.ap && window.ap.hideOptionButton()
+        }
+      },
+      /**
        * @function showPopMenu
        * @description
        * 设置右侧弹出的按钮菜单, 右侧可以没有按钮, 但是pop固定在右上角
@@ -289,6 +309,7 @@
 
       /**
        * 初始化webview中Navbar的背景和底部边框, 只处理具有颜色class的情况
+       * 只支持alipay, 不支持dingtalk, 因为dingtalk是通过url修改标题颜色的.
        * @private
        * */
       initBackgroundColor () {
@@ -317,9 +338,10 @@
             rgb = rgb.replace('rgba(', '')
             rgb = rgb.replace(')', '')
             rgb = rgb.split(',').map(val => val.trim())
-            let r = parseInt(rgb[0]).toString(16)
-            let g = parseInt(rgb[1]).toString(16)
-            let b = parseInt(rgb[2]).toString(16)
+            let r = parseInt(rgb[0]).toString(16).toUpperCase()
+            let g = parseInt(rgb[1]).toString(16).toUpperCase()
+            let b = parseInt(rgb[2]).toString(16).toUpperCase()
+            let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
             let backgroundColor = `#${r}${g}${b}`
 
             // 2. 设置背景色
