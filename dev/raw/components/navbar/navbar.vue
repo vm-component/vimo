@@ -80,7 +80,7 @@
    * 'pin'                | 'locate',
    * 'more'               | 'more'
    *
-   * DOM书写参考下面代码
+   * 正确设置导航条参考请参考下面代码, 强烈建议按钮设置不超过两个
    *
    * ```
    * <Buttons right slot="buttons">
@@ -100,6 +100,21 @@
    *     </Button>
    * </Buttons>
    * ```
+   *
+   * 并不是所有的Alipya的JSSDK都有H5对应的方法, 因为有些JSSDK不常用或者H5无法实现或者即使实现在业务中使用还不是单独设置简便, 因此Vimo目前实现的功能如下:
+   *
+   * - 在Navbar组件中Title组件能同步更新WebView中的Title
+   * - 在Navbar组件中的背景色(backgroundColor, 前提是使用: primary, secondary, danger, light, dark 设置的颜色)能同步更新到WebView中, 如果页面切换则重置设置.
+   * - 对Navbar组件调用showPopMenu方法, 可在右侧显示popover组件, 如果实在WebView中, 则使用原生方法(Alipay), PS: 因为是弹出层组件, 所以是方法调用开启.
+   * - 监听Title组件的'onTitleClick'事件, 可以监听点击Title文本的事件, 如果是在WebView中, 则触发原生事件, 页面将不干扰
+   *
+   *
+   * ### 注意点
+   *
+   * ** 不建议在keepAlive模式使用  **
+   *
+   *
+   * 因为Navbar组件在此模式下只执行最后一个页面的Navbar更新, 如果页面已经打开过, 则会导致样式状态问题. 解决办法是在`activated`钩子中执行Navbar组件的`initWhenInWebview`方法, 这个是内部方法, 表示重新初始化Navbar组件.
    *
    * @see component:Toolbar
    * @see History
@@ -194,24 +209,13 @@
       }
     },
     methods: {
-
-      showOptionButton () {
-        this.hideRightButtons = false
-        ap.showOptionButton()
-      },
-      hideOptionButton () {
-        this.hideRightButtons = true
-        ap.hideOptionButton()
-      },
-
       /**
        * @function showPopMenu
        * @description
        * 设置右侧弹出的按钮菜单, 右侧可以没有按钮, 但是pop固定在右上角
        * @param {Array} dataList - menu的数据数组
-       * @param {Boolean} isH5 - 是否强制使用H5模式
        * */
-      showPopMenu (dataList, isH5 = false) {
+      showPopMenu (dataList) {
         let tmps = []
         if (dataList && isArray(dataList)) {
           dataList.forEach((item) => {
