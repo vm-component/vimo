@@ -17,7 +17,7 @@
             <h5>
                 当前平台：{{platformName}}
             </h5>
-            <p>Vimo框架会识别当前的平台 <strong>根据平台提供的JSSDK开启特定平台的组件</strong>, 比如下方列出的组件会根据平台展现不同的特性, <strong>默认使用H5模式</strong>, 目前支持Alipay和Dingtalk两个平台, 你可以试下在这两个平台打开这个页面体验下面的设置方法.
+            <p>Vimo框架会识别当前的平台 <strong>根据平台提供的JSSDK开启特定平台的组件</strong>, 比如下方列出的组件会根据平台展现不同的特性, <strong>默认使用H5模式</strong>, 目前支持Alipay和Dingtalk两个平台, 你可以试下在这两个平台打开这个页面体验下面的设置方法. 当然, 下面列出的方法只是部分方法...
             </p>
 
             <h5 text-danger class="text-danger">弹窗组件</h5>
@@ -38,7 +38,13 @@
             <h5>导航栏菜单</h5>
             <Button block @click="showPopMenu">显示右侧按钮菜单</Button>
             <h5>选择器Picker</h5>
-            <h5>图片</h5>
+
+            <p>选择的数据: {{smoothie}}</p>
+            <Button block @click="twoColumns">双列Picker</Button>
+
+            <h5>图片预览</h5>
+            <Button block @click="openAlbum">图片预览</Button>
+
         </Content>
     </Page>
 </template>
@@ -77,11 +83,14 @@
 </style>
 <script type="text/javascript">
   import { Badge } from 'vimo/components/badge'
+  import { Picker } from 'vimo/components/picker'
+  import { PreviewImage } from 'vimo/components/preview-image'
   export default{
     name: 'name',
     data () {
       return {
-        platformName: 'H5'
+        platformName: 'H5',
+        smoothie: `Banana Watermelon`
       }
     },
     props: {},
@@ -341,6 +350,96 @@
       },
       onTitleClickHandler () {
         alert('你点击了 platform-api.vue 页面的标题')
+      },
+      twoColumns () {
+        let arr = this.smoothie.split(' ')
+
+        let data = {
+          buttons: [
+            {
+              text: '取消',
+              role: 'cancel'
+            },
+            {
+              text: '确定',
+              handler: (data) => {
+                this.smoothie = `${data.flavor1.value} ${data.flavor2.value}`
+                console.log(data)
+                console.log(data)
+                console.log(JSON.stringify(data))
+              }
+            }
+          ],
+          columns: [
+            {
+              name: 'flavor1',
+              align: 'right',
+              selectedIndex: 1,
+              options: [
+                {text: 'Mango'},
+                {text: 'Banana'},
+                {text: 'Cherry'},
+                {text: 'Strawberry'},
+                {text: 'Raspberry'},
+                {text: 'Blueberry'},
+                {text: 'Peach'},
+                {text: 'Coconut'},
+                {text: 'Pineapple'},
+                {text: 'Honeydew'},
+                {text: 'Watermelon'},
+                {text: 'Grape'},
+                {text: 'Avocado'},
+                {text: 'Kiwi'},
+                {text: 'Orange'},
+                {text: 'Papaya'}
+              ]
+            },
+            {
+              name: 'flavor2',
+              align: 'left',
+              selectedIndex: 3,
+              options: [
+                {text: 'Banana'},
+                {text: 'Orange'},
+                {text: 'Grape'},
+                {text: 'Watermelon'},
+                {text: 'Strawberry'},
+                {text: 'Papaya'},
+                {text: 'Kiwi'},
+                {text: 'Cherry'},
+                {text: 'Raspberry'},
+                {text: 'Mango'},
+                {text: 'Pineapple'},
+                {text: 'Peach'},
+                {text: 'Avocado'},
+                {text: 'Honeydew'},
+                {text: 'Blueberry'},
+                {text: 'Coconut'}
+              ]
+            }
+          ]
+        }
+
+        arr.forEach((item, index) => {
+          let options = data.columns[index].options
+          for (let i = 0, len = options.length; len > i; i++) {
+            if (options[i].text === item) {
+              data.columns[index].selectedIndex = i
+            }
+          }
+        })
+
+        Picker.present(data)
+      },
+      openAlbum () {
+        PreviewImage({
+          current: 1,
+          urls: [
+            'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
+            'https://img.alicdn.com/tps/TB1pfG4IFXXXXc6XXXXXXXXXXXX.jpg',
+            'https://img.alicdn.com/tps/TB1h9xxIFXXXXbKXXXXXXXXXXXX.jpg'
+          ]
+        })
       }
     },
     mounted () {

@@ -349,7 +349,6 @@
               window.ap && window.ap.setNavigationBar({
                 backgroundColor: backgroundColor
               })
-              console.log('Alipay:setNavigationBar 设置backgroundColor: ' + backgroundColor)
             }
           }
         })
@@ -474,7 +473,6 @@
                 title: ' '
               })
             }
-            console.log('当前设置setOptionButton的值: ' + JSON.stringify(items))
 
             // 首次进入页面如果可能没有ap变量, 设置需要等待ready
             this.$platform.ready().then(() => {
