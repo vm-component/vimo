@@ -10,15 +10,15 @@ export default {
   platforms: {
     ios: {
       statusbarPadding: false,
-      // pageTransition: 'fade-right-transition'  //
+      pageTransition: 'fade-right-transition'  //
       // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
-      pageTransition: ''  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+      // pageTransition: ''  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     },
     android: {
       statusbarPadding: false,
-      // pageTransition: 'zoom-transition' //
+      pageTransition: 'zoom-transition' //
       // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
-      pageTransition: '' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+      // pageTransition: '' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     },
     alipay: {
       hideNavBar: true

@@ -28,11 +28,6 @@
                         <span>页面</span>
                         <Note slot="item-right">Page</Note>
                     </Item>
-                    <Item detail-push :to="{name: 'title'}">
-                        <Icon slot="item-left" name="paper"></Icon>
-                        <span>标题</span>
-                        <Note slot="item-right">Title</Note>
-                    </Item>
                 </ItemGroup>
 
                 <ListHeader>
@@ -156,12 +151,12 @@
                         <Note slot="item-right">Deeplink</Note>
                     </Item>
                     <Item detail-push :to="{name: 'previewImage'}">
-                        <Icon slot="item-left" name="link"></Icon>
+                        <Icon slot="item-left" name="image"></Icon>
                         <span>图片预览</span>
                         <Note slot="item-right">PreviewImage</Note>
                     </Item>
                     <Item detail-push :to="{name: 'citySelector'}">
-                        <Icon slot="item-left" name="link"></Icon>
+                        <Icon slot="item-left" name="boat"></Icon>
                         <span>城市选择</span>
                         <Note slot="item-right">CitySelector</Note>
                     </Item>

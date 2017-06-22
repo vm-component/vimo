@@ -87,13 +87,6 @@ let routes = [
     }
   },
   {
-    path: '/title',
-    name: 'title',
-    component (resolve) {
-      require(['@/example/title.vue'], resolve)
-    }
-  },
-  {
     path: '/nav',
     name: 'nav',
     component: require('@/example/nav.vue')
@@ -287,22 +280,11 @@ let routes = [
       require(['@/example/preview-image.vue'], resolve)
     }
   },
-
-  // {
-  //   path: '/content_city',
-  //   name: 'contentCity',
-  //   component (resolve) {
-  //     require(['@/example/content/city.vue'], resolve)
-  //   }
-  // }
-
-
-
   {
     path: '/city-selector',
     name: 'citySelector',
     component (resolve) {
-      require(['@/example/city-selector/city.vue'], resolve)
+      require(['@/example/city-selector/city-selector.vue'], resolve)
     }
   },
 

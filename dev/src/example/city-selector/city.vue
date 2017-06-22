@@ -144,6 +144,7 @@
 </style>
 <script type="text/javascript">
   import cityWithCode from './cityWithCode.json'
+  import { Modal } from 'vimo/components/modal'
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { pointerCoord, clamp } from 'vimo/util/util'
@@ -216,7 +217,7 @@
        * 点击选择城市
        * */
       selectCity (city) {
-        console.log(JSON.parse(JSON.stringify(city)))
+        Modal.dismiss(city)
       }
     },
     created () {
