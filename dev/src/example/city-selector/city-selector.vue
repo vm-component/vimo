@@ -6,7 +6,6 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <p>Content</p>
             <h5>城市选择器组件</h5>
             <p>这个组件是一个弹出层组件, 数据使用的是本地数据, 不过正常来说应该是从后台获取的. </p>
             <p>结果: {{selectCity.text}} {{selectCity.code}}</p>
@@ -32,7 +31,7 @@
         let _this = this
         Modal.present({
           component: cityComponent,
-          mode: 'zoom',
+          mode: 'fade',
           showBackdrop: true,
           enableBackdropDismiss: false,
           onDismiss (data) {

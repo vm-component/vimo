@@ -31,7 +31,7 @@
             <div slot="fixedTop" class="cityShortcut" ref="cityShortcut"
                  @touchstart="onTouchShortcut"
                  @touchmove="onTouchShortcut">
-                <div class="shortcut__item" :data-id="item" v-for="item in shortcutList">{{item.name}}</div>
+                <div class="shortcut__item" :data-id="item.name" v-for="item in shortcutList">{{item.name}}</div>
             </div>
         </Content>
     </Page>
