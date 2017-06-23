@@ -12,10 +12,25 @@
  *
  * 如果实在支付宝环境，则使用支付宝的组件
  *
- * @params {Number} [current=0]     - 当前index
- * @params {Array} [urls]           - 图片链接
- * @params {Array} [isH5=false]     - 是否使用h5组件, false为自动, true为强制使用h5组件(isForceH5)
+ * @usage
  *
+ * @props {Number} [current=0]     - 当前index
+ * @props {Array} [urls]           - 图片链接
+ * @props {Array} [isH5=false]     - 是否使用h5组件, false为自动, true为强制使用h5组件(isForceH5)
+ *
+ * @demo https://dtfe.github.io/vimo-demo/#/preview-image
+ * @usage
+ * import { PreviewImage } from 'vimo/components/preview-image'
+ * function openAlbum1 () {
+ *    PreviewImage({
+ *      current: 0,
+ *      urls: [
+ *        'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
+ *        'https://img.alicdn.com/tps/TB1pfG4IFXXXXc6XXXXXXXXXXXX.jpg',
+ *        'https://img.alicdn.com/tps/TB1h9xxIFXXXXbKXXXXXXXXXXXX.jpg'
+ *      ]
+ *    })
+ *  }
  * */
 import { Modal } from '../modal'
 import PreviewImageComponent from './preview-image.vue'

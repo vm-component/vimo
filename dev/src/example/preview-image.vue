@@ -7,6 +7,7 @@
         </Header>
         <Content padding class="outer-content">
             <h5>图片预览组件</h5>
+            <p>如果实在支付宝环境，则使用支付宝的组件</p>
             <Button block @click="openAlbum1">从第一个开始</Button>
             <Button block @click="openAlbum2">从第二个开始</Button>
         </Content>
@@ -51,6 +52,8 @@
     components: {},
     destroyed () {}
   }
+
+
 </script>
 <style scoped lang="scss">
 

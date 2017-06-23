@@ -154,10 +154,10 @@
                         <span>图片预览</span>
                         <Note slot="item-right">PreviewImage</Note>
                     </Item>
-                    <Item detail-push :to="{name: 'citySelector'}">
+                    <Item detail-push :to="{name: 'chooseCity'}">
                         <Icon slot="item-left" name="boat"></Icon>
                         <span>城市选择</span>
-                        <Note slot="item-right">CitySelector</Note>
+                        <Note slot="item-right">ChooseCity</Note>
                     </Item>
                 </ItemGroup>
 

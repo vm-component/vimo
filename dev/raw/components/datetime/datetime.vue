@@ -81,7 +81,7 @@
    *
    * @see http://ionicframework.com/docs/demos/src/datetime/www/?production=true&ionicplatform=ios
    * @see http://ionicframework.com/docs/api/components/datetime/DateTime/
-   * @demo https://dtfe.github.io/vimo-demo/#/time_picker
+   * @demo https://dtfe.github.io/vimo-demo/#/time-picker
    * @fires component:Datetime#onCancel
    * @fires component:Datetime#onChange
    * */

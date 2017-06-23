@@ -4,7 +4,7 @@
  */
 export default [
   {
-    path: '/basic_picker',
+    path: '/basic-picker',
     name: 'basicPicker',
     component (resolve) {
       require(['@/example/picker/basic-picker.vue'], resolve)
@@ -18,21 +18,21 @@ export default [
     }
   },
   {
-    path: '/time_picker',
+    path: '/time-picker',
     name: 'timePicker',
     component (resolve) {
       require(['@/example/picker/time-picker.vue'], resolve)
     }
   },
   {
-    path: '/city_picker',
+    path: '/city-picker',
     name: 'cityPicker',
     component (resolve) {
       require(['@/example/picker/city-picker.vue'], resolve)
     }
   },
   {
-    path: '/datetime_range_picker',
+    path: '/datetime-range-picker',
     name: 'datetimeRangePicker',
     component (resolve) {
       require(['@/example/picker/datetime-range-picker.vue'], resolve)

@@ -274,10 +274,10 @@ let routes = [
     }
   },
   {
-    path: '/city-selector',
-    name: 'citySelector',
+    path: '/choose-city',
+    name: 'chooseCity',
     component (resolve) {
-      require(['@/example/city-selector/city-selector.vue'], resolve)
+      require(['@/example/choose-city/choose-city.vue'], resolve)
     }
   },
 
