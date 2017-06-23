@@ -14,7 +14,6 @@
 
             <p>另外, 两套组件使用的数据库已不一样: Picker组件使用的较为完整, 但是缺少cityCode字段; better-picker使用的是带有cityCode的数据库, 但是不是很全.</p>
 
-
             <h5>Picker组件</h5>
 
             <p><strong>当前选择的值</strong>: {{province}}-{{city}}-{{district}}</p>
@@ -34,8 +33,10 @@
 <script type="text/javascript">
   import { RegionPicker } from 'vimo/components/region-picker'
   import { Picker } from 'vimo/components/picker'
+  import { CityPicker } from 'vimo/components/city-picker'
   import citys from './citys.json'
   import { isArray } from 'vimo/util/util'
+  import axios from 'axios'
   let columns = [
     {
       name: 'province',
@@ -80,10 +81,45 @@
     watch: {},
     computed: {},
     methods: {
+      openCityPicker () {
+        CityPicker.present({
+          onConfirm (data) {
+            console.log('onConfirm')
+            console.log(data)
+          },
+          onCancel () {
+            console.log('onCancel')
+          },
+          startCode: '1',
+          selectedCity: ['', ''],
+//          fetchData (code) {
+//            return new Promise((resolve, reject) => {
+//              if (code) {
+//                axios(`static/address-data/${code}.json`)
+//                .then((response) => {
+//                  response.data.forEach((item) => {
+//                    item.text = item.divisionName
+//                    item.value = item.divisionCode
+//                    item.disabled = false
+//                  })
+//                  resolve(response.data)
+//                })
+//                .catch(() => {
+//                  resolve([])
+//                  console.error('无法获取数据')
+//                })
+//              } else {
+//                resolve([])
+//                console.error('没有查询的code值')
+//              }
+//            })
+//          }
+        })
+      },
       /**
        * 打开由Picker组件实现的城市选择器
        * */
-      openCityPicker () {
+      openCityPicker1 () {
         let buttons = [
           {
             role: 'cancel',

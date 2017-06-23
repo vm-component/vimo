@@ -1,3 +1,4 @@
+import axios from 'axios'
 import 'ionicons/dist/css/ionicons.css'
 import vimo from 'vimo'
 // 全局组件
@@ -48,6 +49,8 @@ Vue.use(storage, {
 Vue.use(log, {
   needLogPage: true // 初始化是否显示log页面
 })
+
+Vue.prototype.$axios = axios
 
 /* eslint-disable no-new */
 new AttachFastClick(document.body)
