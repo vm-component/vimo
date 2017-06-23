@@ -76,7 +76,8 @@
             <div class="container-overview">
 
                 
-                <div class="description"><h2>全国城市选择器 / ChooseCity组件</h2><h3>简述</h3></div>
+                <div class="description"><h2>全国城市选择器 / ChooseCity组件</h2><h3>简述</h3><p>选择城市的组件，如果开启定位则可定位当当前的城市，这个组件只选择城市，如果需要三级城市联动的话，请参考<code>city-picker</code>组件。</p>
+<h3>来源</h3><p>因为这个组件在Alipay和天猫淘宝都出现过，因此，对于ALipay将调用原生组件，如果是在其余平台将调用H5组件，且传参功能点完全相同。</p></div>
                 
 
                 
@@ -130,6 +131,316 @@
 </dl>
 
 
+<h3 class="subsection-title">传入属性 / Props:</h3>
+
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>名称 / Name</th>
+        
+
+        <th>类型 / Type</th>
+
+        
+
+        
+        <th>默认值 / Default</th>
+        
+
+        <th class="last">描述 / Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>【showLocatedCity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>false】-</code>
+                
+                </td>
+            
+
+            <td class="description last">是否显示当前定位城市，默认 false</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>【showHotCities</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>true】-</code>
+                
+                </td>
+            
+
+            <td class="description last">是否显示热门城市，默认 true</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>【showBackdrop</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>true】-</code>
+                
+                </td>
+            
+
+            <td class="description last">modal 是否显示背景色</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>【enableBackdropDismiss</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>true】-</code>
+                
+                </td>
+            
+
+            <td class="description last">modal 点击背景是否关闭</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>【cities】-</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">城市数据，默认 本地数据</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>【hotCities】-</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">热门城市，默认 本地数据</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>【mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>'ios'】-</code>
+                
+                </td>
+            
+
+            <td class="description last">模式</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>【isH5</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>false'】-</code>
+                
+                </td>
+            
+
+            <td class="description last">是否强制使用H5模式，默认是自动的</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>【ak</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    <code>'8d1ba642a3a3046d1ee087e0f8b490a2'】-</code>
+                
+                </td>
+            
+
+            <td class="description last">如果是H5模式并且开启了'当前定位城市'，则使用高德地图定位，这个是AK</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>【onDismiss】-</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">当选择点击后的回调，传入参数是当前选择的城市</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -140,11 +451,31 @@
 
 
 
+
+
+
+
+<h3 class="subsection-title">用法 / Usages</h3>
+
+    <pre class="prettyprint"><code>import { ChooseCity } from 'vimo/components/choose-city'
+
+function openCitySelector () {
+   let _this = this
+   ChooseCity.present({
+     showLocatedCity: true,
+     onDismiss (data) {
+       console.log('response')
+       console.log(data)
+       _this.selectCity = data
+     }
+   })
+ }</code></pre>
 
 
 
                 <!---->
-                <!--<div class="description"><h2>全国城市选择器 / ChooseCity组件</h2><h3>简述</h3></div>-->
+                <!--<div class="description"><h2>全国城市选择器 / ChooseCity组件</h2><h3>简述</h3><p>选择城市的组件，如果开启定位则可定位当当前的城市，这个组件只选择城市，如果需要三级城市联动的话，请参考<code>city-picker</code>组件。</p>
+<h3>来源</h3><p>因为这个组件在Alipay和天猫淘宝都出现过，因此，对于ALipay将调用原生组件，如果是在其余平台将调用H5组件，且传参功能点完全相同。</p></div>-->
                 <!---->
 
                 
@@ -171,6 +502,75 @@
         </article>
     </section>
 
+    
+    <aricle class="showcase">
+        <div id="js_showcase__box" class="showcase__box ios">
+            <div class="showcase__choose">
+                <span id="js_choose_ios" class="">IOS</span>
+                <span id="js_choose_md" class="">Android</span>
+            </div>
+            <div class="showcase__box--md">
+                <iframe frameborder="0" seamless
+                        src="https://dtfe.github.io/vimo-demo/#/choose-city'?vmMode=md"></iframe>
+            </div>
+            <div class="showcase__box--ios">
+                <iframe frameborder="0" seamless
+                        src="https://dtfe.github.io/vimo-demo/#/choose-city'?vmMode=ios"></iframe>
+            </div>
+
+            <div class="showcase__qrcode">
+                <div class="showcase__qrcode--inner" id="qrcode"></div>
+                <p>扫码预览</p>
+            </div>
+        </div>
+    </aricle>
+
+    <script>
+      ;(function () {
+        document.getElementById('js_choose_ios').addEventListener('click', function () {
+          console.log('js_choose_ios')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'ios')) {
+            _removeClass($showCaseBox, 'md')
+            _addClass($showCaseBox, 'ios')
+          }
+
+        })
+        document.getElementById('js_choose_md').addEventListener('click', function () {
+          console.log('js_choose_md')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'md')) {
+            _removeClass($showCaseBox, 'ios')
+            _addClass($showCaseBox, 'md')
+          }
+        })
+
+
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+          width : 150,//设置宽高
+          height : 150
+        });
+        qrcode.makeCode('https://dtfe.github.io/vimo-demo/#/choose-city'');
+
+
+        function _hasClass (obj, cls) {
+          return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+        }
+
+        function _addClass (obj, cls) {
+          if (!_hasClass(obj, cls)) {
+            obj.className += ' ' + cls
+          }
+        }
+
+        function _removeClass (obj, cls) {
+          if (_hasClass(obj, cls)) {
+            var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+            obj.className = obj.className.replace(reg, ' ').trim()
+          }
+        }
+      })()
+    </script>
     
 
 </section>

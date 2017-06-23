@@ -102,6 +102,8 @@
     components: {},
     destroyed () {}
   }
+
+
 </script>
 <style scoped lang="scss">
 
