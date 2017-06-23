@@ -58,21 +58,24 @@
     //min-width: 700px;
     max-width: 1200px;
   }
+  $width: 467px;
   .showcase {
-    height: 1000px;
-    width: 467px;
+    //height: 1000px;
+    width: $width;
     display: block;
     position: relative;
 
-    flex: 1 0 467px;
+    flex: 1 0 $width;
     .showcase__box {
-      width: 467px;
-      height: 800px;
+      width: $width;
+      //height: $width * 568px / 467px;
 
       margin: 0 auto;
       text-align: center;
       position: fixed;
-
+      top: 30px;
+      transform: scale(0.8);
+      transform-origin:top center;
       &.ios {
         .showcase__box--ios {
           display: block !important;
@@ -104,25 +107,26 @@
       .showcase__box--ios {
         text-align: center;
         display: none;
-        width: 467px;
-        height: 800px;
-        background: url(../asset/img/devices-sprite.jpg) no-repeat center top/ 467px auto;
+        width: $width;
+        height: $width * 800px / 467px;
+        background: url(../asset/img/devices-sprite.jpg) no-repeat center top/ $width auto;
         iframe {
           margin-top: 85px;
-          width: 320px;
-          height: 568px;
+          width: $width * 320px / 467px;
+          height: $width * 568px / 467px;
         }
       }
       .showcase__box--md {
         text-align: center;
         display: none;
-        width: 467px;
-        height: 800px;
-        background: url(../asset/img/devices-sprite.jpg) no-repeat center bottom/ 467px auto;
+        width: $width;
+        height: $width * 800px / 467px;
+        background: url(../asset/img/devices-sprite.jpg) no-repeat center bottom/ $width auto;
+
         iframe {
           margin-top: 64px;
-          width: 360px;
-          height: 590px;
+          width: $width * 360px / 467px;
+          height: $width * 590px / 467px;
         }
       }
       iframe {
@@ -147,6 +151,17 @@
           color: #fff;
         }
 
+      }
+
+      .showcase__qrcode {
+        text-align: center;
+        margin: 0 auto;
+        .showcase__qrcode--inner {
+          width: 150px;
+          height: 150px;
+          border: 1px solid #ddd;
+          margin: 0 auto;
+        }
       }
     }
 

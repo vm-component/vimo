@@ -78,7 +78,6 @@
       "../dev/raw/components/toolbar",
       "../dev/raw/components/navbar",
       "../dev/raw/components/scroll",
-      "../dev/raw/components/region-picker",
       "../dev/raw/components/popover",
       "../dev/raw/components/picker",
       "../dev/raw/components/fab",
@@ -86,16 +85,22 @@
       "../dev/raw/components/separation",
       "../dev/raw/components/noticebar",
       "../dev/raw/components/scroll-segment",
-      "../dev/raw/components/slide-box"
+      "../dev/raw/components/slide-box",
+      "../dev/raw/components/city-picker",
+      "../dev/raw/components/feedback",
+      "../dev/raw/components/preview-image",
+      "../dev/raw/components/choose-city"
     ],
     "include3": [
       "../README.md",
-      "../dev/raw/components/scroll",
-      "../dev/raw/components/fab",
-      "../dev/raw/components/popover",
-      "../dev/raw/components/picker",
-      "../dev/raw/components/datetime",
-      "../dev/raw/components/region-picker"
+      "../dev/raw/util",
+      "../dev/raw/base/config.js",
+      "../dev/raw/base/history.js",
+      "../dev/raw/base/platform.js",
+      "../dev/raw/components/app",
+      "../dev/raw/components/content",
+      "../dev/raw/components/page",
+      "../dev/raw/components/nav"
     ],
     "exclude": [
       "gulpfile.js"

@@ -88,19 +88,16 @@ h4.name {
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
-  color: #fff;
-  background: #426d5c;
-  box-shadow: 0 .25em .5em #d3d3d3;
-  border-top: 1px solid #d3d3d3;
-  border-bottom: 1px solid #d3d3d3;
+  color: #00663d;
   margin: 1.5em 0 0.5em;
-  padding: .75em 0 .75em 10px; }
+  padding: .75em 0 10px;
+  font-size: 20px; }
 
 h4.name a {
-  color: #68f5b6; }
+  color: #51b586; }
 
 h4.name a:hover {
-  border-bottom-color: #68f5b6; }
+  border-bottom-color: #51b586; }
 
 h5 {
   font-size: 120%;
@@ -143,7 +140,7 @@ section {
 
 .signature-attributes {
   font-size: 60%;
-  color: #eee;
+  color: #51b586;
   font-style: italic;
   font-weight: lighter; }
 
@@ -254,13 +251,11 @@ footer {
   text-transform: capitalize; }
 
 .type-signature:last-child {
-  color: #eee; }
+  color: #eee;
+  color: #51b586; }
 
 .name, .signature {
   font-family: Consolas, Monaco, "Andale Mono", monospace; }
-
-.signature {
-  color: #68f5b6; }
 
 .details {
   margin-top: 6px;

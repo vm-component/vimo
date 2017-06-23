@@ -195,50 +195,65 @@
                 <iframe frameborder="0" seamless
                         src="<?js= doc.demos.name ?>?vmMode=ios"></iframe>
             </div>
+
+            <div class="showcase__qrcode">
+                <div class="showcase__qrcode--inner" id="qrcode"></div>
+                <p>扫码预览</p>
+            </div>
         </div>
     </aricle>
+
+    <script>
+      ;(function () {
+        document.getElementById('js_choose_ios').addEventListener('click', function () {
+          console.log('js_choose_ios')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'ios')) {
+            _removeClass($showCaseBox, 'md')
+            _addClass($showCaseBox, 'ios')
+          }
+
+        })
+        document.getElementById('js_choose_md').addEventListener('click', function () {
+          console.log('js_choose_md')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'md')) {
+            _removeClass($showCaseBox, 'ios')
+            _addClass($showCaseBox, 'md')
+          }
+        })
+
+
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+          width : 150,//设置宽高
+          height : 150
+        });
+        qrcode.makeCode('<?js= doc.demos.name ?>');
+
+
+        function _hasClass (obj, cls) {
+          return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+        }
+
+        function _addClass (obj, cls) {
+          if (!_hasClass(obj, cls)) {
+            obj.className += ' ' + cls
+          }
+        }
+
+        function _removeClass (obj, cls) {
+          if (_hasClass(obj, cls)) {
+            var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+            obj.className = obj.className.replace(reg, ' ').trim()
+          }
+        }
+      })()
+    </script>
     <?js } ?>
 
 </section>
 
-<script>
-  ;(function () {
-    document.getElementById('js_choose_ios').addEventListener('click', function () {
-      console.log('js_choose_ios')
-      var $showCaseBox = document.getElementById('js_showcase__box')
-      if (!_hasClass($showCaseBox, 'ios')) {
-        _removeClass($showCaseBox, 'md')
-        _addClass($showCaseBox, 'ios')
-      }
 
-    })
-    document.getElementById('js_choose_md').addEventListener('click', function () {
-      console.log('js_choose_md')
-      var $showCaseBox = document.getElementById('js_showcase__box')
-      if (!_hasClass($showCaseBox, 'md')) {
-        _removeClass($showCaseBox, 'ios')
-        _addClass($showCaseBox, 'md')
-      }
-    })
-
-    function _hasClass (obj, cls) {
-      return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
-    }
-
-    function _addClass (obj, cls) {
-      if (!_hasClass(obj, cls)) {
-        obj.className += ' ' + cls
-      }
-    }
-
-    function _removeClass (obj, cls) {
-      if (_hasClass(obj, cls)) {
-        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
-        obj.className = obj.className.replace(reg, ' ').trim()
-      }
-    }
-  })()
-</script>
 
 <?js } ?>
 

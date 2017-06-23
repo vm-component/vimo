@@ -41,17 +41,18 @@
     width: 100%;
     max-width: 1200px; }
   .page-content .showcase {
-    height: 1000px;
     width: 467px;
     display: block;
     position: relative;
     flex: 1 0 467px; }
     .page-content .showcase .showcase__box {
       width: 467px;
-      height: 800px;
       margin: 0 auto;
       text-align: center;
-      position: fixed; }
+      position: fixed;
+      top: 30px;
+      transform: scale(0.8);
+      transform-origin: top center; }
       .page-content .showcase .showcase__box.ios .showcase__box--ios {
         display: block !important; }
       .page-content .showcase .showcase__box.ios .showcase__choose #js_choose_ios {
@@ -103,6 +104,14 @@
           border-radius: 20px;
           background: #00663d;
           color: #fff; }
+      .page-content .showcase .showcase__box .showcase__qrcode {
+        text-align: center;
+        margin: 0 auto; }
+        .page-content .showcase .showcase__box .showcase__qrcode .showcase__qrcode--inner {
+          width: 150px;
+          height: 150px;
+          border: 1px solid #ddd;
+          margin: 0 auto; }
 
 h4.name > span.type-signature:first-child {
   display: none; }

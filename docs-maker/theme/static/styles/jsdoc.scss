@@ -82,9 +82,9 @@ h1 {
 h1.page-title {
   font-size: 16px;
   margin: 40px 60px 0px;
-  color: #00663d;
+  color: $theme;
 
-  border-left: 2px solid #00663d;
+  border-left: 2px solid $theme;
   padding-left: 10px;
   line-height: 130%;
 }
@@ -114,21 +114,23 @@ h4.name {
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
-  color: #fff;
-  background: $theme-light-3;
-  box-shadow: 0 .25em .5em #d3d3d3;
-  border-top: 1px solid #d3d3d3;
-  border-bottom: 1px solid #d3d3d3;
+  color: $theme;
+  //background: $theme-light-3;
+  //box-shadow: 0 .25em .5em #d3d3d3;
+  //border-top: 1px solid #d3d3d3;
+  //border-bottom: 1px solid #d3d3d3;
   margin: 1.5em 0 0.5em;
-  padding: .75em 0 .75em 10px;
+  //padding: .75em 0 .75em 10px;
+  padding: .75em 0 10px;
+  font-size: 20px;
 }
 
 h4.name a {
-  color: $theme-light-1;
+  color: $theme-light-2;
 }
 
 h4.name a:hover {
-  border-bottom-color: $theme-light-1;
+  border-bottom-color: $theme-light-2;
 }
 
 h5 {
@@ -193,7 +195,7 @@ section {
 
 .signature-attributes {
   font-size: 60%;
-  color: #eee;
+  color:$theme-light-2;
   font-style: italic;
   font-weight: lighter;
 }
@@ -333,6 +335,8 @@ footer {
 
 .type-signature:last-child {
   color: #eee;
+
+  color: $theme-light-2;
 }
 
 .name, .signature {
@@ -340,7 +344,7 @@ footer {
 }
 
 .signature {
-  color: $theme-light-1;
+  //color: $theme-light-1;
 }
 
 .details {
@@ -767,7 +771,7 @@ span.param-type, .params td .param-type, .param-type dd {
     margin-left: 0;
   }
 
-  .tag-source{
+  .tag-source {
     display: none;
   }
 }
