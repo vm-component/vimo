@@ -4,6 +4,7 @@
  *
  * 滚动引擎根据配置切换使用原生滚动或者使用js滚动, js滚动使用IScroll插件完成.
  *
+ * @private
  * */
 import JsScroll from 'better-scroll/build/bscroll.js'
 // import JsScroll from 'iscroll/build/iscroll-probe'

@@ -34,22 +34,21 @@
                     <span>公共服务</span>
                 </ListHeader>
                 <ItemGroup>
-                    <Item detail-push :to="{name:'platform'}">
-                        <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
-                        <span>平台</span>
-                        <Note slot="item-right">Platform</Note>
-                    </Item>
-                    <Item detail-push :to="{name:'platformApi'}">
-                        <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
-                        <span>平台组件</span>
-                        <Note slot="item-right">Platform API</Note>
-                    </Item>
                     <Item detail-push :to="{name:'config'}">
                         <Icon slot="item-left" name="settings"></Icon>
-                        <span>配置</span>
+                        <span>配置参数</span>
                         <Note slot="item-right">Config</Note>
                     </Item>
-
+                    <Item detail-push :to="{name:'platform'}">
+                        <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
+                        <span>平台参数</span>
+                        <Note slot="item-right">Platform</Note>
+                    </Item>
+                    <Item detail-push :to="{name:'crossPlatform'}">
+                        <Icon slot="item-left" name="logo-javascript"></Icon>
+                        <span>跨平台组件</span>
+                        <Note slot="item-right">Cross Platform</Note>
+                    </Item>
                     <Item detail-push :to="{name:'history'}">
                         <Icon slot="item-left" name="logo-buffer"></Icon>
                         <span>历史记录</span>

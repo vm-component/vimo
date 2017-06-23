@@ -5,8 +5,8 @@
                 <Title>如何开始</Title>
             </Navbar>
         </Header>
-        <Content>
-            如何开始
+        <Content padding>
+            <p>使用Vimo有两个方法：使用npm安装; 使用种子项目(建议)</p>
         </Content>
     </Page>
 </template>

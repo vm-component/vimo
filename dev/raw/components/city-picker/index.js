@@ -10,7 +10,7 @@
  *
  * ### fetchData函数
  *
- * 函数编参考下面的用法, 需要在返回的数组中包含的对象格式是:
+ * fetchData函数用于根据code获取picker单列的数据, 这部分由业务确定, 有些情况需要使用本地数据, 有时是网络数据. 函数参考下面的用法, 需要在返回的数组中包含的对象格式是:
  *
  * 名称 / Name | 类型 / Type | 描述 / Description
  * ----------|-----------|------------------
@@ -24,10 +24,10 @@
  * ```
  *
  * @props {Array} selectedCity - 默认选中的值, 这个也对应组件是两级还是三级的标志, 可以是数据: ['',''] ['','',''], 默认显示北京
- * @props {String/Number} [startCode='1'] - 省份数据的code值, 默认是1
+ * @props {String/Number} [startCode='1'] - 获取省份数据的code值, 默认是 中国 1
  * @props {Function} [onCancel] - 点击取消的操作
  * @props {Function} [onSelect] - 点击确认的操作
- * @props {Function} fetchData - 获取城市数据的来源, 这个funtion传入code返回promise格式的数据, 其中需要返回的数据格式如下:
+ * @props {Function} fetchData - 获取城市数据的来源, 这个funtion传入code返回promise格式的数据, 其中需要返回的数据格式如下
  *
  * @demo https://dtfe.github.io/vimo-demo/#/picker
  * @usage

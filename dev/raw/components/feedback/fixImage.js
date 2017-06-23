@@ -2,6 +2,7 @@
  * Javascript EXIF Reader 0.1.6
  * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
  * Licensed under the MPL License [http://www.nihilogic.dk/licenses/mpl-license.txt]
+ * @private
  */
 var EXIF = (function() {
 
@@ -641,8 +642,8 @@ var EXIF = (function() {
  * Binary Ajax 0.1.10
  * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
  * Licensed under the MPL License [http://www.nihilogic.dk/licenses/mpl-license.txt]
+ * @private
  */
-
 var BinaryFile = function(strData, iDataOffset, iDataLength) {
     var data = strData;
     var dataOffset = iDataOffset || 0;
@@ -908,6 +909,7 @@ var BinaryAjax = (function() {
  *   (detectSubsampling, )
  *   And fixed orientation issue by using https://github.com/jseidelin/exif-js
  *   Thanks, Shinichi Tomita and Jacob Seidelin
+ * @private
  */
 (function($) {
     var pluginName = 'canvasResize',

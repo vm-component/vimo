@@ -26,6 +26,7 @@
  *
  * ## Datetime组件使用的日期工具
  *
+ * @private
  * */
 import { isBlank, isDate, isPresent, isString } from '../../util/util'
 const FORMAT_YYYY = 'YYYY'

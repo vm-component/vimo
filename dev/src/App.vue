@@ -1,7 +1,5 @@
 <template>
     <App>
-        <!--<img class="statusbar-img statusbar-img-ios" src="./assets/img/ios-statusbar.png">-->
-        <!--<img class="statusbar-img statusbar-img-md" src="./assets/img/android-statusbar.png">-->
         <!--menu menu-->
         <Menus id="menu" side="left">
             <Header>
@@ -19,13 +17,29 @@
                     <ItemGroup>
                         <!--wait 表示等待关闭事件-->
                         <Item button :to="{name: 'introduce'}" wait>
+                            <Icon slot="item-left" name="apps"></Icon>
                             <span>介绍</span>
                         </Item>
-                        <Item button :to="{name: 'howToStart'}" wait>
-                            <span>如何开始</span>
+                        <!--<Item button :to="{name: 'howToStart'}" wait>-->
+                            <!--<Icon slot="item-left" name="apps"></Icon>-->
+                            <!--<span>如何开始</span>-->
+                        <!--</Item>-->
+                    </ItemGroup>
+
+                    <ListHeader>特性</ListHeader>
+                    <!--group-->
+                    <ItemGroup>
+                        <Item button :to="{name: 'config'}" wait>
+                            <Icon slot="item-left" name="settings"></Icon>
+                            <span>配置参数</span>
                         </Item>
-                        <Item button :to="{name: 'equipment'}" wait>
-                            <span>当前设备信息</span>
+                        <Item button :to="{name: 'platform'}" wait>
+                            <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
+                            <span>平台参数</span>
+                        </Item>
+                        <Item button :to="{name: 'crossPlatform'}" wait>
+                            <Icon slot="item-left" name="logo-javascript"></Icon>
+                            <span>跨平台组件</span>
                         </Item>
                     </ItemGroup>
                 </List>
@@ -33,7 +47,7 @@
         </Menus>
         <Nav :showIndicatorWhenPageChange="true">
             <!--<keep-alive>-->
-                <router-view></router-view>
+            <router-view></router-view>
             <!--</keep-alive>-->
         </Nav>
     </App>

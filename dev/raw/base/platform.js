@@ -129,31 +129,22 @@ class Platform {
       transformOrigin: null,
       animationDelay: null
     }
-
-    /**
-     * @function on
-     * @description
-     * 事件监听，继承Vue的事件接口
-     * */
-    this.on = window.VM.eventBus.$on.bind(window.VM.eventBus)
-    /**
-     * @function once
-     * @description
-     * 事件监听一次，继承Vue的事件接口
-     * */
-    this.once = window.VM.eventBus.$once.bind(window.VM.eventBus)
-    /**
-     * @function emit
-     * @description
-     * 事件发射，继承Vue的事件接口
-     * */
-    this.emit = window.VM.eventBus.$emit.bind(window.VM.eventBus)
-    /**
-     * @function off
-     * @description
-     * 事件解绑，继承Vue的事件接口
-     * */
-    this.off = window.VM.eventBus.$off.bind(window.VM.eventBus)
+    // /**
+    //  * 事件监听，继承Vue的事件接口
+    //  * */
+    // this.on = window.VM.eventBus.$on.bind(window.VM.eventBus)
+    // /**
+    //  * 事件监听一次，继承Vue的事件接口
+    //  * */
+    // this.once = window.VM.eventBus.$once.bind(window.VM.eventBus)
+    // /**
+    //  * 事件发射，继承Vue的事件接口
+    //  * */
+    // this.emit = window.VM.eventBus.$emit.bind(window.VM.eventBus)
+    // /**
+    //  * 事件解绑，继承Vue的事件接口
+    //  * */
+    // this.off = window.VM.eventBus.$off.bind(window.VM.eventBus)
   }
 
   // Methods

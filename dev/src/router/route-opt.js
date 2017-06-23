@@ -56,13 +56,6 @@ let routes = [
     }
   },
   {
-    path: '/equipment',
-    name: 'equipment',
-    component (resolve) {
-      require(['@/example/equipment.vue'], resolve)
-    }
-  },
-  {
     path: '/config',
     name: 'config',
     component (resolve) {
@@ -97,9 +90,9 @@ let routes = [
     component: require('@/example/platform.vue')
   },
   {
-    path: '/platform-api',
-    name: 'platformApi',
-    component: require('@/example/platform-api.vue')
+    path: '/cross-platform',
+    name: 'crossPlatform',
+    component: require('@/example/cross-platform.vue')
   },
   {
     path: '/toolbar',

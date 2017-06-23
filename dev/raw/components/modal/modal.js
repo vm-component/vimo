@@ -24,8 +24,11 @@
  * // 开启
  * openModal () {
  *        this.$modal.present({
- *          template: modalPageComponent_1,
- *          modalData: {hello: 'Page1Data'},
+ *          mode: 'zoom',
+ *          component: modalPageComponent,
+ *          data: {hello: 'Page1Data'},
+ *          showBackdrop: true,
+ *          enableBackdropDismiss: true,
  *          onDismiss (data) {
  *            console.debug('得到了modal1的关闭信息')
  *            console.debug(JSON.stringify(data))
@@ -68,10 +71,10 @@ function ModalFactory (options) {
  * 如果不懂想下: 桌子(页面)/菜盘(modal)/菜(template)的关系, 开启后获取Modal实例, 并将template初始化后挂在到Modal上, 然后注册urlChange事件. 在之后记录开启的Modal信息,
  * 然后执行modal实例的_present开启.
  *
- * @param {object} options
- * @param {VueComponent} options.component - modal页面
- * @param {object} [options.data] - 传给modal的数据
- * @param {function} [options.onDismiss] - 关闭model执行的操作, data是关闭时传入的参数
+ * @param {String} [mode]
+ * @param {VueComponent} component - modal页面
+ * @param {object} [data] - 传给modal的数据
+ * @param {function} [onDismiss] - 关闭model执行的操作, data是关闭时传入的参数
  * @param {Boolean} [showBackdrop=true] - 显示backdrop
  * @param {Boolean} [enableBackdropDismiss=true] - 点击backdrop是否关闭
  *
@@ -84,6 +87,8 @@ function ModalFactory (options) {
  *  data:{...},            // 传给modal的数据
  *  onDismiss(data){....},      // 关闭model执行的操作, data是关闭时传入的参数
  * }
+ *
+ * 子页面通过 this.$options.$data.username 获取数据
  * */
 function present (options = {}) {
   isModalEnable = false

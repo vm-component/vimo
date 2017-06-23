@@ -31,12 +31,18 @@
 </template>
 <script type="text/javascript">
   /**
-   * @componsnt Feedback
+   * @component Feedback
    * @description
    *
    * ## 反馈图文框组件 / Feedback
    *
-   * 用于反馈/意见信息/评价等场景.
+   * 用于反馈/意见信息/评价等场景. 如果在Alipay环境，则使用alipay的组件上传。
+   *
+   * ### 如何引入
+   * ```
+   * import { Feedback } from 'vimo/components/feedback'
+   * components: {Feedback}
+   * ```
    *
    * @props {Number} [rows=3] - rows
    * @props {String} [name] - name
@@ -55,6 +61,9 @@
    * @props {Array} value.images.blob - 修正方向及大小的二进制blob
    * @props {Array} value.images.file - 图片file句柄
    *
+   * @demo https://dtfe.github.io/vimo-demo/#/feedback
+   * @usage
+   * <Feedback v-model="feedbackInfo" :maxlength="100" :maximage="4"></Feedback>
    * */
   import './fixImage'
   import { isString, isArray } from '../../util/util'
@@ -114,6 +123,7 @@
       update () {
         this.textareaComponent.update()
       },
+
       /**
        * @function destroy
        * @description
@@ -127,6 +137,7 @@
 
       /**
        * 图片预览
+       * @private
        * */
       previewImage (index) {
         let images = []
