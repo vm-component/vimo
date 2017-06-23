@@ -1,5 +1,72 @@
 /**
- * Created by Hsiang on 2017/6/23.
+ * @component CityPicker
+ * @description
+ *
+ * ## 城市联动选择组件 / CityPicker组件
+ *
+ * ### 简述
+ *
+ * 这个一个二级/三级联动进行城市选择的组件, 数据获取可修改fetchData函数进行, 可以是本地数据也可以是网络数据.
+ *
+ * ### fetchData函数
+ *
+ * 函数编参考下面的用法, 需要在返回的数组中包含的对象格式是:
+ *
+ * 名称 / Name | 类型 / Type | 描述 / Description
+ * ----------|-----------|------------------
+ * text      | string    | 显示的文本
+ * value     | *         | 对显示文本的值
+ * disabled  | boolean   | 是否禁用
+ *
+ * ### 如何引入
+ * ```
+ * import { CityPicker } from 'vimo/components/city-picker'
+ * ```
+ *
+ * @props {Array} selectedCity - 默认选中的值, 这个也对应组件是两级还是三级的标志, 可以是数据: ['',''] ['','',''], 默认显示北京
+ * @props {String/Number} [startCode='1'] - 省份数据的code值, 默认是1
+ * @props {Function} [onCancel] - 点击取消的操作
+ * @props {Function} [onSelect] - 点击确认的操作
+ * @props {Function} fetchData - 获取城市数据的来源, 这个funtion传入code返回promise格式的数据, 其中需要返回的数据格式如下:
+ *
+ * @demo https://dtfe.github.io/vimo-demo/#/picker
+ * @usage
+ * function openCityPicker () {
+ *    CityPicker.present({
+ *      onSelect (data) {
+ *        console.log('onSelect')
+ *        console.log(data)
+ *      },
+ *      onCancel () {
+ *        console.log('onCancel')
+ *      },
+ *      startCode: '1',
+ *      selectedCity: ['', ''],
+ *      fetchData (code) {
+ *        return new Promise((resolve, reject) => {
+ *          if (code) {
+ *            axios(`static/address-data/${code}.json`)
+ *            .then((response) => {
+ *              response.data.forEach((item) => {
+ *                item.text = item.divisionName
+ *                item.value = item.divisionCode
+ *                item.disabled = false
+ *              })
+ *              resolve(response.data)
+ *            })
+ *            .catch(() => {
+ *              resolve([])
+ *              console.error('无法获取数据')
+ *            })
+ *          } else {
+ *            resolve([])
+ *            console.error('没有查询的code值')
+ *          }
+ *        })
+ *      }
+ *    })
+ *  }
+ *
  */
 import { isArray } from '../../util/util'
 import { Picker } from '../picker'
@@ -112,7 +179,7 @@ const CityPicker = {
           {
             text: '确定',
             handler: (data) => {
-              options.onConfirm && options.onConfirm(data)
+              options.onSelect && options.onSelect(data)
             }
           }
         ],
