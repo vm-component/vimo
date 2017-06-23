@@ -131,6 +131,143 @@
 </dl>
 
 
+<h3 class="subsection-title">传入属性 / Props:</h3>
+
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>名称 / Name</th>
+        
+
+        <th>类型 / Type</th>
+
+        
+        <th>属性 / Attributes</th>
+        
+
+        
+        <th>默认值 / Default</th>
+        
+
+        <th class="last">描述 / Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>current</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last">当前index</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>urls</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">图片链接</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isH5</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;可选参数 / optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last">是否使用h5组件, false为自动, true为强制使用h5组件(isForceH5)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -141,6 +278,23 @@
 
 
 
+
+
+
+
+<h3 class="subsection-title">用法 / Usages</h3>
+
+    <pre class="prettyprint"><code>import { PreviewImage } from 'vimo/components/preview-image'
+function openAlbum1 () {
+   PreviewImage({
+     current: 0,
+     urls: [
+       'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
+       'https://img.alicdn.com/tps/TB1pfG4IFXXXXc6XXXXXXXXXXXX.jpg',
+       'https://img.alicdn.com/tps/TB1h9xxIFXXXXbKXXXXXXXXXXXX.jpg'
+     ]
+   })
+ }</code></pre>
 
 
 
@@ -173,6 +327,75 @@
         </article>
     </section>
 
+    
+    <aricle class="showcase">
+        <div id="js_showcase__box" class="showcase__box ios">
+            <div class="showcase__choose">
+                <span id="js_choose_ios" class="">IOS</span>
+                <span id="js_choose_md" class="">Android</span>
+            </div>
+            <div class="showcase__box--md">
+                <iframe frameborder="0" seamless
+                        src="https://dtfe.github.io/vimo-demo/#/preview-image?vmMode=md"></iframe>
+            </div>
+            <div class="showcase__box--ios">
+                <iframe frameborder="0" seamless
+                        src="https://dtfe.github.io/vimo-demo/#/preview-image?vmMode=ios"></iframe>
+            </div>
+
+            <div class="showcase__qrcode">
+                <div class="showcase__qrcode--inner" id="qrcode"></div>
+                <p>扫码预览</p>
+            </div>
+        </div>
+    </aricle>
+
+    <script>
+      ;(function () {
+        document.getElementById('js_choose_ios').addEventListener('click', function () {
+          console.log('js_choose_ios')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'ios')) {
+            _removeClass($showCaseBox, 'md')
+            _addClass($showCaseBox, 'ios')
+          }
+
+        })
+        document.getElementById('js_choose_md').addEventListener('click', function () {
+          console.log('js_choose_md')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'md')) {
+            _removeClass($showCaseBox, 'ios')
+            _addClass($showCaseBox, 'md')
+          }
+        })
+
+
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+          width : 150,//设置宽高
+          height : 150
+        });
+        qrcode.makeCode('https://dtfe.github.io/vimo-demo/#/preview-image');
+
+
+        function _hasClass (obj, cls) {
+          return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+        }
+
+        function _addClass (obj, cls) {
+          if (!_hasClass(obj, cls)) {
+            obj.className += ' ' + cls
+          }
+        }
+
+        function _removeClass (obj, cls) {
+          if (_hasClass(obj, cls)) {
+            var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+            obj.className = obj.className.replace(reg, ' ').trim()
+          }
+        }
+      })()
+    </script>
     
 
 </section>
