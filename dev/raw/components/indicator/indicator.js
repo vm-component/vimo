@@ -52,39 +52,35 @@ function LoadingFactory (options) {
   return new Loading({el, propsData: options})
 }
 
-function getPresentDismissIns () {
-  return {
-    _i: null, // instance 组件实例
+export default {
+  _i: null, // instance 组件实例
 
-    /**
-     * 开启组件
-     * @desc
-     * 如果上一个实例是开启状态, 则自动关闭后开启新的
-     * @param {Boolean} isReverse - 是否反色
-     * */
-    present (isReverse = false) {
-      if (!this._i || !this._i.isActive) {
-        let cssClass = 'indicator'
-        if (isReverse) { cssClass += ' reverse' }
-        this._i = LoadingFactory({
-          cssClass: cssClass,
-          showBackdrop: false,
-          mode: 'ios'
-        })
-        this._i.present()
-      }
-    },
+  /**
+   * 开启组件
+   * @desc
+   * 如果上一个实例是开启状态, 则自动关闭后开启新的
+   * @param {Boolean} isReverse - 是否反色
+   * */
+  present (isReverse = false) {
+    if (!this._i || !this._i.isActive) {
+      let cssClass = 'indicator'
+      if (isReverse) { cssClass += ' reverse' }
+      this._i = LoadingFactory({
+        cssClass: cssClass,
+        showBackdrop: false,
+        mode: 'ios'
+      })
+      this._i.present()
+    }
+  },
 
-    /**
-     * 关闭组件
-     * @return {Promise} - 关闭动画结束的promise
-     * */
-    dismiss () {
-      if (this._i && this._i.isActive) {
-        this._i.dismiss()
-      }
+  /**
+   * 关闭组件
+   * @return {Promise} - 关闭动画结束的promise
+   * */
+  dismiss () {
+    if (this._i && this._i.isActive) {
+      this._i.dismiss()
     }
   }
 }
-
-export default getPresentDismissIns()
