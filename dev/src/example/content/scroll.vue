@@ -6,7 +6,6 @@
             </Navbar>
         </Header>
         <Content class="outer-content" ref="content" padding :fullscreen="false"
-                 :enableJsScroll="enableJsScroll"
                  @onScrollStart="onScrollStartHandler"
                  @onScrollEnd="onScrollEndtHandler"
                  @onScroll="onScrollHandler">
@@ -118,7 +117,6 @@
   export default{
     data () {
       return {
-        enableJsScroll: false,
         scrollState: '',
         // scroll
         ev: {
@@ -170,13 +168,7 @@
           console.log('scrollToElement done')
         })
       }
-
     },
-    created () {
-      this.enableJsScroll = this.$route.query.enableJsScroll
-    },
-    mounted () {},
-    activated () {},
     components: {Segment, SegmentButton}
   }
 </script>

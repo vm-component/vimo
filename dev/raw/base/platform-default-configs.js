@@ -173,7 +173,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,          // 切换到子页面后隐藏tab组件
       pageTransition: 'zoom-transition',  // 转场动画
-      scrollAssist: false,                // Content组件是否开启jsScroll
+      // scrollAssist: false,                // Content组件是否开启jsScroll
       pickerRotateFactor: 0,
       pickerScaleFactor: 0.81
     },
@@ -200,7 +200,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHideOnSubPages: false,
       pageTransition: 'fade-right-transition', // 'ios-transition'
       statusbarPadding: false,
-      scrollAssist: false, // Content组件是否开启jsScroll
       pickerRotateFactor: -0.46,
       pickerScaleFactor: 1
     },
