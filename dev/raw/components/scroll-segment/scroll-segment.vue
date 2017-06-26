@@ -117,7 +117,6 @@
         childComponents: [],        // 子组件列表
         wrapRect: null,             // 滚动部分的尺寸
         contentRect: null,          // 当前组件盒子的尺寸
-        sendInputFromInner: false   // 当前组件盒子的尺寸
       }
     },
     props: {
@@ -133,12 +132,6 @@
     },
     watch: {
       value (val, oldValue) {
-
-        if (this.sendInputFromInner) {
-          this.sendInputFromInner = false
-          return
-        }
-
         let selectedComponent = this.childComponents[val]
         if (selectedComponent) {
           this.refresh(selectedComponent._uid, selectedComponent.rect)
@@ -165,6 +158,9 @@
         console.assert(!this.isInit, 'ScrollSegment组件为异步组件, 且因为机制问题只能异步一次, 如果场景特殊请使用v-if关闭组件后再开启. ')
         window.clearTimeout(this.timer)
         this.timer = window.setTimeout(() => {
+          if (!this.isInit) {
+            this.init()
+          }
           this.isInit = true
         }, 0)
       },
@@ -196,7 +192,6 @@
           child.setState(id)
           if (id === child._uid) {
             this.$emit('input', i)
-            this.sendInputFromInner = true
           }
         }
 
@@ -215,6 +210,7 @@
           let speed = 6 // 惯性速度
           let now = this.outerElement.scrollLeft
           let to = Math.floor((now - target) / speed)
+          console.log(now - to)
           this.outerElement.scrollLeft = now - to
 
           // 如果距离不为零, 继续调用迭代本函数
@@ -235,37 +231,46 @@
           target = this.max
         }
         this.rafId = window.requestAnimationFrame(step)
+      },
+
+      /**
+       * 初始化
+       * @private
+       * */
+      init () {
+        // 获取当前组件的尺寸及距离页面的位置
+        // width left
+        this.contentRect = {
+          left: this.outerElement.offsetLeft,
+          width: this.outerElement.offsetWidth
+        }
+
+        this.wrapRect = {
+          left: this.wrapElement.offsetLeft,
+          width: this.wrapElement.offsetWidth
+        }
+
+        // 边界
+        this.min = 0
+        this.max = this.wrapRect.width - this.contentRect.width
+
+        // 初始化时确定初始选中的位置
+        let selectedComponent = this.childComponents[this.value]
+        this.childComponents.forEach((child) => {
+          child.setState(selectedComponent._uid)
+        })
+
+        let target = selectedComponent.rect.left - this.contentRect.width / 2 + selectedComponent.rect.width / 2
+        this.outerElement.scrollLeft = clamp(this.min, target, this.max)
+
+        // 隐藏scrollbar
+        let height = this.$el.getBoundingClientRect().height
+        this.$el.style.minHeight = height + 'px'
+        this.wrapElement.style.minHeight = height + 'px'
       }
     },
     mounted () {
-      // 获取当前组件的尺寸及距离页面的位置
-      // width left
-      this.contentRect = {
-        left: this.outerElement.offsetLeft,
-        width: this.outerElement.offsetWidth
-      }
 
-      this.wrapRect = {
-        left: this.wrapElement.offsetLeft,
-        width: this.wrapElement.offsetWidth
-      }
-
-      // 边界
-      this.min = 0
-      this.max = this.wrapRect.width - this.contentRect.width
-
-      // 初始化时确定初始选中的位置
-      let selectedComponent = this.childComponents[this.value]
-      this.childComponents.forEach((child) => {
-        child.setState(selectedComponent._uid)
-      })
-      let target = selectedComponent.rect.left - this.contentRect.width / 2 + selectedComponent.rect.width / 2
-      this.outerElement.scrollLeft = clamp(this.min, target, this.max)
-
-      // 隐藏scrollbar
-      let height = this.$el.getBoundingClientRect().height
-      this.$el.style.minHeight = height + 'px'
-      this.wrapElement.style.minHeight = height + 'px'
     }
   }
 </script>
