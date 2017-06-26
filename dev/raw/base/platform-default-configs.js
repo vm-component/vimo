@@ -32,7 +32,6 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHideOnSubPages: false,          // 切换到子页面后隐藏tab组件
       showIndicatorWhenPageChange: true,  // 页面切换是否显示Indicator提示
       pageTransition: 'zoom-transition',  // 转场动画
-      // scrollAssist: false,                // Content组件是否开启jsScroll
       pickerRotateFactor: 0,
       pickerScaleFactor: 0.81
     },
@@ -211,6 +210,12 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       val = plt.userAgent().match(/AlipayDefined\(nt:(\w+),/i)
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setNetType(val[1].toString().toLowerCase())
+      }
+
+      plt.netType = function () {
+        window.ap && window.ap.getNetworkType((res) => {
+          return res.networkType
+        })
       }
 
       // 获取语言类型

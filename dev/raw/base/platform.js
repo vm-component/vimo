@@ -100,9 +100,6 @@ class Platform {
     this._bPlt = null // string 当前的浏览器平台,差不多是设备的类型 navigator.platform , 例如MacIntel;
     this._ua = null // string userAgent;
 
-    // this._resizeTm = null // any setTimeout 定时过后执行_onResizes中的回调函数;
-    // this._onResizes = [] // Array<Function> = [] resize时执行的回调列表;
-
     this._default = null // string 如果rootNode不存则使用默认的配置
     this._platforms = [] // : string[] = []; 当前平台的key 例如: "mobile/ios/mobileweb"
     this._registry = null // {[name:string] : PlatformConfig}; platform-registry中的config列表->登记处
@@ -128,22 +125,6 @@ class Platform {
       transformOrigin: null,
       animationDelay: null
     }
-    // /**
-    //  * 事件监听，继承Vue的事件接口
-    //  * */
-    // this.on = window.VM.eventBus.$on.bind(window.VM.eventBus)
-    // /**
-    //  * 事件监听一次，继承Vue的事件接口
-    //  * */
-    // this.once = window.VM.eventBus.$once.bind(window.VM.eventBus)
-    // /**
-    //  * 事件发射，继承Vue的事件接口
-    //  * */
-    // this.emit = window.VM.eventBus.$emit.bind(window.VM.eventBus)
-    // /**
-    //  * 事件解绑，继承Vue的事件接口
-    //  * */
-    // this.off = window.VM.eventBus.$off.bind(window.VM.eventBus)
   }
 
   // Methods
@@ -309,7 +290,7 @@ class Platform {
   }
 
   /**
-   * 获取网络类型
+   * 获取网络类型, 如果是在平台, 则使用平台方法
    * */
   netType () {
     return this._nt
@@ -471,40 +452,6 @@ class Platform {
       }
     }
   }
-
-  // /**
-  //  * @private
-  //  */
-  // windowResize () {
-  //   clearTimeout(this._resizeTm)
-  //
-  //   this._resizeTm = window.setTimeout(() => {
-  //     this._isPortrait = null
-  //     // 等待时间后执行resize的注册事件列表
-  //     for (let i = 0; i < this._onResizes.length; i++) {
-  //       try {
-  //         !!this._onResizes[i] && typeof this._onResizes[i] === 'function' && this._onResizes[i]()
-  //       } catch (e) {
-  //         console.error(e)
-  //       }
-  //     }
-  //   }, 200)
-  // }
-
-  // /**
-  //  * 注册resize事件的回调函数,存入_onResizes中
-  //  * @param {Function} cb
-  //  * @return {Function}
-  //  * @private
-  //  */
-  // onResize (cb) {
-  // const self = this
-  // self._onResizes.push(cb)
-  //
-  // return function () {
-  //   removeArrayItem(self._onResizes, cb)
-  // }
-  // }
 
   // Platform Registry
   // **********************************************
