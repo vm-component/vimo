@@ -593,6 +593,9 @@ export function removeArrayItem (array, item) {
   return !!~index && !!array.splice(index, 1)
 }
 
+/**
+ * 常用正则
+ * */
 export const REGEXP = {
   // 整数(包含正负)
   integer: /^-?[1-9]\d*$/,

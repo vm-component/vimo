@@ -14,11 +14,11 @@
  *
  * **业务使用的方法应该由当前的平台提供**
  *
- * 平台在初始化完毕时, 执行`src/config/platform-configs.js`定义的`onBridgeReady`钩子, 通过在传入`plt`实例上, 执行`registerMethod`方法注册当前平台对应的方法.
+ * 平台在初始化完毕时, 执行`src/config/platform-configs.js`定义的`bridgeReady`钩子, 通过在传入`plt`实例上, 执行`registerMethod`方法注册当前平台对应的方法.
  *   例如微信JSSDK中的`chooseImg`和`scanCode`方法(其他平台同理):
  *
  * ```
- * onBridgeReady(plt){
+ * bridgeReady(plt){
  *  // this.$platform.do('chooseImage',function (result) {})
  *  plt.registerMethod('chooseImage', function (callback) {
  *    wx.chooseImage({
@@ -1011,7 +1011,7 @@ function insertSuperset (registry, platformNode) {
  * */
 export function setupPlatform (config = {}) {
   // 保持单例对象
-  if (!!window['VM'] && !!window['VM']['platform']) {
+  if (window['VM'] && window['VM']['platform']) {
     return window['VM']['platform']
   } else {
     const p = new Platform()
