@@ -15,7 +15,7 @@
 
             <h5>Async</h5>
 
-            <Slides class="swiper async">
+            <Slides class="swiper async" @onTransitionEnd="onTransitionEndHandler">
                 <!-- 幻灯内容 -->
                 <Slide class="slide" v-for="(item,index) in asyncIimageList" :key="index">
                     <img :src="item" alt="asyncImg">
@@ -141,43 +141,43 @@
             <!--<h5>Fade Effect</h5>-->
             <!--<small>这里有问题</small>-->
             <!--<Slides class="swiper"-->
-                    <!--nextButton=".swiper-button-next"-->
-                    <!--prevButton=".swiper-button-prev"-->
-                    <!--pagination=".swiper-pagination"-->
-                    <!--:paginationClickable="true"-->
-                    <!--:watchSlidesProgress="true"-->
-                    <!--effect="fade">-->
-                <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_1.jpg">-->
-                <!--</Slide>-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_2.jpg">-->
-                <!--</Slide>-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_3.jpg">-->
-                <!--</Slide>-->
+            <!--nextButton=".swiper-button-next"-->
+            <!--prevButton=".swiper-button-prev"-->
+            <!--pagination=".swiper-pagination"-->
+            <!--:paginationClickable="true"-->
+            <!--:watchSlidesProgress="true"-->
+            <!--effect="fade">-->
+            <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_1.jpg">-->
+            <!--</Slide>-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_2.jpg">-->
+            <!--</Slide>-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_3.jpg">-->
+            <!--</Slide>-->
             <!--</Slides>-->
 
             <!--<h5>3D Flip Effect</h5>-->
             <!--<small>这里有问题</small>-->
             <!--<Slides class="swiper flipEffect"-->
-                    <!--effect="flip"-->
-                    <!--nextButton=".swiper-button-next"-->
-                    <!--prevButton=".swiper-button-prev"-->
-                    <!--pagination=".swiper-pagination"-->
-                    <!--:watchSlidesProgress="true"-->
-                    <!--:grabCursor="false">-->
-                <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_1.jpg">-->
-                <!--</Slide>-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_2.jpg">-->
-                <!--</Slide>-->
-                <!--<Slide class="slide">-->
-                    <!--<img src="../../static/img/scenery_3.jpg">-->
-                <!--</Slide>-->
+            <!--effect="flip"-->
+            <!--nextButton=".swiper-button-next"-->
+            <!--prevButton=".swiper-button-prev"-->
+            <!--pagination=".swiper-pagination"-->
+            <!--:watchSlidesProgress="true"-->
+            <!--:grabCursor="false">-->
+            <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_1.jpg">-->
+            <!--</Slide>-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_2.jpg">-->
+            <!--</Slide>-->
+            <!--<Slide class="slide">-->
+            <!--<img src="../../static/img/scenery_3.jpg">-->
+            <!--</Slide>-->
             <!--</Slides>-->
 
             <h5>3D Cube Effect</h5>
@@ -219,8 +219,6 @@
                     <img src="../../static/img/scenery_3.jpg">
                 </Slide>
             </Slides>
-
-
 
 
             <h5>Keyboard Control / Mousewheel Control</h5>
@@ -698,6 +696,11 @@
       }
     },
     methods: {
+      onTransitionEndHandler (swiper) {
+        console.log('onTransitionEndHandler swiper instance:')
+        console.log(swiper)
+      },
+
       loadAsyncImg () {
         this.asyncIimageList = [scenery1, scenery2, scenery3]
       },
@@ -730,7 +733,7 @@
 //      defaultSwiperComponent
 
       setInterval(() => {
-        console.log(this.defaultSwiperComponent.swiper)
+//        console.log(this.defaultSwiperComponent.swiper)
       }, 2000)
     },
     activated () {},

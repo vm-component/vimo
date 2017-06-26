@@ -19,9 +19,6 @@
 
         <!--buttons/menuToggle-->
         <slot name="buttons"></slot>
-
-        <!--right button placeholder-->
-        <div ref="rightButtonPlaceholder" style="width: 30px;bottom:0;height:1px; position: absolute;right:9px;"></div>
     </div>
 </template>
 <style lang="scss">
@@ -201,9 +198,6 @@
       toolbarContentClass () {
         return `toolbar-content-${this.mode}`
       },
-      rightButtonPlaceholderElement () {
-        return this.$refs.rightButtonPlaceholder
-      },
       toolbarBackgroundElement () {
         return this.$refs.toolbarBackground
       }
@@ -264,7 +258,7 @@
 
         Popover.present({
           ev: {
-            target: this.rightButtonPlaceholderElement
+            target: window.document.getElementById('rightButtonPlaceholder') || null
           }, // 事件
           cssClass: 'popMenu',
           component: MenuOptions,                  // 传入组件

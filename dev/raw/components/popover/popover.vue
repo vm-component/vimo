@@ -284,13 +284,10 @@
         let bodyHeight = this.$platform.height()
 
         // If ev was passed, use that for target element
-        let targetDim = ev && ev.target && ev.target.getBoundingClientRect()
-
+        let targetDim = this.getTargetDim(ev)
         let targetTop = (targetDim && 'top' in targetDim) ? targetDim.top : (bodyHeight / 2) - (popoverHeight / 2)
         let targetLeft = (targetDim && 'left' in targetDim) ? targetDim.left : (bodyWidth / 2) - (popoverWidth / 2)
-
         let targetHeight = targetDim && targetDim.height || 0
-
         let popoverCSS = {
           top: targetTop,
           left: targetLeft
@@ -335,8 +332,7 @@
         let bodyHeight = this.$platform.height()
 
         // If ev was passed, use that for target element
-        let targetDim = ev && ev.target && ev.target.getBoundingClientRect()
-
+        let targetDim = this.getTargetDim(ev)
         let targetTop = (targetDim && 'top' in targetDim) ? targetDim.top : (bodyHeight / 2) - (popoverHeight / 2)
         let targetLeft = (targetDim && 'left' in targetDim) ? targetDim.left : (bodyWidth / 2)
         let targetWidth = targetDim && targetDim.width || 0
@@ -351,7 +347,6 @@
         if (!targetDim) {
           arrowEle.style.display = 'none'
         }
-
         let arrowCSS = {
           top: targetTop + targetHeight,
           left: targetLeft + (targetWidth / 2) - (arrowWidth / 2)
@@ -391,6 +386,24 @@
         popoverEle.style.left = popoverCSS.left + 'px';
 
         (popoverEle.style)[this.$platform.css.transformOrigin] = originY + ' ' + originX
+      },
+
+      /**
+       * 根据传入的event事件获取点击元素的尺寸
+       * 如果没有事件则使用navbar中的站位元素,默认是在右上角
+       * @private
+       * */
+      getTargetDim (ev) {
+        if (ev && ev.target) {
+          return ev.target.getBoundingClientRect()
+        } else {
+          let rightButtonPlaceholderElement = window.document.getElementById('rightButtonPlaceholder')
+          if (rightButtonPlaceholderElement) {
+            return rightButtonPlaceholderElement.getBoundingClientRect()
+          } else {
+            return {}
+          }
+        }
       }
     },
     created () {

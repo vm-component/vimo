@@ -301,6 +301,6 @@ export function getEvents (slideComponent) {
     onAutoplayStop (swiper) { slideComponent.$emit('onAutoplayStop', swiper) },
     onLazyImageLoad (swiper, slide, image) { slideComponent.$emit('onLazyImageLoad', swiper, slide, image) },
     onLazyImageReady (swiper, slide, image) { slideComponent.$emit('onLazyImageReady', swiper, slide, image) },
-    onKeyPress (swiper, keyCode) { slideComponent.$emit('onLazyImageReady', swiper, keyCode) }
+    onKeyPress (swiper, keyCode) { slideComponent.$emit('onKeyPress', swiper, keyCode) }
   }
 }
