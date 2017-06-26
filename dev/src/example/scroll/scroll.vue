@@ -38,9 +38,6 @@
     methods: {},
     created () {},
     mounted () {
-      console.log('scroll.vue 页面文件, 这个肯定是keepalive的')
-      console.log(this)
-
     },
     activated () {},
     components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider}
