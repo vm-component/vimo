@@ -23,7 +23,7 @@
                 <Item detail-push :to="{name:'contentFullscreen'}">全屏模式</Item>
                 <Item detail-push :to="{name:'contentHideBars'}">隐藏头尾Bar</Item>
                 <Item detail-push :to="{name:'contentSetBarStyle'}">设置Bar的样式</Item>
-                <Item detail-push :to="{name:'contentScroll'}">滚动内容(原生滚动)</Item>
+                <Item detail-push :to="{name:'contentScroll'}">滚动监听</Item>
             </List>
         </Content>
     </Page>

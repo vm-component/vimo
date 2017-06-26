@@ -94,7 +94,6 @@
                             <p>contentTop: {{ev.contentTop}}</p>
                             <p>contentHeight: {{ev.contentHeight}}</p>
                             <p>contentBottom: {{ev.contentBottom}}</p>
-                            <p>isJsScroll: {{ev.isJsScroll}}</p>
                         </Column>
                     </Row>
                 </Grid>
