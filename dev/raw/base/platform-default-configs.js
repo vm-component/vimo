@@ -162,24 +162,20 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     superset: 'mobile',
     subsets: SUBSET_LIST,
     settings: {
-      toolbarMinHeight: 56,
-      hoverCSS: false,
-      mode: 'md',
-      backButtonText: '',
-      backButtonIcon: 'md-arrow-back',
-      iconMode: 'md',
-      menuType: 'overlay',
-      pickerRotateFactor: 0,
-      pickerScaleFactor: 0.81,
+      toolbarMinHeight: 56,               // toolbar的默认最小高度
+      mode: 'md',                         // 模式
+      backButtonText: '返回',             // 后退按钮文字
+      backButtonIcon: 'md-arrow-back',    // 后退图标
+      iconMode: 'md',                     // icon的模式
+      menuType: 'overlay',                // menu组件的展开默认类型
       spinner: 'crescent',
-      tabsHighlight: true,
+      tabsHighlight: true,                // tab是否显示下划线
       tabsPlacement: 'bottom',
-      tabsHideOnSubPages: false,
-      pageTransition: 'zoom-transition', // 'zoom-transition'
-
-      scrollAssist: false, // Content组件是否开启jsScroll
-      inputCloning: true,
-      autoFocusAssist: 'immediate'
+      tabsHideOnSubPages: false,          // 切换到子页面后隐藏tab组件
+      pageTransition: 'zoom-transition',  // 转场动画
+      scrollAssist: false,                // Content组件是否开启jsScroll
+      pickerRotateFactor: 0,
+      pickerScaleFactor: 0.81
     },
     isMatch (plt) {
       return plt.isPlatformMatch('android', ['android', 'silk'], ['windows phone'])
@@ -192,9 +188,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     superset: 'mobile',
     subsets: SUBSET_LIST,
     settings: {
-      hideNavBar: false,
       toolbarMinHeight: 44,
-      hoverCSS: false,
       mode: 'ios',
       backButtonText: '返回',
       backButtonIcon: 'ios-arrow-back',
@@ -207,15 +201,8 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       pageTransition: 'fade-right-transition', // 'ios-transition'
       statusbarPadding: false,
       scrollAssist: false, // Content组件是否开启jsScroll
-
-      activator: 'highlight',
       pickerRotateFactor: -0.46,
-      pickerScaleFactor: 1,
-      autoFocusAssist: 'delay',
-      inputBlurring: true,
-      inputCloning: true,
-      tapPolyfill: isIosUIWebView,
-      virtualScrollEventAssist: isIosUIWebView
+      pickerScaleFactor: 1
     },
     isMatch (plt) {
       return plt.isPlatformMatch('ios', ['iphone', 'ipad', 'ipod'], ['windows phone'])
