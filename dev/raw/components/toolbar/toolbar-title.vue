@@ -165,16 +165,8 @@
         }
 
         if (changeDocTitle) {
-          if (window.VM.platform.is('alipay') && window.AlipayJSBridge) {
-            window.AlipayJSBridge.call('setTitle', _title)
-          } else if (window.VM.platform.is('dingtalk') && window.dd) {
-            window.dd.biz.navigation.setTitle({
-              title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
-            })
-          } else {
-            // 设置document的title, 这部分由$app处理
-            _title.title && this.$app && this.$app.setDocTitle(_title.title)
-          }
+          // 设置document的title, 这部分由$app处理
+          _title.title && this.$app && this.$app.setDocTitle(_title)
         }
       },
 
