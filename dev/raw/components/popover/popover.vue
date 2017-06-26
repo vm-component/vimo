@@ -131,7 +131,7 @@
    * @props {Boolean} [enableBackdropDismiss=true] - 点击backdrop是否能关闭组件
    * @props {Boolean} [dismissOnPageChange=true] - 页面切换是否关闭组件, 默认关闭
    *
-   * @props {Object|String} component - popover内部显示的vue组件, 是一个*.vue文件; 如果是String的话则为html字符串
+   * @props {Object|String|Function} component - popover内部显示的vue组件, 是一个*.vue文件; 如果是String的话则为html字符串; 支持异步
    * @props {Object} data - 传给popover内部显示的vue组件的数据, 内部组件通过`this.$options.$data`获取
    * @props {Object|MouseEvent} ev - 点击元素的事件, $event, 这个值的传入可以计算popover放置的位置
    *
@@ -139,7 +139,7 @@
    * */
   import Vue from 'vue'
   import { Backdrop } from '../backdrop'
-  import { urlChange, parsePxUnit, isObject } from '../../util/util'
+  import { urlChange, parsePxUnit, isObject, isFunction } from '../../util/util'
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
   export default{
@@ -156,7 +156,7 @@
       }
     },
     props: {
-      component: [Object, String],
+      component: [Object, String, Function],
       data: [Object],
       ev: [Object, MouseEvent], // 点击元素的事件
       mode: {
@@ -284,13 +284,10 @@
         let bodyHeight = this.$platform.height()
 
         // If ev was passed, use that for target element
-        let targetDim = ev && ev.target && ev.target.getBoundingClientRect()
-
+        let targetDim = this.getTargetDim(ev)
         let targetTop = (targetDim && 'top' in targetDim) ? targetDim.top : (bodyHeight / 2) - (popoverHeight / 2)
         let targetLeft = (targetDim && 'left' in targetDim) ? targetDim.left : (bodyWidth / 2) - (popoverWidth / 2)
-
         let targetHeight = targetDim && targetDim.height || 0
-
         let popoverCSS = {
           top: targetTop,
           left: targetLeft
@@ -335,8 +332,7 @@
         let bodyHeight = this.$platform.height()
 
         // If ev was passed, use that for target element
-        let targetDim = ev && ev.target && ev.target.getBoundingClientRect()
-
+        let targetDim = this.getTargetDim(ev)
         let targetTop = (targetDim && 'top' in targetDim) ? targetDim.top : (bodyHeight / 2) - (popoverHeight / 2)
         let targetLeft = (targetDim && 'left' in targetDim) ? targetDim.left : (bodyWidth / 2)
         let targetWidth = targetDim && targetDim.width || 0
@@ -351,7 +347,6 @@
         if (!targetDim) {
           arrowEle.style.display = 'none'
         }
-
         let arrowCSS = {
           top: targetTop + targetHeight,
           left: targetLeft + (targetWidth / 2) - (arrowWidth / 2)
@@ -391,6 +386,37 @@
         popoverEle.style.left = popoverCSS.left + 'px';
 
         (popoverEle.style)[this.$platform.css.transformOrigin] = originY + ' ' + originX
+      },
+
+      /**
+       * 根据传入的event事件获取点击元素的尺寸
+       * 如果没有事件则使用navbar中的站位元素,默认是在右上角
+       * @private
+       * */
+      getTargetDim (ev) {
+        if (ev && ev.target) {
+          return ev.target.getBoundingClientRect()
+        } else {
+          let rightButtonPlaceholderElement = window.document.getElementById('rightButtonPlaceholder')
+          if (rightButtonPlaceholderElement) {
+            return rightButtonPlaceholderElement.getBoundingClientRect()
+          } else {
+            return {}
+          }
+        }
+      },
+
+      /**
+       * init
+       * */
+      init () {
+        // 计算位置
+        // 渲染传入的组件
+        if (this.mode === 'ios') {
+          this.iosPositionView(this.$el, this.ev)
+        } else {
+          this.mdPositionView(this.$el, this.ev)
+        }
       }
     },
     created () {
@@ -404,21 +430,26 @@
     mounted () {
       if (isObject(this.component)) {
         const Component = Vue.extend(this.component)
+        // eslint-disable-next-line no-new
         new Component({
           el: this.popoverViewportEle,
           $data: this.data
         })
+        this.init()
+      } else if (isFunction(this.component)) {
+        this.component((component) => {
+          const Component = Vue.extend(component)
+          // eslint-disable-next-line no-new
+          new Component({
+            el: this.popoverViewportEle,
+            $data: this.data
+          })
+          this.init()
+        })
       } else {
         // 如果 this.component 是html模板string的话
         this.htmlComponent = this.component
-      }
-
-      // 计算位置
-      // 渲染传入的组件
-      if (this.mode === 'ios') {
-        this.iosPositionView(this.$el, this.ev)
-      } else {
-        this.mdPositionView(this.$el, this.ev)
+        this.init()
       }
     },
     components: {Backdrop}

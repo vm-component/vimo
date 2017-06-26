@@ -4,9 +4,11 @@
             <Navbar>
                 <Title>Popover</Title>
                 <!--menutoggle-->
-                <Button right icon-only role="bar-button" menutoggle slot="buttons" @click="openSetting($event)">
-                    <Icon class="icon" name="menu" color="dark"></Icon>
-                </Button>
+                <Buttons slot="buttons" right>
+                    <Button icon-only role="bar-button" menutoggle @click="openSetting($event)">
+                        <Icon class="icon" name="more" color="dark"></Icon>
+                    </Button>
+                </Buttons>
             </Navbar>
         </Header>
         <Content padding class="outer-content" ref="content">

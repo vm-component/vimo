@@ -20,11 +20,11 @@ import App from './App.vue'
 import AttachFastClick from './assets/js/fastclick'
 import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
-
 import geo from './geolocation/vm-geo'
 import log from './log'
 import router from './router'
 import storage from './storage/vm-storage'
+
 Vue.use(geo, {
   enableHighAccuracy: true, // 是否要求高精度地理位置信息
   maximumAge: 10000,         // 设置缓存时间为1s，1s后重新获取地理位置信息
@@ -83,12 +83,7 @@ Vue.prototype.$modal = Modal
 Vue.prototype.$indicator = Indicator
 
 if (process.env.NODE_ENV === 'development') {
-  // 开发模式显示navbar, 真正情况下见config中的app-configs.js和platform-configs.js文件
-  // window.VM.config && window.VM.config.set('alipay', 'hideNavBar', false)
-  // window.VM.config && window.VM.config.set('dingtalk', 'hideNavBar', false)
-  // window.VM.config && window.VM.config.set('qq', 'hideNavBar', false)
-  // window.VM.config && window.VM.config.set('dtdream', 'hideNavBar', false)
-  // window.VM.config && window.VM.config.set('wechat', 'hideNavBar', false)
+
 } else {
 
 }
@@ -99,7 +94,6 @@ new Vue({
   template: '<App/>',
   created () {
     this.$platform.ready().then((data) => {
-
     }, () => {})
   },
   components: {App}
