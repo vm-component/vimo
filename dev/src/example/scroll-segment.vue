@@ -196,7 +196,7 @@
                     </Column>
                 </Row>
                 <ScrollSegment v-model="changedValue" class="header-scroll">
-                    <ScrollSegmentButton v-for="i in 10" :key="i">
+                    <ScrollSegmentButton v-for="i in asynData" :key="i">
                         <div class="srollSegmentButton">{{i}}</div>
                     </ScrollSegmentButton>
                 </ScrollSegment>
@@ -331,6 +331,7 @@
       return {
         changedValue: 3,
         arrs: ['头条', '科技', '独家', '搞笑', '娱乐', '体育', '视频', '财经', '汽车'],
+        asynData: [],
         newIndex: 2
       }
     },
@@ -343,7 +344,16 @@
     computed: {},
     methods: {},
     created () {},
-    mounted () {},
+    mounted () {
+      window.setTimeout(() => {
+
+        let tmps = []
+        for (let i = 0; i < 10; i++) {
+          tmps.push(i)
+        }
+        this.asynData = tmps
+      }, 500)
+    },
     activated () {},
     deactivate () {},
 

@@ -7,33 +7,6 @@
         </div>
     </div>
 </template>
-<style lang="scss">
-    .vm-scroll-segment {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-        .scroll-segment-outer {
-            overflow-x: scroll;
-            overflow-y: hidden;
-            position: relative;
-            // for hide scroll bar
-            height: calc(100% + 10px);
-            -webkit-overflow-scrolling: touch;
-            &::-webkit-scrollbar {
-                display: none;
-            }
-        }
-
-        .scroll-segment-wrap {
-            display: inline-flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            // for hide scroll bar
-            height: calc(100% - 10px);
-        }
-    }
-</style>
 <script type="text/javascript">
   /**
    * @component ScrollSegment
@@ -116,7 +89,7 @@
         rafId: null,
         childComponents: [],        // 子组件列表
         wrapRect: null,             // 滚动部分的尺寸
-        contentRect: null,          // 当前组件盒子的尺寸
+        contentRect: null          // 当前组件盒子的尺寸
       }
     },
     props: {
@@ -136,6 +109,7 @@
         if (selectedComponent) {
           this.refresh(selectedComponent._uid, selectedComponent.rect)
         } else {
+          // 如果没有子组件对应则返回上一个值
           this.$emit('input', oldValue)
         }
       }
@@ -210,7 +184,6 @@
           let speed = 6 // 惯性速度
           let now = this.outerElement.scrollLeft
           let to = Math.floor((now - target) / speed)
-          console.log(now - to)
           this.outerElement.scrollLeft = now - to
 
           // 如果距离不为零, 继续调用迭代本函数
@@ -274,3 +247,30 @@
     }
   }
 </script>
+<style lang="scss">
+    .vm-scroll-segment {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        .scroll-segment-outer {
+            overflow-x: scroll;
+            overflow-y: hidden;
+            position: relative;
+            // for hide scroll bar
+            height: calc(100% + 10px);
+            -webkit-overflow-scrolling: touch;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        .scroll-segment-wrap {
+            display: inline-flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            // for hide scroll bar
+            height: calc(100% - 10px);
+        }
+    }
+</style>
