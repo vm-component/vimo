@@ -167,6 +167,7 @@ const CityPicker = {
 
       let data = {
         cssClass: 'small-text',
+        isH5: true,
         buttons: [
           {
             role: 'cancel',
