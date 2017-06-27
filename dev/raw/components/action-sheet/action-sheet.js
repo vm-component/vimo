@@ -32,6 +32,7 @@ function getPresentDismissIns (Factory) {
     present (options) {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
       let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
+      let isDtDreamReady = window.VM.platform.is('dtdream') && window.dd && !options.isH5
 
       // 如果btn太多, 则原生组件放不下
       if (options.buttons.length < 9) {
@@ -96,6 +97,27 @@ function getPresentDismissIns (Factory) {
               }
             })
 
+            resolve()
+          })
+        }
+
+        if (isDtDreamReady) {
+          console.info('ActionSheet 组件使用 DtDream 模式!')
+          return new Promise((resolve) => {
+            window.dd.device.notification.actionSheet({
+              title: options.title || '',
+              cancelButton: cancelButton.text || '取消',
+              otherButtons: items || [],
+              onSuccess (result) {
+                // onSuccess将在点击button之后回调
+                // {buttonIndex: 0 //被点击按钮的索引值，Number，从0开始, 取消按钮为-1 }
+                if (result.buttonIndex !== -1) {
+                  options.buttons[result.buttonIndex] && options.buttons[result.buttonIndex].handler && options.buttons[result.buttonIndex].handler()
+                } else {
+                  cancelButton.handler && cancelButton.handler()
+                }
+              }
+            })
             resolve()
           })
         }

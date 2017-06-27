@@ -36,6 +36,7 @@ function getPresentDismissIns (Factory) {
     present (options = {}) {
       let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
       let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
+      let isDtDreamReady = window.VM.platform.is('dtdream') && window.dd && !options.isH5
 
       if (isString(options)) {
         options = {content: options}
@@ -54,6 +55,17 @@ function getPresentDismissIns (Factory) {
 
       if (isDingTalkReady) {
         console.info('Loading 组件使用DingTalk模式!')
+        return new Promise((resolve) => {
+          window.dd.device.notification.showPreloader({
+            text: options.content || '',
+            showIcon: true // 是否显示icon，默认true
+          })
+          resolve()
+        })
+      }
+
+      if (isDtDreamReady) {
+        console.info('Loading 组件使用 DtDream 模式!')
         return new Promise((resolve) => {
           window.dd.device.notification.showPreloader({
             text: options.content || '',
@@ -85,18 +97,12 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     dismiss () {
-      let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
-      let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd
       return new Promise((resolve) => {
-        if (isAlipayReady) {
+        if (window.AlipayJSBridge) {
           window.AlipayJSBridge.call('hideLoading')
         }
 
-        if (isAlipayReady) {
-          window.AlipayJSBridge.call('hideLoading')
-        }
-
-        if (isDingTalkReady) {
+        if (window.dd) {
           window.dd.device.notification.hidePreloader()
         }
 

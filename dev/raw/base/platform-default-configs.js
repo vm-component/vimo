@@ -323,12 +323,42 @@ export const PLATFORM_DEFAULT_CONFIGS = {
   },
   dtdream: {
     initialize (plt) {
-      this.bridgeReady(plt)
-      plt.triggerReady('dtdream Init Success!')
+      /**
+       * 加载JSSDK
+       * */
+      const _this = this
+      let jsSDKUrl = this.settings['jsSDKUrl']
+      let splitArr = jsSDKUrl.split('//')
+      if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
+        splitArr[0] = 'https:'
+      } else {
+        splitArr[0] = 'http:'
+      }
+
+      /**
+       * 在ready之前进行处理
+       * 执行用户定义的onBridgeReady钩子
+       * */
+      plt.beforeReady = () => {
+        loadScript(splitArr.join('//'), () => {
+          docReady(() => {
+            // 执行自定义的bridge ready钩子
+            _this.bridgeReady(plt)
+            plt.triggerReady('Dtdream Init Success!')
+            plt.timer && window.clearTimeout(plt.timer)
+          })
+        })
+
+        plt.timer = window.setTimeout(() => {
+          plt.triggerFail('Dtdream Init Timeout!')
+        }, TIMEOUT)
+      }
     },
+
     // 由业务完成部分
     bridgeReady (plt) {},
     settings: {
+      jsSDKUrl: '//115.29.248.20/testjs/test.js',
       hideNavBar: true
     },
     isMatch (plt) {

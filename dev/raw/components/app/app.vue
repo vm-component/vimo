@@ -228,6 +228,10 @@
           window.dd.biz.navigation.setTitle({
             title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
           })
+        } else if (window.VM.platform.is('dtdream') && window.dd) {
+          window.dd.biz.navigation.setTitle({
+            title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
+          })
         } else {
           // 不在壳子中则正常显示
           if (this.$platform.platforms().length <= 2) {
