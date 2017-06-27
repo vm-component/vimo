@@ -495,11 +495,8 @@
     .button-ios {
         background-color: $debug;
     }
-
-
 </style>
 <script type="text/javascript">
-  import JsScroll from './iscroll'
   import { Grid, Row, Column } from 'vimo/components/grid'
   import { Button } from 'vimo/components/button'
   export default{
@@ -549,7 +546,7 @@
        * */
       refresh () {
         this.$nextTick(() => {
-          this.jsScrollInstance.refresh()
+          this.jsScrollInstance && this.jsScrollInstance.refresh()
         })
       },
 
@@ -604,7 +601,7 @@
        * */
       scrollToBottom () {
         this.$nextTick(() => {
-          this.jsScrollInstance.scrollTo(0, this.jsScrollInstance.wrapperHeight - this.jsScrollInstance.scrollerHeight, 300)
+          this.jsScrollInstance && this.jsScrollInstance.scrollTo(0, this.jsScrollInstance.wrapperHeight - this.jsScrollInstance.scrollerHeight, 300)
         })
       },
 
@@ -615,18 +612,23 @@
        * */
       scrollToTop () {
         this.$nextTick(() => {
-          this.jsScrollInstance.scrollTo(0, 0, 300)
+          this.jsScrollInstance && this.jsScrollInstance.scrollTo(0, 0, 300)
         })
       },
 
       initJsScroll () {
-        // js滚动
-        this.jsScrollInstance = new JsScroll(this.listBoxElement, {
-          bounce: true,
-          bindToWrapper: true,
-          mouseWheel: true,
-          scrollbars: false
-        })
+        let JsScroll = require('iscroll')
+        if (typeof JsScroll !== 'undefined') {
+          // js滚动
+          this.jsScrollInstance = new JsScroll(this.listBoxElement, {
+            bounce: true,
+            bindToWrapper: true,
+            mouseWheel: true,
+            scrollbars: false
+          })
+        } else {
+          alert('JsScroll 未定义')
+        }
       },
       refreshVimoData () {
         this.getVimoData()
@@ -641,7 +643,7 @@
 
           window.VM && window.VM.platform.ready().then(() => {
             this.isPlatformReady = true
-          }, () => {})
+          })
 
           this.platform = window.VM.platform
 
