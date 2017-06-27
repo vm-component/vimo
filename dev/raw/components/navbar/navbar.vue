@@ -150,6 +150,7 @@
       return {
         isAlipayReady: window.VM.platform.is('alipay') && window.AlipayJSBridge,
         isDingTalkReady: window.VM.platform.is('dingtalk') && window.dd,
+        isDtDreamReady: window.VM.platform.is('dtdream') && window.dd,
 
         hideRightButtons: false,
 
@@ -501,7 +502,7 @@
        * */
       initWhenInWebview () {
         // 如果在平台中则进行下面的分支
-        if (this.isAlipayReady || this.isDingTalkReady) {
+        if (this.isAlipayReady || this.isDingTalkReady || this.isDtDreamReady) {
           this.initOptionButton()
           this.initBackgroundColor()
         }
