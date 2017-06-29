@@ -36,6 +36,8 @@ import { Modal } from '../modal'
 import PreviewImageComponent from './preview-image.vue'
 export function PreviewImage (options) {
   let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
+  let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
+  let isDtDreamReady = window.VM.platform.is('dtdream') && window.dd && !options.isH5
   // alipay模式只能显示完整url路径的图片, 不能显示base64格式的图片
   if (isAlipayReady) {
     // alipay环境使用壳子方法
@@ -44,17 +46,39 @@ export function PreviewImage (options) {
       current: options.current || 0,
       urls: options.urls
     })
-  } else {
-    console.info('PreviewImage 组件使用H5模式!')
-    Modal.present({
-      component: PreviewImageComponent,
-      mode: 'zoom',
-      data: {
-        current: options.current || 0,
-        urls: options.urls
-      },
-      showBackdrop: true,
-      enableBackdropDismiss: true
-    })
+    return
   }
+
+  if (isDingTalkReady) {
+    // alipay环境使用壳子方法
+    console.info('PreviewImage 组件使用 Dingtalk 模式!')
+    window.dd.biz.util.previewImage({
+      current: options.urls[options.current] || '',
+      urls: options.urls
+    })
+    return
+  }
+
+  if (isDtDreamReady) {
+    // alipay环境使用壳子方法
+    console.info('PreviewImage 组件使用 DtDream 模式!')
+    window.dd.biz.util.previewImage({
+      current: options.urls[options.current] || '',
+      urls: options.urls
+    })
+    return
+  }
+
+  console.info('PreviewImage 组件使用H5模式!')
+  Modal.present({
+    component: PreviewImageComponent,
+    mode: 'zoom',
+    data: {
+      current: options.current || 0,
+      urls: options.urls
+    },
+    showBackdrop: true,
+    enableBackdropDismiss: true
+  })
+  return
 }
