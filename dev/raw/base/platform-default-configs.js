@@ -9,6 +9,7 @@ import { docReady } from '../util/util'
 //  platform supported list
 export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq', 'dtdream']
 const TIMEOUT = 10000 // 平台初始化需要的最大时间
+
 // platform default configs
 export const PLATFORM_DEFAULT_CONFIGS = {
   mobile: {
