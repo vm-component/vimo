@@ -76,7 +76,6 @@
       return {
         titleColor: null,
         titleInner: this.title,
-        isInit: false,
         isTitleInNavbar: false, // 这个title组件在navbar中
         isHeaderInApp: false // 包裹当前组件的Header在App组件中
       }
@@ -102,6 +101,12 @@
         return `toolbar-title-${this.mode}`
       }
     },
+    watch: {
+      title () {
+        console.log('title change')
+        this.init()
+      }
+    },
     methods: {
       /**
        * @function getTitle
@@ -110,38 +115,34 @@
        * @return {String}
        * */
       getTitle () {
-        if (this.isInit) {
-          return this.titleInner
-        } else {
-          let _title = ''
-          /**
-           * 组件获取了传入的title值，之后通过全局注册的$setTitle方法
-           * 设置document.title（此处做了兼容）
-           * */
-          if (this.title) {
-            // prop传入title值
-            // eg: <Title title="Toolbar"></Title>
-            _title = this.title.trim()
-          } else if (this.$slots.default && this.$slots.default[0] && this.$slots.default[0].text) {
-            // 如果是直接写在ion-title中的值
-            // eg: <Title>Toolbar</Title>
-            _title = this.$slots.default[0].text.trim()
-          } else if (this.$slots.default && this.$slots.default[0] && this.$slots.default[0].tag && this.$slots.default[0].children[0].text) {
-            // 如果是这届下载ion-title中的值，并且包含一层标签的情况
-            // eg: <Title>
-            //      <span>Toolbar</span>
-            //      <span>-</span>
-            //      <span>Test</span>
-            //    </Title>
-            // -> Toolbar-Test
-            this.$slots.default.forEach((item) => {
-              if (item.children && item.children.length > 0 && item.children[0] && item.children[0].text) {
-                _title += item.children[0].text.trim()
-              }
-            })
-          }
-          return _title
+        let _title = ''
+        /**
+         * 组件获取了传入的title值，之后通过全局注册的$setTitle方法
+         * 设置document.title（此处做了兼容）
+         * */
+        if (this.title) {
+          // prop传入title值
+          // eg: <Title title="Toolbar"></Title>
+          _title = this.title.trim()
+        } else if (this.$slots.default && this.$slots.default[0] && this.$slots.default[0].text) {
+          // 如果是直接写在ion-title中的值
+          // eg: <Title>Toolbar</Title>
+          _title = this.$slots.default[0].text.trim()
+        } else if (this.$slots.default && this.$slots.default[0] && this.$slots.default[0].tag && this.$slots.default[0].children[0].text) {
+          // 如果是这届下载ion-title中的值，并且包含一层标签的情况
+          // eg: <Title>
+          //      <span>Toolbar</span>
+          //      <span>-</span>
+          //      <span>Test</span>
+          //    </Title>
+          // -> Toolbar-Test
+          this.$slots.default.forEach((item) => {
+            if (item.children && item.children.length > 0 && item.children[0] && item.children[0].text) {
+              _title += item.children[0].text.trim()
+            }
+          })
         }
+        return _title
       },
 
       /**
@@ -213,7 +214,6 @@
             this.isHeaderInApp = true
           }
         }
-        this.isInit = true
       },
 
       /**

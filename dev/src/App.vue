@@ -4,7 +4,7 @@
         <Menus id="menu" side="left">
             <Header>
                 <Toolbar>
-                    <Title>{{$t('menu.menu')}}</Title>
+                    <Title :title="$t('menu.menu')"></Title>
                 </Toolbar>
             </Header>
             <Content>

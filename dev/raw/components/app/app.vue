@@ -85,7 +85,7 @@
    * */
 
   import { ClickBlock } from './click-block'
-  import { setElementClass } from '../../util/util'
+  import { setElementClass, isString } from '../../util/util'
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
   const ACTIVE_SCROLLING_TIME = 100
@@ -217,11 +217,15 @@
 
       /**
        * @function setDocTitle
+       * @param {String|Object}  _title - 设置标题
+       * @param {String}  _title.title - 标题
        * @description
-       * 设置document.title的值
+       * 设置document.title的值, 如果传入的是string, 则为title的字符串, 如果是对象, 则title字段为标题名称
        * */
       setDocTitle (_title) {
-
+        if (isString(_title)) {
+          _title = {title: _title}
+        }
         if (window.VM.platform.is('alipay') && window.AlipayJSBridge) {
           window.AlipayJSBridge.call('setTitle', _title)
         } else if (window.VM.platform.is('dingtalk') && window.dd) {

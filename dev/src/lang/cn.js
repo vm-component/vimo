@@ -13,6 +13,7 @@ export default {
     switchLanguage: '切换语言'
   },
   index: {
+    title: '欢迎',
     switchLang: '切换语言',
     message: '基于Vue2.x的移动端Hybrid框架',
     component: '组件',

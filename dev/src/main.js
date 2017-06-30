@@ -31,10 +31,14 @@ Vue.use(VueI18n)
 // Create VueI18n instance with options
 const i18n = new VueI18n({
   locale: 'cn', // set locale
-  fallbackLocale: 'cn'
+  fallbackLocale: 'cn',
+  messages: {
+    cn: require('./lang/cn').default,
+    en: require('./lang/en').default
+  }
 })
-i18n.setLocaleMessage('cn', require('./lang/cn').default)
-i18n.setLocaleMessage('en', require('./lang/en').default)
+
+console.log(i18n.getLocaleMessage('cn'))
 
 Vue.use(geo, {
   enableHighAccuracy: true, // 是否要求高精度地理位置信息

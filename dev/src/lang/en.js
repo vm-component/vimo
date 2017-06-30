@@ -13,6 +13,7 @@ export default {
     switchLanguage: 'Switch Lang'
   },
   index: {
+    title: 'Welcome',
     switchLang: 'Switch Language',
     message: 'Based on Vue2.x && A Platform For Hybrid App',
     component: 'COMPONENT',

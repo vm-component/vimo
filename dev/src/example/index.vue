@@ -10,7 +10,7 @@
                         <Icon name="more"></Icon>
                     </Button>
                 </Buttons>
-                <Title @onTitleClick="onTitleClickHandler">Welcome</Title>
+                <Title @onTitleClick="onTitleClickHandler" :title="$t('index.title')"></Title>
             </Navbar>
         </Header>
         <Content padding>
@@ -102,6 +102,7 @@
             }
         }
     }
+
     .index.inspired {
         width: 100%;
         height: 55px;
