@@ -38,8 +38,6 @@ const i18n = new VueI18n({
   }
 })
 
-console.log(i18n.getLocaleMessage('cn'))
-
 Vue.use(geo, {
   enableHighAccuracy: true, // 是否要求高精度地理位置信息
   maximumAge: 10000,         // 设置缓存时间为1s，1s后重新获取地理位置信息
