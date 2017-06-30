@@ -174,7 +174,8 @@ $toggle-ios-item-right-padding: 6px ($item-ios-padding-right / 2) 5px ($item-ios
 // iOS Toggle Within An Item
 // -----------------------------------------
 
-.item-ios .toggle-ios {
+.item-ios .toggle-ios,
+.item-ios .toggle-ios[item-right] {
   margin: $toggle-ios-media-margin;
   padding: $toggle-ios-item-right-padding;
 }

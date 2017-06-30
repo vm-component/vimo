@@ -16,6 +16,8 @@ import { Spinner } from 'vimo/components/spinner'
 import { Toast } from 'vimo/components/toast'
 import { Buttons, Title, Toolbar } from 'vimo/components/toolbar'
 import Vue from 'vue'
+
+import VueI18n from 'vue-i18n'
 import App from './App.vue'
 import AttachFastClick from './assets/js/fastclick'
 import APP_CONFIGS from './config/app-configs'
@@ -24,6 +26,15 @@ import geo from './geolocation/vm-geo'
 import log from './log'
 import router from './router'
 import storage from './storage/vm-storage'
+Vue.use(VueI18n)
+
+// Create VueI18n instance with options
+const i18n = new VueI18n({
+  locale: 'cn', // set locale
+  fallbackLocale: 'cn'
+})
+i18n.setLocaleMessage('cn', require('./lang/cn').default)
+i18n.setLocaleMessage('en', require('./lang/en').default)
 
 Vue.use(geo, {
   enableHighAccuracy: true, // 是否要求高精度地理位置信息
@@ -91,6 +102,7 @@ if (process.env.NODE_ENV === 'development') {
 new Vue({
   el: '#app',
   router,
+  i18n,
   template: '<App/>',
   created () {
     this.$platform.ready().then((data) => {

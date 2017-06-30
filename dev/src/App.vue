@@ -4,42 +4,44 @@
         <Menus id="menu" side="left">
             <Header>
                 <Toolbar>
-                    <Title>菜单</Title>
+                    <Title>{{$t('menu.menu')}}</Title>
                 </Toolbar>
             </Header>
             <Content>
                 <List>
                     <!--开始-->
                     <ListHeader>
-                        <span>开始</span>
+                        <span>{{$t('menu.start')}}</span>
                     </ListHeader>
                     <!--group-->
                     <ItemGroup>
                         <!--wait 表示等待关闭事件-->
                         <Item button :to="{name: 'introduce'}" wait>
                             <Icon slot="item-left" name="apps"></Icon>
-                            <span>介绍</span>
+                            <span>{{$t('menu.introduce')}}</span>
                         </Item>
-                        <!--<Item button :to="{name: 'howToStart'}" wait>-->
-                            <!--<Icon slot="item-left" name="apps"></Icon>-->
-                            <!--<span>如何开始</span>-->
-                        <!--</Item>-->
                     </ItemGroup>
-
-                    <ListHeader>特性</ListHeader>
+                    <ListHeader>{{$t('menu.character')}}</ListHeader>
                     <!--group-->
                     <ItemGroup>
                         <Item button :to="{name: 'config'}" wait>
                             <Icon slot="item-left" name="settings"></Icon>
-                            <span>配置参数</span>
+                            <span>{{$t('menu.configParameter')}}</span>
                         </Item>
                         <Item button :to="{name: 'platform'}" wait>
                             <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
-                            <span>平台参数</span>
+                            <span>{{$t('menu.platformParameter')}}</span>
                         </Item>
                         <Item button :to="{name: 'crossPlatform'}" wait>
                             <Icon slot="item-left" name="logo-javascript"></Icon>
-                            <span>跨平台组件</span>
+                            <span>{{$t('menu.crossPlatform')}}</span>
+                        </Item>
+                        <Item>
+                            <Icon slot="item-left" name="plane"></Icon>
+                            <span>{{$t('menu.switchLanguage')}}({{$i18n.locale}})</span>
+                            <Toggle slot="item-right"
+                                    :value="$i18n.locale==='cn'"
+                                    @onChange="onToggleChangeHandler"></Toggle>
                         </Item>
                     </ItemGroup>
                 </List>
@@ -58,13 +60,26 @@
    * @description
    * 项目描述
    * */
+  import { Toggle } from 'vimo/components/toggle'
   import { Menus } from 'vimo/components/menus'
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item } from 'vimo/components/item'
   export default {
     name: 'app-root',
+    data () {
+      return {}
+    },
+    methods: {
+      onToggleChangeHandler (val) {
+        if (val) {
+          this.$i18n.locale = 'cn'
+        } else {
+          this.$i18n.locale = 'en'
+        }
+      }
+    },
     components: {
-      Menus, List, ListHeader, ItemGroup, Item
+      Menus, List, ListHeader, ItemGroup, Item, Toggle
     }
   }
 </script>

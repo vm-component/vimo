@@ -28,6 +28,7 @@
     "swipe-js-iso": "^2.0.3",
     "swiper": "^3.4.2",
     "vue": "^2.2.2",
+    "vue-i18n": "^7.0.3",
     "vue-router": "^2.2.0"
   },
   "devDependencies": {
