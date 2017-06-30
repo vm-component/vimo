@@ -95,6 +95,7 @@
    *
    * @props {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
    * @props {string} [mode=ios]  - 样式模式
+   * @props {string} [enableJsScroll=false]  - 是否强制开启JsScroll模式, 默认是根据配置开启`scrollAssist`, 这里可以使用函数判断机型选择性开启
    *
    *
    * @fires component:Base/Content#onScrollStart
@@ -122,6 +123,13 @@
   export default{
     name: 'Content',
     props: {
+      enableJsScroll: {
+        type: [Boolean, String],
+        validator (value) {
+          return isBoolean(value) || (isString(value) && (value === 'true' || value === 'false'))
+        },
+        default () { return this.$config && this.$config.getBoolean('scrollAssist', false) }
+      },
       fullscreen: {
         type: Boolean,
         default: false
@@ -222,6 +230,9 @@
         this.$nextTick(() => {
           this.recalculateContentDimensions()
         })
+        if (this.enableJsScroll) {
+          this._scroll._jsScrollInstance.refresh()
+        }
       },
       /**
        * @function scrollTo
@@ -308,6 +319,12 @@
         if (this.scrollElement) return
 
         const scroll = this._scroll // 滚动的实例
+
+        // 设置为js滚动模式, 强制使用全屏模式
+        if (this.enableJsScroll) {
+          this._scroll._js = true
+          // this.isFullscreen = true
+        }
 
         /**
          * 找到fixedElement/scrollElement的位置
