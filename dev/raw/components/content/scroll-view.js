@@ -31,7 +31,7 @@ export class ScrollView {
     this._lsn = null                  // 监听函数 listen, 用于nativeScrll
     this._endTmr = null               // 事件记录 timeout, 用于nativeScrll
 
-    this._jsScrollInstance = null     // iscroll instance
+    this._jsScrollInstance = {}     // jsscroll instance
     this._scrollToEndTimer = null     // scrollTo完毕的timer, 用于jsScroll部分的scrollTo函数
     // 滚动对象
     this.ev = {
@@ -74,7 +74,6 @@ export class ScrollView {
       this._el = ele
       this._cel = ele.parentElement
       if (this._js) {
-        // this.enableIScroll()
         this.enableBScroll()
       } else {
         this.enableNativeScrolling()
@@ -209,117 +208,114 @@ export class ScrollView {
     const self = this
     const ev = self.ev
     const positions = [] // number[]
-    const JsScroll = require('./bscroll.min.js')
+    import('./bscroll.min.js').then((JsScroll) => {
+      self._js = true
+      ev.isJsScroll = true
+      self._el.parentElement.classList.add('js-scroll')
+      self._jsScrollInstance = new JsScroll(contentElement, {
+        bounce: true,              // 关闭滚动回弹
+        bindToWrapper: true,       // 绑定scroll事件到当前容器而不是window上
+        probeType: 3        // 绑定scroll事件到当前容器而不是window上
+      })
+      // scroll scrolling
+      self._jsScrollInstance.on('scroll', (pos) => {
 
-    self._js = true
-    ev.isJsScroll = true
+        ev.timeStamp = new Date().getTime()
 
-    self._el.parentElement.classList.add('js-scroll')
+        // 获取当前的 scrollTop
+        ev.scrollTop = pos.y * -1 >> 0
 
-    self._jsScrollInstance = new JsScroll(contentElement, {
-      bounce: true,              // 关闭滚动回弹
-      bindToWrapper: true,       // 绑定scroll事件到当前容器而不是window上
-      probeType: 3        // 绑定scroll事件到当前容器而不是window上
-    })
+        // 获取当前的 scrollLeft
+        ev.scrollLeft = pos.x * -1 >> 0
 
-    // scroll scrolling
-    self._jsScrollInstance.on('scroll', (pos) => {
+        if (!self.isScrolling) {
+          // scroll start
+          self.isScrolling = true
 
-      ev.timeStamp = new Date().getTime()
+          // 记录开始的位置
+          ev.startY = ev.scrollTop
+          ev.startX = ev.scrollLeft
 
-      // 获取当前的 scrollTop
-      ev.scrollTop = pos.y * -1 >> 0
+          // 开始前重置参数
+          ev.velocityY = ev.velocityX = 0
+          ev.deltaY = ev.deltaX = 0
+          positions.length = 0
 
-      // 获取当前的 scrollLeft
-      ev.scrollLeft = pos.x * -1 >> 0
-
-      if (!self.isScrolling) {
-        // scroll start
-        self.isScrolling = true
-
-        // 记录开始的位置
-        ev.startY = ev.scrollTop
-        ev.startX = ev.scrollLeft
-
-        // 开始前重置参数
-        ev.velocityY = ev.velocityX = 0
-        ev.deltaY = ev.deltaX = 0
-        positions.length = 0
-
-        // 发送scrollStart事件, 传递ev值
-        self.scrollStart(ev)
-      }
-
-      // actively scrolling
-      positions.push(ev.scrollTop, ev.scrollLeft, ev.timeStamp)
-
-      if (positions.length > 3) {
-        // we've gotten at least 2 scroll events so far
-        ev.deltaY = (ev.scrollTop - ev.startY)
-        ev.deltaX = (ev.scrollLeft - ev.startX)
-
-        var endPos = (positions.length - 1)
-        var startPos = endPos
-        var timeRange = (ev.timeStamp - 100)
-
-        // move pointer to position measured 100ms ago
-        for (var i = endPos; i > 0 && positions[i] > timeRange; i -= 3) {
-          startPos = i
+          // 发送scrollStart事件, 传递ev值
+          self.scrollStart(ev)
         }
 
-        if (startPos !== endPos) {
-          // compute relative movement between these two points
-          var timeOffset = (positions[endPos] - positions[startPos])
-          var movedTop = (positions[startPos - 2] - positions[endPos - 2])
-          var movedLeft = (positions[startPos - 1] - positions[endPos - 1])
+        // actively scrolling
+        positions.push(ev.scrollTop, ev.scrollLeft, ev.timeStamp)
 
-          // based on XXms compute the movement to apply for each render step
-          ev.velocityY = ((movedTop / timeOffset) * FRAME_MS)
-          ev.velocityX = ((movedLeft / timeOffset) * FRAME_MS)
+        if (positions.length > 3) {
+          // we've gotten at least 2 scroll events so far
+          ev.deltaY = (ev.scrollTop - ev.startY)
+          ev.deltaX = (ev.scrollLeft - ev.startX)
 
-          // figure out which direction we're scrolling
-          // last direction (1 down/right, 0 still, -1  up/left)
-          if (self._jsScrollInstance.options.scrollY) {
-            let directionY = self._jsScrollInstance.directionY
-            if (directionY === 0) {
-              ev.directionY = (movedTop > 0 ? 'up' : 'down')
-            } else if (directionY > 0) {
-              ev.directionY = 'down'
+          var endPos = (positions.length - 1)
+          var startPos = endPos
+          var timeRange = (ev.timeStamp - 100)
+
+          // move pointer to position measured 100ms ago
+          for (var i = endPos; i > 0 && positions[i] > timeRange; i -= 3) {
+            startPos = i
+          }
+
+          if (startPos !== endPos) {
+            // compute relative movement between these two points
+            var timeOffset = (positions[endPos] - positions[startPos])
+            var movedTop = (positions[startPos - 2] - positions[endPos - 2])
+            var movedLeft = (positions[startPos - 1] - positions[endPos - 1])
+
+            // based on XXms compute the movement to apply for each render step
+            ev.velocityY = ((movedTop / timeOffset) * FRAME_MS)
+            ev.velocityX = ((movedLeft / timeOffset) * FRAME_MS)
+
+            // figure out which direction we're scrolling
+            // last direction (1 down/right, 0 still, -1  up/left)
+            if (self._jsScrollInstance.options.scrollY) {
+              let directionY = self._jsScrollInstance.directionY
+              if (directionY === 0) {
+                ev.directionY = (movedTop > 0 ? 'up' : 'down')
+              } else if (directionY > 0) {
+                ev.directionY = 'down'
+              } else {
+                ev.directionY = 'up'
+              }
             } else {
-              ev.directionY = 'up'
-            }
-          } else {
-            let directionX = self._jsScrollInstance.directionX
-            if (directionX === 0) {
-              ev.directionX = (movedLeft > 0 ? 'left' : 'right')
-            } else if (directionX > 0) {
-              ev.directionX = 'right'
-            } else {
-              ev.directionX = 'left'
+              let directionX = self._jsScrollInstance.directionX
+              if (directionX === 0) {
+                ev.directionX = (movedLeft > 0 ? 'left' : 'right')
+              } else if (directionX > 0) {
+                ev.directionX = 'right'
+              } else {
+                ev.directionX = 'left'
+              }
             }
           }
         }
-      }
 
-      function scrollEnd () {
-        // 当停止滚动一段时间后触发scrollEnd事件
-        self.isScrolling = false
+        function scrollEnd () {
+          // 当停止滚动一段时间后触发scrollEnd事件
+          self.isScrolling = false
 
-        // reset velocity, do not reset the directions or deltas
-        ev.velocityY = ev.velocityX = 0
+          // reset velocity, do not reset the directions or deltas
+          ev.velocityY = ev.velocityX = 0
 
-        // 发送scrollEnd事件, 传递ev值
-        self.scrollEnd(ev)
+          // 发送scrollEnd事件, 传递ev值
+          self.scrollEnd(ev)
 
-        self._endTmr = null
-      }
+          self._endTmr = null
+        }
 
-      // 定时超时时间SCROLL_END_DEBOUNCE_MS, 如果超时则判断当前滚动结束, 发送scrollEnd事件
-      window.clearTimeout(self._endTmr)
-      self._endTmr = window.setTimeout(scrollEnd, SCROLL_END_DEBOUNCE_MS)
+        // 定时超时时间SCROLL_END_DEBOUNCE_MS, 如果超时则判断当前滚动结束, 发送scrollEnd事件
+        window.clearTimeout(self._endTmr)
+        self._endTmr = window.setTimeout(scrollEnd, SCROLL_END_DEBOUNCE_MS)
 
-      // 发送每一次的scroll事件, 传递ev值
-      self.scroll(ev)
+        // 发送每一次的scroll事件, 传递ev值
+        self.scroll(ev)
+      })
     })
   }
 
