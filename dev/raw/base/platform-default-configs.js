@@ -13,7 +13,8 @@ const TIMEOUT = 10000 // 平台初始化需要的最大时间
 export const PLATFORM_DEFAULT_CONFIGS = {
   mobile: {
     settings: {
-      mode: 'ios'
+      mode: 'ios',
+      scrollAssist: false                // Content组件是否开启jsScroll
     }
   },
   android: {

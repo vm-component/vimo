@@ -5,7 +5,7 @@
                 <Title ref="title">Content</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" ref="content" padding :fullscreen="false" :enableJsScroll="true"
+        <Content class="outer-content" ref="content" padding :fullscreen="false"
                  @onScrollStart="onScrollStartHandler"
                  @onScrollEnd="onScrollEndtHandler"
                  @onScroll="onScrollHandler">
