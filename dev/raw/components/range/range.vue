@@ -41,8 +41,6 @@
 </template>
 <style lang="scss">
     @import "./range.scss";
-    @import "./range.ios.scss";
-    @import "./range.md.scss";
 </style>
 <script type="text/javascript">
   /**

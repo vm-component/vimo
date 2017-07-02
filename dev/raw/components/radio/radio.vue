@@ -11,10 +11,6 @@
         </button>
     </div>
 </template>
-<style lang="scss">
-    @import "radio.ios";
-    @import "radio.md";
-</style>
 <script type="text/javascript">
   /**
    * @component Radio

@@ -17,8 +17,6 @@
 </template>
 <style lang="scss">
     @import "./modal";
-    @import "./modal.ios";
-    @import "./modal.md";
 
     // transitioName = 'modal-zoom'
     .modal-zoom-enter-active, .modal-zoom-leave-active {

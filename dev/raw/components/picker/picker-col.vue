@@ -23,7 +23,6 @@
         <div v-if="col.suffix" class="picker-suffix" :style="{'width':col.suffixWidth}">{{col.suffix}}</div>
     </div>
 </template>
-<style lang="scss"></style>
 <script type="text/javascript">
   import { pointerCoord, clamp, parsePxUnit } from '../../util/util'
   const PICKER_OPT_SELECTED = 'picker-opt-selected'

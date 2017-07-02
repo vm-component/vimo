@@ -21,8 +21,6 @@
                     <Item>
                         <Icon slot="item-left" color="danger" name="plane"></Icon>
                         Airplane Mode
-
-
                         <Toggle slot="item-right" @ionChange="toggleChange"
                                 :checked="toggleValue"></Toggle>
                     </Item>

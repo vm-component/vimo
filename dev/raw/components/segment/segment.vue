@@ -5,8 +5,6 @@
 </template>
 <style lang="scss">
     @import './segment.scss';
-    @import './segment.ios.scss';
-    @import './segment.md.scss';
 </style>
 <script type="text/javascript">
   /**

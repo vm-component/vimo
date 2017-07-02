@@ -7,7 +7,6 @@
         <div class="range-knob" role="presentation"></div>
     </div>
 </template>
-<style lang="scss"></style>
 <script type="text/javascript">
   export default{
     name: 'RangeKnobHandle',

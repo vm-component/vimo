@@ -21,14 +21,7 @@
     </article>
 </template>
 <style lang="scss">
-    @import './app.scss';
-    @import './app.ios.scss';
-    @import './app.md.scss';
-    @import './ios-transition.scss';
-    @import './fade-bottom-transition.scss';
-    @import './fade-right-transition.scss';
-    @import './zoom-transition.scss';
-    @import './fade-transition.scss';
+    @import './app';
 </style>
 <script type="text/javascript">
   /**

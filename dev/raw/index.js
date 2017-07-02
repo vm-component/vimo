@@ -29,7 +29,7 @@ export default {
     const eventBus = new Vue()
     window.VM = {
       version: VERSION,
-      eventBus: eventBus
+      vue: Vue
     }
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = eventBus

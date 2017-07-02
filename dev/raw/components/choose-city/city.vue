@@ -132,7 +132,6 @@
             }
         }
     }
-
     .cityShortcut {
         display: flex;
         justify-content: center;

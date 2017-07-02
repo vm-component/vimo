@@ -44,8 +44,6 @@
 </template>
 <style lang="scss">
     @import "./input.scss";
-    @import "./input.ios.scss";
-    @import "./input.md.scss";
 </style>
 <script type="text/javascript">
   /**

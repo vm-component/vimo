@@ -61,8 +61,6 @@
 </template>
 <style lang="scss">
     @import './alert.scss';
-    @import './alert.ios.scss';
-    @import './alert.md.scss';
 
     // transitioName = 'alert'
     .alert-enter-active, .alert-leave-active {

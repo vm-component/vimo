@@ -16,8 +16,6 @@
 </template>
 <style lang="scss">
     @import "select";
-    @import "select.ios";
-    @import "select.md";
 </style>
 <script type="text/javascript">
   /**

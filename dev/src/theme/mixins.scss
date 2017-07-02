@@ -1,0 +1,107 @@
+// Appearance
+// --------------------------------------------------
+
+@mixin appearance($val) {
+  -moz-appearance: $val;
+  -ms-appearance: $val;
+  -webkit-appearance: $val;
+  appearance: $val;
+}
+
+// Input Placeholder
+// --------------------------------------------------
+
+@mixin placeholder($color: #999, $text-indent: 0) {
+  &::-moz-placeholder { // Firefox 19+
+    color: $color;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+
+  &::-webkit-input-placeholder {
+    // Safari placeholder margin issue
+    text-indent: $text-indent;
+    color: $color;
+  }
+}
+
+// SVG Background Image Mixin
+// --------------------------------------------------
+
+@mixin svg-background-image($svg) {
+  $url: url-encode($svg);
+  background-image: url("data:image/svg+xml;charset=utf-8,#{$url}");
+}
+
+
+// Cordova Status Bar Padding iOS Platform
+// --------------------------------------------------------------------------------
+
+
+@mixin statusbar-padding($toolbar-height, $toolbar-padding, $content-padding, $cordova-statusbar-padding, $modal-max-width, $style-title: false) {
+  
+  .ion-nav > .ion-page,
+  .ion-nav > .ion-page > .ion-header,
+  .ion-tabs > .tabs-content > .tabs-content-wrap > .wrap-inner > .ion-page > .ion-header,
+  .ion-menu > .menu-inner,
+  .ion-menu > .menu-inner > .ion-header {
+    
+    @include toolbar-statusbar-padding($toolbar-height, $toolbar-padding, $content-padding, $cordova-statusbar-padding);
+    
+    // If we should style the title elements in the toolbar
+    @if ($style-title) {
+      @include toolbar-title-statusbar-padding($toolbar-height, $content-padding, $cordova-statusbar-padding);
+    }
+  }
+  
+  @media only screen and (max-width: $modal-max-width) {
+    .modal-wrapper .ion-page > .ion-header {
+      @include toolbar-statusbar-padding($toolbar-height, $toolbar-padding, $content-padding, $cordova-statusbar-padding);
+      
+      // If we should style the title elements in the toolbar
+      @if ($style-title) {
+        @include toolbar-title-statusbar-padding($toolbar-height, $content-padding, $cordova-statusbar-padding);
+      }
+    }
+  }
+}
+
+// The first-child should get modified padding-top for the status bar
+// --------------------------------------------------------------------------------
+
+@mixin toolbar-statusbar-padding($toolbar-height, $toolbar-padding, $content-padding, $cordova-statusbar-padding) {
+  
+  > .toolbar.statusbar-padding:first-child {
+    padding-top: calc(#{$cordova-statusbar-padding} + #{$toolbar-padding});
+    
+    min-height: calc(#{$toolbar-height} + #{$cordova-statusbar-padding});
+  }
+  
+  > .ion-content.statusbar-padding:first-child .scroll-content {
+    padding-top: $cordova-statusbar-padding;
+  }
+  
+  > .ion-content.statusbar-padding:first-child[padding] .scroll-content,
+  > .ion-content.statusbar-padding:first-child[padding-top] .scroll-content {
+    padding-top: calc(#{$content-padding} + #{$cordova-statusbar-padding});
+  }
+  
+}
+
+// iOS is the only mode that uses this mixin and it should be removed with #5036
+// --------------------------------------------------------------------------------
+
+@mixin toolbar-title-statusbar-padding($toolbar-height, $content-padding, $cordova-statusbar-padding) {
+  
+  > .toolbar.statusbar-padding:first-child .ion-segment,
+  > .toolbar.statusbar-padding:first-child .ion-title {
+    padding-top: $cordova-statusbar-padding;
+    
+    height: calc(#{$toolbar-height} + #{$cordova-statusbar-padding});
+    min-height: calc(#{$toolbar-height} + #{$cordova-statusbar-padding});
+  }
+  
+}
+

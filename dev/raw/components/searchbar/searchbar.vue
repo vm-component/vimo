@@ -53,8 +53,6 @@
 </template>
 <style lang="scss">
     @import "./searchbar";
-    @import "./searchbar.ios";
-    @import "./searchbar.md";
 </style>
 <script type="text/javascript">
   /**

@@ -9,6 +9,8 @@
             <h1>这里是内容</h1>
 
         </Content>
+        <Footer>
+        </Footer>
     </Page>
 </template>
 <style scoped lang="scss">

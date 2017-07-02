@@ -17,10 +17,6 @@
         </button>
     </div>
 </template>
-<style lang="scss">
-    @import 'toggle.ios.scss';
-    @import 'toggle.md.scss';
-</style>
 <script type="text/javascript">
   /**
    * @component Toggle

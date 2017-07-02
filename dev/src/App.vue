@@ -84,28 +84,30 @@
   }
 </script>
 <style lang="scss">
-    .statusbar-img {
-        display: none;
-    }
+    @import "./theme/index";
 
-    .md .statusbar-img-md {
-        display: block !important;
-        position: absolute;
-        background-color: transparent;
-        top: 0;
-        width: 100%;
-        height: auto;
-        z-index: 999;
-    }
+    /*.statusbar-img {*/
+    /*display: none;*/
+    /*}*/
 
-    .ios .statusbar-img-ios {
-        display: block !important;
-        position: absolute;
-        background-color: transparent;
-        padding: 5px 0;
-        top: 0px;
-        width: 100%;
-        height: auto;
-        z-index: 999;
-    }
+    /*.md .statusbar-img-md {*/
+    /*display: block !important;*/
+    /*position: absolute;*/
+    /*background-color: transparent;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+    /*height: auto;*/
+    /*z-index: 999;*/
+    /*}*/
+
+    /*.ios .statusbar-img-ios {*/
+    /*display: block !important;*/
+    /*position: absolute;*/
+    /*background-color: transparent;*/
+    /*padding: 5px 0;*/
+    /*top: 0px;*/
+    /*width: 100%;*/
+    /*height: auto;*/
+    /*z-index: 999;*/
+    /*}*/
 </style>

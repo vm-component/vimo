@@ -8,8 +8,6 @@
 </template>
 <style lang="scss">
     @import "./label.scss";
-    @import "./label.ios.scss";
-    @import "./label.md.scss";
 </style>
 <script type="text/javascript">
   /**

@@ -19,8 +19,6 @@
 </template>
 <style lang="scss">
     @import "./popover.scss";
-    @import "./popover.ios.scss";
-    @import "./popover.md.scss";
 
     // transitioName = 'popover-ios'
     .popover-ios-enter-active, .popove-ios-leave-active {

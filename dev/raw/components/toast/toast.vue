@@ -18,8 +18,6 @@
 </template>
 <style lang="scss">
     @import "./toast";
-    @import "./toast.ios";
-    @import "./toast.md";
 </style>
 <script type="text/javascript">
   import { urlChange } from '../../util/util'
