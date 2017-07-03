@@ -38,7 +38,6 @@
         opacity: 0.01;
     }
 
-
 </style>
 <script type="text/javascript">
   import Vue from 'vue'

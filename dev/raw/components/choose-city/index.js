@@ -50,7 +50,7 @@ const ChooseCity = {
       showHotCities: true,                      // 是否显示热门城市，默认 true
       cities: require('./cities.json'),         // 城市数据，默认 本地数据
       hotCities: require('./hot-cities.json'),  // 热门城市，默认 本地数据
-      mode: 'fade',                             // 模式
+      mode: 'md',                             // 模式
       showBackdrop: true,                       // modal 是否显示背景色
       enableBackdropDismiss: true,              // modal 点击背景是否关闭
       isH5: false,                              // 是否强制使用H5模式
