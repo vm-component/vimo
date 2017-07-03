@@ -24,7 +24,8 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       toolbarMinHeight: 56,               // toolbar的默认最小高度
       mode: 'md',                         // 模式
       backButtonText: '返回',             // 后退按钮文字
-      backButtonIcon: 'md-arrow-back',    // 后退图标
+      backButtonIcon: 'icon-md-arrow-back', // 后退图标
+      onPullIcon: 'icon-md-arrow-down',
       iconMode: 'md',                     // icon的模式
       menuType: 'overlay',                // menu组件的展开默认类型
       spinner: 'crescent',
@@ -50,7 +51,8 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       toolbarMinHeight: 44,
       mode: 'ios',
       backButtonText: '返回',
-      backButtonIcon: 'ios-arrow-back',
+      backButtonIcon: 'icon-ios-arrow-back',  // 后退图标
+      onPullIcon: 'icon-ios-arrow-down',
       iconMode: 'ios',
       menuType: 'reveal',
       spinner: 'ios',

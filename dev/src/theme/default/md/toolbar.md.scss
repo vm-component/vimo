@@ -141,7 +141,9 @@ $navbar-md-height: $toolbar-md-height !default;
     .bar-button-outline-md {
       border-color: $fg-color;
     }
-
+  
+    @include md-arrow-back($color-contrast);
+    
     @each $color-name, $color-base, $color-contrast in get-colors($colors-md) {
       @include md-bar-button-default($color-name, $color-base, $color-contrast);
       @include md-bar-button-outline($color-name, $color-base, $color-contrast);
@@ -149,6 +151,31 @@ $navbar-md-height: $toolbar-md-height !default;
     }
   }
 }
+
+
+
+// MD Navbar Back Button
+// --------------------------------------------------
+@mixin md-arrow-back($color) {
+  
+  $md-arrow-back-svg: "<svg t='1499008719809' viewBox='0 0 1024 1024' p-id='4493' xmlns='http://www.w3.org/2000/svg'><path d='M 0 512 C 0 524.8 6.4 537.599 19.2 550.399 L 409.6 940.799 C 428.8 959.999 460.799 959.999 473.6 940.799 C 486.401 921.599 492.8 895.999 473.6 876.799 L 160 563.199 L 773.525 563.199 C 799.124 556.799 821.241 543.434 821.242 517.835 C 821.243 492.236 797.666 467.2 772.066 467.2 L 160 467.2 L 473.6 153.6 C 492.8 134.4 492.8 108.8 473.6 89.6 C 467.2 83.2 454.401 76.8 441.601 76.8 C 428.801 76.8 416.002 83.2 409.602 89.6 L 19.202 480 C 6.403 486.4 0.002 499.2 0.002 512 L 0 512 Z' p-id='4494' fill='#{$color}'/></svg>";
+
+  .icon-md-arrow-back {
+    height: 23px;
+    width: 18px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 16px 23px;
+    color: $color;
+    @include svg-background-image($md-arrow-back-svg);
+  }
+}
+
+
+
+
+
 
 // Material Design Toolbar Button Placement
 // --------------------------------------------------
@@ -218,6 +245,7 @@ $navbar-md-height: $toolbar-md-height !default;
     &:active {
       opacity: .4;
     }
+    @include md-arrow-back($color-base);
   }
 
 }

@@ -1,0 +1,15 @@
+@import "../default.ios";
+
+// iOS Navbar Back Button
+// --------------------------------------------------
+$ios-arrow-back-svg: "<svg t='1499003919115' viewBox='0 0 1024 1024' p-id='3978' xmlns='http://www.w3.org/2000/svg'><path d='M 697.047 935.049 L 761.079 871.652 L 380.086 488.046 L 764.282 107.669 L 700.792 43.744 L 252.571 487.523 Z' p-id='3979' transform='matrix(0, -1, 1, 0, 19.030004, 997.823006)'/></svg>";
+
+.icon-ios-arrow-down {
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    @include svg-background-image($ios-arrow-back-svg);
+}
