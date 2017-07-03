@@ -1,8 +1,8 @@
-<h1 align="center"><img src="https://github.com/DTFE/Vimo/blob/master/dev/static/img/vimo.png?raw=true" alt="vimo" width="200"><p align="center">Hello Vimo</p></h1>
+<h1 align="center"><p align="center"><img src="https://github.com/DTFE/Vimo/blob/master/dev/static/img/vimo.png?raw=true" alt="vimo" width="200"></p><p align="center">Hello Vimo</p></h1>
 
 <p align="center"><a href="https://www.npmjs.com/package/vimo"><img src="https://img.shields.io/npm/v/vimo.svg" alt="npm version"></a><a href="https://www.npmjs.com/package/vimo"><img src="https://img.shields.io/npm/dm/vimo.svg" alt="npm downloads"></a><a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="standardjs"></a><a href="#"><img src="https://img.shields.io/github/license/DTFE/Vimo.svg" alt="liense"></a></p>
 
-<h4 align="center">A H5 Platform For Hybrid</h4>
+<h4 align="center"><p align="center">A H5 Platform For Hybrid</p></h4>
 
 ## DEMO
 
@@ -16,24 +16,29 @@
 
 ## HOW TO START
 
-可以有两种方式使用: 
+可以有两种方式使用:
 
 ### 使用npm自行搭建
 
+自行搭建需要对Vimo项目比较熟悉, 这里强烈推荐使用`vimo-start-kit`开始, 如果Vimo版本不正确, 请使用`npm install vimo`自行升级.
+
 #### 安装
+
 ```
-cd dev 
+cd dev
 npm install vimo
+
 ```
 
 #### 文件组织
 
-参考: [Demo示例](https://github.com/DTFE/vimo/tree/master/dev/src)
+参考: [Demo示例](https://github.com/DTFE/vimo-start-kit/tree/master/src)
 
 
 ### vimo-start-kit
 
-- [vimo-start-kit](https://github.com/DTFE/vimo-start-kit)
+Vimo项目初始化种子, 包括自定义主题文件. 点击进入项目地址: [vimo-start-kit](https://github.com/DTFE/vimo-start-kit)
+
 
 ## COMPONENTS
 
@@ -45,8 +50,9 @@ npm install vimo
 - vue-router 2.x
 - webpack 2.x
 - fastclick 1.x
-
-
+- vue-i18n
+- standardJS
+- swiper
 
 ## LICENSE
 
