@@ -38,6 +38,18 @@
         opacity: 0.01;
     }
 
+    // transitioName = 'modal-fade-right'
+    .modal-fade-right-enter-active, .modal-fade-right-leave-active {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .modal-fade-right-enter, .modal-fade-right-leave-active {
+        transform: translateX(40px);
+        opacity: 0;
+    }
+
+
 </style>
 <script type="text/javascript">
   import Vue from 'vue'
