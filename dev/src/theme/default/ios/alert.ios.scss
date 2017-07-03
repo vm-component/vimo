@@ -345,8 +345,8 @@ $alert-ios-checkbox-icon-transform: rotate(45deg) !default;
   height: $alert-ios-radio-icon-height;
 
   border-width: $alert-ios-radio-icon-border-width;
-  border-top-width: 0;
-  border-left-width: 0;
+  border-top-width: 0 !important;
+  border-left-width: 0 !important;
   border-style: $alert-ios-radio-icon-border-style;
   border-color: $alert-ios-radio-icon-border-color;
   transform: $alert-ios-radio-icon-transform;
@@ -412,8 +412,8 @@ $alert-ios-checkbox-icon-transform: rotate(45deg) !default;
   height: $alert-ios-checkbox-icon-height;
 
   border-width: $alert-ios-checkbox-icon-border-width;
-  border-top-width: 0;
-  border-left-width: 0;
+  border-top-width: 0 !important;
+  border-left-width: 0 !important;
   border-style: $alert-ios-checkbox-icon-border-style;
   border-color: $alert-ios-checkbox-icon-border-color;
   transform: $alert-ios-checkbox-icon-transform;
