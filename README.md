@@ -25,14 +25,11 @@
 #### 安装
 
 ```
-cd dev
 npm install vimo
 
 ```
 
-#### 文件组织
-
-参考: [Demo示例](https://github.com/DTFE/vimo-start-kit/tree/master/src)
+其余部分参考标准的文件组织结构: [Demo示例](https://github.com/DTFE/vimo-start-kit/tree/master/src)
 
 
 ### vimo-start-kit
