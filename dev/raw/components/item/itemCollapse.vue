@@ -79,7 +79,6 @@
    * */
   import { isString, isObject } from '../../util/util'
   import ItemMixin from './itemMixin.vue'
-
   import Velocity from 'velocity-animate'
   export default{
     name: 'ItemCollapse',
@@ -108,7 +107,6 @@
         this.enable = false
       },
       enter (el, done) {
-        console.log('enter')
         Velocity(el, {opacity: 1, height: this.height + 'px'}, 300, () => {
           this.enable = true
           done()
