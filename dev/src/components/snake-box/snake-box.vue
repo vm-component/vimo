@@ -1,10 +1,10 @@
 <template>
     <!--<div class="snakeBox">-->
     <div class="snakeBox" @click="handleClick">
-        <div ref="bottom" class="snakeBox__bottom"></div>
-        <div ref="left" class="snakeBox__left"></div>
-        <div ref="top" class="snakeBox__top"></div>
-        <div ref="right" class="snakeBox__right"></div>
+        <div ref="bottom" class="snakeBox__bottom" :style="{height:`${lineWidth}px`}"></div>
+        <div ref="left" class="snakeBox__left" :style="{width:`${lineWidth}px`}"></div>
+        <div ref="top" class="snakeBox__top" :style="{height:`${lineWidth}px`}"></div>
+        <div ref="right" class="snakeBox__right" :style="{width:`${lineWidth}px`}"></div>
         <slot></slot>
     </div>
 </template>
@@ -33,6 +33,17 @@
    * onSnakeBoxStarted: 点击盒子触发事件
    * onSnackBoxFinished: 点盒子, 动画完毕触发事件
    *
+   * @props {Number} [trigger] - 改变一次值就出发一次动画, 可以使用random触发
+   * @props {Boolean} [disableClick=false] - 静止点击触发动画
+   * @props {Number} [lineWidth=3] - 默认的线宽
+   * @props {String} [color='black'] - 定义snake的颜色, 支持red/#00FF00两个模式
+   * @props {Number} [startPosition=20] - 开始的位置, 例如: 开始点为右下角向左20px的位置
+   * @props {String} [initState='left'] - 初始化的位置, 可以是: 'left', 'right'
+   * @props {Number} [duration=750] - 动画整体持续时间
+   * @props {Number} [radio=0] - 宽高的时间比, 默认为宽高尺度比
+   * @props {Boolean} [auto=false] - mounted之后自动触发
+   * @props {Number} [delay=0] - 触发动画延迟执行
+   *
    * */
   import Velocity from 'velocity-animate/velocity.js'
   import 'velocity-animate/velocity.ui.js'
@@ -43,7 +54,6 @@
        * trigger改变一次就触发动画
        * */
       trigger: Number,
-
       /**
        * 静止点击触发动画
        * */
@@ -52,7 +62,14 @@
         default: false
       },
       /**
-       * 颜色
+       * 线宽, 默认是3, 单位为px
+       * */
+      lineWidth: {
+        type: Number,
+        default: 3
+      },
+      /**
+       * 颜色, 支持red/#00FF00两个模式
        * */
       color: {
         type: String,
@@ -66,7 +83,6 @@
         type: Number,
         default: 20
       },
-
       /**
        * 初始化的位置
        * left or right
@@ -75,7 +91,6 @@
         type: String,
         default: 'left'
       },
-
       /**
        * 动画整体持续时间
        * */
@@ -83,7 +98,6 @@
         type: Number,
         default: 750
       },
-
       /**
        * 宽高的时间比, 默认为宽高尺度比
        * */
@@ -91,7 +105,6 @@
         type: Number,
         default: 0
       },
-
       /**
        * mounted之后自动触发
        * */
@@ -99,9 +112,8 @@
         type: Boolean,
         default: false
       },
-
       /**
-       *  触发动画延迟执行
+       * 触发动画延迟执行
        * */
       delay: {
         type: Number,
@@ -109,7 +121,7 @@
       }
 
     },
-    data(){
+    data () {
       return {
         // DOM缓存
         _bottom: null,
@@ -126,26 +138,25 @@
         startCubicBezier: [1, 0.01, 0.9, 0.73],
         middleCubicBezier: [0.31, 0.81, 0.4, 0.97],
         endCubicBezier: [0.15, 0.6, 0.27, 0.9]
-
       }
     },
 
     watch: {
-      trigger(){
+      trigger () {
         this.goSnake()
       }
     },
     computed: {
-      startPercent(){
+      startPercent () {
         return this.startPosition + '%'
       },
-      restPercent(){
+      restPercent () {
         return (100 - this.startPosition) + '%'
       },
-      widthDuration(){
+      widthDuration () {
         return this.duration * this.reCalcRadio / (this.reCalcRadio + 1)
       },
-      heightDuration(){
+      heightDuration () {
         return this.duration / (this.reCalcRadio + 1)
       }
     },
@@ -153,7 +164,7 @@
       /**
        * init
        * */
-      init(){
+      init () {
         const _this = this
 
         let dimension = _this.getBoxDimension()
@@ -207,14 +218,14 @@
       /**
        * 获取当前蛇形图的位置
        * */
-      getState(){
+      getState () {
         return parseInt(this._left.style.height) > 0 ? 'left' : 'right'
       },
 
       /**
        * 处理点击事件
        * */
-      handleClick(){
+      handleClick () {
         const _this = this
 
         if (_this.disableClick) return
@@ -226,7 +237,7 @@
       /**
        * 动画执行
        **/
-      goSnake(){
+      goSnake () {
         const _this = this
         let sequenceBottom
         let sequenceTop
@@ -235,7 +246,7 @@
 
         if (_this.isAnimate) return
         _this.isAnimate = true
-        setTimeout(function () {
+        window.setTimeout(function () {
           if (_this.getState() === 'left') {
             sequenceBottom = [
               {
@@ -410,7 +421,7 @@
       /**
        * 获取盒子的尺寸
        * */
-      getBoxDimension(){
+      getBoxDimension () {
         const _this = this
         return {
           h: _this.$el.offsetHeight,
@@ -423,12 +434,10 @@
       if (this.auto) {
         this.handleClick()
       }
-
-      let boundingClientRect = this.$slots.default[0].elm.getBoundingClientRect()
-      let width = boundingClientRect.width
-      let height = boundingClientRect.height
-      this.$el.style.width = `${width}px`
-      this.$el.style.height = `${height}px`
+      let width = this.$slots.default[0].elm.style.width
+      let height = this.$slots.default[0].elm.style.height
+      this.$el.style.width = width
+      this.$el.style.height = height
     }
   }
 </script>

@@ -19,34 +19,34 @@
                 <Grid>
                     <Row>
                         <Column col-4>aMap Key:</Column>
-                        <Column clo-8 no-break>{{$geo._s.aMap.key}}</Column>
+                        <Column clo-8 no-break>{{$geo._setting.aMap.key}}</Column>
                     </Row>
                     <Row>
                         <Column col-4>bMap Key:</Column>
-                        <Column clo-8 no-break>{{$geo._s.bMap.key}}</Column>
+                        <Column clo-8 no-break>{{$geo._setting.bMap.key}}</Column>
                     </Row>
                     <Row>
                         <Column col-4>qMap Key:</Column>
-                        <Column clo-8 no-break>{{$geo._s.qMap.key}}</Column>
+                        <Column clo-8 no-break>{{$geo._setting.qMap.key}}</Column>
                     </Row>
                 </Grid>
                 <strong>Options:</strong>
                 <Grid>
                     <Row>
                         <Column>enableHighAccuracy:</Column>
-                        <Column>{{$geo._s.enableHighAccuracy}}</Column>
+                        <Column>{{$geo._setting.enableHighAccuracy}}</Column>
                     </Row>
                     <Row>
                         <Column>maximumAge:</Column>
-                        <Column>{{$geo._s.maximumAge}}</Column>
+                        <Column>{{$geo._setting.maximumAge}}</Column>
                     </Row>
                     <Row>
                         <Column>timeout:</Column>
-                        <Column>{{$geo._s.timeout}}</Column>
+                        <Column>{{$geo._setting.timeout}}</Column>
                     </Row>
                     <Row>
                         <Column>fallBack:</Column>
-                        <Column>{{$geo._s.fallBack}}</Column>
+                        <Column>{{$geo._setting.fallBack}}</Column>
                     </Row>
                 </Grid>
             </div>
@@ -275,6 +275,9 @@
       }
     },
     mounted () {
+
+      console.log('this.$geo')
+      console.log(this.$geo)
       this.$platform.ready().then(() => {
         this.getGeolocationByH5().then(() => {})
         this.getGeolocationByqMap().then(() => {
