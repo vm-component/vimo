@@ -22,10 +22,11 @@ import App from './App.vue'
 import AttachFastClick from './assets/js/fastclick'
 import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
-import geo from './geolocation/vm-geo'
-import log from './log'
+import vmGeo from 'vm-geo'
+import vmLog from 'vm-log'
+import vmStorage from 'vm-storage'
 import router from './router'
-import storage from './storage/vm-storage'
+
 Vue.use(VueI18n)
 
 // Create VueI18n instance with options
@@ -38,7 +39,7 @@ const i18n = new VueI18n({
   }
 })
 
-Vue.use(geo, {
+Vue.use(vmGeo, {
   enableHighAccuracy: true, // 是否要求高精度地理位置信息
   maximumAge: 10000,         // 设置缓存时间为1s，1s后重新获取地理位置信息
   timeout: 15000,            // 5s未返回信息则返回错误
@@ -55,17 +56,12 @@ Vue.use(geo, {
   }
 })
 
-Vue.use(storage, {
-  prefix: 'vimo-'
-})
+Vue.use(vmStorage)
 
-Vue.use(log, {
-  needLogPage: true // 初始化是否显示log页面
-})
 
 Vue.prototype.$axios = axios
 
-/* eslint-disable no-new */
+// eslint-disable-next-line no-new
 new AttachFastClick(document.body)
 
 // Vue.config.productionTip = false;
@@ -96,12 +92,10 @@ Vue.prototype.$modal = Modal
 Vue.prototype.$indicator = Indicator
 
 if (process.env.NODE_ENV === 'development') {
-
+  Vue.use(vmLog)
 } else {
 
 }
-
-
 
 new Vue({
   el: '#app',
@@ -114,3 +108,8 @@ new Vue({
   },
   components: {App}
 })
+
+// eslint-disable-next-line no-unused-vars
+function a () {
+  console.log(123)
+}
