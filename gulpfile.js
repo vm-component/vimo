@@ -24,7 +24,7 @@ gulp.task('copy', ['clean'], function () {
 
 gulp.task('babel', ['copy'], function () {
   gulp.src([
-    'publish/**/**/*.js',
+    'publish/**/**/*.js'
   ])
   .pipe(babel({presets: ['es2015']}))
   .pipe($.uglify())
