@@ -28,6 +28,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       iconMode: 'md',                     // icon的模式
       menuType: 'overlay',                // menu组件的展开默认类型
       spinner: 'crescent',
+      scrollAssist: false,                // 是否需要使用jsScroll
       tabsHighlight: true,                // tab是否显示下划线
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,          // 切换到子页面后隐藏tab组件
@@ -55,6 +56,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       iconMode: 'ios',
       menuType: 'reveal',
       spinner: 'ios',
+      scrollAssist: false,                // 是否需要使用jsScroll
       tabsHighlight: false,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,

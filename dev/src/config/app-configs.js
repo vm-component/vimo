@@ -7,6 +7,7 @@
  *
  */
 export default {
+  scrollAssist: false,                // 是否需要使用jsScroll
   platforms: {
     ios: {
       statusbarPadding: false,

@@ -1,4 +1,10 @@
+import Vue from 'vue'
 import axios from 'axios'
+import App from './App.vue'
+import AttachFastClick from './assets/js/fastclick'
+import APP_CONFIGS from './config/app-configs'
+import PLATFORM_CONFIGS from './config/platform-configs'
+
 import 'ionicons/dist/css/ionicons.css'
 import vimo from 'vimo'
 // 全局组件
@@ -15,16 +21,12 @@ import { Navbar } from 'vimo/components/navbar'
 import { Spinner } from 'vimo/components/spinner'
 import { Toast } from 'vimo/components/toast'
 import { Buttons, Title, Toolbar } from 'vimo/components/toolbar'
-import Vue from 'vue'
 
 import VueI18n from 'vue-i18n'
-import App from './App.vue'
-import AttachFastClick from './assets/js/fastclick'
-import APP_CONFIGS from './config/app-configs'
-import PLATFORM_CONFIGS from './config/platform-configs'
-import vmGeo from 'vm-geo'
-import vmLog from 'vm-log'
-import vmStorage from 'vm-storage'
+
+// import vmGeo from 'vm-geo'
+// import vmLog from 'vm-log'
+// import vmStorage from 'vm-storage'
 import router from './router'
 
 Vue.use(VueI18n)
@@ -38,26 +40,25 @@ const i18n = new VueI18n({
     en: require('./lang/en').default
   }
 })
-
-Vue.use(vmGeo, {
-  enableHighAccuracy: true, // 是否要求高精度地理位置信息
-  maximumAge: 10000,         // 设置缓存时间为1s，1s后重新获取地理位置信息
-  timeout: 15000,            // 5s未返回信息则返回错误
-  fallBack: 'aMap',         // 条件允许优先使用原生获取, 如果在IOS下是使用的是HTTP获取, 则使用备选, 这里是aMap
-  qMap: {
-    key: 'OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77', // official example app key, please use geo.register() to replace
-    name: 'qqMapName'
-  },
-  bMap: {
-    key: 'yFKaMEQnAYc1hA0AKaNyHGd4HTQgTNvO'
-  },
-  aMap: {
-    key: '8d1ba642a3a3046d1ee087e0f8b490a2'
-  }
-})
-
-Vue.use(vmStorage)
-
+//
+// Vue.use(vmGeo, {
+//   enableHighAccuracy: true, // 是否要求高精度地理位置信息
+//   maximumAge: 10000,         // 设置缓存时间为1s，1s后重新获取地理位置信息
+//   timeout: 15000,            // 5s未返回信息则返回错误
+//   fallBack: 'aMap',         // 条件允许优先使用原生获取, 如果在IOS下是使用的是HTTP获取, 则使用备选, 这里是aMap
+//   qMap: {
+//     key: 'OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77', // official example app key, please use geo.register() to replace
+//     name: 'qqMapName'
+//   },
+//   bMap: {
+//     key: 'yFKaMEQnAYc1hA0AKaNyHGd4HTQgTNvO'
+//   },
+//   aMap: {
+//     key: '8d1ba642a3a3046d1ee087e0f8b490a2'
+//   }
+// })
+//
+// Vue.use(vmStorage)
 
 Vue.prototype.$axios = axios
 
@@ -92,7 +93,7 @@ Vue.prototype.$modal = Modal
 Vue.prototype.$indicator = Indicator
 
 if (process.env.NODE_ENV === 'development') {
-  Vue.use(vmLog)
+  // Vue.use(vmLog)
 } else {
 
 }
@@ -108,8 +109,3 @@ new Vue({
   },
   components: {App}
 })
-
-// eslint-disable-next-line no-unused-vars
-function a () {
-  console.log(123)
-}
