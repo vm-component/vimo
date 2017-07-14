@@ -580,7 +580,6 @@
       }
     },
     destroyed () {
-      console.log('destroyed')
       this._scroll.destroy()
     }
   }

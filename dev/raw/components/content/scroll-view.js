@@ -210,8 +210,8 @@ export class ScrollView {
     ev.isJsScroll = true
     self._el.parentElement.classList.add('js-scroll')
 
-    import('./bscroll.min.js').then((JsScroll) => {
-      self._jsScrollInstance = new JsScroll(contentElement, {
+    import('./bscroll.min.js').then((BScroll) => {
+      self._jsScrollInstance = new BScroll(contentElement, {
         bounce: true,              // 关闭滚动回弹
         bindToWrapper: true,       // 绑定scroll事件到当前容器而不是window上
         probeType: 3        // 绑定scroll事件到当前容器而不是window上
