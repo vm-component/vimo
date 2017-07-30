@@ -4,6 +4,8 @@
 
 <h4 align="center">A H5 Platform For Hybrid</h4>
 
+> 目前在内部测试及文档教程编写, 见谅!
+
 ## DEMO
 
 <p align="center"><img src="https://github.com/DTFE/Vimo/blob/master/dev/static/img/vimo_qrcode.png?raw=true" alt="vimo" width="200"><br><a align="center" href="https://dtfe.github.io/vimo-demo">https://dtfe.github.io/vimo-demo</a></p>
@@ -16,7 +18,7 @@
 
 ## HOW TO START
 
-> 目前在内部测试及文档教程编写, 见谅!
+
 
 可以有两种方式使用: 
 
