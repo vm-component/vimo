@@ -1,9 +1,9 @@
 <template>
     <Page>
         <Header>
-            <Toolbar>
+            <Navbar ref="navbar">
                 <Title>城市选择</Title>
-            </Toolbar>
+            </Navbar>
         </Header>
         <Content class="outer-content" ref="content">
             <article class="citySelector">
@@ -144,7 +144,6 @@
         width: 46px;
         padding-right: 2px;
         transform: translateY(-50%);
-        z-index: 999;
         .shortcut__item {
             display: flex;
             justify-content: center;
@@ -169,7 +168,7 @@
 
         currentCity: {city: '正在定位', adcode: null},         // 当前城市，如果开启开启了定位的话
 
-        shortcutMatrix: null,   // shortcutElement的尺寸矩阵
+        shortcutTop: 0,         // shortcutElement距离页面顶部的距离
         shortcutList: []        // cityShortcut 的数组 A->Z
       }
     },
@@ -184,6 +183,9 @@
       },
       contentComponent () {
         return this.$refs.content
+      },
+      navbarComponent () {
+        return this.$refs.navbar
       }
     },
     methods: {
@@ -227,8 +229,9 @@
        * */
       getSelectedIndex (ev) {
         let point = pointerCoord(ev)
-        let index = ((point.y - this.shortcutMatrix.top) / 16) >> 0
+        let index = ((point.y - this.shortcutTop) / 16) >> 0
         index = clamp(0, index, this.shortcutList.length - 1)
+        // console.log(`point.y:${point.y} index:${index}`)
         return index
       },
 
@@ -355,7 +358,10 @@
       this.initShortCut()
     },
     mounted () {
-      this.shortcutMatrix = this.shortcutElement.getBoundingClientRect()
+      let clientHeight = this.shortcutElement.clientHeight || 0
+      let docHieght = window.document.documentElement.clientHeight || 0
+      let navbarHeight = this.navbarComponent.$el.offsetHeight || 0
+      this.shortcutTop = (docHieght - navbarHeight - clientHeight) / 2 + navbarHeight
       this.shortcutList.forEach((item) => {
         let el = document.getElementById('city-' + item.name)
         item.top = el.offsetTop + 1

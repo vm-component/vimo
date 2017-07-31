@@ -33,7 +33,7 @@
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   import { Searchbar } from 'vimo/components/searchbar'
-  import cityList from './content/cityList'
+  import cityList from '../../static/city-data/cityList'
   export default{
     data () {
       return {

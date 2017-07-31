@@ -357,8 +357,6 @@
 </script>
 <style lang="scss">
     @import './action-sheet.scss';
-    @import './action-sheet.ios.scss';
-    @import './action-sheet.md.scss';
 
     // transitioName = 'action-sheet'
     .action-sheet-enter-active, .action-sheet-leave-active {

@@ -155,7 +155,7 @@
     computed: {
       // 颜色
       colorClass () {
-        return this.color ? (`icon-${this.color}`) : ''
+        return this.color ? (`icon-${this.mode}-${this.color}`) : ''
       }
     },
     methods: {

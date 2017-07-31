@@ -5,8 +5,6 @@
 </template>
 <style lang="scss">
     @import "badge.scss";
-    @import "badge.ios.scss";
-    @import "badge.md.scss";
 </style>
 <script type="text/javascript">
 

@@ -12,7 +12,7 @@ import './util/polyfill'
  * @name initVimo
  * @description Vimo框架安装
  */
-const VERSION = '0.4.2'
+const VERSION = '0.4.8'
 const addLogo = (vimoVer, vueVer) => {
   // logo
   var vimoLogo = {
@@ -29,7 +29,7 @@ export default {
     const eventBus = new Vue()
     window.VM = {
       version: VERSION,
-      eventBus: eventBus
+      vm: Vue
     }
     // 全局事件总线（各个组件共用）中央事件总线
     Vue.prototype.$eventBus = eventBus
@@ -37,7 +37,7 @@ export default {
     // init base (config/platform/history)
     const platform = setupPlatform(options.pltConf)
     const config = setupConfig(options.custConf, platform)
-    const history = setupHistory(Vue, options.router)
+    const history = setupHistory(options.router)
 
     Vue.prototype.$config = config
     Vue.prototype.$platform = platform

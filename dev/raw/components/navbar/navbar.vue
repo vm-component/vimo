@@ -19,16 +19,11 @@
 
         <!--buttons/menuToggle-->
         <slot name="buttons"></slot>
-
-        <!--right button placeholder-->
-        <div ref="rightButtonPlaceholder" style="width: 30px;bottom:0;height:1px; position: absolute;right:9px;"></div>
     </div>
 </template>
 <style lang="scss">
     @import '../toolbar/toolbar.scss';
     @import '../toolbar/toolbar-button.scss';
-    @import '../toolbar/toolbar.ios.scss';
-    @import '../toolbar/toolbar.md.scss';
 </style>
 <script type="text/javascript">
   /**
@@ -146,7 +141,6 @@
   import { Popover } from '../popover'
   import { Button } from '../button'
   import { Icon } from '../icon'
-  import MenuOptions from './menu-options.vue'
   import { isArray, isString } from '../../util/util'
   export default{
     name: 'Navbar',
@@ -154,6 +148,7 @@
       return {
         isAlipayReady: window.VM.platform.is('alipay') && window.AlipayJSBridge,
         isDingTalkReady: window.VM.platform.is('dingtalk') && window.dd,
+        isDtDreamReady: window.VM.platform.is('dtdream') && window.dd,
 
         hideRightButtons: false,
 
@@ -200,9 +195,6 @@
       },
       toolbarContentClass () {
         return `toolbar-content-${this.mode}`
-      },
-      rightButtonPlaceholderElement () {
-        return this.$refs.rightButtonPlaceholder
       },
       toolbarBackgroundElement () {
         return this.$refs.toolbarBackground
@@ -264,10 +256,12 @@
 
         Popover.present({
           ev: {
-            target: this.rightButtonPlaceholderElement
+            target: window.document.getElementById('rightButtonPlaceholder') || null
           }, // 事件
           cssClass: 'popMenu',
-          component: MenuOptions,                  // 传入组件
+          component (resolve) {
+            require(['./menu-options.vue'], resolve)
+          },                 // 传入组件
           data: {
             menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
           }
@@ -506,7 +500,7 @@
        * */
       initWhenInWebview () {
         // 如果在平台中则进行下面的分支
-        if (this.isAlipayReady || this.isDingTalkReady) {
+        if (this.isAlipayReady || this.isDingTalkReady || this.isDtDreamReady) {
           this.initOptionButton()
           this.initBackgroundColor()
         }

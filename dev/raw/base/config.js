@@ -84,7 +84,7 @@
  * tabsHighlight    | false          | true            | tab是否有下划线
  * tabsPlacement    | bottom         | bottom          | tab的放置位置
  * pageTransition   | ios-transition | zoom-transition | 转场动画
- * showIndicatorWhenPageChange
+ * showIndicatorWhenPageChange | true | true | 转场是否显示Indicator
  **/
 
 const isFunction = (val) => typeof val === 'function'

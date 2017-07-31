@@ -374,27 +374,27 @@ let routes = [
 
   // demo
   {
-    path: '/gl-input',
-    name: 'gl-input',
+    path: '/snake-box',
+    name: 'snakeBox',
     component (resolve) {
-      require(['@/example/gl-input.vue'], resolve)
+      require(['@/example/snake-box.vue'], resolve)
     }
   },
 
-  {
-    path: '/ghost',
-    name: 'ghostvue',
-    component (resolve) {
-      require(['@/example/ghost.vue'], resolve)
-    }
-  },
-  {
-    path: '/floattop',
-    name: 'floattop',
-    component (resolve) {
-      require(['@/example/floattop.vue'], resolve)
-    }
-  }
+  // {
+  //   path: '/ghost',
+  //   name: 'ghostvue',
+  //   component (resolve) {
+  //     require(['@/example/ghost.vue'], resolve)
+  //   }
+  // },
+  // {
+  //   path: '/floattop',
+  //   name: 'floattop',
+  //   component (resolve) {
+  //     require(['@/example/floattop.vue'], resolve)
+  //   }
+  // }
 ]
 
 routes = routes.concat(contentRoutes)

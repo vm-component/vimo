@@ -18,7 +18,7 @@
  * @props {Boolean} [enableBackdropDismiss=true]- modal 点击背景是否关闭
  * @props {Array} [cities]- 城市数据，默认 本地数据
  * @props {Array} [hotCities]- 热门城市，默认 本地数据
- * @props {String} [mode='ios']- 模式
+ * @props {String} [mode='ios']- 模式, 可以是如下取值: ios, md, fade, zoom, fade-right
  * @props {Boolean} [isH5=false']- 是否强制使用H5模式，默认是自动的
  * @props {String} [ak='8d1ba642a3a3046d1ee087e0f8b490a2']- 如果是H5模式并且开启了'当前定位城市'，则使用高德地图定位，这个是AK
  * @props {Function} [onDismiss]- 当选择点击后的回调，传入参数是当前选择的城市
@@ -50,7 +50,7 @@ const ChooseCity = {
       showHotCities: true,                      // 是否显示热门城市，默认 true
       cities: require('./cities.json'),         // 城市数据，默认 本地数据
       hotCities: require('./hot-cities.json'),  // 热门城市，默认 本地数据
-      mode: 'fade',                             // 模式
+      mode: 'fade-right',                       // 模式 可以是如下取值: ios, md, fade, zoom, fade-right
       showBackdrop: true,                       // modal 是否显示背景色
       enableBackdropDismiss: true,              // modal 点击背景是否关闭
       isH5: false,                              // 是否强制使用H5模式

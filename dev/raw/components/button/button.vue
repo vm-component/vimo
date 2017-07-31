@@ -9,8 +9,6 @@
 </template>
 <style lang="scss">
     @import './button';
-    @import './button.ios';
-    @import './button.md';
     @import './button-icon';
 </style>
 <script type="text/javascript">

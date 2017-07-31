@@ -3,10 +3,6 @@
         <slot></slot>
     </div>
 </template>
-<style lang="scss">
-    @import 'note.ios.scss';
-    @import 'note.md.scss';
-</style>
 <script type="text/javascript">
   /**
    * @component Note

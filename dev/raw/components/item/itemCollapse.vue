@@ -16,6 +16,7 @@
         </div>
         <transition @before-enter="beforeEnter"
                     @enter="enter"
+                    @before-leave="beforeLeave"
                     @leave="leave">
             <div class="item-collapse-inner" v-show="isActive" ref="itemCollapseInner">
                 <slot></slot>
@@ -29,7 +30,6 @@
         opacity: 1;
         transform: translate3d(0, 0, 0);
         position: relative;
-        transition: height ease 300ms, opacity ease 300ms;
     }
 </style>
 <script type="text/javascript">
@@ -77,14 +77,15 @@
    *
    * @demo https://dtfe.github.io/vimo-demo/#/collapseList
    * */
-  import { isString, isObject, transitionEnd } from '../../util/util'
+  import { isString, isObject } from '../../util/util'
   import ItemMixin from './itemMixin.vue'
+  import Velocity from 'velocity-animate'
   export default{
     name: 'ItemCollapse',
     mixins: [ItemMixin],
     data () {
       return {
-        enable: true,               // 标记当前是否在动画状态
+        enable: true,              // 是否能点击
         isInit: false,              // 是否初始化
         itemGroupComponent: null,   // 父组件ItemGroup
         isActive: false,            // 当前组件状态
@@ -101,32 +102,24 @@
     },
     methods: {
       beforeEnter (el) {
-        this.enable = false
         el.style.opacity = 0
         el.style.height = 0
+        this.enable = false
       },
       enter (el, done) {
-        // 必须异步执行
-        window.setTimeout(() => {
-          el.style.opacity = 1
-          el.style.height = this.height + 'px'
-          transitionEnd(el, () => {
-            this.enable = true
-            done()
-          })
-        }, 0)
+        Velocity(el, {opacity: 1, height: this.height + 'px'}, 300, () => {
+          this.enable = true
+          done()
+        })
+      },
+      beforeLeave () {
+        this.enable = false
       },
       leave (el, done) {
-        // 必须异步执行
-        window.setTimeout(() => {
-          el.style.opacity = 0
-          el.style.height = 0
-          this.enable = false
-          transitionEnd(el, () => {
-            done()
-            this.enable = true
-          })
-        }, 0)
+        Velocity(el, {opacity: 0, height: 0}, 300, () => {
+          this.enable = true
+          done()
+        })
       },
 
       /**

@@ -72,7 +72,7 @@ function ModalFactory (options) {
  * 然后执行modal实例的_present开启.
  *
  * @param {String} [mode]
- * @param {VueComponent} component - modal页面
+ * @param {VueComponent} component - modal页面, 不支持异步
  * @param {object} [data] - 传给modal的数据
  * @param {function} [onDismiss] - 关闭model执行的操作, data是关闭时传入的参数
  * @param {Boolean} [showBackdrop=true] - 显示backdrop

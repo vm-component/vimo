@@ -9,10 +9,6 @@
         </Button>
     </div>
 </template>
-<style lang="scss">
-    @import './checkbox.ios';
-    @import './checkbox.md';
-</style>
 <script type="text/javascript">
   /**
    * @component Checkbox

@@ -5,7 +5,7 @@
                 <Title>组件</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" no-bounce>
+        <Content class="outer-content" no-bounce enableJsScroll>
             <List>
                 <!--基础组件-->
                 <ListHeader>
@@ -124,11 +124,7 @@
                         <span>反馈</span>
                         <Note slot="item-right">Feedback</Note>
                     </Item>
-                    <Item detail-push :to="{name: 'scrollSegment'}">
-                        <Icon slot="item-left" name="egg"></Icon>
-                        <span>滚动段</span>
-                        <Note slot="item-right">ScrollSegment</Note>
-                    </Item>
+
                     <Item detail-push :to="{name: 'noticeBar'}">
                         <Icon slot="item-left" name="compass"></Icon>
                         <span>提示条</span>
@@ -188,6 +184,11 @@
                         <Icon slot="item-left" name="book"></Icon>
                         <span>小标签</span>
                         <Note slot="item-right">Segment</Note>
+                    </Item>
+                    <Item detail-push :to="{name: 'scrollSegment'}">
+                        <Icon slot="item-left" name="egg"></Icon>
+                        <span>滚动标签</span>
+                        <Note slot="item-right">ScrollSegment</Note>
                     </Item>
                     <Item detail-push :to="{name: 'tabs'}">
                         <Icon slot="item-left" name="link"></Icon>

@@ -20,8 +20,6 @@
 </template>
 <style lang="scss">
     @import "./tabs.scss";
-    @import "./tabs.ios.scss";
-    @import "./tabs.md.scss";
 </style>
 <script type="text/javascript">
   /**

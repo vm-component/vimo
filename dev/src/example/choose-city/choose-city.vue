@@ -34,7 +34,9 @@
           onDismiss (data) {
             console.log('response')
             console.log(data)
-            _this.selectCity = data
+            if (data) {
+              _this.selectCity = data
+            }
           }
         })
       },
@@ -90,7 +92,9 @@
           onDismiss (data) {
             console.log('response')
             console.log(data)
-            _this.selectCity = data
+            if (data) {
+              _this.selectCity = data
+            }
           }
         })
       }

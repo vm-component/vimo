@@ -23,8 +23,6 @@
 </template>
 <style lang="scss">
     @import 'menus';
-    @import 'menus.ios';
-    @import 'menus.md';
 
     /*slideInLeft*/
     /*animate class*/

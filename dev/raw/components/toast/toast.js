@@ -120,6 +120,7 @@ function ToastFactory () {
 
   let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !propsData.isH5
   let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !propsData.isH5
+  let isDtDreamReady = window.VM.platform.is('dtdream') && window.dd && !propsData.isH5
 
   if (isAlipayReady) {
     console.info('Toast 组件使用Alipay模式!')
@@ -142,6 +143,25 @@ function ToastFactory () {
 
   if (isDingTalkReady) {
     console.info('Toast 组件使用DingTalk模式!')
+    return {
+      present () {
+        if (propsData.type === 'fail') { propsData.type = 'error' }
+        window.dd.device.notification.toast({
+          icon: propsData.type || '', // icon样式，有success和error，默认为空 0.0.2
+          text: propsData.message || '', // 提示信息
+          duration: propsData.duration / 1000 || 2, // 显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
+          delay: propsData.delay || 0, // 延迟显示，单位秒，默认0
+          onSuccess () {
+            propsData.onDismiss && propsData.onDismiss()
+          }
+        })
+      },
+      dismiss () {}
+    }
+  }
+
+  if (isDtDreamReady) {
+    console.info('Toast 组件使用 DtDream 模式!')
     return {
       present () {
         if (propsData.type === 'fail') { propsData.type = 'error' }

@@ -1,0 +1,10 @@
+@import "../default.md";
+// // Material Design popMenu
+// --------------------------------------------------
+.popMenu.popMenu-md {
+    .popMenu__btn--badge {
+        span {
+            background-color: color($colors, danger);
+        }
+    }
+}

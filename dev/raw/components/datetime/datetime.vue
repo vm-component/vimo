@@ -16,8 +16,6 @@
 </template>
 <style lang="scss">
     @import "datetime.scss";
-    @import "datetime.ios.scss";
-    @import "datetime.md.scss";
 </style>
 <script type="text/javascript">
   /**

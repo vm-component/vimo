@@ -12,8 +12,6 @@
 </template>
 <style lang="scss">
     @import "./fab.scss";
-    @import "./fab.ios.scss";
-    @import "./fab.md.scss";
 </style>
 <script type="text/javascript">
   /**

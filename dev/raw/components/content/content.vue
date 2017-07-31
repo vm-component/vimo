@@ -1,12 +1,10 @@
 <template>
     <article content class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
-
         <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
             <!--默认是能滚动的内容-->
             <!--原生滚动-->
             <slot></slot>
         </section>
-
         <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
             <!--Fixed-->
             <slot name="fixed"></slot>
@@ -20,8 +18,6 @@
 </template>
 <style lang="scss">
     @import './content';
-    @import './content.ios';
-    @import './content.md';
 </style>
 <script type="text/javascript">
   /**
@@ -74,8 +70,7 @@
    * ## 基础组件 / Content组件
    *
    *
-   * Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是"上中下三明治"结构,
-   * Content组件则是中间业务内容的位置.
+   * Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是"上中下三明治"结构布局, Content组件则是中间业务内容的位置.
    *
    * Content组件中书写的代码可以是滚动的内容, 也可以是固定在一面不随滚动的内容, 比如说当页的广告/刷新按钮/歌词等.
    * 这个特性的的开启需要特殊命名slot才能激活.
@@ -83,6 +78,10 @@
    * 此外需要注意的是, 一个页面(Page组件)中只能有一个Content组件, 这个是Vimo使用的规则!
    *
    * Content组件中也可以加入下拉刷新和上拉加载的功能, 具体请参考示例.
+   *
+   * ## 不需要引入
+   *
+   * 是的, 基础组件是安装vimo后自动全局注册的.
    *
    * @demo https://dtfe.github.io/vimo-demo/#/content
    *
@@ -95,7 +94,7 @@
    *
    * @props {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
    * @props {string} [mode=ios]  - 样式模式
-   * @props {string} [enableJsScroll=false]  - 是否强制开启JsScroll模式, 默认是根据配置开启`scrollAssist`, 这里可以使用函数判断机型选择性开启
+   * @props {string} [enableJsScroll=false]  - 是否强制开启JsScroll模式, 默认是根据配置开启`scrollAssist`, 这里可以使用函数判断机型选择性开启(此处已进行懒加载机制, 不使用时不下载相关代码)
    *
    *
    * @fires component:Base/Content#onScrollStart
@@ -124,10 +123,7 @@
     name: 'Content',
     props: {
       enableJsScroll: {
-        type: [Boolean, String],
-        validator (value) {
-          return isBoolean(value) || (isString(value) && (value === 'true' || value === 'false'))
-        },
+        type: Boolean,
         default () { return this.$config && this.$config.getBoolean('scrollAssist', false) }
       },
       fullscreen: {

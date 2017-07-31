@@ -10,42 +10,22 @@
  *
  * 这个类通过vue-router的onRouteChangeBefore事件构建本地历史记录. 当路由切换时, 内建历史记录数组, 类似于一个stack, 这个能正确反映当前app的浏览历史记录.
  *
- * router路由在页面切换的时候会发出两个事件:
- *
- * - onRouteChangeBefore( -> router.beforeEach): 路由器切换之前
- * - onRouteChangeAfter( -> router.afterEach): 路由切换之后, 页面进入渲染阶段
- *
- * 需要根据上面的onRouteChangeBefore事件, 判断导航级别(而不是页面的生命周期)的切换事件:
- *
- * - onNavEnter: 导航前进
- * - onNavLeave: 导航后退
- *
  * 完成的功能如下:
  *
  * - 内建导航记录
- * - 根据路由切换事件发出对应的导航相关事件
  * - 此History是对router实例的拓展, 但是不会为router实例添加方法, 而是从新定义$history, 这个可在业务的this中访问到
  */
 
 export class History {
-  constructor (Vue, router) {
-    this._h = []                // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
-    this._d = 'forward'         // forward/backward
-    this._r = router            // vur-router实例
-    this.isInit = false         // App组件是否已完成Init, 表示基础页面是否准备完毕
+  constructor (router) {
+    this._h = []                  // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
+    this._d = 'forward'           // forward/backward
+    this._r = router              // vur-router实例
     this.length = 0
 
     // 监听路由变化, 维护本地历史记录
     // 路由切换前
     if (this._r) {
-      this._r.beforeEach((to, from, next) => {
-        Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onRouteChangeBefore')
-        next()
-      })
-      this._r.afterEach(() => {
-        Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onRouteChangeAfter')
-      })
-
       this._r.beforeEach((to, from, next) => {
         let stackLength = this._h.length
         if (stackLength <= 1) {
@@ -56,13 +36,13 @@ export class History {
            *
            * 同理, length=1也同样处理
            * */
-          this._pushHistory(Vue, {to, from, next})
+          this._pushHistory({to, from, next})
         } else {
           let _previous = this._h[stackLength - 2]
           if (to.name !== _previous.name) {
-            this._pushHistory(Vue, {to, from, next})
+            this._pushHistory({to, from, next})
           } else {
-            this._popHistory(Vue, {to, from, next})
+            this._popHistory({to, from, next})
           }
         }
       })
@@ -74,11 +54,11 @@ export class History {
    * push to history
    * @private
    * */
-  _pushHistory (Vue, {to, from, next}) {
+  _pushHistory ({to, from, next}) {
     if (this._isPageChange({to, from})) {
       this._d = 'forward'
       this._h.push(to)
-      this._emit(Vue, 'onNavEnter', {to, from, next})
+      next()
     } else {
       this._d = ''
       next()
@@ -91,26 +71,18 @@ export class History {
    * pop history record
    * @private
    * */
-  _popHistory (Vue, {to, from, next}) {
+  _popHistory ({to, from, next}) {
     // 激活了浏览器的后退,这里只需要更新状态
     if (this._isPageChange({to, from})) {
       this._d = 'backward'
       this._h.pop()
-      this._emit(Vue, 'onNavLeave', {to, from, next})
+      next()
     } else {
       this._d = ''
       next()
     }
     // noinspection JSAnnotator
     this.length--
-  }
-
-  _emit (Vue, eventName, {to, from, next}) {
-    if (!this.isInit) {
-      next()
-    } else {
-      Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit(eventName, {to, from, next})
-    }
   }
 
   /**
@@ -130,14 +102,8 @@ export class History {
     return (_isFromPage || _isToPage)
   }
 
-  /**
-   * 这个由Nav组件控制, Nav组件判断
-   * */
-  _init () {
-    this.isInit = true
-  }
-
   // -------- public --------
+
   /**
    * 获取当前的页面进行的方向
    * */
@@ -211,14 +177,15 @@ export class History {
   }
 }
 
-export function setupHistory (Vue, router) {
+export function setupHistory (router) {
   if (window['VM'] && window['VM']['history']) {
     return window['VM']['history']
   } else {
     // 全局注册
-    const history = new History(Vue, router)
+    const history = new History(router)
     window['VM'] = window['VM'] || {}
     window['VM']['history'] = history
+    window['VM']['router'] = router
     return history
   }
 }

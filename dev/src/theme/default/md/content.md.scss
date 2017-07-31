@@ -1,0 +1,38 @@
+@import "../default.md";
+
+// Material Design Content
+// --------------------------------------------------
+
+a {
+  color: $link-color;
+}
+
+.content-md {
+  color: $text-md-color;
+  background-color: $background-md-color;
+}
+
+.content-md hr {
+  background-color: rgba(0, 0, 0, .08);
+}
+
+/// @prop - Background color of the outer content
+$content-md-outer-background: #fff !default;
+
+// outer-content是用户自定义类, 不是由组件自己添加的
+.content-md.outer-content {
+  background: $content-md-outer-background;
+}
+
+// Content Padding
+// --------------------------------------------------
+
+.ion-app [no-padding],
+.ion-app [no-padding] .scroll-content {
+  padding: 0;
+}
+
+.ion-app [padding],
+.ion-app [padding] .scroll-content {
+  padding: $content-padding;
+}

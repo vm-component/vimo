@@ -5,8 +5,6 @@
 </template>
 <style lang="scss">
     @import "card.scss";
-    @import "card.ios.scss";
-    @import "card.md.scss";
 </style>
 <script type="text/javascript">
   /**

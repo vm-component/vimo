@@ -44,8 +44,6 @@
 </template>
 <style lang="scss">
     @import "./input.scss";
-    @import "./input.ios.scss";
-    @import "./input.md.scss";
 </style>
 <script type="text/javascript">
   /**
@@ -136,7 +134,7 @@
    * <Textarea @onBlur="onBlur($event)" @onFocus="onFocus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>
    *
    * */
-  import { hasFocus, setElementClass, isPresent, isFunction } from '../../util/util'
+  import { hasFocus, setElementClass, isPresent, isFunction, REGEXP } from '../../util/util'
   import { Button } from '../../components/button'
   import Autosize from 'autosize'
   export default{
@@ -311,7 +309,6 @@
        * @private
        * */
       getVerifyResult (value, type = 'text') {
-        const regexps = this.$config && this.$config.get('regexps')
 
         if (!value) {
           console.debug('当前没有值, 验证跳过, 返回true!')
@@ -320,7 +317,7 @@
 
         let _regex = this.regex
         if (!_regex) {
-          _regex = regexps[type]
+          _regex = REGEXP[type]
         }
 
         // 如果没有正则信息则返回true, 表示不验证

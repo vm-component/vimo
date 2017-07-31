@@ -1,4 +1,10 @@
+import Vue from 'vue'
 import axios from 'axios'
+import App from './App.vue'
+import AttachFastClick from './assets/js/fastclick'
+import APP_CONFIGS from './config/app-configs'
+import PLATFORM_CONFIGS from './config/platform-configs'
+
 import 'ionicons/dist/css/ionicons.css'
 import vimo from 'vimo'
 // 全局组件
@@ -15,17 +21,34 @@ import { Navbar } from 'vimo/components/navbar'
 import { Spinner } from 'vimo/components/spinner'
 import { Toast } from 'vimo/components/toast'
 import { Buttons, Title, Toolbar } from 'vimo/components/toolbar'
-import Vue from 'vue'
-import App from './App.vue'
-import AttachFastClick from './assets/js/fastclick'
-import APP_CONFIGS from './config/app-configs'
-import PLATFORM_CONFIGS from './config/platform-configs'
 
-import geo from './geolocation/vm-geo'
-import log from './log'
+import VueI18n from 'vue-i18n'
+
+import vmGeo from 'vm-geo'
+import vmLog from 'vm-log'
+import vmStorage from 'vm-storage'
 import router from './router'
-import storage from './storage/vm-storage'
-Vue.use(geo, {
+
+Vue.prototype.$axios = axios
+// 平台基础安装
+Vue.use(vimo, {
+  custConf: APP_CONFIGS,
+  pltConf: PLATFORM_CONFIGS,
+  router: router
+})
+
+Vue.use(VueI18n)
+// Create VueI18n instance with options
+const i18n = new VueI18n({
+  locale: 'cn', // set locale
+  fallbackLocale: 'cn',
+  messages: {
+    cn: require('./lang/cn').default,
+    en: require('./lang/en').default
+  }
+})
+
+Vue.use(vmGeo, {
   enableHighAccuracy: true, // 是否要求高精度地理位置信息
   maximumAge: 10000,         // 设置缓存时间为1s，1s后重新获取地理位置信息
   timeout: 15000,            // 5s未返回信息则返回错误
@@ -42,27 +65,13 @@ Vue.use(geo, {
   }
 })
 
-Vue.use(storage, {
-  prefix: 'vimo-'
-})
+Vue.use(vmStorage)
+Vue.use(vmLog)
 
-Vue.use(log, {
-  needLogPage: true // 初始化是否显示log页面
-})
-
-Vue.prototype.$axios = axios
-
-/* eslint-disable no-new */
+// eslint-disable-next-line no-new
 new AttachFastClick(document.body)
 
 // Vue.config.productionTip = false;
-// 平台基础安装
-Vue.use(vimo, {
-  custConf: APP_CONFIGS,
-  pltConf: PLATFORM_CONFIGS,
-  router: router
-})
-
 Vue.component(Backdrop.name, Backdrop)
 Vue.component(Icon.name, Icon)
 Vue.component(Grid.name, Grid)
@@ -83,23 +92,18 @@ Vue.prototype.$modal = Modal
 Vue.prototype.$indicator = Indicator
 
 if (process.env.NODE_ENV === 'development') {
-  // 开发模式显示navbar, 真正情况下见config中的app-configs.js和platform-configs.js文件
-  // window.VM.config && window.VM.config.set('alipay', 'hideNavBar', false)
-  // window.VM.config && window.VM.config.set('dingtalk', 'hideNavBar', false)
-  // window.VM.config && window.VM.config.set('qq', 'hideNavBar', false)
-  // window.VM.config && window.VM.config.set('dtdream', 'hideNavBar', false)
-  // window.VM.config && window.VM.config.set('wechat', 'hideNavBar', false)
+  Vue.config.productionTip = false
 } else {
-
+  Vue.config.productionTip = true
 }
 
 new Vue({
   el: '#app',
   router,
+  i18n,
   template: '<App/>',
   created () {
     this.$platform.ready().then((data) => {
-
     }, () => {})
   },
   components: {App}

@@ -11,8 +11,6 @@
 <style lang="scss">
     @import './toolbar.scss';
     @import './toolbar-button.scss';
-    @import './toolbar.ios.scss';
-    @import './toolbar.md.scss';
 </style>
 <script type="text/javascript">
   /**

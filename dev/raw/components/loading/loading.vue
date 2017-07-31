@@ -17,10 +17,8 @@
 </template>
 <style lang="scss">
     @import './loading.scss';
-    @import './loading.ios.scss';
-    @import './loading.md.scss';
 
-    .indicator {
+    .ion-loading.indicator {
         .loading-wrapper {
             background: rgba(0, 0, 0, 0.9);
             color: #fff;

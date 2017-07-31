@@ -17,8 +17,6 @@
 </template>
 <style lang="scss">
     @import "./modal";
-    @import "./modal.ios";
-    @import "./modal.md";
 
     // transitioName = 'modal-zoom'
     .modal-zoom-enter-active, .modal-zoom-leave-active {
@@ -38,6 +36,17 @@
 
     .modal-fade-enter, .modal-fade-leave-active {
         opacity: 0.01;
+    }
+
+    // transitioName = 'modal-fade-right'
+    .modal-fade-right-enter-active, .modal-fade-right-leave-active {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .modal-fade-right-enter, .modal-fade-right-leave-active {
+        transform: translateX(40px);
+        opacity: 0;
     }
 
 

@@ -31,8 +31,6 @@
 </template>
 <style lang="scss">
     @import "./picker.scss";
-    @import "./picker.ios.scss";
-    @import "./picker.md.scss";
 
     // transitioName = 'picker'
     .picker-enter-active, .picker-leave-active {

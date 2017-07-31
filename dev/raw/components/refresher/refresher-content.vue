@@ -31,7 +31,6 @@
    * @see component:Refresher
    * @demo https://dtfe.github.io/vimo-demo/#/refresher
    * */
-
   import { Icon } from '../icon'
   import { Spinner } from '../spinner'
   export default{

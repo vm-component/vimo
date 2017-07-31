@@ -72,6 +72,7 @@
     }
 </style>
 <script type="text/javascript">
+  import { Modal } from '../modal'
   // 不适用lite是因为其不支持图片懒加载
   import { Slides, Slide } from 'vimo/components/slides'
   export default{
@@ -89,7 +90,7 @@
         this.selected = this.images[this.activeIndex]
       },
       onClickHandler () {
-        this.$modal.dismiss()
+        Modal.dismiss()
       }
     },
     created () {

@@ -10,8 +10,6 @@
 </template>
 <style lang="scss">
     @import './spinner';
-    @import './spinner.ios';
-    @import './spinner.md';
 </style>
 <script type="text/javascript">
   /**
