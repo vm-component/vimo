@@ -28,10 +28,5 @@
 
 </style>
 <script type="text/javascript">
-  import { Tabs, Tab } from 'vimo/components/tabs'
-  import { List } from 'vimo/components/list'
-  import { Item, ListHeader } from 'vimo/components/item'
-  export default{
-    components: {Tabs, Tab, List, Item, ListHeader}
-  }
+  export default {}
 </script>

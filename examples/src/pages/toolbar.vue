@@ -227,8 +227,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { Segment, SegmentButton } from 'vimo/components/segment'
-  import { Searchbar } from 'vimo/components/searchbar'
   export default{
     data () {
       return {
@@ -276,8 +274,5 @@
     },
     activated () {
     },
-    components: {
-      Segment, SegmentButton, Searchbar
-    }
   }
 </script>

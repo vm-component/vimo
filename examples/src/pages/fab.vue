@@ -153,7 +153,6 @@
 
 </style>
 <script type="text/javascript">
-  import { Fab, FabButton, FabList } from 'vimo/components/fab'
   export default{
     name: 'name',
     methods: {
@@ -164,6 +163,5 @@
         console.debug('当前点击的是: ' + value)
       }
     },
-    components: {Fab, FabButton, FabList}
   }
 </script>

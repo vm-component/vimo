@@ -1,36 +1,19 @@
 import Vue from 'vue'
-import axios from 'axios'
 import App from './App.vue'
 import AttachFastClick from './assets/js/fastclick'
 import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
 
 import 'ionicons/dist/css/ionicons.css'
-import vimo from 'vimo'
-// 全局组件
-import { ActionSheet } from 'vimo/components/action-sheet'
-import { Alert } from 'vimo/components/alert'
-import { Backdrop } from 'vimo/components/backdrop'
-import { Button } from 'vimo/components/button'
-import { Column, Grid, Row } from 'vimo/components/grid'
-import { Icon } from 'vimo/components/icon'
-import { Indicator } from 'vimo/components/indicator'
-import { Loading } from 'vimo/components/loading'
-import { Modal } from 'vimo/components/modal'
-import { Navbar } from 'vimo/components/navbar'
-import { Spinner } from 'vimo/components/spinner'
-import { Toast } from 'vimo/components/toast'
-import { Buttons, Title, Toolbar } from 'vimo/components/toolbar'
-
+import vimo from '../../components/dist'
 import VueI18n from 'vue-i18n'
-
 import vmGeo from 'vm-geo'
 import vmLog from 'vm-log'
 import vmStorage from 'vm-storage'
 import router from './router'
+// 全局组件
 
-Vue.prototype.$axios = axios
-// 平台基础安装
+// // 平台基础安装
 Vue.use(vimo, {
   custConf: APP_CONFIGS,
   pltConf: PLATFORM_CONFIGS,
@@ -47,7 +30,6 @@ const i18n = new VueI18n({
     en: require('./lang/en').default
   }
 })
-
 Vue.use(vmGeo, {
   enableHighAccuracy: true, // 是否要求高精度地理位置信息
   maximumAge: 10000,         // 设置缓存时间为1s，1s后重新获取地理位置信息
@@ -64,32 +46,11 @@ Vue.use(vmGeo, {
     key: '8d1ba642a3a3046d1ee087e0f8b490a2'
   }
 })
-
 Vue.use(vmStorage)
 Vue.use(vmLog)
 
 // eslint-disable-next-line no-new
 new AttachFastClick(document.body)
-
-// Vue.config.productionTip = false;
-Vue.component(Backdrop.name, Backdrop)
-Vue.component(Icon.name, Icon)
-Vue.component(Grid.name, Grid)
-Vue.component(Row.name, Row)
-Vue.component(Column.name, Column)
-Vue.component(Spinner.name, Spinner)
-Vue.component(Button.name, Button)
-Vue.component(Navbar.name, Navbar)
-Vue.component(Toolbar.name, Toolbar)
-Vue.component(Title.name, Title)
-Vue.component(Buttons.name, Buttons)
-
-Vue.prototype.$actionSheet = ActionSheet
-Vue.prototype.$loading = Loading
-Vue.prototype.$alert = Alert
-Vue.prototype.$toast = Toast
-Vue.prototype.$modal = Modal
-Vue.prototype.$indicator = Indicator
 
 if (process.env.NODE_ENV === 'development') {
   Vue.config.productionTip = false
@@ -104,6 +65,7 @@ new Vue({
   template: '<App/>',
   created () {
     this.$platform.ready().then((data) => {
+      console.log(`Platform Ready && Init Info: ${data}`)
     }, () => {})
   },
   components: {App}

@@ -125,12 +125,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-  import { Note } from 'vimo/components/note'
-  import { Avatar } from 'vimo/components/avatar'
-  import { Label } from 'vimo/components/label'
-  import { Toggle } from 'vimo/components/toggle'
   export default{
     data () {
       return {
@@ -154,7 +148,6 @@
     mounted: function () {
     },
     activated: function () {
-    },
-    components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label, Toggle}
+    }
   }
 </script>

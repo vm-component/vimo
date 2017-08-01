@@ -9,14 +9,14 @@ export default [
     path: '/tabs',
     name: 'tabs',
     component (resolve) {
-      require(['@/example/tabs/tabs.vue'], resolve)
+      require(['@/pages/tabs/tabs.vue'], resolve)
     }
   },
   {
     path: '/tabsBottom',
     name: 'tabs.tabsBottom',
     component (resolve) {
-      require(['@/example/tabs/tabsBottom.vue'], resolve)
+      require(['@/pages/tabs/tabsBottom.vue'], resolve)
     },
     redirect: {name: 'tabsBottom.demoTab1'},
     children: [
@@ -24,21 +24,21 @@ export default [
         path: 'demoTab1',
         name: 'tabsBottom.demoTab1',
         component (resolve) {
-          require(['@/example/tabs/demoTab1.vue'], resolve)
+          require(['@/pages/tabs/demoTab1.vue'], resolve)
         }
       },
       {
         path: 'demoTab2',
         name: 'tabsBottom.demoTab2',
         component (resolve) {
-          require(['@/example/tabs/demoTab2.vue'], resolve)
+          require(['@/pages/tabs/demoTab2.vue'], resolve)
         }
       },
       {
         path: 'demoTab3',
         name: 'tabsBottom.demoTab3',
         component (resolve) {
-          require(['@/example/tabs/demoTab3.vue'], resolve)
+          require(['@/pages/tabs/demoTab3.vue'], resolve)
         }
       }
     ]
@@ -47,7 +47,7 @@ export default [
     path: '/tabsTop',
     name: 'tabs.tabsTop',
     component (resolve) {
-      require(['@/example/tabs/tabsTop.vue'], resolve)
+      require(['@/pages/tabs/tabsTop.vue'], resolve)
     },
     redirect: {name: 'tabsTop.demoTab1'},
     children: [
@@ -55,21 +55,21 @@ export default [
         path: 'demoTab1',
         name: 'tabsTop.demoTab1',
         component (resolve) {
-          require(['@/example/tabs/demoTab1.vue'], resolve)
+          require(['@/pages/tabs/demoTab1.vue'], resolve)
         }
       },
       {
         path: 'demoTab2',
         name: 'tabsTop.demoTab2',
         component (resolve) {
-          require(['@/example/tabs/demoTab2.vue'], resolve)
+          require(['@/pages/tabs/demoTab2.vue'], resolve)
         }
       },
       {
         path: 'demoTab3',
         name: 'tabsTop.demoTab3',
         component (resolve) {
-          require(['@/example/tabs/demoTab3.vue'], resolve)
+          require(['@/pages/tabs/demoTab3.vue'], resolve)
         }
       }
     ]
@@ -78,7 +78,7 @@ export default [
     path: '/iconOnly',
     name: 'tabs.iconOnly',
     component (resolve) {
-      require(['@/example/tabs/iconOnly.vue'], resolve)
+      require(['@/pages/tabs/iconOnly.vue'], resolve)
     },
     redirect: {name: 'iconOnly.demoTab1'},
     children: [
@@ -86,21 +86,21 @@ export default [
         path: 'demoTab1',
         name: 'iconOnly.demoTab1',
         component (resolve) {
-          require(['@/example/tabs/demoTab1.vue'], resolve)
+          require(['@/pages/tabs/demoTab1.vue'], resolve)
         }
       },
       {
         path: 'demoTab2',
         name: 'iconOnly.demoTab2',
         component (resolve) {
-          require(['@/example/tabs/demoTab2.vue'], resolve)
+          require(['@/pages/tabs/demoTab2.vue'], resolve)
         }
       },
       {
         path: 'demoTab3',
         name: 'iconOnly.demoTab3',
         component (resolve) {
-          require(['@/example/tabs/demoTab3.vue'], resolve)
+          require(['@/pages/tabs/demoTab3.vue'], resolve)
         }
       }
     ]
@@ -109,7 +109,7 @@ export default [
     path: '/iconLeft',
     name: 'tabs.iconLeft',
     component (resolve) {
-      require(['@/example/tabs/iconLeft.vue'], resolve)
+      require(['@/pages/tabs/iconLeft.vue'], resolve)
     },
     redirect: {name: 'iconLeft.demoTab1'},
     children: [
@@ -117,21 +117,21 @@ export default [
         path: 'demoTab1',
         name: 'iconLeft.demoTab1',
         component (resolve) {
-          require(['@/example/tabs/demoTab1.vue'], resolve)
+          require(['@/pages/tabs/demoTab1.vue'], resolve)
         }
       },
       {
         path: 'demoTab2',
         name: 'iconLeft.demoTab2',
         component (resolve) {
-          require(['@/example/tabs/demoTab2.vue'], resolve)
+          require(['@/pages/tabs/demoTab2.vue'], resolve)
         }
       },
       {
         path: 'demoTab3',
         name: 'iconLeft.demoTab3',
         component (resolve) {
-          require(['@/example/tabs/demoTab3.vue'], resolve)
+          require(['@/pages/tabs/demoTab3.vue'], resolve)
         }
       }
     ]
@@ -140,7 +140,7 @@ export default [
     path: '/titleOnly',
     name: 'tabs.titleOnly',
     component (resolve) {
-      require(['@/example/tabs/titleOnly.vue'], resolve)
+      require(['@/pages/tabs/titleOnly.vue'], resolve)
     },
     redirect: {name: 'titleOnly.demoTab1'},
     children: [
@@ -148,21 +148,21 @@ export default [
         path: 'demoTab1',
         name: 'titleOnly.demoTab1',
         component (resolve) {
-          require(['@/example/tabs/demoTab1.vue'], resolve)
+          require(['@/pages/tabs/demoTab1.vue'], resolve)
         }
       },
       {
         path: 'demoTab2',
         name: 'titleOnly.demoTab2',
         component (resolve) {
-          require(['@/example/tabs/demoTab2.vue'], resolve)
+          require(['@/pages/tabs/demoTab2.vue'], resolve)
         }
       },
       {
         path: 'demoTab3',
         name: 'titleOnly.demoTab3',
         component (resolve) {
-          require(['@/example/tabs/demoTab3.vue'], resolve)
+          require(['@/pages/tabs/demoTab3.vue'], resolve)
         }
       }
     ]
@@ -171,7 +171,7 @@ export default [
     path: '/iconBottom',
     name: 'tabs.iconBottom',
     component (resolve) {
-      require(['@/example/tabs/iconBottom.vue'], resolve)
+      require(['@/pages/tabs/iconBottom.vue'], resolve)
     },
     redirect: {name: 'iconBottom.demoTab1'},
     children: [
@@ -179,21 +179,21 @@ export default [
         path: 'demoTab1',
         name: 'iconBottom.demoTab1',
         component (resolve) {
-          require(['@/example/tabs/demoTab1.vue'], resolve)
+          require(['@/pages/tabs/demoTab1.vue'], resolve)
         }
       },
       {
         path: 'demoTab2',
         name: 'iconBottom.demoTab2',
         component (resolve) {
-          require(['@/example/tabs/demoTab2.vue'], resolve)
+          require(['@/pages/tabs/demoTab2.vue'], resolve)
         }
       },
       {
         path: 'demoTab3',
         name: 'iconBottom.demoTab3',
         component (resolve) {
-          require(['@/example/tabs/demoTab3.vue'], resolve)
+          require(['@/pages/tabs/demoTab3.vue'], resolve)
         }
       }
     ]
@@ -202,7 +202,7 @@ export default [
     path: '/tabHighLight',
     name: 'tabs.tabHighLight',
     component (resolve) {
-      require(['@/example/tabs/tabHighLight.vue'], resolve)
+      require(['@/pages/tabs/tabHighLight.vue'], resolve)
     },
     redirect: {name: 'tabHighLight.demoTab1'},
     children: [
@@ -210,21 +210,21 @@ export default [
         path: 'demoTab1',
         name: 'tabHighLight.demoTab1',
         component (resolve) {
-          require(['@/example/tabs/demoTab1.vue'], resolve)
+          require(['@/pages/tabs/demoTab1.vue'], resolve)
         }
       },
       {
         path: 'demoTab2',
         name: 'tabHighLight.demoTab2',
         component (resolve) {
-          require(['@/example/tabs/demoTab2.vue'], resolve)
+          require(['@/pages/tabs/demoTab2.vue'], resolve)
         }
       },
       {
         path: 'demoTab3',
         name: 'tabHighLight.demoTab3',
         component (resolve) {
-          require(['@/example/tabs/demoTab3.vue'], resolve)
+          require(['@/pages/tabs/demoTab3.vue'], resolve)
         }
       }
     ]

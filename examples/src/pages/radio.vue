@@ -78,12 +78,6 @@
 <style lang="scss">
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, Item } from 'vimo/components/item'
-  import { Label } from 'vimo/components/label'
-  import { Radio } from 'vimo/components/radio'
-  import { Icon } from 'vimo/components/icon'
-
   export default{
     name: 'radio',
     data () {
@@ -119,6 +113,5 @@
     },
     mounted: function () {},
     activated: function () {},
-    components: {List, ListHeader, Item, Label, Radio, Icon}
   }
 </script>

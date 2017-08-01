@@ -59,7 +59,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { Scroll } from 'vimo/components/scroll'
   export default{
     name: 'user-center',
     data () {
@@ -84,7 +83,6 @@
     created () {},
     mounted () {},
     activated () {},
-    components: {Scroll},
     destroyed () {}
   }
 </script>

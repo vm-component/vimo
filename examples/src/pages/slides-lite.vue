@@ -85,10 +85,10 @@
     }
 </style>
 <script type="text/javascript">
-  import * as lite from 'vimo/components/slides-lite'
-  import { Slide, Slides } from 'vimo/components/slides'
+  import * as lite from '../../../components/slides-lite'
+  import { Slide, Slides } from '../../../components/slides'
 
-  export default{
+  export default {
     components: {
       'SlidesLite': lite.Slides,
       'SlideLite': lite.Slide,

@@ -54,6 +54,14 @@ Vimo项目初始化种子, 包括自定义主题文件. 点击进入项目地址
 - standardJS
 - swiper
 
+## 内部目录
+
+```
+- /components  源码组件
+- /lib  js部分babel处理
+- /dist 组件全部打包
+```
+
 ## LICENSE
 
 MIT

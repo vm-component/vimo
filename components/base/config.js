@@ -311,13 +311,7 @@ class Config {
  * @private
  * */
 export function setupConfig (config = {}, plt = {}) {
-  if (!!window['VM'] && !!window['VM']['config']) {
-    return window['VM']['config']
-  } else {
-    const c = new Config()
-    c.init(config, plt)
-    window['VM'] = window['VM'] || {}
-    window['VM']['config'] = c
-    return c
-  }
+  const c = new Config()
+  c.init(config, plt)
+  return c
 }

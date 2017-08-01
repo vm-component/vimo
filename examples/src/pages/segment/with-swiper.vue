@@ -82,9 +82,7 @@
     }
 </style>
 <script type="text/javascript">
-  import { Segment, SegmentButton } from 'vimo/components/segment'
-  import { Slides, Slide } from 'vimo/components/slides'
-  export default{
+  export default {
     name: 'WithSwiper',
     data () {
       return {
@@ -106,7 +104,6 @@
       onSlideChangeEndHandler (swiper) {
         this.fruit = this.dir[swiper.activeIndex]
       }
-    },
-    components: {Segment, SegmentButton, Slides, Slide}
+    }
   }
 </script>

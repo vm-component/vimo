@@ -95,9 +95,7 @@
     }
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-  export default{
+  export default {
     name: 'name',
     data () {
       return {
@@ -142,7 +140,7 @@
         console.info('参数顺序: msg/errName/script/line')
         console.error('未得到ajax的数据', 'AJAX TIMEOUT/FAIL', './getData.js::<Function>getInfo()', '12')
       },
-      decodeUrlError (){
+      decodeUrlError () {
         try {
           window.decodeURI('%2')
         } catch (err) {
@@ -159,11 +157,7 @@
 //      console.error('断言错误','AJAX ASSERT ERROR','./getData.js::<Function>getInfo()','12')
 //      console.assert(false, '这个值必须是String类型','AJAX ASSERT ERROR','./getData.js::<Function>getInfo()','12')
 
-
     },
-    activated () {},
-    components: {
-      List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
-    }
+    activated () {}
   }
 </script>

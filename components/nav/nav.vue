@@ -38,9 +38,10 @@
    * @props {Boolean} [showIndicatorWhenPageChange=true] - 页面切换是否显示Indicator
    *
    * */
-  import { Indicator } from 'vimo/components/indicator'
+  import { Indicator } from '../indicator'
   import Velocity from 'velocity-animate'
-  export default{
+
+  export default {
     name: 'Nav',
     props: {
       // 转场动画名称
@@ -81,6 +82,7 @@
        * @private
        * */
       initNav () {
+        if (!this.$router) return
         // nav 动画切换部分
         const vm = this
         this.$router.beforeEach((to, from, next) => {

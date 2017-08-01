@@ -27,8 +27,5 @@
     }
 </style>
 <script type="text/javascript">
-  import { Tabs, Tab } from 'vimo/components/tabs'
-  export default{
-    components: {Tabs, Tab}
-  }
+  export default{}
 </script>

@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Popover</Title>
+                <Title>this.$popover</Title>
                 <!--menutoggle-->
                 <Buttons slot="buttons" right>
                     <Button icon-only role="bar-button" menutoggle @click="openSetting($event)">
@@ -68,14 +68,11 @@
     }
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-  import { Popover } from 'vimo/components/popover'
   import TextTool from './textTool.vue'
   export default{
     methods: {
       openSetting ($event) {
-        Popover.present({
+        this.$popover.present({
           ev: $event,                           // 事件
           component: TextTool,                  // 传入组件
           data: {
@@ -84,13 +81,12 @@
         })
       },
       specialText ($event, text) {
-        Popover.present({
+        this.$popover.present({
           ev: $event,
           component: `<p style="padding:0 14px;" text-center>You choose the word of <strong>${text}</strong>.</p>`
         })
       }
-    },
-    components: {Popover, List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider}
+    }
   }
 </script>
 

@@ -17,7 +17,7 @@ let routes = [
     meta: {
       root: true
     },
-    component: require('@/example/index.vue')
+    component: require('@/pages/index.vue')
   },
   {
     path: '/demo',
@@ -25,18 +25,18 @@ let routes = [
     meta: {
       root: true
     },
-    component: require('@/example/demo/demo.vue')
+    component: require('@/pages/demo/demo.vue')
   },
   {
     path: '/components',
     name: 'components',
-    component: require('@/example/components.vue')
+    component: require('@/pages/components.vue')
   },
   {
     path: '/grid',
     name: 'grid',
     component (resolve) {
-      require(['@/example/grid.vue'], resolve)
+      require(['@/pages/grid.vue'], resolve)
     }
   },
 
@@ -45,28 +45,28 @@ let routes = [
     path: '/introduce',
     name: 'introduce',
     component (resolve) {
-      require(['@/example/introduce.vue'], resolve)
+      require(['@/pages/introduce.vue'], resolve)
     }
   },
   {
     path: '/howToStart',
     name: 'howToStart',
     component (resolve) {
-      require(['@/example/how-to-start.vue'], resolve)
+      require(['@/pages/how-to-start.vue'], resolve)
     }
   },
   {
     path: '/config',
     name: 'config',
     component (resolve) {
-      require(['@/example/config.vue'], resolve)
+      require(['@/pages/config.vue'], resolve)
     }
   },
   {
     path: '/history',
     name: 'history',
     component (resolve) {
-      require(['@/example/history.vue'], resolve)
+      require(['@/pages/history.vue'], resolve)
     }
   },
 
@@ -76,29 +76,29 @@ let routes = [
     path: '/app',
     name: 'app',
     component (resolve) {
-      require(['@/example/app.vue'], resolve)
+      require(['@/pages/app.vue'], resolve)
     }
   },
   {
     path: '/nav',
     name: 'nav',
-    component: require('@/example/nav.vue')
+    component: require('@/pages/nav.vue')
   },
   {
     path: '/platform',
     name: 'platform',
-    component: require('@/example/platform.vue')
+    component: require('@/pages/platform.vue')
   },
   {
     path: '/cross-platform',
     name: 'crossPlatform',
-    component: require('@/example/cross-platform.vue')
+    component: require('@/pages/cross-platform.vue')
   },
   {
     path: '/toolbar',
     name: 'toolbar',
     component (resolve) {
-      require(['@/example/toolbar.vue'], resolve)
+      require(['@/pages/toolbar.vue'], resolve)
     }
   },
 
@@ -107,55 +107,55 @@ let routes = [
     path: '/action-sheet',
     name: 'actionSheet',
     component (resolve) {
-      require(['@/example/action-sheet.vue'], resolve)
+      require(['@/pages/action-sheet.vue'], resolve)
     }
   },
   {
     path: '/alert',
     name: 'alert',
     component (resolve) {
-      require(['@/example/alert.vue'], resolve)
+      require(['@/pages/alert.vue'], resolve)
     }
   },
   {
     path: '/popover',
     name: 'popover',
-    component: require('@/example/popover/popover.vue')
+    component: require('@/pages/popover/popover.vue')
   },
 
   {
     path: '/backdrop',
     name: 'backdrop',
     component (resolve) {
-      require(['@/example/backdrop.vue'], resolve)
+      require(['@/pages/backdrop.vue'], resolve)
     }
   },
   {
     path: '/loading',
     name: 'loading',
     component (resolve) {
-      require(['@/example/loading.vue'], resolve)
+      require(['@/pages/loading.vue'], resolve)
     }
   },
   {
     path: '/indicator',
     name: 'indicator',
     component (resolve) {
-      require(['@/example/indicator.vue'], resolve)
+      require(['@/pages/indicator.vue'], resolve)
     }
   },
   {
     path: '/modal',
     name: 'modal',
     component (resolve) {
-      require(['@/example/modal/modal.vue'], resolve)
+      require(['@/pages/modal/modal.vue'], resolve)
     }
   },
   {
     path: '/toast',
     name: 'toast',
     component (resolve) {
-      require(['@/example/toast.vue'], resolve)
+      require(['@/pages/toast.vue'], resolve)
     }
   },
 
@@ -165,119 +165,119 @@ let routes = [
     path: '/button',
     name: 'button',
     component (resolve) {
-      require(['@/example/button.vue'], resolve)
+      require(['@/pages/button.vue'], resolve)
     }
   },
   {
     path: '/icon',
     name: 'icon',
     component (resolve) {
-      require(['@/example/icon.vue'], resolve)
+      require(['@/pages/icon.vue'], resolve)
     }
   },
   {
     path: '/spinner',
     name: 'spinner',
     component (resolve) {
-      require(['@/example/spinner.vue'], resolve)
+      require(['@/pages/spinner.vue'], resolve)
     }
   },
   {
     path: '/badge',
     name: 'badge',
     component (resolve) {
-      require(['@/example/badge.vue'], resolve)
+      require(['@/pages/badge.vue'], resolve)
     }
   },
   {
     path: '/fab',
     name: 'fab',
     component (resolve) {
-      require(['@/example/fab.vue'], resolve)
+      require(['@/pages/fab.vue'], resolve)
     }
   },
   {
     path: '/img',
     name: 'img',
     component (resolve) {
-      require(['@/example/img.vue'], resolve)
+      require(['@/pages/img.vue'], resolve)
     }
   },
   {
     path: '/slides',
     name: 'slides',
     component (resolve) {
-      require(['@/example/slides.vue'], resolve)
+      require(['@/pages/slides.vue'], resolve)
     }
   },
   {
     path: '/slides-lite',
     name: 'slidesLite',
     component (resolve) {
-      require(['@/example/slides-lite.vue'], resolve)
+      require(['@/pages/slides-lite.vue'], resolve)
     }
   },
   {
     path: '/feedback',
     name: 'feedback',
     component (resolve) {
-      require(['@/example/feedback.vue'], resolve)
+      require(['@/pages/feedback.vue'], resolve)
     }
   },
   {
     path: '/scroll-segment',
     name: 'scrollSegment',
     component (resolve) {
-      require(['@/example/scroll-segment.vue'], resolve)
+      require(['@/pages/scroll-segment.vue'], resolve)
     }
   },
   {
     path: '/notice-bar',
     name: 'noticeBar',
     component (resolve) {
-      require(['@/example/notice-bar.vue'], resolve)
+      require(['@/pages/notice-bar.vue'], resolve)
     }
   },
   {
     path: '/separation',
     name: 'separation',
     component (resolve) {
-      require(['@/example/separation.vue'], resolve)
+      require(['@/pages/separation.vue'], resolve)
     }
   },
   {
     path: '/slide-box',
     name: 'slideBox',
     component (resolve) {
-      require(['@/example/slide-box.vue'], resolve)
+      require(['@/pages/slide-box.vue'], resolve)
     }
   },
   {
     path: '/deeplink',
     name: 'deeplink',
     component (resolve) {
-      require(['@/example/deeplink/deeplink.vue'], resolve)
+      require(['@/pages/deeplink/deeplink.vue'], resolve)
     }
   },
   {
     path: '/oia-page',
     name: 'oiaPage',
     component (resolve) {
-      require(['@/example/deeplink/oia-page.vue'], resolve)
+      require(['@/pages/deeplink/oia-page.vue'], resolve)
     }
   },
   {
     path: '/preview-image',
     name: 'previewImage',
     component (resolve) {
-      require(['@/example/preview-image.vue'], resolve)
+      require(['@/pages/preview-image.vue'], resolve)
     }
   },
   {
     path: '/choose-city',
     name: 'chooseCity',
     component (resolve) {
-      require(['@/example/choose-city/choose-city.vue'], resolve)
+      require(['@/pages/choose-city/choose-city.vue'], resolve)
     }
   },
 
@@ -287,42 +287,42 @@ let routes = [
     path: '/toggle',
     name: 'toggle',
     component (resolve) {
-      require(['@/example/toggle.vue'], resolve)
+      require(['@/pages/toggle.vue'], resolve)
     }
   },
   {
     path: '/checkbox',
     name: 'checkbox',
     component (resolve) {
-      require(['@/example/checkbox.vue'], resolve)
+      require(['@/pages/checkbox.vue'], resolve)
     }
   },
   {
     path: '/radio',
     name: 'radio',
     component (resolve) {
-      require(['@/example/radio.vue'], resolve)
+      require(['@/pages/radio.vue'], resolve)
     }
   },
   {
     path: '/select',
     name: 'select',
     component (resolve) {
-      require(['@/example/select.vue'], resolve)
+      require(['@/pages/select.vue'], resolve)
     }
   },
   {
     path: '/searchbar',
     name: 'searchbar',
     component (resolve) {
-      require(['@/example/searchbar.vue'], resolve)
+      require(['@/pages/searchbar.vue'], resolve)
     }
   },
   {
     path: '/input',
     name: 'input',
     component (resolve) {
-      require(['@/example/input.vue'], resolve)
+      require(['@/pages/input.vue'], resolve)
     }
   },
 
@@ -330,7 +330,7 @@ let routes = [
     path: '/range',
     name: 'range',
     component (resolve) {
-      require(['@/example/range.vue'], resolve)
+      require(['@/pages/range.vue'], resolve)
     }
   },
   // ----  数据加载 ----
@@ -338,14 +338,14 @@ let routes = [
     path: '/infinite-scroll',
     name: 'infinite-scroll',
     component (resolve) {
-      require(['@/example/infinite-scroll.vue'], resolve)
+      require(['@/pages/infinite-scroll.vue'], resolve)
     }
   },
   {
     path: '/refresher',
     name: 'refresher',
     component (resolve) {
-      require(['@/example/refresher.vue'], resolve)
+      require(['@/pages/refresher.vue'], resolve)
     }
   },
 
@@ -354,21 +354,21 @@ let routes = [
     path: '/storage',
     name: 'storage',
     component (resolve) {
-      require(['@/example/storage.vue'], resolve)
+      require(['@/pages/storage.vue'], resolve)
     }
   },
   {
     path: '/geo',
     name: 'geo',
     component (resolve) {
-      require(['@/example/geo.vue'], resolve)
+      require(['@/pages/geo.vue'], resolve)
     }
   },
   {
     path: '/log',
     name: 'log',
     component (resolve) {
-      require(['@/example/log.vue'], resolve)
+      require(['@/pages/log.vue'], resolve)
     }
   },
 
@@ -377,7 +377,7 @@ let routes = [
     path: '/snake-box',
     name: 'snakeBox',
     component (resolve) {
-      require(['@/example/snake-box.vue'], resolve)
+      require(['@/pages/snake-box.vue'], resolve)
     }
   },
 
@@ -385,14 +385,14 @@ let routes = [
   //   path: '/ghost',
   //   name: 'ghostvue',
   //   component (resolve) {
-  //     require(['@/example/ghost.vue'], resolve)
+  //     require(['@/pages/ghost.vue'], resolve)
   //   }
   // },
   // {
   //   path: '/floattop',
   //   name: 'floattop',
   //   component (resolve) {
-  //     require(['@/example/floattop.vue'], resolve)
+  //     require(['@/pages/floattop.vue'], resolve)
   //   }
   // }
 ]

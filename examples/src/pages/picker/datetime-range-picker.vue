@@ -45,9 +45,6 @@
 
 </style>
 <script type="text/javascript">
-  import { Datetime } from 'vimo/components/datetime'
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   export default{
     name: 'name',
     data () {
@@ -61,7 +58,6 @@
     mounted () {},
     activated () {},
     deactivate () {},
-    components: {Datetime, List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider},
     destroyed () {}
   }
 </script>

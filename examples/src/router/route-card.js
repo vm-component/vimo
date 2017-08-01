@@ -8,28 +8,28 @@ export default [
     path: '/cards',
     name: 'cards',
     component (resolve) {
-      require(['@/example/cards/cards.vue'], resolve)
+      require(['@/pages/cards/cards.vue'], resolve)
     }
   },
   {
     path: '/basicCards',
     name: 'cards.basicCards',
     component (resolve) {
-      require(['@/example/cards/basicCards.vue'], resolve)
+      require(['@/pages/cards/basicCards.vue'], resolve)
     }
   },
   {
     path: '/listsInCards',
     name: 'cards.listsInCards',
     component (resolve) {
-      require(['@/example/cards/listsInCards.vue'], resolve)
+      require(['@/pages/cards/listsInCards.vue'], resolve)
     }
   },
   {
     path: '/advancedCards',
     name: 'cards.advancedCards',
     component (resolve) {
-      require(['@/example/cards/advancedCards.vue'], resolve)
+      require(['@/pages/cards/advancedCards.vue'], resolve)
     }
   }
 ]

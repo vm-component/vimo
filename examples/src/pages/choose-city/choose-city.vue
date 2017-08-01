@@ -15,7 +15,6 @@
     </Page>
 </template>
 <script type="text/javascript">
-  import { ChooseCity } from 'vimo/components/choose-city'
   export default{
     name: 'ChooseCity',
     data () {
@@ -29,7 +28,7 @@
     methods: {
       openCitySelector () {
         let _this = this
-        ChooseCity.present({
+        this.$chooseCity.present({
           showLocatedCity: true,
           onDismiss (data) {
             console.log('response')
@@ -42,7 +41,7 @@
       },
       openCitySelectorWithCustomerData () {
         let _this = this
-        ChooseCity.present({
+        this.$chooseCity.present({
           cities: [
             {
               city: '朝阳区',

@@ -24,13 +24,7 @@
 <style scoped lang="scss">
 </style>
 <script type="text/javascript">
-  import { Card } from 'vimo/components/card'
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item } from 'vimo/components/item'
   export default{
-    name: 'cards',
-    components: {
-      List, ListHeader, ItemGroup, Item, Card
-    }
+    name: 'cards'
   }
 </script>

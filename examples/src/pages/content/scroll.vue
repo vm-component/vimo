@@ -112,7 +112,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { Segment, SegmentButton } from 'vimo/components/segment'
   export default{
     data () {
       return {
@@ -168,6 +167,5 @@
         })
       }
     },
-    components: {Segment, SegmentButton}
   }
 </script>

@@ -36,10 +36,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { InfiniteScroll, InfiniteScrollContent } from 'vimo/components/infinite-scroll'
-  import { List } from 'vimo/components/list'
-  import { Item } from 'vimo/components/item'
-
   export default{
     name: 'page',
     data () {
@@ -91,8 +87,7 @@
       }
     },
     mounted () {},
-    activated () {},
-    components: {InfiniteScroll, InfiniteScrollContent, List, Item}
+    activated () {}
   }
 
 </script>

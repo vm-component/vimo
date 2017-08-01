@@ -37,7 +37,6 @@
 <script type="text/javascript">
   import modalPageComponent from './modal-page.vue'
   import modalLoginComponent from './modal-login.vue'
-  import { PreviewImage } from 'vimo/components/preview-image'
   export default{
     data () {
       return {
@@ -69,7 +68,7 @@
         })
       },
       openAlbum () {
-        PreviewImage({
+        this.$previewImage({
           current: 0,
           urls: [
             'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',

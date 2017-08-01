@@ -82,9 +82,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { Badge } from 'vimo/components/badge'
-  import { Picker } from 'vimo/components/picker'
-  import { PreviewImage } from 'vimo/components/preview-image'
   export default{
     name: 'name',
     data () {
@@ -450,7 +447,6 @@
     },
     activated () {},
     deactivate () {},
-    components: {Badge},
     destroyed () {}
   }
 </script>

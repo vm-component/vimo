@@ -14,7 +14,6 @@
     </Page>
 </template>
 <script type="text/javascript">
-  import { PreviewImage } from 'vimo/components/preview-image'
   export default{
     name: 'name',
     data () {
@@ -25,7 +24,7 @@
     computed: {},
     methods: {
       openAlbum1 () {
-        PreviewImage({
+        this.$previewImage({
           current: 0,
           urls: [
             'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
@@ -35,7 +34,7 @@
         })
       },
       openAlbum2 () {
-        PreviewImage({
+        this.$previewImage({
           current: 1,
           urls: [
             'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',

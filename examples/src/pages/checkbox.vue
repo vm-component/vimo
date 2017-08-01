@@ -69,12 +69,7 @@
     }
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { Item, ListHeader } from 'vimo/components/item'
-  import { Label } from 'vimo/components/label'
-  import { Checkbox } from 'vimo/components/checkbox'
-  import { Toggle } from 'vimo/components/toggle'
-  export default{
+  export default {
     name: 'name',
     data () {
       return {
@@ -108,7 +103,6 @@
     },
     created () {},
     mounted () {},
-    activated () {},
-    components: {List, Item, ListHeader, Checkbox, Label, Toggle}
+    activated () {}
   }
 </script>

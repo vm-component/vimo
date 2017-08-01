@@ -106,7 +106,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { Segment, SegmentButton } from 'vimo/components/segment'
   export default{
     name: 'Animate',
     data () {
@@ -134,7 +133,6 @@
     },
     created () {},
     mounted () {},
-    activated () {},
-    components: {Segment, SegmentButton}
+    activated () {}
   }
 </script>

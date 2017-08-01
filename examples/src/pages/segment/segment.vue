@@ -24,11 +24,5 @@
 <style lang="scss">
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-  export default{
-    components: {
-      List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
-    }
-  }
+  export default{}
 </script>

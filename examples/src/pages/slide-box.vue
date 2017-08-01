@@ -38,7 +38,6 @@
 
 </style>
 <script type="text/javascript">
-  import { SlideBox } from 'vimo/components/slide-box'
   export default{
     name: 'name',
     data () {
@@ -76,7 +75,6 @@
     mounted () {},
     activated () {},
     deactivate () {},
-    components: {SlideBox},
     destroyed () {}
   }
 </script>

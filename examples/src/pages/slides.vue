@@ -640,7 +640,6 @@
 
 </style>
 <script type="text/javascript">
-  import { Slides, Slide } from 'vimo/components/slides'
   import scenery1 from '../../static/img/scenery_1.jpg'
   import scenery2 from '../../static/img/scenery_2.jpg'
   import scenery3 from '../../static/img/scenery_3.jpg'
@@ -737,6 +736,5 @@
       }, 2000)
     },
     activated () {},
-    components: {Slides, Slide}
   }
 </script>

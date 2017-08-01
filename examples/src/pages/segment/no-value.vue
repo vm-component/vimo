@@ -44,8 +44,7 @@
 
 </style>
 <script type="text/javascript">
-  import { Segment, SegmentButton } from 'vimo/components/segment'
-  export default{
+  export default {
     name: 'no-value',
     data () {
       return {
@@ -63,7 +62,6 @@
         console.debug('点击了SegmentButton按钮, 这个按钮的值: ' + val)
         this.onSelectValue = val
       }
-    },
-    components: {Segment, SegmentButton}
+    }
   }
 </script>

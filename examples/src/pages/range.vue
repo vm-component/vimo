@@ -89,10 +89,6 @@
 <style scoped lang="scss">
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { Range } from 'vimo/components/range'
-  import { Badge } from 'vimo/components/badge'
-  import { ListHeader, Item } from 'vimo/components/item'
   export default{
     name: 'range',
     data () {
@@ -128,6 +124,5 @@
     created () {},
     mounted () {},
     activated () {},
-    components: {List, ListHeader, Item, Range, Badge}
   }
 </script>

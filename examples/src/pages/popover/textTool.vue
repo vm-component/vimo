@@ -220,9 +220,6 @@
 
 </style>
 <script type="text/javascript">
-  import { Radio } from 'vimo/components/radio'
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   export default{
     name: 'comp',
     data () {
@@ -283,6 +280,5 @@
       this.background = this.getColorName(this.contentEle.style.backgroundColor)
       this.setFontFamily()
     },
-    components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Radio}
   }
 </script>

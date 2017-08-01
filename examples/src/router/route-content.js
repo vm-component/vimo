@@ -7,56 +7,56 @@ export default [
     path: '/content',
     name: 'content',
     component (resolve) {
-      require(['@/example/content/content.vue'], resolve)
+      require(['@/pages/content/content.vue'], resolve)
     }
   },
   {
     path: '/content_context',
     name: 'contentContext',
     component (resolve) {
-      require(['@/example/content/context.vue'], resolve)
+      require(['@/pages/content/context.vue'], resolve)
     }
   },
   {
     path: '/content_fixed',
     name: 'contentFixed',
     component (resolve) {
-      require(['@/example/content/fixed.vue'], resolve)
+      require(['@/pages/content/fixed.vue'], resolve)
     }
   },
   {
     path: '/content_fullscreen',
     name: 'contentFullscreen',
     component (resolve) {
-      require(['@/example/content/fullscreen.vue'], resolve)
+      require(['@/pages/content/fullscreen.vue'], resolve)
     }
   },
   {
     path: '/content_hideBars',
     name: 'contentHideBars',
     component (resolve) {
-      require(['@/example/content/hideBars.vue'], resolve)
+      require(['@/pages/content/hideBars.vue'], resolve)
     }
   },
   {
     path: '/content_scroll',
     name: 'contentScroll',
     component (resolve) {
-      require(['@/example/content/scroll.vue'], resolve)
+      require(['@/pages/content/scroll.vue'], resolve)
     }
   },
   {
     path: '/content_setBarStyle',
     name: 'contentSetBarStyle',
     component (resolve) {
-      require(['@/example/content/setBarStyle.vue'], resolve)
+      require(['@/pages/content/setBarStyle.vue'], resolve)
     }
   },
   // {
   //   path: '/content_city',
   //   name: 'contentCity',
   //   component (resolve) {
-  //     require(['@/example/content/city.vue'], resolve)
+  //     require(['@/pages/content/city.vue'], resolve)
   //   }
   // }
 ]

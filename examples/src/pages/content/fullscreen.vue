@@ -47,19 +47,5 @@
     }
 </style>
 <script type="text/javascript">
-  import { Searchbar } from 'vimo/components/searchbar'
-  export default{
-    name: 'name',
-    data () {
-      return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
-    components: {Searchbar}
-  }
+  export default{}
 </script>

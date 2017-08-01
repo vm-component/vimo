@@ -162,12 +162,7 @@
 <style lang="scss">
 </style>
 <script type="text/javascript">
-  import { Label } from 'vimo/components/label'
-  import { Input, Textarea } from 'vimo/components/input'
-  import { List } from 'vimo/components/list'
-  import { ListHeader, Item } from 'vimo/components/item'
-
-  export default{
+  export default {
     name: 'name',
     data () {
       return {
@@ -196,7 +191,6 @@
       disableToggle () {
         this.testDisabled = !this.testDisabled
       }
-    },
-    components: {Label, List, ListHeader, Item, Input, Textarea}
+    }
   }
 </script>

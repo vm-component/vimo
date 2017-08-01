@@ -28,9 +28,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { Refresher, RefresherContent } from 'vimo/components/refresher'
-  import { List } from 'vimo/components/list'
-  import { Item } from 'vimo/components/item'
   export default{
     name: 'name',
     data () {
@@ -69,6 +66,5 @@
     },
     mounted () {},
     activated () {},
-    components: {Refresher, RefresherContent, List, Item}
   }
 </script>

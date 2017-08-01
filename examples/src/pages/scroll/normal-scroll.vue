@@ -85,7 +85,6 @@
 
 </style>
 <script type="text/javascript">
-  import { Scroll } from 'vimo/components/scroll'
   export default{
     name: 'name',
     data () {
@@ -98,6 +97,5 @@
     created () {},
     mounted () {},
     activated () {},
-    components: {Scroll}
   }
 </script>

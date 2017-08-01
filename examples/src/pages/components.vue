@@ -337,9 +337,6 @@
 <style scoped lang="scss">
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item } from 'vimo/components/item'
-  import { Note } from 'vimo/components/note'
   export default{
     name: 'name',
     data () {
@@ -353,7 +350,6 @@
     mounted () {},
     activated () {},
     components: {
-      List, ListHeader, ItemGroup, Item, Note
     }
   }
 </script>

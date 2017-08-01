@@ -30,14 +30,11 @@
 </template>
 <style scoped lang="scss"></style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
   export default{
     data () {
       return {}
     },
     components: {
-      List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
     },
     mounted () {}
   }

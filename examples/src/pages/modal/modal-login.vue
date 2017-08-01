@@ -53,11 +53,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { Checkbox } from 'vimo/components/checkbox'
-  import { Label } from 'vimo/components/label'
-  import { Input, Textarea } from 'vimo/components/input'
-  import { List } from 'vimo/components/list'
-  import { ListHeader, Item } from 'vimo/components/item'
   import modalSecretComponent from './modal-secret.vue'
   export default{
     data () {
@@ -90,6 +85,5 @@
     created () {},
     mounted () {},
     activated () {},
-    components: {Label, List, ListHeader, Item, Input, Textarea, Checkbox}
   }
 </script>

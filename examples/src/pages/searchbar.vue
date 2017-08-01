@@ -30,9 +30,6 @@
 <style scoped lang="scss">
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-  import { Searchbar } from 'vimo/components/searchbar'
   import cityList from '../../static/city-data/cityList'
   export default{
     data () {
@@ -78,6 +75,5 @@
     mounted () {},
     activated () {
     },
-    components: {Searchbar, List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider}
   }
 </script>

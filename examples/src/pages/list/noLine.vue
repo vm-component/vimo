@@ -18,11 +18,6 @@
 
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-  import { Note } from 'vimo/components/note'
-  import { Avatar } from 'vimo/components/avatar'
-  import { Label } from 'vimo/components/label'
   export default{
     data () {
       return {
@@ -50,6 +45,5 @@
     created () {},
     mounted () {},
     activated () {},
-    components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label}
   }
 </script>

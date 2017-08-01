@@ -178,14 +178,5 @@ export class History {
 }
 
 export function setupHistory (router) {
-  if (window['VM'] && window['VM']['history']) {
-    return window['VM']['history']
-  } else {
-    // 全局注册
-    const history = new History(router)
-    window['VM'] = window['VM'] || {}
-    window['VM']['history'] = history
-    window['VM']['router'] = router
-    return history
-  }
+  return new History(router)
 }

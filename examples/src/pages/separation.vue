@@ -34,7 +34,6 @@
 
 </style>
 <script type="text/javascript">
-  import { Separation } from 'vimo/components/separation'
   export default{
     name: 'name',
     data () {
@@ -48,7 +47,6 @@
     mounted () {},
     activated () {},
     deactivate () {},
-    components: {Separation},
     destroyed () {}
   }
 </script>

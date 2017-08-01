@@ -137,10 +137,6 @@
 
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { Item, ListHeader, ItemGroup } from 'vimo/components/item'
-  import { Label } from 'vimo/components/label'
-  import { Select, Option } from 'vimo/components/select'
   export default{
     name: 'name',
     data () {
@@ -256,9 +252,5 @@
         }, 0)
       }
     },
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
-    components: {List, Item, ListHeader, Label, Select, Option, ItemGroup}
   }
 </script>

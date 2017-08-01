@@ -43,11 +43,7 @@
 
 </style>
 <script type="text/javascript">
-  import { Badge } from 'vimo/components/badge'
-  import { Note } from 'vimo/components/note'
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-  export default{
+  export default {
     name: 'name',
     data () {
       return {}
@@ -58,9 +54,6 @@
     methods: {},
     created () {},
     mounted () {},
-    activated () {},
-    components: {
-      List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Badge, Note
-    }
+    activated () {}
   }
 </script>

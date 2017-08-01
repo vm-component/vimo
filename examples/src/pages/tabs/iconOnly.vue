@@ -18,9 +18,7 @@
 </template>
 <style scoped lang="scss"></style>
 <script type="text/javascript">
-  import { Tabs, Tab } from 'vimo/components/tabs'
   export default{
-    name: 'name',
-    components: {Tabs, Tab}
+    name: 'name'
   }
 </script>

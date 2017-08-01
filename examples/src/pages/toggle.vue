@@ -65,9 +65,6 @@
 </template>
 <style scoped lang="scss"></style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, Item } from 'vimo/components/item'
-  import { Toggle } from 'vimo/components/toggle'
   export default{
     name: 'toggle',
     data () {
@@ -97,9 +94,6 @@
       toggleChange (val) {
         console.debug('toogle changed, value:' + val)
       }
-    },
-    components: {
-      List, ListHeader, Item, Toggle
     }
   }
 </script>

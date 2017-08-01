@@ -60,11 +60,6 @@
    * @description
    * 项目描述
    * */
-  import { Toggle } from 'vimo/components/toggle'
-  import { Menus } from 'vimo/components/menus'
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item } from 'vimo/components/item'
-
   export default {
     name: 'app-root',
     data () {
@@ -79,37 +74,6 @@
         }
       }
     },
-    components: {
-      Menus, List, ListHeader, ItemGroup, Item, Toggle
-    }
   }
 </script>
-<style lang="less">
-    /*@import "./theme-less/index";*/
-
-    body {
-        // color: #327eff;
-
-        //.color-contrast(ios, #327eff);
-      //  color: @color-contrast;
-
-        // color: darken(#327eff, 4%);
-        // .color-shade(#327eff);
-        // color: @color-shade;
-    }
-
-    // @colors: "primary", "secondary", "danger", "light", "dark";
-    //  @primary: #327eff;
-    // @secondary: #32db64;
-    // @danger: #f53d3d;
-    // @light: #f4f4f4;
-    // @dark: #222;
-
-    //  @colors-md: "primary", "secondary", "danger", "light", "dark";
-    //  @primary-md: #327eff;
-    //  @secondary-md: #32db64;
-    //  @danger-md: #f53d3d;
-    // @light-md: #f4f4f4;
-    //  @dark-md: #222;
-
-</style>
+<style lang="less"></style>

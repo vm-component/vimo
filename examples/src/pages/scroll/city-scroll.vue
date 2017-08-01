@@ -73,10 +73,7 @@
 </style>
 <script type="text/javascript">
   import CITY_LIST from './cityList'
-  import { Scroll } from 'vimo/components/scroll'
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-  import { pointerCoord, clamp } from 'vimo/util/util'
+  import { pointerCoord, clamp } from '../../../../components/util/util'
   export default{
     name: 'cityList',
     data () {
@@ -154,8 +151,5 @@
         item.top = el.offsetTop + 1
       })
     },
-    components: {
-      List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Scroll
-    }
   }
 </script>

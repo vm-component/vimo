@@ -28,9 +28,6 @@
 </template>
 <style scoped lang="scss"></style>
 <script type="text/javascript">
-  import { RegionPicker } from 'vimo/components/region-picker'
-  import { Picker } from 'vimo/components/picker'
-  import { CityPicker } from 'vimo/components/city-picker'
   import axios from 'axios'
   export default{
     name: 'name',
@@ -57,7 +54,7 @@
        * */
       openCityPicker () {
         const _this = this
-        CityPicker.present({
+        this.$cityPicker.present({
           onSelect (data) {
             let tmp = []
             data.province && (_this.province = data.province.text, tmp.push(data.province.value.toString()))
@@ -97,21 +94,21 @@
 
       // ----- better-picker -----
       openCityBetterPicker () {
-        const _this = this
-        RegionPicker.present({
-          selectedCity: _this.bSelectedCity,
-          title: '请选择',
-          onSelect (data) {
-            console.log(data)
-            _this.bProvince = `${data[0].name}`
-            _this.bCity = `${data[1].name}`
-            _this.bDistrict = `${data[2].name}`
-            _this.bSelectedCity = [data[0].value, data[1].value, data[2].value]
-          },
-          onCancel (data) {
-            console.log('onCancel:' + JSON.stringify(data))
-          }
-        })
+//        const _this = this
+//        RegionPicker.present({
+//          selectedCity: _this.bSelectedCity,
+//          title: '请选择',
+//          onSelect (data) {
+//            console.log(data)
+//            _this.bProvince = `${data[0].name}`
+//            _this.bCity = `${data[1].name}`
+//            _this.bDistrict = `${data[2].name}`
+//            _this.bSelectedCity = [data[0].value, data[1].value, data[2].value]
+//          },
+//          onCancel (data) {
+//            console.log('onCancel:' + JSON.stringify(data))
+//          }
+//        })
       }
     },
     created () {
@@ -121,7 +118,6 @@
 
     },
     activated () {},
-    components: {RegionPicker, Picker}
   }
 
 

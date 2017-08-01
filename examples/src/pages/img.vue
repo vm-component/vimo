@@ -18,14 +18,12 @@
 <style scoped lang="scss">
 </style>
 <script type="text/javascript">
-  import { Img } from 'vimo/components/img'
-  export default{
+  export default {
     name: 'name',
     data () {
       return {
         totalCount: 24
       }
-    },
-    components: {Img}
+    }
   }
 </script>

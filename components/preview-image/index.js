@@ -34,6 +34,7 @@
  * */
 import { Modal } from '../modal'
 import PreviewImageComponent from './preview-image.vue'
+
 export function PreviewImage (options) {
   let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
   let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
@@ -80,5 +81,4 @@ export function PreviewImage (options) {
     showBackdrop: true,
     enableBackdropDismiss: true
   })
-
 }

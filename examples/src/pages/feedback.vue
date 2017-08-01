@@ -31,7 +31,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { Feedback } from 'vimo/components/feedback'
   export default{
     name: 'name',
     data () {
@@ -50,7 +49,6 @@
     mounted () {},
     activated () {},
     deactivate () {},
-    components: {Feedback},
     destroyed () {}
   }
 </script>

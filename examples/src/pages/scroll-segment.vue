@@ -323,10 +323,8 @@
     }
 </style>
 <script type="text/javascript">
-  import { ScrollSegment, ScrollSegmentButton } from 'vimo/components/scroll-segment'
   export default{
     name: 'name',
-    components: {ScrollSegment, ScrollSegmentButton},
     data () {
       return {
         changedValue: 3,
@@ -356,7 +354,6 @@
     },
     activated () {},
     deactivate () {},
-
     destroyed () {}
   }
 </script>

@@ -957,49 +957,39 @@ function insertSuperset (registry, platformNode) {
  * @private
  * */
 export function setupPlatform (config = {}) {
-  // 保持单例对象
-  if (window['VM'] && window['VM']['platform']) {
-    return window['VM']['platform']
-  } else {
-    const p = new Platform()
-    let _finalConf = PLATFORM_DEFAULT_CONFIGS
+  const p = new Platform()
+  let _finalConf = PLATFORM_DEFAULT_CONFIGS
 
-    for (let outerKey in config) {
-      if (_finalConf[outerKey] && isObject(_finalConf[outerKey])) {
-        let _cusConf = config[outerKey]
-        let _defConf = _finalConf[outerKey]
-        for (let innerKey in _cusConf) {
-          let _tmp = {}
-          _tmp = defaults(_cusConf[innerKey], _defConf[innerKey])
-          _defConf[innerKey] = _tmp
-        }
-      } else {
-        _finalConf[outerKey] = config[outerKey]
+  for (let outerKey in config) {
+    if (_finalConf[outerKey] && isObject(_finalConf[outerKey])) {
+      let _cusConf = config[outerKey]
+      let _defConf = _finalConf[outerKey]
+      for (let innerKey in _cusConf) {
+        let _tmp = {}
+        _tmp = defaults(_cusConf[innerKey], _defConf[innerKey])
+        _defConf[innerKey] = _tmp
       }
+    } else {
+      _finalConf[outerKey] = config[outerKey]
     }
-
-    p.setDefault('mobile')
-    p.setPlatformConfigs(_finalConf)
-    p.setQueryParams(new QueryParams())
-    !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform)
-    !p.userAgent() && p.setUserAgent(window.navigator.userAgent)
-    !p.lang() && p.setLang('zh-cn', true)
-    !p.dir() && p.setDir('ltr', true)
-
-    // 设置css类型
-    p.setCssProps(document.documentElement)
-
-    p.init()
-
-    // 触发ready, 一般情况下是dom ready,
-    // 如果平台改写了prepareReady方法,
-    // 则执行平台对应的ready处理
-    p.beforeReady()
-
-    // 全局注册
-    window['VM'] = window['VM'] || {}
-    window['VM']['platform'] = p
-
-    return p
   }
+
+  p.setDefault('mobile')
+  p.setPlatformConfigs(_finalConf)
+  p.setQueryParams(new QueryParams())
+  !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform)
+  !p.userAgent() && p.setUserAgent(window.navigator.userAgent)
+  !p.lang() && p.setLang('zh-cn', true)
+  !p.dir() && p.setDir('ltr', true)
+
+  // 设置css类型
+  p.setCssProps(document.documentElement)
+
+  p.init()
+
+  // 触发ready, 一般情况下是dom ready,
+  // 如果平台改写了prepareReady方法,
+  // 则执行平台对应的ready处理
+  p.beforeReady()
+  return p
 }

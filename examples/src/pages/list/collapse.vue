@@ -76,14 +76,6 @@
 
 </style>
 <script type="text/javascript">
-  import { List } from 'vimo/components/list'
-  import { ListHeader, ItemGroup, ItemCollapse, Item, ItemDivider } from 'vimo/components/item'
-  import { Note } from 'vimo/components/note'
-  import { Avatar } from 'vimo/components/avatar'
-  import { Label } from 'vimo/components/label'
-  import { Thumbnail } from 'vimo/components/thumbnail'
-  import { Icon } from 'vimo/components/icon'
-  import { Toggle } from 'vimo/components/toggle'
   export default{
     name: 'accordion',
     data () {
@@ -97,18 +89,6 @@
     mounted () {},
     activated () {},
     components: {
-      List,
-      ListHeader,
-      ItemGroup,
-      ItemCollapse,
-      Item,
-      ItemDivider,
-      Note,
-      Avatar,
-      Label,
-      Toggle,
-      Icon,
-      Thumbnail
     }
   }
 </script>

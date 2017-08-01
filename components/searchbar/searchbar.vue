@@ -136,7 +136,7 @@
   import { Icon } from '../icon'
   import { isNumber, isBoolean } from '../util/util'
   export default{
-    name: 'Searchbar',
+    name: 'SearchBar',
     data () {
       return {
         isCancelVisible: false,

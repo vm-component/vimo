@@ -28,7 +28,6 @@
 
 </style>
 <script type="text/javascript">
-  import { Picker } from 'vimo/components/picker'
   export default{
     name: 'name',
     data () {

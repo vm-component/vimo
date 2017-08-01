@@ -82,7 +82,7 @@
 
 </style>
 <script type="text/javascript">
-  import { clamp } from 'vimo/util/util'
+  import { clamp } from '../../../../components/util/util'
   export default{
     name: 'setBarStyle',
     data () {

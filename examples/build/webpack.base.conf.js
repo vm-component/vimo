@@ -1,15 +1,14 @@
 var path = require('path')
 var utils = require('./utils')
-var config = require('../config')
+var config = require('../config/index')
 var vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
-
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './examples/src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -23,8 +22,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'vimo/components': resolve('../components'), // for vimo module
-      'vimo': resolve('../components') // for vimo module
+      'vimo': resolve('../..') // for vimo module
     }
   },
   module: {
@@ -42,12 +40,14 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig,
-        include: [resolve('src'), resolve('test'), resolve('../components')]
+        exclude: /node_modules/
+        // include: [resolve('src'), resolve('test'), resolve('../components')]
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('../components')]
+        exclude: /node_modules/
+        // include: [resolve('src'), resolve('test'), resolve('../components')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

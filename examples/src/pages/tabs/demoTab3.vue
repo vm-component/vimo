@@ -39,7 +39,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { Tabs, Tab } from 'vimo/components/tabs'
   export default{
     data () {
       return {}
@@ -53,6 +52,5 @@
     },
     activated () {
     },
-    components: {Tabs, Tab}
   }
 </script>

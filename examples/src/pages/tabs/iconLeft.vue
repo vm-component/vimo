@@ -18,19 +18,9 @@
 </template>
 <style scoped lang="scss"></style>
 <script type="text/javascript">
-  import { Tabs, Tab } from 'vimo/components/tabs'
-  export default{
-    name: 'name',
+  export default {
     data () {
       return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
-    components: {Tabs, Tab}
+    }
   }
 </script>

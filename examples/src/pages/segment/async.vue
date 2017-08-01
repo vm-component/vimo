@@ -59,7 +59,6 @@
     }
 </style>
 <script type="text/javascript">
-  import { Segment, SegmentButton } from 'vimo/components/segment'
   export default{
     name: 'async',
     data () {
@@ -106,6 +105,5 @@
         this.onSelectValue = val
       }
     },
-    components: {Segment, SegmentButton}
   }
 </script>

@@ -45,7 +45,6 @@
 <style lang="scss">
 </style>
 <script type="text/javascript">
-  import { Segment, SegmentButton } from 'vimo/components/segment'
   export default{
     data () {
       return {
@@ -69,7 +68,6 @@
     },
     created () {},
     mounted () {},
-    activated () {},
-    components: {Segment, SegmentButton}
+    activated () {}
   }
 </script>

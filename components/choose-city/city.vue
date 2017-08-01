@@ -155,8 +155,8 @@
     }
 </style>
 <script type="text/javascript">
-  import { Modal } from 'vimo/components/modal'
-  import { pointerCoord, clamp } from 'vimo/util/util'
+  import { Modal } from '../modal'
+  import { pointerCoord, clamp } from '../util/util'
   export default{
     name: 'cityList',
     data () {
