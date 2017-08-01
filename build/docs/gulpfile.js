@@ -5,7 +5,6 @@
  * */
 var gulp = require('gulp')
 var jsdoc = require('gulp-jsdoc3')
-var babel = require('gulp-babel')
 var del = require('del')
 var gulpLoadPlugins = require('gulp-load-plugins')
 var $ = gulpLoadPlugins()
