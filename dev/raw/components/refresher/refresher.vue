@@ -3,8 +3,8 @@
         <slot></slot>
     </div>
 </template>
-<style lang="scss">
-    @import "./refresher.scss";
+<style lang="less">
+    @import "refresher";
 </style>
 <script type="text/javascript">
   /**

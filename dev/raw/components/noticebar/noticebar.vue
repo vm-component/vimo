@@ -12,7 +12,7 @@
         <div class="vm-action" v-if="actionClass" @click="close" :class="actionClass"></div>
     </div>
 </template>
-<style lang="scss">
+<style lang="less">
     .vm-noticebar {
         height: 35px;
         width: 100%;

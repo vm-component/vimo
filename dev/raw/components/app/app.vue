@@ -20,8 +20,12 @@
                :class="[{'click-block-enabled':isClickBlockEnabled}]"></aside>
     </article>
 </template>
-<style lang="scss">
-    @import './app';
+<style lang="less">
+    @import "app";
+    @import "app.ios.less";
+    @import "app.md.less";
+    @import "cordova.md.less";
+    @import "cordova.ios.less";
 </style>
 <script type="text/javascript">
   /**

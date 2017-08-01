@@ -8,9 +8,11 @@
         </div>
     </div>
 </template>
-<style lang="scss">
-    @import './toolbar.scss';
-    @import './toolbar-button.scss';
+<style lang="less">
+    @import "toolbar";
+    @import "toolbar.ios.less";
+    @import "toolbar.md.less";
+    @import "toolbar-button";
 </style>
 <script type="text/javascript">
   /**
@@ -94,7 +96,7 @@
    *    <Title>Left Menu</Title>
    * </Toolbar>
    * */
-  export default{
+  export default {
     name: 'Toolbar',
     data () {
       return {

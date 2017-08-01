@@ -13,6 +13,7 @@
 </template>
 <script type="text/javascript">
   import { Popover } from '../popover'
+
   export default{
     name: 'PopMenu',
     data () {
@@ -45,6 +46,8 @@
     }
   }
 </script>
-<style lang="scss">
+<style lang="less">
     @import "./menu-options";
+    @import "./menu-options.md.less";
+    @import "./menu-options.ios.less";
 </style>

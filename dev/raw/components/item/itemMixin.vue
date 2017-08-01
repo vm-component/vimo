@@ -18,11 +18,13 @@
         </div>
     </div>
 </template>
-<style lang="scss">
-    @import "item.scss";
-    @import "item-media.scss";
-    @import "item-sliding.scss";
-    @import "item-reorder.scss";
+<style lang="less">
+    @import "item";
+    @import "item.ios.less";
+    @import "item.md.less";
+    @import "item-media";
+    @import "item-sliding";
+    @import "item-reorder";
 </style>
 <script type="text/javascript">
   /**

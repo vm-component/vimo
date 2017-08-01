@@ -1,5 +1,7 @@
 <template>
     <header class="ion-header header" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
+        <!--right button placeholder-->
+        <div ref="rightButtonPlaceholder" id="rightButtonPlaceholder" style="width: 30px;bottom:0;height:1px; position: absolute;right:9px;"></div>
         <slot></slot>
     </header>
 </template>
@@ -45,7 +47,7 @@
     props: {
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     computed: {

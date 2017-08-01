@@ -1,7 +1,7 @@
 <template>
     <div></div>
 </template>
-<style lang="scss">
+<style lang="less">
     .picker .picker-panel .wheel-wrapper .wheel .wheel-scroll {
         padding: 0;
         margin: 0;

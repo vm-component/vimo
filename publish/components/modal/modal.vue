@@ -17,8 +17,6 @@
 </template>
 <style lang="scss">
     @import "./modal";
-    @import "./modal.ios";
-    @import "./modal.md";
 
     // transitioName = 'modal-zoom'
     .modal-zoom-enter-active, .modal-zoom-leave-active {
@@ -27,7 +25,7 @@
     }
 
     .modal-zoom-enter, .modal-zoom-leave-active {
-        transform: scale(0.85);
+        transform: scale(0.9);
         opacity: 0.01;
     }
 
@@ -40,6 +38,17 @@
         opacity: 0.01;
     }
 
+    // transitioName = 'modal-fade-right'
+    .modal-fade-right-enter-active, .modal-fade-right-leave-active {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .modal-fade-right-enter, .modal-fade-right-leave-active {
+        transform: translateX(40px);
+        opacity: 0;
+    }
+
 
 </style>
 <script type="text/javascript">
@@ -50,7 +59,7 @@
     props: {
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
 
       // 放入的页面组件

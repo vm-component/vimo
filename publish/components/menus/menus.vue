@@ -23,8 +23,6 @@
 </template>
 <style lang="scss">
     @import 'menus';
-    @import 'menus.ios';
-    @import 'menus.md';
 
     /*slideInLeft*/
     /*animate class*/
@@ -90,7 +88,7 @@
       type: {
         type: String,
         default () {
-          return this.$config.get('menuType', 'overlay')
+          return this.$config && this.$config.get('menuType', 'overlay')
         }
       },
       /**

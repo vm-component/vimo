@@ -86,7 +86,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('iconMode') || 'ios' }
+        default () { return this.$config && this.$config.get('iconMode') || 'ios' }
       },
       /**
        * 按钮color：
@@ -155,7 +155,7 @@
     computed: {
       // 颜色
       colorClass () {
-        return this.color ? (`icon-${this.color}`) : ''
+        return this.color ? (`icon-${this.mode}-${this.color}`) : ''
       }
     },
     methods: {

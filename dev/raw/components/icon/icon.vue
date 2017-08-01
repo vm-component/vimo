@@ -2,8 +2,10 @@
     <i class="ion-icon"
        :class="[colorClass,nameClass,itemClass,{'hide':hidden}]"></i>
 </template>
-<style lang="scss">
-    @import "icon.scss";
+<style lang="less">
+    @import "icon";
+    @import "icon.ios.less";
+    @import "icon.md.less";
 </style>
 <script type="text/javascript">
   /**

@@ -16,6 +16,34 @@
 </template>
 <style lang="scss">
     @import "./slides.scss";
+
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        display: flex;
+        overflow: hidden;
+        .swiper-wrapper {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            display: flex;
+            .swiper-slide {
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                font-size: inherit;
+                img {
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            }
+        }
+    }
+
+
 </style>
 
 <script type="text/javascript">

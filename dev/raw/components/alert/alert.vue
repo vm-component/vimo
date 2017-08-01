@@ -59,8 +59,10 @@
         </transition>
     </div>
 </template>
-<style lang="scss">
-    @import './alert.scss';
+<style lang="less">
+    @import "alert";
+    @import "alert.ios.less";
+    @import "alert.md.less";
 
     // transitioName = 'alert'
     .alert-enter-active, .alert-leave-active {

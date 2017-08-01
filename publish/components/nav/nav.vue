@@ -12,7 +12,6 @@
     </nav>
 </template>
 <style lang="scss">
-
     .ion-nav {
         .click-cover {
             position: absolute;
@@ -40,6 +39,7 @@
    *
    * */
   import { Indicator } from 'vimo/components/indicator'
+  import Velocity from 'velocity-animate'
   export default{
     name: 'Nav',
     props: {
@@ -47,12 +47,12 @@
       // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition/fade-transition
       pageTransition: {
         type: String,
-        default () { return this.$config.get('pageTransition') }
+        default () { return this.$config && this.$config.get('pageTransition') }
       },
       // 转场是否开启Indicator
       showIndicatorWhenPageChange: {
         type: Boolean,
-        default () { return this.$config.getBoolean('showIndicatorWhenPageChange') }
+        default () { return this.$config && this.$config.getBoolean('showIndicatorWhenPageChange') }
       }
     },
     data () {
@@ -82,14 +82,10 @@
        * */
       initNav () {
         // nav 动画切换部分
-        this.$eventBus.$on('onNavEnter', ({to, from, next}) => {
-          this.pageTransitionName = `${this.pageTransition}-forward`
-          this.$app && this.$app.setEnabled(false, 500)
-          next()
-        })
-        this.$eventBus.$on('onNavLeave', ({to, from, next}) => {
-          this.pageTransitionName = `${this.pageTransition}-backward`
-          this.$app && this.$app.setEnabled(false, 500)
+        const vm = this
+        this.$router.beforeEach((to, from, next) => {
+          vm.pageTransitionName = `${vm.pageTransition}-${vm.$history.getDirection()}`
+          vm.$app && vm.$app.setEnabled(false, 500)
           next()
         })
 
@@ -99,14 +95,10 @@
             Indicator.present()
             next()
           })
-
           this.$router.afterEach(() => {
             Indicator.dismiss()
           })
         }
-
-        // 告知history已完成初始化
-        this.$history._init()
       },
 
       // ----------- Menu -----------
@@ -179,8 +171,6 @@
       //  初始化导航
       this.initNav()
     },
-    mounted () {
-
-    }
+    mounted () {}
   }
 </script>

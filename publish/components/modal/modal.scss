@@ -43,13 +43,12 @@ $modal-inset-height-large: 600px !default;
 }
 
 .modal-wrapper {
-  z-index: 10;
+  z-index: 13;
+  position: relative;
 
   height: 100%;
 
   contain: strict;
-
-  //transition: all ease 400ms;
 
   @media only screen and (min-width: $modal-inset-min-width) and (min-height: $modal-inset-min-height-small) {
     position: absolute;

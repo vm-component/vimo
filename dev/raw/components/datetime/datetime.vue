@@ -14,8 +14,10 @@
         </Button>
     </div>
 </template>
-<style lang="scss">
-    @import "datetime.scss";
+<style lang="less">
+    @import "datetime";
+    @import "datetime.ios.less";
+    @import "datetime.md.less";
 </style>
 <script type="text/javascript">
   /**

@@ -2,7 +2,7 @@
     <section class="vm-feedback feedback__inputBox">
         <!--textarea-->
         <div class="feedback__inputBox--textareaBox">
-            <textarea :placeholder="placeholder"
+            <Textarea :placeholder="placeholder"
                       ref="textarea"
                       v-model="value.text"
                       :name="name"
@@ -11,7 +11,7 @@
                       :disabled="disabled"
                       :autofocus="autofocus"
                       :maxlength="maxlength"
-                      @input="inputHandler"></textarea>
+                      @onInput="inputHandler"></Textarea>
         </div>
         <p class="feedback__text">{{textCount}}/{{maxlength}}</p>
         <!--image 1~3| && word count-->
@@ -19,11 +19,11 @@
             <div class="image"
                  v-for="(item,index) in value.images" :key="index"
                  :style="{backgroundImage:'url('+item.code+')'}">
+                <div class="preview" @click="previewImage(index)"></div>
                 <div class="delete" @click="removeImage(index)"></div>
             </div>
             <!--input-->
-            <div class="image empty"
-                 v-show="value.images.length < maximage">
+            <div class="image empty" v-show="value.images.length < maximage" @click="addFile($event)">
                 <input @change="onChangeHandler" class="file" type="file">
             </div>
         </div>
@@ -31,12 +31,18 @@
 </template>
 <script type="text/javascript">
   /**
-   * @componsnt Feedback
+   * @component Feedback
    * @description
    *
    * ## 反馈图文框组件 / Feedback
    *
-   * 用于反馈/意见信息/评价等场景.
+   * 用于反馈/意见信息/评价等场景. 如果在Alipay环境，则使用alipay的组件上传。
+   *
+   * ### 如何引入
+   * ```
+   * import { Feedback } from 'vimo/components/feedback'
+   * components: {Feedback}
+   * ```
    *
    * @props {Number} [rows=3] - rows
    * @props {String} [name] - name
@@ -46,6 +52,7 @@
    * @props {String} [placeholder='请输入您的反馈...'] - placeholder
    * @props {Number} [maxlength=300] - 文本输入的最大长度
    * @props {Number} [maximage=300] - 图片上传的最大个数
+   * @props {Boolean} [isH5=false] - 是否强制使用H5模式
    *
    * @props {Object} value - 传入传出数据
    * @props {String} value.text - 传入传出文本
@@ -54,13 +61,18 @@
    * @props {Array} value.images.blob - 修正方向及大小的二进制blob
    * @props {Array} value.images.file - 图片file句柄
    *
+   * @demo https://dtfe.github.io/vimo-demo/#/feedback
+   * @usage
+   * <Feedback v-model="feedbackInfo" :maxlength="100" :maximage="4"></Feedback>
    * */
   import './fixImage'
   import { isString, isArray } from '../../util/util'
-  import Autosize from 'autosize'
+  import { Textarea } from '../input'
+  import { PreviewImage } from '../preview-image'
   export default{
     name: 'Feedback',
-    data(){
+    components: {Textarea},
+    data () {
       return {}
     },
     props: {
@@ -87,13 +99,14 @@
       value: {
         type: Object,
         required: true,
-        validator: function (value) {
+        validator (value) {
           return isString(value.text) && isArray(value.images)
         }
-      }
+      },
+      isH5: Boolean
     },
     computed: {
-      textareaElement () {
+      textareaComponent () {
         return this.$refs.textarea
       },
       // 计算输入数
@@ -108,18 +121,66 @@
        * 更新textarea组件
        * */
       update () {
-        Autosize.update(this.textareaElement)
+        this.textareaComponent.update()
       },
+
       /**
        * @function destroy
        * @description
        * 销毁textarea组件
        * */
       destroy () {
-        Autosize.destroy(this.textareaElement)
+        this.textareaComponent.destroy()
       },
 
       // -------- private -------
+
+      /**
+       * 图片预览
+       * @private
+       * */
+      previewImage (index) {
+        let images = []
+        this.value.images.forEach((image) => {
+          images.push(image.code)
+        })
+
+        PreviewImage({
+          isH5: true,
+          current: index || 0,
+          urls: images || []
+        })
+      },
+
+      /**
+       * @private
+       * */
+      addFile ($event) {
+        let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !this.isH5
+        if (isAlipayReady) {
+          // 阻止h5的input的触发
+          $event.preventDefault()
+          $event.stopPropagation()
+          console.info('Feedback 组件使用Alipay模式, 单次上传一张.')
+          window.ap.chooseImage(1, (res) => {
+            window.ap.compressImage({
+              apFilePaths: res.apFilePaths,
+              level: 0
+            }, (result) => {
+              if (result.apFilePaths[0]) {
+                let imgData = {
+                  code: result.apFilePaths[0],
+                  blob: result.apFilePaths[0], // 转化的二进制图片文件
+                  file: result.apFilePaths[0] // 源文件 file
+                }
+                this.pushImageData(imgData)
+              }
+            })
+          })
+        } else {
+          console.info('Feedback 组件使用H5模式!')
+        }
+      },
 
       /**
        * @private
@@ -131,6 +192,7 @@
           this.$emit('input', this.value)
         }
       },
+
       /**
        * 图片数据推入
        * @private
@@ -146,22 +208,21 @@
        * */
       onChangeHandler (event) {
         let input = event.target
-        const fixImage = (file, callback) => {
+        let fixImage = (file, callback) => {
           // 加载资源
-          canvasResize(file, {
-            width: 640,// 最大的尺寸,如果比这小是不会出现放大的情况的,文章宽度为710px
+          window.canvasResize(file, {
+            width: 640, // 最大的尺寸,如果比这小是不会出现放大的情况的,文章宽度为710px
             height: 0,
             crop: false,
             quality: 80,
             // rotate: 90,
             callback (data, width, height) {
               // 将图片改为二进制文件,准备上传
-              let _blob = canvasResize('dataURLtoBlob', data)
+              let _blob = window.canvasResize('dataURLtoBlob', data)
               !!callback && callback(_blob)
             }
           })
         }
-
         if (input.files && input.files[0]) {
           let file = input.files[0]
           if (!input.files[0].type.match('image.*')) {
@@ -189,9 +250,6 @@
       removeImage (index) {
         this.value.images.splice(index, 1)
       }
-    },
-    mounted(){
-      Autosize(this.textareaElement)
     }
   }
 </script>
@@ -207,21 +265,6 @@
             width: 100%;
             padding: 10px;
             background: #fff;
-            textarea {
-                width: 100%;
-                padding: 0;
-                border: none;
-                font-size: 14px;
-                color: #000;
-                height: 91px;
-                line-height: 130%;
-                background: transparent;
-                border-radius: 3px;
-                resize: none;
-                border: 0;
-                -webkit-appearance: none;
-                outline: none
-            }
         }
         .feedback__text {
             color: #8b8b8b;
@@ -252,7 +295,6 @@
 
                 border: 1px solid #eee;
 
-                /*background-image: url();*/
                 background-repeat: no-repeat;
                 background-color: #eee;
                 background-position: center center;
@@ -266,12 +308,21 @@
                     min-height: 100%;
                 }
             }
+            .preview {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                z-index: 1;
+                left: 0;
+                top: 0;
+            }
             .delete {
                 position: absolute;
                 height: 25px;
                 width: 25px;
                 top: -5px;
                 right: -5px;
+                z-index: 2;
                 &:before {
                     content: '';
                     position: absolute;
@@ -281,6 +332,7 @@
                     border-radius: 100%;
                     top: 0;
                     right: 0;
+                    z-index: 3;
                 }
                 &:after {
                     content: '';
@@ -290,6 +342,7 @@
                     background: #fff;
                     top: 7px;
                     right: 3px;
+                    z-index: 4;
                 }
             }
             .empty {
@@ -326,5 +379,4 @@
             }
         }
     }
-
 </style>

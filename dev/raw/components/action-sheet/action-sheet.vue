@@ -355,8 +355,10 @@
     }
   }
 </script>
-<style lang="scss">
-    @import './action-sheet.scss';
+<style lang="less">
+    @import "action-sheet";
+    @import "action-sheet.ios.less";
+    @import "action-sheet.md.less";
 
     // transitioName = 'action-sheet'
     .action-sheet-enter-active, .action-sheet-leave-active {

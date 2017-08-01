@@ -11,8 +11,8 @@
              v-show="isActiveLocal"></div>
     </transition>
 </template>
-<style lang="scss">
-    @import './backdrop';
+<style lang="less">
+    @import "backdrop";
 
     // transitioName = 'backdrop'
     .backdrop-enter-active, .backdrop-leave-active {

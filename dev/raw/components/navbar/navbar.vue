@@ -21,9 +21,11 @@
         <slot name="buttons"></slot>
     </div>
 </template>
-<style lang="scss">
-    @import '../toolbar/toolbar.scss';
-    @import '../toolbar/toolbar-button.scss';
+<style lang="less">
+    @import "../toolbar/toolbar";
+    @import "../toolbar/toolbar.ios.less";
+    @import "../toolbar/toolbar.md.less";
+    @import "../toolbar/toolbar-button";
 </style>
 <script type="text/javascript">
   /**

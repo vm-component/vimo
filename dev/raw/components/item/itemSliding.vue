@@ -10,7 +10,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="scss"></style>
+<style lang="less"></style>
 <script type="text/javascript">
   /**
    * @component ItemSliding

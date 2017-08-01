@@ -11,7 +11,7 @@
         <div class="nav-decor"></div>
     </nav>
 </template>
-<style lang="scss">
+<style lang="less">
     .ion-nav {
         .click-cover {
             position: absolute;

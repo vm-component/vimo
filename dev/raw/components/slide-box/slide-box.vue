@@ -26,9 +26,9 @@
         </div>
     </div>
 </template>
-<style lang="scss">
-    $green: #78c430;
-    $red: #ef4644;
+<style lang="less">
+    @green: #78c430;
+    @red: #ef4644;
     .vm-slideBox {
         position: relative;
         height: 52px;
@@ -128,7 +128,7 @@
     .vm-slideBox[state="completing"] {
         .vm-slideBox-track {
             .track-background {
-                background-color: $green;
+                background-color: @green;
             }
         }
     }
@@ -136,7 +136,7 @@
     .vm-slideBox[state="failing"] {
         .vm-slideBox-track {
             .track-background {
-                background-color: $red;
+                background-color: @red;
             }
         }
     }

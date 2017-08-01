@@ -41,8 +41,6 @@
 </template>
 <style lang="scss">
     @import "./range.scss";
-    @import "./range.ios.scss";
-    @import "./range.md.scss";
 </style>
 <script type="text/javascript">
   /**
@@ -155,7 +153,7 @@
       },
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
       /**
        * 当拖动knob时显示大头针提示

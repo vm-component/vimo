@@ -14,8 +14,10 @@
         <slot></slot>
     </div>
 </template>
-<style lang="scss">
+<style lang="less">
     @import "select";
+    @import "select.ios.less";
+    @import "select.md.less";
 </style>
 <script type="text/javascript">
   /**

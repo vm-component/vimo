@@ -18,8 +18,10 @@
         </section>
     </article>
 </template>
-<style lang="scss">
-    @import "./tabs.scss";
+<style lang="less">
+    @import "tabs";
+    @import "tabs.ios.less";
+    @import "tabs.md.less";
 </style>
 <script type="text/javascript">
   /**

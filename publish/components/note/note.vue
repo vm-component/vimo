@@ -3,10 +3,6 @@
         <slot></slot>
     </div>
 </template>
-<style lang="scss">
-    @import 'note.ios.scss';
-    @import 'note.md.scss';
-</style>
 <script type="text/javascript">
   /**
    * @component Note
@@ -32,7 +28,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     computed: {

@@ -31,7 +31,6 @@
    * @see component:Refresher
    * @demo https://dtfe.github.io/vimo-demo/#/refresher
    * */
-
   import { Icon } from '../icon'
   import { Spinner } from '../spinner'
   export default{
@@ -39,7 +38,7 @@
     props: {
       pullingIcon: {
         type: String,
-        default () { return this.$config.get('ionPullIcon', 'arrow-down') || 'arrow-down' }
+        default () { return this.$config && this.$config.get('onPullIcon', 'arrow-down') || 'arrow-down' }
       },
       pullingText: {
         type: String,
@@ -47,7 +46,7 @@
       },
       refreshingSpinner: {
         type: String,
-        default () { return this.$config.get('ionRefreshingSpinner', this.$config.get('spinner', 'ios')) || 'ios' }
+        default () { return this.$config && this.$config.get('onRefreshingSpinner', this.$config && this.$config.get('spinner', 'ios')) || 'ios' }
       },
       refreshingText: {
         type: String,

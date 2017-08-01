@@ -7,9 +7,6 @@
         <!--<div class="button-effect"></div>-->
     </button>
 </template>
-<style lang="scss">
-
-</style>
 <script type="text/javascript">
   /**
    * @component FabButton

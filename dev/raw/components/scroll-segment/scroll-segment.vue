@@ -247,7 +247,7 @@
     }
   }
 </script>
-<style lang="scss">
+<style lang="less">
     .vm-scroll-segment {
         height: 100%;
         width: 100%;
@@ -258,7 +258,7 @@
             overflow-y: hidden;
             position: relative;
             // for hide scroll bar
-            height: calc(100% + 10px);
+            height: ~'calc(100% + 10px)';
             -webkit-overflow-scrolling: touch;
             &::-webkit-scrollbar {
                 display: none;
@@ -270,7 +270,7 @@
             flex-direction: row;
             flex-wrap: nowrap;
             // for hide scroll bar
-            height: calc(100% - 10px);
+            height: ~'calc(100% - 10px)';
         }
     }
 </style>

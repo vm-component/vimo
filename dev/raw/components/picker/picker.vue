@@ -29,8 +29,10 @@
         </transition>
     </div>
 </template>
-<style lang="scss">
-    @import "./picker.scss";
+<style lang="less">
+    @import "picker";
+    @import "picker.ios.less";
+    @import "picker.md.less";
 
     // transitioName = 'picker'
     .picker-enter-active, .picker-leave-active {

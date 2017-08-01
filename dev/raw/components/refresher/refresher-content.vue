@@ -14,6 +14,10 @@
         </div>
     </div>
 </template>
+<style lang="less">
+    @import "refresher-content.ios.less";
+    @import "refresher-content.md.less";
+</style>
 <script type="text/javascript">
   /**
    * @component RefresherContent

@@ -17,16 +17,30 @@
 </template>
 <style lang="scss">
     @import './loading.scss';
-    @import './loading.ios.scss';
-    @import './loading.md.scss';
 
-    .indicator {
+    .ion-loading.indicator {
         .loading-wrapper {
             background: rgba(0, 0, 0, 0.9);
             color: #fff;
-            padding: 13px 15px;
+            padding: 13px 13px;
             circle, line {
                 stroke: #fff !important;
+            }
+            .loading-spinner {
+                height: 30px;
+                width: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .indicator.reverse {
+        .loading-wrapper {
+            background: rgba(256, 256, 256, 0.9);
+            circle, line {
+                stroke: #000 !important;
             }
         }
     }
@@ -112,7 +126,7 @@
     props: {
       spinner: {
         type: String,
-        default () { return this.$config.get('spinner', 'ios') || 'ios' }
+        default () { return this.$config && this.$config.get('spinner', 'ios') || 'ios' }
       },
       content: [String],
       cssClass: [String],
@@ -127,7 +141,7 @@
       },
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     data () {

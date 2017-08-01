@@ -1,9 +1,7 @@
 <template>
-    <div :class="[itemClass,listHeaderClass,colorClass]" @click="directTo()">
+    <div class="ion-item item" :class="[itemClass,listHeaderClass,colorClass]" @click="directTo()">
         <!--以下组件显示在此处：[item-left],ion-checkbox:not([item-right])-->
         <slot name="item-left"></slot>
-
-        <!--<ng-content select="[item-left],ion-checkbox:not([item-right])"></ng-content>-->
         <div class="item-inner">
             <div class="input-wrapper">
                 <!--如果是ion-label则单独显示，如果不是则显示在ion-label中-->
@@ -17,15 +15,15 @@
 
             <!--以下组件显示在此处：[item-right],ion-radio,ion-toggle-->
             <slot name="item-right"></slot>
-            <!--<section class="ion-reorder"-->
-            <!--v-show="shouldHaveReorder">-->
-            <!--<Icon name="reorder"></Icon>-->
-            <!--</section>-->
         </div>
-        <!--<div class="button-effect"></div>-->
     </div>
 </template>
-<style lang="scss"></style>
+<style lang="scss">
+    @import "item.scss";
+    @import "item-media.scss";
+    @import "item-sliding.scss";
+    @import "item-reorder.scss";
+</style>
 <script type="text/javascript">
   /**
    * @component Item
@@ -111,7 +109,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark
@@ -135,7 +133,7 @@
     },
     computed: {
       itemClass () {
-        return `item item-${this.mode}`
+        return `item-${this.mode}`
       },
       colorClass () {
         return this.color ? (`item-${this.mode}-${this.color}`) : ''

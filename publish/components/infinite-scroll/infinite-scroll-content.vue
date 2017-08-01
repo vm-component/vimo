@@ -23,13 +23,14 @@
    * @see component:InfiniteScroll
    * @demo https://dtfe.github.io/vimo-demo/#/infinite-scroll
    * */
+  import { Spinner } from '../spinner'
   export default{
     name: 'InfiniteScrollContent',
     props: {
       // loading的旋转图标
       loadingSpinner: {
         type: String,
-        default () { return this.$config.get('infiniteLoadingSpinner', this.$config.get('spinner', 'ios')) || 'ios' }
+        default () { return this.$config && this.$config.get('infiniteLoadingSpinner', this.$config && this.$config.get('spinner', 'ios')) || 'ios' }
       },
       // loading的文字
       loadingText: {
@@ -41,6 +42,7 @@
       return {
         state: 'loading'
       }
-    }
+    },
+    components: {Spinner}
   }
 </script>

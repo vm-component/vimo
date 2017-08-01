@@ -51,8 +51,10 @@
         </Button>
     </div>
 </template>
-<style lang="scss">
-    @import "./searchbar";
+<style lang="less">
+    @import "searchbar";
+    @import "searchbar.ios.less";
+    @import "searchbar.md.less";
 </style>
 <script type="text/javascript">
   /**

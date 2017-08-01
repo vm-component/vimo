@@ -1,7 +1,7 @@
 <template>
     <a class="tab-button" ref="routerLink" @click="tabClickHandler($event)"
        :id="tabId"
-       :class="{'has-title':hasTitle, 'has-icon':hasIcon, 'has-title-only':hasTitleOnly, 'icon-only':hasIconOnly, 'has-badge':hasBadge, 'disable-hover':disHover, 'tab-disabled':!enabled, 'tab-hidden':!show,'tab-active':isActive}">
+       :class="{'has-title':hasTitle, 'has-icon':hasIcon, 'has-title-only':hasTitleOnly, 'icon-only':hasIconOnly, 'has-badge':hasBadge,  'tab-disabled':!enabled, 'tab-hidden':!show,'tab-active':isActive}">
         <Icon v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
         <span v-if="tabTitle" class="tab-button-text">{{tabTitle}}</span>
         <Badge v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
@@ -63,7 +63,6 @@
     },
     data () {
       return {
-        disHover: this.$config.getBoolean('hoverCSS', false),
         index: ++_tabId,
         isActive: false // 这个值具有滞后性, 只代表当前的页面的状态, 不能用于其他
       }

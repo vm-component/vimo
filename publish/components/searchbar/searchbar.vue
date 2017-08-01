@@ -22,7 +22,6 @@
 
             <!--input左边的search按钮-->
             <div ref="searchbarIcon" class="searchbar-search-icon"></div>
-
             <input ref="searchbarInput" class="searchbar-input" id="searchbarInput"
                    @input="onInputHandler($event)"
                    @blur="onBlurHandler($event)"
@@ -42,8 +41,7 @@
         </div>
 
         <!--取消按钮，点击input时出现，只对IOS，md在search icon位置显示，wp没有-->
-        <Button
-                ref="cancelButton"
+        <Button ref="cancelButton"
                 mode="ios"
                 clear
                 @click="cancelSearchbar($event)"
@@ -55,8 +53,6 @@
 </template>
 <style lang="scss">
     @import "./searchbar";
-    @import "./searchbar.ios";
-    @import "./searchbar.md";
 </style>
 <script type="text/javascript">
   /**
@@ -83,18 +79,18 @@
    * }
    * ```
    *
-   * @props {String} [color] - 颜色
-   * @props {String} [mode='ios'] - 模式
-   * @props {String} [cancelButtonText='Cancel'] - 取消按钮的文本
-   * @props {Boolean} [showCancelButton=false] - 是否显示cancelButton
-   * @props {Number} [debounce=0] - 等待多久触发onInput事件
-   * @props {String} [placeholder='Search'] - 设置placeholder的值.
-   * @props {String} [autocomplete] - 自动完成
-   * @props {String} [autocorrect] - 自动纠错
-   * @props {String|Boolean} [autofocus] - 如果是boolean类型, 则立即判断, 如果是Number, 则等待dom完毕定时后自动focus
-   * @props {Boolean} [spellcheck] - 拼写检查
-   * @props {String} [type='search'] - 设置input配型, 可以是: "text", "password", "email", "number", "search", "tel", "url".
-   * @props {Boolean} [animated=false] - 是否启动点击动画
+   * @props {String} [color]                        - 颜色
+   * @props {String} [mode='ios']                   - 模式
+   * @props {String} [cancelButtonText='Cancel']    - 取消按钮的文本
+   * @props {Boolean} [showCancelButton=false]      - 是否显示cancelButton(只在focus状态才显示cancelBtn, 且cancelBtn只对组件作用, 如果要赋予业务能力, 请在右侧自己实现cancelBtn)
+   * @props {Number} [debounce=0]                   - 等待多久触发onInput事件
+   * @props {String} [placeholder='Search']         - 设置placeholder的值.
+   * @props {String} [autocomplete]                 - 自动完成
+   * @props {String} [autocorrect]                  - 自动纠错
+   * @props {String|Boolean} [autofocus]            - 如果是boolean类型, 则立即判断, 如果是Number, 则等待dom完毕定时后自动focus
+   * @props {Boolean} [spellcheck]                  - 拼写检查
+   * @props {String} [type='search']                - 设置input配型, 可以是: "text", "password", "email", "number", "search", "tel", "url".
+   * @props {Boolean} [animated=false]              - 是否启动点击动画
    *
    *
    * @fires component:SearchBar#onInput
@@ -148,9 +144,9 @@
         shouldAnimated: false,
 
         // 三个元素的id的document实例
-        searchbarIcon: '',
-        searchbarInput: '',
-        cancelButton: '',
+        searchbarIconElement: '',
+        searchbarInputElement: '',
+        cancelButtonElement: '',
 
         // 外部的value映射
         theValue: this.value,
@@ -170,7 +166,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
       /**
        * Set the the cancel button text. Default: "Cancel".
@@ -266,6 +262,17 @@
     },
     methods: {
 
+      // -------- public --------
+      /**
+       * @function setFocus
+       * @description
+       * 手动设置当前input的focus状态
+       */
+      setFocus () {
+        this.searchbarInputElement.focus()
+      },
+
+      // -------- private --------
       /**
        * Update the Searchbar input value when the input changes
        * @private
@@ -325,7 +332,7 @@
         window.setTimeout(() => {
           if (!this.shouldBlur) {
             this.sbHasFocus = true
-            this.searchbarInput.focus()
+            this.searchbarInputElement.focus()
           } else {
             /**
              * @event component:SearchBar#onBlur
@@ -344,7 +351,7 @@
        * @private
        */
       clearInput ($event) {
-        this.searchbarInput.focus()
+        this.searchbarInputElement.focus()
         /**
          * @event component:SearchBar#onClear
          * @description clear事件
@@ -403,8 +410,8 @@
       },
 
       positionPlaceholder () {
-        let inputEle = this.searchbarInput
-        let iconEle = this.searchbarIcon
+        let inputEle = this.searchbarInputElement
+        let iconEle = this.searchbarIconElement
         console.assert(inputEle, 'The input element is undefined, please check!::<Function>positionPlaceholder():inputEle')
         console.assert(iconEle, 'The icon element is undefined, please check!::<Function>positionPlaceholder():iconEle')
         if (!inputEle || !iconEle) {
@@ -416,7 +423,7 @@
           iconEle.removeAttribute('style')
         } else {
           if (this.sbHasFocus) {
-            this.searchbarInput.blur()
+            this.searchbarInputElement.blur()
           }
 
           if (this.placeHolderTextWidth === null) {
@@ -452,12 +459,12 @@
        * @private
        */
       positionCancelButton () {
-        if (!this.cancelButton) {
+        if (!this.cancelButtonElement) {
           return
         }
         let showShowCancel = this.sbHasFocus
         if (showShowCancel !== this.isCancelVisible) {
-          let cancelStyleEle = this.cancelButton
+          let cancelStyleEle = this.cancelButtonElement
           let cancelStyle = cancelStyleEle.style
           this.isCancelVisible = showShowCancel
           if (showShowCancel) {
@@ -472,18 +479,18 @@
       }
     },
     mounted () {
-      this.searchbarIcon = this.$refs.searchbarIcon
-      this.searchbarInput = this.$refs.searchbarInput
-      this.cancelButton = this.$refs.cancelButton.$el
+      this.searchbarIconElement = this.$refs.searchbarIcon
+      this.searchbarInputElement = this.$refs.searchbarInput
+      this.cancelButtonElement = this.$refs.cancelButton.$el
       this.positionElements()
 
-      if (isBoolean(this.autofocus)) {
-        this.searchbarInput.focus()
+      if (isBoolean(this.autofocus) && this.autofocus) {
+        this.setFocus()
       }
 
-      if (isNumber(this.autofocus)) {
+      if (isNumber(this.autofocus) && this.autofocus > 0) {
         window.setTimeout(() => {
-          this.searchbarInput.focus()
+          this.setFocus()
         }, this.autofocus)
       }
     },

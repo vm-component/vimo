@@ -23,7 +23,7 @@
         </Content>
     </Page>
 </template>
-<style lang="scss">
+<style lang="less">
     .previewImage-enter-active, .previewImage-leave-active {
         transition: opacity 300ms
     }
@@ -74,7 +74,7 @@
 <script type="text/javascript">
   import { Modal } from '../modal'
   // 不适用lite是因为其不支持图片懒加载
-  import { Slides, Slide } from 'vimo/components/slides'
+  import { Slides, Slide } from '../slides'
   export default{
     name: 'PreviewImage',
     data () {

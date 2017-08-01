@@ -7,9 +7,11 @@
         <!--<div class="button-effect"></div>-->
     </button>
 </template>
-<style lang="scss">
-    @import './button';
-    @import './button-icon';
+<style lang="less">
+    @import "button";
+    @import "button.md.less";
+    @import "button.ios.less";
+    @import "button-icon";
 </style>
 <script type="text/javascript">
   /**

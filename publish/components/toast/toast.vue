@@ -18,8 +18,6 @@
 </template>
 <style lang="scss">
     @import "./toast";
-    @import "./toast.ios";
-    @import "./toast.md";
 </style>
 <script type="text/javascript">
   import { urlChange } from '../../util/util'
@@ -56,7 +54,7 @@
       },
       mode: {
         type: String,
-        default () { return this.$config.get('mode', 'ios') }
+        default () { return this.$config && this.$config.get('mode', 'ios') }
       }
     },
     data () {

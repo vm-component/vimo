@@ -4,15 +4,7 @@
     </div>
 </template>
 <style lang="scss">
-    @import "../item/item.scss";
-    @import "../item/item.ios.scss";
-    @import "../item/item.md.scss";
-    @import "../item/item-media.scss";
-    @import "../item/item-sliding.scss";
-    @import "../item/item-reorder.scss";
     @import "./list.scss";
-    @import "./list.ios.scss";
-    @import "./list.md.scss";
 </style>
 <script type="text/javascript">
   /**
@@ -147,7 +139,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
       /**
        * shouldEnable whether the item-sliding should be enabled or not

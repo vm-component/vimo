@@ -35,9 +35,13 @@ $action-sheet-max-width: 500px !default;
 }
 
 .action-sheet-group {
-  //max-height: 300px;
-  //overflow-y: scroll;
-  //-webkit-overflow-scrolling: touch;
+  .action-sheet-buttons {
+    max-height: 265px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .action-sheet-button {

@@ -15,8 +15,10 @@
         </transition>
     </div>
 </template>
-<style lang="scss">
-    @import "./modal";
+<style lang="less">
+    @import "modal";
+    @import "modal.ios.less";
+    @import "modal.md.less";
 
     // transitioName = 'modal-zoom'
     .modal-zoom-enter-active, .modal-zoom-leave-active {

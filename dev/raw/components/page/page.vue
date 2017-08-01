@@ -3,10 +3,10 @@
         <slot></slot>
     </article>
 </template>
-<style lang="scss">
+<style lang="less">
 
     /// @prop - Background color of the content when making transition
-    $content-ios-transition-background: #000 !default;
+    @content-ios-transition-background: #000;
 
     // Page Container Structure
     // --------------------------------------------------
@@ -42,7 +42,7 @@
         width: 100%;
         height: 100%;
 
-        background: $content-ios-transition-background;
+        background: @content-ios-transition-background;
 
         pointer-events: none;
     }

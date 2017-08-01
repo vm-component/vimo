@@ -129,6 +129,11 @@ $picker-max-width: 500px !default;
   transform: translate3d(-9999px, 0px, 0px);
 }
 
+// for long text
+.small-text .picker-opts .picker-opt {
+  font-size: 16px;
+}
+
 .picker-opt.picker-opt-disabled {
   pointer-events: none;
 }

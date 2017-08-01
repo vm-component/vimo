@@ -5,8 +5,6 @@
 </template>
 <style lang="scss">
     @import "badge.scss";
-    @import "badge.ios.scss";
-    @import "badge.md.scss";
 </style>
 <script type="text/javascript">
 
@@ -39,7 +37,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     computed: {

@@ -16,8 +16,10 @@
         </transition>
     </div>
 </template>
-<style lang="scss">
-    @import "./toast";
+<style lang="less">
+    @import "toast";
+    @import "toast.ios.less";
+    @import "toast.md.less";
 </style>
 <script type="text/javascript">
   import { urlChange } from '../../util/util'

@@ -3,14 +3,14 @@
         <slot></slot>
     </footer>
 </template>
-<style lang="scss">
-    @import "../../themes/globals";
+<style lang="less">
+    @import "../../themes/index";
 
     .ion-footer {
         position: absolute;
         bottom: 0;
         left: 0;
-        z-index: $z-index-toolbar;
+        z-index: @z-index-toolbar;
         display: block;
         width: 100%;
         transition: -webkit-transform ease 300ms;

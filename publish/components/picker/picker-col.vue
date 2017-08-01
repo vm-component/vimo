@@ -23,7 +23,6 @@
         <div v-if="col.suffix" class="picker-suffix" :style="{'width':col.suffixWidth}">{{col.suffix}}</div>
     </div>
 </template>
-<style lang="scss"></style>
 <script type="text/javascript">
   import { pointerCoord, clamp, parsePxUnit } from '../../util/util'
   const PICKER_OPT_SELECTED = 'picker-opt-selected'
@@ -35,8 +34,8 @@
     data () {
       return {
         isInit: false,
-        rotateFactor: this.$config.getNumber('pickerRotateFactor', 0),
-        scaleFactor: this.$config.getNumber('pickerScaleFactor', 1),
+        rotateFactor: this.$config && this.$config.getNumber('pickerRotateFactor', 0),
+        scaleFactor: this.$config && this.$config.getNumber('pickerScaleFactor', 1),
         pickerComponent: null,          // 父组件 Picker 实例
 
         y: 0,
@@ -108,6 +107,7 @@
         this.pos.push(currentY, Date.now())
 
         if (this.startY === null) {
+          console.error('pointerMove this.startY === null')
           return
         }
 
@@ -118,19 +118,17 @@
           // scrolling up higher than scroll area
           y = Math.pow(y, 0.8)
           this.bounceFrom = y
-
         } else if (y < this.maxY) {
           // scrolling down below scroll area
           y += Math.pow(this.maxY - y, 0.9)
           this.bounceFrom = y
-
         } else {
           this.bounceFrom = 0
         }
 
         this.update(y, 0, false, false)
 
-        let currentIndex = Math.max(Math.abs(Math.round(y / this.optHeight)), 0)
+        let currentIndex = Math.max(Math.abs((y / this.optHeight) >> 0), 0)
         if (currentIndex !== this.lastTempIndex) {
           this.lastTempIndex = currentIndex
         }
@@ -139,6 +137,7 @@
         ev.preventDefault()
 
         if (this.startY === null) {
+          console.error('pointerEnd this.startY === null')
           return
         }
 
@@ -205,7 +204,7 @@
             ? Math.max(this.velocity, 1)
             : Math.min(this.velocity, -1)
 
-          y = Math.round(this.y - this.velocity)
+          y = (this.y - this.velocity) >> 0
 
           if (y > this.minY) {
             // whoops, it's trying to scroll up farther than the options we have!
@@ -234,7 +233,7 @@
           this.decelerate()
         }
 
-        let currentIndex = Math.max(Math.abs(Math.round(y / this.optHeight)), 0)
+        let currentIndex = Math.max(Math.abs((y / this.optHeight) >> 0), 0)
         this.lastTempIndex = currentIndex
       },
 
@@ -268,7 +267,7 @@
       /**
        * @param {number} y - y
        * @param {number} duration - duration
-       * @param {boolean} saveY - saveY
+       * @param {boolean} saveY - saveY 如果在滚动中则不记录Y
        * @param {boolean} emitChange - emitChange
        * @private
        * */
@@ -281,7 +280,7 @@
         }
 
         // ensure we've got a good round number :)
-        y = Math.round(y)
+        y = y >> 0
 
         let i
         let button
@@ -298,7 +297,7 @@
         const parent = this.colEle
         const children = parent.children
         const length = children.length
-        const selectedIndex = Math.min(Math.max(Math.round(-y / this.optHeight), 0), length - 1)
+        const selectedIndex = Math.min(Math.max((-y / this.optHeight) >> 0, 0), length - 1)
         const durationStr = (duration === 0) ? null : duration + 'ms'
         const scaleStr = `scale(${this.scaleFactor})`
 
@@ -419,7 +418,7 @@
       reset () {
         this.col.selectedIndex = 0
         window.setTimeout(() => {
-          this.update(0, 0, false, false)
+          this.update(0, 0, true, false)
           this.refresh()
         }, 0)
       },

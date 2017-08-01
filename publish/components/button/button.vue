@@ -9,8 +9,6 @@
 </template>
 <style lang="scss">
     @import './button';
-    @import './button.ios';
-    @import './button.md';
     @import './button-icon';
 </style>
 <script type="text/javascript">
@@ -85,7 +83,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
 
       small: [Boolean],

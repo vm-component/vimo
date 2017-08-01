@@ -1,8 +1,13 @@
 <template>
     <div class="swiper-slide">
-        <div class="slide-zoom">
+        <template v-if="zoom">
+            <div class="swiper-zoom-container" >
+                <slot></slot>
+            </div>
+        </template>
+        <template v-else>
             <slot></slot>
-        </div>
+        </template>
     </div>
 </template>
 <script type="text/javascript">
@@ -22,14 +27,19 @@
     name: 'Slide',
     data () {
       return {
+        zoom: false,
         slidesComponent: null
       }
     },
     created () {
       if (this.$parent.$options._componentTag.toLowerCase() === 'slides') {
         this.slidesComponent = this.$parent
+        this.zoom = this.slidesComponent.zoom
         this.slidesComponent.initSlides()
       }
+    },
+    mounted () {
+
     }
   }
 </script>

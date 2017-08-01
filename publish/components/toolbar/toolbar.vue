@@ -11,8 +11,6 @@
 <style lang="scss">
     @import './toolbar.scss';
     @import './toolbar-button.scss';
-    @import './toolbar.ios.scss';
-    @import './toolbar.md.scss';
 </style>
 <script type="text/javascript">
   /**
@@ -62,7 +60,7 @@
    * @props {String} [color] - 颜色
    *
    * @slot [空] 作为内容, 比如Title/Searchbar/Segment放置的位置
-   * @slot [buttons] 按钮组, 别忘记加[left]/[right]/[start]/[end]属性标记位置
+   * @slot [buttons] 按钮组, 别忘记加[left]/[right]/[end]属性标记位置
    * @demo https://dtfe.github.io/vimo-demo/#/toolbar
    *
    *
@@ -100,7 +98,7 @@
     name: 'Toolbar',
     data () {
       return {
-        statusbarPadding: this.$config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
+        statusbarPadding: this.$config && this.$config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
       }
     },
     props: {
@@ -109,7 +107,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark

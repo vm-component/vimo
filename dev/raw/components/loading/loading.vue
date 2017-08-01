@@ -15,8 +15,10 @@
         </transition>
     </div>
 </template>
-<style lang="scss">
-    @import './loading.scss';
+<style lang="less">
+    @import "loading";
+    @import "loading.ios.less";
+    @import "loading.md.less";
 
     .ion-loading.indicator {
         .loading-wrapper {

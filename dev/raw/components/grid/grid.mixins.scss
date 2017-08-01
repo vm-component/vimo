@@ -1,4 +1,4 @@
-@import "../../themes/globals";
+//@import "../../themes/index.less";
 
 // Responsive Mixins
 // --------------------------------------------------
@@ -175,7 +175,7 @@
 // ---------------------------------------------------------------------------------
 
 @mixin make-column-modifier($type, $size, $columns) {
-  // Work around the lack of dynamic mixin @include support (https://github.com/sass/sass/issues/626)
+  // Work around the lack of dynamic mixin .support (https://github.com/sass/sass/issues/626)
   @if $type == push {
     @include make-column-push($size, $columns);
   } @else if $type == pull {

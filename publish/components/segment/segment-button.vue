@@ -1,5 +1,5 @@
 <template>
-    <div @click="onPointerDownHandler($event)" class="ion-segment-button segment-button"
+    <div @click="onPointerDownHandler($event)" class="segment-button"
          :class="{'segment-activated':isSelected,'segment-button-disabled':isDisabled}">
         <slot></slot>
         <!--<div class="button-effect"></div>-->
@@ -48,7 +48,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     watch: {

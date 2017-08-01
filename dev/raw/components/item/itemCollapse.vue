@@ -24,7 +24,7 @@
         </transition>
     </div>
 </template>
-<style lang="scss">
+<style lang="less">
     .item-collapse-inner {
         z-index: 1;
         opacity: 1;

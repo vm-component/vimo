@@ -8,8 +8,10 @@
         </svg>
     </div>
 </template>
-<style lang="scss">
-    @import './spinner';
+<style lang="less">
+    @import "spinner";
+    @import "spinner.ios.less";
+    @import "spinner.md.less";
 </style>
 <script type="text/javascript">
   /**

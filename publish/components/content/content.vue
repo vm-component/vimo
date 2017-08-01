@@ -1,12 +1,10 @@
 <template>
     <article content class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
-
         <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
             <!--默认是能滚动的内容-->
             <!--原生滚动-->
             <slot></slot>
         </section>
-
         <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
             <!--Fixed-->
             <slot name="fixed"></slot>
@@ -20,8 +18,6 @@
 </template>
 <style lang="scss">
     @import './content';
-    @import './content.ios';
-    @import './content.md';
 </style>
 <script type="text/javascript">
   /**
@@ -124,11 +120,8 @@
     name: 'Content',
     props: {
       enableJsScroll: {
-        type: [Boolean, String],
-        validator (value) {
-          return isBoolean(value) || (isString(value) && (value === 'true' || value === 'false'))
-        },
-        default () { return this.$config.getBoolean('scrollAssist', false) }
+        type: Boolean,
+        default () { return this.$config && this.$config.getBoolean('scrollAssist', false) }
       },
       fullscreen: {
         type: Boolean,
@@ -136,7 +129,7 @@
       },
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     data () {
@@ -158,7 +151,7 @@
         footerBarHeight: 0,
 
         // 是否有statusbar的padding, 高度固定为20px
-        statusbarPadding: this.$config.getBoolean('statusbarPadding', false),
+        statusbarPadding: this.$config && this.$config.getBoolean('statusbarPadding', false),
 
         _scroll: null,  // 滚动的实例
         _cTop: 0,       // content top
@@ -557,10 +550,10 @@
     },
     created () {
       // 页面进入前完成非DOM操作部分
-      this.statusbarPadding = this.$config.getBoolean('statusbarPadding', false)
-      this._imgReqBfr = this.$config.getNumber('imgRequestBuffer', 1400)
-      this._imgRndBfr = this.$config.getNumber('imgRenderBuffer', 600)
-      this._imgVelMax = this.$config.getNumber('imgVelocityMax', 3)
+      this.statusbarPadding = this.$config && this.$config.getBoolean('statusbarPadding', false)
+      this._imgReqBfr = this.$config && this.$config.getNumber('imgRequestBuffer', 1400)
+      this._imgRndBfr = this.$config && this.$config.getNumber('imgRenderBuffer', 600)
+      this._imgVelMax = this.$config && this.$config.getNumber('imgVelocityMax', 3)
       this._scroll = new ScrollView()
       this._imgs = []
     },

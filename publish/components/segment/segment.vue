@@ -5,8 +5,6 @@
 </template>
 <style lang="scss">
     @import './segment.scss';
-    @import './segment.ios.scss';
-    @import './segment.md.scss';
 </style>
 <script type="text/javascript">
   /**
@@ -88,7 +86,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
       disabled: [Boolean]
     },
@@ -103,8 +101,6 @@
     watch: {
       value (value) {
         // 更新子组件状态
-        console.log('value')
-        console.log(value)
         this.refreshChildState(value)
       }
     },

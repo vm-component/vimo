@@ -43,3 +43,7 @@
     }
   }
 </script>
+<style lang="less">
+    @import "note.ios.less";
+    @import "note.md.less";
+</style>

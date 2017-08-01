@@ -21,14 +21,7 @@
     </article>
 </template>
 <style lang="scss">
-    @import './app.scss';
-    @import './app.ios.scss';
-    @import './app.md.scss';
-    @import './ios-transition.scss';
-    @import './fade-bottom-transition.scss';
-    @import './fade-right-transition.scss';
-    @import './zoom-transition.scss';
-    @import './fade-transition.scss';
+    @import './app';
 </style>
 <script type="text/javascript">
   /**
@@ -85,7 +78,7 @@
    * */
 
   import { ClickBlock } from './click-block'
-  import { setElementClass } from '../../util/util'
+  import { setElementClass, isString } from '../../util/util'
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
   const ACTIVE_SCROLLING_TIME = 100
@@ -107,7 +100,7 @@
     props: {
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     computed: {
@@ -217,31 +210,48 @@
 
       /**
        * @function setDocTitle
+       * @param {String|Object}  _title - 设置标题
+       * @param {String}  _title.title - 标题
        * @description
-       * 设置document.title的值
+       * 设置document.title的值, 如果传入的是string, 则为title的字符串, 如果是对象, 则title字段为标题名称
        * */
-      setDocTitle (val) {
-        // 不在壳子中则正常显示
-        if (this.$platform.platforms().length <= 2) {
-          document.title = val
+      setDocTitle (_title) {
+        if (isString(_title)) {
+          _title = {title: _title}
+        }
+        if (window.VM.platform.is('alipay') && window.AlipayJSBridge) {
+          window.AlipayJSBridge.call('setTitle', _title)
+        } else if (window.VM.platform.is('dingtalk') && window.dd) {
+          window.dd.biz.navigation.setTitle({
+            title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
+          })
+        } else if (window.VM.platform.is('dtdream') && window.dd) {
+          window.dd.biz.navigation.setTitle({
+            title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
+          })
         } else {
-          // 以下代码可以解决以上问题，不依赖jq
-          let _docTitle = document.title
-          if (val !== _docTitle) {
-            // 利用iframe的onload事件刷新页面
-            document.title = val
-            let iframe = document.createElement('iframe')
-            // 空白图片
-            iframe.src = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
-            iframe.style.visibility = 'hidden'
-            iframe.style.width = '1px'
-            iframe.style.height = '1px'
-            iframe.onload = function () {
-              window.setTimeout(function () {
-                document.body.removeChild(iframe)
-              }, 0)
+          // 不在壳子中则正常显示
+          if (this.$platform.platforms().length <= 2) {
+            document.title = _title.title
+          } else {
+            // 以下代码可以解决以上问题，不依赖jq
+            let _docTitle = document.title
+            if (_title.title !== _docTitle) {
+              // 利用iframe的onload事件刷新页面
+              document.title = _title.title
+              let iframe = document.createElement('iframe')
+              // 空白图片
+              iframe.src = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
+              iframe.style.visibility = 'hidden'
+              iframe.style.width = '1px'
+              iframe.style.height = '1px'
+              iframe.onload = function () {
+                window.setTimeout(function () {
+                  document.body.removeChild(iframe)
+                }, 0)
+              }
+              document.body.appendChild(iframe)
             }
-            document.body.appendChild(iframe)
           }
         }
       }
@@ -254,7 +264,7 @@
       proto.$app = this
     },
     mounted () {
-      console.assert(clickBlockInstance, 'clickBlockInstance实例不存在, 请检查!')
+      // 设置当前可点击
       this.isClickBlockEnabled = true
     }
   }

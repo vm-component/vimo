@@ -6,8 +6,8 @@
         </transition>
     </div>
 </template>
-<style lang="scss">
-    @import "./img.scss";
+<style lang="less">
+    @import "img";
 
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s

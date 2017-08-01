@@ -11,10 +11,6 @@
         </button>
     </div>
 </template>
-<style lang="scss">
-    @import "radio.ios";
-    @import "radio.md";
-</style>
 <script type="text/javascript">
   /**
    * @component Radio
@@ -107,7 +103,7 @@
       color: [String],
       mode: {
         type: String,
-        default () { return this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     watch: {

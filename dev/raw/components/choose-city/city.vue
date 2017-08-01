@@ -49,7 +49,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .citySelector {
         .citySelector__group--header {
             font-size: 14px;

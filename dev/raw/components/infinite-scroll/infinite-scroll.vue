@@ -3,8 +3,8 @@
         <slot></slot>
     </div>
 </template>
-<style lang="scss">
-    @import "./infinite-scroll.scss";
+<style lang="less">
+    @import "infinite-scroll";
 </style>
 <script type="text/javascript">
   /**

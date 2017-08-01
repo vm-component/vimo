@@ -42,8 +42,10 @@
                 @click="clearTextInput()"></Button>
     </div>
 </template>
-<style lang="scss">
-    @import "./input.scss";
+<style lang="less">
+    @import "input";
+    @import "input.ios.less";
+    @import "input.md.less";
 </style>
 <script type="text/javascript">
   /**

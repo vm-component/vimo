@@ -5,14 +5,13 @@
         <slot></slot>
     </header>
 </template>
-<style lang="scss">
-    @import "../../themes/globals";
-
+<style lang="less">
+    @import "../../themes/index";
     .ion-header {
         position: absolute;
         top: 0;
         left: 0;
-        z-index: $z-index-toolbar;
+        z-index: @z-index-toolbar;
         display: block;
         width: 100%;
         transition: -webkit-transform ease 300ms;

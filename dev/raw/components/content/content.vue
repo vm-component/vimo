@@ -16,8 +16,10 @@
         <slot name="refresher"></slot>
     </article>
 </template>
-<style lang="scss">
-    @import './content';
+<style lang="less">
+    @import "content";
+    @import "content.ios.less";
+    @import "content.md.less";
 </style>
 <script type="text/javascript">
   /**

@@ -84,11 +84,8 @@
     }
   }
 </script>
-<style lang="scss">
-    /*@import "./theme/index";*/
-</style>
 <style lang="less">
-    @import "./theme-less/index";
+    /*@import "./theme-less/index";*/
 
     body {
         // color: #327eff;

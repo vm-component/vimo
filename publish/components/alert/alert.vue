@@ -61,8 +61,6 @@
 </template>
 <style lang="scss">
     @import './alert.scss';
-    @import './alert.ios.scss';
-    @import './alert.md.scss';
 
     // transitioName = 'alert'
     .alert-enter-active, .alert-leave-active {
@@ -246,7 +244,7 @@
       },
       mode: {
         type: String,
-        default () { return this.$config.get('mode', 'ios') || 'ios' }
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
       dismissOnPageChange: {
         type: Boolean,
