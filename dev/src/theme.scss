@@ -1,17 +1,14 @@
 // Default Theme
 // ----------------------------------
-@import "../functions";
-@import "../mixins";
-
 $colors: (
-        primary: #327ef1,
+        primary: #000000,
         secondary: #32db64,
         danger: #f53d3d,
         light: #f4f4f4,
         dark: #222,
 ) !default;
-
-$text-color: #000 !default;
+$demo1231: #d3d3d3;
+$text-color: #f4f4f4 !important;
 $link-color: color($colors, primary) !default;
 $background-color: #fff !default;
 $subdued-text-color: #666 !default;

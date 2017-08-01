@@ -5,7 +5,7 @@
                 <Title>组件</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" no-bounce enableJsScroll>
+        <Content class="outer-content" no-bounce>
             <List>
                 <!--基础组件-->
                 <ListHeader>

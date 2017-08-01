@@ -95,9 +95,9 @@
                 <Item>
                     <Label>Gaming</Label>
                     <Select v-model="gaming" :multiple="true">
-                        <Option value="nes" checked disabled>NES</Option>
-                        <Option value="n64" checked>Nintendo64</Option>
-                        <Option value="ps" checked>PlayStation</Option>
+                        <Option value="nes"  >NES</Option>
+                        <Option value="n64" >Nintendo64</Option>
+                        <Option value="ps" >PlayStation</Option>
                         <Option value="genesis">Sega Genesis</Option>
                         <Option value="saturn">Sega Saturn</Option>
                         <Option value="snes" disabled>SNES</Option>
@@ -118,7 +118,7 @@
                 <Item>
                     <Label>Currency</Label>
                     <Select v-model="currency" v-if="hideCurrency">
-                        <Option :value="cur" v-for="(cur,index) in currencies" :key="index">
+                        <Option :value="cur.code" v-for="(cur,index) in currencies" :key="index">
                             <span>{{cur.symbol}} ({{cur.code}}) {{cur.name}}</span>
                         </Option>
                     </Select>
@@ -145,9 +145,9 @@
     name: 'name',
     data () {
       return {
-        gaming: 'nes',
+        gaming: 'saturn',
         gamingNoValue: '',
-        currency: '',
+        currency: 'EUR',
         hideCurrency: true,
         currencies: [
           {

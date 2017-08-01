@@ -64,6 +64,7 @@
   import { Menus } from 'vimo/components/menus'
   import { List } from 'vimo/components/list'
   import { ListHeader, ItemGroup, Item } from 'vimo/components/item'
+
   export default {
     name: 'app-root',
     data () {
@@ -84,30 +85,34 @@
   }
 </script>
 <style lang="scss">
-    @import "./theme/index";
+    /*@import "./theme/index";*/
+</style>
+<style lang="less">
+    @import "./theme-less/index";
 
-    /*.statusbar-img {*/
-    /*display: none;*/
-    /*}*/
+    body {
+        // color: #327eff;
 
-    /*.md .statusbar-img-md {*/
-    /*display: block !important;*/
-    /*position: absolute;*/
-    /*background-color: transparent;*/
-    /*top: 0;*/
-    /*width: 100%;*/
-    /*height: auto;*/
-    /*z-index: 999;*/
-    /*}*/
+        //.color-contrast(ios, #327eff);
+      //  color: @color-contrast;
 
-    /*.ios .statusbar-img-ios {*/
-    /*display: block !important;*/
-    /*position: absolute;*/
-    /*background-color: transparent;*/
-    /*padding: 5px 0;*/
-    /*top: 0px;*/
-    /*width: 100%;*/
-    /*height: auto;*/
-    /*z-index: 999;*/
-    /*}*/
+        // color: darken(#327eff, 4%);
+        // .color-shade(#327eff);
+        // color: @color-shade;
+    }
+
+    // @colors: "primary", "secondary", "danger", "light", "dark";
+    //  @primary: #327eff;
+    // @secondary: #32db64;
+    // @danger: #f53d3d;
+    // @light: #f4f4f4;
+    // @dark: #222;
+
+    //  @colors-md: "primary", "secondary", "danger", "light", "dark";
+    //  @primary-md: #327eff;
+    //  @secondary-md: #32db64;
+    //  @danger-md: #f53d3d;
+    // @light-md: #f4f4f4;
+    //  @dark-md: #222;
+
 </style>

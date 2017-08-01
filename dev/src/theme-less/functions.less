@@ -1,0 +1,113 @@
+@colors: "primary", "secondary", "danger", "light", "dark";
+@primary: #327eff;
+@secondary: #32db64;
+@danger: #f53d3d;
+@light: #f4f4f4;
+@dark: #222;
+
+// 将给定的颜色 @color-value 变暗 @amount
+.color-shade (@color-value, @amount:8%) when (lightness(@color-value)>= 50%) {
+  @shade: #000;
+  @color-shade: mix(@shade, @color-value, @amount)
+}
+
+.color-shade (@color-value, @amount:8%) when (lightness(@color-value)< 50%) {
+  @shade: #fff;
+  @color-shade: mix(@shade, @color-value, @amount)
+}
+
+// 亮度
+.color-brightness(@color-value) {
+  @color-brightness: (red(@color-value) * .299 + green(@color-value) * .587 + blue(@color-value) * .114) / 255 * 100;
+}
+
+// 颜色翻转计算
+.color-inverse (@color-value, @dark: #000, @light: #fff) {
+  .color-brightness(@color-value);
+  @red: red(@color-value);
+  @green: green(@color-value);
+
+  //@color-inverse-i: @light;
+  .color-inverse-i(@color-brightness, @red, @green, @dark, @light);
+  @color-inverse: @color-inverse-i;
+}
+
+.color-inverse-i(@color-brightness,@red,@green,@dark,@light) when (@color-brightness > 79) {
+  @color-inverse-i: @dark;
+}
+
+.color-inverse-i(@color-brightness,@red,@green,@dark,@light) when (@green > 240) {
+  @color-inverse-i: @dark;
+}
+
+.color-inverse-i(@color-brightness,@red,@green,@dark,@light) when (@red > 220) and (@green > 180) {
+  @color-inverse-i: @dark;
+}
+
+.color-inverse-i(@color-brightness,@red,@green,@dark,@light) when (default()) {
+  @color-inverse-i: @light;
+}
+
+// 根据模式翻转
+// Pass dark and light colors based on the mode
+// this is mostly used for toolbar buttons/titles
+.mode-inverse (@color-value, @custom-contrast-mode) when (@custom-contrast-mode = 'md') {
+  @dark: #424242;
+  @light: #fff;
+  .color-inverse(@color-value, @dark, @light);
+  @mode-inverse: @color-inverse;
+}
+
+.mode-inverse (@color-value, @custom-contrast-mode) when (@custom-contrast-mode = 'ios') {
+  @dark: @primary;
+  @light: #fff;
+  .color-inverse(@color-value, @dark, @light);
+  @mode-inverse: @color-inverse;
+}
+
+// @radio-md-color-on: color(@colors-md, primary) !default;
+// .color(md,primary)
+// 根据模式获取对应类型的颜色
+.color (@type, @color-name) {
+  @color: color('@{@{color-name}-@{type}}');
+}
+
+// Fetch map color contrast
+// @param {Map} @colors - colors map
+// @param {String} @value - color value or color name
+//
+// Example values
+// --------------------------------------------------
+// primary | #327eff   | #444
+// map key | map value | hex color not in map
+// --------------------------------------------------
+//
+// @param {Boolean} @custom-contrast-mode - use custom
+// contrast function
+// @return {Color}
+// color: color-contrast(@colors-md, @toolbar-md-button-color, md);
+// --------------------------------------------------
+//.color-contrast (@type, @value, @custom-contrast-mode) when (iscolor(@value)) {
+//  // If the value is a color (e.g. #fff)
+//  @color-value: @value;
+//  .color-contrast-i(@color-value, @type, @value, @custom-contrast-mode);
+//  @color-contrast: @color-contrast-i;
+//}
+//
+//.color-contrast (@type, @value, @custom-contrast-mode) when not (iscolor(@value)) {
+//  // If the value is a string (e.g. primary)
+//  @color-value: color('@{@{value}-@{type}}');
+//  .color-contrast-i(@color-value, @type, @value, @custom-contrast-mode);
+//  @color-contrast: @color-contrast-i;
+//}
+//
+//.color-contrast-i(@color-value,@type, @value, @custom-contrast-mode) when (isstring(@custom-contrast-mode)) {
+//  .mode-inverse(@color-value, @custom-contrast-mode);
+//  @color-contrast-i: @mode-inverse;
+//}
+//
+//.color-contrast-i(@color-value,@type, @value, @custom-contrast-mode) when not (isstring(@custom-contrast-mode)) {
+//  .color-inverse(@color-value);
+//  @color-contrast-i: @color-inverse;
+//}
+//
