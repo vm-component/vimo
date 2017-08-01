@@ -1,0 +1,43 @@
+@import "../themes/default.md.less";
+
+// Material Design Badge
+// --------------------------------------------------
+
+/// @prop - Border radius of the badge
+@badge-md-border-radius: 4px;
+
+/// @prop - Background color of the badge
+@badge-md-background-color: @primary-md;
+
+/// @prop - Text color of the badge
+@badge-md-text-color: contrast(@badge-md-background-color, black, white, @contrast-threshold);
+
+.badge-md {
+  border-radius: @badge-md-border-radius;
+  color: @badge-md-text-color;
+  background-color: @badge-md-background-color;
+}
+
+// Generate Material Design Badge Colors
+// --------------------------------------------------
+
+.get-all-colors(@type) {
+  @name: e('colors-@{type}');
+  @n: length(@@name);
+  .loop(@n);
+  .loop(@n) when (@n > 0) {
+    .loop((@n - 1)); // next iteration
+    @color-name: extract(@@name, @n);
+    @color-name-mode: e('@{color-name}-@{type}');
+    @color-base: @@color-name-mode;
+    @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
+
+    // content
+    .badge-md-@{color-name} {
+      color: @color-contrast;
+      background-color: @color-base;
+    }
+  }
+}
+// action
+.get-all-colors(md);

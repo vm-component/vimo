@@ -1,0 +1,33 @@
+@import "../themes/default.ios.less";
+
+// iOS Note
+// --------------------------------------------------
+
+/// @prop - Text color of the note
+@note-ios-color: darken(@list-ios-border-color, 10%);
+
+.note-ios {
+  color: @note-ios-color;
+}
+
+// Generate iOS Note Colors
+// --------------------------------------------------
+.get-all-colors(@type) {
+  @name: e('colors-@{type}');
+  @n: length(@@name);
+  .loop(@n);
+  .loop(@n) when (@n > 0) {
+    .loop((@n - 1)); // next iteration
+    @color-name: extract(@@name, @n);
+    @color-name-mode: e('@{color-name}-@{type}');
+    @color-base: @@color-name-mode;
+    @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
+
+    // content
+    .note-ios-@{color-name} {
+      color: @color-base;
+    }
+  }
+}
+// action
+.get-all-colors(ios);

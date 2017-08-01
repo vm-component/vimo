@@ -1,0 +1,74 @@
+@import "../themes/default.md.less";
+
+// Material Design Spinner
+// --------------------------------------------------
+
+/// @prop - Color of the ios spinner
+@spinner-md-ios-color: #69717d;
+
+/// @prop - Color of the bubbles spinner
+@spinner-md-bubbles-color: #000;
+
+/// @prop - Color of the circles spinner
+@spinner-md-circles-color: #69717d;
+
+/// @prop - Color of the crescent spinner
+@spinner-md-crescent-color: #000;
+
+/// @prop - Color of the dots spinner
+@spinner-md-dots-color: #444;
+
+.spinner-md-ios line,
+.spinner-md-ios-small line {
+  stroke: @spinner-md-ios-color;
+}
+
+.spinner-md-bubbles circle {
+  fill: @spinner-md-bubbles-color;
+}
+
+.spinner-md-circles circle {
+  fill: @spinner-md-circles-color;
+}
+
+.spinner-md-crescent circle {
+  stroke: @spinner-md-crescent-color;
+}
+
+.spinner-md-dots circle {
+  fill: @spinner-md-dots-color;
+}
+
+// Generate Material Design Spinner Colors
+// --------------------------------------------------
+.get-all-colors(@type) {
+  @name: e('colors-@{type}');
+  @n: length(@@name);
+  .loop(@n);
+  .loop(@n) when (@n > 0) {
+    .loop((@n - 1)); // next iteration
+    @color-name: extract(@@name, @n);
+    @color-name-mode: e('@{color-name}-@{type}');
+    @color-base: @@color-name-mode;
+    @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
+
+    // content
+    .spinner-md-@{color-name} {
+      &.spinner-ios line,
+      &.spinner-ios-small line,
+      &.spinner-crescent circle {
+        stroke: @color-base;
+      }
+
+      &.spinner-bubbles circle,
+      &.spinner-circles circle,
+      &.spinner-dots circle {
+        fill: @color-base;
+      }
+
+    }
+  }
+}
+
+// action
+.get-all-colors(md);

@@ -1,0 +1,35 @@
+@import "../themes/default.md.less";
+
+// Material Design Note
+// --------------------------------------------------
+
+/// @prop - Text color of the note
+@note-md-color: darken(@list-md-border-color, 10%);
+
+.note-md {
+  color: @note-md-color;
+}
+
+// Generate Material Design Note Colors
+// --------------------------------------------------
+
+.get-all-colors(@type) {
+  @name: e('colors-@{type}');
+  @n: length(@@name);
+  .loop(@n);
+  .loop(@n) when (@n > 0) {
+    .loop((@n - 1)); // next iteration
+    @color-name: extract(@@name, @n);
+    @color-name-mode: e('@{color-name}-@{type}');
+    @color-base: @@color-name-mode;
+    @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
+
+    // content
+    .note-md-@{color-name} {
+      color: @color-base;
+    }
+  }
+}
+
+// action
+.get-all-colors(md);

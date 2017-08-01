@@ -1,0 +1,25 @@
+@import "../themes/index.less";
+
+// Img
+// --------------------------------------------------
+
+/// @prop - Color of the image when it hasn't fully loaded yet
+@img-placeholder-background: #eee;
+
+.ion-img {
+  display: inline-block;
+
+  min-width: 20px;
+  min-height: 20px;
+
+  background: @img-placeholder-background;
+
+  contain: strict;
+}
+
+.ion-img img {
+  display: block;
+  object-fit: cover;
+  z-index: 1;
+}
+

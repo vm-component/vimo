@@ -1,0 +1,10 @@
+.*
+*.md
+*.yml
+manual/
+docs/
+build/docs-maker/
+build/
+node_modules/
+test/
+gulpfile.js

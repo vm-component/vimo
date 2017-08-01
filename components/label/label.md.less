@@ -1,0 +1,98 @@
+@import "../themes/default.md.less";
+
+// Material Design Label
+// --------------------------------------------------
+
+/// @prop - Text color of the label
+@label-md-text-color: #999;
+
+/// @prop - Text color of the label when it has focused
+@label-md-text-color-focused: @primary-md;
+
+/// @prop - Margin of the label
+@label-md-margin: @item-md-padding-top (@item-md-padding-right / 2) @item-md-padding-bottom 0;
+@item-md-body-text-font-size: 12px;
+@item-md-body-text-line-height: 100%;
+
+// Material Design Default Label
+// --------------------------------------------------
+
+.ion-label.label-md {
+  margin: @label-md-margin;
+}
+
+[text-wrap] .label-md {
+  font-size: @item-md-body-text-font-size;
+  line-height: @item-md-body-text-line-height;
+}
+
+// Material Design Default Label Inside An Input/Select Item
+// --------------------------------------------------
+
+.item-input .label-md,
+.item-select .label-md,
+.item-datetime .label-md {
+  color: @label-md-text-color;
+}
+
+// Material Design Stacked & Floating Labels
+// --------------------------------------------------
+
+.label-md[stacked] {
+  font-size: 12px;
+}
+
+.label-md[floating] {
+  transform: translate3d(0, 27px, 0);
+  transform-origin: left top;
+  transition: transform 150ms ease-in-out;
+}
+
+.label-md[stacked],
+.label-md[floating] {
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+.input-has-focus .label-md[stacked],
+.input-has-focus .label-md[floating] {
+  color: @label-md-text-color-focused;
+}
+
+.input-has-focus .label-md[floating],
+.input-has-value .label-md[floating] {
+  transform: translate3d(0, 0, 0) scale(.8);
+}
+
+.item-md.item-label-stacked [item-right],
+.item-md.item-label-floating [item-right] {
+  margin-top: @item-md-padding-media-top - 2;
+  margin-bottom: @item-md-padding-media-bottom - 2;
+}
+
+// Generate Material Design Label colors
+// --------------------------------------------------
+
+.get-all-colors(@type) {
+  @name: e('colors-@{type}');
+  @n: length(@@name);
+  .loop(@n);
+  .loop(@n) when (@n > 0) {
+    .loop((@n - 1)); // next iteration
+    @color-name: extract(@@name, @n);
+    @color-name-mode: e('@{color-name}-@{type}');
+    @color-base: @@color-name-mode;
+    @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
+
+    // content
+    .label-md-@{color-name},
+    .item-input .label-md-@{color-name},
+    .item-select .label-md-@{color-name},
+    .item-datetime .label-md-@{color-name} {
+      color: @color-base;
+    }
+  }
+}
+
+// action
+.get-all-colors(md);

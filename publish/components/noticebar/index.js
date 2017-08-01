@@ -1,1 +1,0 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.NoticeBar=void 0;var _noticebar=require("./noticebar.vue"),_noticebar2=_interopRequireDefault(_noticebar);exports.NoticeBar=_noticebar2.default;

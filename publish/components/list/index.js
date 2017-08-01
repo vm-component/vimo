@@ -1,1 +1,0 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.List=void 0;var _list=require("./list.vue"),_list2=_interopRequireDefault(_list);exports.List=_list2.default;

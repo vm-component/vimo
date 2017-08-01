@@ -2,10 +2,11 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
-// var manifestPlugin = require('pwa-manifest-webpack-plugin')
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
+
 module.exports = {
   entry: {
     app: './src/main.js'
@@ -22,8 +23,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      '$theme': resolve('src'),
-      'vimo': resolve('raw') // for vimo module
+      'vimo/components': resolve('../components'), // for vimo module
+      'vimo': resolve('../components') // for vimo module
     }
   },
   module: {
@@ -41,19 +42,18 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig,
-        include: [resolve('src'), resolve('test'), resolve('raw')]
+        include: [resolve('src'), resolve('test'), resolve('../components')]
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('raw')]
+        include: [resolve('src'), resolve('test'), resolve('../components')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         query: {
           limit: 10000,
-          // name: utils.assetsPath('img/[name].[ext]')
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
@@ -66,17 +66,5 @@ module.exports = {
         }
       }
     ]
-  },
-//   plugins: [
-// // eslint-disable-next-line new-cap
-//     new manifestPlugin({
-//       name: 'CropChat',
-//       description: 'CropChat - Image Messenger Application',
-//       display: 'fullscreen',
-//       icon: {
-//         src: path.resolve('static/img/vimo.png'),
-//         sizes: [200]
-//       }
-//     })
-//   ]
+  }
 }

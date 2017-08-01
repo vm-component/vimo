@@ -1,0 +1,30 @@
+@import "../themes/index.less";
+
+// Badge
+// --------------------------------------------------
+
+/// @prop - Font size of the badge
+@badge-font-size: 13px;
+
+/// @prop - Font weight of the badge
+@badge-font-weight: bold;
+
+.ion-badge {
+  display: inline-block;
+
+  padding: 3px 8px;
+
+  min-width: 10px;
+
+  font-size: @badge-font-size;
+  font-weight: @badge-font-weight;
+  line-height: 1;
+
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.ion-badge:empty {
+  display: none;
+}

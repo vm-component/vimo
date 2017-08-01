@@ -1,0 +1,180 @@
+@import "../themes/default.md.less";
+
+// Material Design Toggle
+// --------------------------------------------------
+
+/// @prop - Color of the active toggle
+@toggle-md-active-color: @primary-md;
+
+/// @prop - Width of the toggle track
+@toggle-md-track-width: 36px;
+
+/// @prop - Height of the toggle track
+@toggle-md-track-height: 14px;
+
+/// @prop - Background color of the toggle track
+@toggle-md-track-background-color-off: @list-md-border-color;
+
+/// @prop - Background color of the checked toggle track
+@toggle-md-track-background-color-on: lighten(@toggle-md-active-color, 25%);
+
+/// @prop - Width of the toggle handle
+@toggle-md-handle-width: 20px;
+
+/// @prop - Height of the toggle handle
+@toggle-md-handle-height: 20px;
+
+/// @prop - Border radius of the toggle handle
+@toggle-md-handle-border-radius: 50%;
+
+/// @prop - Box shadow of the toggle handle
+@toggle-md-handle-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+
+/// @prop - Background color of the toggle handle
+@toggle-md-handle-background-color-off: @background-md-color;
+
+/// @prop - Background color of the checked toggle handle
+@toggle-md-handle-background-color-on: @toggle-md-active-color;
+
+/// @prop - Margin of the toggle
+@toggle-md-media-margin: 0;
+
+/// @prop - Transition duration of the toggle icon
+@toggle-md-transition-duration: 300ms;
+
+/// @prop - Opacity of the disabled toggle
+@toggle-md-disabled-opacity: .3;
+
+/// @prop - Padding of the toggle positioned on the left in an item
+@toggle-md-item-left-padding: 12px 18px 12px 2px;
+
+/// @prop - Padding of the toggle positioned on the right in an item
+@toggle-md-item-right-padding: 12px (@item-md-padding-right / 2) 12px @item-md-padding-left;
+
+// Material Design Toggle
+// -----------------------------------------
+
+.toggle-md {
+  position: relative;
+}
+
+// Material Design Toggle Background Track: Unchecked
+// -----------------------------------------
+
+.toggle-md .toggle-icon {
+  position: relative;
+  display: block;
+
+  width: @toggle-md-track-width;
+  height: @toggle-md-track-height;
+
+  border-radius: @toggle-md-track-height;
+  background-color: @toggle-md-track-background-color-off;
+
+  transition: background-color @toggle-md-transition-duration;
+
+  pointer-events: none;
+}
+
+// Material Design Toggle Inner Knob: Unchecked
+// -----------------------------------------
+
+.toggle-md .toggle-inner {
+  position: absolute;
+  top: (@toggle-md-handle-height - @toggle-md-track-height) / -2;
+  left: 0;
+
+  width: @toggle-md-handle-width;
+  height: @toggle-md-handle-height;
+
+  border-radius: @toggle-md-handle-border-radius;
+  background-color: @toggle-md-handle-background-color-off;
+
+  box-shadow: @toggle-md-handle-box-shadow; /*no*/
+
+  transition-duration: @toggle-md-transition-duration;
+  transition-property: transform, background-color;
+}
+
+// Material Design Toggle Background Track: Checked
+// -----------------------------------------
+
+.toggle-md .toggle-checked {
+  background-color: @toggle-md-track-background-color-on;
+}
+
+// Material Design Toggle Inner Knob: Checked
+// -----------------------------------------
+
+.toggle-md .toggle-checked .toggle-inner {
+  background-color: @toggle-md-handle-background-color-on;
+  transform: translate3d(@toggle-md-track-width - @toggle-md-handle-width, 0, 0);
+}
+
+// Material Design Toggle: Disabled
+// -----------------------------------------
+
+.toggle-md.toggle-disabled,
+.item-md.item-toggle-disabled .ion-label {
+  opacity: @toggle-md-disabled-opacity;
+
+  pointer-events: none;
+}
+
+.toggle-md.toggle-disabled .ion-radio {
+  opacity: @toggle-md-disabled-opacity;
+}
+
+// Material Design Toggle Within An Item
+// -----------------------------------------
+
+.item-md .toggle-md {
+  margin: @toggle-md-media-margin;
+  padding: @toggle-md-item-right-padding;
+
+  cursor: pointer;
+}
+
+.item-md .toggle-md[item-left] {
+  padding: @toggle-md-item-left-padding;
+}
+
+.item-md.item-toggle ion-label {
+  margin-left: 0;
+}
+
+// Material Design Color Mixin
+// --------------------------------------------------
+
+.toggle-theme-md(@color-name, @color-base) {
+
+  .toggle-md-@{color-name} .toggle-checked {
+    background-color: lighten(@color-base, 25%);
+  }
+
+  .toggle-md-@{color-name} .toggle-checked .toggle-inner {
+    background-color: @color-base;
+  }
+
+}
+
+// Generate Material Design Toggle Auxiliary Colors
+// --------------------------------------------------
+.get-all-colors(@type) {
+  @name: e('colors-@{type}');
+  @n: length(@@name);
+  .loop(@n);
+  .loop(@n) when (@n > 0) {
+    .loop((@n - 1)); // next iteration
+    @color-name: extract(@@name, @n);
+    @color-name-mode: e('@{color-name}-@{type}');
+    @color-base: @@color-name-mode;
+    @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
+
+    // content
+    .toggle-theme-md(@color-name, @color-base);
+  }
+}
+
+// action
+.get-all-colors(md);
