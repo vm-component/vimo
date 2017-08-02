@@ -85,7 +85,7 @@
     }
 </style>
 <script type="text/javascript">
-  import * as lite from '../../../components-supply/slides-lite'
+  import * as lite from '../../../components-sub/slides-lite'
   import { Slide, Slides } from '../../../components/slides'
 
   export default {

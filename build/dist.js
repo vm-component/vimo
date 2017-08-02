@@ -18,7 +18,7 @@ var config = {
   // Surge or Netlify already gzip all static assets for you.
   // Before setting to `true`, make sure to:
   // npm install --save-dev compression-webpack-plugin
-  gzip: true,
+  gzip: false,
   gzipExtensions: ['js', 'css'],
   // Run the build command with an extra argument to
   // View the bundle analyzer report after build finishes:
@@ -26,7 +26,6 @@ var config = {
   // Set to `true` or `false` to always turn it on or off
   bundleAnalyzerReport: true
 }
-
 // 配置
 var webpackConfig = {
   entry: config.entry,
@@ -80,6 +79,11 @@ var webpackConfig = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: 'style.css'

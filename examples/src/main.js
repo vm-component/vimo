@@ -9,16 +9,20 @@ import VueI18n from 'vue-i18n'
 import vmGeo from 'vm-geo'
 import vmStorage from 'vm-storage'
 import router from './router'
+// import vimo from '../../dist'
+// import '../../dist/style.css'
 
 if (process.env.NODE_ENV === 'development') {
   Vue.config.productionTip = false
+  Vue.config.silent = false
 } else {
   Vue.config.productionTip = true
+  Vue.config.silent = true
 }
 
 // 全局组件
 
-// // 平台基础安装
+// 平台基础安装
 Vue.use(vimo, {
   custConf: APP_CONFIGS,
   pltConf: PLATFORM_CONFIGS,

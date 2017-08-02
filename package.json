@@ -1,6 +1,6 @@
 {
   "name": "vimo",
-  "version": "0.4.8",
+  "version": "0.5.0",
   "description": "A Vue2.x UI Project For Mobile & HyBrid",
   "author": "向松涛 <280304286@163.com>",
   "homepage": "https://github.com/DTFE/vimo",
@@ -18,21 +18,18 @@
     "framework"
   ],
   "private": false,
-  "main": "lib/install.js",
-  "module": "components/install.js",
+  "main": "components/index.js",
   "files": [
     "components",
-    "dist",
-    "lib"
+    "dist"
   ],
   "scripts": {
     "example:dev": "node examples/build/dev-server.js",
     "example:build": "node examples/build/build.js",
-    "publish:lib": "gulp copy --gulpfile build/publish.js",
+    "publish": "npm run publish:dist",
     "publish:dist": "node build/dist.js",
     "docs:dev": "",
     "docs:publish": "",
-    "dist": "",
     "test": ""
   },
   "peerDependencies": {

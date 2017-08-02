@@ -1,4 +1,3 @@
-// Core
 import { setupConfig } from './base/config'
 import { setupHistory } from './base/history'
 import { setupPlatform } from './base/platform'
@@ -6,13 +5,8 @@ import { App, Footer, Header } from './app/index'
 import { Content } from './content/index'
 import { Nav } from './nav/index'
 import { Page } from './page/index'
-// polyfill
-// import './util/polyfill'
-/**
- * @name initVimo
- * @description Vimo框架安装
- */
-const VERSION = '0.4.8'
+
+const VERSION = require('../package.json').version
 const addLogo = (vimoVer, vueVer) => {
   // logo
   var vimoLogo = {
