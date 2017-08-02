@@ -11,4 +11,5 @@ backup
 *.zip
 publish
 publish/
+lib/
 
