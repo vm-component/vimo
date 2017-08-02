@@ -76,7 +76,7 @@
    * </ScrollSegment>
    *
    * */
-  import { clamp } from '../util/util'
+  import { clamp } from '../../components/util/util'
   export default{
     name: 'ScrollSegment',
     data () {

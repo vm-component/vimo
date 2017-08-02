@@ -7,7 +7,7 @@ import { Content } from './content/index'
 import { Nav } from './nav/index'
 import { Page } from './page/index'
 // polyfill
-import './util/polyfill'
+// import './util/polyfill'
 /**
  * @name initVimo
  * @description Vimo框架安装

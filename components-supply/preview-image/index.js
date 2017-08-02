@@ -32,7 +32,7 @@
  *    })
  *  }
  * */
-import { Modal } from '../modal'
+import { Modal } from '../../components/modal/index'
 import PreviewImageComponent from './preview-image.vue'
 
 export function PreviewImage (options) {

@@ -144,7 +144,8 @@
   import { Button } from '../button'
   import { Icon } from '../icon'
   import { isArray, isString } from '../util/util'
-  export default{
+  import menuOptionsComponent from './menu-options.vue'
+  export default {
     name: 'Navbar',
     data () {
       return {
@@ -261,9 +262,7 @@
             target: window.document.getElementById('rightButtonPlaceholder') || null
           }, // 事件
           cssClass: 'popMenu',
-          component (resolve) {
-            require(['./menu-options.vue'], resolve)
-          },                 // 传入组件
+          component: menuOptionsComponent,   // 传入组件
           data: {
             menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
           }

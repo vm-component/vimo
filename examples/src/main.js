@@ -3,14 +3,19 @@ import App from './App.vue'
 import AttachFastClick from './assets/js/fastclick'
 import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
-
 import 'ionicons/dist/css/ionicons.css'
 import vimo from '../../components/dist'
 import VueI18n from 'vue-i18n'
 import vmGeo from 'vm-geo'
-import vmLog from 'vm-log'
 import vmStorage from 'vm-storage'
 import router from './router'
+
+if (process.env.NODE_ENV === 'development') {
+  Vue.config.productionTip = false
+} else {
+  Vue.config.productionTip = true
+}
+
 // 全局组件
 
 // // 平台基础安装
@@ -47,16 +52,9 @@ Vue.use(vmGeo, {
   }
 })
 Vue.use(vmStorage)
-Vue.use(vmLog)
 
 // eslint-disable-next-line no-new
 new AttachFastClick(document.body)
-
-if (process.env.NODE_ENV === 'development') {
-  Vue.config.productionTip = false
-} else {
-  Vue.config.productionTip = true
-}
 
 new Vue({
   el: '#app',

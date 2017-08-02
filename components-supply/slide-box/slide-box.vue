@@ -225,7 +225,7 @@
    *  }
    *
    * */
-  import { pointerCoord, clamp, transitionEnd } from '../util/util'
+  import { pointerCoord, clamp, transitionEnd } from '../../components/util/util'
   const STATE_INACTIVE = 'inactive'         // 初始状态
   const STATE_SLIDING = 'sliding'           // 滑动状态
   const STATE_CHECKING = 'checking'         // 正在验证

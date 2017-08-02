@@ -155,8 +155,8 @@
     }
 </style>
 <script type="text/javascript">
-  import { Modal } from '../modal'
-  import { pointerCoord, clamp } from '../util/util'
+  import { Modal } from '../../components/modal/index'
+  import { pointerCoord, clamp } from '../../components/util/util'
   export default{
     name: 'cityList',
     data () {

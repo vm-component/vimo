@@ -16,7 +16,6 @@
 </template>
 <style lang="less">
     @import "slides";
-
     .swiper-container {
         width: 100%;
         height: 100%;
@@ -45,7 +44,6 @@
 
 
 </style>
-
 <script type="text/javascript">
   /**
    * @component Slides
@@ -135,7 +133,7 @@
    * @see http://idangero.us/swiper/api/
    *
    * */
-  import Swiper from './swiper.js'
+  import Swiper from 'swiper'
   import { assign } from '../util/util'
   import { getProps, getEvents } from './interface'
   export default {

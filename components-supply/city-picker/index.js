@@ -68,8 +68,8 @@
  *  }
  *
  */
-import { isArray } from '../util/util'
-import { Picker } from '../picker/index'
+import { isArray } from '../../components/util/util'
+import { Picker } from '../../components/picker/index'
 const CityPicker = {
   present (options) {
     let startCode = options.startCode || '1'              // 全国  1
