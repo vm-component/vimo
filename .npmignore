@@ -3,7 +3,7 @@
 *.yml
 manual/
 docs/
-build/docs/
+build/docBuilder/
 build/
 node_modules/
 test/

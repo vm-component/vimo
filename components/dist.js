@@ -7,11 +7,11 @@ import { Badge } from './badge'
 import { Button } from './button'
 import { Card, CardContent, CardHeader, CardTitle } from './card'
 import { Checkbox } from './checkbox'
-// import { ChooseCity } from '../components-supply/choose-city'
-// import { CityPicker } from '../components-supply/city-picker'
+import { ChooseCity } from './choose-city'
+import { CityPicker } from './city-picker'
 import { Datetime } from './datetime'
 import { Fab, FabButton, FabList } from './fab'
-// import { Feedback } from '../components-supply/feedback'
+import { Feedback } from './feedback'
 import { Column, Grid, Row } from './grid'
 import { Icon } from './icon'
 import { Img } from './img'
@@ -26,22 +26,22 @@ import { Menus } from './menus'
 import { Modal } from './modal'
 import { Navbar } from './navbar'
 import { Note } from './note'
-// import { NoticeBar } from '../components-supply/noticebar'
+import { NoticeBar } from './noticebar'
 import { Picker } from './picker'
 import { Popover } from './popover'
-// import { PreviewImage } from '../components-supply/preview-image'
+import { PreviewImage } from './preview-image'
 import { Radio } from './radio'
 import { Range } from './range'
 import { Refresher, RefresherContent } from './refresher'
-// import { Scroll } from '../components-supply/scroll'
-// import { ScrollSegment, ScrollSegmentButton } from '../components-supply/scroll-segment'
+import { Scroll } from './scroll'
+import { ScrollSegment, ScrollSegmentButton } from './scroll-segment'
 import { SearchBar } from './searchbar'
 import { Segment, SegmentButton } from './segment'
 import { Option, Select } from './select'
-// import { Separation } from '../components-supply/separation'
-// import { SlideBox } from '../components-supply/slide-box'
+import { Separation } from './separation'
+import { SlideBox } from './slide-box'
 import { Slide, Slides } from './slides'
-// import { Slide as SlideLite, Slides as SlidesLite } from '../components-supply/slides-lite'
+import { Slide as SlideLite, Slides as SlidesLite } from './slides-lite'
 import { Spinner } from './spinner'
 import { Tab, Tabs } from './tabs'
 import { Thumbnail } from './thumbnail'
@@ -66,11 +66,11 @@ module.exports = {
     Vue.prototype.$toast = Toast
     Vue.prototype.$modal = Modal
     Vue.prototype.$indicator = Indicator
-    // Vue.prototype.$chooseCity = ChooseCity
-    // Vue.prototype.$cityPicker = CityPicker
+    Vue.prototype.$chooseCity = ChooseCity
+    Vue.prototype.$cityPicker = CityPicker
     Vue.prototype.$picker = Picker
     Vue.prototype.$popover = Popover
-    // Vue.prototype.$previewImage = PreviewImage
+    Vue.prototype.$previewImage = PreviewImage
 
     Vue.component(Avatar.name, Avatar)
     Vue.component(Backdrop.name, Backdrop)
@@ -85,7 +85,7 @@ module.exports = {
     Vue.component(Fab.name, Fab)
     Vue.component(FabButton.name, FabButton)
     Vue.component(FabList.name, FabList)
-    // Vue.component(Feedback.name, Feedback)
+    Vue.component(Feedback.name, Feedback)
     Vue.component(Column.name, Column)
     Vue.component(Grid.name, Grid)
     Vue.component(Row.name, Row)
@@ -107,25 +107,25 @@ module.exports = {
     Vue.component(Menus.name, Menus)
     Vue.component(Navbar.name, Navbar)
     Vue.component(Note.name, Note)
-    // Vue.component(NoticeBar.name, NoticeBar)
+    Vue.component(NoticeBar.name, NoticeBar)
     Vue.component(Radio.name, Radio)
     Vue.component(Range.name, Range)
     Vue.component(Refresher.name, Refresher)
     Vue.component(RefresherContent.name, RefresherContent)
-    // Vue.component(Scroll.name, Scroll)
-    // Vue.component(ScrollSegment.name, ScrollSegment)
-    // Vue.component(ScrollSegmentButton.name, ScrollSegmentButton)
+    Vue.component(Scroll.name, Scroll)
+    Vue.component(ScrollSegment.name, ScrollSegment)
+    Vue.component(ScrollSegmentButton.name, ScrollSegmentButton)
     Vue.component(SearchBar.name, SearchBar)
     Vue.component(Segment.name, Segment)
     Vue.component(SegmentButton.name, SegmentButton)
     Vue.component(Select.name, Select)
     Vue.component(Option.name, Option)
-    // Vue.component(Separation.name, Separation)
-    // Vue.component(SlideBox.name, SlideBox)
+    Vue.component(Separation.name, Separation)
+    Vue.component(SlideBox.name, SlideBox)
     Vue.component(Slides.name, Slides)
     Vue.component(Slide.name, Slide)
-    // Vue.component(SlidesLite.name, SlidesLite)
-    // Vue.component(SlideLite.name, SlideLite)
+    Vue.component(SlidesLite.name, SlidesLite)
+    Vue.component(SlideLite.name, SlideLite)
     Vue.component(Spinner.name, Spinner)
     Vue.component(Tabs.name, Tabs)
     Vue.component(Tab.name, Tab)

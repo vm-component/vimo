@@ -4,7 +4,7 @@
 
 <h4 align="center"><p align="center">A H5 Platform For Hybrid</p></h4>
 
-> 目前在内部测试及文档教程编写, 见谅!
+> 目前在内部测试及文档教程编写, 见谅!!!
 
 ## DEMO
 

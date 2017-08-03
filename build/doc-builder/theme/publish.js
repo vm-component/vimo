@@ -432,6 +432,7 @@ function buildNav (members, docdash) {
  @param {Tutorial} tutorials
  */
 exports.publish = function (taffyData, opts, tutorials) {
+
   var docdash = env && env.conf && env.conf.docdash || {}
   data = taffyData
 
