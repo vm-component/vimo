@@ -1,0 +1,45 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": [
+      "jsdoc",
+      "closure"
+    ]
+  },
+  "opts": {
+    "encoding": "utf8",
+    "template": "theme"
+  },
+  "markdown": {
+    "tags": [
+      "props",
+      "usage",
+      "component",
+      "demo",
+      "slot"
+    ],
+    "parser": "gfm",
+    "hardwrap": true
+  },
+  "plugins": [
+    "../../node_modules/jsdoc-vue",
+    "../../node_modules/jsdoc/plugins/markdown",
+    "plugins/slot.js",
+    "plugins/demo.js",
+    "plugins/usage.js",
+    "plugins/props.js",
+    "plugins/component.js"
+  ],
+  "source": {
+    "includePattern": ".+\\.js(doc|x)?$|.+\\.vue$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true,
+    "default": {
+      "outputSourceFiles": false,
+      "includeDate": false
+    }
+  }
+}

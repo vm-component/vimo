@@ -83,6 +83,7 @@
 
 import { defaults, isObject } from '../util/util'
 import { PLATFORM_DEFAULT_CONFIGS } from './platform-default-configs'
+
 class Platform {
   constructor () {
     // Ready的promise;
@@ -135,6 +136,7 @@ class Platform {
    */
   setCssProps (docElement) {
     this.css = getCss(docElement)
+    return this.css
   }
 
   /**
@@ -328,6 +330,13 @@ class Platform {
 
   // Getter/Setter Methods
   // **********************************************
+  /**
+   * 获取UA
+   * @return {string}
+   */
+  userAgent () {
+    return this._ua || ''
+  }
 
   /**
    * @param {string} userAgent
@@ -335,14 +344,6 @@ class Platform {
    */
   setUserAgent (userAgent) {
     this._ua = userAgent
-  }
-
-  /**
-   * @param {QueryParams} queryParams
-   * @private
-   */
-  setQueryParams (queryParams) {
-    this._qp = queryParams
   }
 
   /**
@@ -354,11 +355,19 @@ class Platform {
   }
 
   /**
-   * 获取UA
+   * @param {QueryParams} queryParams
+   * @private
+   */
+  setQueryParams (queryParams) {
+    this._qp = queryParams
+  }
+
+  /**
+   * 获取浏览器信息
    * @return {string}
    */
-  userAgent () {
-    return this._ua || ''
+  navigatorPlatform () {
+    return this._bPlt || ''
   }
 
   /**
@@ -368,14 +377,6 @@ class Platform {
    */
   setNavigatorPlatform (navigatorPlatform) {
     this._bPlt = navigatorPlatform
-  }
-
-  /**
-   * 获取浏览器信息
-   * @return {string}
-   */
-  navigatorPlatform () {
-    return this._bPlt || ''
   }
 
   /**
@@ -822,52 +823,7 @@ class PlatformNode {
     return parentPlatformNames
   }
 }
-/**
- * 获取url参数的类
- * @example
- * import {QueryParams} from './platform/query-params'
- * let a = (new QueryParams()).queryParams(location.href)
- * console.log(a.data);
- * => Object {a: "1", b: "3"}
- * @private
- */
-class QueryParams {
-  /**
-   * @param {string} url
-   * */
-  constructor (url = window.location.href) {
-    this.data = {}// {[key: string]: any}
-    this.parseUrl(url)
-  }
 
-  /**
-   * @param {string} key
-   * */
-  get (key) {
-    return this.data[key.toLowerCase()]
-  }
-
-  /**
-   * @param {string} url
-   * */
-  parseUrl (url) {
-    if (url) {
-      const startIndex = url.indexOf('?')
-      if (startIndex > -1) {
-        const queries = url.slice(startIndex + 1).split('&')
-        for (var i = 0; i < queries.length; i++) {
-          if (queries[i].indexOf('=') > 0) {
-            var split = queries[i].split('=')
-            if (split.length > 1) {
-              this.data[split[0].toLowerCase()] = split[1].split('#')[0]
-            }
-          }
-        }
-      }
-    }
-    return this.data
-  }
-}
 
 /**
  * 当前环境的可用CSS变量名称
@@ -949,6 +905,53 @@ function insertSuperset (registry, platformNode) {
       supersetPlatform.parent.child = supersetPlatform
     }
     platformNode.parent = supersetPlatform
+  }
+}
+
+/**
+ * 获取url参数的类
+ * @example
+ * import {QueryParams} from './platform/query-params'
+ * let a = (new QueryParams()).queryParams(location.href)
+ * console.log(a.data);
+ * => Object {a: "1", b: "3"}
+ * @private
+ */
+export class QueryParams {
+  /**
+   * @param {string} url
+   * */
+  constructor (url = window.location.href) {
+    this.data = {}// {[key: string]: any}
+    this.parseUrl(url)
+  }
+
+  /**
+   * @param {string} key
+   * */
+  get (key) {
+    return this.data[key.toLowerCase()]
+  }
+
+  /**
+   * @param {string} url
+   * */
+  parseUrl (url) {
+    if (url) {
+      const startIndex = url.indexOf('?')
+      if (startIndex > -1) {
+        const queries = url.slice(startIndex + 1).split('&')
+        for (var i = 0; i < queries.length; i++) {
+          if (queries[i].indexOf('=') > 0) {
+            var split = queries[i].split('=')
+            if (split.length > 1) {
+              this.data[split[0].toLowerCase()] = split[1].split('#')[0]
+            }
+          }
+        }
+      }
+    }
+    return this.data
   }
 }
 

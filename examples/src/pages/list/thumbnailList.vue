@@ -34,9 +34,6 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
-
-</style>
 <script type="text/javascript">
   export default{}
 </script>

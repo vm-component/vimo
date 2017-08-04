@@ -53,9 +53,6 @@
       toggleChange (val) {
         console.debug('Outer Toggle Change Value - airPlane:' + val)
       }
-    },
-    components: {
-      List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
     }
   }
 </script>

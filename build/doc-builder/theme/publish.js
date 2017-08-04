@@ -397,12 +397,12 @@ function buildNav (members, docdash) {
   nav += buildMemberNav(component, '组件 / Components', {}, linkto)
   nav += buildMemberNav(members.classes, '类 / Classes', seen, linkto)
   nav += buildMemberNav(module, '模块 / Modules', {}, linkto)
-  nav += buildMemberNav(members.externals, '外部依赖 / Externals', seen, linktoExternal)
-  nav += buildMemberNav(members.events, '事件 / Events', seen, linkto)
-  nav += buildMemberNav(members.namespaces, '命名空间 / Namespaces', seen, linkto)
-  nav += buildMemberNav(members.mixins, '混合 / Mixins', seen, linkto)
+  // nav += buildMemberNav(members.externals, '外部依赖 / Externals', seen, linktoExternal)
+  // nav += buildMemberNav(members.events, '事件 / Events', seen, linkto)
+  // nav += buildMemberNav(members.namespaces, '命名空间 / Namespaces', seen, linkto)
+  // nav += buildMemberNav(members.mixins, '混合 / Mixins', seen, linkto)
   nav += buildMemberNav(members.tutorials, '教程 / Tutorials', seenTutorials, linktoTutorial)
-  nav += buildMemberNav(members.interfaces, '接口 / Interfaces', seen, linkto)
+  // nav += buildMemberNav(members.interfaces, '接口 / Interfaces', seen, linkto)
 
   if (members.globals.length) {
     var globalNav = ''
@@ -417,8 +417,7 @@ function buildNav (members, docdash) {
     if (!globalNav) {
       // turn the heading into a link so you can actually get to the global page
       nav += '<h3>' + linkto('global', 'Global') + '</h3>'
-    }
-    else {
+    } else {
       nav += '<h3>Global</h3><ul>' + globalNav + '</ul>'
     }
   }

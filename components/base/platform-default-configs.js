@@ -174,7 +174,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
        * 在ready之前进行处理
        * 执行用户定义的onBridgeReady钩子
        * */
-      plt.beforeReady = () => {
+      plt.beforeReady = function () {
         loadScript(splitArr.join('//'), () => {
           docReady(() => {
             function beforeBridgeReady () {

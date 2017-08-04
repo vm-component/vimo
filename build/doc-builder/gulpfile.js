@@ -16,11 +16,6 @@ var reload = browserSync.reload
 var jsdocConfig = require('./config')
 var plumber = require('gulp-plumber')
 
-var config = {
-  base: path.resolve(__dirname, '../../'),
-  docs: path.resolve(__dirname, '../../docs')
-}
-
 var base = path.resolve(__dirname, '../../')
 
 // clean
@@ -69,3 +64,14 @@ gulp.task('default', function () {
 gulp.task('build', function (cb) {
   runSequence(['clean'], ['make'], cb)
 })
+
+// // test
+// gulp.task('docs', function () {
+//   const fs = require('fs-then-native')
+//   const jsdoc2md = require('jsdoc-to-markdown')
+//   return jsdoc2md.render({
+//     files: `${base}/components/action-sheet/*.*`,
+//     configure: './conf.json'
+//   })
+//   .then(output => fs.writeFile(`${base}/components/action-sheet/api.md`, output))
+// })

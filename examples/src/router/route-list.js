@@ -93,7 +93,7 @@ export default [
     path: '/thumbnailList',
     name: 'list.thumbnailList',
     component (resolve) {
-      require(['@/pages/list/ThumbnailList.vue'], resolve)
+      require(['@/pages/list/thumbnailList.vue'], resolve)
     }
   },
   {

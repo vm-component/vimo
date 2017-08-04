@@ -373,13 +373,13 @@ let routes = [
   },
 
   // demo
-  {
-    path: '/snake-box',
-    name: 'snakeBox',
-    component (resolve) {
-      require(['@/pages/snake-box.vue'], resolve)
-    }
-  },
+  // {
+  //   path: '/snake-box',
+  //   name: 'snakeBox',
+  //   component (resolve) {
+  //     require(['@/pages/snake-box.vue'], resolve)
+  //   }
+  // },
 
   // {
   //   path: '/ghost',

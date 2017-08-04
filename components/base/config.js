@@ -94,7 +94,7 @@ const isArray = Array.isArray
 // 通过url配置App的前后缀, 例如htttp://xx.xx.com?vmMode=ios
 const URL_CONFIG_PREFIX = 'vm'
 
-class Config {
+export class Config {
   constructor () {
     /**
      * @private
