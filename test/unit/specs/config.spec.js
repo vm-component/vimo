@@ -1,5 +1,4 @@
 /* eslint-disable no-undef,no-unused-expressions */
-// config = {}, plt = {}
 import { setupConfig } from '../../../components/base/config'
 import { setupPlatform } from '../../../components/base/platform'
 
@@ -10,7 +9,8 @@ const MOCK_CONFIG = {
     return `http://www.xx.com/api/${type}/dashboard`
   },
   booleanValueTrue: true,
-  booleanValueFalse: false
+  booleanValueFalse: false,
+  numberValue: 10
 }
 describe('Test config.js', () => {
   var configInstance
@@ -23,7 +23,6 @@ describe('Test config.js', () => {
     platformInstance = null
     configInstance = null
   })
-
   it('get():string', () => {
     expect(configInstance.get('urlString')).to.equal('http://www.xx.com/api/dashboard')
   })
@@ -40,7 +39,26 @@ describe('Test config.js', () => {
     expect(configInstance.get('booleanValueFalse')).to.not.be.ok
   })
   it('getNumber()', () => {
-    expect(configInstance.get('booleanValueFalse')).to.not.be.ok
+    expect(configInstance.getNumber('numberValue')).to.equal(10)
   })
-
+  it('set(type, key, value)', () => {
+    configInstance.set('mobile', 'name', 'Hsiang')
+    expect(configInstance.get('name')).to.equal('Hsiang')
+  })
+  it('set(key, value)', () => {
+    configInstance.set('name', 'Hsiang')
+    expect(configInstance.get('name')).to.equal('Hsiang')
+  })
+  it('settings(type:{key:value})', () => {
+    configInstance.settings('mobile', {
+      age: '10'
+    })
+    expect(configInstance.get('age')).to.equal('10')
+  })
+  it('settings({key:value})', () => {
+    configInstance.settings({
+      age: '10'
+    })
+    expect(configInstance.get('age')).to.equal('10')
+  })
 })

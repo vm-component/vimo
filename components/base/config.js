@@ -100,7 +100,7 @@ export class Config {
      * @private
      * */
     this._c = {} // cache 获取配置的缓存对象, 可用的config只有调用的时候才知道!
-    this._s = {} // setting superlative 最高级配置 用户在初始化时自己的配置config
+    this._s = {} // setting/store/superlative 最高级配置 用户在初始化时自己的配置config
     this.plt = null // Platform 当前平台的实例
   }
 
@@ -228,7 +228,7 @@ export class Config {
   }
 
   /**
-   * 修改config中定义的键值对, 可针对平台单独设置. 设置完毕后清楚配置缓存.
+   * 修改config中定义的键值对, 可针对平台单独设置.
    * @param {string} [platform] - 平台类型, 可以是(either 'ios' or 'android'). 如果不填将对所有平台生效.
    * @param {string} [key] - key值
    * @param {string} [value] - 设置的值
