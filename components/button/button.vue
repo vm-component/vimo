@@ -68,7 +68,8 @@
    * </Button>
    * */
   import { setElementClass, isTrueProperty } from '../util/util'
-  export default{
+
+  export default {
     name: 'Button',
     props: {
       /**
@@ -126,18 +127,15 @@
        * 样式加强
        * */
       strong: [Boolean]
-
     },
     data () {
       return {
         itemClass: '',
-
         size: null,         // large/small/default
         style: null,        // outline/clear/solid
         shape: null,        // round/fab
         display: null,      // block/full
         init: false        //
-
       }
     },
     computed: {
@@ -236,7 +234,6 @@
         if (_length > 0) {
           _firstSlot = this.$slots.default[0]
           _lastSlot = this.$slots.default[_length - 1]
-
           // icon-only
           if (_length === 1 && this.isIconComponent(_firstSlot)) {
             this.$el.setAttribute('icon-only', '')
@@ -257,7 +254,7 @@
 
       // 判断slot是icon组件
       isIconComponent (slot) {
-        return slot.componentOptions && slot.componentOptions.tag && slot.componentOptions.tag.toLowerCase() === 'icon'
+        return !!slot.componentOptions && !!slot.componentOptions.tag && slot.componentOptions.tag.toLowerCase() === 'icon'
       },
 
       // 获取slot的数量
