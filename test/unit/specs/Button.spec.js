@@ -28,8 +28,7 @@ let options = {
 }
 
 describe('Button', () => {
-
-  it('renders the correct markup', () => {
+  it('@base: renders the correct markup', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'md'
@@ -40,7 +39,7 @@ describe('Button', () => {
     expect(wrapper.html()).to.equal(result)
   })
 
-  it('renders the correct text', () => {
+  it('@base: renders the correct text', () => {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>ButtonTest</span>'
@@ -51,7 +50,7 @@ describe('Button', () => {
   })
 
   // it's also easy to check for the existence of elements
-  it('has a button', () => {
+  it('@base: has a button', () => {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>DOM</span>'
@@ -62,7 +61,7 @@ describe('Button', () => {
     expect(wrapper.contains('span')).to.be.ok
   })
 
-  it('component must have a name', () => {
+  it('@base: component must have a name', () => {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>Name</span>'
@@ -72,7 +71,7 @@ describe('Button', () => {
     expect(wrapper.name()).to.equal('Button')
   })
 
-  it('have the right className', () => {
+  it('@base: have the right className', () => {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>HasClass</span>'
@@ -83,7 +82,7 @@ describe('Button', () => {
   })
 
   // triger click
-  it('triger click', () => {
+  it('@event: triger click', () => {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>Click</span>'
@@ -96,7 +95,7 @@ describe('Button', () => {
     wrapper.vm.clickHandler.restore() // 消除监视
   })
 
-  it('color', () => {
+  it('@props: color', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         color: 'danger'
@@ -109,7 +108,7 @@ describe('Button', () => {
     expect(wrapper.hasStyle('background-color', '#f53d3d')).to.equal(true)
   })
 
-  it('mode', () => {
+  it('@props: mode', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'md'
@@ -122,7 +121,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-md')).to.equal(true)
   })
 
-  it('small', () => {
+  it('@props: small', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -136,7 +135,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-small-ios')).to.equal(true)
   })
 
-  it('default', () => {
+  it('@props: default', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -150,7 +149,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-default-ios')).to.equal(true)
   })
 
-  it('large', () => {
+  it('@props: large', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -164,7 +163,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-large-ios')).to.equal(true)
   })
 
-  it('round', () => {
+  it('@props: round', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -178,7 +177,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-round-ios')).to.equal(true)
   })
 
-  it('full', () => {
+  it('@props: full', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -192,7 +191,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-full-ios')).to.equal(true)
   })
 
-  it('block', () => {
+  it('@props: block', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -206,7 +205,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-block-ios')).to.equal(true)
   })
 
-  it('menutoggle', () => {
+  it('@props: menutoggle', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -220,7 +219,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-menutoggle-ios')).to.equal(true)
   })
 
-  it('outline', () => {
+  it('@props: outline', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -234,7 +233,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-outline-ios')).to.equal(true)
   })
 
-  it('clear', () => {
+  it('@props: clear', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -248,7 +247,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-clear-ios')).to.equal(true)
   })
 
-  it('solid', () => {
+  it('@props: solid', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -262,7 +261,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-solid-ios')).to.equal(true)
   })
 
-  it('role:action-sheet-button', () => {
+  it('@props: role=action-sheet-button', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -276,7 +275,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('action-sheet-button-ios')).to.equal(true)
   })
 
-  it('role:bar-button', () => {
+  it('@props: role=bar-button', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -290,7 +289,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('bar-button-ios')).to.equal(true)
   })
 
-  it('strong', () => {
+  it('@props: strong', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -305,7 +304,7 @@ describe('Button', () => {
     expect(wrapper.hasStyle('font-weight', '600')).to.equal(true)
   })
 
-  it('with icon only', () => {
+  it('@slots: icon-only', () => {
     const wrapper = mount({
       template: '<Button><Icon name="car"></Icon></Button>',
       components: {Button, Icon}
@@ -315,7 +314,7 @@ describe('Button', () => {
     expect(wrapper.hasAttribute('icon-only', '')).to.equal(true)
   })
 
-  it('with icon-left', () => {
+  it('@slots: icon-left', () => {
     const wrapper = mount({
       template: '<Button><Icon name="car"></Icon>Icon</Button>',
       components: {Button, Icon}
@@ -325,7 +324,7 @@ describe('Button', () => {
     expect(wrapper.hasAttribute('icon-left', '')).to.equal(true)
   })
 
-  it('with icon-right', () => {
+  it('@slots: icon-right', () => {
     const wrapper = mount({
       template: '<Button>Icon<Icon name="car"></Icon></Button>',
       components: {Button, Icon}
