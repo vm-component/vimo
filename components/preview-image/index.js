@@ -36,9 +36,9 @@ import { Modal } from '../modal/index'
 import PreviewImageComponent from './preview-image.vue'
 
 export function PreviewImage (options) {
-  let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
-  let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
-  let isDtDreamReady = window.VM.platform.is('dtdream') && window.dd && !options.isH5
+  let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
+  let isDingTalkReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dingtalk') && window.dd && !options.isH5
+  let isDtDreamReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dtdream') && window.dd && !options.isH5
   // alipay模式只能显示完整url路径的图片, 不能显示base64格式的图片
   if (isAlipayReady) {
     // alipay环境使用壳子方法

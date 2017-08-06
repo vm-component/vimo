@@ -149,9 +149,9 @@
     name: 'Navbar',
     data () {
       return {
-        isAlipayReady: window.VM.platform.is('alipay') && window.AlipayJSBridge,
-        isDingTalkReady: window.VM.platform.is('dingtalk') && window.dd,
-        isDtDreamReady: window.VM.platform.is('dtdream') && window.dd,
+        isAlipayReady: this.$platform && this.$platform.is('alipay') && window.AlipayJSBridge,
+        isDingTalkReady: this.$platform && this.$platform.is('dingtalk') && window.dd,
+        isDtDreamReady: this.$platform && this.$platform.is('dtdream') && window.dd,
 
         hideRightButtons: false,
 

@@ -27,9 +27,9 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     present (options) {
-      let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
-      let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
-      let isDtDreamReady = window.VM.platform.is('dtdream') && window.dd && !options.isH5
+      let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
+      let isDingTalkReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dingtalk') && window.dd && !options.isH5
+      let isDtDreamReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dtdream') && window.dd && !options.isH5
 
       // 如果btn太多, 则原生组件放不下
       if (options.buttons.length < 9) {

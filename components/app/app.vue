@@ -98,7 +98,7 @@
         isScrollDisabled: false, // 控制页面是否能滚动
         isClickBlockEnabled: false, // 控制是否激活 '冷冻'效果 click-block-enabled
 
-        version: window.VM.version
+        version: !!window.VM && window.VM.version
       }
     },
     props: {
@@ -223,19 +223,19 @@
         if (isString(_title)) {
           _title = {title: _title}
         }
-        if (window.VM.platform.is('alipay') && window.AlipayJSBridge) {
+        if (this.$platform && this.$platform.is('alipay') && window.AlipayJSBridge) {
           window.AlipayJSBridge.call('setTitle', _title)
-        } else if (window.VM.platform.is('dingtalk') && window.dd) {
+        } else if (this.$platform && this.$platform.is('dingtalk') && window.dd) {
           window.dd.biz.navigation.setTitle({
             title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
           })
-        } else if (window.VM.platform.is('dtdream') && window.dd) {
+        } else if (this.$platform && this.$platform.is('dtdream') && window.dd) {
           window.dd.biz.navigation.setTitle({
             title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
           })
         } else {
           // 不在壳子中则正常显示
-          if (this.$platform.platforms().length <= 2) {
+          if (this.$platform && this.$platform.platforms().length <= 2) {
             document.title = _title.title
           } else {
             // 以下代码可以解决以上问题，不依赖jq

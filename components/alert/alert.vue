@@ -1,5 +1,5 @@
 <template>
-    <div class="alert" :class="[modeClass,cssClass,{'alert-top':isAlertTop}]">
+    <div class="ion-alert" :class="[modeClass,cssClass && cssClass.trim(),{'alert-top':isAlertTop}]">
         <Backdrop @click.native="bdClick()" :enableBackdropDismiss="enableBackdropDismiss"
                   :isActive="isActive"></Backdrop>
         <transition name="alert"
@@ -27,7 +27,6 @@
                             </div>
                         </Button>
                     </div>
-
                     <div class="alert-checkbox-group" v-if="inputType==='checkbox'">
                         <Button :id="i.id" role="alert-checkbox-button" :aria-checked="i.checked"
                                 v-for="(i,index) in inputsForDispaly" @click="cbClick(i)" :key="index"
@@ -40,14 +39,12 @@
                             </div>
                         </Button>
                     </div>
-
                     <div v-if="inputType!='radio' && inputType!='checkbox'" class="alert-input-group">
                         <div v-for="i in inputsForDispaly" class="alert-input-wrapper">
                             <input :id="i.id" :value="i.value" :placeholder="i.placeholder" :type="i.type"
                                    class="alert-input">
                         </div>
                     </div>
-
                 </div>
                 <div class="alert-button-group" :class="{'alert-button-group-vertical':buttonsForDisplay.length>2}">
                     <Button role="alert-button" v-for="(b,index) in buttonsForDisplay" :key="index" @click="btnClick(b)"
@@ -255,7 +252,6 @@
     },
     data () {
       return {
-
         /**
          * Alert State
          * @private

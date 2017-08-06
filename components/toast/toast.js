@@ -118,9 +118,9 @@ function ToastFactory () {
     propsData = _args[0]
   }
 
-  let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !propsData.isH5
-  let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !propsData.isH5
-  let isDtDreamReady = window.VM.platform.is('dtdream') && window.dd && !propsData.isH5
+  let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && !propsData.isH5
+  let isDingTalkReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dingtalk') && window.dd && !propsData.isH5
+  let isDtDreamReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dtdream') && window.dd && !propsData.isH5
 
   if (isAlipayReady) {
     console.info('Toast 组件使用Alipay模式!')

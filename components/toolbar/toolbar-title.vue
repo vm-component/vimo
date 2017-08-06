@@ -232,7 +232,7 @@
     },
     mounted () {
       this.init()
-      let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge
+      let isAlipayReady = this.$platform && this.$platform.is('alipay') && window.AlipayJSBridge
       if (this.isTitleInNavbar && isAlipayReady) {
         /**
          * @event component:Title#onTitleClick

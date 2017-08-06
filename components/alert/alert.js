@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { getInsertPosition } from '../util/getInsertPosition'
 import alertComponent from './alert.vue'
+
 const Alert = Vue.extend(alertComponent)
 
 // ---------- functions ----------
@@ -27,9 +28,9 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     present (options) {
-      let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
-      let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
-      let isDtDreamReady = window.VM.platform.is('dtdream') && window.dd && !options.isH5
+      let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
+      let isDingTalkReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dingtalk') && window.dd && !options.isH5
+      let isDtDreamReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dtdream') && window.dd && !options.isH5
 
       if (!options.buttons) {
         options.buttons = []

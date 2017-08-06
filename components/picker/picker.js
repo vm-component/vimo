@@ -28,7 +28,7 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     present (options) {
-      let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
+      let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
       if (isAlipayReady && (options.columns.length === 1 || options.columns.length === 2)) {
         console.info('Picker 组件使用Alipay模式!')
         return new Promise((resolve) => {

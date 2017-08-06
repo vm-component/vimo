@@ -59,8 +59,8 @@ const ChooseCity = {
     }
     Object.assign(finnalOptions, defaultOptions, options)
 
-    let isAlipayReady = window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
-    let isDingTalkReady = window.VM.platform.is('dingtalk') && window.dd && !options.isH5
+    let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
+    let isDingTalkReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dingtalk') && window.dd && !options.isH5
 
     if (isAlipayReady) {
       window.ap && window.ap.chooseCity(finnalOptions, finnalOptions.onDismiss)

@@ -5,11 +5,11 @@
 
 @alert-min-width: 250px;
 @alert-max-height: 90%;
-
 @alert-button-line-height: 20px;
 @alert-button-font-size: 14px;
+@alert-input-placeholder-color: #999;
 
-.alert {
+.ion-alert {
   position: absolute;
   top: 0;
   right: 0;
@@ -26,7 +26,7 @@
 
 }
 
-.alert.alert-top {
+.ion-alert.alert-top {
   align-items: flex-start;
 
   padding-top: 50px;
@@ -35,7 +35,7 @@
   }
 }
 
-.alert input {
+.ion-alert input {
   width: 100%;
 }
 
@@ -80,7 +80,7 @@
 }
 
 .alert-input {
-  .placeholder();
+  .placeholder(@alert-input-placeholder-color);
 
   padding: 10px 0;
 
