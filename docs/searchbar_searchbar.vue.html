@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>searchbar/searchbar.vue - Documentation</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="scripts/qrcode.js"></script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/custom.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+
+    <section class="vimo">
+        <div class="vimo__imgBox">
+            <img class="vimo__imgBox--img" src="./asset/img/vimo.png">
+        </div>
+
+        <div class="vimo__title">
+            <h2>VIMO</h2>
+            <!--<p>beta</p>-->
+            <p>基于Vue2.x的移动端Hybrid框架</p>
+        </div>
+        <div class="vimo__iframe">
+            <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=star&amp;count=true"
+                    frameborder="0" scrolling="0" width="110px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=fork&amp;count=true"
+                    frameborder="0" scrolling="0" width="95px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+        </div>
+
+    </section>
+
+    <section class="nav__header"><h2><a href="index.html">首页 / Home</a></h2><h2><a href="https://github.com/DTFE/vimo-start-kit">如何开始 / How To Start</a></h2><h2><a href="https://dtfe.github.io/vimo-demo/#/">示例 / Demo</a></h2><h2><a href="https://github.com/DTFE/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2><h2><a href="#">常见问题 / Question</a></h2></section><h3>组件 / Components</h3><ul><li><a href="component-ActionSheet.html">ActionSheet</a><ul class='methods'><li data-type='method'><a href="component-ActionSheet.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-ActionSheet.html#~present">present</a></li></ul></li><li><a href="component-Alert.html">Alert</a><ul class='methods'><li data-type='method'><a href="component-Alert.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Alert.html#~present">present</a></li></ul></li><li><a href="component-Avatar.html">Avatar</a></li><li><a href="component-Backdrop.html">Backdrop</a></li><li><a href="component-Badge.html">Badge</a></li><li><a href="component-Base_App.html">Base/App</a><ul class='methods'><li data-type='method'><a href="component-Base_App.html#~isEnabled">isEnabled</a></li><li data-type='method'><a href="component-Base_App.html#~isScrolling">isScrolling</a></li><li data-type='method'><a href="component-Base_App.html#~setClass">setClass</a></li><li data-type='method'><a href="component-Base_App.html#~setDisableScroll">setDisableScroll</a></li><li data-type='method'><a href="component-Base_App.html#~setDocTitle">setDocTitle</a></li><li data-type='method'><a href="component-Base_App.html#~setEnabled">setEnabled</a></li><li data-type='method'><a href="component-Base_App.html#~setScrolling">setScrolling</a></li></ul></li><li><a href="component-Base_Content.html">Base/Content</a><ul class='methods'><li data-type='method'><a href="component-Base_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="component-Base_Content.html#~resize">resize</a></li><li data-type='method'><a href="component-Base_Content.html#~scrollBy">scrollBy</a></li><li data-type='method'><a href="component-Base_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="component-Base_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="component-Base_Content.html#~scrollToElement">scrollToElement</a></li><li data-type='method'><a href="component-Base_Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="component-Base_Footer.html">Base/Footer</a><ul class='methods'><li data-type='method'><a href="component-Base_Footer.html#~hide">hide</a></li><li data-type='method'><a href="component-Base_Footer.html#~setStyle">setStyle</a></li><li data-type='method'><a href="component-Base_Footer.html#~show">show</a></li><li data-type='method'><a href="component-Base_Footer.html#~toggle">toggle</a></li></ul></li><li><a href="component-Base_Header.html">Base/Header</a><ul class='methods'><li data-type='method'><a href="component-Base_Header.html#~hide">hide</a></li><li data-type='method'><a href="component-Base_Header.html#~setStyle">setStyle</a></li><li data-type='method'><a href="component-Base_Header.html#~show">show</a></li><li data-type='method'><a href="component-Base_Header.html#~toggle">toggle</a></li></ul></li><li><a href="component-Base_Nav.html">Base/Nav</a></li><li><a href="component-Base_Page.html">Base/Page</a></li><li><a href="component-Button.html">Button</a></li><li><a href="component-Buttons.html">Buttons</a></li><li><a href="component-Card.html">Card</a></li><li><a href="component-Checkbox.html">Checkbox</a></li><li><a href="component-ChooseCity.html">ChooseCity</a></li><li><a href="component-CityPicker.html">CityPicker</a></li><li><a href="component-Column.html">Column</a></li><li><a href="component-Datetime.html">Datetime</a></li><li><a href="component-Fab.html">Fab</a><ul class='methods'><li data-type='method'><a href="component-Fab.html#~close">close</a></li></ul></li><li><a href="component-FabButton.html">FabButton</a></li><li><a href="component-FabList.html">FabList</a></li><li><a href="component-Feedback.html">Feedback</a><ul class='methods'><li data-type='method'><a href="component-Feedback.html#~destroy">destroy</a></li><li data-type='method'><a href="component-Feedback.html#~update">update</a></li></ul></li><li><a href="component-Grid.html">Grid</a></li><li><a href="component-Icon.html">Icon</a></li><li><a href="component-Img.html">Img</a></li><li><a href="component-Indicator.html">Indicator</a><ul class='methods'><li data-type='method'><a href="component-Indicator.html#.dismiss">dismiss</a></li><li data-type='method'><a href="component-Indicator.html#.present">present</a></li></ul></li><li><a href="component-InfiniteScroll.html">InfiniteScroll</a><ul class='methods'><li data-type='method'><a href="component-InfiniteScroll.html#~complete">complete</a></li><li data-type='method'><a href="component-InfiniteScroll.html#~enable">enable</a></li><li data-type='method'><a href="component-InfiniteScroll.html#~waitFor">waitFor</a></li></ul></li><li><a href="component-InfiniteScrollContent.html">InfiniteScrollContent</a></li><li><a href="component-Input.html">Input</a><ul class='methods'><li data-type='method'><a href="component-Input.html#~destroy">destroy</a></li><li data-type='method'><a href="component-Input.html#~update">update</a></li></ul></li><li><a href="component-Item.html">Item</a></li><li><a href="component-ItemCollapse.html">ItemCollapse</a></li><li><a href="component-ItemGroup.html">ItemGroup</a></li><li><a href="component-ItemOptions.html">ItemOptions</a></li><li><a href="component-ItemSliding.html">ItemSliding</a><ul class='methods'><li data-type='method'><a href="component-ItemSliding.html#~close">close</a></li><li data-type='method'><a href="component-ItemSliding.html#~getOpenAmount">getOpenAmount</a></li><li data-type='method'><a href="component-ItemSliding.html#~getSlidingPercent">getSlidingPercent</a></li><li data-type='method'><a href="component-ItemSliding.html#~openLeftOptions">openLeftOptions</a></li><li data-type='method'><a href="component-ItemSliding.html#~openRightOptions">openRightOptions</a></li></ul></li><li><a href="component-Label.html">Label</a></li><li><a href="component-List.html">List</a></li><li><a href="component-Loading.html">Loading</a><ul class='methods'><li data-type='method'><a href="component-Loading.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Loading.html#~present">present</a></li></ul></li><li><a href="component-Menus.html">Menus</a><ul class='methods'><li data-type='method'><a href="component-Menus.html#~close">close</a></li><li data-type='method'><a href="component-Menus.html#~open">open</a></li><li data-type='method'><a href="component-Menus.html#~toggle">toggle</a></li></ul></li><li><a href="component-Modal.html">Modal</a><ul class='methods'><li data-type='method'><a href="component-Modal.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Modal.html#~present">present</a></li></ul></li><li><a href="component-Navbar.html">Navbar</a><ul class='methods'><li data-type='method'><a href="component-Navbar.html#~hideOptionButton">hideOptionButton</a></li><li data-type='method'><a href="component-Navbar.html#~reset">reset</a></li><li data-type='method'><a href="component-Navbar.html#~showOptionButton">showOptionButton</a></li><li data-type='method'><a href="component-Navbar.html#~showPopMenu">showPopMenu</a></li></ul></li><li><a href="component-Note.html">Note</a></li><li><a href="component-NoticeBar.html">NoticeBar</a><ul class='methods'><li data-type='method'><a href="component-NoticeBar.html#~close">close</a></li></ul></li><li><a href="component-Picker.html">Picker</a><ul class='methods'><li data-type='method'><a href="component-Picker.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Picker.html#~present">present</a></li></ul></li><li><a href="component-Popover.html">Popover</a><ul class='methods'><li data-type='method'><a href="component-Popover.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Popover.html#~present">present</a></li></ul></li><li><a href="component-PreviewImage.html">PreviewImage</a></li><li><a href="component-Radio.html">Radio</a></li><li><a href="component-Range.html">Range</a></li><li><a href="component-Refresher.html">Refresher</a><ul class='methods'><li data-type='method'><a href="component-Refresher.html#~cancel">cancel</a></li><li data-type='method'><a href="component-Refresher.html#~complete">complete</a></li></ul></li><li><a href="component-RefresherContent.html">RefresherContent</a></li><li><a href="component-Row.html">Row</a></li><li><a href="component-Scroll.html">Scroll</a></li><li><a href="component-ScrollSegment.html">ScrollSegment</a></li><li><a href="component-SearchBar.html">SearchBar</a><ul class='methods'><li data-type='method'><a href="component-SearchBar.html#~setFocus">setFocus</a></li></ul></li><li><a href="component-Segment.html">Segment</a></li><li><a href="component-SegmentButton.html">SegmentButton</a></li><li><a href="component-Select.html">Select</a></li><li><a href="component-Separation.html">Separation</a></li><li><a href="component-Slide.html">Slide</a></li><li><a href="component-SlideBox.html">SlideBox</a><ul class='methods'><li data-type='method'><a href="component-SlideBox.html#~cancel">cancel</a></li><li data-type='method'><a href="component-SlideBox.html#~checking">checking</a></li><li data-type='method'><a href="component-SlideBox.html#~complete">complete</a></li><li data-type='method'><a href="component-SlideBox.html#~fail">fail</a></li></ul></li><li><a href="component-Slides.html">Slides</a></li><li><a href="component-Spinner.html">Spinner</a></li><li><a href="component-Tab.html">Tab</a></li><li><a href="component-Tabs.html">Tabs</a><ul class='methods'><li data-type='method'><a href="component-Tabs.html#~getActivatedIndex">getActivatedIndex</a></li><li data-type='method'><a href="component-Tabs.html#~getByIndex">getByIndex</a></li><li data-type='method'><a href="component-Tabs.html#~getSelected">getSelected</a></li><li data-type='method'><a href="component-Tabs.html#~select">select</a></li></ul></li><li><a href="component-Thumbnail.html">Thumbnail</a></li><li><a href="component-Title.html">Title</a><ul class='methods'><li data-type='method'><a href="component-Title.html#~getTitle">getTitle</a></li><li data-type='method'><a href="component-Title.html#~reset">reset</a></li><li data-type='method'><a href="component-Title.html#~setTitle">setTitle</a></li><li data-type='method'><a href="component-Title.html#~setTitleColor">setTitleColor</a></li></ul></li><li><a href="component-Toast.html">Toast</a></li><li><a href="component-Toggle.html">Toggle</a></li><li><a href="component-Toolbar.html">Toolbar</a></li></ul><h3>类 / Classes</h3><ul><li><a href="Config.html">Config</a><ul class='methods'><li data-type='method'><a href="Config.html#get">get</a></li><li data-type='method'><a href="Config.html#getBoolean">getBoolean</a></li><li data-type='method'><a href="Config.html#getNumber">getNumber</a></li><li data-type='method'><a href="Config.html#set">set</a></li><li data-type='method'><a href="Config.html#settings">settings</a></li></ul></li><li><a href="History.html">History</a><ul class='methods'><li data-type='method'><a href="History.html#canGoBack">canGoBack</a></li><li data-type='method'><a href="History.html#first">first</a></li><li data-type='method'><a href="History.html#getActive">getActive</a></li><li data-type='method'><a href="History.html#getDirection">getDirection</a></li><li data-type='method'><a href="History.html#getHistory">getHistory</a></li><li data-type='method'><a href="History.html#getPrevious">getPrevious</a></li><li data-type='method'><a href="History.html#indexOf">indexOf</a></li><li data-type='method'><a href="History.html#toRoot">toRoot</a></li></ul></li><li><a href="Platform.html">Platform</a><ul class='methods'><li data-type='method'><a href="Platform.html#dir">dir</a></li><li data-type='method'><a href="Platform.html#do">do</a></li><li data-type='method'><a href="Platform.html#height">height</a></li><li data-type='method'><a href="Platform.html#is">is</a></li><li data-type='method'><a href="Platform.html#isLandscape">isLandscape</a></li><li data-type='method'><a href="Platform.html#isPortrait">isPortrait</a></li><li data-type='method'><a href="Platform.html#isRTL">isRTL</a></li><li data-type='method'><a href="Platform.html#lang">lang</a></li><li data-type='method'><a href="Platform.html#navigatorPlatform">navigatorPlatform</a></li><li data-type='method'><a href="Platform.html#netType">netType</a></li><li data-type='method'><a href="Platform.html#platforms">platforms</a></li><li data-type='method'><a href="Platform.html#ready">ready</a></li><li data-type='method'><a href="Platform.html#registerMethod">registerMethod</a></li><li data-type='method'><a href="Platform.html#userAgent">userAgent</a></li><li data-type='method'><a href="Platform.html#versions">versions</a></li><li data-type='method'><a href="Platform.html#width">width</a></li></ul></li></ul><h3>模块 / Modules</h3><ul><li><a href="module-Util.html">Util</a><ul class='members'><li data-type='member'><a href="module-Util.html#.REGEXP">REGEXP</a></li></ul><ul class='methods'><li data-type='method'><a href="module-Util.html#.assign">assign</a></li><li data-type='method'><a href="module-Util.html#.clamp">clamp</a></li><li data-type='method'><a href="module-Util.html#.deepClone">deepClone</a></li><li data-type='method'><a href="module-Util.html#.defaults">defaults</a></li><li data-type='method'><a href="module-Util.html#.docReady">docReady</a></li><li data-type='method'><a href="module-Util.html#.firstUpperCase">firstUpperCase</a></li><li data-type='method'><a href="module-Util.html#.focusOutActiveElement">focusOutActiveElement</a></li><li data-type='method'><a href="module-Util.html#.hasClass">hasClass</a></li><li data-type='method'><a href="module-Util.html#.hasFocus">hasFocus</a></li><li data-type='method'><a href="module-Util.html#.hasFocusedTextInput">hasFocusedTextInput</a></li><li data-type='method'><a href="module-Util.html#.hashChange">hashChange</a></li><li data-type='method'><a href="module-Util.html#.hasPointerMoved">hasPointerMoved</a></li><li data-type='method'><a href="module-Util.html#.isActive">isActive</a></li><li data-type='method'><a href="module-Util.html#.isArray">isArray</a></li><li data-type='method'><a href="module-Util.html#.isBlank">isBlank</a></li><li data-type='method'><a href="module-Util.html#.isBoolean">isBoolean</a></li><li data-type='method'><a href="module-Util.html#.isCheckedProperty">isCheckedProperty</a></li><li data-type='method'><a href="module-Util.html#.isDate">isDate</a></li><li data-type='method'><a href="module-Util.html#.isDefined">isDefined</a></li><li data-type='method'><a href="module-Util.html#.isFunction">isFunction</a></li><li data-type='method'><a href="module-Util.html#.isNumber">isNumber</a></li><li data-type='method'><a href="module-Util.html#.isObject">isObject</a></li><li data-type='method'><a href="module-Util.html#.isPassive">isPassive</a></li><li data-type='method'><a href="module-Util.html#.isPlainObject">isPlainObject</a></li><li data-type='method'><a href="module-Util.html#.isPresent">isPresent</a></li><li data-type='method'><a href="module-Util.html#.isPrimitive">isPrimitive</a></li><li data-type='method'><a href="module-Util.html#.isRegexp">isRegexp</a></li><li data-type='method'><a href="module-Util.html#.isString">isString</a></li><li data-type='method'><a href="module-Util.html#.isTextInput">isTextInput</a></li><li data-type='method'><a href="module-Util.html#.isTrueProperty">isTrueProperty</a></li><li data-type='method'><a href="module-Util.html#.isUndefined">isUndefined</a></li><li data-type='method'><a href="module-Util.html#.merge">merge</a></li><li data-type='method'><a href="module-Util.html#.parsePxUnit">parsePxUnit</a></li><li data-type='method'><a href="module-Util.html#.pointerCoord">pointerCoord</a></li><li data-type='method'><a href="module-Util.html#.registerListener">registerListener</a></li><li data-type='method'><a href="module-Util.html#.removeArrayItem">removeArrayItem</a></li><li data-type='method'><a href="module-Util.html#.setElementClass">setElementClass</a></li><li data-type='method'><a href="module-Util.html#.transitionEnd">transitionEnd</a></li><li data-type='method'><a href="module-Util.html#.urlChange">urlChange</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+
+    <article class="content">
+
+        
+        <h1 class="page-title">searchbar/searchbar.vue</h1>
+        
+
+        
+
+
+
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+    &lt;div class="ion-searchbar searchbar"
+         :class="[
+         modeClass,colorClass,
+         {'searchbar-has-focus': sbHasFocus},
+         {'searchbar-has-value':theValue},
+         {'searchbar-animated':shouldAnimated},
+         {'searchbar-active':sbHasFocus},
+         {'searchbar-show-cancel':showCancelButton},
+         {'searchbar-left-aligned':shouldAlignLeft}
+         ]">
+        &lt;div class="searchbar-input-container">
+            &lt;!--在md模式下，md的取消按钮是在这里的，当点击inputs输入时，返回按钮将覆盖search按钮-->
+            &lt;Button mode="md"
+                    @click="cancelSearchbar($event)"
+                    clear
+                    color="dark"
+                    class="searchbar-md-cancel"
+                    role="button">
+                &lt;Icon mode="md" name="md-arrow-back">&lt;/Icon>
+            &lt;/Button>
+
+            &lt;!--input左边的search按钮-->
+            &lt;div ref="searchbarIcon" class="searchbar-search-icon">&lt;/div>
+            &lt;input ref="searchbarInput" class="searchbar-input" id="searchbarInput"
+                   @input="onInputHandler($event)"
+                   @blur="onBlurHandler($event)"
+                   @focus="onFocusHandler($event)"
+                   :value="theValue"
+                   :placeholder="placeholder"
+                   :type="type"
+                   :autocomplete="autocompleteValue"
+                   :autocorrect="autocorrectValue"
+                   :spellcheck="spellcheckValue">
+            &lt;!--input右边的关闭按钮-->
+            &lt;Button clear
+                    class="searchbar-clear-icon"
+                    :mode="mode"
+                    @click="clearInput($event)"
+                    role="button">&lt;/Button>
+        &lt;/div>
+
+        &lt;!--取消按钮，点击input时出现，只对IOS，md在search icon位置显示，wp没有-->
+        &lt;Button ref="cancelButton"
+                mode="ios"
+                clear
+                @click="cancelSearchbar($event)"
+                class="searchbar-ios-cancel"
+                role="button">
+            &lt;span>{{cancelButtonText}}&lt;/span>
+        &lt;/Button>
+    &lt;/div>
+&lt;/template>
+&lt;style lang="less">
+    @import "searchbar";
+    @import "searchbar.ios.less";
+    @import "searchbar.md.less";
+&lt;/style>
+&lt;script type="text/javascript">
+  /**
+   * @component SearchBar
+   * @description
+   * 搜索条
+   *
+   * ## 表单组件 / SearchBar搜索条组件
+   *
+   * 搜索组件, 一般是放在Header组件的Toolbar组件中, 当然也可以放置在任何位置
+   *
+   *
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { Searchbar } from 'vimo/components/searchbar'
+   * // 安装
+   * Vue.component(Searchbar.name, Searchbar)
+   * // 或者
+   * export default{
+   *   components: {
+   *    Searchbar
+   *  }
+   * }
+   * ```
+   *
+   * @props {String} [color]                        - 颜色
+   * @props {String} [mode='ios']                   - 模式
+   * @props {String} [cancelButtonText='Cancel']    - 取消按钮的文本
+   * @props {Boolean} [showCancelButton=false]      - 是否显示cancelButton(只在focus状态才显示cancelBtn, 且cancelBtn只对组件作用, 如果要赋予业务能力, 请在右侧自己实现cancelBtn)
+   * @props {Number} [debounce=0]                   - 等待多久触发onInput事件
+   * @props {String} [placeholder='Search']         - 设置placeholder的值.
+   * @props {String} [autocomplete]                 - 自动完成
+   * @props {String} [autocorrect]                  - 自动纠错
+   * @props {String|Boolean} [autofocus]            - 如果是boolean类型, 则立即判断, 如果是Number, 则等待dom完毕定时后自动focus
+   * @props {Boolean} [spellcheck]                  - 拼写检查
+   * @props {String} [type='search']                - 设置input配型, 可以是: "text", "password", "email", "number", "search", "tel", "url".
+   * @props {Boolean} [animated=false]              - 是否启动点击动画
+   *
+   *
+   * @fires component:SearchBar#onInput
+   * @fires component:SearchBar#onFocus
+   * @fires component:SearchBar#onBlur
+   * @fires component:SearchBar#onClear
+   * @fires component:SearchBar#onCancel
+   *
+   *
+   * @demo https://dtfe.github.io/vimo-demo/#/searchbar
+   *
+   * @usage
+   * &lt;template>
+   *    &lt;Page>
+   *    &lt;Header>
+   *        &lt;Navbar>
+   *            &lt;Title>Searchbar&lt;/Title>
+   *        &lt;/Navbar>
+   *        &lt;Toolbar>
+   *            &lt;Searchbar :animated="true"
+   *                placeholder="Search"
+   *                :debounce="0"
+   *                v-model="myInput"
+   *                :showCancelButton="true"
+   *                cancelButtonText="取消"
+   *                @onInput="onInput"
+   *                @onFocus="onFocus"
+   *                @onBlur="onBlur"
+   *                @onCancel="onCancel"
+   *                @onClear="onClear">&lt;/Searchbar>
+   *         &lt;/Toolbar>
+   *     &lt;/Header>
+   *    &lt;Content padding>
+   *        &lt;p>Search debounce: 100&lt;/p>
+   *        &lt;p>Search Value: {{myInput}}&lt;/p>
+   *    &lt;/Content>
+   *    &lt;/Page>
+   * &lt;/template>
+   * */
+  import { Button } from '../button'
+  import { Icon } from '../icon'
+  import { isNumber, isBoolean } from '../util/util'
+  export default{
+    name: 'SearchBar',
+    data () {
+      return {
+        isCancelVisible: false,
+        sbHasFocus: false,
+        shouldAlignLeft: true,
+        shouldBlur: true,
+        shouldAnimated: false,
+
+        // 三个元素的id的document实例
+        searchbarIconElement: '',
+        searchbarInputElement: '',
+        cancelButtonElement: '',
+
+        // 外部的value映射
+        theValue: this.value,
+        timer: '',
+
+        placeHolderTextWidth: null // number eg: 44
+
+      }
+    },
+    props: {
+      /**
+       * The predefined color to use. For example: "primary", "secondary", "danger".
+       * */
+      color: [String],
+      /**
+       * The mode to apply to this component. Mode can be ios, wp, or md.
+       * */
+      mode: {
+        type: String,
+        default () { return this.$config &amp;&amp; this.$config.get('mode') || 'ios' }
+      },
+      /**
+       * Set the the cancel button text. Default: "Cancel".
+       * */
+      cancelButtonText: {
+        type: String,
+        default: 'Cancel'
+      },
+      /**
+       * Whether to show the cancel button or not. Default: "false".
+       * */
+      showCancelButton: [Boolean],
+      /**
+       * How long, in milliseconds, to wait to trigger the onInput event after each keystroke. Default 250.
+       * */
+      debounce: {
+        type: Number,
+        default: 0
+      },
+      /**
+       * Set the input's placeholder. Default "Search".
+       * */
+      placeholder: {
+        type: String,
+        default: 'Search'
+      },
+      /**
+       * Set the input's autocomplete property. Values: "on", "off". Default "off".
+       * */
+      autocomplete: {
+        type: String,
+        default: 'off'
+      },
+      /**
+       * Set the input's autocorrect property. Values: "on", "off". Default "off".
+       * */
+      autocorrect: {
+        type: String,
+        default: 'off'
+      },
+
+      autofocus: [Boolean, Number],
+      /**
+       * Set the input's spellcheck property. Values: true, false. Default false.
+       * */
+      spellcheck: {
+        type: [String, Boolean],
+        default: false
+      },
+      /**
+       * Set the type of the input. Values: "text", "password", "email", "number", "search", "tel", "url". Default "search".
+       * */
+      type: {
+        type: String,
+        default: 'search'
+      },
+      /**
+       * Configures if the searchbar is animated or no. By default, animation is false.
+       * */
+      animated: {
+        type: Boolean,
+        default: false
+      },
+      /**
+       * Set the input value.
+       * */
+      value: [String]
+    },
+    watch: {
+      value (val) {
+        this.theValue = val
+        this.positionElements()
+      }
+    },
+    computed: {
+      // props处理
+      autocompleteValue () {
+        return (this.autocomplete === '' || this.autocomplete === 'on') ? 'on' : 'off'
+      },
+      autocorrectValue () {
+        return (this.autocorrect === '' || this.autocorrect === 'on') ? 'on' : 'off'
+      },
+      spellcheckValue () {
+        return this.spellcheck === '' || this.spellcheck === 'true' || this.spellcheck === true
+      },
+      // class处理
+      modeClass () {
+        return this.mode ? `searchbar-${this.mode}` : ''
+      },
+      colorClass () {
+        return this.color ? `searchbar-${this.mode}-${this.color}` : ''
+      }
+    },
+    methods: {
+
+      // -------- public --------
+      /**
+       * @function setFocus
+       * @description
+       * 手动设置当前input的focus状态
+       */
+      setFocus () {
+        this.searchbarInputElement.focus()
+      },
+
+      // -------- private --------
+      /**
+       * Update the Searchbar input value when the input changes
+       * @private
+       */
+      onInputHandler ($event) {
+        let _valueInner = $event.target ? $event.target.value : ''
+        if (_valueInner) {
+          this.theValue = _valueInner
+        } else {
+          this.theValue = null
+        }
+
+        if (this.debounce > 16) {
+          window.clearTimeout(this.timer)
+          this.timer = window.setTimeout(() => {
+            // 通知父组件的v-model
+            this.$emit('input', this.theValue)
+
+            this.$emit('onInput', $event)
+          }, this.debounce)
+        } else {
+          /**
+           * @event component:SearchBar#onInput
+           * @description input事件
+           * @property {object} $event - 事件对象
+           */
+          this.$emit('input', this.theValue)
+          this.$emit('onInput', $event)
+        }
+      },
+
+      /**
+       * Sets the Searchbar to focused and active on input focus.
+       * @private
+       */
+      onFocusHandler ($event) {
+        /**
+         * @event component:SearchBar#onFocus
+         * @description focus事件
+         * @property {object} $event - 事件对象
+         */
+        this.$emit('onFocus', $event)
+        this.sbHasFocus = true
+        this.positionElements()
+      },
+
+      /**
+       * Sets the Searchbar to not focused and checks if it should align left
+       * based on whether there is a value in the searchbar or not.
+       * @private
+       */
+      onBlurHandler ($event) {
+        // shouldBlur: 是否真正的blur, 因为当点击clearBtn时, 需要再次focus, 所以等到16*4ms后, 判断是否blue
+        // shouldBlur determines if it should blur
+        // if we are clearing the input we still want to stay focused in the input
+        // wait for DOM update, because of focus method
+        window.setTimeout(() => {
+          if (!this.shouldBlur) {
+            this.sbHasFocus = true
+            this.searchbarInputElement.focus()
+          } else {
+            /**
+             * @event component:SearchBar#onBlur
+             * @description blur事件
+             * @property {object} $event - 事件对象
+             */
+            this.$emit('onBlur', $event)
+            this.sbHasFocus = false
+            this.positionElements()
+          }
+          this.shouldBlur = true
+        }, 16 * 4)
+      },
+      /**
+       * Clears the input field and triggers the control change.
+       * @private
+       */
+      clearInput ($event) {
+        this.searchbarInputElement.focus()
+        /**
+         * @event component:SearchBar#onClear
+         * @description clear事件
+         * @property {object} $event - 事件对象
+         */
+        this.$emit('onClear', $event)
+        this.shouldBlur = false
+        if (this.theValue) {
+          this.theValue = null
+          this.$emit('input', this.theValue)
+          this.$emit('onInput', $event)
+        }
+      },
+      /**
+       * Clears the input field and tells the input to blur since
+       * the clearInput function doesn't want the input to blur
+       * then calls the custom cancel function if the user passed one in.
+       * @private
+       */
+      cancelSearchbar ($event) {
+        /**
+         * @event component:SearchBar#onCancel
+         * @description cancel事件
+         * @property {object} $event - 事件对象
+         */
+        this.$emit('onCancel', $event)
+        if (this.theValue) {
+          this.theValue = null
+          this.$emit('input', this.theValue)
+          this.$emit('onInput', $event)
+        }
+        this.shouldBlur = true
+      },
+
+      /**
+       * 当focus时, 设置搜索框的icon/placeholder/cancel button的位置 (ios only)
+       * @private
+       */
+      positionElements () {
+        let isAnimated = this.animated
+        let prevAlignLeft = this.shouldAlignLeft
+        let shouldAlignLeft = (!isAnimated || (this.theValue &amp;&amp; this.theValue.toString().trim() !== '') || this.sbHasFocus === true)
+        this.shouldAlignLeft = shouldAlignLeft
+
+        if (this.mode !== 'ios') {
+          return
+        }
+
+        if (prevAlignLeft !== shouldAlignLeft) {
+          this.positionPlaceholder()
+        }
+        if (isAnimated) {
+          this.positionCancelButton()
+        }
+        this.shouldAnimated = this.animated
+      },
+
+      positionPlaceholder () {
+        let inputEle = this.searchbarInputElement
+        let iconEle = this.searchbarIconElement
+        console.assert(inputEle, 'The input element is undefined, please check!::&lt;Function>positionPlaceholder():inputEle')
+        console.assert(iconEle, 'The icon element is undefined, please check!::&lt;Function>positionPlaceholder():iconEle')
+        if (!inputEle || !iconEle) {
+          return
+        }
+
+        if (this.shouldAlignLeft) {
+          inputEle.removeAttribute('style')
+          iconEle.removeAttribute('style')
+        } else {
+          if (this.sbHasFocus) {
+            this.searchbarInputElement.blur()
+          }
+
+          if (this.placeHolderTextWidth === null) {
+            // Create a dummy span to get the placeholder width
+            if (!this.placeholder) {
+              this.placeHolderTextWidth = 0
+            } else {
+              let tempSpan = document.createElement('span')
+              tempSpan.innerHTML = this.placeholder
+              tempSpan.style.fontSize = window.getComputedStyle(inputEle).fontSize
+              tempSpan.style.display = 'inline'
+              document.body.appendChild(tempSpan)
+
+              // Get the width of the span then remove it
+              this.placeHolderTextWidth = tempSpan.offsetWidth
+              tempSpan.remove()
+            }
+          }
+
+          // Set the input padding left
+          let inputLeft = 'calc(50% - ' + (this.placeHolderTextWidth / 2) + 'px)'
+          inputEle.style.paddingLeft = inputLeft
+
+          let paddingLeft = this.placeHolderTextWidth === 0 ? 14 : 30
+          // Set the icon margin left
+          let iconLeft = 'calc(50% - ' + ((this.placeHolderTextWidth / 2) + paddingLeft) + 'px)'
+          iconEle.style.marginLeft = iconLeft
+        }
+      },
+
+      /**
+       * Show the iOS Cancel button on focus, hide it offscreen otherwise
+       * @private
+       */
+      positionCancelButton () {
+        if (!this.cancelButtonElement) {
+          return
+        }
+        let showShowCancel = this.sbHasFocus
+        if (showShowCancel !== this.isCancelVisible) {
+          let cancelStyleEle = this.cancelButtonElement
+          let cancelStyle = cancelStyleEle.style
+          this.isCancelVisible = showShowCancel
+          if (showShowCancel) {
+            cancelStyle.marginRight = '0'
+          } else {
+            let offset = cancelStyleEle.offsetWidth
+            if (offset > 0) {
+              cancelStyle.marginRight = -offset + 'px'
+            }
+          }
+        }
+      }
+    },
+    mounted () {
+      this.searchbarIconElement = this.$refs.searchbarIcon
+      this.searchbarInputElement = this.$refs.searchbarInput
+      this.cancelButtonElement = this.$refs.cancelButton.$el
+      this.positionElements()
+
+      if (isBoolean(this.autofocus) &amp;&amp; this.autofocus) {
+        this.setFocus()
+      }
+
+      if (isNumber(this.autofocus) &amp;&amp; this.autofocus > 0) {
+        window.setTimeout(() => {
+          this.setFocus()
+        }, this.autofocus)
+      }
+    },
+    components: {
+      Button, Icon
+    }
+  }
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+    </article>
+</div>
+
+<br class="clear">
+
+<footer>
+    文档根据<a href="https://github.com/DTFE/Vimo">Vimo源码</a>由<a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>自动生成, 主题修改自<a href="https://github.com/clenemt/docdash">docdash</a>, 并增加了 @component / @demo / @props / @slot / @usage 增强标注.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

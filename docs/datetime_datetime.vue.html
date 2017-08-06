@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>datetime/datetime.vue - Documentation</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="scripts/qrcode.js"></script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/custom.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+
+    <section class="vimo">
+        <div class="vimo__imgBox">
+            <img class="vimo__imgBox--img" src="./asset/img/vimo.png">
+        </div>
+
+        <div class="vimo__title">
+            <h2>VIMO</h2>
+            <!--<p>beta</p>-->
+            <p>基于Vue2.x的移动端Hybrid框架</p>
+        </div>
+        <div class="vimo__iframe">
+            <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=star&amp;count=true"
+                    frameborder="0" scrolling="0" width="110px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=DTFE&amp;repo=Vimo&amp;type=fork&amp;count=true"
+                    frameborder="0" scrolling="0" width="95px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+        </div>
+
+    </section>
+
+    <section class="nav__header"><h2><a href="index.html">首页 / Home</a></h2><h2><a href="https://github.com/DTFE/vimo-start-kit">如何开始 / How To Start</a></h2><h2><a href="https://dtfe.github.io/vimo-demo/#/">示例 / Demo</a></h2><h2><a href="https://github.com/DTFE/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2><h2><a href="#">常见问题 / Question</a></h2></section><h3>组件 / Components</h3><ul><li><a href="component-ActionSheet.html">ActionSheet</a><ul class='methods'><li data-type='method'><a href="component-ActionSheet.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-ActionSheet.html#~present">present</a></li></ul></li><li><a href="component-Alert.html">Alert</a><ul class='methods'><li data-type='method'><a href="component-Alert.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Alert.html#~present">present</a></li></ul></li><li><a href="component-Avatar.html">Avatar</a></li><li><a href="component-Backdrop.html">Backdrop</a></li><li><a href="component-Badge.html">Badge</a></li><li><a href="component-Base_App.html">Base/App</a><ul class='methods'><li data-type='method'><a href="component-Base_App.html#~isEnabled">isEnabled</a></li><li data-type='method'><a href="component-Base_App.html#~isScrolling">isScrolling</a></li><li data-type='method'><a href="component-Base_App.html#~setClass">setClass</a></li><li data-type='method'><a href="component-Base_App.html#~setDisableScroll">setDisableScroll</a></li><li data-type='method'><a href="component-Base_App.html#~setDocTitle">setDocTitle</a></li><li data-type='method'><a href="component-Base_App.html#~setEnabled">setEnabled</a></li><li data-type='method'><a href="component-Base_App.html#~setScrolling">setScrolling</a></li></ul></li><li><a href="component-Base_Content.html">Base/Content</a><ul class='methods'><li data-type='method'><a href="component-Base_Content.html#~getContentDimensions">getContentDimensions</a></li><li data-type='method'><a href="component-Base_Content.html#~resize">resize</a></li><li data-type='method'><a href="component-Base_Content.html#~scrollBy">scrollBy</a></li><li data-type='method'><a href="component-Base_Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="component-Base_Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="component-Base_Content.html#~scrollToElement">scrollToElement</a></li><li data-type='method'><a href="component-Base_Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="component-Base_Footer.html">Base/Footer</a><ul class='methods'><li data-type='method'><a href="component-Base_Footer.html#~hide">hide</a></li><li data-type='method'><a href="component-Base_Footer.html#~setStyle">setStyle</a></li><li data-type='method'><a href="component-Base_Footer.html#~show">show</a></li><li data-type='method'><a href="component-Base_Footer.html#~toggle">toggle</a></li></ul></li><li><a href="component-Base_Header.html">Base/Header</a><ul class='methods'><li data-type='method'><a href="component-Base_Header.html#~hide">hide</a></li><li data-type='method'><a href="component-Base_Header.html#~setStyle">setStyle</a></li><li data-type='method'><a href="component-Base_Header.html#~show">show</a></li><li data-type='method'><a href="component-Base_Header.html#~toggle">toggle</a></li></ul></li><li><a href="component-Base_Nav.html">Base/Nav</a></li><li><a href="component-Base_Page.html">Base/Page</a></li><li><a href="component-Button.html">Button</a></li><li><a href="component-Buttons.html">Buttons</a></li><li><a href="component-Card.html">Card</a></li><li><a href="component-Checkbox.html">Checkbox</a></li><li><a href="component-ChooseCity.html">ChooseCity</a></li><li><a href="component-CityPicker.html">CityPicker</a></li><li><a href="component-Column.html">Column</a></li><li><a href="component-Datetime.html">Datetime</a></li><li><a href="component-Fab.html">Fab</a><ul class='methods'><li data-type='method'><a href="component-Fab.html#~close">close</a></li></ul></li><li><a href="component-FabButton.html">FabButton</a></li><li><a href="component-FabList.html">FabList</a></li><li><a href="component-Feedback.html">Feedback</a><ul class='methods'><li data-type='method'><a href="component-Feedback.html#~destroy">destroy</a></li><li data-type='method'><a href="component-Feedback.html#~update">update</a></li></ul></li><li><a href="component-Grid.html">Grid</a></li><li><a href="component-Icon.html">Icon</a></li><li><a href="component-Img.html">Img</a></li><li><a href="component-Indicator.html">Indicator</a><ul class='methods'><li data-type='method'><a href="component-Indicator.html#.dismiss">dismiss</a></li><li data-type='method'><a href="component-Indicator.html#.present">present</a></li></ul></li><li><a href="component-InfiniteScroll.html">InfiniteScroll</a><ul class='methods'><li data-type='method'><a href="component-InfiniteScroll.html#~complete">complete</a></li><li data-type='method'><a href="component-InfiniteScroll.html#~enable">enable</a></li><li data-type='method'><a href="component-InfiniteScroll.html#~waitFor">waitFor</a></li></ul></li><li><a href="component-InfiniteScrollContent.html">InfiniteScrollContent</a></li><li><a href="component-Input.html">Input</a><ul class='methods'><li data-type='method'><a href="component-Input.html#~destroy">destroy</a></li><li data-type='method'><a href="component-Input.html#~update">update</a></li></ul></li><li><a href="component-Item.html">Item</a></li><li><a href="component-ItemCollapse.html">ItemCollapse</a></li><li><a href="component-ItemGroup.html">ItemGroup</a></li><li><a href="component-ItemOptions.html">ItemOptions</a></li><li><a href="component-ItemSliding.html">ItemSliding</a><ul class='methods'><li data-type='method'><a href="component-ItemSliding.html#~close">close</a></li><li data-type='method'><a href="component-ItemSliding.html#~getOpenAmount">getOpenAmount</a></li><li data-type='method'><a href="component-ItemSliding.html#~getSlidingPercent">getSlidingPercent</a></li><li data-type='method'><a href="component-ItemSliding.html#~openLeftOptions">openLeftOptions</a></li><li data-type='method'><a href="component-ItemSliding.html#~openRightOptions">openRightOptions</a></li></ul></li><li><a href="component-Label.html">Label</a></li><li><a href="component-List.html">List</a></li><li><a href="component-Loading.html">Loading</a><ul class='methods'><li data-type='method'><a href="component-Loading.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Loading.html#~present">present</a></li></ul></li><li><a href="component-Menus.html">Menus</a><ul class='methods'><li data-type='method'><a href="component-Menus.html#~close">close</a></li><li data-type='method'><a href="component-Menus.html#~open">open</a></li><li data-type='method'><a href="component-Menus.html#~toggle">toggle</a></li></ul></li><li><a href="component-Modal.html">Modal</a><ul class='methods'><li data-type='method'><a href="component-Modal.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Modal.html#~present">present</a></li></ul></li><li><a href="component-Navbar.html">Navbar</a><ul class='methods'><li data-type='method'><a href="component-Navbar.html#~hideOptionButton">hideOptionButton</a></li><li data-type='method'><a href="component-Navbar.html#~reset">reset</a></li><li data-type='method'><a href="component-Navbar.html#~showOptionButton">showOptionButton</a></li><li data-type='method'><a href="component-Navbar.html#~showPopMenu">showPopMenu</a></li></ul></li><li><a href="component-Note.html">Note</a></li><li><a href="component-NoticeBar.html">NoticeBar</a><ul class='methods'><li data-type='method'><a href="component-NoticeBar.html#~close">close</a></li></ul></li><li><a href="component-Picker.html">Picker</a><ul class='methods'><li data-type='method'><a href="component-Picker.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Picker.html#~present">present</a></li></ul></li><li><a href="component-Popover.html">Popover</a><ul class='methods'><li data-type='method'><a href="component-Popover.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Popover.html#~present">present</a></li></ul></li><li><a href="component-PreviewImage.html">PreviewImage</a></li><li><a href="component-Radio.html">Radio</a></li><li><a href="component-Range.html">Range</a></li><li><a href="component-Refresher.html">Refresher</a><ul class='methods'><li data-type='method'><a href="component-Refresher.html#~cancel">cancel</a></li><li data-type='method'><a href="component-Refresher.html#~complete">complete</a></li></ul></li><li><a href="component-RefresherContent.html">RefresherContent</a></li><li><a href="component-Row.html">Row</a></li><li><a href="component-Scroll.html">Scroll</a></li><li><a href="component-ScrollSegment.html">ScrollSegment</a></li><li><a href="component-SearchBar.html">SearchBar</a><ul class='methods'><li data-type='method'><a href="component-SearchBar.html#~setFocus">setFocus</a></li></ul></li><li><a href="component-Segment.html">Segment</a></li><li><a href="component-SegmentButton.html">SegmentButton</a></li><li><a href="component-Select.html">Select</a></li><li><a href="component-Separation.html">Separation</a></li><li><a href="component-Slide.html">Slide</a></li><li><a href="component-SlideBox.html">SlideBox</a><ul class='methods'><li data-type='method'><a href="component-SlideBox.html#~cancel">cancel</a></li><li data-type='method'><a href="component-SlideBox.html#~checking">checking</a></li><li data-type='method'><a href="component-SlideBox.html#~complete">complete</a></li><li data-type='method'><a href="component-SlideBox.html#~fail">fail</a></li></ul></li><li><a href="component-Slides.html">Slides</a></li><li><a href="component-Spinner.html">Spinner</a></li><li><a href="component-Tab.html">Tab</a></li><li><a href="component-Tabs.html">Tabs</a><ul class='methods'><li data-type='method'><a href="component-Tabs.html#~getActivatedIndex">getActivatedIndex</a></li><li data-type='method'><a href="component-Tabs.html#~getByIndex">getByIndex</a></li><li data-type='method'><a href="component-Tabs.html#~getSelected">getSelected</a></li><li data-type='method'><a href="component-Tabs.html#~select">select</a></li></ul></li><li><a href="component-Thumbnail.html">Thumbnail</a></li><li><a href="component-Title.html">Title</a><ul class='methods'><li data-type='method'><a href="component-Title.html#~getTitle">getTitle</a></li><li data-type='method'><a href="component-Title.html#~reset">reset</a></li><li data-type='method'><a href="component-Title.html#~setTitle">setTitle</a></li><li data-type='method'><a href="component-Title.html#~setTitleColor">setTitleColor</a></li></ul></li><li><a href="component-Toast.html">Toast</a></li><li><a href="component-Toggle.html">Toggle</a></li><li><a href="component-Toolbar.html">Toolbar</a></li></ul><h3>类 / Classes</h3><ul><li><a href="Config.html">Config</a><ul class='methods'><li data-type='method'><a href="Config.html#get">get</a></li><li data-type='method'><a href="Config.html#getBoolean">getBoolean</a></li><li data-type='method'><a href="Config.html#getNumber">getNumber</a></li><li data-type='method'><a href="Config.html#set">set</a></li><li data-type='method'><a href="Config.html#settings">settings</a></li></ul></li><li><a href="History.html">History</a><ul class='methods'><li data-type='method'><a href="History.html#canGoBack">canGoBack</a></li><li data-type='method'><a href="History.html#first">first</a></li><li data-type='method'><a href="History.html#getActive">getActive</a></li><li data-type='method'><a href="History.html#getDirection">getDirection</a></li><li data-type='method'><a href="History.html#getHistory">getHistory</a></li><li data-type='method'><a href="History.html#getPrevious">getPrevious</a></li><li data-type='method'><a href="History.html#indexOf">indexOf</a></li><li data-type='method'><a href="History.html#toRoot">toRoot</a></li></ul></li><li><a href="Platform.html">Platform</a><ul class='methods'><li data-type='method'><a href="Platform.html#dir">dir</a></li><li data-type='method'><a href="Platform.html#do">do</a></li><li data-type='method'><a href="Platform.html#height">height</a></li><li data-type='method'><a href="Platform.html#is">is</a></li><li data-type='method'><a href="Platform.html#isLandscape">isLandscape</a></li><li data-type='method'><a href="Platform.html#isPortrait">isPortrait</a></li><li data-type='method'><a href="Platform.html#isRTL">isRTL</a></li><li data-type='method'><a href="Platform.html#lang">lang</a></li><li data-type='method'><a href="Platform.html#navigatorPlatform">navigatorPlatform</a></li><li data-type='method'><a href="Platform.html#netType">netType</a></li><li data-type='method'><a href="Platform.html#platforms">platforms</a></li><li data-type='method'><a href="Platform.html#ready">ready</a></li><li data-type='method'><a href="Platform.html#registerMethod">registerMethod</a></li><li data-type='method'><a href="Platform.html#userAgent">userAgent</a></li><li data-type='method'><a href="Platform.html#versions">versions</a></li><li data-type='method'><a href="Platform.html#width">width</a></li></ul></li></ul><h3>模块 / Modules</h3><ul><li><a href="module-Util.html">Util</a><ul class='members'><li data-type='member'><a href="module-Util.html#.REGEXP">REGEXP</a></li></ul><ul class='methods'><li data-type='method'><a href="module-Util.html#.assign">assign</a></li><li data-type='method'><a href="module-Util.html#.clamp">clamp</a></li><li data-type='method'><a href="module-Util.html#.deepClone">deepClone</a></li><li data-type='method'><a href="module-Util.html#.defaults">defaults</a></li><li data-type='method'><a href="module-Util.html#.docReady">docReady</a></li><li data-type='method'><a href="module-Util.html#.firstUpperCase">firstUpperCase</a></li><li data-type='method'><a href="module-Util.html#.focusOutActiveElement">focusOutActiveElement</a></li><li data-type='method'><a href="module-Util.html#.hasClass">hasClass</a></li><li data-type='method'><a href="module-Util.html#.hasFocus">hasFocus</a></li><li data-type='method'><a href="module-Util.html#.hasFocusedTextInput">hasFocusedTextInput</a></li><li data-type='method'><a href="module-Util.html#.hashChange">hashChange</a></li><li data-type='method'><a href="module-Util.html#.hasPointerMoved">hasPointerMoved</a></li><li data-type='method'><a href="module-Util.html#.isActive">isActive</a></li><li data-type='method'><a href="module-Util.html#.isArray">isArray</a></li><li data-type='method'><a href="module-Util.html#.isBlank">isBlank</a></li><li data-type='method'><a href="module-Util.html#.isBoolean">isBoolean</a></li><li data-type='method'><a href="module-Util.html#.isCheckedProperty">isCheckedProperty</a></li><li data-type='method'><a href="module-Util.html#.isDate">isDate</a></li><li data-type='method'><a href="module-Util.html#.isDefined">isDefined</a></li><li data-type='method'><a href="module-Util.html#.isFunction">isFunction</a></li><li data-type='method'><a href="module-Util.html#.isNumber">isNumber</a></li><li data-type='method'><a href="module-Util.html#.isObject">isObject</a></li><li data-type='method'><a href="module-Util.html#.isPassive">isPassive</a></li><li data-type='method'><a href="module-Util.html#.isPlainObject">isPlainObject</a></li><li data-type='method'><a href="module-Util.html#.isPresent">isPresent</a></li><li data-type='method'><a href="module-Util.html#.isPrimitive">isPrimitive</a></li><li data-type='method'><a href="module-Util.html#.isRegexp">isRegexp</a></li><li data-type='method'><a href="module-Util.html#.isString">isString</a></li><li data-type='method'><a href="module-Util.html#.isTextInput">isTextInput</a></li><li data-type='method'><a href="module-Util.html#.isTrueProperty">isTrueProperty</a></li><li data-type='method'><a href="module-Util.html#.isUndefined">isUndefined</a></li><li data-type='method'><a href="module-Util.html#.merge">merge</a></li><li data-type='method'><a href="module-Util.html#.parsePxUnit">parsePxUnit</a></li><li data-type='method'><a href="module-Util.html#.pointerCoord">pointerCoord</a></li><li data-type='method'><a href="module-Util.html#.registerListener">registerListener</a></li><li data-type='method'><a href="module-Util.html#.removeArrayItem">removeArrayItem</a></li><li data-type='method'><a href="module-Util.html#.setElementClass">setElementClass</a></li><li data-type='method'><a href="module-Util.html#.transitionEnd">transitionEnd</a></li><li data-type='method'><a href="module-Util.html#.urlChange">urlChange</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+
+    <article class="content">
+
+        
+        <h1 class="page-title">datetime/datetime.vue</h1>
+        
+
+        
+
+
+
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+    &lt;div class="ion-datetime" @click="clickHandler($event)"
+         :displayFormat="displayFormat"
+         :pickerFormat="pickerFormat"
+         :min="min"
+         :max="max">
+        &lt;div v-if="!text" class="datetime-text datetime-placeholder">{{placeholder}}&lt;/div>
+        &lt;div v-if="text" class="datetime-text">{{text}}&lt;/div>
+        &lt;Button
+                type="button"
+                :id="_uid"
+                role="item-cover"
+                class="item-cover">
+        &lt;/Button>
+    &lt;/div>
+&lt;/template>
+&lt;style lang="less">
+    @import "datetime";
+    @import "datetime.ios.less";
+    @import "datetime.md.less";
+&lt;/style>
+&lt;script type="text/javascript">
+  /**
+   * @component Datetime
+   * @description
+   *
+   * ## 时间组件 / Datetime时间选择组件
+   *
+   * ### 简介
+   * Datetime组件是对Picker组件的再封装, 这个和Select组件对Alert组件的封装类似. Datetime组件用于替代原生input[type="datetime"]的解决方案, 且功能比原生更丰富. 支持单列~多列时间的选择/固定时间范围/固定时间的选择间隔等.
+   *
+   * ### 感谢Ionic
+   *
+   * 该组件是对Ionic的Datetime组件的模仿转义, 具体使用和Ionic的datetime完全一致. API参考下方链接.
+   *
+   * ### 改进部分
+   * Ionic原组件值对符合ISO格式的日期能正确显示使用, 这里做了改进:
+   *
+   * 通过v-model可以穿入如下类型: **Date日期对象/ISO格式的时间String/能转化为Date对象**的字符串 这三类. 但是v-model返回的数据都是ISO格式日期String, 如果期望返回每个column返回的详细结果, 请监听onChange事件.
+   *
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { Datetime } from 'vimo/components/datetime'
+   * // 安装
+   * Vue.component(Datetime.name, Datetime)
+   * // 或者
+   * export default{
+   *   components: {
+   *     Datetime
+   *  }
+   * }
+   * ```
+   *
+   * @usage
+   * &lt;Item>
+   *    &lt;Label>MMMM&lt;/Label>
+   *    &lt;Datetime slot="item-right" displayFormat="MMMM" v-model="monthOnly">&lt;/Datetime>
+   * &lt;/Item>
+   *
+   * @props {String} [min] - ISO 8601 datetime 的时间格式, 1996-12-19
+   * @props {String} [max] - ISO 8601 datetime 的时间格式, 1996-12-19
+   * @props {String} displayFormat - 外部 显示的格式
+   * @props {String} [pickerFormat] - picker 显示的格式
+   * @props {String} [placeholder] - placeholder
+   * @props {String|Object|Date} value - value
+   * @props {String} [cancelText='取消'] - 取消的显示文本
+   * @props {String} [doneText='确认'] - 确定的显示文本
+   * @props {String|Array} [yearValues] - 显示可以选择的 年 信息, 例如: "2024,2020,2016,2012,2008"
+   * @props {String|Array} [monthValues] - 显示可以选择的 月 信息, 例如: "6,7,8"
+   * @props {String|Array} [dayValues] - 显示可以选择的 月 信息, 例如: "6,7,8"
+   * @props {String|Array} [hourValues] - 显示可以选择的 小时 信息,
+   * @props {String|Array} [minuteValues] - 显示可以选择的 分钟 信息,
+   * @props {String|Array} [monthNames] - 每个月 的名字
+   * @props {String|Array} [monthShortNames] - 每个月 的短名字
+   * @props {String|Array} [dayNames] - 每天 的显示名字
+   * @props {String|Array} [dayShortNames] - 每天 的短名字
+   * @props {Object} [pickerOptions] - pickerOptions
+   * @props {String} [mode='ios'] - mode
+   *
+   *
+   * @see http://ionicframework.com/docs/demos/src/datetime/www/?production=true&amp;ionicplatform=ios
+   * @see http://ionicframework.com/docs/api/components/datetime/DateTime/
+   * @demo https://dtfe.github.io/vimo-demo/#/time-picker
+   * @fires component:Datetime#onCancel
+   * @fires component:Datetime#onChange
+   * */
+  import { isBlank, isPresent, isTrueProperty, isArray, isString, setElementClass } from '../util/util'
+  import { Picker } from '../picker/index'
+  import { Button } from '../button'
+  import {
+    dateValueRange,
+    renderDateTime,
+    renderTextFormat,
+    convertFormatToKey,
+    getValueFromFormat,
+    parseTemplate,
+    parseDate,
+    updateDate,
+    convertDataToISO,
+    daysInMonth,
+    dateSortValue,
+    dateDataSortValue
+  } from './datetime-util'
+  const DEFAULT_FORMAT = 'MMM D, YYYY'
+  //  const DEFAULT_FORMAT = 'YYYY/MM/DD'
+  export default{
+    name: 'Datetime',
+    data () {
+      return {
+        itemComponent: null, // 父组件Item实例
+        theDisabled: this.disabled,
+        text: '',
+        theMin: this.min,
+        theMax: this.max,
+        theValue: {},
+        locale: {}
+      }
+    },
+    props: {
+      min: String,                      //  ISO 8601 datetime 的时间格式, 1996-12-19
+      max: String,                      //  ISO 8601 datetime 的时间格式, 1996-12-19
+
+      displayFormat: String,            // 外部 显示的格式
+      pickerFormat: String,             // picker 显示的格式
+      placeholder: String,
+      value: [String, Object, Date],
+
+      cancelText: {                     // 取消的显示文本
+        type: String,
+        default: '取消'
+      },
+      doneText: {                       // 确定的显示文本
+        type: String,
+        default: '确认'
+      },
+
+      yearValues: [String, Array],      // 显示可以选择的 年 信息, 例如: "2024,2020,2016,2012,2008"
+      monthValues: [String, Array],     // 显示可以选择的 月 信息, 例如: "6,7,8"
+      dayValues: [String, Array],       // 显示可以选择的 日 信息, 例如: "6,7,8"
+      hourValues: [String, Array],      // 显示可以选择的 小时 信息,
+      minuteValues: [String, Array],    // 显示可以选择的 分钟 信息,
+
+      monthNames: [String, Array],               // 每个月 的名字
+      monthShortNames: [String, Array],          // 每个月 的短名字
+      dayNames: [String, Array],                  // 每天 的显示名字
+      dayShortNames: [String, Array],            // 每天 的显示名字
+
+      pickerOptions: {
+        type: Object,
+        default () { return {} }
+      },
+
+      mode: {
+        type: String,
+        default () { return this.$config &amp;&amp; this.$config.get('mode') || 'ios' }
+      }
+    },
+    watch: {
+      disabled (val) {
+        this.theDisabled = isTrueProperty(val)
+        this.itemComponent &amp;&amp; setElementClass(this.itemComponent.$el, 'item-datetime-disabled', this.theDisabled)
+      },
+      value (val) {
+        this.theValue = parseDate(val)
+        this.onChange(val)
+      }
+    },
+    methods: {
+      clickHandler ($event) {
+        if ($event.detail === 0) {
+          // do not continue if the click event came from a form submit
+          return
+        }
+        $event.preventDefault()
+        $event.stopPropagation()
+        this.open()
+      },
+
+      open () {
+        if (this.theDisabled) {
+          return
+        }
+
+        // the user may have assigned some options specifically for the alert
+        const pickerOptions = JSON.parse(JSON.stringify(this.pickerOptions))
+
+        pickerOptions.buttons = [
+          {
+            text: this.cancelText,
+            role: 'cancel',
+            handler: () => {
+              /**
+               * @event component:Datetime#onCancel
+               * @description 点击取消按钮触发
+               */
+              this.$emit('onCancel', null)
+            }
+          },
+          {
+            text: this.doneText,
+            handler: (data) => {
+              console.debug('datetime, done', data)
+              this.onChange(data)
+              let value = convertDataToISO(this.theValue)
+              /**
+               * @event component:Datetime#onChange
+               * @description 点击确定按钮
+               */
+              this.$emit('input', value)
+              this.$emit('onChange', data)
+            }
+          }
+        ]
+        pickerOptions.columns = []
+
+        this.generate(pickerOptions)
+        this.validate(pickerOptions)
+
+        pickerOptions.onChange = () => {
+          this.validate(pickerOptions)
+          Picker.refresh()
+        }
+        pickerOptions.onDismiss = () => {}
+        pickerOptions.isH5 = true // 强制使用h5模式
+
+        Picker.present(pickerOptions)
+
+        Picker.refresh()
+      },
+
+      /**
+       * @private
+       */
+      generate (pickerOptions) {
+        // if a picker format wasn't provided, then fallback
+        // to use the display format
+        let template = this.pickerFormat || this.displayFormat || DEFAULT_FORMAT
+
+        if (isPresent(template)) {
+          // make sure we've got up to date sizing information
+          this.calcMinMax()
+
+          // does not support selecting by day name
+          // automaticallly remove any day name formats
+          template = template.replace('DDDD', '{~}').replace('DDD', '{~}')
+          if (template.indexOf('D') === -1) {
+            // there is not a day in the template
+            // replace the day name with a numeric one if it exists
+            template = template.replace('{~}', 'D')
+          }
+          // make sure no day name replacer is left in the string
+          template = template.replace(/{~}/g, '')
+
+          // parse apart the given template into an array of "formats"
+          parseTemplate(template).forEach(format => {
+            // loop through each format in the template
+            // create a new picker column to build up with data
+            let key = convertFormatToKey(format)
+            let values
+
+            // first see if they have exact values to use for this input
+            if (isPresent((this)[key + 'Values'])) {
+              // user provide exact values for this date part
+              values = convertToArrayOfNumbers((this)[key + 'Values'], key)
+
+            } else {
+              // use the default date part values
+              values = dateValueRange(format, this.theMin, this.theMax)
+            }
+
+            let column = {
+              name: key,
+              selectedIndex: 0,
+              options: values.map(val => {
+                return {
+                  value: val,
+                  text: renderTextFormat(format, val, null, this.locale)
+                }
+              })
+            }
+
+            if (column.options.length) {
+              // cool, we've loaded up the columns with options
+              // preselect the option for this column
+              var selected
+              if (this.theValue) {
+                selected = column.options.find(opt => opt.value === getValueFromFormat(this.theValue, format))
+              }
+              if (selected) {
+                // set the select index for this column's options
+                column.selectedIndex = column.options.indexOf(selected)
+              }
+
+              // add our newly created column to the picker
+              pickerOptions.columns.push(column)
+            }
+          })
+
+          this.divyColumns(pickerOptions)
+        }
+      },
+
+      /**
+       * @private
+       */
+      validate (pickerOptions) {
+        let i
+        let today = new Date()
+        let columns = pickerOptions.columns
+
+        // find the columns used
+        let yearCol = columns.find(col => col.name === 'year')
+        let monthCol = columns.find(col => col.name === 'month')
+        let dayCol = columns.find(col => col.name === 'day')
+
+        let yearOpt
+        let monthOpt
+        let dayOpt
+
+        // default to the current year
+        let selectedYear = today.getFullYear()
+
+        if (yearCol) {
+          // default to the first value if the current year doesn't exist in the options
+          if (!yearCol.options.find(col => col.value === today.getFullYear())) {
+            selectedYear = yearCol.options[0].value
+          }
+
+          yearOpt = yearCol.options[yearCol.selectedIndex]
+          if (yearOpt) {
+            // they have a selected year value
+            selectedYear = yearOpt.value
+          }
+        }
+
+        // default to assuming this month has 31 days
+        let numDaysInMonth = 31
+        let selectedMonth
+        if (monthCol) {
+          monthOpt = monthCol.options[monthCol.selectedIndex]
+          if (monthOpt) {
+            // they have a selected month value
+            selectedMonth = monthOpt.value
+
+            // calculate how many days are in this month
+            numDaysInMonth = daysInMonth(selectedMonth, selectedYear)
+          }
+        }
+
+        // create sort values for the min/max datetimes
+        let minCompareVal = dateDataSortValue(this.theMin)
+        let maxCompareVal = dateDataSortValue(this.theMax)
+
+        if (monthCol) {
+          // enable/disable which months are valid
+          // to show within the min/max date range
+          for (i = 0; i &lt; monthCol.options.length; i++) {
+            monthOpt = monthCol.options[i]
+
+            // loop through each month and see if it
+            // is within the min/max date range
+            monthOpt.disabled = (dateSortValue(selectedYear, monthOpt.value, 31) &lt; minCompareVal ||
+            dateSortValue(selectedYear, monthOpt.value, 1) > maxCompareVal)
+          }
+        }
+
+        if (dayCol) {
+          if (isPresent(selectedMonth)) {
+            // enable/disable which days are valid
+            // to show within the min/max date range
+            for (i = 0; i &lt; dayCol.options.length; i++) {
+              dayOpt = dayCol.options[i]
+
+              // loop through each day and see if it
+              // is within the min/max date range
+              var compareVal = dateSortValue(selectedYear, selectedMonth, dayOpt.value)
+
+              dayOpt.disabled = (compareVal &lt; minCompareVal ||
+              compareVal > maxCompareVal ||
+              numDaysInMonth &lt;= i)
+            }
+          } else {
+            // enable/disable which numbers of days to show in this month
+            for (i = 0; i &lt; dayCol.options.length; i++) {
+              dayCol.options[i].disabled = (numDaysInMonth &lt;= i)
+            }
+          }
+        }
+      },
+
+      /**
+       * 制作picker的columns
+       * @private
+       */
+      divyColumns (pickerOptions) {
+        let pickerColumns = pickerOptions.columns
+        let columns = []
+
+        pickerColumns.forEach((col, i) => {
+          columns.push(0)
+
+          col.options.forEach(opt => {
+            if (opt.text.length > columns[i]) {
+              columns[i] = opt.text.length
+            }
+          })
+        })
+
+        if (columns.length === 2) {
+          let width = Math.max(columns[0], columns[1])
+          pickerColumns[0].align = 'right'
+          pickerColumns[1].align = 'left'
+          pickerColumns[0].optionsWidth = pickerColumns[1].optionsWidth = `${width * 17}px`
+        } else if (columns.length === 3) {
+          let width = Math.max(columns[0], columns[2])
+          pickerColumns[0].align = 'right'
+          pickerColumns[1].columnWidth = `${columns[1] * 17}px`
+          pickerColumns[0].optionsWidth = pickerColumns[2].optionsWidth = `${width * 17}px`
+          pickerColumns[2].align = 'left'
+        }
+      },
+
+      /**
+       * @private
+       */
+      setValue (newData) {
+        this.theValue = updateDate(this.theValue, newData)
+      },
+
+      /**
+       * @private
+       */
+      checkHasValue (inputValue) {
+        if (this.itemComponent) {
+          setElementClass(this.itemComponent.$el, 'input-has-value', !!(inputValue &amp;&amp; inputValue !== ''))
+        }
+      },
+
+      /**
+       * @private
+       */
+      updateText () {
+        // create the text of the formatted data
+        const template = this.displayFormat || this.pickerFormat || DEFAULT_FORMAT
+        this.text = renderDateTime(template, this.theValue, this.locale)
+      },
+
+      /**
+       * @private
+       */
+      onChange(val) {
+        console.debug('datetime, onChange w/out formControlName', val)
+        this.setValue(val)
+        this.updateText()
+        this.checkHasValue(val)
+      },
+
+      /**
+       * @private
+       */
+      calcMinMax (now) {
+        this.theMin = this.min
+        this.theMax = this.max
+
+        const todaysYear = (now || new Date()).getFullYear()
+        if (isBlank(this.theMin)) {
+          if (isPresent(this.yearValues)) {
+            this.theMin = Math.min.apply(Math, convertToArrayOfNumbers(this.yearValues, 'year'))
+
+          } else {
+            this.theMin = (todaysYear - 100).toString()
+          }
+        }
+
+        if (isBlank(this.theMax)) {
+          if (isPresent(this.yearValues)) {
+            this.theMax = Math.max.apply(Math, convertToArrayOfNumbers(this.yearValues, 'year'))
+
+          } else {
+            this.theMax = todaysYear.toString()
+          }
+        }
+
+        const min = this.theMin = parseDate(this.theMin)
+        const max = this.theMax = parseDate(this.theMax)
+
+        if (min.year > max.year) {
+          min.year = max.year - 100
+        } else if (min.year === max.year) {
+          if (min.month > max.month) {
+            min.month = 1
+          } else if (min.month === max.month &amp;&amp; min.day > max.day) {
+            min.day = 1
+          }
+        }
+
+        min.month = min.month || 1
+        min.day = min.day || 1
+        min.hour = min.hour || 0
+        min.minute = min.minute || 0
+        min.second = min.second || 0
+
+        max.month = max.month || 12
+        max.day = max.day || 31
+        max.hour = max.hour || 23
+        max.minute = max.minute || 59
+        max.second = max.second || 59
+      }
+    },
+    created () {
+      this.theValue = parseDate(this.value)
+    },
+    mounted () {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
+        this.itemComponent = this.$parent
+      }
+      console.assert(this.itemComponent, 'The component of Datetime must in Item component.')
+      setElementClass(this.itemComponent.$el, 'item-datetime', true)
+
+      // first see if locale names were provided in the inputs
+      // then check to see if they're in the config
+      // if neither were provided then it will use default English names
+      const NAMES = ['monthNames', 'monthShortNames', 'dayNames', 'dayShortNames']
+      NAMES.forEach(type => {
+        (this).locale[type] = convertToArrayOfStrings(isPresent((this)[type]) ? (this)[type] : this.$config &amp;&amp; this.$config.get(type), type)
+      })
+
+      // update how the datetime value is displayed as formatted text
+      this.updateText()
+      this.checkHasValue(this.theValue)
+    },
+    components: {Button}
+  }
+
+  /**
+   * Use to convert a string of comma separated numbers or
+   * an array of numbers, and clean up any user input
+   * @example
+   * '1,2,4,5'      ->  [1,2,3,5]
+   * '[1,2,3,4]'    ->  [1,2,3,4]
+   * [1,2,3,a]      ->  [1,2,3]
+   * @private
+   */
+  function convertToArrayOfNumbers (input, type) {
+    var values = []
+
+    if (isString(input)) {
+      // convert the string to an array of strings
+      // auto remove any whitespace and [] characters
+      input = input.replace(/\[|\]|\s/g, '').split(',')
+    }
+
+    if (isArray(input)) {
+      // ensure each value is an actual number in the returned array
+      input.forEach((num) => {
+        num = parseInt(num, 10)
+        if (!isNaN(num)) {
+          values.push(num)
+        }
+      })
+    }
+
+    if (!values.length) {
+      console.warn(`Invalid "${type}Values". Must be an array of numbers, or a comma separated string of numbers.`)
+    }
+
+    return values
+  }
+
+  /**
+   * Use to convert a string of comma separated strings or
+   * an array of strings, and clean up any user input
+   * @example
+   * 'a,b,c,d'      ->  [a,b,c,d]
+   * '[a,b,c,d]'    ->  [a,b,c,d]
+   * @private
+   */
+  function convertToArrayOfStrings (input, type) {
+    if (isPresent(input)) {
+      var values = []
+
+      if (isString(input)) {
+        // convert the string to an array of strings
+        // auto remove any [] characters
+        input = input.replace(/\[|\]/g, '').split(',')
+      }
+
+      if (isArray(input)) {
+        // trim up each string value
+        input.forEach((val) => {
+          val = val.trim()
+          if (val) {
+            values.push(val)
+          }
+        })
+      }
+
+      if (!values.length) {
+        console.warn(`Invalid "${type}Names". Must be an array of strings, or a comma separated string.`)
+      }
+
+      return values
+    }
+  }
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+    </article>
+</div>
+
+<br class="clear">
+
+<footer>
+    文档根据<a href="https://github.com/DTFE/Vimo">Vimo源码</a>由<a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>自动生成, 主题修改自<a href="https://github.com/clenemt/docdash">docdash</a>, 并增加了 @component / @demo / @props / @slot / @usage 增强标注.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
