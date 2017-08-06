@@ -1,5 +1,4 @@
 /* eslint-disable no-undef,no-unused-expressions */
-// import { App, Header, Footer } from '../../../components/app'
 import '../../../dist/style.css'
 
 import { Button } from '../../../components/button'
@@ -16,6 +15,7 @@ Vue.config.devtools = false
 Vue.config.silent = true
 Vue.config.errorHandler = (err) => !~err.toString().indexOf('$el') && console.error(err)
 
+let wrapper = null
 let options = {
   propsData: {
     color: 'primary',
@@ -28,13 +28,21 @@ let options = {
 }
 
 describe('Button', () => {
+  // 清除DOM痕迹
+  afterEach(() => {
+    if (wrapper) {
+      wrapper.vm.$el.remove()
+      wrapper = null
+    }
+  })
+
   it('@base: renders the correct markup', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'md'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     const result = '<button class="disable-hover ion-button button-md button button-md-primary"><span class="button-inner"><span>ButtonTest</span></span></button>'
     expect(wrapper.html()).to.equal(result)
   })
@@ -45,7 +53,7 @@ describe('Button', () => {
         default: '<span>ButtonTest</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.text()).to.equal('ButtonTest')
   })
 
@@ -56,7 +64,7 @@ describe('Button', () => {
         default: '<span>DOM</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.find('button')).to.be.ok
     expect(wrapper.contains('span')).to.be.ok
   })
@@ -67,7 +75,7 @@ describe('Button', () => {
         default: '<span>Name</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.name()).to.equal('Button')
   })
 
@@ -77,22 +85,8 @@ describe('Button', () => {
         default: '<span>HasClass</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('ion-button')).to.be.ok
-  })
-
-  // triger click
-  it('@event: triger click', () => {
-    let opts = deepAssign(cloneDeep(options), {
-      slots: {
-        default: '<span>Click</span>'
-      }
-    })
-    const wrapper = mount(Button, opts)
-    sinon.spy(wrapper.vm, 'clickHandler') // 监视crawler.launch，这是个function
-    wrapper.trigger('click')
-    expect(wrapper.vm.clickHandler.callCount === 1).to.equal(true)
-    wrapper.vm.clickHandler.restore() // 消除监视
   })
 
   it('@props: color', () => {
@@ -104,7 +98,7 @@ describe('Button', () => {
         default: '<span>color</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasStyle('background-color', '#f53d3d')).to.equal(true)
   })
 
@@ -117,7 +111,7 @@ describe('Button', () => {
         default: '<span>mode</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-md')).to.equal(true)
   })
 
@@ -131,7 +125,7 @@ describe('Button', () => {
         default: '<span>small</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-small-ios')).to.equal(true)
   })
 
@@ -145,7 +139,7 @@ describe('Button', () => {
         default: '<span>default</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-default-ios')).to.equal(true)
   })
 
@@ -159,7 +153,7 @@ describe('Button', () => {
         default: '<span>large</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-large-ios')).to.equal(true)
   })
 
@@ -173,7 +167,7 @@ describe('Button', () => {
         default: '<span>round</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-round-ios')).to.equal(true)
   })
 
@@ -187,7 +181,7 @@ describe('Button', () => {
         default: '<span>round</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-full-ios')).to.equal(true)
   })
 
@@ -201,7 +195,7 @@ describe('Button', () => {
         default: '<span>block</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-block-ios')).to.equal(true)
   })
 
@@ -215,7 +209,7 @@ describe('Button', () => {
         default: '<span>menutoggle</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-menutoggle-ios')).to.equal(true)
   })
 
@@ -229,7 +223,7 @@ describe('Button', () => {
         default: '<span>outline</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-outline-ios')).to.equal(true)
   })
 
@@ -243,7 +237,7 @@ describe('Button', () => {
         default: '<span>clear</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-clear-ios')).to.equal(true)
   })
 
@@ -257,7 +251,7 @@ describe('Button', () => {
         default: '<span>solid</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-solid-ios')).to.equal(true)
   })
 
@@ -271,7 +265,7 @@ describe('Button', () => {
         default: '<span>role:action-sheet-button</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('action-sheet-button-ios')).to.equal(true)
   })
 
@@ -285,7 +279,7 @@ describe('Button', () => {
         default: '<span>role:bar-button</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('bar-button-ios')).to.equal(true)
   })
 
@@ -299,13 +293,26 @@ describe('Button', () => {
         default: '<span>strong</span>'
       }
     })
-    const wrapper = mount(Button, opts)
+    wrapper = mount(Button, opts)
     expect(wrapper.hasClass('button-strong-ios')).to.equal(true)
     expect(wrapper.hasStyle('font-weight', '600')).to.equal(true)
   })
 
+  it('@event: triger click', () => {
+    let opts = deepAssign(cloneDeep(options), {
+      slots: {
+        default: '<span>Click</span>'
+      }
+    })
+    wrapper = mount(Button, opts)
+    sinon.spy(wrapper.vm, 'clickHandler') // 监视crawler.launch，这是个function
+    wrapper.trigger('click')
+    expect(wrapper.vm.clickHandler.callCount === 1).to.equal(true)
+    wrapper.vm.clickHandler.restore() // 消除监视
+  })
+
   it('@slots: icon-only', () => {
-    const wrapper = mount({
+    wrapper = mount({
       template: '<Button><Icon name="car"></Icon></Button>',
       components: {Button, Icon}
     }, {
@@ -315,7 +322,7 @@ describe('Button', () => {
   })
 
   it('@slots: icon-left', () => {
-    const wrapper = mount({
+    wrapper = mount({
       template: '<Button><Icon name="car"></Icon>Icon</Button>',
       components: {Button, Icon}
     }, {
@@ -325,7 +332,7 @@ describe('Button', () => {
   })
 
   it('@slots: icon-right', () => {
-    const wrapper = mount({
+    wrapper = mount({
       template: '<Button>Icon<Icon name="car"></Icon></Button>',
       components: {Button, Icon}
     }, {

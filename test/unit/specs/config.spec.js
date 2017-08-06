@@ -12,7 +12,7 @@ const MOCK_CONFIG = {
   booleanValueFalse: false,
   numberValue: 10
 }
-describe('Test config.js', () => {
+describe('config.js', () => {
   var configInstance
   var platformInstance
   before(() => {
@@ -41,7 +41,7 @@ describe('Test config.js', () => {
   it('getNumber()', () => {
     expect(configInstance.getNumber('numberValue')).to.equal(10)
   })
-  it('set(type, key, value)', () => {
+  it('set(mode, key, value)', () => {
     configInstance.set('mobile', 'name', 'Hsiang')
     expect(configInstance.get('name')).to.equal('Hsiang')
   })
@@ -49,7 +49,7 @@ describe('Test config.js', () => {
     configInstance.set('name', 'Hsiang')
     expect(configInstance.get('name')).to.equal('Hsiang')
   })
-  it('settings(type:{key:value})', () => {
+  it('settings(mode:{key:value})', () => {
     configInstance.settings('mobile', {
       age: '10'
     })

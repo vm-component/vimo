@@ -22,12 +22,12 @@ module.exports = function (config) {
     webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
+    },
+    client: {
+      mocha: {
+        timeout: 50000 // set to 5000
+      }
     }
-    // client: {
-    //   mocha: {
-    //     timeout: 50000 // set to 5000
-    //   }
-    // }
     // coverageReporter: {
     //   dir: './coverage',
     //   reporters: [
