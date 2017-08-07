@@ -137,6 +137,7 @@
 
       /**
        * 图片预览
+       * ps: alipay 的图片预览组件 无法预览 自己的图片选择器选择的文件， 因此这里使用的是H5组件
        * @private
        * */
       previewImage (index) {
@@ -162,12 +163,13 @@
           $event.preventDefault()
           $event.stopPropagation()
           console.info('Feedback 组件使用Alipay模式, 单次上传一张.')
-          window.ap.chooseImage(1, (res) => {
-            window.ap.compressImage({
+          window.ap && window.ap.chooseImage(1, (res) => {
+            window.ap && window.ap.compressImage({
               apFilePaths: res.apFilePaths,
               level: 0
             }, (result) => {
-              if (result.apFilePaths[0]) {
+              // Cannot read property '0' of undefined
+              if (result && result.apFilePaths && result.apFilePaths.length > 0 && result.apFilePaths[0]) {
                 let imgData = {
                   code: result.apFilePaths[0],
                   blob: result.apFilePaths[0], // 转化的二进制图片文件

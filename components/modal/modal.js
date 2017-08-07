@@ -131,7 +131,7 @@ function present (options = {}) {
  * 全局注册dismiss方法
  * dismiss关闭最后一次打开的Modal, 并执行onDismiss函数, 就酱, 因为, modal是覆盖式的显示在页面上, 即使给定关闭的modal名字, 也无使用意义.
  * `dataBack`数据将由外部`onDismiss`接收
- * @param {any} dataBack -  modal调用dismiss传递向外的数据
+ * @param {*} dataBack -  modal调用dismiss传递向外的数据
  * */
 function dismiss (dataBack) {
   isModalEnable = false

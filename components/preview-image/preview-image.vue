@@ -72,10 +72,11 @@
     }
 </style>
 <script type="text/javascript">
-  import { Modal } from '../modal/index'
+  import { Modal } from '../modal'
   // 不适用lite是因为其不支持图片懒加载
-  import { Slides, Slide } from '../slides/index'
-  export default{
+  import { Slides, Slide } from '../slides'
+
+  export default {
     name: 'PreviewImage',
     data () {
       return {
@@ -90,7 +91,7 @@
         this.selected = this.images[this.activeIndex]
       },
       onClickHandler () {
-        Modal.dismiss()
+        Modal.dismiss('Dismiss modal from preview-image!')
       }
     },
     created () {

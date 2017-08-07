@@ -111,6 +111,7 @@ export default {
         this._i = LoadingFactory({
           cssClass: cssClass,
           showBackdrop: false,
+          duration: 5000, // 以防万一
           dismissOnPageChange: options.dismissOnPageChange,
           mode: 'ios'
         })

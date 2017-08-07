@@ -118,7 +118,7 @@ function ToastFactory () {
     propsData = _args[0]
   }
 
-  let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && !propsData.isH5
+  let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && window.ap && !propsData.isH5
   let isDingTalkReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dingtalk') && window.dd && !propsData.isH5
   let isDtDreamReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dtdream') && window.dd && !propsData.isH5
 
@@ -126,7 +126,7 @@ function ToastFactory () {
     console.info('Toast 组件使用Alipay模式!')
     return {
       present () {
-        window.ap.showToast({
+        window.ap && window.ap.showToast({
           content: propsData.message || '',
           type: propsData.type || '', // toast 类型，展示相应图标，默认 none，支持 success / fail / exception / none’。其中 exception
                                       // 类型必须传文字信息
@@ -136,7 +136,7 @@ function ToastFactory () {
         })
       },
       dismiss () {
-        window.ap.hideToast()
+        window.ap && window.ap.hideToast()
       }
     }
   }

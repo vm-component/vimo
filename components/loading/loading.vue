@@ -77,7 +77,7 @@
    * @props {string} [content] - 内容
    * @props {string} [cssClass] - 自定义样式
    * @props {boolean} [showBackdrop=false] - 是否显示黑色背景
-   * @props {number} [duration=5000] - loading持续时间, 如果为0则无效, 默认提供5000ms持续时间
+   * @props {number} [duration] - loading持续时间, 如果为0则无效
    * @props {boolean} [dismissOnPageChange=true] - 页面切换是否关闭loading
    * @props {string} [mode='ios'] - 模式
    *

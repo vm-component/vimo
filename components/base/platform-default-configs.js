@@ -30,7 +30,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: true,                // tab是否显示下划线
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,          // 切换到子页面后隐藏tab组件
-      showIndicatorWhenPageChange: true,  // 页面切换是否显示Indicator提示
+      showIndicatorWhenPageChange: false,  // 页面切换是否显示Indicator提示
       pageTransition: 'zoom-transition',  // 转场动画
       pickerRotateFactor: 0,
       pickerScaleFactor: 0.81
@@ -58,7 +58,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       tabsHighlight: false,
       tabsPlacement: 'bottom',
       tabsHideOnSubPages: false,
-      showIndicatorWhenPageChange: true,  // 页面切换是否显示Indicator提示
+      showIndicatorWhenPageChange: false,  // 页面切换是否显示Indicator提示
       pageTransition: 'fade-right-transition', // 'ios-transition'
       statusbarPadding: false,
       pickerRotateFactor: -0.46,

@@ -1,14 +1,17 @@
 /**
+ * Created by Hsiang on 2017/4/24.
  * The polyfill for vimo running on more mobiles
  * @private
  */
+
 // promise polyfill
 require('es6-promise').polyfill()
 
 // fixed Object #<HTMLDivElement> has no method 'remove'
 if (!('remove' in window.Element.prototype)) {
   window.Element.prototype.remove = function () {
-    this.parentNode.removeChild(this)
+    // BugFixed: Cannot read property 'removeChild' of null
+    this && this.parentNode && this.parentNode.removeChild && this.parentNode.removeChild(this)
   }
 }
 
