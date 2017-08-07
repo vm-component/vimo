@@ -19,7 +19,7 @@
 
 <section class="page-content">
 
-    <section class="content">
+    <div class="content">
         <header>
             <?js if (!doc.longname || doc.kind !== 'module') { ?>
             <h2><?js if (doc.ancestors && doc.ancestors.length) { ?>
@@ -178,7 +178,7 @@
             <?js }); ?>
             <?js } ?>
         </article>
-    </section>
+    </div>
 
     <?js if (doc.kind === 'module' && doc.demos ) { ?>
     <aricle class="showcase">
