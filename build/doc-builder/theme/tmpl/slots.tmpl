@@ -45,18 +45,18 @@
     <thead>
     <tr>
         <?js if (props.hasName) {?>
-        <th>名称 / Name</th>
+        <th>Name</th>
         <?js } ?>
 
         <?js if (props.hasAttributes) {?>
-        <th>属性 / Attributes</th>
+        <th>Attributes</th>
         <?js } ?>
 
         <?js if (props.hasDefault) {?>
-        <th>默认值 / Default</th>
+        <th>Default</th>
         <?js } ?>
 
-        <th class="last">描述 / Description</th>
+        <th class="last">Description</th>
     </tr>
     </thead>
 
@@ -77,11 +77,11 @@
             <?js if (props.hasAttributes) {?>
                 <td class="attributes">
                 <?js if (prop.optional) { ?>
-                    &lt;可选参数 / optional><br>
+                    &lt;optional><br>
                 <?js } ?>
 
                 <?js if (prop.nullable) { ?>
-                    &lt;可为空 / nullable><br>
+                    &lt;nullable><br>
                 <?js } ?>
                 </td>
             <?js } ?>
@@ -95,7 +95,7 @@
             <?js } ?>
 
             <td class="description last"><?js= prop.description ?><?js if (prop.subprops) { ?>
-                <h6>参数 / Properties</h6><?js= self.partial('properties.tmpl', prop) ?>
+                <h6>Properties</h6><?js= self.partial('properties.tmpl', prop) ?>
             <?js } ?></td>
         </tr>
 

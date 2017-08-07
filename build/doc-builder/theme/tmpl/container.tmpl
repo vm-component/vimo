@@ -188,12 +188,10 @@
                 <span id="js_choose_md" class="">Android</span>
             </div>
             <div class="showcase__box--md">
-                <iframe frameborder="0" seamless
-                        src="<?js= doc.demos.name ?>?vmMode=md"></iframe>
+                <iframe id="js_iframe_md" frameborder="0" seamless></iframe>
             </div>
             <div class="showcase__box--ios">
-                <iframe frameborder="0" seamless
-                        src="<?js= doc.demos.name ?>?vmMode=ios"></iframe>
+                <iframe id="js_iframe_ios" frameborder="0" seamless></iframe>
             </div>
 
             <div class="showcase__qrcode">
@@ -205,6 +203,24 @@
 
     <script>
       (function () {
+        var demoUrl = '<?js= env.conf.docdash.demoUrl ?>'
+        var demos = '<?js= doc.demos.name ?>'
+        var url = null
+        if (demos.indexOf('http') > -1) {
+          url = demos
+        } else {
+          url = demoUrl + demos
+        }
+
+        var qrcode = new QRCode(document.getElementById('qrcode'), {
+          width: 100,//设置宽高
+          height: 100
+        })
+        qrcode.makeCode(url)
+
+        document.getElementById('js_iframe_ios').src = url + '?vmMode=ios&vmPageTransition=fade-right-transition'
+        document.getElementById('js_iframe_md').src = url + '?vmMode=md&vmPageTransition=zoom-transition'
+
         document.getElementById('js_choose_ios').addEventListener('click', function () {
           console.log('js_choose_ios')
           var $showCaseBox = document.getElementById('js_showcase__box')
@@ -222,14 +238,6 @@
             _addClass($showCaseBox, 'md')
           }
         })
-
-
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-          width : 150,//设置宽高
-          height : 150
-        });
-        qrcode.makeCode('<?js= doc.demos.name ?>');
-
 
         function _hasClass (obj, cls) {
           return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
@@ -252,7 +260,6 @@
     <?js } ?>
 
 </section>
-
 
 
 <?js } ?>

@@ -111,14 +111,11 @@ module.exports = {
     'static': true,
     'sort': true,
     'homeName': '首页 / Home',
+    'demoUrl': 'https://dtfe.github.io/vimo-demo',
     'links': [
       {
         'name': '如何开始 / How To Start',
         'link': 'https://github.com/DTFE/vimo-start-kit'
-      },
-      {
-        'name': '示例 / Demo',
-        'link': 'https://dtfe.github.io/vimo-demo/#/'
       },
       {
         'name': '更新日志 / Change Log',

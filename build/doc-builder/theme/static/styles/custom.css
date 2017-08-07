@@ -108,8 +108,8 @@
         text-align: center;
         margin: 0 auto; }
         .page-content .showcase .showcase__box .showcase__qrcode .showcase__qrcode--inner {
-          width: 150px;
-          height: 150px;
+          width: 100px;
+          height: 100px;
           border: 1px solid #ddd;
           margin: 0 auto; }
 

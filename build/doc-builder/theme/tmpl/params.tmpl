@@ -54,20 +54,20 @@
     <thead>
     <tr>
         <?js if (params.hasName) {?>
-        <th>名称 / Name</th>
+        <th>Name</th>
         <?js } ?>
 
-        <th>类型 / Type</th>
+        <th>Type</th>
 
         <?js if (params.hasAttributes) {?>
-        <th>属性 / Attributes</th>
+        <th>Attributes</th>
         <?js } ?>
 
         <?js if (params.hasDefault) {?>
-        <th>默认值 / Default</th>
+        <th>Default</th>
         <?js } ?>
 
-        <th class="last">描述 / Description</th>
+        <th class="last">Description</th>
     </tr>
     </thead>
 
@@ -92,15 +92,15 @@
             <?js if (params.hasAttributes) {?>
                 <td class="attributes">
                 <?js if (param.optional) { ?>
-                    &lt;可选参数 / optional><br>
+                    &lt;optional><br>
                 <?js } ?>
 
                 <?js if (param.nullable) { ?>
-                    &lt;可为空 / nullable><br>
+                    &lt;nullable><br>
                 <?js } ?>
 
                 <?js if (param.variable) { ?>
-                    &lt;可重复 / repeatable><br>
+                    &lt;repeatable><br>
                 <?js } ?>
                 </td>
             <?js } ?>
@@ -114,7 +114,7 @@
             <?js } ?>
 
             <td class="description last"><?js= param.description ?><?js if (param.subparams) { ?>
-                <h6>参数 / Properties</h6>
+                <h6>Properties</h6>
                 <?js= self.partial('params.tmpl', param.subparams) ?>
             <?js } ?></td>
         </tr>

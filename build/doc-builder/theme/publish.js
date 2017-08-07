@@ -200,9 +200,7 @@ function getPathFromDoclet (doclet) {
     return null
   }
 
-  return doclet.meta.path && doclet.meta.path !== 'null' ?
-    path.join(doclet.meta.path, doclet.meta.filename) :
-    doclet.meta.filename
+  return doclet.meta.path && doclet.meta.path !== 'null' ? path.join(doclet.meta.path, doclet.meta.filename) : doclet.meta.filename
 }
 
 function generate (type, title, docs, filename, resolveLinks) {
@@ -372,6 +370,10 @@ function buildNav (members, docdash) {
   var nav = '<section class="nav__header">'
   var homeName = docdash.homeName || 'Home'
   nav += '<h2><a href="index.html">' + homeName + '</a></h2>'
+  if (docdash.demoUrl) {
+    nav += '<h2><a href="' + docdash.demoUrl + '">示例 / Demo</a></h2>'
+  }
+
   if (docdash.links && docdash.links.length > 0) {
     docdash.links.forEach(function (linkInfo) {
       nav += '<h2><a href="' + linkInfo.link + '">' + linkInfo.name + '</a></h2>'
@@ -450,10 +452,8 @@ exports.publish = function (taffyData, opts, tutorials) {
   helper.registerLink('global', globalUrl)
 
   // set up templating
-  view.layout = conf.default.layoutFile ?
-    path.getResourcePath(path.dirname(conf.default.layoutFile),
-      path.basename(conf.default.layoutFile)) :
-    'layout.tmpl'
+  view.layout = conf.default.layoutFile ? path.getResourcePath(path.dirname(conf.default.layoutFile),
+    path.basename(conf.default.layoutFile)) : 'layout.tmpl'
 
   // set up tutorials for helper
   helper.setTutorials(tutorials)

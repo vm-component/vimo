@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 * {
   box-sizing: border-box; }
 
@@ -18,7 +17,7 @@ body {
 
 a,
 a:active {
-  color: #00663d;
+  color: #33b076;
   text-decoration: none; }
 
 a:hover {
@@ -62,8 +61,8 @@ h1 {
 h1.page-title {
   font-size: 16px;
   margin: 40px 60px 0px;
-  color: #00663d;
-  border-left: 2px solid #00663d;
+  color: #33b076;
+  border-left: 2px solid #33b076;
   padding-left: 10px;
   line-height: 130%; }
 
@@ -88,16 +87,16 @@ h4.name {
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
-  color: #00663d;
+  color: #33b076;
   margin: 1.5em 0 0.5em;
   padding: .75em 0 10px;
   font-size: 20px; }
 
 h4.name a {
-  color: #51b586; }
+  color: #42b983; }
 
 h4.name a:hover {
-  border-bottom-color: #51b586; }
+  border-bottom-color: #42b983; }
 
 h5 {
   font-size: 120%;
@@ -140,7 +139,7 @@ section {
 
 .signature-attributes {
   font-size: 60%;
-  color: #51b586;
+  color: #42b983;
   font-style: italic;
   font-weight: lighter; }
 
@@ -183,13 +182,13 @@ nav ul a:active {
 
 nav a:hover,
 nav a:active {
-  color: #00663d; }
+  color: #33b076; }
 
 nav > ul {
   padding: 0 10px; }
 
 nav > ul > li > a {
-  color: #00663d; }
+  color: #34495e; }
 
 nav ul ul {
   margin-bottom: 10px; }
@@ -198,7 +197,7 @@ nav ul ul + ul {
   margin-top: -10px; }
 
 nav ul ul a {
-  color: #98999a;
+  color: #34495e;
   border-left: 1px solid #d8dcdf; }
 
 nav ul ul a,
@@ -220,13 +219,13 @@ nav .nav__header {
       margin: 0;
       height: 18px;
       line-height: 18px;
-      color: #00663d !important; }
+      color: #34495e; }
 
 footer {
   color: #474747;
   margin-left: 250px;
   display: block;
-  padding: 15px;
+  padding: 15px 50px;
   font-style: italic;
   font-size: 90%; }
 
@@ -247,12 +246,12 @@ footer {
   text-indent: -1000px; }
 
 .type-signature {
-  color: #51b586;
+  color: #42b983;
   text-transform: capitalize; }
 
 .type-signature:last-child {
   color: #eee;
-  color: #51b586; }
+  color: #42b983; }
 
 .name, .signature {
   font-family: Consolas, Monaco, "Andale Mono", monospace; }
@@ -414,7 +413,7 @@ table td.last, table th.last {
   padding-bottom: 0; }
 
 span.param-type, .params td .param-type, .param-type dd {
-  color: #00663d;
+  color: #33b076;
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
   text-transform: capitalize; }
 
@@ -597,7 +596,9 @@ span.param-type, .params td .param-type, .param-type dd {
           display: none; }
 
   footer {
-    margin-left: 0; }
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0; }
 
   .tag-source {
     display: none; } }
