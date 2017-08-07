@@ -207,21 +207,27 @@
       (function () {
         var demoUrl = 'https://dtfe.github.io/vimo-demo'
         var demos = 'https://dtfe.github.io/vimo-demo/#/thumbnailList'
-        var url = null
+        var qrCodeUrl = null
+        var iosUrl = null
+        var mdUrl = null
         if (demos.indexOf('http') > -1) {
-          url = demos
+          qrCodeUrl = demos
+          iosUrl = demos + '?vmMode=ios&vmPageTransition=fade-right-transition'
+          mdUrl = demos + '?vmMode=md&vmPageTransition=zoom-transition'
         } else {
-          url = demoUrl + demos
+          qrCodeUrl = demoUrl + demos
+          iosUrl = demoUrl + '?vmMode=ios&vmPageTransition=fade-right-transition' + demos
+          mdUrl = demoUrl + '?vmMode=md&vmPageTransition=zoom-transition' + demos
         }
 
         var qrcode = new QRCode(document.getElementById('qrcode'), {
           width: 100,//设置宽高
           height: 100
         })
-        qrcode.makeCode(url)
+        qrcode.makeCode(qrCodeUrl)
 
-        document.getElementById('js_iframe_ios').src = url + '?vmMode=ios&vmPageTransition=fade-right-transition'
-        document.getElementById('js_iframe_md').src = url + '?vmMode=md&vmPageTransition=zoom-transition'
+        document.getElementById('js_iframe_ios').src = iosUrl
+        document.getElementById('js_iframe_md').src = mdUrl
 
         document.getElementById('js_choose_ios').addEventListener('click', function () {
           console.log('js_choose_ios')
