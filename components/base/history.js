@@ -22,11 +22,29 @@ export class History {
     this._d = 'forward'           // forward/backward
     this._r = router              // vur-router实例
     this.length = 0
+    this.isSkip = false           // 是否跳过当前记录, 用于replace方法
 
     // 监听路由变化, 维护本地历史记录
     // 路由切换前
     if (this._r) {
+      let replaceCopy = this._r.replace
+      replaceCopy = replaceCopy.bind(this._r)
+      const _this = this
+      this._r.replace = function () {
+        _this.isSkip = true
+        replaceCopy.apply(null, arguments)
+      }
+
       this._r.beforeEach((to, from, next) => {
+        // 如果使用了replace, 则跳过当前拦截的路由信息, 并且将最后一个重置
+        if (this.isSkip) {
+          this.isSkip = false
+          this._h.pop()
+          this._h.push(to)
+          next()
+          return
+        }
+
         let stackLength = this._h.length
         if (stackLength <= 1) {
           /**
@@ -55,14 +73,9 @@ export class History {
    * @private
    * */
   _pushHistory ({to, from, next}) {
-    if (this._isPageChange({to, from})) {
-      this._d = 'forward'
-      this._h.push(to)
-      next()
-    } else {
-      this._d = ''
-      next()
-    }
+    this._d = 'forward'
+    this._h.push(to)
+    next()
     // noinspection JSAnnotator
     this.length++
   }
@@ -73,33 +86,11 @@ export class History {
    * */
   _popHistory ({to, from, next}) {
     // 激活了浏览器的后退,这里只需要更新状态
-    if (this._isPageChange({to, from})) {
-      this._d = 'backward'
-      this._h.pop()
-      next()
-    } else {
-      this._d = ''
-      next()
-    }
+    this._d = 'backward'
+    this._h.pop()
+    next()
     // noinspection JSAnnotator
     this.length--
-  }
-
-  /**
-   * 判断是否是主页面的切换
-   * 默认主页面为第一级:
-   * /#/page1
-   * /#/page2
-   *
-   * 二级页面
-   * /#/page1/tab1
-   * /#/page1/modal1
-   * @private
-   * */
-  _isPageChange ({to, from}) {
-    let _isFromPage = from.matched.length === 1
-    let _isToPage = to.matched.length === 1
-    return (_isFromPage || _isToPage)
   }
 
   // -------- public --------

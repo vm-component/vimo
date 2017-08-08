@@ -58,7 +58,7 @@
 </style>
 <script type="text/javascript">
   /**
-   * @component SearchBar
+   * @component Searchbar
    * @description
    * 搜索条
    *
@@ -95,11 +95,11 @@
    * @props {Boolean} [animated=false]              - 是否启动点击动画
    *
    *
-   * @fires component:SearchBar#onInput
-   * @fires component:SearchBar#onFocus
-   * @fires component:SearchBar#onBlur
-   * @fires component:SearchBar#onClear
-   * @fires component:SearchBar#onCancel
+   * @fires component:Searchbar#onInput
+   * @fires component:Searchbar#onFocus
+   * @fires component:Searchbar#onBlur
+   * @fires component:Searchbar#onClear
+   * @fires component:Searchbar#onCancel
    *
    *
    * @demo https://dtfe.github.io/vimo-demo/#/searchbar
@@ -136,7 +136,7 @@
   import { Icon } from '../icon'
   import { isNumber, isBoolean } from '../util/util'
   export default{
-    name: 'SearchBar',
+    name: 'Searchbar',
     data () {
       return {
         isCancelVisible: false,
@@ -297,7 +297,7 @@
           }, this.debounce)
         } else {
           /**
-           * @event component:SearchBar#onInput
+           * @event component:Searchbar#onInput
            * @description input事件
            * @property {object} $event - 事件对象
            */
@@ -312,7 +312,7 @@
        */
       onFocusHandler ($event) {
         /**
-         * @event component:SearchBar#onFocus
+         * @event component:Searchbar#onFocus
          * @description focus事件
          * @property {object} $event - 事件对象
          */
@@ -337,7 +337,7 @@
             this.searchbarInputElement.focus()
           } else {
             /**
-             * @event component:SearchBar#onBlur
+             * @event component:Searchbar#onBlur
              * @description blur事件
              * @property {object} $event - 事件对象
              */
@@ -355,7 +355,7 @@
       clearInput ($event) {
         this.searchbarInputElement.focus()
         /**
-         * @event component:SearchBar#onClear
+         * @event component:Searchbar#onClear
          * @description clear事件
          * @property {object} $event - 事件对象
          */
@@ -375,7 +375,7 @@
        */
       cancelSearchbar ($event) {
         /**
-         * @event component:SearchBar#onCancel
+         * @event component:Searchbar#onCancel
          * @description cancel事件
          * @property {object} $event - 事件对象
          */

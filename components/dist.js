@@ -35,7 +35,7 @@ import { Range } from './range'
 import { Refresher, RefresherContent } from './refresher'
 import { Scroll } from './scroll'
 import { ScrollSegment, ScrollSegmentButton } from './scroll-segment'
-import { SearchBar } from './searchbar'
+import { Searchbar } from './searchbar'
 import { Segment, SegmentButton } from './segment'
 import { Option, Select } from './select'
 import { Separation } from './separation'
@@ -115,7 +115,7 @@ module.exports = {
     Vue.component(Scroll.name, Scroll)
     Vue.component(ScrollSegment.name, ScrollSegment)
     Vue.component(ScrollSegmentButton.name, ScrollSegmentButton)
-    Vue.component(SearchBar.name, SearchBar)
+    Vue.component(Searchbar.name, Searchbar)
     Vue.component(Segment.name, Segment)
     Vue.component(SegmentButton.name, SegmentButton)
     Vue.component(Select.name, Select)
