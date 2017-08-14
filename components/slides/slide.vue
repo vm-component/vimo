@@ -1,7 +1,7 @@
 <template>
     <div class="swiper-slide">
         <template v-if="zoom">
-            <div class="swiper-zoom-container" >
+            <div class="swiper-zoom-container">
                 <slot></slot>
             </div>
         </template>
@@ -37,9 +37,6 @@
         this.zoom = this.slidesComponent.zoom
         this.slidesComponent.initSlides()
       }
-    },
-    mounted () {
-
     }
   }
 </script>

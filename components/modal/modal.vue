@@ -56,12 +56,13 @@
 <script type="text/javascript">
   import Vue from 'vue'
   import { Backdrop } from '../backdrop'
-  export default{
+
+  export default {
     name: 'Modal',
     props: {
       mode: {
         type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
 
       // 放入的页面组件

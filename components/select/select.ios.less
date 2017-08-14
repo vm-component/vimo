@@ -21,6 +21,18 @@
 /// @prop - Color of the select placeholder
 @select-ios-placeholder-color: @select-ios-icon-color;
 
+/// @prop - Position of the select icon
+@select-ios-icon-position: relative;
+
+/// @prop - Display of the select icon
+@select-ios-icon-display: block;
+
+/// @prop - Width of the select icon
+@select-ios-icon-width: 12px;
+
+/// @prop - Height of the select icon
+@select-ios-icon-height: 18px;
+
 .select-ios {
   padding: @select-ios-padding-top @select-ios-padding-right @select-ios-padding-bottom @select-ios-padding-left;
 }
@@ -30,10 +42,11 @@
 }
 
 .select-ios .select-icon {
-  position: relative;
+  position: @select-ios-icon-position;
+  display: @select-ios-icon-display;
 
-  width: 12px;
-  height: 18px;
+  width: @select-ios-icon-width;
+  height: @select-ios-icon-height;
 }
 
 .select-ios .select-icon .select-icon-inner {

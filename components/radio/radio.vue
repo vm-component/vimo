@@ -83,8 +83,9 @@
    *
    * */
   import { setElementClass, isTrueProperty } from '../util/util'
+
   let id = 0
-  export default{
+  export default {
     name: 'Radio',
     data () {
       return {
@@ -103,7 +104,7 @@
       color: [String],
       mode: {
         type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       }
     },
     watch: {

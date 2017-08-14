@@ -39,6 +39,7 @@ import { Searchbar } from './searchbar'
 import { Segment, SegmentButton } from './segment'
 import { Option, Select } from './select'
 import { Separation } from './separation'
+import { Sheet } from './sheet'
 import { SlideBox } from './slide-box'
 import { Slide, Slides } from './slides'
 import { Slide as SlideLite, Slides as SlidesLite } from './slides-lite'
@@ -121,6 +122,7 @@ module.exports = {
     Vue.component(Select.name, Select)
     Vue.component(Option.name, Option)
     Vue.component(Separation.name, Separation)
+    Vue.component(Sheet.name, Sheet)
     Vue.component(SlideBox.name, SlideBox)
     Vue.component(Slides.name, Slides)
     Vue.component(Slide.name, Slide)

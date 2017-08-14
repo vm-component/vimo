@@ -8,6 +8,7 @@ Vimo Is still in development stage (2017/04/23), during which the project needs 
 
 目前还在开发阶段(2017/04/23), 在此期间需要项目对此框架测试, 其中不乏一些组件的bug修复和API的变更, 如果对您的业务造成不便请谅解!
 
+- 0.5.6 - fixed: infinite-scroll
 - 0.5.3 - 增加了部分组件
 - 0.5.2 - 增加theme定制
 - 0.4.4 - 修复众多组件的bug; 将主题与组件框架分离; 增加对alipay/dingtalk等平台的适配, 如果在此平台则默认使用平台提供的原生方法.

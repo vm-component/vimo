@@ -1,5 +1,5 @@
 <template>
-    <div class="action-sheet" :class="[modeClass,cssClass]">
+    <div class="ion-action-sheet" :class="[modeClass,cssClass]">
         <!--backdrop-->
         <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
                   :isActive="isActive"></Backdrop>

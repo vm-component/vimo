@@ -140,9 +140,10 @@
   import Vue from 'vue'
   import { Backdrop } from '../backdrop'
   import { urlChange, parsePxUnit, isObject, isFunction } from '../util/util'
+
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
-  export default{
+  export default {
     name: 'Popover',
     data () {
       return {
@@ -161,7 +162,7 @@
       ev: [Object, MouseEvent], // 点击元素的事件
       mode: {
         type: String,
-        default () { return this.$config && this.$config.get('mode') }
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
       cssClass: String,
       showBackdrop: {

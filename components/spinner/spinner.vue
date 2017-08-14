@@ -134,7 +134,7 @@
             } else if (this.mode === 'wp') {
               name = 'circles'
             } else {
-              name = this.$config && this.$config.get('spinner', 'ios')
+              name = this.$config && this.$config.get('spinner', 'ios') || 'ios'
             }
           }
           const spinner = SPINNERS[name]
