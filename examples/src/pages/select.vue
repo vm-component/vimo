@@ -87,7 +87,6 @@
                 <p text-center>Gaming选中值: {{gamingNoValue}}</p>
             </div>
 
-
             <List>
                 <ListHeader>
                     <span>单选 (v-model)</span>

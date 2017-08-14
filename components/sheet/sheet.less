@@ -1,0 +1,36 @@
+@import "../themes/index";
+
+// Action Sheet
+// --------------------------------------------------
+
+@sheet-width: 100%;
+@sheet-max-width: 500px;
+
+.vm-sheet {
+  &.vm-sheet-visible{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: @z-index-overlay;
+    display: block;
+
+    width: @sheet-width;
+    height: @sheet-width;
+  }
+}
+
+.sheet-wrapper {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: @z-index-overlay-wrapper;
+  display: block;
+
+  margin: auto;
+
+  width: @sheet-width;
+  max-width: @sheet-max-width;
+  // added
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
+}

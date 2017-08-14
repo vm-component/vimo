@@ -155,6 +155,11 @@
                         <span>城市选择</span>
                         <Note slot="item-right">ChooseCity</Note>
                     </Item>
+                    <Item detail-push :to="{name: 'sheet'}">
+                        <Icon slot="item-left" name="boat"></Icon>
+                        <span>弹出单</span>
+                        <Note slot="item-right">Sheet</Note>
+                    </Item>
                 </ItemGroup>
 
                 <!--List组件-->

@@ -280,7 +280,13 @@ let routes = [
       require(['@/pages/choose-city/choose-city.vue'], resolve)
     }
   },
-
+  {
+    path: '/sheet',
+    name: 'sheet',
+    component (resolve) {
+      require(['@/pages/sheet.vue'], resolve)
+    }
+  },
   // ----  component/Form组件 ----
 
   {
