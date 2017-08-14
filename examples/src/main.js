@@ -5,12 +5,11 @@ import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
 import 'ionicons/dist/css/ionicons.css'
 import vimo from '../../components/dist'
+// import '../../dist/style.css'
 import VueI18n from 'vue-i18n'
 import vmGeo from 'vm-geo'
 import vmStorage from 'vm-storage'
 import router from './router'
-// import vimo from '../../dist'
-// import '../../dist/style.css'
 
 if (process.env.NODE_ENV === 'development') {
   Vue.config.productionTip = false

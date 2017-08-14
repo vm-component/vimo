@@ -63,7 +63,7 @@ let routes = [
     }
   },
   {
-    path: '/history',
+    path: '/history/:id',
     name: 'history',
     component (resolve) {
       require(['@/pages/history.vue'], resolve)

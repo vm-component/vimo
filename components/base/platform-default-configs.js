@@ -2,7 +2,7 @@
  * # 平台层级的 "默认" 配置
  * @private
  */
-import { docReady } from '../util/util'
+import { docReady, isFunction } from '../util/util'
 // 平台支持列表
 export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq', 'dtdream']
 const TIMEOUT = 10000 // 平台初始化需要的最大时间
@@ -110,6 +110,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
               // 触发平台的统一ready事件
               plt.triggerReady('Wechat Init Success!')
               plt.timer && window.clearTimeout(plt.timer)
+
             }
 
             if (typeof window.WeixinJSBridge === 'undefined') {
@@ -133,7 +134,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       // 获取网络类型 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
       val = plt.userAgent().match(/NetType\/(\w+) /i)
       if (!!val && val.length > 0 && !!val[1]) {
-        plt.setNetType(val[1].toString().toLowerCase())
+        plt.setNetworkType(val[1].toString().toLowerCase())
       }
 
       // 获取语言类型 Language/zh-CN
@@ -155,6 +156,21 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       return plt.matchUserAgentVersion(/micromessenger\/(\d+).(\d+).(\d+)?/i)
     }
   },
+  /**
+   * 支付宝平台
+   * 这里是针对支付宝平台的初始化配置代码
+   *
+   * 说明:
+   * - 不建议使用 `pause` 和 `resume` 两个事件, 一般的做法是通过这两个事件传递数据, 这部分因为和webapp兼容度低, 因此建议使用 `localStorage` 做数据转移(不是
+   * `sessionStorage` )
+   * - 如果业务在支付宝中, 则页面切换 `this.$router.push()` 将默认使用 `pushWindow` 替换, 如果业务特殊可自行关闭
+   * - 同上, 如果通过 `this.$router.back()` 后退, 则默认使用 `popWindow` 替换, 如果业务特殊可自行关闭. 注意不是 `window.history.back()` , 它不起作用.
+   * - subtitleClick(点击导航栏副标题触发回调)这个事件很鸡肋, Vimo只做了对 `titleClick` 的监听, 请参考 `<Title>` 组件
+   * - 通过在 `platform.onNetworkChange()` 注册网络变化的回调函数, 回调参数是当前网络类型
+   * - 平台初始化完毕注册 `exitApp` 方法, 用法: `this.$platform.exitApp()`
+   * -
+   *
+   * */
   alipay: {
     initialize (plt) {
       /**
@@ -187,6 +203,24 @@ export const PLATFORM_DEFAULT_CONFIGS = {
               // 触发平台的统一ready事件
               plt.triggerReady('Alipay Init Success!')
               plt.timer && window.clearTimeout(plt.timer)
+
+              // 设置网络类型
+              // 网络环境发生变化，可调用getNetworkType接口获取详细信息
+              window.AlipayJSBridge.call('getNetworkType', (result) => {
+                /**
+                 * result 参数
+                 * @param {boolean} result.networkAvailable - true              | true              | false
+                 * @param {boolean} result.networkInfo      - WIFI              | 3G                | NOTREACHABLE
+                 * @param {boolean} result.err_msg          - network_type:wifi | network_type:wwan | network_type:fail
+                 * @param {boolean} result.networkType      - wifi              | wwan              | fail
+                 * */
+                plt.setNetworkType(result.networkInfo.toString().toLowerCase())
+              })
+
+              // 注册平台推出方法 `exitApp`
+              plt.exitApp = () => {
+                window.AlipayJSBridge.call('exitApp')
+              }
             }
 
             if (typeof window.AlipayJSBridge === 'undefined') {
@@ -211,13 +245,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       // 获取网络类型
       val = plt.userAgent().match(/AlipayDefined\(nt:(\w+),/i)
       if (!!val && val.length > 0 && !!val[1]) {
-        plt.setNetType(val[1].toString().toLowerCase())
-      }
-
-      plt.netType = function () {
-        window.ap && window.ap.getNetworkType((res) => {
-          return res.networkType
-        })
+        plt.setNetworkType(val[1].toString().toLowerCase())
       }
 
       // 获取语言类型
@@ -226,10 +254,21 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setLang(val[1].toString().toLowerCase(), true)
       }
+
+      // 监听网络变化
+      window.document.addEventListener('h5NetworkChange', () => {
+        window.AlipayJSBridge.call('getNetworkType', (result) => {
+          plt.setNetworkType(result.networkInfo.toString().toLowerCase())
+          plt._networkChangeCallbacks.forEach((fn) => {
+            isFunction(fn) && fn(result.networkInfo.toString().toLowerCase())
+          })
+        })
+      }, false)
     },
     // 由业务完成部分
     bridgeReady (plt) {},
     settings: {
+      usePushWindow: true, // 页面切换使用alipay提供的 pushWindow() 方法开启新页面
       jsSDKUrl: '//a.alipayobjects.com/g/h5-lib/alipayjsapi/3.0.2/alipayjsapi.min.js',
       hideNavBar: true
     },
@@ -287,6 +326,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
     // 由业务完成部分
     bridgeReady (plt) {},
     settings: {
+      usePushWindow: true, // 页面切换使用 dingding 提供的 dd.biz.util.openLink 方法开启新页面
       jsSDKUrl: '//g.alicdn.com/dingding/open-develop/1.5.1/dingtalk.js',
       hideNavBar: true
     },
@@ -303,7 +343,7 @@ export const PLATFORM_DEFAULT_CONFIGS = {
       // 可能的字段: NetType/WIFI, NetType/2G, NetType/3G+, NetType/4G
       let val = plt.userAgent().match(/NetType\/(\w+)/i)
       if (!!val && val.length > 0 && !!val[1]) {
-        plt.setNetType(val[1].toString().toLowerCase())
+        plt.setNetworkType(val[1].toString().toLowerCase())
       }
 
       this.bridgeReady(plt)

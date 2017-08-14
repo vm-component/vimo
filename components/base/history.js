@@ -16,37 +16,90 @@
  * - 此History是对router实例的拓展, 但是不会为router实例添加方法, 而是从新定义$history, 这个可在业务的this中访问到
  */
 
+import { isPresent } from '../util/util'
+
 export class History {
-  constructor (router) {
-    this._h = []                  // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
-    this._d = 'forward'           // forward/backward
-    this._r = router              // vur-router实例
-    this.length = 0
-    this.isSkip = false           // 是否跳过当前记录, 用于replace方法
+  constructor (router, config, platform) {
+    this._history = []                  // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
+    this._direction = 'forward'         // forward/backward
+    this._router = router               // vue-router实例
+    this._config = config               // config 实例
+    this._platform = platform           // platform 实例
+    this.isReplace = false              // 路由跳转是否是使用replace方法
+    this.usePushWindow = this._config.getBoolean('usePushWindow', true) // 支付宝 和 钉钉 两个模式下路由跳转是否开启新页面
 
     // 监听路由变化, 维护本地历史记录
     // 路由切换前
-    if (this._r) {
-      let replaceCopy = this._r.replace
-      replaceCopy = replaceCopy.bind(this._r)
+    if (this._router) {
       const _this = this
-      this._r.replace = function () {
-        _this.isSkip = true
+
+      /**
+       * 方法增强: replace()
+       * */
+      let replaceCopy = this._router.replace
+      replaceCopy = replaceCopy.bind(this._router)
+      this._router.replace = function () {
+        _this.isReplace = true
         replaceCopy.apply(null, arguments)
       }
 
-      this._r.beforeEach((to, from, next) => {
+      let isAlipay = this._platform.is('alipay') && isPresent(window.AlipayJSBridge)
+      let isDingTalk = this._platform.is('dingtalk') && isPresent(window.dd)
+
+      if ((isAlipay || isDingTalk) && this.usePushWindow) {
+        /**
+         * 方法增强: back()
+         * */
+        let backCopy = this._router.back
+        backCopy = backCopy.bind(this._router)
+        this._router.back = function () {
+          if (isAlipay) {
+            window.AlipayJSBridge.call('popWindow')
+            return
+          }
+
+          if (isDingTalk) {
+            window.dd.biz.navigation.close()
+            return
+          }
+
+          // the last
+          backCopy.apply(null, arguments)
+        }
+
+        /**
+         * 方法增强: go()
+         * */
+        let goCopy = this._router.go
+        goCopy = goCopy.bind(this._router)
+        this._router.go = function (n) {
+          if (isAlipay) {
+            window.AlipayJSBridge.call('popTo', {
+              index: n // 回退到上一个页面，假如这个时候没有上一个页面，就会报错
+            }, function (e) { // 添加回调，因为popTo不一定会成功（当前页面是唯一打开的页面的时候，会报错）
+              console.error(`history.js go(): ${JSON.stringify(e)}`)
+            })
+            return
+          }
+
+          if (isDingTalk) {}
+
+          // the last
+          goCopy.apply(null, n)
+        }
+      }
+
+      this._router.beforeEach((to, from, next) => {
         // 如果使用了replace, 则跳过当前拦截的路由信息, 并且将最后一个重置
-        if (this.isSkip) {
-          this.isSkip = false
-          this._h.pop()
-          this._h.push(to)
+        if (this.isReplace) {
+          this.isReplace = false
+          this._history.pop()
+          this._history.push(to)
           next()
           return
         }
 
-        let stackLength = this._h.length
-        if (stackLength <= 1) {
+        if (this.length <= 1) {
           /**
            * 当本地维护的历时记录为空或, 意味着页面为首次进入, 并未初始化,
            * 此时, 可能我们是从app中的某个页面进入的,
@@ -56,15 +109,24 @@ export class History {
            * */
           this._pushHistory({to, from, next})
         } else {
-          let _previous = this._h[stackLength - 2]
-          if (to.name !== _previous.name) {
-            this._pushHistory({to, from, next})
-          } else {
-            this._popHistory({to, from, next})
+          // 向记录后方追溯, 如果有匹配可认为是go(-n)操作, 否则就是push操作
+          for (let i = this.length - 2; i > -1; i--) {
+            let _previous = this._history[i]
+            if (to.name === _previous.name) {
+              this._popHistory(next, i)
+              return
+            }
           }
+
+          // 如果不在过去的历史记录, 则认为是新增加记录
+          this._pushHistory({to, from, next})
         }
       })
     }
+  }
+
+  get length () {
+    return this._history.length
   }
 
   // -------- private --------
@@ -73,24 +135,57 @@ export class History {
    * @private
    * */
   _pushHistory ({to, from, next}) {
-    this._d = 'forward'
-    this._h.push(to)
+    let url = ''
+    let mode = this._router.mode
+    let base = this._router.history.base
+    if (mode === 'history') {
+      url = `${window.location.origin}${base}${to.fullPath}`
+    } else if (mode === 'hash') {
+      url = `${window.location.origin}/#${to.fullPath}`
+    } else {
+      console.error('history.js::只支持 mode: "hash" | "history"')
+    }
+
+    if (from.matched.length !== 0 && to.matched.length !== 0) {
+      // 如果在 "支付宝模式" 下, 且使用 pushWindow 特性进行页面跳转的话
+      if (this._platform.is('alipay') && isPresent(window.AlipayJSBridge) && this.usePushWindow) {
+        window.AlipayJSBridge.call('pushWindow', {
+          url: url,
+          param: {
+            readTitle: true,
+            showOptionMenu: false
+          }
+        })
+        return
+      }
+
+      // 如果在 "钉钉模式" 下, 且使用 window.dd.biz.util.openLink 特性进行页面跳转的话
+      if (this._platform.is('dingtalk') && isPresent(window.dd) && this.usePushWindow) {
+        window.dd.biz.util.openLink({
+          url: url, // 要打开链接的地址
+          onFail (err) {
+            console.error(`history.js _pushHistory(): ${JSON.stringify(err)}`)
+          }
+        })
+        return
+      }
+    }
+
+    // fallback
+    this._direction = 'forward'
+    this._history.push(to)
     next()
-    // noinspection JSAnnotator
-    this.length++
   }
 
   /**
    * pop history record
    * @private
    * */
-  _popHistory ({to, from, next}) {
+  _popHistory (next, i) {
     // 激活了浏览器的后退,这里只需要更新状态
-    this._d = 'backward'
-    this._h.pop()
+    this._direction = 'backward'
+    this._history = this._history.splice(0, i + 1)
     next()
-    // noinspection JSAnnotator
-    this.length--
   }
 
   // -------- public --------
@@ -99,7 +194,7 @@ export class History {
    * 获取当前的页面进行的方向
    * */
   getDirection () {
-    return this._d
+    return this._direction
   }
 
   /**
@@ -107,67 +202,66 @@ export class History {
    * @return {Boolean}
    * */
   canGoBack () {
-    return this._h.length > 1
+    return this.length > 1
   }
 
-  /**
-   * 获取历史记录的第一个
-   * @return {location}
-   * */
-  first () {
-    return this._h[0]
-  }
-
-  /**
-   * 获取当前激活的页面
-   * 获取最后一个历史记录
-   * @return {location}
-   * */
-  getActive () {
-    return this._h[this._h.length - 1]
-  }
-
-  /**
-   * 获取上一个历史记录
-   * @return {location}
-   * */
-  getPrevious () {
-    return this._h[this._h.length - 2]
-  }
+  // /**
+  //  * 获取历史记录的第一个
+  //  * @return {location}
+  //  * */
+  // first () {
+  //   return this._history[0]
+  // }
+  // /**
+  //  * 获取当前激活的页面
+  //  * 获取最后一个历史记录
+  //  * @return {location}
+  //  * */
+  // getActive () {
+  //   return this._history[this.length - 1]
+  // }
+  // /**
+  //  * 获取上一个历史记录
+  //  * @return {location}
+  //  * */
+  // getPrevious () {
+  //   return this._history[this.length - 2]
+  // }
+  // /**
+  //  * 返回传入的route是历史记录中的第几条
+  //  * @return {Number}
+  //  * */
+  // indexOf (route) {
+  //   return this._history.indexOf(route)
+  // }
 
   /**
    * 获取当前的导航记录
    * @return {Array}
    * */
   getHistory () {
-    return this._h
-  }
-
-  /**
-   * 返回传入的route是历史记录中的第几条
-   * @return {Number}
-   * */
-  indexOf (route) {
-    return this._h.indexOf(route)
+    return this._history
   }
 
   /**
    * 返回root页面(进入的第一个页面)
    * */
   toRoot () {
-    let firstRoute = this.first()
-    if (firstRoute) {
-      this._r.push({
-        path: firstRoute.path
+    // 支付宝方式返回首页
+    if (this._platform.is('alipay') && isPresent(window.AlipayJSBridge)) {
+      window.AlipayJSBridge.call('popTo', {
+        urlPattern: window.location.origin + window.location.pathname
+      }, function (e) {
+        console.error(`history.js toRoot(): ${JSON.stringify(e)}`)
       })
-    } else {
-      this._r.push({
-        path: '/'
-      })
+      return
     }
+
+    // fallback
+    this._router.go(1 - this.length)
   }
 }
 
-export function setupHistory (router) {
-  return new History(router)
+export function setupHistory (router, config, platform) {
+  return new History(router, config, platform)
 }

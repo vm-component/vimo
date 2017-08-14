@@ -49,7 +49,7 @@
                         <span>跨平台组件</span>
                         <Note slot="item-right">Cross Platform</Note>
                     </Item>
-                    <Item detail-push :to="{name:'history'}">
+                    <Item detail-push :to="{name:'history',params:{id:1990},query:{name:'hsiang'}}">
                         <Icon slot="item-left" name="logo-buffer"></Icon>
                         <span>历史记录</span>
                         <Note slot="item-right">History</Note>
@@ -156,7 +156,7 @@
                         <Note slot="item-right">ChooseCity</Note>
                     </Item>
                     <Item detail-push :to="{name: 'sheet'}">
-                        <Icon slot="item-left" name="boat"></Icon>
+                        <Icon slot="item-left" name="car"></Icon>
                         <span>弹出单</span>
                         <Note slot="item-right">Sheet</Note>
                     </Item>
@@ -342,8 +342,8 @@
 <style scoped lang="scss">
 </style>
 <script type="text/javascript">
-  export default{
-    name: 'name',
+  export default {
+    name: 'ComponentDemo',
     data () {
       return {}
     },
@@ -352,9 +352,10 @@
     computed: {},
     methods: {},
     created () {},
-    mounted () {},
+    mounted () {
+      window.sessionStorage.setItem('name', 'sessionStorage')
+    },
     activated () {},
-    components: {
-    }
+    components: {}
   }
 </script>

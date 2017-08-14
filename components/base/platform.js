@@ -115,6 +115,8 @@ class Platform {
 
     this._rm = {} // 平台注册的方法对象, key为方法名, value为对应的函数, registerMethod/do
 
+    this._networkChangeCallbacks = []
+
     this.css = {
       transform: null,
       transition: null,
@@ -287,19 +289,34 @@ class Platform {
    * 设置网络类型
    * @private
    * */
-  setNetType (netType) {
-    this._nt = netType
+  setNetworkType (networkType) {
+    this._nt = networkType
   }
 
   /**
    * 获取网络类型, 如果是在平台, 则使用平台方法
    * */
-  netType () {
+  networkType () {
     return this._nt
+  }
+
+  /**
+   * 当网络环境发生变化时触发注册函数
+   * @param {Function} fn - 注册函数, 回调参数返回网络类型
+   * */
+  onNetworkChange (fn) {
+    if (this._networkChangeCallbacks.indexOf(fn) === -1) {
+      this._networkChangeCallbacks.push(fn)
+    }
   }
 
   // 平台方法及事件注册函数
   // **********************************************
+
+  /**
+   * @hidden
+   */
+  exitApp () {}
 
   /**
    * 注册当前平台的方法, 请参考上面的说明.
@@ -823,7 +840,6 @@ class PlatformNode {
     return parentPlatformNames
   }
 }
-
 
 /**
  * 当前环境的可用CSS变量名称

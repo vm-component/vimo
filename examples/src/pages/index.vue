@@ -155,8 +155,8 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
-    name: 'index',
+  export default {
+    name: 'IndexDemo',
     data () {
       return {
         vimo: window.VM

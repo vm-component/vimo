@@ -24,7 +24,7 @@ export default function core (Vue, options) {
   // init base (config/platform/history)
   const platform = setupPlatform(options.pltConf)
   const config = setupConfig(options.custConf, platform)
-  const history = setupHistory(options.router)
+  const history = setupHistory(options.router, config, platform)
 
   // 全局注册
   window.VM = {

@@ -4,8 +4,10 @@ var config = require('../config/index')
 var vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
+  // console.log(path.join(__dirname, '..', dir))
   return path.join(__dirname, '..', dir)
 }
+
 module.exports = {
   entry: {
     app: './examples/src/main.js'
@@ -22,7 +24,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'vimo': resolve('../..') // for vimo module
+      'vimo': resolve('../components/index'), // for vimo module
+      'components': resolve('../components') // for vimo module
     }
   },
   module: {
@@ -41,13 +44,11 @@ module.exports = {
         loader: 'vue-loader',
         options: vueLoaderConfig,
         exclude: /node_modules/
-        // include: [resolve('src'), resolve('test'), resolve('../components')]
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-        // include: [resolve('src'), resolve('test'), resolve('../components')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
