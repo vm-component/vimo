@@ -70,7 +70,9 @@
    * }
    *
    * */
-  export default{
+  import { isPresent } from '../util/util'
+
+  export default {
     name: 'Title',
     data () {
       return {
@@ -86,12 +88,12 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
+        default () { return isPresent(this.$config) && this.$config.get('mode', 'ios') || 'ios' }
       },
       /**
        * 设置的title值
        * */
-      title: [String]
+      title: String
     },
     computed: {
       titleClass () {
@@ -188,8 +190,8 @@
        * */
       reset () {
         this.titleColor = null
-        if (this.$platform.is('alipay') && window.AlipayJSBridge) {
-          window.ap && window.ap.setNavigationBar({reset: true})
+        if (this.$platform.is('alipay') && isPresent(window.AlipayJSBridge)) {
+          isPresent(window.ap) && window.ap.setNavigationBar({reset: true})
         }
       },
 
@@ -197,7 +199,7 @@
        * 初始化
        * 只在Navbar中的Title才会具有更新Title的特性!
        * 且, 一个Page只能拥有一个Navbar, 当在Navbar中设置Title, 则Title的方法
-       * 将赋予页面Page(docTitle),
+       * 将赋予页面Page(document.title),
        * @private
        * */
       init () {
@@ -213,6 +215,18 @@
           if (navbarComponent.$parent.$parent.$options._componentTag.toLowerCase() === 'app') {
             this.isHeaderInApp = true
           }
+        }
+
+        // 如果是在 alipay 环境, 点击title触发事件
+        let isAlipayReady = this.$platform.is('alipay') && isPresent(window.AlipayJSBridge)
+        if (this.isTitleInNavbar && isAlipayReady) {
+          /**
+           * @event component:Title#onTitleClick
+           * @description 点击title时触发, 目前可用平台: H5/Alipay/
+           */
+          window.document.addEventListener('titleClick', () => {
+            this.$emit('onTitleClick')
+          }, false)
         }
       },
 
@@ -231,17 +245,10 @@
       }
     },
     mounted () {
+      console.assert(this.$platform, `The component of <Title> need 'platform' instance, please use Vimo in right environment!`)
+      console.assert(this.$config, `The component of <Title> need 'config' instance, please use Vimo in right environment!`)
+
       this.init()
-      let isAlipayReady = this.$platform && this.$platform.is('alipay') && window.AlipayJSBridge
-      if (this.isTitleInNavbar && isAlipayReady) {
-        /**
-         * @event component:Title#onTitleClick
-         * @description 点击title时触发, 目前可用平台: H5/Alipay/
-         */
-        window.document.addEventListener('titleClick', () => {
-          this.$emit('onTitleClick')
-        }, false)
-      }
     }
   }
 </script>
