@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Label - Documentation</title>
+    <title>sheet/sheet.vue - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/qrcode.js"></script>
@@ -55,7 +55,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">Label</h1>
+        <h1 class="page-title">sheet/sheet.vue</h1>
         
 
         
@@ -63,313 +63,302 @@
 
 
 
-<section class="page-content">
-
-    <div class="content">
-        <header>
-            
-        </header>
-
+    <section>
         <article>
-            <div class="container-overview">
-
-                
-                <div class="description"><h2>表单组件 / Label组件</h2><h3>说明</h3><p>Label组件主要是放在Item组件中使用, 用于标记Input组件/Toggle组件/Checkbox组件等From组件</p>
-<h3>使用场景</h3><p>input组件/Item包裹content部分等.</p></div>
-                
-
-                
-                
-
-<dl class="details">
-    
-    <section class="details__inner">
-        <dt class="tag-source">源码:</dt>
-        <dd class="tag-source">
-            <ul class="dummy">
-                <li>
-                    <a href="label_label.vue.html">label/label.vue</a>
-                    , <a href="label_label.vue.html#line2">line 2</a>
-                </li>
-            </ul>
-        </dd>
-    </section>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <section class="details__inner">
-        <dt class="tag-see">参考:</dt>
-        <dd class="tag-see">
-            <ul>
-                <li><a href="component-Item.html">component:Item</a></li>
-                
-                <li><a href="component-Input.html">component:Input</a></li>
-                </ul>
-        </dd>
-    </section>
-    
-
-    
-</dl>
-
-
-<h3 class="subsection-title">传入属性 / Props:</h3>
-
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>mode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">模式</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">颜色</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fixed</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">固定在input旁边</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>floating</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">浮动在input上面, 点击input时浮动到上面</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>stacked</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">永远在input的上面</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<h3 class="subsection-title">插槽 / Slots:</h3>
-
-
-
-
-<table class="slots props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>空</code></td>
-            
-
-
-
-            
-
-            
-
-            <td class="description last">可以嵌入任何结构</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-                <!---->
-                <!--<div class="description"><h2>表单组件 / Label组件</h2><h3>说明</h3><p>Label组件主要是放在Item组件中使用, 用于标记Input组件/Toggle组件/Checkbox组件等From组件</p>
-<h3>使用场景</h3><p>input组件/Item包裹content部分等.</p></div>-->
-                <!---->
-
-                
-                
-            </div>
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
+            <pre class="prettyprint source linenums"><code>&lt;template>
+    &lt;div class="vm-sheet" :class="[modeClass,{'vm-sheet-visible':isVisible}]">
+        &lt;!--backdrop-->
+        &lt;Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
+                  :isActive="isActive">&lt;/Backdrop>
+        &lt;!--actionsheet wrap-->
+        &lt;transition
+                name="sheet"
+                @before-enter="beforeEnter"
+                @after-enter="afterEnter"
+                @before-leave="beforeLeave"
+                @after-leave="afterLeave">
+            &lt;div class="sheet-wrapper" v-show="isActive">
+                &lt;div class="sheet-container">
+                    &lt;slot>&lt;/slot>
+                &lt;/div>
+            &lt;/div>
+        &lt;/transition>
+    &lt;/div>
+&lt;/template>
+&lt;script type="text/javascript">
+  /**
+   * @component Sheet
+   * @description
+   *
+   * ## 弹出表单组件 / Sheet
+   *
+   * ### 介绍
+   *
+   * Sheet组件是一个模板组件, 自身只提供弹出载体, 其余业务部分通过slot传入, 且组件本身不对slot内容不作处理, 样式也由业务自己确定
+   *
+   * 组件开闭通过ref获取组件实例并通过下面两个方法操作:
+   * - present() 开启
+   * - dismiss() 关闭
+   *
+   *
+   * ### 如何引入
+   * ```
+   * // 引入
+   * import { Sheet } from 'vimo/components/sheet'
+   * // 安装
+   * Vue.component(Sheet.name, Sheet)
+   * // 或者
+   * export default{
+   *   components: {
+   *     Sheet
+   *  }
+   * }
+   * ```
+   *
+   * ### 关于slot
+   *
+   * 组件必须具有slot="fixed"属性, 表示固定在页面上. 如果没有的话, 页面滚动样式会产生错误.
+   *
+   * ### 如何开启
+   *
+   * 通过ref获取组件实例, 之后调用present方法开启, 调用dismiss方法关闭.
+   *
+   * ```
+   * ...
+   * computed: {
+   *    paySheetCompoonent () {
+   *      return this.$refs.paySheet
+   *    }
+   *  }
+   * methods: {
+   *    openPaySheet () {
+   *      return this.paySheetCompoonent.present()
+   *    },
+   *    closePaySheet () {
+   *      return this.paySheetCompoonent.dismiss()
+   *    },
+   *    choose (type) {
+   *      this.closePaySheet().then(() => {
+   *        this.type = type
+   *      })
+   *    }
+   *  }
+   * ...
+   * ```
+   *
+   *
+   * @demo #/sheet
+   * @usage
+   * &lt;Sheet ref="paySheet" slot="fixed">
+   *    &lt;section class="pay-sheet">
+   *    &lt;div class="pay-sheet-title">选择支付方式&lt;/div>
+   *    &lt;div class="pay-sheet-container">
+   *        &lt;div class="pay-sheet-content" @click="choose('alipay')">
+   *            &lt;Icon class="pay-sheet-icon" name="icon-alipay">Icon&lt;/Icon>
+   *            &lt;p class="pay-sheet-name">支付宝&lt;/p>
+   *        &lt;/div>
+   *        &lt;div class="pay-sheet-content" @click="choose('wechat')">
+   *            &lt;Icon class="pay-sheet-icon" name="icon-weichat">Icon&lt;/Icon>
+   *            &lt;p class="pay-sheet-name">微信&lt;/p>
+   *        &lt;/div>
+   *        &lt;div class="pay-sheet-content" @click="choose('unipay')">
+   *            &lt;Icon class="pay-sheet-icon" name="icon-unipay">Icon&lt;/Icon>
+   *            &lt;p class="pay-sheet-name">银联&lt;/p>
+   *        &lt;/div>
+   *    &lt;/div>
+   *    &lt;div class="pay-sheet-buttons">
+   *        &lt;Button full clear class="pay-sheet-button" @click="closePaySheet">取消&lt;/Button>
+   *    &lt;/div>
+   *    &lt;/section>
+   * &lt;/Sheet>
+   *
+   * */
+  import { Backdrop } from '../backdrop'
+  import { urlChange } from '../util/util'
+
+  export default {
+    name: 'Sheet',
+    props: {
+      enableBackdropDismiss: {
+        type: Boolean,
+        default () { return true }
+      },
+      mode: {
+        type: String,
+        default () { return this.$config &amp;&amp; this.$config.get('mode', 'ios') || 'ios' }
+      },
+      dismissOnPageChange: {
+        type: Boolean,
+        default () { return true }
+      }
+    },
+    data () {
+      return {
+        /**
+         * @desc
+         * ActionSheet State
+         * 属性      | 描述             | 未开启 | 'Present动画'开始 | 'Present动画'结束 | 'Dismiss动画'开始 | 'Dismiss动画'结束 | 未开启
+         * ----------|------------------|--------|-------------------|-------------------|-------------------|-------------------|--------
+         * isActive  | 开启关闭状态     | false  | true              | true              | true              | false             | false
+         * enabled   | 是否在过渡动画中 | true   | false             | true              | true              | false             | true
+         * isVisible | 判断是否在可视区 | false  | true              | true              | true              | true              | false
+         * @private
+         * */
+        isActive: false,    // Sheet 开启关闭状态, 显示动画开启 -> 触发关闭dismiss
+        isVisible: false,    // 是否处在显示阶段, 显示动画开启 -> 关闭动画完全关闭
+        enabled: true,     // 是否在过渡态的状态判断，如果在动画中则为false (补漏的)
+
+        // promise
+        presentCallback: null,
+        dismissCallback: null,
+
+        unreg: null         // 页面变化的解绑函数
+      }
+    },
+    computed: {
+      // 设置ActionSheet的风格
+      modeClass () {
+        return `sheet-${this.mode}`
+      }
+    },
+    methods: {
+      /**
+       * ActionSheet Animate Hooks
+       * @private
+       * */
+      beforeEnter () {
+        this.enabled = false // 不允许过渡中途操作
+        this.isVisible = true
+        this.$app &amp;&amp; this.$app.setEnabled(false, 400)
+      },
+      afterEnter () {
+        this.presentCallback()
+        this.focusOutActiveElement()
+        let focusableEle = document.querySelector('button')
+        if (focusableEle) {
+          focusableEle.focus()
+        }
+        this.enabled = true
+        this.isVisible = true
+      },
+      beforeLeave () {
+        this.enabled = false
+        this.isVisible = true
+        this.$app &amp;&amp; this.$app.setEnabled(false, 400)
+      },
+      afterLeave () {
+        this.dismissCallback()
+        this.enabled = true
+        this.isVisible = false
+      },
+
+      /**
+       * ActionSheet启动之前去除focus效果，因为存在键盘
+       * @private
+       * */
+      focusOutActiveElement () {
+        // only button？
+        const activeElement = document.activeElement
+        activeElement &amp;&amp; activeElement.blur &amp;&amp; activeElement.blur()
+      },
+
+      /**
+       * @function bdClick
+       * @description
+       * 点击backdrop,关闭actionsheet
+       * @private
+       */
+      bdClick () {
+        if (this.enableBackdropDismiss) {
+          this.dismiss()
+        }
+      },
+
+      /**
+       * @function click
+       * @description
+       * 点击下方按钮
+       * @param {object} button Button Click Handler
+       * @private
+       */
+      click (button) {
+        let shouldDismiss = true
+        if (button.handler) {
+          // a handler has been provided, execute it
+          if (button.handler() === false) {
+            // if the return value of the handler is false then do not dismiss
+            shouldDismiss = false
+          }
+        }
+
+        // 当前不是在过渡动画中(dismissing中)，
+        // 如果是在dismissing中，则意味着正在关闭，
+        // 这里不必进行
+        if (shouldDismiss) {
+          this.dismiss()
+        }
+      },
+
+      /**
+       * @function present
+       * @description
+       * 打开ActionSheet
+       * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
+       */
+      present () {
+        this.isActive = true
+        return new Promise((resolve) => { this.presentCallback = resolve })
+      },
+
+      /**
+       * @function dismiss
+       * @description
+       * 关闭ActionSheet, 如果组件还在动画中, 则执行dismiss没有动作
+       * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
+       * */
+      dismiss () {
+        if (!this.enabled) {
+          return new Promise((resolve) => { resolve() })
+        }
+        if (this.isActive) {
+          this.isActive = false // 动起来
+          this.unreg &amp;&amp; this.unreg()
+          return new Promise((resolve) => { this.dismissCallback = resolve })
+        } else {
+          return new Promise((resolve) => { resolve() })
+        }
+      }
+    },
+    created () {
+      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
+      if (this.dismissOnPageChange) {
+        this.unreg = urlChange(() => {
+          this.isActive &amp;&amp; this.dismiss()
+        })
+      }
+    },
+    components: {
+      Backdrop
+    }
+  }
+&lt;/script>
+&lt;style lang="less">
+    @import "sheet";
+    @import "sheet.ios.less";
+    @import "sheet.md.less";
+
+    // transitioName = 'sheet'
+    .sheet-enter-active, .sheet-leave-active {
+        transform: translateY(0%);
+    }
+
+    .sheet-enter, .sheet-leave-active {
+        transform: translateY(100%);
+    }
+&lt;/style>
+</code></pre>
         </article>
-    </div>
-
-    
-
-</section>
-
-
+    </section>
 
 
 

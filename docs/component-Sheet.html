@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Label - Documentation</title>
+    <title>Sheet - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/qrcode.js"></script>
@@ -55,7 +55,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">Label</h1>
+        <h1 class="page-title">Sheet</h1>
         
 
         
@@ -74,8 +74,43 @@
             <div class="container-overview">
 
                 
-                <div class="description"><h2>表单组件 / Label组件</h2><h3>说明</h3><p>Label组件主要是放在Item组件中使用, 用于标记Input组件/Toggle组件/Checkbox组件等From组件</p>
-<h3>使用场景</h3><p>input组件/Item包裹content部分等.</p></div>
+                <div class="description"><h2>弹出表单组件 / Sheet</h2><h3>介绍</h3><p>Sheet组件是一个模板组件, 自身只提供弹出载体, 其余业务部分通过slot传入, 且组件本身不对slot内容不作处理, 样式也由业务自己确定</p>
+<p>组件开闭通过ref获取组件实例并通过下面两个方法操作:</p>
+<ul>
+<li>present() 开启</li>
+<li>dismiss() 关闭</li>
+</ul>
+<h3>如何引入</h3><pre class="prettyprint source"><code>// 引入
+import { Sheet } from 'vimo/components/sheet'
+// 安装
+Vue.component(Sheet.name, Sheet)
+// 或者
+export default{
+  components: {
+    Sheet
+ }
+}</code></pre><h3>关于slot</h3><p>组件必须具有slot=&quot;fixed&quot;属性, 表示固定在页面上. 如果没有的话, 页面滚动样式会产生错误.</p>
+<h3>如何开启</h3><p>通过ref获取组件实例, 之后调用present方法开启, 调用dismiss方法关闭.</p>
+<pre class="prettyprint source"><code>...
+computed: {
+   paySheetCompoonent () {
+     return this.$refs.paySheet
+   }
+ }
+methods: {
+   openPaySheet () {
+     return this.paySheetCompoonent.present()
+   },
+   closePaySheet () {
+     return this.paySheetCompoonent.dismiss()
+   },
+   choose (type) {
+     this.closePaySheet().then(() => {
+       this.type = type
+     })
+   }
+ }
+...</code></pre></div>
                 
 
                 
@@ -88,8 +123,8 @@
         <dd class="tag-source">
             <ul class="dummy">
                 <li>
-                    <a href="label_label.vue.html">label/label.vue</a>
-                    , <a href="label_label.vue.html#line2">line 2</a>
+                    <a href="sheet_sheet.vue.html">sheet/sheet.vue</a>
+                    , <a href="sheet_sheet.vue.html#line2">line 2</a>
                 </li>
             </ul>
         </dd>
@@ -124,221 +159,88 @@
     
 
     
-    <section class="details__inner">
-        <dt class="tag-see">参考:</dt>
-        <dd class="tag-see">
-            <ul>
-                <li><a href="component-Item.html">component:Item</a></li>
-                
-                <li><a href="component-Input.html">component:Input</a></li>
-                </ul>
-        </dd>
-    </section>
-    
 
     
 </dl>
 
 
-<h3 class="subsection-title">传入属性 / Props:</h3>
 
 
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
 
-        <th>Type</th>
 
-        
 
-        
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
 
-    <tbody>
-    
 
-        <tr>
-            
-                <td class="name"><code>mode</code></td>
-            
 
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
 
 
-            
-            </td>
 
-            
+<h3 class="subsection-title">用法 / Usages</h3>
 
-            
-
-            <td class="description last">模式</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">颜色</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fixed</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">固定在input旁边</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>floating</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">浮动在input上面, 点击input时浮动到上面</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>stacked</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">永远在input的上面</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<h3 class="subsection-title">插槽 / Slots:</h3>
-
-
-
-
-<table class="slots props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>空</code></td>
-            
-
-
-
-            
-
-            
-
-            <td class="description last">可以嵌入任何结构</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
+    <pre class="prettyprint"><code>&lt;Sheet ref="paySheet" slot="fixed">
+   &lt;section class="pay-sheet">
+   &lt;div class="pay-sheet-title">选择支付方式&lt;/div>
+   &lt;div class="pay-sheet-container">
+       &lt;div class="pay-sheet-content" @click="choose('alipay')">
+           &lt;Icon class="pay-sheet-icon" name="icon-alipay">Icon&lt;/Icon>
+           &lt;p class="pay-sheet-name">支付宝&lt;/p>
+       &lt;/div>
+       &lt;div class="pay-sheet-content" @click="choose('wechat')">
+           &lt;Icon class="pay-sheet-icon" name="icon-weichat">Icon&lt;/Icon>
+           &lt;p class="pay-sheet-name">微信&lt;/p>
+       &lt;/div>
+       &lt;div class="pay-sheet-content" @click="choose('unipay')">
+           &lt;Icon class="pay-sheet-icon" name="icon-unipay">Icon&lt;/Icon>
+           &lt;p class="pay-sheet-name">银联&lt;/p>
+       &lt;/div>
+   &lt;/div>
+   &lt;div class="pay-sheet-buttons">
+       &lt;Button full clear class="pay-sheet-button" @click="closePaySheet">取消&lt;/Button>
+   &lt;/div>
+   &lt;/section>
+&lt;/Sheet></code></pre>
 
 
 
                 <!---->
-                <!--<div class="description"><h2>表单组件 / Label组件</h2><h3>说明</h3><p>Label组件主要是放在Item组件中使用, 用于标记Input组件/Toggle组件/Checkbox组件等From组件</p>
-<h3>使用场景</h3><p>input组件/Item包裹content部分等.</p></div>-->
+                <!--<div class="description"><h2>弹出表单组件 / Sheet</h2><h3>介绍</h3><p>Sheet组件是一个模板组件, 自身只提供弹出载体, 其余业务部分通过slot传入, 且组件本身不对slot内容不作处理, 样式也由业务自己确定</p>
+<p>组件开闭通过ref获取组件实例并通过下面两个方法操作:</p>
+<ul>
+<li>present() 开启</li>
+<li>dismiss() 关闭</li>
+</ul>
+<h3>如何引入</h3><pre class="prettyprint source"><code>// 引入
+import { Sheet } from 'vimo/components/sheet'
+// 安装
+Vue.component(Sheet.name, Sheet)
+// 或者
+export default{
+  components: {
+    Sheet
+ }
+}</code></pre><h3>关于slot</h3><p>组件必须具有slot=&quot;fixed&quot;属性, 表示固定在页面上. 如果没有的话, 页面滚动样式会产生错误.</p>
+<h3>如何开启</h3><p>通过ref获取组件实例, 之后调用present方法开启, 调用dismiss方法关闭.</p>
+<pre class="prettyprint source"><code>...
+computed: {
+   paySheetCompoonent () {
+     return this.$refs.paySheet
+   }
+ }
+methods: {
+   openPaySheet () {
+     return this.paySheetCompoonent.present()
+   },
+   closePaySheet () {
+     return this.paySheetCompoonent.dismiss()
+   },
+   choose (type) {
+     this.closePaySheet().then(() => {
+       this.type = type
+     })
+   }
+ }
+...</code></pre></div>-->
                 <!---->
 
                 
@@ -358,6 +260,252 @@
             
 
             
+            <h3 class="subsection-title">方法 / Methods</h3>
+
+            
+            
+
+    
+
+    <h4 class="name" id="~dismiss"><span class="type-signature">(inner) </span>dismiss<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="sheet_sheet.vue.html">sheet/sheet.vue</a>
+                    , <a href="sheet_sheet.vue.html#line226">line 226</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>关闭ActionSheet, 如果组件还在动画中, 则执行dismiss没有动作</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---->
+
+
+
+
+
+
+
+
+<h5>返回 / Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>结果返回Promise, 当动画完毕后执行resolved</p>
+</div>
+
+
+
+<!--<dl class="param-type">-->
+    <!--<dt>-->
+        <!--Type: 
+<span class="param-type">Promise</span>
+
+-->
+    <!--</dt>-->
+<!--</dl>-->
+
+    
+
+
+            
+            
+
+    
+
+    <h4 class="name" id="~present"><span class="type-signature">(inner) </span>present<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="sheet_sheet.vue.html">sheet/sheet.vue</a>
+                    , <a href="sheet_sheet.vue.html#line215">line 215</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>打开ActionSheet</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---->
+
+
+
+
+
+
+
+
+<h5>返回 / Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>结果返回Promise, 当动画完毕后执行resolved</p>
+</div>
+
+
+
+<!--<dl class="param-type">-->
+    <!--<dt>-->
+        <!--Type: 
+<span class="param-type">Promise</span>
+
+-->
+    <!--</dt>-->
+<!--</dl>-->
+
+    
+
+
+            
+            
 
             
 
@@ -365,6 +513,89 @@
         </article>
     </div>
 
+    
+    <aricle class="showcase">
+        <div id="js_showcase__box" class="showcase__box ios">
+            <div class="showcase__choose">
+                <span id="js_choose_ios" class="">IOS</span>
+                <span id="js_choose_md" class="">Android</span>
+            </div>
+            <div class="showcase__box--md">
+                <iframe id="js_iframe_md" frameborder="0" seamless></iframe>
+            </div>
+            <div class="showcase__box--ios">
+                <iframe id="js_iframe_ios" frameborder="0" seamless></iframe>
+            </div>
+
+            <div class="showcase__qrcode">
+                <div class="showcase__qrcode--inner" id="qrcode"></div>
+                <p>扫码预览</p>
+            </div>
+        </div>
+    </aricle>
+
+    <script>
+      (function () {
+        var demoUrl = 'https://dtfe.github.io/vimo-demo'
+        var demos = '#/sheet'
+        var qrCodeUrl = null
+        var iosUrl = null
+        var mdUrl = null
+        if (demos.indexOf('http') > -1) {
+          qrCodeUrl = demos
+          iosUrl = demos + '?vmMode=ios&vmPageTransition=fade-right-transition'
+          mdUrl = demos + '?vmMode=md&vmPageTransition=zoom-transition'
+        } else {
+          qrCodeUrl = demoUrl + demos
+          iosUrl = demoUrl + '?vmMode=ios&vmPageTransition=fade-right-transition' + demos
+          mdUrl = demoUrl + '?vmMode=md&vmPageTransition=zoom-transition' + demos
+        }
+
+        var qrcode = new QRCode(document.getElementById('qrcode'), {
+          width: 100,//设置宽高
+          height: 100
+        })
+        qrcode.makeCode(qrCodeUrl)
+
+        document.getElementById('js_iframe_ios').src = iosUrl
+        document.getElementById('js_iframe_md').src = mdUrl
+
+        document.getElementById('js_choose_ios').addEventListener('click', function () {
+          console.log('js_choose_ios')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'ios')) {
+            _removeClass($showCaseBox, 'md')
+            _addClass($showCaseBox, 'ios')
+          }
+
+        })
+        document.getElementById('js_choose_md').addEventListener('click', function () {
+          console.log('js_choose_md')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'md')) {
+            _removeClass($showCaseBox, 'ios')
+            _addClass($showCaseBox, 'md')
+          }
+        })
+
+        function _hasClass (obj, cls) {
+          return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+        }
+
+        function _addClass (obj, cls) {
+          if (!_hasClass(obj, cls)) {
+            obj.className += ' ' + cls
+          }
+        }
+
+        function _removeClass (obj, cls) {
+          if (_hasClass(obj, cls)) {
+            var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+            obj.className = obj.className.replace(reg, ' ').trim()
+          }
+        }
+      })()
+    </script>
     
 
 </section>
