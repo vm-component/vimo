@@ -42,6 +42,7 @@
  */
 import { Modal } from '../modal/index'
 import cityComponent from './city.vue'
+
 const ChooseCity = {
   present (options) {
     let finnalOptions = {}
@@ -59,27 +60,22 @@ const ChooseCity = {
     }
     Object.assign(finnalOptions, defaultOptions, options)
 
-    let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
-    let isDingTalkReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dingtalk') && window.dd && !options.isH5
-
-    if (isAlipayReady) {
-      window.ap && window.ap.chooseCity(finnalOptions, finnalOptions.onDismiss)
-      return
+    let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.chooseCity(options)
+    if (!isHandled) {
+      Modal.present({
+        mode: finnalOptions.mode,
+        component: cityComponent,
+        data: {
+          showLocatedCity: finnalOptions.showLocatedCity,
+          showHotCities: finnalOptions.showHotCities,
+          hotCities: finnalOptions.hotCities,
+          cities: finnalOptions.cities
+        },
+        showBackdrop: finnalOptions.showBackdrop,
+        enableBackdropDismiss: finnalOptions.enableBackdropDismiss,
+        onDismiss: finnalOptions.onDismiss
+      })
     }
-
-    Modal.present({
-      mode: finnalOptions.mode,
-      component: cityComponent,
-      data: {
-        showLocatedCity: finnalOptions.showLocatedCity,
-        showHotCities: finnalOptions.showHotCities,
-        hotCities: finnalOptions.hotCities,
-        cities: finnalOptions.cities
-      },
-      showBackdrop: finnalOptions.showBackdrop,
-      enableBackdropDismiss: finnalOptions.enableBackdropDismiss,
-      onDismiss: finnalOptions.onDismiss
-    })
   }
 }
 export { ChooseCity }

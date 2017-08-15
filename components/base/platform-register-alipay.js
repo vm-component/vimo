@@ -546,4 +546,9 @@ export default function (plt) {
     })
     return true
   }
+
+  plt.chooseCity = (options) => {
+    window.ap.chooseCity(options, options.onDismiss)
+    return true
+  }
 }

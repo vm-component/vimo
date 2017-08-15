@@ -424,7 +424,11 @@ class Platform {
     return false
   }
 
-  // TODO
+  /**
+   * 城市选择
+   * @return {boolean}
+   * @private
+   * */
   chooseCity () {
     return false
   }

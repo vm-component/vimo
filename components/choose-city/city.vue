@@ -157,7 +157,8 @@
 <script type="text/javascript">
   import { Modal } from '../modal/index'
   import { pointerCoord, clamp } from '../util/util'
-  export default{
+
+  export default {
     name: 'cityList',
     data () {
       return {
@@ -282,16 +283,19 @@
 
           if (typeof window.AMap === 'undefined') {
             getScript(`//webapi.amap.com/maps?v=1.3&key=${this.$options.$data.ak}`).then(() => {
-              let map = new window.AMap.Map('')
-              map.plugin('AMap.Geolocation', () => {
-                /**
-                 * @param {object} posOptions - 传入参数
-                 * @param {boolean} [posOptions.enableHighAccuracy=true] - 是否使用高精度定位，默认:true
-                 * @param {number} [posOptions.timeout=10000] - 超过10秒后停止定位，默认：无穷大
-                 * @param {number} 9posOptions.maximumAge=00 - 定位结果缓存0毫秒，默认：0
-                 * */
-                getCurrentPosition()
-              })
+              window.setTimeout(function () {
+                if (!window.AMap || !window.AMap.Map) { return }
+                let map = new window.AMap.Map('')
+                map.plugin('AMap.Geolocation', () => {
+                  /**
+                   * @param {object} posOptions - 传入参数
+                   * @param {boolean} [posOptions.enableHighAccuracy=true] - 是否使用高精度定位，默认:true
+                   * @param {number} [posOptions.timeout=10000] - 超过10秒后停止定位，默认：无穷大
+                   * @param {number} 9posOptions.maximumAge=00 - 定位结果缓存0毫秒，默认：0
+                   * */
+                  getCurrentPosition()
+                })
+              }, 100)
             }, (err) => {
               reject(err)
             })
