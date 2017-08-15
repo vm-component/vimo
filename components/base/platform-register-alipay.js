@@ -158,4 +158,24 @@ export default function (plt) {
     })
     return true
   }
+
+  // showToast
+  plt.showToast = (options) => {
+    console.debug('Toast 组件使用Alipay模式!')
+    window.ap.showToast({
+      content: options.message || '',
+      type: options.type || '', // toast 类型，展示相应图标，默认 none，支持 success / fail / exception / none’。其中 exception //
+                                // 类型必须传文字信息
+      duration: options.duration || 2000
+    }, function () {
+      options.onDismiss && options.onDismiss()
+    })
+    return true
+  }
+
+  // hideToast
+  plt.hideToast = () => {
+    window.ap.hideToast()
+    return true
+  }
 }

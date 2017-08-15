@@ -301,6 +301,7 @@ class Platform {
    * 平台的 actionSheet 方法
    * 如果返回false表示此函数不做任何事情, 执行权下方; 如果返回true, 表示当前函数接管逻辑, 执行权保留.
    * @return {boolean}
+   * @private
    * */
   actionSheet () {
     return false
@@ -310,6 +311,7 @@ class Platform {
    * 平台的 alert 方法
    * 如果返回false表示此函数不做任何事情, 执行权下方; 如果返回true, 表示当前函数接管逻辑, 执行权保留.
    * @return {boolean}
+   * @private
    * */
   alert () {
     return false
@@ -319,13 +321,29 @@ class Platform {
    * 平台的 loading 方法
    * 如果返回false表示此函数不做任何事情, 执行权下方; 如果返回true, 表示当前函数接管逻辑, 执行权保留.
    * @return {boolean}
+   * @private
    * */
   loading () {
     return false
   }
 
-  // TODO
-  toast () {
+  /**
+   * 平台的 showToast 方法
+   * 如果返回false表示此函数不做任何事情, 执行权下方; 如果返回true, 表示当前函数接管逻辑, 执行权保留.
+   * @return {boolean}
+   * @private
+   * */
+  showToast () {
+    return false
+  }
+
+  /**
+   * 平台的 hideToast 方法
+   * 如果返回false表示此函数不做任何事情, 执行权下方; 如果返回true, 表示当前函数接管逻辑, 执行权保留.
+   * @return {boolean}
+   * @private
+   * */
+  hideToast () {
     return false
   }
 
@@ -343,7 +361,6 @@ class Platform {
   chooseCity () {
     return false
   }
-
 
   // 事件注册函数
   // **********************************************

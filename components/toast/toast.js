@@ -51,7 +51,6 @@
       console.debug('2 onDismiss in promise success!')
     }
  })
-
  this.$toast({
     message: 'Top with Button was added successfully',
     duration: 3000, // 这个不生效
@@ -75,7 +74,8 @@
  * @props {boolean} [dismissOnPageChange=false] - 当导航切换时, 是否自动关闭, 默认不关闭
  * @props {string} [mode='ios'] - 模式
  * @props {string} [onDismiss=noop] - 当关闭动画结束时执行的函数
- * @props {string} [type] - (支付宝/dingding) toast 类型，展示相应图标，默认 none，支持 success / fail / exception / none’。其中 exception 类型必须传文字信息
+ * @props {string} [type] - (支付宝/dingding) toast 类型，展示相应图标，默认 none，支持 success / fail / exception / none’。其中 exception
+ *   类型必须传文字信息
  *
  * @demo https://dtfe.github.io/vimo-demo/#/toast
  */
@@ -83,6 +83,7 @@
 import Vue from 'vue'
 import { isObject, isString } from '../util/util'
 import toastComponent from './toast.vue'
+
 const Toast = Vue.extend(toastComponent)
 const DOM_INSERT_POSITION = 'toastPortal' // 插入的DOM位置
 const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback选项
@@ -93,7 +94,6 @@ const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback选项
  * @private
  * */
 function ToastFactory () {
-
   let _args = Array.from(arguments)
   let propsData = {}
 
@@ -118,72 +118,31 @@ function ToastFactory () {
     propsData = _args[0]
   }
 
-  let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && window.ap && !propsData.isH5
-  let isDingTalkReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dingtalk') && window.dd && !propsData.isH5
-  let isDtDreamReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dtdream') && window.dd && !propsData.isH5
-
-  if (isAlipayReady) {
-    console.info('Toast 组件使用Alipay模式!')
-    return {
-      present () {
-        window.ap && window.ap.showToast({
-          content: propsData.message || '',
-          type: propsData.type || '', // toast 类型，展示相应图标，默认 none，支持 success / fail / exception / none’。其中 exception
-                                      // 类型必须传文字信息
-          duration: propsData.duration || 2000
-        }, function () {
-          propsData.onDismiss && propsData.onDismiss()
-        })
-      },
-      dismiss () {
-        window.ap && window.ap.hideToast()
-      }
+  let h5Toast = new Toast({el, propsData: propsData})
+  return {
+    present () {
+      return new Promise((resolve) => {
+        let isHandled = !propsData.isH5 && window.VM && window.VM.platform && window.VM.platform.showToast(propsData)
+        if (isHandled) {
+          resolve()
+        } else {
+          console.debug('Toast:present 组件使用H5模式!')
+          h5Toast.present().then(() => { resolve() })
+        }
+      })
+    },
+    dismiss () {
+      return new Promise((resolve) => {
+        let isHandled = !propsData.isH5 && window.VM && window.VM.platform && window.VM.platform.hideToast(propsData)
+        if (isHandled) {
+          resolve()
+        } else {
+          console.debug('Toast:dismiss 组件使用H5模式!')
+          h5Toast.dismiss().then(() => { resolve() })
+        }
+      })
     }
   }
-
-  if (isDingTalkReady) {
-    console.info('Toast 组件使用DingTalk模式!')
-    return {
-      present () {
-        if (propsData.type === 'fail') { propsData.type = 'error' }
-        window.dd.device.notification.toast({
-          icon: propsData.type || '', // icon样式，有success和error，默认为空 0.0.2
-          text: propsData.message || '', // 提示信息
-          duration: propsData.duration / 1000 || 2, // 显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
-          delay: propsData.delay || 0, // 延迟显示，单位秒，默认0
-          onSuccess () {
-            propsData.onDismiss && propsData.onDismiss()
-          }
-        })
-      },
-      dismiss () {}
-    }
-  }
-
-  if (isDtDreamReady) {
-    console.info('Toast 组件使用 DtDream 模式!')
-    return {
-      present () {
-        if (propsData.type === 'fail') { propsData.type = 'error' }
-        window.dd.device.notification.toast({
-          icon: propsData.type || '', // icon样式，有success和error，默认为空 0.0.2
-          text: propsData.message || '', // 提示信息
-          duration: propsData.duration / 1000 || 2, // 显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
-          delay: propsData.delay || 0, // 延迟显示，单位秒，默认0
-          onSuccess () {
-            propsData.onDismiss && propsData.onDismiss()
-          }
-        })
-      },
-      dismiss () {}
-    }
-  }
-
-  console.info('Toast 组件使用H5模式!')
-  return new Toast({
-    el,
-    propsData: propsData
-  })
 }
 
 /**
