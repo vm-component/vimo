@@ -111,13 +111,8 @@ function getPresentDismissIns (Factory) {
     present (options) {
       return new Promise((resolve) => {
         // 如果btn太多, 则原生组件放不下
-        if (options &&
-          options.buttons &&
-          isArray(options.buttons) &&
-          options.buttons.length < 9 &&
-          window.VM &&
-          window.VM.platform &&
-          window.VM.platform.actionSheet(options)) {
+        let isHandled = window.VM && window.VM.platform && window.VM.platform.actionSheet(options)
+        if (isHandled) {
           resolve()
         } else {
           console.debug('ActionSheet 组件使用H5模式!')
