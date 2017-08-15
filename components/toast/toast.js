@@ -133,13 +133,8 @@ function ToastFactory () {
     },
     dismiss () {
       return new Promise((resolve) => {
-        let isHandled = !propsData.isH5 && window.VM && window.VM.platform && window.VM.platform.hideToast(propsData)
-        if (isHandled) {
-          resolve()
-        } else {
-          console.debug('Toast:dismiss 组件使用H5模式!')
-          h5Toast.dismiss().then(() => { resolve() })
-        }
+        window.VM && window.VM.platform && window.VM.platform.hideToast()
+        h5Toast.dismiss().then(() => { resolve() })
       })
     }
   }

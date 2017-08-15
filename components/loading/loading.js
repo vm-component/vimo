@@ -63,16 +63,11 @@ function getPresentDismissIns (Factory) {
      * */
     dismiss () {
       return new Promise((resolve) => {
-        let isHandled = window.VM && window.VM.platform && window.VM.platform.hideLoading()
-        if (isHandled) {
-          resolve()
+        window.VM && window.VM.platform && window.VM.platform.hideLoading()
+        if (this._i && this._i.isActive) {
+          this._i.dismiss().then(() => { resolve() })
         } else {
-          console.debug('Loading:dismiss 组件使用H5模式!')
-          if (this._i && this._i.isActive) {
-            this._i.dismiss().then(() => { resolve() })
-          } else {
-            resolve()
-          }
+          resolve()
         }
       })
     }
