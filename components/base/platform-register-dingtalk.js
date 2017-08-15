@@ -170,4 +170,32 @@ export default function (plt) {
   plt.hideToast = () => {
     return false
   }
+
+  plt.previewImage = (options) => {
+    console.debug('PreviewImage 组件使用 Dingtalk 模式!')
+    window.dd.biz.util.previewImage({
+      current: options.urls[options.current] || '',
+      urls: options.urls
+    })
+    return true
+  }
+
+  plt.pushWindow = (url) => {
+    window.dd.biz.util.openLink({
+      url: url, // 要打开链接的地址
+      onFail (err) {
+        console.error(`history.js _pushHistory(): ${JSON.stringify(err)}`)
+      }
+    })
+    return true
+  }
+
+  plt.popWindow = () => {
+    window.dd.biz.navigation.close()
+    return true
+  }
+
+  plt.popTo = () => {
+    return false
+  }
 }

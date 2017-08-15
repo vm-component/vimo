@@ -551,4 +551,48 @@ export default function (plt) {
     window.ap.chooseCity(options, options.onDismiss)
     return true
   }
+
+  // alipay模式只能显示完整url路径的图片, 不能显示base64格式的图片
+  plt.previewImage = (options) => {
+    console.debug('PreviewImage 组件使用Alipay模式!')
+    window.ap.previewImage({
+      current: options.current || 0,
+      urls: options.urls
+    })
+    return true
+  }
+
+  plt.pushWindow = (url) => {
+    window.AlipayJSBridge.call('pushWindow', {
+      url: url,
+      param: {
+        readTitle: true,
+        showOptionMenu: false
+      }
+    })
+    return true
+  }
+
+  plt.popWindow = () => {
+    window.AlipayJSBridge.call('popWindow')
+    return true
+  }
+
+  plt.popTo = (index) => {
+    window.AlipayJSBridge.call('popTo', {
+      index: index // 回退到上一个页面，假如这个时候没有上一个页面，就会报错
+    }, function (e) { // 添加回调，因为popTo不一定会成功（当前页面是唯一打开的页面的时候，会报错）
+      console.error(`history.js go(): ${JSON.stringify(e)}`)
+    })
+    return true
+  }
+
+  plt.popToRoot = () => {
+    window.AlipayJSBridge.call('popTo', {
+      urlPattern: window.location.origin + window.location.pathname
+    }, function (e) {
+      console.error(`history.js toRoot(): ${JSON.stringify(e)}`)
+    })
+    return true
+  }
 }

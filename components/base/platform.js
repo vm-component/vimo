@@ -419,7 +419,11 @@ class Platform {
   // 平台方法: 非关键部分
   // **********************************************
 
-  // TODO
+  /**
+   * 图片预览
+   * @return {boolean}
+   * @private
+   * */
   previewImage () {
     return false
   }
@@ -430,6 +434,28 @@ class Platform {
    * @private
    * */
   chooseCity () {
+    return false
+  }
+
+  // 平台方法: 导航部分
+  // - pushWindow     进入新tab页面
+  // - popWindow      退出新tab页面
+  // - popTo
+  // - popToRoot      首页
+  // **********************************************
+  pushWindow () {
+    return false
+  }
+
+  popWindow () {
+    return false
+  }
+
+  popTo () {
+    return false
+  }
+
+  popToRoot () {
     return false
   }
 

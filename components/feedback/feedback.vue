@@ -157,7 +157,7 @@
        * @private
        * */
       addFile ($event) {
-        let isAlipayReady = this.$platform && this.$platform.is('alipay') && window.AlipayJSBridge && !this.isH5
+        let isAlipayReady = window.AlipayJSBridge && !this.isH5
         if (isAlipayReady) {
           // 阻止h5的input的触发
           $event.preventDefault()

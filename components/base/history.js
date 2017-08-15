@@ -26,7 +26,7 @@ export class History {
     this._config = config               // config 实例
     this._platform = platform           // platform 实例
     this.isReplace = false              // 路由跳转是否是使用replace方法
-    this.usePushWindow = this._config.getBoolean('usePushWindow', true) // 支付宝 和 钉钉 两个模式下路由跳转是否开启新页面
+    this.usePushWindow = this._config.getBoolean('usePushWindow') // 支付宝 和 钉钉 两个模式下路由跳转是否开启新页面
 
     // 监听路由变化, 维护本地历史记录
     // 路由切换前
@@ -43,26 +43,14 @@ export class History {
         replaceCopy.apply(null, arguments)
       }
 
-      let isAlipay = this._platform.is('alipay') && isPresent(window.AlipayJSBridge)
-      let isDingTalk = this._platform.is('dingtalk') && isPresent(window.dd)
-
-      if ((isAlipay || isDingTalk) && this.usePushWindow) {
+      if (this.usePushWindow) {
         /**
          * 方法增强: back()
          * */
         let backCopy = this._router.back
         backCopy = backCopy.bind(this._router)
         this._router.back = function () {
-          if (isAlipay) {
-            window.AlipayJSBridge.call('popWindow')
-            return
-          }
-
-          if (isDingTalk) {
-            window.dd.biz.navigation.close()
-            return
-          }
-
+          _this._platform.popWindow()
           // the last
           backCopy.apply(null, arguments)
         }
@@ -73,17 +61,7 @@ export class History {
         let goCopy = this._router.go
         goCopy = goCopy.bind(this._router)
         this._router.go = function (n) {
-          if (isAlipay) {
-            window.AlipayJSBridge.call('popTo', {
-              index: n // 回退到上一个页面，假如这个时候没有上一个页面，就会报错
-            }, function (e) { // 添加回调，因为popTo不一定会成功（当前页面是唯一打开的页面的时候，会报错）
-              console.error(`history.js go(): ${JSON.stringify(e)}`)
-            })
-            return
-          }
-
-          if (isDingTalk) {}
-
+          _this._platform.popTo(n)
           // the last
           goCopy.apply(null, n)
         }
@@ -135,46 +113,24 @@ export class History {
    * @private
    * */
   _pushHistory ({to, from, next}) {
-    let url = ''
-    let mode = this._router.mode
-    let base = this._router.history.base
-    if (mode === 'history') {
-      url = `${window.location.origin}${base}${to.fullPath}`
-    } else if (mode === 'hash') {
-      url = `${window.location.origin}/#${to.fullPath}`
+    if (from.matched.length !== 0 && to.matched.length !== 0 && this.usePushWindow) {
+      let url = ''
+      let mode = this._router.mode
+      let base = this._router.history.base
+      if (mode === 'history') {
+        url = `${window.location.origin}${base}${to.fullPath}`
+      } else if (mode === 'hash') {
+        url = `${window.location.origin}/#${to.fullPath}`
+      } else {
+        console.error('history.js::只支持 mode: "hash" | "history"')
+      }
+      this._platform.pushWindow(url)
     } else {
-      console.error('history.js::只支持 mode: "hash" | "history"')
+      // fallback
+      this._direction = 'forward'
+      this._history.push(to)
+      next()
     }
-
-    if (from.matched.length !== 0 && to.matched.length !== 0) {
-      // 如果在 "支付宝模式" 下, 且使用 pushWindow 特性进行页面跳转的话
-      if (this._platform.is('alipay') && isPresent(window.AlipayJSBridge) && this.usePushWindow) {
-        window.AlipayJSBridge.call('pushWindow', {
-          url: url,
-          param: {
-            readTitle: true,
-            showOptionMenu: false
-          }
-        })
-        return
-      }
-
-      // 如果在 "钉钉模式" 下, 且使用 window.dd.biz.util.openLink 特性进行页面跳转的话
-      if (this._platform.is('dingtalk') && isPresent(window.dd) && this.usePushWindow) {
-        window.dd.biz.util.openLink({
-          url: url, // 要打开链接的地址
-          onFail (err) {
-            console.error(`history.js _pushHistory(): ${JSON.stringify(err)}`)
-          }
-        })
-        return
-      }
-    }
-
-    // fallback
-    this._direction = 'forward'
-    this._history.push(to)
-    next()
   }
 
   /**
@@ -249,11 +205,7 @@ export class History {
   toRoot () {
     // 支付宝方式返回首页
     if (this._platform.is('alipay') && isPresent(window.AlipayJSBridge)) {
-      window.AlipayJSBridge.call('popTo', {
-        urlPattern: window.location.origin + window.location.pathname
-      }, function (e) {
-        console.error(`history.js toRoot(): ${JSON.stringify(e)}`)
-      })
+      this._platform.popToRoot()
       return
     }
 
