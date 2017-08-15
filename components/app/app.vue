@@ -83,13 +83,14 @@
 
   import { ClickBlock } from './click-block'
   import { setElementClass, isString, isPresent } from '../util/util'
+
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
   const ACTIVE_SCROLLING_TIME = 100
   const clickBlockInstance = new ClickBlock()
 
   let scrollDisTimer = null                     // 计时器
-  export default{
+  export default {
     name: 'App',
     data () {
       return {
@@ -227,8 +228,8 @@
       }
     },
     created () {
-      console.log(this.$platform,`<App>组件需要 platform 实例`)
-      console.log(this.$config,`<App>组件需要 config 实例`)
+      console.log(this.$platform, `<App>组件需要 platform 实例`)
+      console.log(this.$config, `<App>组件需要 config 实例`)
       /**
        * $app对外方法
        * */

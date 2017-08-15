@@ -41,7 +41,7 @@
     computed: {},
     methods: {
       oneColumns () {
-        Picker.present({
+        this.$picker.present({
           buttons: [
             {
               text: '取消',
@@ -81,7 +81,7 @@
         })
       },
       twoColumns () {
-        Picker.present({
+        this.$picker.present({
           buttons: [
             {
               text: 'Cancel',
@@ -148,7 +148,7 @@
         })
       },
       threeColumns () {
-        Picker.present({
+        this.$picker.present({
           buttons: [
             {
               text: 'Cancel',
@@ -238,7 +238,7 @@
         })
       },
       prefixLabel () {
-        Picker.present({
+        this.$picker.present({
           isH5: true,
           buttons: [
             {
@@ -280,7 +280,7 @@
         })
       },
       suffixLabel () {
-        Picker.present({
+        this.$picker.present({
           isH5: true,
           buttons: [
             {
@@ -347,7 +347,7 @@
           options: minuteOptions
         }
 
-        Picker.present({
+        this.$picker.present({
           isH5: true,
           buttons: [
             {

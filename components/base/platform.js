@@ -347,7 +347,12 @@ class Platform {
     return false
   }
 
-  // TODO
+  /**
+   * 平台的 picker 方法
+   * 如果返回false表示此函数不做任何事情, 执行权下方; 如果返回true, 表示当前函数接管逻辑, 执行权保留.
+   * @return {boolean}
+   * @private
+   * */
   picker () {
     return false
   }
