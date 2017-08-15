@@ -82,7 +82,7 @@
    * */
 
   import { ClickBlock } from './click-block'
-  import { setElementClass, isString } from '../util/util'
+  import { setElementClass, isString, isPresent } from '../util/util'
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
   const ACTIVE_SCROLLING_TIME = 100
@@ -98,7 +98,7 @@
         isScrollDisabled: false, // 控制页面是否能滚动
         isClickBlockEnabled: false, // 控制是否激活 '冷冻'效果 click-block-enabled
 
-        version: !!window.VM && window.VM.version
+        version: isPresent(window.VM) && window.VM.version
       }
     },
     props: {
@@ -223,44 +223,12 @@
         if (isString(_title)) {
           _title = {title: _title}
         }
-        if (this.$platform && this.$platform.is('alipay') && window.AlipayJSBridge) {
-          window.AlipayJSBridge.call('setTitle', _title)
-        } else if (this.$platform && this.$platform.is('dingtalk') && window.dd) {
-          window.dd.biz.navigation.setTitle({
-            title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
-          })
-        } else if (this.$platform && this.$platform.is('dtdream') && window.dd) {
-          window.dd.biz.navigation.setTitle({
-            title: _title.title || '' // 控制标题文本，空字符串表示显示默认文本
-          })
-        } else {
-          // 不在壳子中则正常显示
-          if (this.$platform && this.$platform.platforms().length <= 2) {
-            document.title = _title.title
-          } else {
-            // 以下代码可以解决以上问题，不依赖jq
-            let _docTitle = document.title
-            if (_title.title !== _docTitle) {
-              // 利用iframe的onload事件刷新页面
-              document.title = _title.title
-              let iframe = document.createElement('iframe')
-              // 空白图片
-              iframe.src = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
-              iframe.style.visibility = 'hidden'
-              iframe.style.width = '1px'
-              iframe.style.height = '1px'
-              iframe.onload = function () {
-                window.setTimeout(function () {
-                  document.body.removeChild(iframe)
-                }, 0)
-              }
-              document.body.appendChild(iframe)
-            }
-          }
-        }
+        this.$platform.setTitle(_title)
       }
     },
     created () {
+      console.log(this.$platform,`<App>组件需要 platform 实例`)
+      console.log(this.$config,`<App>组件需要 config 实例`)
       /**
        * $app对外方法
        * */

@@ -3,6 +3,9 @@
  * @private
  */
 import { docReady, isFunction } from '../util/util'
+import platformRegisterAlipay from './platform-register-alipay.js'
+import platformRegisterDingtalk from './platform-register-dingtalk'
+
 // 平台支持列表
 export const SUBSET_LIST = ['wechat', 'alipay', 'dingtalk', 'qq', 'dtdream']
 const TIMEOUT = 10000 // 平台初始化需要的最大时间
@@ -204,23 +207,8 @@ export const PLATFORM_DEFAULT_CONFIGS = {
               plt.triggerReady('Alipay Init Success!')
               plt.timer && window.clearTimeout(plt.timer)
 
-              // 设置网络类型
-              // 网络环境发生变化，可调用getNetworkType接口获取详细信息
-              window.AlipayJSBridge.call('getNetworkType', (result) => {
-                /**
-                 * result 参数
-                 * @param {boolean} result.networkAvailable - true              | true              | false
-                 * @param {boolean} result.networkInfo      - WIFI              | 3G                | NOTREACHABLE
-                 * @param {boolean} result.err_msg          - network_type:wifi | network_type:wwan | network_type:fail
-                 * @param {boolean} result.networkType      - wifi              | wwan              | fail
-                 * */
-                plt.setNetworkType(result.networkInfo.toString().toLowerCase())
-              })
-
-              // 注册平台推出方法 `exitApp`
-              plt.exitApp = () => {
-                window.AlipayJSBridge.call('exitApp')
-              }
+              // 平台方法注册
+              platformRegisterAlipay(plt)
             }
 
             if (typeof window.AlipayJSBridge === 'undefined') {
@@ -305,6 +293,9 @@ export const PLATFORM_DEFAULT_CONFIGS = {
             _this.bridgeReady(plt)
             plt.triggerReady('Dingtalk Init Success!')
             plt.timer && window.clearTimeout(plt.timer)
+
+            // 平台方法注册
+            platformRegisterDingtalk(plt)
           })
         })
 
@@ -394,6 +385,13 @@ export const PLATFORM_DEFAULT_CONFIGS = {
         plt.timer = window.setTimeout(() => {
           plt.triggerFail('Dtdream Init Timeout!')
         }, TIMEOUT)
+
+        // 注册平台 setTitle 方法, 参数在platform.js中
+        plt.setTitle = (titleInfo) => {
+          window.dd.biz.navigation.setTitle({
+            title: titleInfo.title || '' // 控制标题文本，空字符串表示显示默认文本
+          })
+        }
       }
     },
 

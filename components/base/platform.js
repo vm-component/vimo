@@ -83,6 +83,7 @@
 
 import { defaults, isObject } from '../util/util'
 import { PLATFORM_DEFAULT_CONFIGS } from './platform-default-configs'
+import { isFunction, isPresent } from 'components/util/util'
 
 class Platform {
   constructor () {
@@ -130,16 +131,8 @@ class Platform {
     }
   }
 
-  // Methods
+  // 平台判断
   // **********************************************
-
-  /**
-   * @private
-   */
-  setCssProps (docElement) {
-    this.css = getCss(docElement)
-    return this.css
-  }
 
   /**
    * 判断当前平台是否匹配
@@ -181,6 +174,9 @@ class Platform {
     }
     return {}
   }
+
+  // Ready相关
+  // **********************************************
 
   /**
    * 当平台准备完毕触发promise的resolve方法, 可以在业务中像下面这样使用.
@@ -231,6 +227,172 @@ class Platform {
    */
   beforeReady () {
     this.triggerReady('H5 Initialization Process!')
+  }
+
+  // 平台方法
+  // **********************************************
+
+  /**
+   * 退出app
+   * @hidden
+   */
+  exitApp () {
+    console.error('H5未实现此方法, 请检查调用!')
+  }
+
+  /**
+   * 给document设置title
+   * @param {object} [titleInfo] - 标题对象
+   * @param {string} [titleInfo.title] - 标题
+   * @hidden
+   */
+  setTitle (titleInfo) {
+    if (this.platforms().length <= 2) {
+      // PC端
+      document.title = titleInfo.title || ''
+    } else {
+      // 以下代码可以解决以上问题，不依赖jq
+      let _docTitle = document.title
+      if (titleInfo.title !== _docTitle) {
+        // 利用iframe的onload事件刷新页面
+        document.title = titleInfo.title
+        let iframe = document.createElement('iframe')
+        // 空白图片
+        iframe.src = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
+        iframe.style.visibility = 'hidden'
+        iframe.style.width = '1px'
+        iframe.style.height = '1px'
+        iframe.onload = function () {
+          window.setTimeout(function () {
+            document.body.removeChild(iframe)
+          }, 0)
+        }
+        document.body.appendChild(iframe)
+      }
+    }
+  }
+
+  /**
+   * 设置网络类型
+   * @private
+   * */
+  setNetworkType (networkType) {
+    this._nt = networkType
+  }
+
+  /**
+   * 获取网络类型, 如果是在平台, 则使用平台方法
+   * */
+  networkType () {
+    return this._nt
+  }
+
+  /**
+   * 当网络环境发生变化时触发注册函数
+   * @param {Function} fn - 注册函数, 回调参数返回网络类型
+   * */
+  onNetworkChange (fn) {
+    if (isPresent(fn) && isFunction(fn) && this._networkChangeCallbacks.indexOf(fn) === -1) {
+      this._networkChangeCallbacks.push(fn)
+    }
+  }
+
+  /**
+   * actionSheet
+   * 平台的 actionSheet 方法
+   * TODO: 优化一下
+   * */
+  actionSheet () {
+
+  }
+
+  // 事件注册函数
+  // **********************************************
+  /**
+   * 注册当前平台的方法, 请参考上面的说明.
+   * @param {string} methodName - 方法名称
+   * @param {function} methodFunction - 方法函数
+   * */
+  registerMethod (methodName, methodFunction) {
+    if (!methodName) return this._rm
+    if (this._rm[methodName]) {
+      console.warn(`[${methodName}] had been registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
+    }
+    this._rm[methodName] = methodFunction
+  }
+
+  /**
+   * 执行当前平台的方法, 请参考上面的说明.
+   * @param {string} methodName - 方法名称
+   * @param {any} [any={}] - 根据对应的 registerMethod 传入正确的参数(function/object)
+   * @return {Promise}
+   * */
+  do (methodName, any = {}, context = this) {
+    if (!this._rm[methodName]) {
+      console.warn(`[${methodName}] isn't registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
+    } else {
+      return this._rm[methodName](any)
+    }
+  }
+
+  // Getter/Setter Methods
+  // **********************************************
+
+  /**
+   * @private
+   */
+  setCssProps (docElement) {
+    this.css = getCss(docElement)
+    return this.css
+  }
+
+  /**
+   * 获取UA
+   * @return {string}
+   */
+  userAgent () {
+    return this._ua || ''
+  }
+
+  /**
+   * @param {string} userAgent
+   * @private
+   */
+  setUserAgent (userAgent) {
+    this._ua = userAgent
+  }
+
+  /**
+   * Get the query string parameter
+   * @private
+   */
+  getQueryParam (key) {
+    return this._qp.get(key)
+  }
+
+  /**
+   * @param {QueryParams} queryParams
+   * @private
+   */
+  setQueryParams (queryParams) {
+    this._qp = queryParams
+  }
+
+  /**
+   * 获取浏览器信息
+   * @return {string}
+   */
+  navigatorPlatform () {
+    return this._bPlt || ''
+  }
+
+  /**
+   * 设置浏览器平台的名称
+   * @param {string} navigatorPlatform
+   * @private
+   */
+  setNavigatorPlatform (navigatorPlatform) {
+    this._bPlt = navigatorPlatform
   }
 
   /**
@@ -285,117 +447,9 @@ class Platform {
     return this._lang
   }
 
-  /**
-   * 设置网络类型
-   * @private
-   * */
-  setNetworkType (networkType) {
-    this._nt = networkType
-  }
 
-  /**
-   * 获取网络类型, 如果是在平台, 则使用平台方法
-   * */
-  networkType () {
-    return this._nt
-  }
-
-  /**
-   * 当网络环境发生变化时触发注册函数
-   * @param {Function} fn - 注册函数, 回调参数返回网络类型
-   * */
-  onNetworkChange (fn) {
-    if (this._networkChangeCallbacks.indexOf(fn) === -1) {
-      this._networkChangeCallbacks.push(fn)
-    }
-  }
-
-  // 平台方法及事件注册函数
+  // 屏幕尺寸及方向
   // **********************************************
-
-  /**
-   * @hidden
-   */
-  exitApp () {}
-
-  /**
-   * 注册当前平台的方法, 请参考上面的说明.
-   * @param {string} methodName - 方法名称
-   * @param {function} methodFunction - 方法函数
-   * */
-  registerMethod (methodName, methodFunction) {
-    if (!methodName) return this._rm
-    if (this._rm[methodName]) {
-      console.warn(`[${methodName}] had been registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
-    }
-    this._rm[methodName] = methodFunction
-  }
-
-  /**
-   * 执行当前平台的方法, 请参考上面的说明.
-   * @param {string} methodName - 方法名称
-   * @param {any} [any={}] - 根据对应的 registerMethod 传入正确的参数(function/object)
-   * @return {Promise}
-   * */
-  do (methodName, any = {}, context = this) {
-    if (!this._rm[methodName]) {
-      console.warn(`[${methodName}] isn't registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
-    } else {
-      return this._rm[methodName](any)
-    }
-  }
-
-  // Getter/Setter Methods
-  // **********************************************
-  /**
-   * 获取UA
-   * @return {string}
-   */
-  userAgent () {
-    return this._ua || ''
-  }
-
-  /**
-   * @param {string} userAgent
-   * @private
-   */
-  setUserAgent (userAgent) {
-    this._ua = userAgent
-  }
-
-  /**
-   * Get the query string parameter
-   * @private
-   */
-  getQueryParam (key) {
-    return this._qp.get(key)
-  }
-
-  /**
-   * @param {QueryParams} queryParams
-   * @private
-   */
-  setQueryParams (queryParams) {
-    this._qp = queryParams
-  }
-
-  /**
-   * 获取浏览器信息
-   * @return {string}
-   */
-  navigatorPlatform () {
-    return this._bPlt || ''
-  }
-
-  /**
-   * 设置浏览器平台的名称
-   * @param {string} navigatorPlatform
-   * @private
-   */
-  setNavigatorPlatform (navigatorPlatform) {
-    this._bPlt = navigatorPlatform
-  }
-
   /**
    * 获取当前viewport的宽度
    * @return {number}
