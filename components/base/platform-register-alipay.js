@@ -148,4 +148,14 @@ export default function (plt) {
 
     return false
   }
+
+  // loading
+  plt.loading = (options) => {
+    console.debug('Loading 组件使用Alipay模式!')
+    window.AlipayJSBridge.call('showLoading', {
+      delay: options.delay || 0,
+      text: options.content || ''
+    })
+    return true
+  }
 }

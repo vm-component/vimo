@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { getInsertPosition } from '../util/getInsertPosition'
 import { isString } from '../util/util'
 import loadingComponent from './loading.vue'
+
 const Loading = Vue.extend(loadingComponent)
 
 // -------- function --------
@@ -31,59 +32,26 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     present (options = {}) {
-      let isAlipayReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('alipay') && window.AlipayJSBridge && !options.isH5
-      let isDingTalkReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dingtalk') && window.dd && !options.isH5
-      let isDtDreamReady = !!window.VM && !!window.VM.platform && window.VM.platform.is('dtdream') && window.dd && !options.isH5
-
-      if (isString(options)) {
-        options = {content: options}
-      }
-
-      if (isAlipayReady) {
-        console.info('Loading 组件使用Alipay模式!')
-        return new Promise((resolve) => {
-          window.AlipayJSBridge.call('showLoading', {
-            delay: options.delay || 0,
-            text: options.content || ''
-          })
-          resolve()
-        })
-      }
-
-      if (isDingTalkReady) {
-        console.info('Loading 组件使用DingTalk模式!')
-        return new Promise((resolve) => {
-          window.dd.device.notification.showPreloader({
-            text: options.content || '',
-            showIcon: true // 是否显示icon，默认true
-          })
-          resolve()
-        })
-      }
-
-      if (isDtDreamReady) {
-        console.info('Loading 组件使用 DtDream 模式!')
-        return new Promise((resolve) => {
-          window.dd.device.notification.showPreloader({
-            text: options.content || '',
-            showIcon: true // 是否显示icon，默认true
-          })
-          resolve()
-        })
-      }
-
-      console.info('Loading 组件使用H5模式!')
       return new Promise((resolve) => {
-        if (this._i && this._i.isActive) {
-          this._i.dismiss().then(() => {
+        if (isString(options)) {
+          options = {content: options}
+        }
+        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.loading(options)
+        if (isHandled) {
+          resolve()
+        } else {
+          console.debug('Loading 组件使用H5模式!')
+          if (this._i && this._i.isActive) {
+            this._i.dismiss().then(() => {
+              this._i = Factory(options)
+              // 自动开启
+              this._i.present().then(() => { resolve() })
+            })
+          } else {
             this._i = Factory(options)
             // 自动开启
             this._i.present().then(() => { resolve() })
-          })
-        } else {
-          this._i = Factory(options)
-          // 自动开启
-          this._i.present().then(() => { resolve() })
+          }
         }
       })
     },

@@ -12,6 +12,7 @@
             <Button block @click="spinnerOnly()">点击打开</Button>
             <p>只传入string</p>
             <Button block @click="stringOnly()">点击打开默认Loading</Button>
+            <Button block @click="stringOnlyH5Only()">点击打开默认Loading(强制使用H5模式)</Button>
             <p>控制页面切换是否关闭loading</p>
 
 
@@ -49,7 +50,7 @@
 </style>
 <script type="text/javascript">
 
-  export default{
+  export default {
     data () {
       return {}
     },
@@ -66,6 +67,18 @@
       // 是显示name
       stringOnly () {
         this.$loading.present('只传入了String')
+        setTimeout(() => {
+          this.$loading.dismiss().then(() => {
+            console.debug('dismiss in promise success!')
+          })
+        }, 1000)
+      },
+
+      stringOnlyH5Only () {
+        this.$loading.present({
+          content: '只传入了String',
+          isH5: true
+        })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')

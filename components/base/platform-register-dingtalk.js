@@ -132,4 +132,15 @@ export default function (plt) {
 
     return false
   }
+
+  // loading
+  plt.loading = (options) => {
+    console.debug('Loading 组件使用DingTalk模式!')
+    window.dd.device.notification.showPreloader({
+      text: options.content || '',
+      showIcon: true // 是否显示icon，默认true
+    })
+    return true
+  }
+
 }
