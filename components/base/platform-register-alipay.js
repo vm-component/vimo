@@ -3,7 +3,8 @@
  * platform.js中关于平台方法的复写
  * 当前处于平台初始化完毕阶段, window.AlipayJSBridge等私有变量存在且可用
  * */
-import { isArray, isNumber, isPresent, isString } from '../util/util'
+import { isArray, isFunction, isNumber, isPresent, isString } from '../util/util'
+import Vue from 'vue'
 
 export default function (plt) {
   // 设置网络类型
@@ -19,6 +20,11 @@ export default function (plt) {
     plt.setNetworkType(result.networkInfo.toString().toLowerCase())
   })
 
+  // title 点击事件
+  document.addEventListener('titleClick', () => {
+    Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onTitleClick')
+  }, false)
+
   // 注册平台退出方法 `exitApp`
   plt.exitApp = () => {
     window.AlipayJSBridge.call('exitApp')
@@ -26,12 +32,15 @@ export default function (plt) {
 
   // 注册平台 setTitle 方法, 参数在platform.js中
   plt.setTitle = (titleInfo) => {
-    window.AlipayJSBridge.call('setTitle', titleInfo)
+    window.AlipayJSBridge.call('setTitle', {
+      title: titleInfo.title || '',
+      image: titleInfo.image || ''
+    })
   }
 
   // actionSheet
   plt.actionSheet = (options) => {
-    if (options && options.buttons && isArray(options.buttons) && options.buttons.length < 9) {
+    if (isPresent(options) && isPresent(options.buttons) && isArray(options.buttons) && options.buttons.length < 9) {
       console.info('ActionSheet 组件使用Alipay模式!')
       let buttons = []
       let cancelButton = {
@@ -61,9 +70,9 @@ export default function (plt) {
       }, function (res) {
         // index标示用户点击的按钮，在actionSheet中的位置，从0开始
         if (res.index !== -1) {
-          options.buttons[res.index] && options.buttons[res.index].handler && options.buttons[res.index].handler()
+          isPresent(options.buttons[res.index]) && isFunction(options.buttons[res.index].handler) && options.buttons[res.index].handler()
         } else {
-          cancelButton.handler && cancelButton.handler()
+          isFunction(cancelButton.handler) && cancelButton.handler()
         }
       })
       return true
@@ -81,7 +90,7 @@ export default function (plt) {
         message: options.message || '',
         button: options.buttons[0].text || '确定'
       }, function () {
-        options.buttons[0] && options.buttons[0].handler && options.buttons[0].handler()
+        isPresent(options.buttons[0]) && isFunction(options.buttons[0].handler) && options.buttons[0].handler()
       })
       return true
     }
@@ -105,16 +114,16 @@ export default function (plt) {
         cancelButton: cancelButton.text || '取消'
       }, function (result) {
         if (result.ok) {
-          confirmButton.handler && confirmButton.handler()
+          isFunction(confirmButton.handler) && confirmButton.handler()
         } else {
-          cancelButton.handler && cancelButton.handler()
+          isFunction(cancelButton.handler) && cancelButton.handler()
         }
       })
       return true
     }
 
     // prompt 模式
-    if (options.buttons.length === 2 && options.inputs && options.inputs.length === 1 && (options.inputs[0].type !== 'radio' || options.inputs[0].type !== 'checkbox')) {
+    if (options.buttons.length === 2 && isArray(options.inputs) && options.inputs.length === 1 && (options.inputs[0].type !== 'radio' || options.inputs[0].type !== 'checkbox')) {
       console.info('Prompt 组件使用Alipay模式!')
       let cancelButton = {}
       let confirmButton = {}
@@ -138,9 +147,9 @@ export default function (plt) {
          * @param {string} result.inputValue - 用户输入的内容
          * */
         if (result.ok) {
-          confirmButton.handler && confirmButton.handler({[options.inputs[0].name]: result.inputValue})
+          isFunction(confirmButton.handler) && confirmButton.handler({[options.inputs[0].name]: result.inputValue})
         } else {
-          cancelButton.handler && cancelButton.handler({[options.inputs[0].name]: result.inputValue})
+          isFunction(cancelButton.handler) && cancelButton.handler({[options.inputs[0].name]: result.inputValue})
         }
       })
       return true
@@ -175,7 +184,7 @@ export default function (plt) {
                                 // 类型必须传文字信息
       duration: options.duration || 2000
     }, function () {
-      options.onDismiss && options.onDismiss()
+      isFunction(options.onDismiss) && options.onDismiss()
     })
     return true
   }
@@ -269,18 +278,6 @@ export default function (plt) {
         }
       }
 
-      // window.AlipayJSBridge.call('beehiveOptionsPicker', {
-      //   title: '出生年月选择',
-      //   optionsOne: ['2014年', '2013年', '2012年', '2011年', '2010年', '2009年', '2008年'],
-      //   optionsTwo: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-      //   selectedOneIndex: 3,
-      //   selectedTwoIndex: 5,
-      //   positiveString: '11',
-      //   negativeString: '22',
-      // }, function (result) {
-      //   alert(JSON.stringify(result))
-      // })
-
       window.AlipayJSBridge.call('beehiveOptionsPicker', {
         title: '',
         positiveString: confirmBtn.text,
@@ -290,12 +287,13 @@ export default function (plt) {
         selectedOneIndex: column1SelectedIndex,
         selectedTwoIndex: column2SelectedIndex
       }, function (result) {
-        // Alipay Picker 返回的数据结构:
-        // result.selectedOneIndex
-        // result.selectedOneOption
-        // result.selectedTwoIndex
-        // result.selectedTwoOption
-        // 确认
+        /**
+         * @param {object} result - result
+         * @param {string} result.selectedOneIndex - selectedOneIndex
+         * @param {string} result.selectedOneOption - selectedOneOption
+         * @param {string} result.selectedTwoIndex - selectedTwoIndex
+         * @param {string} result.selectedTwoOption - selectedTwoOption
+         * */
         let data = {}
         if (result.selectedOneOption) {
           if (result.selectedOneOption) {
@@ -313,15 +311,219 @@ export default function (plt) {
               'columnIndex': parseInt(result.selectedTwoIndex)
             }
           }
-
-          confirmBtn.handler && confirmBtn.handler(data)
+          isFunction(confirmBtn.handler) && confirmBtn.handler(data)
         } else {
           // 取消
-          cancelBtn.handler && cancelBtn.handler(data)
+          isFunction(cancelBtn.handler) && cancelBtn.handler(data)
         }
       })
       return true
     }
     return false
   }
+
+  // 重置navbar
+  plt.resetNavbarOptionButton = () => {
+    window.ap.setNavigationBar({reset: true})
+    return true
+  }
+
+  // 设置导航条右侧按钮
+  plt.setNavbarOptionButton = (buttons) => {
+    // 获取导航条右侧的按钮组件集合
+    let rightButtonComponents = []
+    if (buttons && isArray(buttons)) {
+      buttons.forEach((buttons) => {
+        if (buttons.componentInstance.getPosition() === 'right') {
+          rightButtonComponents = [].concat(rightButtonComponents, buttons.componentInstance.$children)
+        }
+      })
+    }
+    if (rightButtonComponents.length > 0) {
+      // 1. 获取数据 -> title/icon(图片/base64)/color/badge/type
+      let items = []
+      rightButtonComponents.forEach((component) => {
+        let tmp = {
+          title: '', // 必填
+          icon: '', // 按钮图标，支持 base64
+          type: '', // 按钮图标类型，与 title、icon 三选一。支持 user / filter / search / add / settings / scan / info / help / locate
+                    // / more
+          color: '#000000', // '#ED4A4D'
+          badge: '-1' // 按钮红色气泡，默认 -1。其中 0 表示小红点，-1 表示不显示，其他值展示出来
+        }
+
+        /**
+         * rgb(rgba) -> #000
+         * */
+        let getColor = function (element) {
+          // 找到color
+          var rgb = window.getComputedStyle(element).color
+          // "rgb(56, 126, 245)"
+          // "rgba(56, 126, 245,0.8)"
+          if (rgb) {
+            rgb = rgb.replace('rgb(', '')
+            rgb = rgb.replace('rgba(', '')
+            rgb = rgb.replace(')', '')
+            rgb = rgb.split(',').map(val => val.trim())
+            let r = parseInt(rgb[0]).toString(16)
+            let g = parseInt(rgb[1]).toString(16)
+            let b = parseInt(rgb[2]).toString(16)
+            return `#${r}${g}${b}`
+          }
+          return '#000000'
+        }
+
+        // 提取title
+        let buttonInnerElement = component.$el.querySelector('.button-inner')
+        if (buttonInnerElement && buttonInnerElement.innerHTML.trim() === buttonInnerElement.innerText.trim()) {
+          tmp.title = buttonInnerElement.innerText.trim()
+          tmp.color = getColor(buttonInnerElement)
+        } else {
+          let spanElement = buttonInnerElement.querySelector('span')
+          if (spanElement) {
+            tmp.title = spanElement.innerText.trim()
+            tmp.color = getColor(spanElement)
+          }
+        }
+
+        component.$children.forEach((child) => {
+          if (child.$options._componentTag.toLowerCase() === 'icon') {
+            let icon = null
+            if (child.name && child.name.indexOf('icon') === 0) {
+              icon = window.getComputedStyle(child.$el).backgroundImage
+              if (icon) {
+                icon = icon.substring(4, icon.length - 1)
+                tmp.icon = icon
+              }
+            } else {
+              tmp.type = child.name
+            }
+          }
+
+          if (child.$options._componentTag.toLowerCase() === 'badge') {
+            let badge = child.$el.innerText
+            if (!badge) {
+              badge = -1
+            }
+            tmp.badge = badge
+          }
+        })
+        items.push(tmp)
+      })
+
+      // 2. 当前页面存在右侧的按钮, 如果是在平台中, 则通知平台更新状态
+      if (items.length > 2) {
+        console.warn('在Webview中不建议右侧的Navbar按钮超过两个, 即使超过两个在Alipay中也不显示.')
+      }
+      // 支持 user / filter / search / add / settings / scan / info / help / locate / more
+      // 这部分可能需要放到config中
+      const map = {
+        'person': 'user',
+        'glasses': 'filter',
+        'search': 'search',
+        'add': 'add',
+        'settings': 'settings',
+        'qr-scanner': 'scan',
+        'information-circle': 'info',
+        'help': 'help',
+        'pin': 'locate',
+        'more': 'more'
+      }
+      // 需要对原始的icon数据进行转义
+      items.forEach((item) => {
+        if (item.type) {
+          if (map[item.type]) {
+            item.type = map[item.type]
+          } else {
+            console.warn(`在Navbar右侧设置的按钮name在支付宝中没有找到对应type: ${item.type}, iconName<->type 的对应关系请参考手册!`)
+          }
+        }
+      })
+
+      // bugfix: 如果之前设置过两个btn, 如果下一次设置一个的话, 则会有上次设置的残留, 因此给一个空值, 且title属性必须有值
+      if (items.length === 1) {
+        rightButtonComponents.unshift({})
+        items.unshift({
+          title: ' '
+        })
+      }
+
+      // 首次进入页面如果可能没有ap变量, 设置需要等待ready
+      window.ap.setOptionButton({
+        items: items,
+        preventDefault: false,
+        onClick (data) {
+          // index 被点击的菜单项的索引，从0开始，从左到右
+          isFunction(rightButtonComponents[data.index].clickHandler) && rightButtonComponents[data.index].clickHandler()
+        },
+        success () {
+          console.log('Alipay:setOptionButton 设置成功')
+        },
+        fail () {
+          console.log('Alipay:setOptionButton 设置失败')
+        }
+      })
+    } else {
+      // 导航条右侧没有按钮, 此时对平台进行重置, 因为平台的设置是惰性的.
+      plt.resetNavbarOptionButton()
+    }
+    return true
+  }
+
+  // 显示
+  plt.showNavbarOptionButton = () => {
+    window.ap.showOptionButton()
+    return true
+  }
+
+  // 隐藏
+  plt.hideNavbarOptionButton = () => {
+    window.ap.hideOptionButton()
+    return true
+  }
+
+  // 设置Navbar背景色
+  plt.setNavbarBackgroundColor = () => {
+    // 如果在navbar中有颜色指示的字段,
+    // 比如: primary, secondary, danger, light, dark, 则设置webview的导航条颜色,
+    // 其余情况不作处理
+    let navbarElement = document.querySelector('.ion-navbar')
+    if (!navbarElement || !navbarElement.classList) { return false }
+    let classList = navbarElement.classList.toString() || ''
+    let isColorLegal = false
+    let colors = ['primary', 'secondary', 'danger', 'light', 'dark']
+    for (let i = 0, len = colors.length; len > i; i++) {
+      if (classList.indexOf(colors[i]) > -1) {
+        isColorLegal = true
+        break
+      }
+    }
+    if (!isColorLegal) {
+      plt.resetNavbarOptionButton()
+    } else {
+      // 1. 获取背景色
+      let toolbarBackgroundElement = document.querySelector('.toolbar-background')
+      if (!toolbarBackgroundElement) { return false }
+      var rgb = window.getComputedStyle(toolbarBackgroundElement).backgroundColor
+      // "rgb(56, 126, 245)"
+      // "rgba(56, 126, 245,0.8)"
+      if (!rgb) { return false }
+      rgb = rgb.replace('rgb(', '')
+      rgb = rgb.replace('rgba(', '')
+      rgb = rgb.replace(')', '')
+      rgb = rgb.split(',').map(val => val.trim())
+      let r = parseInt(rgb[0]).toString(16).toUpperCase()
+      let g = parseInt(rgb[1]).toString(16).toUpperCase()
+      let b = parseInt(rgb[2]).toString(16).toUpperCase()
+      let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
+      let backgroundColor = `#${r}${g}${b}`
+
+      // 2. 设置背景色
+      window.ap.setNavigationBar({
+        backgroundColor: backgroundColor
+      })
+    }
+    return true
+  }
+
 }

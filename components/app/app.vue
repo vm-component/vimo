@@ -224,12 +224,37 @@
         if (isString(_title)) {
           _title = {title: _title}
         }
-        this.$platform.setTitle(_title)
+        let isHandled = this.$platform.setTitle(_title)
+        if (!isHandled) {
+          if (this.$platform.platforms().length <= 2) {
+            // PC端
+            document.title = _title.title || ''
+          } else {
+            // 以下代码可以解决以上问题，不依赖jq
+            let _docTitle = document.title
+            if (_title.title !== _docTitle) {
+              // 利用iframe的onload事件刷新页面
+              document.title = _title.title
+              let iframe = document.createElement('iframe')
+              // 空白图片
+              iframe.src = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
+              iframe.style.visibility = 'hidden'
+              iframe.style.width = '1px'
+              iframe.style.height = '1px'
+              iframe.onload = function () {
+                window.setTimeout(function () {
+                  document.body.removeChild(iframe)
+                }, 0)
+              }
+              document.body.appendChild(iframe)
+            }
+          }
+        }
       }
     },
     created () {
-      console.log(this.$platform, `<App>组件需要 platform 实例`)
-      console.log(this.$config, `<App>组件需要 config 实例`)
+      console.assert(this.$platform, `<App>组件需要 platform 实例`)
+      console.assert(this.$config, `<App>组件需要 config 实例`)
       /**
        * $app对外方法
        * */

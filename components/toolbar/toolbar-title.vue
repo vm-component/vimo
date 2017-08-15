@@ -169,7 +169,7 @@
 
         if (changeDocTitle) {
           // 设置document的title, 这部分由$app处理
-          _title.title && this.$app && this.$app.setDocTitle(_title)
+          _title.title && this.$app.setDocTitle(_title)
         }
       },
 
@@ -190,9 +190,7 @@
        * */
       reset () {
         this.titleColor = null
-        if (this.$platform.is('alipay') && isPresent(window.AlipayJSBridge)) {
-          isPresent(window.ap) && window.ap.setNavigationBar({reset: true})
-        }
+        this.$platform.resetNavbarOptionButton()
       },
 
       /**
@@ -217,17 +215,10 @@
           }
         }
 
-        // 如果是在 alipay 环境, 点击title触发事件
-        let isAlipayReady = this.$platform.is('alipay') && isPresent(window.AlipayJSBridge)
-        if (this.isTitleInNavbar && isAlipayReady) {
-          /**
-           * @event component:Title#onTitleClick
-           * @description 点击title时触发, 目前可用平台: H5/Alipay/
-           */
-          window.document.addEventListener('titleClick', () => {
-            this.$emit('onTitleClick')
-          }, false)
-        }
+        this.$eventBus.$on('onTitleClick', () => {
+          alert('组件接收到了')
+          this.$emit('onTitleClick')
+        })
       },
 
       /**
@@ -245,6 +236,7 @@
       }
     },
     mounted () {
+      console.assert(this.$app, `The component of <Title> need '<App>' instance, please use Vimo in right environment!`)
       console.assert(this.$platform, `The component of <Title> need 'platform' instance, please use Vimo in right environment!`)
       console.assert(this.$config, `The component of <Title> need 'config' instance, please use Vimo in right environment!`)
 

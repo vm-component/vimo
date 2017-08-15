@@ -101,6 +101,7 @@
       }
     },
     methods: {
+      // 点击navbar由此第一个vue的icon
       personHandler () {
         this.$alert.present({
           title: '快上车',

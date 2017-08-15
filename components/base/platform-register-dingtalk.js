@@ -3,7 +3,7 @@
  * platform.js中关于平台方法的复写
  * 当前处于平台初始化完毕阶段, window.AlipayJSBridge等私有变量存在且可用
  * */
-import { isArray } from '../util/util'
+import { isArray, isFunction, isPresent } from '../util/util'
 
 export default function (plt) {
   // 注册平台 setTitle 方法, 参数在platform.js中
@@ -15,7 +15,7 @@ export default function (plt) {
 
   // actionSheet
   plt.actionSheet = (options) => {
-    if (options && options.buttons && isArray(options.buttons) && options.buttons.length < 9) {
+    if (isPresent(options) && isPresent(options.buttons) && isArray(options.buttons) && options.buttons.length < 9) {
       console.info('ActionSheet 组件使用DingTalk模式!')
       let buttons = []
       let cancelButton = {
@@ -45,9 +45,9 @@ export default function (plt) {
           // onSuccess将在点击button之后回调
           // {buttonIndex: 0 //被点击按钮的索引值，Number，从0开始, 取消按钮为-1 }
           if (result.buttonIndex !== -1) {
-            options.buttons[result.buttonIndex] && options.buttons[result.buttonIndex].handler && options.buttons[result.buttonIndex].handler()
+            isPresent(options.buttons[result.buttonIndex]) && isFunction(options.buttons[result.buttonIndex].handler) && options.buttons[result.buttonIndex].handler()
           } else {
-            cancelButton.handler && cancelButton.handler()
+            isFunction(cancelButton.handler) && cancelButton.handler()
           }
         }
       })
@@ -66,7 +66,7 @@ export default function (plt) {
         message: options.message || '',
         buttonName: options.buttons[0].text || '确定',
         onSuccess () {
-          options.buttons[0] && options.buttons[0].handler && options.buttons[0].handler()
+          isPresent(options.buttons[0]) && isFunction(options.buttons[0].handler) && options.buttons[0].handler()
         }
       })
       return true
@@ -92,9 +92,9 @@ export default function (plt) {
           // onSuccess将在点击button之后回调
           // {buttonIndex: 0 //被点击按钮的索引值，Number类型，从0开始}
           if (result.buttonIndex === 0) {
-            cancelButton.handler && cancelButton.handler()
+            isFunction(cancelButton.handler) && cancelButton.handler()
           } else {
-            confirmButton.handler && confirmButton.handler()
+            isFunction(confirmButton.handler) && confirmButton.handler()
           }
         }
       })
@@ -121,9 +121,9 @@ export default function (plt) {
           // onSuccess将在点击button之后回调
           // {buttonIndex: 0, value: ''}
           if (result.buttonIndex === 0) {
-            cancelButton.handler && cancelButton.handler({[options.inputs[0].name]: result.value})
+            isFunction(cancelButton.handler) && cancelButton.handler({[options.inputs[0].name]: result.value})
           } else {
-            confirmButton.handler && confirmButton.handler({[options.inputs[0].name]: result.value})
+            isFunction(confirmButton.handler) && confirmButton.handler({[options.inputs[0].name]: result.value})
           }
         }
       })
@@ -160,7 +160,7 @@ export default function (plt) {
       duration: options.duration / 1000 || 2, // 显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
       delay: options.delay || 0, // 延迟显示，单位秒，默认0
       onSuccess () {
-        options.onDismiss && options.onDismiss()
+        isFunction(options.onDismiss) && options.onDismiss()
       }
     })
     return true

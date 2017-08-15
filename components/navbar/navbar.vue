@@ -106,10 +106,18 @@
    * - 监听Title组件的'onTitleClick'事件, 可以监听点击Title文本的事件, 如果是在WebView中, 则触发原生事件, 页面将不干扰
    *
    *
+   * ### 关于导航条在Hybrid下的表现
+   *
+   * 程序运行初期会从当前DOM中后去导航条参数, 比如右侧按钮个数/类型/badge/颜色/导航条背景色等信息, 之后将信息同步给我们的Hybrid层, 进而设置Hybrid的导航条, 这里需要对函数功能进行介绍:
+   *
+   * - showOptionButton: 控制Hybrid层导航条右侧按钮组显示
+   * - hideOptionButton: 控制Hybrid层导航条右侧按钮组隐藏
+   * - reset: 重置整个Hybrid层的导航条
+   * - showPopMenu: 显示右上角的PopMenu菜单, 一般通过导航条右上角按钮触发
+   *
    * ### 注意点
    *
    * ** 不建议在keepAlive模式使用  **
-   *
    *
    * 因为Navbar组件在此模式下只执行最后一个页面的Navbar更新, 如果页面已经打开过, 则会导致样式状态问题. 解决办法是在`activated`钩子中执行Navbar组件的`initWhenInWebview`方法, 这个是内部方法, 表示重新初始化Navbar组件.
    *
@@ -143,8 +151,9 @@
   import { Popover } from '../popover/index'
   import { Button } from '../button'
   import { Icon } from '../icon'
-  import { isArray, isString } from '../util/util'
+  import { isArray, isString, isFunction } from '../util/util'
   import menuOptionsComponent from './menu-options.vue'
+
   export default {
     name: 'Navbar',
     data () {
@@ -210,9 +219,7 @@
        * 设置导航条右侧按钮显示(只是对alipay平台的), dingtalk通过url改变
        * */
       showOptionButton () {
-        if (this.isAlipayReady) {
-          window.ap && window.ap.showOptionButton()
-        }
+        this.$platform.showNavbarOptionButton()
       },
       /**
        * @function hideOptionButton
@@ -220,9 +227,7 @@
        * 设置导航条右侧按钮隐藏(只是对alipay平台的), dingtalk通过url改变
        * */
       hideOptionButton () {
-        if (this.isAlipayReady) {
-          window.ap && window.ap.hideOptionButton()
-        }
+        this.$platform.hideNavbarOptionButton()
       },
       /**
        * @function showPopMenu
@@ -277,7 +282,7 @@
       reset () {
         if (this.isAlipayReady) {
           window.ap && window.ap.setNavigationBar({reset: true})
-          window.ap && window.ap.setOptionButton({reset: true})
+          this.$platform.resetNavbarOptionButton()
         }
       },
 
@@ -303,211 +308,28 @@
       // -------- for webview --------
 
       /**
-       * 初始化webview中Navbar的背景和底部边框, 只处理具有颜色class的情况
-       * 只支持alipay, 不支持dingtalk, 因为dingtalk是通过url修改标题颜色的.
-       * @private
-       * */
-      initBackgroundColor () {
-        // 如果在navbar中有颜色指示的字段, 比如: primary, secondary, danger, light, dark, 则设置webview的导航条颜色, 其余情况不作处理
-        let classList = this.$el.classList.toString()
-        let isColorLegal = false
-        let colors = ['primary', 'secondary', 'danger', 'light', 'dark']
-        for (let i = 0, len = colors.length; len > i; i++) {
-          if (classList.indexOf(colors[i]) > -1) {
-            isColorLegal = true
-            break
-          }
-        }
-        this.$platform.ready().then(() => {
-          if (!isColorLegal) {
-            if (this.isAlipayReady) {
-              window.ap && window.ap.setNavigationBar({reset: true})
-            }
-          } else {
-            // 1. 获取背景色
-            var rgb = window.getComputedStyle(this.toolbarBackgroundElement).backgroundColor
-            // "rgb(56, 126, 245)"
-            // "rgba(56, 126, 245,0.8)"
-            if (!rgb) return
-            rgb = rgb.replace('rgb(', '')
-            rgb = rgb.replace('rgba(', '')
-            rgb = rgb.replace(')', '')
-            rgb = rgb.split(',').map(val => val.trim())
-            let r = parseInt(rgb[0]).toString(16).toUpperCase()
-            let g = parseInt(rgb[1]).toString(16).toUpperCase()
-            let b = parseInt(rgb[2]).toString(16).toUpperCase()
-            let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
-            let backgroundColor = `#${r}${g}${b}`
-
-            // 2. 设置背景色
-            if (this.isAlipayReady) {
-              window.ap && window.ap.setNavigationBar({
-                backgroundColor: backgroundColor
-              })
-            }
-          }
-        })
-      },
-
-      /**
-       * 初始化Navbar右侧的按钮组
-       * 如果在webview中则提取template中的按钮信息, 写给webview.
-       * @private
-       * */
-      initOptionButton () {
-        // 获取导航条右侧的按钮组件集合
-        let rightButtonComponents = []
-        if (this.$slots.buttons && isArray(this.$slots.buttons)) {
-          this.$slots.buttons.forEach((buttons) => {
-            if (buttons.componentInstance.getPosition() === 'right') {
-              rightButtonComponents = [].concat(rightButtonComponents, buttons.componentInstance.$children)
-            }
-          })
-        }
-        if (rightButtonComponents.length > 0) {
-          // 1. 获取数据 -> title/icon(图片/base64)/color/badge/type
-          let items = []
-          rightButtonComponents.forEach((component) => {
-            let tmp = {
-              // title: '', // 必填
-              // icon: '', // 按钮图标，支持 base64
-              // type: '', // 按钮图标类型，与 title、icon 三选一。支持 user / filter / search / add / settings / scan / info / help / locate / more
-              color: '#000000', // '#ED4A4D'
-              badge: '-1' // 按钮红色气泡，默认 -1。其中 0 表示小红点，-1 表示不显示，其他值展示出来
-            }
-            let getColor = function (element) {
-              // 找到color
-              var rgb = window.getComputedStyle(element).color
-              // "rgb(56, 126, 245)"
-              // "rgba(56, 126, 245,0.8)"
-              if (rgb) {
-                rgb = rgb.replace('rgb(', '')
-                rgb = rgb.replace('rgba(', '')
-                rgb = rgb.replace(')', '')
-                rgb = rgb.split(',').map(val => val.trim())
-                let r = parseInt(rgb[0]).toString(16)
-                let g = parseInt(rgb[1]).toString(16)
-                let b = parseInt(rgb[2]).toString(16)
-                return `#${r}${g}${b}`
-              }
-              return '#000000'
-            }
-
-            // 提取title
-            let buttonInnerElement = component.$el.querySelector('.button-inner')
-            if (buttonInnerElement && buttonInnerElement.innerHTML.trim() === buttonInnerElement.innerText.trim()) {
-              tmp.title = buttonInnerElement.innerText.trim()
-              tmp.color = getColor(buttonInnerElement)
-            } else {
-              let spanElement = buttonInnerElement.querySelector('span')
-              if (spanElement) {
-                tmp.title = spanElement.innerText.trim()
-                tmp.color = getColor(spanElement)
-              }
-            }
-
-            component.$children.forEach((child) => {
-              if (child.$options._componentTag.toLowerCase() === 'icon') {
-                let icon = null
-                if (child.name && child.name.indexOf('icon') === 0) {
-                  icon = window.getComputedStyle(child.$el).backgroundImage
-                  if (icon) {
-                    icon = icon.substring(4, icon.length - 1)
-                    tmp.icon = icon
-                  }
-                } else {
-                  tmp.type = child.name
-                }
-              }
-
-              if (child.$options._componentTag.toLowerCase() === 'badge') {
-                let badge = child.$el.innerText
-                if (!badge) {
-                  badge = -1
-                }
-                tmp.badge = badge
-              }
-            })
-            items.push(tmp)
-          })
-
-          // 2. 当前页面存在右侧的按钮, 如果是在平台中, 则通知平台更新状态
-          if (this.isAlipayReady) {
-            if (items.length > 2) {
-              console.warn('在Webview中不建议右侧的Navbar按钮超过两个, 即使超过两个在Alipay中也不显示.')
-            }
-            // 支持 user / filter / search / add / settings / scan / info / help / locate / more
-            // 这部分可能需要放到config中
-            const map = {
-              'person': 'user',
-              'glasses': 'filter',
-              'search': 'search',
-              'add': 'add',
-              'settings': 'settings',
-              'qr-scanner': 'scan',
-              'information-circle': 'info',
-              'help': 'help',
-              'pin': 'locate',
-              'more': 'more'
-            }
-            // 需要对原始的icon数据进行转义
-            items.forEach((item) => {
-              if (item.type) {
-                if (map[item.type]) {
-                  item.type = map[item.type]
-                } else {
-                  console.warn(`在Navbar右侧设置的按钮name在支付宝中没有找到对应type: ${item.type}, iconName<->type 的对应关系请参考手册!`)
-                }
-              }
-            })
-
-            // bugfix: 如果之前设置过两个btn, 如果下一次设置一个的话, 则会有上次设置的残留, 因此给一个空值, 且title属性必须有值
-            if (items.length === 1) {
-              rightButtonComponents.unshift({})
-              items.unshift({
-                title: ' '
-              })
-            }
-
-            // 首次进入页面如果可能没有ap变量, 设置需要等待ready
-            this.$platform.ready().then(() => {
-              window.ap && window.ap.setOptionButton({
-                items: items,
-                preventDefault: false,
-                onClick (data) {
-                  // index 被点击的菜单项的索引，从0开始，从左到右
-                  rightButtonComponents[data.index].clickHandler && rightButtonComponents[data.index].clickHandler()
-                },
-                success () {
-                  console.log('Alipay:setOptionButton 设置成功')
-                },
-                fail () {
-                  console.log('Alipay:setOptionButton 设置失败')
-                }
-              })
-            })
-          }
-        } else {
-          // 导航条右侧没有按钮, 此时对平台进行重置, 因为平台的设置是惰性的.
-          if (this.isAlipayReady) {
-            window.ap && window.ap.setOptionButton({reset: true})
-          }
-        }
-      },
-
-      /**
        * 如果运行在webview中(alipay/dingtalk), 则执行修改navbar的初始化工作
        * @private
        * */
       initWhenInWebview () {
         // 如果在平台中则进行下面的分支
-        if (this.isAlipayReady || this.isDingTalkReady || this.isDtDreamReady) {
-          this.initOptionButton()
-          this.initBackgroundColor()
-        }
+        this.$platform.ready().then(() => {
+          /**
+           * 初始化Navbar右侧的按钮组
+           * 如果在webview中则提取template中的按钮信息, 写给webview.
+           * */
+          this.$platform.setNavbarOptionButton(this.$slots.buttons)
+          /**
+           * 初始化webview中Navbar的背景和底部边框, 只处理具有颜色class的情况
+           * 只支持alipay, 不支持dingtalk, 因为dingtalk是通过url修改标题颜色的.
+           * */
+          this.$platform.setNavbarBackgroundColor()
+        })
       }
     },
     created () {
+      console.assert(this.$platform, `<Navbar>组件需要 platform 实例`)
+      console.assert(this.$config, `<Navbar>组件需要 config 实例`)
       this.refreshBackButtonStatus()
     },
     mounted () {

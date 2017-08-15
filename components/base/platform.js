@@ -244,32 +244,11 @@ class Platform {
    * 给document设置title
    * @param {object} [titleInfo] - 标题对象
    * @param {string} [titleInfo.title] - 标题
+   * @param {string} [titleInfo.image] - 标题
    * @hidden
    */
-  setTitle (titleInfo) {
-    if (this.platforms().length <= 2) {
-      // PC端
-      document.title = titleInfo.title || ''
-    } else {
-      // 以下代码可以解决以上问题，不依赖jq
-      let _docTitle = document.title
-      if (titleInfo.title !== _docTitle) {
-        // 利用iframe的onload事件刷新页面
-        document.title = titleInfo.title
-        let iframe = document.createElement('iframe')
-        // 空白图片
-        iframe.src = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
-        iframe.style.visibility = 'hidden'
-        iframe.style.width = '1px'
-        iframe.style.height = '1px'
-        iframe.onload = function () {
-          window.setTimeout(function () {
-            document.body.removeChild(iframe)
-          }, 0)
-        }
-        document.body.appendChild(iframe)
-      }
-    }
+  setTitle () {
+    return false
   }
 
   /**
@@ -366,6 +345,62 @@ class Platform {
   picker () {
     return false
   }
+
+  // 平台方法: Navbar右侧按钮: 重置/设置/显示/隐藏
+  // - resetNavbarOptionButton
+  // - setNavbarOptionButton
+  // - showNavbarOptionButton
+  // - hideNavbarOptionButton
+  // **********************************************
+
+  /**
+   * 平台的 resetNavbarOptionButton 方法, 重置导航栏
+   * 如果返回false表示此函数不做任何事情, 执行权下方; 如果返回true, 表示当前函数接管逻辑, 执行权保留.
+   * @return {boolean}
+   * @private
+   * */
+  resetNavbarOptionButton () {
+    return false
+  }
+
+  /**
+   * @return {boolean}
+   * @private
+   * */
+  setNavbarOptionButton () {
+    return false
+  }
+
+  /**
+   * @return {boolean}
+   * @private
+   * */
+  showNavbarOptionButton () {
+    return false
+  }
+
+  /**
+   * @return {boolean}
+   * @private
+   * */
+  hideNavbarOptionButton () {
+    return false
+  }
+
+  // 平台方法: 设置Navbar背景色
+  // - setNavbarBackgroundColor
+  // **********************************************
+
+  /**
+   * @return {boolean}
+   * @private
+   * */
+  setNavbarBackgroundColor () {
+    return false
+  }
+
+  // 平台方法: 非关键部分
+  // **********************************************
 
   // TODO
   previewImage () {
