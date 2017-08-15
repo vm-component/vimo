@@ -300,10 +300,11 @@ class Platform {
   /**
    * actionSheet
    * 平台的 actionSheet 方法
-   * TODO: 优化一下
+   * 如果返回false表示此函数不做任何事情, 执行权下方; 如果返回true, 表示当前函数接管逻辑, 执行权保留.
+   * @return {boolean}
    * */
   actionSheet () {
-
+    return false
   }
 
   // 事件注册函数

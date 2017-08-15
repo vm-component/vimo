@@ -26,4 +26,52 @@ export default function (plt) {
   plt.setTitle = (titleInfo) => {
     window.AlipayJSBridge.call('setTitle', titleInfo)
   }
+
+  // actionSheet
+  plt.actionSheet = (options) => {
+    console.info('ActionSheet 组件使用Alipay模式!')
+
+    let buttons = []
+    let cancelButton = {
+      text: '取消',
+      role: 'cancel',
+      handler: () => {}
+    }
+    let destructiveButtonIndex = -1
+    for (let i = 0; options.buttons.length > i; i++) {
+      if (options.buttons[i].role === 'cancel') {
+        cancelButton = options.buttons[i]
+        options.buttons.splice(i, 1)
+        i--
+      } else if (options.buttons[i].role === 'destructive') {
+        destructiveButtonIndex = i
+        buttons.push(options.buttons[i].text)
+      } else {
+        buttons.push(options.buttons[i].text)
+      }
+    }
+
+    options.buttons.push(cancelButton)
+
+    window.AlipayJSBridge.call('actionSheet', {
+      title: options.title || '',
+      btns: buttons || [],
+      cancelBtn: cancelButton.text || '取消',
+      destructiveBtnIndex: destructiveButtonIndex || -1
+    }, function (res) {
+      // index标示用户点击的按钮，在actionSheet中的位置，从0开始
+      if (res.index !== -1) {
+        options.buttons[res.index] && options.buttons[res.index].handler && options.buttons[res.index].handler()
+      } else {
+        cancelButton.handler && cancelButton.handler()
+      }
+    })
+
+    return true
+  }
+
+  // alert
+  plt.alert = (options) => {
+
+  }
 }
