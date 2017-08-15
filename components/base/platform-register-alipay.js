@@ -149,13 +149,20 @@ export default function (plt) {
     return false
   }
 
-  // loading
-  plt.loading = (options) => {
-    console.debug('Loading 组件使用Alipay模式!')
+  // showLoading
+  plt.showLoading = (options) => {
+    console.debug('Loading:showLoading 组件使用Alipay模式!')
     window.AlipayJSBridge.call('showLoading', {
       delay: options.delay || 0,
       text: options.content || ''
     })
+    return true
+  }
+
+  // hideLoading
+  plt.hideLoading = () => {
+    console.debug('Loading:hideLoading 组件使用Alipay模式!')
+    window.AlipayJSBridge.call('hideLoading')
     return true
   }
 

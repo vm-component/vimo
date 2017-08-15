@@ -36,7 +36,7 @@ function getPresentDismissIns (Factory) {
         if (isString(options)) {
           options = {content: options}
         }
-        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.loading(options)
+        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.showLoading(options)
         if (isHandled) {
           resolve()
         } else {
@@ -63,18 +63,16 @@ function getPresentDismissIns (Factory) {
      * */
     dismiss () {
       return new Promise((resolve) => {
-        if (window.AlipayJSBridge) {
-          window.AlipayJSBridge.call('hideLoading')
-        }
-
-        if (window.dd) {
-          window.dd.device.notification.hidePreloader()
-        }
-
-        if (this._i && this._i.isActive) {
-          this._i.dismiss().then(() => { resolve() })
-        } else {
+        let isHandled = window.VM && window.VM.platform && window.VM.platform.hideLoading()
+        if (isHandled) {
           resolve()
+        } else {
+          console.debug('Loading:dismiss 组件使用H5模式!')
+          if (this._i && this._i.isActive) {
+            this._i.dismiss().then(() => { resolve() })
+          } else {
+            resolve()
+          }
         }
       })
     }

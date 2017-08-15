@@ -318,12 +318,22 @@ class Platform {
   }
 
   /**
-   * 平台的 loading 方法
+   * 平台的 showLoading 方法
    * 如果返回false表示此函数不做任何事情, 执行权下方; 如果返回true, 表示当前函数接管逻辑, 执行权保留.
    * @return {boolean}
    * @private
    * */
-  loading () {
+  showLoading () {
+    return false
+  }
+
+  /**
+   * 平台的 hideLoading 方法
+   * 如果返回false表示此函数不做任何事情, 执行权下方; 如果返回true, 表示当前函数接管逻辑, 执行权保留.
+   * @return {boolean}
+   * @private
+   * */
+  hideLoading () {
     return false
   }
 
