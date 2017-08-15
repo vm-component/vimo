@@ -295,7 +295,7 @@
       },
       btnImage () {
         this.titleComponent.setTitle({
-          image: 'https://zos.alipayobjects.com/rmsportal/jFCQxeOXeKTQUfhrQFOo.png'
+          image: 'https://raw.githubusercontent.com/DTFE/vimo/master/examples/static/img/searchbar-fake.png'
         })
       },
       btnReset () {

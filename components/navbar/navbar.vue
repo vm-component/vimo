@@ -108,12 +108,18 @@
    *
    * ### 关于导航条在Hybrid下的表现
    *
-   * 程序运行初期会从当前DOM中后去导航条参数, 比如右侧按钮个数/类型/badge/颜色/导航条背景色等信息, 之后将信息同步给我们的Hybrid层, 进而设置Hybrid的导航条, 这里需要对函数功能进行介绍:
+   * 程序运行初期会从当前DOM中读取导航条参数, 比如右侧按钮个数/类型/badge/颜色/导航条背景色等信息, 之后将信息同步给我们的Hybrid层, 进而设置Hybrid的导航条, 这里需要对函数功能进行介绍:
    *
    * - showOptionButton: 控制Hybrid层导航条右侧按钮组显示
    * - hideOptionButton: 控制Hybrid层导航条右侧按钮组隐藏
    * - reset: 重置整个Hybrid层的导航条
    * - showPopMenu: 显示右上角的PopMenu菜单, 一般通过导航条右上角按钮触发
+   *
+   * ### 内部方法
+   * - 导航条右侧按钮组
+   * - 导航条title/image/背景色
+   * - 导航条右侧popMenu显示
+   *
    *
    * ### 注意点
    *
@@ -158,10 +164,6 @@
     name: 'Navbar',
     data () {
       return {
-        isAlipayReady: this.$platform && this.$platform.is('alipay') && window.AlipayJSBridge,
-        isDingTalkReady: this.$platform && this.$platform.is('dingtalk') && window.dd,
-        isDtDreamReady: this.$platform && this.$platform.is('dtdream') && window.dd,
-
         hideRightButtons: false,
 
         hideBb: false,
@@ -174,12 +176,12 @@
     props: {
       mode: {
         type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: [String],
+      color: String,
       /**
        * 是否显示后退按钮
        * */
@@ -234,6 +236,7 @@
        * @description
        * 设置右侧弹出的按钮菜单, 右侧可以没有按钮, 但是pop固定在右上角
        * @param {Array} dataList - menu的数据数组
+       * @return {Promise}
        * */
       showPopMenu (dataList) {
         let tmps = []
@@ -251,25 +254,22 @@
           })
         }
 
-        // 显示navbar最右侧的按钮
-        if (this.isAlipayReady) {
-          window.ap && window.ap.showPopMenu({
-            items: tmps
-          }, function (res) {
-            let selectedItem = tmps[res.index]
-            selectedItem.handler && selectedItem.handler()
-          })
-          return
-        }
-
-        Popover.present({
-          ev: {
-            target: window.document.getElementById('rightButtonPlaceholder') || null
-          }, // 事件
-          cssClass: 'popMenu',
-          component: menuOptionsComponent,   // 传入组件
-          data: {
-            menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
+        return new Promise((resolve) => {
+          let isHandled = this.$platform.showNavbarPopMenu(tmps)
+          // 显示navbar最右侧的按钮
+          if (isHandled) {
+            resolve()
+          } else {
+            Popover.present({
+              ev: {
+                target: window.document.getElementById('rightButtonPlaceholder') || null
+              }, // 事件
+              cssClass: 'popMenu',
+              component: menuOptionsComponent,   // 传入组件
+              data: {
+                menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
+              }
+            }).then(() => { resolve() })
           }
         })
       },
@@ -280,10 +280,8 @@
        * 重置之前的样式设置
        * */
       reset () {
-        if (this.isAlipayReady) {
-          window.ap && window.ap.setNavigationBar({reset: true})
-          this.$platform.resetNavbarOptionButton()
-        }
+        this.$platform.resetNavbarTitleAndColor()
+        this.$platform.resetNavbarOptionButton()
       },
 
       // -------- private --------

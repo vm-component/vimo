@@ -241,17 +241,6 @@ class Platform {
   }
 
   /**
-   * 给document设置title
-   * @param {object} [titleInfo] - 标题对象
-   * @param {string} [titleInfo.title] - 标题
-   * @param {string} [titleInfo.image] - 标题
-   * @hidden
-   */
-  setTitle () {
-    return false
-  }
-
-  /**
    * 设置网络类型
    * @private
    * */
@@ -387,15 +376,43 @@ class Platform {
     return false
   }
 
-  // 平台方法: 设置Navbar背景色
+  // 平台方法: 设置导航条标题文字图片/重置/背景色
+  // - setNavbarTitle
+  // - resetNavbarTitleAndColor
   // - setNavbarBackgroundColor
   // **********************************************
+
+  /**
+   * 给document设置title
+   * @param {object} [titleInfo] - 标题对象
+   * @param {string} [titleInfo.title] - 标题
+   * @param {string} [titleInfo.image] - 标题
+   * @hidden
+   */
+  setNavbarTitle () {
+    return false
+  }
+
+  /**
+   * @return {boolean}
+   * @private
+   * */
+  resetNavbarTitleAndColor () {
+    return false
+  }
 
   /**
    * @return {boolean}
    * @private
    * */
   setNavbarBackgroundColor () {
+    return false
+  }
+
+  // 平台方法: 显示导航条右侧的popMenu按钮组
+  // - showNavbarPopMenu
+  // **********************************************
+  showNavbarPopMenu () {
     return false
   }
 

@@ -30,14 +30,6 @@ export default function (plt) {
     window.AlipayJSBridge.call('exitApp')
   }
 
-  // 注册平台 setTitle 方法, 参数在platform.js中
-  plt.setTitle = (titleInfo) => {
-    window.AlipayJSBridge.call('setTitle', {
-      title: titleInfo.title || '',
-      image: titleInfo.image || ''
-    })
-  }
-
   // actionSheet
   plt.actionSheet = (options) => {
     if (isPresent(options) && isPresent(options.buttons) && isArray(options.buttons) && options.buttons.length < 9) {
@@ -526,4 +518,32 @@ export default function (plt) {
     return true
   }
 
+  // 注册平台 setTitle 方法, 参数在platform.js中
+  plt.setNavbarTitle = (titleInfo) => {
+    if (titleInfo.title) {
+      window.AlipayJSBridge.call('setTitle', {
+        title: titleInfo.title || null
+      })
+    } else if (titleInfo.image) {
+      window.AlipayJSBridge.call('setTitle', {
+        image: titleInfo.image || null
+      })
+    }
+    return true
+  }
+
+  plt.resetNavbarTitleAndColor = () => {
+    window.ap.setNavigationBar({reset: true})
+    return true
+  }
+
+  plt.showNavbarPopMenu = (options) => {
+    window.ap.showPopMenu({
+      items: options
+    }, function (res) {
+      let selectedItem = options[res.index]
+      isFunction(selectedItem.handler) && selectedItem.handler()
+    })
+    return true
+  }
 }

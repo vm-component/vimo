@@ -169,7 +169,7 @@
 
         if (changeDocTitle) {
           // 设置document的title, 这部分由$app处理
-          _title.title && this.$app.setDocTitle(_title)
+          this.$app.setDocTitle(_title)
         }
       },
 

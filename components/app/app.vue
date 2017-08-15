@@ -224,7 +224,7 @@
         if (isString(_title)) {
           _title = {title: _title}
         }
-        let isHandled = this.$platform.setTitle(_title)
+        let isHandled = this.$platform.setNavbarTitle(_title)
         if (!isHandled) {
           if (this.$platform.platforms().length <= 2) {
             // PC端
