@@ -81,9 +81,8 @@
  *
  * */
 
-import { defaults, isObject } from '../util/util'
+import { defaults, isFunction, isObject, isPresent } from '../util/util'
 import { PLATFORM_DEFAULT_CONFIGS } from './platform-default-configs'
-import { isFunction, isPresent } from 'components/util/util'
 
 class Platform {
   constructor () {

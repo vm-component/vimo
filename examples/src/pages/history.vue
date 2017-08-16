@@ -95,7 +95,13 @@
     methods: {
       replace () {
         this.$router.replace({
-          name: this.$route.name
+          name: this.$route.name,
+          query: {
+            name: Math.floor(Math.random()*10)
+          },
+          params: {
+            id: Math.floor(Math.random()*10)
+          }
         })
       },
       back () {

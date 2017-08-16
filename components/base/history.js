@@ -39,8 +39,14 @@ export class History {
       let replaceCopy = this._router.replace
       replaceCopy = replaceCopy.bind(this._router)
       this._router.replace = function () {
-        _this.isReplace = true
-        replaceCopy.apply(null, arguments)
+        let args = Array.from(arguments)
+        let to = _this._router.resolve(args[0]).resolved
+        let from = _this._history[_this.length - 1]
+        if (to.fullPath !== from.fullPath || to.name !== from.name) {
+          // replace时, 前后地址不一样的话才处理
+          _this.isReplace = true
+          replaceCopy.apply(null, arguments)
+        }
       }
 
       if (this.usePushWindow) {
@@ -68,16 +74,14 @@ export class History {
       }
 
       this._router.beforeEach((to, from, next) => {
+
         // 如果使用了replace, 则跳过当前拦截的路由信息, 并且将最后一个重置
         if (this.isReplace) {
           this.isReplace = false
           this._history.pop()
           this._history.push(to)
           next()
-          return
-        }
-
-        if (this.length <= 1) {
+        } else if (this.length <= 1) {
           /**
            * 当本地维护的历时记录为空或, 意味着页面为首次进入, 并未初始化,
            * 此时, 可能我们是从app中的某个页面进入的,
@@ -103,17 +107,23 @@ export class History {
     }
   }
 
-  get length () {
+  get
+  length () {
     return this._history.length
   }
 
-  // -------- private --------
+// -------- private --------
   /**
    * push to history
    * @private
    * */
   _pushHistory ({to, from, next}) {
-    if (from.matched.length !== 0 && to.matched.length !== 0 && this.usePushWindow) {
+    if (to.fullPath === from.fullPath && to.name === from.name) {
+      // 同地址同名称跳转不记录不处理
+      return
+    }
+
+    if (this.usePushWindow && from.matched.length !== 0 && to.matched.length !== 0) {
       let url = ''
       let mode = this._router.mode
       let base = this._router.history.base
@@ -137,14 +147,14 @@ export class History {
    * pop history record
    * @private
    * */
-  _popHistory (next, i) {
+  _popHistory (next, i = 0) {
     // 激活了浏览器的后退,这里只需要更新状态
     this._direction = 'backward'
     this._history = this._history.splice(0, i + 1)
     next()
   }
 
-  // -------- public --------
+// -------- public --------
 
   /**
    * 获取当前的页面进行的方向
@@ -161,35 +171,35 @@ export class History {
     return this.length > 1
   }
 
-  // /**
-  //  * 获取历史记录的第一个
-  //  * @return {location}
-  //  * */
-  // first () {
-  //   return this._history[0]
-  // }
-  // /**
-  //  * 获取当前激活的页面
-  //  * 获取最后一个历史记录
-  //  * @return {location}
-  //  * */
-  // getActive () {
-  //   return this._history[this.length - 1]
-  // }
-  // /**
-  //  * 获取上一个历史记录
-  //  * @return {location}
-  //  * */
-  // getPrevious () {
-  //   return this._history[this.length - 2]
-  // }
-  // /**
-  //  * 返回传入的route是历史记录中的第几条
-  //  * @return {Number}
-  //  * */
-  // indexOf (route) {
-  //   return this._history.indexOf(route)
-  // }
+// /**
+//  * 获取历史记录的第一个
+//  * @return {location}
+//  * */
+// first () {
+//   return this._history[0]
+// }
+// /**
+//  * 获取当前激活的页面
+//  * 获取最后一个历史记录
+//  * @return {location}
+//  * */
+// getActive () {
+//   return this._history[this.length - 1]
+// }
+// /**
+//  * 获取上一个历史记录
+//  * @return {location}
+//  * */
+// getPrevious () {
+//   return this._history[this.length - 2]
+// }
+// /**
+//  * 返回传入的route是历史记录中的第几条
+//  * @return {Number}
+//  * */
+// indexOf (route) {
+//   return this._history.indexOf(route)
+// }
 
   /**
    * 获取当前的导航记录
