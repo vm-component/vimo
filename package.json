@@ -21,12 +21,15 @@
   "main": "components/index.js",
   "files": [
     "components",
+    "lib",
     "dist"
   ],
   "scripts": {
     "example:dev": "node examples/build/dev-server.js",
     "example:build": "node examples/build/build.js",
     "publish:dist": "node build/webpack.dist.conf.js",
+    "publish:lib": "gulp --gulpfile build/gulpfile.lib.js",
+    "here": "npm run publish:dist && npm run publish:lib",
     "docs:dev": "gulp default --gulpfile build/doc-builder/gulpfile.js",
     "docs:build": "gulp build --gulpfile build/doc-builder/gulpfile.js",
     "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
@@ -112,6 +115,7 @@
     "karma-webpack": "^2.0.2",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
+    "lodash.camelcase": "^4.3.0",
     "lodash.clonedeep": "^4.5.0",
     "lolex": "^1.5.2",
     "mocha": "^3.2.0",

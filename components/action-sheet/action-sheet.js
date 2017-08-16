@@ -67,7 +67,6 @@
  *
  */
 import Vue from 'vue'
-import { isArray } from '../util/util'
 import { getInsertPosition } from '../util/getInsertPosition'
 import actionSheetComponent from './action-sheet.vue'
 
