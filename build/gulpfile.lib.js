@@ -26,7 +26,7 @@ gulp.task('babel', function () {
   .pipe($.babel({
     presets: ['env']
   }))
-  .pipe($.uglify())
+  // .pipe($.uglify())
   .pipe(gulp.dest(resolve('lib')))
 })
 

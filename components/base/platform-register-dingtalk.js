@@ -4,6 +4,7 @@
  * 当前处于平台初始化完毕阶段, window.AlipayJSBridge等私有变量存在且可用
  * */
 import { isArray, isFunction, isPresent } from '../util/util'
+import Vue from 'vue'
 
 export default function (plt) {
   // 注册平台 setTitle 方法, 参数在platform.js中
@@ -12,6 +13,11 @@ export default function (plt) {
       title: titleInfo.title || '' // 控制标题文本，空字符串表示显示默认文本
     })
   }
+
+  // title 点击事件
+  document.addEventListener('navTitle', function () {
+    Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onTitleClick')
+  })
 
   // actionSheet
   plt.actionSheet = (options) => {
@@ -58,6 +64,37 @@ export default function (plt) {
 
   // alert
   plt.alert = (options) => {
+    // modal
+    if (options.image) {
+      console.info('modal 组件使用DingTalk模式!')
+      let cancelButton = {}
+      let confirmButton = {}
+      options.buttons.forEach((button) => {
+        if (button.role === 'cancel') {
+          cancelButton = button
+        } else {
+          confirmButton = button
+        }
+      })
+
+      window.dd.device.notification.modal({
+        image: options.image,
+        title: options.title || '',
+        content: options.message || '',
+        buttonLabels: [cancelButton.text || '取消', confirmButton.text || '确定'],
+        onSuccess (result) {
+          // {buttonIndex: 0 //被点击按钮的索引值，Number类型，从0开始}
+          if (result.buttonIndex === 0) {
+            isFunction(cancelButton.handler) && cancelButton.handler()
+          } else {
+            isFunction(confirmButton.handler) && confirmButton.handler()
+          }
+        }
+      })
+
+      return true
+    }
+
     // alert 模式
     if (options.buttons.length === 1) {
       console.debug('Alert 组件使用DingTalk模式!')

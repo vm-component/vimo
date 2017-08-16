@@ -82,7 +82,7 @@
  * */
 
 import { defaults, isFunction, isObject, isPresent } from '../util/util'
-import { PLATFORM_DEFAULT_CONFIGS } from './platform-default-configs'
+import PLATFORM_DEFAULT_CONFIGS from './platform-default-configs'
 
 class Platform {
   constructor () {
@@ -1197,6 +1197,11 @@ export function setupPlatform (config = {}) {
       _finalConf[outerKey] = config[outerKey]
     }
   }
+
+  // 更新 IOS/Android下的subsets属性, 可能存在subsets中未定义的平台
+  let keys = Object.keys(_finalConf).filter((item) => { return (item !== 'mobile' && item !== 'android' && item !== 'ios')})
+  _finalConf.android.subsets = keys
+  _finalConf.ios.subsets = keys
 
   p.setDefault('mobile')
   p.setPlatformConfigs(_finalConf)

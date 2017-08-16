@@ -8,6 +8,7 @@
                     @before-leave="beforeLeave"
                     @after-leave="afterLeave">
             <div class="alert-wrapper" v-show="isActive">
+                <img class="alert-image" v-if="image" :src="image">
                 <div class="alert-head">
                     <h2 class="alert-title" v-if="title">{{title}}</h2>
                     <h3 class="alert-sub-title" v-if="subTitle" v-html="subTitle"></h3>
@@ -217,10 +218,11 @@
   export default{
     name: 'Alert',
     props: {
-      title: [String],
-      subTitle: [String],
-      cssClass: [String],
-      message: [String],
+      image: String,
+      title: String,
+      subTitle: String,
+      cssClass: String,
+      message: String,
       // Array button数组，包含全部role
       buttons: {
         type: Array,

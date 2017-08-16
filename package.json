@@ -1,6 +1,6 @@
 {
   "name": "vimo",
-  "version": "0.5.11",
+  "version": "0.5.12",
   "description": "A Vue2.x UI Project For Mobile & HyBrid",
   "author": "向松涛 <280304286@163.com>",
   "homepage": "https://github.com/DTFE/vimo",
@@ -18,7 +18,7 @@
     "framework"
   ],
   "private": false,
-  "main": "components/index.js",
+  "main": "lib/index.js",
   "files": [
     "components",
     "lib",
@@ -27,9 +27,9 @@
   "scripts": {
     "example:dev": "node examples/build/dev-server.js",
     "example:build": "node examples/build/build.js",
-    "publish:dist": "node build/webpack.dist.conf.js",
-    "publish:lib": "gulp --gulpfile build/gulpfile.lib.js",
-    "here": "npm run publish:dist && npm run publish:lib",
+    "pub:dist": "node build/webpack.dist.conf.js",
+    "pub:lib": "gulp default --gulpfile build/gulpfile.lib.js",
+    "pub": "npm run pub:lib && npm run pub:dist",
     "docs:dev": "gulp default --gulpfile build/doc-builder/gulpfile.js",
     "docs:build": "gulp build --gulpfile build/doc-builder/gulpfile.js",
     "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",

@@ -26,12 +26,6 @@ export default {
     dingtalk: {
       hideNavBar: true
     },
-    qq: {
-      hideNavBar: true
-    },
-    dtdream: {
-      hideNavBar: true
-    }
   },
   domain: '' // http://gamma-member.tesir.top
 }

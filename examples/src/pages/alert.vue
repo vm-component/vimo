@@ -14,6 +14,7 @@
             <Button color="dark" block @click="input()">Input</Button>
             <Button color="dark" block @click="checkbox()">Checkbox</Button>
             <Button color="primary" block @click="radio()">Radio</Button>
+            <Button color="primary" block @click="image()">Image</Button>
         </Content>
     </Page>
 </template>
@@ -309,6 +310,35 @@
                       }
                     ]
                   })
+                })
+              }
+            }
+          ]
+        })
+      },
+      image () {
+        this.$alert.present({
+          image: 'http://gw.alicdn.com/tps/i2/TB1SlYwGFXXXXXrXVXX9vKJ2XXX-2880-1560.jpg_200x200.jpg',
+          title: '5.5版本更新',
+          message: '1.功能更新 2.功能更新;',
+          cssClass: 'alertCssOuterMain',
+          enableBackdropDismiss: true,
+          buttons: [
+            {
+              text: '知道了',
+              role: 'cancel',
+              icon: 'icon-Destructive',
+              cssClass: '',
+              handler: () => {
+                console.debug('Confirm 取消 click')
+              }
+            },
+            {
+              text: '了解更多',
+              role: '',
+              handler: () => {
+                this.$alert.dismiss().then(function () {
+                  console.debug('Confirm 确定 click')
                 })
               }
             }

@@ -8,6 +8,7 @@ Vimo Is still in development stage (2017/04/23), during which the project needs 
 
 目前还在开发阶段(2017/04/23), 在此期间需要项目对此框架测试, 其中不乏一些组件的bug修复和API的变更, 如果对您的业务造成不便请谅解!
 
+- 0.5.12 - 增加babel编译后lib文件夹
 - 0.5.10 - 在alipay和dingtalk平台, 如果切换路由则进入新的tab页面, 当然包括滑动返回的动画
 - 0.5.9 - 增加Sheet组件
 - 0.5.6 - fixed: infinite-scroll
