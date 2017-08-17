@@ -21,7 +21,7 @@
             </div>
             <List>
                 <ItemGroup>
-                    <Item detail-push v-for="(city,index) in filteredList" :key="index">{{city.name}}</Item>
+                    <Item detail-push v-for="(city,index) in filteredList" :key="index">{{city.city}}</Item>
                 </ItemGroup>
             </List>
         </Content>
@@ -30,8 +30,8 @@
 <style scoped lang="scss">
 </style>
 <script type="text/javascript">
-  import cityList from '../../static/city-data/cityList'
-  export default{
+  import cityList from '../../../components/choose-city/cities.json'
+  export default {
     data () {
       return {
         myInput: '',
@@ -46,34 +46,21 @@
     },
     computed: {},
     methods: {
-      onInputHandler ($event) {
+      onInputHandler () {
         this.filteredList = this.cityList.filter((item) => {
           if (this.myInput) {
-            let index = item.tags.toLowerCase().indexOf(this.myInput.toLowerCase())
-            return index > -1
+            return item.spell.toString().toLowerCase().indexOf(this.myInput.toLowerCase()) > -1
           }
           return true
         })
       }
     },
     created () {
-      let tmp = []
-      cityList.forEach((item) => {
-        tmp = Array.concat(tmp, item.cities)
-      })
-
-      let obj = {}
-      tmp.forEach((item) => {
-        if (!obj[item.cityid]) {
-          this.cityList.push(item)
-          obj[item.cityid] = item
-        }
-      })
-      obj = null
+      this.cityList = cityList
       this.onInputHandler()
     },
     mounted () {},
     activated () {
-    },
+    }
   }
 </script>

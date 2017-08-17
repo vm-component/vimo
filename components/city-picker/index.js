@@ -70,6 +70,7 @@
  */
 import { isArray } from '../util/util'
 import { Picker } from '../picker/index'
+
 const CityPicker = {
   present (options) {
     let startCode = options.startCode || '1'              // 全国  1
@@ -96,7 +97,7 @@ const CityPicker = {
     let fetchData = options.fetchData || defaultFetchData
     let columns = []
     fetchData(startCode).then((data) => {
-      if (data.length > 0) {
+      if (data && isArray(data) && data.length > 0) {
         // 获得 province 的数据
         columns = [
           {

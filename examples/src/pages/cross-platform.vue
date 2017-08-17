@@ -66,19 +66,19 @@
     .icon-vimo {
         height: 30px;
         width: 30px;
-        background: url('../assets/img/vimo.png') no-repeat center center/30px 30px;
+        background: url('../assets/vimo.png') no-repeat center center/30px 30px;
     }
 
     .icon-alipay {
         height: 30px;
         width: 40px;
-        background: url('../assets/img/alipay.png') no-repeat center center/cover;
+        background: url('../assets/alipay.png') no-repeat center center/cover;
     }
 
     .icon-wechat {
         height: 30px;
         width: 36px;
-        background: url('../assets/img/wechat.png') no-repeat center center/cover;
+        background: url('../assets/wechat.png') no-repeat center center/cover;
     }
 </style>
 <script type="text/javascript">

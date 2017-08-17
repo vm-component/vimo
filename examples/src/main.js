@@ -18,8 +18,6 @@ if (process.env.NODE_ENV === 'development') {
   Vue.config.silent = true
 }
 
-// 全局组件
-
 // 平台基础安装
 Vue.use(vimo, {
   custConf: APP_CONFIGS,
