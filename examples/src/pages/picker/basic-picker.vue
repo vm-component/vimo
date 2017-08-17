@@ -10,6 +10,7 @@
             <h5>简介</h5>
             <p>Picker组件将顶部的button和每列的属性都发放给外部进行自定义, 此外, 每列的columns可以附加前缀和后缀, 比如说明这列是Hour, 右边列是Minus等, 另外, 列的宽度也可定义.</p>
 
+            <!--<Button block @click="simpleColumns">simple</Button>-->
             <Button block @click="oneColumns">1 Columns</Button>
             <Button block @click="twoColumns">2 Columns</Button>
             <Button block @click="threeColumns">3 Columns</Button>
@@ -28,7 +29,7 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'name',
     data () {
       return {
@@ -40,6 +41,37 @@
     watch: {},
     computed: {},
     methods: {
+      simpleColumns () {
+        let options = []
+        for (let i = 0; 30 > i; i++) {
+          let val = '1'
+          for (let j = 0; i > j; j++) {
+            val += 1
+          }
+          options.push({
+            text: val
+          })
+        }
+        this.$picker.present({
+          buttons: [
+            {
+              text: '取消',
+              role: 'cancel'
+            },
+            {
+              text: '确认',
+              handler: (data) => {}
+            }
+          ],
+          columns: [
+            {
+              name: 'flavor1',
+              selectedIndex: 2,
+              options: options
+            }
+          ]
+        })
+      },
       oneColumns () {
         this.$picker.present({
           buttons: [
@@ -322,7 +354,7 @@
         })
       },
 
-      columnSizes() {
+      columnSizes () {
         let hourColumn = {
           name: 'hour',
           suffix: 'hour',

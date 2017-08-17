@@ -16,7 +16,8 @@
                     :class="{'picker-opt-disabled':o.disabled}"
                     class="picker-opt"
                     disable-activated
-                    @click="optClick($event, index)">{{o.text}}
+                    @click="optClick($event, index)">
+                {{o.text}}
             </button>
         </div>
         <!--suffix-->
@@ -25,17 +26,18 @@
 </template>
 <script type="text/javascript">
   import { pointerCoord, clamp, parsePxUnit } from '../util/util'
+
   const PICKER_OPT_SELECTED = 'picker-opt-selected'
   const DECELERATION_FRICTION = 0.97
   const FRAME_MS = (1000 / 60)
   const MAX_PICKER_SPEED = 60
-  export default{
+  export default {
     name: 'PickerCol',
     data () {
       return {
         isInit: false,
-        rotateFactor: this.$config && this.$config.getNumber('pickerRotateFactor', 0),
-        scaleFactor: this.$config && this.$config.getNumber('pickerScaleFactor', 1),
+        rotateFactor: this.$config && this.$config.getNumber('pickerRotateFactor', 0) || 0,
+        scaleFactor: this.$config && this.$config.getNumber('pickerScaleFactor', 1) || 1,
         pickerComponent: null,          // 父组件 Picker 实例
 
         y: 0,
@@ -46,6 +48,7 @@
         startY: null,
         rafId: 0,
         bounceFrom: 0,
+        bounceFromTimer: null,
         minY: 0,
         maxY: 0,
         lastIndex: 0,
@@ -54,7 +57,7 @@
     },
     props: {
       index: Number,    // 当前组件的序号
-      col: [Object]     // 这一列的数据
+      col: Object       // 这一列的数据
     },
     computed: {
       colEle () {
@@ -114,6 +117,8 @@
         // update the scroll position relative to pointer start position
         let y = this.y + (currentY - this.startY)
 
+        this.bounceFromTimer && window.clearTimeout(this.bounceFromTimer)
+
         if (y > this.minY) {
           // scrolling up higher than scroll area
           y = Math.pow(y, 0.8)
@@ -146,10 +151,17 @@
         if (this.bounceFrom > 0) {
           // bounce back up
           this.update(this.minY, 100, true, true)
+          // BugFixed: 动画结束后这个值应该还原
+          this.bounceFromTimer = window.setTimeout(() => {
+            this.bounceFrom = 0
+          }, 100)
           return
         } else if (this.bounceFrom < 0) {
           // bounce back down
           this.update(this.maxY, 100, true, true)
+          this.bounceFromTimer = window.setTimeout(() => {
+            this.bounceFrom = 0
+          }, 100)
           return
         }
 
@@ -179,6 +191,9 @@
         if (Math.abs(endY - this.startY) > 3 && Math.abs(this.velocity) < 1) {
           var y = this.y + (endY - this.startY)
           this.update(y, 0, true, true)
+        } else {
+          // BugFixed: 快速滑动出现跳动的问题
+          this.y += (endY - this.startY)
         }
 
         this.startY = null
@@ -204,7 +219,7 @@
             ? Math.max(this.velocity, 1)
             : Math.min(this.velocity, -1)
 
-          y = (this.y - this.velocity) >> 0
+          y = Math.round(this.y - this.velocity)
 
           if (y > this.minY) {
             // whoops, it's trying to scroll up farther than the options we have!
@@ -242,7 +257,9 @@
        * @private
        * */
       optClick (ev, index) {
-        if (!this.velocity) {
+        // 滚动中则则处理
+        // BugFixed: 点击某个现象然后产生bounce时最终停留位置错误的bug
+        if (!this.velocity && !this.bounceFrom) {
           ev.preventDefault()
           ev.stopPropagation()
           this.setSelected(index, 150)
@@ -272,7 +289,6 @@
        * @private
        * */
       update (y, duration, saveY, emitChange) {
-
         this.optHeight = this.getOptHeight()
 
         if (this.optHeight === 0) {

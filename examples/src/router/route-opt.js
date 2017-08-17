@@ -22,9 +22,6 @@ let routes = [
   {
     path: '/demo',
     name: 'demo',
-    meta: {
-      root: true
-    },
     component: require('@/pages/demo/demo.vue')
   },
   {

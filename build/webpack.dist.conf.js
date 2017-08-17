@@ -58,7 +58,6 @@ var webpackConfig = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-        // include: [resolve('src'), resolve('test'), resolve('../components')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
