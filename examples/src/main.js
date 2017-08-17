@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import AttachFastClick from './assets/js/fastclick'
+import AttachFastClick from 'fastclick'
 import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
 import 'ionicons/dist/css/ionicons.css'
 import vimo from '../../components/dist'
-// import '../../dist/style.css'
 import VueI18n from 'vue-i18n'
 import vmGeo from 'vm-geo'
 import vmStorage from 'vm-storage'
@@ -58,7 +57,7 @@ Vue.use(vmStorage)
 
 // eslint-disable-next-line no-new
 new AttachFastClick(document.body)
-
+// eslint-disable-next-line no-new
 new Vue({
   el: '#app',
   router,

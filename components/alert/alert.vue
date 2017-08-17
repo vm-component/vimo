@@ -415,7 +415,7 @@
         if (this.inputType === 'checkbox' && this.inputsForDispaly.length > 0) {
           // this is an alert with checkboxes (multiple value select)
           // return an array of all the checked values
-          return this.inputsForDispaly.filter(i => i.checked).map(i => i.value.trim())
+          return this.inputsForDispaly.filter(i => i.checked).map(i => i.value.toString().trim())
         }
 
         // this is an alert with text inputs
@@ -425,7 +425,7 @@
         this.inputsForDispaly.forEach(i => {
           let _$id = document.getElementById(i.id)
           if (_$id && _$id.value) {
-            values[i.name] = _$id.value.trim()
+            values[i.name] = _$id.value.toString().trim()
           } else {
             values[i.name] = null
           }
