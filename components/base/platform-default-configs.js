@@ -288,11 +288,18 @@ export default {
           docReady(() => {
             // 执行自定义的bridge ready钩子
             _this.bridgeReady(plt)
-            plt.triggerReady('Dingtalk Init Success!')
-            plt.timer && window.clearTimeout(plt.timer)
+            window.dd.ready(init)
+            window.dd.error(init)
 
-            // 平台方法注册
-            platformRegisterDingtalk(plt)
+            function init (err) {
+              if (err) {
+                console.error('dd error: ' + JSON.stringify(err))
+              }
+              plt.triggerReady('Dingtalk Init Success!')
+              plt.timer && window.clearTimeout(plt.timer)
+              // 平台方法注册
+              platformRegisterDingtalk(plt)
+            }
           })
         })
 
@@ -315,7 +322,7 @@ export default {
     bridgeReady (plt) {},
     settings: {
       usePushWindow: true, // 页面切换使用 dingding 提供的 dd.biz.util.openLink 方法开启新页面
-      jsSDKUrl: '//g.alicdn.com/dingding/open-develop/1.5.1/dingtalk.js',
+      jsSDKUrl: '//g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js',
       hideNavBar: true
     },
     isMatch (plt) {

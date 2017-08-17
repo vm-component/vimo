@@ -54,9 +54,9 @@ export class History {
         let backCopy = this._router.back
         backCopy = backCopy.bind(this._router)
         this._router.back = function () {
-          _this._platform.popWindow()
-          // the last
-          backCopy.apply(null, arguments)
+          if (!_this._platform.popWindow()) {
+            backCopy.apply(null, arguments)
+          }
         }
 
         /**
@@ -65,9 +65,9 @@ export class History {
         let goCopy = this._router.go
         goCopy = goCopy.bind(this._router)
         this._router.go = function (n) {
-          _this._platform.popTo(n)
-          // the last
-          goCopy.apply(null, n)
+          if (!_this._platform.popTo(n)) {
+            goCopy.apply(null, n)
+          }
         }
       }
 
@@ -120,6 +120,7 @@ export class History {
       return
     }
 
+    let isHandled = false
     if (this.usePushWindow && from.matched.length !== 0 && to.matched.length !== 0) {
       let url = ''
       let mode = this._router.mode
@@ -131,8 +132,10 @@ export class History {
       } else {
         console.error('history.js::只支持 mode: "hash" | "history"')
       }
-      this._platform.pushWindow(url)
-    } else {
+      isHandled = this._platform.pushWindow(url)
+    }
+
+    if (!isHandled) {
       // fallback
       this._direction = 'forward'
       this._history.push(to)
@@ -211,8 +214,7 @@ export class History {
    * */
   toRoot () {
     // 支付宝方式返回首页
-    let isHandled = this._platform.popToRoot()
-    if (!isHandled) {
+    if (!this._platform.popToRoot()) {
       // fallback
       this._router.go(1 - this.length)
     }

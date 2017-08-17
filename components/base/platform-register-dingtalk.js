@@ -3,14 +3,11 @@
  * platform.js中关于平台方法的复写
  * 当前处于平台初始化完毕阶段, window.AlipayJSBridge等私有变量存在且可用
  * */
-import { isArray, isFunction, isPresent } from '../util/util'
+import { isArray, isFunction, isNumber, isPresent, isString } from '../util/util'
 import Vue from 'vue'
 
 export default function (plt) {
-
-  plt.ready().then(() => {
-    window.dd.ui.webViewBounce.disable()
-  })
+  window.dd.ui.webViewBounce.disable()
 
   // 获取网络环境
   window.dd.device.connection.getNetworkType({
@@ -218,6 +215,101 @@ export default function (plt) {
 
   // hideToast
   plt.hideToast = () => {
+    return false
+  }
+
+  plt.picker = (options) => {
+    if (options.columns.length === 1) {
+      /**
+       * normalize the data
+       * */
+      options.buttons = options.buttons.map(button => {
+        if (isString(button)) {
+          return {text: button}
+        }
+        if (button.role) {
+          // role: cancel / button
+          button.cssRole = `picker-toolbar-${button.role}`
+        }
+        return button
+      })
+
+      /**
+       * clean up dat data
+       * */
+      options.columns = options.columns.map(column => {
+        if (!isPresent(column.options)) {
+          column.options = []
+        }
+        column.selectedIndex = Math.max(0, parseInt(column.selectedIndex))
+        column.options = column.options.map(inputOpt => {
+          // PickerColumnOption
+          let opt = {
+            text: '',
+            value: '',
+            disabled: inputOpt.disabled || false
+          }
+
+          if (isPresent(inputOpt)) {
+            if (isString(inputOpt) || isNumber(inputOpt)) {
+              opt.text = inputOpt.toString()
+              opt.value = inputOpt
+            } else {
+              opt.text = isPresent(inputOpt.text) ? inputOpt.text : inputOpt.value
+              opt.value = isPresent(inputOpt.value) ? inputOpt.value : inputOpt.text
+            }
+          }
+          return opt
+        })
+        return column
+      })
+
+      let buttons = options.buttons
+      let cancelBtn
+      let confirmBtn
+      if (buttons[0].role === 'cancel') {
+        cancelBtn = buttons[0]
+        confirmBtn = buttons[1]
+      } else {
+        cancelBtn = buttons[1]
+        confirmBtn = buttons[0]
+      }
+
+      let columns = options.columns || []
+      let column = columns[0]
+      let columnOptions = column.options || []
+      let selectedIndex = Math.max(0, column.selectedIndex)
+      let selectedKey = columnOptions[selectedIndex].value
+      let source = columnOptions.map((item) => {
+        if (!item.disabled) {
+          return {
+            key: item.text,
+            value: item.value
+          }
+        }
+      })
+
+      window.dd.biz.util.chosen({
+        source: source,
+        selectedKey: selectedKey, // 默认选中的key
+        onSuccess (result) {
+          let data = {}
+          if (result) {
+            data[column.name] = {
+              'text': result.key,
+              'value': result.value,
+              'columnIndex': 0
+            }
+            isFunction(confirmBtn.handler) && confirmBtn.handler(data)
+          } else {
+            // 取消
+            isFunction(cancelBtn.handler) && cancelBtn.handler(data)
+          }
+        },
+        onFail (err) {}
+      })
+      return true
+    }
     return false
   }
 

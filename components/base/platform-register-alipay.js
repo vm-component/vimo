@@ -211,7 +211,7 @@ export default function (plt) {
         if (!isPresent(column.options)) {
           column.options = []
         }
-        // column.selectedIndex = 0
+        column.selectedIndex = Math.max(0, parseInt(column.selectedIndex))
         column.options = column.options.map(inputOpt => {
           // PickerColumnOption
           let opt = {

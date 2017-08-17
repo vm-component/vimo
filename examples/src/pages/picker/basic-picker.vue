@@ -10,7 +10,7 @@
             <h5>简介</h5>
             <p>Picker组件将顶部的button和每列的属性都发放给外部进行自定义, 此外, 每列的columns可以附加前缀和后缀, 比如说明这列是Hour, 右边列是Minus等, 另外, 列的宽度也可定义.</p>
 
-            <!--<Button block @click="simpleColumns">simple</Button>-->
+            <Button block @click="simpleColumns">simple</Button>
             <Button block @click="oneColumns">1 Columns</Button>
             <Button block @click="twoColumns">2 Columns</Button>
             <Button block @click="threeColumns">3 Columns</Button>
@@ -29,6 +29,8 @@
 
 </style>
 <script type="text/javascript">
+  import { isArray, isFunction, isNumber, isPresent, isString } from '../../../../components/util/util'
+
   export default {
     name: 'name',
     data () {
@@ -56,16 +58,21 @@
           buttons: [
             {
               text: '取消',
-              role: 'cancel'
+              role: 'cancel',
+              handler: (data) => {
+                console.log(JSON.stringify(data))
+              }
             },
             {
               text: '确认',
-              handler: (data) => {}
+              handler: (data) => {
+                console.log(JSON.stringify(data))
+              }
             }
           ],
           columns: [
             {
-              name: 'flavor1',
+              name: 'flavor2',
               selectedIndex: 2,
               options: options
             }
@@ -73,11 +80,38 @@
         })
       },
       oneColumns () {
-        this.$picker.present({
+        let column = [
+          {text: 'Mango'},
+          {text: 'Banana'},
+          {text: 'Cherry'},
+          {text: 'Strawberry'},
+          {text: 'Raspberry'},
+          {text: 'Blueberry'},
+          {text: 'Peach'},
+          {text: 'Coconut'},
+          {text: 'Pineapple'},
+          {text: 'Honeydew'},
+          {text: 'Watermelon'},
+          {text: 'Grape'},
+          {text: 'Avocado'},
+          {text: 'Kiwi'},
+          {text: 'Orange'},
+          {text: 'Papaya'}
+        ]
+
+        let selectedIndex = column.indexOf(column.filter((item) => {
+          return this.smoothie.toString().toLowerCase().indexOf(item.text.toString().toLowerCase()) > -1
+        })[0])
+
+
+        let options = {
           buttons: [
             {
               text: '取消',
-              role: 'cancel'
+              role: 'cancel',
+              handler: (data) => {
+                console.log(JSON.stringify(data))
+              }
             },
             {
               text: '确认',
@@ -89,28 +123,13 @@
           columns: [
             {
               name: 'flavor1',
-              selectedIndex: 2,
-              options: [
-                {text: 'Mango'},
-                {text: 'Banana'},
-                {text: 'Cherry'},
-                {text: 'Strawberry'},
-                {text: 'Raspberry'},
-                {text: 'Blueberry'},
-                {text: 'Peach'},
-                {text: 'Coconut'},
-                {text: 'Pineapple'},
-                {text: 'Honeydew'},
-                {text: 'Watermelon'},
-                {text: 'Grape'},
-                {text: 'Avocado'},
-                {text: 'Kiwi'},
-                {text: 'Orange'},
-                {text: 'Papaya'}
-              ]
+              selectedIndex: selectedIndex,
+              options: column
             }
           ]
-        })
+        }
+
+        this.$picker.present(options)
       },
       twoColumns () {
         this.$picker.present({

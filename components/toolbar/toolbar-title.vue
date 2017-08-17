@@ -216,7 +216,6 @@
         }
 
         this.$eventBus.$on('onTitleClick', () => {
-          alert('组件接收到了')
           this.$emit('onTitleClick')
         })
       },

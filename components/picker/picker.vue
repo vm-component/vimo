@@ -119,7 +119,8 @@
   import PickerCol from './picker-col.vue'
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
-  export default{
+
+  export default {
     name: 'Picker',
     data () {
       return {
@@ -321,7 +322,8 @@
           if (!isPresent(column.options)) {
             column.options = []
           }
-          // column.selectedIndex = 0
+          // 取值必须>=0
+          column.selectedIndex = Math.max(0, parseInt(column.selectedIndex))
           column.options = column.options.map(inputOpt => {
             // PickerColumnOption
             let opt = {
@@ -386,7 +388,7 @@
       if (pickerCmpElements.length > 0) {
         pickerCmpElements.forEach((ele) => {
           ele.remove()
-          alert('beforeMount find Picker opened!')
+          console.error('beforeMount find Picker opened!')
         })
       }
     },

@@ -3,7 +3,16 @@
  *
  * 用户自定义配置
  */
+import { docReady } from '../../../components/util/util'
+
+const TIMEOUT = 10000 // 平台初始化需要的最大时间
 export default {
+  dingtalk: {
+    bridgeReady (plt) {
+      window.dd.config({})
+      window.dd.error(function (err) {})
+    }
+  },
   qq: {
     initialize (plt) {
       // 获取网络类型
@@ -84,5 +93,20 @@ export default {
       // 无用
       return plt.matchUserAgentVersion(/dtdream\/(\d+).(\d+).(\d+)?/i)
     }
+  }
+}
+
+/**
+ * 下载script脚本
+ * @private
+ * */
+function loadScript (url, cb) {
+  let _head = document.getElementsByTagName('head')[0]
+  let _script = document.createElement('script')
+  _script.setAttribute('type', 'text/javascript')
+  _script.setAttribute('src', url)
+  _head.appendChild(_script)
+  _script.onload = function () {
+    cb && cb()
   }
 }
