@@ -16,8 +16,6 @@
  * - 此History是对router实例的拓展, 但是不会为router实例添加方法, 而是从新定义$history, 这个可在业务的this中访问到
  */
 
-import { isPresent } from '../util/util'
-
 export class History {
   constructor (router, config, platform) {
     this._history = []                  // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
@@ -107,8 +105,7 @@ export class History {
     }
   }
 
-  get
-  length () {
+  get length () {
     return this._history.length
   }
 
@@ -214,13 +211,11 @@ export class History {
    * */
   toRoot () {
     // 支付宝方式返回首页
-    if (this._platform.is('alipay') && isPresent(window.AlipayJSBridge)) {
-      this._platform.popToRoot()
-      return
+    let isHandled = this._platform.popToRoot()
+    if (!isHandled) {
+      // fallback
+      this._router.go(1 - this.length)
     }
-
-    // fallback
-    this._router.go(1 - this.length)
   }
 }
 

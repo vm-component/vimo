@@ -7,6 +7,19 @@ import { isArray, isFunction, isPresent } from '../util/util'
 import Vue from 'vue'
 
 export default function (plt) {
+
+  plt.ready().then(() => {
+    window.dd.ui.webViewBounce.disable()
+  })
+
+  // 获取网络环境
+  window.dd.device.connection.getNetworkType({
+    onSuccess (data) {
+      // { result: 'wifi' // result值: wifi 2g 3g 4g unknown none   none表示离线 }
+      plt.setNetworkType(data.result.toString().toLowerCase())
+    }
+  })
+
   // 注册平台 setTitle 方法, 参数在platform.js中
   plt.setNavbarTitle = (titleInfo) => {
     window.dd.biz.navigation.setTitle({
