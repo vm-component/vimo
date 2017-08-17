@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-item item" :class="[itemClass,listHeaderClass,colorClass]" @click="directTo()">
+    <div class="ion-item item" :class="[itemClass,listHeaderClass,colorClass]" @click="directTo($event)">
         <!--以下组件显示在此处：[item-left],ion-checkbox:not([item-right])-->
         <slot name="item-left"></slot>
         <div class="item-inner">
@@ -96,7 +96,8 @@
    * */
   import { isTrueProperty, isPresent, isString } from '../util/util'
   import { Icon } from '../icon'
-  export default{
+
+  export default {
     data () {
       return {
         isInMenu: false, // 判断是否在menu组件中, 如果在menu中, 则
@@ -145,7 +146,7 @@
       /**
        * 类似于a标签跳转
        * */
-      directTo () {
+      directTo ($event) {
         const _this = this
         const router = this.$router
         const current = this.$route
@@ -185,6 +186,8 @@
               router.push(location)
             }
           }
+        } else {
+          this.$emit('click', $event)
         }
       },
 
