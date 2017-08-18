@@ -354,6 +354,54 @@
     created () {},
     mounted () {
       window.sessionStorage.setItem('name', 'sessionStorage')
+
+//      dd.biz.navigation.setRight({
+//        show: true,//控制按钮显示， true 显示， false 隐藏， 默认true
+//        control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+//        text: '发送',//控制显示文本，空字符串表示显示默认文本
+//        onSuccess: function (result) {
+//          //如果control为true，则onSuccess将在发生按钮点击事件被回调
+//          alert('click: ' + JSON.stringify(result))
+//        },
+//        onFail: function (err) {}
+//      })
+
+//      dd.biz.navigation.setMenu({
+//        backgroundColor: '#ADD8E6',
+//        textColor: '#ADD8E611',
+//        items: [
+//          {
+//            'id': '1',//字符串
+////            "iconId":"file",//字符串，图标命名
+//            'text': '帮助',
+//            'url': 'http://img.alicdn.com/tps/TB1XLjqNVXXXXc4XVXXXXXXXXXX-170-64.png'
+//          }
+////          {
+////            "id":"2",
+////            "iconId":"photo",
+////            "text":"dierge"
+////          },
+////          {
+////            "id":"3",
+////            "iconId":"setting",
+////            "text":"disange",
+////          },
+////          {
+////            "id":"4",
+////            "iconId":"time",
+////            "text":"disige"
+////          }
+//        ],
+//        onSuccess: function (data) {
+//          /*
+//          {"id":"1"}
+//          */
+//          alert(JSON.stringify(data))
+//        },
+//        onFail: function (err) {
+//        }
+//      })
+
     },
     activated () {},
     components: {}

@@ -409,7 +409,6 @@ routes = routes.concat(scrollRoutes)
 routes = routes.concat(pickerRoutes)
 
 export default {
-  mode: 'hash', //   "hash" | "history" | "abstract";
-  base: '/', // 默认值: "/",应用的基路径。例如，如果整个单页应用服务在 /app/ 下，然后 base 就应该设为 "/app/"。
+  mode: 'hash',
   routes: routes // （缩写）相当于 routes: routes
 }

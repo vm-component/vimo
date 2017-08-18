@@ -7,7 +7,8 @@
                 <!--menutoggle-->
                 <Buttons right slot="buttons">
                     <Button @click="$menus.toggle('menu')" role="bar-button" menutoggle>
-                        <Icon name="more"></Icon>
+                        <!--<Icon name="more"></Icon>-->
+                        <span>菜单</span>
                     </Button>
                 </Buttons>
                 <Title @onTitleClick="onTitleClickHandler" :title="$t('index.title')"></Title>

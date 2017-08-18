@@ -2,11 +2,11 @@
     <App>
         <!--menu menu-->
         <Menus id="menu" side="left">
-            <Header>
-                <Toolbar>
-                    <Title :title="$t('menu.menu')"></Title>
-                </Toolbar>
-            </Header>
+            <!--<Header>-->
+                <!--<Toolbar>-->
+                    <!--<Title :title="$t('menu.menu')"></Title>-->
+                <!--</Toolbar>-->
+            <!--</Header>-->
             <Content>
                 <List>
                     <!--开始-->

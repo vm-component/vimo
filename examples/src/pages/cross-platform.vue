@@ -4,11 +4,11 @@
             <Navbar ref="navbar" color="primary">
                 <Title ref="title" @onTitleClick="onTitleClickHandler">API Test</Title>
                 <Buttons right slot="buttons">
-                    <Button color="dark" @click="personHandler" role="bar-button">
+                    <Button @click="personHandler" role="bar-button">
                         <Icon name="icon-vue"></Icon>
                     </Button>
                     <Button @click="showPopMenu" role="bar-button">
-                        <Icon name="icon-more"></Icon>
+                        <Icon name="icon-vimo"></Icon>
                     </Button>
                 </Buttons>
             </Navbar>

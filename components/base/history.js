@@ -124,13 +124,10 @@ export class History {
     if (this.usePushWindow && from.matched.length !== 0 && to.matched.length !== 0) {
       let url = ''
       let mode = this._router.mode
-      let base = this._router.history.base
-      if (mode === 'history') {
-        url = `${window.location.origin}${base}${to.fullPath}`
-      } else if (mode === 'hash') {
-        url = `${window.location.origin}/#${to.fullPath}`
+      if (mode === 'hash') {
+        url = `${window.location.origin}${window.location.pathname}${window.location.search}/#${to.fullPath}`
       } else {
-        console.error('history.js::只支持 mode: "hash" | "history"')
+        console.error('history.js::只支持 mode: "hash"')
       }
       isHandled = this._platform.pushWindow(url)
     }

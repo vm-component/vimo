@@ -18,61 +18,54 @@ export default function (plt) {
   })
 
   // 设置Navbar背景色
-  plt.setNavbarBackgroundColor = () => {
-    // 如果在navbar中有颜色指示的字段,
-    // 比如: primary, secondary, danger, light, dark, 则设置webview的导航条颜色,
-    // 其余情况不作处理
-    let navbarElement = document.querySelector('.ion-navbar')
-    if (!navbarElement || !navbarElement.classList) { return false }
-    let classList = navbarElement.classList.toString() || ''
-    let isColorLegal = false
-    let colors = ['primary', 'secondary', 'danger', 'light', 'dark']
-    for (let i = 0, len = colors.length; len > i; i++) {
-      if (classList.indexOf(colors[i]) > -1) {
-        isColorLegal = true
-        break
-      }
-    }
-    if (!isColorLegal) {
-      plt.resetNavbarOptionButton()
-    } else {
-      // 1. 获取背景色
-      let toolbarBackgroundElement = document.querySelector('.toolbar-background')
-      if (!toolbarBackgroundElement) { return false }
-      var rgb = window.getComputedStyle(toolbarBackgroundElement).backgroundColor
-      // "rgb(56, 126, 245)"
-      // "rgba(56, 126, 245,0.8)"
-      if (!rgb) { return false }
-      rgb = rgb.replace('rgb(', '')
-      rgb = rgb.replace('rgba(', '')
-      rgb = rgb.replace(')', '')
-      rgb = rgb.split(',').map(val => val.trim())
-      let r = parseInt(rgb[0]).toString(16).toUpperCase()
-      let g = parseInt(rgb[1]).toString(16).toUpperCase()
-      let b = parseInt(rgb[2]).toString(16).toUpperCase()
-      let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
-      let backgroundColor = `${a}${r}${g}${b}`
-
-      // 2. 设置背景色
-
-      // dd_nav_bgcolor=FF5E97F6
-      let ddNavBgcolor = plt.getQueryParam('dd_nav_bgcolor') || ''
-      // alert(`backgroundColor: ${backgroundColor}, `)
-      // alert(`ddNavBgcolor: ${ddNavBgcolor}, `)
-      if (ddNavBgcolor.toString().toLowerCase() !== backgroundColor.toLowerCase()) {
-        // alert('更换navbar的背景颜色')
-        let search = window.location.search
-        if (search.indexOf('?') === 0) {
-          // "?dd_nav_bgcolor=FF5E97F6"
-          window.location.search = search + `&dd_nav_bgcolor=${backgroundColor.toUpperCase()}`
-        } else {
-          // ""
-          window.location.search = `dd_nav_bgcolor=${backgroundColor.toUpperCase()}`
-        }
-      }
-    }
-    return true
-  }
+  // plt.setNavbarBackgroundColor = () => {
+  //   // 如果在navbar中有颜色指示的字段,
+  //   // 比如: primary, secondary, danger, light, dark, 则设置webview的导航条颜色,
+  //   // 其余情况不作处理
+  //   let navbarElement = document.querySelector('.ion-navbar')
+  //   if (!navbarElement || !navbarElement.classList) { return false }
+  //   let classList = navbarElement.classList.toString() || ''
+  //   let isColorLegal = false
+  //   let colors = ['primary', 'secondary', 'danger', 'light', 'dark']
+  //   for (let i = 0, len = colors.length; len > i; i++) {
+  //     if (classList.indexOf(colors[i]) > -1) {
+  //       isColorLegal = true
+  //       break
+  //     }
+  //   }
+  //   if (!isColorLegal) {
+  //     plt.resetNavbarOptionButton()
+  //   } else {
+  //     // 1. 获取背景色
+  //     let toolbarBackgroundElement = document.querySelector('.toolbar-background')
+  //     if (!toolbarBackgroundElement) { return false }
+  //     var rgb = window.getComputedStyle(toolbarBackgroundElement).backgroundColor
+  //     // "rgb(56, 126, 245)"
+  //     // "rgba(56, 126, 245,0.8)"
+  //     if (!rgb) { return false }
+  //     rgb = rgb.replace('rgb(', '')
+  //     rgb = rgb.replace('rgba(', '')
+  //     rgb = rgb.replace(')', '')
+  //     rgb = rgb.split(',').map(val => val.trim())
+  //     let r = parseInt(rgb[0]).toString(16).toUpperCase()
+  //     let g = parseInt(rgb[1]).toString(16).toUpperCase()
+  //     let b = parseInt(rgb[2]).toString(16).toUpperCase()
+  //     let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
+  //     let backgroundColor = `${a}${r}${g}${b}`
+  //
+  //     // 2. 设置背景色
+  //
+  //     // dd_nav_bgcolor=FF5E97F6
+  //     let ddNavBgcolor = plt.getQueryParam('dd_nav_bgcolor') || ''
+  //     if (ddNavBgcolor.toString().toLowerCase() !== backgroundColor.toLowerCase()) {
+  //       // alert('更换navbar的背景颜色')
+  //       let search = window.location.search
+  //       if (search.indexOf('?') === 0) {
+  //         // "?dd_nav_bgcolor=FF5E97F6"
+  //         let to = window.location.origin + search + `&dd_nav_bgcolor=${backgroundColor.toUpperCase()}` +
+  // window.location.hash window.location.replace(to) } else { // "" let to = window.location.origin +
+  // `?dd_nav_bgcolor=${backgroundColor.toUpperCase()}` + window.location.hash window.location.replace(to) } } } return
+  // true }
 
   // 注册平台 setTitle 方法, 参数在platform.js中
   plt.setNavbarTitle = (titleInfo) => {
@@ -368,6 +361,130 @@ export default function (plt) {
       return true
     }
     return false
+  }
+
+  // 设置导航条右侧按钮, 最多只能设置两个
+  plt.setNavbarOptionButton = (buttons) => {
+    // 获取导航条右侧的按钮组件集合
+    let rightButtonComponents = []
+    if (buttons && isArray(buttons)) {
+      buttons.forEach((buttons) => {
+        if (buttons.componentInstance.getPosition() === 'right') {
+          rightButtonComponents = [].concat(rightButtonComponents, buttons.componentInstance.$children)
+        }
+      })
+    }
+
+    //  && rightButtonComponents.length <= 2
+    if (rightButtonComponents.length > 0) {
+      // 1. 获取数据 -> title/icon(图片/base64)/color/badge/type
+      let items = []
+      let id = 0
+      rightButtonComponents.forEach((component) => {
+        let idName = (id++).toString()
+        let tmp = {
+          id: idName, // 必填
+          text: 'text_' + idName // 必填
+        }
+
+        // 提取 text
+        let buttonInnerElement = component.$el.querySelector('.button-inner')
+        if (buttonInnerElement && buttonInnerElement.innerHTML.trim() === buttonInnerElement.innerText.trim()) {
+          tmp.text = buttonInnerElement.innerText.trim()
+        } else {
+          let spanElement = buttonInnerElement.querySelector('span')
+          if (spanElement) {
+            tmp.text = spanElement.innerText.trim()
+          }
+        }
+
+        component.$children.forEach((child) => {
+          if (child.$options._componentTag.toLowerCase() === 'icon') {
+            let icon = null
+            if (child.name && child.name.indexOf('icon') === 0) {
+              icon = window.getComputedStyle(child.$el).backgroundImage
+              if (icon) {
+                icon = icon.substring(4, icon.length - 1)
+                tmp.url = icon
+              }
+            } else {
+              tmp.iconId = child.name
+            }
+          }
+        })
+        items.push(tmp)
+      })
+
+      // 2. 当前页面存在右侧的按钮, 如果是在平台中, 则通知平台更新状态
+      if (items.length > 2) {
+        console.warn('在Webview中不建议右侧的Navbar按钮超过两个, 即使超过两个在Alipay中也不显示.')
+        items = items.splice(0, 2)
+      }
+      // 支持
+      // 这部分可能需要放到config中
+      // key: H5的Icon样式 value: DingTalk支持的Icon
+      const map = {
+        'trash': 'trash',
+        'time': 'time',
+        'settings': 'setting',
+        'send': 'send',
+        'qr-scanner': 'scan',
+
+        'redo': 'reply',
+        'image': 'photo',
+        'person': 'personal',
+        'glasses': 'org',
+        'checkmark': 'ok',
+
+        'more': 'more', // ng, 降级为将text设置为：'更多'
+        'contact': 'group',
+        'undo': 'forward',
+        'folder': 'folder',
+        'paper': 'file',
+
+        'brush': 'edit',
+        'calendar': 'calendar',
+        'person-add': 'addfriend',
+        'add': 'add',
+
+        'search': 'search'
+      }
+      // 需要对原始的icon数据进行转义
+      items.forEach((item) => {
+        if (item.iconId) {
+          if (map[item.iconId]) {
+            item.iconId = map[item.iconId]
+            if (item.iconId === 'more') {
+              item.text = '更多'
+            }
+          } else {
+            console.warn(`在Navbar右侧设置的按钮name在支付宝中没有找到对应type: ${item.iconId}, iconName<->type 的对应关系请参考手册!`)
+          }
+        }
+      })
+
+      // alert(JSON.stringify(items))
+      window.dd.biz.navigation.setMenu({
+        backgroundColor: '#000000',
+        textColor: '#ffffff',
+        items: items,
+        onSuccess (data) {
+          // {"id":"1"}
+          // index 被点击的菜单项的索引，从0开始，从左到右
+          let index = parseInt(data.id) || 0
+          if (isFunction(rightButtonComponents[index].clickHandler)) {
+            rightButtonComponents[index].clickHandler()
+          }
+        },
+        onFail (err) {
+          console.error('Dingtalk:setNavbarOptionButton 设置失败')
+        }
+      })
+      return true
+    } else {
+      // 导航条右侧没有按钮
+      return false
+    }
   }
 
   plt.previewImage = (options) => {
