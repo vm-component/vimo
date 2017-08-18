@@ -74,8 +74,7 @@
  * @props {boolean} [dismissOnPageChange=false] - 当导航切换时, 是否自动关闭, 默认不关闭
  * @props {string} [mode='ios'] - 模式
  * @props {string} [onDismiss=noop] - 当关闭动画结束时执行的函数
- * @props {string} [type] - (支付宝/dingding) toast 类型，展示相应图标，默认 none，支持 success / fail / exception / none’。其中 exception
- *   类型必须传文字信息
+ * @props {string} [type=''] - (支付宝/DingTalk) toast 类型，展示相应图标，类型可选值： success / fail
  *
  * @demo https://dtfe.github.io/vimo-demo/#/toast
  */

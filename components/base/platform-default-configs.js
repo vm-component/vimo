@@ -2,7 +2,7 @@
  * # 平台层级的 "默认" 配置
  * @private
  */
-import { docReady, isFunction } from '../util/util'
+import { docReady } from '../util/util'
 import platformRegisterAlipay from './platform-register-alipay.js'
 import platformRegisterDingtalk from './platform-register-dingtalk'
 
@@ -110,7 +110,6 @@ export default {
               // 触发平台的统一ready事件
               plt.triggerReady('Wechat Init Success!')
               plt.timer && window.clearTimeout(plt.timer)
-
             }
 
             if (typeof window.WeixinJSBridge === 'undefined') {
@@ -168,8 +167,6 @@ export default {
    * - subtitleClick(点击导航栏副标题触发回调)这个事件很鸡肋, Vimo只做了对 `titleClick` 的监听, 请参考 `<Title>` 组件
    * - 通过在 `platform.onNetworkChange()` 注册网络变化的回调函数, 回调参数是当前网络类型
    * - 平台初始化完毕注册 `exitApp` 方法, 用法: `this.$platform.exitApp()`
-   * -
-   *
    * */
   alipay: {
     initialize (plt) {
@@ -239,16 +236,6 @@ export default {
       if (!!val && val.length > 0 && !!val[1]) {
         plt.setLang(val[1].toString().toLowerCase(), true)
       }
-
-      // 监听网络变化
-      window.document.addEventListener('h5NetworkChange', () => {
-        window.AlipayJSBridge.call('getNetworkType', (result) => {
-          plt.setNetworkType(result.networkInfo.toString().toLowerCase())
-          plt._networkChangeCallbacks.forEach((fn) => {
-            isFunction(fn) && fn(result.networkInfo.toString().toLowerCase())
-          })
-        })
-      }, false)
     },
     // 由业务完成部分
     bridgeReady (plt) {},

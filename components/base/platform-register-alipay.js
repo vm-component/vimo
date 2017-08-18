@@ -20,6 +20,16 @@ export default function (plt) {
     plt.setNetworkType(result.networkInfo.toString().toLowerCase())
   })
 
+  // 监听网络变化
+  window.document.addEventListener('h5NetworkChange', () => {
+    window.AlipayJSBridge.call('getNetworkType', (result) => {
+      plt.setNetworkType(result.networkInfo.toString().toLowerCase())
+      plt._networkChangeCallbacks.forEach((fn) => {
+        isFunction(fn) && fn(result.networkInfo.toString().toLowerCase())
+      })
+    })
+  }, false)
+
   // title 点击事件
   document.addEventListener('titleClick', () => {
     Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onTitleClick')
@@ -54,8 +64,9 @@ export default function (plt) {
         }
       }
       options.buttons.push(cancelButton)
+
       window.AlipayJSBridge.call('actionSheet', {
-        title: options.title || '',
+        title: options.title,
         btns: buttons || [],
         cancelBtn: cancelButton.text || '取消',
         destructiveBtnIndex: destructiveButtonIndex || -1

@@ -25,7 +25,7 @@ export default {
     },
     dingtalk: {
       hideNavBar: true
-    },
+    }
   },
   domain: '' // http://gamma-member.tesir.top
 }

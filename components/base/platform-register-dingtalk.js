@@ -17,6 +17,63 @@ export default function (plt) {
     }
   })
 
+  // 设置Navbar背景色
+  plt.setNavbarBackgroundColor = () => {
+    // 如果在navbar中有颜色指示的字段,
+    // 比如: primary, secondary, danger, light, dark, 则设置webview的导航条颜色,
+    // 其余情况不作处理
+    let navbarElement = document.querySelector('.ion-navbar')
+    if (!navbarElement || !navbarElement.classList) { return false }
+    let classList = navbarElement.classList.toString() || ''
+    let isColorLegal = false
+    let colors = ['primary', 'secondary', 'danger', 'light', 'dark']
+    for (let i = 0, len = colors.length; len > i; i++) {
+      if (classList.indexOf(colors[i]) > -1) {
+        isColorLegal = true
+        break
+      }
+    }
+    if (!isColorLegal) {
+      plt.resetNavbarOptionButton()
+    } else {
+      // 1. 获取背景色
+      let toolbarBackgroundElement = document.querySelector('.toolbar-background')
+      if (!toolbarBackgroundElement) { return false }
+      var rgb = window.getComputedStyle(toolbarBackgroundElement).backgroundColor
+      // "rgb(56, 126, 245)"
+      // "rgba(56, 126, 245,0.8)"
+      if (!rgb) { return false }
+      rgb = rgb.replace('rgb(', '')
+      rgb = rgb.replace('rgba(', '')
+      rgb = rgb.replace(')', '')
+      rgb = rgb.split(',').map(val => val.trim())
+      let r = parseInt(rgb[0]).toString(16).toUpperCase()
+      let g = parseInt(rgb[1]).toString(16).toUpperCase()
+      let b = parseInt(rgb[2]).toString(16).toUpperCase()
+      let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
+      let backgroundColor = `${a}${r}${g}${b}`
+
+      // 2. 设置背景色
+
+      // dd_nav_bgcolor=FF5E97F6
+      let ddNavBgcolor = plt.getQueryParam('dd_nav_bgcolor') || ''
+      // alert(`backgroundColor: ${backgroundColor}, `)
+      // alert(`ddNavBgcolor: ${ddNavBgcolor}, `)
+      if (ddNavBgcolor.toString().toLowerCase() !== backgroundColor.toLowerCase()) {
+        // alert('更换navbar的背景颜色')
+        let search = window.location.search
+        if (search.indexOf('?') === 0) {
+          // "?dd_nav_bgcolor=FF5E97F6"
+          window.location.search = search + `&dd_nav_bgcolor=${backgroundColor.toUpperCase()}`
+        } else {
+          // ""
+          window.location.search = `dd_nav_bgcolor=${backgroundColor.toUpperCase()}`
+        }
+      }
+    }
+    return true
+  }
+
   // 注册平台 setTitle 方法, 参数在platform.js中
   plt.setNavbarTitle = (titleInfo) => {
     window.dd.biz.navigation.setTitle({
@@ -54,7 +111,7 @@ export default function (plt) {
       }
       options.buttons.push(cancelButton)
       window.dd.device.notification.actionSheet({
-        title: options.title || '',
+        title: options.title,
         cancelButton: cancelButton.text || '取消',
         otherButtons: buttons || [],
         onSuccess (result) {
