@@ -574,6 +574,7 @@ export default function (plt) {
   }
 
   plt.pushWindow = (url) => {
+    // rgba转化为10位int方法
     // // rgb(239, 239, 244) rgba(239, 239, 244, 0.8)
     // let rgb = window.getComputedStyle(document.querySelector('.ion-content')).backgroundColor
     // if (!rgb) { return false }
@@ -590,7 +591,6 @@ export default function (plt) {
     // if (rgb.length === 4) {
     //   color = rgb[3] << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]
     // }
-
     window.AlipayJSBridge.call('pushWindow', {
       url: url,
       param: {

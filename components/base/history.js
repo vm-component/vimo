@@ -125,7 +125,7 @@ export class History {
       let url = ''
       let mode = this._router.mode
       if (mode === 'hash') {
-        url = `${window.location.origin}${window.location.pathname}${window.location.search}/#${to.fullPath}`
+        url = `${window.location.origin}${window.location.pathname}${window.location.search}#${to.fullPath}`
       } else {
         console.error('history.js::只支持 mode: "hash"')
       }

@@ -137,7 +137,6 @@ function dismiss (dataBack) {
   isModalEnable = false
 
   return new Promise((resolve) => {
-
     // 总是关闭最后一次创建的modal
     let lastModalInstance = modalArr.pop()
 

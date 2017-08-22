@@ -18,60 +18,72 @@ export default function (plt) {
   })
 
   // 设置Navbar背景色
-  // plt.setNavbarBackgroundColor = () => {
-  //   // 如果在navbar中有颜色指示的字段,
-  //   // 比如: primary, secondary, danger, light, dark, 则设置webview的导航条颜色,
-  //   // 其余情况不作处理
-  //   let navbarElement = document.querySelector('.ion-navbar')
-  //   if (!navbarElement || !navbarElement.classList) { return false }
-  //   let classList = navbarElement.classList.toString() || ''
-  //   let isColorLegal = false
-  //   let colors = ['primary', 'secondary', 'danger', 'light', 'dark']
-  //   for (let i = 0, len = colors.length; len > i; i++) {
-  //     if (classList.indexOf(colors[i]) > -1) {
-  //       isColorLegal = true
-  //       break
-  //     }
-  //   }
-  //   if (!isColorLegal) {
-  //     plt.resetNavbarOptionButton()
-  //   } else {
-  //     // 1. 获取背景色
-  //     let toolbarBackgroundElement = document.querySelector('.toolbar-background')
-  //     if (!toolbarBackgroundElement) { return false }
-  //     var rgb = window.getComputedStyle(toolbarBackgroundElement).backgroundColor
-  //     // "rgb(56, 126, 245)"
-  //     // "rgba(56, 126, 245,0.8)"
-  //     if (!rgb) { return false }
-  //     rgb = rgb.replace('rgb(', '')
-  //     rgb = rgb.replace('rgba(', '')
-  //     rgb = rgb.replace(')', '')
-  //     rgb = rgb.split(',').map(val => val.trim())
-  //     let r = parseInt(rgb[0]).toString(16).toUpperCase()
-  //     let g = parseInt(rgb[1]).toString(16).toUpperCase()
-  //     let b = parseInt(rgb[2]).toString(16).toUpperCase()
-  //     let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
-  //     let backgroundColor = `${a}${r}${g}${b}`
-  //
-  //     // 2. 设置背景色
-  //
-  //     // dd_nav_bgcolor=FF5E97F6
-  //     let ddNavBgcolor = plt.getQueryParam('dd_nav_bgcolor') || ''
-  //     if (ddNavBgcolor.toString().toLowerCase() !== backgroundColor.toLowerCase()) {
-  //       // alert('更换navbar的背景颜色')
-  //       let search = window.location.search
-  //       if (search.indexOf('?') === 0) {
-  //         // "?dd_nav_bgcolor=FF5E97F6"
-  //         let to = window.location.origin + search + `&dd_nav_bgcolor=${backgroundColor.toUpperCase()}` +
-  // window.location.hash window.location.replace(to) } else { // "" let to = window.location.origin +
-  // `?dd_nav_bgcolor=${backgroundColor.toUpperCase()}` + window.location.hash window.location.replace(to) } } } return
-  // true }
+  plt.setNavbarBackgroundColor = () => {
+    // 设置背景色需要当页重定向，因此使用体验不好，建议看钉钉文档，在url中配置背景色，下方代码方便你计算rgb的转化问题
+    if (false) {
+      // 如果在navbar中有颜色指示的字段,
+      // 比如: primary, secondary, danger, light, dark, 则设置webview的导航条颜色,
+      // 其余情况不作处理
+      let navbarElement = document.querySelector('.ion-navbar')
+      if (!navbarElement || !navbarElement.classList) { return false }
+      let classList = navbarElement.classList.toString() || ''
+      let isColorLegal = false
+      let colors = ['primary', 'secondary', 'danger', 'light', 'dark']
+      for (let i = 0, len = colors.length; len > i; i++) {
+        if (classList.indexOf(colors[i]) > -1) {
+          isColorLegal = true
+          break
+        }
+      }
+      if (isColorLegal) {
+        // 1. 获取背景色
+        let toolbarBackgroundElement = document.querySelector('.toolbar-background')
+        if (!toolbarBackgroundElement) { return false }
+        var rgb = window.getComputedStyle(toolbarBackgroundElement).backgroundColor
+        // "rgb(56, 126, 245)"
+        // "rgba(56, 126, 245,0.8)"
+        if (!rgb) { return false }
+        rgb = rgb.replace('rgb(', '')
+        rgb = rgb.replace('rgba(', '')
+        rgb = rgb.replace(')', '')
+        rgb = rgb.split(',').map(val => val.trim())
+        let r = parseInt(rgb[0]).toString(16).toUpperCase()
+        let g = parseInt(rgb[1]).toString(16).toUpperCase()
+        let b = parseInt(rgb[2]).toString(16).toUpperCase()
+        let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
+        let backgroundColor = `${a}${r}${g}${b}`
+
+        // 2. 设置背景色
+
+        // dd_nav_bgcolor=FF5E97F6
+        let ddNavBgcolor = plt.getQueryParam('dd_nav_bgcolor') || ''
+        if (ddNavBgcolor.toString().toLowerCase() !== backgroundColor.toLowerCase()) {
+          // alert('更换navbar的背景颜色')
+          let search = window.location.search
+          if (search.indexOf('?') === 0) {
+            // "?dd_nav_bgcolor=FF5E97F6"
+            let to = `${window.location.origin}${search}&dd_nav_bgcolor=${backgroundColor.toUpperCase()}${window.location.hash}`
+            window.location.replace(to)
+          } else {
+            let to = `${window.location.origin}?dd_nav_bgcolor=${backgroundColor.toUpperCase()}${window.location.hash}`
+            window.location.replace(to)
+          }
+        }
+        return true
+      }
+    }
+    return false
+  }
 
   // 注册平台 setTitle 方法, 参数在platform.js中
   plt.setNavbarTitle = (titleInfo) => {
-    window.dd.biz.navigation.setTitle({
-      title: titleInfo.title || '' // 控制标题文本，空字符串表示显示默认文本
-    })
+    if (titleInfo.title) {
+      window.dd.biz.navigation.setTitle({
+        title: titleInfo.title // 控制标题文本，空字符串表示显示默认文本
+      })
+      return true
+    }
+    return false
   }
 
   // title 点击事件
@@ -139,8 +151,8 @@ export default function (plt) {
 
       window.dd.device.notification.modal({
         image: options.image,
-        title: options.title || '',
-        content: options.message || '',
+        title: options.title,
+        content: options.message,
         buttonLabels: [cancelButton.text || '取消', confirmButton.text || '确定'],
         onSuccess (result) {
           // {buttonIndex: 0 //被点击按钮的索引值，Number类型，从0开始}
@@ -159,8 +171,8 @@ export default function (plt) {
     if (options.buttons.length === 1) {
       console.debug('Alert 组件使用DingTalk模式!')
       window.dd.device.notification.alert({
-        title: options.title || '',
-        message: options.message || '',
+        title: options.title,
+        message: options.message,
         buttonName: options.buttons[0].text || '确定',
         onSuccess () {
           isPresent(options.buttons[0]) && isFunction(options.buttons[0].handler) && options.buttons[0].handler()
@@ -182,8 +194,8 @@ export default function (plt) {
         }
       })
       window.dd.device.notification.confirm({
-        message: options.message || '',
-        title: options.title || '',
+        message: options.message,
+        title: options.title,
         buttonLabels: [cancelButton.text || '取消', confirmButton.text || '确定'],
         onSuccess (result) {
           // onSuccess将在点击button之后回调
@@ -211,8 +223,8 @@ export default function (plt) {
         }
       })
       window.dd.device.notification.prompt({
-        title: options.title || '',
-        message: options.message || '',
+        title: options.title,
+        message: options.message,
         buttonLabels: [cancelButton.text || '取消', confirmButton.text || '确定'],
         onSuccess (result) {
           // onSuccess将在点击button之后回调

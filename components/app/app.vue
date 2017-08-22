@@ -225,7 +225,7 @@
           _title = {title: _title}
         }
         let isHandled = this.$platform.setNavbarTitle(_title)
-        if (!isHandled) {
+        if (!isHandled && _title.title) {
           if (this.$platform.platforms().length <= 2) {
             // PC端
             document.title = _title.title || ''
