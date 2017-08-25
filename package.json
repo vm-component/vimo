@@ -1,6 +1,6 @@
 {
   "name": "vimo",
-  "version": "0.5.14",
+  "version": "0.5.18",
   "description": "A Vue2.x UI Project For Mobile & HyBrid",
   "author": "向松涛 <280304286@163.com>",
   "homepage": "https://github.com/DTFE/vimo",
@@ -43,8 +43,7 @@
     "es6-promise": "^4.1.0",
     "swipe-js-iso": "^2.0.3",
     "velocity-animate": "^1.5.0",
-    "swiper": "^3.4.2",
-    "vue": "latest"
+    "swiper": "^3.4.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

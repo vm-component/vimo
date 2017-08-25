@@ -176,7 +176,7 @@
        */
       enable (shouldEnable) {
         this.state = (shouldEnable ? STATE_ENABLED : STATE_DISABLED)
-        this._setListeners(shouldEnable)
+        this.setListeners(shouldEnable)
       },
 
       /**
@@ -290,8 +290,8 @@
        * 初始化
        * */
       init () {
-        let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
-        _pageComponentChildrenList.forEach((component) => {
+        let pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
+        pageComponentChildrenList.forEach((component) => {
           if (component.$options._componentTag.toLowerCase() === 'content') {
             this.contentComponent = component
           }
