@@ -1,9 +1,7 @@
 <template>
     <div class="ion-action-sheet" :class="[modeClass,cssClass]">
-        <!--backdrop-->
         <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
                   :isActive="isActive"></Backdrop>
-        <!--actionsheet wrap-->
         <transition
                 name="action-sheet"
                 @before-enter="beforeEnter"
@@ -46,27 +44,30 @@
   import { Backdrop } from '../backdrop/index'
   import { Button } from '../button/index'
   import { Icon } from '../icon/index'
-  export default{
+
+  const noop = () => {}
+
+  export default {
     name: 'ActionSheet',
     props: {
-      title: [String],
-      subTitle: [String],
-      cssClass: [String],
+      title: String,
+      subTitle: String,
+      cssClass: String,
       buttons: {
         type: Array,
-        default () { return [] }
+        default: []
       },
       enableBackdropDismiss: {
         type: Boolean,
-        default () { return true }
+        default: true
       },
       mode: {
         type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
       dismissOnPageChange: {
         type: Boolean,
-        default () { return true }
+        default: true
       }
     },
     data () {
@@ -88,15 +89,14 @@
         cancelButton: null, // 取消按钮(组)，一般放在下面
 
         // promise
-        presentCallback: null,
-        dismissCallback: null,
+        presentCallback: noop,
+        dismissCallback: noop,
 
-        unreg: null         // 页面变化的解绑函数
+        unReg: null         // 页面变化的解绑函数
       }
     },
     computed: {
-      // 设置ActionSheet的风格
-      modeClass: function () {
+      modeClass () {
         return `action-sheet-${this.mode}`
       }
     },
@@ -111,7 +111,7 @@
       },
       afterEnter () {
         this.presentCallback()
-        this._focusOutActiveElement()
+        this.focusOutActiveElement()
         let focusableEle = document.querySelector('button')
         if (focusableEle) {
           focusableEle.focus()
@@ -133,7 +133,7 @@
        * ActionSheet启动之前去除focus效果，因为存在键盘
        * @private
        * */
-      _focusOutActiveElement () {
+      focusOutActiveElement () {
         // only button？
         const activeElement = document.activeElement
         activeElement && activeElement.blur && activeElement.blur()
@@ -142,10 +142,8 @@
       /**
        * @function bdClick
        * @description
-       * 点击backdrop,关闭actionsheet
-       *
-       * 如存在cancel按钮，点击按钮关闭actionsheet
-       * Backdrop Click Handler, If cancelButton defined, then action cancelButton handler.
+       * 点击backdrop,关闭ActionSheet
+       * 如存在cancel按钮的handler，则点击backdrop执行此handler
        * @private
        */
       bdClick () {
@@ -190,7 +188,6 @@
        * @function present
        * @description
        * 打开ActionSheet
-       * @param {Object} options - 给组件props传参的对象, 这部分在actionsheet.js中定义
        * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
        * @private
        */
@@ -208,8 +205,8 @@
        * */
       dismiss () {
         if (this.isActive) {
-          this.isActive = false // 动起来
-          this.unreg && this.unreg()
+          this.isActive = false
+          this.unReg && this.unReg()
           if (!this.enabled) {
             this.$nextTick(() => {
               this.dismissCallback()
@@ -263,7 +260,7 @@
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
-        this.unreg = urlChange(() => {
+        this.unReg = urlChange(() => {
           this.isActive && this.dismiss()
         })
       }

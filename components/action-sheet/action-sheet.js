@@ -72,8 +72,13 @@ import actionSheetComponent from './action-sheet.vue'
 
 const ActionSheet = Vue.extend(actionSheetComponent)
 
-// ---------- functions ----------
-
+/**
+ * 生成ActionSheet实例
+ * @param {object} options - 参数
+ * @param {Element} options.el - 元素
+ * @param {object} options.propsData - prop数据
+ * @private
+ * */
 function ActionSheetFactory (options) {
   let el = getInsertPosition('sheetPortal').appendChild(document.createElement('div'))
   return new ActionSheet({el, propsData: options})
@@ -85,7 +90,7 @@ function getPresentDismissIns (Factory) {
      * 组件实例
      * @private
      * */
-    _i: null, // instance
+    _i: null,
 
     /**
      * @function present
@@ -94,11 +99,11 @@ function getPresentDismissIns (Factory) {
      * @param {object} options - 传入参数
      * @param {String} [options.title]                        - ActionSheet的标题
      * @param {string} [options.subTitle]                     - ActionSheet的副标题
-     * @param {string} [options.cssClass]                     - Additional classes for custom styles, separated by
-     *   spaces
+     * @param {string} [options.cssClass]                     - 自定义样式
      * @param {Boolean} [options.enableBackdropDismiss=true]  - 允许点击backdrop关闭actionsheet
      * @param {Boolean} [options.dismissOnPageChange=true]    - 路由切换关闭组件
      * @param {string} [options.mode=ios]                     - 样式模式
+     * @param {string} [options.isH5=false]                   - 强制使用H5组件
      * @param {Array} [options.buttons]                       - button数组，包含全部role
      * @param {Array} options.buttons.text                    - button显示文本
      * @param {Array} options.buttons.icon                    - button显示的icon的name, 具体参考Icon组件
@@ -148,6 +153,4 @@ function getPresentDismissIns (Factory) {
   }
 }
 
-let actionsheetInstance = getPresentDismissIns(ActionSheetFactory)
-
-export default actionsheetInstance
+export default getPresentDismissIns(ActionSheetFactory)
