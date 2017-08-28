@@ -89,7 +89,22 @@ let routes = [
   {
     path: '/cross-platform',
     name: 'crossPlatform',
-    component: require('@/pages/cross-platform.vue')
+    component: require('@/pages/cross-platform/index.vue')
+  },
+  {
+    path: '/cross-platform-popups',
+    name: 'crossPlatform.popups',
+    component: require('@/pages/cross-platform/popups.vue')
+  },
+  {
+    path: '/cross-platform-location',
+    name: 'crossPlatform.location',
+    component: require('@/pages/cross-platform/location.vue')
+  },
+  {
+    path: '/cross-platform-launcher',
+    name: 'crossPlatform.launcher',
+    component: require('@/pages/cross-platform/launcher.vue')
   },
   {
     path: '/toolbar',

@@ -14,19 +14,43 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <h5>
-                当前平台：{{platformName}}
-            </h5>
-            <p>Vimo框架会识别当前的平台 <strong>根据平台提供的JSSDK开启特定平台的组件</strong>, 比如下方列出的组件会根据平台展现不同的特性, <strong>默认使用H5模式</strong>, 目前支持Alipay和Dingtalk两个平台, 你可以试下在这两个平台打开这个页面体验下面的设置方法. 当然, 下面列出的方法只是部分方法...
-            </p>
+            <h4>弹窗组件</h4>
+            <!--提示框 Alert-->
+            <strong>提示框 Alert</strong>
+            <Button block @click="openAlert()">Alert</Button>
+            <strong>结果</strong>
+            <p class="result">{{alertResult}}</p>
+            <!--确认框 Confirm-->
+            <strong>确认框 Confirm</strong>
+            <Button block @click="openConfirm">Confirm</Button>
+            <strong>结果</strong>
+            <p class="result">{{confirmResult}}</p>
+            <!--输入框 Prompt-->
+            <strong>输入框 Prompt</strong>
+            <Button block @click="openPrompt">Prompt</Button>
+            <strong>结果</strong>
+            <p class="result">{{promptResult}}</p>
+            <!--震动 Vibrate-->
+            <strong>震动 Vibrate(Android Only)</strong>
+            <Button block @click="vibrate">Vibrate</Button>
+            <strong>结果</strong>
+            <p class="result">{{vibrateResult}}</p>
+            <!--等待 Loading-->
+            <strong>等待 Loading</strong>
+            <Button block @click="openLoading">Loading</Button>
+            <strong>结果</strong>
+            <p class="result">{{loadingResult}}</p>
+            <!--弱提示 Toast-->
+            <strong>弱提示 Toast</strong>
+            <Button block @click="openToast">Toast</Button>
+            <strong>结果</strong>
+            <p class="result">{{toastResult}}</p>
+            <!--选择器 ActionSheet-->
+            <strong>选择器 ActionSheet</strong>
+            <Button block @click="openActionSheet">ActionSheet</Button>
+            <strong>结果</strong>
+            <p class="result">{{actionsheetResult}}</p>
 
-            <h5 text-danger class="text-danger">弹窗组件</h5>
-            <Button block @click="openToast">打开Toast</Button>
-            <Button block @click="openActionSheet">打开ActionSheet</Button>
-            <Button block @click="openAlert">打开Alert</Button>
-            <Button block @click="openConfirm">打开Confirm</Button>
-            <Button block @click="openPrompt">打开Prompt</Button>
-            <Button block @click="openLoading">打开Loading</Button>
 
             <h5>导航栏</h5>
             <Button block @click="btnTitle">设置标题文字</Button>
@@ -49,6 +73,16 @@
     </Page>
 </template>
 <style scoped lang="scss">
+
+    .result {
+        border: 1px dashed #333;
+        min-height: 20px;
+        border-radius: 3px;
+        overflow-y: scroll;
+        white-space: pre-line;
+        margin: 0 0 20px;
+    }
+
     .icon-vue {
         height: 30px;
         width: 30px;
@@ -66,28 +100,39 @@
     .icon-vimo {
         height: 30px;
         width: 30px;
-        background: url('../assets/vimo.png') no-repeat center center/30px 30px;
+        background: url('../../assets/vimo.png') no-repeat center center/30px 30px;
     }
 
     .icon-alipay {
         height: 30px;
         width: 40px;
-        background: url('../assets/alipay.png') no-repeat center center/cover;
+        background: url('../../assets/alipay.png') no-repeat center center/cover;
     }
 
     .icon-wechat {
         height: 30px;
         width: 36px;
-        background: url('../assets/wechat.png') no-repeat center center/cover;
+        background: url('../../assets/wechat.png') no-repeat center center/cover;
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'name',
     data () {
       return {
         platformName: 'H5',
-        smoothie: `Banana Watermelon`
+        smoothie: `Banana Watermelon`,
+
+        // result
+        alertResult: '',
+        confirmResult: '',
+        promptResult: '',
+        vibrateResult: '',
+        loadingResult: '',
+        toastResult: '',
+        actionsheetResult: '',
+
+        test: ''
       }
     },
     props: {},
@@ -103,6 +148,7 @@
     methods: {
       // 点击navbar由此第一个vue的icon
       personHandler () {
+        const _this = this
         this.$alert.present({
           title: '快上车',
           message: '老司机要开车了, 系好安全带!',
@@ -110,7 +156,7 @@
             {
               text: '系好了',
               handler: () => {
-                console.log('系好了 clicked')
+                _this.alertResult = '系好了 clicked'
               }
             }
           ]
@@ -119,82 +165,8 @@
       /**
        * 弹窗组件
        * */
-      openToast () {
-        this.$toast({
-          type: 'success',
-          message: '支付成功',
-          duration: 3000,
-          onDismiss () {
-            console.debug('Toast 关闭')
-          }
-        })
-      },
-      openActionSheet () {
-        this.$actionSheet.present({
-          title: '请选择操作',
-          buttons: [
-            {
-              text: '再弹一次',
-              role: 'destructive',
-              handler: () => {
-                console.log('再弹一次 clicked')
-                this.$actionSheet.present({
-                  title: '请选择操作',
-                  buttons: [
-                    {
-                      text: '苹果',
-                      handler: () => {
-                        console.log('苹果 clicked')
-                      }
-                    },
-                    {
-                      text: '柠檬',
-                      handler: () => {
-                        console.log('柠檬 clicked')
-                      }
-                    },
-                    {
-                      text: '土豆',
-                      handler: () => {
-                        console.log('土豆 clicked')
-                      }
-                    },
-                    {
-                      text: '关闭',
-                      role: 'cancel',
-                      handler: () => {
-                        console.debug('关闭 clicked')
-                      }
-                    }
-                  ]
-                })
-              }
-            },
-            {
-              text: '翻转',
-              handler: () => {
-                console.log('翻转 clicked')
-              }
-            },
-            {
-              text: '增加',
-              handler: () => {
-                console.log('增加 clicked')
-              }
-            },
-            {
-              text: '取消',
-              role: 'cancel',
-              handler: () => {
-                console.log('取消 clicked')
-              }
-            }
-          ]
-        }).then(function () {
-          console.log('actionsheet 开启 promise')
-        })
-      },
       openAlert () {
+        const _this = this
         this.$alert.present({
           title: '温馨提示',
           message: '您的快递到了！',
@@ -202,13 +174,14 @@
             {
               text: '确定',
               handler: () => {
-                console.log('确定 clicked')
+                _this.alertResult = '系好了 clicked'
               }
             }
           ]
         })
       },
       openConfirm () {
+        const _this = this
         this.$alert.present({
           title: '温馨提示',
           message: '您是否想查询快递单号：\n1234567890',
@@ -217,19 +190,20 @@
               text: '暂不需要',
               role: 'cancel',
               handler: () => {
-                console.log('暂不需要 click')
+                _this.confirmResult = '暂不需要 click'
               }
             },
             {
               text: '马上查询',
               handler: () => {
-                console.log('马上查询 click')
+                _this.confirmResult = '马上查询 click'
               }
             }
           ]
         })
       },
       openPrompt () {
+        const _this = this
         this.$alert.present({
           title: '登录iTunes Store',
           message: '请输入您Apple ID"apple@icloud.com"的密码',
@@ -246,45 +220,93 @@
             {
               text: '取消',
               role: 'cancel',
-              handler: () => {}
+              handler: () => {
+                _this.promptResult = '取消 clicked'
+              }
             },
             {
               text: '确定',
               handler: (value) => {
-                this.$alert.present({
-                  title: '请确认',
-                  message: '您输入的信息：' + JSON.stringify(value),
-                  cssClass: '',
-                  enableBackdropDismiss: true,
-                  buttons: [
-                    {
-                      text: '确定',
-                      role: 'cancel',
-                      handler: (value) => {
-                        this.$alert.dismiss().then(function () {
-                          console.log('Alert 确定 click')
-                        })
-                      }
-                    }
-                  ]
-                }).then(function () {
-                  console.log('Alert present promise')
-                })
+                _this.promptResult = `${JSON.stringify(value)}`
               }
             }
           ]
-        }).then(function () {
+        }).then(() => {
           console.log('Input present!')
+        })
+      },
+      vibrate () {
+        const _this = this
+        window.dd && window.dd.device.notification.vibrate({
+          duration: 300,
+          onSuccess (data) {
+            _this.vibrateResult = `onSuccess: ${JSON.stringify(data)}`
+          },
+          onFail (error) {
+            _this.vibrateResult = `onFail: ${JSON.stringify(error)}`
+          }
         })
       },
       openLoading () {
         this.$loading.present({
           content: '正在加载'
+        }).then(() => {
+          this.loadingResult = `Loading打开成功, 3000ms后关闭`
         })
-
         window.setTimeout(() => {
-          this.$loading.dismiss('loading.dismiss')
+          this.$loading.dismiss('loading.dismiss').then(() => {
+            this.loadingResult = `Loading关闭成功`
+          })
         }, 3000)
+      },
+      openToast () {
+        const _this = this
+        _this.toastResult = 'Toast 开启, 3000ms后关闭'
+        this.$toast({
+          type: 'success',
+          message: '支付成功',
+          duration: 3000,
+          onDismiss () {
+            _this.toastResult = 'Toast 关闭'
+          }
+        })
+      },
+
+      openActionSheet () {
+        const _this = this
+        this.$actionSheet.present({
+          title: '请选择操作',
+          buttons: [
+            {
+              text: '再弹一次',
+              role: 'destructive',
+              handler: () => {
+                _this.actionsheetResult = '再弹一次 clicked'
+              }
+            },
+            {
+              text: '翻转',
+              handler: () => {
+                _this.actionsheetResult = '翻转 clicked'
+              }
+            },
+            {
+              text: '增加',
+              handler: () => {
+                _this.actionsheetResult = '增加 clicked'
+              }
+            },
+            {
+              text: '取消',
+              role: 'cancel',
+              handler: () => {
+                _this.actionsheetResult = '取消 clicked'
+              }
+            }
+          ]
+        }).then(function () {
+          _this.actionsheetResult = 'ActionSheet 开启 clicked'
+        })
       },
 
       /**
@@ -343,7 +365,7 @@
       showOptionButton () {
         this.navbarComponent.showOptionButton()
       },
-      hideOptionButton() {
+      hideOptionButton () {
         this.navbarComponent.hideOptionButton()
       },
       onTitleClickHandler () {

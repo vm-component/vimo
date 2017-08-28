@@ -264,12 +264,14 @@ export default function (plt) {
     console.debug('Toast 组件使用DingTalk模式!')
     if (options.type === 'fail') { options.type = 'error' }
     window.dd.device.notification.toast({
-      icon: options.type || '', // icon样式，有success和error，默认为空 0.0.2
-      text: options.message || '', // 提示信息
+      icon: options.type, // icon样式，有success和error，默认为空 0.0.2
+      text: options.message, // 提示信息
       duration: options.duration / 1000 || 2, // 显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
-      delay: options.delay || 0, // 延迟显示，单位秒，默认0
+      delay: options.delay, // 延迟显示，单位秒，默认0
       onSuccess () {
-        isFunction(options.onDismiss) && options.onDismiss()
+        window.setTimeout(() => {
+          isFunction(options.onDismiss) && options.onDismiss()
+        }, options.duration)
       }
     })
     return true

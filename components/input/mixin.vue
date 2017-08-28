@@ -161,28 +161,28 @@
        * 如果为true, 当输入值的时候一个清除按钮会在input右边出现, 点击按钮则清除输入
        * textarea没有这个特性
        * */
-      clearInput: [Boolean],
+      clearInput: Boolean,
 
       /**
        * 如果为true, 当再次输入的时候会清空上次的输入, 如果type为password时默认为true, 其余情况默认为false
        * 默认值的变更, 需要js控制
        * */
-      clearOnEdit: [Boolean],
+      clearOnEdit: Boolean,
 
       /**
        * 如果为true, 用户无法输入
        * */
-      disabled: [Boolean],
+      disabled: Boolean,
 
       /**
        * 设置最大值, 只对type=number有效
        * */
-      max: [Number],
+      max: Number,
 
       /**
        * 设置最大值, 只对textarea有效
        * */
-      maxlength: [Number],
+      maxlength: Number,
 
       /**
        * 设置行数, 只对textarea有效
