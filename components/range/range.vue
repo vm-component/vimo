@@ -10,7 +10,7 @@
              @touchmove="pointerMove($event)"
              @mousedown="pointerDown($event)"
              @touchstart="pointerDown($event)">
-            <div class="range-tick" v-for=" t of ticks" :style="{ left: t.left }"
+            <div class="range-tick" v-for="t in ticks" :style="{ left: t.left }"
                  :class="{'range-tick-active':t.active}"
                  role="presentation"></div>
             <div class="range-bar" role="presentation"></div>
@@ -55,10 +55,7 @@
    *
    * ### 注意
    *
-   * 如果debounce的值大于0, 则认为触发onChange事件是在松开knob之后, 并在debounce时间之后触发, 否则随着knob的拖动而触发onChange事件.
-   *
    * @props {String} [color] - 颜色
-   * @props {Number} [debounce=0] - 触发onChange的等待时间
    * @props {Boolean} [disabled=false] - 是否禁用
    * @props {Boolean} [dualKnobs=false] - 选择的拖动按钮, 默认是一个, true为两个
    * @props {Number} [max=100] - range的最大值
@@ -72,7 +69,6 @@
    * @slot range-right - 在range组件右边, 一般放Icon
    * @slot range-left - 在range组件左边, 一般放Icon
    *
-   * @fires component:Range#onChange
    * @demo https://dtfe.github.io/vimo-demo/#/range
    *
    * @usage
@@ -92,7 +88,8 @@
    * */
   import RangeKnobHandle from './range-knob-handle.vue'
   import { setElementClass, pointerCoord, clamp, isNumber, isObject, isString } from '../util/util'
-  export default{
+
+  export default {
     name: 'Range',
     data () {
       return {
@@ -116,7 +113,7 @@
 
         _timer: null,
 
-        valueInner: this.value // value内部值
+        valueInner: JSON.parse(JSON.stringify(this.value)) // value内部值
       }
     },
     props: {
@@ -125,20 +122,13 @@
        */
       color: [String],
       /**
-       * 触发onChange的等待时间
-       * */
-      debounce: {
-        type: Number,
-        default: 0
-      },
-      /**
        * 是否禁用
        * */
-      disabled: [Boolean],
+      disabled: Boolean,
       /**
        * 选择的拖动按钮, 默认是一个, true为两个
        * */
-      dualKnobs: [Boolean],
+      dualKnobs: Boolean,
       /**
        * range的最大值
        * */
@@ -160,12 +150,12 @@
       /**
        * 当拖动knob时显示大头针提示
        * */
-      pin: [Boolean],
+      pin: Boolean,
       /**
        * 类似于卡槽, 如果为true, 则在range上画标尺,
        * 并且拖动中knob只能停留在标尺标记处
        * */
-      snaps: [Boolean],
+      snaps: Boolean,
       /**
        * 移动的步伐/粒度
        * */
@@ -208,7 +198,7 @@
         if (this.dualKnobs) {
           return Math.max(this.ratioA, this.ratioB)
         }
-        return null
+        return 0
       }
     },
     methods: {
@@ -218,9 +208,6 @@
        * @return {boolean}
        * */
       pointerDown (ev) {
-        // TODO: we could stop listening for events instead of checking this._disabled.
-        // since there are a lot of events involved, this solution is
-        // enough for the moment
         if (this.disabled) {
           return false
         }
@@ -243,9 +230,6 @@
 
         this.updateRange(current, rect, true)
 
-        // trigger a haptic start
-        // this._haptic.gestureSelectionStart();
-
         // return true so the pointer events
         // know everything's still valid
         return true
@@ -260,14 +244,10 @@
           // prevent default so scrolling does not happen
           ev.preventDefault()
           ev.stopPropagation()
+          const current = pointerCoord(ev)
 
           // update the active knob's position
-          const hasChanged = this.updateRange(pointerCoord(ev), this._rect, true)
-
-          if (hasChanged && this.snaps) {
-            // trigger a haptic selection changed event
-            // if this is a snap range
-          }
+          this.updateRange(current, this._rect, true)
         }
       },
 
@@ -281,20 +261,11 @@
           ev.preventDefault()
           ev.stopPropagation()
 
-          if (this.debounce > 0) {
-            this._timer && window.clearTimeout(this._timer)
-            this._timer = window.setTimeout(() => {
-              /**
-               * @event component:Range#onChange
-               * @description 值发生变化时触发
-               * @property {any} value - 触发的值
-               */
-              this.$emit('onChange', this.valueInner)
-            }, this.debounce)
-          }
-
           // update the active knob's position
           this.updateRange(pointerCoord(ev), this._rect, false)
+
+          // 告知v-model
+          this.$emit('input', JSON.parse(JSON.stringify(this.valueInner)))
         }
       },
 
@@ -359,15 +330,7 @@
           // console.debug(`range, updateKnob: ${ratio}, value: ${this.valueInner}`);
         }
 
-        if (this.debounce === 0) {
-          this.$emit('onChange', this.valueInner)
-        }
-
         this.updateBar()
-
-        // 告知v-model
-        this.$emit('input', this.valueInner)
-
         return true
       },
 

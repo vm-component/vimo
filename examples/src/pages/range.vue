@@ -49,12 +49,12 @@
 
             <List>
                 <ListHeader>
-                    <span>Structure/Debounce</span>
+                    <span>Structure</span>
                     <Badge slot="item-right" color="dark">{{structure.lower}}</Badge>
                     <Badge slot="item-right" color="dark">{{structure.upper}}</Badge>
                 </ListHeader>
                 <Item>
-                    <Range :debounce="200" :dualKnobs="true" :pin="true" v-model="structure" @onChange="onChange"
+                    <Range :dualKnobs="true" :pin="true" v-model="structure"
                            color="dark">
                         <Label slot="range-left">-0</Label>
                         <Label slot="range-right">100</Label>
@@ -101,7 +101,6 @@
 
         disableRange: 10,
         disabled: false
-
       }
     },
     props: {},
@@ -113,10 +112,6 @@
     },
     computed: {},
     methods: {
-
-      onChange (value) {
-        console.log('Changed', JSON.stringify(value))
-      },
       disableToggle () {
         this.disabled = !this.disabled
       }

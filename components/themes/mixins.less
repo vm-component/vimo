@@ -68,18 +68,18 @@
 
 .toolbar-statusbar-padding(@toolbar-height, @toolbar-padding, @content-padding, @cordova-statusbar-padding) {
 
-  > .toolbar.statusbar-padding:first-child {
+  > .toolbar.statusbar-padding {
     padding-top: calc(@cordova-statusbar-padding + @toolbar-padding);
 
     min-height: calc(@toolbar-height + @cordova-statusbar-padding);
   }
 
-  > .ion-content.statusbar-padding:first-child .scroll-content {
+  > .ion-content.statusbar-padding .scroll-content {
     padding-top: @cordova-statusbar-padding;
   }
 
-  > .ion-content.statusbar-padding:first-child[padding] .scroll-content,
-  > .ion-content.statusbar-padding:first-child[padding-top] .scroll-content {
+  > .ion-content.statusbar-padding[padding] .scroll-content,
+  > .ion-content.statusbar-padding[padding-top] .scroll-content {
     padding-top: calc(@content-padding + @cordova-statusbar-padding);
   }
 }
@@ -88,8 +88,8 @@
 // --------------------------------------------------------------------------------
 
 .toolbar-title-statusbar-padding(@toolbar-height, @content-padding, @cordova-statusbar-padding) {
-  > .toolbar.statusbar-padding:first-child .ion-segment,
-  > .toolbar.statusbar-padding:first-child .ion-title {
+  > .toolbar.statusbar-padding .ion-segment,
+  > .toolbar.statusbar-padding .ion-title {
     padding-top: @cordova-statusbar-padding;
 
     height: calc(@toolbar-height + @cordova-statusbar-padding);

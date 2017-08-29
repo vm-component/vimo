@@ -39,7 +39,6 @@
    *
    * */
   import { Indicator } from '../indicator'
-  import Velocity from 'velocity-animate'
 
   export default {
     name: 'Nav',

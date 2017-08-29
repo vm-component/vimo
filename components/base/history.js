@@ -13,7 +13,7 @@
  * 完成的功能如下:
  *
  * - 内建导航记录
- * - 此History是对router实例的拓展, 但是不会为router实例添加方法, 而是从新定义$history, 这个可在业务的this中访问到
+ * - 此History是对router实例的拓展, 但是不会为router实例添加方法, 而是重新定义$history, 这个可在业务的this中访问到
  */
 
 export class History {
@@ -167,36 +167,6 @@ export class History {
   canGoBack () {
     return this.length > 1
   }
-
-// /**
-//  * 获取历史记录的第一个
-//  * @return {location}
-//  * */
-// first () {
-//   return this._history[0]
-// }
-// /**
-//  * 获取当前激活的页面
-//  * 获取最后一个历史记录
-//  * @return {location}
-//  * */
-// getActive () {
-//   return this._history[this.length - 1]
-// }
-// /**
-//  * 获取上一个历史记录
-//  * @return {location}
-//  * */
-// getPrevious () {
-//   return this._history[this.length - 2]
-// }
-// /**
-//  * 返回传入的route是历史记录中的第几条
-//  * @return {Number}
-//  * */
-// indexOf (route) {
-//   return this._history.indexOf(route)
-// }
 
   /**
    * 获取当前的导航记录

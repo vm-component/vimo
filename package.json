@@ -40,9 +40,7 @@
   },
   "dependencies": {
     "autosize": "^3.0.20",
-    "es6-promise": "^4.1.0",
     "swipe-js-iso": "^2.0.3",
-    "velocity-animate": "^1.5.0",
     "swiper": "^3.4.2"
   },
   "devDependencies": {

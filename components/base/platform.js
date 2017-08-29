@@ -7,54 +7,6 @@
  *
  * 这个类用于从设备中获取平台信息, 比如设备种类/运行平台/设备方向/文字方向等, 以此使得代码适配所有机型. 此外, 还支持平台方法的注册, 使业务与平台解耦.
  *
- *
- * ## 注册及执行平台的方法 registerMethod/do
- *
- * 这部分是Vimo框架的核心, 其把业务代码无平台代码进行解耦, 保持在业务逻辑中不处理平台相关的操作, 让Vimo能够运行在多平台而不改动代码.
- *
- * **业务使用的方法应该由当前的平台提供**
- *
- * 平台在初始化完毕时, 执行`src/config/platform-configs.js`定义的`bridgeReady`钩子, 通过在传入`plt`实例上, 执行`registerMethod`方法注册当前平台对应的方法.
- *   例如微信JSSDK中的`chooseImg`和`scanCode`方法(其他平台同理):
- *
- * ```
- * bridgeReady(plt){
- *  // this.$platform.do('chooseImage',function (result) {})
- *  plt.registerMethod('chooseImage', function (callback) {
- *    wx.chooseImage({
- *      count: 1, // 默认9
- *      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
- *      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
- *      success: function (res) {
- *        // alert('res')
- *        // alert(JSON.stringify(res))
- *        var localIds = res.localIds // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
- *        callback && callback(localIds)
- *      }
- *    })
- *  })
- *
- *  // this.$platform.do('scanCode',function(result){})
- *  plt.registerMethod('scanCode', function (callback) {
- *    wx.scanQRCode({
- *      needResult: 1, // 扫描结果由微信处理，1则直接返回扫描结果，
- *      scanType: ['barCode', 'qrCode'], // 可以指定扫二维码还是一维码，默认二者都有
- *      success: function (res) {
- *        callback && callback(res.resultStr.toString())
- *      }
- *    })
- *  })
- * }
- *```
- *
- * 业务这样使用即可达到完全解耦:
- *
- * ```
- * this.$platform.do('chooseImg', function(result){....})
- * ```
- *
- *
- *
  */
 
 /**
@@ -113,7 +65,7 @@ class Platform {
 
     this._nt = null // 记录网络类型
 
-    this._rm = {} // 平台注册的方法对象, key为方法名, value为对应的函数, registerMethod/do
+    // this._rm = {} // 平台注册的方法对象, key为方法名, value为对应的函数, registerMethod/do
 
     this._networkChangeCallbacks = []
 
@@ -458,34 +410,34 @@ class Platform {
     return false
   }
 
-  // 事件注册函数
-  // **********************************************
-  /**
-   * 注册当前平台的方法, 请参考上面的说明.
-   * @param {string} methodName - 方法名称
-   * @param {function} methodFunction - 方法函数
-   * */
-  registerMethod (methodName, methodFunction) {
-    if (!methodName) return this._rm
-    if (this._rm[methodName]) {
-      console.warn(`[${methodName}] had been registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
-    }
-    this._rm[methodName] = methodFunction
-  }
-
-  /**
-   * 执行当前平台的方法, 请参考上面的说明.
-   * @param {string} methodName - 方法名称
-   * @param {any} [any={}] - 根据对应的 registerMethod 传入正确的参数(function/object)
-   * @return {Promise}
-   * */
-  do (methodName, any = {}, context = this) {
-    if (!this._rm[methodName]) {
-      console.warn(`[${methodName}] isn't registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
-    } else {
-      return this._rm[methodName](any)
-    }
-  }
+  // // 事件注册函数
+  // // **********************************************
+  // /**
+  //  * 注册当前平台的方法, 请参考上面的说明.
+  //  * @param {string} methodName - 方法名称
+  //  * @param {function} methodFunction - 方法函数
+  //  * */
+  // registerMethod (methodName, methodFunction) {
+  //   if (!methodName) return this._rm
+  //   if (this._rm[methodName]) {
+  //     console.warn(`[${methodName}] had been registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
+  //   }
+  //   this._rm[methodName] = methodFunction
+  // }
+  //
+  // /**
+  //  * 执行当前平台的方法, 请参考上面的说明.
+  //  * @param {string} methodName - 方法名称
+  //  * @param {any} [any={}] - 根据对应的 registerMethod 传入正确的参数(function/object)
+  //  * @return {Promise}
+  //  * */
+  // do (methodName, any = {}, context = this) {
+  //   if (!this._rm[methodName]) {
+  //     console.warn(`[${methodName}] isn't registered, please check the registerMethod() in platform-configs.js and the platform list is [${this._platforms}]`)
+  //   } else {
+  //     return this._rm[methodName](any)
+  //   }
+  // }
 
   // Getter/Setter Methods
   // **********************************************

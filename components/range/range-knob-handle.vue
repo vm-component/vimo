@@ -10,9 +10,6 @@
 <script type="text/javascript">
   export default{
     name: 'RangeKnobHandle',
-    data () {
-      return {}
-    },
     props: {
       ratio: {
         type: Number,

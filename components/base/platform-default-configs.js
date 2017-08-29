@@ -11,7 +11,8 @@ const TIMEOUT = 10000 // 平台初始化需要的最大时间
 export default {
   mobile: {
     settings: {
-      mode: 'ios'
+      mode: 'ios',
+      statusbarPadding: false
     }
   },
   android: {
@@ -60,7 +61,7 @@ export default {
       tabsHideOnSubPages: false,
       showIndicatorWhenPageChange: false,  // 页面切换是否显示Indicator提示
       pageTransition: 'fade-right-transition', // 'ios-transition'
-      statusbarPadding: false,
+
       pickerRotateFactor: -0.46,
       pickerScaleFactor: 1
     },

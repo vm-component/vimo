@@ -7,15 +7,14 @@
  *
  */
 export default {
+  statusbarPadding: false,
   platforms: {
     ios: {
-      statusbarPadding: false,
       pageTransition: 'fade-right-transition'  //
       // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
       // pageTransition: ''  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
     },
     android: {
-      statusbarPadding: false,
       pageTransition: 'zoom-transition' //
       // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
       // pageTransition: '' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
