@@ -267,7 +267,7 @@ export function urlChange (callback) {
  * @param {array} [unregisterListenersCollection] - 如果提供Function[], 则unReg将压如这个列表中
  * @return {Function}                             - 返回removeEventListener的函数
  */
-export function registerListener (ele, eventName, callback, opts, unregisterListenersCollection) {
+export function registerListener (ele, eventName, callback, opts = {}, unregisterListenersCollection) {
   // use event listener options when supported
   // otherwise it's just a boolean for the "capture" arg
   const listenerOpts = isPassive() ? {
@@ -396,8 +396,8 @@ export function hasFocus (ele) {
 export function isTextInput (ele) {
   return !!ele &&
     (ele.tagName === 'TEXTAREA' ||
-    ele.contentEditable === 'true' ||
-    (ele.tagName === 'INPUT' && !(NON_TEXT_INPUT_REGEX.test(ele.type))))
+      ele.contentEditable === 'true' ||
+      (ele.tagName === 'INPUT' && !(NON_TEXT_INPUT_REGEX.test(ele.type))))
 }
 
 export const NON_TEXT_INPUT_REGEX = /^(radio|checkbox|range|file|submit|reset|color|image|button)$/i
@@ -531,6 +531,7 @@ function _baseExtend (dst, objs, deep) {
 
   return dst
 }
+
 /**
  * 对象深度拷贝, 只处理对象, 使用: `JSON.parse(JSON.stringify(obj))`方法
  * @param {object} obj - 拷贝的对象

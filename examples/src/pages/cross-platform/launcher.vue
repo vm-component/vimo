@@ -8,19 +8,27 @@
         <Content padding class="outer-content">
             <h4>启动器</h4>
             <section>
-                <strong>检测应用是否安装(多个用空格分割)</strong>
-                <div class="inputBox">
-                    <Input clearInput type="text" v-model="installedApp"></Input>
-                </div>
+                <strong>检测应用是否安装</strong>
+                <Item no-lines>
+                    <Input placeholder="多个用空格分割" type="text" v-model="installedApp" clearInput></Input>
+                </Item>
                 <Button block @click="checkInstalledApps()">CheckInstalledApps</Button>
                 <strong>结果</strong>
                 <p class="result">{{checkInstalledAppsResult}}</p>
+            </section>
+            <section>
+                <strong>启动第三方应用</strong>
+                <Item no-lines>
+                    <Input placeholder="只能启动一个" type="text" v-model="launchAppName" clearInput></Input>
+                </Item>
+                <Button block @click="launchApp()">LaunchApp</Button>
+                <strong>结果</strong>
+                <p class="result">{{launchAppResult}}</p>
             </section>
         </Content>
     </Page>
 </template>
 <style scoped lang="scss">
-
     .result {
         border: 1px dashed #333;
         min-height: 20px;
@@ -29,11 +37,6 @@
         white-space: pre-line;
         margin: 0 0 20px;
     }
-
-    .inputBox {
-        background: #fff;
-        padding:0 10px;
-    }
 </style>
 <script type="text/javascript">
   export default {
@@ -41,8 +44,10 @@
     data () {
       return {
         // result
+        installedApp: 'taobao tmall',
         checkInstalledAppsResult: '',
-        installedApp: '',
+        launchAppName: 'weixin://',
+        launchAppResult: '',
 
         test: ''
       }
@@ -60,13 +65,28 @@
     methods: {
       checkInstalledApps () {
         const _this = this
+        let apps = _this.installedApp.split(' ')
         window.dd && window.dd.device.launcher.checkInstalledApps({
-          apps: _this.installedApp.split(' '),
+          apps: apps,
           onSuccess (data) {
             _this.checkInstalledAppsResult = `onSuccess: ${JSON.stringify(data)}`
           },
           onFail (error) {
             _this.checkInstalledAppsResult = `onFail: ${JSON.stringify(error)}`
+          }
+        })
+      },
+      launchApp () {
+        const _this = this
+        window.dd && window.dd.device.launcher.launchApp({
+          app: this.launchApp,
+          activity: 'DetailActivity',
+          onSuccess (data) {
+            // data =>{ result: true }
+            _this.launchAppResult = `onSuccess: ${JSON.stringify(data)}`
+          },
+          onFail (error) {
+            _this.launchAppResult = `onFail: ${JSON.stringify(error)}`
           }
         })
       }
@@ -76,9 +96,6 @@
       if (platforms.length === 3) {
         this.platformName = platforms[2].toUpperCase()
       }
-    },
-    activated () {},
-    deactivate () {},
-    destroyed () {}
+    }
   }
 </script>

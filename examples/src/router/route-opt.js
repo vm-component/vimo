@@ -92,6 +92,27 @@ let routes = [
     component: require('@/pages/cross-platform/index.vue')
   },
   {
+    path: '/cross-platform-container',
+    name: 'crossPlatform.container',
+    component: require('@/pages/cross-platform/container.vue')
+  },
+  {
+    path: '/cross-platform-event',
+    name: 'crossPlatform.event',
+    component: require('@/pages/cross-platform/event.vue')
+  },
+  {
+    path: '/cross-platform-store',
+    name: 'crossPlatform.store',
+    component: require('@/pages/cross-platform/store.vue')
+  },
+  {
+    path: '/cross-platform-equipment',
+    name: 'crossPlatform.equipment',
+    component: require('@/pages/cross-platform/equipment.vue')
+  },
+
+  {
     path: '/cross-platform-popups',
     name: 'crossPlatform.popups',
     component: require('@/pages/cross-platform/popups.vue')
@@ -106,6 +127,17 @@ let routes = [
     name: 'crossPlatform.launcher',
     component: require('@/pages/cross-platform/launcher.vue')
   },
+  {
+    path: '/cross-platform-tel',
+    name: 'crossPlatform.tel',
+    component: require('@/pages/cross-platform/tel.vue')
+  },
+  {
+    path: '/cross-platform-ui',
+    name: 'crossPlatform.ui',
+    component: require('@/pages/cross-platform/ui-widget.vue')
+  },
+
   {
     path: '/toolbar',
     name: 'toolbar',

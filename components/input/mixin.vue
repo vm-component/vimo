@@ -195,7 +195,7 @@
       /**
        * 设置最小值, 只对type=number有效
        * */
-      min: [Number],
+      min: Number,
 
       /**
        * 自动focus
@@ -205,7 +205,7 @@
       /**
        * 设置数字变化的阶梯值, 只对type=number有效
        * */
-      step: [Number],
+      step: Number,
 
       /**
        * 当前平台
@@ -215,12 +215,12 @@
         default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
 
-      placeholder: [String],
+      placeholder: String,
 
       /**
        * 只读模式, 不能修改
        * */
-      readonly: [Boolean],
+      readonly: Boolean,
 
       /**
        * 输入的类型: "text", "password", "email", "number", "search", "tel", or "url"
@@ -233,7 +233,7 @@
       /**
        * 内容输入值
        * */
-      value: [String],
+      value: String,
 
       debounce: {
         type: Number,
@@ -241,7 +241,7 @@
       },
 
       // 自定义输入结果验证的正则表达式
-      regex: [RegExp],
+      regex: RegExp,
 
       // 是否check输入结果, 如果regex有值, 则开启, 否自关闭.
       // 如果check开启, 但是regex无值, 则使用内置判断
@@ -249,7 +249,7 @@
       // check只是作为内部正误标示, 对外提交不起作用
       // 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名
       // 这样的话, 验证位置就会统一.
-      check: [Boolean]
+      check: Boolean
     },
     watch: {
       value (val) {

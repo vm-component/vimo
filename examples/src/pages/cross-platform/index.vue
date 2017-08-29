@@ -13,9 +13,15 @@
                 </ListHeader>
                 <!--group-->
                 <ItemGroup>
-                    <Item detail-push to="crossPlatform.popups">弹出组件</Item>
-                    <Item detail-push to="crossPlatform.location">位置组件</Item>
+                    <Item detail-push to="crossPlatform.container">容器</Item>
+                    <Item detail-push to="crossPlatform.equipment">设备</Item>
+                    <Item detail-push to="crossPlatform.store">存储</Item>
                     <Item detail-push to="crossPlatform.launcher">启动器</Item>
+                    <Item detail-push to="crossPlatform.popups">弹窗</Item>
+                    <Item detail-push to="crossPlatform.location">位置组件</Item>
+                    <Item detail-push to="crossPlatform.tel">电话</Item>
+                    <Item detail-push to="crossPlatform.ui">UI 控件</Item>
+                    <Item detail-push to="crossPlatform.event">事件</Item>
 
                 </ItemGroup>
             </List>

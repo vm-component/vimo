@@ -7,8 +7,6 @@ import { isArray, isFunction, isNumber, isPresent, isString } from '../util/util
 import Vue from 'vue'
 
 export default function (plt) {
-  window.dd.ui.webViewBounce.disable()
-
   // 获取网络环境
   window.dd.device.connection.getNetworkType({
     onSuccess (data) {

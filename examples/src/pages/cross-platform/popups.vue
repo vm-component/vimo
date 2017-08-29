@@ -56,6 +56,12 @@
                 <strong>结果</strong>
                 <p class="result">{{actionsheetResult}}</p>
             </section>
+            <section>
+                <strong>弹浮层 Modal</strong>
+                <Button block @click="openModal">Modal</Button>
+                <strong>结果</strong>
+                <p class="result">{{modalResult}}</p>
+            </section>
         </Content>
     </Page>
 </template>
@@ -83,6 +89,7 @@
         loadingResult: '',
         toastResult: '',
         actionsheetResult: '',
+        modalResult: '',
 
         test: ''
       }
@@ -110,7 +117,7 @@
             {
               text: '确定',
               handler: () => {
-                _this.alertResult = '系好了 clicked'
+                _this.alertResult = '确定 clicked'
               }
             }
           ]
@@ -163,7 +170,7 @@
             {
               text: '确定',
               handler: (value) => {
-                _this.promptResult = `${JSON.stringify(value)}`
+                _this.promptResult = `确定 ${JSON.stringify(value)}`
               }
             }
           ]
@@ -241,6 +248,33 @@
           ]
         }).then(function () {
           _this.actionsheetResult = 'ActionSheet 开启 clicked'
+        })
+      },
+      openModal () {
+        const _this = this
+        this.$alert.present({
+          image: 'http://gw.alicdn.com/tps/i2/TB1SlYwGFXXXXXrXVXX9vKJ2XXX-2880-1560.jpg_200x200.jpg',
+          title: '5.5版本更新',
+          message: '1.功能更新 2.功能更新;',
+          cssClass: 'alertCssOuterMain',
+          enableBackdropDismiss: true,
+          buttons: [
+            {
+              text: '知道了',
+              role: 'cancel',
+              icon: 'icon-Destructive',
+              handler: () => {
+                _this.modalResult = '知道了 clicked'
+              }
+            },
+            {
+              text: '了解更多',
+              role: '',
+              handler: () => {
+                _this.modalResult = '了解更多 clicked'
+              }
+            }
+          ]
         })
       }
     }
