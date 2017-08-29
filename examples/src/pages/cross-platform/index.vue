@@ -6,6 +6,12 @@
             </Navbar>
         </Header>
         <Content class="outer-content">
+            <article padding>
+                <div>
+                    <strong>说明:</strong>
+                </div>
+                <p>测试不包括: 钉盘操作</p>
+            </article>
             <List>
                 <!--header-->
                 <ListHeader>
@@ -22,7 +28,6 @@
                     <Item detail-push to="crossPlatform.tel">电话</Item>
                     <Item detail-push to="crossPlatform.ui">UI 控件</Item>
                     <Item detail-push to="crossPlatform.event">事件</Item>
-
                 </ItemGroup>
             </List>
         </Content>

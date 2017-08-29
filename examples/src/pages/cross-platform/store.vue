@@ -9,7 +9,8 @@
             <h4>设备</h4>
             <section>
                 <strong>设置存储信息</strong>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">Key/Value: </Label>
                     <Input placeholder="key/value用空格分割" type="text" v-model="keyValue" clearInput></Input>
                 </Item>
                 <Button block @click="setItem()">SetItem</Button>
@@ -18,7 +19,8 @@
             </section>
             <section>
                 <strong>获取存储信息</strong>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">Key: </Label>
                     <Input placeholder="key" type="text" v-model="getKey" clearInput></Input>
                 </Item>
                 <Button block @click="getItem()">GetItem</Button>
@@ -27,7 +29,8 @@
             </section>
             <section>
                 <strong>删除相应存储信息</strong>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">Key: </Label>
                     <Input placeholder="key" type="text" v-model="deleteKey" clearInput></Input>
                 </Item>
                 <Button block @click="removeItem()">RmoveItem</Button>
@@ -102,5 +105,9 @@
         overflow-y: scroll;
         white-space: pre-line;
         margin: 0 0 20px;
+    }
+
+    .item {
+        margin: 5px 0;
     }
 </style>

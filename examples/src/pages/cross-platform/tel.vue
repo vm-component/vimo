@@ -6,29 +6,33 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
+            <NoticeBar v-if="!$platform.is('dingtalk')" slot="fixedTop">请在钉钉APP环境内使用此页面测试接口</NoticeBar>
             <h4>电话</h4>
             <section>
                 <strong>获取容器版本号</strong>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">用户列表: </Label>
                     <Input placeholder="用户列表, 多个用空格分割" type="text" v-model="users" clearInput></Input>
                 </Item>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">企业ID: </Label>
                     <Input placeholder="企业ID" type="text" v-model="corpId" clearInput></Input>
                 </Item>
                 <Button block @click="call()">Call</Button>
                 <strong>结果</strong>
                 <p class="result">{{callResult}}</p>
             </section>
-
             <section>
                 <strong>通用电话拨打接口</strong>
-                <Item no-lines>
-                    <Input placeholder="期望拨打的电话号码" type="tel" v-model="phoneNumber" clearInput></Input>
+                <Item no-lines class="item">
+                    <Label slot="item-left">电话: </Label>
+                    <Input placeholder="电话号码" type="tel" v-model="phoneNumber" clearInput></Input>
                 </Item>
-                <Item no-lines>
-                    <Input placeholder="国家代号，中国是+86" type="text" v-model="code" clearInput></Input>
+                <Item no-lines class="item">
+                    <Label slot="item-left">国家代号: </Label>
+                    <Input placeholder="中国是+86" type="text" v-model="code" clearInput></Input>
                 </Item>
-                <Item no-lines>
+                <Item no-lines class="item">
                     <Label slot="item-left">是否显示钉钉电话</Label>
                     <Toggle slot="item-right" v-model="showDingCall"></Toggle>
                 </Item>
@@ -95,5 +99,9 @@
         overflow-y: scroll;
         white-space: pre-line;
         margin: 0 0 20px;
+    }
+
+    .item {
+        margin: 5px 0;
     }
 </style>

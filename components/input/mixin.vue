@@ -139,7 +139,8 @@
   import { hasFocus, setElementClass, isPresent, isFunction, REGEXP } from '../util/util'
   import { Button } from '../button'
   import Autosize from 'autosize'
-  export default{
+
+  export default {
     data () {
       return {
         inputValue: this.value, // 内部value值
@@ -233,7 +234,7 @@
       /**
        * 内容输入值
        * */
-      value: String,
+      value: [String, Number, Object, Function],
 
       debounce: {
         type: Number,

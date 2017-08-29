@@ -6,6 +6,7 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
+            <NoticeBar v-if="!$platform.is('dingtalk')" slot="fixedTop">请在钉钉APP环境内使用此页面测试接口</NoticeBar>
             <h4>设备</h4>
             <section>
                 <strong>获取通用唯一识别码(需要权限)</strong>
@@ -33,12 +34,33 @@
             </section>
             <section>
                 <strong>写NFC芯片(仅限安卓)</strong>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">写入内容: </Label>
                     <Input placeholder="写入内容" type="text" v-model="content" clearInput></Input>
                 </Item>
                 <Button block @click="nfcWrite()">NfcWrite</Button>
                 <strong>结果</strong>
                 <p class="result">{{nfcWriteResult}}</p>
+            </section>
+            <section>
+                <strong>摇一摇</strong>
+                <Item no-lines class="item">
+                    <Label>振动幅度: </Label>
+                    <Input placeholder="振动幅度" type="number" v-model="sensitivity" clearInput></Input>
+                </Item>
+                <Item no-lines class="item">
+                    <Label slot="item-left">采样间隔(ms): </Label>
+                    <Input placeholder="采样间隔(毫秒)" type="number" v-model="frequency" clearInput></Input>
+                </Item>
+                <Item no-lines class="item">
+                    <Label slot="item-left">等待时间(ms): </Label>
+                    <Input placeholder="触发『摇一摇』后的等待时间(毫秒)" type="number" v-model="callbackDelay" clearInput></Input>
+                </Item>
+
+                <Button block @click="watchShake()">开启监听</Button>
+                <Button block @click="clearShake()">清除监听</Button>
+                <strong>结果</strong>
+                <p class="result">{{shakeResult}}</p>
             </section>
         </Content>
     </Page>
@@ -55,6 +77,10 @@
         nfcWriteResult: '',
         content: '',
 
+        sensitivity: 20,
+        frequency: 150,
+        callbackDelay: 1000,
+        shakeResult: '',
         last: ''
       }
     },
@@ -118,6 +144,33 @@
             _this.nfcReadResult = `onFail: ${JSON.stringify(err)}`
           }
         })
+      },
+
+      watchShake () {
+        const _this = this
+        _this.shakeResult = `开启监听已设置, 摇一摇手机!`
+        window.dd && window.dd.device.accelerometer.watchShake({
+          sensitivity: _this.sensitivity,//振动幅度，Number类型，加速度变化超过这个值后触发shake
+          frequency: _this.frequency,//采样间隔(毫秒)，Number类型，指每隔多长时间对加速度进行一次采样， 然后对比前后变化，判断是否触发shake
+          callbackDelay: _this.callbackDelay,//触发『摇一摇』后的等待时间(毫秒)，Number类型，防止频繁调用
+          onSuccess (result) {
+            _this.shakeResult = `开启监听 onSuccess: ${JSON.stringify(result)}`
+          },
+          onFail (err) {
+            _this.shakeResult = `开启监听 onFail: ${JSON.stringify(err)}`
+          }
+        })
+      },
+      clearShake () {
+        const _this = this
+        window.dd && window.dd.device.accelerometer.clearShake({
+          onSuccess (result) {
+            _this.shakeResult = `清除监听 onSuccess: ${JSON.stringify(result)}`
+          },
+          onFail (err) {
+            _this.shakeResult = `清除监听 onFail: ${JSON.stringify(err)}`
+          }
+        })
       }
     }
   }
@@ -130,5 +183,9 @@
         overflow-y: scroll;
         white-space: pre-line;
         margin: 0 0 20px;
+    }
+
+    .item {
+        margin: 5px 0;
     }
 </style>

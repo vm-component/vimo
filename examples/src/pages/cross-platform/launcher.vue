@@ -9,7 +9,8 @@
             <h4>启动器</h4>
             <section>
                 <strong>检测应用是否安装</strong>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">应用: </Label>
                     <Input placeholder="多个用空格分割" type="text" v-model="installedApp" clearInput></Input>
                 </Item>
                 <Button block @click="checkInstalledApps()">CheckInstalledApps</Button>
@@ -18,7 +19,8 @@
             </section>
             <section>
                 <strong>启动第三方应用</strong>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">应用: </Label>
                     <Input placeholder="只能启动一个" type="text" v-model="launchAppName" clearInput></Input>
                 </Item>
                 <Button block @click="launchApp()">LaunchApp</Button>
@@ -28,16 +30,6 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
-    .result {
-        border: 1px dashed #333;
-        min-height: 20px;
-        border-radius: 3px;
-        overflow-y: scroll;
-        white-space: pre-line;
-        margin: 0 0 20px;
-    }
-</style>
 <script type="text/javascript">
   export default {
     name: 'Launcher',
@@ -99,3 +91,17 @@
     }
   }
 </script>
+<style scoped lang="less">
+    .result {
+        border: 1px dashed #333;
+        min-height: 20px;
+        border-radius: 3px;
+        overflow-y: scroll;
+        white-space: pre-line;
+        margin: 0 0 20px;
+    }
+
+    .item {
+        margin: 5px 0;
+    }
+</style>

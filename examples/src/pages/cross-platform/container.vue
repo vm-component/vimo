@@ -16,7 +16,8 @@
             </section>
             <section>
                 <strong>获取微应用免登授权码</strong>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">企业ID: </Label>
                     <Input placeholder="企业ID" type="text" v-model="runtimeCorpid" clearInput></Input>
                 </Item>
                 <Button block @click="requestRuntimeAuthCode()">RequestRuntimeAuthCode</Button>
@@ -25,7 +26,8 @@
             </section>
             <section>
                 <strong>获取服务窗免登授权码</strong>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">企业ID: </Label>
                     <Input placeholder="企业ID" type="text" v-model="channelCorpid" clearInput></Input>
                 </Item>
                 <Button block @click="requestChannelAuthCode()">RequestChannelAuthCode</Button>
@@ -34,11 +36,13 @@
             </section>
             <section>
                 <strong>获取微应用反馈式操作的临时授权码</strong>
-                <Item no-lines>
+                <Item no-lines class="item">
+                    <Label slot="item-left">企业ID: </Label>
                     <Input placeholder="企业ID" type="text" v-model="operateCorpid" clearInput></Input>
                 </Item>
-                <Item no-lines>
-                    <Input placeholder="微应用ID，必须与dd.config的一致" type="text" v-model="operateAgentId" clearInput></Input>
+                <Item no-lines class="item">
+                    <Label slot="item-left">微应用ID: </Label>
+                    <Input placeholder="必须与dd.config的一致" type="text" v-model="operateAgentId" clearInput></Input>
                 </Item>
                 <Button block @click="requestOperateAuthCode()">RequestOperateAuthCode</Button>
                 <strong>结果</strong>
@@ -120,5 +124,9 @@
         overflow-y: scroll;
         white-space: pre-line;
         margin: 0 0 20px;
+    }
+
+    .item {
+        margin: 5px 0;
     }
 </style>

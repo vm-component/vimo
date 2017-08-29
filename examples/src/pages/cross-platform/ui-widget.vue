@@ -11,10 +11,12 @@
             <section>
                 <strong>输入框</strong>
                 <Item no-lines class="item">
-                    <Input placeholder="Placeholder 占位符" type="text" v-model="openInputPlainPlaceholder"
+                    <Label slot="item-left">占位符: </Label>
+                    <Input placeholder="Placeholder" type="text" v-model="openInputPlainPlaceholder"
                            clearInput></Input>
                 </Item>
                 <Item no-lines class="item">
+                    <Label slot="item-left">文本: </Label>
                     <Input placeholder="默认填充文本" type="text" v-model="openInputPlainText" clearInput></Input>
                 </Item>
                 <Button block @click="openInputPlain()">OpenInputPlain</Button>
@@ -25,6 +27,7 @@
             <section>
                 <strong>设置顶部进度条颜色(?)</strong>
                 <Item no-lines class="item">
+                    <Label slot="item-left">颜色: </Label>
                     <Input placeholder="最多支持4个颜色, 多个颜色用空格分割" type="text" v-model="progressBarColors"
                            clearInput></Input>
                 </Item>
