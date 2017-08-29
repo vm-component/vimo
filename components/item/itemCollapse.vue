@@ -30,6 +30,7 @@
         opacity: 1;
         transform: translate3d(0, 0, 0);
         position: relative;
+        transition: all ease 300ms;
     }
 </style>
 <script type="text/javascript">
@@ -79,8 +80,8 @@
    * */
   import { isString, isObject } from '../util/util'
   import ItemMixin from './itemMixin.vue'
-  import Velocity from 'velocity-animate'
-  export default{
+
+  export default {
     name: 'ItemCollapse',
     mixins: [ItemMixin],
     data () {
@@ -107,19 +108,29 @@
         this.enable = false
       },
       enter (el, done) {
-        Velocity(el, {opacity: 1, height: this.height + 'px'}, 300, () => {
-          this.enable = true
-          done()
-        })
+        window.setTimeout(() => {
+          el.style.opacity = 1
+          el.style.height = this.height + 'px'
+          this.enable = false
+          window.setTimeout(() => {
+            this.enable = true
+            done()
+          }, 300)
+        }, 16)
       },
       beforeLeave () {
         this.enable = false
       },
       leave (el, done) {
-        Velocity(el, {opacity: 0, height: 0}, 300, () => {
-          this.enable = true
-          done()
-        })
+        window.setTimeout(() => {
+          el.style.opacity = 0
+          el.style.height = 0
+          this.enable = false
+          window.setTimeout(() => {
+            this.enable = true
+            done()
+          }, 300)
+        }, 16)
       },
 
       /**
