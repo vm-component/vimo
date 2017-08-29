@@ -111,11 +111,20 @@ let routes = [
     name: 'crossPlatform.equipment',
     component: require('@/pages/cross-platform/equipment.vue')
   },
-
   {
-    path: '/cross-platform-popups',
-    name: 'crossPlatform.popups',
-    component: require('@/pages/cross-platform/popups.vue')
+    path: '/cross-platform-pay',
+    name: 'crossPlatform.pay',
+    component: require('@/pages/cross-platform/pay.vue')
+  },
+  {
+    path: '/cross-platform-navigation',
+    name: 'crossPlatform.navigation',
+    component: require('@/pages/cross-platform/navigation.vue')
+  },
+  {
+    path: '/cross-platform-request',
+    name: 'crossPlatform.request',
+    component: require('@/pages/cross-platform/request.vue')
   },
   {
     path: '/cross-platform-location',
@@ -127,11 +136,7 @@ let routes = [
     name: 'crossPlatform.launcher',
     component: require('@/pages/cross-platform/launcher.vue')
   },
-  {
-    path: '/cross-platform-tel',
-    name: 'crossPlatform.tel',
-    component: require('@/pages/cross-platform/tel.vue')
-  },
+
   {
     path: '/cross-platform-ui',
     name: 'crossPlatform.ui',

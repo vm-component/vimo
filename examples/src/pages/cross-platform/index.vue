@@ -10,7 +10,7 @@
                 <div>
                     <strong>说明:</strong>
                 </div>
-                <p>测试不包括: 钉盘操作</p>
+                <p>测试不包括: 钉盘操作/图片上传/音频/</p>
             </article>
             <List>
                 <!--header-->
@@ -19,15 +19,19 @@
                 </ListHeader>
                 <!--group-->
                 <ItemGroup>
-                    <Item detail-push to="crossPlatform.container">容器</Item>
-                    <Item detail-push to="crossPlatform.equipment">设备</Item>
-                    <Item detail-push to="crossPlatform.store">存储</Item>
-                    <Item detail-push to="crossPlatform.launcher">启动器</Item>
-                    <Item detail-push to="crossPlatform.popups">弹窗</Item>
-                    <Item detail-push to="crossPlatform.location">位置组件</Item>
-                    <Item detail-push to="crossPlatform.tel">电话</Item>
                     <Item detail-push to="crossPlatform.ui">UI 控件</Item>
+                    <Item detail-push to="crossPlatform.location">位置</Item>
+                    <Item detail-push to="crossPlatform.launcher">启动器</Item>
+                    <Item detail-push to="crossPlatform.equipment">设备</Item>
+                    <Item detail-push to="crossPlatform.container">容器</Item>
+                    <Item detail-push to="crossPlatform.store">存储</Item>
                     <Item detail-push to="crossPlatform.event">事件</Item>
+                    <Item detail-push to="crossPlatform.pay">支付</Item>
+                    <Item v-if="$platform.is('dtdream')"
+                          detail-push to="crossPlatform.request">请求代理
+                    </Item>
+
+                    <Item detail-push to="crossPlatform.navigation">导航栏</Item>
                 </ItemGroup>
             </List>
         </Content>
@@ -39,7 +43,7 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     data () {
       return {
         toggleValue: true,

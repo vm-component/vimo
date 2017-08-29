@@ -59,40 +59,83 @@
       setItem () {
         const _this = this
         let keyValue = _this.keyValue.split(' ')
-        window.dd && window.dd.util.domainStorage.setItem({
-          name: keyValue[0], // 存储信息的key值
-          value: keyValue[1], // 存储信息的Value值
-          onSuccess (result) {
-            _this.setItemResult = `onSuccess: ${JSON.stringify(result)}`
-          },
-          onFail (err) {
-            _this.setItemResult = `onFail: ${JSON.stringify(err)}`
-          }
-        })
+        if (_this.$platform.is('dingtalk')) {
+          window.dd && window.dd.util.domainStorage.setItem({
+            name: keyValue[0], // 存储信息的key值
+            value: keyValue[1], // 存储信息的Value值
+            onSuccess (result) {
+              _this.setItemResult = `onSuccess: ${JSON.stringify(result)}`
+            },
+            onFail (err) {
+              _this.setItemResult = `onFail: ${JSON.stringify(err)}`
+            }
+          })
+        } else if (_this.$platform.is('dtdream')) {
+          window.dd && window.dd.util.localStorage.setItem({
+            key: keyValue[0], // 存储信息的key值
+            value: keyValue[1], // 存储信息的Value值
+            onSuccess (result) {
+              _this.setItemResult = `onSuccess: ${JSON.stringify(result)}`
+            },
+            onFail (err) {
+              _this.setItemResult = `onFail: ${JSON.stringify(err)}`
+            }
+          })
+        } else {
+          _this.setItemResult = '未找到对应执行方法'
+        }
       },
       getItem () {
         const _this = this
-        window.dd && window.dd.util.domainStorage.getItem({
-          name: _this.getKey, // 存储信息的key值
-          onSuccess (result) {
-            _this.getItemResult = `onSuccess: ${JSON.stringify(result)}`
-          },
-          onFail (err) {
-            _this.getItemResult = `onFail: ${JSON.stringify(err)}`
-          }
-        })
+        if (_this.$platform.is('dingtalk')) {
+          window.dd && window.dd.util.domainStorage.getItem({
+            name: _this.getKey, // 存储信息的key值
+            onSuccess (result) {
+              _this.getItemResult = `onSuccess: ${JSON.stringify(result)}`
+            },
+            onFail (err) {
+              _this.getItemResult = `onFail: ${JSON.stringify(err)}`
+            }
+          })
+        } else if (_this.$platform.is('dtdream')) {
+          window.dd && window.dd.util.localStorage.getItem({
+            key: _this.getKey, // 存储信息的key值
+            onSuccess (result) {
+              _this.getItemResult = `onSuccess: ${JSON.stringify(result)}`
+            },
+            onFail (err) {
+              _this.getItemResult = `onFail: ${JSON.stringify(err)}`
+            }
+          })
+        } else {
+          _this.getItemResult = '未找到对应执行方法'
+        }
       },
       removeItem () {
         const _this = this
-        window.dd && window.dd.util.domainStorage.removeItem({
-          name: _this.deleteKey, // 存储信息的key值
-          onSuccess (result) {
-            _this.removeItemResult = `onSuccess: ${JSON.stringify(result)}`
-          },
-          onFail (err) {
-            _this.removeItemResult = `onFail: ${JSON.stringify(err)}`
-          }
-        })
+        if (_this.$platform.is('dingtalk')) {
+          window.dd && window.dd.util.domainStorage.removeItem({
+            name: _this.deleteKey, // 存储信息的key值
+            onSuccess (result) {
+              _this.removeItemResult = `onSuccess: ${JSON.stringify(result)}`
+            },
+            onFail (err) {
+              _this.removeItemResult = `onFail: ${JSON.stringify(err)}`
+            }
+          })
+        } else if (_this.$platform.is('dtdream')) {
+          window.dd && window.dd.util.localStorage.removeItem({
+            key: _this.deleteKey, // 存储信息的key值
+            onSuccess (result) {
+              _this.removeItemResult = `onSuccess: ${JSON.stringify(result)}`
+            },
+            onFail (err) {
+              _this.removeItemResult = `onFail: ${JSON.stringify(err)}`
+            }
+          })
+        } else {
+          _this.removeItemResult = '未找到对应执行方法'
+        }
       }
     }
   }

@@ -27,6 +27,24 @@
                 <strong>结果</strong>
                 <p class="result">{{launchAppResult}}</p>
             </section>
+
+
+            <section>
+                <strong>在新窗口上打开链接</strong>
+                <Item no-lines class="item">
+                    <Label slot="item-left">链接: </Label>
+                    <Input placeholder="..." type="text" v-model="openLinkUrl" clearInput></Input>
+                </Item>
+                <Button block @click="openLink()">OpenLink</Button>
+                <strong>结果</strong>
+                <p class="result">{{openLinkResult}}</p>
+            </section>
+
+            <section>
+                <strong>关闭当前窗口</strong>
+                <Button block @click="closeLink()">CloseLink</Button>
+            </section>
+
         </Content>
     </Page>
 </template>
@@ -41,6 +59,10 @@
         launchAppName: 'weixin://',
         launchAppResult: '',
 
+        openLinkUrl: 'http://www.dingtalk.com',
+        openLinkResult: '',
+
+        closeLinkResult: '',
         test: ''
       }
     },
@@ -81,6 +103,21 @@
             _this.launchAppResult = `onFail: ${JSON.stringify(error)}`
           }
         })
+      },
+      openLink () {
+        const _this = this
+        window.dd && window.dd.biz.util.openLink({
+          url: _this.openLinkUrl,//要打开链接的地址
+          onSuccess (result) {
+            _this.openLinkResult = `onSuccess: ${JSON.stringify(result)}`
+          },
+          onFail (err) {
+            _this.openLinkResult = `onFail: ${JSON.stringify(err)}`
+          }
+        })
+      },
+      closeLink () {
+        window.dd && window.dd.biz.navigation.close()
       }
     },
     mounted () {
