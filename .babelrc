@@ -1,6 +1,11 @@
 {
   "presets": [
-    ["env", { "modules": "commonjs" }],
+    [
+      "env",
+      {
+        "modules": "commonjs"
+      }
+    ],
     "stage-2"
   ],
   "plugins": [
@@ -9,8 +14,13 @@
   "comments": false,
   "env": {
     "test": {
-      "presets": ["env", "stage-2"],
-      "plugins": [ "istanbul" ]
+      "presets": [
+        "env",
+        "stage-2"
+      ],
+      "plugins": [
+        "istanbul"
+      ]
     }
   }
 }
