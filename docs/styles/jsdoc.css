@@ -336,20 +336,21 @@ footer {
   display: inline-block; }
 
 .prettyprint.linenums {
-  padding-left: 70px;
+  padding-left: 50px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+  background: #f8f8f8; }
 
 .prettyprint.linenums ol {
   padding-left: 0; }
 
 .prettyprint.linenums li {
-  border-left: 3px #34446b solid; }
+  border-left: 3px #42b983 solid; }
 
 .prettyprint.linenums li.selected, .prettyprint.linenums li.selected * {
-  background-color: #34446b; }
+  background-color: #42b983; }
 
 .prettyprint.linenums li * {
   -webkit-user-select: text;
