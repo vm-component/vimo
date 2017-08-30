@@ -6,7 +6,7 @@
 
 > 目前在内部测试及文档教程编写, 见谅!!!
 
-## DEMO
+## DEMO12
 
 <p align="center"><img src="https://github.com/DTFE/Vimo/blob/master/examples/static/img/vimo_qrcode.png?raw=true" alt="vimo" width="200"><br><a align="center" href="https://dtfe.github.io/vimo-demo">https://dtfe.github.io/vimo-demo</a></p>
 
