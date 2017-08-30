@@ -28,7 +28,6 @@
     "example:dev": "node examples/build/dev-server.js",
     "example:build": "node examples/build/build.js",
     "pub:dist": "node build/webpack.dist.conf.js",
-    "pub:lib123123": "node build/webpack.lib.conf.js",
     "pub:lib": "gulp default --gulpfile build/gulpfile.lib.js",
     "pub": "npm run pub:lib && npm run pub:dist",
     "docs:dev": "gulp default --gulpfile build/doc-builder/gulpfile.js",
