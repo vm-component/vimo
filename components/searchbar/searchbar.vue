@@ -70,7 +70,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Searchbar } from 'vimo/components/searchbar'
+   * import { Searchbar } from 'vimo/lib/searchbar'
    * // 安装
    * Vue.component(Searchbar.name, Searchbar)
    * // 或者
@@ -102,7 +102,7 @@
    * @fires component:Searchbar#onCancel
    *
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/searchbar
+   * @demo #/searchbar
    *
    * @usage
    * <template>
@@ -135,7 +135,8 @@
   import { Button } from '../button'
   import { Icon } from '../icon'
   import { isNumber, isBoolean } from '../util/util'
-  export default{
+
+  export default {
     name: 'Searchbar',
     data () {
       return {
@@ -162,7 +163,7 @@
       /**
        * The predefined color to use. For example: "primary", "secondary", "danger".
        * */
-      color: [String],
+      color: String,
       /**
        * The mode to apply to this component. Mode can be ios, wp, or md.
        * */
@@ -235,7 +236,7 @@
       /**
        * Set the input value.
        * */
-      value: [String]
+      value: String
     },
     watch: {
       value (val) {

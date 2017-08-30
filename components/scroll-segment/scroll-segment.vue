@@ -27,7 +27,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { ScrollSegment, ScrollSegmentButton } from 'vimo/components/scroll-segment'
+   * import { ScrollSegment, ScrollSegmentButton } from 'vimo/lib/scroll-segment'
    * // 安装
    * Vue.component(ScrollSegment.name, ScrollSegment)
    * Vue.component(ScrollSegmentButton.name, ScrollSegmentButton)
@@ -42,7 +42,7 @@
    * @props {String} [activeClass='segment-button-active'] - 子组件激活时添加的class
    * @props {Number} [value=0] - 子组件初始值
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/scroll-segment
+   * @demo #/scroll-segment
    * @usage
    *
    * <ScrollSegment :value="2">

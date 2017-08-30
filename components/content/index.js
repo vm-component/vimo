@@ -1,2 +1,1 @@
-import Content from './content.vue'
-export { Content }
+export { default as Content } from './content.vue'

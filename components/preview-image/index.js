@@ -18,9 +18,9 @@
  * @props {Array} [urls]           - 图片链接
  * @props {Array} [isH5=false]     - 是否使用h5组件, false为自动, true为强制使用h5组件(isForceH5)
  *
- * @demo https://dtfe.github.io/vimo-demo/#/preview-image
+ * @demo #/preview-image
  * @usage
- * import { PreviewImage } from 'vimo/components/preview-image'
+ * import { PreviewImage } from 'vimo/lib/preview-image'
  * function openAlbum1 () {
  *    PreviewImage({
  *      current: 0,

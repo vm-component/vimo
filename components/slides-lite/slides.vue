@@ -107,6 +107,7 @@
    * @see https://github.com/voronianski/swipe-js-iso
    * */
   import Swipe from 'swipe-js-iso'
+
   export default {
     name: 'Slides',
     props: {

@@ -147,7 +147,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { NoticeBar } from 'vimo/components/noticebar'
+   * import { NoticeBar } from 'vimo/lib/noticebar'
    * // 安装
    * Vue.component(NoticeBar.name, NoticeBar)
    * // 或者
@@ -173,7 +173,7 @@
    * @props {Function} [onDismiss] - 组件关闭的回调
    *
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/notice-bar
+   * @demo #/notice-bar
    * @usage
    *
    * <NoticeBar :onDismiss="onDismissHandler">这是一个很简短的通知, 不会滚动</NoticeBar>
@@ -182,7 +182,7 @@
    * </NoticeBar>
    *
    * */
-  export default{
+  export default {
     name: 'NoticeBar',
     data () {
       return {

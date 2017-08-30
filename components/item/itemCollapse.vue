@@ -76,7 +76,7 @@
    *    </ItemGroup>
    * </List>
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/collapseList
+   * @demo #/collapseList
    * */
   import { isString, isObject } from '../util/util'
   import ItemMixin from './itemMixin.vue'

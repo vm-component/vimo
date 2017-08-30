@@ -19,7 +19,7 @@
 @fab-md-text-color: contrast(@fab-md-background-color, black, white, @contrast-threshold);
 
 /// @prop - Background color of the activated button
-@fab-md-background-color-activated: darken(@fab-md-background-color,@darken-amount);
+@fab-md-background-color-activated: darken(@fab-md-background-color, @darken-amount);
 
 /// @prop - Background color of the button in a list
 @fab-md-list-button-background-color: @fab-list-button-background-color;
@@ -28,7 +28,7 @@
 @fab-md-list-button-text-color: contrast(@fab-md-list-button-background-color, black, white, @contrast-threshold);
 
 /// @prop - Background color of the activated button in a list
-@fab-md-list-button-background-color-activated: darken(@fab-md-list-button-background-color,@darken-amount);
+@fab-md-list-button-background-color-activated: darken(@fab-md-list-button-background-color, @darken-amount);
 
 /// @prop - Transition duration of the transform and opacity of the button in a list
 @fab-md-list-button-transition-duration: 200ms;
@@ -99,7 +99,7 @@
 
     // content
     @bg-color: @color-base;
-    @bg-color-activated: darken(@bg-color,@darken-amount);
+    @bg-color-activated: darken(@bg-color, @darken-amount);
     @fg-color: @color-contrast;
 
     .fab-md-@{color-name} {

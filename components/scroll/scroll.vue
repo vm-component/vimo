@@ -84,7 +84,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Scroll } from 'vimo/components/scroll'
+   * import { Scroll } from 'vimo/lib/scroll'
    * // 安装
    * Vue.component(Scroll.name, Scroll)
    * // 或者
@@ -97,7 +97,7 @@
    *
    * @see https://www.npmjs.com/package/better-scroll
    * @see https://github.com/ustbhuangyi/better-scroll
-   * @demo https://dtfe.github.io/vimo-demo/#/scroll
+   * @demo #/scroll
    * */
   import JsScroll from 'better-scroll/build/bscroll'
   import props from './props'
@@ -109,8 +109,6 @@
       }
     },
     props: props,
-    watch: {},
-    computed: {},
     methods: {
       initEvent () {
         // 滚动开始之前触发

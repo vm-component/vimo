@@ -25,7 +25,7 @@
  * @props {Boolean} [isReverse=false] - 是否反色
  * @props {Boolean} [dismissOnPageChange=true] - 页面切换是否关闭
  *
- * @demo https://dtfe.github.io/vimo-demo/#/indicator
+ * @demo #/indicator
  * @usage
  * // 开启300ms后关闭
  * openIndicator300 () {
@@ -66,7 +66,7 @@ function LoadingFactory (options) {
 export default {
   _i: null, // instance 组件实例
   _startTime: new Date().getTime(),
-  _timer: null,
+  _timer: 0,
   _count: 0,
 
   /**
@@ -127,7 +127,7 @@ export default {
             // 存在定时器要她退场
             // console.debug('Indicator 3 存在定时器要她退场: 这里清除定时器')
             this._timer && window.clearTimeout(this._timer)
-            this._timer = null
+            this._timer = 0
           } else {
             this._count++
             // console.debug('Indicator 4 当前有人在场, 投票++ _count: ' + this._count)
@@ -175,7 +175,7 @@ export default {
                   this._i = null
                   this._startTime = null
                   this._timer && window.clearTimeout(this._timer)
-                  this._timer = null
+                  this._timer = 0
                   this._count = 0
                   resolve()
                 })
@@ -188,7 +188,7 @@ export default {
                     this._i = null
                     this._startTime = null
                     this._timer && window.clearTimeout(this._timer)
-                    this._timer = null
+                    this._timer = 0
                     this._count = 0
                     resolve()
                   })
@@ -201,7 +201,7 @@ export default {
             this._i = null
             this._startTime = null
             this._timer && window.clearTimeout(this._timer)
-            this._timer = null
+            this._timer = 0
             this._count = 0
             resolve()
           }
@@ -212,7 +212,7 @@ export default {
         this._i = null
         this._startTime = null
         this._timer && window.clearTimeout(this._timer)
-        this._timer = null
+        this._timer = 0
         this._count = 0
         resolve()
       }

@@ -38,7 +38,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Img } from 'vimo/components/img'
+   * import { Img } from 'vimo/lib/img'
    * // 安装
    * Vue.component(Img.name, Img)
    * // 或者
@@ -54,7 +54,7 @@
    * @props {String} src                   - 图片的src地址
    * @props {(Number|String)} [width=0]    - 图片的宽度
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/img
+   * @demo #/img
    * @usage
    * <Img width="100%" height="200" src="static/1.jpg">
    *
@@ -63,7 +63,7 @@
   export default{
     name: 'Img',
     props: {
-      src: [String],
+      src: String,
       alt: {
         type: String,
         default: 'image'

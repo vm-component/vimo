@@ -1,2 +1,1 @@
-import Indicator from './indicator.js'
-export { Indicator }
+export { default as Indicator } from './indicator.js'

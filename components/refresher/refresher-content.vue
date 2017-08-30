@@ -33,7 +33,7 @@
    * @props {String} [refreshingText='正在刷新'] -正在刷新的文字
    *
    * @see component:Refresher
-   * @demo https://dtfe.github.io/vimo-demo/#/refresher
+   * @demo #/refresher
    * */
   import { Icon } from '../icon'
   import { Spinner } from '../spinner/index'
@@ -50,7 +50,7 @@
       },
       refreshingSpinner: {
         type: String,
-        default () { return this.$config && this.$config.get('onRefreshingSpinner', this.$config && this.$config.get('spinner', 'ios')) || 'ios' }
+        default () { return this.$config && this.$config.get('onRefreshingSpinner', this.$config.get('spinner', 'ios')) || 'ios' }
       },
       refreshingText: {
         type: String,

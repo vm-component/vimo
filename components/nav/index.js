@@ -1,2 +1,1 @@
-import Nav from './nav.vue'
-export { Nav }
+export { default as Nav } from './nav.vue'

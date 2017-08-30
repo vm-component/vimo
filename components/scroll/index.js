@@ -1,2 +1,1 @@
-import Scroll from './scroll.vue'
-export { Scroll }
+export { default as Scroll } from './scroll.vue'

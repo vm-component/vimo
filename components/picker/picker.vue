@@ -110,10 +110,10 @@
    * 因为是弹出层组件, 故引入后, `Picker.present(...)`就可打开组件
    *
    * ```
-   *  import { Picker } from 'vimo/components/picker'
+   *  import { Picker } from 'vimo/lib/picker'
    * ```
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/picker
+   * @demo #/picker
    * */
   import { isString, isPresent, isNumber, urlChange } from '../util/util'
   import PickerCol from './picker-col.vue'

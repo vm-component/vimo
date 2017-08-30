@@ -1,6 +1,6 @@
 <template>
     <div class="toolbar ion-toolbar"
-         :class="[modeClass,colorClass,{'statusbar-padding':statusbarPadding}]">
+         :class="[modeClass,colorClass]">
         <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
         <slot name="buttons"></slot>
         <div class="toolbar-content" :class="[toolbarContentClass]">
@@ -50,7 +50,7 @@
    *
    * ```
    * // 引入
-   * import { Toolbar, Buttons, Title } from 'vimo/components/toolbar'
+   * import { Toolbar, Buttons, Title } from 'vimo/lib/toolbar'
    * // 安装
    * Vue.component(Toolbar.name, Toolbar)
    * Vue.component(Title.name, Title)
@@ -63,7 +63,7 @@
    *
    * @slot [空] 作为内容, 比如Title/Searchbar/Segment放置的位置
    * @slot [buttons] 按钮组, 别忘记加[left]/[right]/[end]属性标记位置
-   * @demo https://dtfe.github.io/vimo-demo/#/toolbar
+   * @demo #/toolbar
    *
    *
    * @usage
@@ -98,11 +98,6 @@
    * */
   export default {
     name: 'Toolbar',
-    data () {
-      return {
-        statusbarPadding: this.$config && this.$config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
-      }
-    },
     props: {
       /**
        * mode 按钮风格 ios/window/android/we/alipay
@@ -114,7 +109,7 @@
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: [String]
+      color: String
     },
     computed: {
       // 颜色

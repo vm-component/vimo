@@ -190,7 +190,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { SlideBox } from 'vimo/components/slide-box'
+   * import { SlideBox } from 'vimo/lib/slide-box'
    * // 安装
    * Vue.component(SlideBox.name, SlideBox)
    * // 或者
@@ -207,7 +207,7 @@
    * - 监听组件的`onSlideEnd`事件, 事件传递组件实例
    *
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/slide-box
+   * @demo #/slide-box
    * @fires component:SlideBox#onSlideEnd
    * @usage
    *
@@ -226,13 +226,14 @@
    *
    * */
   import { pointerCoord, clamp, transitionEnd } from '../util/util'
+
   const STATE_INACTIVE = 'inactive'         // 初始状态
   const STATE_SLIDING = 'sliding'           // 滑动状态
   const STATE_CHECKING = 'checking'         // 正在验证
   const STATE_CANCELLING = 'cancelling'     // 释放(取消)状态
   const STATE_COMPLETING = 'completing'     // 验证通过状态
   const STATE_FAILING = 'failing'           // 验证失败状态
-  export default{
+  export default {
     name: 'SlideBox',
     data () {
       return {
@@ -242,9 +243,7 @@
         max: 0,                 // 可移动的最大距离
 
         translateX: null,       // 向右移动数值
-        state: STATE_INACTIVE, // 初始状态
-        boxRect: null,      // 外容器的尺寸数据
-        btnRect: null       // 初始化时的btn的尺寸
+        state: STATE_INACTIVE // 初始状态
       }
     },
     props: {
@@ -361,10 +360,9 @@
       }
     },
     mounted () {
-      this.boxRect = this.$el.getBoundingClientRect()
-      // offsetLeft
-      this.btnRect = this.slideBoxBtnElement.getBoundingClientRect()
-      this.translateX = this.max = this.boxRect.width - this.btnRect.width >> 0
+      let boxWidth = parseInt(window.getComputedStyle(this.$el).width)
+      let btnWidth = parseInt(window.getComputedStyle(this.slideBoxBtnElement).width)
+      this.translateX = this.max = boxWidth - btnWidth >> 0
     }
   }
 

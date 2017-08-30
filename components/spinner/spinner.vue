@@ -32,7 +32,7 @@
    *
    * ```
    * // 引入
-   * import { Spinner } from 'vimo/components/spinner'
+   * import { Spinner } from 'vimo/lib/spinner'
    * // 安装
    * Vue.component(Spinner.name, Spinner)
    * // 或者
@@ -49,7 +49,7 @@
    * @props {String} [duration] - 旋转动画的持续时间
    * @props {Boolean} [paused] - 是否暂停
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/spinner
+   * @demo #/spinner
    *
    * @usage
    * <Spinner></Spinner>
@@ -74,13 +74,13 @@
 
       // name 风格
       // ios/ios-small/bubbles/circles/crescent/dots
-      name: [String],
+      name: String,
 
       // duration 持续时间
-      duration: [String],
+      duration: String,
 
       // paused 是否暂停
-      paused: [Boolean]
+      paused: Boolean
     },
     data () {
       return {

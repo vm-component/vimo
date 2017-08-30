@@ -29,11 +29,11 @@
    *
    * ```
    * // 引入
-   * import { List } from 'vimo/components/list'
-   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-   * import { Note } from 'vimo/components/note'
-   * import { Avatar } from 'vimo/components/avatar'
-   * import { Label } from 'vimo/components/label'
+   * import { List } from 'vimo/lib/list'
+   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/lib/item'
+   * import { Note } from 'vimo/lib/note'
+   * import { Avatar } from 'vimo/lib/avatar'
+   * import { Label } from 'vimo/lib/label'
    * // 安装
    * export default{
    *   components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label}
@@ -48,7 +48,7 @@
    * @fires component:ItemSliding#onSwipeRight
    * @fires component:ItemSliding#onSwipeLeft
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/slidingList
+   * @demo #/slidingList
    * @see component:ItemOptions
    *
    * @usage

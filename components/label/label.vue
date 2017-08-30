@@ -37,7 +37,8 @@
    * @see component:Input
    * */
   import { setElementClass } from '../util/util'
-  export default{
+
+  export default {
     name: 'Label',
     data () {
       return {
@@ -55,12 +56,12 @@
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: [String],
+      color: String,
 
       // label格式
-      fixed: [Boolean],
-      floating: [Boolean],
-      stacked: [Boolean]
+      fixed: Boolean,
+      floating: Boolean,
+      stacked: Boolean
     },
     computed: {
       // 环境样式

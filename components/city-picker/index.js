@@ -6,7 +6,7 @@
  *
  * ### 简述
  *
- * 这个一个二级/三级联动进行城市选择的组件, 数据获取可修改fetchData函数进行, 可以是本地数据也可以是网络数据.
+ * 这是一个二级/三级联动进行城市选择的组件, 数据获取可修改fetchData函数进行, 可以是本地数据也可以是网络数据.
  *
  * ### fetchData函数
  *
@@ -20,7 +20,7 @@
  *
  * ### 如何引入
  * ```
- * import { CityPicker } from 'vimo/components/city-picker'
+ * import { CityPicker } from 'vimo/lib/city-picker'
  * ```
  *
  * @props {Array} selectedCity - 默认选中的值, 这个也对应组件是两级还是三级的标志, 可以是数据: ['',''] ['','',''], 默认显示北京
@@ -29,7 +29,7 @@
  * @props {Function} [onSelect] - 点击确认的操作
  * @props {Function} fetchData - 获取城市数据的来源, 这个funtion传入code返回promise格式的数据, 其中需要返回的数据格式如下
  *
- * @demo https://dtfe.github.io/vimo-demo/#/city-picker
+ * @demo #/city-picker
  * @usage
  * function openCityPicker () {
  *    CityPicker.present({
@@ -76,7 +76,7 @@ const CityPicker = {
     let startCode = options.startCode || '1'              // 全国  1
     let selectedCity = options.selectedCity
     // null number/string/any [] [''] ['',''] ['1','2','3','4']
-    if (!selectedCity || !isArray(selectedCity) || isArray(selectedCity) && (selectedCity.length === 0 || selectedCity.length > 3)) {
+    if (!selectedCity || !isArray(selectedCity) || (isArray(selectedCity) && (selectedCity.length === 0 || selectedCity.length > 3))) {
       // 非法的情况, 默认是双列 北京 北京
       selectedCity = ['110000', '110100']
     }

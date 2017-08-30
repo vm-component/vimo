@@ -48,7 +48,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Separation } from 'vimo/components/separation'
+   * import { Separation } from 'vimo/lib/separation'
    * // 安装
    * Vue.component(Separation.name, Separation)
    * // 或者
@@ -59,7 +59,7 @@
    * }
    * ```
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/separation
+   * @demo #/separation
    * @usage
    *
    * <Separation>

@@ -1,2 +1,1 @@
-import Searchbar from './searchbar.vue'
-export { Searchbar }
+export { default as Searchbar } from './searchbar.vue'

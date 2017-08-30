@@ -69,7 +69,7 @@
    * @slot range-right - 在range组件右边, 一般放Icon
    * @slot range-left - 在range组件左边, 一般放Icon
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/range
+   * @demo #/range
    *
    * @usage
    * <List>
@@ -111,7 +111,7 @@
         _rect: null, // _sliderEl的尺寸对象
         _activeB: null, // 是否激活了B按钮
 
-        _timer: null,
+        _timer: 0,
 
         valueInner: JSON.parse(JSON.stringify(this.value)) // value内部值
       }
@@ -120,7 +120,7 @@
       /**
        * 颜色: "primary", "secondary", "danger", "light", and "dark"
        */
-      color: [String],
+      color: String,
       /**
        * 是否禁用
        * */

@@ -7,8 +7,7 @@
  * 这里提供了Vimo使用的工具库, 当然业务代码中也可以按需使用.
  *
  * @usage
- * import {isBoolean, isString} from 'vimo/util/util'
- *
+ * import {isBoolean, isString} from 'vimo/lib/util/util'
  * */
 
 /**

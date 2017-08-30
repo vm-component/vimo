@@ -39,7 +39,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Radio } from 'vimo/components/radio'
+   * import { Radio } from 'vimo/lib/radio'
    * // 安装
    * Vue.component(Radio.name, Radio)
    * // 或者
@@ -55,7 +55,7 @@
    * @props {Boolean} [disabled=false] - 单向选择, 点击且换并不对父组件传递
    *
    * @fire component:Radio#onSelect - 点按选择时触发
-   * @demo https://dtfe.github.io/vimo-demo/#/radio
+   * @demo #/radio
    * @usage
    * <List radio-group v-model="fruits" :disabled="isListDisabled">
    *    <ListHeader>Fruits</ListHeader>
@@ -99,9 +99,9 @@
     },
     props: {
       // 固定值
-      value: [String],
-      disabled: [Boolean],
-      color: [String],
+      value: String,
+      disabled: Boolean,
+      color: String,
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }

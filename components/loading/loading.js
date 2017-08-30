@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import { getInsertPosition } from '../util/getInsertPosition'
 import { isString } from '../util/util'
-import loadingComponent from './loading.vue'
+import LoadingComponent from './loading.vue'
 
-const Loading = Vue.extend(loadingComponent)
+const Loading = Vue.extend(LoadingComponent)
 
 // -------- function --------
 

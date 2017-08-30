@@ -57,9 +57,10 @@
   import { firstUpperCase } from '../util/util'
   import { recordMenuInstance } from './menus'
   import { Backdrop } from '../backdrop'
+
   const NOOP = () => {}
 
-  export default{
+  export default {
     name: 'Menus',
     data () {
       return {
@@ -167,7 +168,7 @@
       recordMenuInstance(this)
     },
     components: {
-      'Backdrop': Backdrop
+      Backdrop
     }
   }
 </script>

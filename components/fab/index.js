@@ -1,8 +1,3 @@
-import Fab from './fab.vue'
-import FabButton from './fabButton.vue'
-import FabList from './fabList.vue'
-export {
-  Fab,
-  FabButton,
-  FabList
-}
+export { default as Fab } from './fab.vue'
+export { default as FabButton } from './fabButton.vue'
+export { default as FabList } from './fabList.vue'

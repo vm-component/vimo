@@ -31,7 +31,7 @@
  * - 更详细的示例请看demo
  *
  *
- * @demo https://dtfe.github.io/vimo-demo/#/alert
+ * @demo #/alert
  * @usage
  * // Alert
  * Alert.present({

@@ -1,2 +1,1 @@
-import Range from './range.vue'
-export { Range }
+export { default as Range } from './range.vue'

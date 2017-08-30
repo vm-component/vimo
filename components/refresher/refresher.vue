@@ -41,7 +41,7 @@
    *
    * @slot 空 - 指示器RefresherContent组件的插槽
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/refresher
+   * @demo #/refresher
    * @see component:Base/Content
    * @usage
    * <Page>
@@ -79,6 +79,7 @@
    * */
 
   import { setElementClass, registerListener, pointerCoord } from '../util/util'
+
   const STATE_INACTIVE = 'inactive'
   const STATE_PULLING = 'pulling'
   const STATE_READY = 'ready'
@@ -86,7 +87,7 @@
   const STATE_CANCELLING = 'cancelling'
   const STATE_COMPLETING = 'completing'
   const DAMP = 0.5// 滑动阻尼
-  export default{
+  export default {
     name: 'Refresher',
     data () {
       return {

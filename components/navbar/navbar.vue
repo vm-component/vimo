@@ -1,6 +1,6 @@
 <template>
     <div class="ion-navbar toolbar"
-         :class="[modeClass,colorClass,{'statusbar-padding':statusbarPadding}]"
+         :class="[modeClass,colorClass]"
          v-show="!hideNavBar">
         <div class="toolbar-background" ref="toolbarBackground"
              :class="[toolbarBackgroundClass]"></div>
@@ -53,7 +53,7 @@
    *
    * ```
    * // 引入
-   * import { Navbar } from 'vimo/components/navbar'
+   * import { Navbar } from 'vimo/lib/navbar'
    * // 安装
    * Vue.component(Navbar.name, Navbar)
    * ```
@@ -169,8 +169,7 @@
         hideBb: false,
         bbIcon: this.$config && this.$config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
         backText: this.$config && this.$config.get('backButtonText', '返回') || '返回',
-        hideNavBar: this.$config && this.$config.getBoolean('hideNavBar', false),
-        statusbarPadding: this.$config && this.$config.getBoolean('statusbarPadding', false) // 是否有statusbar的padding
+        hideNavBar: this.$config && this.$config.getBoolean('hideNavBar', false)
       }
     },
     props: {

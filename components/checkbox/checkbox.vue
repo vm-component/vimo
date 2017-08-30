@@ -24,7 +24,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Checkbox } from 'vimo/components/checkbox'
+   * import { Checkbox } from 'vimo/lib/checkbox'
    * // 安装
    * Vue.component(Checkbox.name, Checkbox)
    * // 或者
@@ -41,7 +41,7 @@
    * @props {Boolean} [value=false] - 当前值
    *
    * @fires component:Checkbox#onChange
-   * @demo https://dtfe.github.io/vimo-demo/#/checkbox
+   * @demo #/checkbox
    *
    * @usage
    * <Item>
@@ -49,9 +49,10 @@
    *    <Checkbox slot="item-left" color="danger" v-model="testModal" :disabled="testDisabled" @onChange="onCheckboxChange"></Checkbox>
    * </Item>
    * */
-  import { setElementClass, isTrueProperty } from '../util/util'
+  import { setElementClass } from '../util/util'
   import { Button } from '../button'
-  export default{
+
+  export default {
     name: 'Checkbox',
     components: {Button},
     data () {
@@ -59,13 +60,13 @@
         checkedValue: this.value,           // 内部维护的checked
         disabledValue: this.disabled,       // 内部维护的disabled
         init: false,                        // 是否初始化
-        itemComponent: null                // item组件实例
+        itemComponent: null                 // item组件实例
       }
     },
     props: {
-      disabled: [Boolean],
-      value: [Boolean],
-      color: [String],
+      disabled: Boolean,
+      value: Boolean,
+      color: String,
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode') || 'ios' }
@@ -73,10 +74,10 @@
     },
     watch: {
       disabled (val) {
-        this.setDisabled(isTrueProperty(val))
+        this.setDisabled(val)
       },
       value (val) {
-        this.setChecked(isTrueProperty(val))
+        this.setChecked(val)
       }
     },
     computed: {
@@ -111,7 +112,7 @@
         this.setChecked(!this.checkedValue)
       }
     },
-    mounted: function () {
+    mounted () {
       // 找到外部item实例
       if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
         this.itemComponent = this.$parent

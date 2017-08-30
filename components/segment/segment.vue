@@ -41,7 +41,7 @@
    *
    * ```
    * // 引入
-   * import { Segment, SegmentButton } from 'vimo/components/segment'
+   * import { Segment, SegmentButton } from 'vimo/lib/segment'
    * // 安装
    * Vue.component(Segment.name, Segment)
    * Vue.component(SegmentButton.name, SegmentButton)
@@ -52,7 +52,7 @@
    * @props {String} value - 当前Segment的value, 用于触发制定value的子组件
    *
    * @fires component:Segment#onChange
-   * @demo https://dtfe.github.io/vimo-demo/#/segment
+   * @demo #/segment
    *
    *
    * @usage

@@ -15,7 +15,7 @@
    * @see component:List
    * @see component:Item
    * @see component:Thumbnail
-   * @demo https://dtfe.github.io/vimo-demo/#/avatarList
+   * @demo #/avatarList
    * */
   export default{
     name: 'Avatar'

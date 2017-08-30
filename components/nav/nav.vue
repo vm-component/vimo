@@ -171,7 +171,6 @@
 
       //  初始化导航
       this.initNav()
-    },
-    mounted () {}
+    }
   }
 </script>

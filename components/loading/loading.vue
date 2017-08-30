@@ -81,7 +81,7 @@
    * @props {boolean} [dismissOnPageChange=true] - 页面切换是否关闭loading
    * @props {string} [mode='ios'] - 模式
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/loading
+   * @demo #/loading
    * @see component:Indicator
    * @usage
    *
@@ -93,7 +93,7 @@
    *          console.debug('dismiss in promise success!')
    *        })
    *      }, 1000)
-   *    },
+   * },
    *
    * // 是显示name
    * stringOnly () {
@@ -103,7 +103,7 @@
    *          console.debug('dismiss in promise success!')
    *        })
    *      }, 1000)
-   *    },
+   * },
    *
    * // 普通的
    * showDefault () {
@@ -117,23 +117,24 @@
    *          console.debug('dismiss in promise success!')
    *        })
    *      }, 6000);
-   *    },
+   * },
    *
    * */
   import { urlChange } from '../util/util'
   import { Backdrop } from '../backdrop'
   import { Spinner } from '../spinner/index'
+
   const NOOP = () => {}
 
-  export default{
+  export default {
     name: 'Loading',
     props: {
       spinner: {
         type: String,
         default () { return this.$config && this.$config.get('spinner', 'ios') || 'ios' }
       },
-      content: [String],
-      cssClass: [String],
+      content: String,
+      cssClass: String,
       showBackdrop: {
         type: Boolean,
         default () { return true }

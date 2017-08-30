@@ -1,5 +1,5 @@
 <template>
-    <article content class="ion-content" :class="[modeClass,{'statusbar-padding':statusbarPadding}]">
+    <article content class="ion-content" :class="[modeClass]">
         <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
             <!--Fixed-->
             <slot name="fixed"></slot>
@@ -85,7 +85,7 @@
    *
    * 是的, 基础组件是安装vimo后自动全局注册的.
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/content
+   * @demo #/content
    *
    *
    * @slot 空                slot为空则将内容插入到scroll中
@@ -119,13 +119,11 @@
    * */
   import { transitionEnd, parsePxUnit, isString, isBoolean } from '../util/util'
   import { ScrollView } from './scroll-view'
-  export default{
+
+  export default {
     name: 'Content',
     props: {
-      fullscreen: {
-        type: Boolean,
-        default: false
-      },
+      fullscreen: Boolean,
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode') || 'ios' }
@@ -145,12 +143,8 @@
         footerElement: null,    // footer组件的DOM句柄
         tabsElement: null,      // tabs组件的DOM句柄
 
-        statusBarHeight: 20,
         headerBarHeight: 0,
         footerBarHeight: 0,
-
-        // 是否有statusbar的padding, 高度固定为20px
-        statusbarPadding: this.$config && this.$config.getBoolean('statusbarPadding', false),
 
         _scroll: null,  // 滚动的实例
         _cTop: 0,       // content top
@@ -361,7 +355,7 @@
 
       /**
        * 重新计算Content组件的尺寸维度
-       * 因为这部分受以下因素影响：statusbarPadding、fullscreen、Header，Footer
+       * 因为这部分受以下因素影响：fullscreen、Header，Footer
        * @private
        * */
       recalculateContentDimensions () {
@@ -540,7 +534,6 @@
     },
     created () {
       // 页面进入前完成非DOM操作部分
-      this.statusbarPadding = this.$config && this.$config.getBoolean('statusbarPadding', false)
       this._imgReqBfr = this.$config && this.$config.getNumber('imgRequestBuffer', 1400)
       this._imgRndBfr = this.$config && this.$config.getNumber('imgRenderBuffer', 600)
       this._imgVelMax = this.$config && this.$config.getNumber('imgVelocityMax', 3)

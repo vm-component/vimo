@@ -42,7 +42,7 @@
  *          result: 'modal 1 dismissed success!'
  *        })
  * }
- * @demo https://dtfe.github.io/vimo-demo/#/modal
+ * @demo #/modal
  * */
 
 import Vue from 'vue'

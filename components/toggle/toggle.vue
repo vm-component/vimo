@@ -24,7 +24,6 @@
    *
    * ## 表单组件 / Toggle开关组件
    *
-   *
    * ### 注意
    *
    * 使用 v-model 切换状态, 不支持checked属性
@@ -33,11 +32,10 @@
    *
    * Toggle组件和Checkbox组件的功能类似, 但是Toggle组件在移动端更加好看, 也更加易用. Toggle可以设置颜色, 当然不同模式下的样式还是不一样的, 感兴趣的可以切换试试.
    *
-   *
    * ### 如何引入
    * ```
    * // 引入
-   * import { Toggle } from 'vimo/components/toggle'
+   * import { Toggle } from 'vimo/lib/toggle'
    * // 安装
    * Vue.component(Toggle.name, Toggle)
    * // 或者
@@ -53,7 +51,7 @@
    * @props {Boolean} [disabled=false] - 禁用状态
    *
    * @fires component:Toggle#onChange
-   * @demo https://dtfe.github.io/vimo-demo/#/toggle
+   * @demo #/toggle
    * @usage
    * <List>
    *    <ListHeader>
@@ -82,8 +80,9 @@
    * </List>
    *
    * */
-  import { setElementClass, isTrueProperty } from '../util/util'
-  export default{
+  import { setElementClass } from '../util/util'
+
+  export default {
     name: 'Toggle',
     data () {
       return {
@@ -159,7 +158,6 @@
        * @param {boolean} isChecked
        */
       setChecked (isChecked) {
-        isChecked = isTrueProperty(isChecked)
         if (isChecked !== this.isChecked) {
           this.isChecked = isChecked
           if (this.init) {
@@ -184,7 +182,6 @@
        * @param {boolean} isDisabled
        */
       setDisabled (isDisabled) {
-        isDisabled = isTrueProperty(isDisabled)
         if (isDisabled !== this.isDisabled) {
           this.isDisabled = isDisabled
           this.setItemDisabledClass(isDisabled)

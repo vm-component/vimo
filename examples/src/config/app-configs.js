@@ -7,7 +7,6 @@
  *
  */
 export default {
-  statusbarPadding: false,
   platforms: {
     ios: {
       pageTransition: 'fade-right-transition'  //

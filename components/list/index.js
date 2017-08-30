@@ -1,2 +1,1 @@
-import List from './list.vue'
-export { List }
+export { default as List } from './list.vue'

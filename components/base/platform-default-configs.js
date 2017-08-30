@@ -11,8 +11,7 @@ const TIMEOUT = 10000 // 平台初始化需要的最大时间
 export default {
   mobile: {
     settings: {
-      mode: 'ios',
-      statusbarPadding: false
+      mode: 'ios'
     }
   },
   android: {

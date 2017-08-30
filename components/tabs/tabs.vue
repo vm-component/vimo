@@ -56,7 +56,7 @@
    *
    * @fires component:Tabs#onTabChange
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/tabs
+   * @demo #/tabs
    * @usage
    *
    * <Page>
@@ -93,7 +93,8 @@
    *
    * */
   import { parsePxUnit, firstUpperCase, setElementClass } from '../util/util'
-  export default{
+
+  export default {
     name: 'Tabs',
     props: {
       color: [String],

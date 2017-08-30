@@ -15,7 +15,7 @@
  * ### 如何引入
  * ```
  * // 引入
- * import { Menus } from 'vimo/components/menus'
+ * import { Menus } from 'vimo/lib/menus'
  * // 安装
  * Vue.component(Menus.name, Menus)
  * // 或者
@@ -35,7 +35,7 @@
  * @fires component:Menus#onMenuClosing
  * @fires component:Menus#onMenuClosed
  *
- * @demo https://dtfe.github.io/vimo-demo/#/
+ * @demo #/
  *
  * @usage
  *

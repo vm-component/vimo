@@ -8,13 +8,13 @@
  *
  * ### 还有
  *
- * Toast组件本身并不是单例对象, 但是调用指纹都为`this.$toast('Toast Bottom Only String')`, 因此可能会问:
+ * Toast组件本身并不是单例对象, 但是调用指纹都为`Toast('Toast Bottom Only String')`, 因此可能会问:
  * 如何程序关闭toast呢? 目前, 关闭Toast只有三个方法:
  *
  * 1. duration 过期时间
  * 2. showCloseButton 关闭按钮
  * 3. 当上面两个都设置了, 则只执行第二个配置
- * 4. `let toast = this.$toast('Toast Bottom Only String')`返回toast实例, 执行`toast.dismiss()`执行关闭
+ * 4. `let toast = Toast('Toast Bottom Only String')`返回toast实例, 执行`toast.dismiss()`执行关闭
  *
  * 因此使用Toast需要知道这一点.
  *
@@ -30,19 +30,19 @@
  *
  *
  *```
- this.$toast('Bottom was added successfully')
+ Toast('Bottom was added successfully')
  *```
  *
  * #### 2. 传入Message和Duration
  *
  *```
- this.$toast('Bottom was added successfully',1000)
+ Toast('Bottom was added successfully',1000)
  *```
  *
  * #### 3. 传入Options对象
  *
  *```
- this.$toast({
+ Toast({
     message: 'Bottom was added successfully',
     duration: 3000,
     position: 'bottom',
@@ -51,7 +51,7 @@
       console.debug('2 onDismiss in promise success!')
     }
  })
- this.$toast({
+ Toast({
     message: 'Top with Button was added successfully',
     duration: 3000, // 这个不生效
     position: 'top',
@@ -76,14 +76,14 @@
  * @props {string} [onDismiss=noop] - 当关闭动画结束时执行的函数
  * @props {string} [type=''] - (支付宝/DingTalk) toast 类型，展示相应图标，类型可选值： success / fail
  *
- * @demo https://dtfe.github.io/vimo-demo/#/toast
+ * @demo #/toast
  */
 
 import Vue from 'vue'
 import { isObject, isString } from '../util/util'
-import toastComponent from './toast.vue'
+import ToastComponent from './toast.vue'
 
-const Toast = Vue.extend(toastComponent)
+const Toast = Vue.extend(ToastComponent)
 const DOM_INSERT_POSITION = 'toastPortal' // 插入的DOM位置
 const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback选项
 

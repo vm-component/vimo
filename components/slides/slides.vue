@@ -84,7 +84,7 @@
    *
    * ```
    * // 引入
-   * import { Slides, Slide } from 'vimo/components/slides'
+   * import { Slides, Slide } from 'vimo/lib/slides'
    * // 安装
    * Vue.component(Slides.name, Slides)
    * Vue.component(Slide.name, Slide)
@@ -129,7 +129,7 @@
    *
    *
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/slides
+   * @demo #/slides
    * @see http://idangero.us/swiper/api/
    *
    * */

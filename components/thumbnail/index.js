@@ -1,2 +1,1 @@
-import Thumbnail from './thumbnail.vue'
-export { Thumbnail }
+export { default as Thumbnail } from './thumbnail.vue'

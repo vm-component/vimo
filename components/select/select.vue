@@ -5,10 +5,9 @@
         <div class="select-icon">
             <div class="select-icon-inner"></div>
         </div>
-        <button aria-haspopup="true" @click="onPointerDownHandler($event)"
+        <button @click="onPointerDownHandler($event)"
                 ref="button"
                 :id="id"
-                ion-button="item-cover"
                 class="item-cover">
         </button>
         <slot></slot>
@@ -44,7 +43,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Select, Option } from 'vimo/components/select'
+   * import { Select, Option } from 'vimo/lib/select'
    * // 安装
    * Vue.component(Select.name, Select)
    * Vue.component(Option.name, Option)
@@ -70,7 +69,7 @@
    * @fires component:Select#onCancel
    * @fires component:Select#onSelect
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/select
+   * @demo #/select
    *
    * @usage
    * <Item>
@@ -87,8 +86,9 @@
   import { setElementClass, isTrueProperty, isBlank, isCheckedProperty } from '../util/util'
   import { ActionSheet } from '../action-sheet'
   import { Alert } from '../alert'
+
   let id = 0
-  export default{
+  export default {
     name: 'Select',
     data () {
       return {
@@ -130,7 +130,7 @@
         default () { return {} }
       },
       // 选择组件的文本提示, 代替选择的option选项
-      selectedText: [String],
+      selectedText: String,
       // 模式
       mode: {
         type: String,

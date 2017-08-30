@@ -70,14 +70,14 @@
    *
    * ```
    * // 引入
-   * import { Column, Grid, Row } from 'vimo/components/grid'
+   * import { Column, Grid, Row } from 'vimo/lib/grid'
    * // 安装
    * Vue.component(Grid.name, Grid)
    * Vue.component(Row.name, Row)
    * Vue.component(Column.name, Column)
    * ```
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/grid
+   * @demo #/grid
    * @usage
    * <Grid no-padding>
    *    <Row justify-content-center align-items-center>
@@ -93,7 +93,7 @@
    *    </Row>
    * </Grid>
    * */
-  export default{
+  export default {
     name: 'Grid'
   }
 </script>

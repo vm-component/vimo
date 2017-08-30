@@ -22,7 +22,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Button } from 'vimo/components/button'
+   * import { Button } from 'vimo/lib/button'
    * // 安装
    * Vue.component(Button.name, Button)
    * // 或者
@@ -55,7 +55,7 @@
    *
    * @props {Boolean} [strong]       - 样式加强
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/button
+   * @demo #/button
    * @usage
    * <Button full>full</Button>
    * <Button outline full color="secondary">outline + full</Button>

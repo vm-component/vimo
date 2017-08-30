@@ -1,9 +1,7 @@
 <template>
     <div class="vm-sheet" :class="[modeClass,{'vm-sheet-visible':isVisible}]">
-        <!--backdrop-->
         <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
                   :isActive="isActive"></Backdrop>
-        <!--actionsheet wrap-->
         <transition
                 name="sheet"
                 @before-enter="beforeEnter"
@@ -37,7 +35,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Sheet } from 'vimo/components/sheet'
+   * import { Sheet } from 'vimo/lib/sheet'
    * // 安装
    * Vue.component(Sheet.name, Sheet)
    * // 或者
@@ -146,7 +144,7 @@
         presentCallback: NOOP,
         dismissCallback: NOOP,
 
-        unreg: null         // 页面变化的解绑函数
+        unReg: null         // 页面变化的解绑函数
       }
     },
     computed: {
@@ -256,7 +254,7 @@
         }
         if (this.isActive) {
           this.isActive = false // 动起来
-          this.unreg && this.unreg()
+          this.unReg && this.unReg()
           return new Promise((resolve) => { this.dismissCallback = resolve })
         } else {
           return new Promise((resolve) => { resolve() })
@@ -266,7 +264,7 @@
     created () {
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
-        this.unreg = urlChange(() => {
+        this.unReg = urlChange(() => {
           this.isActive && this.dismiss()
         })
       }

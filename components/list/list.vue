@@ -33,8 +33,8 @@
    *
    * ```
    * // 引入
-   * import { List } from 'vimo/components/list'
-   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
+   * import { List } from 'vimo/lib/list'
+   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/lib/item'
    * // 安装
    * Vue.component(List.name, List)
    * Vue.component(ListHeader.name, ListHeader)
@@ -122,10 +122,10 @@
    *
    *
    * @see component:Item
-   * @demo https://dtfe.github.io/vimo-demo/#/list
+   * @demo #/list
    */
-  import { isTrueProperty } from '../util/util'
-  export default{
+
+  export default {
     name: 'List',
     data () {
       return {
@@ -146,12 +146,12 @@
       /**
        * shouldEnable whether the item-sliding should be enabled or not
        * */
-      sliding: [Boolean],
+      sliding: Boolean,
 
       // -------- Radio --------
-      radioGroup: [Boolean],
-      value: [String],
-      disabled: [Boolean]
+      radioGroup: Boolean,
+      value: String,
+      disabled: Boolean
     },
     watch: {
       value (val) {
@@ -166,7 +166,7 @@
         }
       },
       disabled (isDisabled) {
-        if (isTrueProperty(this.radioGroup)) {
+        if (this.radioGroup) {
           this.disableAllRadio(isDisabled)
           this.onRadioChange(null)
         }
@@ -179,15 +179,6 @@
       }
     },
     methods: {
-//      /**
-//       * @method closeSlidingItems (暂时不可用)
-//       * @description
-//       * Close any sliding items that are open.关闭所有滑开的items
-//       * */
-//      // TODO: 关闭所有滑开的items
-//      closeSlidingItems () {
-//
-//      },
 
       // -------- Radio --------
       /**
@@ -235,7 +226,7 @@
     mounted () {
       // -------- Radio --------
       // 内部定义了Radio组件
-      if (isTrueProperty(this.radioGroup)) {
+      if (this.radioGroup) {
         this.disableAllRadio(this.disabled)
       }
     }

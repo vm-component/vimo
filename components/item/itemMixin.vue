@@ -59,8 +59,8 @@
    *
    * ```
    * // 引入
-   * import { List } from 'vimo/components/list'
-   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
+   * import { List } from 'vimo/lib/list'
+   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/lib/item'
    * // 安装
    * Vue.component(List.name, List)
    * Vue.component(ListHeader.name, ListHeader)
@@ -89,7 +89,7 @@
    * @slot item-left - 放置在左边
    * @slot item-right - 放置在左边
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/list
+   * @demo #/list
    * @see component:List
    * @see http://router.vuejs.org/zh-cn/index.html
    *

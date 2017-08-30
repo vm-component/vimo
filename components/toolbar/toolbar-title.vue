@@ -25,7 +25,7 @@
    *
    * ```
    * // 引入
-   * import { Toolbar, Buttons, Title } from 'vimo/components/toolbar'
+   * import { Toolbar, Buttons, Title } from 'vimo/lib/toolbar'
    * // 安装
    * Vue.component(Toolbar.name, Toolbar)
    * Vue.component(Title.name, Title)
@@ -238,7 +238,6 @@
       console.assert(this.$app, `The component of <Title> need '<App>' instance, please use Vimo in right environment!`)
       console.assert(this.$platform, `The component of <Title> need 'platform' instance, please use Vimo in right environment!`)
       console.assert(this.$config, `The component of <Title> need 'config' instance, please use Vimo in right environment!`)
-
       this.init()
     }
   }

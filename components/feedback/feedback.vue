@@ -40,7 +40,7 @@
    *
    * ### 如何引入
    * ```
-   * import { Feedback } from 'vimo/components/feedback'
+   * import { Feedback } from 'vimo/lib/feedback'
    * components: {Feedback}
    * ```
    *
@@ -61,7 +61,7 @@
    * @props {Array} value.images.blob - 修正方向及大小的二进制blob
    * @props {Array} value.images.file - 图片file句柄
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/feedback
+   * @demo #/feedback
    * @usage
    * <Feedback v-model="feedbackInfo" :maxlength="100" :maximage="4"></Feedback>
    * */
@@ -69,7 +69,8 @@
   import { isString, isArray } from '../util/util'
   import { Textarea } from '../input'
   import { PreviewImage } from '../preview-image'
-  export default{
+
+  export default {
     name: 'Feedback',
     components: {Textarea},
     data () {

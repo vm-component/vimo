@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import { getInsertPosition } from '../util/getInsertPosition'
-import { isNumber, isPresent, isString } from '../util/util'
-import pickerComponent from './picker.vue'
+import PickerComponent from './picker.vue'
 
-const Picker = Vue.extend(pickerComponent)
+const Picker = Vue.extend(PickerComponent)
 
 // ---------- functions ----------
 
@@ -81,5 +80,4 @@ function getPresentDismissIns (Factory) {
   }
 }
 
-let methods = getPresentDismissIns(PickerFactory)
-export default methods
+export default getPresentDismissIns(PickerFactory)

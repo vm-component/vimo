@@ -55,7 +55,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Icon } from 'vimo/components/icon'
+   * import { Icon } from 'vimo/lib/icon'
    * // 安装
    * Vue.component(Icon.name, Icon)
    * // 或者
@@ -66,8 +66,6 @@
    * }
    * ```
    *
-   *
-   *
    * @props {String} [mode='ios'] - 模式
    * @props {String} [color] - 颜色
    * @props {String|Boolean} [name] - icon的名称, 如果传入false, 则影藏图标
@@ -76,11 +74,10 @@
    * @props {String} [ios] - 强制使用ios的Icon
    * @props {String} [md] - 强制使用md的Icon
    *
-   *
-   * @demo https://dtfe.github.io/vimo-demo/#/icon
+   * @demo #/icon
    *
    * */
-  export default{
+  export default {
     name: 'Icon',
     props: {
       /**
@@ -98,7 +95,7 @@
        * light:      #f4f4f4,
        * dark:       #222,
        * */
-      color: [String],
+      color: String,
       /**
        * icon的名字, 默认的名字
        * */
@@ -109,7 +106,7 @@
        * 如果未定义,则为:
        * ion -> `${this.name}-outline`
        * */
-      activeName: [String],
+      activeName: String,
 
       /**
        * 表示当前的图标的状态
@@ -126,8 +123,8 @@
         default: true
       },
 
-      ios: [String],
-      md: [String]
+      ios: String,
+      md: String
     },
     data () {
       return {

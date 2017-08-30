@@ -100,9 +100,9 @@
    *
    *
    * @usage
-   * import { List } from 'vimo/components/list'
-   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/components/item'
-   * import { Popover } from 'vimo/components/popover'
+   * import { List } from 'vimo/lib/list'
+   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/lib/item'
+   * import { Popover } from 'vimo/lib/popover'
    * import TextTool from './textTool.vue'
    * export default{
    *  methods: {
@@ -135,7 +135,7 @@
    * @props {Object} data - 传给popover内部显示的vue组件的数据, 内部组件通过`this.$options.$data`获取
    * @props {Object|MouseEvent} ev - 点击元素的事件, $event, 这个值的传入可以计算popover放置的位置
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/popover
+   * @demo #/popover
    * */
   import Vue from 'vue'
   import { Backdrop } from '../backdrop'

@@ -50,7 +50,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Card, CardContent, CardHeader, CardTitle } from 'vimo/components/card'
+   * import { Card, CardContent, CardHeader, CardTitle } from 'vimo/lib/card'
    * // 安装
    * Vue.component(Card.name, Card)
    * Vue.component(CardContent.name, CardContent)
@@ -66,7 +66,7 @@
    *
    * @slot 空 - 默认嵌入全部内容
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/cards
+   * @demo #/cards
    *
    * */
   import mixin from './mixin'

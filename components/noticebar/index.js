@@ -1,2 +1,1 @@
-import NoticeBar from './noticebar.vue'
-export { NoticeBar }
+export { default as  NoticeBar } from './noticebar.vue'

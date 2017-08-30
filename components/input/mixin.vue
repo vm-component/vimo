@@ -65,7 +65,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Input, Textarea } from 'vimo/components/input'
+   * import { Input, Textarea } from 'vimo/lib/input'
    * // 安装
    * Vue.component(Input.name, Input)
    * Vue.component(Textarea.name, Textarea)
@@ -130,7 +130,7 @@
    * @fires component:Input#onFocus
    * @fires component:Input#onInput
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/input
+   * @demo #/input
    * @usage
    * <Input placeholder="Text Input">
    * <Textarea @onBlur="onBlur($event)" @onFocus="onFocus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>

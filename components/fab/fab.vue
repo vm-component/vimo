@@ -37,7 +37,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Fab, FabButton, FabList } from 'vimo/components/fab'
+   * import { Fab, FabButton, FabList } from 'vimo/lib/fab'
    * // 安装
    * Vue.component(Fab.name, Fab)
    * Vue.component(FabButton.name, FabButton)
@@ -81,7 +81,7 @@
    * @props {Boolean} edge - 设置放置位置, 放在Header/Footer组件与Content组件交界处
    *
    *
-   * @demo https://dtfe.github.io/vimo-demo/#/fab
+   * @demo #/fab
    * */
   export default{
     name: 'Fab',

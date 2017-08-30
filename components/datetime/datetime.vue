@@ -6,8 +6,7 @@
          :max="max">
         <div v-if="!text" class="datetime-text datetime-placeholder">{{placeholder}}</div>
         <div v-if="text" class="datetime-text">{{text}}</div>
-        <Button
-                type="button"
+        <Button type="button"
                 :id="_uid"
                 role="item-cover"
                 class="item-cover">
@@ -41,7 +40,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Datetime } from 'vimo/components/datetime'
+   * import { Datetime } from 'vimo/lib/datetime'
    * // 安装
    * Vue.component(Datetime.name, Datetime)
    * // 或者
@@ -81,7 +80,7 @@
    *
    * @see http://ionicframework.com/docs/demos/src/datetime/www/?production=true&ionicplatform=ios
    * @see http://ionicframework.com/docs/api/components/datetime/DateTime/
-   * @demo https://dtfe.github.io/vimo-demo/#/time-picker
+   * @demo #/time-picker
    * @fires component:Datetime#onCancel
    * @fires component:Datetime#onChange
    * */
@@ -102,9 +101,10 @@
     dateSortValue,
     dateDataSortValue
   } from './datetime-util'
+
   const DEFAULT_FORMAT = 'MMM D, YYYY'
   //  const DEFAULT_FORMAT = 'YYYY/MM/DD'
-  export default{
+  export default {
     name: 'Datetime',
     data () {
       return {
@@ -361,7 +361,7 @@
             // loop through each month and see if it
             // is within the min/max date range
             monthOpt.disabled = (dateSortValue(selectedYear, monthOpt.value, 31) < minCompareVal ||
-            dateSortValue(selectedYear, monthOpt.value, 1) > maxCompareVal)
+              dateSortValue(selectedYear, monthOpt.value, 1) > maxCompareVal)
           }
         }
 
@@ -377,8 +377,8 @@
               var compareVal = dateSortValue(selectedYear, selectedMonth, dayOpt.value)
 
               dayOpt.disabled = (compareVal < minCompareVal ||
-              compareVal > maxCompareVal ||
-              numDaysInMonth <= i)
+                compareVal > maxCompareVal ||
+                numDaysInMonth <= i)
             }
           } else {
             // enable/disable which numbers of days to show in this month
@@ -449,7 +449,7 @@
       /**
        * @private
        */
-      onChange(val) {
+      onChange (val) {
         console.debug('datetime, onChange w/out formControlName', val)
         this.setValue(val)
         this.updateText()
