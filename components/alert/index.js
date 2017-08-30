@@ -1,2 +1,1 @@
-import Alert from './alert.js'
-export { Alert }
+export { default as Alert } from './alert.js'
