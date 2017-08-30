@@ -45,7 +45,7 @@
   import { Button } from '../button/index'
   import { Icon } from '../icon/index'
 
-  const noop = () => {}
+  const NOOP = () => {}
 
   export default {
     name: 'ActionSheet',
@@ -89,8 +89,8 @@
         cancelButton: null, // 取消按钮(组)，一般放在下面
 
         // promise
-        presentCallback: noop,
-        dismissCallback: noop,
+        presentCallback: NOOP,
+        dismissCallback: NOOP,
 
         unReg: null         // 页面变化的解绑函数
       }

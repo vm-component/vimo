@@ -332,7 +332,7 @@
          */
         scroll.scroll = (ev) => {
           // remind the app that it's currently scrolling
-          this.$app && this.$app.setScrolling()
+//          this.$app && this.$app.setScrolling()
           this.$emit('onScroll', ev)
           this.$eventBus && this.$eventBus.$emit('onScroll', ev)
 

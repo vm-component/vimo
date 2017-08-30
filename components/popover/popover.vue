@@ -143,13 +143,15 @@
 
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
+  const NOOP = () => {}
+
   export default {
     name: 'Popover',
     data () {
       return {
         htmlComponent: '',
-        presentCallback: null,  // 开启的promise
-        dismissCallback: null,  // 关闭的promise
+        presentCallback: NOOP,  // 开启的promise
+        dismissCallback: NOOP,  // 关闭的promise
         unreg: null,            // 页面切换的pagechange监听函数
 
         isActive: false,        // 内部控制是否开启

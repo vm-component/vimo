@@ -119,6 +119,7 @@
   import PickerCol from './picker-col.vue'
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
+  const NOOP = () => {}
 
   export default {
     name: 'Picker',
@@ -127,8 +128,8 @@
         isActive: false,        // 控制当前组件的激活状态
         enabled: true,          // 是否不在动画中(是否为可行为状态)
 
-        dismissCallback: null,  // 关闭的回调
-        presentCallback: null,  // 打开的回调
+        dismissCallback: NOOP,  // 关闭的回调
+        presentCallback: NOOP,  // 打开的回调
 
         cols: [],               // 每列的数据
         timer: null,            // 计时器

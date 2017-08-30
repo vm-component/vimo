@@ -10,7 +10,17 @@ export default {
   dingtalk: {
     bridgeReady (plt) {
       window.dd.config({})
-      window.dd.error((err) => {})
+      window.dd.ready(readFun)
+      window.dd.error(readFun)
+
+      function readFun (err) {
+        if (err) {
+          alert(err)
+        }
+        // ready
+        window.dd.xxxx
+
+      }
     }
   },
   qq: {

@@ -56,6 +56,7 @@
 <script type="text/javascript">
   import Vue from 'vue'
   import { Backdrop } from '../backdrop'
+  const NOOP = () => {}
 
   export default {
     name: 'Modal',
@@ -86,8 +87,8 @@
         isActive: false,
 
         // promise
-        presentCallback: null,
-        dismissCallback: null
+        presentCallback: NOOP,
+        dismissCallback: NOOP
       }
     },
     computed: {

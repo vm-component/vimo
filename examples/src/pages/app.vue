@@ -46,8 +46,8 @@
                     <Row no-padding>
                         <Column>
                             <strong text-danger>App状态:</strong>
-                            <p>isScrolling: {{isScrolling}}</p>
-                            <p>isEnabled: {{isEnabled}}</p>
+                            <p>isScrolling: {{$app.isScrolling}}</p>
+                            <p>isEnabled: {{$app.isEnabled}}</p>
                         </Column>
                     </Row>
                 </Grid>
@@ -69,8 +69,7 @@
   export default{
     data () {
       return {
-        isScrolling: false,
-        isEnabled: false,
+//        isEnabled: false,
 
         isDisabled: false
       }
@@ -105,11 +104,12 @@
     },
     created () {
       // 获取状态
-      intervalTimer = window.setInterval(() => {
-        this.isScrolling = this.$app.isScrolling()
-        this.isEnabled = this.$app.isEnabled()
-        console.log('update')
-      }, 200)
+//      intervalTimer = window.setInterval(() => {
+//
+//        console.log('update')
+//      }, 200)
+
+//      this.isEnabled = this.$app.isEnabled()
     },
     mounted () {
     },

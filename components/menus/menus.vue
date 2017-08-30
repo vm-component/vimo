@@ -57,6 +57,8 @@
   import { firstUpperCase } from '../util/util'
   import { recordMenuInstance } from './menus'
   import { Backdrop } from '../backdrop'
+  const NOOP = () => {}
+
   export default{
     name: 'Menus',
     data () {
@@ -67,8 +69,8 @@
         animationName: '', // 过度动画名称
 
         // promise
-        presentCallback: null,
-        dismissCallback: null
+        presentCallback: NOOP,
+        dismissCallback: NOOP
       }
     },
     props: {

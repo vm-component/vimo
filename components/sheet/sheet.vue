@@ -108,6 +108,7 @@
    * */
   import { Backdrop } from '../backdrop'
   import { urlChange } from '../util/util'
+  const NOOP = () => {}
 
   export default {
     name: 'Sheet',
@@ -142,8 +143,8 @@
         enabled: true,     // 是否在过渡态的状态判断，如果在动画中则为false (补漏的)
 
         // promise
-        presentCallback: null,
-        dismissCallback: null,
+        presentCallback: NOOP,
+        dismissCallback: NOOP,
 
         unreg: null         // 页面变化的解绑函数
       }

@@ -123,6 +123,8 @@
   import { urlChange } from '../util/util'
   import { Backdrop } from '../backdrop'
   import { Spinner } from '../spinner/index'
+  const NOOP = () => {}
+
   export default{
     name: 'Loading',
     props: {
@@ -152,8 +154,8 @@
         enabled: false, // 组件当前是否进入正常状态的标示(正常显示状态 和 正常退出状态)
 
         // promise
-        presentCallback: null,
-        dismissCallback: null,
+        presentCallback: NOOP,
+        dismissCallback: NOOP,
 
         startTime: null,
         timer: null,
