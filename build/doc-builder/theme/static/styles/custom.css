@@ -51,7 +51,6 @@
       text-align: center;
       position: fixed;
       top: 30px;
-      transform: scale(0.8);
       transform-origin: top center; }
       .page-content .showcase .showcase__box.ios .showcase__box--ios {
         display: block !important; }

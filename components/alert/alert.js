@@ -35,21 +35,21 @@
  * @usage
  * // Alert
  * Alert.present({
- * title: 'Alert',
- * message: '收到这个通知的人希望你今天能搞定这个alert组件',
- * cssClass: 'alertCssOuterMain  ',
- * enableBackdropDismiss: true,
- * buttons: [
- *   {
- *     text: '确定',
- *     handler: (value) => {
- *       Alert.dismiss().then(function (data) {
- *         console.debug('button3 click dismiss ')
- *         console.debug(data)
- *       });
- *     }
- *   }
- * ]
+ *    title: 'Alert',
+ *    message: '收到这个通知的人希望你今天能搞定这个alert组件',
+ *    cssClass: 'alertCssOuterMain  ',
+ *    enableBackdropDismiss: true,
+ *    buttons: [
+ *      {
+ *        text: '确定',
+ *        handler: (value) => {
+ *          Alert.dismiss().then(function (data) {
+ *            console.debug('button3 click dismiss ')
+ *            console.debug(data)
+ *          });
+ *        }
+ *      }
+ *    ]
  * });
  *
  * // Input

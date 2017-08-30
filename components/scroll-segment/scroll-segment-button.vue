@@ -16,7 +16,11 @@
 </style>
 <script type="text/javascript">
   /**
-   * onSelect事件
+   * @component ScrollSegment/ScrollSegmentButton
+   * @description
+   *
+   * ## 滑动片段组件 / ScrollSegmentButton
+   *
    * */
   export default{
     name: 'ScrollSegmentButton',

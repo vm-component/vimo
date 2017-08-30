@@ -21,6 +21,12 @@
     </div>
 </template>
 <script type="text/javascript">
+  /**
+   * @component SlidesLite/Slide
+   * @description
+   *
+   * ## 轮播组件 / 精简版Slide组件
+   * */
   export default {
     name: 'Slide',
     mounted () {

@@ -7,7 +7,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component SegmentButton
+   * @component Segment/SegmentButton
    * @description
    *
    * ## 小标签 / SegmentButton

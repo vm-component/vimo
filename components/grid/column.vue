@@ -5,7 +5,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Column
+   * @component Grid/Column
    * @description
    *
    * ## 栅格组件 / Column组件

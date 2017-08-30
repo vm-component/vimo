@@ -4,8 +4,15 @@
     </div>
 </template>
 <script type="text/javascript">
+  /**
+   * @component Card/CardContent
+   * @description
+   *
+   * ## 卡片组件 / CardContent组件
+   **/
   import mixin from './mixin'
-  export default{
+
+  export default {
     name: 'CardContent',
     data () {
       return {

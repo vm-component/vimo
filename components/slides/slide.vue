@@ -11,6 +11,12 @@
     </div>
 </template>
 <script type="text/javascript">
+  /**
+   * @component Slides/Slide
+   * @description
+   *
+   * ## 轮播组件 / Slide组件
+   * */
   export default {
     name: 'Slide',
     data () {

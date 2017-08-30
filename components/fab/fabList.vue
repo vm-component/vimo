@@ -5,7 +5,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component FabList
+   * @component Fab/FabList
    * @description
    *
    * ## 浮层组件 / FAB浮动按钮组件 - 盒子

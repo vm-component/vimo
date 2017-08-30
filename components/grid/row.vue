@@ -5,7 +5,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Row
+   * @component Grid/Row
    * @description
    *
    * ## 栅格组件 / Row组件

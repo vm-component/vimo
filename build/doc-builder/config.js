@@ -46,6 +46,7 @@ module.exports = {
       `${base}/components/nav`,
       `${base}/components/segment`,
       `${base}/components/slides`,
+      `${base}/components/slides-lite`,
       `${base}/components/tabs`,
       `${base}/components/alert`,
       `${base}/components/action-sheet`,

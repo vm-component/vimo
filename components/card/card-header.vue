@@ -4,6 +4,12 @@
     </div>
 </template>
 <script type="text/javascript">
+  /**
+   * @component Card/CardHeader
+   * @description
+   *
+   * ## 卡片组件 / CardHeader组件
+   **/
   import mixin from './mixin'
   export default{
     name: 'CardHeader',

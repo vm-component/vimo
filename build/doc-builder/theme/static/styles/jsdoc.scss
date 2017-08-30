@@ -14,7 +14,7 @@ html, body {
 }
 
 body {
-    color: #4d4e53;
+    color: #34495e;
     background-color: white;
     margin: 0 auto;
     padding: 0 20px;
@@ -25,7 +25,7 @@ body {
 
 a,
 a:active {
-    color: $theme;
+    color: #33b076;
     text-decoration: none;
 }
 
@@ -50,8 +50,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #000;
-    font-weight: 400;
+    color: #34495e;
+    font-weight: 600;
     margin: 0;
 }
 
@@ -407,7 +407,7 @@ footer {
     width: 100%;
     line-height: 18px;
     display: block;
-    background: #0d152a;
+    //background: #0d152a;
     color: #aeaeae;
     overflow: hidden;
 }
@@ -415,7 +415,7 @@ footer {
 .prettyprint code {
     line-height: 18px;
     display: inline-block;
-    background: #0d152a;
+    background: #f8f8f8;
     color: #4d4e53;
 }
 
@@ -494,7 +494,7 @@ footer {
 
 .params td, .params .name, .props .name, .name code, table td {
     color: #4d4e53;
-    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    font-family: Roboto Mono,Monaco,courier,monospace;
     font-size: 100%;
 }
 

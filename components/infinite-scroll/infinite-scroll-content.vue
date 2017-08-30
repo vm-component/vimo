@@ -10,7 +10,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component InfiniteScrollContent
+   * @component InfiniteScroll/InfiniteScrollContent
    * @description
    *
    * ## 数据加载 / InfiniteScrollContent无限滚动组件的指示器

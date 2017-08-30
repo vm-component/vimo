@@ -20,7 +20,7 @@
 </style>
 <script type="text/javascript">
   /**
-   * @component RefresherContent
+   * @component Refresher/RefresherContent
    * @description
    *
    * ## 数据加载 / RefresherContent下拉刷新组件的指示器

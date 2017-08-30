@@ -2,8 +2,15 @@
     <span :value="value" :label="label" :disabled="disabled" :checked="checked"></span>
 </template>
 <script type="text/javascript">
+  /**
+   * @component Select/Option
+   * @description
+   *
+   * ## 表单组件 / Option选择组件
+   **/
   import { isBlank } from '../util/util'
-  export default{
+
+  export default {
     name: 'Option',
     data () {
       return {
@@ -37,7 +44,7 @@
         return ''
       }
     },
-    created: function () {
+    created () {
       this.label = this.getText()
       if (this.$parent.$options._componentTag.toLowerCase() === 'select') {
         this.selectComponent = this.$parent

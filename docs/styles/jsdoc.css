@@ -7,7 +7,7 @@ html, body {
   width: 100%; }
 
 body {
-  color: #4d4e53;
+  color: #34495e;
   background-color: white;
   margin: 0 auto;
   padding: 0 20px;
@@ -36,8 +36,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif; }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #000;
-  font-weight: 400;
+  color: #34495e;
+  font-weight: 600;
   margin: 0; }
 
 blockquote {
@@ -307,14 +307,13 @@ footer {
   width: 100%;
   line-height: 18px;
   display: block;
-  background: #0d152a;
   color: #aeaeae;
   overflow: hidden; }
 
 .prettyprint code {
   line-height: 18px;
   display: inline-block;
-  background: #0d152a;
+  background: #f8f8f8;
   color: #4d4e53; }
 
 .prettyprint > code {
@@ -379,7 +378,7 @@ footer {
 
 .params td, .params .name, .props .name, .name code, table td {
   color: #4d4e53;
-  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-family: Roboto Mono,Monaco,courier,monospace;
   font-size: 100%; }
 
 .params td, .params th, .props td, .props th, table td, table th {

@@ -63,7 +63,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Slides-Lite
+   * @component SlidesLite
    * @description
    *
    * ## 轮播组件 / 精简版Slides组件
