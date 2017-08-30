@@ -26,7 +26,7 @@
    * @component Base/Header
    * @description
    *
-   * ## 基础组件 / Footer组件
+   * ## 基础组件 / Header组件
    *
    * Header和Footer组件结构类似, 都是提供一个包裹容器, 不同的是一个固定在上面, 一个固定在下面.
    *
