@@ -321,7 +321,7 @@ footer {
   color: #4d4e53; }
 
 .prettyprint > code {
-  padding: 15px;
+  padding: 15px 22px;
   width: 100%;
   overflow: scroll;
   -webkit-overflow-scrolling: touch; }
