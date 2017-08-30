@@ -55,6 +55,12 @@
    *
    * 这里规定的基础组件为: **App/Nav/Page/Header/Footer/Content**, 一共6个.
    *
+   * ### 可用状态(参考示例)
+   *
+   * - isScrolling  获取可滚动状态
+   * - isEnabled    获取可点击状态
+   *
+   *
    * ### 可在全局使用的公共样式
    *
    * -Text Alignment
@@ -73,8 +79,8 @@
    * -Normal
    *    - [padding]         - 结构增加padding, 默认16px
    *    - [no-padding]      - 结构去除padding
-   *    - [hidden]      - display:none
-   *    - .hidden       - display:none
+   *    - [hidden]          - display:none
+   *    - .hidden           - display:none
    *
    * @props {String} [mode='ios'] - 模式
    *

@@ -28,7 +28,6 @@
    * @component Backdrop
    * @description
    *
-   *
    * ## 其他 / Backdrop背景暗化组件
    *
    * 一般是用来进行背景遮罩的. 比如Alert/Actionsheet组件等用到.
@@ -48,30 +47,22 @@
    * @usage
    * <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive"></Backdrop>
    * */
-  export default{
+  export default {
     name: 'Backdrop',
     data () {
       return {
-        // 定义本地参数
-        isActiveLocal: this.isActive, // 控制权由present/dismiss控制
-        count: 0 // 记录开启数目
+        isActiveLocal: this.isActive,   // 控制权由present/dismiss控制
+        count: 0                        // 记录开启数目
       }
     },
     props: {
-      /**
-       * 这个是给组件式调用
-       * */
       enableBackdropDismiss: {
         type: Boolean,
         default: true
       },
-      /**
-       * 控制backdrop的显示隐藏
-       * */
+      // 控制backdrop的显示隐藏
       isActive: [Boolean],
-      /**
-       * 点击背景的处理方式
-       * */
+      // 点击背景的处理方式
       bdClick: {
         type: Function,
         default () {
@@ -120,6 +111,6 @@
         $event.preventDefault()
         $event.stopPropagation()
       }
-    },
+    }
   }
 </script>

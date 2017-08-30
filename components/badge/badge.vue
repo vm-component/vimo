@@ -24,16 +24,13 @@
    * $slot 空 - 默认嵌入全部
    *
    * */
-  export default{
+  export default {
     name: 'Badge',
-    data () {
-      return {}
-    },
     props: {
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: [String],
+      color: String,
       /**
        * mode 按钮风格 ios/window/android/we/alipay
        * */

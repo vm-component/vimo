@@ -1,10 +1,7 @@
 <template>
     <button class="disable-hover ion-button" @click="clickHandler($event)"
             :class="[modeClass,itemClass]">
-    <span class="button-inner">
-      <slot></slot>
-    </span>
-        <!--<div class="button-effect"></div>-->
+        <span class="button-inner"><slot></slot></span>
     </button>
 </template>
 <style lang="less">

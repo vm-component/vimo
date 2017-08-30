@@ -1,10 +1,4 @@
-import CardContent from './card-content.vue'
-import CardHeader from './card-header.vue'
-import CardTitle from './card-title.vue'
-import Card from './card.vue'
-export {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle
-}
+export { default as CardContent } from './card-content.vue'
+export { default as CardHeader } from './card-header.vue'
+export { default as CardTitle } from './card-title.vue'
+export { default as Card } from './card.vue'
