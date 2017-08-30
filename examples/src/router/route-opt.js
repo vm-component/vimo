@@ -92,6 +92,11 @@ let routes = [
     component: require('@/pages/cross-platform/index.vue')
   },
   {
+    path: '/cross-platform-dtdream',
+    name: 'crossPlatform.dtdream',
+    component: require('@/pages/cross-platform/dtdream.vue')
+  },
+  {
     path: '/cross-platform-container',
     name: 'crossPlatform.container',
     component: require('@/pages/cross-platform/container.vue')
@@ -425,7 +430,7 @@ let routes = [
     component (resolve) {
       require(['@/pages/log.vue'], resolve)
     }
-  },
+  }
 
   // demo
   // {

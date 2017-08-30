@@ -7,7 +7,7 @@
         </Header>
         <Content padding class="outer-content">
             <h4>启动器</h4>
-            <section>
+            <section v-if="$platform.is('dingtalk') || $platform.is('dtdream')">
                 <strong>检测应用是否安装</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">应用: </Label>
@@ -17,7 +17,7 @@
                 <strong>结果</strong>
                 <p class="result">{{checkInstalledAppsResult}}</p>
             </section>
-            <section>
+            <section v-if="$platform.is('dingtalk') || $platform.is('dtdream')">
                 <strong>启动第三方应用</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">应用: </Label>
@@ -28,6 +28,20 @@
                 <p class="result">{{launchAppResult}}</p>
             </section>
 
+            <section v-if="$platform.is('dingtalk')">
+                <strong>打开应用内页面</strong>
+                <Item no-lines class="item">
+                    <Label slot="item-left">页面名称: </Label>
+                    <Input placeholder="页面名称" type="text" v-model="openInnerAppName" clearInput></Input>
+                </Item>
+                <Item no-lines class="item">
+                    <Label slot="item-left">传参: </Label>
+                    <Input placeholder="传参" type="text" v-model="openInnerAppParams" clearInput></Input>
+                </Item>
+                <Button block @click="openInnerApp">OpenInnerApp</Button>
+                <strong>结果</strong>
+                <p class="result">{{openInnerAppResult}}</p>
+            </section>
 
             <section>
                 <strong>在新窗口上打开链接</strong>
@@ -44,7 +58,6 @@
                 <strong>关闭当前窗口</strong>
                 <Button block @click="closeLink()">CloseLink</Button>
             </section>
-
         </Content>
     </Page>
 </template>
@@ -58,6 +71,10 @@
         checkInstalledAppsResult: '',
         launchAppName: 'weixin://',
         launchAppResult: '',
+
+        openInnerAppResult: '',
+        openInnerAppName: '',
+        openInnerAppParams: '',
 
         openLinkUrl: 'http://www.dingtalk.com',
         openLinkResult: '',
@@ -101,6 +118,19 @@
           },
           onFail (error) {
             _this.launchAppResult = `onFail: ${JSON.stringify(error)}`
+          }
+        })
+      },
+      openInnerApp () {
+        const _this = this
+        window.dd && window.dd.biz.util.open({
+          name: _this.openInnerAppName, // 页面名称
+          params: _this.openInnerAppParams, // 传参
+          onSuccess (data) {
+            _this.openInnerAppResult = `onSuccess: ${JSON.stringify(data)}`
+          },
+          onFail (err) {
+            _this.openInnerAppResult = `onFail: ${JSON.stringify(err)}`
           }
         })
       },

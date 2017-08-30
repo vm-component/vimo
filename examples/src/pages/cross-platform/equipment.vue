@@ -14,7 +14,7 @@
                 <strong>结果</strong>
                 <p class="result">{{getUserInfoResult}}</p>
             </section>
-            <section>
+            <section v-if="$platform.is('dingtalk') || $platform.is('dtdream')">
                 <strong>获取通用唯一识别码(需要权限)</strong>
                 <Button block @click="getUUID()">GetUUID</Button>
                 <strong>结果</strong>
@@ -68,7 +68,6 @@
                 <strong>结果</strong>
                 <p class="result">{{shakeResult}}</p>
             </section>
-
             <section>
                 <strong>拨打电话</strong>
                 <Item no-lines class="item">
@@ -101,7 +100,6 @@
                 <strong>结果</strong>
                 <p class="result">{{showCallMenuResult}}</p>
             </section>
-
             <section v-if="$platform.is('dtdream')">
                 <strong>发短信</strong>
                 <Item no-lines class="item">
@@ -116,7 +114,6 @@
                 <strong>结果</strong>
                 <p class="result">{{sendSMSResult}}</p>
             </section>
-
             <section>
                 <strong>扫码</strong>
                 <Item no-lines class="item">
@@ -127,8 +124,7 @@
                 <strong>结果</strong>
                 <p class="result">{{scanResult}}</p>
             </section>
-
-            <section>
+            <section v-if="$platform.is('dingtalk')">
                 <strong>扫名片</strong>
                 <Button block @click="scanCard()">ScanCard</Button>
                 <strong>结果</strong>

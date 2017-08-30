@@ -70,20 +70,13 @@ export default {
         plt.timer = window.setTimeout(() => {
           plt.triggerFail('Dtdream Init Timeout!')
         }, TIMEOUT)
-
-        // 注册平台 setTitle 方法, 参数在platform.js中
-        plt.setTitle = (titleInfo) => {
-          window.dd.biz.navigation.setTitle({
-            title: titleInfo.title || '' // 控制标题文本，空字符串表示显示默认文本
-          })
-        }
       }
     },
 
     // 由业务完成部分
     bridgeReady (plt) {},
     settings: {
-      jsSDKUrl: '//115.29.248.20/testjs/test.js',
+      jsSDKUrl: '//dtdreamapp.oss-cn-shanghai.aliyuncs.com/DTHybridEngine/v1.0.0/hybridapi.js',
       hideNavBar: true
     },
     isMatch (plt) {
