@@ -28,7 +28,7 @@
   navs = Array.prototype.slice.call(navs)
 
   // 如果nav有浏浏览记录则滚动到那个位置
-  var selectedEleScrollTop = window.localStorage.getItem('selectedEleScrollTop')
+  var selectedEleScrollTop = window.sessionStorage.getItem('selectedEleScrollTop')
   if (selectedEleScrollTop && parseInt(selectedEleScrollTop) > 0) {
     navElement.scrollTop = parseInt(selectedEleScrollTop)
   }
@@ -37,11 +37,21 @@
   for (i = 0, len = navs.length; len > i; i++) {
     var nav = navs[i]
     nav.addEventListener('click', function () {
-      window.localStorage.setItem('selectedEleScrollTop', navElement.scrollTop)
+      window.sessionStorage.setItem('selectedEleScrollTop', navElement.scrollTop)
     })
     var href = window.location.href.split('#')[0]
     if (nav.href === href) {
       nav.className += ' active'
     }
+  }
+
+  var mainNavs = document.querySelectorAll('nav>.nav__header>h2 a')
+  mainNavs = Array.prototype.slice.call(mainNavs)
+
+  for (i = 0, len = mainNavs.length; len > i; i++) {
+    var mainNav = mainNavs[i]
+    mainNav.addEventListener('click', function () {
+      window.sessionStorage.removeItem('selectedEleScrollTop')
+    })
   }
 })()

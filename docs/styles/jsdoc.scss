@@ -282,23 +282,22 @@ nav {
         h2 {
             font-size: 12px;
             height: 18px;
-            margin: 0;
+            margin: 0 0 5px 0;
             padding: 0;
             line-height: 130%;
-            margin-bottom: 5px;
             a {
                 display: block;
                 margin: 0;
                 height: 18px;
                 line-height: 18px;
                 color: #34495e;
+                &:hover,
+                &:active {
+                    color: $theme;
+                }
             }
         }
     }
-}
-
-nav h2 {
-
 }
 
 footer {
