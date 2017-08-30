@@ -5,7 +5,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component ItemOptions
+   * @component Item/ItemOptions
    * @description
    *
    * 这个组件是ItemSliding组件的子组件, 两者配合使用.

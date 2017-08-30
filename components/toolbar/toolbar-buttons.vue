@@ -10,7 +10,7 @@
 <style lang="less"></style>
 <script type="text/javascript">
   /**
-   * @component Buttons
+   * @component Toolbar/Buttons
    * @description
    *
    * ## 按钮组(Toolbar) / Buttons

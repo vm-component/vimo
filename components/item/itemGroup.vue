@@ -5,13 +5,12 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component ItemGroup
+   * @component Item/ItemGroup
    * @description
    *
    * ## 列表组件 / ItemGroup元素组
    *
    * @props {Boolean} accordion - 定义是否为手风琴模式
-   *
    *
    * */
   export default{

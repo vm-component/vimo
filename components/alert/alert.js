@@ -187,9 +187,10 @@ function getPresentDismissIns (Factory) {
     },
 
     /**
-     * 关闭
+     * @function dismiss
+     * @description
+     * 手动关闭组件
      * @return {Promise} - 关闭动画结束的promise
-     * @private
      * */
     dismiss () {
       return new Promise((resolve) => {

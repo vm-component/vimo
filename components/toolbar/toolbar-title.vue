@@ -8,7 +8,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Title
+   * @component Toolbar/Title
    * @description
    *
    *

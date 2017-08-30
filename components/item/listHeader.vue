@@ -1,4 +1,11 @@
 <script type="text/javascript">
+  /**
+   * @component Item/ListHeader
+   * @description
+   *
+   * ## 列表组件 / ListHeader
+   *
+   * */
   import ItemMixin from './itemMixin.vue'
   export default{
     mixins: [ItemMixin],

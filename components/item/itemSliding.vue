@@ -13,7 +13,7 @@
 <style lang="less"></style>
 <script type="text/javascript">
   /**
-   * @component ItemSliding
+   * @component Item/ItemSliding
    * @description
    *
    * ## 列表组件 / ItemSliding滑动选择组件

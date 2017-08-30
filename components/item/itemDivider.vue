@@ -1,4 +1,11 @@
 <script type="text/javascript">
+  /**
+   * @component Item/ItemDivider
+   * @description
+   *
+   * ## 列表组件 / ItemDivider分割
+   *
+   * */
   import ItemMixin from './itemMixin.vue'
   export default{
     mixins: [ItemMixin],

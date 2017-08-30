@@ -9,7 +9,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Tab
+   * @component Tabs.Tab
    * @description
    *
    * ## 大标签 / Tab

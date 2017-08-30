@@ -35,7 +35,7 @@
 </style>
 <script type="text/javascript">
   /**
-   * @component ItemCollapse
+   * @component Item/ItemCollapse
    * @description
    *
    * ## 列表组件 / ItemCollapse可伸缩Item组件
