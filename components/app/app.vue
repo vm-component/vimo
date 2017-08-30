@@ -24,8 +24,6 @@
     @import "app";
     @import "app.ios.less";
     @import "app.md.less";
-    @import "cordova.md.less";
-    @import "cordova.ios.less";
 </style>
 <script type="text/javascript">
   /**
@@ -38,7 +36,9 @@
    * 控制App行为的方法已挂载到`vue.prototype.$app`上, 所以在页面中直接像这样使用, 例如:
    *
    * ```
-   * this.$app.setTitle('Hello World');
+   * this.$app.setTitle('Hello World'); // 设置title
+   * this.$app.isScrolling; // 获取可滚动状态
+   * this.$app.isEnabled; // 获取可点击状态
    * ```
    *
    * 此外, 弹出层挂载点也在此组件中列举, 可以用id搜索到这些挂载点:
@@ -86,7 +86,6 @@
 
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
-  const ACTIVE_SCROLLING_TIME = 100
   const clickBlockInstance = new ClickBlock()
 
   let scrollDisTimer = null                     // 计时器
@@ -94,10 +93,13 @@
     name: 'App',
     data () {
       return {
-        disabledTimeRecord: 0,        // 禁用计时
-        scrollTimeRecord: 0,        // 滚动计时
-        isScrollDisabled: false, // 控制页面是否能滚动
-        isClickBlockEnabled: false, // 控制是否激活 '冷冻'效果 click-block-enabled
+        disabledTimeRecord: 0,          // 禁用计时
+        scrollTimeRecord: 0,            // 滚动计时
+        isScrollDisabled: false,        // 控制页面是否能滚动
+        isClickBlockEnabled: false,     // 控制是否激活 '冷冻'效果 click-block-enabled
+
+        isScrolling: false,             // 可滚动状态
+        isEnabled: true,                // 可点击状态
 
         version: isPresent(window.VM) && window.VM.version
       }
@@ -137,24 +139,18 @@
        * */
       setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
         this.disabledTimeRecord = (isEnabled ? 0 : Date.now() + duration)
+        this.isEnabled = isEnabled
         if (isEnabled) {
           // disable the click block if it's enabled, or the duration is tiny
-          clickBlockInstance.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS)
+          clickBlockInstance.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS).then(() => {
+            this.isEnabled = true
+          })
         } else {
           // show the click block for duration + some number
-          clickBlockInstance.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS)
+          clickBlockInstance.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS).then(() => {
+            this.isEnabled = true
+          })
         }
-      },
-
-      /**
-       * @function isEnabled
-       * @description
-       * 查看App当前的激活(禁用)状态
-       * @return {boolean}
-       */
-      isEnabled () {
-        if (this.disabledTimeRecord === 0) return true
-        return (this.disabledTimeRecord < Date.now())
       },
 
       /**
@@ -175,31 +171,6 @@
             this.isScrollDisabled = false
           }, duration)
         }
-      },
-      /**
-       * @function isScrolling
-       * @description
-       * 判断现在app是否在scroll状态, scroll状态可能是任意一个页面的状态, 这个isScroll作为全局的scroll判断
-       * @return {boolean}
-       */
-      isScrolling () {
-        if (this.scrollTimeRecord === 0) return false
-        if (this.scrollTimeRecord < Date.now()) {
-          this.scrollTimeRecord = 0
-          return false
-        }
-        return true
-      },
-
-      /**
-       * @function setScrolling
-       * @description
-       * 设置当前App级别是否在滚动, 例如: 这个函数由scroll-view的实例调用, 反应当前的conent
-       * 正在滚动... 滚动的有效时间为ACTIVE_SCROLLING_TIME, 超时后将判断为不再滚动, 由
-       * isScrolling进行判断
-       */
-      setScrolling () {
-        this.scrollTimeRecord = Date.now() + ACTIVE_SCROLLING_TIME
       },
 
       /**
@@ -260,6 +231,17 @@
        * */
       let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
       proto.$app = this
+
+      const _this = this
+      this.$eventBus.$on('onScrollStart', () => {
+        _this.isScrolling = true
+      })
+      this.$eventBus.$on('onScroll', () => {
+        _this.isScrolling = true
+      })
+      this.$eventBus.$on('onScrollEnd', () => {
+        _this.isScrolling = false
+      })
     },
     mounted () {
       // 设置当前可点击

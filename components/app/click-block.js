@@ -18,17 +18,23 @@ export class ClickBlock {
   /**
    * @param {boolean} shouldShow
    * @param {number} expire
+   * @return {Promise}
    * */
   activate (shouldShow, expire = 100) {
-    if (!this.clickBlockElement) {
-      this.clickBlockElement = this._getClickBlockElement()
-    }
+    return new Promise((resolve) => {
+      if (!this.clickBlockElement) {
+        this.clickBlockElement = this._getClickBlockElement()
+      }
 
-    window.clearTimeout(this._tmr)
-    if (shouldShow) {
-      this._activate(true)
-    }
-    this._tmr = setTimeout(this._activate.bind(this, false), expire)
+      window.clearTimeout(this._tmr)
+      if (shouldShow) {
+        this._activate(true)
+      }
+      this._tmr = window.setTimeout(() => {
+        this._activate(false)
+        resolve()
+      }, expire)
+    })
   }
 
   /**
