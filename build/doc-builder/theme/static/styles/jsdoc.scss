@@ -38,7 +38,7 @@ article a {
 }
 
 article a:hover, article a:active {
-    border-bottom-color: #222;
+    border-bottom-color: #33b076;
 }
 
 p, ul, ol, blockquote {
@@ -242,6 +242,11 @@ nav ul a:active {
 nav a:hover,
 nav a:active {
     color: $theme;
+}
+
+nav > ul > li > a.active {
+    color: $theme;
+    font-weight: bold;
 }
 
 nav > ul {
@@ -494,7 +499,7 @@ footer {
 
 .params td, .params .name, .props .name, .name code, table td {
     color: #4d4e53;
-    font-family: Roboto Mono,Monaco,courier,monospace;
+    font-family: Roboto Mono, Monaco, courier, monospace;
     font-size: 100%;
 }
 
