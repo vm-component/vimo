@@ -12,7 +12,8 @@
             </p>
 
             <h5>解耦</h5>
-            <p>检测设备别及根据HyBrid初始化对应的方法变得很重要, 比如ChooseImg/ScanCode等. 保持业务与平台解耦. 使用平台方法之前需要等待平台初始化完毕, 这部分在$platform.ready()处理.</p>
+            <p>
+                检测设备别及根据HyBrid初始化对应的方法变得很重要, 比如ChooseImg/ScanCode等. 保持业务与平台解耦. 使用平台方法之前需要等待平台初始化完毕, 这部分在$platform.ready()处理.</p>
             <Grid>
                 <Row>
                     <Column col-4><strong>设备平台:</strong></Column>
@@ -94,17 +95,6 @@
                         </div>
                     </Column>
                 </Row>
-
-                <Row>
-                    <Column col-4><strong>已注册方法:</strong></Column>
-                    <Column col-8>
-                        <div class="detailBox" v-for="key in thisKeysOfRegisterMethod"
-                             v-if="thisKeysOfRegisterMethod.length > 0">
-                            <Row><span class="detailBox__title"><strong>{{key}}</strong></span></Row>
-                        </div>
-                        <div class="detailBox" v-if="thisKeysOfRegisterMethod.length === 0">无</div>
-                    </Column>
-                </Row>
             </Grid>
         </Content>
     </Page>
@@ -113,7 +103,7 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'name',
     data () {
       return {
@@ -125,11 +115,7 @@
     computed: {},
     methods: {},
     created () {},
-    mounted () {
-      this.$platform.ready().then(() => {
-        this.thisKeysOfRegisterMethod = Object.keys(this.$platform.registerMethod())
-      }, () => {})
-    },
+    mounted () {},
     activated () {},
     components: {}
   }

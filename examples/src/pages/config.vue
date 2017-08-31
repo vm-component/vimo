@@ -49,8 +49,8 @@
     mounted () {
       this.$platform.ready().then(() => {
         window.setTimeout(() => {
-          this.cachedConfig = this.$config._c
-          this.settingConfig = this.$config._s
+          this.cachedConfig = this.$config.catch()
+          this.settingConfig = this.$config.settings()
         }, 100)
       }, () => {})
     },

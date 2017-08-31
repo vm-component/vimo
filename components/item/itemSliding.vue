@@ -401,7 +401,7 @@
       moveSliding (x) {
         if (this.optsDirty) {
           this.calculateOptsWidth()
-          return
+          return 0
         }
         let openAmount = (this.startX - x)
         switch (this.sides) {
@@ -414,7 +414,7 @@
           case ITEM_SIDE_FLAGS.Both:
             break
           case ITEM_SIDE_FLAGS.None:
-            return
+            return 0
           default:
             console.assert(false, 'invalid ITEM_SIDE_FLAGS value')
             break
