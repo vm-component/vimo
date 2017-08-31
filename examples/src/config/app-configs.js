@@ -15,5 +15,6 @@ export default {
       pageTransition: 'zoom-transition'
     }
   },
+  showIndicatorWhenPageChange: false, // 转场是否提前添加动画
   domain: ''
 }
