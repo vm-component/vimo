@@ -190,7 +190,7 @@
        * */
       reset () {
         this.titleColor = null
-        this.$platform.resetNavbarOptionButton()
+        this.$platform.resetNavbarOptionButton && this.$platform.resetNavbarOptionButton()
       },
 
       /**

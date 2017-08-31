@@ -116,7 +116,7 @@ function getPresentDismissIns (Factory) {
     present (options) {
       return new Promise((resolve) => {
         // 如果btn太多, 则原生组件放不下
-        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.actionSheet(options)
+        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.actionSheet && window.VM.platform.actionSheet(options)
         if (isHandled) {
           resolve()
         } else {

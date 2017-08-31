@@ -220,7 +220,7 @@
        * 设置导航条右侧按钮显示(只是对alipay平台的), dingtalk通过url改变
        * */
       showOptionButton () {
-        this.$platform.showNavbarOptionButton()
+        this.$platform.showNavbarOptionButton && this.$platform.showNavbarOptionButton()
       },
       /**
        * @function hideOptionButton
@@ -228,7 +228,7 @@
        * 设置导航条右侧按钮隐藏(只是对alipay平台的), dingtalk通过url改变
        * */
       hideOptionButton () {
-        this.$platform.hideNavbarOptionButton()
+        this.$platform.hideNavbarOptionButton && this.$platform.hideNavbarOptionButton()
       },
       /**
        * @function showPopMenu
@@ -254,7 +254,7 @@
         }
 
         return new Promise((resolve) => {
-          let isHandled = this.$platform.showNavbarPopMenu(tmps)
+          let isHandled = this.$platform.showNavbarPopMenu && this.$platform.showNavbarPopMenu(tmps)
           // 显示navbar最右侧的按钮
           if (isHandled) {
             resolve()
@@ -279,8 +279,8 @@
        * 重置之前的样式设置
        * */
       reset () {
-        this.$platform.resetNavbarTitleAndColor()
-        this.$platform.resetNavbarOptionButton()
+        this.$platform.resetNavbarTitleAndColor && this.$platform.resetNavbarTitleAndColor()
+        this.$platform.resetNavbarOptionButton && this.$platform.resetNavbarOptionButton()
       },
 
       // -------- private --------
@@ -315,12 +315,12 @@
            * 初始化Navbar右侧的按钮组
            * 如果在webview中则提取template中的按钮信息, 写给webview.
            * */
-          this.$platform.setNavbarOptionButton(this.$slots.buttons)
+          this.$platform.setNavbarOptionButton && this.$platform.setNavbarOptionButton(this.$slots.buttons)
           /**
            * 初始化webview中Navbar的背景和底部边框, 只处理具有颜色class的情况
            * 只支持alipay, 不支持dingtalk, 因为dingtalk是通过url修改标题颜色的.
            * */
-          this.$platform.setNavbarBackgroundColor()
+          this.$platform.setNavbarBackgroundColor && this.$platform.setNavbarBackgroundColor()
         })
       }
     },

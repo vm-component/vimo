@@ -121,7 +121,7 @@ function ToastFactory () {
   return {
     present () {
       return new Promise((resolve) => {
-        let isHandled = !propsData.isH5 && window.VM && window.VM.platform && window.VM.platform.showToast(propsData)
+        let isHandled = !propsData.isH5 && window.VM && window.VM.platform && window.VM.platform.showToast && window.VM.platform.showToast(propsData)
         if (isHandled) {
           resolve()
         } else {
@@ -132,7 +132,7 @@ function ToastFactory () {
     },
     dismiss () {
       return new Promise((resolve) => {
-        window.VM && window.VM.platform && window.VM.platform.hideToast()
+        window.VM && window.VM.platform && window.VM.platform.hideToast && window.VM.platform.hideToast()
         h5Toast.dismiss().then(() => { resolve() })
       })
     }

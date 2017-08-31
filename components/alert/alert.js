@@ -166,7 +166,7 @@ function getPresentDismissIns (Factory) {
         options.buttons = []
       }
       return new Promise((resolve) => {
-        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.alert(options)
+        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.alert && window.VM.platform.alert(options)
         if (isHandled) {
           resolve()
         } else {

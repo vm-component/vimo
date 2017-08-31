@@ -60,7 +60,7 @@ const ChooseCity = {
     }
     Object.assign(finalOptions, defaultOptions, options)
 
-    let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.chooseCity(options)
+    let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.chooseCity && window.VM.platform.chooseCity(options)
     if (!isHandled) {
       Modal.present({
         mode: finalOptions.mode,

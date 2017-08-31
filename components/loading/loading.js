@@ -36,7 +36,7 @@ function getPresentDismissIns (Factory) {
         if (isString(options)) {
           options = {content: options}
         }
-        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.showLoading(options)
+        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.showLoading && window.VM.platform.showLoading(options)
         if (isHandled) {
           resolve()
         } else {
@@ -63,7 +63,7 @@ function getPresentDismissIns (Factory) {
      * */
     dismiss () {
       return new Promise((resolve) => {
-        window.VM && window.VM.platform && window.VM.platform.hideLoading()
+        window.VM && window.VM.platform && window.VM.platform.hideLoading && window.VM.platform.hideLoading()
         if (this._i && this._i.isActive) {
           this._i.dismiss().then(() => { resolve() })
         } else {

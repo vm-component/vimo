@@ -29,7 +29,7 @@ function getPresentDismissIns (Factory) {
      * */
     present (options) {
       return new Promise((resolve) => {
-        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.picker(options)
+        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.picker && window.VM.platform.picker(options)
         if (isHandled) {
           resolve()
         } else {
