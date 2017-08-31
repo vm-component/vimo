@@ -1,9 +1,9 @@
 /**
  * 说明:
  * platform.js中关于平台方法的复写
- * 当前处于平台初始化完毕阶段, window.AlipayJSBridge等私有变量存在且可用
+ * 当前处于平台初始化完毕阶段
  * */
-import { isArray, isFunction, isNumber, isPresent, isString } from '../util/util'
+import { isArray, isFunction, isNumber, isPresent, isString } from '../../../../components/util/util'
 import Vue from 'vue'
 
 export default function (plt) {

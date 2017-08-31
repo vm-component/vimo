@@ -54,7 +54,8 @@ export class History {
         let backCopy = this._router.back
         backCopy = backCopy.bind(this._router)
         this._router.back = function () {
-          if (!_this._platform.popWindow()) {
+          let isHandled = _this._platform.popWindow && _this._platform.popWindow()
+          if (!isHandled) {
             backCopy.apply(null, arguments)
           }
         }
@@ -65,7 +66,8 @@ export class History {
         let goCopy = this._router.go
         goCopy = goCopy.bind(this._router)
         this._router.go = function (n) {
-          if (!_this._platform.popTo(n)) {
+          let isHandled = _this._platform.popTo && _this._platform.popTo(n)
+          if (!isHandled) {
             goCopy.apply(null, n)
           }
         }
@@ -129,7 +131,7 @@ export class History {
       } else {
         console.error('history.js::只支持 mode: "hash"')
       }
-      isHandled = this._platform.pushWindow(url)
+      isHandled = this._platform.pushWindow && this._platform.pushWindow(url)
     }
 
     if (!isHandled) {
@@ -181,7 +183,8 @@ export class History {
    * */
   toRoot () {
     // 支付宝方式返回首页
-    if (!this._platform.popToRoot()) {
+    let isHandled = this._platform.popToRoot && this._platform.popToRoot()
+    if (!isHandled) {
       // fallback
       this._router.go(1 - this.length)
     }

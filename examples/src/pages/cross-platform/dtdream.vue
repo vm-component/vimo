@@ -10,7 +10,7 @@
                 <div>
                     <strong>说明:</strong>
                 </div>
-                <p>测试不包括: 钉盘操作/图片上传/音频/</p>
+                <p>测试不包括: 钉盘操作/Ding/通讯录/联系人/加解密</p>
             </article>
             <List>
                 <!--header-->

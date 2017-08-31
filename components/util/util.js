@@ -295,7 +295,7 @@ export function registerListener (ele, eventName, callback, opts = {}, unregiste
 export function isPassive () {
   var supportsPassiveOption = false
   try {
-    addEventListener('test', null, Object.defineProperty({}, 'passive', {
+    window.addEventListener('test', null, Object.defineProperty({}, 'passive', {
       get: function () {
         supportsPassiveOption = true
       }
@@ -306,7 +306,7 @@ export function isPassive () {
 
 /**
  * document的ready事件监听
- * @param {Function} callback - 回调函数
+ * @param {Function} [callback] - 回调函数
  * @return {Promise} - 返回promise，completed后自动解绑
  * */
 export function docReady (callback) {
@@ -732,4 +732,34 @@ export const REGEXP = {
   qq: /^[1-9][0-9]{4,}$/,
   // 网址URL, 必须以(https|http|ftp|rtsp|mms)开头
   url: /^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/
+}
+
+/**
+ * 下载script脚本
+ * @params {string} url - 脚本地址
+ * @params {function} cb - 回调函数
+ * */
+export function loadScript (url, cb) {
+  let _head = document.getElementsByTagName('head')[0]
+  let _script = document.createElement('script')
+  _script.setAttribute('type', 'text/javascript')
+  _script.setAttribute('src', url)
+  _head.appendChild(_script)
+  _script.onload = function () {
+    cb && cb()
+  }
+}
+
+/**
+ * 给url添加符合当前 Protocol 的前缀, https协议下使用https下载链接
+ * @params {string} url - 脚本地址
+ * */
+export function checkProtocol (url) {
+  let splitArr = url.split('//')
+  if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
+    splitArr[0] = 'https:'
+  } else {
+    splitArr[0] = 'http:'
+  }
+  return splitArr.join('//')
 }

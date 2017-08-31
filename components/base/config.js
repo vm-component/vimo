@@ -99,8 +99,8 @@ export class Config {
     /**
      * @private
      * */
-    this._c = {} // cache 获取配置的缓存对象, 可用的config只有调用的时候才知道!
-    this._s = {} // setting/store/superlative 最高级配置 用户在初始化时自己的配置config
+    this._cache = {} // cache 获取配置的缓存对象, 可用的config只有调用的时候才知道!
+    this._settings = {} // setting/store/superlative 最高级配置 用户在初始化时自己的配置config
     this.plt = null // Platform 当前平台的实例
   }
 
@@ -114,7 +114,7 @@ export class Config {
    * @private
    */
   init (config, plt) {
-    this._s = config && isObject(config) && !isArray(config) ? config : {}
+    this._settings = config && isObject(config) && !isArray(config) ? config : {}
     this.plt = plt
   }
 
@@ -128,7 +128,7 @@ export class Config {
     const platform = this.plt
 
     // 如果已缓存则取缓存值
-    if (!isDefined(this._c[key])) {
+    if (!isDefined(this._cache[key])) {
       if (!isDefined(key)) {
         // eslint-disable-next-line no-throw-literal
         throw 'config key is not defined'
@@ -138,7 +138,7 @@ export class Config {
       // 如果之前没查过, 则查询配置, 查询顺序如下:
       // url_params > config > plt._register[platform]
       let userPlatformValue //  config[platforms][platform][key]
-      let userDefaultValue = this._s[key] // config[key]
+      let userDefaultValue = this._settings[key] // config[key]
       let platformValue // this.plt._registry[platformName].setting[key]
       let configObj = null
 
@@ -147,13 +147,13 @@ export class Config {
         var queryStringValue = platform.getQueryParam(URL_CONFIG_PREFIX + key)
         if (isDefined(queryStringValue)) {
           if (queryStringValue === 'true') {
-            this._c[key] = true
+            this._cache[key] = true
           } else if (queryStringValue === 'false') {
-            this._c[key] = false
+            this._cache[key] = false
           } else {
-            this._c[key] = queryStringValue
+            this._cache[key] = queryStringValue
           }
-          return this._c[key]
+          return this._cache[key]
         }
 
         // 获取激活的platform, 此时已经知道层级关系, 最后一个为最重要的, 例如: ['mobile','ios','wechat']
@@ -161,8 +161,8 @@ export class Config {
 
         // 循环查询每一个激活的平台, 在config.platforms中定义的配置
         for (var i = 0, ilen = activePlatformKeys.length; i < ilen; i++) {
-          if (this._s.platforms) {
-            configObj = this._s.platforms[activePlatformKeys[i]]
+          if (this._settings.platforms) {
+            configObj = this._settings.platforms[activePlatformKeys[i]]
             if (configObj) {
               if (isDefined(configObj[key])) {
                 userPlatformValue = configObj[key]
@@ -185,10 +185,10 @@ export class Config {
       // 缓存查询的的结果
       // 返回优先级: 用户自在config.platforms中定义 >  用户在config中定义   > platform中定义
       // eg: config[platforms][platformName][key] > config[key]  > this.plt._registry[platformName].setting[key]
-      this._c[key] = isDefined(userPlatformValue) ? userPlatformValue : isDefined(userDefaultValue) ? userDefaultValue : isDefined(platformValue) ? platformValue : null
+      this._cache[key] = isDefined(userPlatformValue) ? userPlatformValue : isDefined(userDefaultValue) ? userDefaultValue : isDefined(platformValue) ? platformValue : null
     }
 
-    var rtnVal = this._c[key]
+    var rtnVal = this._cache[key]
     // 如果返回函数则导入platform执行
     if (isFunction(rtnVal)) {
       rtnVal = rtnVal(platform)
@@ -247,8 +247,8 @@ export class Config {
       case 2:
         // set('key', 'value') = set key/value pair
         // arg1 = value
-        this._s[arg0] = arg1
-        delete this._c[arg0] // clear cache
+        this._settings[arg0] = arg1
+        delete this._cache[arg0] // clear cache
         break
 
       case 3:
@@ -256,10 +256,10 @@ export class Config {
         // arg0 = platform
         // arg1 = key
         // arg2 = value
-        this._s.platforms = this._s.platforms || {}
-        this._s.platforms[arg0] = this._s.platforms[arg0] || {}
-        this._s.platforms[arg0][arg1] = args[2]
-        delete this._c[arg1] // clear cache
+        this._settings.platforms = this._settings.platforms || {}
+        this._settings.platforms[arg0] = this._settings.platforms[arg0] || {}
+        this._settings.platforms[arg0][arg1] = args[2]
+        delete this._cache[arg1] // clear cache
         break
     }
 
@@ -267,7 +267,6 @@ export class Config {
   }
 
   /**
-   *
    * 全部重新设置
    * 1. 如果不传入参数则为获取_s的数据,
    * 2. 如果传递`settings({...})`, 则设置_s的值, 同时清空_c
@@ -280,28 +279,35 @@ export class Config {
    * settings()
    * settings({...})
    * settings('ios', {...})
-   *
    */
   settings (arg0, arg1) {
     switch (arguments.length) {
       case 0:
-        return this._s
+        return this._settings
 
       case 1:
         // settings({...})
-        this._s = arg0
-        this._c = {} // clear cache
+        this._settings = arg0
+        this._cache = {} // clear cache
         break
 
       case 2:
         // settings('ios', {...})
-        this._s.platforms = this._s.platforms || {}
-        this._s.platforms[arg0] = arg1
-        this._c = {} // clear cache
+        this._settings.platforms = this._settings.platforms || {}
+        this._settings.platforms[arg0] = arg1
+        this._cache = {} // clear cache
         break
     }
 
     return this
+  }
+
+  /**
+   * 获取缓存配置
+   * @return {object}
+   * */
+  catch () {
+    return this._cache
   }
 }
 

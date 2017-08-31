@@ -9,21 +9,11 @@
 export default {
   platforms: {
     ios: {
-      pageTransition: 'fade-right-transition'  //
-      // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
-      // pageTransition: ''  // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+      pageTransition: 'fade-right-transition'
     },
     android: {
-      pageTransition: 'zoom-transition' //
-      // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
-      // pageTransition: '' // ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
-    },
-    alipay: {
-      hideNavBar: true
-    },
-    dingtalk: {
-      hideNavBar: true
+      pageTransition: 'zoom-transition'
     }
   },
-  domain: '' // http://gamma-member.tesir.top
+  domain: ''
 }
