@@ -327,7 +327,10 @@ export default function (plt) {
 
   // 重置navbar
   plt.resetNavbarOptionButton = () => {
-    window.ap.setNavigationBar({reset: true})
+    window.AlipayJSBridge.call('setOptionMenu', {
+      reset: true
+    })
+
     return true
   }
 
@@ -475,13 +478,15 @@ export default function (plt) {
 
   // 显示
   plt.showNavbarOptionButton = () => {
-    window.ap.showOptionButton()
+    // window.ap.showOptionButton()
+    window.AlipayJSBridge.call('showOptionMenu')
     return true
   }
 
   // 隐藏
   plt.hideNavbarOptionButton = () => {
-    window.ap.hideOptionButton()
+    // window.ap.hideOptionButton()
+    window.AlipayJSBridge.call('hideOptionMenu')
     return true
   }
 
@@ -502,7 +507,7 @@ export default function (plt) {
       }
     }
     if (!isColorLegal) {
-      plt.resetNavbarOptionButton()
+      plt.resetNavbarTitleAndColor()
     } else {
       // 1. 获取背景色
       let toolbarBackgroundElement = document.querySelector('.toolbar-background')
@@ -544,7 +549,9 @@ export default function (plt) {
   }
 
   plt.resetNavbarTitleAndColor = () => {
-    window.ap.setNavigationBar({reset: true})
+    window.AlipayJSBridge.call('setTitleColor', {
+      reset: true // (可选,默认为false)  是否重置title颜色为默认颜色。
+    })
     return true
   }
 
@@ -594,11 +601,9 @@ export default function (plt) {
     window.AlipayJSBridge.call('pushWindow', {
       url: url,
       param: {
-        // bounceTopColor: color,
-        // bounceBottomColor: color,
-        readTitle: false,
+        readTitle: true,
         showLoading: !!window.VM && !!window.VM.config && window.VM.config.getBoolean('showIndicatorWhenPageChange'),
-        showOptionMenu: false
+        showOptionMenu: true
       }
     })
     return true

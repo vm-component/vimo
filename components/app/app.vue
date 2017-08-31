@@ -201,15 +201,14 @@
         if (isString(_title)) {
           _title = {title: _title}
         }
-        let isHandled = this.$platform.setNavbarTitle && this.$platform.setNavbarTitle(_title)
-        if (!isHandled && _title.title) {
-          if (this.$platform.platforms().length <= 2) {
-            // PC端
-            document.title = _title.title || ''
-          } else {
-            // 以下代码可以解决以上问题，不依赖jq
-            let _docTitle = document.title
-            if (_title.title !== _docTitle) {
+        // BugFixed: 如果组件不是通过异步加载, 则他的执行顺序会很靠前, 此时平台的方法并未初始化完毕. 因此异步定时后在执行
+        window.setTimeout(() => {
+          let isHandled = !!this.$platform.setNavbarTitle && this.$platform.setNavbarTitle(_title)
+          if (!isHandled) {
+            if (this.$platform.platforms().length <= 2) {
+              // PC端
+              document.title = _title.title || ''
+            } else {
               // 利用iframe的onload事件刷新页面
               document.title = _title.title
               let iframe = document.createElement('iframe')
@@ -226,7 +225,7 @@
               document.body.appendChild(iframe)
             }
           }
-        }
+        }, 16 * 5)
       }
     },
     created () {

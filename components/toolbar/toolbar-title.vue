@@ -166,7 +166,6 @@
           _title.image = title.image
           this.titleInner = `<img src="${title.image}">`
         }
-
         if (changeDocTitle) {
           // 设置document的title, 这部分由$app处理
           this.$app.setDocTitle(_title)
