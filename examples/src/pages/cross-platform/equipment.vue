@@ -6,21 +6,20 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <NoticeBar v-if="!$platform.is('dingtalk')" slot="fixedTop">请在钉钉APP环境内使用此页面测试接口</NoticeBar>
             <h4>设备</h4>
-            <section v-if="$platform.is('dtdream')">
+            <section>
                 <strong>获取用户信息</strong>
                 <Button block @click="getUserInfo()">GetUserInfo</Button>
                 <strong>结果</strong>
                 <p class="result">{{getUserInfoResult}}</p>
             </section>
-            <section v-if="$platform.is('dingtalk') || $platform.is('dtdream')">
+            <section>
                 <strong>获取通用唯一识别码(需要权限)</strong>
                 <Button block @click="getUUID()">GetUUID</Button>
                 <strong>结果</strong>
                 <p class="result">{{getUUIDResult}}</p>
             </section>
-            <section v-if="$platform.is('dingtalk')">
+            <section>
                 <strong>获取热点接入信息(需要权限)</strong>
                 <Button block @click="getInterface()">GetInterface</Button>
                 <strong>结果</strong>
@@ -32,13 +31,13 @@
                 <strong>结果</strong>
                 <p class="result">{{getNetworkTypeResult}}</p>
             </section>
-            <section v-if="$platform.is('dingtalk')">
+            <section>
                 <strong>读取NFC芯片内容(仅限安卓)</strong>
                 <Button block @click="nfcRead()">NfcRead</Button>
                 <strong>结果</strong>
                 <p class="result">{{nfcReadResult}}</p>
             </section>
-            <section v-if="$platform.is('dingtalk')">
+            <section>
                 <strong>写NFC芯片(仅限安卓)</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">写入内容: </Label>
@@ -82,8 +81,8 @@
                 <strong>结果</strong>
                 <p class="result">{{callResult}}</p>
             </section>
-            <section v-if="$platform.is('dingtalk')">
-                <strong>通用电话拨打接口</strong>
+            <section>
+                <strong>通用电话拨打接口(DtDream)</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">电话: </Label>
                     <Input placeholder="电话号码" type="tel" v-model="phoneNumber" clearInput></Input>
@@ -100,8 +99,8 @@
                 <strong>结果</strong>
                 <p class="result">{{showCallMenuResult}}</p>
             </section>
-            <section v-if="$platform.is('dtdream')">
-                <strong>发短信</strong>
+            <section>
+                <strong>发短信(DtDream)</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">电话: </Label>
                     <Input placeholder="电话号码" type="tel" v-model="smsPhoneNumber" clearInput></Input>
@@ -124,8 +123,8 @@
                 <strong>结果</strong>
                 <p class="result">{{scanResult}}</p>
             </section>
-            <section v-if="$platform.is('dingtalk')">
-                <strong>扫名片</strong>
+            <section>
+                <strong>扫名片(DingTalk)</strong>
                 <Button block @click="scanCard()">ScanCard</Button>
                 <strong>结果</strong>
                 <p class="result">{{scanCardResult}}</p>

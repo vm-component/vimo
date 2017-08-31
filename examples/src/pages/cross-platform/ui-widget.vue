@@ -56,13 +56,13 @@
                 <strong>结果</strong>
                 <p class="result">{{actionSheetResult}}</p>
             </section>
-            <!--<section v-if="$platform.is('dingtalk')">-->
-                <!--<strong>带图片的Alert</strong>-->
-                <!--<Button block @click="openModal">带图片的Alert</Button>-->
-                <!--<strong>结果</strong>-->
-                <!--<p class="result">{{modalResult}}</p>-->
-            <!--</section>-->
-            <section v-if="$platform.is('dingtalk') || $platform.is('dtdream')">
+            <section>
+                <strong>带图片的Alert</strong>
+                <Button block @click="openModal">带图片的Alert</Button>
+                <strong>结果</strong>
+                <p class="result">{{modalResult}}</p>
+            </section>
+            <section>
                 <strong>分享</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">分享类型: </Label>
@@ -88,105 +88,67 @@
                 <strong>结果</strong>
                 <p class="result">{{shareResult}}</p>
             </section>
-
-            <!--<section>-->
-                <!--<strong>图片浏览器</strong>-->
-                <!--<Button block @click="previewImage">PreviewImage</Button>-->
-                <!--<strong>结果</strong>-->
-                <!--<p class="result">{{previewImageResult}}</p>-->
-            <!--</section>-->
-
-            <!--<section>-->
-                <!--<strong>日期选择器</strong>-->
-                <!--<Item no-lines class="item">-->
-                    <!--<Label slot="item-left">格式: </Label>-->
-                    <!--<Input placeholder="格式" type="text" v-model="datepickerFormat" clearInput></Input>-->
-                <!--</Item>-->
-                <!--<Item no-lines class="item">-->
-                    <!--<Label slot="item-left">默认值: </Label>-->
-                    <!--<Input placeholder="默认值" type="text" v-model="datepickerValue" clearInput></Input>-->
-                <!--</Item>-->
-                <!--<Button block @click="datepicker">DatePicker</Button>-->
-                <!--<strong>结果</strong>-->
-                <!--<p class="result">{{datepickerResult}}</p>-->
-            <!--</section>-->
-
-            <!--<section>-->
-                <!--<strong>时间选择器</strong>-->
-                <!--<Item no-lines class="item">-->
-                    <!--<Label slot="item-left">格式: </Label>-->
-                    <!--<Input placeholder="格式" type="text" v-model="timepickerFormat" clearInput></Input>-->
-                <!--</Item>-->
-                <!--<Item no-lines class="item">-->
-                    <!--<Label slot="item-left">默认值: </Label>-->
-                    <!--<Input placeholder="默认值" type="text" v-model="timepickerValue" clearInput></Input>-->
-                <!--</Item>-->
-                <!--<Button block @click="timepicker">TimePicker</Button>-->
-                <!--<strong>结果</strong>-->
-                <!--<p class="result">{{timepickerResult}}</p>-->
-            <!--</section>-->
-            <!--<section>-->
-                <!--<strong>单列Picker</strong>-->
-                <!--<Button block @click="picker">Picker</Button>-->
-                <!--<strong>结果</strong>-->
-                <!--<p class="result">{{pickerResult}}</p>-->
-            <!--</section>-->
-            <!--<section>-->
-                <!--<strong>复制到粘贴版</strong>-->
-                <!--<Item no-lines class="item">-->
-                    <!--<Label slot="item-left">复制内容: </Label>-->
-                    <!--<Input placeholder="..." type="text" v-model="clipboardDataText" clearInput></Input>-->
-                <!--</Item>-->
-                <!--<Button block @click="clipboardData">ClipboardData</Button>-->
-                <!--<Item no-lines class="item">-->
-                    <!--<Textarea placeholder="可以在此粘贴内容"></Textarea>-->
-                <!--</Item>-->
-                <!--<strong>结果</strong>-->
-                <!--<p class="result">{{clipboardDataResult}}</p>-->
-            <!--</section>-->
-            <!--<section>-->
-                <!--<strong>输入框</strong>-->
-                <!--<Item no-lines class="item">-->
-                    <!--<Label slot="item-left">占位符: </Label>-->
-                    <!--<Input placeholder="Placeholder" type="text" v-model="openInputPlainPlaceholder"-->
-                           <!--clearInput></Input>-->
-                <!--</Item>-->
-                <!--<Item no-lines class="item">-->
-                    <!--<Label slot="item-left">文本: </Label>-->
-                    <!--<Input placeholder="默认填充文本" type="text" v-model="openInputPlainText" clearInput></Input>-->
-                <!--</Item>-->
-                <!--<Button block @click="openInputPlain()">OpenInputPlain</Button>-->
-                <!--<strong>结果</strong>-->
-                <!--<p class="result">{{openInputPlainResult}}</p>-->
-            <!--</section>-->
-
-            <!--<section>-->
-                <!--<strong>设置顶部进度条颜色(?)</strong>-->
-                <!--<Item no-lines class="item">-->
-                    <!--<Label slot="item-left">颜色: </Label>-->
-                    <!--<Input placeholder="最多支持4个颜色, 多个颜色用空格分割" type="text" v-model="progressBarColors"-->
-                           <!--clearInput></Input>-->
-                <!--</Item>-->
-                <!--<Button block @click="setProgressBarColors()">SetProgressBarColors</Button>-->
-                <!--<strong>结果</strong>-->
-                <!--<p class="result">{{setProgressBarColorsResult}}</p>-->
-            <!--</section>-->
-
-            <!--<section>-->
-                <!--<strong>启用下拉刷新</strong>-->
-                <!--<Button block @click="pullToRefreshEnable()">PullToRefreshEnable</Button>-->
-                <!--<Button block @click="pullToRefreshStop()">PullToRefreshStop</Button>-->
-                <!--<Button block @click="pullToRefreshDisable()">PullToRefreshDisable</Button>-->
-                <!--<strong>结果</strong>-->
-                <!--<p class="result">{{pullToRefreshEnableResult}}</p>-->
-            <!--</section>-->
             <section>
-                <strong>Bounce</strong>
-                <div>
-                    <small>Disable状态无法使用下拉刷新</small>
-                </div>
-                <Button block @click="webViewBounceEnable()">webViewBounceEnable</Button>
-                <Button block @click="webViewBounceDisable()">webViewBounceDisable</Button>
+                <strong>日期选择器</strong>
+                <Item no-lines class="item">
+                    <Label slot="item-left">格式: </Label>
+                    <Input placeholder="格式" type="text" v-model="datepickerFormat" clearInput></Input>
+                </Item>
+                <Item no-lines class="item">
+                    <Label slot="item-left">默认值: </Label>
+                    <Input placeholder="默认值" type="text" v-model="datepickerValue" clearInput></Input>
+                </Item>
+                <Button block @click="datepicker">DatePicker</Button>
+                <strong>结果</strong>
+                <p class="result">{{datepickerResult}}</p>
+            </section>
+            <section>
+                <strong>时间选择器</strong>
+                <Item no-lines class="item">
+                    <Label slot="item-left">格式: </Label>
+                    <Input placeholder="格式" type="text" v-model="timepickerFormat" clearInput></Input>
+                </Item>
+                <Item no-lines class="item">
+                    <Label slot="item-left">默认值: </Label>
+                    <Input placeholder="默认值" type="text" v-model="timepickerValue" clearInput></Input>
+                </Item>
+                <Button block @click="timepicker">TimePicker</Button>
+                <strong>结果</strong>
+                <p class="result">{{timepickerResult}}</p>
+            </section>
+            <section>
+                <strong>单列Picker</strong>
+                <Button block @click="picker">Picker</Button>
+                <strong>结果</strong>
+                <p class="result">{{pickerResult}}</p>
+            </section>
+            <section>
+                <strong>复制到粘贴版</strong>
+                <Item no-lines class="item">
+                    <Label slot="item-left">复制内容: </Label>
+                    <Input placeholder="..." type="text" v-model="clipboardDataText" clearInput></Input>
+                </Item>
+                <Button block @click="clipboardData">ClipboardData</Button>
+                <Item no-lines class="item">
+                    <Textarea placeholder="可以在此粘贴内容"></Textarea>
+                </Item>
+                <strong>结果</strong>
+                <p class="result">{{clipboardDataResult}}</p>
+            </section>
+            <section>
+                <strong>输入框</strong>
+                <Item no-lines class="item">
+                    <Label slot="item-left">占位符: </Label>
+                    <Input placeholder="Placeholder" type="text" v-model="openInputPlainPlaceholder"
+                           clearInput></Input>
+                </Item>
+                <Item no-lines class="item">
+                    <Label slot="item-left">文本: </Label>
+                    <Input placeholder="默认填充文本" type="text" v-model="openInputPlainText" clearInput></Input>
+                </Item>
+                <Button block @click="openInputPlain()">OpenInputPlain</Button>
+                <strong>结果</strong>
+                <p class="result">{{openInputPlainResult}}</p>
             </section>
         </Content>
     </Page>
@@ -209,23 +171,12 @@
         openInputPlainPlaceholder: '说点什么吧',
         openInputPlainText: '',
 
-        setProgressBarColorsResult: '',
-        progressBarColors: '',
-
-        pullToRefreshEnableResult: '',
-
-//        openInnerAppResult: '',
-//        openInnerAppName: '',
-//        openInnerAppParams: '',
-
         shareType: 0, // 分享类型，0:全部组件 默认； 1:只能分享到钉钉；2:不能分享，只有刷新按钮
         shareUrl: 'https://cn.vuejs.org/',
         shareTitle: 'Vue你好',
         shareContent: '这里是分享内容, 分享除去的是Vue官网链接和Logo',
         shareImage: 'https://cn.vuejs.org/images/logo.png',
         shareResult: '',
-
-        previewImageResult: '',
 
         datepickerResult: '',
         datepickerFormat: 'yyyy-MM-dd',
@@ -334,8 +285,10 @@
       openToast () {
         const _this = this
         window.dd && window.dd.device.notification.toast({
-          message: '支付成功',
-          duration: 3000,
+          icon: 'success',
+          text: '支付成功',
+          duration: 1,
+          delay: 0,
           onSuccess (data) {
             _this.toastResult = `onSuccess: ${JSON.stringify(data)}`
           },
@@ -361,133 +314,81 @@
           }
         })
       },
-//      openModal () {
-//        const _this = this
-//        this.$alert.present({
-//          image: 'http://gw.alicdn.com/tps/i2/TB1SlYwGFXXXXXrXVXX9vKJ2XXX-2880-1560.jpg_200x200.jpg',
-//          title: '5.5版本更新',
-//          message: '1.功能更新 2.功能更新;',
-//          cssClass: 'alertCssOuterMain',
-//          enableBackdropDismiss: true,
-//          buttons: [
-//            {
-//              text: '知道了',
-//              role: 'cancel',
-//              icon: 'icon-Destructive',
-//              handler: () => {
-//                _this.modalResult = '知道了 clicked'
-//              }
-//            },
-//            {
-//              text: '了解更多',
-//              role: '',
-//              handler: () => {
-//                _this.modalResult = '了解更多 clicked'
-//              }
-//            }
-//          ]
-//        })
-//      },
-
-//      openInputPlain () {
-//        const _this = this
-//        window.dd && window.dd.ui.input.plain({
-//          placeholder: _this.openInputPlainPlaceholder, //占位符
-//          text: _this.openInputPlainText, //默认填充文本
-//          onSuccess (result) {
-//            //onSuccess将在点击发送之后调用
-//            /*{ text: String }*/
-//            _this.openInputPlainResult = `onSuccess: ${JSON.stringify(result)}`
-//          },
-//          onFail (err) {
-//            _this.openInputPlainResult = `onFail: ${JSON.stringify(err)}`
-//          }
-//        })
-//      },
-//      setProgressBarColors () {
-//        const _this = this
-//        window.dd && window.dd.ui.progressBar.setColors({
-//          colors: _this.progressBarColors.split(' '), //array[number] 进度条变化颜色，最多支持4个颜色
-//          onSuccess (result) {
-//            /* true:成功  false:失败 */
-//            _this.setProgressBarColorsResult = `onSuccess: ${JSON.stringify(result)}`
-//          },
-//          onFail (err) {
-//            _this.setProgressBarColorsResult = `onFail: ${JSON.stringify(err)}`
-//          }
-//        })
-//      },
-      pullToRefreshEnable () {
+      openModal () {
         const _this = this
-        window.dd && window.dd.ui.pullToRefresh.enable({
+        this.$alert.present({
+          image: 'http://gw.alicdn.com/tps/i2/TB1SlYwGFXXXXXrXVXX9vKJ2XXX-2880-1560.jpg_200x200.jpg',
+          title: '5.5版本更新',
+          message: '1.功能更新 2.功能更新;',
+          cssClass: 'alertCssOuterMain',
+          enableBackdropDismiss: true,
+          buttons: [
+            {
+              text: '知道了',
+              role: 'cancel',
+              icon: 'icon-Destructive',
+              handler: () => {
+                _this.modalResult = '知道了 clicked'
+              }
+            },
+            {
+              text: '了解更多',
+              role: '',
+              handler: () => {
+                _this.modalResult = '了解更多 clicked'
+              }
+            }
+          ]
+        })
+      },
+
+      openInputPlain () {
+        const _this = this
+        window.dd && window.dd.ui.input.plain({
+          placeholder: _this.openInputPlainPlaceholder, //占位符
+          text: _this.openInputPlainText, //默认填充文本
           onSuccess (result) {
-            _this.pullToRefreshEnableResult = `onSuccess: ${JSON.stringify(result)}`
+            //onSuccess将在点击发送之后调用
+            /*{ text: String }*/
+            _this.openInputPlainResult = `onSuccess: ${JSON.stringify(result)}`
           },
           onFail (err) {
-            _this.pullToRefreshEnableResult = `onFail: ${JSON.stringify(err)}`
+            _this.openInputPlainResult = `onFail: ${JSON.stringify(err)}`
           }
         })
       },
-      pullToRefreshStop () {
-        window.dd && window.dd.ui.pullToRefresh.stop()
-      },
-      pullToRefreshDisable () {
-        window.dd && window.dd.ui.pullToRefresh.disable()
-      },
-      webViewBounceEnable () {
-        window.dd && window.dd.ui.webViewBounce.enable()
-      },
-      webViewBounceDisable () {
-        window.dd && window.dd.ui.webViewBounce.disable()
-      },
-
-//      openInnerApp () {
-//        const _this = this
-//        window.dd && window.dd.biz.util.open({
-//          name: _this.openInnerAppName, // 页面名称
-//          params: _this.openInnerAppParams, // 传参
-//          onSuccess (data) {
-//            _this.openInnerAppResult = `onSuccess: ${JSON.stringify(data)}`
-//          },
-//          onFail (err) {
-//            _this.openInnerAppResult = `onFail: ${JSON.stringify(err)}`
-//          }
-//        })
-//      },
-
       openShare () {
         const _this = this
-        window.dd && window.dd.biz.util.share({
-          arg: {
-            titleStr: _this.shareTitle,
-            contentStr: _this.shareContent,
-            imageStr: _this.shareImage,
-            shareUrlStr: _this.shareUrl
-          },
-          onSuccess (data) {
-            _this.shareResult = `onSuccess: ${JSON.stringify(data)}`
-          },
-          onFail (err) {
-            _this.shareResult = `onFail: ${JSON.stringify(err)}`
-          }
-        })
-      },
-      previewImage () {
-        const _this = this
-        window.dd && window.dd.biz.util.previewImage({
-          urls: [
-            'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
-            'https://img.alicdn.com/tps/TB1pfG4IFXXXXc6XXXXXXXXXXXX.jpg',
-            'https://img.alicdn.com/tps/TB1h9xxIFXXXXbKXXXXXXXXXXXX.jpg'
-          ],//图片地址列表
-          current: 'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',//当前显示的图片链接
-          onSuccess (result) {
-            _this.previewImageResult = `onSuccess: ${JSON.stringify(result)}`
-          },
-          onFail (err) {
-            _this.previewImageResult = `onSuccess: ${JSON.stringify(err)}`
-          }
-        })
+        if (this.$platform.is('dingtalk')) {
+          window.dd && window.dd.biz.util.share({
+            type: _this.shareType, // 分享类型，0:全部组件 默认； 1:只能分享到钉钉；2:不能分享，只有刷新按钮
+            url: _this.shareUrl,
+            title: _this.shareTitle,
+            content: _this.shareContent,
+            image: _this.shareImage,
+            onSuccess () {
+              _this.shareResult = `onSuccess: ${JSON.stringify(data)}`
+            },
+            onFail (err) {
+              _this.shareResult = `onFail: ${JSON.stringify(err)}`
+            }
+          })
+        } else if (this.$platform.is('dtdream')) {
+          window.dd && window.dd.biz.util.share({
+            arg: {
+              titleStr: _this.shareTitle,
+              contentStr: _this.shareContent,
+              imageStr: _this.shareImage,
+              shareUrlStr: _this.shareUrl
+            },
+            onSuccess (data) {
+              _this.shareResult = `onSuccess: ${JSON.stringify(data)}`
+            },
+            onFail (err) {
+              _this.shareResult = `onFail: ${JSON.stringify(err)}`
+            }
+          })
+        }
       },
 
       datepicker () {
@@ -517,7 +418,6 @@
           }
         })
       },
-
       picker () {
         const _this = this
         window.dd && window.dd.biz.util.chosen({
@@ -537,7 +437,6 @@
           }
         })
       },
-
       clipboardData () {
         const _this = this
         window.dd && window.dd.biz.clipboardData.setData({

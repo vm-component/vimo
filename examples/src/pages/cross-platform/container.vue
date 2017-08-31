@@ -6,8 +6,35 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <NoticeBar slot="fixedTop">请在钉钉APP环境内使用此页面测试接口</NoticeBar>
             <h4>容器</h4>
+            <section>
+                <strong>设置顶部进度条颜色(?)</strong>
+                <Item no-lines class="item">
+                    <Label slot="item-left">颜色: </Label>
+                    <Input placeholder="最多支持4个颜色, 多个颜色用空格分割" type="text" v-model="progressBarColors"
+                           clearInput></Input>
+                </Item>
+                <Button block @click="setProgressBarColors()">SetProgressBarColors</Button>
+                <strong>结果</strong>
+                <p class="result">{{setProgressBarColorsResult}}</p>
+            </section>
+            <section>
+                <strong>启用下拉刷新</strong>
+                <Button block @click="pullToRefreshEnable()">PullToRefreshEnable</Button>
+                <Button block @click="pullToRefreshStop()">PullToRefreshStop</Button>
+                <Button block @click="pullToRefreshDisable()">PullToRefreshDisable</Button>
+                <strong>结果</strong>
+                <p class="result">{{pullToRefreshEnableResult}}</p>
+            </section>
+            <section>
+                <strong>Bounce</strong>
+                <div>
+                    <small>Disable状态无法使用下拉刷新</small>
+                </div>
+                <Button block @click="webViewBounceEnable()">webViewBounceEnable</Button>
+                <Button block @click="webViewBounceDisable()">webViewBounceDisable</Button>
+            </section>
+
             <section>
                 <strong>获取容器版本号</strong>
                 <Button block @click="getVersion()">Version</Button>
@@ -56,6 +83,11 @@
     name: 'Container',
     data () {
       return {
+        setProgressBarColorsResult: '',
+        progressBarColors: '',
+
+        pullToRefreshEnableResult: '',
+
         versionResult: '',
         requestRuntimeAuthCodeResult: '',
         runtimeCorpid: '',
@@ -70,6 +102,44 @@
       }
     },
     methods: {
+      setProgressBarColors () {
+        const _this = this
+        window.dd && window.dd.ui.progressBar.setColors({
+          colors: _this.progressBarColors.split(' '), //array[number] 进度条变化颜色，最多支持4个颜色
+          onSuccess (result) {
+            /* true:成功  false:失败 */
+            _this.setProgressBarColorsResult = `onSuccess: ${JSON.stringify(result)}`
+          },
+          onFail (err) {
+            _this.setProgressBarColorsResult = `onFail: ${JSON.stringify(err)}`
+          }
+        })
+      },
+      pullToRefreshEnable () {
+        const _this = this
+        window.dd && window.dd.ui.pullToRefresh.enable({
+          onSuccess (result) {
+            _this.pullToRefreshEnableResult = `onSuccess: ${JSON.stringify(result)}`
+          },
+          onFail (err) {
+            _this.pullToRefreshEnableResult = `onFail: ${JSON.stringify(err)}`
+          }
+        })
+      },
+      pullToRefreshStop () {
+        window.dd && window.dd.ui.pullToRefresh.stop()
+      },
+      pullToRefreshDisable () {
+        window.dd && window.dd.ui.pullToRefresh.disable()
+      },
+      webViewBounceEnable () {
+        window.dd && window.dd.ui.webViewBounce.enable()
+      },
+      webViewBounceDisable () {
+        window.dd && window.dd.ui.webViewBounce.disable()
+      },
+
+
       getVersion () {
         this.versionResult = window.dd && window.dd.version
       },

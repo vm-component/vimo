@@ -7,7 +7,7 @@
         </Header>
         <Content padding class="outer-content">
             <h4>启动器</h4>
-            <section v-if="$platform.is('dingtalk') || $platform.is('dtdream')">
+            <section>
                 <strong>检测应用是否安装</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">应用: </Label>
@@ -17,7 +17,7 @@
                 <strong>结果</strong>
                 <p class="result">{{checkInstalledAppsResult}}</p>
             </section>
-            <section v-if="$platform.is('dingtalk') || $platform.is('dtdream')">
+            <section>
                 <strong>启动第三方应用</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">应用: </Label>
@@ -28,7 +28,7 @@
                 <p class="result">{{launchAppResult}}</p>
             </section>
 
-            <section v-if="$platform.is('dingtalk')">
+            <section>
                 <strong>打开应用内页面</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">页面名称: </Label>

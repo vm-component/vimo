@@ -6,7 +6,6 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <NoticeBar v-if="!$platform.is('dingtalk')" slot="fixedTop">请在钉钉APP环境内使用此页面测试接口</NoticeBar>
             <h4>
                 <span>事件回调</span>
                 <small>(页面退出自动解绑)</small>

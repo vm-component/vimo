@@ -141,7 +141,16 @@ let routes = [
     name: 'crossPlatform.launcher',
     component: require('@/pages/cross-platform/launcher.vue')
   },
-
+  {
+    path: '/cross-platform-image',
+    name: 'crossPlatform.image',
+    component: require('@/pages/cross-platform/image.vue')
+  },
+  {
+    path: '/cross-platform-audio',
+    name: 'crossPlatform.audio',
+    component: require('@/pages/cross-platform/audio.vue')
+  },
   {
     path: '/cross-platform-ui',
     name: 'crossPlatform.ui',

@@ -6,9 +6,8 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <NoticeBar v-if="!$platform.is('dingtalk')" slot="fixedTop">请在钉钉APP环境内使用此页面测试接口</NoticeBar>
             <h4>位置</h4>
-            <section v-if="$platform.is('dingtalk')">
+            <section>
                 <strong>获取当前地理位置(需要权限)</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">精度半径(m): </Label>
@@ -31,7 +30,7 @@
                 <strong>结果</strong>
                 <p class="result">{{getGeolocationResult}}</p>
             </section>
-            <section v-if="$platform.is('dingtalk')">
+            <section>
                 <strong>地图定位(需要权限)</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">纬度: </Label>
@@ -45,7 +44,7 @@
                 <strong>结果</strong>
                 <p class="result">{{mapLocateResult}}</p>
             </section>
-            <section v-if="$platform.is('dingtalk')">
+            <section>
                 <strong>POI搜索(需要权限)</strong>
                 <Item no-lines class="item">
                     <Label slot="item-left">纬度: </Label>
@@ -66,21 +65,22 @@
             </section>
 
             <!--dtdream特有-->
-            <section v-if="$platform.is('dtdream')">
+            <h4>DtDream</h4>
+            <section>
                 <!--当前城市-->
                 <strong>当前城市</strong>
                 <Button block @click="selectLocalCity()">SelectLocalCity</Button>
                 <strong>结果</strong>
                 <p class="result">{{selectLocalCityResult}}</p>
             </section>
-            <section v-if="$platform.is('dtdream')">
+            <section>
                 <!--城市选择器-->
                 <strong>城市选择器</strong>
                 <Button block @click="selectCity()">SelectCity</Button>
                 <strong>结果</strong>
                 <p class="result">{{selectCityResult}}</p>
             </section>
-            <section v-if="$platform.is('dtdream')">
+            <section>
                 <!--位置-->
                 <strong>获取位置信息</strong>
                 <Button block @click="getLocation()">GetLocation</Button>
