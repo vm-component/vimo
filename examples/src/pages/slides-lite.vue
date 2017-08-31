@@ -85,29 +85,12 @@
     }
 </style>
 <script type="text/javascript">
-  import * as lite from '../../../components/slides-lite'
-  import { Slide, Slides } from '../../../components/slides'
 
   export default {
-    components: {
-      'SlidesLite': lite.Slides,
-      'SlideLite': lite.Slide,
-      Slide,
-      Slides
-    },
-    data () {
-      return {}
-    },
-    watch: {},
-    computed: {},
     methods: {
       onTransitionEndHandler (swiper) {
         console.log(swiper)
       }
-    },
-    created: function () {},
-    mounted: function () {},
-    activated: function () {}
-
+    }
   }
 </script>

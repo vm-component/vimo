@@ -430,7 +430,6 @@
                     scrollbar=".swiper-scrollbar"
                     direction="vertical"
                     slidesPerView="auto"
-                    :mousewheelControl="true"
                     :freeMode="true">
                 <!-- 幻灯内容 -->
                 <Slide class="scroll-slide">
@@ -643,7 +642,8 @@
   import scenery1 from '../../static/img/scenery_1.jpg'
   import scenery2 from '../../static/img/scenery_2.jpg'
   import scenery3 from '../../static/img/scenery_3.jpg'
-  export default{
+
+  export default {
     name: 'name',
     data () {
       return {
@@ -724,17 +724,8 @@
 //        console.debug(ins)
       }
     },
-    created () {
-      const _this = this
-      _this.data = _this.data1
-    },
-    mounted () {
-//      defaultSwiperComponent
-
-      setInterval(() => {
-//        console.log(this.defaultSwiperComponent.swiper)
-      }, 2000)
-    },
-    activated () {},
+    created () {},
+    mounted () {},
+    activated () {}
   }
 </script>

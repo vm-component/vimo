@@ -190,7 +190,7 @@
       }
     },
     destroyed () {
-      this.swiper.destroy()
+      this.swiper && this.swiper.destroy()
     }
   }
 </script>
