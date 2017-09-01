@@ -2,6 +2,7 @@
  * 说明:
  * platform.js中关于平台方法的复写
  * 当前处于平台初始化完毕阶段, window.AlipayJSBridge等私有变量存在且可用
+ * 只有通用组件、不需要鉴权的组件才做平台化处理， 比如setTitle
  * */
 import { isArray, isFunction, isNumber, isPresent, isString } from '../../../../components/util/util'
 import Vue from 'vue'

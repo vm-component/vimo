@@ -8,6 +8,7 @@
  * */
 import { checkProtocol, docReady, loadScript } from '../../../../components/util/util'
 import { PLATFORM_INIT_TIMEOUT } from './variable'
+import platformDtDreamDrive from './platform-dtdream-drive'
 
 export default {
   initialize (plt) {
@@ -23,6 +24,7 @@ export default {
           window.setupWebViewJavascriptBridge(() => {
             // 执行自定义的bridge ready钩子
             _this.bridgeReady(plt)
+            platformDtDreamDrive(plt)
             plt.triggerReady('Dtdream Init Success!')
             plt.timer && window.clearTimeout(plt.timer)
           })
