@@ -2,11 +2,16 @@
  * 说明:
  * platform.js中关于平台方法的复写
  * 当前处于平台初始化完毕阶段
+ * 只有通用组件、不需要鉴权的组件才做平台化处理， 比如setTitle
  * */
 import { isArray, isFunction, isNumber, isPresent, isString } from '../../../../components/util/util'
 import Vue from 'vue'
 
 export default function (plt) {
+  if (!window.dd) {
+    console.error('设置DingTalk的驱动失败，变量 window.dd 不存在！')
+    return
+  }
   // 获取网络环境
   window.dd.device.connection.getNetworkType({
     onSuccess (data) {

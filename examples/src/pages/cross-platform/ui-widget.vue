@@ -284,18 +284,34 @@
       },
       openToast () {
         const _this = this
-        window.dd && window.dd.device.notification.toast({
-          icon: 'success',
-          text: '支付成功',
-          duration: 1,
-          delay: 0,
-          onSuccess (data) {
-            _this.toastResult = `onSuccess: ${JSON.stringify(data)}`
-          },
-          onFail (error) {
-            _this.toastResult = `onFail: ${JSON.stringify(error)}`
-          }
-        })
+
+        if (_this.$platform.is('dingtalk')) {
+          window.dd && window.dd.device.notification.toast({
+            icon: 'success',
+            text: '支付成功',
+            duration: 3,
+            delay: 0,
+            onSuccess (data) {
+              _this.toastResult = `onSuccess: ${JSON.stringify(data)}`
+            },
+            onFail (error) {
+              _this.toastResult = `onFail: ${JSON.stringify(error)}`
+            }
+          })
+        } else if (_this.$platform.is('dtdream')) {
+          window.dd && window.dd.device.notification.toast({
+            message: '支付成功',
+            duration: 3,
+            onSuccess (data) {
+              _this.toastResult = `onSuccess: ${JSON.stringify(data)}`
+            },
+            onFail (error) {
+              _this.toastResult = `onFail: ${JSON.stringify(error)}`
+            }
+          })
+        } else {
+          _this.toastResult = '未找到对应方法!'
+        }
       },
       openActionSheet () {
         const _this = this
@@ -316,29 +332,17 @@
       },
       openModal () {
         const _this = this
-        this.$alert.present({
-          image: 'http://gw.alicdn.com/tps/i2/TB1SlYwGFXXXXXrXVXX9vKJ2XXX-2880-1560.jpg_200x200.jpg',
-          title: '5.5版本更新',
-          message: '1.功能更新 2.功能更新;',
-          cssClass: 'alertCssOuterMain',
-          enableBackdropDismiss: true,
-          buttons: [
-            {
-              text: '知道了',
-              role: 'cancel',
-              icon: 'icon-Destructive',
-              handler: () => {
-                _this.modalResult = '知道了 clicked'
-              }
-            },
-            {
-              text: '了解更多',
-              role: '',
-              handler: () => {
-                _this.modalResult = '了解更多 clicked'
-              }
-            }
-          ]
+        window.dd && window.dd.device.notification.modal({
+          image: 'http://gw.alicdn.com/tps/i2/TB1SlYwGFXXXXXrXVXX9vKJ2XXX-2880-1560.jpg_200x200.jpg', // 标题图片地址
+          title: '2.4版本更新', //标题
+          content: '1.功能更新2.功能更新;', //文本内容
+          buttonLabels: ['了解更多', '知道了'],// 最多两个按钮，至少有一个按钮。
+          onSuccess (result) {
+            _this.modalResult = `onSuccess: ${JSON.stringify(result)}`
+          },
+          onFail (err) {
+            _this.modalResult = `onFail: ${JSON.stringify(err)}`
+          }
         })
       },
 
@@ -349,7 +353,7 @@
           text: _this.openInputPlainText, //默认填充文本
           onSuccess (result) {
             //onSuccess将在点击发送之后调用
-            /*{ text: String }*/
+              /*{ text: String }*/
             _this.openInputPlainResult = `onSuccess: ${JSON.stringify(result)}`
           },
           onFail (err) {

@@ -45,11 +45,11 @@
     name: 'Store',
     data () {
       return {
-        keyValue: '',
+        keyValue: 'q HelloWorld',
         setItemResult: '',
-        getKey: '',
+        getKey: 'q',
         getItemResult: '',
-        deleteKey: '',
+        deleteKey: 'q',
         removeItemResult: '',
 
         last: ''
