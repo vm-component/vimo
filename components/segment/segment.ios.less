@@ -137,27 +137,30 @@
 
 // iOS Segment in Toolbar
 // --------------------------------------------------
+.ios{
+  .toolbar{
+    .segment-ios {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    .segment-button {
+      max-width: @segment-button-ios-toolbar-button-max-width;
+      height: @segment-button-ios-toolbar-button-height;
 
-.toolbar-ios .segment-ios {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
+      font-size: @segment-button-ios-toolbar-font-size;
+      line-height: @segment-button-ios-toolbar-line-height;
 
-.toolbar-ios .segment-button {
-  max-width: @segment-button-ios-toolbar-button-max-width;
-  height: @segment-button-ios-toolbar-button-height;
-
-  font-size: @segment-button-ios-toolbar-font-size;
-  line-height: @segment-button-ios-toolbar-line-height;
-
-  .ion-icon {
-    font-size: @segment-button-ios-toolbar-icon-size;
-    line-height: @segment-button-ios-toolbar-icon-line-height;
+      .ion-icon {
+        font-size: @segment-button-ios-toolbar-icon-size;
+        line-height: @segment-button-ios-toolbar-icon-line-height;
+      }
+    }
   }
 }
+
 
 // iOS Segment Button Mixin
 // --------------------------------------------------
@@ -187,9 +190,7 @@
     .segment-button-disabled {
       color: rgba(red(@color-base), green(@color-base), blue(@color-base), @segment-button-ios-opacity-disabled);
     }
-
   }
-
 }
 
 // iOS Segment Color Generation
@@ -208,7 +209,7 @@
     // content
     .ios-segment-button(@color-name, @color-base, @color-contrast);
 
-    .toolbar-ios-@{color-name} .segment-ios .segment-button.segment-activated {
+    .toolbar-@{color-name} .segment-ios .segment-button.segment-activated {
       color: @color-base;
     }
   }
