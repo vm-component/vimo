@@ -8,6 +8,9 @@ Vimo Is still in development stage (2017/04/23), during which the project needs 
 
 目前还在开发阶段(2017/04/23), 在此期间需要项目对此框架测试, 其中不乏一些组件的bug修复和API的变更, 如果对您的业务造成不便请谅解!
 
+- 0.5.22 - 修复indicator在页面跳转过程没开启足够时间的bug
+- 0.5.21 - 在$router中增加```pushWindow```属性, 用于开启新窗口
+- 0.5.20 - Slides组件debug；Grid组件使用css样式。
 - 0.5.19 - 文档修改. 手滑组件卡顿检查(Range组件)
 - 0.5.18 - 修复InfiniteScroll组件在关闭时找不到_setListeners的问题
 - 0.5.15 - 修复在钉钉中跳转多一个'/'无法跳转的问题
