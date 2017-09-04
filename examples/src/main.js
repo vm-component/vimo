@@ -9,6 +9,91 @@ import VueI18n from 'vue-i18n'
 import vmGeo from 'vm-geo'
 import vmStorage from 'vm-storage'
 import router from './router'
+// 测试
+import './lib/dt-jssdk/index'
+
+// import './lib/dingtalk/index'
+// import methods from './lib/dingtalk/methods'
+
+// document.addEventListener('online', function (e, other) {
+//   console.log('document.addEventListener')
+//   console.log(e)
+//   console.log(other)
+// })
+//
+// window.WebViewJavascriptBridge.eventTrigger('online',function (data) {
+//   console.log('window.WebViewJavascriptBridge.eventTrigger')
+//   console.log(data)
+// })
+//
+// window.WebViewJavascriptBridge = {
+//
+//   init: function () {
+//     console.debug('WebViewJavascriptBridge.init')
+//   },
+//   /**
+//    * 事件列表
+//    * */
+//   eventList: {},
+//   /**
+//    * mock模拟触发的函数
+//    * @private
+//    * */
+//   eventTrigger: function (eventName, callbacks) {
+//     let eventCallback = this.eventList[eventName]
+//     eventCallback && eventCallback({
+//       eventName: eventName
+//     }, callbacks)
+//   },
+//   /**
+//    * 事件注册
+//    * @param {string} eventName -
+//    * @param {function} callbacks -
+//    * */
+//   registerHandler: function (eventName, callbacks) {
+//     this.eventList[eventName] = callbacks
+//   },
+//   /**
+//    * 函数调用相关
+//    * @param {string} namespace - 命名空间: 'device.notification.alert'
+//    * @param {object} params - 参数
+//    * @param {function} responseHandler - 方法的执行函数: alert的执行方法
+//    * */
+//   callHandler: function (namespace, params, responseHandler) {
+//     console.log(`namespace: ${JSON.stringify(namespace)}`)
+//     console.log(`params: ${JSON.stringify(params)}`)
+//
+//     let result = null
+//     let namespaceArrs = namespace.split('.')
+//     let classify = namespaceArrs[0]
+//     for (let i = 0; methods[classify].length > i; i++) {
+//       let item = methods[classify][i]
+//       if (item.namespace === namespace) {
+//         result = item.mockSuccessResult || 'without mockSuccessResult'
+//       }
+//     }
+//
+//     responseHandler && responseHandler({
+//       errorCode: '0', // 0:success -1:cancel other:error
+//       result: result // alert的数据
+//     })
+//   }
+// }
+
+console.log(window.dd)
+
+window.dd.config({
+  appId: 'appId',
+  corpId: 'corpId',
+  nonceStr: '123123123',
+  signature: '123',
+  timeStamp: new Date().getTime(),
+  type: 0
+})
+
+window.dd.ready(function (data) {
+  console.log(`window.dd.ready: ${JSON.stringify(data)}`)
+})
 
 if (process.env.NODE_ENV === 'development') {
   Vue.config.productionTip = false
@@ -64,9 +149,16 @@ new Vue({
   created () {
     this.$platform.ready().then((data) => {
       console.log(`Platform Ready && Init Info: ${data}`)
+      // alert(`Platform Ready && Init Info: ${data}`)
     }, (data) => {
       console.error(`Platform Ready && Init Info: ${data}`)
+      // alert(`Platform Ready && Init Info: ${data}`)
     })
+
+    window.setTimeout(() => {
+      // alert(`window.WebViewJavascriptBridge: ${JSON.stringify(Object.keys(window.WebViewJavascriptBridge))}`)
+    }, 1000)
   },
   components: {App}
 })
+

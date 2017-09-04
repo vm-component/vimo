@@ -14,7 +14,9 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <Button v-if="$platform.is('dtdream')" color="danger" block @click="toDtDreamTestPage()">DtDream入口</Button>
+            <Button v-if="$platform.is('dtdream') || $platform.is('dingtalk')" color="danger" block
+                    @click="toDDTestPage()">window.dd 入口
+            </Button>
             <h4>弹窗组件</h4>
             <!--提示框 Alert-->
             <strong>提示框 Alert</strong>
@@ -147,9 +149,10 @@
       }
     },
     methods: {
-      toDtDreamTestPage () {
+      toDDTestPage () {
         this.$router.push({
-          name:'crossPlatform.dtdream'
+          useNewWindow: true,
+          name: 'crossPlatform.dd'
         })
       },
       // 点击navbar由此第一个vue的icon

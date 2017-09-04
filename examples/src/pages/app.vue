@@ -66,7 +66,7 @@
 </style>
 <script type="text/javascript">
   let intervalTimer = null
-  export default{
+  export default {
     data () {
       return {
 //        isEnabled: false,
@@ -112,6 +112,10 @@
 //      this.isEnabled = this.$app.isEnabled()
     },
     mounted () {
+//      this.$indicator.present()
+//      window.setTimeout(() => {
+//        this.$indicator.dismiss()
+//      }, 3000)
     },
     activated () {
     },

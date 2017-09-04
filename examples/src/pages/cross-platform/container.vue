@@ -95,8 +95,8 @@
         channelCorpid: '',
 
         requestOperateAuthCodeResult: '',
-        operateCorpid: '',
-        operateAgentId: '',
+        operateCorpid: 'dingc3a80d1c9bdbfc77',
+        operateAgentId: '121772783',
 
         last: ''
       }

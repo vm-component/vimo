@@ -38,7 +38,7 @@
                         </Column>
                     </Row>
                     <Row class="vimo__btns">
-                        <Button block solid @click="$router.push({'name':'components'})">
+                        <Button block solid @click="$router.push({'name':'components','meta':{newWindow:true}})">
                             {{$t('index.component')}}
                         </Button>
                         <Button block solid @click="$menus.open('menu')">

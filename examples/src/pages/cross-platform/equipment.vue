@@ -144,7 +144,7 @@
         getNetworkTypeResult: '',
         nfcReadResult: '',
         nfcWriteResult: '',
-        content: '',
+        content: '这里是内容',
 
         sensitivity: 20,
         frequency: 150,
@@ -152,15 +152,15 @@
         shakeResult: '',
 
         callResult: '',
-        users: '',
-        corpId: '',
+        users: 'x0712',
+        corpId: 'ding333eef7cabb419aa',
 
-        phoneNumber: '',
-        code: '',
+        phoneNumber: '18761938554',
+        code: '+86',
         showDingCall: false,
         showCallMenuResult: '',
 
-        smsPhoneNumber: '',
+        smsPhoneNumber: '18761938554',
         smsContent: '短信内容',
         sendSMSResult: '',
 

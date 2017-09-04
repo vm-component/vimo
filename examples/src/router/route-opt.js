@@ -27,6 +27,9 @@ let routes = [
   {
     path: '/components',
     name: 'components',
+    meta: {
+      pushWindow: true
+    },
     component: require('@/pages/components.vue')
   },
   {
@@ -98,10 +101,10 @@ let routes = [
     }
   },
   {
-    path: '/cross-platform-dtdream',
-    name: 'crossPlatform.dtdream',
+    path: '/cross-platform-dd',
+    name: 'crossPlatform.dd',
     component (resolve) {
-      require(['@/pages/cross-platform/dtdream.vue'], resolve)
+      require(['@/pages/cross-platform/dd.vue'], resolve)
     }
   },
   {

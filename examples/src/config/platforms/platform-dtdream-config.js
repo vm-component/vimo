@@ -51,10 +51,10 @@ export default {
     hideNavBar: true
   },
   isMatch (plt) {
-    return plt.isPlatformMatch('dtdream')
+    return plt.isPlatformMatch('14g60')
   },
   versionParser (plt) {
     // 无用
-    return plt.matchUserAgentVersion(/dtdream\/(\d+).(\d+).(\d+)?/i)
+    return plt.matchUserAgentVersion(/14g60\/(\d+).(\d+).(\d+)?/i)
   }
 }
