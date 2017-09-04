@@ -1,5 +1,5 @@
 <template>
-    <footer class="ion-footer footer" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
+    <footer class="ion-footer footer" :class="[{'hide-bar':isHide}]" :style="style">
         <slot></slot>
     </footer>
 </template>
@@ -35,23 +35,9 @@
    * ### 可用的样式属性
    * - [no-border] - 无边框
    *
-   * @props {String} [mode='ios'] - 模式
-   *
    * */
-  export default{
+  export default {
     name: 'Footer',
-    props: {
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      }
-    },
-    computed: {
-      modeClass () {
-        return `footer-${this.mode}`
-      }
-    },
-
     data () {
       return {
         // -------- public --------

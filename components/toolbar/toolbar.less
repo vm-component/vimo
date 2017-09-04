@@ -1,107 +1,446 @@
-@import "../themes/index.less";
+@import "../themes/default.ios.less";
+@import "../themes/default.less";
 
-// Toolbar
+// iOS Toolbar
 // --------------------------------------------------
 
-.ion-toolbar {
-  position: relative;
-  z-index: @z-index-toolbar;
+/// @prop - Order of the toolbar elements
+@toolbar-order-back-button: 0;
+@toolbar-order-menu-toggle-start: 1;
+@toolbar-order-buttons-left: 2;
+@toolbar-order-buttons-start: 3;
+@toolbar-order-content: 4;
+@toolbar-order-buttons-end: 5;
+@toolbar-order-buttons-right: 6;
+@toolbar-order-menu-toggle-end: 7;
+
+/// @prop - Font size of the toolbar button
+@toolbar-button-font-size: 17px;
+
+/// @prop - Font size of the toolbar title
+@toolbar-title-font-size: 17px;
+
+/// @prop - Font weight of the toolbar title
+@toolbar-title-font-weight: 600;
+
+/// @prop - Text alignment of the toolbar title
+@toolbar-title-text-align: center;
+
+/// @prop - Text color of the toolbar title
+@toolbar-ios-title-text-color: contrast(@toolbar-background, black, white, @contrast-threshold);
+
+/// @prop - Text color of the toolbar button
+@toolbar-ios-button-color: contrast(@toolbar-background, @primary, white, @contrast-threshold);
+
+/// @prop - Border radius of the toolbar button
+@toolbar-ios-button-border-radius: 4px;
+
+/// @prop - Height of the navigation bar
+@navbar-ios-height: @toolbar-ios-height;
+
+@button-ios-strong-font-weight: 800;
+
+.toolbar-ios {
+  padding: @toolbar-ios-padding;
+  // add
+  height: @toolbar-ios-height;
+
+  min-height: @toolbar-ios-height;
 }
 
-.toolbar {
-  display: flex;
-  overflow: hidden;
+// iOS Toolbar Background
+// --------------------------------------------------
 
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 100%;
-
-  contain: content;
+.toolbar-background-ios {
+  background: @toolbar-ios-background;
 }
 
-.toolbar-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: @z-index-toolbar-background;
+// iOS Header / Footer Borders
+// --------------------------------------------------
 
-  width: 100%;
-  height: 100%;
+.ion-header .toolbar-background-ios,
+.ion-footer .toolbar-background-ios {
+  border-style: solid;
+  border-color: @toolbar-ios-border-color;
+}
 
-  border: 0;
-  transform: translateZ(0);
+.ion-header .toolbar-ios:last-child .toolbar-background-ios {
+  border-width: 0 0 @hairlines-width;
+}
 
-  pointer-events: none;
+.ion-footer .toolbar-ios:first-child .toolbar-background-ios {
+  border-width: @hairlines-width 0 0;
+}
 
-  contain: strict;
+.ion-header[no-border] .toolbar-ios:last-child .toolbar-background-ios {
+  border-bottom-width: 0;
+}
+
+.ion-footer[no-border] .toolbar-ios:first-child .toolbar-background-ios {
+  border-top-width: 0;
+}
+
+// iOS Toolbar Content
+// --------------------------------------------------
+
+.toolbar-content-ios {
+  flex: 1;
+  order: @toolbar-order-content;
+
+  min-width: 0;
 }
 
 // toolbar-title.vue
 // --------------------------------------------------
 
-.ion-title {
-  display: flex;
+.toolbar-title-ios {
+  font-size: @toolbar-title-font-size;
+  font-weight: @toolbar-title-font-weight;
+  text-align: @toolbar-title-text-align;
+  color: @toolbar-ios-title-text-color;
 
-  flex: 1;
-  align-items: center;
-
-  transform: translateZ(0);
-
-  justify-content: flex-start;
+  pointer-events: auto;
+  img {
+    vertical-align: middle;
+    max-width: 234px;
+    max-height: @toolbar-ios-height;
+  }
 }
 
-.toolbar-title {
-  overflow: hidden;
+.toolbar-ios .ion-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  padding: 0 90px 1px; /*no*/
+
   width: 100%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-height: 100%;
-}
-
-// toolbar-buttons.vue
-// --------------------------------------------------
-
-.ion-buttons {
-  display: block;
-
-  margin: 0 2px;
+  height: 100%;
 
   transform: translateZ(0);
 
   pointer-events: none;
 }
 
-.ion-buttons button,
-.ion-buttons a,
-.ion-buttons input,
-.ion-buttons textarea,
-.ion-buttons div {
-  pointer-events: auto;
+.ios-toolbar-theme(@color-name, @color-base, @color-contrast) {
+  .toolbar-ios-@{color-name} {
+    .toolbar-background-ios {
+      background: @color-base;
+    }
+
+    .toolbar-title-ios,
+    .bar-button-clear-ios,
+    .bar-button-ios-default,
+    .bar-button-default-ios {
+      color: @color-contrast;
+    }
+
+    .ios-arrow-back(@color-contrast);
+    // action
+    .get-all-colors-i1(ios);
+    .get-all-colors-i1(@type) {
+      @name-i: e('colors-@{type}');
+      @n: length(@@name-i);
+      .loop(@n);
+      .loop(@n) when (@n > 0) {
+        .loop((@n - 1)); // next iteration
+        @color-name-i: extract(@@name-i, @n);
+        @color-name-mode-i: e('@{color-name-i}-@{type}');
+        @color-base-i: @@color-name-mode-i;
+        @color-contrast-i: contrast(@color-base-i, black, white, @contrast-threshold);
+
+        // content
+        .ios-bar-button-default(@color-name-i, @color-base-i, @color-contrast-i);
+        .ios-bar-button-outline(@color-name-i, @color-base-i, @color-contrast-i);
+        .ios-bar-button-solid(@color-name-i, @color-base-i, @color-contrast-i);
+      }
+    }
+  }
 }
 
-// Transparent Toolbar
+// iOS Navbar Back Button
+// --------------------------------------------------
+// mixin
+.ios-arrow-back(@color) {
+
+  @ios-arrow-back-svg: "<svg t='1499003919115' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' p-id='3978' xmlns:xlink='http://www.w3.org/1999/xlink'><path d='M702.882 958.388l64.032-63.397-380.993-383.606 384.196-380.377-63.49-63.925-448.221 443.779z' p-id='3979' fill='@{color}'/></svg>";
+
+  .icon-ios-arrow-back {
+    height: 23px;
+    width: 18px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 16px 23px;
+    color: @color;
+    .svg-background-image(@ios-arrow-back-svg);
+  }
+}
+
+// iOS Toolbar Button Placement
 // --------------------------------------------------
 
-.toolbar[transparent] .toolbar-background {
-  border-color: transparent;
-  background: transparent;
-}
-
-// TODO this is a temp hack to fix segment overlapping ion-nav-item
-.ion-buttons,
-.bar-button-menutoggle {
-  z-index: 99;
+.bar-buttons-ios {
+  order: @toolbar-order-buttons-start;
 
   transform: translateZ(0);
 }
 
-// Navbar
+.bar-buttons-ios[left] {
+  order: @toolbar-order-buttons-left;
+}
+
+.bar-buttons-ios[end] {
+  order: @toolbar-order-buttons-end;
+
+  text-align: right;
+}
+
+.bar-buttons-ios[right] {
+  order: @toolbar-order-buttons-right;
+
+  text-align: right;
+}
+
+// iOS Toolbar Button Default
 // --------------------------------------------------
 
-.ion-navbar.toolbar {
-  display: flex;
+.bar-button-ios {
+  padding: 0 4px;
 
+  height: 32px;
+
+  border: 0;
+  border-radius: @toolbar-ios-button-border-radius;
+  font-size: @toolbar-button-font-size;
+}
+
+// mixin
+.ios-bar-button-default(@color-name, @color-base, @color-contrast) {
+
+  .bar-button-ios-@{color-name},
+  .bar-button-default.bar-button-ios-@{color-name},
+  .bar-button-clear-ios-@{color-name} {
+    color: @color-base;
+    background-color: transparent;
+
+    &:hover:not(.disable-hover) {
+      color: @color-base;
+    }
+
+    &:active {
+      opacity: .4;
+    }
+
+    .ios-arrow-back(@color-base);
+  }
+}
+
+// iOS Toolbar Button Outline
+// --------------------------------------------------
+
+.bar-button-outline-ios {
+  border-width: 1px; /*no*/
+  border-style: solid;
+  border-color: @toolbar-ios-button-color;
+  color: @toolbar-ios-button-color;
+  background-color: transparent;
+
+  &:hover:not(.disable-hover) {
+    opacity: .4;
+  }
+
+  &:active {
+    color: contrast(@toolbar-ios-button-color, black, white, @contrast-threshold);
+    background-color: @toolbar-ios-button-color;
+  }
+}
+
+// mixin
+.ios-bar-button-outline(@color-name, @color-base, @color-contrast) {
+
+  .bar-button-outline-ios-@{color-name} {
+    @fg-color: @color-base;
+    border-color: @fg-color;
+    color: @fg-color;
+    background-color: transparent;
+
+    &:active {
+      color: @color-contrast;
+      background-color: @fg-color;
+    }
+  }
+
+}
+
+// iOS Toolbar Button Solid
+// --------------------------------------------------
+
+.bar-button-solid-ios {
+  color: contrast(@toolbar-ios-button-color, black, white, @contrast-threshold);
+  background-color: @toolbar-ios-button-color;
+
+  &:hover:not(.disable-hover) {
+    color: contrast(@toolbar-ios-button-color, black, white, @contrast-threshold);
+    opacity: .4;
+  }
+
+  &:active {
+    color: contrast(@toolbar-ios-button-color, black, white, @contrast-threshold);
+    background-color: darken(@toolbar-ios-button-color, @darken-amount);
+    opacity: .4;
+  }
+}
+
+// mixin
+.ios-bar-button-solid(@color-name, @color-base, @color-contrast) {
+
+  .bar-button-solid-ios-@{color-name} {
+    color: @color-contrast;
+    background-color: @color-base;
+
+    &:active {
+      color: @color-contrast;
+      background-color: darken(@color-base, @darken-amount);
+    }
+  }
+
+}
+
+// iOS Toolbar Button Icon
+// --------------------------------------------------
+
+.bar-button-ios.bar-button-icon-left .ion-icon {
+  padding-right: .3em;
+
+  font-size: 1.4em;
+  line-height: .67;
+
+  pointer-events: none;
+}
+
+.bar-button-ios.bar-button-icon-right .ion-icon {
+  padding-left: .4em;
+
+  font-size: 1.4em;
+  line-height: .67;
+
+  pointer-events: none;
+}
+
+.bar-button-ios[icon-only] {
+  padding: 0;
+  min-width: .9em;
+}
+
+.bar-button-ios.icon-only {
+  padding: 0;
+  min-width: .9em;
+}
+
+.bar-button-ios[icon-only] .ion-icon {
+  padding: 0 .1em;
+
+  font-size: 1.8em;
+  line-height: .67;
+
+  pointer-events: none;
+}
+
+.bar-button-ios.icon-only .ion-icon {
+  padding: 0 .1em;
+
+  font-size: 1.8em;
+  line-height: .67;
+
+  pointer-events: none;
+}
+
+// iOS Toolbar Back Button
+// --------------------------------------------------
+
+.back-button-ios {
+  overflow: visible;
+
+  order: @toolbar-order-back-button;
+
+  margin: 0;
+
+  min-height: 32px;
+
+  line-height: 1;
   transform: translateZ(0);
+}
+
+.back-button-icon-ios {
+  display: inherit;
+
+  margin: 0;
+  margin-top: -1px; /*no*/
+
+  min-width: 18px;
+
+  font-size: 34px;
+}
+
+.back-button-text-ios {
+  letter-spacing: -.01em;
+}
+
+// iOS Toolbar Menu Toggle
+// --------------------------------------------------
+
+.bar-button-menutoggle-ios {
+  order: @toolbar-order-menu-toggle-start;
+
+  margin: 0 6px;
+  padding: 0;
+
+  min-width: 36px;
+
+  .ion-icon {
+    padding: 0 6px;
+
+    font-size: 28px;
+  }
+}
+
+.bar-button-menutoggle-ios[end],
+.bar-button-menutoggle-ios[right] {
+  order: @toolbar-order-menu-toggle-end;
+}
+
+// iOS Toolbar Color Generation
+// --------------------------------------------------
+
+.ios-bar-button-default(default, @toolbar-ios-button-color, contrast(@toolbar-ios-button-color, @primary-ios, white, @contrast-threshold));
+.ios-bar-button-default(clear, @toolbar-ios-button-color, contrast(@toolbar-ios-button-color, @primary-ios, white, @contrast-threshold));
+
+.get-all-colors-i2(@type) {
+  @name: e('colors-@{type}');
+  @n: length(@@name);
+  .loop(@n);
+  .loop(@n) when (@n > 0) {
+    .loop((@n - 1)); // next iteration
+    @color-name: extract(@@name, @n);
+    @color-name-mode: e('@{color-name}-@{type}');
+    @color-base: @@color-name-mode;
+    @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
+
+    // content
+    .ios-toolbar-theme(@color-name, @color-base, @color-contrast);
+    .ios-bar-button-default(@color-name, @color-base, @color-contrast);
+    .ios-bar-button-outline(@color-name, @color-base, @color-contrast);
+    .ios-bar-button-solid(@color-name, @color-base, @color-contrast);
+  }
+}
+
+// action
+.get-all-colors-i2(ios);
+
+// iOS strong Button
+// --------------------------------------------------
+
+.bar-button-strong-ios {
+  font-weight: @button-ios-strong-font-weight;
 }

@@ -1,12 +1,14 @@
 <template>
-    <header class="ion-header header" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
+    <header class="ion-header header" :class="[{'hide-bar':isHide}]" :style="style">
         <!--right button placeholder-->
-        <div ref="rightButtonPlaceholder" id="rightButtonPlaceholder" style="width: 30px;bottom:0;height:1px; position: absolute;right:9px;"></div>
+        <div ref="rightButtonPlaceholder" id="rightButtonPlaceholder"
+             style="width: 30px;bottom:0;height:1px; position: absolute;right:9px;"></div>
         <slot></slot>
     </header>
 </template>
 <style lang="less">
     @import "../themes/index";
+
     .ion-header {
         position: absolute;
         top: 0;
@@ -36,24 +38,11 @@
    * ### 可用的样式属性
    * - [no-border] - 无边框
    *
-   * @props {String} [mode='ios'] - 模式
-   *
    * @see component:Base/Footer
    *
    * */
-  export default{
+  export default {
     name: 'Header',
-    props: {
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      }
-    },
-    computed: {
-      modeClass () {
-        return `header-${this.mode}`
-      }
-    },
     data () {
       return {
         // -------- public --------

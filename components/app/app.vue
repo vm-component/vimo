@@ -22,8 +22,6 @@
 </template>
 <style lang="less">
     @import "app";
-    @import "app.ios.less";
-    @import "app.md.less";
 </style>
 <script type="text/javascript">
   /**
@@ -53,7 +51,7 @@
    *
    * 因为业务的复杂多样, 如果组件全部加载, 会造成初始化的下载包过大, 所以基础组件在安装Vimo的时候就全局安装, 不需要在业务中再次安装. 除此之外的组件则要按需引入.
    *
-   * 这里规定的基础组件为: **App/Nav/Page/Header/Footer/Content**, 一共6个.
+   * 这里规定的基础组件为: **App/Nav/Navbar/Toolbar(Title/Buttons)/Page/Header/Footer/Content**, 一共10个.
    *
    * ### 可用状态(参考示例)
    *
@@ -82,7 +80,7 @@
    *    - [hidden]          - display:none
    *    - .hidden           - display:none
    *
-   * @props {String} [mode='ios'] - 模式
+   * @props {String} [mode='ios'] - 模式, 用于在根处定义app的平台及样式
    *
    * @demo #/app
    * */
@@ -229,8 +227,9 @@
       }
     },
     created () {
-      console.assert(this.$platform, `<App>组件需要 platform 实例`)
-      console.assert(this.$config, `<App>组件需要 config 实例`)
+      console.assert(this.$platform, `The Component of <App> need platform instance`)
+      console.assert(this.$config, `The Component of <App> need config instance`)
+
       /**
        * $app对外方法
        * */

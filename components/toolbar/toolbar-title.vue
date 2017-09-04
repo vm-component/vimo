@@ -97,10 +97,10 @@
     },
     computed: {
       titleClass () {
-        return `title-${this.mode}`
+        return `title-ios`
       },
       toolbarTitleClass () {
-        return `toolbar-title-${this.mode}`
+        return `toolbar-title-ios`
       }
     },
     watch: {

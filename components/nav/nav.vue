@@ -93,11 +93,15 @@
         // 页面切换显示Indicator
         if (this.showIndicatorWhenPageChange) {
           this.$router.beforeEach((to, from, next) => {
-            Indicator.present()
+            if (vm.$history.getDirection() === 'forward') {
+              Indicator.present()
+            }
             next()
           })
           this.$router.afterEach(() => {
-            Indicator.dismiss()
+            if (vm.$history.getDirection() === 'forward') {
+              Indicator.dismiss()
+            }
           })
         }
       },

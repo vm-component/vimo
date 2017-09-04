@@ -1,5 +1,5 @@
 <template>
-    <article content class="ion-content" :class="[modeClass]">
+    <article content class="ion-content">
         <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
             <!--Fixed-->
             <slot name="fixed"></slot>
@@ -18,8 +18,6 @@
 </template>
 <style lang="less">
     @import "content";
-    @import "content.ios.less";
-    @import "content.md.less";
 </style>
 <script type="text/javascript">
   /**
@@ -95,7 +93,6 @@
    * @slot [refresher]      refresher组件的位置
    *
    * @props {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
-   * @props {string} [mode=ios]  - 样式模式
    *
    * @fires component:Base/Content#onScrollStart
    * @fires component:Base/Content#onScroll
@@ -123,11 +120,7 @@
   export default {
     name: 'Content',
     props: {
-      fullscreen: Boolean,
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      }
+      fullscreen: Boolean
     },
     data () {
       return {
@@ -158,11 +151,6 @@
         _imgReqBfr: 0,  // 1400
         _imgRndBfr: 0,  // 400
         _imgVelMax: 0
-      }
-    },
-    computed: {
-      modeClass () {
-        return `content-${this.mode}`
       }
     },
     watch: {

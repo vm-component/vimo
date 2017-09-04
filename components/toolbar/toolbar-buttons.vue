@@ -42,7 +42,7 @@
    * @see component:Toolbar
    *
    * */
-  export default{
+  export default {
     name: 'Buttons',
     props: {
       left: Boolean,
@@ -50,7 +50,7 @@
       end: Boolean,
       mode: {
         type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
+        default: 'ios'
       }
     },
     computed: {

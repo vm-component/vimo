@@ -1,19 +1,3 @@
-<template>
-    <div class="toolbar ion-toolbar"
-         :class="[modeClass,colorClass]">
-        <div class="toolbar-background" :class="[toolbarBackgroundClass]"></div>
-        <slot name="buttons"></slot>
-        <div class="toolbar-content" :class="[toolbarContentClass]">
-            <slot></slot>
-        </div>
-    </div>
-</template>
-<style lang="less">
-    @import "toolbar";
-    @import "toolbar.ios.less";
-    @import "toolbar.md.less";
-    @import "toolbar-button";
-</style>
 <script type="text/javascript">
   /**
    * @component Toolbar
@@ -32,9 +16,7 @@
    *
    * 名称         | back-button | menu-toggle-start | buttons-left | buttons-start | content | buttons-end | buttons-right | menu-toggle-end
    * -----------|-------------|-------------------|--------------|---------------|---------|-------------|---------------|-----------------
-   * order(ios) | 0           | 1                 | 2            | 3             | 4       | 5           | 6             | 7
-   * order(md)  | 0           | 1                 | 2            | 4             | 3       | 5           | 6             | 7
-   *
+   * order | 0           | 1                 | 2            | 3             | 4       | 5           | 6             | 7
    *
    * ### Button组件
    *
@@ -57,8 +39,6 @@
    * Vue.component(Buttons.name, Buttons)
    * ```
    *
-   *
-   * @props {String} [mode=ios] - 模式
    * @props {String} [color] - 颜色
    *
    * @slot [空] 作为内容, 比如Title/Searchbar/Segment放置的位置
@@ -96,36 +76,10 @@
    *    <Title>Left Menu</Title>
    * </Toolbar>
    * */
+
+  import ToolbarMixins from './toolbarMixins.vue'
   export default {
     name: 'Toolbar',
-    props: {
-      /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      },
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: String
-    },
-    computed: {
-      // 颜色
-      colorClass () {
-        return this.color ? (`toolbar-${this.mode}-${this.color}`) : ''
-      },
-      // 环境样式
-      modeClass () {
-        return `toolbar-${this.mode}`
-      },
-      toolbarBackgroundClass () {
-        return `toolbar-background-${this.mode}`
-      },
-      toolbarContentClass () {
-        return `toolbar-content-${this.mode}`
-      }
-    }
+    mixins: [ToolbarMixins],
   }
 </script>
