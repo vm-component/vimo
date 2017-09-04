@@ -2,18 +2,18 @@
     <Page>
         <Header>
             <Navbar>
-                <Buttons start slot="buttons">
-                    <Button icon-only role="bar-button">
+                <Buttons left slot="buttons">
+                    <Button icon-only role="bar-button" @click="toolbarButtonClick('contact')">
                         <Icon class="icon" name="contact"></Icon>
                     </Button>
-                    <Button icon-only role="bar-button">
-                        <Icon class="icon" name="search"></Icon>
+                    <Button icon-only role="bar-button" @click="toolbarButtonClick('more')">
+                        <Icon class="icon" name="more"></Icon>
                     </Button>
                 </Buttons>
                 <Title>Toolbar</Title>
                 <Buttons end slot="buttons">
-                    <Button icon-only role="bar-button">
-                        <Icon class="icon" name="more"></Icon>
+                    <Button icon-only role="bar-button" @click="toolbarButtonClick('search')">
+                        <Icon class="icon" name="search"></Icon>
                     </Button>
                 </Buttons>
             </Navbar>
@@ -227,7 +227,7 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     data () {
       return {
         relationship8: 'friend1',
@@ -236,7 +236,9 @@
       }
     },
     methods: {
-
+      toolbarButtonClick (content) {
+        alert(content)
+      },
       onSegmentChange8 (val) {
         this.relationship8 = val
       },
@@ -273,6 +275,6 @@
       console.debug(this.count)
     },
     activated () {
-    },
+    }
   }
 </script>

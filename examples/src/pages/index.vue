@@ -73,8 +73,7 @@
             justify-content: center;
             align-content: center;
             flex-direction: column;
-            padding-bottom: 55px;
-
+            /*padding-bottom: 45px;*/
             .vimo__logo {
                 .vimo__logo--img {
                     height: 120px;
