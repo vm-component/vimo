@@ -1,5 +1,8 @@
+@import "../themes/default.md.less";
 @import "../themes/default.ios.less";
 @import "../themes/default.less";
+
+//.footer-md:before, .header-md:after, .tabs-md[tabsPlacement=bottom]>.tabbar:before, .tabs-md[tabsPlacement=top]>.tabbar:after
 
 //  Toolbar
 // --------------------------------------------------
@@ -39,10 +42,24 @@
 
 .toolbar {
   padding: @toolbar-padding;
-  // add
   height: @toolbar-height;
-
   min-height: @toolbar-height;
+}
+
+.ios {
+  .toolbar {
+    padding: @toolbar-ios-padding;
+    height: @toolbar-ios-height;
+    min-height: @toolbar-ios-height;
+  }
+}
+
+.md {
+  .toolbar {
+    padding: @toolbar-md-padding;
+    height: @toolbar-md-height;
+    min-height: @toolbar-md-height;
+  }
 }
 
 //  Toolbar Background
@@ -61,8 +78,20 @@
   border-color: @toolbar-border-color;
 }
 
-.ion-header .toolbar:last-child .toolbar-background {
+.ios .ion-header .toolbar:last-child .toolbar-background {
   border-width: 0 0 @hairlines-width;
+}
+
+.md .ion-footer:before, .md .ion-header:after, .tabs-md[tabsPlacement=bottom] > .tabbar:before, .tabs-md[tabsPlacement=top] > .tabbar:after {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMVEUAAAAAAAAAAAAAAAAAAABPDueNAAAABXRSTlMUCS0gBIh/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==);
+  background-repeat: repeat-x;
+  background-position: 0 -2px;
+  content: "";
 }
 
 .ion-footer .toolbar:first-child .toolbar-background {
@@ -119,7 +148,40 @@
   pointer-events: none;
 }
 
+.toolbar-theme(@color-name, @color-base, @color-contrast) {
+  .toolbar-@{color-name} {
+    .toolbar-background {
+      background: @color-base;
+    }
 
+    .toolbar-title,
+    .bar-button-clear,
+    .bar-button-default {
+      color: @color-contrast;
+    }
+
+    .arrow-back(@color-contrast);
+    // action
+    .get-all-colors-i1(ios);
+    .get-all-colors-i1(@type) {
+      @name-i: e('colors-@{type}');
+      @n: length(@@name-i);
+      .loop(@n);
+      .loop(@n) when (@n > 0) {
+        .loop((@n - 1)); // next iteration
+        @color-name-i: extract(@@name-i, @n);
+        @color-name-mode-i: e('@{color-name-i}-@{type}');
+        @color-base-i: @@color-name-mode-i;
+        @color-contrast-i: contrast(@color-base-i, black, white, @contrast-threshold);
+
+        // content
+        .bar-button-default(@color-name-i, @color-base-i, @color-contrast-i);
+        .bar-button-outline(@color-name-i, @color-base-i, @color-contrast-i);
+        .bar-button-solid(@color-name-i, @color-base-i, @color-contrast-i);
+      }
+    }
+  }
+}
 
 //  Navbar Back Button
 // --------------------------------------------------
@@ -176,12 +238,34 @@
   border: 0;
   border-radius: @toolbar-button-border-radius;
   font-size: @toolbar-button-font-size;
+
+  .appearance(none);
+
+  position: relative;
+  display: inline-block;
+
+  margin: 0;
+
+  line-height: 1;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: none;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  vertical-align: top; // the better option for most scenarios
+  vertical-align: -webkit-baseline-middle; // the best for those that support it
+
+  user-select: none;
+
 }
 
 // mixin
 .bar-button-default(@color-name, @color-base, @color-contrast) {
 
   .bar-button-@{color-name},
+  .bar-button-default.bar-button-@{color-name},
   .bar-button-clear-@{color-name} {
     color: @color-base;
     background-color: transparent;
@@ -195,41 +279,6 @@
     }
 
     .arrow-back(@color-base);
-  }
-}
-
-.toolbar-theme(@color-name, @color-base, @color-contrast) {
-  .toolbar-@{color-name} {
-    .toolbar-background {
-      background: @color-base;
-    }
-
-    .toolbar-title,
-    .bar-button-clear,
-    .bar-button-default {
-      color: @color-contrast;
-    }
-
-    .arrow-back(@color-contrast);
-    // action
-    .get-all-colors-i1(ios);
-    .get-all-colors-i1(@type) {
-      @name-i: e('colors-@{type}');
-      @n: length(@@name-i);
-      .loop(@n);
-      .loop(@n) when (@n > 0) {
-        .loop((@n - 1)); // next iteration
-        @color-name-i: extract(@@name-i, @n);
-        @color-name-mode-i: e('@{color-name-i}-@{type}');
-        @color-base-i: @@color-name-mode-i;
-        @color-contrast-i: contrast(@color-base-i, black, white, @contrast-threshold);
-
-        // content
-        .bar-button-default(@color-name-i, @color-base-i, @color-contrast-i);
-        .bar-button-outline(@color-name-i, @color-base-i, @color-contrast-i);
-        .bar-button-solid(@color-name-i, @color-base-i, @color-contrast-i);
-      }
-    }
   }
 }
 
