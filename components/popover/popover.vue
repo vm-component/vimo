@@ -159,7 +159,7 @@
       }
     },
     props: {
-      component: [Object, String, Function],
+      component: [Object, String, Function, Promise],
       data: [Object],
       ev: [Object, MouseEvent], // 点击元素的事件
       mode: {
@@ -412,7 +412,16 @@
       /**
        * init
        * */
-      init () {
+      init (component) {
+        if (component) {
+          const Component = Vue.extend(component)
+          // eslint-disable-next-line no-new
+          new Component({
+            el: this.popoverViewportEle,
+            $data: this.data
+          })
+        }
+
         // 计算位置
         // 渲染传入的组件
         if (this.mode === 'ios') {
@@ -431,23 +440,18 @@
       }
     },
     mounted () {
-      if (isObject(this.component)) {
-        const Component = Vue.extend(this.component)
-        // eslint-disable-next-line no-new
-        new Component({
-          el: this.popoverViewportEle,
-          $data: this.data
-        })
-        this.init()
-      } else if (isFunction(this.component)) {
+      let getType = (val) => Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
+
+      if (getType(this.component) === 'object') {
+        this.init(this.component)
+      } else if (getType(this.component) === 'function') {
         this.component((component) => {
-          const Component = Vue.extend(component)
-          // eslint-disable-next-line no-new
-          new Component({
-            el: this.popoverViewportEle,
-            $data: this.data
-          })
-          this.init()
+          this.init(component)
+        })
+      } else if (getType(this.component) === 'promise') {
+        // TODO: 需要文档记录
+        this.component.then((component) => {
+          this.init(component)
         })
       } else {
         // 如果 this.component 是html模板string的话

@@ -56,6 +56,7 @@
 <script type="text/javascript">
   import Vue from 'vue'
   import { Backdrop } from '../backdrop'
+
   const NOOP = () => {}
 
   export default {
@@ -67,7 +68,7 @@
       },
 
       // 放入的页面组件
-      component: Object,
+      component: [Object, String, Function, Promise],
       // 传递给页面的数据
       data: Object,
       onDismiss: Function,
@@ -155,18 +156,37 @@
         } else {
           return new Promise((resolve) => { resolve() })
         }
+      },
+      init (component) {
+        // 页面挂载
+        const Component = Vue.extend(component)
+        setTimeout(() => {
+          // eslint-disable-next-line no-new
+          new Component({
+            el: this.modalViewportElement,
+            $data: this.data
+          })
+        }, 0)
       }
     },
     mounted () {
-      // 页面挂载
-      const Component = Vue.extend(this.component)
-      setTimeout(() => {
-        // eslint-disable-next-line no-new
-        new Component({
-          el: this.modalViewportElement,
-          $data: this.data
+      let getType = (val) => Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
+      if (getType(this.component) === 'object') {
+        this.init(this.component)
+      } else if (getType(this.component) === 'function') {
+        this.component((component) => {
+          this.init(component)
         })
-      }, 0)
+      } else if (getType(this.component) === 'promise') {
+        this.component.then((component) => {
+          this.init(component)
+        })
+      } else if (getType(this.component) === 'string') {
+        // 如果 this.component 是html模板string的话
+        this.htmlComponent = this.component
+      } else {
+        console.error('props of component must pass in right value!')
+      }
     },
     components: {
       'Backdrop': Backdrop
