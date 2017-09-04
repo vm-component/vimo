@@ -1,20 +1,19 @@
 <template>
-    <div class="ion-navbar toolbar"
-         :class="[modeClass,colorClass]"
+    <div class="toolbar"
+         :class="[colorClass,typeClass]"
          v-show="!hideNavBar">
         <!--background-->
-        <div class="toolbar-background toolbar" ref="toolbarBackground"></div>
+        <div class="toolbar-background toolbar"></div>
         <!--content-->
         <div class="toolbar-content">
             <slot></slot>
         </div>
         <!--show-back-button-->
-        <Button v-if="isNavbar && !hideBb" @click="backButtonClickHandler" role="bar-button" class="back-button"
+        <Button v-if="isNavBar && !hideBb" @click="backButtonClickHandler" role="bar-button" class="back-button"
                 :class="[{'show-back-button':!hideBackButton}]">
             <Icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></Icon>
             <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
         </Button>
-
 
         <!--buttons/menuToggle-->
         <slot name="buttons"></slot>
@@ -41,16 +40,11 @@
         hideBb: false,
         bbIcon: this.$config && this.$config.get('backButtonIcon', 'icon-arrow-back') || 'icon-arrow-back',
         backText: this.$config && this.$config.get('backButtonText', '返回') || '返回',
-        hideNavBar: this.$config && this.$config.getBoolean('hideNavBar', false),
 
-        isNavbar: this.$options._componentTag.toLowerCase() == 'navbar'
+        isNavBar: this.$options._componentTag.toLowerCase() == 'navbar'
       }
     },
     props: {
-      mode: {
-        type: String,
-        default: 'ios'
-      },
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
@@ -64,17 +58,17 @@
       colorClass () {
         return this.color ? (`toolbar-${this.color}`) : ''
       },
-      modeClass () {
-        return `toolbar-${this.mode}`
-      },
       backButtonTextClass () {
         return `back-button-text`
       },
       backButtonIconClass () {
         return `back-button-icon`
       },
-      toolbarBackgroundElement () {
-        return this.$refs.toolbarBackground
+      typeClass () {
+        return this.isNavBar ? 'ion-navbar' : 'ion-toolbar'
+      },
+      hideNavBar () {
+        return this.isNavBar && this.$config && this.$config.getBoolean('hideNavBar', false)
       }
     },
     methods: {
@@ -176,6 +170,9 @@
        * @private
        * */
       initWhenInWebview () {
+        if (!this.isNavBar) {
+          return
+        }
         // 如果在平台中则进行下面的分支
         this.$platform.ready().then(() => {
           /**
@@ -197,7 +194,7 @@
       this.refreshBackButtonStatus()
     },
     mounted () {
-      this.initWhenInWebview()
+      this.isNavBar && this.initWhenInWebview()
     }
   }
 </script>

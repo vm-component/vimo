@@ -33,7 +33,6 @@
    * }
    * ```
    *
-   *
    * @props {String} [color='default'] - 颜色
    * @props {String} [mode='ios'] - 模式
    *

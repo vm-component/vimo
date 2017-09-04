@@ -127,8 +127,6 @@
       }
     },
     methods: {
-      // -------- public --------
-
       /**
        * @function setEnabled
        * @description
