@@ -3,8 +3,8 @@
         <slot></slot>
     </div>
 </template>
-<style lang="scss">
-    @import "grid";
+<style lang="less">
+    @import "grid.css";
 </style>
 <script type="text/javascript">
   /**
