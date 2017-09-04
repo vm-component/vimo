@@ -122,8 +122,9 @@ export class History {
       return
     }
 
+    let hasPushWindow = to.meta.pushWindow
     let isHandled = false
-    if (this.usePushWindow && from.matched.length !== 0 && to.matched.length !== 0) {
+    if (this.usePushWindow && hasPushWindow && from.matched.length !== 0 && to.matched.length !== 0) {
       let url = ''
       let mode = this._router.mode
       if (mode === 'hash') {
@@ -157,6 +158,7 @@ export class History {
 
   /**
    * 获取当前的页面进行的方向
+   * forward || backward
    * */
   getDirection () {
     return this._direction
