@@ -218,21 +218,21 @@
       color: darken(@color-base,@darken-amount);
     }
 
-    .toolbar-ios-@{color-name} .searchbar-ios .searchbar-search-icon {
+    .toolbar-@{color-name} .searchbar-ios .searchbar-search-icon {
       .ios-searchbar-icon(@searchbar-ios-input-search-icon-svg, @fg-color);
     }
 
-    .toolbar-ios-@{color-name} .searchbar-ios .searchbar-input {
+    .toolbar-@{color-name} .searchbar-ios .searchbar-input {
       .placeholder(@fg-color);
       color: @color-contrast;
       background: rgba(red(@color-contrast), green(@color-contrast), blue(@color-contrast), .08);
     }
 
-    .toolbar-ios-@{color-name} .searchbar-ios .searchbar-clear-icon {
+    .toolbar-@{color-name} .searchbar-ios .searchbar-clear-icon {
       .ios-searchbar-icon(@searchbar-ios-input-clear-icon-svg, @fg-color);
     }
 
-    .toolbar-ios-@{color-name} .searchbar-ios .searchbar-ios-cancel {
+    .toolbar-@{color-name} .searchbar-ios .searchbar-ios-cancel {
       color: color-contrast(@colors-ios, @color-base, ios);
     }
   }

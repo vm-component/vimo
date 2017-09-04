@@ -135,7 +135,6 @@
    *
    * */
   import Swiper from 'swiper'
-  import { assign } from '../util/util'
   import { getProps, getEvents } from './interface'
 
   export default {
@@ -197,7 +196,7 @@
         this.timer = window.setTimeout(() => {
           if (!this.init) {
             // 未初始化则创建实例
-            this.swiper = new Swiper(this.$el, assign({}, this.$options.propsData, getEvents(this)))
+            this.swiper = new Swiper(this.$el, Object.assign({}, this.$options.propsData, getEvents(this)))
             this.init = true
           } else {
             // 已创建实例, 则更新实例

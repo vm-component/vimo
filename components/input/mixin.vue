@@ -136,9 +136,10 @@
    * <Textarea @onBlur="onBlur($event)" @onFocus="onFocus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>
    *
    * */
-  import { hasFocus, setElementClass, isPresent, isFunction, REGEXP } from '../util/util'
+  import { hasFocus, setElementClass, isPresent, isFunction} from '../util/util'
   import { Button } from '../button'
   import Autosize from 'autosize'
+  import REGEXP from '../util/regexp'
 
   export default {
     data () {

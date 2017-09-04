@@ -6,10 +6,12 @@
  * 4. 执行平台相关的驱动, 比如UI组件/导航条/页面切换等可用前端实现的通用部分(如果没有则不执行)
  * 5. 执行完毕触发 $platform.ready(), 平台就绪
  * */
-import { checkProtocol, docReady, loadScript } from '../../../../components/util/util'
+import { docReady} from '../../../../components/util/util'
 import { PLATFORM_INIT_TIMEOUT } from './variable'
 import platformDingTalkDrive from './platform-dingtalk-drive'
 import axios from 'axios'
+import { loadScript } from '../../../../components/util/loadScript'
+import { checkProtocol } from '../../../../components/util/checkProtocol'
 
 export default {
   initialize (plt) {
