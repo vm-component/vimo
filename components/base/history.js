@@ -24,7 +24,7 @@ export class History {
     this._config = config               // config 实例
     this._platform = platform           // platform 实例
     this.isReplace = false              // 路由跳转是否是使用replace方法
-    this.usePushWindow = this._config.getBoolean('usePushWindow') // 支付宝 和 钉钉 两个模式下路由跳转是否开启新页面
+    this.usePushWindow = this._config.getBoolean('usePushWindow', false) // 支付宝 和 钉钉 两个模式下路由跳转是否开启新页面
 
     // 监听路由变化, 维护本地历史记录
     // 路由切换前
@@ -65,16 +65,15 @@ export class History {
          * */
         let goCopy = this._router.go
         goCopy = goCopy.bind(this._router)
-        this._router.go = function (n) {
+        this._router.go = function () {
           let isHandled = _this._platform.popTo && _this._platform.popTo(n)
           if (!isHandled) {
-            goCopy.apply(null, n)
+            goCopy.apply(null, arguments)
           }
         }
       }
 
       this._router.beforeEach((to, from, next) => {
-
         // 如果使用了replace, 则跳过当前拦截的路由信息, 并且将最后一个重置
         if (this.isReplace) {
           this.isReplace = false
@@ -122,9 +121,8 @@ export class History {
       return
     }
 
-    let hasPushWindow = to.meta.pushWindow
     let isHandled = false
-    if (this.usePushWindow && hasPushWindow && from.matched.length !== 0 && to.matched.length !== 0) {
+    if (this.usePushWindow && from.matched.length !== 0 && to.matched.length !== 0) {
       let url = ''
       let mode = this._router.mode
       if (mode === 'hash') {
@@ -154,11 +152,10 @@ export class History {
     next()
   }
 
-// -------- public --------
-
   /**
    * 获取当前的页面进行的方向
-   * forward || backward
+   * 只能是这两个值: forward || backward
+   * @return {string}
    * */
   getDirection () {
     return this._direction

@@ -27,9 +27,6 @@ let routes = [
   {
     path: '/components',
     name: 'components',
-    meta: {
-      pushWindow: true
-    },
     component: require('@/pages/components.vue')
   },
   {
