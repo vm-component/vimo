@@ -16,7 +16,7 @@
  *
  * ### indicator最短开启时间
  *
- * 500ms
+ * (200 + 16 * 5)ms
  *
  *
  * @see component:Loading
@@ -50,8 +50,10 @@ import Vue from 'vue'
 import { getInsertPosition } from '../util/getInsertPosition'
 import { isBlank, isBoolean, isObject, isString } from '../util/util'
 import loadingComponent from '../loading/loading.vue'
+
 const Loading = Vue.extend(loadingComponent)
-const MinTime = 500
+const MinTime = 200 + 16 * 8
+let debug = false
 
 // -------- function --------
 
@@ -78,10 +80,11 @@ export default {
    * @param {Boolean} options.dismissOnPageChange - 页面切换是否关闭
    * */
   present (options) {
+    debug && console.log('indicator.js present')
 
     let defaultOptions = {
       isReverse: false,
-      dismissOnPageChange: true
+      dismissOnPageChange: false
     }
 
     if (isBlank(options)) {
@@ -95,14 +98,14 @@ export default {
     if (isBoolean(options)) {
       options = {
         isReverse: options,
-        dismissOnPageChange: true
+        dismissOnPageChange: false
       }
     }
 
     return new Promise((resolve) => {
       if (!this._i) {
         // 当前没人在场
-        // console.debug('Indicator 1 当前没人在场: 未开启状态, 准备开启')
+        debug && console.debug('Indicator 1 当前没人在场: 未开启状态, 准备开启')
         this._startTime = new Date().getTime()
         let cssClass = 'indicator'
         if (options.isReverse) {
@@ -121,21 +124,21 @@ export default {
       } else {
         // 当前有人在场
         if (this._i.isActive) {
-          // console.debug('Indicator 2 当前有人在场: 状态开启中')
+          debug && console.debug('Indicator 2 当前有人在场: 状态开启中')
           // 在场表演呢
           if (this._timer) {
             // 存在定时器要她退场
-            // console.debug('Indicator 3 存在定时器要她退场: 这里清除定时器')
+            debug && console.debug('Indicator 3 存在定时器要她退场: 这里清除定时器')
             this._timer && window.clearTimeout(this._timer)
             this._timer = 0
           } else {
             this._count++
-            // console.debug('Indicator 4 当前有人在场, 投票++ _count: ' + this._count)
+            debug && console.debug('Indicator 4 当前有人在场, 投票++ _count: ' + this._count)
           }
           resolve()
         } else {
           // 当前正在退场
-          // console.debug('Indicator 5 当前正在退场: 不管他, 我这里执行一次开启')
+          debug && console.debug('Indicator 5 当前正在退场: 不管他, 我这里执行一次开启')
           // this._i.isActive = true
           this._i.present().then(() => {
             resolve()
@@ -150,27 +153,28 @@ export default {
    * @return {Promise} - 关闭动画结束的promise
    * */
   dismiss () {
+    debug && console.log('indicator.js dismiss')
     return new Promise((resolve) => {
       if (this._i) {
         // 实例存在
-        // console.debug('Indicator 11: 实例存在')
+        debug && console.debug('Indicator 11: 实例存在')
         if (this._count > 0) {
           // 要求多次开启, 关闭时减一票
           this._count--
-          // console.debug('Indicator 12: 要求多次开启, 关闭时减一票, 当前count有值: ' + this._count)
+          debug && console.debug('Indicator 12: 要求多次开启, 关闭时减一票, 当前count有值: ' + this._count)
         } else {
           if (this._i.isActive) {
             // active状态
-            // console.debug('Indicator 13: 组件是active状态: 正常关闭')
+            debug && console.debug('Indicator 13: 组件是active状态: 正常关闭')
 
             if (this._timer) {
-              // console.debug('Indicator 14: 有定时器关闭: 这里不处理')
+              debug && console.debug('Indicator 14: 有定时器关闭: 这里不处理')
             } else {
               let now = new Date().getTime()
               let diff = now - this._startTime
               if (diff >= MinTime) {
                 // 满足在场的最短时间, 可以关闭, 重置初始状态
-                // console.debug('Indicator 15: 超过300ms 正常关闭')
+                debug && console.debug('Indicator 15: 超过300ms 正常关闭')
                 this._i.dismiss().then(() => {
                   this._i = null
                   this._startTime = null
@@ -182,7 +186,7 @@ export default {
               } else {
                 // 不满足在场的最短时间, 保证300ms, 剩余时间定时补足
                 let rest = MinTime - diff
-                // console.debug('Indicator 16: 为了保证300ms后关闭, 这里进行定时, 剩余关闭时间: ' + rest)
+                debug && console.debug(`Indicator 16: 为了保证${MinTime}ms后关闭, 这里进行定时, 剩余关闭时间: ${rest}, MinTime: ${MinTime}, diff: ${diff}`)
                 this._timer = window.setTimeout(() => {
                   this._i.dismiss().then(() => {
                     this._i = null
@@ -191,13 +195,14 @@ export default {
                     this._timer = 0
                     this._count = 0
                     resolve()
+                    debug && console.debug(`Indicator 16-resolve`)
                   })
                 }, rest)
               }
             }
           } else {
             // 退场状态(已经在退场了, 这里不作处理)
-            // console.debug('Indicator 17: 退场状态(已经在退场了, 这里不作处理)')
+            debug && console.debug('Indicator 17: 退场状态(已经在退场了, 这里不作处理)')
             this._i = null
             this._startTime = null
             this._timer && window.clearTimeout(this._timer)
@@ -208,7 +213,7 @@ export default {
         }
       } else {
         // 实例不存在(不存在不需要退场)
-        // console.debug('Indicator 18: 实例不存在(不存在不需要退场)')
+        debug && console.debug('Indicator 18: 实例不存在(不存在不需要退场)')
         this._i = null
         this._startTime = null
         this._timer && window.clearTimeout(this._timer)
