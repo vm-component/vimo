@@ -1,7 +1,7 @@
 @import "../themes/default.ios.less";
 @import "../themes/default.less";
 
-// iOS Toolbar
+//  Toolbar
 // --------------------------------------------------
 
 /// @prop - Order of the toolbar elements
@@ -27,63 +27,60 @@
 @toolbar-title-text-align: center;
 
 /// @prop - Text color of the toolbar title
-@toolbar-ios-title-text-color: contrast(@toolbar-background, black, white, @contrast-threshold);
+@toolbar-title-text-color: contrast(@toolbar-background, black, white, @contrast-threshold);
 
 /// @prop - Text color of the toolbar button
-@toolbar-ios-button-color: contrast(@toolbar-background, @primary, white, @contrast-threshold);
+@toolbar-button-color: contrast(@toolbar-background, @primary, white, @contrast-threshold);
 
 /// @prop - Border radius of the toolbar button
-@toolbar-ios-button-border-radius: 4px;
+@toolbar-button-border-radius: 4px;
 
-/// @prop - Height of the navigation bar
-@navbar-ios-height: @toolbar-ios-height;
+@button-strong-font-weight: 800;
 
-@button-ios-strong-font-weight: 800;
-
-.toolbar-ios {
-  padding: @toolbar-ios-padding;
+.toolbar {
+  padding: @toolbar-padding;
   // add
-  height: @toolbar-ios-height;
+  height: @toolbar-height;
 
-  min-height: @toolbar-ios-height;
+  min-height: @toolbar-height;
 }
 
-// iOS Toolbar Background
+//  Toolbar Background
 // --------------------------------------------------
 
-.toolbar-background-ios {
-  background: @toolbar-ios-background;
+.toolbar-background {
+  background: @toolbar-background;
 }
 
-// iOS Header / Footer Borders
+//  Header / Footer Borders
 // --------------------------------------------------
 
-.ion-header .toolbar-background-ios,
-.ion-footer .toolbar-background-ios {
+.ion-header .toolbar-background,
+.ion-footer .toolbar-background {
   border-style: solid;
-  border-color: @toolbar-ios-border-color;
+  border-color: @toolbar-border-color;
 }
 
-.ion-header .toolbar-ios:last-child .toolbar-background-ios {
+.ion-header .toolbar:last-child .toolbar-background {
   border-width: 0 0 @hairlines-width;
 }
 
-.ion-footer .toolbar-ios:first-child .toolbar-background-ios {
+.ion-footer .toolbar:first-child .toolbar-background {
   border-width: @hairlines-width 0 0;
 }
 
-.ion-header[no-border] .toolbar-ios:last-child .toolbar-background-ios {
+.ion-header[no-border] .toolbar:last-child .toolbar-background {
   border-bottom-width: 0;
 }
 
-.ion-footer[no-border] .toolbar-ios:first-child .toolbar-background-ios {
+.ion-footer[no-border] .toolbar:first-child .toolbar-background {
   border-top-width: 0;
 }
 
-// iOS Toolbar Content
+//  Toolbar Content
 // --------------------------------------------------
 
-.toolbar-content-ios {
+.toolbar-content {
   flex: 1;
   order: @toolbar-order-content;
 
@@ -93,21 +90,21 @@
 // toolbar-title.vue
 // --------------------------------------------------
 
-.toolbar-title-ios {
+.toolbar-title {
   font-size: @toolbar-title-font-size;
   font-weight: @toolbar-title-font-weight;
   text-align: @toolbar-title-text-align;
-  color: @toolbar-ios-title-text-color;
+  color: @toolbar-title-text-color;
 
   pointer-events: auto;
   img {
     vertical-align: middle;
     max-width: 234px;
-    max-height: @toolbar-ios-height;
+    max-height: @toolbar-height;
   }
 }
 
-.toolbar-ios .ion-title {
+.toolbar .ion-title {
   position: absolute;
   top: 0;
   left: 0;
@@ -122,20 +119,98 @@
   pointer-events: none;
 }
 
-.ios-toolbar-theme(@color-name, @color-base, @color-contrast) {
-  .toolbar-ios-@{color-name} {
-    .toolbar-background-ios {
+
+
+//  Navbar Back Button
+// --------------------------------------------------
+// mixin
+.arrow-back(@color) {
+
+  @arrow-back-svg: "<svg t='1499003919115' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' p-id='3978' xmlns:xlink='http://www.w3.org/1999/xlink'><path d='M702.882 958.388l64.032-63.397-380.993-383.606 384.196-380.377-63.49-63.925-448.221 443.779z' p-id='3979' fill='@{color}'/></svg>";
+
+  .icon-arrow-back {
+    height: 23px;
+    width: 18px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 16px 23px;
+    color: @color;
+    .svg-background-image(@arrow-back-svg);
+  }
+}
+
+//  Toolbar Button Placement
+// --------------------------------------------------
+
+.bar-buttons {
+  order: @toolbar-order-buttons-start;
+
+  transform: translateZ(0);
+}
+
+.bar-buttons[left] {
+  order: @toolbar-order-buttons-left;
+}
+
+.bar-buttons[end] {
+  order: @toolbar-order-buttons-end;
+
+  text-align: right;
+}
+
+.bar-buttons[right] {
+  order: @toolbar-order-buttons-right;
+
+  text-align: right;
+}
+
+//  Toolbar Button Default
+// --------------------------------------------------
+
+.bar-button {
+  padding: 0 4px;
+
+  height: 32px;
+
+  border: 0;
+  border-radius: @toolbar-button-border-radius;
+  font-size: @toolbar-button-font-size;
+}
+
+// mixin
+.bar-button-default(@color-name, @color-base, @color-contrast) {
+
+  .bar-button-@{color-name},
+  .bar-button-clear-@{color-name} {
+    color: @color-base;
+    background-color: transparent;
+
+    &:hover:not(.disable-hover) {
+      color: @color-base;
+    }
+
+    &:active {
+      opacity: .4;
+    }
+
+    .arrow-back(@color-base);
+  }
+}
+
+.toolbar-theme(@color-name, @color-base, @color-contrast) {
+  .toolbar-@{color-name} {
+    .toolbar-background {
       background: @color-base;
     }
 
-    .toolbar-title-ios,
-    .bar-button-clear-ios,
-    .bar-button-ios-default,
-    .bar-button-default-ios {
+    .toolbar-title,
+    .bar-button-clear,
+    .bar-button-default {
       color: @color-contrast;
     }
 
-    .ios-arrow-back(@color-contrast);
+    .arrow-back(@color-contrast);
     // action
     .get-all-colors-i1(ios);
     .get-all-colors-i1(@type) {
@@ -150,100 +225,22 @@
         @color-contrast-i: contrast(@color-base-i, black, white, @contrast-threshold);
 
         // content
-        .ios-bar-button-default(@color-name-i, @color-base-i, @color-contrast-i);
-        .ios-bar-button-outline(@color-name-i, @color-base-i, @color-contrast-i);
-        .ios-bar-button-solid(@color-name-i, @color-base-i, @color-contrast-i);
+        .bar-button-default(@color-name-i, @color-base-i, @color-contrast-i);
+        .bar-button-outline(@color-name-i, @color-base-i, @color-contrast-i);
+        .bar-button-solid(@color-name-i, @color-base-i, @color-contrast-i);
       }
     }
   }
 }
 
-// iOS Navbar Back Button
-// --------------------------------------------------
-// mixin
-.ios-arrow-back(@color) {
-
-  @ios-arrow-back-svg: "<svg t='1499003919115' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' p-id='3978' xmlns:xlink='http://www.w3.org/1999/xlink'><path d='M702.882 958.388l64.032-63.397-380.993-383.606 384.196-380.377-63.49-63.925-448.221 443.779z' p-id='3979' fill='@{color}'/></svg>";
-
-  .icon-ios-arrow-back {
-    height: 23px;
-    width: 18px;
-    display: inline-block;
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 16px 23px;
-    color: @color;
-    .svg-background-image(@ios-arrow-back-svg);
-  }
-}
-
-// iOS Toolbar Button Placement
+//  Toolbar Button Outline
 // --------------------------------------------------
 
-.bar-buttons-ios {
-  order: @toolbar-order-buttons-start;
-
-  transform: translateZ(0);
-}
-
-.bar-buttons-ios[left] {
-  order: @toolbar-order-buttons-left;
-}
-
-.bar-buttons-ios[end] {
-  order: @toolbar-order-buttons-end;
-
-  text-align: right;
-}
-
-.bar-buttons-ios[right] {
-  order: @toolbar-order-buttons-right;
-
-  text-align: right;
-}
-
-// iOS Toolbar Button Default
-// --------------------------------------------------
-
-.bar-button-ios {
-  padding: 0 4px;
-
-  height: 32px;
-
-  border: 0;
-  border-radius: @toolbar-ios-button-border-radius;
-  font-size: @toolbar-button-font-size;
-}
-
-// mixin
-.ios-bar-button-default(@color-name, @color-base, @color-contrast) {
-
-  .bar-button-ios-@{color-name},
-  .bar-button-default.bar-button-ios-@{color-name},
-  .bar-button-clear-ios-@{color-name} {
-    color: @color-base;
-    background-color: transparent;
-
-    &:hover:not(.disable-hover) {
-      color: @color-base;
-    }
-
-    &:active {
-      opacity: .4;
-    }
-
-    .ios-arrow-back(@color-base);
-  }
-}
-
-// iOS Toolbar Button Outline
-// --------------------------------------------------
-
-.bar-button-outline-ios {
+.bar-button-outline {
   border-width: 1px; /*no*/
   border-style: solid;
-  border-color: @toolbar-ios-button-color;
-  color: @toolbar-ios-button-color;
+  border-color: @toolbar-button-color;
+  color: @toolbar-button-color;
   background-color: transparent;
 
   &:hover:not(.disable-hover) {
@@ -251,15 +248,15 @@
   }
 
   &:active {
-    color: contrast(@toolbar-ios-button-color, black, white, @contrast-threshold);
-    background-color: @toolbar-ios-button-color;
+    color: contrast(@toolbar-button-color, black, white, @contrast-threshold);
+    background-color: @toolbar-button-color;
   }
 }
 
 // mixin
-.ios-bar-button-outline(@color-name, @color-base, @color-contrast) {
+.bar-button-outline(@color-name, @color-base, @color-contrast) {
 
-  .bar-button-outline-ios-@{color-name} {
+  .bar-button-outline-@{color-name} {
     @fg-color: @color-base;
     border-color: @fg-color;
     color: @fg-color;
@@ -273,29 +270,29 @@
 
 }
 
-// iOS Toolbar Button Solid
+//  Toolbar Button Solid
 // --------------------------------------------------
 
-.bar-button-solid-ios {
-  color: contrast(@toolbar-ios-button-color, black, white, @contrast-threshold);
-  background-color: @toolbar-ios-button-color;
+.bar-button-solid {
+  color: contrast(@toolbar-button-color, black, white, @contrast-threshold);
+  background-color: @toolbar-button-color;
 
   &:hover:not(.disable-hover) {
-    color: contrast(@toolbar-ios-button-color, black, white, @contrast-threshold);
+    color: contrast(@toolbar-button-color, black, white, @contrast-threshold);
     opacity: .4;
   }
 
   &:active {
-    color: contrast(@toolbar-ios-button-color, black, white, @contrast-threshold);
-    background-color: darken(@toolbar-ios-button-color, @darken-amount);
+    color: contrast(@toolbar-button-color, black, white, @contrast-threshold);
+    background-color: darken(@toolbar-button-color, @darken-amount);
     opacity: .4;
   }
 }
 
 // mixin
-.ios-bar-button-solid(@color-name, @color-base, @color-contrast) {
+.bar-button-solid(@color-name, @color-base, @color-contrast) {
 
-  .bar-button-solid-ios-@{color-name} {
+  .bar-button-solid-@{color-name} {
     color: @color-contrast;
     background-color: @color-base;
 
@@ -307,10 +304,10 @@
 
 }
 
-// iOS Toolbar Button Icon
+//  Toolbar Button Icon
 // --------------------------------------------------
 
-.bar-button-ios.bar-button-icon-left .ion-icon {
+.bar-button.bar-button-icon-left .ion-icon {
   padding-right: .3em;
 
   font-size: 1.4em;
@@ -319,7 +316,7 @@
   pointer-events: none;
 }
 
-.bar-button-ios.bar-button-icon-right .ion-icon {
+.bar-button.bar-button-icon-right .ion-icon {
   padding-left: .4em;
 
   font-size: 1.4em;
@@ -328,17 +325,17 @@
   pointer-events: none;
 }
 
-.bar-button-ios[icon-only] {
+.bar-button[icon-only] {
   padding: 0;
   min-width: .9em;
 }
 
-.bar-button-ios.icon-only {
+.bar-button.icon-only {
   padding: 0;
   min-width: .9em;
 }
 
-.bar-button-ios[icon-only] .ion-icon {
+.bar-button[icon-only] .ion-icon {
   padding: 0 .1em;
 
   font-size: 1.8em;
@@ -347,7 +344,7 @@
   pointer-events: none;
 }
 
-.bar-button-ios.icon-only .ion-icon {
+.bar-button.icon-only .ion-icon {
   padding: 0 .1em;
 
   font-size: 1.8em;
@@ -356,10 +353,10 @@
   pointer-events: none;
 }
 
-// iOS Toolbar Back Button
+//  Toolbar Back Button
 // --------------------------------------------------
 
-.back-button-ios {
+.back-button {
   overflow: visible;
 
   order: @toolbar-order-back-button;
@@ -372,7 +369,7 @@
   transform: translateZ(0);
 }
 
-.back-button-icon-ios {
+.back-button-icon {
   display: inherit;
 
   margin: 0;
@@ -383,14 +380,14 @@
   font-size: 34px;
 }
 
-.back-button-text-ios {
+.back-button-text {
   letter-spacing: -.01em;
 }
 
-// iOS Toolbar Menu Toggle
+//  Toolbar Menu Toggle
 // --------------------------------------------------
 
-.bar-button-menutoggle-ios {
+.bar-button-menutoggle {
   order: @toolbar-order-menu-toggle-start;
 
   margin: 0 6px;
@@ -405,16 +402,16 @@
   }
 }
 
-.bar-button-menutoggle-ios[end],
-.bar-button-menutoggle-ios[right] {
+.bar-button-menutoggle[end],
+.bar-button-menutoggle[right] {
   order: @toolbar-order-menu-toggle-end;
 }
 
-// iOS Toolbar Color Generation
+//  Toolbar Color Generation
 // --------------------------------------------------
 
-.ios-bar-button-default(default, @toolbar-ios-button-color, contrast(@toolbar-ios-button-color, @primary-ios, white, @contrast-threshold));
-.ios-bar-button-default(clear, @toolbar-ios-button-color, contrast(@toolbar-ios-button-color, @primary-ios, white, @contrast-threshold));
+.bar-button-default(default, @toolbar-button-color, contrast(@toolbar-button-color, @primary, white, @contrast-threshold));
+.bar-button-default(clear, @toolbar-button-color, contrast(@toolbar-button-color, @primary, white, @contrast-threshold));
 
 .get-all-colors-i2(@type) {
   @name: e('colors-@{type}');
@@ -428,19 +425,19 @@
     @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
 
     // content
-    .ios-toolbar-theme(@color-name, @color-base, @color-contrast);
-    .ios-bar-button-default(@color-name, @color-base, @color-contrast);
-    .ios-bar-button-outline(@color-name, @color-base, @color-contrast);
-    .ios-bar-button-solid(@color-name, @color-base, @color-contrast);
+    .bar-button-default(@color-name, @color-base, @color-contrast);
+    .bar-button-outline(@color-name, @color-base, @color-contrast);
+    .bar-button-solid(@color-name, @color-base, @color-contrast);
+    .toolbar-theme(@color-name, @color-base, @color-contrast);
   }
 }
 
 // action
 .get-all-colors-i2(ios);
 
-// iOS strong Button
+//  strong Button
 // --------------------------------------------------
 
-.bar-button-strong-ios {
-  font-weight: @button-ios-strong-font-weight;
+.bar-button-strong {
+  font-weight: @button-strong-font-weight;
 }

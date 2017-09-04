@@ -83,7 +83,7 @@
        * */
       mode: {
         type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
 
       small: [Boolean],
@@ -132,13 +132,15 @@
         style: null,        // outline/clear/solid
         shape: null,        // round/fab
         display: null,      // block/full
-        init: false        //
+        init: false,       //
+
+        theMode: ''
       }
     },
     computed: {
       // 环境样式
       modeClass () {
-        return `${this.role}-${this.mode}`
+        return this.theMode ? (`${this.role} ${this.role}-${this.theMode}`) : this.role
       }
     },
     methods: {
@@ -169,39 +171,37 @@
        * @private
        * @param {boolean} assignCssClass - add or remove
        */
-      assignCss (assignCssClass) {
+      assignCss () {
         let role = this.role
         if (role) {
-          this.setElementClass(role, assignCssClass) // button
-          this.setElementClass(`${role}-${this.mode}`, assignCssClass) // button
-          this.setClass(this.style, assignCssClass) // button-clear
-          this.setClass(this.shape, assignCssClass) // button-round
-          this.setClass(this.display, assignCssClass) // button-full
-          this.setClass(this.size, assignCssClass) // button-small
-          this.setClass(this.decorator, assignCssClass) // button-strong
+          this.setClass(this.style) // button-clear
+          this.setClass(this.shape) // button-round
+          this.setClass(this.display) // button-full
+          this.setClass(this.size) // button-small
+          this.setClass(this.decorator) // button-strong
         }
-        this.updateColor(this.color, assignCssClass) // button-secondary, bar-button-secondary
+        this.updateColor(this.color) // button-secondary, bar-button-secondary
       },
 
       /**
        * @private
        * @param {string} type
-       * @param {boolean} assignCssClass
        */
-      setClass (type, assignCssClass) {
+      setClass (type) {
         if (type && this.init) {
           type = type.toLocaleLowerCase()
-          this.setElementClass(`${this.role}-${type}`, assignCssClass)
-          this.setElementClass(`${this.role}-${type}-${this.mode}`, assignCssClass)
+          this.addElementClass(`${this.role}-${type}`)
+          if (this.theMode) {
+            this.addElementClass(`${this.role}-${type}-${this.theMode}`)
+          }
         }
       },
 
       /**
-       * @param {string} className -
-       * @param {boolean} assignCssClass - add or remove
+       * @param {string} className - className
        * */
-      setElementClass (className, assignCssClass) {
-        setElementClass(this.$el, className, assignCssClass)
+      addElementClass (className) {
+        setElementClass(this.$el, className, true)
       },
 
       /**
@@ -219,7 +219,13 @@
           let style = this.style
           style = (this.role !== 'bar-button' && style === 'solid' ? 'default' : style)
           className += (style !== null && style !== '' && style !== 'default' ? '-' + style.toLowerCase() : '')
-          this.setElementClass(`${className}-${this.mode}-${color}`, isAdd)
+
+          if (this.theMode) {
+            this.addElementClass(`${className}-${this.theMode}-${color}`)
+          } else {
+            this.addElementClass(`${className}-${color}`)
+          }
+
         }
       },
 
@@ -263,16 +269,21 @@
       addClassInItemComp () {
         if (this.$parent.$el && this.$parent.$el.className && this.$parent.$el.className.indexOf('item') > -1) {
           // button in items should add class of 'item-button'
-          this.setElementClass('item-button', true)
+          this.addElementClass('item-button')
         }
       }
     },
     created () {
       this.getProps()
       this.init = true
+      if (this.role === 'bar-button') {
+        this.theMode = null
+      } else {
+        this.theMode = this.mode
+      }
     },
     mounted () {
-      this.assignCss(true)
+      this.assignCss()
       this.addIconBtnPosition()
       this.addClassInItemComp()
     }

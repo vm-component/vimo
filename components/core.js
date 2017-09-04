@@ -2,6 +2,7 @@ import { setupConfig } from './base/config'
 import { setupHistory } from './base/history'
 import { setupPlatform } from './base/platform'
 import { App, Footer, Header } from './app/index'
+import { Button } from './button/index'
 import { Buttons, Navbar, Title, Toolbar } from './toolbar/index'
 import { Content } from './content/index'
 import { Nav } from './nav/index'
@@ -47,6 +48,7 @@ export default function core (Vue, options) {
   Vue.component(Navbar.name, Navbar)
   Vue.component(Toolbar.name, Toolbar)
   Vue.component(Title.name, Title)
+  Vue.component(Button.name, Button)
   Vue.component(Buttons.name, Buttons)
   Vue.component(Page.name, Page)
   Vue.component(Header.name, Header)

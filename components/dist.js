@@ -4,7 +4,6 @@ import { Alert } from './alert'
 import { Avatar } from './avatar'
 import { Backdrop } from './backdrop'
 import { Badge } from './badge'
-import { Button } from './button'
 import { Card, CardContent, CardHeader, CardTitle } from './card'
 import { Checkbox } from './checkbox'
 import { ChooseCity } from './choose-city'
@@ -74,7 +73,6 @@ module.exports = {
     Vue.component(Avatar.name, Avatar)
     Vue.component(Backdrop.name, Backdrop)
     Vue.component(Badge.name, Badge)
-    Vue.component(Button.name, Button)
     Vue.component(Card.name, Card)
     Vue.component(CardContent.name, CardContent)
     Vue.component(CardHeader.name, CardHeader)

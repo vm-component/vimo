@@ -100,7 +100,7 @@
         return `title-ios`
       },
       toolbarTitleClass () {
-        return `toolbar-title-ios`
+        return `toolbar-title`
       }
     },
     watch: {

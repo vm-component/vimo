@@ -3,17 +3,19 @@
          :class="[modeClass,colorClass]"
          v-show="!hideNavBar">
         <!--background-->
-        <div class="toolbar-background" ref="toolbarBackground" :class="[toolbarBackgroundClass]"></div>
+        <div class="toolbar-background toolbar" ref="toolbarBackground"></div>
         <!--content-->
-        <div class="toolbar-content" :class="[toolbarContentClass]">
+        <div class="toolbar-content">
             <slot></slot>
         </div>
         <!--show-back-button-->
         <Button v-if="isNavbar && !hideBb" @click="backButtonClickHandler" role="bar-button" class="back-button"
-                :class="[backButtonClass,{'show-back-button':!hideBackButton}]">
+                :class="[{'show-back-button':!hideBackButton}]">
             <Icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></Icon>
             <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
         </Button>
+
+
         <!--buttons/menuToggle-->
         <slot name="buttons"></slot>
     </div>
@@ -24,7 +26,6 @@
     @import "toolbar-button";
 </style>
 <script type="text/javascript">
-  import { Popover } from '../popover/index'
   import { Button } from '../button/index'
   import { Icon } from '../icon/index'
   import { isArray, isString } from '../util/util'
@@ -38,7 +39,7 @@
         hideRightButtons: false,
 
         hideBb: false,
-        bbIcon: this.$config && this.$config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
+        bbIcon: this.$config && this.$config.get('backButtonIcon', 'icon-arrow-back') || 'icon-arrow-back',
         backText: this.$config && this.$config.get('backButtonText', '返回') || '返回',
         hideNavBar: this.$config && this.$config.getBoolean('hideNavBar', false),
 
@@ -61,26 +62,16 @@
     },
     computed: {
       colorClass () {
-        return this.color ? (`toolbar-${this.mode}-${this.color}`) : ''
+        return this.color ? (`toolbar-${this.color}`) : ''
       },
       modeClass () {
         return `toolbar-${this.mode}`
       },
-      toolbarBackgroundClass () {
-        return `toolbar-background-${this.mode}`
-      },
-      toolbarContentClass () {
-        return `toolbar-content-${this.mode}`
-      },
-
-      backButtonClass () {
-        return `back-button-${this.mode}`
-      },
       backButtonTextClass () {
-        return `back-button-text-${this.mode}`
+        return `back-button-text`
       },
       backButtonIconClass () {
-        return `back-button-icon-${this.mode}`
+        return `back-button-icon`
       },
       toolbarBackgroundElement () {
         return this.$refs.toolbarBackground
@@ -132,16 +123,19 @@
           if (isHandled) {
             resolve()
           } else {
-            Popover.present({
-              ev: {
-                target: window.document.getElementById('rightButtonPlaceholder') || null
-              }, // 事件
-              cssClass: 'popMenu',
-              component: import('./menu-options.vue'),   // 传入组件 TODO: 此方法需要写入文档
-              data: {
-                menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
-              }
-            }).then(() => { resolve() })
+            import('../popover/index').then((component) => {
+              let Popover = component.Popover
+              Popover.present({
+                ev: {
+                  target: window.document.getElementById('rightButtonPlaceholder') || null
+                }, // 事件
+                cssClass: 'popMenu',
+                component: import('./menu-options.vue'),   // 传入组件 TODO: 此方法需要写入文档
+                data: {
+                  menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
+                }
+              }).then(() => { resolve() })
+            })
           }
         })
       },
