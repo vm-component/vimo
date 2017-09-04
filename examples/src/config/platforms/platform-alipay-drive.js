@@ -341,7 +341,8 @@ export default function (plt) {
     let rightButtonComponents = []
     if (buttons && isArray(buttons)) {
       buttons.forEach((buttons) => {
-        if (buttons.componentInstance.getPosition() === 'right') {
+        let position = buttons.componentInstance.getPosition()
+        if (position === 'right') {
           rightButtonComponents = [].concat(rightButtonComponents, buttons.componentInstance.$children)
         }
       })
@@ -616,6 +617,7 @@ export default function (plt) {
   }
 
   plt.popTo = (index) => {
+    debugger
     window.AlipayJSBridge.call('popTo', {
       index: index // 回退到上一个页面，假如这个时候没有上一个页面，就会报错
     }, function (e) { // 添加回调，因为popTo不一定会成功（当前页面是唯一打开的页面的时候，会报错）

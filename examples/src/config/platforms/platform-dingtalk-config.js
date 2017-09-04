@@ -145,7 +145,7 @@ export default {
     })
   },
   settings: {
-    usePushWindow: true, // 页面切换使用 dingding 提供的 dd.biz.util.openLink 方法开启新页面
+    usePushWindow: false, // 方法开启新页面
     jsSDKUrl: '//g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js',
     hideNavBar: true
   },

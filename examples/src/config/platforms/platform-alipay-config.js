@@ -74,7 +74,7 @@ export default {
   // 由业务完成部分
   bridgeReady (plt) {},
   settings: {
-    usePushWindow: true, // 页面切换使用alipay提供的 pushWindow() 方法开启新页面
+    usePushWindow: false, // 页面切换使用alipay提供的 pushWindow() 方法开启新页面
     jsSDKUrl: '//a.alipayobjects.com/g/h5-lib/alipayjsapi/3.0.2/alipayjsapi.min.js',
     hideNavBar: true
   },

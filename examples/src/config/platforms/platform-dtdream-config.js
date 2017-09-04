@@ -49,6 +49,7 @@ export default {
     window.dd.config({})
   },
   settings: {
+    usePushWindow: false, // 方法开启新页面
     jsSDKUrl: '//hzmetro.dtdream.com:8080/ddhybirdengine/hybridapi.js ',
     hideNavBar: true
   },
