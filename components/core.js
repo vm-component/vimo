@@ -2,6 +2,7 @@ import { setupConfig } from './base/config'
 import { setupHistory } from './base/history'
 import { setupPlatform } from './base/platform'
 import { App, Footer, Header } from './app/index'
+import { Buttons, Navbar, Title, Toolbar } from './toolbar/index'
 import { Content } from './content/index'
 import { Nav } from './nav/index'
 import { Page } from './page/index'
@@ -43,6 +44,10 @@ export default function core (Vue, options) {
   // 全局注册的组件(核心组件)
   Vue.component(App.name, App)
   Vue.component(Nav.name, Nav)
+  Vue.component(Navbar.name, Navbar)
+  Vue.component(Toolbar.name, Toolbar)
+  Vue.component(Title.name, Title)
+  Vue.component(Buttons.name, Buttons)
   Vue.component(Page.name, Page)
   Vue.component(Header.name, Header)
   Vue.component(Content.name, Content)

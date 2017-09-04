@@ -24,7 +24,6 @@ import { List } from './list'
 import { Loading } from './loading'
 import { Menus } from './menus'
 import { Modal } from './modal'
-import { Navbar } from './navbar'
 import { Note } from './note'
 import { NoticeBar } from './noticebar'
 import { Picker } from './picker'
@@ -48,7 +47,6 @@ import { Tab, Tabs } from './tabs'
 import { Thumbnail } from './thumbnail'
 import { Toast } from './toast'
 import { Toggle } from './toggle'
-import { Buttons, Title, Toolbar } from './toolbar'
 
 var ENV = process.env.NODE_ENV;
 if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefined' && console.warn && typeof window !== 'undefined') {
@@ -106,7 +104,6 @@ module.exports = {
     Vue.component(Label.name, Label)
     Vue.component(List.name, List)
     Vue.component(Menus.name, Menus)
-    Vue.component(Navbar.name, Navbar)
     Vue.component(Note.name, Note)
     Vue.component(NoticeBar.name, NoticeBar)
     Vue.component(Radio.name, Radio)
@@ -133,9 +130,6 @@ module.exports = {
     Vue.component(Tab.name, Tab)
     Vue.component(Thumbnail.name, Thumbnail)
     Vue.component(Toggle.name, Toggle)
-    Vue.component(Toolbar.name, Toolbar)
-    Vue.component(Title.name, Title)
-    Vue.component(Buttons.name, Buttons)
 
     this.installed = true
   }
