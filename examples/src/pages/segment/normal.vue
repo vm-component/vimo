@@ -14,6 +14,16 @@
                     </SegmentButton>
                 </Segment>
             </Toolbar>
+            <Toolbar color="primary">
+                <!--content-->
+                <Segment color="light" v-model="fruit" @onChange="onChangeHandler">
+                    <SegmentButton value="apple" @onSelect="onSelectHandler">Apple</SegmentButton>
+                    <SegmentButton value="orange" @onSelect="onSelectHandler">Orange</SegmentButton>
+                    <SegmentButton value="pear" @onSelect="onSelectHandler">Pear</SegmentButton>
+                    <SegmentButton value="disabled" :disabled="true" @onSelect="onSelectHandler">Disabled
+                    </SegmentButton>
+                </Segment>
+            </Toolbar>
         </Header>
         <Content padding>
             <h1>Title</h1>
