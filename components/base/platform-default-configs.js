@@ -10,7 +10,8 @@ export default {
   },
   mobile: {
     settings: {
-      mode: 'ios'
+      mode: 'ios', // 默认使用IOS样式
+      recordPosition: false // Content组件是否记录滚动位置
     }
   },
   android: {

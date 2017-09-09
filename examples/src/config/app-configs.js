@@ -8,6 +8,9 @@
  */
 export default {
   platforms: {
+    mobile: {
+      recordPosition: true
+    },
     ios: {
       pageTransition: 'fade-right-transition'
     },

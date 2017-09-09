@@ -5,7 +5,7 @@
                 <Title>History</Title>
             </Navbar>
         </Header>
-        <Content padding class="outer-content">
+        <Content padding class="outer-content" record-position>
             <h5>简介</h5>
 
             route: {{$route.params.id}} - {{$route.query.name}}

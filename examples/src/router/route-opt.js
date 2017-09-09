@@ -71,7 +71,7 @@ let routes = [
   // ----  component/base ----
   {
     path: '/app',
-    name: 'app',
+    // name: 'app',
     component (resolve) {
       require(['@/pages/app.vue'], resolve)
     }

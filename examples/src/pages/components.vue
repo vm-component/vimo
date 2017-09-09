@@ -5,7 +5,7 @@
                 <Title>组件</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content">
+        <Content class="outer-content" record-position>
             <List>
                 <!--基础组件-->
                 <ListHeader>
@@ -13,7 +13,7 @@
                 </ListHeader>
                 <!--group-->
                 <ItemGroup>
-                    <Item detail-push :to="{name: 'app'}">
+                    <Item detail-push :to="{path: '/app'}">
                         <Icon slot="item-left" name="apps"></Icon>
                         <span>根组件</span>
                         <Note slot="item-right">App</Note>

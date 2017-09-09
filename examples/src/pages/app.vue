@@ -5,7 +5,7 @@
                 <Title ref="title">App</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" padding>
+        <Content class="outer-content" padding record-position>
 
             <h5 here>简介</h5>
             <p>

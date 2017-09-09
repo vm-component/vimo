@@ -93,6 +93,7 @@
    * @slot [refresher]      refresher组件的位置
    *
    * @props {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
+   * @props {boolean} [recordPosition=false] - 控制Content组件是否记录其浏览位置, 这个可在config中设置, 默认为false, 建议无限滚动页面设置false
    *
    * @fires component:Base/Content#onScrollStart
    * @fires component:Base/Content#onScroll
@@ -107,20 +108,25 @@
    *        <Title>Demo</Title>
    *      <Navbar>
    *    </Header>
-   *    <Content>
+   *    <Content record-position>
    *      <h1>这里是内容</h1>
+   *      <p>滚动位置将会被记录</p>
    *    </Content>
    *  </Page>
    * </template>
    *
    * */
-  import { transitionEnd, parsePxUnit, isString, isBoolean } from '../util/util'
+  import { transitionEnd, parsePxUnit, isString, isBoolean, isArray } from '../util/util'
   import { ScrollView } from './scroll-view'
 
   export default {
     name: 'Content',
     props: {
-      fullscreen: Boolean
+      fullscreen: Boolean,
+      recordPosition: {
+        type: Boolean,
+        default () { return this.$config && this.$config.getBoolean('recordPosition', false) || false }
+      }
     },
     data () {
       return {
@@ -320,6 +326,8 @@
 
           // img更新
           this.imgsUpdate()
+
+          this.recordScrollPosition(ev)
         }
 
         /**
@@ -518,6 +526,79 @@
       isImgsUpdatable () {
         // 当滚动不是太快的时候, Img组件更新才被允许, 这个速度由this.imgVelMax控制
         return Math.abs(this._scroll.ev.velocityY) < this._imgVelMax
+      },
+
+      /**
+       * 记录滚动位置
+       * @private
+       * */
+      recordScrollPosition (ev) {
+        if (this.recordPosition) {
+          let scrollPositionStr = window.sessionStorage.getItem('scrollPosition')
+          let scrollPosition
+          if (scrollPositionStr) {
+            try {
+              scrollPosition = JSON.parse(scrollPositionStr)
+              if (scrollPosition && isArray(scrollPosition) && scrollPosition.length > 0) {
+                // 有记录的情况(是数组)
+                for (let i = 0, len = scrollPosition.length; len > i; i++) {
+                  let pageScrollPosition = scrollPosition[i]
+                  let id = this.$route.name || this.$route.path
+                  if (pageScrollPosition.id === id) {
+                    pageScrollPosition.scrollTop = ev.scrollTop
+                    window.sessionStorage.setItem('scrollPosition', JSON.stringify(scrollPosition))
+                    return
+                  }
+                }
+
+                scrollPosition.push({
+                  id: this.$route.name || this.$route.path,
+                  scrollTop: ev.scrollTop
+                })
+                window.sessionStorage.setItem('scrollPosition', JSON.stringify(scrollPosition))
+                return
+              }
+            } catch (err) {
+              console.error(err)
+            }
+          }
+
+          // 从未记录的情况
+          scrollPosition = [{
+            id: this.$route.name || this.$route.path,
+            scrollTop: ev.scrollTop
+          }]
+          window.sessionStorage.setItem('scrollPosition', JSON.stringify(scrollPosition))
+        }
+      },
+
+      /**
+       * 滚动到记录到页面滚动位置
+       * @private
+       * */
+      toRecordScrollPosition () {
+        if (this.recordPosition) {
+          let scrollPositionStr = window.sessionStorage.getItem('scrollPosition')
+          let scrollPosition
+          if (scrollPositionStr) {
+            try {
+              scrollPosition = JSON.parse(scrollPositionStr)
+              if (scrollPosition && isArray(scrollPosition) && scrollPosition.length > 0) {
+                // 有记录的情况(是数组)
+                for (let i = 0, len = scrollPosition.length; len > i; i++) {
+                  let pageScrollPosition = scrollPosition[i]
+                  let id = this.$route.name || this.$route.path
+                  if (pageScrollPosition.id === id) {
+                    this.scrollTo(0, pageScrollPosition.scrollTop, 0)
+                    return
+                  }
+                }
+              }
+            } catch (err) {
+              console.error(err)
+            }
+          }
+        }
       }
     },
     created () {
@@ -549,6 +630,8 @@
           item.elm.setAttribute('fixedBottom', '')
         })
       }
+
+      this.toRecordScrollPosition()
     },
     destroyed () {
       this._scroll.destroy()
