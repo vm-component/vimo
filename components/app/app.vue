@@ -225,8 +225,9 @@
       }
     },
     created () {
-      console.assert(this.$platform, `The Component of <App> need platform instance`)
-      console.assert(this.$config, `The Component of <App> need config instance`)
+      console.assert(this.$platform, `The Component of <App> need 'platform' instance`)
+      console.assert(this.$config, `The Component of <App> need 'config' instance`)
+      console.assert(window.VM, `The Component of <App> need 'window.VM' instance`)
 
       /**
        * $app对外方法
@@ -246,6 +247,9 @@
       })
     },
     mounted () {
+      window.VM.$app = this
+      // 用于判断组件是否在VM的组件树中
+      window.VM.$root = this.$root
       // 设置当前可点击
       this.isClickBlockEnabled = true
     }
