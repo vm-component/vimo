@@ -138,7 +138,6 @@
       colorClass () {
         return this.color ? (`toggle-${this.mode}-${this.color}`) : ''
       }
-
     },
     methods: {
 
