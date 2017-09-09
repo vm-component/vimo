@@ -1,14 +1,14 @@
 <template>
     <Page>
         <Header>
-            <Toolbar>
-                <Buttons end slot="buttons">
-                    <Button role="bar-button" type="solid" @click="closeModal">
-                        Close
+            <Navbar>
+                <Title>Login</Title>
+                <Buttons right slot="buttons">
+                    <Button role="bar-button" type="solid" @click="$modal.dismiss()">
+                        关闭
                     </Button>
                 </Buttons>
-                <Title>Login</Title>
-            </Toolbar>
+            </Navbar>
         </Header>
         <Content padding>
             <List>
@@ -24,7 +24,6 @@
                     <Input type="password" v-model="password" clearInput></Input>
                 </Item>
             </List>
-
             <Grid>
                 <Row justify-content-center>
                     <Column col-6>
@@ -54,18 +53,20 @@
 </style>
 <script type="text/javascript">
   import modalSecretComponent from './modal-secret.vue'
-  export default{
+
+  export default {
+    name: 'LoginModalDemo',
     data () {
       return {
-        username: this.$options.$data.username,
-        password: this.$options.$data.password
+        username: this.$options.$data && this.$options.$data.username || 'null',
+        password: this.$options.$data && this.$options.$data.password || 'null'
       }
     },
     props: {},
     watch: {},
     computed: {},
     methods: {
-      secret() {
+      secret () {
         this.$modal.present({
           component: modalSecretComponent,
           showBackdrop: true,
@@ -77,13 +78,11 @@
           username: this.username,
           password: this.password
         })
-      },
-      closeModal () {
-        this.$modal.dismiss()
       }
     },
-    created () {},
+    created () {
+    },
     mounted () {},
-    activated () {},
+    activated () {}
   }
 </script>

@@ -160,16 +160,17 @@
       init (component) {
         // 页面挂载
         const Component = Vue.extend(component)
-        setTimeout(() => {
+        window.setTimeout(() => {
           // eslint-disable-next-line no-new
-          new Component({
+          var PageComponent = new Component({
             el: this.modalViewportElement,
             $data: this.data
           })
+          this.$children.push(PageComponent)
         }, 0)
       }
     },
-    mounted () {
+    created () {
       let getType = (val) => Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
       if (getType(this.component) === 'object') {
         this.init(this.component)

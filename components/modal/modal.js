@@ -49,7 +49,9 @@ import Vue from 'vue'
 import { getInsertPosition } from '../util/getInsertPosition'
 import { registerListener } from '../util/util'
 import modalComponent from './modal.vue'
+
 let modalArr = []
+let openIndex = 0
 let unRegisterUrlChange = []
 const Modal = Vue.extend(modalComponent)
 let isModalEnable = true // 当modal处于打开过程和关闭过程中时为false, 其余状态为true
@@ -68,7 +70,8 @@ function ModalFactory (options) {
 
 /**
  * 开启Modal方法
- * 如果不懂想下: 桌子(页面)/菜盘(modal)/菜(template)的关系, 开启后获取Modal实例, 并将template初始化后挂在到Modal上, 然后注册urlChange事件. 在之后记录开启的Modal信息, 然后执行modal实例的_present开启.
+ * 如果不懂想下: 桌子(页面)/菜盘(modal)/菜(template)的关系, 开启后获取Modal实例, 并将template初始化后挂在到Modal上, 然后注册urlChange事件. 在之后记录开启的Modal信息,
+ * 然后执行modal实例的_present开启.
  *
  * @param {String} [mode]
  * @param {VueComponent} component - modal页面, 不支持异步
@@ -97,7 +100,8 @@ function present (options = {}) {
 
   // 增加浏览器历史记录
   window.history.pushState({
-    id: new Date().getTime()
+    id: new Date().getTime(),
+    name: options.name || `Modal-${openIndex++}`
   }, '', '')
 
   // record
@@ -108,17 +112,17 @@ function present (options = {}) {
     registerListener(window, 'popstate', function () {
       if (isModalEnable) {
         // 总是关闭最后一次创建的modal
-        let _lastModal = modalArr.pop()
-        _lastModal && _lastModal.dismiss()
-        // 如果是最后一个则解绑urlChange
-        if (modalArr.length === 0) {
-          unregisterAllListener()
-        }
+        dismiss()
+        // let _lastModal = modalArr.pop()
+        // _lastModal && _lastModal.dismiss()
+        // // 如果是最后一个则解绑urlChange
+        // if (modalArr.length === 0) {
+        //   unregisterAllListener()
+        // }
       }
     }, {}, unRegisterUrlChange)
   }
 
-  // window.setTimeout(() => { isModalEnable = 0 }, 400)
   presentPromise.then(() => {
     isModalEnable = true
   })
@@ -138,10 +142,15 @@ function dismiss (dataBack) {
   return new Promise((resolve) => {
     // 总是关闭最后一次创建的modal
     let lastModalInstance = modalArr.pop()
-
     // 如果是最后一个则解绑urlChange
     if (modalArr.length === 0) {
       unregisterAllListener()
+      // 通知父页面更新navbar
+      window.VM.$navbar.initWhenInWebview()
+      window.VM.$title.init()
+    } else {
+      // 取出倒数第二个modal, 将nav更新为他的nav
+      refreshNavbar(modalArr)
     }
 
     window.history.back()
@@ -151,6 +160,34 @@ function dismiss (dataBack) {
       resolve()
     })
   })
+}
+
+function componentIsMatch (component, name) {
+  return component && component.$options && component.$options._componentTag.toString().toLowerCase() === name
+}
+
+function refreshNavbar (modalArr) {
+  let penultimateInstance = modalArr[modalArr.length - 1]
+  let PageComponent = penultimateInstance.$children[1]
+  if (PageComponent.$children && PageComponent.$children[0]) {
+    if (componentIsMatch(PageComponent.$children[0], 'page')) {
+      PageComponent = PageComponent.$children[0]
+      let HeaderComponent = PageComponent.$children[0] // header content footer
+      if (componentIsMatch(HeaderComponent, 'header')) {
+        let NavbarComponent = HeaderComponent.$children[0]
+        if (componentIsMatch(NavbarComponent, 'navbar')) {
+          NavbarComponent.initWhenInWebview()
+          for (let i = 0, len = NavbarComponent.$children.length; len > i; i++) {
+            if (componentIsMatch(NavbarComponent.$children[i], 'title')) {
+              let TitleComponent = NavbarComponent.$children[i]
+              TitleComponent.init()
+              break
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 // 基础全部监听

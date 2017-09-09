@@ -1,14 +1,14 @@
 <template>
     <Page>
         <Header>
-            <Toolbar>
-                <Buttons end slot="buttons">
+            <Navbar>
+                <Buttons right slot="buttons">
                     <Button role="bar-button" type="solid" @click="$modal.dismiss()">
-                        Close
+                        好的
                     </Button>
                 </Buttons>
                 <Title>隐私政策</Title>
-            </Toolbar>
+            </Navbar>
         </Header>
         <Content padding class="outer-content">
             <p><strong>Apple 隐私政策已于 2016 年 9 月 12 日更新</strong></p>

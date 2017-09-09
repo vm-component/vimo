@@ -36,8 +36,8 @@
 </style>
 <script type="text/javascript">
   import modalPageComponent from './modal-page.vue'
-  import modalLoginComponent from './modal-login.vue'
-  export default{
+
+  export default {
     data () {
       return {
         username: '你好Vimo',
@@ -51,7 +51,8 @@
       openLogin () {
         const _this = this
         this.$modal.present({
-          component: modalLoginComponent,
+          name: 'LoginModalDemo',
+          component: import('./modal-login.vue'),
           data: {
             username: this.username,
             password: this.password

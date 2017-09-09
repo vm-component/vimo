@@ -47,7 +47,7 @@
 </template>
 
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'model-page',
     data () {
       return {}
@@ -67,6 +67,10 @@
       scrollToTop () {
         this.content.scrollToTop()
       }
+    },
+    mounted () {
+      console.log('页面this')
+      console.log(this)
     }
   }
 </script>
