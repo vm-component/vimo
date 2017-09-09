@@ -38,8 +38,6 @@
    * @props {Boolean} [showIndicatorWhenPageChange=false] - 页面切换是否显示Indicator
    *
    * */
-  import { Indicator } from '../indicator'
-
   export default {
     name: 'Nav',
     props: {
@@ -59,6 +57,7 @@
       return {
         // ----------- Nav -----------
         pageTransitionName: null,
+        IndicatorComponent: null,
 
         // ----------- Menu -----------
         menuStyleObj: {
@@ -92,16 +91,19 @@
 
         // 页面切换显示Indicator
         if (this.showIndicatorWhenPageChange) {
-          this.$router.beforeEach((to, from, next) => {
-            if (vm.$history.getDirection() === 'forward') {
-              Indicator.present()
-            }
-            next()
-          })
-          this.$router.afterEach(() => {
-            if (vm.$history.getDirection() === 'forward') {
-              Indicator.dismiss()
-            }
+          import('../indicator').then((component) => {
+            this.IndicatorComponent = component.Indicator
+            this.$router.beforeEach((to, from, next) => {
+              if (vm.$history.getDirection() === 'forward') {
+                this.IndicatorComponent.present()
+              }
+              next()
+            })
+            this.$router.afterEach(() => {
+              if (vm.$history.getDirection() === 'forward') {
+                this.IndicatorComponent.dismiss()
+              }
+            })
           })
         }
       },
