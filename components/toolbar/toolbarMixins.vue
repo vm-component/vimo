@@ -170,7 +170,7 @@
        * @private
        * */
       initWhenInWebview () {
-        if (!this.isNavBar) {
+        if (!this.isNavBar || this.$platform.platforms().length < 3) {
           return
         }
         // 如果在平台中则进行下面的分支
@@ -189,12 +189,21 @@
       }
     },
     created () {
-      console.assert(this.$platform, `The Component of <Navbar> need platform instance`)
-      console.assert(this.$config, `The Component of <Navbar> need config instance`)
+      console.assert(this.$platform, `The Component of <Navbar> need 'platform' instance`)
+      console.assert(this.$config, `The Component of <Navbar> need 'config' instance`)
+      console.assert(window.VM, `The Component of <Navbar> need 'window.VM' instance`)
+
       this.refreshBackButtonStatus()
     },
     mounted () {
-      this.isNavBar && this.initWhenInWebview()
+      if (this.isNavBar) {
+        this.initWhenInWebview()
+        if (this.$root === window.VM.$root) {
+          // 只记录这个流的navbar: App->Nav->Page->Header->Navbar
+          // 其余形式的navbar不记录
+          window.VM.$navbar = this
+        }
+      }
     }
   }
 </script>

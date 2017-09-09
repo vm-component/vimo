@@ -105,7 +105,6 @@
     },
     watch: {
       title () {
-        console.log('title change')
         this.init()
       }
     },
@@ -168,7 +167,7 @@
         }
         if (changeDocTitle) {
           // 设置document的title, 这部分由$app处理
-          this.$app.setDocTitle(_title)
+          this.$app && this.$app.setDocTitle(_title)
         }
       },
 
@@ -189,7 +188,7 @@
        * */
       reset () {
         this.titleColor = null
-        this.$platform.resetNavbarOptionButton && this.$platform.resetNavbarOptionButton()
+        this.$platform && this.$platform.resetNavbarOptionButton && this.$platform.resetNavbarOptionButton()
       },
 
       /**
@@ -209,8 +208,9 @@
             }
             this.isTitleInNavbar = true
           }
-          if (navbarComponent.$parent.$parent.$options._componentTag.toLowerCase() === 'app') {
+          if (window.VM && this.$root === window.VM.$root) {
             this.isHeaderInApp = true
+            window.VM.$title = this
           }
         }
 
@@ -237,6 +237,7 @@
       console.assert(this.$app, `The component of <Title> need '<App>' instance, please use Vimo in right environment!`)
       console.assert(this.$platform, `The component of <Title> need 'platform' instance, please use Vimo in right environment!`)
       console.assert(this.$config, `The component of <Title> need 'config' instance, please use Vimo in right environment!`)
+      console.assert(window.VM, `The component of <Title> need 'window.VM' instance, please use Vimo in right environment!`)
       this.init()
     }
   }
