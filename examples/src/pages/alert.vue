@@ -22,7 +22,8 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
+    name: 'AlertDemo',
     data () {
       return {}
     },
