@@ -8,6 +8,9 @@ Vimo Is still in development stage (2017/04/23), during which the project needs 
 
 目前还在开发阶段(2017/04/23), 在此期间需要项目对此框架测试, 其中不乏一些组件的bug修复和API的变更, 如果对您的业务造成不便请谅解!
 
+- 0.5.32 - modal组件与navbar组件整合时的bug修复
+- 0.5.30 - history调整
+- 0.5.27 - toolbar的问题修复, 子模式会导致toolbar挂掉
 - 0.5.22 - 修复indicator在页面跳转过程没开启足够时间的bug
 - 0.5.21 - 在$router中增加```pushWindow```属性, 用于开启新窗口
 - 0.5.20 - Slides组件debug；Grid组件使用css样式。
