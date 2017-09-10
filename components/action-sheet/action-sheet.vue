@@ -119,16 +119,6 @@
         this.enabled = true
       },
 
-//      /**
-//       * ActionSheet启动之前去除focus效果，因为存在键盘
-//       * @private
-//       * */
-//      focusOutActiveElement () {
-//        // only button？
-//        const activeElement = document.activeElement
-//        activeElement && activeElement.blur && activeElement.blur()
-//      },
-
       /**
        * @function bdClick
        * @description
