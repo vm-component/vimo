@@ -47,9 +47,9 @@ import { Thumbnail } from './thumbnail'
 import { Toast } from './toast'
 import { Toggle } from './toggle'
 
-var ENV = process.env.NODE_ENV;
+var ENV = process.env.NODE_ENV
 if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefined' && console.warn && typeof window !== 'undefined') {
-  console.warn('You are using a whole package of vimo, ' + 'please read docs https://dtfe.github.io/vimo/ to reduce app bundle size.');
+  console.warn('You are using a whole package of vimo, ' + 'please read docs https://dtfe.github.io/vimo/ to reduce app bundle size.')
 }
 
 // 通过script脚本使用, 资源全部打包, 不推荐

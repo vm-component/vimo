@@ -40,7 +40,7 @@
     </div>
 </template>
 <script type="text/javascript">
-  import { urlChange } from '../util/util'
+  import { urlChange, focusOutActiveElement } from '../util/util'
   import { Backdrop } from '../backdrop/index'
   import { Button } from '../button/index'
   import { Icon } from '../icon/index'
@@ -101,7 +101,7 @@
       },
       afterEnter () {
         this.presentCallback()
-        this.focusOutActiveElement()
+        focusOutActiveElement()
         let focusableEle = document.querySelector('button')
         if (focusableEle) {
           focusableEle.focus()
@@ -119,15 +119,15 @@
         this.enabled = true
       },
 
-      /**
-       * ActionSheet启动之前去除focus效果，因为存在键盘
-       * @private
-       * */
-      focusOutActiveElement () {
-        // only button？
-        const activeElement = document.activeElement
-        activeElement && activeElement.blur && activeElement.blur()
-      },
+//      /**
+//       * ActionSheet启动之前去除focus效果，因为存在键盘
+//       * @private
+//       * */
+//      focusOutActiveElement () {
+//        // only button？
+//        const activeElement = document.activeElement
+//        activeElement && activeElement.blur && activeElement.blur()
+//      },
 
       /**
        * @function bdClick

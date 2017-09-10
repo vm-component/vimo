@@ -413,14 +413,14 @@ export function hasFocus (ele) {
 //   return false
 // }
 
-// /**
-//  * blur out TEXTAREA或者INPUT的状态
-//  * @return {boolean}
-//  * */
-// export function focusOutActiveElement () {
-//   const activeElement = document.activeElement //  <HTMLElement>
-//   activeElement && activeElement.blur && activeElement.blur()
-// }
+/**
+ * blur out TEXTAREA或者INPUT的状态
+ * @return {boolean}
+ * */
+export function focusOutActiveElement () {
+  const activeElement = document.activeElement //  <HTMLElement>
+  activeElement && activeElement.blur && activeElement.blur()
+}
 
 /**
  * 元素的class操作
