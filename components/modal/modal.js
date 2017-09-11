@@ -158,7 +158,7 @@ function dismiss (dataBack) {
       refreshNavbar(modalArr)
     }
 
-    // window.history.back()
+    window.history.back()
     lastModalInstance.dismiss(dataBack).then(() => {
       isModalEnable = true
       // // 执行注册的onDismiss回调
