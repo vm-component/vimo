@@ -101,19 +101,12 @@
    * */
 
   import { setElementClass } from '../util/util'
+
   const STATE_ENABLED = 'enabled'
   const STATE_DISABLED = 'disabled'
   const STATE_LOADING = 'loading'
-  export default{
+  export default {
     name: 'InfiniteScroll',
-    data () {
-      return {
-        contentComponent: null, // Content组件的实例
-        lastCheck: 0,  // 节流, 少于32ms的事件变动不必监听
-        isInit: false,   // 组件是否初始化
-        state: STATE_ENABLED // 内部状态
-      }
-    },
     props: {
       // 可用状态
       enabled: {
@@ -124,6 +117,19 @@
       threshold: {
         type: String,
         default: '15%' // 15%  150px
+      }
+    },
+    data () {
+      return {
+        contentComponent: null, // Content组件的实例
+        lastCheck: 0,  // 节流, 少于32ms的事件变动不必监听
+        isInit: false,   // 组件是否初始化
+        state: (this.enabled ? STATE_ENABLED : STATE_DISABLED) // 内部状态
+      }
+    },
+    watch: {
+      enabled () {
+        this.enable(this.enabled)
       }
     },
     computed: {
@@ -302,7 +308,6 @@
         this.isInit = true
         this.setListeners(this.state !== STATE_DISABLED)
       }
-
     },
     mounted () {
       this.init()
