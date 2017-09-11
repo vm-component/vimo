@@ -112,13 +112,18 @@ function present (options = {}) {
     registerListener(window, 'popstate', function () {
       if (isModalEnable) {
         // 总是关闭最后一次创建的modal
-        dismiss()
-        // let _lastModal = modalArr.pop()
-        // _lastModal && _lastModal.dismiss()
-        // // 如果是最后一个则解绑urlChange
-        // if (modalArr.length === 0) {
-        //   unregisterAllListener()
-        // }
+        let _lastModal = modalArr.pop()
+        _lastModal && _lastModal.dismiss()
+        // 如果是最后一个则解绑urlChange
+        if (modalArr.length === 0) {
+          unregisterAllListener()
+          // 通知父页面更新navbar
+          window.VM.$navbar.initWhenInWebview()
+          window.VM.$title.init()
+        } else {
+          // 取出倒数第二个modal, 将nav更新为他的nav
+          refreshNavbar(modalArr)
+        }
       }
     }, {}, unRegisterUrlChange)
   }
@@ -153,7 +158,7 @@ function dismiss (dataBack) {
       refreshNavbar(modalArr)
     }
 
-    window.history.back()
+    // window.history.back()
     lastModalInstance.dismiss(dataBack).then(() => {
       isModalEnable = true
       // // 执行注册的onDismiss回调
