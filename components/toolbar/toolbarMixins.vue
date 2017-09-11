@@ -188,26 +188,28 @@
            * 初始化webview中Navbar的背景和底部边框, 只处理具有颜色class的情况
            * 只支持alipay, 不支持dingtalk, 因为dingtalk是通过url修改标题颜色的.
            * */
-          if (this.color) {
-            // 1. 获取背景色
-            let toolbarBackgroundElement = this.toolbarBackgroundElement
-            if (!toolbarBackgroundElement) { return false }
-            var rgb = window.getComputedStyle(toolbarBackgroundElement).backgroundColor
-            // "rgb(56, 126, 245)"
-            // "rgba(56, 126, 245,0.8)"
-            if (!rgb) { return false }
-            rgb = rgb.replace('rgb(', '')
-            rgb = rgb.replace('rgba(', '')
-            rgb = rgb.replace(')', '')
-            rgb = rgb.split(',').map(val => val.trim())
-            let r = parseInt(rgb[0]).toString(16).toUpperCase()
-            let g = parseInt(rgb[1]).toString(16).toUpperCase()
-            let b = parseInt(rgb[2]).toString(16).toUpperCase()
-            let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
-            let backgroundColor = `#${r}${g}${b}`
-            this.$platform.setNavbarBackgroundColor && this.$platform.setNavbarBackgroundColor(backgroundColor)
-          } else {
-            this.$platform.resetNavbarTitleAndColor && this.$platform.resetNavbarTitleAndColor()
+          if (this.$platform.is('alipay')) {
+            if (this.color) {
+              // 1. 获取背景色
+              let toolbarBackgroundElement = this.toolbarBackgroundElement
+              if (!toolbarBackgroundElement) { return false }
+              var rgb = window.getComputedStyle(toolbarBackgroundElement).backgroundColor
+              // "rgb(56, 126, 245)"
+              // "rgba(56, 126, 245,0.8)"
+              if (!rgb) { return false }
+              rgb = rgb.replace('rgb(', '')
+              rgb = rgb.replace('rgba(', '')
+              rgb = rgb.replace(')', '')
+              rgb = rgb.split(',').map(val => val.trim())
+              let r = parseInt(rgb[0]).toString(16).toUpperCase()
+              let g = parseInt(rgb[1]).toString(16).toUpperCase()
+              let b = parseInt(rgb[2]).toString(16).toUpperCase()
+              let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
+              let backgroundColor = `#${r}${g}${b}`
+              this.$platform.setNavbarBackgroundColor && this.$platform.setNavbarBackgroundColor(backgroundColor)
+            } else {
+              this.$platform.resetNavbarTitleAndColor && this.$platform.resetNavbarTitleAndColor()
+            }
           }
         })
       }
