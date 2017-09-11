@@ -9,7 +9,7 @@
 export default {
   platforms: {
     mobile: {
-      recordPosition: true
+      recordPosition: false
     },
     ios: {
       pageTransition: 'fade-right-transition'
@@ -18,6 +18,6 @@ export default {
       pageTransition: 'zoom-transition'
     }
   },
-  showIndicatorWhenPageChange: false, // 转场是否提前添加动画
+  showIndicatorWhenPageChange: true, // 转场是否提前添加动画
   domain: ''
 }

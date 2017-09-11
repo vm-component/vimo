@@ -5,7 +5,7 @@
                 <Title>组件</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" record-position>
+        <Content class="outer-content">
             <List>
                 <!--基础组件-->
                 <ListHeader>
