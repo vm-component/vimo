@@ -8,6 +8,9 @@ Vimo Is still in development stage (2017/04/23), during which the project needs 
 
 目前还在开发阶段(2017/04/23), 在此期间需要项目对此框架测试, 其中不乏一些组件的bug修复和API的变更, 如果对您的业务造成不便请谅解!
 
+- 0.5.42 - Scroll组件修改props参数
+- 0.5.41 - Indicator组件增加定制参数
+- 0.5.36 - content组件优化, alipay环境的驱动更新
 - 0.5.34 - content组件增加recordPosition属性
 - 0.5.32 - modal组件与navbar组件整合时的bug修复
 - 0.5.30 - history调整
