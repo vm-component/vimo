@@ -244,27 +244,42 @@
 // Generate Material Design Item and Item Divider Colors
 // --------------------------------------------------
 
-@each @color-name, @color-base, @color-contrast in get-colors(@colors-md) {
-    // If there is text with a color it should use this color
-    // and override whatever item sets it to
-    .item-md .text-md-@{color-name} {
-        color: @color-base;
-    }
-    
-    .item-md-@{color-name},
-    .item-divider-md-@{color-name} {
-        color: @color-contrast;
-        background-color: @color-base;
-        
-        p {
-            color: @color-contrast;
+.get-all-colors(@type) {
+    @name: e('colors-@{type}');
+    @n: length(@@name);
+    .loop(@n);
+    .loop(@n) when (@n > 0) {
+        .loop((@n - 1)); // next iteration
+        @color-name: extract(@@name, @n);
+        @color-name-mode: e('@{color-name}-@{type}');
+        @color-base: @@color-name-mode;
+        @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
+
+        // If there is text with a color it should use this color
+        // and override whatever item sets it to
+        .item-md .text-md-@{color-name} {
+            color: @color-base;
         }
-        
-        &:active {
-            background-color: darken(@color-base,@darken-amount);
+
+        .item-md-@{color-name},
+        .item-divider-md.item-divider-md-@{color-name} {
+            color: @color-contrast;
+            background-color: @color-base;
+
+            p {
+                color: @color-contrast;
+            }
+
+            &:active {
+                background-color: darken(@color-base,@darken-amount);
+            }
         }
     }
 }
+
+// action
+.get-all-colors(md);
+
 
 // Material Design Item Sliding
 // --------------------------------------------------

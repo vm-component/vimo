@@ -214,16 +214,6 @@
         color: @color-contrast;
       }
 
-        @each @color-name, @color-base, @color-contrast in get-colors(@colors-md) {
-            .text-md-@{color-name},
-            .card-header-md-@{color-name},
-            .card-title-md-@{color-name},
-            .card-content-md-@{color-name} {
-              color: @color-base;
-            }
-          }
-
-
       // inner loop
       .get-all-colors-i2(@type) {
         @name-i2: e('colors-@{type}');
