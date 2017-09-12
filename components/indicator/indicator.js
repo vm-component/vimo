@@ -52,7 +52,6 @@ import { isBlank, isBoolean, isObject, isString } from '../util/util'
 import loadingComponent from '../loading/loading.vue'
 
 const Loading = Vue.extend(loadingComponent)
-const MinTime = 200 + 16 * 8
 let debug = false
 
 // -------- function --------
@@ -111,10 +110,11 @@ export default {
         if (options.isReverse) {
           cssClass += ' reverse'
         }
+        const Duration = window.VM && window.VM.config && window.VM.config.getNumber('indicatorMaxDuration', 5000) || 5000 // 多少分
         this._i = LoadingFactory({
           cssClass: cssClass,
           showBackdrop: false,
-          duration: 5000, // 以防万一
+          duration: Duration, // 以防万一
           dismissOnPageChange: options.dismissOnPageChange,
           mode: 'ios'
         })
@@ -172,6 +172,7 @@ export default {
             } else {
               let now = new Date().getTime()
               let diff = now - this._startTime
+              const MinTime = window.VM && window.VM.config && window.VM.config.getNumber('indicatorPresentMinTime', 200 + 16 * 8) || (200 + 16 * 8) // Indicator最短开启时间
               if (diff >= MinTime) {
                 // 满足在场的最短时间, 可以关闭, 重置初始状态
                 debug && console.debug('Indicator 15: 超过300ms 正常关闭')
