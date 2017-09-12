@@ -101,7 +101,8 @@
    * */
   import JsScroll from 'better-scroll/build/bscroll'
   import props from './props'
-  export default{
+
+  export default {
     name: 'Scroll',
     data () {
       return {
