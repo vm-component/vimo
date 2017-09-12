@@ -3,7 +3,7 @@
          :class="[colorClass,typeClass]"
          v-show="!hideNavBar">
         <!--background-->
-        <div ref="toolbarBackground" class="toolbar-background toolbar"></div>
+        <div ref="toolbarBackground" class="toolbar-background"></div>
         <!--content-->
         <div class="toolbar-content">
             <slot></slot>

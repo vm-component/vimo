@@ -38,12 +38,6 @@
 
 @button-strong-font-weight: 800;
 
-.toolbar {
-  padding: @toolbar-padding;
-  height: @toolbar-height;
-  min-height: @toolbar-height;
-}
-
 .ios {
   .toolbar {
     padding: @toolbar-ios-padding;
@@ -64,6 +58,20 @@
 // --------------------------------------------------
 
 .toolbar-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: @z-index-toolbar-background;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  transform: translateZ(0);
+
+  pointer-events: none;
+
+  contain: strict;
   background: @toolbar-background;
 }
 
@@ -131,21 +139,6 @@
   }
 }
 
-.toolbar .ion-title {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  padding: 0 90px 1px; /*no*/
-
-  width: 100%;
-  height: 100%;
-
-  transform: translateZ(0);
-
-  pointer-events: none;
-}
-
 .toolbar-theme(@color-name, @color-base, @color-contrast) {
   .toolbar-@{color-name} {
     .toolbar-background {
@@ -158,7 +151,10 @@
       color: @color-contrast;
     }
 
-    .arrow-back(@color-contrast);
+    .back-button{
+      .arrow-back(@color-contrast);
+    }
+
     // action
     .get-all-colors-i1(ios);
     .get-all-colors-i1(@type) {
@@ -173,7 +169,7 @@
         @color-contrast-i: contrast(@color-base-i, black, white, @contrast-threshold);
 
         // content
-        .bar-button-default(@color-name-i, @color-base-i, @color-contrast-i);
+        .bar-button-color(@color-name-i, @color-base-i, @color-contrast-i);
         .bar-button-outline(@color-name-i, @color-base-i, @color-contrast-i);
         .bar-button-solid(@color-name-i, @color-base-i, @color-contrast-i);
       }
@@ -184,17 +180,18 @@
 //  Navbar Back Button
 // --------------------------------------------------
 // mixin
+.icon-arrow-back {
+  height: 23px;
+  width: 18px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 16px 23px;
+}
+
 .arrow-back(@color) {
-
   @arrow-back-svg: "<svg t='1499003919115' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' p-id='3978' xmlns:xlink='http://www.w3.org/1999/xlink'><path d='M702.882 958.388l64.032-63.397-380.993-383.606 384.196-380.377-63.49-63.925-448.221 443.779z' p-id='3979' fill='@{color}'/></svg>";
-
   .icon-arrow-back {
-    height: 23px;
-    width: 18px;
-    display: inline-block;
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 16px 23px;
     color: @color;
     .svg-background-image(@arrow-back-svg);
   }
@@ -259,8 +256,64 @@
 
 }
 
+.md {
+  .bar-button {
+    padding: 0 5px;
+    height: 32px;
+    border: 0;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0 6px;
+    min-width: 44px;
+    box-shadow: none;
+  }
+}
+
 // mixin
 .bar-button-default(@color-name, @color-base, @color-contrast) {
+  .ios {
+    @color-base: @toolbar-button-color;
+    .bar-button-@{color-name},
+    .bar-button-clear-@{color-name} {
+      color: @color-base;
+      background-color: transparent;
+
+      &:hover:not(.disable-hover) {
+        color: @color-base;
+      }
+
+      &:active {
+        opacity: .4;
+      }
+
+      .arrow-back(@color-base);
+    }
+  }
+  .md {
+    @color-base: @toolbar-title-text-color;
+    .bar-button-@{color-name},
+    .bar-button-clear-@{color-name} {
+      color: @color-base;
+      background-color: transparent;
+
+      &:hover:not(.disable-hover) {
+        color: @color-base;
+      }
+
+      &:active {
+        opacity: .4;
+      }
+
+      .arrow-back(@color-base);
+    }
+  }
+
+}
+
+// mixin
+.bar-button-color(@color-name, @color-base, @color-contrast) {
 
   .bar-button-@{color-name},
   .bar-button-clear-@{color-name} {
@@ -456,8 +509,8 @@
 //  Toolbar Color Generation
 // --------------------------------------------------
 
-.bar-button-default(default, @toolbar-button-color, contrast(@toolbar-button-color, @primary, white, @contrast-threshold));
-.bar-button-default(clear, @toolbar-button-color, contrast(@toolbar-button-color, @primary, white, @contrast-threshold));
+.bar-button-default(default, @toolbar-title-text-color, contrast(@toolbar-button-color, @primary, white, @contrast-threshold));
+.bar-button-color(clear, @toolbar-button-color, contrast(@toolbar-button-color, @primary, white, @contrast-threshold));
 
 .get-all-colors-i2(@type) {
   @name: e('colors-@{type}');
@@ -471,7 +524,7 @@
     @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
 
     // content
-    .bar-button-default(@color-name, @color-base, @color-contrast);
+    .bar-button-color(@color-name, @color-base, @color-contrast);
     .bar-button-outline(@color-name, @color-base, @color-contrast);
     .bar-button-solid(@color-name, @color-base, @color-contrast);
     .toolbar-theme(@color-name, @color-base, @color-contrast);
