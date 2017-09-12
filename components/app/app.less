@@ -1,6 +1,8 @@
 // Globals
 // --------------------------------------------------
-@import "../themes/index";
+@import "../themes/index.less";
+@import "../themes/default.ios.less";
+@import "../themes/default.md.less";
 // Normalize
 // --------------------------------------------------
 @import "normalize";
@@ -186,6 +188,18 @@ sub {
   font-family: @font-family-base;
   font-size: @font-size-base;
   background-color: @background-color;
+}
+
+.ios.ion-app {
+  font-family: @font-family-ios-base;
+  font-size: @font-size-ios-base;
+  background-color: @background-ios-color;
+}
+
+.md.ion-app {
+  font-family: @font-family-md-base;
+  font-size: @font-size-md-base;
+  background-color: @background-md-color;
 }
 
 // Content Padding
