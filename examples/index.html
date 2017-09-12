@@ -19,6 +19,26 @@
     <meta name="application-name" content="Vimo">
     <title></title>
     <script>
+      (function(doc, win) {
+        var docEl = doc.documentElement,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+          recalc = function() {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth)
+              return;
+            //由屏幕宽度得到basefont大小,并将其写入html标签中,文档总的尺寸由rem确定
+            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+            doc.body.style.display = "block";
+            doc.getElementsByTagName('html')[0].removeAttribute('class');
+          };
+
+        if (!doc.addEventListener)
+          return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+      })(document, window);
+    </script>
+    <script>
 //      window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
 //        var text = 'window.onerror:' + errorMessage + '-' + scriptURI + '-' + lineNumber + '-' + columnNumber + '-' + errorObj
 //        alert(text)
