@@ -110,7 +110,7 @@ export default {
         if (options.isReverse) {
           cssClass += ' reverse'
         }
-        const Duration = window.VM && window.VM.config && window.VM.config.getNumber('indicatorMaxDuration', 5000) || 5000 // 多少分
+        const Duration = window.VM && window.VM.config && window.VM.config.getNumber('indicatorMaxDuration', 5000) // 多少分
         this._i = LoadingFactory({
           cssClass: cssClass,
           showBackdrop: false,
@@ -172,7 +172,7 @@ export default {
             } else {
               let now = new Date().getTime()
               let diff = now - this._startTime
-              const MinTime = window.VM && window.VM.config && window.VM.config.getNumber('indicatorPresentMinTime', 200 + 16 * 8) || (200 + 16 * 8) // Indicator最短开启时间
+              const MinTime = window.VM && window.VM.config && window.VM.config.getNumber('indicatorPresentMinTime', 200 + 16 * 8) // Indicator最短开启时间
               if (diff >= MinTime) {
                 // 满足在场的最短时间, 可以关闭, 重置初始状态
                 debug && console.debug('Indicator 15: 超过300ms 正常关闭')
