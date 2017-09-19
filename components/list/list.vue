@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-list list" :class="[modeClass]">
+    <div class="ion-list" :class="[modeClass]">
         <slot></slot>
     </div>
 </template>
