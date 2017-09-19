@@ -1,5 +1,5 @@
 <template>
-    <header class="ion-header header" :class="[{'hide-bar':isHide}]" :style="style">
+    <header class="ion-header" :class="[{'hide-bar':isHide}]" :style="style">
         <!--right button placeholder-->
         <div ref="rightButtonPlaceholder" id="rightButtonPlaceholder"
              style="width: 30px;bottom:0;height:1px; position: absolute;right:9px;"></div>
@@ -17,6 +17,7 @@
         display: block;
         width: 100%;
         transition: -webkit-transform ease 300ms;
+        min-height: @toolbar-height; /*no*/
     }
 
     .ion-header.hide-bar {
