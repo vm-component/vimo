@@ -1,24 +1,26 @@
+const hasTouch = 'ontouchstart' in window
 const DEFAULT = {
   startX: 0,
   startY: 0,
+  scrollX: false,
   scrollY: true,
+  freeScroll: false,
   directionLockThreshold: 5,
-  momentum: true,
+  eventPassthrough: '',
+  click: false,
+  tap: false,
   bounce: true,
-  selectedIndex: 0,
-  rotate: 25,
-  wheel: false,
-  snap: false,
-  snapLoop: false,
-  snapThreshold: 0.1,
-  swipeTime: 2500,
   bounceTime: 700,
-  adjustTime: 400,
-  swipeBounceTime: 1200,
-  deceleration: 0.001,
+  momentum: true,
   momentumLimitTime: 300,
   momentumLimitDistance: 15,
+  swipeTime: 2500,
+  swipeBounceTime: 500,
+  deceleration: 0.001,
+  flickLimitTime: 200,
+  flickLimitDistance: 100,
   resizePolling: 60,
+  probeType: 0,
   preventDefault: true,
   preventDefaultException: {
     tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT)$/
@@ -26,7 +28,52 @@ const DEFAULT = {
   HWCompositing: true,
   useTransition: true,
   useTransform: true,
-  probeType: 1
+  bindToWrapper: false,
+  disableMouse: hasTouch,
+  disableTouch: !hasTouch,
+  /**
+   * for picker
+   * wheel: {
+   *   selectedIndex: 0,
+   *   rotate: 25,
+   *   adjustTime: 400
+   * }
+   */
+  wheel: false,
+  /**
+   * for slide
+   * snap: {
+   *   loop: false,
+   *   el: domEl,
+   *   threshold: 0.1,
+   *   stepX: 100,
+   *   stepY: 100,
+   *   listenFlick: true
+   * }
+   */
+  snap: false,
+  /**
+   * for scrollbar
+   * scrollbar: {
+   *   fade: true
+   * }
+   */
+  scrollbar: false,
+  /**
+   * for pull down and refresh
+   * pullDownRefresh: {
+   *   threshold: 50,
+   *   stop: 20
+   * }
+   */
+  pullDownRefresh: false,
+  /**
+   * for pull up and load
+   * pullUpLoad: {
+   *   threshold: 50
+   * }
+   */
+  pullUpLoad: false
 }
 
 function defaultDataToProps (defaults) {

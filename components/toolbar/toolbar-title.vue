@@ -1,7 +1,6 @@
 <template>
-    <div class="ion-title title" :class="[titleClass]">
+    <div class="ion-title">
         <div class="toolbar-title"
-             :class="[toolbarTitleClass]"
              :style="{color:titleColor}"
              @click="titleClick" v-html="titleInner"></div>
     </div>
@@ -94,14 +93,6 @@
        * 设置的title值
        * */
       title: String
-    },
-    computed: {
-      titleClass () {
-        return `title-ios`
-      },
-      toolbarTitleClass () {
-        return `toolbar-title`
-      }
     },
     watch: {
       title () {

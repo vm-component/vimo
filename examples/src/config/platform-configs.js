@@ -6,11 +6,9 @@
 import platformWeChatConfig from './platforms/platform-wechat-config'
 import platformAliPayConfig from './platforms/platform-alipay-config'
 import platformDingTalkConfig from './platforms/platform-dingtalk-config'
-import platformDtDreamConfig from './platforms/platform-dtdream-config'
 
 export default {
   wechat: platformWeChatConfig,
   alipay: platformAliPayConfig,
-  dingtalk: platformDingTalkConfig,
-  dtdream: platformDtDreamConfig
+  dingtalk: platformDingTalkConfig
 }

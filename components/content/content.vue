@@ -319,8 +319,6 @@
          * @property {ScrollEvent} ev - 滚动事件对象
          */
         scroll.scroll = (ev) => {
-          // remind the app that it's currently scrolling
-//          this.$app && this.$app.setScrolling()
           this.$emit('onScroll', ev)
           this.$eventBus && this.$eventBus.$emit('onScroll', ev)
 
@@ -533,42 +531,10 @@
        * @private
        * */
       recordScrollPosition (ev) {
-        if (this.recordPosition) {
-          let scrollPositionStr = window.sessionStorage.getItem('scrollPosition')
-          let scrollPosition
-          if (scrollPositionStr) {
-            try {
-              scrollPosition = JSON.parse(scrollPositionStr)
-              if (scrollPosition && isArray(scrollPosition) && scrollPosition.length > 0) {
-                // 有记录的情况(是数组)
-                for (let i = 0, len = scrollPosition.length; len > i; i++) {
-                  let pageScrollPosition = scrollPosition[i]
-                  let id = this.$route.name || this.$route.path
-                  if (pageScrollPosition.id === id) {
-                    pageScrollPosition.scrollTop = ev.scrollTop
-                    window.sessionStorage.setItem('scrollPosition', JSON.stringify(scrollPosition))
-                    return
-                  }
-                }
-
-                scrollPosition.push({
-                  id: this.$route.name || this.$route.path,
-                  scrollTop: ev.scrollTop
-                })
-                window.sessionStorage.setItem('scrollPosition', JSON.stringify(scrollPosition))
-                return
-              }
-            } catch (err) {
-              console.error(err)
-            }
-          }
-
-          // 从未记录的情况
-          scrollPosition = [{
-            id: this.$route.name || this.$route.path,
-            scrollTop: ev.scrollTop
-          }]
-          window.sessionStorage.setItem('scrollPosition', JSON.stringify(scrollPosition))
+        if (this.recordPosition && this.$route) {
+          // vm-scroll-position-${id} -> 位置
+          let id = this.$route.name || this.$route.path
+          window.sessionStorage.setItem(`vm-scroll-position-${id}`, ev.scrollTop)
         }
       },
 
@@ -577,26 +543,15 @@
        * @private
        * */
       toRecordScrollPosition () {
-        if (this.recordPosition) {
-          let scrollPositionStr = window.sessionStorage.getItem('scrollPosition')
-          let scrollPosition
-          if (scrollPositionStr) {
-            try {
-              scrollPosition = JSON.parse(scrollPositionStr)
-              if (scrollPosition && isArray(scrollPosition) && scrollPosition.length > 0) {
-                // 有记录的情况(是数组)
-                for (let i = 0, len = scrollPosition.length; len > i; i++) {
-                  let pageScrollPosition = scrollPosition[i]
-                  let id = this.$route.name || this.$route.path
-                  if (pageScrollPosition.id === id) {
-                    this.scrollTo(0, pageScrollPosition.scrollTop, 0)
-                    return
-                  }
-                }
-              }
-            } catch (err) {
-              console.error(err)
+        if (this.recordPosition && this.$route) {
+          let id = this.$route.name || this.$route.path
+          if (this.$history.getDirection() === 'backward') {
+            let scrollPositionStr = window.sessionStorage.getItem(`vm-scroll-position-${id}`)
+            if (scrollPositionStr) {
+              this.scrollTo(0, parseInt(scrollPositionStr), 0)
             }
+          } else {
+            window.sessionStorage.removeItem(`vm-scroll-position-${id}`)
           }
         }
       }

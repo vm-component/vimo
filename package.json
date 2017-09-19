@@ -1,6 +1,6 @@
 {
   "name": "vimo",
-  "version": "0.5.34",
+  "version": "0.5.45",
   "description": "A Vue2.x UI Project For Mobile & HyBrid",
   "author": "向松涛 <280304286@163.com>",
   "homepage": "https://github.com/DTFE/vimo",
@@ -28,7 +28,6 @@
     "example:dev": "node examples/build/dev-server.js",
     "example:build": "node examples/build/build.js",
     "pub:dist": "node build/webpack.dist.conf.js",
-    "umd": "rollup -c build/rollup.umd.conf.js ",
     "pub:lib": "gulp default --gulpfile build/gulpfile.lib.js",
     "pub": "npm run pub:lib && npm run pub:dist",
     "docs:dev": "gulp default --gulpfile build/doc-builder/gulpfile.js",
@@ -37,10 +36,11 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "peerDependencies": {
-    "vue": "latest"
+    "vue": "^2.4.2"
   },
   "dependencies": {
     "autosize": "^3.0.20",
+    "better-scroll": "^1.3.0",
     "swipe-js-iso": "^2.0.3",
     "swiper": "^3.4.2"
   },
@@ -123,6 +123,7 @@
     "optimize-css-assets-webpack-plugin": "^1.3.0",
     "ora": "^1.1.0",
     "phantomjs-prebuilt": "^2.1.14",
+    "postcss-loader": "^2.0.6",
     "postcss-px2rem": "^0.3.0",
     "rimraf": "^2.6.0",
     "rollup": "^0.49.3",
@@ -149,8 +150,8 @@
     "vue-loader": "^11.1.4",
     "vue-router": "^2.2.0",
     "vue-style-loader": "^2.0.0",
-    "vue-template-compiler": "latest",
-    "webpack": "^2.2.1",
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.5.6",
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",

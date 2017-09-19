@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-item item" :class="[itemClass,listHeaderClass,colorClass]" @click="directTo($event)">
+    <div class="ion-item" :class="[itemClass,listHeaderClass,colorClass]" @click="directTo($event)">
         <!--以下组件显示在此处：[item-left],ion-checkbox:not([item-right])-->
         <slot name="item-left"></slot>
         <div class="item-inner">

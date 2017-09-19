@@ -99,9 +99,10 @@
    * @see https://github.com/ustbhuangyi/better-scroll
    * @demo #/scroll
    * */
-  import JsScroll from 'better-scroll/build/bscroll'
+  import JsScroll from 'better-scroll'
   import props from './props'
-  export default{
+
+  export default {
     name: 'Scroll',
     data () {
       return {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>loading/loading.vue - Documentation</title>
+    <title>scroll/props.js - Documentation</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="scripts/qrcode.js"></script>
@@ -55,7 +55,7 @@
     <article class="content">
 
         
-        <h1 class="page-title">loading/loading.vue</h1>
+        <h1 class="page-title">scroll/props.js</h1>
         
 
         
@@ -65,264 +65,153 @@
 
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>&lt;template>
-    &lt;div class="ion-loading" :class="[modeClass,cssClass]">
-        &lt;Backdrop :isActive="isActive &amp;&amp; showBackdrop" :enableBackdropDismiss="false">&lt;/Backdrop>
-        &lt;transition :name="transitionClass"
-                    @before-enter="beforeEnter"
-                    @after-enter="afterEnter"
-                    @before-leave="beforeLeave"
-                    @after-leave="afterLeave">
-            &lt;div class="loading-wrapper" v-show="isActive">
-                &lt;div v-if="showSpinner" class="loading-spinner">
-                    &lt;Spinner :name="spinner">&lt;/Spinner>
-                &lt;/div>
-                &lt;div v-if="content" v-html="content" class="loading-content">&lt;/div>
-            &lt;/div>
-        &lt;/transition>
-    &lt;/div>
-&lt;/template>
-&lt;style lang="less">
-    @import "loading";
-    @import "loading.ios.less";
-    @import "loading.md.less";
-
-    .ion-loading.indicator {
-        .loading-wrapper {
-            background: rgba(0, 0, 0, 0.9);
-            color: #fff;
-            padding: 13px 13px;
-            circle, line {
-                stroke: #fff !important;
-            }
-            .loading-spinner {
-                height: 30px;
-                width: 30px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
-    }
-
-    .indicator.reverse {
-        .loading-wrapper {
-            background: rgba(256, 256, 256, 0.9);
-            circle, line {
-                stroke: #000 !important;
-            }
-        }
-    }
-&lt;/style>
-&lt;script type="text/javascript">
+            <pre class="prettyprint source linenums"><code>const hasTouch = 'ontouchstart' in window
+const DEFAULT = {
+  startX: 0,
+  startY: 0,
+  scrollX: false,
+  scrollY: true,
+  freeScroll: false,
+  directionLockThreshold: 5,
+  eventPassthrough: '',
+  click: false,
+  tap: false,
+  bounce: true,
+  bounceTime: 700,
+  momentum: true,
+  momentumLimitTime: 300,
+  momentumLimitDistance: 15,
+  swipeTime: 2500,
+  swipeBounceTime: 500,
+  deceleration: 0.001,
+  flickLimitTime: 200,
+  flickLimitDistance: 100,
+  resizePolling: 60,
+  probeType: 0,
+  preventDefault: true,
+  preventDefaultException: {
+    tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT)$/
+  },
+  HWCompositing: true,
+  useTransition: true,
+  useTransform: true,
+  bindToWrapper: false,
+  disableMouse: hasTouch,
+  disableTouch: !hasTouch,
   /**
-   * @component Loading
-   * @description
-   *
-   * ## 弹出层 / Loading组件(大Loading)
-   *
-   * Loading也有大小之分
-   *
-   * ### 关于大小Loading的问题
-   *
-   * Loading的使用场景是这样的: 当用户访问数据/资源加载/需要等待操作的需求下使用, 完整的情况下需要向用户说明我这次Loading是做什么, 比如Loading是提示"**正在请求资源, 请稍后!**", 有时我们并不需提示, 只需要显示菊花图即可, 因为频繁的显示大Loading还是很烦的, 这里需要介绍下Indicator组件, 他是继承Loading组件, 但是只显示菊花图, 而且调用也简单, 不必每次传入参数.
-   *
-   * ### 弹出层
-   *
-   * - Loading通过present开启, 如果没设置duration, 则需要手动dismiss,
-   * - Vimo的弹出层都是独立于页面的, 但也不是`body`的直接子元素, 而是挂载在App组件中的. 这样做是有考量的.
-   * - 组件相应路由切换, 路由切换则自动关闭
-   *
-   * ### 用法
-   *
-   * - 不传参数则显示菊花
-   * - 传入string则显示string
-   * - 参考下面的示例
-   *
-   *
-   * @props {string} [spinner='ios'] - 菊花样式
-   * @props {string} [content] - 内容
-   * @props {string} [cssClass] - 自定义样式
-   * @props {boolean} [showBackdrop=false] - 是否显示黑色背景
-   * @props {number} [duration] - loading持续时间, 如果为0则无效
-   * @props {boolean} [dismissOnPageChange=true] - 页面切换是否关闭loading
-   * @props {string} [mode='ios'] - 模式
-   *
-   * @demo #/loading
-   * @see component:Indicator
-   * @usage
-   *
-   * // 只显示菊花
-   * spinnerOnly () {
-   *      this.$loading.present();
-   *      setTimeout(() => {
-   *        this.$loading.dismiss().then(() => {
-   *          console.debug('dismiss in promise success!')
-   *        })
-   *      }, 1000)
-   * },
-   *
-   * // 是显示name
-   * stringOnly () {
-   *      this.$loading.present('只传入了String');
-   *      setTimeout(() => {
-   *        this.$loading.dismiss().then(() => {
-   *          console.debug('dismiss in promise success!')
-   *        })
-   *      }, 1000)
-   * },
-   *
-   * // 普通的
-   * showDefault () {
-   *      this.$loading.present({
-   *        content: '正在加载, 6000ms后自动关闭...',
-   *        dismissOnPageChange: false, // url变化后关闭loading(默认)
-   *        showBackdrop: true,
-   *      });
-   *      setTimeout(() => {
-   *        this.$loading.dismiss().then(() => {
-   *          console.debug('dismiss in promise success!')
-   *        })
-   *      }, 6000);
-   * },
-   *
-   * */
-  import { urlChange } from '../util/util'
-  import { Backdrop } from '../backdrop'
-  import { Spinner } from '../spinner/index'
+   * for picker
+   * wheel: {
+   *   selectedIndex: 0,
+   *   rotate: 25,
+   *   adjustTime: 400
+   * }
+   */
+  wheel: false,
+  /**
+   * for slide
+   * snap: {
+   *   loop: false,
+   *   el: domEl,
+   *   threshold: 0.1,
+   *   stepX: 100,
+   *   stepY: 100,
+   *   listenFlick: true
+   * }
+   */
+  snap: false,
+  /**
+   * for scrollbar
+   * scrollbar: {
+   *   fade: true
+   * }
+   */
+  scrollbar: false,
+  /**
+   * for pull down and refresh
+   * pullDownRefresh: {
+   *   threshold: 50,
+   *   stop: 20
+   * }
+   */
+  pullDownRefresh: false,
+  /**
+   * for pull up and load
+   * pullUpLoad: {
+   *   threshold: 50
+   * }
+   */
+  pullUpLoad: false
+}
 
-  const NOOP = () => {}
+function defaultDataToProps (defaults) {
 
-  export default {
-    name: 'Loading',
-    props: {
-      spinner: {
-        type: String,
-        default () { return this.$config &amp;&amp; this.$config.get('spinner', 'ios') || 'ios' }
-      },
-      content: String,
-      cssClass: String,
-      showBackdrop: {
-        type: Boolean,
-        default () { return true }
-      },
-      duration: Number,
-      dismissOnPageChange: {
-        type: Boolean,
-        default () { return true }
-      },
-      mode: {
-        type: String,
-        default () { return this.$config &amp;&amp; this.$config.get('mode') || 'ios' }
-      }
-    },
-    data () {
-      return {
-        isActive: false, // 开启状态
-        enabled: false, // 组件当前是否进入正常状态的标示(正常显示状态 和 正常退出状态)
-
-        // promise
-        presentCallback: NOOP,
-        dismissCallback: NOOP,
-
-        startTime: null,
-        timer: null,
-        unreg: null
-      }
-    },
-    computed: {
-      // 设置ActionSheet的风格
-      modeClass () {
-        return `loading-${this.mode}`
-      },
-      showSpinner () {
-        return this.spinner !== 'hide'
-      },
-      transitionClass () {
-        return `loading-${this.mode}`
-      }
-    },
-    methods: {
-      // -------- private --------
-      /**
-       * ActionSheet Animate Hooks
-       * */
-      beforeEnter () {
-        this.$app &amp;&amp; this.$app.setEnabled(false, 200)
-        this.enabled = false
-      },
-      afterEnter () {
-        this.presentCallback()
-        this.enabled = true
-      },
-      beforeLeave () {
-        this.$app &amp;&amp; this.$app.setEnabled(false, 200)
-        this.enabled = false
-      },
-      afterLeave () {
-        // 删除DOM
-        this.dismissCallback()
-        this.$el.remove()
-        this.enabled = true
-      },
-
-      // -------- public --------
-      /**
-       * @function present
-       * @description
-       * 打开Loading
-       * @param {Object} options - 给组件props传参的对象, 这部分在loading.js中定义
-       * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
-       */
-      present () {
-        this.startTime = new Date().getTime()
-        this.isActive = true
-        if (parseInt(this.duration) > 16) {
-          this.timer &amp;&amp; window.clearTimeout(this.timer)
-          this.timer = window.setTimeout(() => {
-            this.dismiss()
-          }, this.duration)
+  let props = {}
+  for (let key in defaults) {
+    let value = defaults[key]
+    let valueType = typeof value
+    let tmp = null
+    switch (valueType) {
+      case 'number':
+        tmp = {
+          type: [Number, String],
+          default: value
         }
-        return new Promise((resolve) => { this.presentCallback = resolve })
-      },
-
-      /**
-       * @function dismiss
-       * @description
-       * 关闭Loading
-       * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
-       * */
-      dismiss () {
-        if (this.isActive) {
-          this.isActive = false // 动起来
-          this.timer &amp;&amp; window.clearTimeout(this.timer)
-          this.unreg &amp;&amp; this.unreg()
-          if (!this.enabled) {
-            this.$nextTick(() => {
-              this.$el.remove()
-              this.dismissCallback()
-              this.enabled = true
-            })
+        break
+      case 'string':
+        tmp = {
+          type: String,
+          default: value
+        }
+        break
+      case 'boolean':
+        tmp = {
+          type: [Boolean, Number],
+          default: value
+        }
+        break
+      case 'object':
+        if (value) {
+          tmp = {
+            type: Object,
+            default () {
+              return JSON.parse(JSON.stringify(value))
+            }
           }
-          return new Promise((resolve) => { this.dismissCallback = resolve })
         } else {
-          return new Promise((resolve) => { resolve() })
+          // Number String Function
+          tmp = {
+            type: [Object, Number, String, Function, Array],
+            default () {
+              return null
+            }
+          }
         }
-      }
-    },
-    created () {
-      if (this.dismissOnPageChange) {
-        this.unreg = urlChange(() => {
-          this.isActive &amp;&amp; this.dismiss()
-        })
-      }
-    },
-    components: {
-      Backdrop, Spinner
+        break
+      case 'function':
+        tmp = {
+          type: Function,
+          default () {
+            return value
+          }
+        }
+        break
+      case 'undefined':
+        tmp = [Object]
+        break
+      default:
+        tmp = [Object]
+        console.debug('这个属性未找到::props.js::defaultDataToProps()')
+        console.debug('key: ' + key)
+        console.debug('value: ' + value)
+        console.debug('valueType: ' + valueType)
+        break
     }
+    props[key] = tmp
   }
-&lt;/script>
-</code></pre>
+  return props
+}
+
+export default defaultDataToProps(DEFAULT)</code></pre>
         </article>
     </section>
 

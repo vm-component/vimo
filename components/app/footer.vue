@@ -1,5 +1,5 @@
 <template>
-    <footer class="ion-footer footer" :class="[{'hide-bar':isHide}]" :style="style">
+    <footer class="ion-footer" :class="[{'hide-bar':isHide}]" :style="style">
         <slot></slot>
     </footer>
 </template>
@@ -14,6 +14,7 @@
         display: block;
         width: 100%;
         transition: -webkit-transform ease 300ms;
+        min-height: @toolbar-height; /*no*/
     }
 
     .ion-footer.hide-bar {

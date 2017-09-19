@@ -306,7 +306,7 @@ export class Config {
    * 获取缓存配置
    * @return {object}
    * */
-  catch () {
+  cache () {
     return this._cache
   }
 }

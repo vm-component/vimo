@@ -98,6 +98,9 @@ window.dd.ready(function (data) {
 if (process.env.NODE_ENV === 'development') {
   Vue.config.productionTip = false
   Vue.config.silent = false
+
+  let vmLog = require('./lib/vm-log')
+  Vue.use(vmLog)
 } else {
   Vue.config.productionTip = true
   Vue.config.silent = true

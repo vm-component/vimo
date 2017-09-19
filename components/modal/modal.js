@@ -112,13 +112,20 @@ function present (options = {}) {
     registerListener(window, 'popstate', function () {
       if (isModalEnable) {
         // 总是关闭最后一次创建的modal
-        dismiss()
-        // let _lastModal = modalArr.pop()
-        // _lastModal && _lastModal.dismiss()
-        // // 如果是最后一个则解绑urlChange
-        // if (modalArr.length === 0) {
-        //   unregisterAllListener()
-        // }
+        let _lastModal = modalArr.pop()
+        _lastModal && _lastModal.dismiss()
+        // 如果是最后一个则解绑urlChange
+        if (modalArr.length === 0) {
+          unregisterAllListener()
+          // 通知父页面更新navbar
+          if (window.VM) {
+            window.VM.$navbar && window.VM.$navbar.initWhenInWebview && window.VM.$navbar.initWhenInWebview()
+            window.VM.$title && window.VM.$title.init && window.VM.$title.init()
+          }
+        } else {
+          // 取出倒数第二个modal, 将nav更新为他的nav
+          refreshNavbar(modalArr)
+        }
       }
     }, {}, unRegisterUrlChange)
   }
@@ -146,8 +153,10 @@ function dismiss (dataBack) {
     if (modalArr.length === 0) {
       unregisterAllListener()
       // 通知父页面更新navbar
-      window.VM.$navbar.initWhenInWebview()
-      window.VM.$title.init()
+      if (window.VM) {
+        window.VM.$navbar && window.VM.$navbar.initWhenInWebview && window.VM.$navbar.initWhenInWebview()
+        window.VM.$title && window.VM.$title.init && window.VM.$title.init()
+      }
     } else {
       // 取出倒数第二个modal, 将nav更新为他的nav
       refreshNavbar(modalArr)
