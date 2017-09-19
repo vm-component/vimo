@@ -1,7 +1,10 @@
 <template>
     <nav class="ion-nav"
-         :class="[menuContentClass,menuContentTypeClass,{'menu-content-open':isMenuOpen}]"
-         :style="menuStyleObj">
+         :class="[
+           menuContentClass,
+           menuContentTypeClass,
+           menuContentSideeClass,
+           {'menu-content-open':isMenuOpen}]">
         <div nav-viewport></div>
         <div v-if="isMenuOpen" @click="tapToCloseMenu" class="click-cover"></div>
         <!--animate-->
@@ -60,17 +63,13 @@
         IndicatorComponent: null,
 
         // ----------- Menu -----------
-        menuStyleObj: {
-          transform: ''
-        },
-
         isMenuOpen: false, // ion-menu开启
         menuId: null, // menuId
         menuType: '', // overlay/reveal/push  这里只处理 reveal/push
         menuSide: 'left', // 方向
         menuContentClass: null,
         menuContentTypeClass: null,
-        transform: this.$platform.css ? this.$platform.css.transform : 'webkitTransform'
+        menuContentSideeClass: null
       }
     },
     methods: {
@@ -130,6 +129,7 @@
           this.menuType = this.$menus.menuIns[menuId].type
           this.menuContentClass = `menu-content`
           this.menuContentTypeClass = `menu-content-${this.menuType}`
+          this.menuContentSideeClass = `menu-content-${this.menuSide}`
         }
       },
 
@@ -138,33 +138,13 @@
        * @private
        * */
       initMenu () {
-        let _translateX
         // 监听menu的组件事件
         this.$eventBus.$on('onMenuOpen', (menuId) => {
           this.setMenuInfo(menuId)
           this.isMenuOpen = true
-
-          // 获取开口读, 宽度小于340px的的屏幕开口度为264px
-          // 大于340px的屏幕开口度为304px
-          if (this.$platform.width() > 340) {
-            _translateX = 304
-          } else {
-            _translateX = 264
-          }
-
-          if (this.menuType === 'reveal' || this.menuType === 'push') {
-            if (this.menuSide === 'left') {
-              this.menuStyleObj[this.transform] = `translateX(${_translateX}px)`
-            } else {
-              this.menuStyleObj[this.transform] = `translateX(-${_translateX}px)`
-            }
-          }
         })
-        this.$eventBus.$on('onMenuClosing', (menuId) => {
+        this.$eventBus.$on('onMenuClosing', () => {
           this.isMenuOpen = false
-          if (this.menuType === 'reveal' || this.menuType === 'push') {
-            this.menuStyleObj[this.transform] = 'translateX(0)'
-          }
         })
         this.$eventBus.$on('onMenuClosed', () => {
           this.menuContentTypeClass = null

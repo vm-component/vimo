@@ -68,6 +68,7 @@
   cursor: pointer;
   // 开始的动画函数
   touch-action: manipulation;
+
 }
 
 .menu-content-open .ion-pane,
@@ -78,12 +79,26 @@
   pointer-events: none;
 }
 
-@media (max-width: 340px) {
+.menu-content-push.menu-content-open,
+.menu-content-reveal.menu-content-open {
+  transform: translateX(304px);
+  @media (max-width: 340px) {
+    transform: translateX(264px);
+  }
+}
 
+.menu-content-push.menu-content-right.menu-content-open,
+.menu-content-reveal.menu-content-right.menu-content-open {
+  transform: translateX(-304px);
+  @media (max-width: 340px) {
+    transform: translateX(-264px);
+  }
+}
+
+@media (max-width: 340px) {
   .menu-inner {
     width: @menu-small-width;
   }
-
 }
 
 // Menu Reveal
