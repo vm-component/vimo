@@ -56,7 +56,7 @@
    *
    * ### 注意
    *
-   * Input组件只能对以下类型的type作出相应 : `text`,`password`, `email`, `number`, `search`, `tel`, and `url`. 但是不适用一下类型: `checkbox`, `radio`, `toggle`, `range`, `select`, etc. 当然, input直接使用也没问题.
+   * Input组件只能对以下类型的type作出相应 : `text`,`password`, `email`, `number`, `search`, `tel`, and `url`. 但是不适用一下类型: `checkbox`, `radio`, `toggle`, `range`, `select`, etc.
    *
    * 此外, Textarea组件和Input组件两者的使用个逻辑相似.
    *
@@ -110,6 +110,7 @@
    * @props {Boolean} [clearInput]      - 如果为true, 当输入值的时候一个清除按钮会在input右边出现, 点击按钮则清除输入. textarea没有这个特性
    * @props {Boolean} [clearOnEdit]     - 如果为true, 当再次输入的时候会清空上次的输入, 如果type为password时默认为true, 其余情况默认为false, 默认值的变更, 需要js控制
    * @props {Boolean} [disabled]        - 如果为true, 用户无法输入
+   * @props {Boolean} [showFocusHighlight]        - focus时底部高亮
    * @props {Number} [max]              - 设置最大值, 只对type=number有效
    * @props {Number} [maxlength]        - 设置最大值, 只对textarea有效
    * @props {Number} [rows=3]             - 设置行数, 只对textarea有效
@@ -136,7 +137,7 @@
    * <Textarea @onBlur="onBlur($event)" @onFocus="onFocus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>
    *
    * */
-  import { hasFocus, setElementClass, isPresent, isFunction} from '../util/util'
+  import { hasFocus, setElementClass, isPresent, isFunction } from '../util/util'
   import { Button } from '../button'
   import Autosize from 'autosize'
   import REGEXP from '../util/regexp'
@@ -159,6 +160,11 @@
       }
     },
     props: {
+      /**
+       * focus时, 下划线是否高亮
+       * */
+      showFocusHighlight: Boolean,
+
       /**
        * 如果为true, 当输入值的时候一个清除按钮会在input右边出现, 点击按钮则清除输入
        * textarea没有这个特性
@@ -260,7 +266,7 @@
     },
     computed: {
       modeClass () {
-        return `input input-${this.mode}`
+        return `input-${this.mode}`
       },
       textInputClass () {
         return `text-input text-input-${this.mode}`
@@ -527,6 +533,10 @@
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-textarea', (this.typeValue === 'textarea'))
         setElementClass(this.itemComponent.$el, 'item-input', true)
+
+        setElementClass(this.itemComponent.$el, 'show-focus-highlight', this.showFocusHighlight)
+        setElementClass(this.itemComponent.$el, 'show-valid-highlight', this.checkValue)
+        setElementClass(this.itemComponent.$el, 'show-invalid-highlight', this.checkValue)
       }
 
       // 初始化时,判断是否有value

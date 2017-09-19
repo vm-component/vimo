@@ -30,16 +30,6 @@
 /// @prop - Size of the icon used to clear the input
 @text-input-ios-input-clear-icon-size: 18px;
 
-/// @prop - Show the focus highlight when the input has focus
-@text-input-ios-show-focus-highlight: false;
-//@text-input-ios-show-focus-highlight: true;
-
-/// @prop - Show the valid highlight when it is valid and has a value
-@text-input-ios-show-valid-highlight: @text-input-ios-show-focus-highlight;
-
-/// @prop - Show the invalid highlight when it is invalid and has value
-@text-input-ios-show-invalid-highlight: @text-input-ios-show-focus-highlight;
-
 /// @prop - Color of the input highlight
 @text-input-ios-highlight-color: @primary-ios;
 
@@ -78,51 +68,48 @@
 }
 
 // Show the focus highlight when the input has focus
-& when (@text-input-ios-show-focus-highlight) {
-  // In order to get a 2px border we need to add an inset
-  // box-shadow 1px (this is to avoid the div resizing)
-  .item-ios.item-input.input-has-focus .item-inner {
-    .ios-input-highlight(@text-input-ios-highlight-color);
-  }
+//& when (@text-input-ios-show-focus-highlight) {
+// In order to get a 2px border we need to add an inset
+// box-shadow 1px (this is to avoid the div resizing)
+.item-ios.item-input.input-has-focus.show-focus-highlight .item-inner {
+  .ios-input-highlight(@text-input-ios-highlight-color);
+}
 
-  // The last item in a list has a border on the item, not the
-  // inner item, so add it to the item itself
-  .list-ios .item-input.input-has-focus:last-child {
-    .ios-input-highlight(@text-input-ios-highlight-color);
+// The last item in a list has a border on the item, not the
+// inner item, so add it to the item itself
+.list-ios .item-input.input-has-focus.show-focus-highlight:last-child {
+  .ios-input-highlight(@text-input-ios-highlight-color);
 
-    .item-inner {
-      box-shadow: none;
-    }
+  .item-inner {
+    box-shadow: none;
   }
 }
 
+//}
+
 // Show the valid highlight when it has the .ng-valid class and a value
-& when (@text-input-ios-show-valid-highlight) {
-  .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
-    .ios-input-highlight(@text-input-ios-highlight-color-valid);
-  }
+.item-ios.item-input.ng-valid.input-has-value.show-valid-highlight:not(.input-has-focus) .item-inner {
+  .ios-input-highlight(@text-input-ios-highlight-color-valid);
+}
 
-  .list-ios .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child {
-    .ios-input-highlight(@text-input-ios-highlight-color-valid);
+.list-ios .item-input.ng-valid.input-has-value.show-valid-highlight:not(.input-has-focus):last-child {
+  .ios-input-highlight(@text-input-ios-highlight-color-valid);
 
-    .item-inner {
-      box-shadow: none;
-    }
+  .item-inner {
+    box-shadow: none;
   }
 }
 
 // Show the invalid highlight when it has the invalid class and has been touched
-& when (@text-input-ios-show-invalid-highlight) {
-  .item-ios.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
-    .ios-input-highlight(@text-input-ios-highlight-color-invalid);
-  }
+.item-ios.item-input.ng-invalid.ng-touched.show-invalid-highlight:not(.input-has-focus) .item-inner {
+  .ios-input-highlight(@text-input-ios-highlight-color-invalid);
+}
 
-  .list-ios .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {
-    .ios-input-highlight(@text-input-ios-highlight-color-invalid);
+.list-ios .item-input.ng-invalid.ng-touched.show-invalid-highlight:not(.input-has-focus):last-child {
+  .ios-input-highlight(@text-input-ios-highlight-color-invalid);
 
-    .item-inner {
-      box-shadow: none;
-    }
+  .item-inner {
+    box-shadow: none;
   }
 }
 
@@ -138,8 +125,8 @@
   width: ~'calc(100% - @{text-input-ios-margin-right})';
 }
 
-.item-ios.item-label-stacked .label-ios + .input + .cloned-input,
-.item-ios.item-label-floating .label-ios + .input + .cloned-input {
+.item-ios.item-label-stacked .label-ios + .ion-input + .cloned-input,
+.item-ios.item-label-floating .label-ios + .ion-input + .cloned-input {
   margin-left: 0;
 }
 
@@ -162,7 +149,7 @@
 }
 
 .input-ios .text-input-clear-icon {
-.svg-background-image(@text-input-ios-input-clear-icon-svg);
+  .svg-background-image(@text-input-ios-input-clear-icon-svg);
 
   right: (@item-ios-padding-right / 2);
 
