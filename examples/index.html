@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="font-size: 50px;">
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
@@ -18,24 +18,24 @@
     <meta name="format-detection" content="telephone=no email=no">
     <meta name="application-name" content="Vimo">
     <script>
-      (function(doc, win) {
+      (function (doc, win) {
         var docEl = doc.documentElement,
           resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-          recalc = function() {
-            var clientWidth = docEl.clientWidth;
+          recalc = function () {
+            var clientWidth = docEl.clientWidth
             if (!clientWidth)
-              return;
+              return
             //由屏幕宽度得到basefont大小,并将其写入html标签中,文档总的尺寸由rem确定
-            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
-            doc.body.style.display = "block";
-            doc.getElementsByTagName('html')[0].removeAttribute('class');
-          };
+            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'
+            doc.body.style.display = 'block'
+            doc.getElementsByTagName('html')[0].removeAttribute('class')
+          }
 
         if (!doc.addEventListener)
-          return;
-        win.addEventListener(resizeEvt, recalc, false);
-        doc.addEventListener('DOMContentLoaded', recalc, false);
-      })(document, window);
+          return
+        win.addEventListener(resizeEvt, recalc, false)
+        doc.addEventListener('DOMContentLoaded', recalc, false)
+      })(document, window)
     </script>
     <title></title>
 </head>

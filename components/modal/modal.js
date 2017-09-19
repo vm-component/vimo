@@ -118,8 +118,10 @@ function present (options = {}) {
         if (modalArr.length === 0) {
           unregisterAllListener()
           // 通知父页面更新navbar
-          window.VM.$navbar.initWhenInWebview()
-          window.VM.$title.init()
+          if (window.VM) {
+            window.VM.$navbar && window.VM.$navbar.initWhenInWebview && window.VM.$navbar.initWhenInWebview()
+            window.VM.$title && window.VM.$title.init && window.VM.$title.init()
+          }
         } else {
           // 取出倒数第二个modal, 将nav更新为他的nav
           refreshNavbar(modalArr)
@@ -151,8 +153,10 @@ function dismiss (dataBack) {
     if (modalArr.length === 0) {
       unregisterAllListener()
       // 通知父页面更新navbar
-      window.VM.$navbar.initWhenInWebview()
-      window.VM.$title.init()
+      if (window.VM) {
+        window.VM.$navbar && window.VM.$navbar.initWhenInWebview && window.VM.$navbar.initWhenInWebview()
+        window.VM.$title && window.VM.$title.init && window.VM.$title.init()
+      }
     } else {
       // 取出倒数第二个modal, 将nav更新为他的nav
       refreshNavbar(modalArr)
