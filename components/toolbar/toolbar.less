@@ -40,17 +40,17 @@
 
 .ios {
   .toolbar {
-    padding: @toolbar-ios-padding;
-    height: @toolbar-ios-height;
-    min-height: @toolbar-ios-height;
+    padding: @toolbar-ios-padding; /*no*/
+    height: @toolbar-ios-height; /*no*/
+    min-height: @toolbar-ios-height; /*no*/
   }
 }
 
 .md {
   .toolbar {
-    padding: @toolbar-md-padding;
-    height: @toolbar-md-height;
-    min-height: @toolbar-md-height;
+    padding: @toolbar-md-padding; /*no*/
+    height: @toolbar-md-height; /*no*/
+    min-height: @toolbar-md-height; /*no*/
   }
 }
 
@@ -85,18 +85,18 @@
 }
 
 .ios .ion-header .toolbar:last-child .toolbar-background {
-  border-width: 0 0 @hairlines-width;
+  border-width: 0 0 @hairlines-width;  /*no*/
 }
 
 .md .ion-footer:before, .md .ion-header:after, .tabs-md[tabsPlacement=bottom] > .tabbar:before, .tabs-md[tabsPlacement=top] > .tabbar:after {
   position: absolute;
-  bottom: -5px;
+  bottom: -5px;  /*no*/
   left: 0;
   width: 100%;
-  height: 5px;
+  height: 5px;  /*no*/
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMVEUAAAAAAAAAAAAAAAAAAABPDueNAAAABXRSTlMUCS0gBIh/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==);
   background-repeat: repeat-x;
-  background-position: 0 -2px;
+  background-position: 0 -2px;  /*no*/
   content: "";
 }
 
@@ -126,7 +126,7 @@
 // --------------------------------------------------
 
 .toolbar-title {
-  font-size: @toolbar-title-font-size;
+  font-size: @toolbar-title-font-size;  /*no*/
   font-weight: @toolbar-title-font-weight;
   text-align: @toolbar-title-text-align;
   color: @toolbar-title-text-color;
@@ -181,12 +181,12 @@
 // --------------------------------------------------
 // mixin
 .icon-arrow-back {
-  height: 23px;
-  width: 18px;
+  height: 23px;  /*no*/
+  width: 18px;  /*no*/
   display: inline-block;
   background-repeat: no-repeat;
   background-position: left center;
-  background-size: 16px 23px;
+  background-size: 16px 23px;  /*no*/
 }
 
 .arrow-back(@color) {
@@ -226,9 +226,9 @@
 // --------------------------------------------------
 
 .bar-button {
-  padding: 0 4px;
+  padding: 0 4px;  /*no*/
 
-  height: 32px;
+  height: 32px;  /*no*/
 
   border: 0;
   border-radius: @toolbar-button-border-radius;
@@ -258,15 +258,15 @@
 
 .md {
   .bar-button {
-    padding: 0 5px;
-    height: 32px;
+    padding: 0 5px;  /*no*/
+    height: 32px;  /*no*/
     border: 0;
-    border-radius: 2px;
-    font-size: 14px;
+    border-radius: 2px;  /*no*/
+    font-size: 14px;  /*no*/
     font-weight: 500;
     text-transform: uppercase;
-    margin: 0 6px;
-    min-width: 44px;
+    margin: 0 6px;  /*no*/
+    min-width: 44px;  /*no*/
     box-shadow: none;
   }
 }
@@ -462,7 +462,7 @@
 
   margin: 0;
 
-  min-height: 32px;
+  min-height: 32px;  /*no*/
 
   line-height: 1;
   transform: translateZ(0);

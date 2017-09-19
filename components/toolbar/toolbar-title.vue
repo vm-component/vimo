@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-title title">
+    <div class="ion-title">
         <div class="toolbar-title"
              :style="{color:titleColor}"
              @click="titleClick" v-html="titleInner"></div>
