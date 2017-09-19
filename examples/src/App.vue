@@ -1,12 +1,8 @@
 <template>
     <App>
         <!--menu menu-->
-        <Menus id="menu" side="left">
-            <!--<Header>-->
-                <!--<Toolbar>-->
-                    <!--<Title :title="$t('menu.menu')"></Title>-->
-                <!--</Toolbar>-->
-            <!--</Header>-->
+        <!--type: overlay/reveal/push-->
+        <Menus id="menu" side="left" type="reveal">
             <Content>
                 <List>
                     <!--开始-->

@@ -9,7 +9,8 @@
             <List>
                 <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
             </List>
-            <InfiniteScroll class="infiniteScroll" :enabled="true" threshold="10%" @onInfinite="onInfinite">
+            <InfiniteScroll ref="infiniteScroll" class="infiniteScroll" :enabled="true" threshold="10%"
+                            @onInfinite="onInfinite">
                 <!--<InfiniteScroll class="infiniteScroll" :enabled="true" threshold="20%" @onInfinite="$event.waitFor(onInfinitePromise())">-->
                 <InfiniteScrollContent loadingSpinner="ios" loadingText="正在加载..."></InfiniteScrollContent>
                 <h5 class="loadedAll" text-center>全部加载完毕</h5>
@@ -36,35 +37,50 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'page',
     data () {
       return {
         i: 0,
+        total: 40,
         list: []
       }
     },
     props: {},
     watch: {},
-    computed: {},
+    computed: {
+      infiniteScrollComponent () {
+        return this.$refs.infiniteScroll
+      }
+    },
     methods: {
+      fetchData () {
+        return new Promise((resolve, reject) => {
+          let list = []
+          window.setTimeout(() => {
+            if (this.total > 0) {
+              for (let j = 0; this.total > 0 && j < 10; j++, this.i++, this.total--) {
+                this.list.push(`item - ${this.i}`)
+              }
+              resolve(list)
+            } else {
+              reject([])
+            }
+          }, 500)
+        })
+      },
       onInfinite (infiniteScroll) {
         console.debug('onInfinite')
-        let _start = this.i
-        if (_start < 400) {
-          setTimeout(() => {
-            for (; (10 + _start) > this.i; this.i++) {
-              this.list.push(`item - ${this.i}`)
-            }
-            // 当前异步完成
-            infiniteScroll.complete()
-            console.debug('onInfinite-complete')
-          }, 500)
-        } else {
+        this.fetchData().then((list) => {
+          this.list = [].concat(this.list, list)
+          // 当前异步完成
+          infiniteScroll.complete()
+          console.debug('onInfinite-complete')
+        }, () => {
           // 当前异步结束, 没有新数据了
           infiniteScroll.enable(false)
           console.debug('onInfinite-enable-false')
-        }
+        })
       },
       onInfinitePromise () {
         console.debug('Begin async operation')
@@ -82,9 +98,7 @@
       }
     },
     created () {
-      for (; this.i < 15; this.i++) {
-        this.list.push(`item - ${this.i}`)
-      }
+      this.onInfinite(this.infiniteScrollComponent)
     },
     mounted () {},
     activated () {}

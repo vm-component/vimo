@@ -82,6 +82,14 @@
             </List>
 
             <List>
+                <ListHeader>Focus Highlight</ListHeader>
+                <Item>
+                    <Label color="primary">聚焦高亮</Label>
+                    <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
+                </Item>
+            </List>
+
+            <List>
                 <ListHeader>
                     <span>输入验证</span>
                 </ListHeader>
@@ -163,7 +171,7 @@
 </style>
 <script type="text/javascript">
   export default {
-    name: 'name',
+    name: 'InputDemo',
     data () {
       return {
         testValue: 'hello',

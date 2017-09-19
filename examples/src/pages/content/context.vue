@@ -31,6 +31,15 @@
             </ul>
 
         </Content>
+        <Footer>
+            <Toolbar>
+                <Segment value="1">
+                    <SegmentButton value="1">第一章</SegmentButton>
+                    <SegmentButton value="2">第二章</SegmentButton>
+                    <SegmentButton value="3">第三章</SegmentButton>
+                </Segment>
+            </Toolbar>
+        </Footer>
     </Page>
 </template>
 <style scoped lang="scss">
@@ -39,7 +48,7 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'context'
   }
 </script>

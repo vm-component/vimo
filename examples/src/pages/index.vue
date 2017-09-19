@@ -20,7 +20,7 @@
                     <Row class="vimo__logo">
                         <Column text-center no-padding>
                             <div class="vimo__logo--img">
-                                <img height="120" src="../assets/vimo.png">
+                                <img src="../assets/vimo.png">
                             </div>
                         </Column>
                     </Row>
@@ -75,8 +75,13 @@
             flex-direction: column;
             /*padding-bottom: 45px;*/
             .vimo__logo {
+                flex: 110px 0 0; /*no*/
                 .vimo__logo--img {
-                    height: 120px;
+                    height: 110px; /*no*/
+                    flex: 110px 0 0; /*no*/
+                    img {
+                        height: 100%;
+                    }
                 }
             }
             .vimo__text {
