@@ -18,7 +18,7 @@
                    @input="inputChanged($event)"
                    @keydown="inputKeyDown($event)">
         </div>
-        <vm-button v-if="clearInput && hasValue()"
+        <vm-button v-if="clearInput && hasValue"
                    clear
                    class="text-input-clear-icon"
                    @click="clearTextInput()"></vm-button>
@@ -55,34 +55,32 @@
    * }
    * ```
    *
-   *
    * ### 关于输入验证
    *
    * - 只在blur阶段才进行
-   * - `check`默认关闭, check只是作为内部正误标示, 对外提交不起作用
-   * - 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名, 这样的话, 验证位置就会统一.
-   * - 如果check开启, 但是regex无值, 则使用内置判断.
-   * - 如果regex有值, 则自动开启check
-   * - 内部验证的type有: integer/positiveInteger/negativeInteger/mobile/email/ip/idCard
+   * - ```check```默认关闭, ```check```只是作为内部正误标示, 只有开启了检查, 才会发出```onValid```和```onInvalid```两个事件, 外部提交判断需要额外代码判断(内部```isValid```变量).
+   * - 如果```check```开启, 但是regex无值, 则使用内置判断(如下).
+   * - 如果```regex```有值, 则自动开启```check```, 支持的regex可以使正则, 也可以是返回Boolena的函数, 传入参数为传入的value
+   * - 内部验证的typ如下
    *
    * ### 内置的验证type
    *
-   * 名称    | 类型              | 说明
+   * 名称    | 类型              |内部类型              | 说明
    * ------|-----------------|------------------------------------------------------------------------------
-   * 整数    | integer         |
-   * 正整数   | positiveInteger |
-   * 负整数   | negativeInteger |
-   * 邮箱    | email           |
-   * IP地址  | ip              |
-   * 身份证   | idCard          | 严格验证
-   * 密码    | password        | 密码需6-18位，以字母开头可含数字
-   * 国内电话  | tel             | 正确格式为：XXXX-XXXXXXX，XXXX- XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。
-   * 国内手机号 | mobile          | 13/14/15/18/17开头
-   * 验证汉字  | cn              |
-   * 验证码   | securityCode    | 至少4位
-   * 昵称    | nickName        | 可由中英文字母、数字、"-"、"_"组成。
-   * QQ号码  | qq              | qq: 1-9开头，最少5位。
-   * 网址URL | url             | 网址URL, 必须以(https,http,ftp,rtsp,mms)开头
+   * 整数    | integer         | number| 整数
+   * 正整数   | positiveInteger |number| 正整数
+   * 负整数   | negativeInteger |number| 负整数
+   * 邮箱    | email           |email| 电子邮件
+   * IP地址  | ip              |number| IP地址
+   * 身份证   | idCard          | text| 严格验证
+   * 密码    | password        | password|密码需6-18位，以字母开头可含数字
+   * 国内电话  | tel             | tel|正确格式为：XXXX-XXXXXXX，XXXX- XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。
+   * 国内手机号 | mobile          | tel|13/14/15/18/17开头
+   * 验证汉字  | cn              |text|
+   * 验证码   | securityCode    | number|至少4位数字
+   * 昵称    | nickName        | text|可由中英文字母、数字、"-"、"_"组成。
+   * QQ号码  | qq              | number|qq: 1-9开头，最少5位。
+   * 网址URL | url             | url|网址URL, 必须以(https,http,ftp,rtsp,mms)开头
    *
    * @props {Boolean} [clearInput]      - 如果为true, 当输入值的时候一个清除按钮会在input右边出现, 点击按钮则清除输入.
    * @props {Boolean} [clearOnEdit]     - 如果为true, 当再次输入的时候会清空上次的输入, 如果type为password时默认为true, 其余情况默认为false, 默认值的变更, 需要js控制
@@ -215,7 +213,7 @@
 
         itemComponent: null, // 外部item组件实例 -> 修改class
 
-        isValid: false,
+        isValid: false, // 验证结果
 
         timer: null,
 
@@ -266,6 +264,10 @@
       },
       inputElement () {
         return this.$refs.input
+      },
+      hasValue () {
+        const inputValue = this.inputValue
+        return (inputValue !== null && inputValue !== undefined && inputValue !== '')
       }
     },
     methods: {
@@ -385,7 +387,7 @@
              */
             this.$emit('onBlur')
             // 如果是clearOnEdit模式， blur时还有值的情况下，定一个flag
-            if (this.clearOnEditValue && this.hasValue()) {
+            if (this.clearOnEditValue && this.hasValue) {
               this.didBlurAfterEdit = true
             }
 
@@ -455,7 +457,7 @@
         }
 
         // clearOnEdit模式激活,并且input有值
-        if (this.didBlurAfterEdit && this.hasValue()) {
+        if (this.didBlurAfterEdit && this.hasValue) {
           this.inputValue = ''
           this.inputChanged()
         }
@@ -485,6 +487,7 @@
         if (this.itemComponent) {
           setElementClass(this.itemComponent.$el, 'input-has-focus', isFocus)
         }
+        setElementClass(this.$el, 'input-has-focus', isFocus)
       },
 
       /**
@@ -493,17 +496,9 @@
        */
       setItemHasValueClass () {
         if (this.itemComponent) {
-          setElementClass(this.itemComponent.$el, 'input-has-value', this.hasValue())
+          setElementClass(this.itemComponent.$el, 'input-has-value', this.hasValue)
         }
-      },
-
-      /**
-       * 判断input是否有value
-       * @private
-       * */
-      hasValue () {
-        const inputValue = this.inputValue
-        return (inputValue !== null && inputValue !== undefined && inputValue !== '')
+        setElementClass(this.$el, 'input-has-value', this.hasValue)
       }
     },
     created () {
@@ -525,7 +520,6 @@
       if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-input', true)
-
         setElementClass(this.itemComponent.$el, 'show-focus-highlight', this.showFocusHighlight)
         setElementClass(this.itemComponent.$el, 'show-valid-highlight', this.checkValue)
         setElementClass(this.itemComponent.$el, 'show-invalid-highlight', this.checkValue)

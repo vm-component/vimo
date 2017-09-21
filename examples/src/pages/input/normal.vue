@@ -73,6 +73,14 @@
                     <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
                 </Item>
             </List>
+
+            <List>
+                <ListHeader>Input单独使用</ListHeader>
+
+                <section class="customer">
+                    <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
+                </section>
+            </List>
         </Content>
     </Page>
 </template>
@@ -87,3 +95,13 @@
     }
   }
 </script>
+<style lang="less">
+    .customer {
+        width: 80%;
+        height: 40px;
+        background-color: #ffffff;
+        color: #000000;
+        margin: 10px auto;
+        padding-left: 10px;
+    }
+</style>
