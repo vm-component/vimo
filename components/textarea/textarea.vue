@@ -242,7 +242,6 @@
       verification () {
         if (!this.required) return
 
-
         this.isValid = this.hasValue
         if (this.isValid) {
           /**

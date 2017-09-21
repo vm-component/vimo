@@ -1,6 +1,6 @@
 @import "../themes/index.less";
 
-// Input/Textarea Wrapper
+// Textarea Wrapper
 // --------------------------------------------------
 
 .ion-textarea {
@@ -20,7 +20,7 @@
   align-items: stretch;
 }
 
-// Native Text Input
+// Native Text Textarea
 // --------------------------------------------------
 
 .text-input {
@@ -53,12 +53,6 @@ textarea.text-input {
   resize: none;
 }
 
-
-
-// Input Cover: Focused
-// --------------------------------------------------
-// When the input has focus, then the input cover should be hidden
-
 .input-has-focus {
   pointer-events: none;
 }
@@ -68,25 +62,4 @@ textarea.text-input {
 .input-has-focus a,
 .input-has-focus button {
   pointer-events: auto;
-}
-
-// Clear Input Icon
-// --------------------------------------------------
-
-.text-input-clear-icon {
-  position: absolute;
-  top: 0;
-  display: none;
-
-  margin: 0;
-  padding: 0;
-
-  height: 100%;
-
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.input-has-focus.input-has-value .text-input-clear-icon {
-  display: block;
 }
