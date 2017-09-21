@@ -36,10 +36,10 @@
                     v-if="typeValue ==='textarea'"></textarea>
         </div>
 
-        <Button v-if="clearInput && typeValue!=='textarea' && hasValue()"
-                clear
-                class="text-input-clear-icon"
-                @click="clearTextInput()"></Button>
+        <vm-button v-if="clearInput && typeValue!=='textarea' && hasValue()"
+                   clear
+                   class="text-input-clear-icon"
+                   @click="clearTextInput()"></vm-button>
     </div>
 </template>
 <style lang="less">
@@ -123,13 +123,13 @@
    * @props {*} [value]                 - 内容输入值
    * @props {Number} [debounce=0]       - 触发间隔
    * @props {RegExp} [regex]            - 自定义正则
-   * @props {Boolean} [check]           - 是否check输入结果, 如果regex有值, 则开启, 否自关闭. 如果check开启, 但是regex无值, 则使用内置判断. 默认关闭check, check只是作为内部正误标示, 对外提交不起作用, 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名, 这样的话, 验证位置就会统一.
-   *
-   *
+   * @props {Boolean} [check]           - 是否check输入结果, 如果regex有值, 则开启, 否则关闭. 如果check开启, 但是regex无值, 则使用内置判断. 默认关闭check, check只是作为内部正误标示, 对外提交不起作用, 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名, 这样的话, 验证位置就会统一.
    *
    * @fires component:Input#onBlur
    * @fires component:Input#onFocus
    * @fires component:Input#onInput
+   * @fires component:Input#onValid
+   * @fires component:Input#onInvalid
    *
    * @demo #/input
    * @usage
@@ -151,6 +151,8 @@
 
         itemComponent: null, // 外部item组件实例 -> 修改class
         inputElement: null, // 当前输入的主体, input/textarea
+
+        isValid: false,
 
         timer: null,
 
@@ -271,7 +273,6 @@
       textInputClass () {
         return `text-input text-input-${this.mode}`
       }
-
     },
     methods: {
 
@@ -301,12 +302,25 @@
       verification () {
         if (!this.checkValue) return
 
-        let result = this.getVerifyResult(this.inputValue, this.typeValue)
-        if (result === null) return
-        if (result) {
+        this.isValid = this.getVerifyResult(this.inputValue, this.typeValue)
+        if (this.isValid) {
+          /**
+           * @event  component:Input#onValid
+           * @description 验证通过, 只在check开启或者有regex时判断
+           * @property {*} value - 当前检查的value
+           * @property {string} type - 当前检查的value的类型
+           */
+          this.$emit('onValid', this.inputValue, this.typeValue)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', true)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', false)
         } else {
+          /**
+           * @event  component:Input#onInvalid
+           * @description 验证失败, 只在check开启或者有regex时判断
+           * @property {*} value - 当前检查的value
+           * @property {string} type - 当前检查的value的类型
+           */
+          this.$emit('onInvalid', this.inputValue, this.typeValue)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', false)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', true)
         }
@@ -316,13 +330,13 @@
        * 获取验证结果
        * @param {*} value - 待验证的值
        * @param {String} type - 待验证的值的类型
+       * @return Boolean
        * @private
        * */
       getVerifyResult (value, type = 'text') {
-
-        if (!value) {
+        if (!isPresent(value)) {
           console.debug('当前没有值, 验证跳过, 返回true!')
-          return null
+          return true
         }
 
         let _regex = this.regex
@@ -333,7 +347,7 @@
         // 如果没有正则信息则返回true, 表示不验证
         if (!isPresent(_regex)) {
           console.debug('未找到匹配type:' + type + '的regex, 验证跳过, 返回true!')
-          return null
+          return true
         }
 
         // 如果是函数则执行判断
@@ -345,7 +359,7 @@
         let _tmpType = Object.prototype.toString.call(_regex).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
         if (_tmpType !== 'regexp') {
           console.debug('regex:' + _regex + '不是正则, 是:' + _tmpType + '类型, 验证跳过, 返回true!')
-          return null
+          return true
         }
         return _regex.test(value)
       },
@@ -543,7 +557,7 @@
       this.setItemHasValueClass()
     },
     components: {
-      Button
+      'vm-button': Button
     }
   }
 </script>
