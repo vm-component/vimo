@@ -9,6 +9,8 @@ import pickerRoutes from './route-picker'
 import scrollRoutes from './route-scroll'
 import segmentRoutes from './route-segment'
 import tabsRoutes from './route-tabs'
+import inputRoutes from './route-input'
+import textareaRoutes from './route-textarea'
 
 let routes = [
   {
@@ -419,13 +421,6 @@ let routes = [
       require(['@/pages/searchbar.vue'], resolve)
     }
   },
-  {
-    path: '/input',
-    name: 'input',
-    component (resolve) {
-      require(['@/pages/input.vue'], resolve)
-    }
-  },
 
   {
     path: '/range',
@@ -505,6 +500,8 @@ routes = routes.concat(listRoutes)
 routes = routes.concat(cardRoutes)
 routes = routes.concat(scrollRoutes)
 routes = routes.concat(pickerRoutes)
+routes = routes.concat(inputRoutes)
+routes = routes.concat(textareaRoutes)
 
 export default {
   mode: 'hash',

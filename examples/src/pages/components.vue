@@ -233,6 +233,13 @@
                         <span>输入框</span>
                         <Note slot="item-right">Input</Note>
                     </Item>
+
+                    <Item detail-push :to="{name: 'textarea'}">
+                        <Icon slot="item-left" name="backspace"></Icon>
+                        <span>输入区域</span>
+                        <Note slot="item-right">Textarea</Note>
+                    </Item>
+
                     <Item detail-push :to="{name: 'range'}">
                         <Icon slot="item-left" name="options"></Icon>
                         <span>范围选择</span>

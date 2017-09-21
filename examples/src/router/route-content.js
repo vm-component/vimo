@@ -1,5 +1,4 @@
 /**
- * Created by Hsiang on 2017/4/21.
  * content相关的路由
  */
 export default [
@@ -11,52 +10,45 @@ export default [
     }
   },
   {
-    path: '/content_context',
+    path: '/content-context',
     name: 'contentContext',
     component (resolve) {
       require(['@/pages/content/context.vue'], resolve)
     }
   },
   {
-    path: '/content_fixed',
+    path: '/content-fixed',
     name: 'contentFixed',
     component (resolve) {
       require(['@/pages/content/fixed.vue'], resolve)
     }
   },
   {
-    path: '/content_fullscreen',
+    path: '/content-fullscreen',
     name: 'contentFullscreen',
     component (resolve) {
       require(['@/pages/content/fullscreen.vue'], resolve)
     }
   },
   {
-    path: '/content_hideBars',
+    path: '/content-hideBars',
     name: 'contentHideBars',
     component (resolve) {
       require(['@/pages/content/hideBars.vue'], resolve)
     }
   },
   {
-    path: '/content_scroll',
+    path: '/content-scroll',
     name: 'contentScroll',
     component (resolve) {
       require(['@/pages/content/scroll.vue'], resolve)
     }
   },
   {
-    path: '/content_setBarStyle',
+    path: '/content-setBarStyle',
     name: 'contentSetBarStyle',
     component (resolve) {
       require(['@/pages/content/setBarStyle.vue'], resolve)
     }
-  },
-  // {
-  //   path: '/content_city',
-  //   name: 'contentCity',
-  //   component (resolve) {
-  //     require(['@/pages/content/city.vue'], resolve)
-  //   }
-  // }
+  }
 ]
