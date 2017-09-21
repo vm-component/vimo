@@ -17,7 +17,6 @@
         display: block;
         width: 100%;
         transition: -webkit-transform ease 300ms;
-        min-height: @toolbar-height; /*no*/
     }
 
     .ion-header.hide-bar {
