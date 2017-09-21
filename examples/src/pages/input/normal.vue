@@ -84,7 +84,6 @@
         testValue: 'Edit...',
         testDisabled: false
       }
-    },
-    methods: {}
+    }
   }
 </script>

@@ -100,11 +100,13 @@
    * @props {RegExp} [regex]            - 自定义正则
    * @props {Boolean} [check]           - 是否check输入结果, 如果regex有值, 则开启, 否则关闭. 如果check开启, 但是regex无值, 则使用内置判断. 默认关闭check, check只是作为内部正误标示, 对外提交不起作用, 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名, 这样的话, 验证位置就会统一.
    *
-   * @fires component:Input#blur
-   * @fires component:Input#focus
-   * @fires component:Input#input
-   * @fires component:Input#valid
-   * @fires component:Input#invalid
+   * @fires component:Input#onBlur
+   * @fires component:Input#onFocus
+   * @fires component:Input#onInput
+   * @fires component:Input#onKeyup
+   * @fires component:Input#onKeydown
+   * @fires component:Input#onValid
+   * @fires component:Input#onInvalid
    *
    * @demo #/input
    * @usage
@@ -268,11 +270,11 @@
     },
     methods: {
       /**
-       * 对外传递keyup事件
-       * @private
-       * */
+       * @event component:Input#onKeyup
+       * @description keyup事件
+       */
       inputKeyUp ($event) {
-        this.$emit('keyup', $event)
+        this.$emit('onKeyup', $event)
       },
 
       /**
@@ -286,22 +288,22 @@
         this.isValid = this.getVerifyResult(this.inputValue, this.type)
         if (this.isValid) {
           /**
-           * @event  component:Input#valid
+           * @event  component:Input#onValid
            * @description 验证通过, 只在check开启或者有regex时判断
            * @property {*} value - 当前检查的value
            * @property {string} type - 当前检查的value的类型
            */
-          this.$emit('valid', this.inputValue, this.type)
+          this.$emit('onValid', this.inputValue, this.type)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', true)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', false)
         } else {
           /**
-           * @event  component:Input#invalid
+           * @event  component:Input#onInvalid
            * @description 验证失败, 只在check开启或者有regex时判断
            * @property {*} value - 当前检查的value
            * @property {string} type - 当前检查的value的类型
            */
-          this.$emit('invalid', this.inputValue, this.type)
+          this.$emit('onInvalid', this.inputValue, this.type)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', false)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', true)
         }
@@ -370,7 +372,7 @@
        * 监听并发送blur事件
        * @private
        */
-      inputBlurred ($event) {
+      inputBlurred () {
         // debug: clearInput会在onBlur之后,造成blur后点击clearInput失效, 故需要延迟blur
         window.setTimeout(() => {
           if (this.shouldBlur) {
@@ -378,11 +380,10 @@
             this.setItemHasFocusClass(false)
 
             /**
-             * @event  component:Input#blur
+             * @event component:Input#onBlur
              * @description blur事件
-             * @property {object} $event - 事件对象
              */
-            this.$emit('blur', $event)
+            this.$emit('onBlur')
             // 如果是clearOnEdit模式， blur时还有值的情况下，定一个flag
             if (this.clearOnEditValue && this.hasValue()) {
               this.didBlurAfterEdit = true
@@ -400,16 +401,15 @@
        * 监听并发送focus事件
        * @private
        */
-      inputFocused ($event) {
+      inputFocused () {
         // 向父组件Item添加标记
         this.setItemHasFocusClass(true)
         this.setFocus()
         /**
-         * @event  component:Input#focus
+         * @event  component:Input#onFocus
          * @description focus事件
-         * @property {object} $event - 事件对象
          */
-        this.$emit('focus', $event)
+        this.$emit('onFocus')
         this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-touched', true)
       },
 
@@ -426,20 +426,21 @@
         this.timer = window.setTimeout(() => {
           // 组件对外事件
           /**
-           * @event  component:Input#input
+           * @event  component:Input#onInput
            * @description input事件
-           * @property {*} value -
+           * @property {*} value - 当前输入的值
            */
+          this.$emit('onInput', this.inputValue)
           this.$emit('input', this.inputValue)
         }, this.debounce)
       },
 
       /**
-       * 键盘按下事件
-       * @private
-       * */
+       * @event component:Input#onKeydown
+       * @description keyup事件
+       */
       inputKeyDown ($event) {
-        this.$emit('keydown', $event)
+        this.$emit('onKeydown', $event)
         if (this.clearOnEditValue) {
           this.checkClearOnEdit()
         }

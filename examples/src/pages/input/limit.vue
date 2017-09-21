@@ -35,22 +35,6 @@
 </template>
 <script type="text/javascript">
   export default {
-    name: 'InputLimitDemo',
-    data () {
-      return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {},
-    mounted () {},
-    activated () {},
-    deactivate () {},
-    components: {},
-    destroyed () {}
+    name: 'InputLimitDemo'
   }
 </script>
-<style scoped lang="less">
-
-</style>

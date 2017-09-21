@@ -15,12 +15,12 @@
                     <Input type="text"
                            clear-input
                            :regex=regex
-                           @keyup.enter="submit"
-                           @blur="onBlurtHandler"
-                           @focus="onFocusHandler"
-                           @input="onInputHandler"
-                           @valid="onValidHandler"
-                           @invalid="onInvalidHandler"
+                           @onKeyup.enter="submit"
+                           @onBlur="onBlurtHandler"
+                           @onFocus="onFocusHandler"
+                           @onInput="onInputHandler"
+                           @onValid="onValidHandler"
+                           @onInvalid="onInvalidHandler"
                            placeholder="'XX-XX-XXX' 数字格式"></Input>
                 </Item>
                 <Item>
@@ -58,32 +58,32 @@
       }
     },
     methods: {
-      submit ($event) {
+      submit () {
         this.eventList.push({
           time: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
           eventType: 'enter',
-          msg: $event
+          msg: ''
         })
       },
-      onBlurtHandler ($event) {
+      onBlurtHandler () {
         this.eventList.push({
           time: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
           eventType: 'blur',
-          msg: $event
+          msg: ''
         })
       },
-      onFocusHandler ($event) {
+      onFocusHandler () {
         this.eventList.push({
           time: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
           eventType: 'focus',
-          msg: $event
+          msg: ''
         })
       },
-      onInputHandler ($event) {
+      onInputHandler (value) {
         this.eventList.push({
           time: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
           eventType: 'input',
-          msg: $event
+          msg: value
         })
       },
       onValidHandler (value, type) {
@@ -100,13 +100,7 @@
           msg: `type: ${type} - value: ${value}`
         })
       }
-    },
-    created () {},
-    mounted () {},
-    activated () {},
-    deactivate () {},
-    components: {},
-    destroyed () {}
+    }
   }
 </script>
 <style scoped lang="less">

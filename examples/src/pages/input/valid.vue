@@ -71,7 +71,6 @@
         testValue: 'hello',
         testDisabled: false
       }
-    },
-    methods: {}
+    }
   }
 </script>

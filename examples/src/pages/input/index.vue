@@ -21,22 +21,6 @@
 </template>
 <script type="text/javascript">
   export default {
-    name: 'InputDemo',
-    data () {
-      return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {},
-    mounted () {},
-    activated () {},
-    deactivate () {},
-    components: {},
-    destroyed () {}
+    name: 'InputDemo'
   }
 </script>
-<style scoped lang="scss">
-
-</style>
