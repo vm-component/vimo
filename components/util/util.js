@@ -398,7 +398,7 @@ export function hasFocus (ele) {
 //       ele.contentEditable === 'true' ||
 //       (ele.tagName === 'INPUT' && !(NON_TEXT_INPUT_REGEX.test(ele.type))))
 // }
-
+//
 // export const NON_TEXT_INPUT_REGEX = /^(radio|checkbox|range|file|submit|reset|color|image|button)$/i
 
 // /**
