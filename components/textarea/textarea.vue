@@ -61,6 +61,8 @@
    * @fires component:Textarea#onInput
    * @fires component:Textarea#onKeyup
    * @fires component:Textarea#onKeydown
+   * @fires component:Textarea#onValid
+   * @fires component:Textarea#onInvalid
    *
    * @demo #/textarea
    * @usage
@@ -244,22 +246,20 @@
         this.isValid = this.hasValue
         if (this.isValid) {
           /**
-           * @event  component:Input#onValid
-           * @description 验证通过, 只在check开启或者有regex时判断
+           * @event  component:Textarea#onValid
+           * @description 验证通过
            * @property {*} value - 当前检查的value
-           * @property {string} type - 当前检查的value的类型
            */
-          this.$emit('onValid', this.inputValue, this.type)
+          this.$emit('onValid', this.inputValue)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', true)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', false)
         } else {
           /**
-           * @event  component:Input#onInvalid
-           * @description 验证失败, 只在check开启或者有regex时判断
+           * @event  component:Textarea#onInvalid
+           * @description 验证失败
            * @property {*} value - 当前检查的value
-           * @property {string} type - 当前检查的value的类型
            */
-          this.$emit('onInvalid', this.inputValue, this.type)
+          this.$emit('onInvalid', this.inputValue)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', false)
           this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', true)
         }
