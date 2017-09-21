@@ -8,9 +8,9 @@
             <div v-show="isActive" class="toast-wrapper" :class="[positionClass]">
                 <div class="toast-container">
                     <div class="toast-message" id="toast-hdr" v-if="message">{{message}}</div>
-                    <Button class="toast-button" clear v-if="showCloseButton" @click="cbClick()">
+                    <vm-button class="toast-button" clear v-if="showCloseButton" @click="cbClick()">
                         <span>{{closeButtonText}}</span>
-                    </Button>
+                    </vm-button>
                 </div>
             </div>
         </transition>
@@ -24,6 +24,7 @@
 <script type="text/javascript">
   import { urlChange } from '../util/util'
   import { Button } from '../button'
+
   const NOOP = () => {}
 
   export default {
@@ -188,7 +189,7 @@
       }
     },
     components: {
-      Button
+      'vm-button': Button
     }
   }
 </script>

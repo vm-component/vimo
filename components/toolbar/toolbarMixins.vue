@@ -9,11 +9,11 @@
             <slot></slot>
         </div>
         <!--show-back-button-->
-        <Button v-if="isNavBar && !hideBb" @click="backButtonClickHandler" role="bar-button" class="back-button"
-                :class="[{'show-back-button':!hideBackButton}]">
-            <Icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></Icon>
+        <vm-button v-if="isNavBar && !hideBb" @click="backButtonClickHandler" role="bar-button" class="back-button"
+                   :class="[{'show-back-button':!hideBackButton}]">
+            <vm-icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></vm-icon>
             <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
-        </Button>
+        </vm-button>
 
         <!--buttons/menuToggle-->
         <slot name="buttons"></slot>
@@ -31,7 +31,8 @@
 
   export default {
     components: {
-      Button, Icon
+      'vm-button': Button,
+      'vm-icon': Icon
     },
     data () {
       return {

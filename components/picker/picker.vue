@@ -1,6 +1,7 @@
 <template>
     <div class="ion-picker-cmp" :class="[modeClass,cssClass]">
-        <Backdrop :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive" :bdClick="bdClick"></Backdrop>
+        <vm-backdrop :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive"
+                     :bdClick="bdClick"></vm-backdrop>
         <transition
                 name="picker"
                 @before-enter="beforeEnter"
@@ -13,7 +14,8 @@
                          :key="index"
                          class="picker-toolbar-button"
                          :class="[b.cssRole]">
-                        <Button @click="btnClick(b)" :class="b.cssClass" class="picker-button" clear>{{b.text}}</Button>
+                        <vm-button @click="btnClick(b)" :class="b.cssClass" class="picker-button" clear>{{b.text}}
+                        </vm-button>
                     </div>
                 </div>
                 <div class="picker-columns">
@@ -119,6 +121,7 @@
   import PickerCol from './picker-col.vue'
   import { Backdrop } from '../backdrop'
   import { Button } from '../button'
+
   const NOOP = () => {}
 
   export default {
@@ -393,6 +396,6 @@
         })
       }
     },
-    components: {Backdrop, PickerCol, Button}
+    components: {'vm-backdrop': Backdrop, PickerCol, 'vm-button': Button}
   }
 </script>
