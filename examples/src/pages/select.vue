@@ -15,6 +15,36 @@
             <List>
                 <ListHeader>单选</ListHeader>
                 <Item>
+                    <Label fixed>Gender(fixed)</Label>
+                    <Select item-right placeholder="Select" interface="action-sheet"
+                            @onChange="onChange"
+                            @onSelect="onSelect"
+                            @onCancel="onCancel">
+                        <Option value="f">Female</Option>
+                        <Option value="m">Male</Option>
+                    </Select>
+                </Item>
+                <Item>
+                    <Label stacked>Gender(stacked)</Label>
+                    <Select item-right placeholder="Select" interface="action-sheet"
+                            @onChange="onChange"
+                            @onSelect="onSelect"
+                            @onCancel="onCancel">
+                        <Option value="f">Female</Option>
+                        <Option value="m">Male</Option>
+                    </Select>
+                </Item>
+                <Item>
+                    <Label floating>Gender(floating)</Label>
+                    <Select item-right placeholder="Select" interface="action-sheet"
+                            @onChange="onChange"
+                            @onSelect="onSelect"
+                            @onCancel="onCancel">
+                        <Option value="f">Female</Option>
+                        <Option value="m">Male</Option>
+                    </Select>
+                </Item>
+                <Item>
                     <Label>Gender</Label>
                     <Select item-right placeholder="Select" interface="action-sheet"
                             @onChange="onChange"

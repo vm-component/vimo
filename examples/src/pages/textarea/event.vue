@@ -12,10 +12,11 @@
                 </ListHeader>
                 <Item>
                     <Label color="primary">短文本</Label>
-                    <Textarea @keyup.enter="submit"
-                              @blur="onBlurtHandler"
-                              @focus="onFocusHandler"
-                              @input="onInputHandler"
+                    <Textarea @onKeyup.enter="submit"
+                              autosize
+                              @onBlur="onBlurtHandler"
+                              @onFocus="onFocusHandler"
+                              @onInput="onInputHandler"
                               placeholder="请输入..."></Textarea>
                 </Item>
             </List>
@@ -90,13 +91,7 @@
           msg: `type: ${type} - value: ${value}`
         })
       }
-    },
-    created () {},
-    mounted () {},
-    activated () {},
-    deactivate () {},
-    components: {},
-    destroyed () {}
+    }
   }
 </script>
 <style scoped lang="less">

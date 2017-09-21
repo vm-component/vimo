@@ -11,7 +11,20 @@
                     <span>布局</span>
                 </ListHeader>
                 <Item>
-                    <Textarea placeholder="Text here"></Textarea>
+                    <Label color="primary">Inline Label</Label>
+                    <Textarea placeholder="Text Input"></Textarea>
+                </Item>
+                <Item>
+                    <Label color="primary" fixed>Fixed Label with fixed width</Label>
+                    <Textarea placeholder="Text Input"></Textarea>
+                </Item>
+                <Item>
+                    <Label color="primary" floating>Floating Label</Label>
+                    <Textarea></Textarea>
+                </Item>
+
+                <Item>
+                    <Textarea :cols="3" placeholder="Text here"></Textarea>
                 </Item>
                 <Item>
                     <Label color="primary" stacked>Stacked Label</Label>
@@ -39,10 +52,12 @@
                     <Label color="primary" stacked>只读</Label>
                     <Textarea :rows="1" readonly placeholder="输入文本"></Textarea>
                 </Item>
-                <Item>
-                    <Label color="primary" stacked>默认4行</Label>
-                    <Textarea :rows="4" placeholder="输入文本"></Textarea>
-                </Item>
+            </List>
+            <List>
+                <ListHeader>
+                    <span>单独使用</span>
+                </ListHeader>
+                <Textarea class="customer" autosize placeholder="Text here"></Textarea>
             </List>
         </Content>
     </Page>
@@ -56,3 +71,12 @@
     methods: {}
   }
 </script>
+<style lang="less">
+    .customer {
+        width: 80%;
+        background-color: #ffffff;
+        color: #000000;
+        margin: 10px auto;
+        padding: 1px 10px;
+    }
+</style>
