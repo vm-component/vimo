@@ -1,7 +1,7 @@
 <template>
     <div class="ion-action-sheet" :class="[modeClass,cssClass]">
-        <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
-                  :isActive="isActive"></Backdrop>
+        <vm-backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
+                     :isActive="isActive"></vm-backdrop>
         <transition
                 name="action-sheet"
                 @before-enter="beforeEnter"
@@ -17,22 +17,22 @@
                             <div class="action-sheet-sub-title" v-if="subTitle">{{subTitle}}</div>
                         </div>
                         <div class="action-sheet-buttons">
-                            <Button role="action-sheet-button" @click="click(b)" v-for="(b,index) of normalButtons"
-                                    :key="index"
-                                    :class="[b.cssClass,{'icon-left':b.icon}]">
-                                <Icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></Icon>
+                            <vm-button role="action-sheet-button" @click="click(b)" v-for="(b,index) in normalButtons"
+                                       :key="index"
+                                       :class="[b.cssClass,{'icon-left':b.icon}]">
+                                <vm-icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></vm-icon>
                                 <span>{{b.text}}</span>
-                            </Button>
+                            </vm-button>
                         </div>
                     </div>
                     <!--group cancel-->
                     <div class="action-sheet-group" v-if="cancelButton">
-                        <Button role="action-sheet-button" @click="click(cancelButton)"
-                                class="action-sheet-cancel" :class="cancelButton.cssClass">
-                            <Icon :name="cancelButton.icon" v-if="cancelButton.icon"
-                                  class="action-sheet-icon"></Icon>
+                        <vm-button role="action-sheet-button" @click="click(cancelButton)"
+                                   class="action-sheet-cancel" :class="cancelButton.cssClass">
+                            <vm-icon :name="cancelButton.icon" v-if="cancelButton.icon"
+                                     class="action-sheet-icon"></vm-icon>
                             <span>{{cancelButton.text || 'Cancel'}}</span>
-                        </Button>
+                        </vm-button>
                     </div>
                 </div>
             </div>
@@ -246,9 +246,9 @@
       }
     },
     components: {
-      Backdrop,
-      Button,
-      Icon
+      'vm-backdrop': Backdrop,
+      'vm-button': Button,
+      'vm-icon': Icon
     }
   }
 </script>

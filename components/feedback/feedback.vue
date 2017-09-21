@@ -2,16 +2,16 @@
     <section class="vm-feedback feedback__inputBox">
         <!--textarea-->
         <div class="feedback__inputBox--textareaBox">
-            <Textarea :placeholder="placeholder"
-                      ref="textarea"
-                      v-model="value.text"
-                      :name="name"
-                      :rows="rows"
-                      :readonly="readonly"
-                      :disabled="disabled"
-                      :autofocus="autofocus"
-                      :maxlength="maxlength"
-                      @onInput="inputHandler"></Textarea>
+            <vm-textarea :placeholder="placeholder"
+                         ref="textarea"
+                         v-model="value.text"
+                         :name="name"
+                         :rows="rows"
+                         :readonly="readonly"
+                         :disabled="disabled"
+                         :autofocus="autofocus"
+                         :maxlength="maxlength"
+                         @onInput="inputHandler"></vm-textarea>
         </div>
         <p class="feedback__text">{{textCount}}/{{maxlength}}</p>
         <!--image 1~3| && word count-->
@@ -72,7 +72,7 @@
 
   export default {
     name: 'Feedback',
-    components: {Textarea},
+    components: {'vm-textarea': Textarea},
     data () {
       return {}
     },

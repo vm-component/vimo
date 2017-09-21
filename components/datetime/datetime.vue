@@ -6,11 +6,11 @@
          :max="max">
         <div v-if="!text" class="datetime-text datetime-placeholder">{{placeholder}}</div>
         <div v-if="text" class="datetime-text">{{text}}</div>
-        <Button type="button"
-                :id="_uid"
-                role="item-cover"
-                class="item-cover">
-        </Button>
+        <vm-button type="button"
+                   :id="_uid"
+                   role="item-cover"
+                   class="item-cover">
+        </vm-button>
     </div>
 </template>
 <style lang="less">
@@ -530,7 +530,7 @@
       this.updateText()
       this.checkHasValue(this.theValue)
     },
-    components: {Button}
+    components: {'vm-button': Button}
   }
 
   /**

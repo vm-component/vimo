@@ -3,10 +3,10 @@
         <div class="checkbox-icon" :class="{'checkbox-checked':checkedValue}">
             <div class="checkbox-inner"></div>
         </div>
-        <Button role="item-cover" @click="onPointerDownHandler()"
-                type="button"
-                class="item-cover">
-        </Button>
+        <vm-button role="item-cover" @click="onPointerDownHandler()"
+                   type="button"
+                   class="item-cover">
+        </vm-button>
     </div>
 </template>
 <script type="text/javascript">
@@ -54,7 +54,7 @@
 
   export default {
     name: 'Checkbox',
-    components: {Button},
+    components: {'vm-button': Button},
     data () {
       return {
         checkedValue: this.value,           // 内部维护的checked

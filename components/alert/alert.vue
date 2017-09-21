@@ -1,7 +1,7 @@
 <template>
     <div class="ion-alert" :class="[modeClass,cssClass && cssClass.trim(),{'alert-top':isAlertTop}]">
-        <Backdrop @click.native="bdClick()" :enableBackdropDismiss="enableBackdropDismiss"
-                  :isActive="isActive"></Backdrop>
+        <vm-backdrop @click.native="bdClick()" :enableBackdropDismiss="enableBackdropDismiss"
+                     :isActive="isActive"></vm-backdrop>
         <transition name="alert"
                     @before-enter="beforeEnter"
                     @after-enter="afterEnter"
@@ -16,7 +16,7 @@
                 <div class="alert-message" v-html="message"></div>
                 <div v-if="inputs && inputs.length>0">
                     <div v-if="inputType==='radio'" class="alert-radio-group" role="radiogroup">
-                        <Button role="alert-radio-button" v-for="(i,index) in inputsForDispaly" @click="rbClick(i)"
+                        <vm-button role="alert-radio-button" v-for="(i,index) in inputsForDispaly" @click="rbClick(i)"
                                 :key="index"
                                 :aria-checked="i.checked" :disabled="i.disabled" :id="i.id"
                                 class="alert-tappable alert-radio">
@@ -26,10 +26,10 @@
                             <div class="alert-radio-label">
                                 <span>{{i.label}}</span>
                             </div>
-                        </Button>
+                        </vm-button>
                     </div>
                     <div class="alert-checkbox-group" v-if="inputType==='checkbox'">
-                        <Button :id="i.id" role="alert-checkbox-button" :aria-checked="i.checked"
+                        <vm-button :id="i.id" role="alert-checkbox-button" :aria-checked="i.checked"
                                 v-for="(i,index) in inputsForDispaly" @click="cbClick(i)" :key="index"
                                 :checked="i.checked" :disabled="i.disabled" class="alert-tappable alert-checkbox">
                             <div class="alert-checkbox-icon">
@@ -38,7 +38,7 @@
                             <div class="alert-checkbox-label">
                                 <span>{{i.label}}</span>
                             </div>
-                        </Button>
+                        </vm-button>
                     </div>
                     <div v-if="inputType!='radio' && inputType!='checkbox'" class="alert-input-group">
                         <div v-for="i in inputsForDispaly" class="alert-input-wrapper">
@@ -48,10 +48,10 @@
                     </div>
                 </div>
                 <div class="alert-button-group" :class="{'alert-button-group-vertical':buttonsForDisplay.length>2}">
-                    <Button role="alert-button" v-for="(b,index) in buttonsForDisplay" :key="index" @click="btnClick(b)"
+                    <vm-button role="alert-button" v-for="(b,index) in buttonsForDisplay" :key="index" @click="btnClick(b)"
                             :class="[b.cssClass]">
                         <span>{{b.text}}</span>
-                    </Button>
+                    </vm-button>
                 </div>
             </div>
         </transition>
@@ -83,9 +83,10 @@
   import { Backdrop } from '../backdrop/index'
   import { Button } from '../button/index'
   import { urlChange } from '../util/util'
+
   const NOOP = () => {}
 
-  export default{
+  export default {
     name: 'Alert',
     props: {
       image: String,
@@ -413,8 +414,8 @@
       }
     },
     components: {
-      'Backdrop': Backdrop,
-      'Button': Button
+      'vm-backdrop': Backdrop,
+      'vm-button': Button
     }
   }
 </script>

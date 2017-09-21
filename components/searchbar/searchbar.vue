@@ -11,14 +11,14 @@
          ]">
         <div class="searchbar-input-container">
             <!--在md模式下，md的取消按钮是在这里的，当点击inputs输入时，返回按钮将覆盖search按钮-->
-            <Button mode="md"
-                    @click="cancelSearchbar($event)"
-                    clear
-                    color="dark"
-                    class="searchbar-md-cancel"
-                    role="button">
+            <vm-button mode="md"
+                       @click="cancelSearchbar($event)"
+                       clear
+                       color="dark"
+                       class="searchbar-md-cancel"
+                       role="button">
                 <Icon mode="md" name="md-arrow-back"></Icon>
-            </Button>
+            </vm-button>
 
             <!--input左边的search按钮-->
             <div ref="searchbarIcon" class="searchbar-search-icon"></div>
@@ -33,22 +33,22 @@
                    :autocorrect="autocorrectValue"
                    :spellcheck="spellcheckValue">
             <!--input右边的关闭按钮-->
-            <Button clear
-                    class="searchbar-clear-icon"
-                    :mode="mode"
-                    @click="clearInput($event)"
-                    role="button"></Button>
+            <vm-button clear
+                       class="searchbar-clear-icon"
+                       :mode="mode"
+                       @click="clearInput($event)"
+                       role="button"></vm-button>
         </div>
 
         <!--取消按钮，点击input时出现，只对IOS，md在search icon位置显示，wp没有-->
-        <Button ref="cancelButton"
-                mode="ios"
-                clear
-                @click="cancelSearchbar($event)"
-                class="searchbar-ios-cancel"
-                role="button">
+        <vm-button ref="cancelButton"
+                   mode="ios"
+                   clear
+                   @click="cancelSearchbar($event)"
+                   class="searchbar-ios-cancel"
+                   role="button">
             <span>{{cancelButtonText}}</span>
-        </Button>
+        </vm-button>
     </div>
 </template>
 <style lang="less">
@@ -498,7 +498,7 @@
       }
     },
     components: {
-      Button, Icon
+      'vm-button': Button, Icon
     }
   }
 </script>
