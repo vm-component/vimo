@@ -1,6 +1,6 @@
 @import "../themes/default.ios.less";
 
-// iOS Input
+// iOS Textarea
 // --------------------------------------------------
 
 /// @prop - Background color of the input
@@ -18,18 +18,6 @@
 /// @prop - Margin left of the input
 @text-input-ios-margin-left: 0px;
 
-/// @prop - Width of the icon used to clear the input
-@text-input-ios-input-clear-icon-width: 30px;
-
-/// @prop - Color of the icon used to clear the input
-@text-input-ios-input-clear-icon-color: rgba(0, 0, 0, .5);
-
-/// @prop - Icon used to clear the input
-@text-input-ios-input-clear-icon-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='@{text-input-ios-input-clear-icon-color}' d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>";
-
-/// @prop - Size of the icon used to clear the input
-@text-input-ios-input-clear-icon-size: 18px;
-
 /// @prop - Color of the input highlight
 @text-input-ios-highlight-color: @primary-ios;
 
@@ -39,7 +27,8 @@
 /// @prop - Color of the input highlight when invalid
 @text-input-ios-highlight-color-invalid: @text-input-highlight-color-invalid;
 
-// iOS Default Input
+
+// iOS Default Textarea
 // --------------------------------------------------
 
 .text-input-ios {
@@ -50,27 +39,17 @@
   width: ~'calc(100% - @{text-input-ios-margin-right} - @{text-input-ios-margin-left})';
 }
 
-// iOS Inset Input
-// --------------------------------------------------
-
-.input-ios .inset-input {
-  margin: (@item-ios-padding-top / 2) @item-ios-padding-right (@item-ios-padding-bottom / 2) 0;
-  padding: (@item-ios-padding-top / 2) (@item-ios-padding-right / 2) (@item-ios-padding-bottom / 2) (@item-ios-padding-left / 2);
-}
 
 // iOS Highlighted Input
 // --------------------------------------------------
 
-// Input highlight mixin for focus, valid, and invalid states
+// Input highlight mixin for focus
 // mixin
 .ios-input-highlight(@highlight-color) {
   border-bottom-color: @highlight-color;
 }
 
 // Show the focus highlight when the input has focus
-//& when (@text-input-ios-show-focus-highlight) {
-// In order to get a 2px border we need to add an inset
-// box-shadow 1px (this is to avoid the div resizing)
 .item-ios.item-input.input-has-focus.show-focus-highlight .item-inner {
   .ios-input-highlight(@text-input-ios-highlight-color);
 }
@@ -85,7 +64,18 @@
   }
 }
 
-//}
+
+// iOS Stacked & Floating Inputs
+// --------------------------------------------------
+
+.item-ios.item-label-stacked .text-input,
+.item-ios.item-label-floating .text-input {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: 0;
+
+  width: ~'calc(100% - @{text-input-ios-margin-right})';
+}
 
 // Show the valid highlight when it has the .ng-valid class and a value
 .item-ios.item-input.ng-valid.input-has-value.show-valid-highlight:not(.input-has-focus) .item-inner {
@@ -111,49 +101,4 @@
   .item-inner {
     box-shadow: none;
   }
-}
-
-// iOS Stacked & Floating Inputs
-// --------------------------------------------------
-
-.item-ios.item-label-stacked .text-input,
-.item-ios.item-label-floating .text-input {
-  margin-top: 8px;
-  margin-bottom: 8px;
-  margin-left: 0;
-
-  width: ~'calc(100% - @{text-input-ios-margin-right})';
-}
-
-.item-ios.item-label-stacked .label-ios + .ion-input + .cloned-input,
-.item-ios.item-label-floating .label-ios + .ion-input + .cloned-input {
-  margin-left: 0;
-}
-
-.item-label-stacked .select-ios,
-.item-label-floating .select-ios {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 0;
-}
-
-// iOS Clear Input Icon
-// --------------------------------------------------
-
-.input-ios.clearInput {
-  position: relative;
-}
-
-.input-ios.clearInput .text-input {
-  padding-right: @text-input-ios-input-clear-icon-width;
-}
-
-.input-ios .text-input-clear-icon {
-  .svg-background-image(@text-input-ios-input-clear-icon-svg);
-
-  right: (@item-ios-padding-right / 2);
-
-  width: @text-input-ios-input-clear-icon-width;
-
-  background-size: @text-input-ios-input-clear-icon-size;
 }

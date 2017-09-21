@@ -1,6 +1,6 @@
 @import "../themes/default.md.less";
 
-// Material Design Input
+// Material Design Texarea
 // --------------------------------------------------
 
 /// @prop - Background color of the input
@@ -18,18 +18,6 @@
 /// @prop - Margin left of the input
 @text-input-md-margin-left: (@item-md-padding-left / 2);
 
-/// @prop - Width of the icon used to clear the input
-@text-input-md-input-clear-icon-width: 30px;
-
-/// @prop - Color of the icon used to clear the input
-@text-input-md-input-clear-icon-color: #5b5b5b;
-
-/// @prop - Icon used to clear the input
-@text-input-md-input-clear-icon-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><polygon fill='@{text-input-md-input-clear-icon-color}' points='405,136.798 375.202,107 256,226.202 136.798,107 107,136.798 226.202,256 107,375.202 136.798,405 256,285.798 375.202,405 405,375.202 285.798,256'/></svg>";
-
-/// @prop - Size of the icon used to clear the input
-@text-input-md-input-clear-icon-size: 22px;
-
 /// @prop - Color of the input highlight
 @text-input-md-highlight-color: @primary-md;
 
@@ -39,7 +27,7 @@
 /// @prop - Color of the input highlight when invalid
 @text-input-md-highlight-color-invalid: @text-input-highlight-color-invalid;
 
-// Material Design Default Input
+// Material Design Default Texarea
 // --------------------------------------------------
 
 .text-input-md {
@@ -50,18 +38,10 @@
   width: ~'calc(100% - @{text-input-md-margin-right} - @{text-input-md-margin-left})';
 }
 
-// Material Design Inset Input
+// Material Design Highlighted Texarea
 // --------------------------------------------------
 
-.input-md .inset-input {
-  margin: (@item-md-padding-top / 2) @item-md-padding-right (@item-md-padding-bottom / 2) @item-md-padding-left;
-  padding: (@item-md-padding-top / 2) (@item-md-padding-right / 2) (@item-md-padding-bottom / 2) (@item-md-padding-left / 2);
-}
-
-// Material Design Highlighted Input
-// --------------------------------------------------
-
-// Input highlight mixin for focus, valid, and invalid states
+// Input highlight mixin for focus
 // mixin
 .md-input-highlight(@highlight-color) {
   border-bottom-color: @highlight-color;
@@ -84,6 +64,7 @@
     box-shadow: none;
   }
 }
+
 
 // Show the valid highlight when it has the .ng-valid class and a value
 .item-md.item-input.ng-valid.input-has-value.show-valid-highlight:not(.input-has-focus) .item-inner {
@@ -121,33 +102,4 @@
   margin-left: 0;
 
   width: ~'calc(100% - @{text-input-md-margin-right})';
-}
-
-.item-label-stacked .select-md,
-.item-label-floating .select-md {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 0;
-}
-
-// Material Design Clear Input Icon
-// --------------------------------------------------
-
-.input-md.clearInput {
-  position: relative;
-}
-
-.input-md.clearInput .text-input {
-  padding-right: @text-input-md-input-clear-icon-width;
-}
-
-.input-md .text-input-clear-icon {
-  .svg-background-image(@text-input-md-input-clear-icon-svg);
-
-  right: (@item-md-padding-right / 2);
-
-  width: @text-input-md-input-clear-icon-width;
-
-  background-size: @text-input-md-input-clear-icon-size;
-
 }
