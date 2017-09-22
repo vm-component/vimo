@@ -2,13 +2,14 @@
     <div class="ion-textarea" :class="[modeClass]">
         <div class="input-innerWrap" @click="setFocus($event)">
             <textarea :class="[textInputClass]"
+                      class="text-input"
                       :value="inputValue"
                       :placeholder="placeholder"
                       :disabled="disabled"
                       :readonly="readonly"
                       :required="required"
                       :autofocus="autofocus"
-                      :maxlength="maxlength"
+                      :maxlength="max"
                       :rows="rows"
                       ref="textarea"
                       @keyup="inputKeyUp($event)"
@@ -16,6 +17,7 @@
                       @focus="inputFocused($event)"
                       @input="inputChanged($event)"
                       @keydown="inputKeyDown($event)"></textarea>
+            <div class="input-count" v-if="count > 0"><span>{{inputValue.length}}</span>/{{count}}</div>
         </div>
     </div>
 </template>
@@ -54,6 +56,7 @@
    * @props {String} [mode='ios']               - 当前平台
    * @props {String} [placeholder]              - 占位文字
    * @props {Boolean} [readonly]                - 只读模式, 不能修改
+   * @props {Boolean} [count]                   - 计数模式
    * @props {*} [value]                         - 内容输入值
    *
    * @fires component:Textarea#onBlur
@@ -69,15 +72,16 @@
    * <Textarea placeholder="Text Textarea">
    * <Textarea @onBlur="blur($event)" @onFocus="focus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>
    * */
-  import { hasFocus, setElementClass } from '../util/util'
+  import { hasFocus, setElementClass, isPresent, isNumber } from '../util/util'
   import Autosize from 'autosize'
 
   export default {
     name: 'Textarea',
     data () {
       return {
+        max: this.maxlength,
         isValid: false, // 验证结果
-        inputValue: this.value, // 内部value值
+        inputValue: this.value || '', // 内部value值
         itemComponent: null // 外部item组件实例 -> 修改class
       }
     },
@@ -136,6 +140,11 @@
       required: Boolean,
 
       /**
+       * 计数模式
+       * */
+      count: Number,
+
+      /**
        * 内容输入值
        * */
       value: [String, Number, Object, Function]
@@ -150,7 +159,7 @@
         return `input-${this.mode}`
       },
       textInputClass () {
-        return `text-input text-input-${this.mode}`
+        return `text-input-${this.mode}`
       },
       textareaElement () {
         return this.$refs.textarea
@@ -316,6 +325,11 @@
           setElementClass(this.itemComponent.$el, 'input-has-value', this.hasValue)
         }
         setElementClass(this.$el, 'input-has-value', this.hasValue)
+      }
+    },
+    created () {
+      if (isPresent(this.count) && isNumber(this.count)) {
+        this.max = this.count
       }
     },
     mounted () {

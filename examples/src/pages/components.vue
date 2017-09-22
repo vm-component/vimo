@@ -202,7 +202,6 @@
                     </Item>
                 </ItemGroup>
 
-
                 <!--Form组件-->
                 <ListHeader>Form组件</ListHeader>
                 <ItemGroup>
@@ -235,8 +234,8 @@
                     </Item>
 
                     <Item detail-push :to="{name: 'textarea'}">
-                        <Icon slot="item-left" name="backspace"></Icon>
-                        <span>输入区域</span>
+                        <Icon slot="item-left" name="reorder"></Icon>
+                        <span>多行输入</span>
                         <Note slot="item-right">Textarea</Note>
                     </Item>
 

@@ -39,6 +39,7 @@
 
 textarea.text-input {
   display: block;
+  position: relative;
 }
 
 .text-input[disabled] {
@@ -62,4 +63,19 @@ textarea.text-input {
 .input-has-focus a,
 .input-has-focus button {
   pointer-events: auto;
+}
+
+// Textarea Count
+// --------------------------------------------------
+
+.input-count {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 12px;
+  color: #bbb;
+  padding-right: 5px;
+  span {
+    color: #000;
+  }
 }

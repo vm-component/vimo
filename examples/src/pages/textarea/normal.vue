@@ -33,6 +33,10 @@
             </List>
             <List>
                 <Item>
+                    <Label color="primary" stacked>计数</Label>
+                    <Textarea :count="10000"  placeholder="输入文本"></Textarea>
+                </Item>
+                <Item>
                     <Label color="primary" stacked>聚焦高亮</Label>
                     <Textarea showFocusHighlight placeholder="输入文本"></Textarea>
                 </Item>
@@ -52,12 +56,15 @@
                     <Label color="primary" stacked>只读</Label>
                     <Textarea :rows="1" readonly placeholder="输入文本"></Textarea>
                 </Item>
+
             </List>
             <List>
                 <ListHeader>
                     <span>单独使用</span>
                 </ListHeader>
-                <Textarea class="customer" autosize placeholder="Text here"></Textarea>
+                <section class="customer">
+                    <Textarea :count="300" autosize placeholder="Text here"></Textarea>
+                </section>
             </List>
         </Content>
     </Page>
