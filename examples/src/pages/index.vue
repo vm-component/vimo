@@ -3,7 +3,7 @@
         <!--content-->
         <Header>
             <!--menutoggle-->
-            <Navbar :hideBackButton="true">
+            <Navbar hide-back-button>
                 <!--menutoggle-->
                 <Buttons right slot="buttons">
                     <Button @click="$menus.toggle('menu')" role="bar-button" menutoggle>

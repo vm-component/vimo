@@ -5,8 +5,10 @@
         <div class="toolbar-content">
             <slot></slot>
         </div>
-        <vm-button v-if="!hideBb" @click="backButtonClickHandler" role="bar-button" class="back-button"
-                   :class="[{'show-back-button':!hideBackButton}]">
+        <vm-button v-if="!hideBb"
+                   @click="backButtonClickHandler"
+                   role="bar-button"
+                   class="back-button">
             <vm-icon class="back-button-icon" :name="bbIcon"></vm-icon>
             <span class="back-button-text">{{backText}}</span>
         </vm-button>
@@ -160,13 +162,13 @@
       /**
        * 是否显示后退按钮
        * */
-      hideBackButton: [Boolean]
+      hideBackButton: Boolean
     },
     data () {
       return {
         hideRightButtons: false,
 
-        hideBb: false,
+        hideBb: this.hideBackButton,
         bbIcon: this.$config && this.$config.get('backButtonIcon', 'icon-arrow-back') || 'icon-arrow-back',
         backText: this.$config && this.$config.get('backButtonText', '返回') || '返回'
       }
@@ -268,7 +270,9 @@
        * @private
        * */
       refreshBackButtonStatus () {
-        this.hideBb = !this.$history.canGoBack()
+        if (!this.hideBb) {
+          this.hideBb = !this.$history.canGoBack()
+        }
       },
 
       // -------- for webview --------

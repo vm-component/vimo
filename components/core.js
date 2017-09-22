@@ -8,12 +8,11 @@ import Footer from './base/app/footer.vue'
 import Nav from './base/nav/nav.vue'
 import Page from './base/page/page.vue'
 import Content from './base/content/content.vue'
-
+import Button from './base/button/button.vue'
 import Buttons from './base/bar/toolbar-buttons.vue'
 import Title from './base/bar/toolbar-title.vue'
 import Navbar from './base/bar/navbar.vue'
 import Toolbar from './base/bar/toolbar.vue'
-import Button from './base/button/button.vue'
 
 const VERSION = require('../package.json').version
 const addLogo = (vimoVer, vueVer) => {
