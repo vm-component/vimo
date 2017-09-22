@@ -1,12 +1,19 @@
 import { setupConfig } from './base/config'
 import { setupHistory } from './base/history'
 import { setupPlatform } from './base/platform'
-import { App, Footer, Header } from './app/index'
-import { Button } from './button/index'
-import { Buttons, Navbar, Title, Toolbar } from './toolbar/index'
-import { Content } from './content/index'
-import { Nav } from './nav/index'
-import { Page } from './page/index'
+
+import App from './base/app/app.vue'
+import Header from './base/app/header.vue'
+import Footer from './base/app/footer.vue'
+import Nav from './base/nav/nav.vue'
+import Page from './base/page/page.vue'
+import Content from './base/content/content.vue'
+
+import Buttons from './base/bar/toolbar-buttons.vue'
+import Title from './base/bar/toolbar-title.vue'
+import Navbar from './base/bar/navbar.vue'
+import Toolbar from './base/bar/toolbar.vue'
+import Button from './base/button/button.vue'
 
 const VERSION = require('../package.json').version
 const addLogo = (vimoVer, vueVer) => {

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef,no-unused-expressions */
 import '../../../dist/style.css'
 
-import { Button } from '../../../components/button'
+import { Button } from '../../../components/base/button'
 import { Icon } from '../../../components/icon'
 import 'ionicons/dist/css/ionicons.css'
 
