@@ -1,14 +1,17 @@
 <template>
-    <footer class="ion-footer" :class="[{'hide-bar':isHide}]" :style="style">
+    <header class="ion-header" :class="[{'hide-bar':isHide}]" :style="style">
+        <!--right button placeholder-->
+        <div ref="rightButtonPlaceholder" id="rightButtonPlaceholder"
+             style="width: 30px;bottom:0;height:1px; position: absolute;right:9px;"></div>
         <slot></slot>
-    </footer>
+    </header>
 </template>
 <style lang="less">
-    @import "../themes/index";
+    @import "../../themes/index";
 
-    .ion-footer {
+    .ion-header {
         position: absolute;
-        bottom: 0;
+        top: 0;
         left: 0;
         z-index: @z-index-toolbar;
         display: block;
@@ -16,16 +19,16 @@
         transition: -webkit-transform ease 300ms;
     }
 
-    .ion-footer.hide-bar {
-        transform: translateY(100%);
+    .ion-header.hide-bar {
+        transform: translateY(-100%);
     }
 </style>
 <script type="text/javascript">
   /**
-   * @component Base/Footer
+   * @component Base/Header
    * @description
    *
-   * ## 基础组件 / Footer组件
+   * ## 基础组件 / Header组件
    *
    * Header和Footer组件结构类似, 都是提供一个包裹容器, 不同的是一个固定在上面, 一个固定在下面.
    *
@@ -35,9 +38,11 @@
    * ### 可用的样式属性
    * - [no-border] - 无边框
    *
+   * @see component:Base/Footer
+   *
    * */
   export default {
-    name: 'Footer',
+    name: 'Header',
     data () {
       return {
         // -------- public --------
@@ -50,7 +55,7 @@
       /**
        * @function hide
        * @description
-       * 隐藏Footer
+       * 隐藏Header
        * */
       hide () {
         this.isHide = true
@@ -59,7 +64,7 @@
       /**
        * @function show
        * @description
-       * 显示Footer
+       * 显示Header
        * */
       show () {
         this.isHide = false
@@ -68,7 +73,7 @@
       /**
        * @function toggle
        * @description
-       * Toggle显示Footer
+       * Toggle显示Header
        * */
       toggle () {
         this.isHide = !this.isHide
@@ -79,7 +84,7 @@
        * @param {object} style - 传入的样式对象
        * @see https://cn.vuejs.org/v2/guide/class-and-style.html#对象语法-1
        * @description
-       * 设置Footer的样式
+       * 设置Header的样式
        * */
       setStyle (style) {
         this.style = style

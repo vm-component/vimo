@@ -116,7 +116,7 @@
    * </template>
    *
    * */
-  import { transitionEnd, parsePxUnit, isString, isBoolean, isArray } from '../util/util'
+  import { transitionEnd, parsePxUnit, isString, isBoolean, isArray } from '../../util/util'
   import { ScrollView } from './scroll-view'
 
   export default {

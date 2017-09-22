@@ -21,7 +21,7 @@
     </article>
 </template>
 <style lang="less">
-    @import "app";
+    @import "app.less";
 </style>
 <script type="text/javascript">
   /**
@@ -86,7 +86,7 @@
    * */
 
   import { ClickBlock } from './click-block'
-  import { setElementClass, isString, isPresent } from '../util/util'
+  import { setElementClass, isString, isPresent } from '../../util/util'
 
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态

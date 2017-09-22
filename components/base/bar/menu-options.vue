@@ -12,7 +12,7 @@
     </section>
 </template>
 <script type="text/javascript">
-  import { Popover } from '../popover/index'
+  import { Popover } from '../../popover/index'
 
   export default {
     name: 'PopMenu',
@@ -33,7 +33,7 @@
   }
 </script>
 <style lang="less">
-    @import "../themes/default.less";
+    @import "../../themes/default.less";
 
     .popMenu.popover-ios .popover-content {
         width: 146px;

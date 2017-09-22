@@ -69,7 +69,7 @@
    * }
    *
    * */
-  import { isPresent } from '../util/util'
+  import { isPresent } from '../../util/util'
 
   export default {
     name: 'Title',

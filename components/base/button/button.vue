@@ -11,7 +11,7 @@
     @import "button-icon.less";
 </style>
 <script type="text/javascript">
-  import { setElementClass, isTrueProperty } from '../util/util'
+  import { setElementClass, isTrueProperty } from '../../util/util'
 
   export default {
     name: 'Button',

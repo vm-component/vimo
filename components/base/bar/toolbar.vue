@@ -1,3 +1,12 @@
+<template>
+    <div class="toolbar ion-toolbar" :class="[colorClass]">
+        <div class="toolbar-background"></div>
+        <div class="toolbar-content">
+            <slot></slot>
+        </div>
+        <slot name="buttons"></slot>
+    </div>
+</template>
 <script type="text/javascript">
   /**
    * @component Toolbar
@@ -78,8 +87,10 @@
    * */
 
   import ToolbarMixins from './toolbarMixins.vue'
+
   export default {
     name: 'Toolbar',
     mixins: [ToolbarMixins],
+    computed: {}
   }
 </script>
