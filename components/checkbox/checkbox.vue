@@ -50,7 +50,7 @@
    * </Item>
    * */
   import { setElementClass } from '../util/util'
-  import { Button } from '../button'
+  import { Button } from '../base/button'
 
   export default {
     name: 'Checkbox',

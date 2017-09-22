@@ -81,7 +81,7 @@
 </style>
 <script type="text/javascript">
   import { Backdrop } from '../backdrop/index'
-  import { Button } from '../button/index'
+  import Button from '../base/button/button.vue'
   import { urlChange } from '../util/util'
 
   const NOOP = () => {}

@@ -23,7 +23,7 @@
 </style>
 <script type="text/javascript">
   import { urlChange } from '../util/util'
-  import { Button } from '../button'
+  import Button from '../base/button/button.vue'
 
   const NOOP = () => {}
 

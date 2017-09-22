@@ -86,7 +86,7 @@
    * */
   import { isBlank, isPresent, isTrueProperty, isArray, isString, setElementClass } from '../util/util'
   import { Picker } from '../picker/index'
-  import { Button } from '../button'
+  import Button from '../base/button/button.vue'
   import {
     dateValueRange,
     renderDateTime,

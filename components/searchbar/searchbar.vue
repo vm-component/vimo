@@ -132,7 +132,7 @@
    *    </Page>
    * </template>
    * */
-  import { Button } from '../button'
+  import { Button } from '../base/button'
   import { Icon } from '../icon'
   import { isNumber, isBoolean } from '../util/util'
 

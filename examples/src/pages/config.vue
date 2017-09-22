@@ -34,7 +34,7 @@
 <style scoped lang="less"></style>
 <script type="text/javascript">
   export default {
-    name: 'name',
+    name: 'ConfigDemo',
     data () {
       return {
         cachedConfig: [],
@@ -49,7 +49,7 @@
     mounted () {
       this.$platform.ready().then(() => {
         window.setTimeout(() => {
-          this.cachedConfig = this.$config.catch()
+          this.cachedConfig = this.$config.cache()
           this.settingConfig = this.$config.settings()
         }, 100)
       }, () => {})

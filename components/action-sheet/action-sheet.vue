@@ -42,7 +42,7 @@
 <script type="text/javascript">
   import { urlChange, focusOutActiveElement } from '../util/util'
   import { Backdrop } from '../backdrop/index'
-  import { Button } from '../button/index'
+  import Button from '../base/button/button.vue'
   import { Icon } from '../icon/index'
 
   const NOOP = () => {}
