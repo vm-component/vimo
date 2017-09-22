@@ -34,7 +34,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Textarea } from 'vimo/lib/input'
+   * import { Textarea } from 'vimo/lib/textarea'
    * // 安装
    * Vue.component(Textarea.name, Textarea)
    * // 或者
@@ -68,7 +68,6 @@
    * @usage
    * <Textarea placeholder="Text Textarea">
    * <Textarea @onBlur="blur($event)" @onFocus="focus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>
-   *
    * */
   import { hasFocus, setElementClass } from '../util/util'
   import Autosize from 'autosize'

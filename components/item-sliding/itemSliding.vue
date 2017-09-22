@@ -10,7 +10,9 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less"></style>
+<style lang="less">
+    @import "item-sliding";
+</style>
 <script type="text/javascript">
   /**
    * @component Item/ItemSliding

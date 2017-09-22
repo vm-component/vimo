@@ -1,6 +1,5 @@
 <template>
     <div :class="[itemClass,colorClass,{'item-collapse-open':isActive}]" class="item-collapse">
-
         <div class="item-block" @click="onPointerDownHandler">
             <slot name="item-left"></slot>
             <div class="item-inner">
@@ -79,11 +78,10 @@
    * @demo #/collapseList
    * */
   import { isString, isObject } from '../util/util'
-  import ItemMixin from './itemMixin.vue'
+  import addItemAttr from '../util/addItemAttr.js'
 
   export default {
     name: 'ItemCollapse',
-    mixins: [ItemMixin],
     data () {
       return {
         enable: true,              // 是否能点击
@@ -94,11 +92,28 @@
       }
     },
     props: {
-      title: [String]
+      title: [String],
+      /**
+       * mode 按钮风格 ios/window/android/we/alipay
+       * */
+      mode: {
+        type: String,
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
+      },
+      /**
+       * 按钮color：primary、secondary、danger、light、dark
+       * */
+      color: [String]
     },
     computed: {
       itemCollapseInnerElement () {
         return this.$refs.itemCollapseInner
+      },
+      itemClass () {
+        return `item-${this.mode}`
+      },
+      colorClass () {
+        return this.color ? (`item-${this.mode}-${this.color}`) : ''
       }
     },
     methods: {
@@ -149,6 +164,8 @@
     mounted () {
       this.height = getSize(this.itemCollapseInnerElement).height
       this.isInit = true
+
+      addItemAttr(this.$slots)
     }
   }
 

@@ -23,12 +23,12 @@
     @import "item.ios.less";
     @import "item.md.less";
     @import "item-media";
-    @import "item-sliding";
     @import "item-reorder";
 </style>
 <script type="text/javascript">
   import { isTrueProperty, isPresent, isString } from '../util/util'
   import { Icon } from '../icon'
+  import addItemAttr from '../util/addItemAttr.js'
 
   export default {
     data () {
@@ -65,7 +65,6 @@
        * 而不是 router.push()，于是导航后不会留下 history 记录。
        * */
       replace: Boolean
-
     },
     computed: {
       itemClass () {
@@ -136,17 +135,7 @@
         this.isInMenu = true
       }
 
-      // 为slot="item-left"/slot="item-right"的沟槽设定属性
-      if (this.$slots && this.$slots['item-left']) {
-        this.$slots['item-left'].forEach(function (item) {
-          item.elm.setAttribute('item-left', '')
-        })
-      }
-      if (this.$slots && this.$slots['item-right']) {
-        this.$slots['item-right'].forEach(function (item) {
-          item.elm.setAttribute('item-right', '')
-        })
-      }
+      addItemAttr(this.$slots)
     },
     components: {Icon}
   }
