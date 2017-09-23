@@ -18,8 +18,8 @@ import { Indicator } from './indicator'
 import { InfiniteScroll, InfiniteScrollContent } from './infinite-scroll'
 import { Input } from './input'
 import { Textarea } from './textarea'
-import Item from './item'
-import { ItemCollapse } from './item-collapse'
+import { Item, ItemDivider, ItemGroup, ListHeader } from './item'
+import { ItemCollapse, ItemCollapseGroup } from './item-collapse'
 import { ItemOptions, ItemSliding } from './item-sliding'
 import { Label } from './label'
 import { List } from './list'
@@ -95,13 +95,12 @@ module.exports = {
     Vue.component(InfiniteScrollContent.name, InfiniteScrollContent)
     Vue.component(Input.name, Input)
     Vue.component(Textarea.name, Textarea)
-    // item
     Vue.component(Item.name, Item)
-    Vue.component(Item.header.name, Item.header)
-    Vue.component(Item.divider.name, Item.divider)
-    Vue.component(Item.group.name, Item.group)
-    
+    Vue.component(ListHeader.name, ListHeader)
+    Vue.component(ItemDivider.name, ItemDivider)
+    Vue.component(ItemGroup.name, ItemGroup)
     Vue.component(ItemCollapse.name, ItemCollapse)
+    Vue.component(ItemCollapseGroup.name, ItemCollapseGroup)
     Vue.component(ItemSliding.name, ItemSliding)
     Vue.component(ItemOptions.name, ItemOptions)
     Vue.component(Label.name, Label)
