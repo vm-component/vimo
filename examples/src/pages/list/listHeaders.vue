@@ -10,17 +10,20 @@
                 <ListHeader>
                     Action-1
                 </ListHeader>
-                <Item>Terminator II</Item>
-                <Item>The Empire Strikes Back</Item>
-                <Item>Blade Runner</Item>
+                <ItemGroup>
+                    <Item>Terminator II</Item>
+                    <Item>The Empire Strikes Back</Item>
+                    <Item>Blade Runner</Item>
+                </ItemGroup>
 
                 <ListHeader>
                     Action-2
                 </ListHeader>
-                <Item>Terminator II</Item>
-                <Item>The Empire Strikes Back</Item>
-                <Item>Blade Runner</Item>
-
+                <ItemGroup>
+                    <Item>Terminator II</Item>
+                    <Item>The Empire Strikes Back</Item>
+                    <Item>Blade Runner</Item>
+                </ItemGroup>
             </List>
         </Content>
     </Page>
@@ -29,7 +32,7 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     data () {
       return {}
     },
