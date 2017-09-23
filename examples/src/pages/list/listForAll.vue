@@ -10,8 +10,6 @@
                 <!--header-->
                 <ListHeader>
                     setting
-
-
                     <Button slot="item-right" clear>
                         <Icon name="cog"></Icon>
                     </Button>
@@ -20,7 +18,7 @@
                 <ItemGroup>
                     <Item>
                         <Icon slot="item-left" color="danger" name="plane"></Icon>
-                        Airplane Mode
+                        <span>Airplane Mode</span>
                         <Toggle slot="item-right" @ionChange="toggleChange"
                                 :checked="toggleValue"></Toggle>
                     </Item>

@@ -85,7 +85,6 @@
         setElementClass(this.itemComponent.$el, 'item-label-fixed', this.fixed)
         setElementClass(this.itemComponent.$el, 'item-label-floating', this.floating)
         setElementClass(this.itemComponent.$el, 'item-label-stacked', this.stacked)
-        this.itemComponent.labelComponent = this
       }
     }
   }

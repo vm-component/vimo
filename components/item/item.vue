@@ -73,8 +73,7 @@
     name: 'Item',
     data () {
       return {
-        isInMenu: false,       // 判断是否在menu组件中, 如果在menu中, 则
-        labelComponent: null
+        isInMenu: this.wait // 判断是否在menu组件中, 如果在menu中, 则
       }
     },
     props: {
@@ -84,12 +83,19 @@
        * 所以这个值可以是一个字符串或者是描述目标位置的对象
        * */
       to: [String, Object],
+
       append: Boolean,
+
       /**
        * 设置 replace 属性的话，当点击时，会调用 router.replace()
        * 而不是 router.push()，于是导航后不会留下 history 记录。
        * */
-      replace: Boolean
+      replace: Boolean,
+
+      /**
+       * 如果是在menus中, 可以设置这个值, 当menus完全关闭时再出发跳转动作
+       * */
+      wait: Boolean
     },
     methods: {
       /**
@@ -143,12 +149,18 @@
        * 获取组件类Label的文本
        * */
       getLabelText () {
-        return this.labelComponent ? this.labelComponent.$el.innerText : ''
-      }
-    },
-    mounted () {
-      if (isTrueProperty(this.$el.getAttribute('wait'))) {
-        this.isInMenu = true
+        let list = []
+        if (this.$slots['default'] && this.$slots['default'].length > 0) {
+          list = this.$slots['default']
+        }
+        for (let i = 0, len = list.length; len > i; i++) {
+          let item = list[i]
+          let hasValue = !!item.tag || (!!item.text && !!item.text.trim())
+          if (hasValue && item.elm && item.elm.textContent) {
+            return item.elm.textContent.toString().trim()
+          }
+        }
+        return ''
       }
     }
   }
