@@ -12,7 +12,7 @@
             </div>
             <List>
                 <ListHeader>折叠列表</ListHeader>
-                <ItemGroup>
+                <ItemCollapseGroup>
                     <ItemCollapse title="Cars">
                         <Icon slot="item-left" color="primary" name="car"></Icon>
                         <Item detail-push>
@@ -42,12 +42,12 @@
                         <Item detail-push>飞机2</Item>
                         <Item detail-push>飞机3</Item>
                     </ItemCollapse>
-                </ItemGroup>
+                </ItemCollapseGroup>
             </List>
 
             <List>
                 <ListHeader>手风琴列表(只开启一个)</ListHeader>
-                <ItemGroup accordion>
+                <ItemCollapseGroup accordion>
                     <ItemCollapse title="This Is Title1">
                         <Item>subItem1</Item>
                         <Item>subItem2</Item>
@@ -67,7 +67,7 @@
                         <Item detail-push>subItem2</Item>
                         <Item detail-push>subItem3</Item>
                     </ItemCollapse>
-                </ItemGroup>
+                </ItemCollapseGroup>
             </List>
         </Content>
     </Page>

@@ -52,12 +52,12 @@
    * @usage
    * <List>
    *    <ListHeader>手风琴列表(只开启一个)</ListHeader>
-   *    <ItemGroup accordion>
+   *    <ItemCollapseGroup accordion>
    *        <ItemCollapse title="This Is Title1">
    *            <Item>subItem1</Item>
    *            <Item>subItem2</Item>
    *            <Item>subItem3</Item>
-   *            </ItemCollapse>
+   *        </ItemCollapse>
    *        <ItemCollapse>
    *            <template slot="item-title">
    *                This Is Title2 &ensp;
@@ -72,19 +72,19 @@
    *            <Item detail-push>subItem2</Item>
    *            <Item detail-push>subItem3</Item>
    *        </ItemCollapse>
-   *    </ItemGroup>
+   *    </ItemCollapseGroup>
    * </List>
    *
    * @demo #/collapseList
    * */
-  import { isString, isObject } from '../util/util'
   import addItemAttr from '../util/addItemAttr.js'
+  import { getStyle, getStyleNum, setStyle, getSize } from './styleTools'
 
   export default {
     name: 'ItemCollapse',
     data () {
       return {
-        enable: true,              // 是否能点击
+        enable: true,               // 是否能点击
         isInit: false,              // 是否初始化
         itemGroupComponent: null,   // 父组件ItemGroup
         isActive: false,            // 当前组件状态
@@ -92,7 +92,7 @@
       }
     },
     props: {
-      title: [String],
+      title: String,
       /**
        * mode 按钮风格 ios/window/android/we/alipay
        * */
@@ -103,7 +103,7 @@
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: [String]
+      color: String
     },
     computed: {
       itemCollapseInnerElement () {
@@ -156,7 +156,7 @@
       }
     },
     created () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'itemgroup') {
+      if (parentNodeIs(this, 'ItemCollapseGroup')) {
         this.itemGroupComponent = this.$parent
         this.itemGroupComponent.recordItemCollapse(this)
       }
@@ -169,63 +169,7 @@
     }
   }
 
-  /**
-   * 获取元素样式
-   * @private
-   * */
-  function getStyle (el, styleName) {
-    return el.style[styleName] ? el.style[styleName] : el.currentStyle ? el.currentStyle[styleName] : window.getComputedStyle(el, null)[styleName]
-  }
-
-  /**
-   * 单位转化
-   * @private
-   * */
-  function getStyleNum (el, styleName) {
-    return parseInt(getStyle(el, styleName).replace(/px|pt|em/ig, ''))
-  }
-
-  /**
-   * 设置样式
-   * @private
-   * */
-  function setStyle (el, obj) {
-    if (isObject(obj)) {
-      for (let s in obj) {
-        let cssArrt = s.split('-')
-        for (let i = 1; i < cssArrt.length; i++) {
-          cssArrt[i] = cssArrt[i].replace(cssArrt[i].charAt(0), cssArrt[i].charAt(0).toUpperCase())
-        }
-        let cssArrtnew = cssArrt.join('')
-        el.style[cssArrtnew] = obj[s]
-      }
-    } else if (isString(obj)) {
-      el.style.cssText = obj
-    }
-  }
-
-  /**
-   * 获取尺寸
-   * @private
-   * */
-  function getSize (el) {
-    if (getStyle(el, 'display') !== 'none') {
-      return {
-        width: el.offsetWidth || getStyleNum(el, 'width'),
-        height: el.offsetHeight || getStyleNum(el, 'height')
-      }
-    }
-    let addCss = {display: '', position: 'absolute', visibility: 'hidden'}
-    let oldCss = {}
-    for (let i in addCss) {
-      oldCss[i] = getStyle(el, i)
-    }
-    setStyle(el, addCss)
-    let width = el.clientWidth || getStyleNum(el, 'width')
-    let height = el.clientHeight || getStyleNum(el, 'height')
-    for (let i in oldCss) {
-      setStyle(el, oldCss)
-    }
-    return {width, height}
+  function parentNodeIs (node, name = '') {
+    return node && node.$parent && node.$parent.$options._componentTag.toLowerCase() === name.toLowerCase()
   }
 </script>
