@@ -132,7 +132,7 @@
    *    </Page>
    * </template>
    * */
-  import { Button } from '../base/button'
+  import Button from '../base/button/button.vue'
   import { Icon } from '../icon'
   import { isNumber, isBoolean } from '../util/util'
 
