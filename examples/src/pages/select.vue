@@ -17,41 +17,45 @@
                 <Item>
                     <Label fixed>Gender(fixed)</Label>
                     <Select item-right placeholder="Select" interface="action-sheet"
+                            :selectOptions="{title:'Fixed Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <Option value="f">Female</Option>
-                        <Option value="m">Male</Option>
+                        <SelectOption value="f">Female</SelectOption>
+                        <SelectOption value="m">Male</SelectOption>
                     </Select>
                 </Item>
                 <Item>
                     <Label stacked>Gender(stacked)</Label>
                     <Select item-right placeholder="Select" interface="action-sheet"
+                            :selectOptions="{title:'Stacked Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <Option value="f">Female</Option>
-                        <Option value="m">Male</Option>
+                        <SelectOption value="f">Female</SelectOption>
+                        <SelectOption value="m">Male</SelectOption>
                     </Select>
                 </Item>
                 <Item>
                     <Label floating>Gender(floating)</Label>
                     <Select item-right placeholder="Select" interface="action-sheet"
+                            :selectOptions="{title:'Foating Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <Option value="f">Female</Option>
-                        <Option value="m">Male</Option>
+                        <SelectOption value="f">Female</SelectOption>
+                        <SelectOption value="m">Male</SelectOption>
                     </Select>
                 </Item>
                 <Item>
                     <Label>Gender</Label>
                     <Select item-right placeholder="Select" interface="action-sheet"
+                            :selectOptions="{title:'Normal Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <Option value="f">Female</Option>
-                        <Option value="m">Male</Option>
+                        <SelectOption value="f">Female</SelectOption>
+                        <SelectOption value="m">Male</SelectOption>
                     </Select>
                 </Item>
 
@@ -61,8 +65,8 @@
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <Option value="f" checked>Female</Option>
-                        <Option value="m">Male</Option>
+                        <SelectOption value="f" checked>Female</SelectOption>
+                        <SelectOption value="m">Male</SelectOption>
                     </Select>
                 </Item>
 
@@ -72,8 +76,8 @@
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <Option value="f">Female</Option>
-                        <Option value="m">Male</Option>
+                        <SelectOption value="f">Female</SelectOption>
+                        <SelectOption value="m">Male</SelectOption>
                     </Select>
                 </Item>
 
@@ -83,16 +87,16 @@
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <Option value="f">Female</Option>
-                        <Option value="m">Male</Option>
+                        <SelectOption value="f">Female</SelectOption>
+                        <SelectOption value="m">Male</SelectOption>
                     </Select>
                 </Item>
 
                 <Item>
                     <Label>能修改选中值文本</Label>
                     <Select item-right placeholder="请选择" selectedText="已选择" interface="alert" :multiple="true">
-                        <Option value="f">Female</Option>
-                        <Option value="m">Male</Option>
+                        <SelectOption value="f">Female</SelectOption>
+                        <SelectOption value="m">Male</SelectOption>
                     </Select>
                 </Item>
             </List>
@@ -104,12 +108,12 @@
                 <Item>
                     <Label>Gaming</Label>
                     <Select v-model="gamingNoValue" :multiple="true">
-                        <Option>NES</Option>
-                        <Option>Nintendo64</Option>
-                        <Option>PlayStation</Option>
-                        <Option>Sega Genesis</Option>
-                        <Option>Sega Saturn</Option>
-                        <Option>SNES</Option>
+                        <SelectOption>NES</SelectOption>
+                        <SelectOption>Nintendo64</SelectOption>
+                        <SelectOption>PlayStation</SelectOption>
+                        <SelectOption>Sega Genesis</SelectOption>
+                        <SelectOption>Sega Saturn</SelectOption>
+                        <SelectOption>SNES</SelectOption>
                     </Select>
                 </Item>
             </List>
@@ -124,12 +128,12 @@
                 <Item>
                     <Label>Gaming</Label>
                     <Select v-model="gaming" :multiple="true">
-                        <Option value="nes"  >NES</Option>
-                        <Option value="n64" >Nintendo64</Option>
-                        <Option value="ps" >PlayStation</Option>
-                        <Option value="genesis">Sega Genesis</Option>
-                        <Option value="saturn">Sega Saturn</Option>
-                        <Option value="snes" disabled>SNES</Option>
+                        <SelectOption value="nes">NES</SelectOption>
+                        <SelectOption value="n64">Nintendo64</SelectOption>
+                        <SelectOption value="ps">PlayStation</SelectOption>
+                        <SelectOption value="genesis">Sega Genesis</SelectOption>
+                        <SelectOption value="saturn">Sega Saturn</SelectOption>
+                        <SelectOption value="snes" disabled>SNES</SelectOption>
                     </Select>
                 </Item>
             </List>
@@ -147,9 +151,9 @@
                 <Item>
                     <Label>Currency</Label>
                     <Select v-model="currency" v-if="hideCurrency">
-                        <Option :value="cur.code" v-for="(cur,index) in currencies" :key="index">
+                        <SelectOption :value="cur.code" v-for="(cur,index) in currencies" :key="index">
                             <span>{{cur.symbol}} ({{cur.code}}) {{cur.name}}</span>
-                        </Option>
+                        </SelectOption>
                     </Select>
                 </Item>
                 <div padding>
@@ -166,7 +170,7 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'name',
     data () {
       return {
@@ -280,6 +284,6 @@
           }
         }, 0)
       }
-    },
+    }
   }
 </script>

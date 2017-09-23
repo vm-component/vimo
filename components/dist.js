@@ -38,7 +38,7 @@ import { Scroll } from './scroll'
 import { ScrollSegment, ScrollSegmentButton } from './scroll-segment'
 import { Searchbar } from './searchbar'
 import { Segment, SegmentButton } from './segment'
-import { Option, Select } from './select'
+import { SelectOption, Select } from './select'
 import { Separation } from './separation'
 import { Sheet } from './sheet'
 import { SlideBox } from './slide-box'
@@ -119,7 +119,7 @@ module.exports = {
     Vue.component(Segment.name, Segment)
     Vue.component(SegmentButton.name, SegmentButton)
     Vue.component(Select.name, Select)
-    Vue.component(Option.name, Option)
+    Vue.component(SelectOption.name, SelectOption)
     Vue.component(Separation.name, Separation)
     Vue.component(Sheet.name, Sheet)
     Vue.component(SlideBox.name, SlideBox)

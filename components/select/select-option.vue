@@ -11,7 +11,7 @@
   import { isBlank } from '../util/util'
 
   export default {
-    name: 'Option',
+    name: 'SelectOption',
     data () {
       return {
         selectComponent: null,      // Select组件
