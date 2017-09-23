@@ -274,9 +274,22 @@
       /**
        * @event component:Input#onKeyup
        * @description keyup事件
+       * @private
        */
       inputKeyUp ($event) {
         this.$emit('onKeyup', $event)
+      },
+
+      /**
+       * @event component:Input#onKeydown
+       * @description keydown事件
+       * @private
+       */
+      inputKeyDown ($event) {
+        this.$emit('onKeydown', $event)
+        if (this.clearOnEditValue) {
+          this.checkClearOnEdit()
+        }
       },
 
       /**
@@ -435,17 +448,6 @@
           this.$emit('onInput', this.inputValue)
           this.$emit('input', this.inputValue)
         }, this.debounce)
-      },
-
-      /**
-       * @event component:Input#onKeydown
-       * @description keyup事件
-       */
-      inputKeyDown ($event) {
-        this.$emit('onKeydown', $event)
-        if (this.clearOnEditValue) {
-          this.checkClearOnEdit()
-        }
       },
 
       /**
