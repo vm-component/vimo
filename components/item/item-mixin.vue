@@ -4,15 +4,8 @@
         <slot name="item-left"></slot>
         <div class="item-inner">
             <div class="input-wrapper">
-                <!--如果是ion-label则单独显示，如果不是则显示在ion-label中-->
                 <slot></slot>
-                <!--<Label>-->
-                <slot name="label"></slot>
-                <!--</Label>-->
-                <!--以下组件显示在此处：ion-select,ion-input,ion-textarea,ion-datetime,ion-range,[item-content]-->
-                <slot name="content"></slot>
             </div>
-
             <!--以下组件显示在此处：[item-right],ion-radio,ion-toggle-->
             <slot name="item-right"></slot>
         </div>
@@ -26,7 +19,6 @@
 </style>
 <script type="text/javascript">
   import addItemAttr from '../util/addItemAttr.js'
-
 
   export default {
     props: {
