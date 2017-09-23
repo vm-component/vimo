@@ -5,10 +5,10 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Item/ItemOptions
+   * @component Item/ItemSlidingOptions
    * @description
    *
-   * 这个组件是ItemSliding组件的子组件, 两者配合使用.
+   * 这个组件是 ItemSliding 组件的子组件, 两者配合使用.
    *
    * @props {String} [side='right'] - 选项按钮的左右位置
    *
@@ -19,7 +19,7 @@
    * @see component:ItemSliding
    * */
   export default{
-    name: 'ItemOptions',
+    name: 'ItemSlidingOptions',
     data () {
       return {}
     },

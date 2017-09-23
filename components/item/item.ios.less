@@ -39,10 +39,6 @@
 /// @prop - Padding for the divider
 @item-ios-divider-padding: 5px 15px;
 
-/// @prop - Background for the sliding content
-//@item-ios-sliding-content-background:     @list-ios-background-color;
-@item-ios-sliding-content-background: #eee;
-
 /// @prop - Min height for the divider
 @item-ios-divider-min-height: 30px;
 // iOS Item
@@ -221,7 +217,7 @@
   border-top-width: 0;
 }
 
-.ion-item-group .item-ios:last-child:not(.item-collapse-open) .item-inner,
+.ion-item-group :not(.item-collapse-open) .item-inner,
 .ion-item-group .item-wrapper:last-child .item-ios .item-inner {
   border: 0;
 }
@@ -257,7 +253,7 @@
       color: @color-base;
     }
 
-    .ion-item-divider{
+    .ion-item {
       &.item-ios-@{color-name},
       &.item-divider-ios-@{color-name} {
         color: @color-contrast;
@@ -278,59 +274,3 @@
 // action
 .get-all-colors(ios);
 
-// iOS Item Sliding
-// --------------------------------------------------
-
-.list-ios .ion-item-sliding {
-  background-color: @item-ios-sliding-content-background;
-}
-
-// IOS Item Collapse
-// --------------------------------------------------
-
-.item-ios.item-collapse > .item-block:active {
-  background-color: @list-ios-activated-background-color;
-  transition-duration: 0ms;
-}
-
-.item-ios.item-collapse > .item-block > .item-inner {
-  position: relative;
-  padding-right: 32px;
-
-}
-
-.item-ios.item-collapse .item-arrow {
-  width: 14px;
-  height: 14px;
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  margin-top: -7px;
-
-  .svg-background-image(@item-ios-detail-push-svg);
-
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 14px 14px;
-
-  transition: all ease 200ms;
-}
-
-.item-ios.item-collapse.item-collapse-open .item-arrow {
-  transform: rotate(90deg);
-}
-
-.ion-item-group .item-collapse > .item-collapse-inner {
-  overflow: hidden;
-}
-
-.ion-item-group .item-collapse > .item-collapse-inner .item-ios .item-inner,
-.ion-item-group .item-collapse > .item-collapse-inner .item-ios:last-child .item-inner {
-  border-bottom: @hairlines-width solid @list-ios-border-color;
-}
-
-.ion-item-group .item-ios:last-child {
-  .item-collapse-inner .item-ios:last-child .item-inner {
-    border: 0;
-  }
-}

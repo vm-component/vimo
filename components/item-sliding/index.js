@@ -1,7 +1,7 @@
-import ItemOptions from './itemOptions.vue'
-import ItemSliding from './itemSliding.vue'
+import ItemSlidingOptions from './item-sliding-options.vue'
+import ItemSliding from './item-sliding.vue'
 
 export {
   ItemSliding,
-  ItemOptions
+  ItemSlidingOptions
 }

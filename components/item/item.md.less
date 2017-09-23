@@ -45,10 +45,6 @@
 /// @prop - Padding for the divider
 @item-md-divider-padding: 5px 15px;
 
-/// @prop - Background for the sliding content
-//@item-md-sliding-content-background: @list-md-background-color;
-@item-md-sliding-content-background: #eee;
-
 .item-md.item-block,
 .item-md {
     position: relative;
@@ -223,7 +219,7 @@
     border-top-width: 0;
 }
 
-.ion-item-group .item-md:last-child:not(.item-collapse-open) .item-inner,
+.ion-item-group :not(.item-collapse-open) .item-inner,
 .ion-item-group .item-md .item-wrapper:last-child .item-inner {
     border: 0;
 }
@@ -281,12 +277,6 @@
 .get-all-colors(md);
 
 
-// Material Design Item Sliding
-// --------------------------------------------------
-
-.list-md .ion-item-sliding {
-    background-color: @item-md-sliding-content-background;
-}
 
 // Item reorder
 // --------------------------------------------------
@@ -294,53 +284,4 @@
 .item-md .ion-reorder {
     font-size: 1.5em;
     opacity: .3;
-}
-
-// Material Design Item Collapse
-// --------------------------------------------------
-
-.item-md.item-collapse > .item-block:active {
-    background-color: @list-md-activated-background-color;
-    transition-duration: 0ms;
-}
-
-.item-md.item-collapse > .item-block > .item-inner {
-    position: relative;
-    padding-right: 32px;
-}
-
-.item-md.item-collapse .item-arrow {
-    width: 14px;
-    height: 14px;
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    margin-top: -7px;
-    
-    .svg-background-image(@item-md-detail-push-svg);
-    
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 14px 14px;
-    
-    transition: all ease 200ms;
-}
-
-.item-md.item-collapse.item-collapse-open .item-arrow {
-    transform: rotate(90deg);
-}
-
-.ion-item-group .item-collapse > .item-collapse-inner {
-    overflow: hidden;
-}
-
-.ion-item-group .item-collapse > .item-collapse-inner .item-md .item-inner,
-.ion-item-group .item-collapse > .item-collapse-inner .item-md:last-child .item-inner {
-    border-bottom: @hairlines-width solid @list-md-border-color;
-}
-
-.ion-item-group .item-md:last-child {
-    .item-collapse-inner .item-md:last-child .item-inner {
-        border: 0;
-    }
 }

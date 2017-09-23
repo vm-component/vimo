@@ -11,7 +11,9 @@
     </div>
 </template>
 <style lang="less">
-    @import "item-sliding";
+    @import "item-sliding.less";
+    @import "item-sliding.ios.less";
+    @import "item-sliding.md.less";
 </style>
 <script type="text/javascript">
   /**
@@ -23,22 +25,18 @@
    * 这个组件是对Item组件的拓展, 当左右滑动时出现可选择的按钮, 这个组件在部分安卓机上卡顿明显, 使用起来效果不太好, 但是在IOS上很流畅.
    *
    *
-   * ### 子组件ItemOptions
+   * ### 子组件ItemSlidingOptions
    *
-   * ItemOptions只能在ItemSliding组件中使用
+   * ItemSlidingOptions只能在ItemSliding组件中使用
    *
    * ### 如何使用
    *
    * ```
    * // 引入
-   * import { List } from 'vimo/lib/list'
-   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/lib/item'
-   * import { Note } from 'vimo/lib/note'
-   * import { Avatar } from 'vimo/lib/avatar'
-   * import { Label } from 'vimo/lib/label'
+   * import { ItemSlidingOptions, ItemSliding } from 'vimo/lib/item-sliding'
    * // 安装
    * export default{
-   *   components: {List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider, Note, Avatar, Label}
+   *   components: { ItemSlidingOptions, ItemSliding }
    * }
    * ```
    *
@@ -65,7 +63,7 @@
    *            <p>试试 ↔️️ 都滑动</p>
    *        </Label>
    *    </Item>
-   *    <ItemOptions side="left">
+   *    <ItemSlidingOptions side="left">
    *        <Button color="primary" @click="clickText">
    *            <Icon name="text"></Icon>
    *            <span>Text</span>
@@ -74,13 +72,13 @@
    *            <Icon name="call"></Icon>
    *            <span>Call</span>
    *        </Button>
-   *            </ItemOptions>
-   *            <ItemOptions side="right">
+   *     </ItemSlidingOptions>
+   *     <ItemSlidingOptions side="right">
    *        <Button color="primary" @click="clickEmail">
    *            <Icon name="mail"></Icon>
    *            <span>Email</span>
    *        </Button>
-   *    </ItemOptions>
+   *    </ItemSlidingOptions>
    * </ItemSliding>
    * */
   import { pointerCoord, transitionEnd } from '../util/util.js'
@@ -110,7 +108,7 @@
 
   const MAX_DELTAX = 20
 
-  export default{
+  export default {
     name: 'ItemSliding',
     data () {
       return {
@@ -176,7 +174,7 @@
        * @function openLeftOptions
        * @description
        * 开启左边的选项卡
-       * @return {any} ins - 开启的组件示例的this，默认是当前组件自己的this
+       * @return {*} ins - 开启的组件示例的this，默认是当前组件自己的this
        * */
       openLeftOptions (ins = this) {
         if (ins === this && this.leftOptions) {
@@ -201,7 +199,7 @@
        * @function openRightOptions
        * @description
        * 开启右边的选项卡
-       * @return {any} ins - 开启的组件示例的this，默认是当前组件自己的this
+       * @return {*} ins - 开启的组件示例的this，默认是当前组件自己的this
        * */
       openRightOptions (ins = this) {
         if (ins === this && this.rightOptions) {
@@ -255,6 +253,7 @@
       /**
        * onDragStart
        * @param {any} ev
+       * @return {*}
        * @private
        */
       onDragStart (ev) {
@@ -269,6 +268,7 @@
       /**
        * onDragMove
        * @param {any} ev
+       * @return {*}
        * @private
        */
       onDragMove (ev) {
@@ -283,7 +283,7 @@
           let directionCode = this.getDirection(this.firstCoord, pointerCoord(ev))
           if (directionCode === DIRECTION_LEFT || directionCode === DIRECTION_RIGHT) {
             this.isDragging = true
-            ev.preventDefault()
+            ev.preventDefault && ev.preventDefault()
           } else {
             this.isDragging = false
           }
@@ -291,7 +291,7 @@
 
         if (this.isDraggingConfirm && this.isDragging) {
           this.moveSliding(coordX)
-          ev.preventDefault()
+          ev.preventDefault && ev.preventDefault()
         }
       },
 
@@ -354,19 +354,24 @@
       init () {
         // 获取子组件实例
         let side = 0 // ITEM_SIDE_FLAGS None=0
+        let componentIs = (component, name = '') => {
+          return component.$options._componentTag.toLowerCase() === name.toLowerCase()
+        }
+
         this.$children.forEach((item) => {
-          if (item.$options._componentTag.toLowerCase() === 'item') {
+          if (componentIs(item, 'item')) {
             this.itemComponent = item
           }
-          if (item.$options._componentTag.toLowerCase() === 'itemoptions' && item.side === 'left') {
+          if (componentIs(item, 'ItemSlidingOptions') && item.side === 'left') {
             this.leftOptions = item
             side |= this.getSides(item)
           }
-          if (item.$options._componentTag.toLowerCase() === 'itemoptions' && item.side === 'right') {
+          if (componentIs(item, 'ItemSlidingOptions') && item.side === 'right') {
             this.rightOptions = item
             side |= this.getSides(item)
           }
         })
+
         // ITEM_SIDE_FLAGS 的状态记录
         this.sides = side // option的可滑动方向 none:0 left:1 right:2 both:3
         this.optsDirty = true
@@ -547,7 +552,7 @@
        * @param {SLIDING_STATE} state
        * @private
        * */
-      setState  (state) {
+      setState (state) {
         if (state === this.state) return
 
         this.timer && window.clearTimeout(this.timer)

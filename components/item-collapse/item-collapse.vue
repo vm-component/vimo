@@ -1,6 +1,7 @@
 <template>
-    <div :class="[itemClass,colorClass,{'item-collapse-open':isActive}]" class="item-collapse">
-        <div class="item-block" @click="onPointerDownHandler">
+    <div :class="[{'item-collapse-open':isActive}]">
+        <div :class="[itemClass,colorClass]"
+             class="ion-item item-block item-collapse" @click="onPointerDownHandler">
             <slot name="item-left"></slot>
             <div class="item-inner">
                 <div class="input-wrapper" v-if="title">
@@ -24,13 +25,9 @@
     </div>
 </template>
 <style lang="less">
-    .item-collapse-inner {
-        z-index: 1;
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-        position: relative;
-        transition: all ease 300ms;
-    }
+    @import "item-collapse.less";
+    @import "item-collapse.ios.less";
+    @import "item-collapse.md.less";
 </style>
 <script type="text/javascript">
   /**
