@@ -1,11 +1,9 @@
 import Item from './item.vue'
-import ItemDivider from './itemDivider.vue'
-import ItemGroup from './itemGroup.vue'
-import ListHeader from './listHeader.vue'
+import ItemDivider from './item-divider.vue'
+import ItemGroup from './item-group.vue'
+import ListHeader from './list-header.vue'
 
-export {
-  Item,
-  ListHeader,
-  ItemDivider,
-  ItemGroup
-}
+Item.divider = ItemDivider
+Item.group = ItemGroup
+Item.header = ListHeader
+export default Item

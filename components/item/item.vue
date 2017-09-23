@@ -56,7 +56,6 @@
    * @props {Boolean} [replace] - 路由进行方式, 默认为push
    *
    *
-   *
    * @slot 空 - 放置在中间, 默认位置
    * @slot item-left - 放置在左边
    * @slot item-right - 放置在左边
@@ -66,20 +65,92 @@
    * @see http://router.vuejs.org/zh-cn/index.html
    *
    * */
-  import ItemMixin from './itemMixin.vue'
+  import ItemMixin from './item-mixin.vue'
+  import { isTrueProperty, isPresent, isString } from '../util/util'
 
   export default {
     mixins: [ItemMixin],
     name: 'Item',
     data () {
       return {
-        itemTypeName: 'item'
+        isInMenu: false,       // 判断是否在menu组件中, 如果在menu中, 则
+        labelComponent: null
       }
     },
-    computed: {
-      listHeaderClass () {
-        return `item-block`
+    props: {
+      /**
+       * 指向跳转
+       * 当被点击后，内部会立刻把 to 的值传到 router.push()
+       * 所以这个值可以是一个字符串或者是描述目标位置的对象
+       * */
+      to: [String, Object],
+      append: Boolean,
+      /**
+       * 设置 replace 属性的话，当点击时，会调用 router.replace()
+       * 而不是 router.push()，于是导航后不会留下 history 记录。
+       * */
+      replace: Boolean
+    },
+    methods: {
+      /**
+       * 类似于a标签跳转
+       * */
+      clickHandler ($event) {
+        const _this = this
+        const router = this.$router
+        const current = this.$route
+        let _to = this.to
+        if (isPresent(router) && isPresent(current) && isPresent(_to)) {
+          if (isString(_to)) {
+            _to = {
+              name: _to
+            }
+          }
+
+          // 返回数据: {location, route, href}
+          const {location} = router.resolve(_to, current, this.append)
+
+          // 如果在menu跳转, 则需要等待menu关闭后再跳转
+          if (this.isInMenu) {
+            this.$menus.close()
+            this.$eventBus && this.$eventBus.$on('onMenuClosed', directToHandler)
+          } else {
+            // 正常情况
+            doRedirect()
+          }
+
+          // 事件处理函数
+          // eslint-disable-next-line no-inner-declarations
+          function directToHandler () {
+            _this.$eventBus && _this.$eventBus.$off('onMenuClosed', directToHandler)
+            doRedirect()
+          }
+
+          // 跳转
+          // eslint-disable-next-line no-inner-declarations
+          function doRedirect () {
+            if (_this.replace) {
+              router.replace(location)
+            } else {
+              router.push(location)
+            }
+          }
+        } else {
+          this.$emit('click', $event)
+        }
+      },
+      /**
+       * 获取组件类Label的文本
+       * */
+      getLabelText () {
+        return this.labelComponent ? this.labelComponent.$el.innerText : ''
+      }
+    },
+    mounted () {
+      if (isTrueProperty(this.$el.getAttribute('wait'))) {
+        this.isInMenu = true
       }
     }
   }
 </script>
+

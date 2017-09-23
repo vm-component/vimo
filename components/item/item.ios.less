@@ -257,17 +257,19 @@
       color: @color-base;
     }
 
-    .item-ios-@{color-name},
-    .item-divider-ios-@{color-name} {
-      color: @color-contrast;
-      background-color: @color-base;
-
-      p {
+    .ion-item-divider{
+      &.item-ios-@{color-name},
+      &.item-divider-ios-@{color-name} {
         color: @color-contrast;
-      }
+        background-color: @color-base;
 
-      &:active {
-        background-color: darken(@color-base, @darken-amount);
+        p {
+          color: @color-contrast;
+        }
+
+        &:active {
+          background-color: darken(@color-base, @darken-amount);
+        }
       }
     }
   }
