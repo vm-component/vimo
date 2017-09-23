@@ -9,48 +9,75 @@
 // IOS Item Collapse
 // --------------------------------------------------
 
-.item-ios.item-collapse > .item-block:active {
-  background-color: @list-ios-activated-background-color;
-  transition-duration: 0ms;
+.ion-item-collapse-group {
+  & > .item-collapse {
+    & > .ion-item {
+      & > .item-inner {
+        position: relative;
+        padding-right: 32px;
+      }
+    }
+  }
 }
 
-.item-ios.item-collapse > .item-block > .item-inner {
-  position: relative;
-  padding-right: 32px;
+
+.ion-item-collapse-group {
+  & > .collapse-ios {
+    & > .item-ios {
+      &:active {
+        background-color: @list-ios-activated-background-color;
+        transition-duration: 0ms;
+      }
+      & > .item-inner {
+        & > .item-arrow {
+          width: 14px;
+          height: 14px;
+          position: absolute;
+          right: 14px;
+          top: 50%;
+          margin-top: -7px;
+
+          .svg-background-image(@item-ios-collapse-detail-push-svg);
+
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 14px 14px;
+
+          transition: all ease 200ms;
+        }
+      }
+    }
+    .item-collapse-inner {
+      overflow: hidden;
+      padding-left: 40px;
+    }
+  }
+
+  & > .collapse-ios.item-collapse-open {
+    & > .item-ios {
+      & > .item-inner {
+        & > .item-arrow {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
 }
 
-.item-ios.item-collapse .item-arrow {
-  width: 14px;
-  height: 14px;
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  margin-top: -7px;
-
-  .svg-background-image(@item-ios-collapse-detail-push-svg);
-
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 14px 14px;
-
-  transition: all ease 200ms;
-}
-
-.item-collapse-open > .item-ios.item-collapse .item-arrow {
-  transform: rotate(90deg);
-}
-
-.ion-item-group .item-collapse > .item-collapse-inner {
-  overflow: hidden;
-}
-
-.ion-item-group .item-collapse > .item-collapse-inner .item-ios .item-inner,
-.ion-item-group .item-collapse > .item-collapse-inner .item-ios:last-child .item-inner {
+.ion-item-collapse-group > .collapse-ios:last-child {
   border-bottom: @hairlines-width solid @list-ios-border-color;
+  & > .item-block {
+    & > .item-inner {
+      border-bottom: 0;
+    }
+  }
 }
 
-.ion-item-group .item-ios:last-child {
-  .item-collapse-inner .item-ios:last-child .item-inner {
-    border: 0;
+.ion-item-collapse-group > .collapse-ios.item-collapse-open:last-child {
+  border-bottom: 0;
+  & > .item-block {
+    & > .item-inner {
+      border-bottom: @hairlines-width solid @list-ios-border-color;
+    }
   }
 }

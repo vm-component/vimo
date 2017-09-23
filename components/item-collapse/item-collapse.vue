@@ -1,7 +1,7 @@
 <template>
-    <div :class="[{'item-collapse-open':isActive}]">
+    <div :class="[{'item-collapse-open':isActive},collapseClass]" class="item-collapse">
         <div :class="[itemClass,colorClass]"
-             class="ion-item item-block item-collapse" @click="onPointerDownHandler">
+             class="ion-item item-block" @click="onPointerDownHandler">
             <slot name="item-left"></slot>
             <div class="item-inner">
                 <div class="input-wrapper" v-if="title">
@@ -105,6 +105,9 @@
     computed: {
       itemCollapseInnerElement () {
         return this.$refs.itemCollapseInner
+      },
+      collapseClass () {
+        return `collapse-${this.mode}`
       },
       itemClass () {
         return `item-${this.mode}`

@@ -7,4 +7,16 @@
   transform: translate3d(0, 0, 0);
   position: relative;
   transition: all ease 300ms;
+  background-color: #fff;
+}
+
+.ion-item-collapse-group {
+  & > .item-collapse {
+    & > .ion-item {
+      & > .item-inner {
+        position: relative;
+        padding-right: 32px;
+      }
+    }
+  }
 }

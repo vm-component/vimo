@@ -11,40 +11,74 @@
                 <p>折叠列表不支持重叠组合, 最多只有一级折叠.</p>
             </div>
             <List>
+                <ListHeader>普通Item</ListHeader>
+                <Item button>
+                    <span>你好</span>
+                    <Note slot="item-right">Hello</Note>
+                </Item>
+                <Item button>
+                    <span>移动端组件库</span>
+                    <Note slot="item-right">Vimo</Note>
+                </Item>
+            </List>
+            <List>
                 <ListHeader>折叠列表</ListHeader>
                 <ItemCollapseGroup>
                     <ItemCollapse title="Cars">
-                        <Icon slot="item-left" color="primary" name="car"></Icon>
+                        <Icon slot="item-left" name="car"></Icon>
                         <Item detail-push>
-                            <Icon slot="item-left" color="primary" name="wifi"></Icon>
+                            <Icon slot="item-left" name="wifi"></Icon>
                             Wi-Fi
                             <Note slot="item-right">XXX-Office</Note>
                         </Item>
                         <Item>
-                            <Icon slot="item-left" color="danger" name="plane"></Icon>
+                            <Icon slot="item-left" name="plane"></Icon>
                             <span>飞行模式</span>
                             <Toggle slot="item-right" :checked="true"></Toggle>
                         </Item>
                     </ItemCollapse>
                     <ItemCollapse title="Apple">
-                        <Icon slot="item-left" color="primary" name="logo-apple"></Icon>
+                        <Icon slot="item-left" name="logo-apple"></Icon>
                         <Note slot="item-right">请选择</Note>
                         <Item detail-push>MacBook Air</Item>
                         <Item detail-push>MacBook Pro</Item>
                         <Item detail-push>iPhone 8</Item>
                     </ItemCollapse>
-                    <ItemCollapse>
-                        <Icon slot="item-left" color="primary" name="plane"></Icon>
-                        <div slot="item-title">
-                            飞机列表
-                        </div>
-                        <Item detail-push>飞机1</Item>
-                        <Item detail-push>飞机2</Item>
-                        <Item detail-push>飞机3</Item>
-                    </ItemCollapse>
                 </ItemCollapseGroup>
             </List>
 
+            <List>
+                <ListHeader>纯文本</ListHeader>
+                <ItemCollapseGroup accordion>
+                    <ItemCollapse>
+                        <div slot="item-title">
+                            文本1
+                        </div>
+                        <section padding>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, aut autem dolor eligendi eum fugiat illo minima necessitatibus obcaecati omnis quidem repellendus. Aperiam ipsa numquam perspiciatis quod saepe totam ullam.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, aut autem dolor eligendi eum fugiat illo minima necessitatibus obcaecati omnis quidem repellendus. Aperiam ipsa numquam perspiciatis quod saepe totam ullam.
+                        </section>
+                    </ItemCollapse>
+                    <ItemCollapse>
+                        <div slot="item-title">
+                            文本2
+                        </div>
+                        <section padding>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
+                        </section>
+                    </ItemCollapse>
+                    <ItemCollapse>
+                        <div slot="item-title">
+                            文本3
+                        </div>
+                        <section padding>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
+                        </section>
+                    </ItemCollapse>
+                </ItemCollapseGroup>
+            </List>
             <List>
                 <ListHeader>手风琴列表(只开启一个)</ListHeader>
                 <ItemCollapseGroup accordion>
@@ -76,7 +110,7 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'accordion',
     data () {
       return {}
@@ -88,7 +122,6 @@
     created () {},
     mounted () {},
     activated () {},
-    components: {
-    }
+    components: {}
   }
 </script>

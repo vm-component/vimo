@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-item-group">
+    <div class="ion-item-collapse-group">
         <slot></slot>
     </div>
 </template>

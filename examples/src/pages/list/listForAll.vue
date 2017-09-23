@@ -32,16 +32,12 @@
                     <Item button>
                         <Icon slot="item-left" color="primary" name="bluetooth"></Icon>
                         Bluetooth
-
-
                         <Note slot="item-right">Off</Note>
                     </Item>
                 </ItemGroup>
                 <!--divider-->
                 <ItemDivider color="primary">
                     Other Setting
-
-
                     <Button slot="item-right" outline color="light">Clear</Button>
                 </ItemDivider>
 
@@ -49,8 +45,6 @@
                 <Item button>
                     <Icon slot="item-left" color="secondary" name="call"></Icon>
                     Cellular
-
-
                 </Item>
                 <!--button属性会在右边增加向右箭头-->
                 <Item button>
@@ -67,8 +61,6 @@
                 <ListHeader>
                     <Icon slot="item-left" name="phone-portrait"></Icon>
                     Silence Phone
-
-
                 </ListHeader>
                 <!--button属性会在右边增加向右箭头-->
                 <Item>
@@ -78,8 +70,6 @@
                 <!--button属性会在右边增加向右箭头-->
                 <Item>
                     Only while phone is locked
-
-
                 </Item>
             </List>
 
@@ -123,7 +113,7 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     data () {
       return {
         toggleValue: true,
