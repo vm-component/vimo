@@ -15,7 +15,7 @@
     </div>
 </template>
 <style lang="less">
-    @import "slides";
+    @import "slides.less";
 
     .swiper-container {
         width: 100%;
