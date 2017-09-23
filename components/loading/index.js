@@ -1,2 +1,1 @@
-import Loading from './loading.js'
-export { Loading }
+export { default } from './loading.js'

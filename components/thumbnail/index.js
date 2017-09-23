@@ -1,1 +1,1 @@
-export { default as Thumbnail } from './thumbnail.vue'
+export { default } from './thumbnail.vue'

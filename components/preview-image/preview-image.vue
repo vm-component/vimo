@@ -72,7 +72,7 @@
     }
 </style>
 <script type="text/javascript">
-  import { Modal } from '../modal'
+  import Modal from '../modal'
   // 不适用lite是因为其不支持图片懒加载
   import { Slides, Slide } from '../slides'
 

@@ -148,7 +148,7 @@
    * */
   import ToolbarMixins from './toolbarMixins.vue'
   import Button from '../button/button.vue'
-  import { Icon } from '../../icon/index'
+  import Icon from '../../icon/index'
   import { isArray, isString } from '../../util/util'
 
   export default {

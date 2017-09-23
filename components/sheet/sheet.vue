@@ -104,7 +104,7 @@
    * </Sheet>
    *
    * */
-  import { Backdrop } from '../backdrop'
+  import Backdrop from '../backdrop'
   import { urlChange } from '../util/util'
   const NOOP = () => {}
 

@@ -55,7 +55,7 @@
 </style>
 <script type="text/javascript">
   import Vue from 'vue'
-  import { Backdrop } from '../backdrop'
+  import Backdrop from '../backdrop'
 
   const NOOP = () => {}
 

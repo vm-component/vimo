@@ -32,7 +32,7 @@
    *
    * ```
    * // 引入
-   * import { Spinner } from 'vimo/lib/spinner'
+   * import Spinner from 'vimo/lib/spinner'
    * // 安装
    * Vue.component(Spinner.name, Spinner)
    * // 或者

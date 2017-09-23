@@ -119,7 +119,7 @@
    * */
   import { isString, isPresent, isNumber, urlChange } from '../util/util'
   import PickerCol from './picker-col.vue'
-  import { Backdrop } from '../backdrop'
+  import Backdrop from '../backdrop'
   import Button from '../base/button/button.vue'
 
   const NOOP = () => {}

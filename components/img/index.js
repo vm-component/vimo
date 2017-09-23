@@ -1,2 +1,1 @@
-import Img from './img.vue'
-export { Img }
+export { default } from './img.vue'

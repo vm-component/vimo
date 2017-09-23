@@ -1,2 +1,1 @@
-import Separation from './separation.vue'
-export { Separation }
+export { default } from './separation.vue'

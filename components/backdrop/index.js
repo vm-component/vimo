@@ -1,2 +1,1 @@
-import Backdrop from './backdrop.vue'
-export { Backdrop }
+export { default } from './backdrop.vue'

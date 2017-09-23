@@ -1,1 +1,1 @@
-export { default as Indicator } from './indicator.js'
+export { default } from './indicator.js'

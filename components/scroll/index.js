@@ -1,1 +1,1 @@
-export { default as Scroll } from './scroll.vue'
+export { default } from './scroll.vue'

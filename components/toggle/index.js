@@ -1,2 +1,1 @@
-import Toggle from './toggle.vue'
-export { Toggle }
+export { default } from './toggle.vue'

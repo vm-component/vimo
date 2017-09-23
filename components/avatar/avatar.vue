@@ -2,6 +2,7 @@
     <div class="ion-avatar">
         <slot></slot>
     </div>
+
 </template>
 <script type="text/javascript">
   /**
@@ -16,8 +17,16 @@
    * @see component:Item
    * @see component:Thumbnail
    * @demo #/avatarList
+   *
+   * @usage
+   *
+   * import Avatar from 'vimo/lib/avatar'
+   * Vue.component(Avatar.name, Avatar)
+   *
+   * <Avatar><img src=''></Avatar>
+   *
    * */
-  export default{
+  export default {
     name: 'Avatar'
   }
 </script>

@@ -1,2 +1,1 @@
-import Menus from './menus.vue'
-export { Menus }
+export { default } from './menus.vue'

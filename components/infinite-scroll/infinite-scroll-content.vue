@@ -23,7 +23,7 @@
    * @see component:InfiniteScroll
    * @demo #/infinite-scroll
    * */
-  import { Spinner } from '../spinner/index'
+  import Spinner from '../spinner/index'
 
   export default {
     name: 'InfiniteScrollContent',

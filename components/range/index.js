@@ -1,1 +1,1 @@
-export { default as Range } from './range.vue'
+export { default } from './range.vue'

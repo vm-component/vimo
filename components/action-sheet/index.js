@@ -1,1 +1,1 @@
-export { default as ActionSheet } from './action-sheet.js'
+export { default } from './action-sheet.js'

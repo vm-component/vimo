@@ -41,9 +41,9 @@
 </template>
 <script type="text/javascript">
   import { urlChange, focusOutActiveElement } from '../util/util'
-  import { Backdrop } from '../backdrop/index'
+  import Backdrop from '../backdrop/index'
   import Button from '../base/button/button.vue'
-  import { Icon } from '../icon/index'
+  import Icon from '../icon/index'
 
   const NOOP = () => {}
 

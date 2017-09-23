@@ -1,8 +1,6 @@
 <template>
     <div class="vm-slideBox" :state="state">
         <div class="vm-slideBox-placeholder">{{placeholder}}</div>
-
-        <!--绿色背景-->
         <div class="vm-slideBox-track" ref="slideBoxTrack" :style="{'transform':'translateX(-'+translateX+'px)'}">
             <div class="track-background">
                 <span v-if="state === 'checking'">{{checkingText}}</span>

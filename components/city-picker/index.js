@@ -218,4 +218,4 @@ const CityPicker = {
     }
   }
 }
-export { CityPicker }
+export default CityPicker

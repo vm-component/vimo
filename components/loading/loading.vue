@@ -121,8 +121,8 @@
    *
    * */
   import { urlChange } from '../util/util'
-  import { Backdrop } from '../backdrop'
-  import { Spinner } from '../spinner/index'
+  import Backdrop from '../backdrop'
+  import Spinner from '../spinner/index'
 
   const NOOP = () => {}
 

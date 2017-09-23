@@ -45,7 +45,7 @@
  * ### 如何引入
  * ```
  * // 引入
- * import { Icon } from 'vimo/lib/icon'
+ * import Icon from 'vimo/lib/icon'
  * // 安装
  * Vue.component(Icon.name, Icon)
  * // 或者
@@ -67,6 +67,4 @@
  * @demo #/icon
  *
  * */
-import Icon from './icon.vue'
-
-export { Icon }
+export { default } from './icon.vue'

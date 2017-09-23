@@ -133,7 +133,7 @@
    * </template>
    * */
   import Button from '../base/button/button.vue'
-  import { Icon } from '../icon'
+  import Icon from '../icon'
   import { isNumber, isBoolean } from '../util/util'
 
   export default {

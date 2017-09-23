@@ -1,2 +1,1 @@
-import Sheet from './sheet.vue'
-export { Sheet }
+export { default } from './sheet.vue'

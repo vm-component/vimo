@@ -28,7 +28,7 @@
                             <p>试试 ↔️️ 都滑动</p>
                         </Label>
                     </Item>
-                    <ItemOptions side="left">
+                    <ItemSlidingOptions side="left">
                         <Button color="primary" @click="clickText">
                             <Icon name="text"></Icon>
                             <span>Text</span>
@@ -37,13 +37,13 @@
                             <Icon name="call"></Icon>
                             <span>Call</span>
                         </Button>
-                    </ItemOptions>
-                    <ItemOptions side="right">
+                    </ItemSlidingOptions>
+                    <ItemSlidingOptions side="right">
                         <Button color="primary" @click="clickEmail">
                             <Icon name="mail"></Icon>
                             <span>Email</span>
                         </Button>
-                    </ItemOptions>
+                    </ItemSlidingOptions>
                 </ItemSliding>
                 <ItemSliding>
                     <Item>
@@ -55,12 +55,12 @@
                             <p>⬅️ 滑动出现按钮</p>
                         </Label>
                     </Item>
-                    <ItemOptions side="right">
+                    <ItemSlidingOptions side="right">
                         <Button color="primary" @click="clickEmail">
                             <Icon name="mail"></Icon>
                             <span>Email</span>
                         </Button>
-                    </ItemOptions>
+                    </ItemSlidingOptions>
                 </ItemSliding>
                 <ItemSliding>
                     <Item>
@@ -72,7 +72,7 @@
                             <p>➡️ 滑动出现按钮</p>
                         </Label>
                     </Item>
-                    <ItemOptions side="left">
+                    <ItemSlidingOptions side="left">
                         <Button color="primary" @click="clickText">
                             <Icon name="text"></Icon>
                             <span>Text</span>
@@ -81,7 +81,7 @@
                             <Icon name="call"></Icon>
                             <span>Call</span>
                         </Button>
-                    </ItemOptions>
+                    </ItemSlidingOptions>
                 </ItemSliding>
 
                 <ItemSliding>
@@ -95,12 +95,12 @@
                         </Label>
                     </Item>
 
-                    <ItemOptions side="right">
+                    <ItemSlidingOptions side="right">
                         <Button expandable color="danger" @click="clickDelete">
                             <Icon name="trash"></Icon>
                             <span>Delete</span>
                         </Button>
-                    </ItemOptions>
+                    </ItemSlidingOptions>
                 </ItemSliding>
 
                 <ItemSliding>
@@ -114,12 +114,12 @@
                         </label>
                     </Item>
 
-                    <ItemOptions side="right" icon-left>
+                    <ItemSlidingOptions side="right" icon-left>
                         <Button color="danger" @click="clickDelete">
                             <Icon name="trash"></Icon>
                             <span>Delete</span>
                         </Button>
-                    </ItemOptions>
+                    </ItemSlidingOptions>
                 </ItemSliding>
 
             </List>
@@ -142,18 +142,18 @@
                             <p>↔️ 滑动出现按钮</p>
                         </Label>
                     </Item>
-                    <ItemOptions side="left">
+                    <ItemSlidingOptions side="left">
                         <Button expandable color="danger" @click="clickDelete">
                             <Icon name="trash"></Icon>
                             <span>Delete</span>
                         </Button>
-                    </ItemOptions>
-                    <ItemOptions side="right">
+                    </ItemSlidingOptions>
+                    <ItemSlidingOptions side="right">
                         <Button color="danger" @click="clickDelete">
                             <Icon name="trash"></Icon>
                             <span>Delete</span>
                         </Button>
-                    </ItemOptions>
+                    </ItemSlidingOptions>
                 </ItemSliding>
             </List>
 

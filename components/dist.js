@@ -1,54 +1,54 @@
 import core from './core.js'
-import { ActionSheet } from './action-sheet'
-import { Alert } from './alert'
-import { Avatar } from './avatar'
-import { Backdrop } from './backdrop'
-import { Badge } from './badge'
+import ActionSheet from './action-sheet'
+import Alert from './alert'
+import Avatar from './avatar'
+import Backdrop from './backdrop'
+import Badge from './badge'
 import { Card, CardContent, CardHeader, CardTitle } from './card'
-import { Checkbox } from './checkbox'
-import { ChooseCity } from './choose-city'
-import { CityPicker } from './city-picker'
-import { Datetime } from './datetime'
+import Checkbox from './checkbox'
+import ChooseCity from './choose-city'
+import CityPicker from './city-picker'
+import Datetime from './datetime'
 import { Fab, FabButton, FabList } from './fab'
 import { Feedback } from './feedback'
 import { Column, Grid, Row } from './grid'
-import { Icon } from './icon'
-import { Img } from './img'
-import { Indicator } from './indicator'
+import Icon from './icon'
+import Img from './img'
+import Indicator from './indicator'
 import { InfiniteScroll, InfiniteScrollContent } from './infinite-scroll'
-import { Input } from './input'
-import { Textarea } from './textarea'
+import Input from './input'
+import Textarea from './textarea'
 import { Item, ItemDivider, ItemGroup, ListHeader } from './item'
 import { ItemCollapse, ItemCollapseGroup } from './item-collapse'
-import { ItemOptions, ItemSliding } from './item-sliding'
-import { Label } from './label'
-import { List } from './list'
-import { Loading } from './loading'
-import { Menus } from './menus'
-import { Modal } from './modal'
-import { Note } from './note'
-import { NoticeBar } from './noticebar'
-import { Picker } from './picker'
-import { Popover } from './popover'
-import { PreviewImage } from './preview-image'
-import { Radio } from './radio'
-import { Range } from './range'
+import { ItemSliding, ItemSlidingOptions } from './item-sliding'
+import Label from './label'
+import List from './list'
+import Loading from './loading'
+import Menus from './menus'
+import Modal from './modal'
+import Note from './note'
+import NoticeBar from './noticebar'
+import Picker from './picker'
+import Popover from './popover'
+import PreviewImage from './preview-image'
+import Radio from './radio'
+import Range from './range'
 import { Refresher, RefresherContent } from './refresher'
-import { Scroll } from './scroll'
+import Scroll from './scroll'
 import { ScrollSegment, ScrollSegmentButton } from './scroll-segment'
-import { Searchbar } from './searchbar'
+import Searchbar from './searchbar'
 import { Segment, SegmentButton } from './segment'
-import { SelectOption, Select } from './select'
-import { Separation } from './separation'
-import { Sheet } from './sheet'
-import { SlideBox } from './slide-box'
+import { Select, SelectOption } from './select'
+import Separation from './separation'
+import Sheet from './sheet'
+import SlideBox from './slide-box'
 import { Slide, Slides } from './slides'
 import { Slide as SlideLite, Slides as SlidesLite } from './slides-lite'
-import { Spinner } from './spinner'
+import Spinner from './spinner'
 import { Tab, Tabs } from './tabs'
-import { Thumbnail } from './thumbnail'
-import { Toast } from './toast'
-import { Toggle } from './toggle'
+import Thumbnail from './thumbnail'
+import Toast from './toast'
+import Toggle from './toggle'
 
 var ENV = process.env.NODE_ENV
 if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefined' && console.warn && typeof window !== 'undefined') {
@@ -57,6 +57,75 @@ if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefin
 
 // 通过script脚本使用, 资源全部打包, 不推荐
 module.exports = {
+  ActionSheet,
+  Alert,
+  Avatar,
+  Backdrop,
+  Badge,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Checkbox,
+  ChooseCity,
+  CityPicker,
+  Datetime,
+  Fab,
+  FabButton,
+  FabList,
+  Column,
+  Grid,
+  Row,
+  Icon,
+  Img,
+  Indicator,
+  InfiniteScroll,
+  InfiniteScrollContent,
+  Input,
+  Textarea,
+  Item,
+  ItemDivider,
+  ItemGroup,
+  ListHeader,
+  ItemCollapse,
+  ItemCollapseGroup,
+  ItemSliding,
+  ItemSlidingOptions,
+  Label,
+  List,
+  Loading,
+  Menus,
+  Modal,
+  Note,
+  NoticeBar,
+  Picker,
+  Popover,
+  PreviewImage,
+  Radio,
+  Range,
+  Refresher,
+  RefresherContent,
+  Scroll,
+  ScrollSegment,
+  ScrollSegmentButton,
+  Searchbar,
+  Segment,
+  SegmentButton,
+  Select,
+  SelectOption,
+  Separation,
+  Sheet,
+  SlideBox,
+  Slides,
+  Slide,
+  SlideLite,
+  SlidesLite,
+  Spinner,
+  Tab,
+  Tabs,
+  Thumbnail,
+  Toast,
+  Toggle,
   install (Vue, options = {}) {
     if (this.installed) return
     core(Vue, options)
@@ -102,7 +171,7 @@ module.exports = {
     Vue.component(ItemCollapse.name, ItemCollapse)
     Vue.component(ItemCollapseGroup.name, ItemCollapseGroup)
     Vue.component(ItemSliding.name, ItemSliding)
-    Vue.component(ItemOptions.name, ItemOptions)
+    Vue.component(ItemSlidingOptions.name, ItemSlidingOptions)
     Vue.component(Label.name, Label)
     Vue.component(List.name, List)
     Vue.component(Menus.name, Menus)

@@ -1,2 +1,1 @@
-import SlideBox from './slide-box.vue'
-export { SlideBox }
+export { default } from './slide-box.vue'

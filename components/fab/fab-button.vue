@@ -24,7 +24,7 @@
    * @see component:Fab
    * @demo #/fab
    * */
-  import { Icon } from '../icon/index'
+  import Icon from '../icon/index'
   import { setElementClass } from '../util/util'
   export default{
     name: 'FabButton',

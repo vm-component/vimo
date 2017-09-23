@@ -138,7 +138,7 @@
    * @demo #/popover
    * */
   import Vue from 'vue'
-  import { Backdrop } from '../backdrop'
+  import Backdrop from '../backdrop'
   import { urlChange, parsePxUnit, isObject, isFunction } from '../util/util'
 
   const POPOVER_IOS_BODY_PADDING = 2

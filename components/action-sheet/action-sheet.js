@@ -24,6 +24,8 @@
  * @demo #/action-sheet
  * @example
  *
+ * import ActionSheet from 'vimo/lib/action-sheet'
+ *
  * ActionSheet.present({
  *  title: '请选择操作',
  *  subTitle: '注意，选择后不能撤销！',

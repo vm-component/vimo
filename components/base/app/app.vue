@@ -85,7 +85,7 @@
    * @demo #/app
    * */
 
-  import { ClickBlock } from './click-block'
+  import ClickBlock from './click-block'
   import { setElementClass, isString, isPresent } from '../../util/util'
 
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间

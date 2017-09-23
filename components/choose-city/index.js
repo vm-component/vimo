@@ -40,7 +40,7 @@
  *    })
  *  }
  */
-import { Modal } from '../modal/index'
+import Modal from '../modal/index'
 import cityComponent from './city.vue'
 
 const ChooseCity = {
@@ -78,4 +78,4 @@ const ChooseCity = {
     }
   }
 }
-export { ChooseCity }
+export default ChooseCity

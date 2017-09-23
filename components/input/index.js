@@ -1,1 +1,1 @@
-export { default as Input } from './input.vue'
+export { default } from './input.vue'

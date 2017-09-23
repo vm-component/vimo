@@ -1,2 +1,1 @@
-import Note from './note.vue'
-export { Note }
+export { default } from './note.vue'

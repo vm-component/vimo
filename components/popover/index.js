@@ -1,2 +1,1 @@
-import Popover from './popover.js'
-export { Popover }
+export { default } from './popover.js'

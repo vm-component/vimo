@@ -6,7 +6,7 @@ import { setElementClass } from '../../util/util'
 
 const CLICK_BLOCK_POSITION = '.ion-app > .click-block'
 
-export class ClickBlock {
+export default class ClickBlock {
   constructor () {
     // setTimeout record
     this._tmr = 0

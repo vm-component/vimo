@@ -67,8 +67,8 @@
    * */
   import './fixImage'
   import { isString, isArray } from '../util/util'
-  import { Textarea } from '../input'
-  import { PreviewImage } from '../preview-image'
+  import Textarea from '../input'
+  import PreviewImage from '../preview-image'
 
   export default {
     name: 'Feedback',

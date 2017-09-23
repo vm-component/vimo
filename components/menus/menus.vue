@@ -56,7 +56,7 @@
 <script type="text/javascript">
   import { firstUpperCase } from '../util/util'
   import { recordMenuInstance } from './menus'
-  import { Backdrop } from '../backdrop'
+  import Backdrop from '../backdrop'
 
   const NOOP = () => {}
 

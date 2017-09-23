@@ -1,1 +1,1 @@
-export { default as  NoticeBar } from './noticebar.vue'
+export { default } from './noticebar.vue'

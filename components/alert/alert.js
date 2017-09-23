@@ -33,6 +33,9 @@
  *
  * @demo #/alert
  * @usage
+ *
+ * import Alert from 'vimo/lib/alert'
+ *
  * // Alert
  * Alert.present({
  *    title: 'Alert',

@@ -35,8 +35,8 @@
    * @see component:Refresher
    * @demo #/refresher
    * */
-  import { Icon } from '../icon'
-  import { Spinner } from '../spinner/index'
+  import Icon from '../icon'
+  import Spinner from '../spinner/index'
   export default{
     name: 'RefresherContent',
     props: {
