@@ -40,7 +40,6 @@
    *
    * Input组件只能对以下类型的type作出相应 : `text`,`password`, `email`, `number`, `search`, `tel`, and `url`. 但是不适用一下类型: `checkbox`, `radio`, `toggle`, `range`, `select`, etc.
    *
-   *
    * ### 如何引入
    * ```
    * // 引入
