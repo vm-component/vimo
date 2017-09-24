@@ -28,7 +28,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
 
 </style>
 <script type="text/javascript">

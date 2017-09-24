@@ -204,7 +204,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .scrollBar {
         width: 100%;
         height: 38px;

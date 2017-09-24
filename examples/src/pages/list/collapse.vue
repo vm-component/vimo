@@ -26,7 +26,7 @@
                 <ItemCollapseGroup>
                     <ItemCollapse title="Cars">
                         <Icon slot="item-left" name="car"></Icon>
-                        <Item detail-push>
+                        <Item button>
                             <Icon slot="item-left" name="wifi"></Icon>
                             Wi-Fi
                             <Note slot="item-right">XXX-Office</Note>
@@ -40,9 +40,9 @@
                     <ItemCollapse title="Apple">
                         <Icon slot="item-left" name="logo-apple"></Icon>
                         <Note slot="item-right">请选择</Note>
-                        <Item detail-push>MacBook Air</Item>
-                        <Item detail-push>MacBook Pro</Item>
-                        <Item detail-push>iPhone 8</Item>
+                        <Item button>MacBook Air</Item>
+                        <Item button>MacBook Pro</Item>
+                        <Item button>iPhone 8</Item>
                     </ItemCollapse>
                 </ItemCollapseGroup>
             </List>
@@ -92,21 +92,21 @@
                             This Is Title2 &ensp;
                             <Icon name="information-circle"></Icon>
                         </template>
-                        <Item detail-push>subItem1</Item>
-                        <Item detail-push>subItem2</Item>
-                        <Item detail-push>subItem3</Item>
+                        <Item button>subItem1</Item>
+                        <Item button>subItem2</Item>
+                        <Item button>subItem3</Item>
                     </ItemCollapse>
                     <ItemCollapse title="This Is Title3">
-                        <Item detail-push>subItem1</Item>
-                        <Item detail-push>subItem2</Item>
-                        <Item detail-push>subItem3</Item>
+                        <Item button>subItem1</Item>
+                        <Item button>subItem2</Item>
+                        <Item button>subItem3</Item>
                     </ItemCollapse>
                 </ItemCollapseGroup>
             </List>
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
 
 </style>
 <script type="text/javascript">

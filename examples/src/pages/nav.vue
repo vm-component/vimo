@@ -45,7 +45,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .detailBox {
         margin-bottom: 5px;
 

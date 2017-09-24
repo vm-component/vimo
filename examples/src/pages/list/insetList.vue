@@ -7,14 +7,14 @@
         </Header>
         <Content class="outer-content">
             <List inset>
-                <Item detail-push v-for="(item,index) in list" :key="index">
+                <Item button v-for="(item,index) in list" :key="index">
                     {{item}}
                 </Item>
             </List>
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
 
 </style>
 <script type="text/javascript">

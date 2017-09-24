@@ -61,7 +61,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .specialText {
         font-weight: bold;
         font-size: 1.5em;

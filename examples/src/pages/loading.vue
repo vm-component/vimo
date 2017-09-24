@@ -43,7 +43,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .loadingDemo {
         padding: 15px;
     }

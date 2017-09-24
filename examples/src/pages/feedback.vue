@@ -22,7 +22,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .result-img {
         width: 100px;
         height: 100px;

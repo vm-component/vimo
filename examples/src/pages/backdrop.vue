@@ -41,7 +41,7 @@
     </Page>
 </template>
 
-<style lang="scss">
+<style lang="less">
     #backdropInDiv {
         display: flex;
         justify-content: center;

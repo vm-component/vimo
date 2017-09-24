@@ -13,8 +13,14 @@
                 组件注册初始化时，会将App组件实例插入到Vue.prototype中，便于业务页面对App组件的操控。
             </p>
 
-            <p><strong>3秒内页面无法点击滚动</strong></p>
+
+            <p><strong>3秒内页面无法点击</strong></p>
+            <small>在当前页面覆盖一层透明蒙版, 阻挡进一步操作.</small>
             <Button block @click="$app.setEnabled(false,3000)">冷冻页面</Button>
+
+            <p><strong>3秒内页面无法滚动</strong></p>
+            <small>组织滚动元素操作事件</small>
+            <Button block @click="$app.setDisableScroll(true,3000)">无法滚动</Button>
 
             <p><strong>设置标题</strong></p>
             <p>方法this.$app.setDocTitle(val)只能设置document.title的值, Header中的Title组件请额外处理. 比如下面的按钮.</p>
@@ -55,6 +61,7 @@
                             <strong text-danger>App状态:</strong>
                             <p>isScrolling: {{$app.isScrolling}}</p>
                             <p>isEnabled: {{$app.isEnabled}}</p>
+                            <p>isScrollDisabled: {{$app.isScrollDisabled}}</p>
                         </Column>
                     </Row>
                 </Grid>

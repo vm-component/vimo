@@ -104,7 +104,7 @@
         </Content>
     </Page>
 </template>
-<style lang="scss">
+<style lang="less">
 
     .card-background-page.ion-card {
         position: relative;

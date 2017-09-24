@@ -36,7 +36,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .noticeBar {
         margin-bottom: 10px;
     }

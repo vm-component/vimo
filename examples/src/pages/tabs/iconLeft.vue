@@ -16,7 +16,7 @@
         </Tabs>
     </Page>
 </template>
-<style scoped lang="scss"></style>
+<style scoped lang="less"></style>
 <script type="text/javascript">
   export default {
     data () {

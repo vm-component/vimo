@@ -24,7 +24,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .scrollBox {
         height: 100%;
         width: 100%;

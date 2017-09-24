@@ -21,7 +21,7 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque beatae consequuntur dolores doloribus fugit laudantium magnam molestias nihil numquam officia officiis optio possimus quos similique temporibus, vero voluptates?</p>
     </Content>
 </template>
-<style lang="scss">
+<style lang="less">
 </style>
 <script type="text/javascript">
   export default {}

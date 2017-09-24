@@ -58,7 +58,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .list-avatar-page {
         .ion-note {
             font-size: 12px;

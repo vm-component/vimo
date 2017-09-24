@@ -46,7 +46,7 @@
         </Content>
     </Page>
 </template>
-<style lang="scss">
+<style lang="less">
     .dashBox {
         padding: 0;
     }

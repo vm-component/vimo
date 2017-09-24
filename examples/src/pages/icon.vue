@@ -80,7 +80,7 @@
         </Content>
     </Page>
 </template>
-<style lang="scss">
+<style lang="less">
     .iconDemo .icon {
         font-size: 40px;
     }

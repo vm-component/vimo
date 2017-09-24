@@ -14,7 +14,7 @@
         </Content>
     </Page>
 </template>
-<style lang="scss">
+<style lang="less">
     .main {
 
     }

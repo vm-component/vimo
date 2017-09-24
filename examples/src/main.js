@@ -80,4 +80,3 @@ new Vue({
   },
   components: {App}
 })
-

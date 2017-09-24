@@ -2,10 +2,13 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Title</Title>
+                <Title>Separation</Title>
             </Navbar>
         </Header>
         <Content padding class="outer-content">
+            <h1>Separation组件</h1>
+            <p>该组件用于分割内容区块, 或者尾部提示等位置使用.</p>
+            <p><strong>例如:</strong></p>
             <Separation>
                 <Icon name="logo-chrome" small></Icon>
                 <span>I Love Chrome</span>
@@ -30,7 +33,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
 
 </style>
 <script type="text/javascript">

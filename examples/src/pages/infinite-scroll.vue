@@ -18,7 +18,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .ion-infinite-scroll {
         .loadedAll {
             display: none;

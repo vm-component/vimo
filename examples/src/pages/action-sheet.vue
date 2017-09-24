@@ -225,4 +225,4 @@
   }
 </script>
 
-<style lang="scss"></style>
+<style lang="less"></style>

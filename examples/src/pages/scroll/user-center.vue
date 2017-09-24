@@ -40,7 +40,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .scrollBox {
         position: absolute;
         top: 0;

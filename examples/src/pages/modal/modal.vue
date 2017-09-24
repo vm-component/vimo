@@ -26,7 +26,7 @@
         </Content>
     </Page>
 </template>
-<style lang="scss">
+<style lang="less">
     .login {
         border: 1px solid #ddd;
         border-radius: 5px;

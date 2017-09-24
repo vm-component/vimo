@@ -183,7 +183,7 @@
         </Content>
     </Page>
 </template>
-<style lang="scss">
+<style lang="less">
 
 </style>
 <script type="text/javascript">

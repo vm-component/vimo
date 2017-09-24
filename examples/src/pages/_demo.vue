@@ -13,7 +13,7 @@
         </Footer>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .main {
 
     }

@@ -19,24 +19,24 @@
                 </ListHeader>
                 <!--group-->
                 <ItemGroup>
-                    <Item detail-push to="crossPlatform.ui">UI 控件</Item>
-                    <Item detail-push to="crossPlatform.navigation">导航栏</Item>
-                    <Item detail-push to="crossPlatform.location">位置</Item>
-                    <Item detail-push to="crossPlatform.launcher">启动器</Item>
-                    <Item detail-push to="crossPlatform.equipment">设备</Item>
-                    <Item detail-push to="crossPlatform.container">容器</Item>
-                    <Item detail-push to="crossPlatform.image">图片相关</Item>
-                    <Item detail-push to="crossPlatform.audio">音频相关</Item>
-                    <Item detail-push to="crossPlatform.store">存储</Item>
-                    <Item detail-push to="crossPlatform.event">事件</Item>
-                    <Item detail-push to="crossPlatform.pay">支付</Item>
-                    <Item detail-push to="crossPlatform.request">请求代理</Item>
+                    <Item button to="crossPlatform.ui">UI 控件</Item>
+                    <Item button to="crossPlatform.navigation">导航栏</Item>
+                    <Item button to="crossPlatform.location">位置</Item>
+                    <Item button to="crossPlatform.launcher">启动器</Item>
+                    <Item button to="crossPlatform.equipment">设备</Item>
+                    <Item button to="crossPlatform.container">容器</Item>
+                    <Item button to="crossPlatform.image">图片相关</Item>
+                    <Item button to="crossPlatform.audio">音频相关</Item>
+                    <Item button to="crossPlatform.store">存储</Item>
+                    <Item button to="crossPlatform.event">事件</Item>
+                    <Item button to="crossPlatform.pay">支付</Item>
+                    <Item button to="crossPlatform.request">请求代理</Item>
                 </ItemGroup>
             </List>
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
     .main {
 
     }

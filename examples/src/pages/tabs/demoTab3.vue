@@ -33,7 +33,7 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at, aut consequuntur cumque doloremque, dolorum eaque eos et hic ipsam laborum natus neque officiis quia, rem repellendus reprehenderit similique voluptas.</p>
     </Content>
 </template>
-<style lang="scss">
+<style lang="less">
     .main {
 
     }

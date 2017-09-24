@@ -13,15 +13,15 @@
                 </ListHeader>
                 <!--group-->
                 <ItemGroup>
-                    <Item detail-push :to="{name:'cards.basicCards'}">基础卡片</Item>
-                    <Item detail-push :to="{name:'cards.listsInCards'}">Card与List组合</Item>
-                    <Item detail-push :to="{name:'cards.advancedCards'}">更丰富的Card</Item>
+                    <Item button :to="{name:'cards.basicCards'}">基础卡片</Item>
+                    <Item button :to="{name:'cards.listsInCards'}">Card与List组合</Item>
+                    <Item button :to="{name:'cards.advancedCards'}">更丰富的Card</Item>
                 </ItemGroup>
             </List>
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
 </style>
 <script type="text/javascript">
   export default{

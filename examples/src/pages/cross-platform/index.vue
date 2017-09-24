@@ -75,7 +75,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style scoped lang="less">
 
     .result {
         border: 1px dashed #333;
