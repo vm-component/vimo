@@ -1,8 +1,8 @@
 <template>
     <article class="ion-app" :version="version"
-             :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
+             :class="[modeClass,platformClass,hoverClass,{'disable-scroll':!isEnabled}]">
         <!--app-root start-->
-        <section class="app-root">
+        <section class="app-root" :class="">
             <slot></slot>
         </section>
         <!--modal portal-->
@@ -22,6 +22,14 @@
 </template>
 <style lang="less">
     @import "app.less";
+
+    .disable-scroll .ion-page,
+    .disable-scroll .ion-page .ion-content,
+    .disable-scroll .ion-page .ion-content .fixed-content,
+    .disable-scroll .ion-page .ion-content .scroll-content {
+        pointer-events: none;
+        touch-action: none;
+    }
 </style>
 <script type="text/javascript">
   /**
@@ -51,11 +59,11 @@
    *
    * 因为业务的复杂多样, 如果组件全部加载, 会造成初始化的下载包过大, 所以基础组件在安装Vimo的时候就全局安装, 不需要在业务中再次安装. 除此之外的组件则要按需引入.
    *
-   * 这里规定的基础组件为: **App/Nav/Navbar/Toolbar(Title/Buttons)/Page/Header/Footer/Content**, 一共10个.
+   * 这里规定的基础组件为: **App/Nav/Navbar/Toolbar(Title/Buttons)/Page/Header/Footer/Content/Button**, 一共11个.
    *
    * ### 可用状态(参考示例)
    *
-   * - isScrolling  获取可滚动状态
+   * - isScrolling  获取当前可滚动状态
    * - isEnabled    获取可点击状态
    *
    *
@@ -92,20 +100,17 @@
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
   const clickBlockInstance = new ClickBlock()
 
-  let scrollDisTimer = null                     // 计时器
   export default {
     name: 'App',
     data () {
       return {
-        disabledTimeRecord: 0,          // 禁用计时
-        scrollTimeRecord: 0,            // 滚动计时
-        isScrollDisabled: false,        // 控制页面是否能滚动
-        isClickBlockEnabled: false,     // 控制是否激活 '冷冻'效果 click-block-enabled
-
+        // public
         isScrolling: false,             // 可滚动状态
         isEnabled: true,                // 可点击状态
-
-        version: isPresent(window.VM) && window.VM.version
+        // private
+        disabledTimeRecord: 0,          // 禁用计时
+        isClickBlockEnabled: false,     // 控制是否激活 '冷冻'效果 click-block-enabled
+        version: isPresent(window.VM) && window.VM.version || '0.0.0'
       }
     },
     props: {
@@ -156,29 +161,9 @@
       },
 
       /**
-       * @function setDisableScroll
-       * @description
-       * 是否点击滚动, 这个需要自己设置时间解锁
-       * @param {Boolean} isScrollDisabled - 是否禁止滚动点击 true:禁止滚动/false:可以滚动
-       * @param {number} duration - 时间过后则自动解锁
-       * @example
-       * this.$app && this.$app.setDisableScroll(true, 400) -> 400ms内页面不可滚动, 400ms过后可正常使用
-       * this.$app && this.$app.setDisableScroll(false) ->立即解除锁定
-       * */
-      setDisableScroll (isScrollDisabled, duration = 0) {
-        if (duration > 0 && isScrollDisabled) {
-          this.isScrollDisabled = isScrollDisabled
-          window.clearTimeout(scrollDisTimer)
-          scrollDisTimer = window.setTimeout(() => {
-            this.isScrollDisabled = false
-          }, duration)
-        }
-      },
-
-      /**
        * @function setClass
        * @description
-       * 设置app的class, 比如全局颜色替换或者结构变更
+       * 设置根组件的class样式, 比如全局颜色替换或者结构变更
        * @param {string} className
        * @param {boolean} isAdd
        */
@@ -199,9 +184,9 @@
         }
         // BugFixed: 如果组件不是通过异步加载, 则他的执行顺序会很靠前, 此时平台的方法并未初始化完毕. 因此异步定时后在执行
         window.setTimeout(() => {
-          let isHandled = !!this.$platform.setNavbarTitle && this.$platform.setNavbarTitle(_title)
+          let isHandled = !!this.$platform && !!this.$platform.setNavbarTitle && this.$platform.setNavbarTitle(_title)
           if (!isHandled) {
-            if (this.$platform.platforms().length <= 2) {
+            if (this.$platform && this.$platform.platforms().length <= 2) {
               // PC端
               document.title = _title.title || ''
             } else {
@@ -227,7 +212,6 @@
     created () {
       console.assert(this.$platform, `The Component of <App> need 'platform' instance`)
       console.assert(this.$config, `The Component of <App> need 'config' instance`)
-      console.assert(window.VM, `The Component of <App> need 'window.VM' instance`)
 
       /**
        * $app对外方法
@@ -245,13 +229,16 @@
       this.$eventBus.$on('onScrollEnd', () => {
         _this.isScrolling = false
       })
-    },
-    mounted () {
-      window.VM.$app = this
-      // 用于判断组件是否在VM的组件树中
-      window.VM.$root = this.$root
+
       // 设置当前可点击
       this.isClickBlockEnabled = true
+    },
+    mounted () {
+      if (window.VM) {
+        window.VM.$app = this
+        // 用于判断组件是否在VM的组件树中
+        window.VM.$root = this.$root
+      }
     }
   }
 </script>

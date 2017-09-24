@@ -233,7 +233,7 @@
        */
       scrollToTop (duration = 300) {
         // 页面防止点击
-        this.$app && this.$app.setDisableScroll(true, duration)
+        this.$app && this.$app.setEnabled(false, duration)
         return this._scroll.scrollToTop(duration)
       },
       /**
@@ -246,7 +246,7 @@
        */
       scrollToBottom (duration = 300) {
         // 页面防止点击
-        this.$app && this.$app.setDisableScroll(true, duration)
+        this.$app && this.$app.setEnabled(false, duration)
         return this._scroll.scrollToBottom(duration)
       },
 
@@ -266,7 +266,7 @@
        * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
       scrollBy (x, y, duration = 300, done) {
-        this.$app && this.$app.setDisableScroll(true, duration)
+        this.$app && this.$app.setEnabled(false, duration)
         return this._scroll.scrollBy(x, y, duration, done)
       },
 
@@ -282,7 +282,7 @@
        * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
       scrollToElement (el, duration = 300, offsetX = 0, offsetY = 0, done) {
-        this.$app && this.$app.setDisableScroll(true, duration)
+        this.$app && this.$app.setEnabled(false, duration)
         return this._scroll.scrollToElement(el, duration, offsetX, offsetY, done)
       },
 
