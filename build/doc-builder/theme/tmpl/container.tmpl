@@ -181,7 +181,7 @@
     </div>
 
     <?js if (doc.kind === 'module' && doc.demos ) { ?>
-    <aricle class="showcase">
+    <article class="showcase">
         <div id="js_showcase__box" class="showcase__box ios">
             <div class="showcase__choose">
                 <span id="js_choose_ios" class="">IOS</span>
@@ -193,13 +193,12 @@
             <div class="showcase__box--ios">
                 <iframe id="js_iframe_ios" frameborder="0" seamless></iframe>
             </div>
-
             <div class="showcase__qrcode">
-                <div class="showcase__qrcode--inner" id="qrcode"></div>
-                <p>扫码预览</p>
+                <div class="showcase__qrcode--inner" id="js_qrcode"></div>
+                <a href="#" id="js_qrcode_a">扫码预览</a>
             </div>
         </div>
-    </aricle>
+    </article>
 
     <script>
       (function () {
@@ -218,7 +217,11 @@
           mdUrl = demoUrl + '?vmMode=md&vmPageTransition=zoom-transition' + demos
         }
 
-        var qrcode = new QRCode(document.getElementById('qrcode'), {
+        var $qrcode = document.getElementById('js_qrcode')
+        var $jqrcode_a = document.getElementById('js_qrcode_a')
+        $qrcode.title = qrCodeUrl
+        $jqrcode_a.href = qrCodeUrl
+        var qrcode = new QRCode($qrcode, {
           width: 100,//设置宽高
           height: 100
         })

@@ -107,10 +107,11 @@
         text-align: center;
         margin: 0 auto; }
         .page-content .showcase .showcase__box .showcase__qrcode .showcase__qrcode--inner {
+          display: block;
           width: 100px;
           height: 100px;
           border: 1px solid #ddd;
-          margin: 0 auto; }
+          margin: 0 auto 10px; }
 
 h4.name > span.type-signature:first-child {
   display: none; }

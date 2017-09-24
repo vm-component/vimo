@@ -60,9 +60,15 @@ gulp.task('default', function () {
   })
 })
 
+// transfer demo
+gulp.task('transfer-demo', function () {
+  gulp.src([`${base}/examples/dist/**/**/*.*`])
+  .pipe(gulp.dest(`${base}/docs/demo`))
+})
+
 // 生成文档
 gulp.task('build', function (cb) {
-  runSequence(['clean'], ['make'], cb)
+  runSequence(['clean'], ['make'], ['transfer-demo'], cb)
 })
 
 // // test
