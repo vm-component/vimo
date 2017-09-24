@@ -46,6 +46,14 @@
   contain: size style layout;
 }
 
+.disable-scroll .ion-page,
+.disable-scroll .ion-page .ion-content,
+.disable-scroll .ion-page .ion-content .fixed-content,
+.disable-scroll .ion-page .ion-content .scroll-content {
+  pointer-events: none;
+  touch-action: none;
+}
+
 // Fixed Content (fixed and fab)
 // --------------------------------------------------
 

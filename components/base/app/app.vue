@@ -1,8 +1,8 @@
 <template>
     <article class="ion-app" :version="version"
-             :class="[modeClass,platformClass,hoverClass,{'disable-scroll':!isEnabled}]">
+             :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
         <!--app-root start-->
-        <section class="app-root" :class="">
+        <section class="app-root">
             <slot></slot>
         </section>
         <!--modal portal-->
@@ -22,14 +22,13 @@
 </template>
 <style lang="less">
     @import "app.less";
-
-    .disable-scroll .ion-page,
-    .disable-scroll .ion-page .ion-content,
-    .disable-scroll .ion-page .ion-content .fixed-content,
-    .disable-scroll .ion-page .ion-content .scroll-content {
-        pointer-events: none;
-        touch-action: none;
-    }
+    // Page Animate
+    // --------------------------------------------------
+    @import "transition/fade-bottom-transition";
+    @import "transition/fade-right-transition";
+    @import "transition/fade-transition";
+    @import "transition/ios-transition";
+    @import "transition/zoom-transition";
 </style>
 <script type="text/javascript">
   /**
@@ -66,7 +65,6 @@
    * - isScrolling  获取当前可滚动状态
    * - isEnabled    获取可点击状态
    *
-   *
    * ### 可在全局使用的公共样式
    *
    * -Text Alignment
@@ -100,17 +98,20 @@
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
   const clickBlockInstance = new ClickBlock()
 
+  let scrollDisTimer = null                     // 计时器
   export default {
     name: 'App',
     data () {
       return {
-        // public
+        disabledTimeRecord: 0,          // 禁用计时
+        scrollTimeRecord: 0,            // 滚动计时
+        isScrollDisabled: false,        // 控制页面是否能滚动
+        isClickBlockEnabled: false,     // 控制是否激活 '冷冻'效果 click-block-enabled
+
         isScrolling: false,             // 可滚动状态
         isEnabled: true,                // 可点击状态
-        // private
-        disabledTimeRecord: 0,          // 禁用计时
-        isClickBlockEnabled: false,     // 控制是否激活 '冷冻'效果 click-block-enabled
-        version: isPresent(window.VM) && window.VM.version || '0.0.0'
+
+        version: isPresent(window.VM) && window.VM.version
       }
     },
     props: {
@@ -157,6 +158,26 @@
           clickBlockInstance.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS).then(() => {
             this.isEnabled = true
           })
+        }
+      },
+
+      /**
+       * @function setDisableScroll
+       * @description
+       * 是否点击滚动, 这个需要自己设置时间解锁
+       * @param {Boolean} isScrollDisabled - 是否禁止滚动点击 true:禁止滚动/false:可以滚动
+       * @param {number} duration - 时间过后则自动解锁
+       * @example
+       * this.$app && this.$app.setDisableScroll(true, 400) -> 400ms内页面不可滚动, 400ms过后可正常使用
+       * this.$app && this.$app.setDisableScroll(false) ->立即解除锁定
+       * */
+      setDisableScroll (isScrollDisabled, duration = 0) {
+        if (duration > 0 && isScrollDisabled) {
+          this.isScrollDisabled = isScrollDisabled
+          window.clearTimeout(scrollDisTimer)
+          scrollDisTimer = window.setTimeout(() => {
+            this.isScrollDisabled = false
+          }, duration)
         }
       },
 
