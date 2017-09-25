@@ -18,6 +18,7 @@
                         </div>
                         <div class="action-sheet-buttons">
                             <vm-button role="action-sheet-button" @click="click(b)" v-for="(b,index) in normalButtons"
+                                       icon-left
                                        :key="index"
                                        :class="[b.cssClass,{'icon-left':b.icon}]">
                                 <vm-icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></vm-icon>
@@ -27,7 +28,7 @@
                     </div>
                     <!--group cancel-->
                     <div class="action-sheet-group" v-if="cancelButton">
-                        <vm-button role="action-sheet-button" @click="click(cancelButton)"
+                        <vm-button role="action-sheet-button" @click="click(cancelButton)" icon-left
                                    class="action-sheet-cancel" :class="cancelButton.cssClass">
                             <vm-icon :name="cancelButton.icon" v-if="cancelButton.icon"
                                      class="action-sheet-icon"></vm-icon>
