@@ -5,7 +5,7 @@
                 <Title>Checkbox</Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content class="outer-content">
             <List>
                 <ListHeader>Checkbox</ListHeader>
                 <Item>
@@ -30,36 +30,37 @@
                     <Checkbox slot="item-left" :disabled="displayData.disabled"
                               v-model="displayData.disabled"></Checkbox>
                 </Item>
+            </List>
+            <List>
                 <ListHeader>使用 v-modal 绑定</ListHeader>
                 <Item>
                     <Label>Danger</Label>
                     <Checkbox slot="item-left" color="danger" v-model="testModal" :disabled="testDisabled"
                               @onChange="onCheckboxChange"></Checkbox>
                 </Item>
-                <Grid>
-                    <Row justify-content-center>
-                        <Column text-center>
-                            <strong> Current Value: </strong>
-                            <span>{{testModal}}</span>
-                        </Column>
-                        <Column text-center>
-                            <strong> Disabled State: </strong>
-                            <span>{{testDisabled}}</span>
-                        </Column>
-                    </Row>
-                    <Row justify-content-center>
-                        <Column col-1></Column>
-                        <Column>
-                            <Button block @click="testModal =!testModal">setValue</Button>
-                        </Column>
-                        <Column>
-                            <Button block @click="testDisabled =!testDisabled">Disabled</Button>
-                        </Column>
-                        <Column col-1></Column>
-                    </Row>
-                </Grid>
-
             </List>
+            <Grid>
+                <Row justify-content-center>
+                    <Column text-center>
+                        <strong> Current Value: </strong>
+                        <span>{{testModal}}</span>
+                    </Column>
+                    <Column text-center>
+                        <strong> Disabled State: </strong>
+                        <span>{{testDisabled}}</span>
+                    </Column>
+                </Row>
+                <Row justify-content-center>
+                    <Column col-1></Column>
+                    <Column>
+                        <Button block @click="testModal =!testModal">setValue</Button>
+                    </Column>
+                    <Column>
+                        <Button block @click="testDisabled =!testDisabled">Disabled</Button>
+                    </Column>
+                    <Column col-1></Column>
+                </Row>
+            </Grid>
         </Content>
     </Page>
 </template>

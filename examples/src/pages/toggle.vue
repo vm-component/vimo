@@ -7,7 +7,7 @@
                 </Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content class="outer-content">
             <List>
                 <ListHeader>
                     <span>普通使用</span>
@@ -33,6 +33,15 @@
                     <Toggle slot="item-right" :disabled="displayData.disabled" v-model="displayData.disabled"></Toggle>
                 </Item>
             </List>
+
+
+            <section padding>
+                <h5>单独使用</h5>
+                <div class="customer-standalone">
+                    <Toggle slot="item-right" color="danger" v-model="displayData.danger"></Toggle>
+                </div>
+            </section>
+
 
             <List>
                 <ListHeader>
@@ -63,9 +72,18 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="less"></style>
+<style scoped lang="less">
+    .customer-standalone {
+        height: 44px;
+        width: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px dashed #333;
+    }
+</style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'toggle',
     data () {
       return {

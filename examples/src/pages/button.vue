@@ -5,8 +5,10 @@
                 <Title>Button</Title>
             </Navbar>
         </Header>
-        <Content>
-            <h4 text-center>Colors</h4>
+        <Content padding>
+            <h1>Button组件</h1>
+            <p>该组件属于通用组件, 一般用于绑定事件触发动作, 可以是不用加native修饰符使用, 例如: @click="action()"</p>
+            <h4>Colors</h4>
             <Grid>
                 <Row justify-content-center>
                     <Button @click="primary()" color="primary">primary</Button>
@@ -18,7 +20,7 @@
                     <Button>default color</Button>
                 </Row>
             </Grid>
-            <h4 text-center>Spinner</h4>
+            <h4>Spinner</h4>
             <Grid>
                 <Row justify-content-center>
                     <Button>
@@ -27,7 +29,7 @@
                     </Button>
                 </Row>
             </Grid>
-            <h4 text-center>Shaps</h4>
+            <h4>Shaps</h4>
             <Grid>
                 <Row justify-content-center>
                     <Button full>full</Button>
@@ -35,7 +37,7 @@
                     <Button round>round</Button>
                 </Row>
             </Grid>
-            <h4 text-center>Type</h4>
+            <h4>Type</h4>
             <Grid>
                 <Row justify-content-center>
                     <!--solid-->
@@ -45,7 +47,7 @@
                     <Button clear color="secondary">clear</Button>
                 </Row>
             </Grid>
-            <h4 text-center>Outline</h4>
+            <h4>Outline</h4>
             <Grid>
                 <Row justify-content-center>
                     <Button outline full color="secondary">outline + full</Button>
@@ -53,7 +55,7 @@
                     <Button outline round color="secondary">outline + round</Button>
                 </Row>
             </Grid>
-            <h4 text-center>Size</h4>
+            <h4>Size</h4>
             <Grid>
                 <Row justify-content-center>
                     <Button color="light" large>large</Button>
@@ -61,7 +63,7 @@
                     <Button color="light" small>small</Button>
                 </Row>
             </Grid>
-            <h4 text-center>Icons</h4>
+            <h4>Icons</h4>
             <Grid>
                 <Row justify-content-center>
                     <!--icon left-->

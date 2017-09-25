@@ -6,7 +6,7 @@
             </Navbar>
         </Header>
         <Content padding class="iconDemo">
-            <h1>Introduction</h1>
+            <h1>Icon组件</h1>
             <p>Vimo的Icon可以使用ionicons或者自定义图标(需要以icon-开头)</p>
 
             <h4>关于状态</h4>

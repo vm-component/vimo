@@ -20,8 +20,9 @@
         </Header>
         <Content>
             <div padding>
-                <h5>简介</h5>
-                <p>Toolbar组件用于放置Title/Segment/Searchbar等组件, 也可以放置操作的按钮. 可定义slot插槽决定摆放的位置.</p>
+                <h1>Toolbar组件</h1>
+                <p>组件用于放置Title/Segment/Searchbar等组件, 也可以放置操作的按钮. 可定义slot插槽决定摆放的位置.</p>
+                <p>Toolbar组件不同于Navbar组件, 前者可放置在任何位置, 且只有展示的功能.</p>
             </div>
             <!--1-->
             <Toolbar color="primary">

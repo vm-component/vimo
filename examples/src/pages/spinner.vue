@@ -6,8 +6,10 @@
             </Navbar>
         </Header>
         <Content padding>
+            <h1>Spinner组件</h1>
+            <p>嗯, 菊花图...</p>
 
-            <p>默认</p>
+            <h4>默认</h4>
             <Spinner></Spinner>
             <Spinner name="ios"></Spinner>
             <Spinner name="ios-small"></Spinner>
@@ -16,7 +18,7 @@
             <Spinner name="crescent"></Spinner>
             <Spinner name="dots"></Spinner>
 
-            <p>Mode</p>
+            <h4>Mode</h4>
             <span>未指定</span>
             <Spinner></Spinner>
             <span>ios</span>
@@ -26,7 +28,7 @@
             <span>wp</span>
             <Spinner mode="wp"></Spinner>
 
-            <p>Color</p>
+            <h4>Color</h4>
             <Spinner></Spinner>
             <Spinner color="primary" name="ios"></Spinner>
             <Spinner color="secondary" name="ios-small"></Spinner>
@@ -36,7 +38,7 @@
             <Spinner color="secondary" name="dots"></Spinner>
 
             <!--duration-->
-            <p>Duration 3000ms</p>
+            <h4>Duration 3000ms</h4>
             <Spinner duration="3000"></Spinner>
             <Spinner duration="3000" name="ios"></Spinner>
             <Spinner duration="3000" name="ios-small"></Spinner>
@@ -46,7 +48,7 @@
             <Spinner duration="3000" name="dots"></Spinner>
 
             <!--paused-->
-            <p>Paused</p>
+            <h4>Paused</h4>
             <Spinner :paused="true"></Spinner>
             <Spinner :paused="true" name="ios"></Spinner>
             <Spinner :paused="true" name="ios-small"></Spinner>
