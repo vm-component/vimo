@@ -62,7 +62,7 @@ let routes = [
     }
   },
   {
-    path: '/history/:id',
+    path: '/history',
     name: 'history',
     component (resolve) {
       require(['@/pages/history.vue'], resolve)
@@ -96,98 +96,7 @@ let routes = [
     path: '/cross-platform',
     name: 'crossPlatform',
     component (resolve) {
-      require(['@/pages/cross-platform/index.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-dd',
-    name: 'crossPlatform.dd',
-    component (resolve) {
-      require(['@/pages/cross-platform/dd.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-container',
-    name: 'crossPlatform.container',
-    component (resolve) {
-      require(['@/pages/cross-platform/container.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-event',
-    name: 'crossPlatform.event',
-    component (resolve) {
-      require(['@/pages/cross-platform/event.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-store',
-    name: 'crossPlatform.store',
-    component (resolve) {
-      require(['@/pages/cross-platform/store.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-equipment',
-    name: 'crossPlatform.equipment',
-    component (resolve) {
-      require(['@/pages/cross-platform/equipment.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-pay',
-    name: 'crossPlatform.pay',
-    component (resolve) {
-      require(['@/pages/cross-platform/pay.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-navigation',
-    name: 'crossPlatform.navigation',
-    component (resolve) {
-      require(['@/pages/cross-platform/navigation.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-request',
-    name: 'crossPlatform.request',
-    component (resolve) {
-      require(['@/pages/cross-platform/request.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-location',
-    name: 'crossPlatform.location',
-    component (resolve) {
-      require(['@/pages/cross-platform/location.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-launcher',
-    name: 'crossPlatform.launcher',
-    component (resolve) {
-      require(['@/pages/cross-platform/launcher.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-image',
-    name: 'crossPlatform.image',
-    component (resolve) {
-      require(['@/pages/cross-platform/image.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-audio',
-    name: 'crossPlatform.audio',
-    component (resolve) {
-      require(['@/pages/cross-platform/audio.vue'], resolve)
-    }
-  },
-  {
-    path: '/cross-platform-ui',
-    name: 'crossPlatform.ui',
-    component (resolve) {
-      require(['@/pages/cross-platform/ui-widget.vue'], resolve)
+      require(['@/pages/cross-platform.vue'], resolve)
     }
   },
 
@@ -374,7 +283,7 @@ let routes = [
     path: '/choose-city',
     name: 'chooseCity',
     component (resolve) {
-      require(['@/pages/choose-city/choose-city.vue'], resolve)
+      require(['@/pages/choose-city.vue'], resolve)
     }
   },
   {

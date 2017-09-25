@@ -6,26 +6,13 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <h5>简介</h5>
+            <h1>访问历史</h1>
+            <p>该组件维护了一个本地历史记录, 并且根据导航状态判断当前是前进还是后退, 因为App的导航需要和手机浏览器的导航功能效果一致.</p>
 
-            route: {{$route.params.id}} - {{$route.query.name}}
-
-            <!--<a href="https://www.baidu.com" target="_blank">baidu _blank</a>-->
-            <!--<a href="https://www.baidu.com" target="_parent">baidu _parent</a>-->
-            <!--<a href="https://www.baidu.com" target="_self">baidu _self</a>-->
-            <!--<a href="https://www.baidu.com" target="_top">baidu _top</a>-->
-
-
-            <!--<Button block @click="pushWindow">pushWindow 淘宝</Button>-->
-            <!--<Button block @click="appWindow">appWindow app</Button>-->
-            <Button block @click="replace()">$router.replace()</Button>
             <Button block @click="back">使用back()</Button>
             <Button block @click="go(-1)">使用go(-1)</Button>
             <Button block @click="go(-2)">使用go(-2)</Button>
             <Button block @click="toRoot">返回首页</Button>
-
-
-            <p>该组件维护了一个本地历史记录, 并且根据导航状态判断当前是前进还是后退, 因为App的导航需要和手机浏览器的导航功能效果一致.</p>
 
             <h5>常用函数</h5>
             <Grid>
@@ -97,10 +84,10 @@
         this.$router.replace({
           name: this.$route.name,
           query: {
-            name: Math.floor(Math.random()*10)
+            name: Math.floor(Math.random() * 10)
           },
           params: {
-            id: Math.floor(Math.random()*10)
+            id: Math.floor(Math.random() * 10)
           }
         })
       },

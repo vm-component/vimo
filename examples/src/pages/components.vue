@@ -41,7 +41,7 @@
                     <span>平台参数</span>
                     <Note slot="item-right">Platform</Note>
                 </Item>
-                <Item button :to="{name:'history',params:{id:1990},query:{name:'hsiang'}}">
+                <Item button :to="{name:'history'}">
                     <Icon slot="item-left" name="logo-buffer"></Icon>
                     <span>历史记录</span>
                     <Note slot="item-right">History</Note>

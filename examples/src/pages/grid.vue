@@ -8,12 +8,12 @@
         <Content class="outer-content">
 
             <div padding>
-                <h5>简介</h5>
-                <p>栅格系统类似于Bootstrap的栅格</p>
+                <h1>Grid组件</h1>
+                <p>栅格系统类似于Bootstrap的栅格, 使用方法大同小异. 栅格组件用于 <strong>响应式布局</strong> 场景, 比如兼容 Mobile / Pad / PC 等设备. 一般移动小屏项目运用较少, 使用 <strong>Flex布局</strong> 即可Hold住绝大多数场景.</p>
             </div>
 
             <div padding>
-                <h5>九宫格</h5>
+                <h4>九宫格</h4>
                 <p>需要在Grid加上属性[sudoku]即可</p>
             </div>
             <Grid no-padding class="nine" sudoku>
@@ -44,9 +44,8 @@
                 </Row>
             </Grid>
 
-
             <div class="demo" padding>
-                <h5>传统用法</h5>
+                <h4>传统用法</h4>
                 <p>1. 普通用法</p>
                 <Grid>
                     <Row>

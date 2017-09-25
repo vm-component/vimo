@@ -14,9 +14,11 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <Button v-if="$platform.is('dtdream') || $platform.is('dingtalk')" color="danger" block
-                    @click="toDDTestPage()">window.dd 入口
-            </Button>
+            <h1>跨平台组件</h1>
+            <p>第一点, 并不是所有组件都支持跨平台. 跨平台是指使用H5的组件能打开其余平台的UI控件. 比如: H5使用Alert组件在业务中书写, 如果配置正确, 则在钉钉和支付宝中打开平台对应的alert组件.</p>
+            <p>所以, <strong>其他平台支持的UI控件 + 能用H5实现的 = 跨平台组件</strong></p>
+            <p>以下是能实现化平台的组件Demo.</p>
+
             <h4>弹窗组件</h4>
             <!--提示框 Alert-->
             <strong>提示框 Alert</strong>
@@ -54,23 +56,23 @@
             <strong>结果</strong>
             <p class="result">{{actionsheetResult}}</p>
 
-
             <h5>导航栏</h5>
             <Button block @click="btnTitle">设置标题文字</Button>
             <Button block @click="btnImage">设置标题图片(url)</Button>
             <Button block @click="showOptionButton">显示右侧按钮</Button>
             <Button block @click="hideOptionButton">隐藏右侧按钮</Button>
             <Button block @click="btnReset">重置导航栏</Button>
-
-            <h5>导航栏菜单</h5>
             <Button block @click="showPopMenu">显示右侧按钮菜单</Button>
-            <h5>选择器Picker</h5>
 
+            <h5>选择器Picker</h5>
             <p>选择的数据: {{smoothie}}</p>
+            <Button block @click="oneColumns">单列Picker</Button>
             <Button block @click="twoColumns">双列Picker</Button>
 
             <h5>图片预览</h5>
             <Button block @click="openAlbum">图片预览</Button>
+            <h5>城市选择</h5>
+            <Button block @click="$router.push({name:'chooseCity'})">城市选择</Button>
 
         </Content>
     </Page>
@@ -103,19 +105,19 @@
     .icon-vimo {
         height: 30px;
         width: 30px;
-        background: url('../../assets/vimo.png') no-repeat center center/30px 30px;
+        background: url('../assets/vimo.png') no-repeat center center/30px 30px;
     }
 
     .icon-alipay {
         height: 30px;
         width: 40px;
-        background: url('../../assets/alipay.png') no-repeat center center/cover;
+        background: url('../assets/alipay.png') no-repeat center center/cover;
     }
 
     .icon-wechat {
         height: 30px;
         width: 36px;
-        background: url('../../assets/wechat.png') no-repeat center center/cover;
+        background: url('../assets/wechat.png') no-repeat center center/cover;
     }
 </style>
 <script type="text/javascript">
@@ -379,6 +381,56 @@
       },
       onTitleClickHandler () {
         alert('你点击了 platform-api.vue 页面的标题')
+      },
+      oneColumns () {
+        let arr = this.smoothie.split(' ')
+        let column1 = arr[0]
+        if (!column1) {
+          column1 = ''
+        }
+
+        let options = [
+          {text: 'Mango'},
+          {text: 'Banana'},
+          {text: 'Cherry'},
+          {text: 'Strawberry'},
+          {text: 'Raspberry'},
+          {text: 'Blueberry'},
+          {text: 'Peach'},
+          {text: 'Coconut'},
+          {text: 'Pineapple'},
+          {text: 'Honeydew'},
+          {text: 'Watermelon'},
+          {text: 'Grape'},
+          {text: 'Avocado'},
+          {text: 'Kiwi'},
+          {text: 'Orange'},
+          {text: 'Papaya'}
+        ]
+        let data = {
+          buttons: [
+            {
+              text: '取消',
+              role: 'cancel'
+            },
+            {
+              text: '确定',
+              handler: (data) => {
+                this.smoothie = `${data.flavor1.value}`
+              }
+            }
+          ],
+          columns: [
+            {
+              name: 'flavor1',
+              align: 'right',
+              selectedIndex: options.indexOf(options.filter((item) => item.toString().toLowerCase() === column1.toLowerCase())),
+              options
+            }
+          ]
+        }
+
+        this.$picker.present(data)
       },
       twoColumns () {
         let arr = this.smoothie.split(' ')

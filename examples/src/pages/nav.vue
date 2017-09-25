@@ -6,13 +6,14 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <h5>简介</h5>
-            <p>Nav组件是在Page组件的外层, 用于控制转场动画(animate)/转场的Indicator提示(showIndicatorWhenPageChange)等. 这部分的参数在项目初始化的时候就固定了, 后台不可动态修改. 属性可在组件上传入, 或者在配置中指定. </p>
+            <h1>Nav组件</h1>
+
+            <p>Nav组件是在Page组件的外层, 用于 <strong>控制转场动画(animate)</strong> / <strong>转场的Indicator提示(showIndicatorWhenPageChange)</strong>等. 这部分的参数在项目初始化的时候就固定了, 后台不可动态修改. 属性可在组件上传入, 或者在配置中指定. </p>
 
             <h5>转场动画</h5>
             <p>
                 转场动画可以是以下几种, 也可以自定义动画:
-                ios-transition/zoom-transition/fade-bottom-transition/fade-right-transition
+                ios-transition / zoom-transition / fade-bottom-transition / fade-right-transition
             </p>
 
             <h5>转场提示</h5>

@@ -7,7 +7,7 @@
         </Header>
         <Content padding class="outer-content">
 
-            <h5>应用状态配置</h5>
+            <h1>应用状态配置</h1>
 
             <p>Config组件用于放置应用级别的属性配置, 存储形式为key-value. 其中value可以是用function返回配置value.</p>
 
