@@ -69,7 +69,8 @@
 </style>
 <script type="text/javascript">
   import TextTool from './textTool.vue'
-  export default{
+
+  export default {
     methods: {
       openSetting ($event) {
         this.$popover.present({
@@ -83,7 +84,10 @@
       specialText ($event, text) {
         this.$popover.present({
           ev: $event,
-          component: `<p style="padding:0 14px;" text-center>You choose the word of <strong>${text}</strong>.</p>`
+          component: `<p style="padding:0 14px;" text-center>You choose the word of <strong>${text}</strong>.</p>`,
+          onDismiss () {
+            this.$toast('dismiss from:' + text)
+          }
         })
       }
     }

@@ -102,7 +102,7 @@
    * @usage
    * import List from 'vimo/lib/list'
    * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/lib/item'
-   * import { Popover } from 'vimo/lib/popover'
+   * import Popover from 'vimo/lib/popover'
    * import TextTool from './textTool.vue'
    * export default{
    *  methods: {
@@ -130,6 +130,7 @@
    * @props {Boolean} [showBackdrop=true] - 是否显示backdrop
    * @props {Boolean} [enableBackdropDismiss=true] - 点击backdrop是否能关闭组件
    * @props {Boolean} [dismissOnPageChange=true] - 页面切换是否关闭组件, 默认关闭
+   * @props {Function} [onDismiss] - 完全关闭时的回调
    *
    * @props {Object|String|Function} component - popover内部显示的vue组件, 是一个*.vue文件; 如果是String的话则为html字符串; 支持异步
    * @props {Object} data - 传给popover内部显示的vue组件的数据, 内部组件通过`this.$options.$data`获取
@@ -160,6 +161,7 @@
     },
     props: {
       component: [Object, String, Function, Promise],
+      onDismiss: Function,
       data: [Object],
       ev: [Object, MouseEvent], // 点击元素的事件
       mode: {
@@ -219,6 +221,8 @@
       },
       afterLeave () {
         this.dismissCallback()
+        this.onDismiss && this.onDismiss()
+
         // 删除DOM
         this.$el.remove()
         this.enabled = true
