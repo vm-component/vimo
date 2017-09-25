@@ -184,8 +184,23 @@ export class History {
     // 支付宝方式返回首页
     let isHandled = this._platform.popToRoot && this._platform.popToRoot()
     if (!isHandled) {
-      // fallback
-      this._router.go(1 - this.length)
+      if (this._router.options.routes) {
+        let routes = this._router.options.routes
+        for (let i = 0, len = routes.length; len > i; i++) {
+          let route = routes[i]
+          if (route && route.meta && route.meta.root) {
+            console.log(route)
+            this._direction = 'backward'
+            this._router.replace(route)
+            this._history = []
+            return
+          }
+        }
+      }
+
+      if (!isHandled) {
+        this._router.go(1 - this.length)
+      }
     }
   }
 }
