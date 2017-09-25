@@ -48,15 +48,15 @@
                     <div class="pay-sheet-title">选择支付方式</div>
                     <div class="pay-sheet-container">
                         <div class="pay-sheet-content" @click="choose('alipay')">
-                            <Icon class="pay-sheet-icon" name="icon-alipay">Icon</Icon>
+                            <Icon class="pay-sheet-icon" name="icon-alipay"></Icon>
                             <p class="pay-sheet-name">支付宝</p>
                         </div>
                         <div class="pay-sheet-content" @click="choose('wechat')">
-                            <Icon class="pay-sheet-icon" name="icon-weichat">Icon</Icon>
+                            <Icon class="pay-sheet-icon" name="icon-wechat"></Icon>
                             <p class="pay-sheet-name">微信</p>
                         </div>
                         <div class="pay-sheet-content" @click="choose('unipay')">
-                            <Icon class="pay-sheet-icon" name="icon-unipay">Icon</Icon>
+                            <Icon class="pay-sheet-icon" name="icon-unionpay"></Icon>
                             <p class="pay-sheet-name">银联</p>
                         </div>
                     </div>
@@ -98,6 +98,20 @@
   }
 </script>
 <style scoped lang="less">
+
+
+    .icon-alipay {
+        background: url('../assets/icon-alipay.png') no-repeat center center/auto 100%;
+    }
+
+    .icon-wechat {
+        background: url('../assets/icon-wechat.png') no-repeat center center/auto 100%;
+    }
+
+    .icon-unionpay {
+        background: url('../assets/icon-unionpay.png') no-repeat center center/auto 100%;
+    }
+
     .pay-sheet {
         background: #fff;
         .pay-sheet-title {
@@ -120,8 +134,8 @@
                 flex: 1;
                 .pay-sheet-icon {
                     height: 36px;
-                    width: 36px;
-                    border: 1px solid #ddd;
+                    width: 60px;
+                    /*border: 1px solid #ddd;*/
                 }
                 .pay-sheet-name {
                     margin: 0;
