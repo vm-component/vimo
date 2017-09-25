@@ -8,11 +8,7 @@ import Footer from './base/app/footer.vue'
 import Nav from './base/nav/nav.vue'
 import Page from './base/page/page.vue'
 import Content from './base/content/content.vue'
-import Button from './base/button/button.vue'
-import Buttons from './base/bar/toolbar-buttons.vue'
-import Title from './base/bar/toolbar-title.vue'
-import Navbar from './base/bar/navbar.vue'
-import Toolbar from './base/bar/toolbar.vue'
+import Navbar from './base/navbar/navbar.vue'
 
 const VERSION = require('../package.json').version
 const addLogo = (vimoVer, vueVer) => {
@@ -52,10 +48,6 @@ export default function core (Vue, options) {
   Vue.component(App.name, App)
   Vue.component(Nav.name, Nav)
   Vue.component(Navbar.name, Navbar)
-  Vue.component(Toolbar.name, Toolbar)
-  Vue.component(Title.name, Title)
-  Vue.component(Button.name, Button)
-  Vue.component(Buttons.name, Buttons)
   Vue.component(Page.name, Page)
   Vue.component(Header.name, Header)
   Vue.component(Content.name, Content)

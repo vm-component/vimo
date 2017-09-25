@@ -35,7 +35,7 @@
 import Modal from '../modal/index'
 import PreviewImageComponent from './preview-image.vue'
 
-export default function PreviewImage (options) {
+function previewImage (options) {
   let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.previewImage && window.VM.platform.previewImage(options)
   if (!isHandled) {
     console.debug('PreviewImage 组件使用H5模式!')
@@ -51,3 +51,7 @@ export default function PreviewImage (options) {
     })
   }
 }
+
+previewImage.present = previewImage
+
+export default previewImage

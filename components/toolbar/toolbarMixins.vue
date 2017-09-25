@@ -13,3 +13,8 @@
     }
   }
 </script>
+<style lang="less">
+    @import "toolbar-base.less";
+    @import "toolbar.less";
+    @import "toolbar-button";
+</style>

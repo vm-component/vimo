@@ -110,7 +110,7 @@
    * <Input placeholder="Text Input">
    * */
   import { hasFocus, setElementClass, isObject, isBlank, isPresent, isFunction, isRegexp } from '../util/util'
-  import Button from '../base/button/button.vue'
+  import Button from '../button/index'
   import REGEXP from '../util/regexp'
 
   export default {

@@ -58,7 +58,7 @@
    *
    * 因为业务的复杂多样, 如果组件全部加载, 会造成初始化的下载包过大, 所以基础组件在安装Vimo的时候就全局安装, 不需要在业务中再次安装. 除此之外的组件则要按需引入.
    *
-   * 这里规定的基础组件为: **App/Nav/Navbar/Toolbar(Title/Buttons)/Page/Header/Footer/Content/Button**, 一共11个.
+   * 这里规定的基础组件为: **App/Nav/Navbar/Page/Header/Footer/Content**, 一共7个. 这些组件是页面布局组件, 而不是业务组件, 组件由vimo初始化安装完毕.
    *
    * ### 可用状态(参考示例)
    *

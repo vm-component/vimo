@@ -15,11 +15,6 @@
         <slot name="buttons"></slot>
     </div>
 </template>
-<style lang="less">
-    @import "toolbar-base.less";
-    @import "toolbar.less";
-    @import "toolbar-button";
-</style>
 <script type="text/javascript">
   /**
    * @component Navbar
@@ -146,8 +141,8 @@
    *  </Page>
    * </template>
    * */
-  import ToolbarMixins from './toolbarMixins.vue'
-  import Button from '../button/button.vue'
+  import ToolbarMixins from '../../toolbar/toolbarMixins.vue'
+  import Button from '../../button/button.vue'
   import Icon from '../../icon/index'
   import { isArray, isString } from '../../util/util'
 

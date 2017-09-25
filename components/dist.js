@@ -4,6 +4,7 @@ import Alert from './alert'
 import Avatar from './avatar'
 import Backdrop from './backdrop'
 import Badge from './badge'
+import Button from './button'
 import { Card, CardContent, CardHeader, CardTitle } from './card'
 import Checkbox from './checkbox'
 import ChooseCity from './choose-city'
@@ -48,6 +49,7 @@ import Spinner from './spinner'
 import { Tab, Tabs } from './tabs'
 import Thumbnail from './thumbnail'
 import Toast from './toast'
+import { Buttons, Title, Toolbar } from './toolbar'
 import Toggle from './toggle'
 
 var ENV = process.env.NODE_ENV
@@ -62,6 +64,7 @@ module.exports = {
   Avatar,
   Backdrop,
   Badge,
+  Button,
   Card,
   CardContent,
   CardHeader,
@@ -125,6 +128,9 @@ module.exports = {
   Tabs,
   Thumbnail,
   Toast,
+  Buttons,
+  Title,
+  Toolbar,
   Toggle,
   install (Vue, options = {}) {
     if (this.installed) return
@@ -145,6 +151,7 @@ module.exports = {
     Vue.component(Avatar.name, Avatar)
     Vue.component(Backdrop.name, Backdrop)
     Vue.component(Badge.name, Badge)
+    Vue.component(Button.name, Button)
     Vue.component(Card.name, Card)
     Vue.component(CardContent.name, CardContent)
     Vue.component(CardHeader.name, CardHeader)
@@ -200,6 +207,9 @@ module.exports = {
     Vue.component(Tabs.name, Tabs)
     Vue.component(Tab.name, Tab)
     Vue.component(Thumbnail.name, Thumbnail)
+    Vue.component(Buttons.name, Buttons)
+    Vue.component(Title.name, Title)
+    Vue.component(Toolbar.name, Toolbar)
     Vue.component(Toggle.name, Toggle)
 
     this.installed = true

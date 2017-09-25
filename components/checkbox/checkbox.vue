@@ -50,7 +50,7 @@
    * </Item>
    * */
   import { setElementClass } from '../util/util'
-  import Button from '../base/button/button.vue'
+  import Button from '../button/index'
 
   export default {
     name: 'Checkbox',
