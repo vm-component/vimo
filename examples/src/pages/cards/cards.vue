@@ -5,18 +5,16 @@
                 <Title>Cards</Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content class="outer-content">
             <List>
                 <!--header-->
                 <ListHeader>
                     <span>Contents</span>
                 </ListHeader>
                 <!--group-->
-                <ItemGroup>
-                    <Item button :to="{name:'cards.basicCards'}">基础卡片</Item>
-                    <Item button :to="{name:'cards.listsInCards'}">Card与List组合</Item>
-                    <Item button :to="{name:'cards.advancedCards'}">更丰富的Card</Item>
-                </ItemGroup>
+                <Item button :to="{name:'cards.basicCards'}">基础卡片</Item>
+                <Item button :to="{name:'cards.listsInCards'}">Card与List组合</Item>
+                <Item button :to="{name:'cards.advancedCards'}">更丰富的Card</Item>
             </List>
         </Content>
     </Page>
@@ -24,7 +22,7 @@
 <style scoped lang="less">
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'cards'
   }
 </script>

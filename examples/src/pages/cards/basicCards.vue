@@ -11,6 +11,26 @@
                     <span>Card Header</span>
                 </CardHeader>
                 <CardContent>
+                    <h1>H1</h1>
+                    <h2>H2</h2>
+                    <h3>H3</h3>
+                    <h4>H4</h4>
+                    <h5>H5</h5>
+                    <h6>H6</h6>
+                    <p>p</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet at blanditiis nam nostrum pariatur
+                        provident quas quod! Alias atque autem dolores et necessitatibus odit perspiciatis quis recusandae
+                        reprehenderit voluptas.
+                    </p>
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader>
+                    <span>Card Header</span>
+                </CardHeader>
+                <CardContent>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet at blanditiis nam nostrum pariatur
                         provident quas quod! Alias atque autem dolores et necessitatibus odit perspiciatis quis recusandae

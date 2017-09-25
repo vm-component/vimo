@@ -9,7 +9,7 @@ export default {
      * */
     mode: {
       type: String,
-      default () { return this.$config && this.$config.get('mode') || 'ios' }
+      default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
     }
   },
   computed: {

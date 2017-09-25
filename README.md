@@ -4,11 +4,11 @@
 
 <h4 align="center"><p align="center">A H5 Platform For Hybrid</p></h4>
 
-> 目前在内部测试及文档教程编写, 见谅!!!
+<h5 align="center"><p align="center" style="color:red;">(目前在内部测试及文档教程编写)</p></h5>
 
 ## DEMO
 
-<p align="center"><img src="https://github.com/DTFE/Vimo/blob/master/examples/static/img/vimo_qrcode.png?raw=true" alt="vimo" width="200"><br><a align="center" href="https://dtfe.github.io/vimo-demo">https://dtfe.github.io/vimo-demo</a></p>
+<p align="center"><img src="https://github.com/DTFE/Vimo/blob/master/examples/static/img/vimo_qrcode.png?raw=true" alt="vimo" width="200"><br><a align="center" href="/demo">https://dtfe.github.io/vimo/demo</a></p>
 
 ## USED FOR
 
@@ -41,6 +41,14 @@ Vimo项目初始化种子, 包括自定义主题文件. 点击进入项目地址
 
 
 ## COMPONENTS
+
+### 布局/Layout
+- [x] App组件
+- [x] Nav组件
+- [x] Page/Content/Header/Footer组件
+- [x] Grid组件
+
+
 
 ![组件清单](https://github.com/DTFE/Vimo/blob/master/examples/static/img/vimo_components.png?raw=true)
 

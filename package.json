@@ -25,13 +25,14 @@
     "dist"
   ],
   "scripts": {
-    "example:dev": "node examples/build/dev-server.js",
-    "example:build": "node examples/build/build.js",
+    "demo:dev": "node examples/build/dev-server.js",
+    "demo:build": "node examples/build/build.js",
     "pub:dist": "node build/webpack.dist.conf.js",
     "pub:lib": "gulp default --gulpfile build/gulpfile.lib.js",
     "pub": "npm run pub:lib && npm run pub:dist",
     "docs:dev": "gulp default --gulpfile build/doc-builder/gulpfile.js",
     "docs:build": "gulp build --gulpfile build/doc-builder/gulpfile.js",
+    "build": "npm run demo:build && npm run docs:build && npm run pub",
     "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
