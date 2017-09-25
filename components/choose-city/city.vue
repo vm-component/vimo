@@ -155,7 +155,7 @@
     }
 </style>
 <script type="text/javascript">
-  import { Modal } from '../modal/index'
+  import Modal from '../modal/index'
   import { pointerCoord, clamp } from '../util/util'
 
   export default {
