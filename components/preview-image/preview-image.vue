@@ -1,44 +1,35 @@
 <template>
-    <Page>
-        <Content padding class="outer-content ">
-            <section slot="fixedTop" class="previewImage">
-                <transition name="previewImage">
-                    <div class="previewImage__inner" v-show="images.length>0">
-                        <p text-center class="info">{{activeIndex + 1}} / {{images.length}}</p>
-                        <Slides class="slides"
-                                :preloadImages="false"
-                                :lazyLoading="true"
-                                :initialSlide="activeIndex"
-                                :zoom="true"
-                                @onClick="onClickHandler"
-                                @onSlideChangeEnd="onSlideChangeEndHandler">
-                            <Slide class="slide" v-for="(item,index) in images" :key="index">
-                                <img :data-src="item" class="swiper-lazy">
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </Slide>
-                        </Slides>
-                    </div>
-                </transition>
-            </section>
-        </Content>
-    </Page>
+    <section class="vm-previewImage previewImage">
+        <transition name="previewImage">
+            <div class="previewImage__inner" v-show="images.length>0">
+                <p text-center class="info">{{activeIndex + 1}} / {{images.length}}</p>
+                <Slides class="slides"
+                        :preloadImages="false"
+                        :lazyLoading="true"
+                        :initialSlide="activeIndex"
+                        :zoom="true"
+                        @onClick="onClickHandler"
+                        @onSlideChangeEnd="onSlideChangeEndHandler">
+                    <Slide class="slide" v-for="(item,index) in images" :key="index">
+                        <img :data-src="item" class="swiper-lazy">
+                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                    </Slide>
+                </Slides>
+            </div>
+        </transition>
+    </section>
 </template>
 <style lang="less">
-    .previewImage-enter-active, .previewImage-leave-active {
-        transition: opacity 300ms
-    }
 
-    .previewImage-enter, .previewImage-leave-active {
-        opacity: 0
-    }
-
-    .previewImage {
+    .vm-previewImage.previewImage {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         background: #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
+
         .previewImage__inner {
             width: 100%;
             height: 100%;
@@ -70,10 +61,18 @@
             }
         }
     }
+
+    // transition
+    .previewImage-enter-active, .previewImage-leave-active {
+        transition: opacity 300ms
+    }
+
+    .previewImage-enter, .previewImage-leave-active {
+        opacity: 0
+    }
 </style>
 <script type="text/javascript">
   import Modal from '../modal'
-  // 不适用lite是因为其不支持图片懒加载
   import { Slides, Slide } from '../slides'
 
   export default {
