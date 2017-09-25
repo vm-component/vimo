@@ -84,7 +84,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Scroll } from 'vimo/lib/scroll'
+   * import Scroll from 'vimo/lib/scroll'
    * // 安装
    * Vue.component(Scroll.name, Scroll)
    * // 或者

@@ -35,7 +35,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Sheet } from 'vimo/lib/sheet'
+   * import Sheet from 'vimo/lib/sheet'
    * // 安装
    * Vue.component(Sheet.name, Sheet)
    * // 或者

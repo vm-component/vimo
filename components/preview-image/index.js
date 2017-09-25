@@ -20,7 +20,7 @@
  *
  * @demo #/preview-image
  * @usage
- * import { PreviewImage } from 'vimo/lib/preview-image'
+ * import PreviewImage from 'vimo/lib/preview-image'
  * function openAlbum1 () {
  *    PreviewImage({
  *      current: 0,

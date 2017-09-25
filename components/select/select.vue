@@ -43,10 +43,10 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Select, Option } from 'vimo/lib/select'
+   * import { Select, SelectOption } from 'vimo/lib/select'
    * // 安装
    * Vue.component(Select.name, Select)
-   * Vue.component(Option.name, Option)
+   * Vue.component(Option.name, SelectOption)
    * // 或者
    * export default{
    *   components: {
@@ -84,8 +84,8 @@
    * </Item>
    * */
   import { setElementClass, isTrueProperty, isBlank, isCheckedProperty } from '../util/util'
-  import { ActionSheet } from '../action-sheet'
-  import { Alert } from '../alert'
+  import ActionSheet from '../action-sheet'
+  import Alert from '../alert'
 
   let id = 0
   export default {

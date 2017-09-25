@@ -32,7 +32,7 @@
    * <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
    *
    * */
-  import { Badge } from '../badge'
+  import Badge from '../badge'
   let _tabId = -1
   export default{
     name: 'Tab',

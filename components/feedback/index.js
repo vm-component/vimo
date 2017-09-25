@@ -1,2 +1,1 @@
-import Feedback from './feedback.vue'
-export { Feedback }
+export { default } from './feedback.vue'

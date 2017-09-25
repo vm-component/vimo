@@ -59,7 +59,7 @@
           let list = []
           window.setTimeout(() => {
             if (this.total > 0) {
-              for (let j = 0; this.total > 0 && j < 10; j++, this.i++, this.total--) {
+              for (let j = 0; this.total > 0 && j < 20; j++, this.i++, this.total--) {
                 this.list.push(`item - ${this.i}`)
               }
               resolve(list)
@@ -69,16 +69,16 @@
           }, 500)
         })
       },
-      onInfinite (infiniteScroll) {
+      onInfinite () {
         console.debug('onInfinite')
         this.fetchData().then((list) => {
           this.list = [].concat(this.list, list)
           // 当前异步完成
-          infiniteScroll.complete()
+          this.infiniteScrollComponent && this.infiniteScrollComponent.complete()
           console.debug('onInfinite-complete')
         }, () => {
           // 当前异步结束, 没有新数据了
-          infiniteScroll.enable(false)
+          this.infiniteScrollComponent && this.infiniteScrollComponent.enable(false)
           console.debug('onInfinite-enable-false')
         })
       },

@@ -15,7 +15,6 @@
             <Button block @click="openIndicator300">Open 300ms</Button>
             <Button block @click="openIndicator100">Open 100ms</Button>
             <Button block @click="openIndicator20">Open 20ms</Button>
-
         </Content>
     </Page>
 </template>

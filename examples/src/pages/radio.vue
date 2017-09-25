@@ -5,7 +5,7 @@
                 <Title>Radio</Title>
             </Navbar>
         </Header>
-        <Content>
+        <Content class="outer-content">
             <List radio-group v-model="fruits" :disabled="isListDisabled" @onChange="onChangeHandler">
                 <ListHeader>Fruits</ListHeader>
                 <Item>

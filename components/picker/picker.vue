@@ -112,7 +112,7 @@
    * 因为是弹出层组件, 故引入后, `Picker.present(...)`就可打开组件
    *
    * ```
-   *  import { Picker } from 'vimo/lib/picker'
+   *  import Picker from 'vimo/lib/picker'
    * ```
    *
    * @demo #/picker

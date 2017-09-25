@@ -24,7 +24,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Checkbox } from 'vimo/lib/checkbox'
+   * import Checkbox from 'vimo/lib/checkbox'
    * // 安装
    * Vue.component(Checkbox.name, Checkbox)
    * // 或者

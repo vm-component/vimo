@@ -40,7 +40,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Datetime } from 'vimo/lib/datetime'
+   * import Datetime from 'vimo/lib/datetime'
    * // 安装
    * Vue.component(Datetime.name, Datetime)
    * // 或者
@@ -85,7 +85,7 @@
    * @fires component:Datetime#onChange
    * */
   import { isBlank, isPresent, isTrueProperty, isArray, isString, setElementClass } from '../util/util'
-  import { Picker } from '../picker/index'
+  import Picker from '../picker/index'
   import Button from '../button/index'
   import {
     dateValueRange,

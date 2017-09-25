@@ -70,7 +70,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Searchbar } from 'vimo/lib/searchbar'
+   * import Searchbar from 'vimo/lib/searchbar'
    * // 安装
    * Vue.component(Searchbar.name, Searchbar)
    * // 或者

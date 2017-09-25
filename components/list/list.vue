@@ -33,7 +33,7 @@
    *
    * ```
    * // 引入
-   * import { List } from 'vimo/lib/list'
+   * import List from 'vimo/lib/list'
    * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/lib/item'
    * // 安装
    * Vue.component(List.name, List)

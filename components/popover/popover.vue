@@ -100,7 +100,7 @@
    *
    *
    * @usage
-   * import { List } from 'vimo/lib/list'
+   * import List from 'vimo/lib/list'
    * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/lib/item'
    * import { Popover } from 'vimo/lib/popover'
    * import TextTool from './textTool.vue'

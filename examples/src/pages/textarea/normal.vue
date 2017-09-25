@@ -56,7 +56,6 @@
                     <Label color="primary" stacked>只读</Label>
                     <Textarea :rows="1" readonly placeholder="输入文本"></Textarea>
                 </Item>
-
             </List>
             <List>
                 <ListHeader>
@@ -78,7 +77,7 @@
     methods: {}
   }
 </script>
-<style lang="less">
+<style scoped lang="less">
     .customer {
         width: 80%;
         background-color: #ffffff;

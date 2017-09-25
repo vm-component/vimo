@@ -36,7 +36,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Textarea } from 'vimo/lib/textarea'
+   * import Textarea from 'vimo/lib/textarea'
    * // 安装
    * Vue.component(Textarea.name, Textarea)
    * // 或者

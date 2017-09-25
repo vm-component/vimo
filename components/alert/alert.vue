@@ -8,7 +8,9 @@
                     @before-leave="beforeLeave"
                     @after-leave="afterLeave">
             <div class="alert-wrapper" v-show="isActive">
-                <img class="alert-image" v-if="image" :src="image">
+                <div class="alert-image-box">
+                    <img class="alert-image" v-if="image" :src="image">
+                </div>
                 <div class="alert-head">
                     <h2 class="alert-title" v-if="title">{{title}}</h2>
                     <h3 class="alert-sub-title" v-if="subTitle" v-html="subTitle"></h3>
@@ -17,9 +19,9 @@
                 <div v-if="inputs && inputs.length>0">
                     <div v-if="inputType==='radio'" class="alert-radio-group" role="radiogroup">
                         <vm-button role="alert-radio-button" v-for="(i,index) in inputsForDispaly" @click="rbClick(i)"
-                                :key="index"
-                                :aria-checked="i.checked" :disabled="i.disabled" :id="i.id"
-                                class="alert-tappable alert-radio">
+                                   :key="index"
+                                   :aria-checked="i.checked" :disabled="i.disabled" :id="i.id"
+                                   class="alert-tappable alert-radio">
                             <div class="alert-radio-icon">
                                 <div class="alert-radio-inner"></div>
                             </div>
@@ -30,8 +32,8 @@
                     </div>
                     <div class="alert-checkbox-group" v-if="inputType==='checkbox'">
                         <vm-button :id="i.id" role="alert-checkbox-button" :aria-checked="i.checked"
-                                v-for="(i,index) in inputsForDispaly" @click="cbClick(i)" :key="index"
-                                :checked="i.checked" :disabled="i.disabled" class="alert-tappable alert-checkbox">
+                                   v-for="(i,index) in inputsForDispaly" @click="cbClick(i)" :key="index"
+                                   :checked="i.checked" :disabled="i.disabled" class="alert-tappable alert-checkbox">
                             <div class="alert-checkbox-icon">
                                 <div class="alert-checkbox-inner"></div>
                             </div>
@@ -48,8 +50,9 @@
                     </div>
                 </div>
                 <div class="alert-button-group" :class="{'alert-button-group-vertical':buttonsForDisplay.length>2}">
-                    <vm-button role="alert-button" v-for="(b,index) in buttonsForDisplay" :key="index" @click="btnClick(b)"
-                            :class="[b.cssClass]">
+                    <vm-button role="alert-button" v-for="(b,index) in buttonsForDisplay" :key="index"
+                               @click="btnClick(b)"
+                               :class="[b.cssClass]">
                         <span>{{b.text}}</span>
                     </vm-button>
                 </div>

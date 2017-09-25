@@ -35,7 +35,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Toggle } from 'vimo/lib/toggle'
+   * import Toggle from 'vimo/lib/toggle'
    * // 安装
    * Vue.component(Toggle.name, Toggle)
    * // 或者
