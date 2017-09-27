@@ -38,7 +38,7 @@
    * @props {String} [mode='ios'] - 模式
    * @props {String} [color] - 颜色
    * @props {Boolean} [disabled=false] - 单向选择, 点击且换并不对父组件传递
-   * @props {Boolean} [value=false] - 当前值
+   * @props {Boolean} [value] - 当前值
    *
    * @fires component:Checkbox#onChange
    * @demo #/checkbox
