@@ -13,14 +13,14 @@
  * ### 关于buttons属性的说明
  * - role属性: cancel只在ios下有用, 他会将标记cancel的button做特殊处理, 比如点击背景关闭则触发cancel的handler
  * - cssClass属性: 这个属性用于自定义button的样式, 同理, 外层的cssClass用来定义整个弹层的样式
- * - handler属性: 默认是关闭当前的组件, 可以通过`this.$alert.dismiss()`返回的Promise做后续处理, 他表示整个动画完毕
+ * - handler属性: 默认是关闭当前的组件, 可以通过`Alert.dismiss()`返回的Promise做后续处理, 他表示整个动画完毕
  *
  * ### 关于inputs属性的说明
- * - inputs属性内type的属性的填值能改变弹出层的展现形式, 比如: input/checkbox/radio等三种形式
+ * - inputs属性内type的属性的填值能改变弹出层的展现形式, 比如: input/checkbox/radio等三种形式.
  * - 上述的三种形式一次只能选择一种, 这个是规定定死的.
- * - 关于input的type类型: text/tel/number/email -> 对应的其余属性可以是: type/name/placeholder/value
- * - 关于input的type类型: checkbox/radio -> 对应的其余属性可以是: type/value/label/checked/disabled
- * - 如果混用达不到效果, 这个是我们的约定
+ * - 关于input的type类型: text/tel/number/email -> 对应的其余属性可以是: type/name/placeholder/value.
+ * - 关于input的type类型: checkbox/radio -> 对应的其余属性可以是: type/value/label/checked/disabled.
+ * - 以上如果混用是达不到效果的, 这个是Alert组件的使用约定.
  *
  *
  * ### 使用注意
@@ -46,7 +46,7 @@
  *      {
  *        text: '确定',
  *        handler: (value) => {
- *          Alert.dismiss().then(function (data) {
+ *          Alert.dismiss().then((data) => {
  *            console.debug('button3 click dismiss ')
  *            console.debug(data)
  *          });
@@ -107,7 +107,7 @@
  *   }).then(function () {
  *     console.log('alert input1 present promise')
  *   });
- * },
+ * }
  *
  */
 import Vue from 'vue'
@@ -144,7 +144,7 @@ function getPresentDismissIns (Factory) {
      * @param {Boolean} [options.enableBackdropDismiss=true]  - 允许点击backdrop关闭组件
      * @param {Boolean} [options.dismissOnPageChange=true]    - 路由切换关闭组件
      * @param {string} [options.mode=ios]                     - 样式模式
-     * @param {string} [options.isH5=false]                   - 强制使用H5组件
+     * @param {string} [options.isH5=false]                   - 强制使用H5组件(区别使用Hybrid提供的Alert方法)
      *
      * @param {Array} [options.buttons]                       - button数组，包含全部role
      * @param {Array} options.buttons.text                    - button显示文本
@@ -192,8 +192,8 @@ function getPresentDismissIns (Factory) {
     /**
      * @function dismiss
      * @description
-     * 手动关闭组件
-     * @return {Promise} - 关闭动画结束的promise
+     * 手动关闭组件, 当开启动画过度完毕时触发 `Promise` 的 `resolve` 。
+     * @return {Promise}
      * */
     dismiss () {
       return new Promise((resolve) => {
