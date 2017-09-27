@@ -69,11 +69,9 @@
    *
    * ## 基础组件 / Content组件
    *
-   *
    * Vimo框架的页面基础布局分为Header/Content/Footer三个部分, 也就是"上中下三明治"结构布局, Content组件则是中间业务内容的位置.
    *
-   * Content组件中书写的代码可以是滚动的内容, 也可以是固定在一面不随滚动的内容, 比如说当页的广告/刷新按钮/歌词等.
-   * 这个特性的的开启需要特殊命名slot才能激活.
+   * Content组件中书写的代码可以是滚动的内容, 也可以是固定在一面不随滚动的内容, 比如说当页的广告/刷新按钮/歌词等. 这个特性的的开启需要特殊命名slot才能激活.
    *
    * 此外需要注意的是, 一个页面(Page组件)中只能有一个Content组件, 这个是Vimo使用的规则!
    *
@@ -84,7 +82,6 @@
    * 是的, 基础组件是安装vimo后自动全局注册的.
    *
    * @demo #/content
-   *
    *
    * @slot 空                slot为空则将内容插入到scroll中
    * @slot [fixed]          默认值, 固定到顶部
@@ -171,9 +168,7 @@
       /**
        * @function getContentDimensions
        * @description
-       * 返回滚动元素的维度信息, 包括:
-       * **contentHeight/contentTop/contentBottom/contentWidth/contentLeft**
-       * **scrollHeight/scrollTop/scrollWidth/scrollLeft**
+       * 返回滚动元素的维度信息
        * @return {ContentDimension}
        * */
       getContentDimensions () {

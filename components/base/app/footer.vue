@@ -35,6 +35,8 @@
    * ### 可用的样式属性
    * - [no-border] - 无边框
    *
+   * @demo #/content
+   *
    * */
   export default {
     name: 'Footer',

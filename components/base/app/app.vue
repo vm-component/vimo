@@ -58,7 +58,15 @@
    *
    * 因为业务的复杂多样, 如果组件全部加载, 会造成初始化的下载包过大, 所以基础组件在安装Vimo的时候就全局安装, 不需要在业务中再次安装. 除此之外的组件则要按需引入.
    *
-   * 这里规定的基础组件为: **App/Nav/Navbar/Page/Header/Footer/Content**, 一共7个. 这些组件是页面布局组件, 而不是业务组件, 组件由vimo初始化安装完毕.
+   * 布局组件就是基础组件, 比如: **App/Nav/Navbar/Page/Header/Footer/Content**, 一共7个. 这些组件不是业务组件, 组件由vimo初始化安装完毕. 此外, 如果不使用布局组件也没关系. 通过布局组件提供的方法就能知道它的作用了.
+   *
+   * - App: 根组件, 用于设置页面点击/滚动状态/设置文档title/设置根位置的样式
+   * - Nav: 导航组件, 用于设置页面切换属性: 转场动画/转场是否显示Indicator/和Menus配合
+   * - Page: 页面容器, 因为Vue要求业务template必须要使用一个根元素包裹, 故Page就是这个作用. 此外, 通过页面切换定义z-index层级.
+   * - Header: 顾名思义, 页面的头部, 这部分不会页面滚动, 内部可安插Toolbar/Navbar等组件
+   * - Footer: 使用方法和Header一致
+   * - Content: 页面展示部分的容器, 可以使滚动内容, 也可以是固定内容, 详情参考组件介绍
+   * - Nabvar: 该组件也在基础组件中, Navbar存在的意义是定义内容Title组件, 用于更新文档的Title. 页面切换在左侧显示后退按钮, 也可定义多个按钮. 使用方法和 Toolbar 一致.
    *
    * ### 可用状态(参考示例)
    *
@@ -185,11 +193,13 @@
        * @function setClass
        * @description
        * 设置根组件的class样式, 比如全局颜色替换或者结构变更
-       * @param {string} className
-       * @param {boolean} isAdd
+       * @param {string} className - 样式名称
+       * @param {boolean} [isAdd=false] - 是否添加
        */
-      setClass (className, isAdd) {
-        setElementClass(this.$el, className, isAdd)
+      setClass (className, isAdd = false) {
+        if (className) {
+          setElementClass(this.$el, className, isAdd)
+        }
       },
 
       /**
