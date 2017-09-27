@@ -3,7 +3,8 @@
         <div class="checkbox-icon" :class="{'checkbox-checked':checkedValue}">
             <div class="checkbox-inner"></div>
         </div>
-        <vm-button role="item-cover" @click="onPointerDownHandler()"
+        <vm-button role="item-cover"
+                   @click="onPointerDownHandler()"
                    type="button"
                    class="item-cover">
         </vm-button>
