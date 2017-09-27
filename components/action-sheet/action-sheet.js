@@ -6,9 +6,7 @@
  *
  * ### 简介
  *
- * ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭. 可以把它当做**确认单组件**, 或者**单选组件**, 但是按钮建议不超过6个, 如果超过了组件也能正确处理,
- *   比如滚动选择.
- *
+ * ActionSheet是一个从底部弹出的按钮表单，一般都是由很多Button组成。当用户点击确认完毕后关闭. 可以把它当做**确认单组件**, 或者**单选组件**, 但是按钮建议不超过6个, 如果超过了组件也能正确处理, 比如滚动选择.
  *
  * ### 关于buttons属性
  * - role属性: 可以是cancel(关闭)/destructive(警告/删除)/null, destructive在IOS下有用, 样式为红色字体
@@ -60,7 +58,7 @@
  *      role: 'cancel',
  *      icon: 'close',
  *      handler: () => {
- *        this.$actionSheet.dismiss().then(function (data) {
+ *        ActionSheet.dismiss().then((data) => {
  *          console.debug('promise的退出方式')
  *        });
  *      }
