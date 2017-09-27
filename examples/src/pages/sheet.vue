@@ -6,7 +6,9 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <p>当前选择: {{type}}</p>
+            <h1>Sheet组件</h1>
+            <p>组件用于弹出进一步选择的弹出层, 比如选择尺码/支付方式/分享方式等.</p>
+            <p>当前支付方式选择: {{type}}</p>
             <Button block @click="openPaySheet">选择支付方式</Button>
             <article>
                 <p>

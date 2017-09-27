@@ -31,6 +31,16 @@
                               v-model="displayData.disabled"></Checkbox>
                 </Item>
             </List>
+
+            <section padding>
+                <h5>单独使用</h5>
+                <div class="customer-standalone">
+                    <Checkbox color="danger" v-model="displayData.danger"></Checkbox>
+                </div>
+                <p>注意这部分样式的写法!</p>
+            </section>
+
+
             <List>
                 <ListHeader>使用 v-modal 绑定</ListHeader>
                 <Item>
@@ -65,8 +75,17 @@
     </Page>
 </template>
 <style scoped lang="less">
-    .main {
-
+    .customer-standalone {
+        position: relative;
+        height: 44px;
+        width: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px dashed #333;
+        .ion-checkbox {
+            position: static;
+        }
     }
 </style>
 <script type="text/javascript">

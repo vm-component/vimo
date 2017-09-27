@@ -354,12 +354,11 @@
                     <span>获取位置</span>
                     <Note slot="item-right">Geolocation</Note>
                 </Item>
-                <Item button :to="{name: 'log'}">
-                    <Icon slot="item-left" name="analytics"></Icon>
-                    <span>日志</span>
-                    <Note slot="item-right">Log</Note>
-                </Item>
-
+                <!--<Item button :to="{name: 'log'}">-->
+                    <!--<Icon slot="item-left" name="analytics"></Icon>-->
+                    <!--<span>日志</span>-->
+                    <!--<Note slot="item-right">Log</Note>-->
+                <!--</Item>-->
                 <!--&lt;!&ndash;Demo&ndash;&gt;-->
                 <!--<ListHeader>-->
                 <!--<span>Demo</span>-->
