@@ -12,6 +12,7 @@
    *
    * 被ItemGroup包裹的Item的第一个元素没有上面框, 最后一个元素没下边框.
    *
+   * @demo #/list
    * */
   export default {
     name: 'ItemGroup'

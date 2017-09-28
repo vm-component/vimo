@@ -27,24 +27,22 @@
    *
    * item组件将使用v-router的router-link组件中的部分同名方法, 并执行对应的跳转
    *
-   * - props: to/append/replace
+   * ### 如何引入
    *
    * ```
    * // 引入
    * import List from 'vimo/lib/list'
-   * import { ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider } from 'vimo/lib/item'
+   * import { ListHeader, ItemGroup, Item, ItemDivider } from 'vimo/lib/item'
    * // 安装
    * Vue.component(List.name, List)
    * Vue.component(ListHeader.name, ListHeader)
    * Vue.component(ItemGroup.name, ItemGroup)
    * Vue.component(Item.name, Item)
-   * Vue.component(ItemSliding.name, ItemSliding)
-   * Vue.component(ItemOptions.name, ItemOptions)
    * Vue.component(ItemDivider.name, ItemDivider)
    * // 或者
    * export default{
    *   components: {
-   *    List, ListHeader, ItemGroup, Item, ItemSliding, ItemOptions, ItemDivider
+   *    List, ListHeader, ItemGroup, Item, ItemDivider
    *  }
    * }
    * ```
@@ -63,6 +61,47 @@
    * @demo #/list
    * @see component:List
    * @see http://router.vuejs.org/zh-cn/index.html
+   *
+   * @usage
+   * <List>
+   *    <ListHeader>
+   *            setting
+   *        <Button slot="item-right" clear>
+   *            <Icon name="cog"></Icon>
+   *        </Button>
+   *    </ListHeader>
+   *    <ItemGroup>
+   *        <Item>
+   *            <Icon slot="item-left" color="danger" name="plane"></Icon>
+   *            <span>Airplane Mode</span>
+   *            <Toggle slot="item-right" @ionChange="toggleChange"
+   *                :checked="toggleValue"></Toggle>
+   *        </Item>
+   *    <Item button>
+   *            <Icon slot="item-left" color="primary" name="wifi"></Icon>
+   *                Wi-Fi
+   *            <Note slot="item-right">The Interwebz</Note>
+   *        </Item>
+   *        <Item button>
+   *            <Icon slot="item-left" color="primary" name="bluetooth"></Icon>
+   *                Bluetooth
+   *            <Note slot="item-right">Off</Note>
+   *        </Item>
+   *    </ItemGroup>
+   *    <ItemDivider color="primary">
+   *        Other Setting
+   *        <Button slot="item-right" outline color="light">Clear</Button>
+   *    </ItemDivider>
+   *    <Item button>
+   *            <Icon slot="item-left" color="secondary" name="call"></Icon>
+   *            Cellular
+   *    </Item>
+   *    <Item button>
+   *         <Icon slot="item-left" color="secondary" name="link"></Icon>
+   *            Personal Hotspot
+   *        <Note slot="item-right">Off</Note>
+   *    </Item>
+   * </List>
    *
    * */
   import ItemMixin from './item-mixin.vue'

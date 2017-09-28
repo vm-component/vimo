@@ -8,6 +8,7 @@
    * @props {String} [mode='ios'] - 模式
    * @props {String} [color] - 颜色
    *
+   * @demo #/list
    * */
   import ItemMixin from './item-mixin.vue'
   export default{
