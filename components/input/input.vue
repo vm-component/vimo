@@ -108,6 +108,10 @@
    * @demo #/input
    * @usage
    * <Input placeholder="Text Input">
+   * <Input placeholder="Clear Input" clearInput></Input>
+   * <Input placeholder="请输入手机号" type="mobile" check clearInput></Input>
+   * <Input placeholder="请输入至少4位" type="securityCode" check clearInput></Input>
+   * <Input placeholder="XX-XX-XXX格式" type="text" check :regex=/\d{2}-\d{2}-\d{3}/ clearInput></Input>
    * */
   import { hasFocus, setElementClass, isObject, isBlank, isPresent, isFunction, isRegexp } from '../util/util'
   import Button from '../button/index'
@@ -273,7 +277,6 @@
       /**
        * @event component:Input#onKeyup
        * @description keyup事件
-       * @private
        */
       inputKeyUp ($event) {
         this.$emit('onKeyup', $event)
@@ -282,7 +285,6 @@
       /**
        * @event component:Input#onKeydown
        * @description keydown事件
-       * @private
        */
       inputKeyDown ($event) {
         this.$emit('onKeydown', $event)
