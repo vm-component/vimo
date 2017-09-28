@@ -41,7 +41,13 @@
    * ### 如何引入
    * ```
    * import Feedback from 'vimo/lib/feedback'
-   * components: {Feedback}
+   * Vue.component(Feedback.name, Feedback)
+   * // 或者
+   * export default{
+   *   components: {
+   *     Feedback
+   *  }
+   * }
    * ```
    *
    * @props {Number} [rows=3] - rows
@@ -65,7 +71,7 @@
    * @usage
    * <Feedback v-model="feedbackInfo" :maxlength="100" :maximage="4"></Feedback>
    * */
-  import './fixImage'
+  import canvasResize from './fixImage'
   import { isString, isArray } from '../util/util'
   import Textarea from '../input'
   import PreviewImage from '../preview-image'
@@ -213,7 +219,7 @@
         let input = event.target
         let fixImage = (file, callback) => {
           // 加载资源
-          window.canvasResize(file, {
+          canvasResize(file, {
             width: 640, // 最大的尺寸,如果比这小是不会出现放大的情况的,文章宽度为710px
             height: 0,
             crop: false,
@@ -221,7 +227,7 @@
             // rotate: 90,
             callback (data, width, height) {
               // 将图片改为二进制文件,准备上传
-              let _blob = window.canvasResize('dataURLtoBlob', data)
+              let _blob = canvasResize('dataURLtoBlob', data)
               !!callback && callback(_blob)
             }
           })
