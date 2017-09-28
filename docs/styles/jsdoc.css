@@ -392,8 +392,7 @@ footer {
   text-align: left;
   vertical-align: top;
   padding: 10px;
-  display: table-cell;
-  white-space: nowrap; }
+  display: table-cell; }
 
 .params td, table td {
   border-top: 1px solid #eee; }
