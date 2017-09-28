@@ -27,14 +27,25 @@
   "scripts": {
     "demo:dev": "node examples/build/dev-server.js",
     "demo:build": "node examples/build/build.js",
+    "docs:dev": "gulp default --gulpfile build/doc-builder/gulpfile.js",
+    "docs:build": "gulp build --gulpfile build/doc-builder/gulpfile.js",
     "pub:dist": "node build/webpack.dist.conf.js",
     "pub:lib": "gulp default --gulpfile build/gulpfile.lib.js",
     "pub": "npm run pub:lib && npm run pub:dist",
-    "docs:dev": "gulp default --gulpfile build/doc-builder/gulpfile.js",
-    "docs:build": "gulp build --gulpfile build/doc-builder/gulpfile.js",
     "build": "npm run demo:build && npm run docs:build && npm run pub",
     "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "rullup-test": "rollup -c build/rollup.umd.conf.js",
+    "ci-release-demo": "npm run demo:build && node build/demo-publish.js",
+    "ci-release-docs": "npm run docs:build && node build/docs-publish.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:DTFE/vimo.git"
+  },
+  "demo": {
+    "type": "git",
+    "url": "git@github.com:DTFE/vimo-demo.git"
   },
   "peerDependencies": {
     "vue": "^2.4.2"
