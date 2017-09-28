@@ -355,6 +355,7 @@
           // Update transition duration
           if (duration !== opt._dur) {
             opt._dur = duration
+            // TODO: 需要排除对$platform的依赖
             button.style[this.$platform.css.transitionDuration] = durationStr
           }
           // Update transform

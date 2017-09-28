@@ -94,8 +94,7 @@
    * @slot [parallax] - 当定义视差时, 需要这个插槽
    *
    * @usage
-   * // 比如: 需要左右两个翻页Button和下面的pagination, pagination可点击, 且自动播放间隔2500ms, 页面间距30px, 此外还要要在onInit事件处理相关业务
-   *
+   * <!-- 比如: 需要左右两个翻页Button和下面的pagination, pagination可点击, 且自动播放间隔2500ms, 页面间距30px, 此外还要要在onInit事件处理相关业务 -->
    * <h5>Autoplay</h5>
    * <Slides class="swiper"
    *        @ onInit="onInitHandler"

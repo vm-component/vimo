@@ -42,13 +42,6 @@ Vimo项目初始化种子, 包括自定义主题文件. 点击进入项目地址
 
 ## COMPONENTS
 
-### 布局/Layout
-- [x] App组件
-- [x] Nav组件
-- [x] Page/Content/Header/Footer组件
-- [x] Grid组件
-
-
 
 ![组件清单](https://github.com/DTFE/Vimo/blob/master/examples/static/img/vimo_components.png?raw=true)
 

@@ -1,6 +1,7 @@
 /**
  * 定义clickBlock处理类
  * 执行activate后,设置页面可点击状态
+ * @private
  */
 import { setElementClass } from '../../util/util'
 
@@ -19,6 +20,7 @@ export default class ClickBlock {
    * @param {boolean} shouldShow
    * @param {number} expire
    * @return {Promise}
+   * @private
    * */
   activate (shouldShow, expire = 100) {
     return new Promise((resolve) => {
@@ -40,6 +42,7 @@ export default class ClickBlock {
   /**
    * @internal
    * @param {boolean} shouldShow
+   * @private
    * */
   _activate (shouldShow) {
     if (this._showing !== shouldShow) {
@@ -48,6 +51,9 @@ export default class ClickBlock {
     }
   }
 
+  /**
+   * @private
+   * */
   _getClickBlockElement () {
     let _clickBlockElement = document.querySelectorAll(CLICK_BLOCK_POSITION)
     if (!_clickBlockElement || _clickBlockElement.length === 0) {
@@ -60,6 +66,7 @@ export default class ClickBlock {
   /**
    * @param {string} className
    * @param {boolean} add
+   * @private
    * */
   _setElementClass (className, add) {
     this.clickBlockElement && setElementClass(this.clickBlockElement, className, add)

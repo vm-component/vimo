@@ -103,7 +103,7 @@
    destroy()                              | kill()                 | 移除销毁
    *
    *
-   *
+   * @demo #/slides-lite
    * @see https://github.com/voronianski/swipe-js-iso
    * */
   import Swipe from 'swipe-js-iso'

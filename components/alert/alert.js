@@ -111,7 +111,7 @@
  *
  */
 import Vue from 'vue'
-import { getInsertPosition } from '../util/getInsertPosition'
+import getInsertPosition from '../util/getInsertPosition'
 import AlertComponent from './alert.vue'
 
 const Alert = Vue.extend(AlertComponent)

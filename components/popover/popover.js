@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { getInsertPosition } from '../util/getInsertPosition'
+import getInsertPosition from '../util/getInsertPosition'
 import popoverComponent from './popover.vue'
 const Popover = Vue.extend(popoverComponent)
 

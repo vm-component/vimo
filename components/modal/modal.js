@@ -43,10 +43,11 @@
  *        })
  * }
  * @demo #/modal
+ *
  * */
 
 import Vue from 'vue'
-import { getInsertPosition } from '../util/getInsertPosition'
+import getInsertPosition from '../util/getInsertPosition'
 import { registerListener } from '../util/util'
 import modalComponent from './modal.vue'
 
@@ -73,12 +74,13 @@ function ModalFactory (options) {
  * 如果不懂想下: 桌子(页面)/菜盘(modal)/菜(template)的关系, 开启后获取Modal实例, 并将template初始化后挂在到Modal上, 然后注册urlChange事件. 在之后记录开启的Modal信息,
  * 然后执行modal实例的_present开启.
  *
- * @param {String} [mode]
- * @param {VueComponent} component - modal页面, 不支持异步
- * @param {object} [data] - 传给modal的数据
- * @param {function} [onDismiss] - 关闭model执行的操作, data是关闭时传入的参数
- * @param {Boolean} [showBackdrop=true] - 显示backdrop
- * @param {Boolean} [enableBackdropDismiss=true] - 点击backdrop是否关闭
+ * @param {Object} options
+ * @param {String} [options.mode]
+ * @param {VueComponent} options.component - modal页面, 不支持异步
+ * @param {object} [options.data] - 传给modal的数据
+ * @param {function} [options.onDismiss] - 关闭model执行的操作, data是关闭时传入的参数
+ * @param {Boolean} [options.showBackdrop=true] - 显示backdrop
+ * @param {Boolean} [options.enableBackdropDismiss=true] - 点击backdrop是否关闭
  *
  *
  * @param {string} [options.mode='ios'] - 模式

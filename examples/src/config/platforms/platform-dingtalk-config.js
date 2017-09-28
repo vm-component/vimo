@@ -10,8 +10,8 @@ import { docReady} from '../../../../components/util/util'
 import { PLATFORM_INIT_TIMEOUT } from './variable'
 import platformDingTalkDrive from './platform-dingtalk-drive'
 import axios from 'axios'
-import { loadScript } from '../../../../components/util/loadScript'
-import { checkProtocol } from '../../../../components/util/checkProtocol'
+import loadScript from '../../../../components/util/loadScript'
+import checkProtocol from '../../../../components/util/checkProtocol'
 
 export default {
   initialize (plt) {

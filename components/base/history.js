@@ -178,7 +178,16 @@ export class History {
   }
 
   /**
-   * 返回root页面(进入的第一个页面)
+   * 返回root页面(在路由信息中标示```route.meta.root=true```的页面)
+   * @example
+   * {
+   *    path: '/',
+   *    name: 'index',
+   *    meta: {
+   *      root: true
+   *    },
+   *    component: require('@/pages/index.vue')
+   * }
    * */
   toRoot () {
     // 支付宝方式返回首页

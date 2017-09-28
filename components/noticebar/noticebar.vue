@@ -153,7 +153,7 @@
    * // 或者
    * export default{
    *   components: {
-   *     SlideBox
+   *     NoticeBar
    *  }
    * }
    * ```

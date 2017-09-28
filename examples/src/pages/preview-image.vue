@@ -24,7 +24,7 @@
     computed: {},
     methods: {
       openAlbum1 () {
-        this.$previewImage({
+        this.$previewImage.present({
           current: 0,
           urls: [
             'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
@@ -34,7 +34,7 @@
         })
       },
       openAlbum2 () {
-        this.$previewImage({
+        this.$previewImage.present({
           current: 1,
           urls: [
             'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { getInsertPosition } from '../util/getInsertPosition'
+import getInsertPosition from '../util/getInsertPosition'
 import PickerComponent from './picker.vue'
 
 const Picker = Vue.extend(PickerComponent)

@@ -20,7 +20,7 @@
    *
    * ### 说明
    *
-   * Label组件主要是放在Item组件中使用, 用于标记Input组件/Toggle组件/Checkbox组件等From组件
+   * Label组件主要是放在Item组件中使用, 用于标记Input组件/Toggle组件/Checkbox组件等From组件. Label的四种类型可展示不同的Label样式: inline(默认)/fixed/floating/stacked.
    *
    * ### 使用场景
    *
@@ -35,6 +35,7 @@
    * @slot 空 - 可以嵌入任何结构
    * @see component:Item
    * @see component:Input
+   * @demo #/input-normal
    * */
   import { setElementClass } from '../util/util'
 

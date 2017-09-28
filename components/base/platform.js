@@ -45,7 +45,7 @@ class Platform {
     })
 
     this._versions = {} // 当前平台的版本信息列表 PlatformVersion
-    this._dir = null // string 文字方向 ;
+
     this._lang = null // string 文字;
 
     this._qp = null // QueryParams [[初始化时]]!!! 的url查询实例 {data:{}};
@@ -64,8 +64,6 @@ class Platform {
     this._isPortrait = null // boolean = null 横屏还是竖屏 Portrait=竖屏;
 
     this._nt = null // 记录网络类型
-
-    // this._rm = {} // 平台注册的方法对象, key为方法名, value为对应的函数, registerMethod/do
 
     this._networkChangeCallbacks = []
 
@@ -268,37 +266,6 @@ class Platform {
    */
   setNavigatorPlatform (navigatorPlatform) {
     this._bPlt = navigatorPlatform
-  }
-
-  /**
-   * 设置文字显示方向
-   * 是从左向右 ltr (大部分),还是从右向左 rtl (很少的语言),例如
-   * `<html dir="ltr">` or `<html dir="rtl">`
-   * @param {string} dir  Examples: `rtl`, `ltr`
-   * @param {boolean} updateDocument
-   * @private
-   */
-  setDir (dir, updateDocument) {
-    this._dir = (dir || '').toLowerCase()
-    if (updateDocument) {
-      document.documentElement.setAttribute('dir', dir)
-    }
-  }
-
-  /**
-   * 返回文字方向
-   * @returns {string}
-   */
-  dir () {
-    return this._dir
-  }
-
-  /**
-   * 判断文字方向是否是从右向左的方向(right-to-left language direction)
-   * @returns {boolean}
-   */
-  isRTL () {
-    return (this._dir === 'rtl')
   }
 
   /**
@@ -932,7 +899,6 @@ export function setupPlatform (config = {}) {
   !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform)
   !p.userAgent() && p.setUserAgent(window.navigator.userAgent)
   !p.lang() && p.setLang('zh-cn', true)
-  !p.dir() && p.setDir('ltr', true)
 
   // 设置css类型
   p.setCssProps(document.documentElement)

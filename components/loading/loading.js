@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { getInsertPosition } from '../util/getInsertPosition'
+import getInsertPosition from '../util/getInsertPosition'
 import { isString } from '../util/util'
 import LoadingComponent from './loading.vue'
 

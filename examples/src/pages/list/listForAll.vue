@@ -7,14 +7,12 @@
         </Header>
         <Content class="outer-content">
             <List>
-                <!--header-->
                 <ListHeader>
                     setting
                     <Button slot="item-right" clear>
                         <Icon name="cog"></Icon>
                     </Button>
                 </ListHeader>
-                <!--group-->
                 <ItemGroup>
                     <Item>
                         <Icon slot="item-left" color="danger" name="plane"></Icon>
@@ -22,36 +20,29 @@
                         <Toggle slot="item-right" @ionChange="toggleChange"
                                 :checked="toggleValue"></Toggle>
                     </Item>
-                    <!--button属性会在右边增加向右箭头-->
                     <Item button>
                         <Icon slot="item-left" color="primary" name="wifi"></Icon>
                         Wi-Fi
                         <Note slot="item-right">The Interwebz</Note>
                     </Item>
-                    <!--button属性会在右边增加向右箭头-->
                     <Item button>
                         <Icon slot="item-left" color="primary" name="bluetooth"></Icon>
                         Bluetooth
                         <Note slot="item-right">Off</Note>
                     </Item>
                 </ItemGroup>
-                <!--divider-->
                 <ItemDivider color="primary">
                     Other Setting
                     <Button slot="item-right" outline color="light">Clear</Button>
                 </ItemDivider>
 
-                <!--button属性会在右边增加向右箭头-->
                 <Item button>
                     <Icon slot="item-left" color="secondary" name="call"></Icon>
                     Cellular
                 </Item>
-                <!--button属性会在右边增加向右箭头-->
                 <Item button>
                     <Icon slot="item-left" color="secondary" name="link"></Icon>
                     Personal Hotspot
-
-
                     <Note slot="item-right">Off</Note>
                 </Item>
             </List>

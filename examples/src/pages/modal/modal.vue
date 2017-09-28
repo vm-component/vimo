@@ -69,7 +69,7 @@
         })
       },
       openAlbum () {
-        this.$previewImage({
+        this.$previewImage.present({
           current: 0,
           urls: [
             'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',

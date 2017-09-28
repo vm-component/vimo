@@ -337,6 +337,7 @@
         let _offsetLeft = this.tabElementWidth * index
         let transform = `translate3d(${_offsetLeft}px,0,0) scaleX(${this.tabElementWidth})`
         setElementClass(this.tabHighlightEle, 'animate', true)
+        // TODO: 需要排除对$platform的依赖
         this.tabHighlightEle.style[this.$platform.css.transform] = transform
       }
     },

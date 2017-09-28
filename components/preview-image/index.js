@@ -10,7 +10,7 @@
  *
  * ### 其他
  *
- * 如果实在支付宝环境，则使用支付宝的组件
+ * 如果是在支付宝环境，则使用支付宝的组件, 前提是
  *
  * @usage
  *
@@ -22,7 +22,7 @@
  * @usage
  * import PreviewImage from 'vimo/lib/preview-image'
  * function openAlbum1 () {
- *    PreviewImage({
+ *    PreviewImage.present({
  *      current: 0,
  *      urls: [
  *        'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
@@ -35,7 +35,7 @@
 import Modal from '../modal/index'
 import PreviewImageComponent from './preview-image.vue'
 
-function previewImage (options) {
+function present (options) {
   let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.previewImage && window.VM.platform.previewImage(options)
   if (!isHandled) {
     console.debug('PreviewImage 组件使用H5模式!')
@@ -52,6 +52,6 @@ function previewImage (options) {
   }
 }
 
-previewImage.present = previewImage
-
-export default previewImage
+export default {
+  present
+}

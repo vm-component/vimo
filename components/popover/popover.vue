@@ -287,6 +287,7 @@
         let popoverHeight = parsePxUnit(window.getComputedStyle(popoverEle).height)
 
         // Window body width and height
+        // TODO: 需要排除对$platform的依赖
         let bodyWidth = this.$platform.width()
         let bodyHeight = this.$platform.height()
 
@@ -323,7 +324,7 @@
 
         popoverEle.style.top = popoverCSS.top + 'px'
         popoverEle.style.left = popoverCSS.left + 'px';
-
+        // TODO: 需要排除对$platform的依赖
         (popoverEle.style)[this.$platform.css.transformOrigin] = originY + ' ' + originX
       },
       iosPositionView (nativeEle, ev) {
@@ -335,6 +336,7 @@
         let popoverHeight = parsePxUnit(window.getComputedStyle(popoverEle).height)
 
         // Window body width and height
+        // TODO: 需要排除对$platform的依赖
         let bodyWidth = this.$platform.width()
         let bodyHeight = this.$platform.height()
 
@@ -391,7 +393,7 @@
 
         popoverEle.style.top = popoverCSS.top + 'px'
         popoverEle.style.left = popoverCSS.left + 'px';
-
+        // TODO: 需要排除对$platform的依赖
         (popoverEle.style)[this.$platform.css.transformOrigin] = originY + ' ' + originX
       },
 

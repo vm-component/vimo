@@ -474,6 +474,8 @@
       }
     },
     mounted () {
+      console.assert(this.$platform, `Refersher组件需要在Platform模块中使用`)
+      console.assert(this.$platform, `Refersher组件需要在Content组件中使用`)
       // 需要等待父元素mounted, 故这里初始化需要延迟
       this.$nextTick(() => { this.init() })
     }

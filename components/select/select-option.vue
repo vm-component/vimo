@@ -3,10 +3,12 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Select/Option
+   * @component Select/SelectOption
    * @description
    *
-   * ## 表单组件 / Option选择组件
+   * ## 表单组件 / SelectOption选择组件
+   *
+   * @demo #/select
    **/
   import { isBlank } from '../util/util'
 

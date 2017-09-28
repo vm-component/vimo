@@ -30,12 +30,12 @@
    *
    * ### 感谢Ionic
    *
-   * 该组件是对Ionic的Datetime组件的模仿转义, 具体使用和Ionic的datetime完全一致. API参考下方链接.
+   * 该组件是对Ionic的Datetime组件的转义, 具体使用和Ionic的datetime完全一致. API参考下方链接.
    *
    * ### 改进部分
    * Ionic原组件值对符合ISO格式的日期能正确显示使用, 这里做了改进:
    *
-   * 通过v-model可以穿入如下类型: **Date日期对象/ISO格式的时间String/能转化为Date对象**的字符串 这三类. 但是v-model返回的数据都是ISO格式日期String, 如果期望返回每个column返回的详细结果, 请监听onChange事件.
+   * 通过v-model可以传入如下类型: **Date日期对象/ISO格式的时间String/能转化为Date对象**的字符串 这三类. 但是v-model返回的数据都是ISO格式日期String, 如果期望返回每个column返回的详细结果, 请监听onChange事件.
    *
    * ### 如何引入
    * ```
@@ -103,7 +103,7 @@
   } from './datetime-util'
 
   const DEFAULT_FORMAT = 'MMM D, YYYY'
-  //  const DEFAULT_FORMAT = 'YYYY/MM/DD'
+  // const DEFAULT_FORMAT = 'YYYY/MM/DD'
   export default {
     name: 'Datetime',
     data () {

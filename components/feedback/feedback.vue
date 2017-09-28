@@ -153,7 +153,7 @@
           images.push(image.code)
         })
 
-        PreviewImage({
+        PreviewImage.present({
           isH5: true,
           current: index || 0,
           urls: images || []

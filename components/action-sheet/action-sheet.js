@@ -68,7 +68,7 @@
  *
  */
 import Vue from 'vue'
-import { getInsertPosition } from '../util/getInsertPosition'
+import getInsertPosition from '../util/getInsertPosition'
 import actionSheetComponent from './action-sheet.vue'
 
 const ActionSheet = Vue.extend(actionSheetComponent)
