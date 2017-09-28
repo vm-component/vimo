@@ -10,14 +10,10 @@
  *
  * Indicator组件调用不需要传入参数, 只需要在不需要他的时候调用`dismiss()`方法即可, 他的默认最大开启时间为10000ms. 这部分可在config中通过`maxIndicatorDuration`配置.
  *
- * ### loading动画时间
+ * ### 关于时间的说明
  *
- * 200ms
- *
- * ### indicator最短开启时间
- *
- * (200 + 16 * 5)ms
- *
+ * - Indicator最短开启时间(indicatorPresentMinTime), 一般是328ms, 这部分可在config中通过`indicatorPresentMinTime`配置
+ * - Indicator开启的最大时间(indicatorMaxDuration), 一般是5000ms, 这部分可在config中通过`indicatorMaxDuration`配置
  *
  * @see component:Loading
  *
@@ -47,7 +43,7 @@
  * */
 
 import Vue from 'vue'
-import { getInsertPosition } from '../util/getInsertPosition'
+import getInsertPosition from '../util/getInsertPosition'
 import { isBlank, isBoolean, isObject, isString } from '../util/util'
 import loadingComponent from '../loading/loading.vue'
 
