@@ -44,12 +44,6 @@
     "ci-github-release": "node build/github-release.js",
     "ci-report-coverage": "cat ./coverage/lcov.info | coveralls"
   },
-  "lint-staged": {
-    "{src,test}/**/*.ts": [
-      "sudo npm run lint",
-      "sudo git add"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git@github.com:DTFE/vimo.git"
