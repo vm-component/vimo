@@ -18,7 +18,7 @@ spinner.start()
 conventionalGithubReleaser({
   type: 'oauth',
   // change this to your own GitHub token or use an environment
-  token: process.env.GH_TOKEN || '84579d9ad7ba2299843a03bf04083eb7e986240f'
+  token: process.env.GH_TOKEN
 }, {
   preset: 'angular'
 }, function () {
