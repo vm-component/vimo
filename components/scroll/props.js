@@ -77,7 +77,6 @@ const DEFAULT = {
 }
 
 function defaultDataToProps (defaults) {
-
   let props = {}
   for (let key in defaults) {
     let value = defaults[key]

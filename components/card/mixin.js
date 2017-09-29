@@ -9,7 +9,9 @@ export default {
      * */
     mode: {
       type: String,
-      default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
+      default () {
+        return (this.$config && this.$config.get('mode', 'ios')) || 'ios'
+      }
     }
   },
   computed: {
@@ -19,7 +21,9 @@ export default {
     },
     // 颜色
     colorClass () {
-      return this.color ? (`${this.componentName}-${this.mode}-${this.color}`) : ''
+      return this.color
+        ? `${this.componentName}-${this.mode}-${this.color}`
+        : ''
     }
   }
 }

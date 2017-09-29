@@ -8,11 +8,13 @@ const Loading = Vue.extend(LoadingComponent)
 // -------- function --------
 
 function LoadingFactory (options) {
-  let el = getInsertPosition('loadingPortal').appendChild(document.createElement('div'))
+  let el = getInsertPosition('loadingPortal').appendChild(
+    document.createElement('div')
+  )
   if (isString(options)) {
-    options = {content: options}
+    options = { content: options }
   }
-  return new Loading({el, propsData: options})
+  return new Loading({ el, propsData: options })
 }
 
 function getPresentDismissIns (Factory) {
@@ -32,11 +34,16 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     present (options = {}) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         if (isString(options)) {
-          options = {content: options}
+          options = { content: options }
         }
-        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.showLoading && window.VM.platform.showLoading(options)
+        let isHandled =
+          !options.isH5 &&
+          window.VM &&
+          window.VM.platform &&
+          window.VM.platform.showLoading &&
+          window.VM.platform.showLoading(options)
         if (isHandled) {
           resolve()
         } else {
@@ -45,12 +52,16 @@ function getPresentDismissIns (Factory) {
             this._i.dismiss().then(() => {
               this._i = Factory(options)
               // 自动开启
-              this._i.present().then(() => { resolve() })
+              this._i.present().then(() => {
+                resolve()
+              })
             })
           } else {
             this._i = Factory(options)
             // 自动开启
-            this._i.present().then(() => { resolve() })
+            this._i.present().then(() => {
+              resolve()
+            })
           }
         }
       })
@@ -62,10 +73,15 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     dismiss () {
-      return new Promise((resolve) => {
-        window.VM && window.VM.platform && window.VM.platform.hideLoading && window.VM.platform.hideLoading()
+      return new Promise(resolve => {
+        window.VM &&
+          window.VM.platform &&
+          window.VM.platform.hideLoading &&
+          window.VM.platform.hideLoading()
         if (this._i && this._i.isActive) {
-          this._i.dismiss().then(() => { resolve() })
+          this._i.dismiss().then(() => {
+            resolve()
+          })
         } else {
           resolve()
         }

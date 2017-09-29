@@ -87,7 +87,6 @@ export class ScrollView {
      * @param {UIEvent} scrollEvent
      * */
     function scrollCallback (scrollEvent) {
-
       ev.timeStamp = scrollEvent.timeStamp
 
       // 获取当前的 scrollTop

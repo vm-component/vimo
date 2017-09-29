@@ -140,7 +140,6 @@
               this.onDismiss && this.onDismiss()
             })
           }
-
         }
       },
 

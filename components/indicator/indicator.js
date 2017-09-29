@@ -53,11 +53,13 @@ let debug = false
 // -------- function --------
 
 function LoadingFactory (options) {
-  let el = getInsertPosition('loadingPortal').appendChild(document.createElement('div'))
+  let el = getInsertPosition('loadingPortal').appendChild(
+    document.createElement('div')
+  )
   if (isString(options)) {
-    options = {content: options}
+    options = { content: options }
   }
-  return new Loading({el, propsData: options})
+  return new Loading({ el, propsData: options })
 }
 
 export default {
@@ -97,7 +99,7 @@ export default {
       }
     }
 
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       if (!this._i) {
         // 当前没人在场
         debug && console.debug('Indicator 1 当前没人在场: 未开启状态, 准备开启')
@@ -106,7 +108,10 @@ export default {
         if (options.isReverse) {
           cssClass += ' reverse'
         }
-        const Duration = window.VM && window.VM.config && window.VM.config.getNumber('indicatorMaxDuration', 5000) // 多少分
+        const Duration =
+          window.VM &&
+          window.VM.config &&
+          window.VM.config.getNumber('indicatorMaxDuration', 5000) // 多少分
         this._i = LoadingFactory({
           cssClass: cssClass,
           showBackdrop: false,
@@ -129,7 +134,8 @@ export default {
             this._timer = 0
           } else {
             this._count++
-            debug && console.debug('Indicator 4 当前有人在场, 投票++ _count: ' + this._count)
+            debug &&
+              console.debug('Indicator 4 当前有人在场, 投票++ _count: ' + this._count)
           }
           resolve()
         } else {
@@ -150,14 +156,17 @@ export default {
    * */
   dismiss () {
     debug && console.log('indicator.js dismiss')
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       if (this._i) {
         // 实例存在
         debug && console.debug('Indicator 11: 实例存在')
         if (this._count > 0) {
           // 要求多次开启, 关闭时减一票
           this._count--
-          debug && console.debug('Indicator 12: 要求多次开启, 关闭时减一票, 当前count有值: ' + this._count)
+          debug &&
+            console.debug(
+              'Indicator 12: 要求多次开启, 关闭时减一票, 当前count有值: ' + this._count
+            )
         } else {
           if (this._i.isActive) {
             // active状态
@@ -168,7 +177,13 @@ export default {
             } else {
               let now = new Date().getTime()
               let diff = now - this._startTime
-              const MinTime = window.VM && window.VM.config && window.VM.config.getNumber('indicatorPresentMinTime', 200 + 16 * 8) // Indicator最短开启时间
+              const MinTime =
+                window.VM &&
+                window.VM.config &&
+                window.VM.config.getNumber(
+                  'indicatorPresentMinTime',
+                  200 + 16 * 8
+                ) // Indicator最短开启时间
               if (diff >= MinTime) {
                 // 满足在场的最短时间, 可以关闭, 重置初始状态
                 debug && console.debug('Indicator 15: 超过300ms 正常关闭')
@@ -183,7 +198,10 @@ export default {
               } else {
                 // 不满足在场的最短时间, 保证300ms, 剩余时间定时补足
                 let rest = MinTime - diff
-                debug && console.debug(`Indicator 16: 为了保证${MinTime}ms后关闭, 这里进行定时, 剩余关闭时间: ${rest}, MinTime: ${MinTime}, diff: ${diff}`)
+                debug &&
+                  console.debug(
+                    `Indicator 16: 为了保证${MinTime}ms后关闭, 这里进行定时, 剩余关闭时间: ${rest}, MinTime: ${MinTime}, diff: ${diff}`
+                  )
                 this._timer = window.setTimeout(() => {
                   this._i.dismiss().then(() => {
                     this._i = null

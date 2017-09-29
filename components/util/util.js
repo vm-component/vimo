@@ -23,7 +23,7 @@
  * @return {Boolean}
  * @static
  * */
-export const isBoolean = (val) => typeof val === 'boolean'
+export const isBoolean = val => typeof val === 'boolean'
 
 /**
  * @function isString
@@ -32,7 +32,7 @@ export const isBoolean = (val) => typeof val === 'boolean'
  * @return {Boolean}
  * @static
  * */
-export const isString = (val) => typeof val === 'string'
+export const isString = val => typeof val === 'string'
 
 /**
  * @function isNumber
@@ -41,7 +41,7 @@ export const isString = (val) => typeof val === 'string'
  * @return {Boolean}
  * @static
  * */
-export const isNumber = (val) => typeof val === 'number'
+export const isNumber = val => typeof val === 'number'
 
 /**
  * @function isFunction
@@ -50,7 +50,7 @@ export const isNumber = (val) => typeof val === 'number'
  * @return {Boolean}
  * @static
  * */
-export const isFunction = (val) => typeof val === 'function'
+export const isFunction = val => typeof val === 'function'
 
 /**
  * @function isDefined
@@ -59,7 +59,7 @@ export const isFunction = (val) => typeof val === 'function'
  * @return {Boolean}
  * @static
  * */
-export const isDefined = (val) => typeof val !== 'undefined'
+export const isDefined = val => typeof val !== 'undefined'
 
 /**
  * @function isUndefined
@@ -68,7 +68,7 @@ export const isDefined = (val) => typeof val !== 'undefined'
  * @return {Boolean}
  * @static
  * */
-export const isUndefined = (val) => typeof val === 'undefined'
+export const isUndefined = val => typeof val === 'undefined'
 
 /**
  * @function isPresent
@@ -77,7 +77,7 @@ export const isUndefined = (val) => typeof val === 'undefined'
  * @return {Boolean}
  * @static
  * */
-export const isPresent = (val) => val !== undefined && val !== null && val !== ''
+export const isPresent = val => val !== undefined && val !== null && val !== ''
 
 /**
  * @function isBlank
@@ -86,7 +86,7 @@ export const isPresent = (val) => val !== undefined && val !== null && val !== '
  * @return {Boolean}
  * @static
  * */
-export const isBlank = (val) => val === undefined || val === null
+export const isBlank = val => val === undefined || val === null
 
 /**
  * @function isObject
@@ -95,7 +95,7 @@ export const isBlank = (val) => val === undefined || val === null
  * @return {Boolean}
  * @static
  * */
-export const isObject = (val) => typeof val === 'object'
+export const isObject = val => typeof val === 'object'
 
 /**
  * @function isDate
@@ -104,7 +104,11 @@ export const isObject = (val) => typeof val === 'object'
  * @return {Boolean}
  * @static
  * */
-export const isDate = (val) => Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase() === 'date'
+export const isDate = val =>
+  Object.prototype.toString
+    .call(val)
+    .match(/^(\[object )(\w+)\]$/i)[2]
+    .toLowerCase() === 'date'
 
 /**
  * @function isRegexp
@@ -113,7 +117,11 @@ export const isDate = (val) => Object.prototype.toString.call(val).match(/^(\[ob
  * @return {Boolean}
  * @static
  * */
-export const isRegexp = (val) => Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase() === 'regexp'
+export const isRegexp = val =>
+  Object.prototype.toString
+    .call(val)
+    .match(/^(\[object )(\w+)\]$/i)[2]
+    .toLowerCase() === 'regexp'
 
 /**
  * @function isArray
@@ -131,7 +139,8 @@ export const isArray = Array.isArray
  * @return {Boolean}
  * @static
  * */
-export const isPlainObject = (val) => isObject(val) && Object.getPrototypeOf(val) === Object.prototype
+export const isPlainObject = val =>
+  isObject(val) && Object.getPrototypeOf(val) === Object.prototype
 
 /**
  * @function isPrimitive
@@ -156,7 +165,7 @@ export function isPrimitive (val) {
 export function isTrueProperty (val) {
   if (typeof val === 'string') {
     val = val.toLowerCase().trim()
-    return (val === 'true' || val === 'on' || val === '')
+    return val === 'true' || val === 'on' || val === ''
   }
   return !!val
 }
@@ -178,18 +187,18 @@ export function isTrueProperty (val) {
  * */
 export function isCheckedProperty (a, b) {
   if (a === undefined || a === null || a === '') {
-    return (b === undefined || b === null || b === '')
+    return b === undefined || b === null || b === ''
   } else if (a === true || a === 'true') {
-    return (b === true || b === 'true')
+    return b === true || b === 'true'
   } else if (a === false || a === 'false') {
-    return (b === false || b === 'false')
+    return b === false || b === 'false'
   } else if (a === 0 || a === '0') {
-    return (b === 0 || b === '0')
+    return b === 0 || b === '0'
   }
 
   // not using strict comparison on purpose
   // eslint-disable-next-line eqeqeq
-  return (a == b)
+  return a == b
 }
 
 /**
@@ -246,7 +255,7 @@ export function transitionEnd (el, callbackFn) {
  * */
 export function urlChange (callback) {
   let unReg = null
-  const onStateChange = (ev) => {
+  const onStateChange = ev => {
     unReg && unReg()
     callback(ev)
   }
@@ -266,13 +275,21 @@ export function urlChange (callback) {
  * @param {array} [unregisterListenersCollection] - 如果提供Function[], 则unReg将压如这个列表中
  * @return {Function}                             - 返回removeEventListener的函数
  */
-export function registerListener (ele, eventName, callback, opts = {}, unregisterListenersCollection) {
+export function registerListener (
+  ele,
+  eventName,
+  callback,
+  opts = {},
+  unregisterListenersCollection
+) {
   // use event listener options when supported
   // otherwise it's just a boolean for the "capture" arg
-  const listenerOpts = isPassive() ? {
-    'capture': !!opts.capture,
-    'passive': !!opts.passive
-  } : !!opts.capture
+  const listenerOpts = isPassive()
+    ? {
+      capture: !!opts.capture,
+      passive: !!opts.passive
+    }
+    : !!opts.capture
 
   // use the native addEventListener
   ele['addEventListener'](eventName, callback, listenerOpts)
@@ -281,7 +298,10 @@ export function registerListener (ele, eventName, callback, opts = {}, unregiste
     ele['removeEventListener'](eventName, callback, listenerOpts)
   }
 
-  if (unregisterListenersCollection && Array.isArray(unregisterListenersCollection)) {
+  if (
+    unregisterListenersCollection &&
+    Array.isArray(unregisterListenersCollection)
+  ) {
     unregisterListenersCollection.push(unReg)
   }
 
@@ -295,11 +315,15 @@ export function registerListener (ele, eventName, callback, opts = {}, unregiste
 export function isPassive () {
   var supportsPassiveOption = false
   try {
-    window.addEventListener('test', null, Object.defineProperty({}, 'passive', {
-      get: function () {
-        supportsPassiveOption = true
-      }
-    }))
+    window.addEventListener(
+      'test',
+      null,
+      Object.defineProperty({}, 'passive', {
+        get: function () {
+          supportsPassiveOption = true
+        }
+      })
+    )
   } catch (e) {}
   return supportsPassiveOption
 }
@@ -314,10 +338,15 @@ export function docReady (callback) {
 
   if (!callback) {
     // a callback wasn't provided, so let's return a promise instead
-    promise = new Promise(function (resolve) { callback = resolve })
+    promise = new Promise(function (resolve) {
+      callback = resolve
+    })
   }
 
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  if (
+    document.readyState === 'complete' ||
+    document.readyState === 'interactive'
+  ) {
     callback()
   } else {
     document.addEventListener('DOMContentLoaded', completed, false)
@@ -343,14 +372,14 @@ export function pointerCoord (ev) {
     var changedTouches = ev.changedTouches
     if (changedTouches && changedTouches.length > 0) {
       var touch = changedTouches[0]
-      return {x: touch.clientX, y: touch.clientY}
+      return { x: touch.clientX, y: touch.clientY }
     }
     var pageX = ev.pageX
     if (pageX !== undefined) {
-      return {x: pageX, y: ev.pageY}
+      return { x: pageX, y: ev.pageY }
     }
   }
-  return {x: 0, y: 0}
+  return { x: 0, y: 0 }
 }
 
 // /**
@@ -375,7 +404,7 @@ export function pointerCoord (ev) {
  * @return {boolean}
  * */
 export function isActive (ele) {
-  return !!(ele && (document.activeElement === ele))
+  return !!(ele && document.activeElement === ele)
 }
 
 /**
@@ -384,7 +413,7 @@ export function isActive (ele) {
  * @return {boolean}
  * */
 export function hasFocus (ele) {
-  return isActive(ele) && (ele.parentElement.querySelector(':focus') === ele)
+  return isActive(ele) && ele.parentElement.querySelector(':focus') === ele
 }
 
 // /**
@@ -577,7 +606,7 @@ export function firstUpperCase (str) {
  * 10px -> 10
  * */
 export function parsePxUnit (val) {
-  return (!!val && val.indexOf('px') > 0) ? parseInt(val, 10) : 0
+  return !!val && val.indexOf('px') > 0 ? parseInt(val, 10) : 0
 }
 
 // /**

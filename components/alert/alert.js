@@ -119,8 +119,10 @@ const Alert = Vue.extend(AlertComponent)
 // ---------- functions ----------
 
 function AlertFactory (options) {
-  let el = getInsertPosition('alertPortal').appendChild(document.createElement('div'))
-  return new Alert({el, propsData: options})
+  let el = getInsertPosition('alertPortal').appendChild(
+    document.createElement('div')
+  )
+  return new Alert({ el, propsData: options })
 }
 
 function getPresentDismissIns (Factory) {
@@ -168,8 +170,13 @@ function getPresentDismissIns (Factory) {
       if (!options.buttons) {
         options.buttons = []
       }
-      return new Promise((resolve) => {
-        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.alert && window.VM.platform.alert(options)
+      return new Promise(resolve => {
+        let isHandled =
+          !options.isH5 &&
+          window.VM &&
+          window.VM.platform &&
+          window.VM.platform.alert &&
+          window.VM.platform.alert(options)
         if (isHandled) {
           resolve()
         } else {
@@ -178,12 +185,16 @@ function getPresentDismissIns (Factory) {
             this._i.dismiss().then(() => {
               this._i = Factory(options)
               // 自动开启
-              this._i.present().then(() => { resolve() })
+              this._i.present().then(() => {
+                resolve()
+              })
             })
           } else {
             this._i = Factory(options)
             // 自动开启
-            this._i.present().then(() => { resolve() })
+            this._i.present().then(() => {
+              resolve()
+            })
           }
         }
       })
@@ -196,9 +207,11 @@ function getPresentDismissIns (Factory) {
      * @return {Promise}
      * */
     dismiss () {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         if (this._i && this._i.isActive) {
-          this._i.dismiss().then(() => { resolve() })
+          this._i.dismiss().then(() => {
+            resolve()
+          })
         } else {
           resolve()
         }

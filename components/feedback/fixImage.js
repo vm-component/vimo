@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * Javascript EXIF Reader 0.1.6
  * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
@@ -5,30 +6,28 @@
  * @private
  */
 var EXIF = (function () {
-
   var debug = false
 
   var ExifTags = {
-
     // version tags
     0x9000: 'ExifVersion', // EXIF version
-    0xA000: 'FlashpixVersion', // Flashpix format version
+    0xa000: 'FlashpixVersion', // Flashpix format version
 
     // colorspace tags
-    0xA001: 'ColorSpace', // Color space information tag
+    0xa001: 'ColorSpace', // Color space information tag
 
     // image configuration
-    0xA002: 'PixelXDimension', // Valid width of meaningful image
-    0xA003: 'PixelYDimension', // Valid height of meaningful image
+    0xa002: 'PixelXDimension', // Valid width of meaningful image
+    0xa003: 'PixelYDimension', // Valid height of meaningful image
     0x9101: 'ComponentsConfiguration', // Information about channels
     0x9102: 'CompressedBitsPerPixel', // Compressed bits per pixel
 
     // user information
-    0x927C: 'MakerNote', // Any desired information written by the manufacturer
+    0x927c: 'MakerNote', // Any desired information written by the manufacturer
     0x9286: 'UserComment', // Comments by user
 
     // related file
-    0xA004: 'RelatedSoundFile', // Name of related sound file
+    0xa004: 'RelatedSoundFile', // Name of related sound file
 
     // date and time
     0x9003: 'DateTimeOriginal', // Date and time when the original image was generated
@@ -38,8 +37,8 @@ var EXIF = (function () {
     0x9292: 'SubsecTimeDigitized', // Fractions of seconds for DateTimeDigitized
 
     // picture-taking conditions
-    0x829A: 'ExposureTime', // Exposure time (in seconds)
-    0x829D: 'FNumber', // F number
+    0x829a: 'ExposureTime', // Exposure time (in seconds)
+    0x829d: 'FNumber', // F number
     0x8822: 'ExposureProgram', // Exposure program
     0x8824: 'SpectralSensitivity', // Spectral sensitivity
     0x8827: 'ISOSpeedRatings', // ISO speed rating
@@ -54,34 +53,34 @@ var EXIF = (function () {
     0x9208: 'LightSource', // Kind of light source
     0x9209: 'Flash', // Flash status
     0x9214: 'SubjectArea', // Location and area of main subject
-    0x920A: 'FocalLength', // Focal length of the lens in mm
-    0xA20B: 'FlashEnergy', // Strobe energy in BCPS
-    0xA20C: 'SpatialFrequencyResponse', //
-    0xA20E: 'FocalPlaneXResolution', // Number of pixels in width direction per FocalPlaneResolutionUnit
-    0xA20F: 'FocalPlaneYResolution', // Number of pixels in height direction per FocalPlaneResolutionUnit
-    0xA210: 'FocalPlaneResolutionUnit', // Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution
-    0xA214: 'SubjectLocation', // Location of subject in image
-    0xA215: 'ExposureIndex', // Exposure index selected on camera
-    0xA217: 'SensingMethod', // Image sensor type
-    0xA300: 'FileSource', // Image source (3 == DSC)
-    0xA301: 'SceneType', // Scene type (1 == directly photographed)
-    0xA302: 'CFAPattern', // Color filter array geometric pattern
-    0xA401: 'CustomRendered', // Special processing
-    0xA402: 'ExposureMode', // Exposure mode
-    0xA403: 'WhiteBalance', // 1 = auto white balance, 2 = manual
-    0xA404: 'DigitalZoomRation', // Digital zoom ratio
-    0xA405: 'FocalLengthIn35mmFilm', // Equivalent foacl length assuming 35mm film camera (in mm)
-    0xA406: 'SceneCaptureType', // Type of scene
-    0xA407: 'GainControl', // Degree of overall image gain adjustment
-    0xA408: 'Contrast', // Direction of contrast processing applied by camera
-    0xA409: 'Saturation', // Direction of saturation processing applied by camera
-    0xA40A: 'Sharpness', // Direction of sharpness processing applied by camera
-    0xA40B: 'DeviceSettingDescription', //
-    0xA40C: 'SubjectDistanceRange', // Distance to subject
+    0x920a: 'FocalLength', // Focal length of the lens in mm
+    0xa20b: 'FlashEnergy', // Strobe energy in BCPS
+    0xa20c: 'SpatialFrequencyResponse', //
+    0xa20e: 'FocalPlaneXResolution', // Number of pixels in width direction per FocalPlaneResolutionUnit
+    0xa20f: 'FocalPlaneYResolution', // Number of pixels in height direction per FocalPlaneResolutionUnit
+    0xa210: 'FocalPlaneResolutionUnit', // Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution
+    0xa214: 'SubjectLocation', // Location of subject in image
+    0xa215: 'ExposureIndex', // Exposure index selected on camera
+    0xa217: 'SensingMethod', // Image sensor type
+    0xa300: 'FileSource', // Image source (3 == DSC)
+    0xa301: 'SceneType', // Scene type (1 == directly photographed)
+    0xa302: 'CFAPattern', // Color filter array geometric pattern
+    0xa401: 'CustomRendered', // Special processing
+    0xa402: 'ExposureMode', // Exposure mode
+    0xa403: 'WhiteBalance', // 1 = auto white balance, 2 = manual
+    0xa404: 'DigitalZoomRation', // Digital zoom ratio
+    0xa405: 'FocalLengthIn35mmFilm', // Equivalent foacl length assuming 35mm film camera (in mm)
+    0xa406: 'SceneCaptureType', // Type of scene
+    0xa407: 'GainControl', // Degree of overall image gain adjustment
+    0xa408: 'Contrast', // Direction of contrast processing applied by camera
+    0xa409: 'Saturation', // Direction of saturation processing applied by camera
+    0xa40a: 'Sharpness', // Direction of sharpness processing applied by camera
+    0xa40b: 'DeviceSettingDescription', //
+    0xa40c: 'SubjectDistanceRange', // Distance to subject
 
     // other tags
-    0xA005: 'InteroperabilityIFDPointer',
-    0xA420: 'ImageUniqueID'		// Identifier assigned uniquely to each image
+    0xa005: 'InteroperabilityIFDPointer',
+    0xa420: 'ImageUniqueID' // Identifier assigned uniquely to each image
   }
 
   var TiffTags = {
@@ -89,34 +88,34 @@ var EXIF = (function () {
     0x0101: 'ImageHeight',
     0x8769: 'ExifIFDPointer',
     0x8825: 'GPSInfoIFDPointer',
-    0xA005: 'InteroperabilityIFDPointer',
+    0xa005: 'InteroperabilityIFDPointer',
     0x0102: 'BitsPerSample',
     0x0103: 'Compression',
     0x0106: 'PhotometricInterpretation',
     0x0112: 'Orientation',
     0x0115: 'SamplesPerPixel',
-    0x011C: 'PlanarConfiguration',
+    0x011c: 'PlanarConfiguration',
     0x0212: 'YCbCrSubSampling',
     0x0213: 'YCbCrPositioning',
-    0x011A: 'XResolution',
-    0x011B: 'YResolution',
+    0x011a: 'XResolution',
+    0x011b: 'YResolution',
     0x0128: 'ResolutionUnit',
     0x0111: 'StripOffsets',
     0x0116: 'RowsPerStrip',
     0x0117: 'StripByteCounts',
     0x0201: 'JPEGInterchangeFormat',
     0x0202: 'JPEGInterchangeFormatLength',
-    0x012D: 'TransferFunction',
-    0x013E: 'WhitePoint',
-    0x013F: 'PrimaryChromaticities',
+    0x012d: 'TransferFunction',
+    0x013e: 'WhitePoint',
+    0x013f: 'PrimaryChromaticities',
     0x0211: 'YCbCrCoefficients',
     0x0214: 'ReferenceBlackWhite',
     0x0132: 'DateTime',
-    0x010E: 'ImageDescription',
-    0x010F: 'Make',
+    0x010e: 'ImageDescription',
+    0x010f: 'Make',
     0x0110: 'Model',
     0x0131: 'Software',
-    0x013B: 'Artist',
+    0x013b: 'Artist',
     0x8298: 'Copyright'
   }
 
@@ -131,12 +130,12 @@ var EXIF = (function () {
     0x0007: 'GPSTimeStamp',
     0x0008: 'GPSSatellites',
     0x0009: 'GPSStatus',
-    0x000A: 'GPSMeasureMode',
-    0x000B: 'GPSDOP',
-    0x000C: 'GPSSpeedRef',
-    0x000D: 'GPSSpeed',
-    0x000E: 'GPSTrackRef',
-    0x000F: 'GPSTrack',
+    0x000a: 'GPSMeasureMode',
+    0x000b: 'GPSDOP',
+    0x000c: 'GPSSpeedRef',
+    0x000d: 'GPSSpeed',
+    0x000e: 'GPSTrackRef',
+    0x000f: 'GPSTrack',
     0x0010: 'GPSImgDirectionRef',
     0x0011: 'GPSImgDirection',
     0x0012: 'GPSMapDatum',
@@ -147,11 +146,11 @@ var EXIF = (function () {
     0x0017: 'GPSDestBearingRef',
     0x0018: 'GPSDestBearing',
     0x0019: 'GPSDestDistanceRef',
-    0x001A: 'GPSDestDistance',
-    0x001B: 'GPSProcessingMethod',
-    0x001C: 'GPSAreaInformation',
-    0x001D: 'GPSDateStamp',
-    0x001E: 'GPSDifferential'
+    0x001a: 'GPSDestDistance',
+    0x001b: 'GPSProcessingMethod',
+    0x001c: 'GPSAreaInformation',
+    0x001d: 'GPSDateStamp',
+    0x001e: 'GPSDifferential'
   }
 
   var StringValues = {
@@ -205,23 +204,23 @@ var EXIF = (function () {
       0x0005: 'Strobe return light not detected',
       0x0007: 'Strobe return light detected',
       0x0009: 'Flash fired, compulsory flash mode',
-      0x000D: 'Flash fired, compulsory flash mode, return light not detected',
-      0x000F: 'Flash fired, compulsory flash mode, return light detected',
+      0x000d: 'Flash fired, compulsory flash mode, return light not detected',
+      0x000f: 'Flash fired, compulsory flash mode, return light detected',
       0x0010: 'Flash did not fire, compulsory flash mode',
       0x0018: 'Flash did not fire, auto mode',
       0x0019: 'Flash fired, auto mode',
-      0x001D: 'Flash fired, auto mode, return light not detected',
-      0x001F: 'Flash fired, auto mode, return light detected',
+      0x001d: 'Flash fired, auto mode, return light not detected',
+      0x001f: 'Flash fired, auto mode, return light detected',
       0x0020: 'No flash function',
       0x0041: 'Flash fired, red-eye reduction mode',
       0x0045: 'Flash fired, red-eye reduction mode, return light not detected',
       0x0047: 'Flash fired, red-eye reduction mode, return light detected',
       0x0049: 'Flash fired, compulsory flash mode, red-eye reduction mode',
-      0x004D: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected',
-      0x004F: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light detected',
+      0x004d: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected',
+      0x004f: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light detected',
       0x0059: 'Flash fired, auto mode, red-eye reduction mode',
-      0x005D: 'Flash fired, auto mode, return light not detected, red-eye reduction mode',
-      0x005F: 'Flash fired, auto mode, return light detected, red-eye reduction mode'
+      0x005d: 'Flash fired, auto mode, return light not detected, red-eye reduction mode',
+      0x005f: 'Flash fired, auto mode, return light detected, red-eye reduction mode'
     },
     SensingMethod: {
       1: 'Not defined',
@@ -300,7 +299,7 @@ var EXIF = (function () {
   }
 
   function imageHasData (img) {
-    return !!(img.exifdata)
+    return !!img.exifdata
   }
 
   function getImageData (img, callback) {
@@ -314,7 +313,7 @@ var EXIF = (function () {
   }
 
   function findEXIFinJPEG (file) {
-    if (file.getByteAt(0) != 0xFF || file.getByteAt(1) != 0xD8) {
+    if (file.getByteAt(0) != 0xff || file.getByteAt(1) != 0xd8) {
       return false // not a valid jpeg
     }
 
@@ -323,9 +322,15 @@ var EXIF = (function () {
       marker
 
     while (offset < length) {
-      if (file.getByteAt(offset) != 0xFF) {
-        if (debug)
-          console.log('Not a valid marker at offset ' + offset + ', found: ' + file.getByteAt(offset))
+      if (file.getByteAt(offset) != 0xff) {
+        if (debug) {
+          console.log(
+            'Not a valid marker at offset ' +
+              offset +
+              ', found: ' +
+              file.getByteAt(offset)
+          )
+        }
         return false // not a valid marker, something is wrong
       }
 
@@ -335,39 +340,41 @@ var EXIF = (function () {
       // but we're only looking for 0xFFE1 for EXIF data
 
       if (marker == 22400) {
-        if (debug)
-          console.log('Found 0xFFE1 marker')
+        if (debug) console.log('Found 0xFFE1 marker')
 
-        return readEXIFData(file, offset + 4, file.getShortAt(offset + 2, true) - 2)
+        return readEXIFData(
+          file,
+          offset + 4,
+          file.getShortAt(offset + 2, true) - 2
+        )
 
         // offset += 2 + file.getShortAt(offset+2, true);
-
       } else if (marker == 225) {
         // 0xE1 = Application-specific 1 (for EXIF)
-        if (debug)
-          console.log('Found 0xFFE1 marker')
+        if (debug) console.log('Found 0xFFE1 marker')
 
-        return readEXIFData(file, offset + 4, file.getShortAt(offset + 2, true) - 2)
-
+        return readEXIFData(
+          file,
+          offset + 4,
+          file.getShortAt(offset + 2, true) - 2
+        )
       } else {
         offset += 2 + file.getShortAt(offset + 2, true)
       }
-
     }
-
   }
 
   function readTags (file, tiffStart, dirStart, strings, bigEnd) {
     var entries = file.getShortAt(dirStart, bigEnd),
       tags = {},
-      entryOffset, tag,
+      entryOffset,
+      tag,
       i
 
     for (i = 0; i < entries; i++) {
       entryOffset = dirStart + i * 12 + 2
       tag = strings[file.getShortAt(entryOffset, bigEnd)]
-      if (!tag && debug)
-        console.log('Unknown tag: ' + file.getShortAt(entryOffset, bigEnd))
+      if (!tag && debug) { console.log('Unknown tag: ' + file.getShortAt(entryOffset, bigEnd)) }
       tags[tag] = readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd)
     }
     return tags
@@ -378,8 +385,11 @@ var EXIF = (function () {
       numValues = file.getLongAt(entryOffset + 4, bigEnd),
       valueOffset = file.getLongAt(entryOffset + 8, bigEnd) + tiffStart,
       offset,
-      vals, val, n,
-      numerator, denominator
+      vals,
+      val,
+      n,
+      numerator,
+      denominator
 
     switch (type) {
       case 1: // byte, 8-bit unsigned int
@@ -387,7 +397,7 @@ var EXIF = (function () {
         if (numValues == 1) {
           return file.getByteAt(entryOffset + 8, bigEnd)
         } else {
-          offset = numValues > 4 ? valueOffset : (entryOffset + 8)
+          offset = numValues > 4 ? valueOffset : entryOffset + 8
           vals = []
           for (n = 0; n < numValues; n++) {
             vals[n] = file.getByteAt(offset + n)
@@ -396,14 +406,14 @@ var EXIF = (function () {
         }
 
       case 2: // ascii, 8-bit byte
-        offset = numValues > 4 ? valueOffset : (entryOffset + 8)
+        offset = numValues > 4 ? valueOffset : entryOffset + 8
         return file.getStringAt(offset, numValues - 1)
 
       case 3: // short, 16 bit int
         if (numValues == 1) {
           return file.getShortAt(entryOffset + 8, bigEnd)
         } else {
-          offset = numValues > 2 ? valueOffset : (entryOffset + 8)
+          offset = numValues > 2 ? valueOffset : entryOffset + 8
           vals = []
           for (n = 0; n < numValues; n++) {
             vals[n] = file.getShortAt(offset + 2 * n, bigEnd)
@@ -422,7 +432,7 @@ var EXIF = (function () {
           return vals
         }
 
-      case 5:	// rational = two long values, first is numerator, second is denominator
+      case 5: // rational = two long values, first is numerator, second is denominator
         if (numValues == 1) {
           numerator = file.getLongAt(valueOffset, bigEnd)
           denominator = file.getLongAt(valueOffset + 4, bigEnd)
@@ -455,11 +465,16 @@ var EXIF = (function () {
 
       case 10: // signed rational, two slongs, first is numerator, second is denominator
         if (numValues == 1) {
-          return file.getSLongAt(valueOffset, bigEnd) / file.getSLongAt(valueOffset + 4, bigEnd)
+          return (
+            file.getSLongAt(valueOffset, bigEnd) /
+            file.getSLongAt(valueOffset + 4, bigEnd)
+          )
         } else {
           vals = []
           for (n = 0; n < numValues; n++) {
-            vals[n] = file.getSLongAt(valueOffset + 8 * n, bigEnd) / file.getSLongAt(valueOffset + 4 + 8 * n, bigEnd)
+            vals[n] =
+              file.getSLongAt(valueOffset + 8 * n, bigEnd) /
+              file.getSLongAt(valueOffset + 4 + 8 * n, bigEnd)
           }
           return vals
         }
@@ -468,74 +483,88 @@ var EXIF = (function () {
 
   function readEXIFData (file, start) {
     if (file.getStringAt(start, 4) != 'Exif') {
-      if (debug)
-        console.log('Not valid EXIF data! ' + file.getStringAt(start, 4))
+      if (debug) { console.log('Not valid EXIF data! ' + file.getStringAt(start, 4)) }
       return false
     }
 
     var bigEnd,
-      tags, tag,
-      exifData, gpsData,
+      tags,
+      tag,
+      exifData,
+      gpsData,
       tiffOffset = start + 6
 
     // test for TIFF validity and endianness
     if (file.getShortAt(tiffOffset) == 0x4949) {
       bigEnd = false
-    } else if (file.getShortAt(tiffOffset) == 0x4D4D) {
+    } else if (file.getShortAt(tiffOffset) == 0x4d4d) {
       bigEnd = true
     } else {
-      if (debug)
-        console.log('Not valid TIFF data! (no 0x4949 or 0x4D4D)')
+      if (debug) console.log('Not valid TIFF data! (no 0x4949 or 0x4D4D)')
       return false
     }
 
-    if (file.getShortAt(tiffOffset + 2, bigEnd) != 0x002A) {
-      if (debug)
-        console.log('Not valid TIFF data! (no 0x002A)')
+    if (file.getShortAt(tiffOffset + 2, bigEnd) != 0x002a) {
+      if (debug) console.log('Not valid TIFF data! (no 0x002A)')
       return false
     }
 
     if (file.getLongAt(tiffOffset + 4, bigEnd) != 0x00000008) {
-      if (debug)
-        console.log('Not valid TIFF data! (First offset not 8)', file.getShortAt(tiffOffset + 4, bigEnd))
+      if (debug) {
+        console.log(
+          'Not valid TIFF data! (First offset not 8)',
+          file.getShortAt(tiffOffset + 4, bigEnd)
+        )
+      }
       return false
     }
 
     tags = readTags(file, tiffOffset, tiffOffset + 8, TiffTags, bigEnd)
 
     if (tags.ExifIFDPointer) {
-      exifData = readTags(file, tiffOffset, tiffOffset + tags.ExifIFDPointer, ExifTags, bigEnd)
+      exifData = readTags(
+        file,
+        tiffOffset,
+        tiffOffset + tags.ExifIFDPointer,
+        ExifTags,
+        bigEnd
+      )
       for (tag in exifData) {
         switch (tag) {
-          case 'LightSource' :
-          case 'Flash' :
-          case 'MeteringMode' :
-          case 'ExposureProgram' :
-          case 'SensingMethod' :
-          case 'SceneCaptureType' :
-          case 'SceneType' :
-          case 'CustomRendered' :
-          case 'WhiteBalance' :
-          case 'GainControl' :
-          case 'Contrast' :
-          case 'Saturation' :
-          case 'Sharpness' :
-          case 'SubjectDistanceRange' :
-          case 'FileSource' :
+          case 'LightSource':
+          case 'Flash':
+          case 'MeteringMode':
+          case 'ExposureProgram':
+          case 'SensingMethod':
+          case 'SceneCaptureType':
+          case 'SceneType':
+          case 'CustomRendered':
+          case 'WhiteBalance':
+          case 'GainControl':
+          case 'Contrast':
+          case 'Saturation':
+          case 'Sharpness':
+          case 'SubjectDistanceRange':
+          case 'FileSource':
             exifData[tag] = StringValues[tag][exifData[tag]]
             break
 
-          case 'ExifVersion' :
-          case 'FlashpixVersion' :
-            exifData[tag] = String.fromCharCode(exifData[tag][0], exifData[tag][1], exifData[tag][2], exifData[tag][3])
+          case 'ExifVersion':
+          case 'FlashpixVersion':
+            exifData[tag] = String.fromCharCode(
+              exifData[tag][0],
+              exifData[tag][1],
+              exifData[tag][2],
+              exifData[tag][3]
+            )
             break
 
-          case 'ComponentsConfiguration' :
+          case 'ComponentsConfiguration':
             exifData[tag] =
-              StringValues.Components[exifData[tag][0]]
-              + StringValues.Components[exifData[tag][1]]
-              + StringValues.Components[exifData[tag][2]]
-              + StringValues.Components[exifData[tag][3]]
+              StringValues.Components[exifData[tag][0]] +
+              StringValues.Components[exifData[tag][1]] +
+              StringValues.Components[exifData[tag][2]] +
+              StringValues.Components[exifData[tag][3]]
             break
         }
         tags[tag] = exifData[tag]
@@ -543,14 +572,24 @@ var EXIF = (function () {
     }
 
     if (tags.GPSInfoIFDPointer) {
-      gpsData = readTags(file, tiffOffset, tiffOffset + tags.GPSInfoIFDPointer, GPSTags, bigEnd)
+      gpsData = readTags(
+        file,
+        tiffOffset,
+        tiffOffset + tags.GPSInfoIFDPointer,
+        GPSTags,
+        bigEnd
+      )
       for (tag in gpsData) {
         switch (tag) {
-          case 'GPSVersionID' :
-            gpsData[tag] = gpsData[tag][0]
-              + '.' + gpsData[tag][1]
-              + '.' + gpsData[tag][2]
-              + '.' + gpsData[tag][3]
+          case 'GPSVersionID':
+            gpsData[tag] =
+              gpsData[tag][0] +
+              '.' +
+              gpsData[tag][1] +
+              '.' +
+              gpsData[tag][2] +
+              '.' +
+              gpsData[tag][3]
             break
         }
         tags[tag] = gpsData[tag]
@@ -561,8 +600,7 @@ var EXIF = (function () {
   }
 
   function getData (img, callback) {
-    if (!img.complete)
-      return false
+    if (!img.complete) return false
     if (!imageHasData(img)) {
       getImageData(img, callback)
     } else {
@@ -574,14 +612,12 @@ var EXIF = (function () {
   }
 
   function getTag (img, tag) {
-    if (!imageHasData(img))
-      return
+    if (!imageHasData(img)) return
     return img.exifdata[tag]
   }
 
   function getAllTags (img) {
-    if (!imageHasData(img))
-      return {}
+    if (!imageHasData(img)) return {}
     var a,
       data = img.exifdata,
       tags = {}
@@ -594,16 +630,23 @@ var EXIF = (function () {
   }
 
   function pretty (img) {
-    if (!imageHasData(img))
-      return ''
+    if (!imageHasData(img)) return ''
     var a,
       data = img.exifdata,
       strPretty = ''
     for (a in data) {
       if (data.hasOwnProperty(a)) {
-        if (typeof data[a] == 'object') {
+        if (typeof data[a] === 'object') {
           if (data[a] instanceof Number) {
-            strPretty += a + ' : ' + data[a] + ' [' + data[a].numerator + '/' + data[a].denominator + ']\r\n'
+            strPretty +=
+              a +
+              ' : ' +
+              data[a] +
+              ' [' +
+              data[a].numerator +
+              '/' +
+              data[a].denominator +
+              ']\r\n'
           } else {
             strPretty += a + ' : [' + data[a].length + ' values]\r\n'
           }
@@ -630,7 +673,6 @@ var EXIF = (function () {
     GPSTags: GPSTags,
     StringValues: StringValues
   }
-
 })()
 
 /**
@@ -648,22 +690,22 @@ var BinaryFile = function (strData, iDataOffset, iDataLength) {
     return data
   }
 
-  if (typeof strData == 'string') {
+  if (typeof strData === 'string') {
     dataLength = iDataLength || data.length
 
     this.getByteAt = function (iOffset) {
-      return data.charCodeAt(iOffset + dataOffset) & 0xFF
+      return data.charCodeAt(iOffset + dataOffset) & 0xff
     }
 
     this.getBytesAt = function (iOffset, iLength) {
       var aBytes = []
 
       for (var i = 0; i < iLength; i++) {
-        aBytes[i] = data.charCodeAt((iOffset + i) + dataOffset) & 0xFF
+        aBytes[i] = data.charCodeAt(iOffset + i + dataOffset) & 0xff
       }
       return aBytes
     }
-  } else if (typeof strData == 'unknown') {
+  } else if (typeof strData === 'unknown') {
     dataLength = iDataLength || IEBinary_getLength(data)
 
     this.getByteAt = function (iOffset) {
@@ -671,7 +713,9 @@ var BinaryFile = function (strData, iDataOffset, iDataLength) {
     }
 
     this.getBytesAt = function (iOffset, iLength) {
-      return new VBArray(IEBinary_getBytesAt(data, iOffset + dataOffset, iLength)).toArray()
+      return new VBArray(
+        IEBinary_getBytesAt(data, iOffset + dataOffset, iLength)
+      ).toArray()
     }
   }
 
@@ -681,25 +725,21 @@ var BinaryFile = function (strData, iDataOffset, iDataLength) {
 
   this.getSByteAt = function (iOffset) {
     var iByte = this.getByteAt(iOffset)
-    if (iByte > 127)
-      return iByte - 256
-    else
-      return iByte
+    if (iByte > 127) return iByte - 256
+    else return iByte
   }
 
   this.getShortAt = function (iOffset, bBigEndian) {
-    var iShort = bBigEndian ? (this.getByteAt(iOffset) << 8) + this.getByteAt(iOffset + 1)
+    var iShort = bBigEndian
+      ? (this.getByteAt(iOffset) << 8) + this.getByteAt(iOffset + 1)
       : (this.getByteAt(iOffset + 1) << 8) + this.getByteAt(iOffset)
-    if (iShort < 0)
-      iShort += 65536
+    if (iShort < 0) iShort += 65536
     return iShort
   }
   this.getSShortAt = function (iOffset, bBigEndian) {
     var iUShort = this.getShortAt(iOffset, bBigEndian)
-    if (iUShort > 32767)
-      return iUShort - 65536
-    else
-      return iUShort
+    if (iUShort > 32767) return iUShort - 65536
+    else return iUShort
   }
   this.getLongAt = function (iOffset, bBigEndian) {
     var iByte1 = this.getByteAt(iOffset),
@@ -707,18 +747,16 @@ var BinaryFile = function (strData, iDataOffset, iDataLength) {
       iByte3 = this.getByteAt(iOffset + 2),
       iByte4 = this.getByteAt(iOffset + 3)
 
-    var iLong = bBigEndian ? (((((iByte1 << 8) + iByte2) << 8) + iByte3) << 8) + iByte4
+    var iLong = bBigEndian
+      ? (((((iByte1 << 8) + iByte2) << 8) + iByte3) << 8) + iByte4
       : (((((iByte4 << 8) + iByte3) << 8) + iByte2) << 8) + iByte1
-    if (iLong < 0)
-      iLong += 4294967296
+    if (iLong < 0) iLong += 4294967296
     return iLong
   }
   this.getSLongAt = function (iOffset, bBigEndian) {
     var iULong = this.getLongAt(iOffset, bBigEndian)
-    if (iULong > 2147483647)
-      return iULong - 4294967296
-    else
-      return iULong
+    if (iULong > 2147483647) return iULong - 4294967296
+    else return iULong
   }
 
   this.getStringAt = function (iOffset, iLength) {
@@ -742,7 +780,6 @@ var BinaryFile = function (strData, iDataOffset, iDataLength) {
   }
 }
 var BinaryAjax = (function () {
-
   function createRequest () {
     var oHTTP = null
     if (window.ActiveXObject) {
@@ -757,13 +794,12 @@ var BinaryAjax = (function () {
     var oHTTP = createRequest()
     if (oHTTP) {
       if (fncCallback) {
-        if (typeof(oHTTP.onload) != 'undefined') {
+        if (typeof oHTTP.onload !== 'undefined') {
           oHTTP.onload = function () {
             if (oHTTP.status == '200') {
               fncCallback(this)
             } else {
-              if (fncError)
-                fncError()
+              if (fncError) fncError()
             }
             oHTTP = null
           }
@@ -773,8 +809,7 @@ var BinaryAjax = (function () {
               if (oHTTP.status == '200') {
                 fncCallback(this)
               } else {
-                if (fncError)
-                  fncError()
+                if (fncError) fncError()
               }
               oHTTP = null
             }
@@ -784,15 +819,20 @@ var BinaryAjax = (function () {
       oHTTP.open('HEAD', strURL, true)
       oHTTP.send(null)
     } else {
-      if (fncError)
-        fncError()
+      if (fncError) fncError()
     }
   }
 
-  function sendRequest (strURL, fncCallback, fncError, aRange, bAcceptRanges, iFileSize) {
+  function sendRequest (
+    strURL,
+    fncCallback,
+    fncError,
+    aRange,
+    bAcceptRanges,
+    iFileSize
+  ) {
     var oHTTP = createRequest()
     if (oHTTP) {
-
       var iDataOffset = 0
       if (aRange && !bAcceptRanges) {
         iDataOffset = aRange[0]
@@ -803,35 +843,51 @@ var BinaryAjax = (function () {
       }
 
       if (fncCallback) {
-        if (typeof(oHTTP.onload) != 'undefined') {
+        if (typeof oHTTP.onload !== 'undefined') {
           oHTTP.onload = function () {
-            if (oHTTP.status == '200' || oHTTP.status == '206' || oHTTP.status == '0') {
-              oHTTP.binaryResponse = new BinaryFile(oHTTP.responseText, iDataOffset, iDataLen)
-              oHTTP.fileSize = iFileSize || oHTTP.getResponseHeader('Content-Length')
+            if (
+              oHTTP.status == '200' ||
+              oHTTP.status == '206' ||
+              oHTTP.status == '0'
+            ) {
+              oHTTP.binaryResponse = new BinaryFile(
+                oHTTP.responseText,
+                iDataOffset,
+                iDataLen
+              )
+              oHTTP.fileSize =
+                iFileSize || oHTTP.getResponseHeader('Content-Length')
               fncCallback(oHTTP)
             } else {
-              if (fncError)
-                fncError()
+              if (fncError) fncError()
             }
             oHTTP = null
           }
         } else {
           oHTTP.onreadystatechange = function () {
             if (oHTTP.readyState == 4) {
-              if (oHTTP.status == '200' || oHTTP.status == '206' || oHTTP.status == '0') {
+              if (
+                oHTTP.status == '200' ||
+                oHTTP.status == '206' ||
+                oHTTP.status == '0'
+              ) {
                 // IE6 craps if we try to extend the XHR object
                 var oRes = {
                   status: oHTTP.status,
                   // IE needs responseBody, Chrome/Safari needs responseText
                   binaryResponse: new BinaryFile(
-                    typeof oHTTP.responseBody == 'unknown' ? oHTTP.responseBody : oHTTP.responseText, iDataOffset, iDataLen
+                    typeof oHTTP.responseBody === 'unknown'
+                      ? oHTTP.responseBody
+                      : oHTTP.responseText,
+                    iDataOffset,
+                    iDataLen
                   ),
-                  fileSize: iFileSize || oHTTP.getResponseHeader('Content-Length')
+                  fileSize:
+                    iFileSize || oHTTP.getResponseHeader('Content-Length')
                 }
                 fncCallback(oRes)
               } else {
-                if (fncError)
-                  fncError()
+                if (fncError) fncError()
               }
               oHTTP = null
             }
@@ -840,47 +896,48 @@ var BinaryAjax = (function () {
       }
       oHTTP.open('GET', strURL, true)
 
-      if (oHTTP.overrideMimeType)
-        oHTTP.overrideMimeType('text/plain; charset=x-user-defined')
+      if (oHTTP.overrideMimeType) { oHTTP.overrideMimeType('text/plain; charset=x-user-defined') }
 
       if (aRange && bAcceptRanges) {
         oHTTP.setRequestHeader('Range', 'bytes=' + aRange[0] + '-' + aRange[1])
       }
 
-      oHTTP.setRequestHeader('If-Modified-Since', 'Sat, 1 Jan 1970 00:00:00 GMT')
+      oHTTP.setRequestHeader(
+        'If-Modified-Since',
+        'Sat, 1 Jan 1970 00:00:00 GMT'
+      )
 
       oHTTP.send(null)
     } else {
-      if (fncError)
-        fncError()
+      if (fncError) fncError()
     }
   }
 
   return function (strURL, fncCallback, fncError, aRange) {
-
     if (aRange) {
-      getHead(
-        strURL,
-        function (oHTTP) {
-          var iLength = parseInt(oHTTP.getResponseHeader('Content-Length'), 10)
-          var strAcceptRanges = oHTTP.getResponseHeader('Accept-Ranges')
+      getHead(strURL, function (oHTTP) {
+        var iLength = parseInt(oHTTP.getResponseHeader('Content-Length'), 10)
+        var strAcceptRanges = oHTTP.getResponseHeader('Accept-Ranges')
 
-          var iStart, iEnd
-          iStart = aRange[0]
-          if (aRange[0] < 0)
-            iStart += iLength
-          iEnd = iStart + aRange[1] - 1
+        var iStart, iEnd
+        iStart = aRange[0]
+        if (aRange[0] < 0) iStart += iLength
+        iEnd = iStart + aRange[1] - 1
 
-          sendRequest(strURL, fncCallback, fncError, [iStart, iEnd], (strAcceptRanges == 'bytes'), iLength)
-        }
-      )
-
+        sendRequest(
+          strURL,
+          fncCallback,
+          fncError,
+          [iStart, iEnd],
+          strAcceptRanges == 'bytes',
+          iLength
+        )
+      })
     } else {
       sendRequest(strURL, fncCallback, fncError)
     }
   }
-
-}())
+})()
 
 /**
  *
@@ -912,7 +969,7 @@ export default function canvasResize (file, options) {
         if ((r >= 1 || H === 0) && W && !C) {
           w = W
           h = (W / r) >> 0
-        } else if (C && r <= (W / H)) {
+        } else if (C && r <= W / H) {
           w = W
           h = (W / r) >> 0
           c = 'w'
@@ -922,29 +979,35 @@ export default function canvasResize (file, options) {
         }
       }
       return {
-        'width': w,
-        'height': h,
-        'cropped': c
+        width: w,
+        height: h,
+        cropped: c
       }
     },
     dataURLtoBlob: function (data) {
-      var mimeString = data.split(',')[0].split(':')[1].split(';')[0]
+      var mimeString = data
+        .split(',')[0]
+        .split(':')[1]
+        .split(';')[0]
       var byteString = atob(data.split(',')[1])
       var ab = new ArrayBuffer(byteString.length)
       var ia = new Uint8Array(ab)
       for (var i = 0; i < byteString.length; i++) {
         ia[i] = byteString.charCodeAt(i)
       }
-      var bb = (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder)
+      var bb =
+        window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder
       if (bb) {
         //    console.log('BlobBuilder');
-        bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder)()
+        bb = new (window.BlobBuilder ||
+          window.WebKitBlobBuilder ||
+          window.MozBlobBuilder)()
         bb.append(ab)
         return bb.getBlob(mimeString)
       } else {
         //    console.log('Blob');
         bb = new Blob([ab], {
-          'type': (mimeString)
+          type: mimeString
         })
         return bb
       }
@@ -954,8 +1017,10 @@ export default function canvasResize (file, options) {
      * In iOS, larger images than 2M pixels may be subsampled in rendering.
      */
     detectSubsampling: function (img) {
-      var iw = img.width, ih = img.height
-      if (iw * ih > 1048576) { // subsampling may happen over megapixel image
+      var iw = img.width,
+        ih = img.height
+      if (iw * ih > 1048576) {
+        // subsampling may happen over megapixel image
         var canvas = document.createElement('canvas')
         canvas.width = canvas.height = 1
         var ctx = canvas.getContext('2d')
@@ -974,21 +1039,21 @@ export default function canvasResize (file, options) {
     rotate: function (orientation, angle) {
       var o = {
         // nothing
-        1: {90: 6, 180: 3, 270: 8},
+        1: { 90: 6, 180: 3, 270: 8 },
         // horizontal flip
-        2: {90: 7, 180: 4, 270: 5},
+        2: { 90: 7, 180: 4, 270: 5 },
         // 180 rotate left
-        3: {90: 8, 180: 1, 270: 6},
+        3: { 90: 8, 180: 1, 270: 6 },
         // vertical flip
-        4: {90: 5, 180: 2, 270: 7},
+        4: { 90: 5, 180: 2, 270: 7 },
         // vertical flip + 90 rotate right
-        5: {90: 2, 180: 7, 270: 4},
+        5: { 90: 2, 180: 7, 270: 4 },
         // 90 rotate right
-        6: {90: 3, 180: 8, 270: 1},
+        6: { 90: 3, 180: 8, 270: 1 },
         // horizontal flip + 90 rotate right
-        7: {90: 4, 180: 5, 270: 2},
+        7: { 90: 4, 180: 5, 270: 2 },
         // 90 rotate left
-        8: {90: 1, 180: 6, 270: 3}
+        8: { 90: 1, 180: 6, 270: 3 }
       }
       return o[orientation][angle] ? o[orientation][angle] : orientation
     },
@@ -1085,7 +1150,10 @@ export default function canvasResize (file, options) {
       return d
     },
     extend: function () {
-      var target = arguments[0] || {}, a = 1, al = arguments.length, deep = false
+      var target = arguments[0] || {},
+        a = 1,
+        al = arguments.length,
+        deep = false
       if (target.constructor === Boolean) {
         deep = target
         target = arguments[1] || {}
@@ -1095,16 +1163,14 @@ export default function canvasResize (file, options) {
         a = 0
       }
       var prop
-      for (; a < al; a++)
-        if ((prop = arguments[a]) !== null)
+      for (; a < al; a++) {
+        if ((prop = arguments[a]) !== null) {
           for (var i in prop) {
-            if (target === prop[i])
-              continue
-            if (deep && typeof prop[i] === 'object' && target[i])
-              methods.extend(target[i], prop[i])
-            else if (prop[i] !== undefined)
-              target[i] = prop[i]
+            if (target === prop[i]) continue
+            if (deep && typeof prop[i] === 'object' && target[i]) { methods.extend(target[i], prop[i]) } else if (prop[i] !== undefined) target[i] = prop[i]
           }
+        }
+      }
       return target
     }
   }
@@ -1114,18 +1180,17 @@ export default function canvasResize (file, options) {
     crop: false,
     quality: 80,
     rotate: 0,
-    'callback': methods.callback
+    callback: methods.callback
   }
 
   Plugin.prototype = {
     init: function () {
-      //this.options.init(this);
+      // this.options.init(this);
       var $this = this
       var file = this.file
 
       var reader = new FileReader()
       reader.onloadend = function (e) {
-
         var dataURL = e.target.result
         var byteString = atob(dataURL.split(',')[1])
         var binary = new BinaryFile(byteString, 0, byteString.length)
@@ -1133,17 +1198,31 @@ export default function canvasResize (file, options) {
 
         var img = new Image()
         img.onload = function (e) {
-
           var orientation = exif['Orientation'] || 1
           orientation = methods.rotate(orientation, $this.options.rotate)
 
           // CW or CCW ? replace width and height
-          var size = (orientation >= 5 && orientation <= 8)
-            ? methods.newsize(img.height, img.width, $this.options.width, $this.options.height, $this.options.crop)
-            : methods.newsize(img.width, img.height, $this.options.width, $this.options.height, $this.options.crop)
+          var size =
+            orientation >= 5 && orientation <= 8
+              ? methods.newsize(
+                  img.height,
+                  img.width,
+                  $this.options.width,
+                  $this.options.height,
+                  $this.options.crop
+                )
+              : methods.newsize(
+                  img.width,
+                  img.height,
+                  $this.options.width,
+                  $this.options.height,
+                  $this.options.crop
+                )
 
-          var iw = img.width, ih = img.height
-          var width = size.width, height = size.height
+          var iw = img.width,
+            ih = img.height
+          var width = size.width,
+            height = size.height
 
           var canvas = document.createElement('canvas')
           var ctx = canvas.getContext('2d')
@@ -1184,8 +1263,8 @@ export default function canvasResize (file, options) {
           var newcanvas = document.createElement('canvas')
           newcanvas.width = size.cropped === 'h' ? height : width
           newcanvas.height = size.cropped === 'w' ? width : height
-          var x = size.cropped === 'h' ? (height - width) * .5 : 0
-          var y = size.cropped === 'w' ? (width - height) * .5 : 0
+          var x = size.cropped === 'h' ? (height - width) * 0.5 : 0
+          var y = size.cropped === 'w' ? (width - height) * 0.5 : 0
           var newctx = newcanvas.getContext('2d')
           newctx.drawImage(canvas, x, y, width, height)
 
@@ -1193,7 +1272,10 @@ export default function canvasResize (file, options) {
           if (file.type === 'image/png') {
             var data = newcanvas.toDataURL(file.type)
           } else {
-            var data = newcanvas.toDataURL('image/jpeg', ($this.options.quality * .01))
+            var data = newcanvas.toDataURL(
+              'image/jpeg',
+              $this.options.quality * 0.01
+            )
           }
 
           // CALLBACK
@@ -1203,11 +1285,9 @@ export default function canvasResize (file, options) {
         }
         img.src = dataURL
         // =====================================================
-
       }
       reader.readAsDataURL(file)
-      //reader.readAsBinaryString(file);
-
+      // reader.readAsBinaryString(file);
     }
   }
 
@@ -1227,3 +1307,4 @@ export default function canvasResize (file, options) {
     new Plugin(file, options)
   }
 }
+/* eslint-enable */

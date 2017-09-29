@@ -18,12 +18,12 @@
 
 export class History {
   constructor (router, config, platform) {
-    this._history = []                  // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
-    this._direction = 'forward'         // forward/backward
-    this._router = router               // vue-router实例
-    this._config = config               // config 实例
-    this._platform = platform           // platform 实例
-    this.isReplace = false              // 路由跳转是否是使用replace方法
+    this._history = [] // 存储当前导航的历史记录, 内容为 route object（路由信息对象）
+    this._direction = 'forward' // forward/backward
+    this._router = router // vue-router实例
+    this._config = config // config 实例
+    this._platform = platform // platform 实例
+    this.isReplace = false // 路由跳转是否是使用replace方法
     this.usePushWindow = this._config.getBoolean('usePushWindow', false) // 支付宝 和 钉钉 两个模式下路由跳转是否开启新页面
 
     // 监听路由变化, 维护本地历史记录
@@ -54,7 +54,8 @@ export class History {
         let backCopy = this._router.back
         backCopy = backCopy.bind(this._router)
         this._router.back = function () {
-          let isHandled = _this._platform.popWindow && _this._platform.popWindow()
+          let isHandled =
+            _this._platform.popWindow && _this._platform.popWindow()
           if (!isHandled) {
             backCopy.apply(null, arguments)
           }
@@ -65,7 +66,7 @@ export class History {
          * */
         let goCopy = this._router.go
         goCopy = goCopy.bind(this._router)
-        this._router.go = function () {
+        this._router.go = function (n) {
           let isHandled = _this._platform.popTo && _this._platform.popTo(n)
           if (!isHandled) {
             goCopy.apply(null, arguments)
@@ -88,7 +89,7 @@ export class History {
            *
            * 同理, length=1也同样处理
            * */
-          this._pushHistory({to, from, next})
+          this._pushHistory({ to, from, next })
         } else {
           // 向记录后方追溯, 如果有匹配可认为是go(-n)操作, 否则就是push操作
           for (let i = this.length - 2; i > -1; i--) {
@@ -100,7 +101,7 @@ export class History {
           }
 
           // 如果不在过去的历史记录, 则认为是新增加记录
-          this._pushHistory({to, from, next})
+          this._pushHistory({ to, from, next })
         }
       })
     }
@@ -110,23 +111,28 @@ export class History {
     return this._history.length
   }
 
-// -------- private --------
+  // -------- private --------
   /**
    * push to history
    * @private
    * */
-  _pushHistory ({to, from, next}) {
+  _pushHistory ({ to, from, next }) {
     if (to.fullPath === from.fullPath && to.name === from.name) {
       // 同地址同名称跳转不记录不处理
       return
     }
 
     let isHandled = false
-    if (this.usePushWindow && from.matched.length !== 0 && to.matched.length !== 0) {
+    if (
+      this.usePushWindow &&
+      from.matched.length !== 0 &&
+      to.matched.length !== 0
+    ) {
       let url = ''
       let mode = this._router.mode
       if (mode === 'hash') {
-        url = `${window.location.origin}${window.location.pathname}${window.location.search}#${to.fullPath}`
+        url = `${window.location.origin}${window.location.pathname}${window
+          .location.search}#${to.fullPath}`
       } else {
         console.error('history.js::只支持 mode: "hash"')
       }

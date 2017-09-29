@@ -76,7 +76,7 @@ export default {
         return false
       }
       // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。
-      if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num))) {
+      if (!/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num)) {
         console.debug('输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X。')
         return false
       }
@@ -89,8 +89,13 @@ export default {
         arrSplit = num.match(re)
 
         // 检查生日日期是否正确
-        dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4])
-        bGoodDay = (dtmBirth.getYear() === Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) === Number(arrSplit[3])) && (dtmBirth.getDate() === Number(arrSplit[4]))
+        dtmBirth = new Date(
+          '19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]
+        )
+        bGoodDay =
+          dtmBirth.getYear() === Number(arrSplit[2]) &&
+          dtmBirth.getMonth() + 1 === Number(arrSplit[3]) &&
+          dtmBirth.getDate() === Number(arrSplit[4])
         if (!bGoodDay) {
           console.debug('输入的身份证号里出生日期不对！')
           return false
@@ -114,7 +119,10 @@ export default {
 
         // 检查生日日期是否正确
         dtmBirth = new Date(arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4])
-        bGoodDay = (dtmBirth.getFullYear() === Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) === Number(arrSplit[3])) && (dtmBirth.getDate() === Number(arrSplit[4]))
+        bGoodDay =
+          dtmBirth.getFullYear() === Number(arrSplit[2]) &&
+          dtmBirth.getMonth() + 1 === Number(arrSplit[3]) &&
+          dtmBirth.getDate() === Number(arrSplit[4])
         if (!bGoodDay) {
           console.debug('输入的身份证号里出生日期不对！')
           return false

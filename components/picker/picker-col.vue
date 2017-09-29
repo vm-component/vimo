@@ -303,7 +303,7 @@
         let opt
         let optOffset
         let visible
-        let translateX
+        // let translateX
         let translateY
         let translateZ
         let rotateX
@@ -329,13 +329,13 @@
             if (Math.abs(rotateX) > 90) {
               visible = false
             } else {
-              translateX = 0
+              // translateX = 0
               translateY = 0
               translateZ = 90
               transform = `rotateX(${rotateX}deg) `
             }
           } else {
-            translateX = 0
+            // translateX = 0
             translateZ = 0
             translateY = optOffset
             if (Math.abs(translateY) > 170) {

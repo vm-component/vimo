@@ -364,7 +364,7 @@
           return _regex.test(value)
         }
 
-        console.error('regex:' + _regex + '不是正则/函数, 是:' + _tmpType + '类型, 验证跳过, 返回 false!')
+        console.error('regex:' + _regex + '不是正则/函数, 验证跳过, 返回 false!')
         return false
       },
 

@@ -24,7 +24,7 @@
    * @see component:Segment
    *
    * */
-  import { isTrueProperty, isString, isNumber, isPresent } from '../util/util'
+  import { isTrueProperty, isString, isPresent } from '../util/util'
   export default{
     name: 'SegmentButton',
     data () {

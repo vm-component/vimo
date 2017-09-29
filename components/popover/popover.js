@@ -6,8 +6,10 @@ const Popover = Vue.extend(popoverComponent)
 // ---------- functions ----------
 
 function PopoverFactory (options) {
-  let el = getInsertPosition('alertPortal').appendChild(document.createElement('div'))
-  return new Popover({el, propsData: options})
+  let el = getInsertPosition('alertPortal').appendChild(
+    document.createElement('div')
+  )
+  return new Popover({ el, propsData: options })
 }
 
 function getPresentDismissIns (Factory) {
@@ -27,17 +29,21 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     present (options) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         if (this._i && this._i.isActive) {
           this._i.dismiss().then(() => {
             this._i = Factory(options)
             // 自动开启
-            this._i.present().then(() => { resolve() })
+            this._i.present().then(() => {
+              resolve()
+            })
           })
         } else {
           this._i = Factory(options)
           // 自动开启
-          this._i.present().then(() => { resolve() })
+          this._i.present().then(() => {
+            resolve()
+          })
         }
       })
     },
@@ -48,9 +54,11 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     dismiss () {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         if (this._i && this._i.isActive) {
-          this._i.dismiss().then(() => { resolve() })
+          this._i.dismiss().then(() => {
+            resolve()
+          })
         } else {
           resolve()
         }

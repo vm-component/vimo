@@ -7,10 +7,12 @@ import { isObject, isPresent } from './util'
 export default function (slots) {
   if (isPresent(slots) && isObject(slots)) {
     let slotKeys = Object.keys(slots)
-    slotKeys.forEach((slotKey) => {
+    slotKeys.forEach(slotKey => {
       if (slotKey !== 'default') {
-        slots[slotKey].forEach((item) => {
-          item.elm && item.elm.setAttribute && item.elm.setAttribute(slotKey, '')
+        slots[slotKey].forEach(item => {
+          item.elm &&
+            item.elm.setAttribute &&
+            item.elm.setAttribute(slotKey, '')
         })
       }
     })

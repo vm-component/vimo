@@ -56,20 +56,25 @@ const ChooseCity = {
   present (options) {
     let finalOptions = {}
     let defaultOptions = {
-      showLocatedCity: false,                   // 是否显示当前定位城市，默认 false
-      showHotCities: true,                      // 是否显示热门城市，默认 true
-      cities: require('./cities.json'),         // 城市数据，默认 本地数据
-      hotCities: require('./hot-cities.json'),  // 热门城市，默认 本地数据
-      mode: 'fade-right',                       // 模式 可以是如下取值: ios, md, fade, zoom, fade-right
-      showBackdrop: true,                       // modal 是否显示背景色
-      enableBackdropDismiss: true,              // modal 点击背景是否关闭
-      isH5: false,                              // 是否强制使用H5模式
-      ak: '8d1ba642a3a3046d1ee087e0f8b490a2',   // 如果是H5模式并且开启了'当前定位城市'，则使用高德地图定位，这个是AK
+      showLocatedCity: false, // 是否显示当前定位城市，默认 false
+      showHotCities: true, // 是否显示热门城市，默认 true
+      cities: require('./cities.json'), // 城市数据，默认 本地数据
+      hotCities: require('./hot-cities.json'), // 热门城市，默认 本地数据
+      mode: 'fade-right', // 模式 可以是如下取值: ios, md, fade, zoom, fade-right
+      showBackdrop: true, // modal 是否显示背景色
+      enableBackdropDismiss: true, // modal 点击背景是否关闭
+      isH5: false, // 是否强制使用H5模式
+      ak: '8d1ba642a3a3046d1ee087e0f8b490a2', // 如果是H5模式并且开启了'当前定位城市'，则使用高德地图定位，这个是AK
       onDismiss () {}
     }
     Object.assign(finalOptions, defaultOptions, options)
 
-    let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.chooseCity && window.VM.platform.chooseCity(options)
+    let isHandled =
+      !options.isH5 &&
+      window.VM &&
+      window.VM.platform &&
+      window.VM.platform.chooseCity &&
+      window.VM.platform.chooseCity(options)
     if (!isHandled) {
       Modal.present({
         mode: finalOptions.mode,

@@ -73,10 +73,15 @@ import Picker from '../picker/index'
 
 const CityPicker = {
   present (options) {
-    let startCode = options.startCode || '1'              // 全国  1
+    let startCode = options.startCode || '1' // 全国  1
     let selectedCity = options.selectedCity
     // null number/string/any [] [''] ['',''] ['1','2','3','4']
-    if (!selectedCity || !isArray(selectedCity) || (isArray(selectedCity) && (selectedCity.length === 0 || selectedCity.length > 3))) {
+    if (
+      !selectedCity ||
+      !isArray(selectedCity) ||
+      (isArray(selectedCity) &&
+        (selectedCity.length === 0 || selectedCity.length > 3))
+    ) {
       // 非法的情况, 默认是双列 北京 北京
       selectedCity = ['110000', '110100']
     }
@@ -90,13 +95,15 @@ const CityPicker = {
       }
     }
 
-    let provinceCode = selectedCity[0]  // 默认北京 110000, 也就是默认最少显示两级
-    let cityCode = selectedCity[1]      // 北京 110100 这个自己填入
+    let provinceCode = selectedCity[0] // 默认北京 110000, 也就是默认最少显示两级
+    let cityCode = selectedCity[1] // 北京 110100 这个自己填入
     let districtCode = selectedCity[2]
-    let defaultFetchData = function () { return new Promise(resolve => resolve([])) }
+    let defaultFetchData = function () {
+      return new Promise(resolve => resolve([]))
+    }
     let fetchData = options.fetchData || defaultFetchData
     let columns = []
-    fetchData(startCode).then((data) => {
+    fetchData(startCode).then(data => {
       if (data && isArray(data) && data.length > 0) {
         // 获得 province 的数据
         columns = [
@@ -108,7 +115,7 @@ const CityPicker = {
           }
         ]
         console.assert(provinceCode, 'provinceCode数据为空, 请检查代码!')
-        fetchData(provinceCode).then((data) => {
+        fetchData(provinceCode).then(data => {
           // 获得 city 的数据
           columns.push({
             name: 'city',
@@ -118,7 +125,7 @@ const CityPicker = {
           })
 
           if (districtCode) {
-            fetchData(cityCode).then((data) => {
+            fetchData(cityCode).then(data => {
               // 获得 district 的数据
               columns.push({
                 name: 'district',
@@ -161,7 +168,7 @@ const CityPicker = {
      * */
     function initPicker (columns) {
       if (columns.length > 2) {
-        columns.forEach((column) => {
+        columns.forEach(column => {
           column.optionsWidth = '80px'
         })
       }
@@ -180,7 +187,7 @@ const CityPicker = {
           },
           {
             text: '确定',
-            handler: (data) => {
+            handler: data => {
               options.onSelect && options.onSelect(data)
             }
           }
@@ -198,11 +205,11 @@ const CityPicker = {
      * */
     function onSelectHandler (data) {
       if (data.columnIndex === 0) {
-        fetchData(data.value).then((data) => {
+        fetchData(data.value).then(data => {
           columns[1].options = data
           Picker.resetColumn(1)
           if (columns[1].options[0] && selectedCity.length > 2) {
-            fetchData(columns[1].options[0].value).then((data) => {
+            fetchData(columns[1].options[0].value).then(data => {
               columns[2].options = data
               Picker.resetColumn(2)
             })
@@ -210,7 +217,7 @@ const CityPicker = {
         })
       }
       if (data.columnIndex === 1 && selectedCity.length > 2) {
-        fetchData(data.value).then((data) => {
+        fetchData(data.value).then(data => {
           columns[2].options = data
           Picker.resetColumn(2)
         })

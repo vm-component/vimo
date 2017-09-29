@@ -47,7 +47,6 @@
   import Modal from '../modal/index'
   import Content from '../base/content/content.vue'
   import { pointerCoord, clamp } from '../util/util'
-  import loadScript from '../util/loadScript'
 
   export default {
     name: 'cityList',

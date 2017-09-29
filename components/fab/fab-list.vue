@@ -67,7 +67,7 @@
        * @param {Boolean} add - whether
        * @private
        * */
-      setElementClass(className, add) {
+      setElementClass (className, add) {
         setElementClass(this.$el, className, add)
       }
     },
@@ -87,7 +87,6 @@
         fab.setElementClass('fab-in-list', true)
         fab.setElementClass(className, true)
       })
-
     }
   }
 </script>

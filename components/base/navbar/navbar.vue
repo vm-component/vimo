@@ -301,7 +301,7 @@
               let r = parseInt(rgb[0]).toString(16).toUpperCase()
               let g = parseInt(rgb[1]).toString(16).toUpperCase()
               let b = parseInt(rgb[2]).toString(16).toUpperCase()
-              let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
+              // let a = rgb[3] ? parseInt(rgb[3]).toString(16) : 'FF'
               let backgroundColor = `#${r}${g}${b}`
               this.$platform.setNavbarBackgroundColor && this.$platform.setNavbarBackgroundColor(backgroundColor)
             } else {

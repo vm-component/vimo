@@ -87,7 +87,7 @@ class Platform {
    * @return {boolean}
    */
   is (platformName) {
-    return (this._platforms.indexOf(platformName) > -1)
+    return this._platforms.indexOf(platformName) > -1
   }
 
   /**
@@ -206,7 +206,11 @@ class Platform {
    * @param {Function} fn - 注册函数, 回调参数返回网络类型
    * */
   onNetworkChange (fn) {
-    if (isPresent(fn) && isFunction(fn) && this._networkChangeCallbacks.indexOf(fn) === -1) {
+    if (
+      isPresent(fn) &&
+      isFunction(fn) &&
+      this._networkChangeCallbacks.indexOf(fn) === -1
+    ) {
       this._networkChangeCallbacks.push(fn)
     }
   }
@@ -467,7 +471,11 @@ class Platform {
    * @return {boolean}
    * @private
    */
-  isPlatformMatch (queryStringName, userAgentAtLeastHas, userAgentMustNotHave = []) {
+  isPlatformMatch (
+    queryStringName,
+    userAgentAtLeastHas,
+    userAgentMustNotHave = []
+  ) {
     // platform可以取值的参数: ios/android/iphone/
     const queryValue = this._qp.get('platform')
     if (queryValue) {
@@ -516,7 +524,10 @@ class Platform {
           // because it matched then this should be the active engine
           // you cannot have more than one active engine
           enginePlatformNode = tmpPlatform
-        } else if (!rootPlatformNode || tmpPlatform.depth > rootPlatformNode.depth) {
+        } else if (
+          !rootPlatformNode ||
+          tmpPlatform.depth > rootPlatformNode.depth
+        ) {
           // only find the root node for platforms that are not engines
           // set this node as the root since we either don't already
           // have one, or this one is more specific that the current one
@@ -621,7 +632,7 @@ class PlatformNode {
     this.registry = registry
     this.c = registry[platformName] // platform-registry配置中的平台设置;
     this.name = platformName // 当前节点的名称;
-    this.isEngine = this.c && this.c.isEngine  // boolean; 是否是在壳子中
+    this.isEngine = this.c && this.c.isEngine // boolean; 是否是在壳子中
   }
 
   // 获取settings配置
@@ -671,7 +682,7 @@ class PlatformNode {
         if (!v.major) v.major = '0'
         if (!v.minor) v.minor = '0'
         if (!v.third) v.third = '0'
-        const str = v.major + '.' + v.minor + (v.third ? ('.' + v.third) : '')
+        const str = v.major + '.' + v.minor + (v.third ? '.' + v.third : '')
         return {
           str: str,
           num: parseFloat(str),
@@ -727,7 +738,10 @@ class PlatformNode {
     for (let platformName in this.registry) {
       platform = this.registry[platformName]
 
-      if (platform.subsets && platform.subsets.indexOf(subsetPlatformName) > -1) {
+      if (
+        platform.subsets &&
+        platform.subsets.indexOf(subsetPlatformName) > -1
+      ) {
         parentPlatformNames.push(platformName)
       }
     }
@@ -757,7 +771,12 @@ function getCss (docEle) {
 
   // transform
   var i
-  var keys = ['webkitTransform', '-webkit-transform', 'webkit-transform', 'transform']
+  var keys = [
+    'webkitTransform',
+    '-webkit-transform',
+    'webkit-transform',
+    'transform'
+  ]
 
   for (i = 0; i < keys.length; i++) {
     if (docEle.style[keys[i]] !== undefined) {
@@ -782,7 +801,8 @@ function getCss (docEle) {
   css.transitionDuration = (isWebkit ? '-webkit-' : '') + 'transition-duration'
 
   // transition timing function
-  css.transitionTimingFn = (isWebkit ? '-webkit-' : '') + 'transition-timing-function'
+  css.transitionTimingFn =
+    (isWebkit ? '-webkit-' : '') + 'transition-timing-function'
 
   // transition delay
   css.transitionDelay = (isWebkit ? '-webkit-' : '') + 'transition-delay'
@@ -794,7 +814,7 @@ function getCss (docEle) {
   css.transformOrigin = (isWebkit ? '-webkit-' : '') + 'transform-origin'
 
   // animation delay
-  css.animationDelay = (isWebkit ? 'webkitAnimationDelay' : 'animationDelay')
+  css.animationDelay = isWebkit ? 'webkitAnimationDelay' : 'animationDelay'
 
   return css
 }
@@ -833,7 +853,7 @@ export class QueryParams {
    * @param {string} url
    * */
   constructor (url = window.location.href) {
-    this.data = {}// {[key: string]: any}
+    this.data = {} // {[key: string]: any}
     this.parseUrl(url)
   }
 
@@ -889,7 +909,9 @@ export function setupPlatform (config = {}) {
   }
 
   // 更新 IOS/Android下的subsets属性, 可能存在subsets中未定义的平台
-  let keys = Object.keys(_finalConf).filter((item) => { return (item !== 'mobile' && item !== 'android' && item !== 'ios')})
+  let keys = Object.keys(_finalConf).filter(item => {
+    return item !== 'mobile' && item !== 'android' && item !== 'ios'
+  })
   _finalConf.android.subsets = keys
   _finalConf.ios.subsets = keys
 

@@ -263,7 +263,6 @@
             if (isPresent((this)[key + 'Values'])) {
               // user provide exact values for this date part
               values = convertToArrayOfNumbers((this)[key + 'Values'], key)
-
             } else {
               // use the default date part values
               values = dateValueRange(format, this.theMin, this.theMax)
@@ -467,7 +466,6 @@
         if (isBlank(this.theMin)) {
           if (isPresent(this.yearValues)) {
             this.theMin = Math.min.apply(Math, convertToArrayOfNumbers(this.yearValues, 'year'))
-
           } else {
             this.theMin = (todaysYear - 100).toString()
           }
@@ -476,7 +474,6 @@
         if (isBlank(this.theMax)) {
           if (isPresent(this.yearValues)) {
             this.theMax = Math.max.apply(Math, convertToArrayOfNumbers(this.yearValues, 'year'))
-
           } else {
             this.theMax = todaysYear.toString()
           }

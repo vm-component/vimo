@@ -140,7 +140,7 @@
    * */
   import Vue from 'vue'
   import Backdrop from '../backdrop'
-  import { urlChange, parsePxUnit, isObject, isFunction } from '../util/util'
+  import { urlChange, parsePxUnit } from '../util/util'
 
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12

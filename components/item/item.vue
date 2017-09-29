@@ -105,7 +105,7 @@
    *
    * */
   import ItemMixin from './item-mixin.vue'
-  import { isTrueProperty, isPresent, isString } from '../util/util'
+  import { isPresent, isString } from '../util/util'
 
   export default {
     mixins: [ItemMixin],

@@ -97,7 +97,10 @@ function ToastFactory () {
   let propsData = {}
 
   // get el position
-  let _insertPosition = document.getElementById(DOM_INSERT_POSITION) || document.getElementById(DOM_INSERT_POSITION_FALLBACK) || document.body
+  let _insertPosition =
+    document.getElementById(DOM_INSERT_POSITION) ||
+    document.getElementById(DOM_INSERT_POSITION_FALLBACK) ||
+    document.body
   let el = _insertPosition.appendChild(document.createElement('div'))
 
   if (_args.length === 2) {
@@ -117,23 +120,35 @@ function ToastFactory () {
     propsData = _args[0]
   }
 
-  let h5Toast = new Toast({el, propsData: propsData})
+  let h5Toast = new Toast({ el, propsData: propsData })
   return {
     present () {
-      return new Promise((resolve) => {
-        let isHandled = !propsData.isH5 && window.VM && window.VM.platform && window.VM.platform.showToast && window.VM.platform.showToast(propsData)
+      return new Promise(resolve => {
+        let isHandled =
+          !propsData.isH5 &&
+          window.VM &&
+          window.VM.platform &&
+          window.VM.platform.showToast &&
+          window.VM.platform.showToast(propsData)
         if (isHandled) {
           resolve()
         } else {
           console.debug('Toast:present 组件使用H5模式!')
-          h5Toast.present().then(() => { resolve() })
+          h5Toast.present().then(() => {
+            resolve()
+          })
         }
       })
     },
     dismiss () {
-      return new Promise((resolve) => {
-        window.VM && window.VM.platform && window.VM.platform.hideToast && window.VM.platform.hideToast()
-        h5Toast.dismiss().then(() => { resolve() })
+      return new Promise(resolve => {
+        window.VM &&
+          window.VM.platform &&
+          window.VM.platform.hideToast &&
+          window.VM.platform.hideToast()
+        h5Toast.dismiss().then(() => {
+          resolve()
+        })
       })
     }
   }

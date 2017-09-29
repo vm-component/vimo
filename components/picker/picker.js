@@ -7,8 +7,10 @@ const Picker = Vue.extend(PickerComponent)
 // ---------- functions ----------
 
 function PickerFactory (options) {
-  let el = getInsertPosition('sheetPortal').appendChild(document.createElement('div'))
-  return new Picker({el, propsData: options})
+  let el = getInsertPosition('sheetPortal').appendChild(
+    document.createElement('div')
+  )
+  return new Picker({ el, propsData: options })
 }
 
 function getPresentDismissIns (Factory) {
@@ -28,8 +30,13 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     present (options) {
-      return new Promise((resolve) => {
-        let isHandled = !options.isH5 && window.VM && window.VM.platform && window.VM.platform.picker && window.VM.platform.picker(options)
+      return new Promise(resolve => {
+        let isHandled =
+          !options.isH5 &&
+          window.VM &&
+          window.VM.platform &&
+          window.VM.platform.picker &&
+          window.VM.platform.picker(options)
         if (isHandled) {
           resolve()
         } else {
@@ -38,12 +45,16 @@ function getPresentDismissIns (Factory) {
             this._i.dismiss().then(() => {
               this._i = Factory(options)
               // 自动开启
-              this._i.present().then(() => { resolve() })
+              this._i.present().then(() => {
+                resolve()
+              })
             })
           } else {
             this._i = Factory(options)
             // 自动开启
-            this._i.present().then(() => { resolve() })
+            this._i.present().then(() => {
+              resolve()
+            })
           }
         }
       })
@@ -55,9 +66,11 @@ function getPresentDismissIns (Factory) {
      * @private
      * */
     dismiss () {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         if (this._i && this._i.isActive) {
-          this._i.dismiss().then(() => { resolve() })
+          this._i.dismiss().then(() => {
+            resolve()
+          })
         } else {
           resolve()
         }

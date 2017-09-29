@@ -273,34 +273,91 @@ export function getProps () {
  * @private
  * */
 export function getEvents (slideComponent) {
-  console.assert(slideComponent, 'The method of getEvents() need params of slideComponent!')
+  console.assert(
+    slideComponent,
+    'The method of getEvents() need params of slideComponent!'
+  )
   return {
-    onInit (swiper) { slideComponent.$emit('onInit', swiper) },
-    onDestroy (swiper) { slideComponent.$emit('onDestroy', swiper) },
-    onBeforeResize (swiper) { slideComponent.$emit('onBeforeResize', swiper) },
-    onAfterResize (swiper) { slideComponent.$emit('onAfterResize', swiper) },
-    onClick (swiper, e) { slideComponent.$emit('onClick', swiper, e) },
-    onTap (swiper, e) { slideComponent.$emit('onTap', swiper, e) },
-    onDoubleTap (swiper, e) { slideComponent.$emit('onDoubleTap', swiper, e) },
-    onSliderMove (swiper, e) { slideComponent.$emit('onSliderMove', swiper, e) },
-    onSlideChangeStart (swiper) { slideComponent.$emit('onSlideChangeStart', swiper) },
-    onSlideChangeEnd (swiper) { slideComponent.$emit('onSlideChangeEnd', swiper) },
-    onTransitionStart (swiper) { slideComponent.$emit('onTransitionStart', swiper) },
-    onTransitionEnd (swiper) { slideComponent.$emit('onTransitionEnd', swiper) },
-    onImagesReady (swiper) { slideComponent.$emit('onImagesReady', swiper) },
-    onProgress (swiper, progress) { slideComponent.$emit('onProgress', swiper, progress) },
-    onTouchStart (swiper, e) { slideComponent.$emit('onTouchStart', swiper, e) },
-    onTouchMove (swiper, e) { slideComponent.$emit('onTouchMove', swiper, e) },
-    onTouchMoveOpposite (swiper, e) { slideComponent.$emit('onTouchMoveOpposite', swiper, e) },
-    onTouchEnd (swiper, e) { slideComponent.$emit('onTouchEnd', swiper, e) },
-    onReachBeginning (swiper) { slideComponent.$emit('onReachBeginning', swiper) },
-    onReachEnd (swiper) { slideComponent.$emit('onReachEnd', swiper) },
-    onSetTransition (swiper, duration) { slideComponent.$emit('onSetTransition', swiper, duration) },
-    onSetTranslate (swiper, translate) { slideComponent.$emit('onSetTranslate', swiper, translate) },
-    onAutoplayStart (swiper) { slideComponent.$emit('onAutoplayStart', swiper) },
-    onAutoplayStop (swiper) { slideComponent.$emit('onAutoplayStop', swiper) },
-    onLazyImageLoad (swiper, slide, image) { slideComponent.$emit('onLazyImageLoad', swiper, slide, image) },
-    onLazyImageReady (swiper, slide, image) { slideComponent.$emit('onLazyImageReady', swiper, slide, image) },
-    onKeyPress (swiper, keyCode) { slideComponent.$emit('onKeyPress', swiper, keyCode) }
+    onInit (swiper) {
+      slideComponent.$emit('onInit', swiper)
+    },
+    onDestroy (swiper) {
+      slideComponent.$emit('onDestroy', swiper)
+    },
+    onBeforeResize (swiper) {
+      slideComponent.$emit('onBeforeResize', swiper)
+    },
+    onAfterResize (swiper) {
+      slideComponent.$emit('onAfterResize', swiper)
+    },
+    onClick (swiper, e) {
+      slideComponent.$emit('onClick', swiper, e)
+    },
+    onTap (swiper, e) {
+      slideComponent.$emit('onTap', swiper, e)
+    },
+    onDoubleTap (swiper, e) {
+      slideComponent.$emit('onDoubleTap', swiper, e)
+    },
+    onSliderMove (swiper, e) {
+      slideComponent.$emit('onSliderMove', swiper, e)
+    },
+    onSlideChangeStart (swiper) {
+      slideComponent.$emit('onSlideChangeStart', swiper)
+    },
+    onSlideChangeEnd (swiper) {
+      slideComponent.$emit('onSlideChangeEnd', swiper)
+    },
+    onTransitionStart (swiper) {
+      slideComponent.$emit('onTransitionStart', swiper)
+    },
+    onTransitionEnd (swiper) {
+      slideComponent.$emit('onTransitionEnd', swiper)
+    },
+    onImagesReady (swiper) {
+      slideComponent.$emit('onImagesReady', swiper)
+    },
+    onProgress (swiper, progress) {
+      slideComponent.$emit('onProgress', swiper, progress)
+    },
+    onTouchStart (swiper, e) {
+      slideComponent.$emit('onTouchStart', swiper, e)
+    },
+    onTouchMove (swiper, e) {
+      slideComponent.$emit('onTouchMove', swiper, e)
+    },
+    onTouchMoveOpposite (swiper, e) {
+      slideComponent.$emit('onTouchMoveOpposite', swiper, e)
+    },
+    onTouchEnd (swiper, e) {
+      slideComponent.$emit('onTouchEnd', swiper, e)
+    },
+    onReachBeginning (swiper) {
+      slideComponent.$emit('onReachBeginning', swiper)
+    },
+    onReachEnd (swiper) {
+      slideComponent.$emit('onReachEnd', swiper)
+    },
+    onSetTransition (swiper, duration) {
+      slideComponent.$emit('onSetTransition', swiper, duration)
+    },
+    onSetTranslate (swiper, translate) {
+      slideComponent.$emit('onSetTranslate', swiper, translate)
+    },
+    onAutoplayStart (swiper) {
+      slideComponent.$emit('onAutoplayStart', swiper)
+    },
+    onAutoplayStop (swiper) {
+      slideComponent.$emit('onAutoplayStop', swiper)
+    },
+    onLazyImageLoad (swiper, slide, image) {
+      slideComponent.$emit('onLazyImageLoad', swiper, slide, image)
+    },
+    onLazyImageReady (swiper, slide, image) {
+      slideComponent.$emit('onLazyImageReady', swiper, slide, image)
+    },
+    onKeyPress (swiper, keyCode) {
+      slideComponent.$emit('onKeyPress', swiper, keyCode)
+    }
   }
 }

@@ -64,7 +64,9 @@ let isModalEnable = true // 当modal处于打开过程和关闭过程中时为fa
  */
 function ModalFactory (options) {
   return new Modal({
-    el: getInsertPosition('modalPortal').appendChild(document.createElement('div')),
+    el: getInsertPosition('modalPortal').appendChild(
+      document.createElement('div')
+    ),
     propsData: options
   })
 }
@@ -101,35 +103,49 @@ function present (options = {}) {
   let presentPromise = modalInstance.present()
 
   // 增加浏览器历史记录
-  window.history.pushState({
-    id: new Date().getTime(),
-    name: options.name || `Modal-${openIndex++}`
-  }, '', '')
+  window.history.pushState(
+    {
+      id: new Date().getTime(),
+      name: options.name || `Modal-${openIndex++}`
+    },
+    '',
+    ''
+  )
 
   // record
   modalArr.push(modalInstance)
 
   // 如果是第一次进入则监听url变化
   if (unRegisterUrlChange.length === 0) {
-    registerListener(window, 'popstate', function () {
-      if (isModalEnable) {
-        // 总是关闭最后一次创建的modal
-        let _lastModal = modalArr.pop()
-        _lastModal && _lastModal.dismiss()
-        // 如果是最后一个则解绑urlChange
-        if (modalArr.length === 0) {
-          unregisterAllListener()
-          // 通知父页面更新navbar
-          if (window.VM) {
-            window.VM.$navbar && window.VM.$navbar.initWhenInWebview && window.VM.$navbar.initWhenInWebview()
-            window.VM.$title && window.VM.$title.init && window.VM.$title.init()
+    registerListener(
+      window,
+      'popstate',
+      function () {
+        if (isModalEnable) {
+          // 总是关闭最后一次创建的modal
+          let _lastModal = modalArr.pop()
+          _lastModal && _lastModal.dismiss()
+          // 如果是最后一个则解绑urlChange
+          if (modalArr.length === 0) {
+            unregisterAllListener()
+            // 通知父页面更新navbar
+            if (window.VM) {
+              window.VM.$navbar &&
+                window.VM.$navbar.initWhenInWebview &&
+                window.VM.$navbar.initWhenInWebview()
+              window.VM.$title &&
+                window.VM.$title.init &&
+                window.VM.$title.init()
+            }
+          } else {
+            // 取出倒数第二个modal, 将nav更新为他的nav
+            refreshNavbar(modalArr)
           }
-        } else {
-          // 取出倒数第二个modal, 将nav更新为他的nav
-          refreshNavbar(modalArr)
         }
-      }
-    }, {}, unRegisterUrlChange)
+      },
+      {},
+      unRegisterUrlChange
+    )
   }
 
   presentPromise.then(() => {
@@ -148,7 +164,7 @@ function present (options = {}) {
 function dismiss (dataBack) {
   isModalEnable = false
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     // 总是关闭最后一次创建的modal
     let lastModalInstance = modalArr.pop()
     // 如果是最后一个则解绑urlChange
@@ -156,7 +172,9 @@ function dismiss (dataBack) {
       unregisterAllListener()
       // 通知父页面更新navbar
       if (window.VM) {
-        window.VM.$navbar && window.VM.$navbar.initWhenInWebview && window.VM.$navbar.initWhenInWebview()
+        window.VM.$navbar &&
+          window.VM.$navbar.initWhenInWebview &&
+          window.VM.$navbar.initWhenInWebview()
         window.VM.$title && window.VM.$title.init && window.VM.$title.init()
       }
     } else {
@@ -174,7 +192,11 @@ function dismiss (dataBack) {
 }
 
 function componentIsMatch (component, name) {
-  return component && component.$options && component.$options._componentTag.toString().toLowerCase() === name
+  return (
+    component &&
+    component.$options &&
+    component.$options._componentTag.toString().toLowerCase() === name
+  )
 }
 
 function refreshNavbar (modalArr) {
@@ -188,7 +210,11 @@ function refreshNavbar (modalArr) {
         let NavbarComponent = HeaderComponent.$children[0]
         if (componentIsMatch(NavbarComponent, 'navbar')) {
           NavbarComponent.initWhenInWebview()
-          for (let i = 0, len = NavbarComponent.$children.length; len > i; i++) {
+          for (
+            let i = 0, len = NavbarComponent.$children.length;
+            len > i;
+            i++
+          ) {
             if (componentIsMatch(NavbarComponent.$children[i], 'title')) {
               let TitleComponent = NavbarComponent.$children[i]
               TitleComponent.init()
@@ -203,7 +229,7 @@ function refreshNavbar (modalArr) {
 
 // 基础全部监听
 function unregisterAllListener () {
-  unRegisterUrlChange.forEach((item) => item && item())
+  unRegisterUrlChange.forEach(item => item && item())
   unRegisterUrlChange = []
 }
 

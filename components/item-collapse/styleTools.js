@@ -5,7 +5,11 @@ import { isObject, isString } from '../util/util'
  * @private
  * */
 export function getStyle (el, styleName) {
-  return el.style[styleName] ? el.style[styleName] : el.currentStyle ? el.currentStyle[styleName] : window.getComputedStyle(el, null)[styleName]
+  return el.style[styleName]
+    ? el.style[styleName]
+    : el.currentStyle
+      ? el.currentStyle[styleName]
+      : window.getComputedStyle(el, null)[styleName]
 }
 
 /**
@@ -13,7 +17,7 @@ export function getStyle (el, styleName) {
  * @private
  * */
 export function getStyleNum (el, styleName) {
-  return parseInt(getStyle(el, styleName).replace(/px|pt|em/ig, ''))
+  return parseInt(getStyle(el, styleName).replace(/px|pt|em/gi, ''))
 }
 
 /**
@@ -25,7 +29,10 @@ export function setStyle (el, obj) {
     for (let s in obj) {
       let cssArrt = s.split('-')
       for (let i = 1; i < cssArrt.length; i++) {
-        cssArrt[i] = cssArrt[i].replace(cssArrt[i].charAt(0), cssArrt[i].charAt(0).toUpperCase())
+        cssArrt[i] = cssArrt[i].replace(
+          cssArrt[i].charAt(0),
+          cssArrt[i].charAt(0).toUpperCase()
+        )
       }
       let cssArrtnew = cssArrt.join('')
       el.style[cssArrtnew] = obj[s]
@@ -46,7 +53,7 @@ export function getSize (el) {
       height: el.offsetHeight || getStyleNum(el, 'height')
     }
   }
-  let addCss = {display: '', position: 'absolute', visibility: 'hidden'}
+  let addCss = { display: '', position: 'absolute', visibility: 'hidden' }
   let oldCss = {}
   for (let i in addCss) {
     oldCss[i] = getStyle(el, i)
@@ -54,8 +61,9 @@ export function getSize (el) {
   setStyle(el, addCss)
   let width = el.clientWidth || getStyleNum(el, 'width')
   let height = el.clientHeight || getStyleNum(el, 'height')
+  // eslint-disable-next-line no-unused-vars
   for (let i in oldCss) {
     setStyle(el, oldCss)
   }
-  return {width, height}
+  return { width, height }
 }

@@ -87,9 +87,9 @@
  * showIndicatorWhenPageChange | true | true | 转场是否显示Indicator
  **/
 
-const isFunction = (val) => typeof val === 'function'
-const isDefined = (val) => typeof val !== 'undefined'
-const isObject = (val) => typeof val === 'object'
+const isFunction = val => typeof val === 'function'
+const isDefined = val => typeof val !== 'undefined'
+const isObject = val => typeof val === 'object'
 const isArray = Array.isArray
 // 通过url配置App的前后缀, 例如htttp://xx.xx.com?vmMode=ios
 const URL_CONFIG_PREFIX = 'vm'
@@ -114,7 +114,8 @@ export class Config {
    * @private
    */
   init (config, plt) {
-    this._settings = config && isObject(config) && !isArray(config) ? config : {}
+    this._settings =
+      config && isObject(config) && !isArray(config) ? config : {}
     this.plt = plt
   }
 
@@ -185,7 +186,11 @@ export class Config {
       // 缓存查询的的结果
       // 返回优先级: 用户自在config.platforms中定义 >  用户在config中定义   > platform中定义
       // eg: config[platforms][platformName][key] > config[key]  > this.plt._registry[platformName].setting[key]
-      this._cache[key] = isDefined(userPlatformValue) ? userPlatformValue : isDefined(userDefaultValue) ? userDefaultValue : isDefined(platformValue) ? platformValue : null
+      this._cache[key] = isDefined(userPlatformValue)
+        ? userPlatformValue
+        : isDefined(userDefaultValue)
+          ? userDefaultValue
+          : isDefined(platformValue) ? platformValue : null
     }
 
     var rtnVal = this._cache[key]
@@ -194,7 +199,7 @@ export class Config {
       rtnVal = rtnVal(platform)
     }
 
-    return (rtnVal !== null ? rtnVal : fallbackValue)
+    return rtnVal !== null ? rtnVal : fallbackValue
   }
 
   /**

@@ -172,7 +172,6 @@
           } else {
             this.addElementClass(`${className}-${color}`)
           }
-
         }
       },
 
