@@ -34,11 +34,10 @@
     "pub": "npm run pub:lib && npm run pub:dist",
     "build": "npm run demo:build && npm run docs:build && npm run pub",
     "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "lint": "eslint --fix --ext .js,.vue components test/unit/specs test/e2e/specs",
+    "lint": "eslint --fix --ext .js,.vue components examples/src test/unit/specs",
     "rullup-test": "rollup -c build/rollup.umd.conf.js",
     "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
-    "prepush": "npm run lint",
     "ci-demo-release": "npm run demo:build && node build/demo-publish.js",
     "ci-docs-release": "npm run docs:build && node build/docs-publish.js",
     "ci-npm-release": "npm run pub && npm publish",
@@ -46,7 +45,8 @@
     "ci-report-coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "lint-staged": {
-    "{src,test}/**/*.ts": [
+    "{components,test}/**/*.{js,vue}": [
+      "npm run lint"
     ]
   },
   "config": {
@@ -173,6 +173,7 @@
     "sinon": "^3.0.0",
     "sinon-chai": "^2.8.0",
     "standard": "^10.0.2",
+    "standard-version": "^4.2.0",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.7",
     "validate-commit-msg": "^2.14.0",
