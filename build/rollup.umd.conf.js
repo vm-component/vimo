@@ -6,22 +6,26 @@ import sourceMaps from 'rollup-plugin-sourcemaps'
 // import babel from 'rollup-plugin-babel'
 import buble from 'rollup-plugin-buble'
 // import scss from 'rollup-plugin-scss'
-import fs from 'fs'
 // import livereload from 'rollup-plugin-livereload'
 // import serve from 'rollup-plugin-serve'
 
 const config = {
   input: path.resolve(__dirname, '../components/action-sheet/index.js'),
-  output: [{
-    file: path.resolve(__dirname, '../umd/action-sheet/action-sheet.js'),
-    format: 'es',
-    name: 'ActionSheet'
-  }],
+  output: [
+    {
+      file: path.resolve(__dirname, '../dist/action-sheet/action-sheet.js'),
+      format: 'umd',
+      name: 'ActionSheet'
+    }, {
+      file: path.resolve(__dirname, '../es/action-sheet/action-sheet.js'),
+      format: 'es',
+      name: 'ActionSheet'
+    }
+  ],
   sourcemap: true,
   external: [
     'vue',
-    'Vue',
-    'Backdrop'
+    'Vue'
   ],
   // 定义全局变量
   globals: {
@@ -31,33 +35,12 @@ const config = {
     resolve(),
     commonjs(),
     sourceMaps(),
-    // babel({
-    //   exclude: 'node_modules/**' // 仅仅转译我们的源码
-    // }),
     vue({
-      css (style, styles, compiler) {
-        // console.log('------style------')
-        // console.log(style)
-
-        fs.writeFileSync(path.resolve(__dirname, '../umd/action-sheet/bundle.css'), style)
-        let codes = []
-        codes = styles.map(function (style) {
-
-          console.log('------style.code------')
-          console.log(style.code)
-
-          return style.code
-        })
-
-        // fs.writeFileSync(path.resolve(__dirname, '../umd/action-sheet/bundle.less'), styles.map(style =>
-        // style.code).concat(' '))
-      }
+      css: true
     }),
     buble({
       exclude: 'node_modules/**' // 仅仅转译我们的源码
     })
-    // scss(),
-
   ]
 }
 
