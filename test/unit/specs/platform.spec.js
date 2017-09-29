@@ -65,5 +65,4 @@ describe('Test platform.js with mock config', () => {
     expect(platform.platforms().toString())
     .to.equal('mobile,ios,alipay')
   })
-
 })

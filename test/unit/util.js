@@ -1,12 +1,11 @@
-import Vue from 'vue'
-
+import Vue from "vue"
 
 let id = 0
 
-const createElm = function () {
-  const elm = document.createElement('div')
+const createElm = function() {
+  const elm = document.createElement("div")
 
-  elm.id = 'app' + ++id
+  elm.id = "app" + ++id
   document.body.appendChild(elm)
 
   return elm
@@ -16,10 +15,8 @@ const createElm = function () {
  * 回收 vm
  * @param  {Object} vm
  */
-exports.destroyVM = function (vm) {
-  vm.$el &&
-  vm.$el.parentNode &&
-  vm.$el.parentNode.removeChild(vm.$el)
+exports.destroyVM = function(vm) {
+  vm.$el && vm.$el.parentNode && vm.$el.parentNode.removeChild(vm.$el)
 }
 
 /**
@@ -28,9 +25,9 @@ exports.destroyVM = function (vm) {
  * @param  {Boolean=false} mounted 是否添加到 DOM 上
  * @return {Object} vm
  */
-exports.createVue = function (Compo, mounted = false) {
-  if (Object.prototype.toString.call(Compo) === '[object String]') {
-    Compo = {template: Compo}
+exports.createVue = function(Compo, mounted = false) {
+  if (Object.prototype.toString.call(Compo) === "[object String]") {
+    Compo = { template: Compo }
   }
   return new Vue(Compo).$mount(mounted === false ? null : createElm())
 }
@@ -43,14 +40,14 @@ exports.createVue = function (Compo, mounted = false) {
  * @param  {Boolean=false} mounted  - 是否添加到 DOM 上
  * @return {Object} vm
  */
-exports.createTest = function (Compo, propsData = {}, mounted = false) {
+exports.createTest = function(Compo, propsData = {}, mounted = false) {
   if (propsData === true || propsData === false) {
     mounted = propsData
     propsData = {}
   }
   const elm = createElm()
   const Ctor = Vue.extend(Compo)
-  return new Ctor({propsData}).$mount(mounted === false ? null : elm)
+  return new Ctor({ propsData }).$mount(mounted === false ? null : elm)
 }
 
 /**
@@ -60,22 +57,20 @@ exports.createTest = function (Compo, propsData = {}, mounted = false) {
  * @param  {String} name
  * @param  {*} opts
  */
-exports.triggerEvent = function (elm, name, ...opts) {
+exports.triggerEvent = function(elm, name, ...opts) {
   let eventName
 
   if (/^mouse|click/.test(name)) {
-    eventName = 'MouseEvents'
+    eventName = "MouseEvents"
   } else if (/^key/.test(name)) {
-    eventName = 'KeyboardEvent'
+    eventName = "KeyboardEvent"
   } else {
-    eventName = 'HTMLEvents'
+    eventName = "HTMLEvents"
   }
   const evt = document.createEvent(eventName)
 
   evt.initEvent(name, ...opts)
-  elm.dispatchEvent
-    ? elm.dispatchEvent(evt)
-    : elm.fireEvent('on' + name, evt)
+  elm.dispatchEvent ? elm.dispatchEvent(evt) : elm.fireEvent("on" + name, evt)
 
   return elm
 }
@@ -85,9 +80,9 @@ exports.triggerEvent = function (elm, name, ...opts) {
  * @param {Element} elm
  * @param {*} opts
  */
-exports.triggerClick = function (elm, ...opts) {
-  exports.triggerEvent(elm, 'mousedown', ...opts)
-  exports.triggerEvent(elm, 'mouseup', ...opts)
+exports.triggerClick = function(elm, ...opts) {
+  exports.triggerEvent(elm, "mousedown", ...opts)
+  exports.triggerEvent(elm, "mouseup", ...opts)
 
   return elm
 }
