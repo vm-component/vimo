@@ -36,6 +36,7 @@
     "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "lint": "eslint --fix --ext .js,.vue components test/unit/specs test/e2e/specs",
     "rullup-test": "rollup -c build/rollup.umd.conf.js",
+    "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
     "prepush": "npm run lint",
     "ci-demo-release": "npm run demo:build && node build/demo-publish.js",
@@ -43,6 +44,16 @@
     "ci-npm-release": "npm run pub && npm publish",
     "ci-github-release": "node build/github-release.js",
     "ci-report-coverage": "cat ./coverage/lcov.info | coveralls"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+    ]
+  },
+  "config": {
+    "validate-commit-msg": {
+      "types": "conventional-commit-types",
+      "helpMessage": "We use Conventional Commits, for more information here: https://conventionalcommits.org/"
+    }
   },
   "repository": {
     "type": "git",
