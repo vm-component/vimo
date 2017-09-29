@@ -15,19 +15,20 @@ var browserSync = bs.create()
 var reload = browserSync.reload
 var jsdocConfig = require('./config')
 var plumber = require('gulp-plumber')
-
+var chalk = require('chalk')
 var base = path.resolve(__dirname, '../../')
+var docPath = `${base}/docs`
 
 // clean
 // gulp.task('clean-doc', del.bind(['../docs/*'], {force: true}))
 gulp.task('clean', function (cb) {
-  return del([`${base}/docs`], {force: true})
+  return del([docPath], {force: true})
 })
 
 // 移动资源
 gulp.task('resource', function () {
   return gulp.src('./asset/**/**/*.*')
-  .pipe(gulp.dest(`${base}/docs/asset`))
+  .pipe(gulp.dest(`${docPath}/asset`))
 })
 
 // jsdoc
@@ -44,7 +45,7 @@ gulp.task('default', function () {
       notify: false,
       port: 8012,
       server: {
-        baseDir: [`${base}/docs`],
+        baseDir: [`${docPath}`],
         routes: {}
       }
     })
@@ -60,24 +61,11 @@ gulp.task('default', function () {
   })
 })
 
-// transfer demo
-gulp.task('transfer-demo', function () {
-  gulp.src([`${base}/examples/dist/**/**/*.*`])
-  .pipe(gulp.dest(`${base}/docs/demo`))
-})
 
 // 生成文档
-gulp.task('build', function (cb) {
-  runSequence(['clean'], ['make'], ['transfer-demo'], cb)
+gulp.task('build', function () {
+  console.log(chalk.cyan('  Build Docs start...\n'))
+  runSequence(['clean'], ['make'], function () {
+    console.log(chalk.cyan('  Build Docs complete.\n'))
+  })
 })
-
-// // test
-// gulp.task('docs', function () {
-//   const fs = require('fs-then-native')
-//   const jsdoc2md = require('jsdoc-to-markdown')
-//   return jsdoc2md.render({
-//     files: `${base}/components/action-sheet/*.*`,
-//     configure: './conf.json'
-//   })
-//   .then(output => fs.writeFile(`${base}/components/action-sheet/api.md`, output))
-// })
