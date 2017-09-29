@@ -46,8 +46,8 @@
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
-      "npm run lint",
-      "git add"
+      "sudo npm run lint",
+      "sudo git add"
     ]
   },
   "repository": {
