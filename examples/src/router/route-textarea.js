@@ -26,5 +26,5 @@ export default [
     component (resolve) {
       require(['@/pages/textarea/valid.vue'], resolve)
     }
-  },
+  }
 ]

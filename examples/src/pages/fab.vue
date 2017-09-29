@@ -156,12 +156,12 @@
   export default{
     name: 'name',
     methods: {
-      clickHandler(value){
+      clickHandler (value) {
         for (let key in this.$refs) {
           this.$refs[key].close()
         }
         console.debug('当前点击的是: ' + value)
       }
-    },
+    }
   }
 </script>

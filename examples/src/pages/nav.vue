@@ -71,9 +71,7 @@
     methods: {},
     created () {},
     mounted () {
-
       this.$config.get('pageTransition')
-
     },
     activated () {},
     components: {}

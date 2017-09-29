@@ -52,7 +52,6 @@
     destroyed () {}
   }
 
-
 </script>
 <style scoped lang="less">
 

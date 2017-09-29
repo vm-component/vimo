@@ -29,8 +29,6 @@
 
 </style>
 <script type="text/javascript">
-  import { isArray, isFunction, isNumber, isPresent, isString } from '../../../../components/util/util'
-
   export default {
     name: 'name',
     data () {
@@ -45,7 +43,7 @@
     methods: {
       simpleColumns () {
         let options = []
-        for (let i = 0; 30 > i; i++) {
+        for (let i = 0; i < 30; i++) {
           let val = '1'
           for (let j = 0; i > j; j++) {
             val += 1
@@ -102,7 +100,6 @@
         let selectedIndex = column.indexOf(column.filter((item) => {
           return this.smoothie.toString().toLowerCase().indexOf(item.text.toString().toLowerCase()) > -1
         })[0])
-
 
         let options = {
           buttons: [

@@ -45,6 +45,6 @@
 //          this.tabsComponent.select(0)
 //        },3000)
       }
-    },
+    }
   }
 </script>

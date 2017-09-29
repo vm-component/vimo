@@ -72,6 +72,6 @@
       onClickHandler () {
         alert('click click')
       }
-    },
+    }
   }
 </script>

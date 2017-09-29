@@ -150,6 +150,6 @@
         let el = document.getElementById('city-' + item.name)
         item.top = el.offsetTop + 1
       })
-    },
+    }
   }
 </script>

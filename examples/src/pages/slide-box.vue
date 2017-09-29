@@ -60,7 +60,7 @@
         setTimeout(() => {
           ins.complete()
         }, 1000)
-      },// 向右滑动等待1s后验证失败
+      }, // 向右滑动等待1s后验证失败
       onSlideEndHandler2 (ins) {
         ins.checking()
         setTimeout(() => {

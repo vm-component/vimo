@@ -22,11 +22,6 @@ let routes = [
     component: require('@/pages/index.vue')
   },
   {
-    path: '/demo',
-    name: 'demo',
-    component: require('@/pages/demo/demo.vue')
-  },
-  {
     path: '/components',
     name: 'components',
     component: require('@/pages/components.vue')

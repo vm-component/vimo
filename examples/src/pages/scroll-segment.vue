@@ -344,7 +344,6 @@
     created () {},
     mounted () {
       window.setTimeout(() => {
-
         let tmps = []
         for (let i = 0; i < 10; i++) {
           tmps.push(i)

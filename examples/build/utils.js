@@ -7,7 +7,6 @@ exports.assetsPath = function (_path) {
     ? config.build.assetsSubDirectory
     : config.dev.assetsSubDirectory
   let res = path.posix.join(assetsSubDirectory, _path)
-  console.log(res)
   return res
 }
 

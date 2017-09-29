@@ -166,6 +166,6 @@
           console.log('scrollToElement done')
         })
       }
-    },
+    }
   }
 </script>

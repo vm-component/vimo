@@ -29,7 +29,7 @@
         selectedCity: ['140000', '140100', '140106'],
         province: '山西省',
         city: '太原市',
-        district: '迎泽区',
+        district: '迎泽区'
       }
     },
     methods: {

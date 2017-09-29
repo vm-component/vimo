@@ -279,6 +279,6 @@
       this.contentEle = this.$options.$data.contentEle
       this.background = this.getColorName(this.contentEle.style.backgroundColor)
       this.setFontFamily()
-    },
+    }
   }
 </script>

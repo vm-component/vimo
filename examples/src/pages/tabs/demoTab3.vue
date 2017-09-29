@@ -51,6 +51,6 @@
     mounted () {
     },
     activated () {
-    },
+    }
   }
 </script>

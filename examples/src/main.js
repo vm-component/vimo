@@ -9,14 +9,10 @@ import VueI18n from 'vue-i18n'
 import vmGeo from 'vm-geo'
 import vmStorage from 'vm-storage'
 import router from './router'
-// 测试
 
 if (process.env.NODE_ENV === 'development') {
   Vue.config.productionTip = false
   Vue.config.silent = false
-
-  // let vmLog = require('./lib/vm-log')
-  // Vue.use(vmLog)
 } else {
   Vue.config.productionTip = true
   Vue.config.silent = true

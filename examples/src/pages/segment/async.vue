@@ -104,6 +104,6 @@
         console.debug('点击了SegmentButton按钮, 这个按钮的值: ' + val)
         this.onSelectValue = val
       }
-    },
+    }
   }
 </script>

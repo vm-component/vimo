@@ -36,6 +36,6 @@
     created () {},
     mounted () {
     },
-    activated () {},
+    activated () {}
   }
 </script>

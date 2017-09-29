@@ -19,6 +19,6 @@
 <style scoped lang="less"></style>
 <script type="text/javascript">
   export default{
-    name: 'name',
+    name: 'name'
   }
 </script>

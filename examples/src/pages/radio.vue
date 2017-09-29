@@ -112,6 +112,6 @@
 
     },
     mounted: function () {},
-    activated: function () {},
+    activated: function () {}
   }
 </script>

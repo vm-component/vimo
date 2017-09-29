@@ -44,6 +44,6 @@
     methods: {},
     created () {},
     mounted () {},
-    activated () {},
+    activated () {}
   }
 </script>

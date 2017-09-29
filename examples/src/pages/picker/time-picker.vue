@@ -183,18 +183,18 @@
     watch: {},
     computed: {},
     methods: {
-      onChange(ev) {
+      onChange (ev) {
         console.log('Changed', ev)
       },
 
-      onCancel(ev) {
+      onCancel (ev) {
         console.log('Canceled', ev)
       },
 
-      clearLeapYear() {
+      clearLeapYear () {
         this.leapYearsSummerMonths = null
       },
-      convertDate() {
+      convertDate () {
         this.convertedDate = new Date()
       }
     },

@@ -33,5 +33,5 @@ export default [
     component (resolve) {
       require(['@/pages/input/event.vue'], resolve)
     }
-  },
+  }
 ]

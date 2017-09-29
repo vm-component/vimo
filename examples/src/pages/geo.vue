@@ -275,7 +275,6 @@
       }
     },
     mounted () {
-
       console.log('this.$geo')
       console.log(this.$geo)
       this.$platform.ready().then(() => {
@@ -284,12 +283,12 @@
           this.qMapTimer = this.$geo.watchPosition('qMap', (position) => {
             this.qMapGeo = position
           })
-        });
+        })
         this.getGeolocationByaMap().then(() => {
           this.aMapTimer = this.$geo.watchPosition('aMap', (position) => {
             this.aMapGeo = position
           })
-        });
+        })
         this.getGeolocationBybMap().then(() => {})
       }, () => {})
     },

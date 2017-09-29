@@ -257,6 +257,6 @@
     mounted () {
       console.debug(this.itemSlidingComponent)
     },
-    activated () {},
+    activated () {}
   }
 </script>

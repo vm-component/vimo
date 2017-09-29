@@ -153,7 +153,7 @@
     },
     created () {},
     mounted () {
-////      console.debug(this.$log)
+// //      console.debug(this.$log)
 //      console.error('断言错误','AJAX ASSERT ERROR','./getData.js::<Function>getInfo()','12')
 //      console.assert(false, '这个值必须是String类型','AJAX ASSERT ERROR','./getData.js::<Function>getInfo()','12')
 
