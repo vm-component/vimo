@@ -8,7 +8,7 @@
 
 ## DEMO
 
-<p align="center"><img src="https://github.com/DTFE/Vimo/blob/master/examples/static/img/vimo_qrcode.png?raw=true" alt="vimo" width="200"><br><a align="center" href="/demo">https://dtfe.github.io/vimo/demo</a></p>
+<p align="center"><img src="https://github.com/DTFE/Vimo/blob/master/examples/static/img/vimo_qrcode.png?raw=true" alt="vimo" width="200"><br><a align="center" href="https://dtfe.github.io/vimo-demo">https://dtfe.github.io/vimo-demo</a></p>
 
 ## USED FOR
 
