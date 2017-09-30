@@ -14,7 +14,7 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     // browsers: ['Chrome','PhantomJS'],
     frameworks: ['mocha', 'sinon-chai'],
-    reporters: ['spec'],
+    reporters: ['spec', 'coverage'],
     files: ['./index.js'],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
@@ -27,13 +27,13 @@ module.exports = function (config) {
       mocha: {
         timeout: 50000 // set to 5000
       }
+    },
+    coverageReporter: {
+      dir: './coverage',
+      reporters: [
+        {type: 'lcov', subdir: '.'},
+        {type: 'text-summary'}
+      ]
     }
-    // coverageReporter: {
-    //   dir: './coverage',
-    //   reporters: [
-    //     {type: 'lcov', subdir: '.'},
-    //     {type: 'text-summary'}
-    //   ]
-    // }
   })
 }
