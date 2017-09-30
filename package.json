@@ -32,20 +32,27 @@
     "pub:dist": "node build/webpack.dist.conf.js",
     "pub:lib": "gulp default --gulpfile build/gulpfile.lib.js",
     "pub": "npm run pub:lib && npm run pub:dist",
-    "build": "npm run demo:build && npm run docs:build && npm run pub",
     "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "lint": "eslint --ext .js,.vue components examples/src test",
     "lint:fix": "npm run lint -- --fix",
-    "unit": "ENV=test ava",
     "rullup-test": "rollup -c build/rollup.umd.conf.js",
     "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
     "prepush": "npm run test",
+    "release": "standard-version",
     "ci-demo-release": "npm run demo:build && node build/demo-publish.js",
     "ci-docs-release": "npm run docs:build && node build/docs-publish.js",
     "ci-npm-release": "npm run pub && npm publish",
     "ci-github-release": "node build/github-release.js",
-    "ci-report-coverage": "cat ./coverage/lcov.info | coveralls"
+    "ci-report-coverage": "cat ./test/unit/coverage/lcov.info | coveralls"
+  },
+  "standard-version": {
+    "skip": {
+      "bump": true,
+      "changelog": false,
+      "commit": true,
+      "tag": true
+    }
   },
   "lint-staged": {
     "{components,test}/**/*.{js,vue}": [
@@ -65,9 +72,6 @@
   "demo": {
     "type": "git",
     "url": "git@github.com:DTFE/vimo-demo.git"
-  },
-  "peerDependencies": {
-    "vue": "^2.4.2"
   },
   "dependencies": {
     "autosize": "^3.0.20",
