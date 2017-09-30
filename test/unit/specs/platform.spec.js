@@ -1,6 +1,6 @@
 /* eslint-disable no-undef,no-unused-expressions */
 import { setupPlatform } from '../../../components/base/platform'
-
+import platformAliPayConfig from '../../../examples/src/config/platforms/platform-alipay-config'
 // alipay useragent
 const MOCK_CONFIG = {
   useragent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X)   AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30   AlipayDefined(nt:WIFI,ws:360|640|1.5) AliApp(AP/9.0.1.073001) AlipayClient/9.0.1.073001   GCanvas/1.4.2.15'
@@ -16,7 +16,7 @@ describe('Test platform.js without mock config', () => {
   })
 
   it('is()', () => {
-    expect(platform.is('mobile')).to.be.ok
+    expect(platform.is('core')).to.be.ok
   })
 
   it('ready()', () => {
@@ -27,7 +27,7 @@ describe('Test platform.js without mock config', () => {
 
   it('platforms()', () => {
     expect(platform.platforms().toString())
-    .to.include('mobile')
+    .to.include('core')
   })
 
   // setCssProps()
@@ -40,7 +40,9 @@ describe('Test platform.js without mock config', () => {
 describe('Test platform.js with mock config', () => {
   var platform
   before(() => {
-    platform = platform = setupPlatform()
+    platform = setupPlatform({
+      alipay: platformAliPayConfig
+    })
     platform.setUserAgent(MOCK_CONFIG.useragent)
     platform.init()
     platform.beforeReady()

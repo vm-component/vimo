@@ -1,7 +1,7 @@
 /* eslint-disable no-undef,no-unused-expressions */
-import '../../../dist/style.css'
+// import '../../../dist/style.css'
 import Alert from '../../../components/alert/alert.vue'
-import { mount } from '../vue-test-utils.js'
+import { mount } from 'vue-test-utils'
 import Vue from 'vue'
 
 Vue.config.devtools = false
@@ -28,7 +28,7 @@ describe('Alert', () => {
     }
     let wrapper = mount(Alert, opts)
 
-    const markup = '<div class="ion-alert alert-ios alertCssOuterMain"><div class="ion-backdrop" style="left: 0px; top: 0px; display: none;"></div> <div class="alert-wrapper" style="display: none;"><div class="alert-head"><h2 class="alert-title">Alert</h2> <!----></div> <div class="alert-message">message</div> <!----> <div class="alert-button-group"><button class="disable-hover ion-button alert-button-ios alert-button alert-button-ios-default"><span class="button-inner"><span>Confirm</span></span></button></div></div></div>'
+    const markup = '<div class="ion-alert alert-ios alertCssOuterMain"><div class="ion-backdrop" style="left: 0px; top: 0px; display: none;"></div> <div class="alert-wrapper" style="display: none;"><div class="alert-image-box"><!----></div> <div class="alert-head"><h2 class="alert-title">Alert</h2> <!----></div> <div class="alert-message">message</div> <!----> <div class="alert-button-group"><button class="disable-hover ion-button button alert-button alert-button-ios alert-button-ios-default"><span class="button-inner"><span>Confirm</span></span></button></div></div></div>'
 
     const text = 'Alert  message  Confirm'
     expect(wrapper.html()).to.equal(markup)

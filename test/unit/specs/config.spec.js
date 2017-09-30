@@ -27,7 +27,7 @@ describe('config.js', () => {
     expect(configInstance.get('urlString')).to.equal('http://www.xx.com/api/dashboard')
   })
   it('get():function', () => {
-    expect(configInstance.get('urlFunction')).to.equal('http://www.xx.com/api/mobile/dashboard')
+    expect(configInstance.get('urlFunction')).to.equal('http://www.xx.com/api/core/dashboard')
   })
   it('get():default', () => {
     expect(configInstance.get('whatever', 'here')).to.equal('here')
@@ -42,7 +42,7 @@ describe('config.js', () => {
     expect(configInstance.getNumber('numberValue')).to.equal(10)
   })
   it('set(mode, key, value)', () => {
-    configInstance.set('mobile', 'name', 'Hsiang')
+    configInstance.set('core', 'name', 'Hsiang')
     expect(configInstance.get('name')).to.equal('Hsiang')
   })
   it('set(key, value)', () => {
@@ -50,7 +50,7 @@ describe('config.js', () => {
     expect(configInstance.get('name')).to.equal('Hsiang')
   })
   it('settings(mode:{key:value})', () => {
-    configInstance.settings('mobile', {
+    configInstance.settings('core', {
       age: '10'
     })
     expect(configInstance.get('age')).to.equal('10')

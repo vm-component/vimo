@@ -1,11 +1,10 @@
 /* eslint-disable no-undef,no-unused-expressions */
-import '../../../dist/style.css'
 
-import { Button } from '../../../components/base/button'
-import { Icon } from '../../../components/icon'
+import Button from '../../../components/button'
+import Icon from '../../../components/icon'
 import 'ionicons/dist/css/ionicons.css'
 
-import { mount } from '../vue-test-utils.js'
+import { mount } from 'vue-test-utils'
 import sinon from 'sinon'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
@@ -43,7 +42,7 @@ describe('Button', () => {
       }
     })
     wrapper = mount(Button, opts)
-    const result = '<button class="disable-hover ion-button button-md button button-md-primary"><span class="button-inner"><span>ButtonTest</span></span></button>'
+    const result = '<button class="disable-hover ion-button button button button-md button-md-primary"><span class="button-inner"><span>ButtonTest</span></span></button>'
     expect(wrapper.html()).to.equal(result)
   })
 
@@ -280,7 +279,7 @@ describe('Button', () => {
       }
     })
     wrapper = mount(Button, opts)
-    expect(wrapper.hasClass('bar-button-ios')).to.equal(true)
+    expect(wrapper.hasClass('bar-button')).to.equal(true)
   })
 
   it('@props: strong', () => {
