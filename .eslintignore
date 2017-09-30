@@ -1,3 +1,9 @@
 ./build/*.js
 ./config/*.js
-./src/assets/js/*.js
+./docs/*
+./manual/*
+./node_modules/*
+./examples/src/assets/*.js
+./examples/build/*.js
+./examples/config/*.js
+./examples/static/*.js
