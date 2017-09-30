@@ -8,10 +8,10 @@
     ],
     "stage-2"
   ],
+  "comments": false,
   "plugins": [
     "transform-runtime"
   ],
-  "comments": false,
   "env": {
     "test": {
       "presets": [
