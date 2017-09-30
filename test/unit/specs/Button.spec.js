@@ -311,18 +311,21 @@ describe('Button', () => {
   })
 
   it('@slots: icon-only', () => {
-    wrapper = mount({
-      template: '<Button><Icon name="car"></Icon></Button>',
-      components: {Button, Icon}
-    }, {
+    var res = Vue.compile('<Button><Icon name="car"></Icon></Button>')
+    let Temp = {
+      components: {Button, Icon},
+      render: res.render
+    }
+    wrapper = mount(Temp, {
       attachToDocument: true
     })
     expect(wrapper.hasAttribute('icon-only', '')).to.equal(true)
   })
 
   it('@slots: icon-left', () => {
+    var res = Vue.compile('<Button><Icon name="car"></Icon>Icon</Button>')
     wrapper = mount({
-      template: '<Button><Icon name="car"></Icon>Icon</Button>',
+      render: res.render,
       components: {Button, Icon}
     }, {
       attachToDocument: true
@@ -331,8 +334,9 @@ describe('Button', () => {
   })
 
   it('@slots: icon-right', () => {
+    var res = Vue.compile('<Button>Icon<Icon name="car"></Icon></Button>')
     wrapper = mount({
-      template: '<Button>Icon<Icon name="car"></Icon></Button>',
+      render: res.render,
       components: {Button, Icon}
     }, {
       attachToDocument: true

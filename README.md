@@ -1,6 +1,11 @@
 <h1 align="center"><p align="center"><img src="https://github.com/DTFE/Vimo/blob/master/examples/static/img/vimo.png?raw=true" alt="vimo" width="200"></p><p align="center">Hello Vimo</p></h1>
 
-<p align="center"><a href="https://www.npmjs.com/package/vimo"><img src="https://img.shields.io/npm/v/vimo.svg" alt="npm version"></a><a href="https://www.npmjs.com/package/vimo"><img src="https://img.shields.io/npm/dm/vimo.svg" alt="npm downloads"></a><a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="standardjs"></a><a href="#"><img src="https://img.shields.io/github/license/DTFE/Vimo.svg" alt="liense"></a></p>
+<p align="center">
+<a href="https://www.travis-ci.org/DTFE/vimo"><img src="https://www.travis-ci.org/DTFE/vimo.svg?branch=master" alt="Build Status"></a>
+<a href="https://www.npmjs.com/package/vimo"><img src="https://img.shields.io/npm/v/vimo.svg" alt="npm version"></a><a href="https://www.npmjs.com/package/vimo"><img src="https://img.shields.io/npm/dm/vimo.svg" alt="npm downloads"></a>
+<a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="standardjs"></a>
+<a href="#"><img src="https://img.shields.io/github/license/DTFE/Vimo.svg" alt="liense"></a>
+</p>
 
 <h4 align="center"><p align="center">A H5 Platform For Hybrid</p></h4>
 
