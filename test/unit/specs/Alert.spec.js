@@ -1,12 +1,24 @@
 /* eslint-disable no-undef,no-unused-expressions */
-// import '../../../dist/style.css'
+import AlertController from '../../../components/alert/index.js'
 import Alert from '../../../components/alert/alert.vue'
 import { mount } from 'vue-test-utils'
 import Vue from 'vue'
+import vimo from '../../../components/dist'
+import APP_CONFIGS from '../../../examples/src/config/app-configs'
+import PLATFORM_CONFIGS from '../../../examples/src/config/platform-configs'
+import router from '../../../examples/src/router'
+
+Vue.use(vimo, {
+  custConf: APP_CONFIGS,
+  pltConf: PLATFORM_CONFIGS,
+  router: router
+})
+
+// AlertController
 
 Vue.config.devtools = false
 Vue.config.silent = true
-Vue.config.errorHandler = (err) => !~err.toString().indexOf('$el') && console.error(err)
+// Vue.config.errorHandler = (err) => !~err.toString().indexOf('$el') && console.error(err)
 
 describe('Alert', () => {
   it('@base: renders the correct markup', () => {
@@ -66,6 +78,31 @@ describe('Alert', () => {
       expect(wrapper.vm.isActive).to.be.ok
       return wrapper.vm.dismiss().then(() => {
         expect(wrapper.vm.isActive).to.not.be.ok
+      })
+    })
+  })
+
+  it('@action<controller>: present && dismiss', () => {
+    let opts = {
+      propsData: {
+        mode: 'ios',
+        title: 'Alert',
+        message: '收到这个通知的人希望你今天能搞定这个alert组件',
+        cssClass: 'alertCssOuterMain  ',
+        enableBackdropDismiss: true,
+        buttons: [
+          {
+            text: '确定',
+            handler: (value) => {}
+          }
+        ]
+      }
+    }
+
+    AlertController.present(opts).then(() => {
+      expect(AlertController._i.isActive).to.be.ok
+      return AlertController.dismiss().then(() => {
+        expect(AlertController._i.isActive).to.not.be.ok
       })
     })
   })
@@ -235,7 +272,7 @@ describe('Alert', () => {
       expect(wrapper.vm.isActive).to.be.ok
       expect(wrapper.vm.$el.querySelectorAll('.alert-radio-group > button').length).to.equal(4)
       expect(wrapper.vm.$el.querySelectorAll('.alert-button-group > button').length).to.equal(2)
-      wrapper.vm.$el.querySelectorAll('.alert-button-group > button')[1].click()
+      // wrapper.vm.$el.querySelectorAll('.alert-button-group > button')[1].click()
     })
   })
 })
