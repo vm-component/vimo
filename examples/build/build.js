@@ -10,7 +10,9 @@ var webpack = require('webpack')
 var config = require('../config/index')
 var webpackConfig = require('./webpack.prod.conf')
 
-console.log(chalk.cyan('  Build demo start...\n'))
+console.log(chalk.cyan('----------------------'))
+console.log(chalk.cyan('  Build demo start...'))
+console.log(chalk.cyan('----------------------'))
 
 var spinner = ora('building for production...')
 spinner.start()
@@ -20,6 +22,8 @@ rm(assetsSubDirectory, err => {
   webpack(webpackConfig, function (err) {
     spinner.stop()
     if (err) throw err
-    console.log(chalk.cyan('  Build demo complete.\n'))
+    console.log(chalk.cyan('----------------------'))
+    console.log(chalk.cyan('  Build demo complete.'))
+    console.log(chalk.cyan('----------------------'))
   })
 })

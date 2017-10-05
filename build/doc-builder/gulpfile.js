@@ -61,11 +61,14 @@ gulp.task('default', function () {
   })
 })
 
-
 // 生成文档
 gulp.task('build', function () {
-  console.log(chalk.cyan('  Build Docs start...\n'))
+  console.log(chalk.cyan('-------------------'))
+  console.log(chalk.cyan('Build Docs start...'))
+  console.log(chalk.cyan('-------------------'))
   runSequence(['clean'], ['make'], function () {
-    console.log(chalk.cyan('  Build Docs complete.\n'))
+    console.log(chalk.cyan('--------------------'))
+    console.log(chalk.cyan('Build Docs complete.'))
+    console.log(chalk.cyan('--------------------'))
   })
 })

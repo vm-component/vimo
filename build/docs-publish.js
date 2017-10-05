@@ -7,7 +7,10 @@ const {cd, exec, touch} = require('shelljs')
 const {readFileSync} = require('fs')
 
 var chalk = require('chalk')
+console.log(chalk.cyan('-----------------------------'))
 console.log(chalk.cyan('Deploying docs on gh-pages...'))
+console.log(chalk.cyan('-----------------------------'))
+
 let repoUrl
 let pkg = JSON.parse(readFileSync('package.json'))
 if (typeof pkg.repository === 'object') {
@@ -32,4 +35,7 @@ exec('git commit -m "docs(docs): update docs"')
 exec(
   `git push --force --quiet "${remoteGitStore}" master:gh-pages`
 )
+
+console.log(chalk.cyan('---------------'))
 console.log(chalk.cyan('Docs deployed!!'))
+console.log(chalk.cyan('---------------'))
