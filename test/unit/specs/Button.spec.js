@@ -1,19 +1,28 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
-import Button from '../../../components/button'
-import Icon from '../../../components/icon'
+import vimo from '../../../components/dist'
 import 'ionicons/dist/css/ionicons.css'
-
 import { mount } from 'vue-test-utils'
 import sinon from 'sinon'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
 import Vue from 'vue'
+import APP_CONFIGS from '../../../examples/src/config/app-configs'
+import PLATFORM_CONFIGS from '../../../examples/src/config/platform-configs'
+import router from '../../../examples/src/router'
 
+Vue.use(vimo, {
+  custConf: APP_CONFIGS,
+  pltConf: PLATFORM_CONFIGS,
+  router: router
+})
 Vue.config.devtools = false
 Vue.config.silent = true
 Vue.config.errorHandler = (err) => !~err.toString().indexOf('$el') && console.error(err)
 
+let Button = vimo.Button
+let Icon = vimo.Icon
+let Item = vimo.Item
 let wrapper = null
 let options = {
   propsData: {
@@ -311,9 +320,9 @@ describe('Button', () => {
   })
 
   it('@slots: icon-only', () => {
-    var res = Vue.compile('<Button><Icon name="car"></Icon></Button>')
+    var res = Vue.compile('<vm-button><Icon name="car"></Icon></vm-button>')
     let Temp = {
-      components: {Button, Icon},
+      components: {'vm-button': Button, Icon},
       render: res.render
     }
     wrapper = mount(Temp, {
@@ -323,10 +332,10 @@ describe('Button', () => {
   })
 
   it('@slots: icon-left', () => {
-    var res = Vue.compile('<Button><Icon name="car"></Icon>Icon</Button>')
+    var res = Vue.compile('<vm-button><Icon name="car"></Icon>Icon</vm-button>')
     wrapper = mount({
       render: res.render,
-      components: {Button, Icon}
+      components: {'vm-button': Button, Icon}
     }, {
       attachToDocument: true
     })
@@ -334,13 +343,24 @@ describe('Button', () => {
   })
 
   it('@slots: icon-right', () => {
-    var res = Vue.compile('<Button>Icon<Icon name="car"></Icon></Button>')
+    var res = Vue.compile('<vm-button>Icon<Icon name="car"></Icon></vm-button>')
     wrapper = mount({
       render: res.render,
-      components: {Button, Icon}
+      components: {'vm-button': Button, Icon}
     }, {
       attachToDocument: true
     })
     expect(wrapper.hasAttribute('icon-right', '')).to.equal(true)
+  })
+
+  it('@parent: Item', () => {
+    var res = Vue.compile('<Item><vm-button>Icon<Icon name="car"></Icon></vm-button></Item>')
+    wrapper = mount({
+      render: res.render,
+      components: {'vm-button': Button, Item, Icon}
+    }, {
+      attachToDocument: true
+    })
+    expect(wrapper.html().indexOf('item-button') > -1).to.equal(true)
   })
 })
