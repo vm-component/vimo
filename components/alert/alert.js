@@ -116,8 +116,6 @@ import AlertComponent from './alert.vue'
 
 const Alert = Vue.extend(AlertComponent)
 
-// ---------- functions ----------
-
 function AlertFactory (options) {
   let el = getInsertPosition('alertPortal').appendChild(
     document.createElement('div')
