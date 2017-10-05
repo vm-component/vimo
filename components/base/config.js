@@ -132,7 +132,7 @@ export class Config {
     if (!isDefined(this._cache[key])) {
       if (!isDefined(key)) {
         // eslint-disable-next-line no-throw-literal
-        throw 'config key is not defined'
+        throw new Error('config key is not defined')
       }
 
       // 如果查询的值之前查过, 则使用缓存值
