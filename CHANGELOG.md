@@ -79,3 +79,4 @@ All notable changes to this project will be documented in this file. See [standa
 ### Performance Improvements
 
 * input组件使用的正则优化基础类型 ([9de0ac5](https://github.com/DTFE/vimo/commit/9de0ac5))
+

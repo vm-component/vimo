@@ -1,29 +1,29 @@
-# Contributing to Vimo
+# Contributing
 
 很高兴你想为Vimo做出贡献，想成为贡献者，希望你能先阅读下面列出的指导手册。
 
  - [贡献者行为准则(Code of Conduct)](#coc)
- - [Question or Problem?](#question)
+ - [如何提问(Question or Problem?)](#question)
  - [Issues and Bugs](#issue)
  - [Feature Requests](#feature)
- - [Submission Guidelines](#submit)
- - [Coding Rules](#rules)
- - [Commit Message Guidelines](#commit)
- - [Signing the CLA](#cla)
+ - [提交指南(Submission Guidelines)](#submit)
+ - [代码规范(Coding Rules)](#rules)
+ - [Git提交规范(Commit Message Guidelines)](#commit)
 
-## <a name="coc"></a> 贡献则行为准则(Code of Conduct)
+
+## <a name="coc"></a> 贡献者行为准则(Code of Conduct)
 帮助我们改进Vimo？ 没问题，请先 **[同意]** [贡献者行为准则(Code of Conduct)][coc].
 
-## <a name="question"></a> 使用过程中的疑问
+## <a name="question"></a> 使用过程中的疑问(Question or Problem?)
 
-希望你在Open Issue时能针对性的提出Vimo现在的问题，而不是提出和Vimo**没直接关系**的问题，比如：
+希望你在Open Issue时能针对性的提出Vimo现在的问题，而不是提出和Vimo**没直接关系**的XX问题，比如：
 
 - vue如何使用？
 - 如何安装nodejs？
 - npm怎样安装依赖？
 - 我的项目怎么引入Vimo组件？
 
-当然，使用Vimo之前希望你能充分了解Vimo的特点并且大致阅读了[文档]()和[FAQ]()。如果问题依旧存在，建议你先在[Stack Overflow](https://stackoverflow.com)、Google、Baidu、Github等网站查找下问题，这样会节省你我的时间。同时，你提出这些XX问题我会关闭的。
+当然，使用Vimo之前希望你能充分了解Vimo的特点并且大致阅读了[文档]()和[FAQ]()。如果类似上述的问题依旧存在，建议你先在[Stack Overflow](https://stackoverflow.com)、Google、Baidu、Github等网站查找下问题，这样会节省你我的时间。同时，你提出这些XX问题我会关闭的。
 
 
 ## <a name="issue"></a> Found a Bug?
@@ -46,21 +46,15 @@ and help you to craft the change so that it is successfully accepted into the pr
 
 ### <a name="submit-issue"></a> Submitting an Issue
 
-Before you submit an issue, please search the issue tracker, maybe an issue for your problem already exists and the discussion might inform you of workarounds readily available.
+在你提出问题之前，请先在Issue中搜索下是否存在相同或者相似的问题，也许在这个问题下已经有人指出的问题解决办法，这将会节省你很多时间。
 
-We want to fix all the issues as soon as possible, but before fixing a bug we need to reproduce and confirm it. In order to reproduce bugs we will systematically ask you to provide a minimal reproduction scenario using http://plnkr.co. Having a live, reproducible scenario gives us wealth of important information without going back & forth to you with additional questions like:
+当然，我也希望提出的Issue我能立刻解决，在定位这个"BUG"时，我需要你能提供更多的信息，比如：
 
-- version of Angular used
-- 3rd-party libraries and their versions
-- and most importantly - a use-case that fails
+- 哪个版本、什么组件
+- 正确情况应该是什么反应，但是出现了什么问题
 
-A minimal reproduce scenario using http://plnkr.co/ allows us to quickly confirm a bug (or point out coding problem) as well as confirm that we are fixing the right problem. If plunker is not a suitable way to demonstrate the problem (for example for issues related to our npm packaging), please create a standalone git repository demonstrating the problem.
+如果描述的情况无法定位问题点，我将关闭这个Issue。
 
-We will be insisting on a minimal reproduce scenario in order to save maintainers time and ultimately be able to fix more bugs. Interestingly, from our experience users often find coding problems themselves while preparing a minimal plunk. We understand that sometimes it might be hard to extract essentials bits of code from a larger code-base but we really need to isolate the problem before we can fix it.
-
-Unfortunately we are not able to investigate / fix bugs without a minimal reproduction, so if we don't hear back from you we are going to close an issue that don't have enough info to be reproduced.
-
-You can file new issues by filling out our [new issue form](https://github.com/angular/angular/issues/new).
 
 
 ### <a name="submit-pr"></a> Submitting a Pull Request (PR)
@@ -137,24 +131,20 @@ from the main (upstream) repository:
     git pull --ff upstream master
     ```
 
-## <a name="rules"></a> Coding Rules
-To ensure consistency throughout the source code, keep these rules in mind as you are working:
+## <a name="rules"></a> 代码规范(Coding Rules)
 
-* All features or bug fixes **must be tested** by one or more specs (unit-tests).
-* All public API methods **must be documented**. (Details TBC).
-* We follow [Google's JavaScript Style Guide][js-style-guide], but wrap all code at
-  **100 characters**. An automated formatter is available, see
-  [DEVELOPER.md](docs/DEVELOPER.md#clang-format).
+Vimo编码使用的[StandardJS](https://github.com/standard/standard)规范。
 
-## <a name="commit"></a> Commit Message Guidelines
+为了保证代码质量，希望你在commit修改时不要跳过```Git Hooks```，因为目前设置的```Git Hooks```会检查代码规范的，不符合**StandardJS规范**和**Commit信息格式不对**都会终止commit行为。Commit提交规范下面会说明。
 
-We have very precise rules over how our git commit messages can be formatted.  This leads to **more
-readable messages** that are easy to follow when looking through the **project history**.  But also,
-we use the git commit messages to **generate the Angular change log**.
 
-### Commit Message Format
-Each commit message consists of a **header**, a **body** and a **footer**.  The header has a special
-format that includes a **type**, a **scope** and a **subject**:
+## <a name="commit"></a> Git提交规范(Commit Message Guidelines)
+
+代码编写完毕提交时，commit信息会进行严格校验。这样做是为了让commit记录能够**准确反映当次提交的代码情况**，这样能方便定位提交点，并且根据提交记录自动生成可用的```CHANGELOG```记录，这个记录也会用于**[Github-Release](https://github.com/DTFE/vimo/releases)**。
+
+### Commit信息提交格式(Commit Message Format)
+
+提交信息(Commit Message)包含三部分：**header**, **body** 和 **footer**。**header**的格式包括：**type**, **scope** 和  **subject**
 
 ```
 <type>(<scope>): <subject>
@@ -164,97 +154,62 @@ format that includes a **type**, a **scope** and a **subject**:
 <footer>
 ```
 
-The **header** is mandatory and the **scope** of the header is optional.
+**header**必须要写，但是**scope**可以不填。此外，**header**中提交的信息不要超过100个字符，这是便于在Github、Git工具上能方便的阅读。
 
-Any line of the commit message cannot be longer 100 characters! This allows the message to be easier
-to read on GitHub as well as in various git tools.
+如果有Issue需要关闭，则**footer**应该包含一个[指向该问题的id](https://help.github.com/articles/closing-issues-via-commit-messages/)，例如：#212
 
-Footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
 
-Samples: (even more [samples](https://github.com/angular/angular/commits/master))
+示例: (even more [samples](https://github.com/angular/angular/commits/master))
 
 ```
 docs(changelog): update change log to beta.5
 ```
 ```
-fix(release): need to depend on latest rxjs and zone.js
+fix(release): need to depend on latest rxjs and zone.js (#1231)
 
 The version in our package.json gets copied to the one we publish, and users need the latest of these.
 ```
 
 ### Revert
-If the commit reverts a previous commit, it should begin with `revert: `, followed by the header of the reverted commit. In the body it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
+重置上一次提交，书写格式：`revert: This reverts commit <hash>.`
+
 
 ### Type
-Must be one of the following:
 
-* **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-* **ci**: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
-* **docs**: Documentation only changes
-* **feat**: A new feature
-* **fix**: A bug fix
-* **perf**: A code change that improves performance
-* **refactor**: A code change that neither fixes a bug nor adds a feature
-* **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-* **test**: Adding missing tests or correcting existing tests
+上面格式中提到的```type```必须是下面中的一个：
+
+* **build**: 构建工具的修改(example scopes: gulp, broccoli, npm)
+* **ci**: 新增修改CI配置文件或者脚本文件(example scopes: Travis, Circle, BrowserStack, SauceLabs)
+* **docs**: 文档相关的改变
+* **feat**: 增加一个新特性
+* **fix**: 修复bug
+* **perf**: 修改代码提高性能
+* **refactor**: 重构
+* **style**: 代码格式修改(white-space, formatting, missing semi-colons, etc)
+* **test**: 新增或者修改测试代码
+* **chore**: 杂项，不修改src/test文件夹的中内容的修改
+* **revert**: 重写上一个提交
+
 
 ### Scope
-The scope should be the name of the npm package affected (as perceived by person reading changelog generated from commit messages.
+变化的范围，用于向阅读CHANGELOG的用户说明改动的范围。
 
-The following is the list of supported scopes:
-
-* **animations**
-* **common**
-* **compiler**
-* **compiler-cli**
-* **core**
-* **forms**
-* **http**
-* **language-service**
-* **platform-browser**
-* **platform-browser-dynamic**
-* **platform-server**
-* **platform-webworker**
-* **platform-webworker-dynamic**
-* **router**
-* **upgrade**
-* **tsc-wrapped**
-
-There are currently a few exceptions to the "use package name" rule:
-
-* **packaging**: used for changes that change the npm package layout in all of our packages, e.g. public path changes, package.json changes done to all packages, d.ts file/format changes, changes to bundles, etc.
-* **changelog**: used for updating the release notes in CHANGELOG.md
-* **aio**: used for docs-app (angular.io) related changes within the /aio directory of the repo
-* none/empty string: useful for `style`, `test` and `refactor` changes that are done across all packages (e.g. `style: add missing semicolons`)
 
 ### Subject
-The subject contains succinct description of the change:
+简要描述改变点，类似于副标题
 
-* use the imperative, present tense: "change" not "changed" nor "changes"
-* don't capitalize first letter
-* no dot (.) at the end
 
 ### Body
-Just as in the **subject**, use the imperative, present tense: "change" not "changed" nor "changes".
-The body should include the motivation for the change and contrast this with previous behavior.
+具体描述**subject**的改变，描述改变的具体过程。
+
 
 ### Footer
-The footer should contain any information about **Breaking Changes** and is also the place to
-reference GitHub issues that this commit **Closes**.
 
-**Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
+footer可以包含一些重大改变(**Breaking Changes**)的说明，也可以表示关闭的**Closes**信息。
 
-A detailed explanation can be found in this [document][commit-message-format].
+如果是**Breaking Changes**，需要以`BREAKING CHANGE:`开头， 空两格或者开启新行， 之后写上具体的描述。
 
-## <a name="cla"></a> Signing the CLA
-
-Please sign our Contributor License Agreement (CLA) before sending pull requests. For any code
-changes to be accepted, the CLA must be signed. It's a quick process, we promise!
-
-* For individuals we have a [simple click-through form][individual-cla].
-* For corporations we'll need you to
-  [print, sign and one of scan+email, fax or mail the form][corporate-cla].
-
+以上具体文档可在这个[文档][commit-message-format]中找到。
 
 [angular-group]: https://groups.google.com/forum/#!forum/angular
 [coc]: https://github.com/angular/code-of-conduct/blob/master/CODE_OF_CONDUCT.md

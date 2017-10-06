@@ -1,12 +1,12 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
-import vimo from '../../../components/dist'
 import 'ionicons/dist/css/ionicons.css'
 import { mount } from 'vue-test-utils'
 import sinon from 'sinon'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
 import Vue from 'vue'
+import vimo from '../../../components/dist'
 import APP_CONFIGS from '../../../examples/src/config/app-configs'
 import PLATFORM_CONFIGS from '../../../examples/src/config/platform-configs'
 import router from '../../../examples/src/router'

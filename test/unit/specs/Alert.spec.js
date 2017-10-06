@@ -63,12 +63,7 @@ describe('Alert', () => {
         buttons: [
           {
             text: '确定',
-            handler: (value) => {
-              // Alert.dismiss().then(function (data) {
-              //       console.debug('button3 click dismiss ')
-              //         console.debug(data)
-              //       });
-            }
+            handler: (value) => {}
           }
         ]
       }
@@ -90,6 +85,26 @@ describe('Alert', () => {
         message: '收到这个通知的人希望你今天能搞定这个alert组件',
         cssClass: 'alertCssOuterMain  ',
         enableBackdropDismiss: true,
+        buttons: ['确定']
+      }
+    }
+
+    AlertController.present(opts).then(() => {
+      expect(AlertController._i.isActive).to.be.ok
+      return AlertController.dismiss().then(() => {
+        expect(AlertController._i.isActive).to.not.be.ok
+      })
+    })
+  })
+
+  it('@action<controller>: time', () => {
+    let opts = {
+      propsData: {
+        mode: 'ios',
+        title: 'Alert',
+        message: '收到这个通知的人希望你今天能搞定这个alert组件',
+        cssClass: 'alertCssOuterMain  ',
+        enableBackdropDismiss: true,
         buttons: [
           {
             text: '确定',
@@ -100,10 +115,16 @@ describe('Alert', () => {
     }
 
     AlertController.present(opts).then(() => {
-      expect(AlertController._i.isActive).to.be.ok
-      return AlertController.dismiss().then(() => {
-        expect(AlertController._i.isActive).to.not.be.ok
+      AlertController.present(opts).then(() => {
+        expect(AlertController._i.isActive).to.be.ok
       })
+      // expect(AlertController._i.isActive).to.be.ok
+      setTimeout(() => {
+        AlertController.dismiss()
+        AlertController.dismiss().then(() => {
+          expect(AlertController._i.isActive).to.not.be.ok
+        })
+      }, 500)
     })
   })
 
@@ -274,5 +295,34 @@ describe('Alert', () => {
       expect(wrapper.vm.$el.querySelectorAll('.alert-button-group > button').length).to.equal(2)
       // wrapper.vm.$el.querySelectorAll('.alert-button-group > button')[1].click()
     })
+  })
+
+  it('@platformHandled', () => {
+    let opts = {
+      propsData: {
+        mode: 'ios',
+        title: 'Alert',
+        message: '收到这个通知的人希望你今天能搞定这个alert组件',
+        cssClass: 'alertCssOuterMain  ',
+        enableBackdropDismiss: true,
+        buttons: [
+          {
+            text: '确定',
+            handler: (value) => {}
+          }
+        ]
+      }
+    }
+    let options = {}
+
+    window.VM.platform.alert = function (_opts) {
+      console.log('alert组件使用测试版本')
+      options = _opts
+      return true
+    }
+
+    AlertController.present(opts)
+    expect(opts).to.equal(options)
+    window.VM.platform.alert = undefined
   })
 })
