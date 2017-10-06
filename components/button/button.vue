@@ -1,5 +1,5 @@
 <template>
-    <button class="disable-hover ion-button button" @click="clickHandler($event)"
+    <button class="disable-hover ion-button" @click="clickHandler($event)"
             :class="[modeClass,itemClass]">
         <span class="button-inner"><slot></slot></span>
     </button>
