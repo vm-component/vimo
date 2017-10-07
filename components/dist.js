@@ -1,4 +1,11 @@
 import core from './core.js'
+import App from './base/app/app.vue'
+import Footer from './base/app/footer.vue'
+import Header from './base/app/header.vue'
+import Content from './base/content/content.vue'
+import Nav from './base/nav/nav.vue'
+import Navbar from './base/navbar/navbar.vue'
+import Page from './base/page/page.vue'
 import ActionSheet from './action-sheet'
 import Alert from './alert'
 import Avatar from './avatar'
@@ -59,6 +66,13 @@ if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefin
 
 // 通过script脚本使用, 资源全部打包, 不推荐
 module.exports = {
+  App,
+  Footer,
+  Header,
+  Content,
+  Nav,
+  Navbar,
+  Page,
   ActionSheet,
   Alert,
   Avatar,

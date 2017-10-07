@@ -1,8 +1,7 @@
 <template>
     <header class="ion-header" :class="[{'hide-bar':isHide}]" :style="style">
         <!--right button placeholder-->
-        <div ref="rightButtonPlaceholder" id="rightButtonPlaceholder"
-             style="width: 30px;bottom:0;height:1px; position: absolute;right:9px;"></div>
+        <div ref="rightButtonPlaceholder" id="rightButtonPlaceholder"></div>
         <slot></slot>
     </header>
 </template>
@@ -21,6 +20,14 @@
 
     .ion-header.hide-bar {
         transform: translateY(-100%);
+    }
+
+    #rightButtonPlaceholder {
+        width: 30px;
+        bottom: 0;
+        height: 1px;
+        position: absolute;
+        right: 9px;
     }
 </style>
 <script type="text/javascript">
@@ -45,13 +52,11 @@
     name: 'Header',
     data () {
       return {
-        // -------- public --------
         isHide: false,
         style: {}
       }
     },
     methods: {
-      // -------- public --------
       /**
        * @function hide
        * @description
