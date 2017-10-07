@@ -23,5 +23,4 @@ after_success:
   - npm run ci-demo-release
   - npm run ci-docs-release
   - npm run ci-report-coverage
-  - npm run ci-npm-release
   - npm run ci-github-release
