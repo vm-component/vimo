@@ -78,24 +78,24 @@
     },
     data () {
       return {
-        isLoaded: false,      // 判断DOM是否显示img
-        srcValue: null,       // 内部使用的src值
-        w: this.wQ,          // 当前渲染的尺寸值
-        h: this.hQ,          // 当前渲染的尺寸值
+        isLoaded: false,        // 判断DOM是否显示img
+        srcValue: null,         // 内部使用的src值
+        w: this.wQ,             // 当前渲染的尺寸值
+        h: this.hQ,             // 当前渲染的尺寸值
 
-        canRequest: false,    // 这个值是由content组件控制的!
-        canRender: false,     // 这个值是由content组件控制的!
+        canRequest: false,      // 这个值是由content组件控制的!
+        canRender: false,       // 这个值是由content组件控制的!
 
-        contentComponent: null,       // 当前页面的Content组件
-        hasLoaded: false,    // 判断图片是否真正下载完毕
-        requestingSrc: null, // 当前正在请求的src
-        renderedSrc: null,   // 已经下载完毕渲染完毕的src
-        rect: null,          // 当前组件与页面的位置关系
-        imgElement: null,    // img标签元素
+        contentComponent: null, // 当前页面的Content组件
+        hasLoaded: false,       // 判断图片是否真正下载完毕
+        requestingSrc: null,    // 当前正在请求的src
+        renderedSrc: null,      // 已经下载完毕渲染完毕的src
+        rect: null,             // 当前组件与页面的位置关系
+        imgElement: null,       // img标签元素
         wQ: this.getUnitValue(this.width) || 0,  // 记录最新的尺寸值
         hQ: this.getUnitValue(this.height) || 0, // 记录最新的尺寸值
 
-        unRegLoadImg: null         // {function} 解除当前的注册事件
+        unRegLoadImg: null      // {function} 解除当前的注册事件
       }
     },
     watch: {
@@ -147,7 +147,7 @@
         if (this.requestingSrc && !this.renderedSrc && !this.hasLoaded) {
           // 图片在请求下载阶段, 但是还未下载完毕, 这时就直接断掉下载过程
           // console.warn(`abortRequest ${this.requestingSrc} ${Date.now()}`);
-          this.srcAttr(null)
+          this.srcAttr('')
           this.requestingSrc = null
         }
         if (this.renderedSrc) {
