@@ -300,7 +300,7 @@ describe('Alert', () => {
     let options = {}
 
     window.VM.platform.alert = function (_opts) {
-      console.log('alert组件使用测试版本')
+      console.log('alert组件 使用测试版本')
       options = _opts
       return true
     }
