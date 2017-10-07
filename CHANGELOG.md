@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/DTFE/vimo/compare/v0.6.0...v0.6.1) (2017-10-07)
+
+
+### Bug Fixes
+
+* CI构建流程新增npm-release ([a8c43d8](https://github.com/DTFE/vimo/commit/a8c43d8))
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/DTFE/vimo/compare/0.5.33...0.6.0) (2017-10-07)
 
