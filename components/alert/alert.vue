@@ -8,8 +8,8 @@
                     @before-leave="beforeLeave"
                     @after-leave="afterLeave">
             <div class="alert-wrapper" v-show="isActive">
-                <div class="alert-image-box">
-                    <img class="alert-image" v-if="image" :src="image">
+                <div class="alert-image-box" v-if="image">
+                    <img class="alert-image" :src="image">
                 </div>
                 <div class="alert-head">
                     <h2 class="alert-title" v-if="title">{{title}}</h2>
