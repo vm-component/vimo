@@ -47,6 +47,7 @@
    * @usage
    * <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive"></Backdrop>
    * */
+  let NOOP = function () {}
   export default {
     name: 'Backdrop',
     data () {
@@ -61,13 +62,11 @@
         default: true
       },
       // 控制backdrop的显示隐藏
-      isActive: [Boolean],
+      isActive: Boolean,
       // 点击背景的处理方式
       bdClick: {
         type: Function,
-        default () {
-          return function () {}
-        }
+        default: NOOP
       },
       /**
        * backdrop偏移量, 用于定制化显示
@@ -81,7 +80,7 @@
         default: 0
       },
       // 设置position：fixed, 防止滚动的时候幕布移动
-      fixed: [Boolean]
+      fixed: Boolean
     },
     watch: {
       isActive () {
