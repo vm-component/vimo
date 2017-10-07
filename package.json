@@ -43,7 +43,7 @@
     "ci-demo-release": "npm run demo:build && node build/demo-publish.js",
     "ci-docs-release": "npm run docs:build && node build/docs-publish.js",
     "ci-report-coverage": "cat ./test/unit/coverage/lcov.info | coveralls",
-    "ci-npm-release": "npm run pub && npm publish",
+    "ci-npm-release": "npm run release && npm run pub && npm publish",
     "ci-github-release": "node build/github-release.js"
   },
   "standard-version": {
