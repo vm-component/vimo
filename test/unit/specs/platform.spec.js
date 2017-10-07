@@ -1,6 +1,7 @@
 /* eslint-disable no-undef,no-unused-expressions */
 import { setupPlatform } from '../../../components/base/platform'
 import platformAliPayConfig from '../../../examples/src/config/platforms/platform-alipay-config'
+console.log(typeof window.VM)
 // alipay useragent
 const MOCK_CONFIG = {
   useragent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X)   AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30   AlipayDefined(nt:WIFI,ws:360|640|1.5) AliApp(AP/9.0.1.073001) AlipayClient/9.0.1.073001   GCanvas/1.4.2.15'

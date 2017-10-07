@@ -1,7 +1,7 @@
 /* eslint-disable no-undef,no-unused-expressions */
 import { setupConfig } from '../../../components/base/config'
 import { QueryParams, setupPlatform } from '../../../components/base/platform'
-
+console.log(typeof window.VM)
 const MOCK_CONFIG = {
   urlString: 'http://www.xx.com/api/dashboard',
   urlFunction: function (platform) {

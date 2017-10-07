@@ -1,24 +1,11 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
-import 'ionicons/dist/css/ionicons.css'
 import { mount } from 'vue-test-utils'
 import sinon from 'sinon'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
 import Vue from 'vue'
 import vimo from '../../../components/dist'
-import APP_CONFIGS from '../../../examples/src/config/app-configs'
-import PLATFORM_CONFIGS from '../../../examples/src/config/platform-configs'
-import router from '../../../examples/src/router'
-
-Vue.use(vimo, {
-  custConf: APP_CONFIGS,
-  pltConf: PLATFORM_CONFIGS,
-  router: router
-})
-Vue.config.devtools = false
-Vue.config.silent = true
-Vue.config.errorHandler = (err) => !~err.toString().indexOf('$el') && console.error(err)
 
 let Button = vimo.Button
 let Icon = vimo.Icon
@@ -51,7 +38,7 @@ describe('Button', () => {
       }
     })
     wrapper = mount(Button, opts)
-    const result = '<button class="disable-hover ion-button button button button-md button-md-primary"><span class="button-inner"><span>ButtonTest</span></span></button>'
+    const result = '<button class="disable-hover ion-button button button-md button-md-primary"><span class="button-inner"><span>ButtonTest</span></span></button>'
     expect(wrapper.html()).to.equal(result)
   })
 

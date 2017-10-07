@@ -2,23 +2,6 @@
 import AlertController from '../../../components/alert/index.js'
 import Alert from '../../../components/alert/alert.vue'
 import { mount } from 'vue-test-utils'
-import Vue from 'vue'
-import vimo from '../../../components/dist'
-import APP_CONFIGS from '../../../examples/src/config/app-configs'
-import PLATFORM_CONFIGS from '../../../examples/src/config/platform-configs'
-import router from '../../../examples/src/router'
-
-Vue.use(vimo, {
-  custConf: APP_CONFIGS,
-  pltConf: PLATFORM_CONFIGS,
-  router: router
-})
-
-// AlertController
-
-Vue.config.devtools = false
-Vue.config.silent = true
-// Vue.config.errorHandler = (err) => !~err.toString().indexOf('$el') && console.error(err)
 
 describe('Alert', () => {
   it('@base: renders the correct markup', () => {
@@ -40,7 +23,7 @@ describe('Alert', () => {
     }
     let wrapper = mount(Alert, opts)
 
-    const markup = '<div class="ion-alert alert-ios alertCssOuterMain"><div class="ion-backdrop" style="left: 0px; top: 0px; display: none;"></div> <div class="alert-wrapper" style="display: none;"><div class="alert-image-box"><!----></div> <div class="alert-head"><h2 class="alert-title">Alert</h2> <!----></div> <div class="alert-message">message</div> <!----> <div class="alert-button-group"><button class="disable-hover ion-button button alert-button alert-button-ios alert-button-ios-default"><span class="button-inner"><span>Confirm</span></span></button></div></div></div>'
+    const markup = '<div class="ion-alert alert-ios alertCssOuterMain"><div class="ion-backdrop" style="left: 0px; top: 0px; display: none;"></div> <div class="alert-wrapper" style="display: none;"><!----> <div class="alert-head"><h2 class="alert-title">Alert</h2> <!----></div> <div class="alert-message">message</div> <!----> <div class="alert-button-group"><button class="disable-hover ion-button alert-button alert-button-ios alert-button-ios-default"><span class="button-inner"><span>Confirm</span></span></button></div></div></div>'
 
     const text = 'Alert  message  Confirm'
     expect(wrapper.html()).to.equal(markup)
@@ -97,7 +80,7 @@ describe('Alert', () => {
     })
   })
 
-  it('@action<controller>: time', () => {
+  it('@action<controller>: time', (cb) => {
     let opts = {
       propsData: {
         mode: 'ios',
@@ -123,6 +106,7 @@ describe('Alert', () => {
         AlertController.dismiss()
         AlertController.dismiss().then(() => {
           expect(AlertController._i.isActive).to.not.be.ok
+          cb()
         })
       }, 500)
     })
