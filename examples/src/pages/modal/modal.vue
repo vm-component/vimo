@@ -16,13 +16,16 @@
             <h5>相册查看</h5>
             <p>这一页将需要查看的数据传给Modal组件, Modal组件使用Slides组件对图片轮播</p>
             <Button block @click="openAlbum">打开相册</Button>
-            <hr>
+            <h5>Modal内跳转</h5>
+            <Button block @click="redirect">开启</Button>
             <h5>登录:</h5>
             <p>弹出完整的页面进行登录操作, 点击登录按钮传出登录数据用于验证, 或者在modal层验证也行.</p>
             <Button block @click="openLogin">登录</Button>
             <p><strong>返回的登录数据</strong></p>
             <p>用户名: {{username}}</p>
             <p>密码: {{password}}</p>
+
+
         </Content>
     </Page>
 </template>
@@ -48,6 +51,21 @@
     watch: {},
     computed: {},
     methods: {
+      redirect () {
+        this.$modal.present({
+          name: 'redirect',
+          component: import('./modal-redirect.vue'),
+          data: {
+            $router: this.$router
+          },
+          showBackdrop: true,
+          enableBackdropDismiss: false,
+          onDismiss (data) {
+            console.log('modal-redirect')
+            console.log(data)
+          }
+        })
+      },
       openLogin () {
         const _this = this
         this.$modal.present({
