@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.3"></a>
+## [0.6.3](https://github.com/DTFE/vimo/compare/v0.6.2...v0.6.3) (2017-10-09)
+
+
+### Bug Fixes
+
+* 修复title在第三方平台设置不成功的问题+修复navbar组件在keep-alive模式设置不成功的问题([#15](https://github.com/DTFE/vimo/issues/15)) ([b51a833](https://github.com/DTFE/vimo/commit/b51a833))
+
+
+
 <a name="0.6.2"></a>
 ## [0.6.2](https://github.com/DTFE/vimo/compare/v0.6.1...v0.6.2) (2017-10-09)
 
