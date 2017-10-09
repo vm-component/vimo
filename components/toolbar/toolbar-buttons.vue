@@ -7,7 +7,6 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less"></style>
 <script type="text/javascript">
   /**
    * @component Toolbar/Buttons
