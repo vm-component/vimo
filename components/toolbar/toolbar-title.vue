@@ -228,6 +228,7 @@
       this.init()
     },
     activated () {
+      // BugFix: #15, keep-alive模式下不更新title的问题
       if (this.isTitleInNavbar && document.title !== this.titleInner) {
         this.setTitle(this.titleInner)
       }
