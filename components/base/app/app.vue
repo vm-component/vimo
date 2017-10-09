@@ -215,7 +215,6 @@
         }
         // BugFixed: 如果组件不是通过异步加载, 则他的执行顺序会很靠前, 此时平台的方法并未初始化完毕. 因此异步定时后在执行
         window.setTimeout(() => {
-          if (document.title === _title.title) return
           let isHandled = !!this.$platform && !!this.$platform.setNavbarTitle && this.$platform.setNavbarTitle(_title)
           if (!isHandled) {
             if (this.$platform && this.$platform.platforms().length <= 2) {

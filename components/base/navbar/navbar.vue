@@ -271,9 +271,7 @@
        * @private
        * */
       initWhenInWebview () {
-        if (this.$platform.platforms().length < 3) {
-          return
-        }
+        if (this.$platform.platforms().length < 3) return
         // 如果在平台中则进行下面的分支
         this.$platform.ready().then(() => {
           /**
@@ -309,6 +307,19 @@
             }
           }
         })
+      },
+
+      /**
+       * 初始化
+       * @private
+       * */
+      init () {
+        this.initWhenInWebview()
+        if (this.$root === window.VM.$root) {
+          // 只记录这个流的navbar: App->Nav->Page->Header->Navbar
+          // 其余形式的navbar不记录
+          window.VM.$navbar = this
+        }
       }
     },
     created () {
@@ -319,12 +330,10 @@
       this.refreshBackButtonStatus()
     },
     mounted () {
-      this.initWhenInWebview()
-      if (this.$root === window.VM.$root) {
-        // 只记录这个流的navbar: App->Nav->Page->Header->Navbar
-        // 其余形式的navbar不记录
-        window.VM.$navbar = this
-      }
+      this.init()
+    },
+    activated () {
+      this.init()
     }
   }
 </script>

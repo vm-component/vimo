@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Components</Title>
+                <Title>组件列表</Title>
             </Navbar>
         </Header>
         <Content class="outer-content" record-position>

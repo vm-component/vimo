@@ -96,7 +96,10 @@
     },
     watch: {
       title () {
-        this.init()
+        this.titleInner = this.getTitle()
+        if (this.isTitleInNavbar) {
+          this.setTitle(this.titleInner)
+        }
       }
     },
     methods: {
@@ -194,9 +197,7 @@
         if (this.$parent.$options._componentTag) {
           let navbarComponent = this.$parent
           if (navbarComponent.$options._componentTag.toLowerCase() === 'navbar') {
-            if (document.title !== this.titleInner) {
-              this.setTitle(this.titleInner)
-            }
+            this.setTitle(this.titleInner)
             this.isTitleInNavbar = true
           }
           if (window.VM && this.$root === window.VM.$root) {
@@ -229,7 +230,7 @@
     },
     activated () {
       // BugFix: #15, keep-alive模式下不更新title的问题
-      if (this.isTitleInNavbar && document.title !== this.titleInner) {
+      if (this.isTitleInNavbar) {
         this.setTitle(this.titleInner)
       }
       if (this.isHeaderInApp) {
