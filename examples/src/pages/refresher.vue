@@ -5,7 +5,7 @@
                 <Title>Refresher</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content">
+        <Content class="outer-content" record-position>
             <Refresher slot="refresher" :enabled="enabled" @onRefresh="doRefresh($event)">
                 <RefresherContent
                         pullingText="下拉刷新..."
@@ -29,7 +29,7 @@
 </style>
 <script type="text/javascript">
   export default{
-    name: 'name',
+    name: 'RefresherDemo',
     data () {
       return {
         i: 0,

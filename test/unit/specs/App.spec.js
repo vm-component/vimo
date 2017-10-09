@@ -51,8 +51,8 @@ describe('App', () => {
       },
       attachToDocument
     })
-    expect(wrapper.hasClass('platform-md')).to.equal(true)
-    expect(wrapper.hasClass('md')).to.equal(true)
+    expect(wrapper.hasClass('platform-md')).to.be.ok
+    expect(wrapper.hasClass('md')).to.be.ok
   })
 
   it('setEnabled(false)', (cb) => {

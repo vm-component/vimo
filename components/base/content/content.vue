@@ -542,9 +542,10 @@
           let id = this.$route.name || this.$route.path
           if (this.$history.getDirection() === 'backward') {
             let scrollPositionStr = window.sessionStorage.getItem(`vm-scroll-position-${id}`)
-            if (scrollPositionStr) {
-              this.scrollTo(0, parseInt(scrollPositionStr), 0)
-            }
+            let scrollPosition = parseInt(scrollPositionStr)
+            this.$nextTick(() => {
+              this.scrollTo(0, scrollPosition, 0)
+            })
           } else {
             window.sessionStorage.removeItem(`vm-scroll-position-${id}`)
           }
@@ -583,6 +584,10 @@
 
       this.toRecordScrollPosition()
     },
+    activated () {
+      this.toRecordScrollPosition()
+    },
+    deactivate () {},
     destroyed () {
       this._scroll.destroy()
     }

@@ -44,9 +44,9 @@
             </Content>
         </Menus>
         <Nav :showIndicatorWhenPageChange="true">
-            <!--<keep-alive>-->
-            <router-view></router-view>
-            <!--</keep-alive>-->
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </Nav>
     </App>
 </template>
