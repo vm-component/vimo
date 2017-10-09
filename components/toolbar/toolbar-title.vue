@@ -226,6 +226,14 @@
     },
     mounted () {
       this.init()
+    },
+    activated () {
+      if (this.isTitleInNavbar && document.title !== this.titleInner) {
+        this.setTitle(this.titleInner)
+      }
+      if (this.isHeaderInApp) {
+        window.VM.$title = this
+      }
     }
   }
 </script>
