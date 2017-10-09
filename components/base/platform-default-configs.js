@@ -5,7 +5,10 @@
 export default {
   core: {
     settings: {
-      mode: 'ios'
+      mode: 'ios',
+      imgRequestBuffer: 1400,
+      imgRenderBuffer: 600,
+      imgVelocityMax: 3
     }
   },
   mobile: {
