@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/DTFE/vimo/compare/v0.6.3...v0.7.0) (2017-10-10)
+
+
+### Features
+
+* Button组件增加active属性, 用于表示当前按钮为选中状态 ([5368ad3](https://github.com/DTFE/vimo/commit/5368ad3))
+
+
+
 <a name="0.6.3"></a>
 ## [0.6.3](https://github.com/DTFE/vimo/compare/v0.6.2...v0.6.3) (2017-10-09)
 
