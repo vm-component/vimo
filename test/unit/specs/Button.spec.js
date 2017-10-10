@@ -124,6 +124,20 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-small-ios')).to.equal(true)
   })
 
+  it('@props: active', () => {
+    let opts = deepAssign(cloneDeep(options), {
+      propsData: {
+        mode: 'ios',
+        active: true
+      },
+      slots: {
+        default: '<span>small</span>'
+      }
+    })
+    wrapper = mount(Button, opts)
+    expect(wrapper.hasAttribute('active', 'true')).to.equal(true)
+  })
+
   it('@props: default', () => {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {

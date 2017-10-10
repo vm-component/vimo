@@ -192,9 +192,12 @@
   background-color: @button-md-background-color-hover;
 }
 
-.button-md:active {
-  background-color: @button-md-background-color-activated;
-  box-shadow: @button-md-box-shadow-activated;
+.button-md {
+  &[active],
+  &:active {
+    background-color: @button-md-background-color-activated;
+    box-shadow: @button-md-box-shadow-activated;
+  }
 }
 
 // Material Design Default Button Color Mixin
@@ -214,9 +217,12 @@
     background-color: @bg-color;
   }
 
-  .button-md-@{color-name}:active {
-    background-color: @bg-color-activated;
-    opacity: @button-md-opacity-activated;
+  .button-md-@{color-name} {
+    &[active],
+    &:active {
+      background-color: @bg-color-activated;
+      opacity: @button-md-opacity-activated;
+    }
   }
 
 }
@@ -280,10 +286,13 @@
   background-color: @button-md-outline-background-color-hover;
 }
 
-.button-outline-md:active {
-  background-color: @button-md-outline-background-color-activated;
-  box-shadow: @button-md-outline-box-shadow-activated;
-  opacity: @button-md-outline-opacity-activated;
+.button-outline-md {
+  &[active],
+  &:active {
+    background-color: @button-md-outline-background-color-activated;
+    box-shadow: @button-md-outline-box-shadow-activated;
+    opacity: @button-md-outline-opacity-activated;
+  }
 }
 
 // Material Design Outline Button Color Mixin
@@ -302,9 +311,12 @@
     background-color: @button-md-outline-background-color-hover;
   }
 
-  .button-outline-md-@{color-name}:active {
-    color: @color-contrast;
-    background-color: @color-base;
+  .button-outline-md-@{color-name} {
+    &[active],
+    &:active {
+      color: @color-contrast;
+      background-color: @color-base;
+    }
   }
 }
 
@@ -319,9 +331,12 @@
   opacity: @button-md-clear-opacity;
 }
 
-.button-clear-md:active {
-  background-color: @button-md-clear-background-color-activated;
-  box-shadow: @button-md-clear-box-shadow-activated;
+.button-clear-md {
+  &[active],
+  &:active {
+    background-color: @button-md-clear-background-color-activated;
+    box-shadow: @button-md-clear-box-shadow-activated;
+  }
 }
 
 .button-clear-md:hover:not(.disable-hover) {
@@ -340,9 +355,12 @@
     background-color: @button-md-clear-background-color;
   }
 
-  .button-clear-md-@{color-name}:active {
-    background-color: @button-md-clear-background-color-activated;
-    box-shadow: @button-md-clear-box-shadow-activated;
+  .button-clear-md-@{color-name} {
+    &[active],
+    &:active {
+      background-color: @button-md-clear-background-color-activated;
+      box-shadow: @button-md-clear-box-shadow-activated;
+    }
   }
 
   .button-clear-md-@{color-name}:hover:not(.disable-hover) {

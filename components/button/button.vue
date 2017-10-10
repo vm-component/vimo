@@ -1,5 +1,5 @@
 <template>
-    <button class="disable-hover ion-button" @click="clickHandler($event)"
+    <button class="disable-hover ion-button" @click="clickHandler($event)" :active="active"
             :class="[modeClass,itemClass]">
         <span class="button-inner"><slot></slot></span>
     </button>
@@ -22,7 +22,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Button } from 'vimo/lib/button'
+   * import Button from 'vimo/lib/button'
    * // 安装
    * Vue.component(Button.name, Button)
    * // 或者
@@ -40,11 +40,12 @@
    * @props {Boolean} [default]     - 尺寸
    * @props {Boolean} [large]       - 尺寸
    *
+   * @props {Boolean} [active]      - 是否激活(按下时的效果)
+   *
    * @props {Boolean} [round]       - round(宽度auto有圆角)
    * @props {Boolean} [full]        - full(宽度100%无圆角)
    * @props {Boolean} [block]       - block(宽度100%有圆角)
    * @props {Boolean} [menutoggle]  - menutoggle类型
-   *
    *
    * @props {Boolean} [outline]     - outline只有边框
    * @props {Boolean} [clear]       - clear空心
@@ -52,7 +53,7 @@
    *
    * @props {Boolean} [role='button']       - role 按钮具体角色 例如 action-sheet-button/bar-button
    *
-   * @props {Boolean} [strong]       - 样式加强
+   * @props {Boolean} [strong]      - 样式加强
    *
    * @demo #/button
    * @usage
@@ -85,29 +86,34 @@
         default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
 
-      small: [Boolean],
-      default: [Boolean],
-      large: [Boolean],
+      small: Boolean,
+      default: Boolean,
+      large: Boolean,
+
+      /**
+       * 激活模式, 按下时的效果
+       * */
+      active: Boolean,
 
       /**
        * 形状：round(宽度auto有圆角)
        * round/fab
        * */
-      round: [Boolean],
+      round: Boolean,
 
       /**
        * 形状：full(宽度100%无圆角)/block(宽度100%有圆角)/menutoggle
        * */
-      full: [Boolean],
-      block: [Boolean],
-      menutoggle: [Boolean],
+      full: Boolean,
+      block: Boolean,
+      menutoggle: Boolean,
 
       /**
        * 按钮类型： solid实心/outline只有边框/clear空心
        * */
-      outline: [Boolean],
-      clear: [Boolean],
-      solid: [Boolean],
+      outline: Boolean,
+      clear: Boolean,
+      solid: Boolean,
 
       /**
        * role 按钮具体角色 例如 action-sheet-button/bar-button
@@ -122,7 +128,7 @@
       /**
        * 样式加强
        * */
-      strong: [Boolean]
+      strong: Boolean
     },
     data () {
       return {

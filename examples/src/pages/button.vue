@@ -20,6 +20,24 @@
                     <Button>default color</Button>
                 </Row>
             </Grid>
+            <h4>Strong</h4>
+            <Grid>
+                <Row justify-content-center>
+                    <Button active color="primary">primary</Button>
+                    <Button active color="primary" strong>primary(strong)</Button>
+                </Row>
+            </Grid>
+            <h4>Active</h4>
+            <Grid>
+                <Row justify-content-center>
+                    <Button active color="primary">primary</Button>
+                    <Button active color="primary" full>primary+full</Button>
+                    <Button active color="primary" block>primary+block</Button>
+                    <Button active color="primary" round>primary+round</Button>
+                    <Button active color="primary" outline>primary+outline</Button>
+                    <Button active color="primary" clear>primary+clear</Button>
+                </Row>
+            </Grid>
             <h4>Spinner</h4>
             <Grid>
                 <Row justify-content-center>
@@ -29,7 +47,7 @@
                     </Button>
                 </Row>
             </Grid>
-            <h4>Shaps</h4>
+            <h4>Full/Block/Round</h4>
             <Grid>
                 <Row justify-content-center>
                     <Button full>full</Button>
@@ -37,7 +55,7 @@
                     <Button round>round</Button>
                 </Row>
             </Grid>
-            <h4>Type</h4>
+            <h4>Solid/Outline/Clear</h4>
             <Grid>
                 <Row justify-content-center>
                     <!--solid-->
@@ -47,7 +65,7 @@
                     <Button clear color="secondary">clear</Button>
                 </Row>
             </Grid>
-            <h4>Outline</h4>
+            <h4>Outline + Full/Block/Round</h4>
             <Grid>
                 <Row justify-content-center>
                     <Button outline full color="secondary">outline + full</Button>
@@ -55,7 +73,7 @@
                     <Button outline round color="secondary">outline + round</Button>
                 </Row>
             </Grid>
-            <h4>Size</h4>
+            <h4>Large/Default/Small</h4>
             <Grid>
                 <Row justify-content-center>
                     <Button color="light" large>large</Button>
@@ -63,7 +81,7 @@
                     <Button color="light" small>small</Button>
                 </Row>
             </Grid>
-            <h4>Icons</h4>
+            <h4>Icons + Left/Only/Right</h4>
             <Grid>
                 <Row justify-content-center>
                     <!--icon left-->
@@ -99,7 +117,7 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     data () {
       return {}
     },
