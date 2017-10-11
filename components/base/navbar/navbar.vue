@@ -111,6 +111,7 @@
    *
    * @see component:Toolbar
    * @see History
+   * @DEMO #/cross-platform
    *
    * @props {String} [color] - 颜色
    * @props {Boolean} [hideBackButton=false] - 是否显示后退按钮
@@ -191,8 +192,47 @@
        * @function showPopMenu
        * @description
        * 设置右侧弹出的按钮菜单, 右侧可以没有按钮, 但是pop固定在右上角
-       * @param {Array} dataList - menu的数据数组
+       * @param {Array} dataList                - menu的数据数组
+       * @param {String} dataList.title         - 标题
+       * @param {String} dataList.icon          - 标题左边的icon(建议使用https下的图片链接, 而不是本地图片. 可以使用base64格式的图片)
+       * @param {String} dataList.badge         - 右上角徽章
+       * @param {Function} dataList.handler     - 点击的处理函数
        * @return {Promise}
+       * @example
+       * this.navbarComponent.showPopMenu([
+       *    {
+       *       title: '周边美食',
+       *       icon: 'https://zos.alipayobjects.com/rmsportal/mzorSIxVEdkTuxumzzau.png',
+       *       badge: '-1',
+       *       handler () {
+       *         console.log('index:0 选择了: 周边美食')
+       *       }
+       *     },
+       *     {
+       *       title: '购物攻略',
+       *       icon: 'https://zos.alipayobjects.com/rmsportal/UoBNIZJosEXNQtAxCEUg.png',
+       *       badge: '100',
+       *       handler () {
+       *         console.log('index:1 选择了: 购物攻略')
+       *       }
+       *     },
+       *     {
+       *       title: '摄影技巧',
+       *       icon: 'https://zos.alipayobjects.com/rmsportal/QJeWMNUFFiDCQawMLPTr.png',
+       *       badge: '12',
+       *       handler () {
+       *         console.log('index:2 选择了: 摄影技巧')
+       *       }
+       *     },
+       *     {
+       *       title: '搞笑段子',
+       *       icon: 'data:image/png;base64,iVBORw0K...YII=',
+       *       badge: '0',
+       *       handler () {
+       *         console.log('index:3 选择了: 搞笑段子')
+       *       }
+       *     }
+       * ])
        * */
       showPopMenu (dataList) {
         let tmps = []
@@ -210,25 +250,36 @@
           })
         }
 
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
           let isHandled = this.$platform.showNavbarPopMenu && this.$platform.showNavbarPopMenu(tmps)
+
           // 显示navbar最右侧的按钮
           if (isHandled) {
             resolve()
           } else {
-            import('../../popover/index').then((component) => {
-              let Popover = component.Popover
-              Popover.present({
-                ev: {
-                  target: window.document.getElementById('rightButtonPlaceholder') || null
-                }, // 事件
-                cssClass: 'popMenu',
-                component: import('./menu-options.vue'),   // 传入组件 TODO: 此方法需要写入文档
-                data: {
-                  menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
-                }
-              }).then(() => { resolve() })
-            })
+            try {
+              import('../../popover/index.js').then(
+                // resolve
+                (component) => {
+                  let Popover = component.default
+                  Popover.present({
+                    ev: {
+                      target: window.document.getElementById('rightButtonPlaceholder') || null
+                    }, // 事件
+                    cssClass: 'popMenu',
+                    component: import('./menu-options.vue'),   // 传入组件 TODO: 此方法需要写入文档
+                    data: {
+                      menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
+                    }
+                  }).then(() => { resolve() })
+                },
+                // reject
+                (err) => {
+                  reject(err)
+                })
+            } catch (err) {
+              reject(err)
+            }
           }
         })
       },
@@ -287,11 +338,11 @@
             if (this.color) {
               // 1. 获取背景色
               let toolbarBackgroundElement = this.toolbarBackgroundElement
-              if (!toolbarBackgroundElement) { return false }
+              if (!toolbarBackgroundElement) return
               var rgb = window.getComputedStyle(toolbarBackgroundElement).backgroundColor
               // "rgb(56, 126, 245)"
               // "rgba(56, 126, 245,0.8)"
-              if (!rgb) { return false }
+              if (!rgb) return
               rgb = rgb.replace('rgb(', '')
               rgb = rgb.replace('rgba(', '')
               rgb = rgb.replace(')', '')
