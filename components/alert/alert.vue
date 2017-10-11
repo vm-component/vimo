@@ -44,7 +44,7 @@
                     </div>
                     <div v-if="inputType!='radio' && inputType!='checkbox'" class="alert-input-group">
                         <div v-for="i in inputsForDispaly" class="alert-input-wrapper">
-                            <input :id="i.id" :value="i.value" :placeholder="i.placeholder" :type="i.type"
+                            <input :ref="i.id" :id="i.id" :value="i.value" :placeholder="i.placeholder" :type="i.type"
                                    class="alert-input">
                         </div>
                     </div>
@@ -296,7 +296,7 @@
         // input因为不能使用v-model，故通过id获取里面的信息
         const values = {}
         this.inputsForDispaly.forEach(i => {
-          let _$id = document.getElementById(i.id)
+          let _$id = this.$refs[i.id][0]
           if (_$id && _$id.value) {
             values[i.name] = _$id.value.toString().trim()
           } else {

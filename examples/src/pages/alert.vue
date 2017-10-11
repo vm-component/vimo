@@ -125,6 +125,12 @@
           enableBackdropDismiss: true,
           inputs: [
             {
+              type: 'text',
+              name: 'username',
+              placeholder: '用户名',
+              value: ''
+            },
+            {
               type: 'password',
               name: 'password',
               placeholder: '密码',
