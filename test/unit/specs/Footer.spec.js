@@ -7,7 +7,6 @@ import vimo from '../../../components/dist'
 let Footer = vimo.Footer
 let wrapper = null
 let options = {
-  attachToDocument: true,
   slots: {
     default: '<span>Test</span>'
   }

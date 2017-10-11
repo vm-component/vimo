@@ -12,7 +12,6 @@ let options = {
     color: 'primary',
     mode: 'ios'
   },
-  attachToDocument: true,
   slots: {
     default: '<span>Test</span>'
   }
@@ -95,7 +94,7 @@ describe('Badge', () => {
   })
 
   it('@props: mode(default)', () => {
-    wrapper = mount(Badge, {attachToDocument: true})
+    wrapper = mount(Badge)
     expect(wrapper.hasClass('badge-ios')).to.equal(true)
   })
 })

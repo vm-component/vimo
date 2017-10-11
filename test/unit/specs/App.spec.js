@@ -2,10 +2,16 @@
 
 import { mount } from 'vue-test-utils'
 import vimo from '../../../components/dist'
+import deepAssign from 'deep-assign'
+import cloneDeep from 'lodash.clonedeep'
 
 let App = vimo.App
 let wrapper = null
-let attachToDocument = true
+let opts = {
+  slots: {
+    default: '<span>Name</span>'
+  }
+}
 
 describe('App', () => {
   // 清除DOM痕迹
@@ -17,48 +23,33 @@ describe('App', () => {
   })
 
   it('@base: renders the correct markup', () => {
-    wrapper = mount(App, {
-      slots: {
-        default: '<span>Name</span>'
-      }
-    })
+    wrapper = mount(App, opts)
     const result = `<article version="${window.VM.version}" class="ion-app ios platform-ios enable-hover"><section class="app-root"><span>Name</span></section> <aside id="modalPortal"></aside> <aside id="sheetPortal"></aside> <aside id="alertPortal"></aside> <aside id="loadingPortal"></aside> <aside id="toastPortal"></aside> <aside class="click-block click-block-enabled"></aside></article>`
     expect(wrapper.html()).to.equal(result)
   })
 
   it('@base: component must have a name', () => {
-    wrapper = mount(App, {
-      slots: {
-        default: '<span>Name</span>'
-      }
-    })
+    wrapper = mount(App, opts)
     expect(wrapper.name()).to.equal('App')
   })
 
   it('@base: renders the correct text', () => {
-    wrapper = mount(App, {
-      slots: {
-        default: '<span>Name</span>'
-      }
-    })
+    wrapper = mount(App, opts)
     expect(wrapper.text().trim()).to.equal('Name')
   })
 
   it('@props: mode', () => {
-    let wrapper = mount(App, {
+    let wrapper = mount(App, deepAssign(cloneDeep(opts), {
       propsData: {
         mode: 'md'
-      },
-      attachToDocument
-    })
+      }
+    }))
     expect(wrapper.hasClass('platform-md')).to.be.ok
     expect(wrapper.hasClass('md')).to.be.ok
   })
 
   it('setEnabled(false)', (cb) => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
 
     wrapper.vm.setEnabled(false, 400)
     expect(wrapper.vm.isEnabled).to.not.be.ok
@@ -69,9 +60,7 @@ describe('App', () => {
   })
 
   it('setEnabled(true)', (cb) => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
 
     wrapper.vm.setEnabled(true)
     setTimeout(() => {
@@ -81,18 +70,14 @@ describe('App', () => {
   })
 
   it('setDisableScroll(false)', () => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
 
     wrapper.vm.setDisableScroll(false)
     expect(wrapper.vm.isScrollDisabled).to.not.be.ok
   })
 
   it('setDisableScroll(true)', (cb) => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
 
     wrapper.vm.setDisableScroll(true, 90)
     expect(wrapper.vm.isScrollDisabled).to.be.ok
@@ -103,18 +88,14 @@ describe('App', () => {
   })
 
   it('setClass()', () => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
 
     wrapper.vm.setClass('test123', true)
     expect(wrapper.hasClass('test123')).to.be.ok
   })
 
   it('setDocTitle()', (cb) => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
 
     wrapper.vm.setDocTitle('title123')
     setTimeout(() => {
@@ -124,9 +105,7 @@ describe('App', () => {
   })
 
   it('setDocTitle():in-some-platform', (cb) => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
     wrapper.vm.$platform.platforms = function () {
       return ['mobile', 'ios', 'alipay']
     }
@@ -138,9 +117,7 @@ describe('App', () => {
   })
 
   it('setDocTitle():platformHandled', (cb) => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
     let opts = 'test123'
     let options = ''
     window.VM.platform.setNavbarTitle = function (_opts) {
@@ -156,9 +133,7 @@ describe('App', () => {
   })
 
   it('$on(onScrollStart)', (cb) => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
     wrapper.vm.$eventBus.$emit('onScrollStart')
     setTimeout(() => {
       expect(wrapper.vm.isScrolling).to.be.ok
@@ -167,9 +142,7 @@ describe('App', () => {
   })
 
   it('$on(onScroll)', (cb) => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
     wrapper.vm.$eventBus.$emit('onScroll')
     setTimeout(() => {
       expect(wrapper.vm.isScrolling).to.be.ok
@@ -178,9 +151,7 @@ describe('App', () => {
   })
 
   it('$on(onScrollEnd)', (cb) => {
-    wrapper = mount(App, {
-      attachToDocument
-    })
+    wrapper = mount(App)
     wrapper.vm.$eventBus.$emit('onScrollEnd')
     setTimeout(() => {
       expect(wrapper.vm.isScrolling).to.not.be.ok

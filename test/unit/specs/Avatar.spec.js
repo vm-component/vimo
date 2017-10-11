@@ -9,7 +9,6 @@ let Avatar = vimo.Avatar
 let wrapper = null
 let options = {
   propsData: {},
-  attachToDocument: true,
   slots: {
     default: '<span>Test</span>'
   }

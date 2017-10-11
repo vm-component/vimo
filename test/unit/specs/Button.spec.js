@@ -16,7 +16,6 @@ let options = {
     color: 'primary',
     mode: 'ios'
   },
-  attachToDocument: true,
   slots: {
     default: '<span>ButtonTest</span>'
   }
@@ -326,9 +325,7 @@ describe('Button', () => {
       components: {'vm-button': Button, Icon},
       render: res.render
     }
-    wrapper = mount(Temp, {
-      attachToDocument: true
-    })
+    wrapper = mount(Temp)
     expect(wrapper.hasAttribute('icon-only', '')).to.equal(true)
   })
 
@@ -337,8 +334,6 @@ describe('Button', () => {
     wrapper = mount({
       render: res.render,
       components: {'vm-button': Button, Icon}
-    }, {
-      attachToDocument: true
     })
     expect(wrapper.hasAttribute('icon-left', '')).to.equal(true)
   })
@@ -348,8 +343,6 @@ describe('Button', () => {
     wrapper = mount({
       render: res.render,
       components: {'vm-button': Button, Icon}
-    }, {
-      attachToDocument: true
     })
     expect(wrapper.hasAttribute('icon-right', '')).to.equal(true)
   })
@@ -359,8 +352,6 @@ describe('Button', () => {
     wrapper = mount({
       render: res.render,
       components: {'vm-button': Button, Item, Icon}
-    }, {
-      attachToDocument: true
     })
     expect(wrapper.html().indexOf('item-button') > -1).to.equal(true)
   })

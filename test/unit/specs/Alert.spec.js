@@ -3,24 +3,28 @@ import AlertController from '../../../components/alert/index.js'
 import Alert from '../../../components/alert/alert.vue'
 import { mount } from 'vue-test-utils'
 
+let opts = {
+  propsData: {
+    mode: 'ios',
+    title: 'Alert',
+    message: 'message',
+    cssClass: '  alertCssOuterMain  ',
+    enableBackdropDismiss: true,
+    buttons: [
+      {
+        text: 'Confirm',
+        handler: (value) => {}
+      }
+    ]
+  },
+  mocks: {
+    $app: {
+      setEnabled () {}
+    }
+  }
+}
 describe('Alert', () => {
   it('@base: renders the correct markup', () => {
-    let opts = {
-      propsData: {
-        mode: 'ios',
-        title: 'Alert',
-        message: 'message',
-        cssClass: '  alertCssOuterMain  ',
-        enableBackdropDismiss: true,
-        buttons: [
-          {
-            text: 'Confirm',
-            handler: (value) => {}
-          }
-        ]
-      },
-      attachToDocument: false
-    }
     let wrapper = mount(Alert, opts)
 
     const markup = '<div class="ion-alert alert-ios alertCssOuterMain"><div class="ion-backdrop" style="left: 0px; top: 0px; display: none;"></div> <div class="alert-wrapper" style="display: none;"><!----> <div class="alert-head"><h2 class="alert-title">Alert</h2> <!----></div> <div class="alert-message">message</div> <!----> <div class="alert-button-group"><button class="disable-hover ion-button alert-button alert-button-ios alert-button-ios-default"><span class="button-inner"><span>Confirm</span></span></button></div></div></div>'
@@ -36,21 +40,6 @@ describe('Alert', () => {
   })
 
   it('@action: present && dismiss', () => {
-    let opts = {
-      propsData: {
-        mode: 'ios',
-        title: 'Alert',
-        message: '收到这个通知的人希望你今天能搞定这个alert组件',
-        cssClass: 'alertCssOuterMain  ',
-        enableBackdropDismiss: true,
-        buttons: [
-          {
-            text: '确定',
-            handler: (value) => {}
-          }
-        ]
-      }
-    }
     let wrapper = mount(Alert, opts)
     wrapper.vm.present().then(() => {
       expect(wrapper.vm.isActive).to.be.ok
@@ -61,17 +50,8 @@ describe('Alert', () => {
   })
 
   it('@action<controller>: present && dismiss', () => {
-    let opts = {
-      propsData: {
-        mode: 'ios',
-        title: 'Alert',
-        message: '收到这个通知的人希望你今天能搞定这个alert组件',
-        cssClass: 'alertCssOuterMain  ',
-        enableBackdropDismiss: true,
-        buttons: ['确定']
-      }
-    }
-
+    let _opts = JSON.parse(JSON.stringify(opts))
+    _opts.propsData.buttons = ['确定', '取消']
     AlertController.present(opts).then(() => {
       expect(AlertController._i.isActive).to.be.ok
       return AlertController.dismiss().then(() => {
@@ -81,22 +61,6 @@ describe('Alert', () => {
   })
 
   it('@action<controller>: time', (cb) => {
-    let opts = {
-      propsData: {
-        mode: 'ios',
-        title: 'Alert',
-        message: '收到这个通知的人希望你今天能搞定这个alert组件',
-        cssClass: 'alertCssOuterMain  ',
-        enableBackdropDismiss: true,
-        buttons: [
-          {
-            text: '确定',
-            handler: (value) => {}
-          }
-        ]
-      }
-    }
-
     AlertController.present(opts).then(() => {
       AlertController.present(opts).then(() => {
         expect(AlertController._i.isActive).to.be.ok
@@ -112,9 +76,8 @@ describe('Alert', () => {
     })
   })
 
-  it('@input', () => {
+  it('@input', function () {
     let opts = {
-      attachToDocument: true,
       propsData: {
         title: '登录iTunes Store',
         mode: 'ios',
@@ -155,7 +118,6 @@ describe('Alert', () => {
 
   it('@checkbox', () => {
     let opts = {
-      attachToDocument: true,
       propsData: {
         title: '水果来了',
         message: '选择你喜欢吃的水果',
@@ -219,7 +181,6 @@ describe('Alert', () => {
 
   it('@radio', () => {
     let opts = {
-      attachToDocument: true,
       propsData: {
         title: '水果来了',
         message: '你只能选择一个',
@@ -282,21 +243,6 @@ describe('Alert', () => {
   })
 
   it('@platformHandled', () => {
-    let opts = {
-      propsData: {
-        mode: 'ios',
-        title: 'Alert',
-        message: '收到这个通知的人希望你今天能搞定这个alert组件',
-        cssClass: 'alertCssOuterMain  ',
-        enableBackdropDismiss: true,
-        buttons: [
-          {
-            text: '确定',
-            handler: (value) => {}
-          }
-        ]
-      }
-    }
     let options = {}
 
     window.VM.platform.alert = function (_opts) {
