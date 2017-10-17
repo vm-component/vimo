@@ -85,8 +85,8 @@
    * @props {Boolean} [clearOnEdit]     - 如果为true, 当再次输入的时候会清空上次的输入, 如果type为password时默认为true, 其余情况默认为false, 默认值的变更, 需要js控制
    * @props {Boolean} [disabled]        - 如果为true, 用户无法输入
    * @props {Boolean} [showFocusHighlight]        - focus时底部高亮
-   * @props {Number} [max]              - 设置最大值, 只对type=number有效
-   * @props {Number} [min]              - 设置最小值, 只对type=number有效
+   * @props {Number} [max]              - 设置最大值, 1. type=number时限制输入数字的大小; 2. type=text时限制输入字符的长度
+   * @props {Number} [min]              - 设置最小值, 1. type=number时限制输入数字的大小; 2. type=text时限制输入字符的长度
    * @props {Number} [step]             - 设置数字变化的阶梯值, 只对type=number有效
    * @props {String} [mode='ios']       - 当前平台
    * @props {String} [placeholder]      - 占位文字
