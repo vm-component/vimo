@@ -288,9 +288,8 @@
         let popoverHeight = parsePxUnit(window.getComputedStyle(popoverEle).height)
 
         // Window body width and height
-        // TODO: 需要排除对$platform的依赖
-        let bodyWidth = this.$platform.width()
-        let bodyHeight = this.$platform.height()
+        let bodyWidth = window['innerWidth']
+        let bodyHeight = window['innerHeight']
 
         // If ev was passed, use that for target element
         let targetDim = this.getTargetDim(ev)
@@ -336,9 +335,8 @@
         let popoverHeight = parsePxUnit(window.getComputedStyle(popoverEle).height)
 
         // Window body width and height
-        // TODO: 需要排除对$platform的依赖
-        let bodyWidth = this.$platform.width()
-        let bodyHeight = this.$platform.height()
+        let bodyWidth = window['innerWidth']
+        let bodyHeight = window['innerHeight']
 
         // If ev was passed, use that for target element
         let targetDim = this.getTargetDim(ev)

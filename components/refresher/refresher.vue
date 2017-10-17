@@ -138,8 +138,6 @@
         appliedStyles: false,
         didStart: false,
         lastCheck: 0,
-        // TODO: 解决下这里
-        pointerEvents: null,
         unregs: [], // 解绑的事件列表
         damp: DAMP, // 滑动阻尼
         top: null // style的top
@@ -232,7 +230,7 @@
           if (shouldListen) {
             let contentElement = this.contentComponent.getScrollElement()
             console.assert(contentElement, 'Refresh Component need Content Ready!::<Component>setListeners()')
-            // TODO: 对于点击事件应该同一封装一层
+            // TODO: 对于点击事件应该同统一封装一层
             registerListener(contentElement, 'touchstart', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs)
             registerListener(contentElement, 'mousedown', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs)
 

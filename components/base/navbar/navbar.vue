@@ -267,7 +267,7 @@
                       target: window.document.getElementById('rightButtonPlaceholder') || null
                     }, // 事件
                     cssClass: 'popMenu',
-                    component: import('./menu-options.vue'),   // 传入组件 TODO: 此方法需要写入文档
+                    component: import('./menu-options.vue'),   // 传入组件
                     data: {
                       menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
                     }
