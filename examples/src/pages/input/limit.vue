@@ -13,8 +13,12 @@
                     <Input :max="10" show-focus-highlight placeholder="输入文本" type="text" clearInput></Input>
                 </Item>
                 <Item>
-                    <Label color="primary">最长10位数字</Label>
-                    <Input :max="10" show-focus-highlight placeholder="输入数字" type="number" clearInput></Input>
+                    <Label color="primary">最大数字为10000</Label>
+                    <Input :max="10000" show-focus-highlight placeholder="输入数字" type="number" clearInput></Input>
+                </Item>
+                <Item>
+                    <Label color="primary">最小数字为3</Label>
+                    <Input :min="3" show-focus-highlight placeholder="输入数字" type="number" clearInput></Input>
                 </Item>
                 <Item>
                     <Label color="primary">金额(0~100)</Label>
