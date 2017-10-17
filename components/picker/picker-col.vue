@@ -26,6 +26,7 @@
 </template>
 <script type="text/javascript">
   import { pointerCoord, clamp, parsePxUnit } from '../util/util'
+  import css from '../util/getCss'
 
   const PICKER_OPT_SELECTED = 'picker-opt-selected'
   const DECELERATION_FRICTION = 0.97
@@ -355,13 +356,12 @@
           // Update transition duration
           if (duration !== opt._dur) {
             opt._dur = duration
-            // TODO: 需要排除对$platform的依赖
-            button.style[this.$platform.css.transitionDuration] = durationStr
+            button.style[css.transitionDuration] = durationStr
           }
           // Update transform
           if (transform !== opt._trans) {
             opt._trans = transform
-            button.style[this.$platform.css.transform] = transform
+            button.style[css.transform] = transform
           }
           // Update selected item
           if (selected !== opt._selected) {

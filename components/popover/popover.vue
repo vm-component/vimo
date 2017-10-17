@@ -132,7 +132,7 @@
    * @props {Boolean} [dismissOnPageChange=true] - 页面切换是否关闭组件, 默认关闭
    * @props {Function} [onDismiss] - 完全关闭时的回调
    *
-   * @props {Object|String|Function} component - popover内部显示的vue组件, 是一个*.vue文件; 如果是String的话则为html字符串; 支持异步
+   * @props {Object|String|Function|Promise} component - popover内部显示的vue组件, 是一个*.vue文件; 如果是String的话则为html字符串; 支持异步
    * @props {Object} data - 传给popover内部显示的vue组件的数据, 内部组件通过`this.$options.$data`获取
    * @props {Object|MouseEvent} ev - 点击元素的事件, $event, 这个值的传入可以计算popover放置的位置
    *
@@ -141,6 +141,7 @@
   import Vue from 'vue'
   import Backdrop from '../backdrop'
   import { urlChange, parsePxUnit } from '../util/util'
+  import css from '../util/getCss'
 
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
@@ -324,8 +325,7 @@
 
         popoverEle.style.top = popoverCSS.top + 'px'
         popoverEle.style.left = popoverCSS.left + 'px';
-        // TODO: 需要排除对$platform的依赖
-        (popoverEle.style)[this.$platform.css.transformOrigin] = originY + ' ' + originX
+        (popoverEle.style)[css.transformOrigin] = originY + ' ' + originX
       },
       iosPositionView (nativeEle, ev) {
         let originY = 'top'
@@ -393,8 +393,7 @@
 
         popoverEle.style.top = popoverCSS.top + 'px'
         popoverEle.style.left = popoverCSS.left + 'px';
-        // TODO: 需要排除对$platform的依赖
-        (popoverEle.style)[this.$platform.css.transformOrigin] = originY + ' ' + originX
+        (popoverEle.style)[css.transformOrigin] = originY + ' ' + originX
       },
 
       /**
@@ -455,7 +454,6 @@
           this.init(component)
         })
       } else if (getType(this.component) === 'promise') {
-        // TODO: 需要文档记录
         this.component.then((component) => {
           this.init(component)
         })
