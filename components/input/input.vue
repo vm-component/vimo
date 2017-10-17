@@ -515,7 +515,7 @@
       if (isObject(REGEXP[this.type]) && isPresent(REGEXP[this.type].type)) {
         this.typeValue = REGEXP[this.type].type
       } else {
-        this.typeValue = 'text'
+        this.typeValue = this.type
       }
     },
     mounted () {
