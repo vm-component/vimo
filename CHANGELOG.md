@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.4"></a>
+## [0.7.4](https://github.com/DTFE/vimo/compare/v0.7.3...v0.7.4) (2017-10-17)
+
+
+### Bug Fixes
+
+* 修复Input组件为number类型并设置max时, 出入超界会自动变更为max的问题 ([cfbd7ee](https://github.com/DTFE/vimo/commit/cfbd7ee))
+* 修复picker显示宽度过长覆盖的问题([#17](https://github.com/DTFE/vimo/issues/17)) ([b98dbbd](https://github.com/DTFE/vimo/commit/b98dbbd))
+* 修复必须同时确定min和max时, 范围限制才会生效的bug ([4f1a67a](https://github.com/DTFE/vimo/commit/4f1a67a))
+
+
+
 <a name="0.7.3"></a>
 ## [0.7.3](https://github.com/DTFE/vimo/compare/v0.7.2...v0.7.3) (2017-10-17)
 
