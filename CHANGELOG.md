@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.5"></a>
+## [0.7.5](https://github.com/DTFE/vimo/compare/v0.7.4...v0.7.5) (2017-10-17)
+
+
+### Bug Fixes
+
+* Input组件增加decimal属性, 如果是number类型, 则启用小数点输入限制 ([6968f6b](https://github.com/DTFE/vimo/commit/6968f6b))
+* 修复项目Vue版本和Vimo中Vue版本不匹配的bug, 排除Vimo对vue的直接依赖, 改为开发依赖 ([4ca2542](https://github.com/DTFE/vimo/commit/4ca2542))
+
+
+
 <a name="0.7.4"></a>
 ## [0.7.4](https://github.com/DTFE/vimo/compare/v0.7.3...v0.7.4) (2017-10-17)
 
