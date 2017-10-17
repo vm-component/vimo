@@ -20,6 +20,11 @@
                     <Label color="primary">最小数字为3</Label>
                     <Input :min="3" show-focus-highlight placeholder="输入数字" type="number" clearInput></Input>
                 </Item>
+
+                <Item>
+                    <Label color="primary">小数点后最多3位</Label>
+                    <Input :decimal="3" show-focus-highlight placeholder="输入数字" type="number" clearInput></Input>
+                </Item>
                 <Item>
                     <Label color="primary">金额(0~100)</Label>
                     <Input :min="0" :max="100" show-focus-highlight placeholder="输入金额" type="number" clearInput></Input>

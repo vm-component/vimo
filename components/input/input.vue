@@ -87,6 +87,7 @@
    * @props {Boolean} [showFocusHighlight]        - focus时底部高亮
    * @props {Number} [max]              - 设置最大值, 1. type=number时限制输入数字的大小; 2. type=text时限制输入字符的长度
    * @props {Number} [min]              - 设置最小值, 1. type=number时限制输入数字的大小; 2. type=text时限制输入字符的长度
+   * @props {Number} [decimal=2]        - 设置数字的小数位, 默认为2
    * @props {Number} [step]             - 设置数字变化的阶梯值, 只对type=number有效
    * @props {String} [mode='ios']       - 当前平台
    * @props {String} [placeholder]      - 占位文字
@@ -153,6 +154,14 @@
        * 设置最小值
        * */
       min: Number,
+
+      /**
+       * 设置type=number的小数位
+       * */
+      decimal: {
+        type: Number,
+        default: 2
+      },
 
       /**
        * 自动focus
@@ -243,14 +252,31 @@
         // 数字边界限制
         if (this.type === 'number') {
           if (isPresent(newVal)) {
+            let resetValue = null
+
             if (isPresent(this.max) && newVal > this.max) {
-              this.$nextTick(() => {
-                this.inputValue = oldVal
-              })
+              resetValue = oldVal
             }
             if (isPresent(this.min) && newVal < this.min) {
+              resetValue = this.min
+            }
+
+            newVal = newVal.toString()
+            // 合法的情况
+            let int = newVal.split('.')[0]
+            let decimal = newVal.split('.')[1]
+            if (isPresent(decimal)) {
+              if (decimal.length > this.decimal) {
+                decimal = decimal.substr(0, this.decimal)
+                let num = `${int}.${decimal}`
+                resetValue = parseFloat(num)
+              }
+            }
+
+            // 重置
+            if (resetValue) {
               this.$nextTick(() => {
-                this.inputValue = this.min
+                this.inputValue = resetValue
               })
             }
           }
