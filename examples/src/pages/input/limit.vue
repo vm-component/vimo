@@ -17,6 +17,10 @@
                     <Input :max="10" show-focus-highlight placeholder="输入数字" type="number" clearInput></Input>
                 </Item>
                 <Item>
+                    <Label color="primary">金额(0~100)</Label>
+                    <Input :min="0" :max="100" show-focus-highlight placeholder="输入金额" type="number" clearInput></Input>
+                </Item>
+                <Item>
                     <Label color="primary">数字范围(-2~10)</Label>
                     <Input :min="-2" :max="10" show-focus-highlight placeholder="-2~10" type="number"
                            clearInput></Input>

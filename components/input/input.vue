@@ -241,12 +241,11 @@
         }
 
         // 数字边界限制
-        // 数字
         if (this.type === 'number') {
           if (isPresent(this.max) && isPresent(this.min) && isPresent(newVal)) {
             if (newVal > this.max) {
               this.$nextTick(() => {
-                this.inputValue = this.max
+                this.inputValue = oldVal
               })
             }
             if (newVal < this.min) {
