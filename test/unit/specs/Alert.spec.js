@@ -23,8 +23,8 @@ let opts = {
     }
   }
 }
-describe('Alert', () => {
-  it('@base: renders the correct markup', () => {
+describe('Alert', function () {
+  it('@base: renders the correct markup', function () {
     let wrapper = mount(Alert, opts)
 
     const markup = '<div class="ion-alert alert-ios alertCssOuterMain"><div class="ion-backdrop" style="left: 0px; top: 0px; display: none;"></div> <div class="alert-wrapper" style="display: none;"><!----> <div class="alert-head"><h2 class="alert-title">Alert</h2> <!----></div> <div class="alert-message">message</div> <!----> <div class="alert-button-group"><button class="disable-hover ion-button alert-button alert-button-ios alert-button-ios-default"><span class="button-inner"><span>Confirm</span></span></button></div></div></div>'
@@ -39,7 +39,7 @@ describe('Alert', () => {
     expect(wrapper.hasClass('alert-ios')).to.be.ok
   })
 
-  it('@action: present && dismiss', () => {
+  it('@action: present && dismiss', function () {
     let wrapper = mount(Alert, opts)
     wrapper.vm.present().then(() => {
       expect(wrapper.vm.isActive).to.be.ok
@@ -49,7 +49,7 @@ describe('Alert', () => {
     })
   })
 
-  it('@action<controller>: present && dismiss', () => {
+  it('@action<controller>: present && dismiss', function () {
     let _opts = JSON.parse(JSON.stringify(opts))
     _opts.propsData.buttons = ['确定', '取消']
     AlertController.present(opts).then(() => {
@@ -116,7 +116,7 @@ describe('Alert', () => {
     })
   })
 
-  it('@checkbox', () => {
+  it('@checkbox', function () {
     let opts = {
       propsData: {
         title: '水果来了',
@@ -179,7 +179,7 @@ describe('Alert', () => {
     })
   })
 
-  it('@radio', () => {
+  it('@radio', function () {
     let opts = {
       propsData: {
         title: '水果来了',
@@ -242,7 +242,7 @@ describe('Alert', () => {
     })
   })
 
-  it('@platformHandled', () => {
+  it('@platformHandled', function () {
     let options = {}
 
     window.VM.platform.alert = function (_opts) {

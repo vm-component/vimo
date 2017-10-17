@@ -17,7 +17,7 @@ let options = {
   }
 }
 
-describe('Badge', () => {
+describe('Badge', function () {
   // 清除DOM痕迹
   afterEach(() => {
     if (wrapper) {
@@ -26,7 +26,7 @@ describe('Badge', () => {
     }
   })
 
-  it('@base: renders the correct markup', () => {
+  it('@base: renders the correct markup', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'md'
@@ -37,7 +37,7 @@ describe('Badge', () => {
     expect(wrapper.html()).to.equal(result)
   })
 
-  it('@base: renders the correct text', () => {
+  it('@base: renders the correct text', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>Test</span>'
@@ -47,7 +47,7 @@ describe('Badge', () => {
     expect(wrapper.text()).to.equal('Test')
   })
 
-  it('@base: component must have a name', () => {
+  it('@base: component must have a name', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>Name</span>'
@@ -57,7 +57,7 @@ describe('Badge', () => {
     expect(wrapper.name()).to.equal('Badge')
   })
 
-  it('@base: have the right className', () => {
+  it('@base: have the right className', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>HasClass</span>'
@@ -67,7 +67,7 @@ describe('Badge', () => {
     expect(wrapper.hasClass('ion-badge')).to.be.ok
   })
 
-  it('@props: color', () => {
+  it('@props: color', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         color: 'danger'
@@ -80,7 +80,7 @@ describe('Badge', () => {
     expect(wrapper.hasStyle('background-color', '#f53d3d')).to.equal(true)
   })
 
-  it('@props: mode', () => {
+  it('@props: mode', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'md'
@@ -93,7 +93,7 @@ describe('Badge', () => {
     expect(wrapper.hasClass('badge-md')).to.equal(true)
   })
 
-  it('@props: mode(default)', () => {
+  it('@props: mode(default)', function () {
     wrapper = mount(Badge)
     expect(wrapper.hasClass('badge-ios')).to.equal(true)
   })

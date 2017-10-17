@@ -12,7 +12,7 @@ let options = {
   }
 }
 
-describe('Footer', () => {
+describe('Footer', function () {
   // 清除DOM痕迹
   afterEach(() => {
     if (wrapper) {
@@ -21,40 +21,40 @@ describe('Footer', () => {
     }
   })
 
-  it('@base: renders the correct markup', () => {
+  it('@base: renders the correct markup', function () {
     wrapper = mount(Footer, options)
     const result = '<footer class="ion-footer"><span>Test</span></footer>'
     expect(wrapper.html().trim()).to.equal(result)
   })
 
-  it('@base: renders the correct text', () => {
+  it('@base: renders the correct text', function () {
     wrapper = mount(Footer, options)
     expect(wrapper.text().trim()).to.equal('Test')
   })
 
-  it('@base: component must have a name', () => {
+  it('@base: component must have a name', function () {
     wrapper = mount(Footer, options)
     expect(wrapper.name()).to.equal('Footer')
   })
 
-  it('@base: have the right className', () => {
+  it('@base: have the right className', function () {
     wrapper = mount(Footer, options)
     expect(wrapper.hasClass('ion-footer')).to.be.ok
   })
 
-  it('hide()', () => {
+  it('hide()', function () {
     wrapper = mount(Footer)
     wrapper.vm.hide()
     expect(wrapper.vm.isHide).to.be.ok
   })
 
-  it('show()', () => {
+  it('show()', function () {
     wrapper = mount(Footer)
     wrapper.vm.show()
     expect(wrapper.vm.isHide).to.not.be.ok
   })
 
-  it('toggle()', () => {
+  it('toggle()', function () {
     wrapper = mount(Footer)
     let isHide = !wrapper.vm.isHide
     wrapper.vm.toggle()

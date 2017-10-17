@@ -21,7 +21,7 @@ let options = {
   }
 }
 
-describe('Button', () => {
+describe('Button', function () {
   // 清除DOM痕迹
   afterEach(() => {
     if (wrapper) {
@@ -30,7 +30,7 @@ describe('Button', () => {
     }
   })
 
-  it('@base: renders the correct markup', () => {
+  it('@base: renders the correct markup', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'md'
@@ -41,7 +41,7 @@ describe('Button', () => {
     expect(wrapper.html()).to.equal(result)
   })
 
-  it('@base: renders the correct text', () => {
+  it('@base: renders the correct text', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>ButtonTest</span>'
@@ -52,7 +52,7 @@ describe('Button', () => {
   })
 
   // it's also easy to check for the existence of elements
-  it('@base: has a button', () => {
+  it('@base: has a button', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>DOM</span>'
@@ -63,7 +63,7 @@ describe('Button', () => {
     expect(wrapper.contains('span')).to.be.ok
   })
 
-  it('@base: component must have a name', () => {
+  it('@base: component must have a name', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>Name</span>'
@@ -73,7 +73,7 @@ describe('Button', () => {
     expect(wrapper.name()).to.equal('Button')
   })
 
-  it('@base: have the right className', () => {
+  it('@base: have the right className', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>HasClass</span>'
@@ -83,7 +83,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('ion-button')).to.be.ok
   })
 
-  it('@props: color', () => {
+  it('@props: color', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         color: 'danger'
@@ -96,7 +96,7 @@ describe('Button', () => {
     expect(wrapper.hasStyle('background-color', '#f53d3d')).to.equal(true)
   })
 
-  it('@props: mode', () => {
+  it('@props: mode', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'md'
@@ -109,7 +109,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-md')).to.equal(true)
   })
 
-  it('@props: small', () => {
+  it('@props: small', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -123,7 +123,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-small-ios')).to.equal(true)
   })
 
-  it('@props: active', () => {
+  it('@props: active', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -137,7 +137,7 @@ describe('Button', () => {
     expect(wrapper.hasAttribute('active', 'true')).to.equal(true)
   })
 
-  it('@props: default', () => {
+  it('@props: default', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -151,7 +151,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-default-ios')).to.equal(true)
   })
 
-  it('@props: large', () => {
+  it('@props: large', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -165,7 +165,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-large-ios')).to.equal(true)
   })
 
-  it('@props: round', () => {
+  it('@props: round', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -179,7 +179,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-round-ios')).to.equal(true)
   })
 
-  it('@props: full', () => {
+  it('@props: full', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -193,7 +193,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-full-ios')).to.equal(true)
   })
 
-  it('@props: block', () => {
+  it('@props: block', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -207,7 +207,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-block-ios')).to.equal(true)
   })
 
-  it('@props: menutoggle', () => {
+  it('@props: menutoggle', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -221,7 +221,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-menutoggle-ios')).to.equal(true)
   })
 
-  it('@props: outline', () => {
+  it('@props: outline', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -235,7 +235,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-outline-ios')).to.equal(true)
   })
 
-  it('@props: clear', () => {
+  it('@props: clear', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -249,7 +249,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-clear-ios')).to.equal(true)
   })
 
-  it('@props: solid', () => {
+  it('@props: solid', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -263,7 +263,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('button-solid-ios')).to.equal(true)
   })
 
-  it('@props: role=action-sheet-button', () => {
+  it('@props: role=action-sheet-button', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -277,7 +277,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('action-sheet-button-ios')).to.equal(true)
   })
 
-  it('@props: role=bar-button', () => {
+  it('@props: role=bar-button', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -291,7 +291,7 @@ describe('Button', () => {
     expect(wrapper.hasClass('bar-button')).to.equal(true)
   })
 
-  it('@props: strong', () => {
+  it('@props: strong', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'ios',
@@ -306,7 +306,7 @@ describe('Button', () => {
     expect(wrapper.hasStyle('font-weight', '600')).to.equal(true)
   })
 
-  it('@event: triger click', () => {
+  it('@event: triger click', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>Click</span>'
@@ -319,7 +319,7 @@ describe('Button', () => {
     wrapper.vm.clickHandler.restore() // 消除监视
   })
 
-  it('@slots: icon-only', () => {
+  it('@slots: icon-only', function () {
     var res = Vue.compile('<vm-button><Icon name="car"></Icon></vm-button>')
     let Temp = {
       components: {'vm-button': Button, Icon},
@@ -329,7 +329,7 @@ describe('Button', () => {
     expect(wrapper.hasAttribute('icon-only', '')).to.equal(true)
   })
 
-  it('@slots: icon-left', () => {
+  it('@slots: icon-left', function () {
     var res = Vue.compile('<vm-button><Icon name="car"></Icon>Icon</vm-button>')
     wrapper = mount({
       render: res.render,
@@ -338,7 +338,7 @@ describe('Button', () => {
     expect(wrapper.hasAttribute('icon-left', '')).to.equal(true)
   })
 
-  it('@slots: icon-right', () => {
+  it('@slots: icon-right', function () {
     var res = Vue.compile('<vm-button>Icon<Icon name="car"></Icon></vm-button>')
     wrapper = mount({
       render: res.render,
@@ -347,7 +347,7 @@ describe('Button', () => {
     expect(wrapper.hasAttribute('icon-right', '')).to.equal(true)
   })
 
-  it('@parent: Item', () => {
+  it('@parent: Item', function () {
     var res = Vue.compile('<Item><vm-button>Icon<Icon name="car"></Icon></vm-button></Item>')
     wrapper = mount({
       render: res.render,

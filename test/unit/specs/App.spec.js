@@ -13,7 +13,7 @@ let opts = {
   }
 }
 
-describe('App', () => {
+describe('App', function () {
   // 清除DOM痕迹
   afterEach(() => {
     if (wrapper) {
@@ -22,23 +22,23 @@ describe('App', () => {
     }
   })
 
-  it('@base: renders the correct markup', () => {
+  it('@base: renders the correct markup', function () {
     wrapper = mount(App, opts)
     const result = `<article version="${window.VM.version}" class="ion-app ios platform-ios enable-hover"><section class="app-root"><span>Name</span></section> <aside id="modalPortal"></aside> <aside id="sheetPortal"></aside> <aside id="alertPortal"></aside> <aside id="loadingPortal"></aside> <aside id="toastPortal"></aside> <aside class="click-block click-block-enabled"></aside></article>`
     expect(wrapper.html()).to.equal(result)
   })
 
-  it('@base: component must have a name', () => {
+  it('@base: component must have a name', function () {
     wrapper = mount(App, opts)
     expect(wrapper.name()).to.equal('App')
   })
 
-  it('@base: renders the correct text', () => {
+  it('@base: renders the correct text', function () {
     wrapper = mount(App, opts)
     expect(wrapper.text().trim()).to.equal('Name')
   })
 
-  it('@props: mode', () => {
+  it('@props: mode', function () {
     let wrapper = mount(App, deepAssign(cloneDeep(opts), {
       propsData: {
         mode: 'md'
@@ -69,7 +69,7 @@ describe('App', () => {
     }, 100)
   })
 
-  it('setDisableScroll(false)', () => {
+  it('setDisableScroll(false)', function () {
     wrapper = mount(App)
 
     wrapper.vm.setDisableScroll(false)
@@ -87,7 +87,7 @@ describe('App', () => {
     }, 100)
   })
 
-  it('setClass()', () => {
+  it('setClass()', function () {
     wrapper = mount(App)
 
     wrapper.vm.setClass('test123', true)

@@ -13,7 +13,7 @@ const MOCK_CONFIG = {
   'nullValue': null,
   numberValue: 10
 }
-describe('config.js', () => {
+describe('config.js', function () {
   var configInstance
   var platformInstance
   before(() => {
@@ -25,75 +25,75 @@ describe('config.js', () => {
     platformInstance = null
     configInstance = null
   })
-  it('get():string', () => {
+  it('get():string', function () {
     expect(configInstance.get('urlString')).to.equal('http://www.xx.com/api/dashboard')
   })
-  it('get():function', () => {
+  it('get():function', function () {
     expect(configInstance.get('urlFunction')).to.equal('http://www.xx.com/api/core/dashboard')
   })
-  it('get():default', () => {
+  it('get():default', function () {
     expect(configInstance.get('whatever', 'here')).to.equal('here')
   })
-  it('get():undefined', () => {
+  it('get():undefined', function () {
     expect(() => { configInstance.get(undefined) }).to.throw('config key is not defined')
   })
-  it('get():withQueryParam:string', () => {
+  it('get():withQueryParam:string', function () {
     expect(configInstance.get('pageTransition')).to.equal('fade-right-transition')
   })
-  it('get():withQueryParamL:true', () => {
+  it('get():withQueryParamL:true', function () {
     expect(configInstance.get('tabsHighlight')).to.be.ok
   })
-  it('get():withQueryParamL:false', () => {
+  it('get():withQueryParamL:false', function () {
     expect(configInstance.get('recordPosition')).to.not.be.ok
   })
-  it('get():platform-mode', () => {
+  it('get():platform-mode', function () {
     expect(configInstance.get('mode')).to.equal('ios')
   })
-  it('getBoolean():true<boolean>', () => {
+  it('getBoolean():true<boolean>', function () {
     expect(configInstance.getBoolean('booleanValueTrue')).to.be.ok
   })
-  it('getBoolean():true<string>', () => {
+  it('getBoolean():true<string>', function () {
     expect(configInstance.getBoolean('stringValueTrue')).to.be.ok
   })
-  it('getBoolean():false<boolean>', () => {
+  it('getBoolean():false<boolean>', function () {
     expect(configInstance.getBoolean('booleanValueFalse')).to.not.be.ok
   })
-  it('getBoolean():nullValue', () => {
+  it('getBoolean():nullValue', function () {
     expect(configInstance.getBoolean('nullValue', '123')).to.equal('123')
   })
-  it('getBoolean():object', () => {
+  it('getBoolean():object', function () {
     expect(configInstance.getBoolean({a: 123})).to.not.be.ok
   })
-  it('getNumber()', () => {
+  it('getNumber()', function () {
     expect(configInstance.getNumber('numberValue')).to.equal(10)
   })
-  it('getNumber():fallback', () => {
+  it('getNumber():fallback', function () {
     expect(configInstance.getNumber('numberValueNull', 100)).to.equal(100)
   })
-  it('set(mode, key, value)', () => {
+  it('set(mode, key, value)', function () {
     configInstance.set('core', 'name', 'Hsiang')
     expect(configInstance.get('name')).to.equal('Hsiang')
   })
-  it('set(key, value)', () => {
+  it('set(key, value)', function () {
     configInstance.set('name', 'Hsiang')
     expect(configInstance.get('name')).to.equal('Hsiang')
   })
-  it('settings()', () => {
+  it('settings()', function () {
     expect(configInstance.settings()).to.equal(MOCK_CONFIG)
   })
-  it('settings(mode:{key:value})', () => {
+  it('settings(mode:{key:value})', function () {
     configInstance.settings('core', {
       age: '10'
     })
     expect(configInstance.get('age')).to.equal('10')
   })
-  it('settings({key:value})', () => {
+  it('settings({key:value})', function () {
     configInstance.settings({
       age: '10'
     })
     expect(configInstance.get('age')).to.equal('10')
   })
-  it('cache()', () => {
+  it('cache()', function () {
     configInstance.settings({
       age: '10'
     })

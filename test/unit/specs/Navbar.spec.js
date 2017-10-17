@@ -7,7 +7,7 @@ import sinon from 'sinon'
 let Navbar = vimo.Navbar
 let wrapper = null
 
-describe('Navbar', () => {
+describe('Navbar', function () {
   // 清除DOM痕迹
   afterEach(() => {
     if (wrapper) {
@@ -16,7 +16,7 @@ describe('Navbar', () => {
     }
   })
 
-  it('@base: renders the correct markup', () => {
+  it('@base: renders the correct markup', function () {
     wrapper = mount(Navbar, {
       slots: {
         default: '<span>Name</span>'
@@ -26,7 +26,7 @@ describe('Navbar', () => {
     expect(wrapper.html()).to.equal(result)
   })
 
-  it('@base: component must have a name', () => {
+  it('@base: component must have a name', function () {
     wrapper = mount(Navbar, {
       slots: {
         default: '<span>Name</span>'
@@ -35,7 +35,7 @@ describe('Navbar', () => {
     expect(wrapper.name()).to.equal('Navbar')
   })
 
-  it('@base: renders the correct text', () => {
+  it('@base: renders the correct text', function () {
     wrapper = mount(Navbar, {
       slots: {
         default: '<span>Name</span>'
@@ -44,7 +44,7 @@ describe('Navbar', () => {
     expect(wrapper.text().trim()).to.equal('Name')
   })
 
-  it('@slots: buttons', () => {
+  it('@slots: buttons', function () {
     wrapper = mount(Navbar, {
       slots: {
         buttons: '<span>Name</span>'
@@ -54,7 +54,7 @@ describe('Navbar', () => {
     expect(wrapper.html()).to.equal(result)
   })
 
-  it('showOptionButton()', () => {
+  it('showOptionButton()', function () {
     window.VM.platform.showNavbarOptionButton = function () {}
     wrapper = mount(Navbar, {})
     sinon.spy(window.VM.platform, 'showNavbarOptionButton') // 监视crawler.launch，这是个function
@@ -63,7 +63,7 @@ describe('Navbar', () => {
     window.VM.platform.showNavbarOptionButton.restore() // 消除监视
   })
 
-  it('hideOptionButton()', () => {
+  it('hideOptionButton()', function () {
     window.VM.platform.hideNavbarOptionButton = function () {}
     wrapper = mount(Navbar, {})
     sinon.spy(window.VM.platform, 'hideNavbarOptionButton') // 监视crawler.launch，这是个function
@@ -72,7 +72,7 @@ describe('Navbar', () => {
     window.VM.platform.hideNavbarOptionButton.restore() // 消除监视
   })
 
-  it('reset()', () => {
+  it('reset()', function () {
     window.VM.platform.resetNavbarTitleAndColor = function () {}
     window.VM.platform.resetNavbarOptionButton = function () {}
     wrapper = mount(Navbar, {})
@@ -85,7 +85,7 @@ describe('Navbar', () => {
     window.VM.platform.resetNavbarOptionButton.restore() // 消除监视
   })
 
-  it('backButtonClickHandler()', () => {
+  it('backButtonClickHandler()', function () {
     let $event = {
       preventDefault () {},
       stopPropagation () {}
@@ -102,7 +102,7 @@ describe('Navbar', () => {
     $event.stopPropagation.restore() // 消除监视
   })
 
-  it('refreshBackButtonStatus()', () => {
+  it('refreshBackButtonStatus()', function () {
     wrapper = mount(Navbar, {
       propsData: {
         hideBackButton: false
