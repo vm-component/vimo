@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.3"></a>
+## [0.7.3](https://github.com/DTFE/vimo/compare/v0.7.2...v0.7.3) (2017-10-17)
+
+
+### Bug Fixes
+
+* picker找不到css的问题 ([6541c2c](https://github.com/DTFE/vimo/commit/6541c2c))
+
+
+
 <a name="0.7.2"></a>
 ## [0.7.2](https://github.com/DTFE/vimo/compare/v0.7.1...v0.7.2) (2017-10-17)
 
