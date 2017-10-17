@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.2"></a>
+## [0.7.2](https://github.com/DTFE/vimo/compare/v0.7.1...v0.7.2) (2017-10-17)
+
+
+### Bug Fixes
+
+* 修复Input组件输入type无法改变的情况 ([6ba8a98](https://github.com/DTFE/vimo/commit/6ba8a98))
+* 修复test测试用例使用箭头函数的问题 ([b0768ae](https://github.com/DTFE/vimo/commit/b0768ae))
+
+
+
 <a name="0.7.1"></a>
 ## [0.7.1](https://github.com/DTFE/vimo/compare/v0.7.0...v0.7.1) (2017-10-11)
 
