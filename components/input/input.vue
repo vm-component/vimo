@@ -81,22 +81,24 @@
    * QQ号码  | qq              | number|qq: 1-9开头，最少5位。
    * 网址URL | url             | url|网址URL, 必须以(https,http,ftp,rtsp,mms)开头
    *
-   * @props {Boolean} [clearInput]      - 如果为true, 当输入值的时候一个清除按钮会在input右边出现, 点击按钮则清除输入.
-   * @props {Boolean} [clearOnEdit]     - 如果为true, 当再次输入的时候会清空上次的输入, 如果type为password时默认为true, 其余情况默认为false, 默认值的变更, 需要js控制
-   * @props {Boolean} [disabled]        - 如果为true, 用户无法输入
-   * @props {Boolean} [showFocusHighlight]        - focus时底部高亮
-   * @props {Number} [max]              - 设置最大值, 1. type=number时限制输入数字的大小; 2. type=text时限制输入字符的长度
-   * @props {Number} [min]              - 设置最小值, 1. type=number时限制输入数字的大小; 2. type=text时限制输入字符的长度
-   * @props {Number} [decimal=2]        - 设置数字的小数位, 默认为2
-   * @props {Number} [step]             - 设置数字变化的阶梯值, 只对type=number有效
-   * @props {String} [mode='ios']       - 当前平台
-   * @props {String} [placeholder]      - 占位文字
-   * @props {Boolean} [readonly]        - 只读模式, 不能修改
-   * @props {String} [type='text']      - 输入的类型: "text", "password", "email", "number", "search", "tel", or "url"
-   * @props {*} [value]                 - 内容输入值
-   * @props {Number} [debounce=0]       - 触发间隔
-   * @props {RegExp} [regex]            - 自定义正则
-   * @props {Boolean} [check]           - 是否check输入结果, 如果regex有值, 则开启, 否则关闭. 如果check开启, 但是regex无值, 则使用内置判断. 默认关闭check, check只是作为内部正误标示, 对外提交不起作用, 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名, 这样的话, 验证位置就会统一.
+   * @props {Boolean} [clearInput]              - 如果为true, 当输入值的时候一个清除按钮会在input右边出现, 点击按钮则清除输入.
+   * @props {Boolean} [clearOnEdit]             - 如果为true, 当再次输入的时候会清空上次的输入, 如果type为password时默认为true, 其余情况默认为false, 默认值的变更, 需要js控制
+   * @props {Boolean} [disabled]                - 如果为true, 用户无法输入
+   * @props {Boolean} [showFocusHighlight]      - focus时底部是否 highlight 显示
+   * @props {Boolean} [showValidHighlight]      - 验证成功是否显示 highlight 显示
+   * @props {Boolean} [showInvalidHighlight]    - 验证失败是否显示 highlight 显示
+   * @props {Number} [max]                      - 设置最大值, 1. type=number时限制输入数字的大小; 2. type=text时限制输入字符的长度
+   * @props {Number} [min]                      - 设置最小值, 1. type=number时限制输入数字的大小; 2. type=text时限制输入字符的长度
+   * @props {Number} [decimal=2]                - 设置数字的小数位, 默认为2
+   * @props {Number} [step]                     - 设置数字变化的阶梯值, 只对type=number有效
+   * @props {String} [mode='ios']               - 当前平台
+   * @props {String} [placeholder]              - 占位文字
+   * @props {Boolean} [readonly]                - 只读模式, 不能修改
+   * @props {String} [type='text']              - 输入的类型: "text", "password", "email", "number", "search", "tel", or "url"
+   * @props {*} [value]                         - 内容输入值
+   * @props {Number} [debounce=0]               - 触发间隔
+   * @props {RegExp} [regex]                    - 自定义正则
+   * @props {Boolean} [check]                   - 是否check输入结果, 如果regex有值, 则开启, 否则关闭. 如果check开启, 但是regex无值, 则使用内置判断. 默认关闭check, check只是作为内部正误标示, 对外提交不起作用, 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名, 这样的话, 验证位置就会统一.
    *
    * @fires component:Input#onBlur
    * @fires component:Input#onFocus
@@ -130,6 +132,16 @@
       showFocusHighlight: Boolean,
 
       /**
+       * 验证成功是否显示 highlight
+       * */
+      showValidHighlight: Boolean,
+
+      /**
+       * 验证失败是否显示 highlight
+       * */
+      showInvalidHighlight: Boolean,
+
+      /**
        * 如果为true, 当输入值的时候一个清除按钮会在input右边出现, 点击按钮则清除输入
        * */
       clearInput: Boolean,
@@ -160,6 +172,9 @@
        * */
       decimal: {
         type: Number,
+        validator (val) {
+          return val >= 0
+        },
         default: 2
       },
 
@@ -216,9 +231,11 @@
       // 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名
       // 这样的话, 验证位置就会统一.
       check: Boolean
+
     },
     data () {
       return {
+        oldInputValue: null,    // 内部value值
         inputValue: this.value, // 内部value值
         typeValue: this.type, // 内部type值
         checkValue: this.check || this.regex, // 内部check值, 判断是否需要验证结果
@@ -239,48 +256,7 @@
         this.inputValue = val
       },
       inputValue (newVal, oldVal) {
-        // 最大长度限制
-        // 文本
-        if (this.type === 'text') {
-          if (isPresent(this.max) && isPresent(newVal) && newVal.toString().length > this.max) {
-            this.$nextTick(() => {
-              this.inputValue = oldVal
-            })
-          }
-        }
 
-        // 数字边界限制
-        if (this.type === 'number') {
-          if (isPresent(newVal)) {
-            let resetValue = null
-
-            if (isPresent(this.max) && newVal > this.max) {
-              resetValue = oldVal
-            }
-            if (isPresent(this.min) && newVal < this.min) {
-              resetValue = this.min
-            }
-
-            newVal = newVal.toString()
-            // 合法的情况
-            let int = newVal.split('.')[0]
-            let decimal = newVal.split('.')[1]
-            if (isPresent(decimal)) {
-              if (decimal.length > this.decimal) {
-                decimal = decimal.substr(0, this.decimal)
-                let num = `${int}.${decimal}`
-                resetValue = parseFloat(num)
-              }
-            }
-
-            // 重置
-            if (resetValue) {
-              this.$nextTick(() => {
-                this.inputValue = resetValue
-              })
-            }
-          }
-        }
       }
     },
     computed: {
@@ -300,6 +276,57 @@
     },
     methods: {
       /**
+       * 边界检查
+       * @param {String|Number} val - 数值
+       * @param {String} text - 对应的string
+       * */
+      checkBoundary ($event) {
+        let inputValue = $event.target.valueAsNumber || parseFloat($event.target.value)
+        let inputText = $event.target.value
+        let resetValue = inputValue
+
+        // 数字边界限制
+        // 这段代码已在很卡顿的安卓机上试验过了, 之所以不在watch阶段重置, 是因为在较慢的安卓机上有数字抖动的情况
+        // 现在已能很好的处理
+        if (this.typeValue === 'number') {
+          if (isPresent(inputValue)) {
+            if (isPresent(this.max) && inputValue > this.max) {
+              resetValue = this.oldInputValue
+            }
+
+            if (isPresent(this.min) && inputValue < this.min) {
+              resetValue = this.min
+            }
+
+            // 小数点检查, 使用string的方式, number的方式会有奇怪的问题, 比如: 222.22 -> 222.19
+
+            let int = inputText.toString().split('.')[0]
+            let decimals = inputText.toString().split('.')[1]
+            if (decimals) {
+              if (decimals.length > this.decimal) {
+                decimals = decimals.substr(0, this.decimal)
+                resetValue = `${int}.${decimals}`
+              } else if (decimals.indexOf('0') === 0) {
+                // 0 开头的话转成string处理
+                resetValue = inputText
+              }
+            }
+          }
+        } else if (this.typeValue === 'text') {
+          // 文本 最大长度限制
+          if (isPresent(this.max) && isPresent(inputValue) && inputValue.toString().length > this.max) {
+            resetValue = this.oldInputValue
+          }
+        }
+
+        if (resetValue && resetValue !== inputValue) {
+          $event.target.value = resetValue
+        }
+
+        return resetValue
+      },
+
+      /**
        * @event component:Input#onKeyup
        * @description keyup事件
        */
@@ -316,6 +343,8 @@
         if (this.clearOnEditValue) {
           this.checkClearOnEdit()
         }
+
+        this.oldInputValue = this.inputValue
       },
 
       /**
@@ -459,7 +488,14 @@
        * @private
        */
       inputChanged ($event) {
-        this.inputValue = $event && $event.target ? $event.target.value : ''
+        if ($event && $event.target) {
+          // 输入限制检查
+          this.inputValue = this.checkBoundary($event)
+        } else {
+          console.error('Input: input no $event params')
+          return
+        }
+
         this.setItemHasValueClass()
 
         // debounce
@@ -549,8 +585,8 @@
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-input', true)
         setElementClass(this.itemComponent.$el, 'show-focus-highlight', this.showFocusHighlight)
-        setElementClass(this.itemComponent.$el, 'show-valid-highlight', this.checkValue)
-        setElementClass(this.itemComponent.$el, 'show-invalid-highlight', this.checkValue)
+        setElementClass(this.itemComponent.$el, 'show-valid-highlight', this.showValidHighlight)
+        setElementClass(this.itemComponent.$el, 'show-invalid-highlight', this.showInvalidHighlight)
       }
 
       // 初始化时,判断是否有value
