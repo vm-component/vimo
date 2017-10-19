@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.6"></a>
+## [0.7.6](https://github.com/DTFE/vimo/compare/v0.7.5...v0.7.6) (2017-10-19)
+
+
+### Bug Fixes
+
+* Input/Textarea组件样式冲突的问题+增加font-size和line-height的变量设置 ([a8d6b84](https://github.com/DTFE/vimo/commit/a8d6b84))
+* Input组件的min/max限制的问题在某些安卓机上出现数字抖动的问题 ([029af11](https://github.com/DTFE/vimo/commit/029af11))
+* 修复Lable组件在某些机型上没垂直居中的问题 ([6698608](https://github.com/DTFE/vimo/commit/6698608))
+
+
+
 <a name="0.7.5"></a>
 ## [0.7.5](https://github.com/DTFE/vimo/compare/v0.7.4...v0.7.5) (2017-10-17)
 
