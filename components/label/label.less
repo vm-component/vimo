@@ -3,6 +3,12 @@
 // Label
 // --------------------------------------------------
 
+/// @prop - ling-height of label
+@label-line-height: 18px;
+
+// Label
+// --------------------------------------------------
+
 .ion-label {
   display: block;
   overflow: hidden;
@@ -14,6 +20,10 @@
   font-size: inherit;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  border: 1px solid #ddd;
+
+  line-height: @label-line-height;
 }
 
 .item-input .ion-label {
