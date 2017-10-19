@@ -1,8 +1,20 @@
 @import "../themes/index.less";
 
+// Input
+// --------------------------------------------------
+
+/// @prop - input font-size
+@text-input-font-size: 16px;
+
+/// @prop - input line-height
+@text-input-line-height: 18px;
 
 // Input Wrapper
 // --------------------------------------------------
+input {
+  font-size: @text-input-font-size;
+  line-height: @text-input-line-height;
+}
 
 .ion-input {
   position: relative;
@@ -19,27 +31,29 @@
 
 // Native Text Input
 // --------------------------------------------------
+.ion-input {
+  .text-input {
 
-.text-input {
-  .appearance(none);
-  display: inline-block;
+    .appearance(none);
+    display: inline-block;
 
-  flex: 1;
+    flex: 1;
 
-  width: 92%;
-  width: ~'calc(100% - 10px)';
+    width: 92%;
+    width: ~'calc(100% - 10px)';
 
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-}
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
 
-.text-input[disabled] {
-  opacity: .4;
-}
+  .text-input[disabled] {
+    opacity: .4;
+  }
 
-input.text-input:-webkit-autofill {
-  background-color: transparent;
+  input.text-input:-webkit-autofill {
+    background-color: transparent;
+  }
 }
 
 .input-has-focus {
@@ -52,22 +66,23 @@ input.text-input:-webkit-autofill {
   pointer-events: auto;
 }
 
-
 // Clear Input Icon
 // --------------------------------------------------
 
-.text-input-clear-icon {
-  position: absolute;
-  top: 0;
-  display: none;
+.ion-input {
+  .text-input-clear-icon {
+    position: absolute;
+    top: 0;
+    display: none;
 
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 
-  height: 100%;
+    height: 100%;
 
-  background-repeat: no-repeat;
-  background-position: center;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 .input-has-focus.input-has-value .text-input-clear-icon {

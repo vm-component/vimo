@@ -22,36 +22,35 @@
 
 // Native Text Textarea
 // --------------------------------------------------
+.ion-textarea {
+  .text-input {
+    .appearance(none);
+    display: inline-block;
 
-.text-input {
-  .appearance(none);
-  display: inline-block;
+    flex: 1;
 
-  flex: 1;
+    width: 92%;
+    width: ~'calc(100% - 10px)';
 
-  width: 92%;
-  width: ~'calc(100% - 10px)';
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
 
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-}
+  .text-input[disabled] {
+    opacity: .4;
+  }
+  textarea.text-input {
+    display: block;
+    position: relative;
+  }
+  .text-input:-webkit-autofill {
+    background-color: transparent;
+  }
 
-textarea.text-input {
-  display: block;
-  position: relative;
-}
-
-.text-input[disabled] {
-  opacity: .4;
-}
-
-input.text-input:-webkit-autofill {
-  background-color: transparent;
-}
-
-textarea.text-input {
-  resize: none;
+  textarea.text-input {
+    resize: none;
+  }
 }
 
 .input-has-focus {
@@ -67,15 +66,17 @@ textarea.text-input {
 
 // Textarea Count
 // --------------------------------------------------
-
-.input-count {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  font-size: 12px;
-  color: #bbb;
-  padding-right: 5px;
-  span {
-    color: #000;
+.ion-textarea {
+  .input-count {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 12px;
+    color: #bbb;
+    padding-right: 5px;
+    span {
+      color: #000;
+    }
   }
+
 }
