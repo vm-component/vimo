@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.8"></a>
+## [0.7.8](https://github.com/DTFE/vimo/compare/v0.7.7...v0.7.8) (2017-10-20)
+
+
+### Bug Fixes
+
+* 修复Input组件在使用clear-input时, 没有触发input事件的bug ([b4e6520](https://github.com/DTFE/vimo/commit/b4e6520))
+
+
+
 <a name="0.7.7"></a>
 ## [0.7.7](https://github.com/DTFE/vimo/compare/v0.7.6...v0.7.7) (2017-10-20)
 
