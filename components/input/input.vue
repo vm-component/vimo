@@ -281,14 +281,17 @@
        * @param {String} text - 对应的string
        * */
       checkBoundary ($event) {
+        // number
         let inputValue = $event.target.valueAsNumber || parseFloat($event.target.value)
+        // text
         let inputText = $event.target.value
-        let resetValue = inputValue
+        let resetValue = null
 
         // 数字边界限制
         // 这段代码已在很卡顿的安卓机上试验过了, 之所以不在watch阶段重置, 是因为在较慢的安卓机上有数字抖动的情况
         // 现在已能很好的处理
         if (this.typeValue === 'number') {
+          resetValue = inputValue
           if (isPresent(inputValue)) {
             if (isPresent(this.max) && inputValue > this.max) {
               resetValue = this.oldInputValue
@@ -299,7 +302,6 @@
             }
 
             // 小数点检查, 使用string的方式, number的方式会有奇怪的问题, 比如: 222.22 -> 222.19
-
             let int = inputText.toString().split('.')[0]
             let decimals = inputText.toString().split('.')[1]
             if (decimals) {
@@ -312,8 +314,9 @@
               }
             }
           }
-        } else if (this.typeValue === 'text') {
-          // 文本 最大长度限制
+        } else {
+          resetValue = inputText
+          // 非数字 且有 最大长度限制
           if (isPresent(this.max) && isPresent(inputValue) && inputValue.toString().length > this.max) {
             resetValue = this.oldInputValue
           }

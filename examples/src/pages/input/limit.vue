@@ -42,6 +42,10 @@
                     <Label color="primary">数字范围(2~10)</Label>
                     <Input :min="2" :max="10" show-focus-highlight placeholder="2~10" type="number" clearInput></Input>
                 </Item>
+                <Item>
+                    <Label color="primary">url</Label>
+                    <Input show-focus-highlight placeholder="Input urls" type="url" clearInput></Input>
+                </Item>
             </List>
         </Content>
     </Page>
