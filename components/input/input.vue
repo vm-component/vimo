@@ -281,49 +281,46 @@
        * @param {String} text - 对应的string
        * */
       checkBoundary ($event) {
-        // number
-        let inputValue = $event.target.valueAsNumber || parseFloat($event.target.value)
-        // text
-        let inputText = $event.target.value
+        let inputText = $event.target.value // text
         let resetValue = null
 
         // 数字边界限制
         // 这段代码已在很卡顿的安卓机上试验过了, 之所以不在watch阶段重置, 是因为在较慢的安卓机上有数字抖动的情况
         // 现在已能很好的处理
         if (this.typeValue === 'number') {
-          resetValue = inputValue
-          if (isPresent(inputValue)) {
-            if (isPresent(this.max) && inputValue > this.max) {
+          resetValue = inputText
+          if (isPresent(inputText)) {
+            if (isPresent(this.max) && parseFloat(inputText) > this.max) {
               resetValue = this.oldInputValue
             }
 
-            if (isPresent(this.min) && inputValue < this.min) {
+            if (isPresent(this.min) && parseFloat(inputText) < this.min) {
               resetValue = this.min
             }
 
             // 小数点检查, 使用string的方式, number的方式会有奇怪的问题, 比如: 222.22 -> 222.19
-            let int = inputText.toString().split('.')[0]
-            let decimals = inputText.toString().split('.')[1]
-            if (decimals) {
+            let int = resetValue.toString().split('.')[0]
+            let decimals = resetValue.toString().split('.')[1]
+
+            if (decimals && this.decimal > 0) {
               if (decimals.length > this.decimal) {
                 decimals = decimals.substr(0, this.decimal)
                 resetValue = `${int}.${decimals}`
-              } else if (decimals.indexOf('0') === 0) {
-                // 0 开头的话转成string处理
-                resetValue = inputText
               }
             }
+          }
+
+          if (resetValue !== inputText) {
+            $event.target.value = resetValue
           }
         } else {
           resetValue = inputText
           // 非数字 且有 最大长度限制
-          if (isPresent(this.max) && isPresent(inputValue) && inputValue.toString().length > this.max) {
+          if (isPresent(this.max) && isPresent(inputText) && inputText.toString().length > this.max) {
             resetValue = this.oldInputValue
+            // 重置 input 输入框
+            $event.target.value = resetValue
           }
-        }
-
-        if (resetValue && resetValue !== inputValue) {
-          $event.target.value = resetValue
         }
 
         return resetValue

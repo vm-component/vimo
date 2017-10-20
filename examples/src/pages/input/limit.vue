@@ -14,7 +14,7 @@
                 </Item>
                 <Item>
                     <Label color="primary">最大数字为10000</Label>
-                    <Input :max="10000" show-focus-highlight placeholder="输入数字" type="number" clearInput></Input>
+                    <Input :max="10000" show-focus-highlight placeholder="输入数字" type="number" v-model="number" clearInput></Input>
                 </Item>
                 <Item>
                     <Label color="primary">最小数字为3</Label>
@@ -55,7 +55,8 @@
     name: 'InputLimitDemo',
     data () {
       return {
-        text: null
+        text: null,
+        number: null
       }
     }
   }
