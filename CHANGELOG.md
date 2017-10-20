@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.9"></a>
+## [0.7.9](https://github.com/DTFE/vimo/compare/v0.7.8...v0.7.9) (2017-10-20)
+
+
+### Bug Fixes
+
+* 修复Input组件边界检查text文本时在某些安卓机上字符跳动的问题 ([b5c5f10](https://github.com/DTFE/vimo/commit/b5c5f10))
+
+
+
 <a name="0.7.8"></a>
 ## [0.7.8](https://github.com/DTFE/vimo/compare/v0.7.7...v0.7.8) (2017-10-20)
 
