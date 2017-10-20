@@ -488,6 +488,7 @@
 
       /**
        * 监听input事件, 更新input的value(inputValue)
+       * @param {Event} [$event] - 事件(可选)
        * @private
        */
       inputChanged ($event) {
@@ -495,8 +496,8 @@
           // 输入限制检查
           this.inputValue = this.checkBoundary($event)
         } else {
-          console.error('Input: input no $event params')
-          return
+          // clear的情况
+          this.inputValue = null
         }
 
         this.setItemHasValueClass()

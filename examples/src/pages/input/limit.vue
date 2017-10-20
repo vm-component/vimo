@@ -10,7 +10,7 @@
                 <ListHeader>长度限制</ListHeader>
                 <Item>
                     <Label color="primary">最长10个字符</Label>
-                    <Input :max="10" show-focus-highlight placeholder="输入文本" type="text" clearInput></Input>
+                    <Input :max="10" show-focus-highlight placeholder="输入文本" type="text" v-model="text" clearInput></Input>
                 </Item>
                 <Item>
                     <Label color="primary">最大数字为10000</Label>
@@ -52,6 +52,11 @@
 </template>
 <script type="text/javascript">
   export default {
-    name: 'InputLimitDemo'
+    name: 'InputLimitDemo',
+    data () {
+      return {
+        text: null
+      }
+    }
   }
 </script>
