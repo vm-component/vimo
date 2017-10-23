@@ -2,23 +2,23 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Tabs在底部</Title>
+                <Title>Tabs在底部(强制IOS)</Title>
             </Navbar>
         </Header>
-        <Tabs tabsLayout="icon-top" tabsPlacement="bottom" @onTabChange="onTabChange" ref=tabs>
+        <Tabs mode="ios" tabsLayout="icon-top" tabsPlacement="bottom" @onTabChange="onTabChange" ref=tabs>
             <router-view></router-view>
-            <Tab slot="tab" :to="{name:'tabsBottom.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger"
+            <Tab mode="ios" slot="tab" :to="{name:'tabsBottom.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger"
                  tabIcon="person"></Tab>
-            <Tab slot="tab" :to="{name:'tabsBottom.demoTab2'}" tabBadge="2" tabTitle="Cars" tabBadgeStyle="dark"
+            <Tab mode="ios" slot="tab" :to="{name:'tabsBottom.demoTab2'}" tabBadge="2" tabTitle="Cars" tabBadgeStyle="dark"
                  tabIcon="car"></Tab>
-            <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star"
+            <Tab mode="ios" slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star"
                  :enabled="true"></Tab>
         </Tabs>
     </Page>
 </template>
 <style scoped lang="less"></style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'name',
     data () {
       return {

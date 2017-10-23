@@ -2,9 +2,9 @@
     <a class="tab-button" ref="routerLink" @click="tabClickHandler($event)"
        :id="tabId"
        :class="{'has-title':hasTitle, 'has-icon':hasIcon, 'has-title-only':hasTitleOnly, 'icon-only':hasIconOnly, 'has-badge':hasBadge,  'tab-disabled':!enabled, 'tab-hidden':!show,'tab-active':isActive}">
-        <Icon v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
+        <Icon :mode="mode" v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
         <span v-if="tabTitle" class="tab-button-text">{{tabTitle}}</span>
-        <Badge v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
+        <Badge :mode="mode" v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
     </a>
 </template>
 <script type="text/javascript">
@@ -18,6 +18,7 @@
    * Tab点击切换使用的是`$router.replace(this.to)`处理的， 因此应该包含:to属性用于跳转。
    *
    *
+   * @props {String} [mode] - Tab组件内Icon核Badge的模式, 不可较差定义不同mode, 默认跟随系统
    * @props {Boolean} [enabled] - 是否能选择
    * @props {Object} to - 路由跳转，必填
    * @props {Boolean} [show=true] - 是否显示
@@ -33,10 +34,15 @@
    *
    * */
   import Badge from '../badge'
+
   let _tabId = -1
-  export default{
+  export default {
     name: 'Tab',
     props: {
+      mode: {
+        type: String,
+        default () { return this.$config && this.$config.get('mode') || 'ios' }
+      },
       // 是否能选择
       enabled: {
         type: Boolean,
