@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.10"></a>
+## [0.7.10](https://github.com/DTFE/vimo/compare/v0.7.9...v0.7.10) (2017-10-23)
+
+
+### Bug Fixes
+
+* 修复Tab组件的mode设置无法自定义的问题([#11](https://github.com/DTFE/vimo/issues/11)) ([99a8e13](https://github.com/DTFE/vimo/commit/99a8e13))
+
+
+
 <a name="0.7.9"></a>
 ## [0.7.9](https://github.com/DTFE/vimo/compare/v0.7.8...v0.7.9) (2017-10-20)
 
