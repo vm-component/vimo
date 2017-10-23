@@ -124,11 +124,6 @@
       return {
         isInit: false, // 当前组件初始化状态
         tabElementWidth: 0, // 每个tab的宽度, 用于tabHighLight
-        tabSlots: null,
-        tabbarElement: null, // tabbar元素
-        tabsContentElement: null,
-        tabsContentWrapElement: null,
-        tabHighlightEle: null, // TabHighlight元素
         selectedIndex: -1 // 内部使用的, 表示当前处于激活的Tab的index
       }
     },
@@ -156,6 +151,24 @@
       // 颜色
       colorClass () {
         return this.color ? (`tabs-${this.mode}-${this.color}`) : ''
+      },
+      // tabbar元素
+      tabbarElement () {
+        return this.$refs.tabbar
+      },
+      // TabHighlight元素
+      tabHighlightEle () {
+        return this.$refs.tabHighlight
+      },
+      tabsContentElement () {
+        return this.$refs.tabsContent
+      },
+      tabsContentWrapElement () {
+        return this.$refs.tabsContentWrap
+      },
+      // 获取tabbar元素
+      tabSlots () {
+        return this.$slots.tab
       }
     },
     methods: {
@@ -238,15 +251,8 @@
       initTabs () {
         if (this.isInit) return
 
-        // 获取tabbar元素
-        this.tabSlots = this.$slots.tab
-        this.tabbarElement = this.$refs.tabbar
         this.tabElementWidth = this.getTabElementWidth()
         this.selectedIndex = this.getActivatedIndex()
-
-        this.tabHighlightEle = this.$refs.tabHighlight
-        this.tabsContentElement = this.$refs.tabsContent
-        this.tabsContentWrapElement = this.$refs.tabsContentWrap
 
         // 计算属性盒子的尺寸
         this.computeTabsContentStyle()
@@ -266,7 +272,6 @@
        * @private
        * */
       computeTabsContentStyle () {
-//        let _styleType = 'margin'
         let headerBarHeight = 0
         let footerBarHeight = 0
         let computedStyle
