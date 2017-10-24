@@ -8,7 +8,7 @@
                 @after-enter="afterEnter"
                 @before-leave="beforeLeave"
                 @after-leave="afterLeave">
-            <div class="sheet-wrapper" v-show="isActive">
+            <div class="sheet-wrapper" v-show="isActive" @touchmove="onTouchMoveHandler($event)">
                 <div class="sheet-container">
                     <slot></slot>
                 </div>
@@ -275,6 +275,11 @@
         } else {
           return new Promise((resolve) => { resolve() })
         }
+      },
+
+      onTouchMoveHandler ($event) {
+        $event.preventDefault()
+        $event.stopPropagation()
       }
     },
     created () {
