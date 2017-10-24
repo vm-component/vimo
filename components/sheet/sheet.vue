@@ -1,5 +1,5 @@
 <template>
-    <div class="vm-sheet" :class="[modeClass,{'vm-sheet-visible':isVisible}]">
+    <div class="vm-sheet" :class="[modeClass,directionClass,{'vm-sheet-visible':isVisible}]">
         <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
                   :isActive="isActive"></Backdrop>
         <transition
@@ -77,10 +77,15 @@
    * ...
    * ```
    *
+   * @props {String} [direction='button'] - 表单出现位置, 只能是: 'button', 'top' 两个方向
+   * @props {Boolean} [enableBackdropDismiss='true'] - 点击背景关闭组件
+   * @props {String} [mode='ios'] - 模式
+   * @props {Boolean} [dismissOnPageChange='true'] - 页面切换关闭组件
+   *
    *
    * @demo #/sheet
    * @usage
-   * <Sheet ref="paySheet" slot="fixed">
+   * <Sheet ref="paySheet" slot="fixed" direction="button">
    *    <section class="pay-sheet">
    *    <div class="pay-sheet-title">选择支付方式</div>
    *    <div class="pay-sheet-container">
@@ -106,14 +111,22 @@
    * */
   import Backdrop from '../backdrop'
   import { urlChange } from '../util/util'
+
   const NOOP = () => {}
 
   export default {
     name: 'Sheet',
     props: {
+      direction: {
+        type: String,
+        default: 'button',
+        validator (val) {
+          return ['button', 'top'].indexOf(val) > -1
+        }
+      },
       enableBackdropDismiss: {
         type: Boolean,
-        default () { return true }
+        default: true
       },
       mode: {
         type: String,
@@ -121,7 +134,7 @@
       },
       dismissOnPageChange: {
         type: Boolean,
-        default () { return true }
+        default: true
       }
     },
     data () {
@@ -151,6 +164,9 @@
       // 设置ActionSheet的风格
       modeClass () {
         return `sheet-${this.mode}`
+      },
+      directionClass () {
+        return `sheet-direction-${this.direction}`
       }
     },
     methods: {
@@ -278,13 +294,4 @@
     @import "sheet";
     @import "sheet.ios.less";
     @import "sheet.md.less";
-
-    // transitioName = 'sheet'
-    .sheet-enter-active, .sheet-leave-active {
-        transform: translateY(0%);
-    }
-
-    .sheet-enter, .sheet-leave-active {
-        transform: translateY(100%);
-    }
 </style>

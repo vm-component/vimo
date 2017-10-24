@@ -38,6 +38,7 @@ import Note from './note'
 import NoticeBar from './noticebar'
 import Picker from './picker'
 import Popover from './popover'
+import PopSheet from './pop-sheet'
 import PreviewImage from './preview-image'
 import Radio from './radio'
 import Range from './range'
@@ -117,6 +118,7 @@ module.exports = {
   NoticeBar,
   Picker,
   Popover,
+  PopSheet,
   PreviewImage,
   Radio,
   Range,

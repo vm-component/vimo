@@ -9,7 +9,8 @@
             <h1>Sheet组件</h1>
             <p>组件用于弹出进一步选择的弹出层, 比如选择尺码/支付方式/分享方式等.</p>
             <p>当前支付方式选择: {{type}}</p>
-            <Button block @click="openPaySheet">选择支付方式</Button>
+            <Button block @click="openPaySheet('button')">选择支付方式(底部打开)</Button>
+            <Button block @click="openPaySheet('top')">选择支付方式(顶部打开)</Button>
             <article>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur explicabo minus odit praesentium rem. Alias consectetur cupiditate facere id ipsam maxime omnis repellendus sapiente. Enim facere incidunt ipsam numquam rerum!</p>
@@ -45,7 +46,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur explicabo minus odit praesentium rem. Alias consectetur cupiditate facere id ipsam maxime omnis repellendus sapiente. Enim facere incidunt ipsam numquam rerum!</p>
             </article>
             <!--paySheet-->
-            <Sheet ref="paySheet" slot="fixed">
+            <Sheet ref="paySheet" slot="fixed" :direction="direction">
                 <section class="pay-sheet">
                     <div class="pay-sheet-title">选择支付方式</div>
                     <div class="pay-sheet-container">
@@ -76,7 +77,8 @@
     name: 'SheetDemo',
     data () {
       return {
-        type: ''
+        type: '',
+        direction: 'button'
       }
     },
     computed: {
@@ -85,7 +87,8 @@
       }
     },
     methods: {
-      openPaySheet () {
+      openPaySheet (direction) {
+        this.direction = direction
         return this.paySheetCompoonent.present()
       },
       closePaySheet () {
@@ -96,11 +99,11 @@
           this.type = type
         })
       }
-    }
+    },
+    mounted () {}
   }
 </script>
 <style scoped lang="less">
-
 
     .icon-alipay {
         background: url('../assets/icon-alipay.png') no-repeat center center/auto 100%;
