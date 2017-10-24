@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/DTFE/vimo/compare/v0.7.10...v0.8.0) (2017-10-24)
+
+
+### Bug Fixes
+
+* Sheet组件增加打开的方向, 现在支持'button'和'top'两个方向 ([fe87a5f](https://github.com/DTFE/vimo/commit/fe87a5f))
+* 修复Sheet组件在其上下滚动时触发背景页面滚动的bug ([49d7bdd](https://github.com/DTFE/vimo/commit/49d7bdd))
+
+
+### Features
+
+* 增加PopSheet组件, 用于定制化显示Alert组件无法覆盖的场景 ([f2306ca](https://github.com/DTFE/vimo/commit/f2306ca))
+
+
+
 <a name="0.7.10"></a>
 ## [0.7.10](https://github.com/DTFE/vimo/compare/v0.7.9...v0.7.10) (2017-10-23)
 
