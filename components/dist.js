@@ -214,6 +214,7 @@ module.exports = {
     Vue.component(SelectOption.name, SelectOption)
     Vue.component(Separation.name, Separation)
     Vue.component(Sheet.name, Sheet)
+    Vue.component(PopSheet.name, PopSheet)
     Vue.component(SlideBox.name, SlideBox)
     Vue.component(Slides.name, Slides)
     Vue.component(Slide.name, Slide)

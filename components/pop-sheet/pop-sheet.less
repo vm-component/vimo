@@ -1,0 +1,50 @@
+@import "../themes/index";
+
+// pop-sheet
+// --------------------------------------------------
+
+@sheet-width: 100%;
+@sheet-max-width: 500px;
+
+.vm-pop-sheet {
+  overflow: hidden;
+  &.vm-pop-sheet-visible {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: @z-index-overlay;
+
+    width: @sheet-width;
+    height: @sheet-width;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // transitioName = 'pop-sheet'
+  .pop-sheet-enter-active, .pop-sheet-leave-active {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .pop-sheet-enter {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+
+  .pop-sheet-leave-active {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  .sheet-wrapper {
+    position: relative;
+    z-index: @z-index-overlay-wrapper;
+    display: block;
+    margin: auto;
+    // added
+    transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
+  }
+}
+

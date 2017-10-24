@@ -94,7 +94,8 @@ module.exports = {
       `${base}/components/feedback`,
       `${base}/components/preview-image`,
       `${base}/components/choose-city`,
-      `${base}/components/sheet`
+      `${base}/components/sheet`,
+      `${base}/components/pop-sheet`
     ],
     exclude: [
       'gulpfile.js'

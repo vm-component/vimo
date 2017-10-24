@@ -288,6 +288,13 @@ let routes = [
       require(['@/pages/sheet.vue'], resolve)
     }
   },
+  {
+    path: '/pop-sheet',
+    name: 'popSheet',
+    component (resolve) {
+      require(['@/pages/pop-sheet.vue'], resolve)
+    }
+  },
   // ----  component/Form组件 ----
 
   {

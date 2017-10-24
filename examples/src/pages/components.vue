@@ -164,6 +164,11 @@
                     <span>弹出单</span>
                     <Note slot="item-right">Sheet</Note>
                 </Item>
+                <Item button :to="{name: 'popSheet'}">
+                    <Icon slot="item-left" name="car"></Icon>
+                    <span>弹出窗</span>
+                    <Note slot="item-right">PopSheet</Note>
+                </Item>
                 <Item button>
                     <Icon slot="item-left" name="star"></Icon>
                     <Label>数字支付键盘(未完成)</Label>
