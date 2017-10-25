@@ -30,10 +30,10 @@
                             <p>v{{vimo.version}}</p>
                             <p class="message">{{$t('index.message')}}</p>
                             <a class="star" href="#"><img
-                                    src="https://img.shields.io/github/stars/DTFE/vimo.svg?style=social&label=Star"
+                                    src="https://img.shields.io/github/stars/vm-component/vimo.svg?style=social&label=Star"
                                     alt="Star"></a>
                             <a class="star" href="#"><img
-                                    src="https://img.shields.io/github/forks/DTFE/vimo.svg?style=social&label=Fork"
+                                    src="https://img.shields.io/github/forks/vm-component/vimo.svg?style=social&label=Fork"
                                     alt="Fork"></a>
                         </Column>
                     </Row>

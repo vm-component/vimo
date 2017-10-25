@@ -14,7 +14,7 @@ const VERSION = require('../package.json').version
 const addLogo = (vimoVer, vueVer) => {
   // logo
   var vimoLogo = {
-    info: 'Powered by Vimo@' + vimoVer + ' and based on Vue@' + vueVer + ' \n源代码请访问GitHub https://github.com/DTFE/Vimo'
+    info: 'Powered by Vimo@' + vimoVer + ' and based on Vue@' + vueVer + ' \n源代码请访问GitHub https://github.com/vm-component/Vimo'
   }
   window.console && console.info && console.info(vimoLogo.info)
 }

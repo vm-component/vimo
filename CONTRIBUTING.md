@@ -140,7 +140,7 @@ Vimo编码使用的[StandardJS](https://github.com/standard/standard)规范。
 
 ## <a name="commit"></a> Git提交规范(Commit Message Guidelines)
 
-代码编写完毕提交时，commit信息会进行严格校验。这样做是为了让commit记录能够**准确反映当次提交的代码情况**，这样能方便定位提交点，并且根据提交记录自动生成可用的```CHANGELOG```记录，这个记录也会用于**[Github-Release](https://github.com/DTFE/vimo/releases)**。
+代码编写完毕提交时，commit信息会进行严格校验。这样做是为了让commit记录能够**准确反映当次提交的代码情况**，这样能方便定位提交点，并且根据提交记录自动生成可用的```CHANGELOG```记录，这个记录也会用于**[Github-Release](https://github.com/vm-component/vimo/releases)**。
 
 ### Commit信息提交格式(Commit Message Format)
 

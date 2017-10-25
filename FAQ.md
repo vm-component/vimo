@@ -36,4 +36,4 @@
 
 #### 版本0.6.0+更新报错
 
-部分vimo组件的```import```引入方式发生变更, 例如之前是```import {Button} from 'vimo/lib/button'```, 改为了 ```import Button from 'vimo/lib/button'```. 变更的组件范围[参考这里](https://github.com/DTFE/vimo/blob/master/components/dist.js). 
+部分vimo组件的```import```引入方式发生变更, 例如之前是```import {Button} from 'vimo/lib/button'```, 改为了 ```import Button from 'vimo/lib/button'```. 变更的组件范围[参考这里](https://github.com/vm-component/vimo/blob/master/components/dist.js). 

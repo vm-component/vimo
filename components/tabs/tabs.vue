@@ -34,7 +34,7 @@
    *
    * Tabs是一个使用`$router.replace`进行页面导航的组件，其中Tab组件中传入`props`定义每个tab的结构/样式/路由位子等信息。 Tabs使用场景类似于"栏目切换"， 如果你使用的是IOS手机，请参考"App Store"应用。下图也许能更直观的表达Tabs的职责范围。
    *
-   * ![tabs的设计](https://github.com/DTFE/Vimo/blob/master/dev/static/img/tabs.png?raw=true)
+   * ![tabs的设计](https://github.com/vm-component/Vimo/blob/master/dev/static/img/tabs.png?raw=true)
    *
    * ### 使用规则
    *

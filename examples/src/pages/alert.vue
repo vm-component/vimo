@@ -337,7 +337,7 @@
       image () {
         this.$alert.present({
 //          image: 'http://gw.alicdn.com/tps/i2/TB1SlYwGFXXXXXrXVXX9vKJ2XXX-2880-1560.jpg_200x200.jpg',
-          image: 'https://github.com/DTFE/Vimo/blob/master/examples/static/img/vimo.png?raw=true',
+          image: 'https://github.com/vm-component/Vimo/blob/master/examples/static/img/vimo.png?raw=true',
           title: '5.5版本更新',
           message: '1.功能更新 2.功能更新;',
           cssClass: 'alertCssOuterMain',

@@ -328,7 +328,7 @@
       },
       btnImage () {
         this.titleComponent.setTitle({
-          image: 'https://raw.githubusercontent.com/DTFE/vimo/master/examples/static/img/searchbar-fake.png'
+          image: 'https://raw.githubusercontent.com/vm-component/vimo/master/examples/static/img/searchbar-fake.png'
         })
       },
       btnReset () {
