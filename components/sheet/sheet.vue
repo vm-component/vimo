@@ -81,7 +81,7 @@
    * @props {Boolean} [enableBackdropDismiss='true'] - 点击背景关闭组件
    * @props {String} [mode='ios'] - 模式
    * @props {Boolean} [dismissOnPageChange='true'] - 页面切换关闭组件
-   *
+   * @props {boolean} [showBackdrop=false] - 是否显示黑色背景
    *
    * @demo #/sheet
    * @usage
@@ -133,6 +133,10 @@
         default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
       dismissOnPageChange: {
+        type: Boolean,
+        default: true
+      },
+      showBackdrop: {
         type: Boolean,
         default: true
       }

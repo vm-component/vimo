@@ -137,7 +137,7 @@
       cssClass: String,
       showBackdrop: {
         type: Boolean,
-        default () { return true }
+        default: true
       },
       duration: Number,
       dismissOnPageChange: {
