@@ -10,7 +10,7 @@
             <p>组件用于弹出进一步选择的弹出层, 比如选择尺码/支付方式/分享方式等.</p>
             <p>当前支付方式选择: {{type}}</p>
 
-            <List radio-group>
+            <List>
                 <ListHeader>特性</ListHeader>
                 <Item>
                     <Label>显示背景</Label>

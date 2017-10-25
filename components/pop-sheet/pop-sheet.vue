@@ -1,7 +1,7 @@
 <template>
     <div class="vm-pop-sheet" :class="[modeClass,{'vm-pop-sheet-visible':isVisible}]">
         <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
-                  :isActive="isActive"></Backdrop>
+                  :isActive="isActive && showBackdrop"></Backdrop>
         <transition
                 name="pop-sheet"
                 @before-enter="beforeEnter"
@@ -71,10 +71,10 @@
    * ...
    * ```
    *
-   * @props {Boolean} [enableBackdropDismiss='true'] - 点击背景关闭组件
+   * @props {Boolean} [enableBackdropDismiss=true] - 点击背景关闭组件
    * @props {String} [mode='ios'] - 模式
-   * @props {Boolean} [dismissOnPageChange='true'] - 页面切换关闭组件
-   * @props {boolean} [showBackdrop=false] - 是否显示黑色背景
+   * @props {Boolean} [dismissOnPageChange=true] - 页面切换关闭组件
+   * @props {boolean} [showBackdrop=true] - 是否显示黑色背景
    *
    * @demo #/pop-sheet
    * @usage
