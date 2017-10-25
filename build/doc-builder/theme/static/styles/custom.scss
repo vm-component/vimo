@@ -102,6 +102,20 @@
           }
         }
       }
+  
+      &.qrcode {
+        .showcase__box--qrcode {
+          display: block !important;
+        }
+        .showcase__choose {
+          #js_choose_qrcode {
+            font-weight: bold;
+            border-radius: 20px;
+            background: #00663d;
+            color: #fff;
+          }
+        }
+      }
 
       .showcase__box--ios {
         text-align: center;
@@ -128,6 +142,15 @@
           height: $width * 590px / 467px;
         }
       }
+  
+      .showcase__box--qrcode {
+        text-align: center;
+        display: none;
+        width: $width;
+        height: $width * 800px / 467px;
+      }
+      
+      
       iframe {
         border: none;
         outline: none;
@@ -155,10 +178,11 @@
       .showcase__qrcode {
         text-align: center;
         margin: 0 auto;
+        padding-top: 40px;
         .showcase__qrcode--inner {
           display: block;
-          width: 100px;
-          height: 100px;
+          width: 200px;
+          height: 200px;
           border: 1px solid #ddd;
           margin: 0 auto 10px;
         }
