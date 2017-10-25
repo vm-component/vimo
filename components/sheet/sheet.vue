@@ -1,7 +1,7 @@
 <template>
     <div class="vm-sheet" :class="[modeClass,directionClass,{'vm-sheet-visible':isVisible}]">
         <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
-                  :isActive="isActive"></Backdrop>
+                  :isActive="isActive && showBackdrop"></Backdrop>
         <transition
                 name="sheet"
                 @before-enter="beforeEnter"
@@ -77,11 +77,11 @@
    * ...
    * ```
    *
-   * @props {String} [direction='button'] - 表单出现位置, 只能是: 'button', 'top' 两个方向
-   * @props {Boolean} [enableBackdropDismiss='true'] - 点击背景关闭组件
+   * @props {String} [direction='button'] - 表单出现位置, 只能是: 'bottom', 'top' 两个方向
+   * @props {Boolean} [enableBackdropDismiss=true] - 点击背景关闭组件
    * @props {String} [mode='ios'] - 模式
-   * @props {Boolean} [dismissOnPageChange='true'] - 页面切换关闭组件
-   * @props {boolean} [showBackdrop=false] - 是否显示黑色背景
+   * @props {Boolean} [dismissOnPageChange=true] - 页面切换关闭组件
+   * @props {boolean} [showBackdrop=true] - 是否显示黑色背景
    *
    * @demo #/sheet
    * @usage
@@ -119,9 +119,9 @@
     props: {
       direction: {
         type: String,
-        default: 'button',
+        default: 'bottom',
         validator (val) {
-          return ['button', 'top'].indexOf(val) > -1
+          return ['bottom', 'top'].indexOf(val) > -1
         }
       },
       enableBackdropDismiss: {

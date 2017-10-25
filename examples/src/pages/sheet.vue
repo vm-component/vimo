@@ -9,8 +9,34 @@
             <h1>Sheet组件</h1>
             <p>组件用于弹出进一步选择的弹出层, 比如选择尺码/支付方式/分享方式等.</p>
             <p>当前支付方式选择: {{type}}</p>
-            <Button block @click="openPaySheet('button')">选择支付方式(底部打开)</Button>
-            <Button block @click="openPaySheet('top')">选择支付方式(顶部打开)</Button>
+
+            <List radio-group>
+                <ListHeader>特性</ListHeader>
+                <Item>
+                    <Label>显示背景</Label>
+                    <Toggle v-model="showBackdrop"></Toggle>
+                </Item>
+                <Item>
+                    <Label>点击背景关闭</Label>
+                    <Toggle v-model="enableBackdropDismiss"></Toggle>
+                </Item>
+            </List>
+
+
+            <List radio-group v-model="direction">
+                <ListHeader>打开方向</ListHeader>
+                <Item>
+                    <Label>底部</Label>
+                    <Radio value="bottom"></Radio>
+                </Item>
+                <Item>
+                    <Label>顶部</Label>
+                    <Radio value="top"></Radio>
+                </Item>
+            </List>
+
+            <Button block @click="openPaySheet">选择支付方式</Button>
+
             <article>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur explicabo minus odit praesentium rem. Alias consectetur cupiditate facere id ipsam maxime omnis repellendus sapiente. Enim facere incidunt ipsam numquam rerum!</p>
@@ -46,7 +72,12 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur explicabo minus odit praesentium rem. Alias consectetur cupiditate facere id ipsam maxime omnis repellendus sapiente. Enim facere incidunt ipsam numquam rerum!</p>
             </article>
             <!--paySheet-->
-            <Sheet ref="paySheet" slot="fixed" :direction="direction">
+            <Sheet
+                    ref="paySheet"
+                    slot="fixed"
+                    :direction="direction"
+                    :showBackdrop="showBackdrop"
+                    :enableBackdropDismiss="enableBackdropDismiss">
                 <section class="pay-sheet">
                     <div class="pay-sheet-title">选择支付方式</div>
                     <div class="pay-sheet-container">
@@ -78,7 +109,9 @@
     data () {
       return {
         type: '',
-        direction: 'button'
+        direction: 'bottom',
+        enableBackdropDismiss: true,
+        showBackdrop: true
       }
     },
     computed: {
@@ -87,13 +120,13 @@
       }
     },
     methods: {
-      openPaySheet (direction) {
-        this.direction = direction
+      openPaySheet () {
         return this.paySheetCompoonent.present()
       },
       closePaySheet () {
         return this.paySheetCompoonent.dismiss()
       },
+
       choose (type) {
         this.closePaySheet().then(() => {
           this.type = type
