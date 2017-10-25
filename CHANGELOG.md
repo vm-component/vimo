@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.8.1"></a>
+## [0.8.1](https://github.com/vm-component//vimo/compare/v0.8.0...v0.8.1) (2017-10-25)
+
+
+### Bug Fixes
+
+* 修复PopSheet组件showBackdrop属性支持 ([20516ff](https://github.com/vm-component//vimo/commit/20516ff))
+* 修复Sheet组件direction参数拼写问题+showBackdrop属性支持, 惭愧.. ([ffbb31f](https://github.com/vm-component//vimo/commit/ffbb31f))
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/vm-component/vimo/compare/v0.7.10...v0.8.0) (2017-10-24)
 
