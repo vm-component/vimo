@@ -95,7 +95,8 @@ module.exports = {
       `${base}/components/preview-image`,
       `${base}/components/choose-city`,
       `${base}/components/sheet`,
-      `${base}/components/pop-sheet`
+      `${base}/components/pop-sheet`,
+      `${base}/components/landscape-prompt`
     ],
     exclude: [
       'gulpfile.js'

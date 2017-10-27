@@ -30,6 +30,7 @@ import { Item, ItemDivider, ItemGroup, ListHeader } from './item'
 import { ItemCollapse, ItemCollapseGroup } from './item-collapse'
 import { ItemSliding, ItemSlidingOptions } from './item-sliding'
 import Label from './label'
+import LandscapePrompt from './landscape-prompt'
 import List from './list'
 import Loading from './loading'
 import Menus from './menus'
@@ -110,6 +111,7 @@ module.exports = {
   ItemSliding,
   ItemSlidingOptions,
   Label,
+  LandscapePrompt,
   List,
   Loading,
   Menus,
@@ -196,6 +198,7 @@ module.exports = {
     Vue.component(ItemSliding.name, ItemSliding)
     Vue.component(ItemSlidingOptions.name, ItemSlidingOptions)
     Vue.component(Label.name, Label)
+    Vue.component(LandscapePrompt.name, LandscapePrompt)
     Vue.component(List.name, List)
     Vue.component(Menus.name, Menus)
     Vue.component(Note.name, Note)

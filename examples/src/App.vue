@@ -45,9 +45,12 @@
         </Menus>
         <Nav :showIndicatorWhenPageChange="true">
             <!--<keep-alive>-->
-                <router-view></router-view>
+            <router-view></router-view>
             <!--</keep-alive>-->
         </Nav>
+
+        <!--横屏时提示用户-->
+        <LandscapePrompt slot="outer"></LandscapePrompt>
     </App>
 </template>
 <script type="text/javascript">
