@@ -18,6 +18,7 @@
         <!--当页面被点击的时候，防止在动画的过程中再次点击页面导致bug的蒙层，全局最高！z-index=99999-->
         <aside class="click-block"
                :class="[{'click-block-enabled':isClickBlockEnabled}]"></aside>
+        <slot name="outer"></slot>
     </article>
 </template>
 <style lang="less">
@@ -95,6 +96,10 @@
    *    - .hidden           - display:none
    *
    * @props {String} [mode='ios'] - 模式, 用于在根处定义app的平台及样式
+   *
+   *
+   * @slot 空               默认插入到正常页面中
+   * @slot [outer]         插入到最外部， 用于定义在所有页面和弹出层之上的结构组件，比如：landscape-prompt组件
    *
    * @demo #/app
    * */
