@@ -1,5 +1,5 @@
 /* eslint-disable no-undef,no-unused-expressions */
-import { setupPlatform } from '../../../src/base/platform'
+import { setupPlatform } from '../../../src/components/base/platform'
 import platformAliPayConfig from '../../../examples/src/config/platforms/platform-alipay-config'
 // alipay useragent
 const MOCK_CONFIG = {

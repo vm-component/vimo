@@ -1,6 +1,6 @@
 /* eslint-disable no-undef,no-unused-expressions */
-import AlertController from '../../../src/alert/index.js'
-import Alert from '../../../src/alert/alert.vue'
+import AlertController from '../../../src/components/alert/index.js'
+import Alert from '../../../src/components/alert/alert.vue'
 import { mount } from 'vue-test-utils'
 
 let opts = {
