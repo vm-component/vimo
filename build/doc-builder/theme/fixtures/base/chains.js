@@ -8,10 +8,10 @@
 var dcl = require( "dcl" );
 /**
  * @classDesc Chains define the primary composition elements (functions) that determine the order of execution.
- * @exports base/chains
+ * @exports config/chains
  * @constructor
  */
-var Chains = dcl( null, {declaredClass : "base/chains"} );
+var Chains = dcl( null, {declaredClass : "config/chains"} );
 /**
  * The `close` method asks an object to shut itself down in a way that will allow it to be reopened, unlike the
  * [end method]{@link base/chains#end} which will call the destroy method which should make the object unusable, but also

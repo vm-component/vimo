@@ -90,7 +90,7 @@
   }
 }
 
-// Creates the base column which has shared styles among all columns
+// Creates the config column which has shared styles among all columns
 // ---------------------------------------------------------------------------------
 
 @mixin make-column-base($padding-width: $grid-padding-width) {

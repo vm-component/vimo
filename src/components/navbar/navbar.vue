@@ -136,10 +136,10 @@
    *  </Page>
    * </template>
    * */
-  import ToolbarMixins from '../../toolbar/toolbarMixins.vue'
-  import Button from '../../button/button.vue'
-  import Icon from '../../icon/index'
-  import { isArray, isString } from '../../../util/util'
+  import ToolbarMixins from '../toolbar/toolbarMixins.vue'
+  import Button from '../button/button.vue'
+  import Icon from '../icon/index'
+  import { isArray, isString } from '../../util/util'
 
   export default {
     name: 'Navbar',
@@ -258,7 +258,7 @@
             resolve()
           } else {
             try {
-              import('../../popover/index.js').then(
+              import('../popover/index.js').then(
                 // resolve
                 (component) => {
                   let Popover = component.default

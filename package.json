@@ -1,9 +1,9 @@
 {
-  "name": "vimo",
-  "version": "0.8.1",
+  "name": "Vimo",
+  "version": "1.0.1",
   "description": "A Vue2.x UI Project For Mobile & HyBrid",
-  "author": "xiangsongtao <280304286@163.com>",
-  "homepage": "https://github.com/vm-component/vimo",
+  "author": "nostaff <nostaff@sina.com>",
+  "homepage": "https://git.yue360.com/nostaff/vimo",
   "license": "MIT",
   "keywords": [
     "vimo",
@@ -65,12 +65,8 @@
     }
   },
   "repository": {
-    "type": "git",
-    "url": "git@github.com:vm-component/vimo.git"
-  },
-  "demo": {
-    "type": "git",
-    "url": "git@github.com:vm-component/vimo-demo.git"
+    "type": "https",
+    "url": "https://git.yue360.com/nostaff/vimo.git"
   },
   "dependencies": {
     "autosize": "^3.0.20",

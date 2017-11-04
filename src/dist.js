@@ -1,11 +1,11 @@
 import core from './core.js'
-import App from './components/base/app/app.vue'
-import Footer from './components/base/app/footer.vue'
-import Header from './components/base/app/header.vue'
-import Content from './components/base/content/content.vue'
-import Nav from './components/base/nav/nav.vue'
-import Navbar from './components/base/navbar/navbar.vue'
-import Page from './components/base/page/page.vue'
+import App from './components/app/app.vue'
+import Footer from './components/app/footer.vue'
+import Header from './components/app/header.vue'
+import Content from './components/content/content.vue'
+import Nav from './components/nav/nav.vue'
+import Navbar from './components/navbar/navbar.vue'
+import Page from './components/page/page.vue'
 import ActionSheet from './components/action-sheet'
 import Alert from './components/alert'
 import Avatar from './components/avatar'
@@ -30,7 +30,6 @@ import { Item, ItemDivider, ItemGroup, ListHeader } from './components/item'
 import { ItemCollapse, ItemCollapseGroup } from './components/item-collapse'
 import { ItemSliding, ItemSlidingOptions } from './components/item-sliding'
 import Label from './components/label'
-import LandscapePrompt from './components/landscape-prompt'
 import List from './components/list'
 import Loading from './components/loading'
 import Menus from './components/menus'
@@ -111,7 +110,6 @@ module.exports = {
   ItemSliding,
   ItemSlidingOptions,
   Label,
-  LandscapePrompt,
   List,
   Loading,
   Menus,
@@ -198,7 +196,6 @@ module.exports = {
     Vue.component(ItemSliding.name, ItemSliding)
     Vue.component(ItemSlidingOptions.name, ItemSlidingOptions)
     Vue.component(Label.name, Label)
-    Vue.component(LandscapePrompt.name, LandscapePrompt)
     Vue.component(List.name, List)
     Vue.component(Menus.name, Menus)
     Vue.component(Note.name, Note)

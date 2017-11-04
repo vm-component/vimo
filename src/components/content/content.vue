@@ -1,20 +1,20 @@
 <template>
-    <article content class="ion-content">
-        <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
+    <div content class="ion-content">
+        <div ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
             <!--Fixed-->
             <slot name="fixed"></slot>
             <!--Fixed Top-->
             <slot name="fixedTop"></slot>
             <!--Fixed Bottom-->
             <slot name="fixedBottom"></slot>
-        </section>
-        <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
+        </div>
+        <div ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
             <!--默认是能滚动的内容-->
             <!--原生滚动-->
             <slot></slot>
-        </section>
+        </div>
         <slot name="refresher"></slot>
-    </article>
+    </div>
 </template>
 <style lang="less">
     @import "content";
@@ -113,7 +113,7 @@
    * </template>
    *
    * */
-  import { transitionEnd, parsePxUnit } from '../../../util/util'
+  import { transitionEnd, parsePxUnit } from '../../util/util'
   import { ScrollView } from './scroll-view'
 
   export default {

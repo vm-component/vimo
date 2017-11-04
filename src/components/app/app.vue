@@ -1,25 +1,25 @@
 <template>
-    <article class="ion-app" :version="version"
+    <div class="ion-app" :version="version"
              :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
         <!--app-root start-->
-        <section class="app-root">
+        <div class="app-root">
             <slot></slot>
-        </section>
+        </div>
         <!--modal portal-->
-        <aside id="modalPortal"></aside>
+        <div id="modalPortal"></div>
         <!--蒙层指示,action-sheet,choose-sheet,picker等 sheetPortal-->
-        <aside id="sheetPortal"></aside>
+        <div id="sheetPortal"></div>
         <!--alert portal-->
-        <aside id="alertPortal"></aside>
+        <div id="alertPortal"></div>
         <!--loading portal-->
-        <aside id="loadingPortal"></aside>
+        <div id="loadingPortal"></div>
         <!--toast portal-->
-        <aside id="toastPortal"></aside>
+        <div id="toastPortal"></div>
         <!--当页面被点击的时候，防止在动画的过程中再次点击页面导致bug的蒙层，全局最高！z-index=99999-->
-        <aside class="click-block"
-               :class="[{'click-block-enabled':isClickBlockEnabled}]"></aside>
+        <div class="click-block"
+               :class="[{'click-block-enabled':isClickBlockEnabled}]"></div>
         <slot name="outer"></slot>
-    </article>
+    </div>
 </template>
 <style lang="less">
     @import "app.less";
@@ -105,7 +105,7 @@
    * */
 
   import ClickBlock from './click-block'
-  import { setElementClass, isString, isPresent } from '../../../util/util'
+  import { setElementClass, isString, isPresent } from '../../util/util'
 
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态

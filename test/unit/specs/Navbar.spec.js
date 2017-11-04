@@ -16,7 +16,7 @@ describe('Navbar', function () {
     }
   })
 
-  it('@base: renders the correct markup', function () {
+  it('@config: renders the correct markup', function () {
     wrapper = mount(Navbar, {
       slots: {
         default: '<span>Name</span>'
@@ -26,7 +26,7 @@ describe('Navbar', function () {
     expect(wrapper.html()).to.equal(result)
   })
 
-  it('@base: component must have a name', function () {
+  it('@config: component must have a name', function () {
     wrapper = mount(Navbar, {
       slots: {
         default: '<span>Name</span>'
@@ -35,7 +35,7 @@ describe('Navbar', function () {
     expect(wrapper.name()).to.equal('Navbar')
   })
 
-  it('@base: renders the correct text', function () {
+  it('@config: renders the correct text', function () {
     wrapper = mount(Navbar, {
       slots: {
         default: '<span>Name</span>'

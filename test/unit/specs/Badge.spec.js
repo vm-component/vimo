@@ -26,7 +26,7 @@ describe('Badge', function () {
     }
   })
 
-  it('@base: renders the correct markup', function () {
+  it('@config: renders the correct markup', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'md'
@@ -37,7 +37,7 @@ describe('Badge', function () {
     expect(wrapper.html()).to.equal(result)
   })
 
-  it('@base: renders the correct text', function () {
+  it('@config: renders the correct text', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>Test</span>'
@@ -47,7 +47,7 @@ describe('Badge', function () {
     expect(wrapper.text()).to.equal('Test')
   })
 
-  it('@base: component must have a name', function () {
+  it('@config: component must have a name', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>Name</span>'
@@ -57,7 +57,7 @@ describe('Badge', function () {
     expect(wrapper.name()).to.equal('Badge')
   })
 
-  it('@base: have the right className', function () {
+  it('@config: have the right className', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>HasClass</span>'

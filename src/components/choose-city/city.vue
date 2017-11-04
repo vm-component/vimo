@@ -1,41 +1,41 @@
 <template>
     <vm-content class="outer-content vm-city-selector" ref="content">
-        <article class="city-selector">
+        <div class="city-selector">
             <!--定位服务-->
-            <article class="city-selector__group" v-if="showLocatedCity">
-                <section sticky color="light" class="city-selector__group--header">
+            <div class="city-selector__group" v-if="showLocatedCity">
+                <div sticky color="light" class="city-selector__group--header">
                     <span>你所在的地区</span>
-                </section>
-                <section class="city-selector__group--hotBox">
+                </div>
+                <div class="city-selector__group--hotBox">
                     <div class="hotBox__wrap" @click="selectCity(currentCity)">
                         <div class="hotBox__wrap--city">{{currentCity.city}}</div>
                     </div>
-                </section>
-            </article>
+                </div>
+            </div>
             <!--热门城市-->
-            <article class="city-selector__group" v-if="showHotCities && hotCityList.length>0">
-                <section sticky color="light" class="city-selector__group--header" :id="'★' | getClassifyId">
+            <div class="city-selector__group" v-if="showHotCities && hotCityList.length>0">
+                <div sticky color="light" class="city-selector__group--header" :id="'★' | getClassifyId">
                     <span>热门城市</span>
-                </section>
-                <section class="city-selector__group--hotBox">
+                </div>
+                <div class="city-selector__group--hotBox">
                     <div class="hotBox__wrap" @click="selectCity(item)" v-for="item in hotCityList"
                          :key="item.adCode">
                         <div class="hotBox__wrap--city">{{item.city}}</div>
                     </div>
-                </section>
-            </article>
+                </div>
+            </div>
             <!--城市列表-->
-            <article class="city-selector__group" v-for="(classify,index) in cityList" :key="index">
+            <div class="city-selector__group" v-for="(classify,index) in cityList" :key="index">
                 <!--sticky-->
-                <section class="city-selector__group--header" :id="classify.letter | getClassifyId">{{classify.letter}}
-                </section>
-                <section class="city-selector__group--item" v-for="item in classify.cities"
+                <div class="city-selector__group--header" :id="classify.letter | getClassifyId">{{classify.letter}}
+                </div>
+                <div class="city-selector__group--item" v-for="item in classify.cities"
                          :key="item.adCode"
                          @click="selectCity(item)">
                     <div>{{item.city}}</div>
-                </section>
-            </article>
-        </article>
+                </div>
+            </div>
+        </div>
         <div slot="fixedTop" class="vm-city-shortcut city-shortcut" ref="cityShortcut"
              @touchstart="onTouchShortcut"
              @touchmove="onTouchShortcut">
@@ -45,7 +45,7 @@
 </template>
 <script type="text/javascript">
   import Modal from '../modal/index'
-  import Content from '../base/content/content.vue'
+  import Content from '../content/content.vue'
   import { pointerCoord, clamp } from '../../util/util'
 
   export default {

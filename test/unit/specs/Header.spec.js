@@ -21,23 +21,23 @@ describe('Header', function () {
     }
   })
 
-  it('@base: renders the correct markup', function () {
+  it('@config: renders the correct markup', function () {
     wrapper = mount(Header, options)
     const result = '<header class="ion-header"><div id="rightButtonPlaceholder"></div> <span>Test</span></header>'
     expect(wrapper.html().trim()).to.equal(result)
   })
 
-  it('@base: renders the correct text', function () {
+  it('@config: renders the correct text', function () {
     wrapper = mount(Header, options)
     expect(wrapper.text().trim()).to.equal('Test')
   })
 
-  it('@base: component must have a name', function () {
+  it('@config: component must have a name', function () {
     wrapper = mount(Header, options)
     expect(wrapper.name()).to.equal('Header')
   })
 
-  it('@base: have the right className', function () {
+  it('@config: have the right className', function () {
     wrapper = mount(Header, options)
     expect(wrapper.hasClass('ion-header')).to.be.ok
   })

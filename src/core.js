@@ -1,20 +1,20 @@
-import { setupConfig } from './components/base/config'
-import { setupHistory } from './components/base/history'
-import { setupPlatform } from './components/base/platform'
+import { setupConfig } from './config/config'
+import { setupHistory } from './config/history'
+import { setupPlatform } from './config/platform'
 
-import App from './components/base/app/app.vue'
-import Header from './components/base/app/header.vue'
-import Footer from './components/base/app/footer.vue'
-import Nav from './components/base/nav/nav.vue'
-import Page from './components/base/page/page.vue'
-import Content from './components/base/content/content.vue'
-import Navbar from './components/base/navbar/navbar.vue'
+import App from './components/app/app.vue'
+import Header from './components/app/header.vue'
+import Footer from './components/app/footer.vue'
+import Nav from './components/nav/nav.vue'
+import Page from './components/page/page.vue'
+import Content from './components/content/content.vue'
+import Navbar from './components/navbar/navbar.vue'
 
 const VERSION = require('../package.json').version
 const addLogo = (vimoVer, vueVer) => {
   // logo
   var vimoLogo = {
-    info: 'Powered by Vimo@' + vimoVer + ' and based on Vue@' + vueVer + ' \n源代码请访问GitHub https://github.com/vm-component/Vimo'
+    info: 'Powered by Vimo@' + vimoVer + ' and based on Vue@' + vueVer + ' \n源代码请访问GitHub https://github.com/nostaff/Vimo'
   }
   window.console && console.info && console.info(vimoLogo.info)
 }
@@ -25,7 +25,7 @@ export default function core (Vue, options) {
   // 全局事件总线（各个组件共用）中央事件总线
   Vue.prototype.$eventBus = eventBus
 
-  // init base (config/platform/history)
+  // init config (config/platform/history)
   const platform = setupPlatform(options.pltConf)
   const config = setupConfig(options.custConf, platform)
   const history = setupHistory(options.router, config, platform)

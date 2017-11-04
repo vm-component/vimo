@@ -3,7 +3,7 @@
  * 执行activate后,设置页面可点击状态
  * @private
  */
-import { setElementClass } from '../../../util/util'
+import { setElementClass } from '../../util/util'
 
 const CLICK_BLOCK_POSITION = '.ion-app > .click-block'
 

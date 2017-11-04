@@ -1,6 +1,6 @@
 "use strict";
 /**
- * @fileOverview This is base definition for all composed classes defined by the system
+ * @fileOverview This is config definition for all composed classes defined by the system
  * @module base
  * @requires base/chains
  * @requires dcl
@@ -10,12 +10,12 @@ var dcl = require( "dcl" );
 var chains = require( "./chains" );
 
 /**
- * @classdesc The base of all classes in the system, this is one of the few pure "classes" in core the of the system. It is a
+ * @classdesc The config of all classes in the system, this is one of the few pure "classes" in core the of the system. It is a
  * pretty clean little class whose primary purpose is to surface the composition chains and a basis for storing
  * options on mixin and subclass instances. Options are handled at the instance rather than the prototype level
  * so that multiple instances don't compete for default values.
  *
- * @exports base
+ * @exports config
  * @constructor
  * @extends base/chains
  */

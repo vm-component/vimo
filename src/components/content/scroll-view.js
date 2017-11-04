@@ -6,7 +6,7 @@
  *
  * @private
  * */
-import { isBoolean, isNumber, isPresent, registerListener } from '../../../util/util'
+import { isBoolean, isNumber, isPresent, registerListener } from '../../util/util'
 
 const SCROLL_END_DEBOUNCE_MS = 80
 const FRAME_MS = (1000 / 60)

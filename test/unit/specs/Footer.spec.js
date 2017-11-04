@@ -21,23 +21,23 @@ describe('Footer', function () {
     }
   })
 
-  it('@base: renders the correct markup', function () {
+  it('@config: renders the correct markup', function () {
     wrapper = mount(Footer, options)
     const result = '<footer class="ion-footer"><span>Test</span></footer>'
     expect(wrapper.html().trim()).to.equal(result)
   })
 
-  it('@base: renders the correct text', function () {
+  it('@config: renders the correct text', function () {
     wrapper = mount(Footer, options)
     expect(wrapper.text().trim()).to.equal('Test')
   })
 
-  it('@base: component must have a name', function () {
+  it('@config: component must have a name', function () {
     wrapper = mount(Footer, options)
     expect(wrapper.name()).to.equal('Footer')
   })
 
-  it('@base: have the right className', function () {
+  it('@config: have the right className', function () {
     wrapper = mount(Footer, options)
     expect(wrapper.hasClass('ion-footer')).to.be.ok
   })

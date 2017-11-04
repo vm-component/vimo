@@ -65,7 +65,7 @@ let routes = [
   },
 
   // ----  component ----
-  // ----  component/base ----
+  // ----  component/config ----
   {
     path: '/app',
     // name: 'app',

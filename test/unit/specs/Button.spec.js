@@ -30,7 +30,7 @@ describe('Button', function () {
     }
   })
 
-  it('@base: renders the correct markup', function () {
+  it('@config: renders the correct markup', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
         mode: 'md'
@@ -41,7 +41,7 @@ describe('Button', function () {
     expect(wrapper.html()).to.equal(result)
   })
 
-  it('@base: renders the correct text', function () {
+  it('@config: renders the correct text', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>ButtonTest</span>'
@@ -52,7 +52,7 @@ describe('Button', function () {
   })
 
   // it's also easy to check for the existence of elements
-  it('@base: has a button', function () {
+  it('@config: has a button', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>DOM</span>'
@@ -63,7 +63,7 @@ describe('Button', function () {
     expect(wrapper.contains('span')).to.be.ok
   })
 
-  it('@base: component must have a name', function () {
+  it('@config: component must have a name', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>Name</span>'
@@ -73,7 +73,7 @@ describe('Button', function () {
     expect(wrapper.name()).to.equal('Button')
   })
 
-  it('@base: have the right className', function () {
+  it('@config: have the right className', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
         default: '<span>HasClass</span>'
