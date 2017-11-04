@@ -357,7 +357,7 @@ function linktoExternal (longName, name) {
  * @param {array<object>} members.globals
  * @param {array<object>} members.mixins
  * @param {array<object>} members.modules
- * @param {array<object>} members.components
+ * @param {array<object>} members.src
  * @param {array<object>} members.namespaces
  * @param {array<object>} members.tutorials
  * @param {array<object>} members.events

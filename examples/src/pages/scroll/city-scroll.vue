@@ -73,7 +73,7 @@
 </style>
 <script type="text/javascript">
   import CITY_LIST from './cityList'
-  import { pointerCoord, clamp } from '../../../../components/util/util'
+  import { pointerCoord, clamp } from '../../../../src/util/util'
   export default{
     name: 'cityList',
     data () {

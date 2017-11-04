@@ -3,7 +3,7 @@
 import { mount } from 'vue-test-utils'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
-import vimo from '../../../components/dist'
+import vimo from '../../../src/dist'
 
 let Badge = vimo.Badge
 let wrapper = null

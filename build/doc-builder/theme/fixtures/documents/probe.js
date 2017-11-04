@@ -115,7 +115,7 @@ function processPrefixOperator( operation, operand ) {
  Parses a query request and builds an object that can used to process a query target
  @private
  @param {object} obj The expression object
- @returns {object} All components of the expression in a kind of execution tree
+ @returns {object} All src of the expression in a kind of execution tree
  **/
 
 function parseQueryExpression( obj ) {

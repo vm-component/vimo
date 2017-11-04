@@ -16,7 +16,7 @@ gulp.task('clean', function () {
 
 // 移动资源
 gulp.task('resource', function () {
-  return gulp.src(resolve('components/**/**/*.*'))
+  return gulp.src(resolve('src/**/**/*.*'))
   .pipe(gulp.dest(resolve('lib')))
 })
 

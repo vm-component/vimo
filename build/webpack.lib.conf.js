@@ -10,7 +10,7 @@ var fs = require('fs')
 var camelcase = require('lodash.camelcase')
 let componentsFileNames = []
 // 获取符合条件的fileNames
-fs.readdir('./components', function (err, files) {
+fs.readdir('./src', function (err, files) {
   if (err) {
     throw err
   }
@@ -77,7 +77,7 @@ function webpackConfigFactory (fileName) {
           test: /\.js$/,
           loader: 'babel-loader',
           exclude: /node_modules/
-          // include: [resolve('src'), resolve('test'), resolve('../components')]
+          // include: [resolve('src'), resolve('test'), resolve('../src')]
         },
         {
           test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -108,7 +108,7 @@ function webpackConfigFactory (fileName) {
         filename: 'style.css'
       }),
       // Compress extracted CSS. We are using this plugin so that possible
-      // duplicated CSS from different components can be deduped.
+      // duplicated CSS from different src can be deduped.
       new OptimizeCSSPlugin(),
       new webpack.optimize.UglifyJsPlugin({
         compress: {

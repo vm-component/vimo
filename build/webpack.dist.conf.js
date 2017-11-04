@@ -7,7 +7,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var utils = require('../examples/build/utils')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var config = {
-  entry: path.resolve(__dirname, '..', 'components/dist.js'),
+  entry: path.resolve(__dirname, '..', 'src/dist.js'),
   outputFileName: 'index.js',
   libraryTarget: 'umd',
   library: 'vimo',
@@ -88,7 +88,7 @@ var webpackConfig = {
       filename: 'style.css'
     }),
     // Compress extracted CSS. We are using this plugin so that possible
-    // duplicated CSS from different components can be deduped.
+    // duplicated CSS from different src can be deduped.
     new OptimizeCSSPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

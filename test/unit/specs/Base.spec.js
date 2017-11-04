@@ -4,7 +4,7 @@
  * */
 import 'ionicons/dist/css/ionicons.css'
 import Vue from 'vue'
-import vimo from '../../../components/dist'
+import vimo from '../../../src/dist'
 import APP_CONFIGS from '../../../examples/src/config/app-configs'
 import PLATFORM_CONFIGS from '../../../examples/src/config/platform-configs'
 import router from '../../../examples/src/router'

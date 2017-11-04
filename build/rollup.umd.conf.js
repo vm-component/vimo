@@ -10,7 +10,7 @@ import buble from 'rollup-plugin-buble'
 // import serve from 'rollup-plugin-serve'
 
 const config = {
-  input: path.resolve(__dirname, '../components/action-sheet/index.js'),
+  input: path.resolve(__dirname, '../src/action-sheet/index.js'),
   output: [
     {
       file: path.resolve(__dirname, '../dist/action-sheet/action-sheet.js'),
