@@ -58,7 +58,7 @@
    * @fires component:InfiniteScroll#onInfinite
    *
    * @demo #/infinite-scroll
-   * @see component:Base/Content
+   * @see component:Content
    *
    * @usage
    *

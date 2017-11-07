@@ -24,6 +24,9 @@
    * @slot 空 - 默认嵌入全部
    *
    * @demo #/badge
+   **
+   * @usage
+   * <vm-badge :color="danger">99</vm-badge>
    * */
   export default {
     name: 'vm-badge',

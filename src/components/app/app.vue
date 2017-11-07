@@ -33,7 +33,7 @@
 </style>
 <script type="text/javascript">
   /**
-   * @component Base/App
+   * @component App
    * @description
    *
    *  ## 基础组件 / App组件

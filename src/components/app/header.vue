@@ -32,7 +32,7 @@
 </style>
 <script type="text/javascript">
   /**
-   * @component Base/Header
+   * @component Header
    * @description
    *
    * ## 基础组件 / Header组件
@@ -44,7 +44,7 @@
    * ### 可用的样式属性
    * - [no-border] - 无边框
    *
-   * @see component:Base/Footer
+   * @see component:Footer
    * @demo #/content
    *
    * */

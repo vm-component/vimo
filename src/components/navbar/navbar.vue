@@ -17,7 +17,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Base/Navbar
+   * @component Navbar
    * @description
    *
    * ## 基础组件 / Navbar组件

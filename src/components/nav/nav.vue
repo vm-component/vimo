@@ -28,7 +28,7 @@
 </style>
 <script type="text/javascript">
   /**
-   * @component Base/Nav
+   * @component Nav
    * @description
    *
    * ## 基础组件 / Nav组件

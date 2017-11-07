@@ -22,7 +22,7 @@
 </style>
 <script type="text/javascript">
   /**
-   * @component Base/Footer
+   * @component Footer
    * @description
    *
    * ## 基础组件 / Footer组件

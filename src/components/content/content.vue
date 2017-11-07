@@ -64,7 +64,7 @@
    * */
 
   /**
-   * @component Base/Content
+   * @component Content
    * @description
    *
    * ## 基础组件 / Content组件
@@ -92,9 +92,9 @@
    * @props {boolean} [fullscreen=false] - 控制Content是否全屏显示, 如果为true, 则Content的上下将延伸到Header和Footer的下面
    * @props {boolean} [recordPosition=false] - 控制Content组件是否记录其浏览位置, 这个可在config中设置, 默认为false, 建议无限滚动页面设置false
    *
-   * @fires component:Base/Content#onScrollStart
-   * @fires component:Base/Content#onScroll
-   * @fires component:Base/Content#onScrollEnd
+   * @fires component:Content#onScrollStart
+   * @fires component:Content#onScroll
+   * @fires component:Content#onScrollEnd
    *
    *
    * @usage
@@ -299,7 +299,7 @@
         scroll.ev.scrollElement = this.scrollElement = this.$refs.scrollElement
 
         /**
-         * @event component:Base/Content#onScrollStart
+         * @event component:Content#onScrollStart
          * @description 滚动开始时触发的事件
          * @property {ScrollEvent} ev - 滚动事件对象
          */
@@ -309,7 +309,7 @@
         }
 
         /**
-         * @event component:Base/Content#onScroll
+         * @event component:Content#onScroll
          * @description 滚动时触发的事件
          * @property {ScrollEvent} ev - 滚动事件对象
          */
@@ -324,7 +324,7 @@
         }
 
         /**
-         * @event component:Base/Content#onScrollEnd
+         * @event component:Content#onScrollEnd
          * @description 滚动结束时触发的事件
          * @property {ScrollEvent} ev - 滚动事件对象
          */
