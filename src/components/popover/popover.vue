@@ -1,7 +1,7 @@
 <template>
     <div class="ion-popover" :class="[modeClass,colorClass,cssClass]">
-        <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :hidden="!showBackdrop"
-                  :isActive="isActive"></Backdrop>
+        <vm-backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :hidden="!showBackdrop"
+                  :isActive="isActive"></vm-backdrop>
         <transition
                 :name="popoverTransitionName"
                 @before-enter="beforeEnter"

@@ -15,12 +15,12 @@
 
             <h5>Async</h5>
 
-            <Slides class="swiper async" @onTransitionEnd="onTransitionEndHandler">
+            <vm-slides class="swiper async" @onTransitionEnd="onTransitionEndHandler">
                 <!-- 幻灯内容 -->
-                <Slide class="slide" v-for="(item,index) in asyncIimageList" :key="index">
+                <vm-slide class="slide" v-for="(item,index) in asyncIimageList" :key="index">
                     <img :src="item" alt="asyncImg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
             <vm-grid no-padding>
                 <vm-row justify-content-center>
@@ -29,76 +29,76 @@
             </vm-grid>
 
             <h5>Default Setup</h5>
-            <Slides class="swiper" ref="defaultSwiper">
+            <vm-slides class="swiper" ref="defaultSwiper">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">Slide 1</Slide>
-                <Slide class="slide">Slide 2</Slide>
-                <Slide class="slide">Slide 3</Slide>
-            </Slides>
+                <vm-slide class="slide">Slide 1</vm-slide>
+                <vm-slide class="slide">Slide 2</vm-slide>
+                <vm-slide class="slide">Slide 3</vm-slide>
+            </vm-slides>
 
             <h5>Responsive / Fullscreen + Pagination</h5>
-            <Slides class="swiper"
+            <vm-slides class="swiper"
                     pagination=".swiper-pagination"
                     :paginationClickable="true">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">Slide 1</Slide>
-                <Slide class="slide">Slide 2</Slide>
-                <Slide class="slide">Slide 3</Slide>
-            </Slides>
+                <vm-slide class="slide">Slide 1</vm-slide>
+                <vm-slide class="slide">Slide 2</vm-slide>
+                <vm-slide class="slide">Slide 3</vm-slide>
+            </vm-slides>
 
             <h5>Vertical Slides + Responsive / Fullscreen</h5>
-            <Slides class="swiper"
+            <vm-slides class="swiper"
                     pagination=".swiper-pagination"
                     direction="vertical"
                     :paginationClickable="true">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">Slide 1</Slide>
-                <Slide class="slide">Slide 2</Slide>
-                <Slide class="slide">Slide 3</Slide>
-            </Slides>
+                <vm-slide class="slide">Slide 1</vm-slide>
+                <vm-slide class="slide">Slide 2</vm-slide>
+                <vm-slide class="slide">Slide 3</vm-slide>
+            </vm-slides>
 
             <h5>Auto Slides Per View / Carousel Mode</h5>
-            <Slides class="swiper grabCusor"
+            <vm-slides class="swiper grabCusor"
                     pagination=".swiper-pagination"
                     slidesPerView="auto"
                     :paginationClickable="true"
                     :spaceBetween="10">
                 <!-- 幻灯内容 -->
-                <Slide class="slide"><span>Slide 1</span></Slide>
-                <Slide class="slide"><span>Slide 2</span></Slide>
-                <Slide class="slide"><span>Slide 3</span></Slide>
-                <Slide class="slide"><span>Slide 4</span></Slide>
-                <Slide class="slide"><span>Slide 5</span></Slide>
-                <Slide class="slide"><span>Slide 6</span></Slide>
-                <Slide class="slide"><span>Slide 7</span></Slide>
-                <Slide class="slide"><span>Slide 8</span></Slide>
-                <Slide class="slide"><span>Slide 9</span></Slide>
-                <Slide class="slide"><span>Slide 10</span></Slide>
-            </Slides>
+                <vm-slide class="slide"><span>Slide 1</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 2</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 3</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 4</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 5</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 6</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 7</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 8</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 9</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 10</span></vm-slide>
+            </vm-slides>
 
             <h5>Centered Slides + Auto Slides Per View</h5>
-            <Slides class="swiper grabCusor"
+            <vm-slides class="swiper grabCusor"
                     pagination=".swiper-pagination"
                     slidesPerView="auto"
                     :centeredSlides="true"
                     :paginationClickable="true"
                     :spaceBetween="10">
                 <!-- 幻灯内容 -->
-                <Slide class="slide"><span>Slide 1</span></Slide>
-                <Slide class="slide"><span>Slide 2</span></Slide>
-                <Slide class="slide"><span>Slide 3</span></Slide>
-                <Slide class="slide"><span>Slide 4</span></Slide>
-                <Slide class="slide"><span>Slide 5</span></Slide>
-                <Slide class="slide"><span>Slide 6</span></Slide>
-                <Slide class="slide"><span>Slide 7</span></Slide>
-                <Slide class="slide"><span>Slide 8</span></Slide>
-                <Slide class="slide"><span>Slide 9</span></Slide>
-                <Slide class="slide"><span>Slide 10</span></Slide>
-            </Slides>
+                <vm-slide class="slide"><span>Slide 1</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 2</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 3</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 4</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 5</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 6</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 7</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 8</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 9</span></vm-slide>
+                <vm-slide class="slide"><span>Slide 10</span></vm-slide>
+            </vm-slides>
 
 
             <h5>Scrollbar</h5>
-            <Slides class="swiper"
+            <vm-slides class="swiper"
                     scrollbar=".swiper-scrollbar"
                     :centeredSlides="true"
                     :scrollbarHide="true"
@@ -106,19 +106,19 @@
                     :spaceBetween="30"
                     :grabCursor="false">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
             <h5>Loop Mode / Infinite Loop</h5>
-            <Slides class="swiper"
+            <vm-slides class="swiper"
                     nextButton=".swiper-button-next"
                     prevButton=".swiper-button-prev"
                     pagination=".swiper-pagination"
@@ -126,21 +126,21 @@
                     :spaceBetween="30"
                     :loop="true">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
 
             <!--<h5>Fade Effect</h5>-->
             <!--<small>这里有问题</small>-->
-            <!--<Slides class="swiper"-->
+            <!--<vm-slides class="swiper"-->
             <!--nextButton=".swiper-button-next"-->
             <!--prevButton=".swiper-button-prev"-->
             <!--pagination=".swiper-pagination"-->
@@ -148,20 +148,20 @@
             <!--:watchSlidesProgress="true"-->
             <!--effect="fade">-->
             <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
-            <!--<Slide class="slide">-->
+            <!--<vm-slide class="slide">-->
             <!--<img src="../../static/img/scenery_1.jpg">-->
-            <!--</Slide>-->
-            <!--<Slide class="slide">-->
+            <!--</vm-slide>-->
+            <!--<vm-slide class="slide">-->
             <!--<img src="../../static/img/scenery_2.jpg">-->
-            <!--</Slide>-->
-            <!--<Slide class="slide">-->
+            <!--</vm-slide>-->
+            <!--<vm-slide class="slide">-->
             <!--<img src="../../static/img/scenery_3.jpg">-->
-            <!--</Slide>-->
-            <!--</Slides>-->
+            <!--</vm-slide>-->
+            <!--</vm-slides>-->
 
             <!--<h5>3D Flip Effect</h5>-->
             <!--<small>这里有问题</small>-->
-            <!--<Slides class="swiper flipEffect"-->
+            <!--<vm-slides class="swiper flipEffect"-->
             <!--effect="flip"-->
             <!--nextButton=".swiper-button-next"-->
             <!--prevButton=".swiper-button-prev"-->
@@ -169,38 +169,38 @@
             <!--:watchSlidesProgress="true"-->
             <!--:grabCursor="false">-->
             <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
-            <!--<Slide class="slide">-->
+            <!--<vm-slide class="slide">-->
             <!--<img src="../../static/img/scenery_1.jpg">-->
-            <!--</Slide>-->
-            <!--<Slide class="slide">-->
+            <!--</vm-slide>-->
+            <!--<vm-slide class="slide">-->
             <!--<img src="../../static/img/scenery_2.jpg">-->
-            <!--</Slide>-->
-            <!--<Slide class="slide">-->
+            <!--</vm-slide>-->
+            <!--<vm-slide class="slide">-->
             <!--<img src="../../static/img/scenery_3.jpg">-->
-            <!--</Slide>-->
-            <!--</Slides>-->
+            <!--</vm-slide>-->
+            <!--</vm-slides>-->
 
             <h5>3D Cube Effect</h5>
-            <Slides class="swiper cubeEffect"
+            <vm-slides class="swiper cubeEffect"
                     :watchSlidesProgress="true"
                     :virtualTranslate="true"
                     :resistanceRatio="0"
                     effect="cube" @onInit="onInit">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
 
             <h5>3D Coverflow Effect</h5>
-            <Slides class="swiper coverflow"
+            <vm-slides class="swiper coverflow"
                     effect="coverflow"
                     pagination=".swiper-pagination"
                     :centeredSlides="true"
@@ -209,23 +209,23 @@
                     slidesPerView="auto"
                     :coverflow="coverflow">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
 
             <h5>Keyboard Control / Mousewheel Control</h5>
             <p>这部分在移动端不适用</p>
 
             <h5>Autoplay</h5>
-            <Slides class="swiper"
+            <vm-slides class="swiper"
                     nextButton=".swiper-button-next"
                     prevButton=".swiper-button-prev"
                     pagination=".swiper-pagination"
@@ -235,29 +235,29 @@
                     :autoplayDisableOnInteraction="false"
                     :spaceBetween="30">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
 
             <h5>Dynamic Slides</h5>
-            <Slides class="swiper" ref="dynamicSlides"
+            <vm-slides class="swiper" ref="dynamicSlides"
                     nextButton=".swiper-button-next"
                     prevButton=".swiper-button-prev"
                     pagination=".swiper-pagination"
                     :paginationClickable="true">
                 <!-- 幻灯内容 -->
-                <Slide class="slide" v-for="(item,index) in dynamicData" :key="index">
+                <vm-slide class="slide" v-for="(item,index) in dynamicData" :key="index">
                     <span>{{item}}</span>
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
             <vm-grid no-padding>
                 <vm-row justify-content-center>
@@ -271,26 +271,26 @@
             <p>不建议使用, 因为切换hash会导致路由跳转</p>
 
             <h5>RTL Layout</h5>
-            <Slides class="swiper" dir="rtl"
+            <vm-slides class="swiper" dir="rtl"
                     nextButton=".swiper-button-next"
                     prevButton=".swiper-button-prev"
                     pagination=".swiper-pagination"
                     :paginationClickable="true">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
 
             <h5>Parallax</h5>
-            <Slides class="swiper parallax"
+            <vm-slides class="swiper parallax"
                     :paginationClickable="true"
                     :watchSlidesProgress="true"
                     :parallax="true"
@@ -303,89 +303,89 @@
                 <div class="parallax-bg" slot="parallax" data-swiper-parallax="-23%"></div>
 
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <div class="title" data-swiper-parallax="-100">Slide 1</div>
                     <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
                     <div class="text" data-swiper-parallax="-300">
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod. Aliquam hendrerit lorem at elit facilisis rutrum. Ut at ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec, tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
                     </div>
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <div class="title" data-swiper-parallax="-100">Slide 2</div>
                     <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
                     <div class="text" data-swiper-parallax="-300">
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod. Aliquam hendrerit lorem at elit facilisis rutrum. Ut at ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec, tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
                     </div>
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <div class="title" data-swiper-parallax="-100">Slide 3</div>
                     <div class="subtitle" data-swiper-parallax="-200">Subtitle</div>
                     <div class="text" data-swiper-parallax="-300">
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo. Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod. Aliquam hendrerit lorem at elit facilisis rutrum. Ut at ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec, tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
                     </div>
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
 
             <h5>Customized Pagination</h5>
-            <Slides class="swiper customizedPagination "
+            <vm-slides class="swiper customizedPagination "
                     :paginationClickable="true"
                     pagination=".swiper-pagination"
                     :paginationBulletRender="paginationBulletRender">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
             <h5>Fraction Pagination</h5>
-            <Slides class="swiper"
+            <vm-slides class="swiper"
                     nextButton=".swiper-button-next"
                     prevButton=".swiper-button-prev"
                     pagination=".swiper-pagination"
                     paginationType="fraction">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
             <h5>Progress Pagination</h5>
-            <Slides class="swiper"
+            <vm-slides class="swiper"
                     nextButton=".swiper-button-next"
                     prevButton=".swiper-button-prev"
                     pagination=".swiper-pagination"
                     paginationType="progress">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
 
             <h5>Images Lazy Loading</h5>
-            <Slides class="swiper"
+            <vm-slides class="swiper"
                     nextButton=".swiper-button-next"
                     prevButton=".swiper-button-prev"
                     pagination=".swiper-pagination"
@@ -393,46 +393,46 @@
                     :lazyLoading="true"
                     :preloadImages="false">
                 <!-- 幻灯内容 -->
-                <Slide class="slide black">
+                <vm-slide class="slide black">
                     <!-- Required swiper-lazy class and image source specified in data-src attribute -->
                     <img data-src="http://lorempixel.com/1600/1200/nature/1" class="swiper-lazy">
                     <!-- Preloader image -->
                     <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                </Slide>
-                <Slide class="slide black">
+                </vm-slide>
+                <vm-slide class="slide black">
                     <!-- Required swiper-lazy class and image source specified in data-src attribute -->
                     <img data-src="http://lorempixel.com/1600/1200/nature/2" class="swiper-lazy">
                     <!-- Preloader image -->
                     <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                </Slide>
-                <Slide class="slide black">
+                </vm-slide>
+                <vm-slide class="slide black">
                     <!-- Required swiper-lazy class and image source specified in data-src attribute -->
                     <img data-src="http://lorempixel.com/1600/1200/nature/3" class="swiper-lazy">
                     <!-- Preloader image -->
                     <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                </Slide>
-                <Slide class="slide black">
+                </vm-slide>
+                <vm-slide class="slide black">
                     <!-- Required swiper-lazy class and image source specified in data-src attribute -->
                     <img data-src="http://lorempixel.com/1600/1200/nature/4" class="swiper-lazy">
                     <!-- Preloader image -->
                     <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                </Slide>
-                <Slide class="slide black">
+                </vm-slide>
+                <vm-slide class="slide black">
                     <!-- Required swiper-lazy class and image source specified in data-src attribute -->
                     <img data-src="http://lorempixel.com/1600/1200/nature/5" class="swiper-lazy">
                     <!-- Preloader image -->
                     <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
             <h5>Scroll Container</h5>
-            <Slides class="scroll-swiper"
+            <vm-slides class="scroll-swiper"
                     scrollbar=".swiper-scrollbar"
                     direction="vertical"
                     slidesPerView="auto"
                     :freeMode="true">
                 <!-- 幻灯内容 -->
-                <Slide class="scroll-slide">
+                <vm-slide class="scroll-slide">
                     <h2>Scroll Content</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, excepturi, obcaecati! Accusantium adipisci blanditiis ducimus eos esse excepturi facere, fugit ipsam laborum nobis odit recusandae, rerum ut vel, vitae voluptatum.</p>
@@ -450,44 +450,44 @@
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, excepturi, obcaecati! Accusantium adipisci blanditiis ducimus eos esse excepturi facere, fugit ipsam laborum nobis odit recusandae, rerum ut vel, vitae voluptatum.</p>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad consequatur deserunt dolore doloremque ducimus eaque eos error facilis iure minima necessitatibus neque, porro praesentium provident quas quibusdam suscipit, voluptates!</p>
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
             <h5>Responsive Breakpoints</h5>
             <p>Error on slidesPerView and spaceBetween</p>
-            <!--<Slides class="swiper"-->
+            <!--<vm-slides class="swiper"-->
             <!--pagination=".swiper-pagination"-->
             <!--:paginationClickable="true"-->
             <!--:slidesPerView="5"-->
             <!--:spaceBetween="50"-->
             <!--:breakpoints="breakpoints">-->
             <!--&lt;!&ndash; 幻灯内容 &ndash;&gt;-->
-            <!--<Slide class="slide"><span>Slide 1</span></Slide>-->
-            <!--<Slide class="slide"><span>Slide 2</span></Slide>-->
-            <!--<Slide class="slide"><span>Slide 3</span></Slide>-->
-            <!--<Slide class="slide"><span>Slide 4</span></Slide>-->
-            <!--<Slide class="slide"><span>Slide 5</span></Slide>-->
-            <!--<Slide class="slide"><span>Slide 6</span></Slide>-->
-            <!--<Slide class="slide"><span>Slide 7</span></Slide>-->
-            <!--<Slide class="slide"><span>Slide 8</span></Slide>-->
-            <!--<Slide class="slide"><span>Slide 9</span></Slide>-->
-            <!--<Slide class="slide"><span>Slide 10</span></Slide>-->
-            <!--</Slides>-->
+            <!--<vm-slide class="slide"><span>Slide 1</span></vm-slide>-->
+            <!--<vm-slide class="slide"><span>Slide 2</span></vm-slide>-->
+            <!--<vm-slide class="slide"><span>Slide 3</span></vm-slide>-->
+            <!--<vm-slide class="slide"><span>Slide 4</span></vm-slide>-->
+            <!--<vm-slide class="slide"><span>Slide 5</span></vm-slide>-->
+            <!--<vm-slide class="slide"><span>Slide 6</span></vm-slide>-->
+            <!--<vm-slide class="slide"><span>Slide 7</span></vm-slide>-->
+            <!--<vm-slide class="slide"><span>Slide 8</span></vm-slide>-->
+            <!--<vm-slide class="slide"><span>Slide 9</span></vm-slide>-->
+            <!--<vm-slide class="slide"><span>Slide 10</span></vm-slide>-->
+            <!--</vm-slides>-->
 
             <h5>Zoom</h5>
-            <Slides class="swiper"
+            <vm-slides class="swiper"
                     :zoom="true">
                 <!-- 幻灯内容 -->
-                <Slide class="slide">
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_1.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_2.jpg">
-                </Slide>
-                <Slide class="slide">
+                </vm-slide>
+                <vm-slide class="slide">
                     <img src="../../static/img/scenery_3.jpg">
-                </Slide>
-            </Slides>
+                </vm-slide>
+            </vm-slides>
 
         </vm-content>
     </vm-page>

@@ -29,14 +29,14 @@
 
             <p>在下面的DIV中显示Backdrop, 点击关闭(模板式)</p>
             <div id="backdropInDiv">
-                <Backdrop :isActive="isActiveInner" :bdClick="function () {isActiveInner=!isActiveInner}"></Backdrop>
+                <vm-backdrop :isActive="isActiveInner" :bdClick="function () {isActiveInner=!isActiveInner}"></vm-backdrop>
                 <span>Hello, Vimo!</span>
             </div>
             <vm-button block @click="isActiveInner=!isActiveInner">打开Backdrop</vm-button>
 
             <!--当前的幕布-->
-            <Backdrop :isActive="isActive" :bdClick="function () {isActive=!isActive}" :top="top" :left="left"
-                      :fixed="true"></Backdrop>
+            <vm-backdrop :isActive="isActive" :bdClick="function () {isActive=!isActive}" :top="top" :left="left"
+                      :fixed="true"></vm-backdrop>
         </vm-content>
     </vm-page>
 </template>

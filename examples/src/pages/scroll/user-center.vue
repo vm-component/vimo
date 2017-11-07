@@ -7,7 +7,7 @@
         </vm-header>
         <vm-content class="outer-content" :fullscreen="true">
             <img class="imgBox" src="./img/1.jpg" :style="{'transform':'scale('+scaleValue+')'}">
-            <Scroll slot="fixedTop" class="scrollBox" @scroll="onScrollHandler" :probeType="3">
+            <vm-scroll slot="fixedTop" class="scrollBox" @scroll="onScrollHandler" :probeType="3">
                 <div class="scrollBox__inner">
                     <div class="scrollBox__content">
                         <h1>Title</h1>
@@ -36,7 +36,7 @@
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus et eum labore laborum quos. Architecto, blanditiis ducimus eaque laboriosam, molestias mollitia nihil nulla odio quaerat ratione rerum saepe! Dolore, quos.</p>
                     </div>
                 </div>
-            </Scroll>
+            </vm-scroll>
         </vm-content>
     </vm-page>
 </template>

@@ -5,10 +5,10 @@
          :side="side"
          :class="{'show-menu':showMenu}">
         <!--组件自己维护backdrop-->
-        <Backdrop
+        <vm-backdrop
                 @click.native="$menus.close()"
                 :isActive="showBackdrop"
-                :class="{'show-backdrop':showBackdrop}"></Backdrop>
+                :class="{'show-backdrop':showBackdrop}"></vm-backdrop>
         <transition
                 :name="animationName"
                 @before-enter="beforeEnter"
@@ -56,11 +56,12 @@
 <script type="text/javascript">
   import { firstUpperCase } from '../../util/util'
   import { recordMenuInstance } from './menus'
-  import Backdrop from '../backdrop'
+  import VmBackdrop from "../backdrop/backdrop.vue";
 
   const NOOP = () => {}
 
   export default {
+    components: {VmBackdrop},
     name: 'vm-menus',
     data () {
       return {
@@ -166,9 +167,6 @@
     created () {
       // 记录当前实例
       recordMenuInstance(this)
-    },
-    components: {
-      Backdrop
     }
   }
 </script>

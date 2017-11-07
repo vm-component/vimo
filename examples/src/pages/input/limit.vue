@@ -10,41 +10,41 @@
                 <vm-list-header>长度限制</vm-list-header>
                 <vm-item>
                     <vm-label color="primary">最长10个字符</vm-label>
-                    <Input :max="10" show-focus-highlight placeholder="输入文本" type="text" v-model="text" clearInput></Input>
+                    <vm-input :max="10" show-focus-highlight placeholder="输入文本" type="text" v-model="text" clearInput></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary">最大数字为10000</vm-label>
-                    <Input :max="10000" show-focus-highlight placeholder="输入数字" type="number" v-model="number" clearInput></Input>
+                    <vm-input :max="10000" show-focus-highlight placeholder="输入数字" type="number" v-model="number" clearInput></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary">最小数字为3</vm-label>
-                    <Input :min="3" show-focus-highlight placeholder="输入数字" type="number" clearInput></Input>
+                    <vm-input :min="3" show-focus-highlight placeholder="输入数字" type="number" clearInput></vm-input>
                 </vm-item>
 
                 <vm-item>
                     <vm-label color="primary">小数点后最多3位</vm-label>
-                    <Input :decimal="3" show-focus-highlight placeholder="输入数字" type="number" clearInput></Input>
+                    <vm-input :decimal="3" show-focus-highlight placeholder="输入数字" type="number" clearInput></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary">金额(0~100)</vm-label>
-                    <Input :min="0" :max="100" show-focus-highlight placeholder="输入金额" type="number" clearInput></Input>
+                    <vm-input :min="0" :max="100" show-focus-highlight placeholder="输入金额" type="number" clearInput></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary">数字范围(-2~10)</vm-label>
-                    <Input :min="-2" :max="10" show-focus-highlight placeholder="-2~10" type="number"
-                           clearInput></Input>
+                    <vm-input :min="-2" :max="10" show-focus-highlight placeholder="-2~10" type="number"
+                           clearInput></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary">数字范围(0~10)</vm-label>
-                    <Input :min="0" :max="10" show-focus-highlight placeholder="0~10" type="number" clearInput></Input>
+                    <vm-input :min="0" :max="10" show-focus-highlight placeholder="0~10" type="number" clearInput></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary">数字范围(2~10)</vm-label>
-                    <Input :min="2" :max="10" show-focus-highlight placeholder="2~10" type="number" clearInput></Input>
+                    <vm-input :min="2" :max="10" show-focus-highlight placeholder="2~10" type="number" clearInput></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary">url</vm-label>
-                    <Input show-focus-highlight placeholder="Input urls" type="url" clearInput></Input>
+                    <vm-input show-focus-highlight placeholder="Input urls" type="url" clearInput></vm-input>
                 </vm-item>
             </vm-list>
         </vm-content>

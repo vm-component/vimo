@@ -3,18 +3,18 @@
         <transition name="previewImage">
             <div class="previewImage__inner" v-show="images.length>0">
                 <p text-center class="info">{{activeIndex + 1}} / {{images.length}}</p>
-                <Slides class="slides"
+                <vm-slides class="slides"
                         :preloadImages="false"
                         :lazyLoading="true"
                         :initialSlide="activeIndex"
                         :zoom="true"
                         @onClick="onClickHandler"
                         @onSlideChangeEnd="onSlideChangeEndHandler">
-                    <Slide class="slide" v-for="(item,index) in images" :key="index">
+                    <vm-slide class="slide" v-for="(item,index) in images" :key="index">
                         <img :data-src="item" class="swiper-lazy">
                         <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                    </Slide>
-                </Slides>
+                    </vm-slide>
+                </vm-slides>
             </div>
         </transition>
     </section>

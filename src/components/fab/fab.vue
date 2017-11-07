@@ -51,25 +51,25 @@
    * ```
    *
    * @usage
-   * <Fab slot="fixed" bottom right ref="fab5">
-   *    <FabButton color="dark">
+   * <vm-fab slot="fixed" bottom right ref="fab5">
+   *    <vm-fab-button color="dark">
    *        <vm-icon name="arrow-dropleft"></vm-icon>
-   *    </FabButton>
-   *    <FabList side="left">
-   *        <FabButton @click="clickHandler('facebook')" color="danger">
+   *    </vm-fab-button>
+   *    <vm-fab-list side="left">
+   *        <vm-fab-button @click="clickHandler('facebook')" color="danger">
    *            <vm-icon name="logo-facebook"></vm-icon>
-   *        </FabButton>
-   *        <FabButton @click="clickHandler('googleplus')" color="secondary">
+   *        </vm-fab-button>
+   *        <vm-fab-button @click="clickHandler('googleplus')" color="secondary">
    *            <vm-icon name="logo-googleplus"></vm-icon>
-   *        </FabButton>
-   *        <FabButton @click="clickHandler('twitter')" color="dark">
+   *        </vm-fab-button>
+   *        <vm-fab-button @click="clickHandler('twitter')" color="dark">
    *            <vm-icon name="logo-twitter"></vm-icon>
-   *        </FabButton>
-   *        <FabButton @click="clickHandler('vimeo')" color="primary">
+   *        </vm-fab-button>
+   *        <vm-fab-button @click="clickHandler('vimeo')" color="primary">
    *            <vm-icon name="logo-vimeo"></vm-icon>
-   *        </FabButton>
-   *    </FabList>
-   * </Fab>
+   *        </vm-fab-button>
+   *    </vm-fab-list>
+   * </vm-fab>
    *
    *
    * @props {Boolean} top - 设置放置位置

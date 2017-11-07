@@ -12,30 +12,30 @@
                     <vm-label>
                         2017/07/01 ~ 2017/12/01
                     </vm-label>
-                    <Datetime slot="item-right"
+                    <vm-datetime slot="item-right"
                               min="2017-07-01"
                               max="2017-12-01"
-                    ></Datetime>
+                    ></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>
                         2017/01/01 ~ 2017/12/01
                     </vm-label>
-                    <Datetime slot="item-right"
+                    <vm-datetime slot="item-right"
                               min="2017-01-01"
                               max="2017-12-01"
-                    ></Datetime>
+                    ></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>
                         2017/01/15 ~ 2017/01/30
                     </vm-label>
-                    <Datetime slot="item-right"
+                    <vm-datetime slot="item-right"
                               min="2017-01-15"
                               max="2017-01-30"
-                    ></Datetime>
+                    ></vm-datetime>
                 </vm-item>
             </vm-list>
         </vm-content>

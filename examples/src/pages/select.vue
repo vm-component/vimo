@@ -16,88 +16,88 @@
                 <vm-list-header>单选</vm-list-header>
                 <vm-item>
                     <vm-label fixed>Gender(fixed)</vm-label>
-                    <Select item-right placeholder="Select" interface="action-sheet"
+                    <vm-select item-right placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Fixed Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <SelectOption value="f">Female</SelectOption>
-                        <SelectOption value="m">Male</SelectOption>
-                    </Select>
+                        <vm-option value="f">Female</vm-option>
+                        <vm-option value="m">Male</vm-option>
+                    </vm-select>
                 </vm-item>
                 <vm-item>
                     <vm-label stacked>Gender(stacked)</vm-label>
-                    <Select item-right placeholder="Select" interface="action-sheet"
+                    <vm-select item-right placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Stacked Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <SelectOption value="f">Female</SelectOption>
-                        <SelectOption value="m">Male</SelectOption>
-                    </Select>
+                        <vm-option value="f">Female</vm-option>
+                        <vm-option value="m">Male</vm-option>
+                    </vm-select>
                 </vm-item>
                 <vm-item>
                     <vm-label floating>Gender(floating)</vm-label>
-                    <Select item-right placeholder="Select" interface="action-sheet"
+                    <vm-select item-right placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Foating Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <SelectOption value="f">Female</SelectOption>
-                        <SelectOption value="m">Male</SelectOption>
-                    </Select>
+                        <vm-option value="f">Female</vm-option>
+                        <vm-option value="m">Male</vm-option>
+                    </vm-select>
                 </vm-item>
                 <vm-item>
                     <vm-label>Gender</vm-label>
-                    <Select item-right placeholder="Select" interface="action-sheet"
+                    <vm-select item-right placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Normal Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <SelectOption value="f">Female</SelectOption>
-                        <SelectOption value="m">Male</SelectOption>
-                    </Select>
+                        <vm-option value="f">Female</vm-option>
+                        <vm-option value="m">Male</vm-option>
+                    </vm-select>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>Gender</vm-label>
-                    <Select item-right placeholder="Select" interface="alert"
+                    <vm-select item-right placeholder="Select" interface="alert"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <SelectOption value="f" checked>Female</SelectOption>
-                        <SelectOption value="m">Male</SelectOption>
-                    </Select>
+                        <vm-option value="f" checked>Female</vm-option>
+                        <vm-option value="m">Male</vm-option>
+                    </vm-select>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>Gender</vm-label>
-                    <Select item-right placeholder="Multi Select" interface="alert" :multiple="true"
+                    <vm-select item-right placeholder="Multi Select" interface="alert" :multiple="true"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <SelectOption value="f">Female</SelectOption>
-                        <SelectOption value="m">Male</SelectOption>
-                    </Select>
+                        <vm-option value="f">Female</vm-option>
+                        <vm-option value="m">Male</vm-option>
+                    </vm-select>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>Gender</vm-label>
-                    <Select item-right placeholder="Disabled Select" :disabled="true" interface="alert" :multiple="true"
+                    <vm-select item-right placeholder="Disabled Select" :disabled="true" interface="alert" :multiple="true"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <SelectOption value="f">Female</SelectOption>
-                        <SelectOption value="m">Male</SelectOption>
-                    </Select>
+                        <vm-option value="f">Female</vm-option>
+                        <vm-option value="m">Male</vm-option>
+                    </vm-select>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>能修改选中值文本</vm-label>
-                    <Select item-right placeholder="请选择" selectedText="已选择" interface="alert" :multiple="true">
-                        <SelectOption value="f">Female</SelectOption>
-                        <SelectOption value="m">Male</SelectOption>
-                    </Select>
+                    <vm-select item-right placeholder="请选择" selectedText="已选择" interface="alert" :multiple="true">
+                        <vm-option value="f">Female</vm-option>
+                        <vm-option value="m">Male</vm-option>
+                    </vm-select>
                 </vm-item>
             </vm-list>
 
@@ -107,14 +107,14 @@
                 </vm-list-header>
                 <vm-item>
                     <vm-label>Gaming</vm-label>
-                    <Select v-model="gamingNoValue" :multiple="true">
-                        <SelectOption>NES</SelectOption>
-                        <SelectOption>Nintendo64</SelectOption>
-                        <SelectOption>PlayStation</SelectOption>
-                        <SelectOption>Sega Genesis</SelectOption>
-                        <SelectOption>Sega Saturn</SelectOption>
-                        <SelectOption>SNES</SelectOption>
-                    </Select>
+                    <vm-select v-model="gamingNoValue" :multiple="true">
+                        <vm-option>NES</vm-option>
+                        <vm-option>Nintendo64</vm-option>
+                        <vm-option>PlayStation</vm-option>
+                        <vm-option>Sega Genesis</vm-option>
+                        <vm-option>Sega Saturn</vm-option>
+                        <vm-option>SNES</vm-option>
+                    </vm-select>
                 </vm-item>
             </vm-list>
             <div text-cente padding>
@@ -127,14 +127,14 @@
                 </vm-list-header>
                 <vm-item>
                     <vm-label>Gaming</vm-label>
-                    <Select v-model="gaming" :multiple="true">
-                        <SelectOption value="nes">NES</SelectOption>
-                        <SelectOption value="n64">Nintendo64</SelectOption>
-                        <SelectOption value="ps">PlayStation</SelectOption>
-                        <SelectOption value="genesis">Sega Genesis</SelectOption>
-                        <SelectOption value="saturn">Sega Saturn</SelectOption>
-                        <SelectOption value="snes" disabled>SNES</SelectOption>
-                    </Select>
+                    <vm-select v-model="gaming" :multiple="true">
+                        <vm-option value="nes">NES</vm-option>
+                        <vm-option value="n64">Nintendo64</vm-option>
+                        <vm-option value="ps">PlayStation</vm-option>
+                        <vm-option value="genesis">Sega Genesis</vm-option>
+                        <vm-option value="saturn">Sega Saturn</vm-option>
+                        <vm-option value="snes" disabled>SNES</vm-option>
+                    </vm-select>
                 </vm-item>
             </vm-list>
 
@@ -150,11 +150,11 @@
                 </vm-list-header>
                 <vm-item>
                     <vm-label>Currency</vm-label>
-                    <Select v-model="currency" v-if="hideCurrency">
-                        <SelectOption :value="cur.code" v-for="(cur,index) in currencies" :key="index">
+                    <vm-select v-model="currency" v-if="hideCurrency">
+                        <vm-option :value="cur.code" v-for="(cur,index) in currencies" :key="index">
                             <span>{{cur.symbol}} ({{cur.code}}) {{cur.name}}</span>
-                        </SelectOption>
-                    </Select>
+                        </vm-option>
+                    </vm-select>
                 </vm-item>
                 <div padding>
                     <vm-button block @click="toggleData">Toggle Data</vm-button>

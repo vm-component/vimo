@@ -16,12 +16,12 @@
                 <vm-item>
                     <vm-icon name="person" slot="item-left"></vm-icon>
                     <vm-label>用户名</vm-label>
-                    <Input type="text" v-model="username" clearInput></Input>
+                    <vm-input type="text" v-model="username" clearInput></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-icon name="key" slot="item-left"></vm-icon>
                     <vm-label>密码</vm-label>
-                    <Input type="password" v-model="password" clearInput></Input>
+                    <vm-input type="password" v-model="password" clearInput></vm-input>
                 </vm-item>
             </vm-list>
             <vm-grid>

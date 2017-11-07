@@ -374,11 +374,11 @@
         children.forEach((child) => {
           ele = child.$el
           tagName = child.$options._componentTag.toLowerCase()
-          if (tagName === 'header') {
+          if (tagName === 'vm-header') {
             this.headerElement = scrollEvent.headerElement = ele
             computedStyle = window.getComputedStyle(this.headerElement)
             this.headerBarHeight = parsePxUnit(computedStyle.height)
-          } else if (tagName === 'footer') {
+          } else if (tagName === 'vm-footer') {
             this.footerElement = scrollEvent.footerElement = ele
             computedStyle = window.getComputedStyle(this.footerElement)
             this.footerBarHeight = parsePxUnit(computedStyle.height)

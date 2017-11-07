@@ -176,14 +176,14 @@
    * @demo #/notice-bar
    * @usage
    *
-   * <NoticeBar :onDismiss="onDismissHandler">这是一个很简短的通知, 不会滚动</NoticeBar>
-   * <NoticeBar class="noticeBar" action="hide">
+   * <vm-noticebar :onDismiss="onDismissHandler">这是一个很简短的通知, 不会滚动</vm-noticebar>
+   * <vm-noticebar class="noticeBar" action="hide">
    *    国庆节期间余额宝收益和转出到账时间调整到节后, 给您带来不便, 敬请谅解!
-   * </NoticeBar>
+   * </vm-noticebar>
    *
    * */
   export default {
-    name: 'vm-notice-bar',
+    name: 'vm-noticebar',
     data () {
       return {
         shouldAnimate: false,

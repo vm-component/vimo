@@ -13,10 +13,10 @@
                     <vm-badge slot="item-right">{{brightness}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
-                    <Range v-model="brightness">
+                    <vm-range v-model="brightness">
                         <vm-icon slot="range-left" small name="sunny"></vm-icon>
                         <vm-icon slot="range-right" name="sunny"></vm-icon>
-                    </Range>
+                    </vm-range>
                 </vm-item>
             </vm-list>
 
@@ -26,10 +26,10 @@
                     <vm-badge slot="item-right" color="secondary">{{saturation}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
-                    <Range :min="-200" :max="200" :pin="true" v-model="saturation" color="secondary">
+                    <vm-range :min="-200" :max="200" :pin="true" v-model="saturation" color="secondary">
                         <vm-label slot="range-left">-200</vm-label>
                         <vm-label slot="range-right">200</vm-label>
-                    </Range>
+                    </vm-range>
                 </vm-item>
             </vm-list>
 
@@ -40,10 +40,10 @@
                     <vm-badge slot="item-right" color="danger">{{warmth}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
-                    <Range :min="1000" :max="2000" :step="100" :snaps="true" v-model="warmth" color="danger">
+                    <vm-range :min="1000" :max="2000" :step="100" :snaps="true" v-model="warmth" color="danger">
                         <vm-icon slot="range-left" small color="danger" name="thermometer"></vm-icon>
                         <vm-icon slot="range-right" color="danger" name="thermometer"></vm-icon>
-                    </Range>
+                    </vm-range>
                 </vm-item>
             </vm-list>
 
@@ -54,11 +54,11 @@
                     <vm-badge slot="item-right" color="dark">{{structure.upper}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
-                    <Range :dualKnobs="true" :pin="true" v-model="structure"
+                    <vm-range :dualKnobs="true" :pin="true" v-model="structure"
                            color="dark">
                         <vm-label slot="range-left">-0</vm-label>
                         <vm-label slot="range-right">100</vm-label>
-                    </Range>
+                    </vm-range>
                 </vm-item>
             </vm-list>
 
@@ -68,11 +68,11 @@
                     <vm-badge slot="item-right" color="secondary">{{disableRange}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
-                    <Range :disabled="disabled" :min="-200" :max="200" :pin="true" v-model="disableRange"
+                    <vm-range :disabled="disabled" :min="-200" :max="200" :pin="true" v-model="disableRange"
                            color="secondary">
                         <vm-label slot="range-left">-200</vm-label>
                         <vm-label slot="range-right">200</vm-label>
-                    </Range>
+                    </vm-range>
                 </vm-item>
             </vm-list>
 

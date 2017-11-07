@@ -9,12 +9,12 @@
             <vm-list>
                 <vm-item v-for="(i,index) in list" :key="index">{{i}}</vm-item>
             </vm-list>
-            <InfiniteScroll ref="infiniteScroll" class="infiniteScroll" :enabled="true" threshold="10%"
+            <vm-infinite-scroll ref="infiniteScroll" class="infiniteScroll" :enabled="true" threshold="10%"
                             @onInfinite="onInfinite">
-                <!--<InfiniteScroll class="infiniteScroll" :enabled="true" threshold="20%" @onInfinite="$event.waitFor(onInfinitePromise())">-->
-                <InfiniteScrollContent loadingSpinner="ios" loadingText="正在加载..."></InfiniteScrollContent>
+                <!--<vm-infinite-scroll class="infiniteScroll" :enabled="true" threshold="20%" @onInfinite="$event.waitFor(onInfinitePromise())">-->
+                <vm-infinite-scroll-sontent loadingSpinner="ios" loadingText="正在加载..."></vm-infinite-scroll-sontent>
                 <h5 class="loadedAll" text-center>全部加载完毕</h5>
-            </InfiniteScroll>
+            </vm-infinite-scroll>
         </vm-content>
     </vm-page>
 </template>

@@ -5,13 +5,13 @@
                 <vm-title>Searchbar</vm-title>
             </vm-navbar>
             <vm-toolbar>
-                <Searchbar :animated="true"
+                <vm-searchbar :animated="true"
                            placeholder="Search"
                            :debounce="100"
                            @onInput="onInputHandler"
                            v-model="myInput"
                            :showCancelButton="true"
-                           cancelButtonText="取消"></Searchbar>
+                           cancelButtonText="取消"></vm-searchbar>
             </vm-toolbar>
         </vm-header>
         <vm-content class="outer-content">

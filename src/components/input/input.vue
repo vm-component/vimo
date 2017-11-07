@@ -110,21 +110,19 @@
    *
    * @demo #/input
    * @usage
-   * <Input placeholder="Text Input">
-   * <Input placeholder="Clear Input" clearInput></Input>
-   * <Input placeholder="请输入手机号" type="mobile" check clearInput></Input>
-   * <Input placeholder="请输入至少4位" type="securityCode" check clearInput></Input>
-   * <Input placeholder="XX-XX-XXX格式" type="text" check :regex=/\d{2}-\d{2}-\d{3}/ clearInput></Input>
+   * <vm-input placeholder="Text Input">
+   * <vm-input placeholder="Clear Input" clearInput></vm-input>
+   * <vm-input placeholder="请输入手机号" type="mobile" check clearInput></vm-input>
+   * <vm-input placeholder="请输入至少4位" type="securityCode" check clearInput></vm-input>
+   * <vm-input placeholder="XX-XX-XXX格式" type="text" check :regex=/\d{2}-\d{2}-\d{3}/ clearInput></vm-input>
    * */
   import { hasFocus, setElementClass, isObject, isBlank, isPresent, isFunction, isRegexp } from '../../util/util'
-  import Button from '../button/index'
   import REGEXP from '../../util/regexp'
+  import VmButton from "../button/button.vue";
 
   export default {
+    components: {VmButton},
     name: 'vm-input',
-    components: {
-      'vm-button': Button
-    },
     props: {
       /**
        * focus时, 下划线是否高亮

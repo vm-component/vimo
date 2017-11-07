@@ -10,52 +10,52 @@
             <p>嗯, 菊花图...</p>
 
             <h4>默认</h4>
-            <Spinner></Spinner>
-            <Spinner name="ios"></Spinner>
-            <Spinner name="ios-small"></Spinner>
-            <Spinner name="bubbles"></Spinner>
-            <Spinner name="circles"></Spinner>
-            <Spinner name="crescent"></Spinner>
-            <Spinner name="dots"></Spinner>
+            <vm-spinner></vm-spinner>
+            <vm-spinner name="ios"></vm-spinner>
+            <vm-spinner name="ios-small"></vm-spinner>
+            <vm-spinner name="bubbles"></vm-spinner>
+            <vm-spinner name="circles"></vm-spinner>
+            <vm-spinner name="crescent"></vm-spinner>
+            <vm-spinner name="dots"></vm-spinner>
 
             <h4>Mode</h4>
             <span>未指定</span>
-            <Spinner></Spinner>
+            <vm-spinner></vm-spinner>
             <span>ios</span>
-            <Spinner mode="ios"></Spinner>
+            <vm-spinner mode="ios"></vm-spinner>
             <span>md</span>
-            <Spinner mode="md"></Spinner>
+            <vm-spinner mode="md"></vm-spinner>
             <span>wp</span>
-            <Spinner mode="wp"></Spinner>
+            <vm-spinner mode="wp"></vm-spinner>
 
             <h4>Color</h4>
-            <Spinner></Spinner>
-            <Spinner color="primary" name="ios"></Spinner>
-            <Spinner color="secondary" name="ios-small"></Spinner>
-            <Spinner color="light" name="bubbles"></Spinner>
-            <Spinner color="dark" name="circles"></Spinner>
-            <Spinner color="primary" name="crescent"></Spinner>
-            <Spinner color="secondary" name="dots"></Spinner>
+            <vm-spinner></vm-spinner>
+            <vm-spinner color="primary" name="ios"></vm-spinner>
+            <vm-spinner color="secondary" name="ios-small"></vm-spinner>
+            <vm-spinner color="light" name="bubbles"></vm-spinner>
+            <vm-spinner color="dark" name="circles"></vm-spinner>
+            <vm-spinner color="primary" name="crescent"></vm-spinner>
+            <vm-spinner color="secondary" name="dots"></vm-spinner>
 
             <!--duration-->
             <h4>Duration 3000ms</h4>
-            <Spinner duration="3000"></Spinner>
-            <Spinner duration="3000" name="ios"></Spinner>
-            <Spinner duration="3000" name="ios-small"></Spinner>
-            <Spinner duration="3000" name="bubbles"></Spinner>
-            <Spinner duration="3000" name="circles"></Spinner>
-            <Spinner duration="3000" name="crescent"></Spinner>
-            <Spinner duration="3000" name="dots"></Spinner>
+            <vm-spinner duration="3000"></vm-spinner>
+            <vm-spinner duration="3000" name="ios"></vm-spinner>
+            <vm-spinner duration="3000" name="ios-small"></vm-spinner>
+            <vm-spinner duration="3000" name="bubbles"></vm-spinner>
+            <vm-spinner duration="3000" name="circles"></vm-spinner>
+            <vm-spinner duration="3000" name="crescent"></vm-spinner>
+            <vm-spinner duration="3000" name="dots"></vm-spinner>
 
             <!--paused-->
             <h4>Paused</h4>
-            <Spinner :paused="true"></Spinner>
-            <Spinner :paused="true" name="ios"></Spinner>
-            <Spinner :paused="true" name="ios-small"></Spinner>
-            <Spinner :paused="true" name="bubbles"></Spinner>
-            <Spinner :paused="true" name="circles"></Spinner>
-            <Spinner :paused="true" name="crescent"></Spinner>
-            <Spinner :paused="true" name="dots"></Spinner>
+            <vm-spinner :paused="true"></vm-spinner>
+            <vm-spinner :paused="true" name="ios"></vm-spinner>
+            <vm-spinner :paused="true" name="ios-small"></vm-spinner>
+            <vm-spinner :paused="true" name="bubbles"></vm-spinner>
+            <vm-spinner :paused="true" name="circles"></vm-spinner>
+            <vm-spinner :paused="true" name="crescent"></vm-spinner>
+            <vm-spinner :paused="true" name="dots"></vm-spinner>
         </vm-content>
     </vm-page>
 </template>

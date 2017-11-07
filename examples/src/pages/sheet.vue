@@ -72,13 +72,13 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur explicabo minus odit praesentium rem. Alias consectetur cupiditate facere id ipsam maxime omnis repellendus sapiente. Enim facere incidunt ipsam numquam rerum!</p>
             </div>
             <!--paySheet-->
-            <Sheet
+            <vm-sheet
                     ref="paySheet"
                     slot="fixed"
                     :direction="direction"
                     :showBackdrop="showBackdrop"
                     :enableBackdropDismiss="enableBackdropDismiss">
-                <section class="pay-sheet">
+                <div class="pay-sheet">
                     <div class="pay-sheet-title">选择支付方式</div>
                     <div class="pay-sheet-container">
                         <div class="pay-sheet-content" @click="choose('alipay')">
@@ -97,8 +97,8 @@
                     <div class="pay-sheet-buttons">
                         <vm-button full clear class="pay-sheet-button" @click="closePaySheet">取消</vm-button>
                     </div>
-                </section>
-            </Sheet>
+                </div>
+            </vm-sheet>
             <!--shareSheet-->
         </vm-content>
     </vm-page>

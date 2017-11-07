@@ -4,13 +4,13 @@
             <vm-navbar>
                 <vm-title>网易新闻</vm-title>
             </vm-navbar>
-            <section class="scrollBar">
-                <ScrollSegment v-model="newIndex">
-                    <ScrollSegmentButton v-for="(item, index) in arrs" :key="index">
+            <div class="scrollBar">
+                <vm-scroll-segment v-model="newIndex">
+                    <vm-scroll-segment-button v-for="(item, index) in arrs" :key="index">
                         <div class="scrollBar__btn">{{item}}</div>
-                    </ScrollSegmentButton>
-                </ScrollSegment>
-            </section>
+                    </vm-scroll-segment-button>
+                </vm-scroll-segment>
+            </div>
         </vm-header>
         <vm-content class="outer-content">
 
@@ -24,80 +24,80 @@
                 <p>另外, 只有在手机上才能体验到左右回弹的效果.</p>
             </div>
 
-            <section class="horizontal">
+            <div class="horizontal">
                 <div class="space">Space</div>
                 <div class="content">
                     <div class="contentInner">
-                        <ScrollSegment :value="2">
-                            <ScrollSegmentButton>
+                        <vm-scroll-segment :value="2">
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">0</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">1</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">2</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">3</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">4</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">5</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">6</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">7</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">8</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">9</div>
-                            </ScrollSegmentButton>
-                        </ScrollSegment>
+                            </vm-scroll-segment-button>
+                        </vm-scroll-segment>
                     </div>
                 </div>
-            </section>
+            </div>
             <section class="horizontal">
                 <div class="content">
                     <div class="contentInner">
-                        <ScrollSegment :value="2">
-                            <ScrollSegmentButton>
+                        <vm-scroll-segment :value="2">
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">0</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">1</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">2</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">3</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">4</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">5</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">6</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">7</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">8</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">9</div>
-                            </ScrollSegmentButton>
-                        </ScrollSegment>
+                            </vm-scroll-segment-button>
+                        </vm-scroll-segment>
                     </div>
                 </div>
                 <div class="space">Space</div>
@@ -106,38 +106,38 @@
                 <div class="space">Space</div>
                 <div class="content">
                     <div class="contentInner">
-                        <ScrollSegment :value="2">
-                            <ScrollSegmentButton>
+                        <vm-scroll-segment :value="2">
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">0</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">1</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">2</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">3</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">4</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">5</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">6</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">7</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">8</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">9</div>
-                            </ScrollSegmentButton>
-                        </ScrollSegment>
+                            </vm-scroll-segment-button>
+                        </vm-scroll-segment>
                     </div>
                 </div>
                 <div class="space">Space</div>
@@ -146,35 +146,35 @@
             <section class="horizontal">
                 <div class="content">
                     <div class="contentInner">
-                        <ScrollSegment :value="2">
-                            <ScrollSegmentButton>
+                        <vm-scroll-segment :value="2">
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">鱼香肉丝</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">红烧狮子头</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">卷了三个鸡蛋的煎饼果子</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">新疆烤肉和香酥烤全羊</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">土家酱饼</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">杭椒牛柳</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">鸡蛋灌饼</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">超级辣的BT变态烤翅</div>
-                            </ScrollSegmentButton>
-                            <ScrollSegmentButton>
+                            </vm-scroll-segment-button>
+                            <vm-scroll-segment-button>
                                 <div class="srollSegmentButton">啤酒</div>
-                            </ScrollSegmentButton>
-                        </ScrollSegment>
+                            </vm-scroll-segment-button>
+                        </vm-scroll-segment>
                     </div>
                 </div>
             </section>
@@ -195,11 +195,11 @@
                         <vm-button outline small @click="changedValue++">Add ++ </vm-button>
                     </vm-col>
                 </vm-row>
-                <ScrollSegment v-model="changedValue" class="header-scroll">
-                    <ScrollSegmentButton v-for="i in asynData" :key="i">
+                <vm-scroll-segment v-model="changedValue" class="header-scroll">
+                    <vm-scroll-segment-button v-for="i in asynData" :key="i">
                         <div class="srollSegmentButton">{{i}}</div>
-                    </ScrollSegmentButton>
-                </ScrollSegment>
+                    </vm-scroll-segment-button>
+                </vm-scroll-segment>
             </vm-grid>
         </vm-content>
     </vm-page>

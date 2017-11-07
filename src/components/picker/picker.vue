@@ -14,17 +14,16 @@
                          :key="index"
                          class="picker-toolbar-button"
                          :class="[b.cssRole]">
-                        <vm-button @click="btnClick(b)" :class="b.cssClass" class="picker-button" clear>{{b.text}}
-                        </vm-button>
+                        <vm-button @click="btnClick(b)" :class="b.cssClass" class="picker-button" clear>{{b.text}}</vm-button>
                     </div>
                 </div>
                 <div class="picker-columns">
                     <div class="picker-above-highlight"></div>
-                    <PickerCol v-for="(c,index) in columns"
+                    <vm-picker-col v-for="(c,index) in columns"
                                :index="index"
                                :key="c.name"
                                :col="c"
-                               @onChange="colChange"></PickerCol>
+                               @onChange="colChange"></vm-picker-col>
                     <div class="picker-below-highlight"></div>
                 </div>
             </div>
@@ -118,14 +117,19 @@
    * @demo #/picker
    * */
   import { isString, isPresent, isNumber, urlChange } from '../../util/util'
-  import PickerCol from './picker-col.vue'
-  import Backdrop from '../backdrop'
-  import Button from '../button/index'
+  import VmPickerCol from './picker-col.vue'
+  import VmBackdrop from "../backdrop/backdrop.vue";
+  import VmButton from "../button/button.vue";
 
   const NOOP = () => {}
 
   export default {
     name: 'vm-picker',
+    components: {
+      VmButton,
+      VmBackdrop,
+      VmPickerCol
+    },
     data () {
       return {
         isActive: false,        // 控制当前组件的激活状态
@@ -395,7 +399,6 @@
           console.error('beforeMount find Picker opened!')
         })
       }
-    },
-    components: {'vm-backdrop': Backdrop, PickerCol, 'vm-button': Button}
+    }
   }
 </script>

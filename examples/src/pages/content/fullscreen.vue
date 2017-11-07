@@ -5,7 +5,7 @@
                 <vm-title>全屏模式</vm-title>
             </vm-navbar>
             <vm-toolbar>
-                <Searchbar :animated="true"></Searchbar>
+                <vm-searchbar :animated="true"></vm-searchbar>
             </vm-toolbar>
         </vm-header>
         <vm-content :fullscreen="true" padding class="outer-content">

@@ -12,22 +12,22 @@
                 </vm-list-header>
                 <vm-item>
                     <vm-label color="primary">Inline Label</vm-label>
-                    <Input placeholder="Text Input"></Input>
+                    <vm-input placeholder="Text Input"></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" fixed>Fixed Label with fixed width</vm-label>
-                    <Input type="tel" placeholder="Tel Input"></Input>
+                    <vm-input type="tel" placeholder="Tel Input"></vm-input>
                 </vm-item>
                 <vm-item>
-                    <Input type="number" placeholder="Number Input with no label"></Input>
+                    <vm-input type="number" placeholder="Number Input with no label"></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" stacked>Stacked Label</vm-label>
-                    <Input type="email" placeholder="Email Input"></Input>
+                    <vm-input type="email" placeholder="Email Input"></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" floating>Floating Label</vm-label>
-                    <Input type="text"></Input>
+                    <vm-input type="text"></vm-input>
                 </vm-item>
             </vm-list>
             <vm-list>
@@ -35,7 +35,7 @@
                     <span>右侧清除按钮</span>
                 </vm-list-header>
                 <vm-item>
-                    <Input placeholder="Clear Input" clearInput></Input>
+                    <vm-input placeholder="Clear Input" clearInput></vm-input>
                 </vm-item>
             </vm-list>
 
@@ -45,7 +45,7 @@
                 </vm-list-header>
                 <vm-item>
                     <vm-label color="primary" stacked>Password</vm-label>
-                    <Input type="password" placeholder="Password Input"></Input>
+                    <vm-input type="password" placeholder="Password Input"></vm-input>
                 </vm-item>
             </vm-list>
 
@@ -55,11 +55,11 @@
                 </vm-list-header>
                 <vm-item>
                     <vm-label color="primary">TestValue</vm-label>
-                    <Input :clearInput="true"
+                    <vm-input :clearInput="true"
                            :max="18"
                            placeholder="最多输入18个字符"
                            v-model="testValue"
-                           :disabled="testDisabled"></Input>
+                           :disabled="testDisabled"></vm-input>
                 </vm-item>
                 <vm-item>
                     <span slot="item-left"> 当前的值({{testValue.length}}): {{testValue}}</span>
@@ -70,7 +70,7 @@
                 <vm-list-header>Focus Highlight</vm-list-header>
                 <vm-item>
                     <vm-label color="primary">聚焦高亮</vm-label>
-                    <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
+                    <vm-input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></vm-input>
                 </vm-item>
             </vm-list>
 
@@ -78,7 +78,7 @@
                 <vm-list-header>Input单独使用</vm-list-header>
 
                 <section class="customer">
-                    <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
+                    <vm-input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></vm-input>
                 </section>
             </vm-list>
         </vm-content>

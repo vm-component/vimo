@@ -179,7 +179,7 @@
 
             <!--10-->
             <vm-toolbar>
-                <Searchbar :animated="true"
+                <vm-searchbar :animated="true"
                            :debounce="1000"
                            mode="ios"
                            v-model="myInput"
@@ -189,12 +189,12 @@
                            @ionFocus="onFocus"
                            @ionBlur="onBlur"
                            @ionCancel="onCancel"
-                           @ionClear="onClear"></Searchbar>
+                           @ionClear="onClear"></vm-searchbar>
             </vm-toolbar>
 
             <!--11-->
             <vm-toolbar color="primary">
-                <Searchbar :animated="true"
+                <vm-searchbar :animated="true"
                            :debounce="1000"
                            v-model="myInput"
                            :showCancelButton="true"
@@ -203,12 +203,12 @@
                            @ionFocus="onFocus"
                            @ionBlur="onBlur"
                            @ionCancel="onCancel"
-                           @ionClear="onClear"></Searchbar>
+                           @ionClear="onClear"></vm-searchbar>
             </vm-toolbar>
         </vm-content>
         <vm-footer>
             <vm-toolbar>
-                <Searchbar :animated="true"
+                <vm-searchbar :animated="true"
                            :debounce="1000"
                            v-model="myInput"
                            :showCancelButton="true"
@@ -217,7 +217,7 @@
                            @ionFocus="onFocus"
                            @ionBlur="onBlur"
                            @ionCancel="onCancel"
-                           @ionClear="onClear"></Searchbar>
+                           @ionClear="onClear"></vm-searchbar>
             </vm-toolbar>
         </vm-footer>
     </vm-page>

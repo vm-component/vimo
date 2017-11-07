@@ -14,31 +14,31 @@
             <h5>精简版(swipe-js-iso.js)</h5>
             <p><a href="https://github.com/thebird/Swipe">Brad Birdsall@Swipe 2.0.0</a></p>
 
-            <SlidesLite :initialSlide="1"
+            <vm-slides-lite :initialSlide="1"
                         :loop="true"
                         :autoplay="4000"
                         pagination=".swiper-pagination"
                         @onTransitionEnd="onTransitionEndHandler"
                         class="slides">
-                <SlideLite class="slide slide-0">0</SlideLite>
-                <SlideLite class="slide slide-1">1</SlideLite>
-                <SlideLite class="slide slide-2">2</SlideLite>
-                <SlideLite class="slide slide-3">3</SlideLite>
-            </SlidesLite>
+                <vm-slide-lite class="slide slide-0">0</vm-slide-lite>
+                <vm-slide-lite class="slide slide-1">1</vm-slide-lite>
+                <vm-slide-lite class="slide slide-2">2</vm-slide-lite>
+                <vm-slide-lite class="slide slide-3">3</vm-slide-lite>
+            </vm-slides-lite>
             <hr>
             <h5>原版(swiper.js)</h5>
             <p><a href="http://www.idangero.us/swiper/">Vladimir Kharlampidi@Swiper 3.4.2</a></p>
-            <Slides :initialSlide="1"
+            <vm-slides :initialSlide="1"
                     :loop="true"
                     :autoplay="4000"
                     pagination=".swiper-pagination"
                     @onTransitionEnd="onTransitionEndHandler"
                     class="slides">
-                <Slide class="slide slide-0">0</Slide>
-                <Slide class="slide slide-1">1</Slide>
-                <Slide class="slide slide-2">2</Slide>
-                <Slide class="slide slide-3">3</Slide>
-            </Slides>
+                <vm-slide class="slide slide-0">0</vm-slide>
+                <vm-slide class="slide slide-1">1</vm-slide>
+                <vm-slide class="slide slide-2">2</vm-slide>
+                <vm-slide class="slide slide-3">3</vm-slide>
+            </vm-slides>
         </vm-content>
     </vm-page>
 </template>

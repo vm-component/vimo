@@ -9,9 +9,9 @@
 
             <vm-list>
                 <vm-item>
-                    <Thumbnail slot="item-left">
+                    <vm-thumbnail slot="item-left">
                         <img src="./img/thumbnail-totoro.png">
-                    </Thumbnail>
+                    </vm-thumbnail>
                     <vm-label>
                         <h2>My Neighbor Totoro</h2>
                         <p>Hayao Miyazaki • 1988</p>
@@ -19,9 +19,9 @@
                     <vm-button ion-button clear slot="item-right">View</vm-button>
                 </vm-item>
                 <vm-item>
-                    <Thumbnail slot="item-left">
+                    <vm-thumbnail slot="item-left">
                         <img src="./img/thumbnail-rotla.png">
-                    </Thumbnail>
+                    </vm-thumbnail>
                     <vm-label>
                         <h2>My Neighbor Totoro</h2>
                         <p>Hayao Miyazaki • 1988</p>

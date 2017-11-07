@@ -23,7 +23,7 @@
             </vm-list>
 
             <vm-button block @click="openPopSheet">登录</vm-button>
-            <section>
+            <div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci amet blanditiis consequatur, delectus deleniti dolor ea, excepturi fuga laborum nemo provident recusandae rerum soluta vel veritatis vitae voluptatem voluptates!</p>
                 <p>
@@ -44,14 +44,14 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci amet blanditiis consequatur, delectus deleniti dolor ea, excepturi fuga laborum nemo provident recusandae rerum soluta vel veritatis vitae voluptatem voluptates!</p>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci amet blanditiis consequatur, delectus deleniti dolor ea, excepturi fuga laborum nemo provident recusandae rerum soluta vel veritatis vitae voluptatem voluptates!</p>
-            </section>
+            </div>
             <!--paySheet-->
-            <PopSheet
+            <vm-pop-sheet
                     ref="popSheet"
                     slot="fixed"
                     :enableBackdropDismiss="enableBackdropDismiss"
                     :showBackdrop="showBackdrop">
-                <section class="popSheet">
+                <div class="popSheet">
                     <h2>TITLE</h2>
                     <h5>这是内容, 宽度高度自定义</h5>
                     <p>
@@ -59,17 +59,17 @@
                     <vm-list>
                         <vm-item>
                             <vm-label>名称</vm-label>
-                            <Input v-model="name" type="text" placeholder="请输入用户名" clear-input></Input>
+                            <vm-input v-model="name" type="text" placeholder="请输入用户名" clear-input></vm-input>
                         </vm-item>
                         <vm-item>
                             <vm-label>密码</vm-label>
-                            <Input v-model="password" type="password" placeholder="请输入密码" clear-input></Input>
+                            <vm-input v-model="password" type="password" placeholder="请输入密码" clear-input></vm-input>
                         </vm-item>
                     </vm-list>
 
                     <vm-button block @click="closePopSheet">确认</vm-button>
-                </section>
-            </PopSheet>
+                </div>
+            </vm-pop-sheet>
             <!--shareSheet-->
         </vm-content>
     </vm-page>

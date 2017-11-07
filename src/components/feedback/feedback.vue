@@ -1,5 +1,5 @@
 <template>
-    <section class="vm-feedback feedback__inputBox">
+    <div class="vm-feedback feedback__inputBox">
         <!--textarea-->
         <div class="feedback__inputBox--textareaBox">
             <vm-textarea :placeholder="placeholder"
@@ -27,7 +27,7 @@
                 <input @change="onChangeHandler" class="file" type="file">
             </div>
         </div>
-    </section>
+    </div>
 </template>
 <script type="text/javascript">
   /**
@@ -40,12 +40,12 @@
    *
    * ### 如何引入
    * ```
-   * import Feedback from 'vimo/lib/feedback'
+   * import VmFeedback from 'vimo/lib/feedback'
    * Vue.component(Feedback.name, Feedback)
    * // 或者
    * export default{
    *   components: {
-   *     Feedback
+   *     VmFeedback
    *  }
    * }
    * ```
@@ -69,16 +69,18 @@
    *
    * @demo #/feedback
    * @usage
-   * <Feedback v-model="feedbackInfo" :maxlength="100" :maximage="4"></Feedback>
+   * <vm-feedback v-model="feedbackInfo" :maxlength="100" :maximage="4"></vm-feedback>
    * */
   import canvasResize from './fixImage'
   import { isString, isArray } from '../../util/util'
-  import Textarea from '../input/index'
   import PreviewImage from '../preview-image/index'
+  import VmTextarea from "../input/input.vue";
 
   export default {
-    name: 'Feedback',
-    components: {'vm-textarea': Textarea},
+    name: 'vm-feedback',
+    components: {
+      VmTextarea
+    },
     data () {
       return {}
     },

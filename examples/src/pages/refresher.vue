@@ -6,12 +6,12 @@
             </vm-navbar>
         </vm-header>
         <vm-content class="outer-content" record-position>
-            <Refresher slot="refresher" :enabled="enabled" @onRefresh="doRefresh($event)">
-                <RefresherContent
+            <vm-refresher slot="refresher" :enabled="enabled" @onRefresh="doRefresh($event)">
+                <vm-refresher-content
                         pullingText="下拉刷新..."
                         refreshingText="正在刷新...">
-                </RefresherContent>
-            </Refresher>
+                </vm-refresher-content>
+            </vm-refresher>
             <div padding class="state" text-center>
                 <p>状态: {{enabled}}</p>
                 <vm-button small outline @click="toggleDisabled">禁用/启用</vm-button>

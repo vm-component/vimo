@@ -6,7 +6,7 @@
             </vm-navbar>
         </vm-header>
         <vm-content class="outer-content">
-            <Feedback v-model="feedbackInfo" :maxlength="100" :maximage="4"></Feedback>
+            <vm-feedback v-model="feedbackInfo" :maxlength="100" :maximage="4"></vm-feedback>
             <div padding>
                 <h5>简介</h5>
                 <p>Feedback组件用于反馈/意见信息/评价等场景.</p>

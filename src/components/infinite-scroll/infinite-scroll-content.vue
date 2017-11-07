@@ -2,7 +2,7 @@
     <div class="ion-infinite-scroll-content">
         <div class="infinite-loading">
             <div class="infinite-loading-spinner" v-if="loadingSpinner">
-                <Spinner :name="loadingSpinner"></Spinner>
+                <vm-spinner :name="loadingSpinner"></vm-spinner>
             </div>
             <div class="infinite-loading-text" v-html="loadingText" v-if="loadingText"></div>
         </div>

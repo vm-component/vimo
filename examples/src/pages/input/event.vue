@@ -12,7 +12,7 @@
                 </vm-list-header>
                 <vm-item>
                     <vm-label color="primary">短文本</vm-label>
-                    <Input type="text"
+                    <vm-input type="text"
                            clear-input
                            :regex=regex
                            @onKeyup.enter="submit"
@@ -21,7 +21,7 @@
                            @onInput="onInputHandler"
                            @onValid="onValidHandler"
                            @onInvalid="onInvalidHandler"
-                           placeholder="'XX-XX-XXX' 数字格式"></Input>
+                           placeholder="'XX-XX-XXX' 数字格式"></vm-input>
                 </vm-item>
                 <vm-item>
                     <vm-label fixed slot="item-left">验证条件</vm-label>

@@ -198,9 +198,9 @@
        *  <vm-list>
        *      <vm-item v-for="item of items">{{item}}</vm-item>
        *  </vm-list>
-       *  <InfiniteScroll @onInfinite="$event.waitFor(doInfinite())">
-       *      <InfiniteScrollContent></InfiniteScrollContent>
-       *  </InfiniteScroll>
+       *  <vm-infinite-scroll @onInfinite="$event.waitFor(doInfinite())">
+       *      <vm-infinite-scroll-sontent></vm-infinite-scroll-sontent>
+       *  </vm-infinite-scroll>
        * </vm-content>
        *
        * @example

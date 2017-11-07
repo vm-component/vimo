@@ -12,12 +12,12 @@
                 </vm-list-header>
                 <vm-item>
                     <vm-label color="primary">短文本</vm-label>
-                    <Textarea @onKeyup.enter="submit"
+                    <vm-textarea @onKeyup.enter="submit"
                               autosize
                               @onBlur="onBlurtHandler"
                               @onFocus="onFocusHandler"
                               @onInput="onInputHandler"
-                              placeholder="请输入..."></Textarea>
+                              placeholder="请输入..."></vm-textarea>
                 </vm-item>
             </vm-list>
             <p class="event__p">

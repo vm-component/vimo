@@ -14,10 +14,10 @@
             </vm-toolbar>
         </vm-header>
         <vm-content class="outer-content">
-            <Slides ref="slides" :resistanceRatio="0"
+            <vm-slides ref="slides" :resistanceRatio="0"
                     @onSlideChangeEnd="onSlideChangeEndHandler">
                 <!-- 幻灯内容 -->
-                <Slide padding class="slide">
+                <vm-slide padding class="slide">
                     <!--content_1-->
                     <section class="content_1">
                         <strong>手势切换其实是Segment组件和Slides组件的结合</strong>
@@ -37,8 +37,8 @@
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius numquam odit quia sed sint! Debitis dolore ducimus eaque expedita id tempora voluptas? Ad aperiam esse excepturi illum quibusdam sit totam.</p>
                     </section>
-                </Slide>
-                <Slide padding class="slide">
+                </vm-slide>
+                <vm-slide padding class="slide">
                     <!--content_2-->
                     <section class="content_2">
                         <strong>手势切换其实是Segment组件和Slides组件的结合</strong>
@@ -53,8 +53,8 @@
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci architecto commodi cupiditate expedita facilis hic in ipsam laborum magni natus omnis quas quasi quis, rerum sint suscipit tempore temporibus totam!</p>
                     </section>
-                </Slide>
-                <Slide padding class="slide">
+                </vm-slide>
+                <vm-slide padding class="slide">
                     <!--content_3-->
                     <section class="content_3">
                         <strong>手势切换其实是Segment组件和Slides组件的结合</strong>
@@ -70,9 +70,9 @@
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam autem cupiditate, debitis expedita in ipsam iste laudantium, maiores nesciunt nulla officiis quae recusandae rerum suscipit? Nemo quo unde voluptate.</p>
                     </section>
-                </Slide>
+                </vm-slide>
                 <!-- ... -->
-            </Slides>
+            </vm-slides>
         </vm-content>
     </vm-page>
 </template>

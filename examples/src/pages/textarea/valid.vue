@@ -12,7 +12,7 @@
                 </vm-list-header>
                 <vm-item>
                     <vm-label stacked color="primary">地址</vm-label>
-                    <Textarea placeholder="Required..." showFocusHighlight required></Textarea>
+                    <vm-textarea placeholder="Required..." showFocusHighlight required></vm-textarea>
                 </vm-item>
             </vm-list>
         </vm-content>

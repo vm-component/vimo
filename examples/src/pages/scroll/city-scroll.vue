@@ -6,7 +6,7 @@
             </vm-navbar>
         </vm-header>
         <vm-content class="outer-content" ref="content" :enableJsScroll="enableJsScroll">
-            <Scroll :probeType="3" ref="scroll" class="scrollBox">
+            <vm-scroll :probeType="3" ref="scroll" class="scrollBox">
                 <vm-list>
                     <vm-item-group v-for="(classify,index) in cityList" :key="index">
                         <vm-item-divider sticky color="light" class="itemGroup" :id="classify.name | getClassifyId">
@@ -15,7 +15,7 @@
                         <vm-item v-for="city in classify.cities" :key="city.cityid">{{city.name}}</vm-item>
                     </vm-item-group>
                 </vm-list>
-            </Scroll>
+            </vm-scroll>
             <div slot="fixedTop" class="shortcut" ref="shortcut"
                  @touchstart="onTouchShortcut"
                  @touchmove="onTouchShortcut">

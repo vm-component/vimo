@@ -20,10 +20,10 @@
  *   在name中传入ionicons的name即可(去除ion/mode信息)
  *
  * ```
- *  <Icon name="star"></Icon>                     --  根据平台选择, ios:ion-ios-star, md:ion-md-star
- *  <Icon name="ios-star"></Icon>                 --  在全平台都使用ion-ios-star图标
- *  <Icon name="star"></Icon>                     --  根据平台mode  ->  ion-ios-star/ion-android-star
- *  <Icon ios="ios-home" md="md-home"></Icon>     --  单独设定: ios平台使用ios-home, md平台使用md-home
+ *  <vm-iocn name="star"></vm-iocn>                     --  根据平台选择, ios:ion-ios-star, md:ion-md-star
+ *  <vm-iocn name="ios-star"></vm-iocn>                 --  在全平台都使用ion-ios-star图标
+ *  <vm-iocn name="star"></vm-iocn>                     --  根据平台mode  ->  ion-ios-star/ion-android-star
+ *  <vm-iocn ios="ios-home" md="md-home"></vm-iocn>     --  单独设定: ios平台使用ios-home, md平台使用md-home
  * ```
  *
  * ##### 2. 如果是自定义的图标icon
@@ -31,12 +31,12 @@
  *    命名需要规范下, 用于区分ionicons.
  *
  * ```
- *  <Icon name="icon-star"></Icon>                --  icon-star
+ *  <vm-iocn name="icon-star"></vm-iocn>                --  icon-star
  * ```
  *
  * ##### 3. 自定义激活的类 activeName
  * ```
- *  <Icon name="home" activeName="star"></Icon>  --  设定激活的class图标
+ *  <vm-iocn name="home" activeName="star"></vm-iocn>  --  设定激活的class图标
  * ```
  *
  * ### 可使用的Class
@@ -45,13 +45,13 @@
  * ### 如何引入
  * ```
  * // 引入
- * import Icon from 'vimo/lib/icon'
+ * import Vmvm-iocn from 'vimo/lib/icon'
  * // 安装
- * Vue.component(Icon.name, Icon)
+ * Vue.component(vm-iocn.name, vm-iocn)
  * // 或者
  * export default{
    *   components: {
-   *    Icon
+   *    VmIcon
    *  }
    * }
  * ```

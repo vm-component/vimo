@@ -12,49 +12,49 @@
                 </vm-list-header>
                 <vm-item>
                     <vm-label color="primary">Inline Label</vm-label>
-                    <Textarea placeholder="Text Input"></Textarea>
+                    <vm-textarea placeholder="Text Input"></vm-textarea>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" fixed>Fixed Label with fixed width</vm-label>
-                    <Textarea placeholder="Text Input"></Textarea>
+                    <vm-textarea placeholder="Text Input"></vm-textarea>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" floating>Floating Label</vm-label>
-                    <Textarea></Textarea>
+                    <vm-textarea></vm-textarea>
                 </vm-item>
 
                 <vm-item>
-                    <Textarea :cols="3" placeholder="Text here"></Textarea>
+                    <vm-textarea :cols="3" placeholder="Text here"></vm-textarea>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" stacked>Stacked Label</vm-label>
-                    <Textarea placeholder="Text here"></Textarea>
+                    <vm-textarea placeholder="Text here"></vm-textarea>
                 </vm-item>
             </vm-list>
             <vm-list>
                 <vm-item>
                     <vm-label color="primary" stacked>计数</vm-label>
-                    <Textarea :count="10000"  placeholder="输入文本"></Textarea>
+                    <vm-textarea :count="10000"  placeholder="输入文本"></vm-textarea>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" stacked>聚焦高亮</vm-label>
-                    <Textarea showFocusHighlight placeholder="输入文本"></Textarea>
+                    <vm-textarea showFocusHighlight placeholder="输入文本"></vm-textarea>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" stacked>自动高度</vm-label>
-                    <Textarea autosize placeholder="输入文本"></Textarea>
+                    <vm-textarea autosize placeholder="输入文本"></vm-textarea>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" stacked>禁用</vm-label>
-                    <Textarea :rows="1" disabled placeholder="输入文本"></Textarea>
+                    <vm-textarea :rows="1" disabled placeholder="输入文本"></vm-textarea>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" stacked>最长20个字符</vm-label>
-                    <Textarea :rows="1" :maxlength="20" placeholder="输入文本"></Textarea>
+                    <vm-textarea :rows="1" :maxlength="20" placeholder="输入文本"></vm-textarea>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary" stacked>只读</vm-label>
-                    <Textarea :rows="1" readonly placeholder="输入文本"></Textarea>
+                    <vm-textarea :rows="1" readonly placeholder="输入文本"></vm-textarea>
                 </vm-item>
             </vm-list>
             <vm-list>
@@ -62,7 +62,7 @@
                     <span>单独使用</span>
                 </vm-list-header>
                 <section class="customer">
-                    <Textarea :count="300" autosize placeholder="Text here"></Textarea>
+                    <vm-textarea :count="300" autosize placeholder="Text here"></vm-textarea>
                 </section>
             </vm-list>
         </vm-content>

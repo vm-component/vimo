@@ -12,7 +12,7 @@
 
             <h5>示例</h5>
             <div class="demo">
-                <Scroll>
+                <vm-scroll>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illum itaque molestias provident quisquam soluta voluptatum! Deserunt doloribus, ipsam laboriosam, nesciunt nostrum odio placeat reprehenderit sed sequi velit vitae voluptatem!</p>
                     <p>
@@ -35,13 +35,13 @@
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illum itaque molestias provident quisquam soluta voluptatum! Deserunt doloribus, ipsam laboriosam, nesciunt nostrum odio placeat reprehenderit sed sequi velit vitae voluptatem!</p>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illum itaque molestias provident quisquam soluta voluptatum! Deserunt doloribus, ipsam laboriosam, nesciunt nostrum odio placeat reprehenderit sed sequi velit vitae voluptatem!</p>
-                </Scroll>
+                </vm-scroll>
             </div>
 
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id iure nostrum perspiciatis quia recusandae! Asperiores culpa dolor ducimus eligendi eos ex, illo ipsa itaque laborum nemo obcaecati quas ratione soluta!</p>
             <div class="demo">
-                <Scroll>
+                <vm-scroll>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illum itaque molestias provident quisquam soluta voluptatum! Deserunt doloribus, ipsam laboriosam, nesciunt nostrum odio placeat reprehenderit sed sequi velit vitae voluptatem!</p>
                     <p>
@@ -64,7 +64,7 @@
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illum itaque molestias provident quisquam soluta voluptatum! Deserunt doloribus, ipsam laboriosam, nesciunt nostrum odio placeat reprehenderit sed sequi velit vitae voluptatem!</p>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illum itaque molestias provident quisquam soluta voluptatum! Deserunt doloribus, ipsam laboriosam, nesciunt nostrum odio placeat reprehenderit sed sequi velit vitae voluptatem!</p>
-                </Scroll>
+                </vm-scroll>
             </div>
         </vm-content>
     </vm-page>

@@ -39,7 +39,7 @@
  *
  * @usage
  *
- * <Menu id="menu" side="left" type="push" :enabled="false"></Menu>
+ * <vm-menu id="menu" side="left" type="push" :enabled="false"></vm-menu>
  *
  * var vm = new Vue();
  * vm.$menus.menuIns: 当前缓存的menu实例对象
@@ -115,8 +115,8 @@
  *
  *
  * html:
- *   <Menu id="aa"></Menu>
- *   <Menu id="bb"></Menu>
+ *   <vm-menu id="aa"></vm-menu>
+ *   <vm-menu id="bb"></vm-menu>
  * js:
  * new Vue({
     *    methods: {
@@ -146,8 +146,8 @@
  *  下面只对id为aaa的menu有效果
  *
  * html:
- *   <Menu id="aa"></Menu>
- *   <Menu id="bb"></Menu>
+ *   <vm-menu id="aa"></vm-menu>
+ *   <vm-menu id="bb"></vm-menu>
  * js:
  * new Vue({
     *    methods: {

@@ -1,6 +1,6 @@
 <template>
     <div class="ion-loading" :class="[modeClass,cssClass]">
-        <Backdrop :isActive="isActive && showBackdrop" :enableBackdropDismiss="false"></Backdrop>
+        <vm-backdrop :isActive="isActive && showBackdrop" :enableBackdropDismiss="false"></vm-backdrop>
         <transition :name="transitionClass"
                     @before-enter="beforeEnter"
                     @after-enter="afterEnter"
@@ -8,45 +8,14 @@
                     @after-leave="afterLeave">
             <div class="loading-wrapper" v-show="isActive">
                 <div v-if="showSpinner" class="loading-spinner">
-                    <Spinner :name="spinner"></Spinner>
+                    <vm-spinner :name="spinner"></vm-spinner>
                 </div>
                 <div v-if="content" v-html="content" class="loading-content"></div>
             </div>
         </transition>
     </div>
 </template>
-<style lang="less">
-    @import "loading";
-    @import "loading.ios.less";
-    @import "loading.md.less";
 
-    .ion-loading.indicator {
-        .loading-wrapper {
-            background: rgba(0, 0, 0, 0.9);
-            color: #fff;
-            padding: 13px 13px;
-            circle, line {
-                stroke: #fff !important;
-            }
-            .loading-spinner {
-                height: 30px;
-                width: 30px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
-    }
-
-    .indicator.reverse {
-        .loading-wrapper {
-            background: rgba(256, 256, 256, 0.9);
-            circle, line {
-                stroke: #000 !important;
-            }
-        }
-    }
-</style>
 <script type="text/javascript">
   /**
    * @component Loading
@@ -121,12 +90,15 @@
    *
    * */
   import { urlChange } from '../../util/util'
-  import Backdrop from '../backdrop'
-  import Spinner from '../spinner/index'
+  import VmBackdrop from "../backdrop/backdrop.vue";
+  import VmSpinner from "../spinner/spinner.vue";
 
   const NOOP = () => {}
 
   export default {
+    components: {
+      VmSpinner,
+      VmBackdrop},
     name: 'vm-loading',
     props: {
       spinner: {
@@ -249,9 +221,38 @@
           this.isActive && this.dismiss()
         })
       }
-    },
-    components: {
-      Backdrop, Spinner
     }
   }
 </script>
+<style lang="less">
+    @import "loading";
+    @import "loading.ios.less";
+    @import "loading.md.less";
+
+    .ion-loading.indicator {
+        .loading-wrapper {
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 13px 13px;
+            circle, line {
+                stroke: #fff !important;
+            }
+            .loading-spinner {
+                height: 30px;
+                width: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .indicator.reverse {
+        .loading-wrapper {
+            background: rgba(256, 256, 256, 0.9);
+            circle, line {
+                stroke: #000 !important;
+            }
+        }
+    }
+</style>

@@ -130,7 +130,7 @@
                             1 of 3
                         </vm-col>
                         <vm-col col-auto>
-                            <Input placeholder="Variable width input"></Input>
+                            <vm-input placeholder="Variable width input"></vm-input>
                         </vm-col>
                         <vm-col>
                             3 of 3

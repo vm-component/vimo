@@ -43,7 +43,7 @@
                 <vm-row justify-content-center>
                     <vm-button>
                         <span>Loading</span>
-                        <Spinner color="light" name="ios-small"></Spinner>
+                        <vm-spinner color="light" name="ios-small"></vm-spinner>
                     </vm-button>
                 </vm-row>
             </vm-grid>

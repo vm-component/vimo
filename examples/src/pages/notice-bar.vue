@@ -13,26 +13,26 @@
             <div padding>
                 <h5>所有传参效果</h5>
             </div>
-            <NoticeBar class="noticeBar">国庆节期间余额宝收益和转出到账时间调整到节后, 给您带来不便, 敬请谅解! </NoticeBar>
-            <NoticeBar class="noticeBar" type="warn">
+            <vm-noticebar class="noticeBar">国庆节期间余额宝收益和转出到账时间调整到节后, 给您带来不便, 敬请谅解! </vm-noticebar>
+            <vm-noticebar class="noticeBar" type="warn">
                 国庆节期间余额宝收益和转出到账时间调整到节后, 给您带来不便, 敬请谅解!
-            </NoticeBar>
-            <NoticeBar class="noticeBar" type="hide">
+            </vm-noticebar>
+            <vm-noticebar class="noticeBar" type="hide">
                 国庆节期间余额宝收益和转出到账时间调整到节后, 给您带来不便, 敬请谅解!
-            </NoticeBar>
-            <NoticeBar class="noticeBar" action="right">
+            </vm-noticebar>
+            <vm-noticebar class="noticeBar" action="right">
                 国庆节期间余额宝收益和转出到账时间调整到节后, 给您带来不便, 敬请谅解!
-            </NoticeBar>
-            <NoticeBar class="noticeBar" action="hide">
+            </vm-noticebar>
+            <vm-noticebar class="noticeBar" action="hide">
                 国庆节期间余额宝收益和转出到账时间调整到节后, 给您带来不便, 敬请谅解!
-            </NoticeBar>
-            <NoticeBar class="noticeBar" type="hide" action="hide">
+            </vm-noticebar>
+            <vm-noticebar class="noticeBar" type="hide" action="hide">
                 国庆节期间余额宝收益和转出到账时间调整到节后, 给您带来不便, 敬请谅解!
-            </NoticeBar>
+            </vm-noticebar>
             <div padding>
                 <h5>关闭回调</h5>
             </div>
-            <NoticeBar :onDismiss="onDismissHandler">这是一个很简短的通知, 不会滚动</NoticeBar>
+            <vm-noticebar :onDismiss="onDismissHandler">这是一个很简短的通知, 不会滚动</vm-noticebar>
         </vm-content>
     </vm-page>
 </template>
