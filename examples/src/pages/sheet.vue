@@ -37,7 +37,7 @@
 
             <vm-button block @click="openPaySheet">选择支付方式</vm-button>
 
-            <article>
+            <div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur explicabo minus odit praesentium rem. Alias consectetur cupiditate facere id ipsam maxime omnis repellendus sapiente. Enim facere incidunt ipsam numquam rerum!</p>
                 <p>
@@ -70,7 +70,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur explicabo minus odit praesentium rem. Alias consectetur cupiditate facere id ipsam maxime omnis repellendus sapiente. Enim facere incidunt ipsam numquam rerum!</p>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur explicabo minus odit praesentium rem. Alias consectetur cupiditate facere id ipsam maxime omnis repellendus sapiente. Enim facere incidunt ipsam numquam rerum!</p>
-            </article>
+            </div>
             <!--paySheet-->
             <Sheet
                     ref="paySheet"

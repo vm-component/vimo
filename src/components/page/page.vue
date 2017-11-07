@@ -1,7 +1,7 @@
 <template>
-    <article class="ion-page" :style="{zIndex:pageZIndex}">
+    <div class="ion-page" :style="{zIndex:pageZIndex}">
         <slot></slot>
-    </article>
+    </div>
 </template>
 <style lang="less">
 

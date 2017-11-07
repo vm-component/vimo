@@ -12,7 +12,7 @@ export default {
       recordPosition: false
     },
     ios: {
-      pageTransition: 'fade-right-transition'
+      pageTransition: 'ios-transition'   // fade-right-transition
     },
     android: {
       pageTransition: 'zoom-transition'

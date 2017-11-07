@@ -1,5 +1,5 @@
 <template>
-    <article class="ion-tabs tabs" :class="[modeClass,colorClass]"
+    <div class="ion-tabs tabs" :class="[modeClass,colorClass]"
              :tabsLayout="tabsLayout"
              :tabsHighlight="tabsHighlight"
              :tabsPlacement="tabsPlacement">
@@ -16,7 +16,7 @@
                 </section>
             </div>
         </section>
-    </article>
+    </div>
 </template>
 <style lang="less">
     @import "tabs";
