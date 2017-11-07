@@ -18,7 +18,7 @@
    * ## 轮播组件 / Slide组件
    * */
   export default {
-    name: 'Slide',
+    name: 'vm-slide',
     data () {
       return {
         zoom: false,
@@ -26,7 +26,7 @@
       }
     },
     created () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'slides') {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-slides') {
         this.slidesComponent = this.$parent
         this.zoom = this.slidesComponent.zoom
         this.slidesComponent.initSlides()

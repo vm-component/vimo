@@ -39,14 +39,14 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Select, SelectOption } from 'vimo/lib/select'
+   * import { Select, Option } from 'vimo/lib/select'
    * // 安装
    * Vue.component(Select.name, Select)
-   * Vue.component(Option.name, SelectOption)
+   * Vue.component(Option.name, Option)
    * // 或者
    * export default{
    *   src: {
-   *     Select, SelectOption
+   *     Select, Option
    *  }
    * }
    * ```
@@ -70,22 +70,24 @@
    * @usage
    * <vm-item>
    *    <vm-label>Gender</vm-label>
-   *    <Select item-right placeholder="Select" interface="alert"
+   *    <vm-select item-right placeholder="Select" interface="alert"
    *            @ onChange="onChange"
    *            @ onSelect="onSelect"
    *            @ onCancel="onCancel">
-   *        <Option value="f" checked>Female</Option>
-   *        <Option value="m">Male</Option>
-   *    </Select>
+   *        <vm-option value="f" checked>Female</vm-option>
+   *        <vm-option value="m">Male</vm-option>
+   *    </vm-select>
    * </vm-item>
    * */
   import { setElementClass, isTrueProperty, isBlank, isCheckedProperty } from '../../util/util'
   import ActionSheet from '../action-sheet'
   import Alert from '../alert'
+  import VmButton from "../button/button.vue";
 
   let id = 0
   export default {
-    name: 'Select',
+    components: {VmButton},
+    name: 'vm-select',
     data () {
       return {
         isDisabled: this.disabled,      // 内部 禁用
@@ -314,7 +316,6 @@
           })
         }
         this.text = this.texts.join(', ')
-        console.debug('updOpts')
       },
 
       /**
@@ -334,7 +335,7 @@
     },
     mounted () {
       // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-select', true)
       } else {

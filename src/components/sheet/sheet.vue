@@ -1,7 +1,7 @@
 <template>
     <div class="vm-sheet" :class="[modeClass,directionClass,{'vm-sheet-visible':isVisible}]">
-        <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
-                  :isActive="isActive && showBackdrop"></Backdrop>
+        <vm-backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
+                  :isActive="isActive && showBackdrop"></vm-backdrop>
         <transition
                 name="sheet"
                 @before-enter="beforeEnter"
@@ -85,7 +85,7 @@
    *
    * @demo #/sheet
    * @usage
-   * <Sheet ref="paySheet" slot="fixed" direction="button">
+   * <vm-sheet ref="paySheet" slot="fixed" direction="button">
    *    <section class="pay-sheet">
    *    <div class="pay-sheet-title">选择支付方式</div>
    *    <div class="pay-sheet-container">
@@ -106,7 +106,7 @@
    *        <vm-button full clear class="pay-sheet-button" @click="closePaySheet">取消</vm-button>
    *    </div>
    *    </section>
-   * </Sheet>
+   * </vm-sheet>
    *
    * */
   import Backdrop from '../backdrop'
@@ -115,7 +115,7 @@
   const NOOP = () => {}
 
   export default {
-    name: 'Sheet',
+    name: 'vm-sheet',
     props: {
       direction: {
         type: String,

@@ -96,7 +96,7 @@
    * @usage
    * <!-- 比如: 需要左右两个翻页Button和下面的pagination, pagination可点击, 且自动播放间隔2500ms, 页面间距30px, 此外还要要在onInit事件处理相关业务 -->
    * <h5>Autoplay</h5>
-   * <Slides class="swiper"
+   * <vm-slides class="swiper"
    *        @ onInit="onInitHandler"
    *        nextButton=".swiper-button-next"
    *        prevButton=".swiper-button-prev"
@@ -107,16 +107,16 @@
    *        :autoplayDisableOnInteraction="false"
    *        :spaceBetween="30">
    *    <!-- 幻灯内容 -->
-   *    <Slide class="slide">
+   *    <vm-slide class="slide">
    *        <img src="../../static/img/scenery_1.jpg">
-   *    </Slide>
-   *    <Slide class="slide">
+   *    </vm-slide>
+   *    <vm-slide class="slide">
    *        <img src="../../static/img/scenery_2.jpg">
-   *    </Slide>
-   *    <Slide class="slide">
+   *    </vm-slide>
+   *    <vm-slide class="slide">
    *        <img src="../../static/img/scenery_3.jpg">
-   *    </Slide>
-   * </Slides>
+   *    </vm-slide>
+   * </vm-slides>
    *
    * .....
    *
@@ -137,7 +137,7 @@
   import { getProps, getEvents } from './interface'
 
   export default {
-    name: 'Slides',
+    name: 'vm-slides',
     props: getProps(),
     data () {
       return {

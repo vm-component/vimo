@@ -62,15 +62,15 @@
    * @demo #/separation
    * @usage
    *
-   * <Separation>
+   * <vm-separation>
    *    <vm-icon name="logo-chrome" small></vm-icon>
    *    <span>I Love Chrome</span>
-   * </Separation>
+   * </vm-separation>
    *
-   * <Separation>分享</Separation>
+   * <vm-separation>分享</vm-separation>
    *
    * */
   export default{
-    name: 'Separation'
+    name: 'vm-separation'
   }
 </script>

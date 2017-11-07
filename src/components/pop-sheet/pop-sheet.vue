@@ -1,7 +1,7 @@
 <template>
     <div class="vm-pop-sheet" :class="[modeClass,{'vm-pop-sheet-visible':isVisible}]">
-        <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
-                  :isActive="isActive && showBackdrop"></Backdrop>
+        <vm-backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
+                  :isActive="isActive && showBackdrop"></vm-backdrop>
         <transition
                 name="pop-sheet"
                 @before-enter="beforeEnter"
@@ -78,7 +78,7 @@
    *
    * @demo #/pop-sheet
    * @usage
-   * <PopSheet ref="popSheet" slot="fixed">
+   * <vm-pop-sheet ref="popSheet" slot="fixed">
    *    <section class="popSheet">
    *        <h2>TITLE</h2>
    *        <h5>这是内容, 宽度高度自定义</h5>
@@ -89,16 +89,16 @@
    *        <vm-list>
    *            <vm-item>
    *                <vm-label>名称</vm-label>
-   *                <Input v-model="name" type="text" placeholder="请输入用户名" clear-input></Input>
+   *                <vm-input v-model="name" type="text" placeholder="请输入用户名" clear-input></vm-input>
    *            </vm-item>
    *            <vm-item>
    *                <vm-label>密码</vm-label>
-   *                <Input v-model="password" type="password" placeholder="请输入密码" clear-input></Input>
+   *                <vm-input v-model="password" type="password" placeholder="请输入密码" clear-input></vm-input>
    *            </vm-item>
    *        </vm-list>
    *        <vm-button block @click="closePopSheet">确认</vm-button>
    *    </section>
-   * </PopSheet>
+   * </vm-pop-sheet>
    *
    * */
   import Backdrop from '../backdrop'

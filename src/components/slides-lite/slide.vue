@@ -28,7 +28,7 @@
    * ## 轮播组件 / 精简版Slide组件
    * */
   export default {
-    name: 'Slide',
+    name: 'vm-slide-lite',
     mounted () {
       if (this.$parent.$options._componentTag.toLowerCase().indexOf('slides') > -1) {
         // 告知父组件进行初始化

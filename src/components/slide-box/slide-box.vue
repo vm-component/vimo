@@ -210,7 +210,7 @@
    * @usage
    *
    * <p>向右滑动进入验证状态, 1s后重置</p>
-   * <SlideBox @onSlideEnd="onSlideEndHandler"></SlideBox>
+   * <vm-slide-box @onSlideEnd="onSlideEndHandler"></vm-slide-box>
    *
    * methods: {
    *    // 向右滑动进入验证状态, 4s后重置
@@ -232,7 +232,7 @@
   const STATE_COMPLETING = 'completing'     // 验证通过状态
   const STATE_FAILING = 'failing'           // 验证失败状态
   export default {
-    name: 'SlideBox',
+    name: 'vm-slide-box',
     data () {
       return {
         timer: null,            // 计时器

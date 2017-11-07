@@ -16,7 +16,7 @@
             <div class="range-bar" role="presentation"></div>
             <div class="range-bar range-bar-active" :style="{ left: barL,right:barR }" ref="bar"
                  role="presentation"></div>
-            <RangeKnobHandle
+            <vm-rangeKnobHandle
                     :ratio="ratioA"
                     :val="valA"
                     :pin="pin"
@@ -24,8 +24,8 @@
                     :min="min"
                     :max="max"
                     :disabled="disabled">
-            </RangeKnobHandle>
-            <RangeKnobHandle
+            </vm-rangeKnobHandle>
+            <vm-rangeKnobHandle
                     :ratio="ratioB"
                     :val="valB"
                     :pin="pin"
@@ -34,7 +34,7 @@
                     :max="max"
                     :disabled="disabled"
                     v-if="dualKnobs">
-            </RangeKnobHandle>
+            </vm-rangeKnobHandle>
         </div>
         <slot name="range-right"></slot>
     </div>
@@ -78,10 +78,10 @@
    *        <vm-badge slot="item-right">{{brightness}}</vm-badge>
    *    </vm-list-header>
    *    <vm-item>
-   *         <Range v-model="brightness">
+   *         <vm-range v-model="brightness">
    *            <vm-icon slot="range-left" small name="sunny"></vm-icon>
    *            <vm-icon slot="range-right" name="sunny"></vm-icon>
-   *        </Range>
+   *        </vm-range>
    *    </vm-item>
    * </vm-list>
    *
@@ -416,7 +416,7 @@
        */
       initDOM () {
         // 在item父元素上添加类item-range
-        if (this.$parent && this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'item') {
+        if (this.$parent && this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
           this._item = this.$parent
           if (this._item.$el) {
             setElementClass(this._item.$el, 'item-range', true)

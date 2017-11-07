@@ -58,7 +58,7 @@
    * Scroll组件是对 `better-scroll` 组件的封装, 组件书写完毕也是初始化完毕的时候, props就是传入的参数, 如果需要监听事件, 则通过@绑定即可, 例如:
    *
    * ```
-   * <Scroll @scroll="scrollHandler" ref="scroll">内容</Scroll>
+   * <vm-scroll @scroll="scrollHandler" ref="scroll">内容</vm-scroll>
    * ```
    *
    * 虽然事件的命名不符合Vimo既有规范, 但这部分是封装了better-scroll, 因此不改变原基础为好, `better-scroll`的文档参看下方链接.
@@ -68,7 +68,7 @@
    *
    * ### 获取jsScroll的实例
    * ```
-   * <Scroll ref="scroll">内容</Scroll>
+   * <vm-scroll ref="scroll">内容</vm-scroll>
    *
    * computed: {
    *    scrollComponent () {

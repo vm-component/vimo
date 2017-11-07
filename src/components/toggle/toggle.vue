@@ -9,9 +9,8 @@
         <div class="toggle-icon" :class="{'toggle-checked':isChecked,'toggle-activated':activated}">
             <div class="toggle-inner"></div>
         </div>
-        <vm-button role="checkbox"
+        <vm-button role="item-cover"
                 type="button"
-                ion-button="item-cover"
                 :id="id"
                 class="item-cover">
         </vm-button>
@@ -191,7 +190,7 @@
       }
     },
     mounted () {
-      if (this.$parent && this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'item') {
+      if (this.$parent && this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
         if (this.itemComponent.$el) {
           setElementClass(this.itemComponent.$el, 'item-toggle', true)

@@ -83,9 +83,11 @@
    *
    * */
   import { setElementClass, isTrueProperty } from '../../util/util'
+  import VmButton from "../button/button.vue";
 
   let id = 0
   export default {
+    components: {VmButton},
     name: 'vm-radio',
     data () {
       return {
@@ -156,13 +158,13 @@
        * */
       init () {
         // 找到外部item实例
-        if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
+        if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
           this.itemComponent = this.$parent
           setElementClass(this.itemComponent.$el, 'item-radio', true)
         }
 
         // 找到外部List实例
-        if (this.$parent.$parent.$options._componentTag.toLowerCase() === 'list') {
+        if (this.$parent.$parent.$options._componentTag.toLowerCase() === 'vm-list') {
           let node = this.$parent.$parent
           if (node.radioGroup) {
             this.radioGroupComponent = node

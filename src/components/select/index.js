@@ -1,3 +1,3 @@
-import SelectOption from './select-option.vue'
+import Option from './option.vue'
 import Select from './select.vue'
-export { Select, SelectOption }
+export { Select, Option }

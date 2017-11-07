@@ -52,12 +52,12 @@
    * @demo #/spinner
    *
    * @usage
-   * <Spinner></Spinner>
-   * <Spinner name="ios"></Spinner>
-   * <Spinner mode="wp"></Spinner>
-   * <Spinner color="secondary" name="dots"></Spinner>
-   * <Spinner duration="3000" name="dots"></Spinner>
-   * <Spinner :paused="true" name="ios"></Spinner>
+   * <vm-spinner></vm-spinner>
+   * <vm-spinner name="ios"></vm-spinner>
+   * <vm-spinner mode="wp"></vm-spinner>
+   * <vm-spinner color="secondary" name="dots"></vm-spinner>
+   * <vm-spinner duration="3000" name="dots"></vm-spinner>
+   * <vm-spinner :paused="true" name="ios"></vm-spinner>
    * */
 
   export default{

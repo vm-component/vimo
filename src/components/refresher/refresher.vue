@@ -51,9 +51,9 @@
    *        </vm-navbar>
    *    </vm-header>
    *    <vm-content>
-   *        <Refresher slot="refresher" @onRefresh="doRefresh($event)" @onPull="doPulling($event)">
-   *            <RefresherContent pullingText="下拉刷新..." refreshingText="正在刷新..."></RefresherContent>
-   *            </Refresher>
+   *        <vm-refresher slot="refresher" @onRefresh="doRefresh($event)" @onPull="doPulling($event)">
+   *            <vm-refresher-content pullingText="下拉刷新..." refreshingText="正在刷新..."></vm-refresher-content>
+   *            </vm-refresher>
    *        <vm-list>
    *            <vm-item v-for="i in list">{{i}}</vm-item>
    *        </vm-list>
@@ -201,7 +201,7 @@
       init () {
         let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
         _pageComponentChildrenList.forEach((component) => {
-          if (component.$options._componentTag.toLowerCase() === 'content') {
+          if (component.$options._componentTag.toLowerCase() === 'vm-content') {
             this.contentComponent = component
           }
         })

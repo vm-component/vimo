@@ -112,7 +112,7 @@
    *            <vm-title>Searchbar</vm-title>
    *        </vm-navbar>
    *        <vm-toolbar>
-   *            <Searchbar :animated="true"
+   *            <vm-searchbar :animated="true"
    *                placeholder="Search"
    *                :debounce="0"
    *                v-model="myInput"
@@ -122,7 +122,7 @@
    *                @onFocus="onFocus"
    *                @onBlur="onBlur"
    *                @onCancel="onCancel"
-   *                @onClear="onClear"></Searchbar>
+   *                @onClear="onClear"></vm-searchbar>
    *         </vm-toolbar>
    *     </vm-header>
    *    <vm-content padding>

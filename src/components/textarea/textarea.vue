@@ -69,8 +69,8 @@
    *
    * @demo #/textarea
    * @usage
-   * <Textarea placeholder="Text Textarea">
-   * <Textarea @onBlur="blur($event)" @onFocus="focus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>
+   * <vm-textarea placeholder="Text Textarea">
+   * <vm-textarea @onBlur="blur($event)" @onFocus="focus($event)" @onInput="onInput($event)" placeholder="Enter a description"></vm-textarea>
    * */
   import { hasFocus, setElementClass, isPresent, isNumber } from '../../util/util'
   import Autosize from 'autosize'
@@ -338,7 +338,7 @@
       }
 
       // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-textarea', true)
         setElementClass(this.itemComponent.$el, 'item-input', true)

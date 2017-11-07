@@ -30,7 +30,7 @@
    * @fires component:Tabs#onTabSelect
    *
    * @usage
-   * <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
+   * <vm-tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></vm-tab>
    *
    * */
   import Badge from '../badge'
@@ -119,7 +119,7 @@
     },
     created () {
       this.refreshMatchState()
-      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'tabs', 'Tab component must combine with Tabs')
+      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'vm-tabs', 'Tab component must combine with Tabs')
     },
     components: {Badge}
   }

@@ -148,6 +148,20 @@
         return this.theMode ? (`${this.role} ${this.role}-${this.theMode}`) : this.role
       }
     },
+    created () {
+      this.getProps()
+      this.init = true
+      if (this.role === 'bar-button') {
+        this.theMode = null
+      } else {
+        this.theMode = this.mode
+      }
+    },
+    mounted () {
+      this.assignCss()
+      this.addIconBtnPosition()
+      this.addClassInItemComp()
+    },
     methods: {
       clickHandler ($event) {
         this.$emit('click', $event)
@@ -261,7 +275,7 @@
 
       // 判断slot是icon组件
       isIconComponent (slot) {
-        return !!slot.componentOptions && !!slot.componentOptions.tag && slot.componentOptions.tag.toLowerCase() === 'icon'
+        return !!slot.componentOptions && !!slot.componentOptions.tag && slot.componentOptions.tag.toLowerCase() === 'vm-icon'
       },
 
       // 获取slot的数量
@@ -276,20 +290,6 @@
           this.addElementClass('item-button')
         }
       }
-    },
-    created () {
-      this.getProps()
-      this.init = true
-      if (this.role === 'bar-button') {
-        this.theMode = null
-      } else {
-        this.theMode = this.mode
-      }
-    },
-    mounted () {
-      this.assignCss()
-      this.addIconBtnPosition()
-      this.addClassInItemComp()
     }
   }
 </script>

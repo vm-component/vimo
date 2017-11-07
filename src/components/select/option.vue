@@ -13,7 +13,7 @@
   import { isBlank } from '../../util/util'
 
   export default {
-    name: 'SelectOption',
+    name: 'vm-option',
     data () {
       return {
         selectComponent: null,      // Select组件
@@ -48,7 +48,7 @@
     },
     created () {
       this.label = this.getText()
-      if (this.$parent.$options._componentTag.toLowerCase() === 'select') {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-select') {
         this.selectComponent = this.$parent
         this.selectComponent.recordOption(this)
       }

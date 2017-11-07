@@ -45,35 +45,35 @@
    * @demo #/scroll-segment
    * @usage
    *
-   * <ScrollSegment :value="2">
-   *    <ScrollSegmentButton>
+   * <vm-scroll-segment :value="2">
+   *    <vm-scroll-segment-button>
    *        <div class="srollSegmentButton">鱼香肉丝</div>
-   *    </ScrollSegmentButton>
-   *    <ScrollSegmentButton>
+   *    </vm-scroll-segment-button>
+   *    <vm-scroll-segment-button>
    *        <div class="srollSegmentButton">红烧狮子头</div>
-   *    </ScrollSegmentButton>
-   *    <ScrollSegmentButton>
+   *    </vm-scroll-segment-button>
+   *    <vm-scroll-segment-button>
    *        <div class="srollSegmentButton">卷了三个鸡蛋的煎饼果子</div>
-   *    </ScrollSegmentButton>
-   *    <ScrollSegmentButton>
+   *    </vm-scroll-segment-button>
+   *    <vm-scroll-segment-button>
    *        <div class="srollSegmentButton">新疆烤肉和香酥烤全羊</div>
-   *    </ScrollSegmentButton>
-   *    <ScrollSegmentButton>
+   *    </vm-scroll-segment-button>
+   *    <vm-scroll-segment-button>
    *        <div class="srollSegmentButton">土家酱饼</div>
-   *    </ScrollSegmentButton>
-   *    <ScrollSegmentButton>
+   *    </vm-scroll-segment-button>
+   *    <vm-scroll-segment-button>
    *        <div class="srollSegmentButton">杭椒牛柳</div>
-   *    </ScrollSegmentButton>
-   *    <ScrollSegmentButton>
+   *    </vm-scroll-segment-button>
+   *    <vm-scroll-segment-button>
    *        <div class="srollSegmentButton">鸡蛋灌饼</div>
-   *    </ScrollSegmentButton>
-   *    <ScrollSegmentButton>
+   *    </vm-scroll-segment-button>
+   *    <vm-scroll-segment-button>
    *        <div class="srollSegmentButton">超级辣的BT变态烤翅</div>
-   *    </ScrollSegmentButton>
-   *     <ScrollSegmentButton>
+   *    </vm-scroll-segment-button>
+   *     <vm-scroll-segment-button>
    *        <div class="srollSegmentButton">啤酒</div>
-   *    </ScrollSegmentButton>
-   * </ScrollSegment>
+   *    </vm-scroll-segment-button>
+   * </vm-scroll-segment>
    *
    * */
   import { clamp } from '../../util/util'

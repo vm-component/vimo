@@ -1,7 +1,7 @@
 <template>
     <div class="ion-modal">
-        <Backdrop :enableBackdropDismiss="enableBackdropDismiss" :hidden="!showBackdrop" :bdClick="bdClick"
-                  :isActive="isActive"></Backdrop>
+        <vm-backdrop :enableBackdropDismiss="enableBackdropDismiss" :hidden="!showBackdrop" :bdClick="bdClick"
+                  :isActive="isActive"></vm-backdrop>
         <transition
                 :name="transitionClass"
                 @before-enter="beforeEnter"
@@ -55,11 +55,12 @@
 </style>
 <script type="text/javascript">
   import Vue from 'vue'
-  import Backdrop from '../backdrop'
+  import VmBackdrop from "../backdrop/backdrop.vue";
 
   const NOOP = () => {}
 
   export default {
+    components: {VmBackdrop},
     name: 'vm-modal',
     props: {
       mode: {
@@ -188,9 +189,6 @@
       } else {
         console.error('props of component must pass in right value!')
       }
-    },
-    components: {
-      Backdrop
     }
   }
 </script>

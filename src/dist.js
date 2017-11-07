@@ -1,7 +1,7 @@
 import core from './core.js'
 import App from './components/app/app.vue'
-import Footer from './components/app/footer.vue'
-import Header from './components/app/header.vue'
+import Footer from './components/page/footer.vue'
+import Header from './components/page/header.vue'
 import Content from './components/content/content.vue'
 import Nav from './components/nav/nav.vue'
 import Navbar from './components/navbar/navbar.vue'
@@ -47,12 +47,12 @@ import Scroll from './components/scroll'
 import { ScrollSegment, ScrollSegmentButton } from './components/scroll-segment'
 import Searchbar from './components/searchbar'
 import { Segment, SegmentButton } from './components/segment'
-import { Select, SelectOption } from './components/select'
+import { Select, Option } from './components/select'
 import Separation from './components/separation'
 import Sheet from './components/sheet'
 import SlideBox from './components/slide-box'
 import { Slide, Slides } from './components/slides'
-import { Slide as SlideLite, Slides as SlidesLite } from './components/slides-lite'
+import { SlideLite, SlidesLite } from './components/slides-lite'
 import Spinner from './components/spinner'
 import { Tab, Tabs } from './components/tabs'
 import Thumbnail from './components/thumbnail'
@@ -131,7 +131,7 @@ module.exports = {
   Segment,
   SegmentButton,
   Select,
-  SelectOption,
+  Option,
   Separation,
   Sheet,
   SlideBox,
@@ -211,7 +211,7 @@ module.exports = {
     Vue.component(Segment.name, Segment)
     Vue.component(SegmentButton.name, SegmentButton)
     Vue.component(Select.name, Select)
-    Vue.component(SelectOption.name, SelectOption)
+    Vue.component(Option.name, Option)
     Vue.component(Separation.name, Separation)
     Vue.component(Sheet.name, Sheet)
     Vue.component(PopSheet.name, PopSheet)

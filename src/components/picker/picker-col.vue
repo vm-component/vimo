@@ -458,7 +458,7 @@
       init () {
         this.optHeight = this.getOptHeight()
 
-        if (this.$parent.$options.name.toLowerCase() === 'picker') {
+        if (this.$parent.$options.name.toLowerCase() === 'vm-picker') {
           this.pickerComponent = this.$parent
         }
         console.assert(this.pickerComponent, 'PickerCol组件需要在Picker组件内部使用, 请检查.')

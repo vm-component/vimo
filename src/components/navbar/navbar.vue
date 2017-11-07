@@ -137,17 +137,17 @@
    * </template>
    * */
   import ToolbarMixins from '../toolbar/toolbarMixins.vue'
-  import Button from '../button/button.vue'
-  import Icon from '../icon/index'
   import { isArray, isString } from '../../util/util'
+  import VmButton from "../button/button.vue";
+  import VmIcon from "../icon/icon.vue";
 
   export default {
+    components: {
+      VmIcon,
+      VmButton
+    },
     name: 'vm-navbar',
     mixins: [ToolbarMixins],
-    components: {
-      'vm-button': Button,
-      'vm-icon': Icon
-    },
     props: {
       /**
        * 是否显示后退按钮
