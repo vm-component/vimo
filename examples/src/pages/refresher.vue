@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Refresher</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content" record-position>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Refresher</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content" record-position>
             <Refresher slot="refresher" :enabled="enabled" @onRefresh="doRefresh($event)">
                 <RefresherContent
                         pullingText="下拉刷新..."
@@ -14,13 +14,13 @@
             </Refresher>
             <div padding class="state" text-center>
                 <p>状态: {{enabled}}</p>
-                <Button small outline @click="toggleDisabled">禁用/启用</Button>
+                <vm-button small outline @click="toggleDisabled">禁用/启用</vm-button>
             </div>
-            <List>
-                <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
-            </List>
-        </Content>
-    </Page>
+            <vm-list>
+                <vm-item v-for="(i,index) in list" :key="index">{{i}}</vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .state {

@@ -1,18 +1,18 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Ghost</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Ghost</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
 
             <Ghost>
                 CREATE MY ACCOUNT
             </Ghost>
 
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
     .main {

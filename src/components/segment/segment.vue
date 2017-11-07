@@ -56,24 +56,24 @@
    *
    *
    * @usage
-   * <Header>
-   *    <Navbar>
-   *        <Title>普通用法</Title>
-   *    </Navbar>
-   *    <Toolbar>
+   * <vm-header>
+   *    <vm-navbar>
+   *        <vm-title>普通用法</vm-title>
+   *    </vm-navbar>
+   *    <vm-toolbar>
    *        <!--content-->
-   *        <Segment v-model="fruit" @onChange="onChangeHandler">
-   *            <SegmentButton value="apple" @onSelect="onSelectHandler">Apple</SegmentButton>
-   *            <SegmentButton value="orange" @onSelect="onSelectHandler">Orange</SegmentButton>
-   *            <SegmentButton value="pear" @onSelect="onSelectHandler">Pear</SegmentButton>
-   *            <SegmentButton value="disabled" :disabled="true" @onSelect="onSelectHandler">Disabled</SegmentButton>
-   *        </Segment>
-   *    </Toolbar>
-   * </Header>
+   *        <vm-segment v-model="fruit" @onChange="onChangeHandler">
+   *            <vm-segment-button value="apple" @onSelect="onSelectHandler">Apple</vm-segment-button>
+   *            <vm-segment-button value="orange" @onSelect="onSelectHandler">Orange</vm-segment-button>
+   *            <vm-segment-button value="pear" @onSelect="onSelectHandler">Pear</vm-segment-button>
+   *            <vm-segment-button value="disabled" :disabled="true" @onSelect="onSelectHandler">Disabled</vm-segment-button>
+   *        </vm-segment>
+   *    </vm-toolbar>
+   * </vm-header>
    *
    * */
   export default{
-    name: 'Segment',
+    name: 'vm-segment',
     props: {
       /**
        * 接收value信息

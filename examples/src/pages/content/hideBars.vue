@@ -1,24 +1,24 @@
 <template>
-    <Page>
-        <Header ref="header">
-            <Navbar>
-                <Title>隐藏头尾</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content" :fullscreen="true" ref="content" @onScroll="onScrollHandler">
+    <vm-page>
+        <vm-header ref="header">
+            <vm-navbar>
+                <vm-title>隐藏头尾</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content" :fullscreen="true" ref="content" @onScroll="onScrollHandler">
 
             <h1>Section</h1>
 
             <p>这部分建议使用fullscreen模式, 如果不是的话, 上下被占位置的部分是不会去掉的. </p>
             <p>ps: 如果在微信/支付宝/钉钉模式下, 可能看不到Header的效果.</p>
 
-            <Grid no-padding>
-                <Row justify-content-around align-items-center no-padding>
-                    <Button outline small @click="hideHeader">显/隐 Header</Button>
-                    <Button outline small @click="hideFooter">显/隐 Footer</Button>
-                    <Button outline small @click="hideBoth">同时 显/隐</Button>
-                </Row>
-            </Grid>
+            <vm-grid no-padding>
+                <vm-row justify-content-around align-items-center no-padding>
+                    <vm-button outline small @click="hideHeader">显/隐 Header</vm-button>
+                    <vm-button outline small @click="hideFooter">显/隐 Footer</vm-button>
+                    <vm-button outline small @click="hideBoth">同时 显/隐</vm-button>
+                </vm-row>
+            </vm-grid>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consequuntur deleniti doloribus dolorum, est eum facilis ipsa magnam neque nesciunt non perferendis quae quaerat rerum saepe. Eveniet magnam quo sapiente.</p>
             <p>
@@ -82,13 +82,13 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consequuntur deleniti doloribus dolorum, est eum facilis ipsa magnam neque nesciunt non perferendis quae quaerat rerum saepe. Eveniet magnam quo sapiente.</p>
 
-        </Content>
-        <Footer ref="footer">
-            <Toolbar>
-                <Title>Footer</Title>
-            </Toolbar>
-        </Footer>
-    </Page>
+        </vm-content>
+        <vm-footer ref="footer">
+            <vm-toolbar>
+                <vm-title>Footer</vm-title>
+            </vm-toolbar>
+        </vm-footer>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

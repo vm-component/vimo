@@ -1,45 +1,45 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>日期范围选择</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List>
-                <ListHeader>选择范围</ListHeader>
-                <Item>
-                    <Label>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>日期范围选择</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list>
+                <vm-list-header>选择范围</vm-list-header>
+                <vm-item>
+                    <vm-label>
                         2017/07/01 ~ 2017/12/01
-                    </Label>
+                    </vm-label>
                     <Datetime slot="item-right"
                               min="2017-07-01"
                               max="2017-12-01"
                     ></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>
+                <vm-item>
+                    <vm-label>
                         2017/01/01 ~ 2017/12/01
-                    </Label>
+                    </vm-label>
                     <Datetime slot="item-right"
                               min="2017-01-01"
                               max="2017-12-01"
                     ></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>
+                <vm-item>
+                    <vm-label>
                         2017/01/15 ~ 2017/01/30
-                    </Label>
+                    </vm-label>
                     <Datetime slot="item-right"
                               min="2017-01-15"
                               max="2017-01-30"
                     ></Datetime>
-                </Item>
-            </List>
-        </Content>
-    </Page>
+                </vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

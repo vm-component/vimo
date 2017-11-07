@@ -90,20 +90,20 @@
    *    <div class="pay-sheet-title">选择支付方式</div>
    *    <div class="pay-sheet-container">
    *        <div class="pay-sheet-content" @click="choose('alipay')">
-   *            <Icon class="pay-sheet-icon" name="icon-alipay">Icon</Icon>
+   *            <vm-icon class="pay-sheet-icon" name="icon-alipay">Icon</vm-icon>
    *            <p class="pay-sheet-name">支付宝</p>
    *        </div>
    *        <div class="pay-sheet-content" @click="choose('wechat')">
-   *            <Icon class="pay-sheet-icon" name="icon-weichat">Icon</Icon>
+   *            <vm-icon class="pay-sheet-icon" name="icon-weichat">Icon</vm-icon>
    *            <p class="pay-sheet-name">微信</p>
    *        </div>
    *        <div class="pay-sheet-content" @click="choose('unipay')">
-   *            <Icon class="pay-sheet-icon" name="icon-unipay">Icon</Icon>
+   *            <vm-icon class="pay-sheet-icon" name="icon-unipay">Icon</vm-icon>
    *            <p class="pay-sheet-name">银联</p>
    *        </div>
    *    </div>
    *    <div class="pay-sheet-buttons">
-   *        <Button full clear class="pay-sheet-button" @click="closePaySheet">取消</Button>
+   *        <vm-button full clear class="pay-sheet-button" @click="closePaySheet">取消</vm-button>
    *    </div>
    *    </section>
    * </Sheet>

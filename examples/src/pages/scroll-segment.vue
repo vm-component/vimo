@@ -1,9 +1,9 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>网易新闻</Title>
-            </Navbar>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>网易新闻</vm-title>
+            </vm-navbar>
             <section class="scrollBar">
                 <ScrollSegment v-model="newIndex">
                     <ScrollSegmentButton v-for="(item, index) in arrs" :key="index">
@@ -11,8 +11,8 @@
                     </ScrollSegmentButton>
                 </ScrollSegment>
             </section>
-        </Header>
-        <Content class="outer-content">
+        </vm-header>
+        <vm-content class="outer-content">
 
             <div padding>
                 <h4>简介</h4>
@@ -183,26 +183,26 @@
                 <h4>异步子组件</h4>
                 <p>可以通过增加value值实现手动控制,</p>
             </div>
-            <Grid no-padding>
-                <Row>
-                    <Column class="colBox">
-                        <Button outline small @click="changedValue--">Minus -- </Button>
-                    </Column>
-                    <Column class="colBox">
+            <vm-grid no-padding>
+                <vm-row>
+                    <vm-col class="colBox">
+                        <vm-button outline small @click="changedValue--">Minus -- </vm-button>
+                    </vm-col>
+                    <vm-col class="colBox">
                         Value: {{changedValue}}
-                    </Column>
-                    <Column class="colBox">
-                        <Button outline small @click="changedValue++">Add ++ </Button>
-                    </Column>
-                </Row>
+                    </vm-col>
+                    <vm-col class="colBox">
+                        <vm-button outline small @click="changedValue++">Add ++ </vm-button>
+                    </vm-col>
+                </vm-row>
                 <ScrollSegment v-model="changedValue" class="header-scroll">
                     <ScrollSegmentButton v-for="i in asynData" :key="i">
                         <div class="srollSegmentButton">{{i}}</div>
                     </ScrollSegmentButton>
                 </ScrollSegment>
-            </Grid>
-        </Content>
-    </Page>
+            </vm-grid>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .scrollBar {

@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>SlideBox</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>SlideBox</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
             <h5>简述</h5>
             <p>这是一个仿照淘宝注册的一个验证组件, 向右滑动到底部意味着用户确认协议可以继续向下进行.</p>
             <h5>示例</h5>
@@ -31,8 +31,8 @@
 
             <p>向右滑动等待1s后验证失败, 之后返回</p>
             <SlideBox @onSlideEnd="onSlideEndHandler2"></SlideBox>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

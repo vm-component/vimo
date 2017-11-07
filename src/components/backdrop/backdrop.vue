@@ -49,7 +49,7 @@
    * */
   let NOOP = function () {}
   export default {
-    name: 'Backdrop',
+    name: 'vm-backdrop',
     data () {
       return {
         isActiveLocal: this.isActive,   // 控制权由present/dismiss控制

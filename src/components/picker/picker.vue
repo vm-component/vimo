@@ -125,7 +125,7 @@
   const NOOP = () => {}
 
   export default {
-    name: 'Picker',
+    name: 'vm-picker',
     data () {
       return {
         isActive: false,        // 控制当前组件的激活状态

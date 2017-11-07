@@ -1,28 +1,28 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>PopSheet</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>PopSheet</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
             <h1>PopSheet组件</h1>
             <p>组件用于在页面中弹出一个对话框，比如输入表单选择什么的，个性化程度比较高，而alert组件无法满足的需求。组件将在页面中书写，内置方法开关，而不是插入到DOM中。</p>
             <p>内容: {{name}} - {{password}}</p>
 
-            <List>
-                <ListHeader>特性</ListHeader>
-                <Item>
-                    <Label>显示背景</Label>
-                    <Toggle v-model="showBackdrop"></Toggle>
-                </Item>
-                <Item>
-                    <Label>点击背景关闭</Label>
-                    <Toggle v-model="enableBackdropDismiss"></Toggle>
-                </Item>
-            </List>
+            <vm-list>
+                <vm-list-header>特性</vm-list-header>
+                <vm-item>
+                    <vm-label>显示背景</vm-label>
+                    <vm-toggle v-model="showBackdrop"></vm-toggle>
+                </vm-item>
+                <vm-item>
+                    <vm-label>点击背景关闭</vm-label>
+                    <vm-toggle v-model="enableBackdropDismiss"></vm-toggle>
+                </vm-item>
+            </vm-list>
 
-            <Button block @click="openPopSheet">登录</Button>
+            <vm-button block @click="openPopSheet">登录</vm-button>
             <section>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci amet blanditiis consequatur, delectus deleniti dolor ea, excepturi fuga laborum nemo provident recusandae rerum soluta vel veritatis vitae voluptatem voluptates!</p>
@@ -56,23 +56,23 @@
                     <h5>这是内容, 宽度高度自定义</h5>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, eaque earum eum ex expedita facere fugit ipsa ipsum minima nemo nostrum, pariatur placeat qui quis quod quos repellendus tempora unde.</p>
-                    <List>
-                        <Item>
-                            <Label>名称</Label>
+                    <vm-list>
+                        <vm-item>
+                            <vm-label>名称</vm-label>
                             <Input v-model="name" type="text" placeholder="请输入用户名" clear-input></Input>
-                        </Item>
-                        <Item>
-                            <Label>密码</Label>
+                        </vm-item>
+                        <vm-item>
+                            <vm-label>密码</vm-label>
                             <Input v-model="password" type="password" placeholder="请输入密码" clear-input></Input>
-                        </Item>
-                    </List>
+                        </vm-item>
+                    </vm-list>
 
-                    <Button block @click="closePopSheet">确认</Button>
+                    <vm-button block @click="closePopSheet">确认</vm-button>
                 </section>
             </PopSheet>
             <!--shareSheet-->
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default {

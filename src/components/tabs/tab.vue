@@ -2,9 +2,9 @@
     <a class="tab-button" ref="routerLink" @click="tabClickHandler($event)"
        :id="tabId"
        :class="{'has-title':hasTitle, 'has-icon':hasIcon, 'has-title-only':hasTitleOnly, 'icon-only':hasIconOnly, 'has-badge':hasBadge,  'tab-disabled':!enabled, 'tab-hidden':!show,'tab-active':isActive}">
-        <Icon :mode="mode" v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
+        <vm-icon :mode="mode" v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></vm-icon>
         <span v-if="tabTitle" class="tab-button-text">{{tabTitle}}</span>
-        <Badge :mode="mode" v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
+        <vm-badge :mode="mode" v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</vm-badge>
     </a>
 </template>
 <script type="text/javascript">
@@ -37,7 +37,7 @@
 
   let _tabId = -1
   export default {
-    name: 'Tab',
+    name: 'vm-tab',
     props: {
       mode: {
         type: String,

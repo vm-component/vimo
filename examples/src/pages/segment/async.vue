@@ -1,32 +1,32 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>组件异步加载</Title>
-            </Navbar>
-            <Toolbar class="dashBox">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>组件异步加载</vm-title>
+            </vm-navbar>
+            <vm-toolbar class="dashBox">
                 <section class="dashLine">
                     <!--content-->
-                    <Segment v-model="fruit" @onChange="onChangeHandler">
-                        <SegmentButton v-for="(seg, index) in segmentList" :value="seg.value"
+                    <vm-segment v-model="fruit" @onChange="onChangeHandler">
+                        <vm-segment-button v-for="(seg, index) in segmentList" :value="seg.value"
                                        @onSelect="onSelectHandler"
                                        :key="index">
                             <span>{{seg.name}}</span>
-                        </SegmentButton>
-                    </Segment>
+                        </vm-segment-button>
+                    </vm-segment>
                 </section>
-            </Toolbar>
-        </Header>
-        <Content padding>
+            </vm-toolbar>
+        </vm-header>
+        <vm-content padding>
             <h1>Title</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
             <div><strong>当前选择的结果: {{fruit}}</strong></div>
             <div><strong>onChange返回结果: {{onChangeValue}}</strong></div>
             <div><strong>onSelected返回结果: {{onSelectValue}}</strong></div>
-            <Button block @click="getSegmentData">点击加载Segment</Button>
-            <Button block @click="addSegmentBtn">增加一个按钮</Button>
-            <Button block @click="fruit='orange'">设置为Orange</Button>
+            <vm-button block @click="getSegmentData">点击加载Segment</vm-button>
+            <vm-button block @click="addSegmentBtn">增加一个按钮</vm-button>
+            <vm-button block @click="fruit='orange'">设置为Orange</vm-button>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
             <p>
@@ -43,8 +43,8 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
     .dashBox {

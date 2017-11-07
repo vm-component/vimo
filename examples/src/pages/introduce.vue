@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>介绍</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>介绍</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
 
             <h5>很高兴你能找到这</h5>
             <p>Vimo框架用于在Hybrid平台中开发各类H5微应用，开发框架是为了更好的解决 <strong>组件、业务、平台</strong> 三者的关系. </p>
@@ -24,8 +24,8 @@
 
             <h5>最后</h5>
             <p>目前Vimo还在开发，debug和优化也在持续进行，如果有好的建议或者期望在业务中使用，希望能联系我。</p>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .main {

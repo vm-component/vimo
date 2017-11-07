@@ -6,7 +6,7 @@
     </header>
 </template>
 <style lang="less">
-    @import "../themes/index";
+    @import "../../themes/index";
 
     .ion-header {
         position: absolute;
@@ -49,7 +49,7 @@
    *
    * */
   export default {
-    name: 'Header',
+    name: 'vm-header',
     data () {
       return {
         isHide: false,

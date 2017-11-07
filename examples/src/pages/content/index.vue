@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title ref="title">Page</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title ref="title">Page</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
             <div padding>
                 <h1>页面组件</h1>
 
@@ -21,17 +21,17 @@
                     开启. ontent组件使用的原生scroll, 因此对组件监听: <strong>onScroll / onScrollStart / onScrollEnd</strong> 这三个事件定制业务需求.
                 </p>
             </div>
-            <List>
-                <ListHeader>Character</ListHeader>
-                <Item button :to="{name:'contentContext'}">文本</Item>
-                <Item button :to="{name:'contentFixed'}">内容固定</Item>
-                <Item button :to="{name:'contentFullscreen'}">全屏模式</Item>
-                <Item button :to="{name:'contentHideBars'}">隐藏头尾Bar</Item>
-                <Item button :to="{name:'contentSetBarStyle'}">设置Bar的样式</Item>
-                <Item button :to="{name:'contentScroll'}">滚动监听</Item>
-            </List>
-        </Content>
-    </Page>
+            <vm-list>
+                <vm-list-header>Character</vm-list-header>
+                <vm-item button :to="{name:'contentContext'}">文本</vm-item>
+                <vm-item button :to="{name:'contentFixed'}">内容固定</vm-item>
+                <vm-item button :to="{name:'contentFullscreen'}">全屏模式</vm-item>
+                <vm-item button :to="{name:'contentHideBars'}">隐藏头尾Bar</vm-item>
+                <vm-item button :to="{name:'contentSetBarStyle'}">设置Bar的样式</vm-item>
+                <vm-item button :to="{name:'contentScroll'}">滚动监听</vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less"></style>
 <script type="text/javascript">

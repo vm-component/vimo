@@ -44,16 +44,16 @@
    * @see component:Toolbar
    * @usage
    * <template>
-   *  <Page>
-   *    <Header>
-   *      <Navbar>
-   *        <Title ref="title">Demo</Title>
-   *      <Navbar>
-   *    </Header>
-   *    <Content>
+   *  <vm-page>
+   *    <vm-header>
+   *      <vm-navbar>
+   *        <vm-title ref="title">Demo</vm-title>
+   *      <vm-navbar>
+   *    </vm-header>
+   *    <vm-content>
    *      <h1>这里是内容</h1>
-   *    </Content>
-   *  </Page>
+   *    </vm-content>
+   *  </vm-page>
    * </template>
    *
    * ...
@@ -72,7 +72,7 @@
   import { isPresent } from '../../util/util'
 
   export default {
-    name: 'Title',
+    name: 'vm-title',
     data () {
       return {
         titleColor: null,
@@ -117,19 +117,19 @@
          * */
         if (this.title) {
           // prop传入title值
-          // eg: <Title title="Toolbar"></Title>
+          // eg: <vm-title title="Toolbar"></vm-title>
           _title = this.title.trim()
         } else if (this.$slots.default && this.$slots.default[0] && this.$slots.default[0].text) {
           // 如果是直接写在ion-title中的值
-          // eg: <Title>Toolbar</Title>
+          // eg: <vm-title>Toolbar</vm-title>
           _title = this.$slots.default[0].text.trim()
         } else if (this.$slots.default && this.$slots.default[0] && this.$slots.default[0].tag && this.$slots.default[0].children[0].text) {
           // 如果是这届下载ion-title中的值，并且包含一层标签的情况
-          // eg: <Title>
+          // eg: <vm-title>
           //      <span>Toolbar</span>
           //      <span>-</span>
           //      <span>Test</span>
-          //    </Title>
+          //    </vm-title>
           // -> Toolbar-Test
           this.$slots.default.forEach((item) => {
             if (item.children && item.children.length > 0 && item.children[0] && item.children[0].text) {

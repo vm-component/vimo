@@ -1,28 +1,28 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Action Sheet</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Action Sheet</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
             <h5>ActionSheet确认单组件</h5>
             <p>如果按钮组超过9个，则原生组件无法实现，只能使用H5组件</p>
-            <Button block @click="showActionSheet1()" color="primary">
+            <vm-button block @click="showActionSheet1()" color="primary">
                 <span>最简单的</span>
-            </Button>
-            <Button block @click="showActionSheet2()" color="primary">
+            </vm-button>
+            <vm-button block @click="showActionSheet2()" color="primary">
                 <span>没有Cancel的Actionsheet</span>
-            </Button>
-            <Button block @click="showActionSheet3()" color="primary">
+            </vm-button>
+            <vm-button block @click="showActionSheet3()" color="primary">
                 <span>带有Icon的Actionsheet</span>
-            </Button>
+            </vm-button>
 
-            <Button block @click="showActionSheet4()" color="primary">
+            <vm-button block @click="showActionSheet4()" color="primary">
                 <span>Button很多</span>
-            </Button>
-        </Content>
-    </Page>
+            </vm-button>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default{

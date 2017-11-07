@@ -183,7 +183,7 @@
    *
    * */
   export default {
-    name: 'NoticeBar',
+    name: 'vm-notice-bar',
     data () {
       return {
         shouldAnimate: false,

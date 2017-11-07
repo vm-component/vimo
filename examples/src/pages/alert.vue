@@ -1,22 +1,22 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Alert</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Alert</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
             <h5>对话框</h5>
             <p>如果没有原生支持的情况下使用H5组件，组件使用H5接口指纹。</p>
-            <Button block @click="alert()">Alert</Button>
-            <Button color="danger" block @click="confirm()">Confirm</Button>
-            <Button color="secondary" block @click="threeBtn()">Three Button</Button>
-            <Button color="dark" block @click="input()">Input</Button>
-            <Button color="dark" block @click="checkbox()">Checkbox</Button>
-            <Button color="primary" block @click="radio()">Radio</Button>
-            <Button color="primary" block @click="image()">Image</Button>
-        </Content>
-    </Page>
+            <vm-button block @click="alert()">Alert</vm-button>
+            <vm-button color="danger" block @click="confirm()">Confirm</vm-button>
+            <vm-button color="secondary" block @click="threeBtn()">Three Button</vm-button>
+            <vm-button color="dark" block @click="input()">Input</vm-button>
+            <vm-button color="dark" block @click="checkbox()">Checkbox</vm-button>
+            <vm-button color="primary" block @click="radio()">Radio</vm-button>
+            <vm-button color="primary" block @click="image()">Image</vm-button>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
     .alertCssOuterMain {

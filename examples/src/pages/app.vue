@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title ref="title">App</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content" padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title ref="title">App</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content" padding>
 
             <h1>App组件</h1>
             <p>
@@ -16,22 +16,22 @@
 
             <p><strong>3秒内页面无法点击</strong></p>
             <small>在当前页面覆盖一层透明蒙版, 阻挡进一步操作.</small>
-            <Button block @click="$app.setEnabled(false,3000)">冷冻页面</Button>
+            <vm-button block @click="$app.setEnabled(false,3000)">冷冻页面</vm-button>
 
             <p><strong>3秒内页面无法滚动</strong></p>
             <small>组织滚动元素操作事件</small>
-            <Button block @click="$app.setDisableScroll(true,3000)">无法滚动</Button>
+            <vm-button block @click="$app.setDisableScroll(true,3000)">无法滚动</vm-button>
 
             <p><strong>设置标题</strong></p>
             <p>方法this.$app.setDocTitle(val)只能设置document.title的值, Header中的Title组件请额外处理. 比如下面的按钮.</p>
-            <Button block @click="setDocTitle()">设置 document.title 为当前时间</Button>
-            <Button block @click="setAllTitle()">两者同时设置</Button>
+            <vm-button block @click="setDocTitle()">设置 document.title 为当前时间</vm-button>
+            <vm-button block @click="setAllTitle()">两者同时设置</vm-button>
 
             <p><strong>在根组件添加全局class+='hello-vimo'</strong></p>
-            <Button block @click="$app.setClass('hello-vimo',toggle),toggle=!toggle">Toggle设置</Button>
-            <section padding class="hello-vimo-here">
+            <vm-button block @click="$app.setClass('hello-vimo',toggle),toggle=!toggle">Toggle设置</vm-button>
+            <div padding class="hello-vimo-here">
                 <strong>设置成功</strong>
-            </section>
+            </div>
 
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
@@ -41,7 +41,7 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
 
             <!--<p>点击Title能触发</p>-->
-            <!--<Button block @click="clickTitle()">点击title</Button>-->
+            <!--<vm-button block @click="clickTitle()">点击title</vm-button>-->
 
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
@@ -54,20 +54,20 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
 
-            <section slot="fixedBottom" class="stateBar">
-                <Grid no-padding>
-                    <Row no-padding>
-                        <Column>
+            <div slot="fixedBottom" class="stateBar">
+                <vm-grid no-padding>
+                    <vm-row no-padding>
+                        <vm-col>
                             <strong text-danger>App状态:</strong>
                             <p>isScrolling: {{$app.isScrolling}}</p>
                             <p>isEnabled: {{$app.isEnabled}}</p>
                             <p>isScrollDisabled: {{$app.isScrollDisabled}}</p>
-                        </Column>
-                    </Row>
-                </Grid>
-            </section>
-        </Content>
-    </Page>
+                        </vm-col>
+                    </vm-row>
+                </vm-grid>
+            </div>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
     .hello-vimo-here {

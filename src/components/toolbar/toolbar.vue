@@ -56,40 +56,40 @@
    *
    *
    * @usage
-   * <Toolbar color="danger">
+   * <vm-toolbar color="danger">
    *    <!--start-->
-   *    <Buttons start slot="buttons">
-   *        <Button icon-only role="bar-button">
-   *            <Icon class="icon" name="contact"></Icon>
-   *        </Button>
-   *        <Button icon-only role="bar-button">
-   *            <Icon class="icon" name="search"></Icon>
-   *        </Button>
-   *    </Buttons>
+   *    <vm-buttons start slot="buttons">
+   *        <vm-button icon-only role="bar-button">
+   *            <vm-icon class="icon" name="contact"></vm-icon>
+   *        </vm-button>
+   *        <vm-button icon-only role="bar-button">
+   *            <vm-icon class="icon" name="search"></vm-icon>
+   *        </vm-button>
+   *    </vm-buttons>
    *    <!--end-->
-   *    <Buttons end slot="buttons">
-   *        <Button icon-only role="bar-button">
-   *            <Icon class="icon" name="more"></Icon>
-   *        </Button>
-   *    </Buttons>
+   *    <vm-buttons end slot="buttons">
+   *        <vm-button icon-only role="bar-button">
+   *            <vm-icon class="icon" name="more"></vm-icon>
+   *        </vm-button>
+   *    </vm-buttons>
    *    <!--title-->
-   *    <Title>My Toolbar Title</Title>
-   * </Toolbar>
+   *    <vm-title>My Toolbar Title</vm-title>
+   * </vm-toolbar>
    *
-   *  <Toolbar>
+   *  <vm-toolbar>
    *    <!--menutoggle-->
-   *    <Button left icon-only role="bar-button" menutoggle slot="buttons">
-   *        <Icon class="icon" name="menu"></Icon>
-   *    </Button>
+   *    <vm-button left icon-only role="bar-button" menutoggle slot="buttons">
+   *        <vm-icon class="icon" name="menu"></vm-icon>
+   *    </vm-button>
    *    <!--title-->
-   *    <Title>Left Menu</Title>
-   * </Toolbar>
+   *    <vm-title>Left Menu</vm-title>
+   * </vm-toolbar>
    * */
 
   import ToolbarMixins from './toolbarMixins.vue'
 
   export default {
-    name: 'Toolbar',
+    name: 'vm-toolbar',
     mixins: [ToolbarMixins],
     computed: {}
   }

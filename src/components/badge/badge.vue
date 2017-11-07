@@ -26,7 +26,7 @@
    * @demo #/badge
    * */
   export default {
-    name: 'Badge',
+    name: 'vm-badge',
     props: {
       /**
        * 按钮color：primary、secondary、danger、light、dark

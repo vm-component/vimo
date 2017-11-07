@@ -1,28 +1,28 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Toast</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Toast</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
             <h5>简介</h5>
             <p>Toast用于将应用状态传递给用户, 提示一般自动关闭.</p>
 
             <p>传参指纹: this.$toast('显示Toast提示')</p>
-            <Button block @click="toastBottomOnlyString()">只传入String</Button>
+            <vm-button block @click="toastBottomOnlyString()">只传入String</vm-button>
 
             <p>传参指纹: this.$toast('显示Toast提示',1000)</p>
-            <Button block @click="toastBottomWithStringAndDuration()">String + Duration(1000)</Button>
+            <vm-button block @click="toastBottomWithStringAndDuration()">String + Duration(1000)</vm-button>
 
             <p>传参指纹: this.$toast({...})</p>
-            <Button id="top" block @click="toastTop($event)">顶部出现</Button>
-            <Button block @click="toastButtom()">底部出现</Button>
-            <Button block @click="toastMiddle()">显示在中间</Button>
-            <Button block @click="toastMiddleWithBtn()">显示在中间 + 按钮</Button>
-            <Button block @click="showCloseBtnToast()">显示在顶部 + 按钮</Button>
-        </Content>
-    </Page>
+            <vm-button id="top" block @click="toastTop($event)">顶部出现</vm-button>
+            <vm-button block @click="toastButtom()">底部出现</vm-button>
+            <vm-button block @click="toastMiddle()">显示在中间</vm-button>
+            <vm-button block @click="toastMiddleWithBtn()">显示在中间 + 按钮</vm-button>
+            <vm-button block @click="showCloseBtnToast()">显示在顶部 + 按钮</vm-button>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
 </style>

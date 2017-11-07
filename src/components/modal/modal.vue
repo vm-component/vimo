@@ -60,7 +60,7 @@
   const NOOP = () => {}
 
   export default {
-    name: 'Modal',
+    name: 'vm-modal',
     props: {
       mode: {
         type: String,
@@ -190,7 +190,7 @@
       }
     },
     components: {
-      'Backdrop': Backdrop
+      Backdrop
     }
   }
 </script>

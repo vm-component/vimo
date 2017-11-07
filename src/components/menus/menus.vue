@@ -61,7 +61,7 @@
   const NOOP = () => {}
 
   export default {
-    name: 'Menus',
+    name: 'vm-menus',
     data () {
       return {
         isOpen: false, // menu-inner 动画控制

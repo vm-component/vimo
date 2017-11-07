@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Geo</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Geo</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
             <div padding>
                 <h5>简介</h5>
                 <p>this.$geo支持四种方式获取当前地理位置信息: H5原生方式/腾讯地图/高德地图/百度地图. 默认情况下, IOS平台在HTTP模式下不能使用原生获取地理位置.</p>
@@ -16,178 +16,178 @@
 
             <div padding class="name__content">
                 <strong>Keys:</strong>
-                <Grid>
-                    <Row>
-                        <Column col-4>aMap Key:</Column>
-                        <Column clo-8 no-break>{{$geo._setting.aMap.key}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>bMap Key:</Column>
-                        <Column clo-8 no-break>{{$geo._setting.bMap.key}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>qMap Key:</Column>
-                        <Column clo-8 no-break>{{$geo._setting.qMap.key}}</Column>
-                    </Row>
-                </Grid>
+                <vm-grid>
+                    <vm-row>
+                        <vm-col col-4>aMap Key:</vm-col>
+                        <vm-col clo-8 no-break>{{$geo._setting.aMap.key}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>bMap Key:</vm-col>
+                        <vm-col clo-8 no-break>{{$geo._setting.bMap.key}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>qMap Key:</vm-col>
+                        <vm-col clo-8 no-break>{{$geo._setting.qMap.key}}</vm-col>
+                    </vm-row>
+                </vm-grid>
                 <strong>Options:</strong>
-                <Grid>
-                    <Row>
-                        <Column>enableHighAccuracy:</Column>
-                        <Column>{{$geo._setting.enableHighAccuracy}}</Column>
-                    </Row>
-                    <Row>
-                        <Column>maximumAge:</Column>
-                        <Column>{{$geo._setting.maximumAge}}</Column>
-                    </Row>
-                    <Row>
-                        <Column>timeout:</Column>
-                        <Column>{{$geo._setting.timeout}}</Column>
-                    </Row>
-                    <Row>
-                        <Column>fallBack:</Column>
-                        <Column>{{$geo._setting.fallBack}}</Column>
-                    </Row>
-                </Grid>
+                <vm-grid>
+                    <vm-row>
+                        <vm-col>enableHighAccuracy:</vm-col>
+                        <vm-col>{{$geo._setting.enableHighAccuracy}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col>maximumAge:</vm-col>
+                        <vm-col>{{$geo._setting.maximumAge}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col>timeout:</vm-col>
+                        <vm-col>{{$geo._setting.timeout}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col>fallBack:</vm-col>
+                        <vm-col>{{$geo._setting.fallBack}}</vm-col>
+                    </vm-row>
+                </vm-grid>
             </div>
 
 
             <h5 class="name">
                 <span>默认方式:</span>
-                <Button small outline @click="getGeolocationByH5" :disabled="!h5Geo">
+                <vm-button small outline @click="getGeolocationByH5" :disabled="!h5Geo">
                     重新获取
-                </Button>
+                </vm-button>
             </h5>
             <div padding class="name__content">
-                <Grid>
-                    <Row>
-                        <Column col-4>lat:</Column>
-                        <Column v-if="h5Geo">{{h5Geo.lat}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>lng:</Column>
-                        <Column v-if="h5Geo">{{h5Geo.lng}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>mapType:</Column>
-                        <Column v-if="h5Geo">{{h5Geo.mapType}}</Column>
-                    </Row>
-                    <Row v-if="h5Geo && h5Geo.full">
-                        <Column col-4>address:</Column>
-                        <Column>
+                <vm-grid>
+                    <vm-row>
+                        <vm-col col-4>lat:</vm-col>
+                        <vm-col v-if="h5Geo">{{h5Geo.lat}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>lng:</vm-col>
+                        <vm-col v-if="h5Geo">{{h5Geo.lng}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>mapType:</vm-col>
+                        <vm-col v-if="h5Geo">{{h5Geo.mapType}}</vm-col>
+                    </vm-row>
+                    <vm-row v-if="h5Geo && h5Geo.full">
+                        <vm-col col-4>address:</vm-col>
+                        <vm-col>
                             {{h5Geo.full.province}} {{h5Geo.full.city}}
-                        </Column>
-                    </Row>
-                    <Row v-if="h5Err">
-                        <Column col-4>err:</Column>
-                        <Column>{{h5Err}}</Column>
-                    </Row>
-                </Grid>
+                        </vm-col>
+                    </vm-row>
+                    <vm-row v-if="h5Err">
+                        <vm-col col-4>err:</vm-col>
+                        <vm-col>{{h5Err}}</vm-col>
+                    </vm-row>
+                </vm-grid>
             </div>
 
 
             <h5 class="name">
                 <span>腾讯地图:</span>
-                <Button small outline @click="getGeolocationByqMap" :disabled="!qMapGeo">
+                <vm-button small outline @click="getGeolocationByqMap" :disabled="!qMapGeo">
                     重新获取
-                </Button>
+                </vm-button>
             </h5>
             <div padding class="name__content">
-                <Grid>
-                    <Row>
-                        <Column col-4>lat:</Column>
-                        <Column v-if="qMapGeo">{{qMapGeo.lat}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>lng:</Column>
-                        <Column v-if="qMapGeo">{{qMapGeo.lng}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>mapType:</Column>
-                        <Column v-if="qMapGeo">{{qMapGeo.mapType}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>address:</Column>
-                        <Column v-if="qMapGeo">
+                <vm-grid>
+                    <vm-row>
+                        <vm-col col-4>lat:</vm-col>
+                        <vm-col v-if="qMapGeo">{{qMapGeo.lat}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>lng:</vm-col>
+                        <vm-col v-if="qMapGeo">{{qMapGeo.lng}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>mapType:</vm-col>
+                        <vm-col v-if="qMapGeo">{{qMapGeo.mapType}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>address:</vm-col>
+                        <vm-col v-if="qMapGeo">
                             {{qMapGeo.full.province}}{{qMapGeo.full.city}}{{qMapGeo.full.addr}}
-                        </Column>
-                    </Row>
-                    <Row v-if="qMapErr">
-                        <Column col-4>err:</Column>
-                        <Column>{{qMapErr}}</Column>
-                    </Row>
-                </Grid>
+                        </vm-col>
+                    </vm-row>
+                    <vm-row v-if="qMapErr">
+                        <vm-col col-4>err:</vm-col>
+                        <vm-col>{{qMapErr}}</vm-col>
+                    </vm-row>
+                </vm-grid>
             </div>
 
             <h5 class="name">
                 <span>高德地图(阿里):</span>
-                <Button small outline @click="getGeolocationByaMap" :disabled="!aMapGeo">
+                <vm-button small outline @click="getGeolocationByaMap" :disabled="!aMapGeo">
                     重新获取
-                </Button>
+                </vm-button>
             </h5>
             <div padding class="name__content">
-                <Grid>
-                    <Row>
-                        <Column col-4>lat:</Column>
-                        <Column v-if="aMapGeo">{{aMapGeo.lat}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>lng:</Column>
-                        <Column v-if="aMapGeo">{{aMapGeo.lng}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>mapType:</Column>
-                        <Column v-if="aMapGeo">{{aMapGeo.mapType}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>address:</Column>
-                        <Column v-if="aMapGeo">
+                <vm-grid>
+                    <vm-row>
+                        <vm-col col-4>lat:</vm-col>
+                        <vm-col v-if="aMapGeo">{{aMapGeo.lat}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>lng:</vm-col>
+                        <vm-col v-if="aMapGeo">{{aMapGeo.lng}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>mapType:</vm-col>
+                        <vm-col v-if="aMapGeo">{{aMapGeo.mapType}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>address:</vm-col>
+                        <vm-col v-if="aMapGeo">
                             {{aMapGeo.full.formattedAddress}}
-                        </Column>
-                    </Row>
-                    <Row v-if="aMapErr">
-                        <Column col-4>err:</Column>
-                        <Column>{{aMapErr}}</Column>
-                    </Row>
-                </Grid>
+                        </vm-col>
+                    </vm-row>
+                    <vm-row v-if="aMapErr">
+                        <vm-col col-4>err:</vm-col>
+                        <vm-col>{{aMapErr}}</vm-col>
+                    </vm-row>
+                </vm-grid>
             </div>
 
 
             <h5 class="name">
                 <span>百度地图:</span>
-                <Button small outline @click="getGeolocationBybMap" :disabled="!bMapGeo">
+                <vm-button small outline @click="getGeolocationBybMap" :disabled="!bMapGeo">
                     重新获取
-                </Button>
+                </vm-button>
             </h5>
             <div padding class="name__content">
-                <Grid>
-                    <Row>
-                        <Column col-4>lat:</Column>
-                        <Column v-if="bMapGeo">{{bMapGeo.lat}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>lng:</Column>
-                        <Column v-if="bMapGeo">{{bMapGeo.lng}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>mapType:</Column>
-                        <Column v-if="bMapGeo">{{bMapGeo.mapType}}</Column>
-                    </Row>
-                    <Row>
-                        <Column col-4>address:</Column>
-                        <Column v-if="bMapGeo">
+                <vm-grid>
+                    <vm-row>
+                        <vm-col col-4>lat:</vm-col>
+                        <vm-col v-if="bMapGeo">{{bMapGeo.lat}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>lng:</vm-col>
+                        <vm-col v-if="bMapGeo">{{bMapGeo.lng}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>mapType:</vm-col>
+                        <vm-col v-if="bMapGeo">{{bMapGeo.mapType}}</vm-col>
+                    </vm-row>
+                    <vm-row>
+                        <vm-col col-4>address:</vm-col>
+                        <vm-col v-if="bMapGeo">
                             {{bMapGeo.full.address.province}}{{bMapGeo.full.address.city}}{{bMapGeo.full.address.district}}{{bMapGeo.full.address.street}}
-                        </Column>
-                    </Row>
-                    <Row v-if="bMapErr">
-                        <Column col-4>err:</Column>
-                        <Column>{{bMapErr}}</Column>
-                    </Row>
-                </Grid>
+                        </vm-col>
+                    </vm-row>
+                    <vm-row v-if="bMapErr">
+                        <vm-col col-4>err:</vm-col>
+                        <vm-col>{{bMapErr}}</vm-col>
+                    </vm-row>
+                </vm-grid>
             </div>
 
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .name {

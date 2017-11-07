@@ -99,17 +99,17 @@
    *
    * @usage
    * <template>
-   *  <Page>
-   *    <Header>
-   *      <Navbar>
-   *        <Title>Demo</Title>
-   *      <Navbar>
-   *    </Header>
-   *    <Content record-position>
+   *  <vm-page>
+   *    <vm-header>
+   *      <vm-navbar>
+   *        <vm-title>Demo</vm-title>
+   *      <vm-navbar>
+   *    </vm-header>
+   *    <vm-content record-position>
    *      <h1>这里是内容</h1>
    *      <p>滚动位置将会被记录</p>
-   *    </Content>
-   *  </Page>
+   *    </vm-content>
+   *  </vm-page>
    * </template>
    *
    * */
@@ -117,7 +117,7 @@
   import { ScrollView } from './scroll-view'
 
   export default {
-    name: 'Content',
+    name: 'vm-content',
     props: {
       fullscreen: Boolean,
       recordPosition: {

@@ -1,21 +1,21 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Select</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Select</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
 
             <div padding>
                 <h5>简介</h5>
                 <p>Select组件用于单类型数据但多选, 如果是多类型数据选择, 请选Picker组件.</p>
             </div>
 
-            <List>
-                <ListHeader>单选</ListHeader>
-                <Item>
-                    <Label fixed>Gender(fixed)</Label>
+            <vm-list>
+                <vm-list-header>单选</vm-list-header>
+                <vm-item>
+                    <vm-label fixed>Gender(fixed)</vm-label>
                     <Select item-right placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Fixed Label'}"
                             @onChange="onChange"
@@ -24,9 +24,9 @@
                         <SelectOption value="f">Female</SelectOption>
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
-                </Item>
-                <Item>
-                    <Label stacked>Gender(stacked)</Label>
+                </vm-item>
+                <vm-item>
+                    <vm-label stacked>Gender(stacked)</vm-label>
                     <Select item-right placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Stacked Label'}"
                             @onChange="onChange"
@@ -35,9 +35,9 @@
                         <SelectOption value="f">Female</SelectOption>
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
-                </Item>
-                <Item>
-                    <Label floating>Gender(floating)</Label>
+                </vm-item>
+                <vm-item>
+                    <vm-label floating>Gender(floating)</vm-label>
                     <Select item-right placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Foating Label'}"
                             @onChange="onChange"
@@ -46,9 +46,9 @@
                         <SelectOption value="f">Female</SelectOption>
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
-                </Item>
-                <Item>
-                    <Label>Gender</Label>
+                </vm-item>
+                <vm-item>
+                    <vm-label>Gender</vm-label>
                     <Select item-right placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Normal Label'}"
                             @onChange="onChange"
@@ -57,10 +57,10 @@
                         <SelectOption value="f">Female</SelectOption>
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>Gender</Label>
+                <vm-item>
+                    <vm-label>Gender</vm-label>
                     <Select item-right placeholder="Select" interface="alert"
                             @onChange="onChange"
                             @onSelect="onSelect"
@@ -68,10 +68,10 @@
                         <SelectOption value="f" checked>Female</SelectOption>
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>Gender</Label>
+                <vm-item>
+                    <vm-label>Gender</vm-label>
                     <Select item-right placeholder="Multi Select" interface="alert" :multiple="true"
                             @onChange="onChange"
                             @onSelect="onSelect"
@@ -79,10 +79,10 @@
                         <SelectOption value="f">Female</SelectOption>
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>Gender</Label>
+                <vm-item>
+                    <vm-label>Gender</vm-label>
                     <Select item-right placeholder="Disabled Select" :disabled="true" interface="alert" :multiple="true"
                             @onChange="onChange"
                             @onSelect="onSelect"
@@ -90,23 +90,23 @@
                         <SelectOption value="f">Female</SelectOption>
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>能修改选中值文本</Label>
+                <vm-item>
+                    <vm-label>能修改选中值文本</vm-label>
                     <Select item-right placeholder="请选择" selectedText="已选择" interface="alert" :multiple="true">
                         <SelectOption value="f">Female</SelectOption>
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>Option组件没有value的情况</span>
-                </ListHeader>
-                <Item>
-                    <Label>Gaming</Label>
+                </vm-list-header>
+                <vm-item>
+                    <vm-label>Gaming</vm-label>
                     <Select v-model="gamingNoValue" :multiple="true">
                         <SelectOption>NES</SelectOption>
                         <SelectOption>Nintendo64</SelectOption>
@@ -115,18 +115,18 @@
                         <SelectOption>Sega Saturn</SelectOption>
                         <SelectOption>SNES</SelectOption>
                     </Select>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
             <div text-cente padding>
                 <p text-center>Gaming选中值: {{gamingNoValue}}</p>
             </div>
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>单选 (v-model)</span>
-                </ListHeader>
-                <Item>
-                    <Label>Gaming</Label>
+                </vm-list-header>
+                <vm-item>
+                    <vm-label>Gaming</vm-label>
                     <Select v-model="gaming" :multiple="true">
                         <SelectOption value="nes">NES</SelectOption>
                         <SelectOption value="n64">Nintendo64</SelectOption>
@@ -135,8 +135,8 @@
                         <SelectOption value="saturn">Sega Saturn</SelectOption>
                         <SelectOption value="snes" disabled>SNES</SelectOption>
                     </Select>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
 
             <div text-cente padding>
                 <p text-center>Gaming选中值: {{gaming}}</p>
@@ -144,27 +144,27 @@
                     <span>  * Option中checked是NES/Nintendo64/PlayStation, 而v-model中的值是Option中checked是选中的是NES, 优先使用v-modal中的值</span>
                 </small>
             </div>
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>单选 (v-model && v-for)</span>
-                </ListHeader>
-                <Item>
-                    <Label>Currency</Label>
+                </vm-list-header>
+                <vm-item>
+                    <vm-label>Currency</vm-label>
                     <Select v-model="currency" v-if="hideCurrency">
                         <SelectOption :value="cur.code" v-for="(cur,index) in currencies" :key="index">
                             <span>{{cur.symbol}} ({{cur.code}}) {{cur.name}}</span>
                         </SelectOption>
                     </Select>
-                </Item>
+                </vm-item>
                 <div padding>
-                    <Button block @click="toggleData">Toggle Data</Button>
+                    <vm-button block @click="toggleData">Toggle Data</vm-button>
                 </div>
-            </List>
+            </vm-list>
             <div text-cente padding>
                 <p text-center>Currency选中值: {{currency}}</p>
             </div>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

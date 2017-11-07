@@ -28,7 +28,7 @@ import Input from './components/input'
 import Textarea from './components/textarea'
 import { Item, ItemDivider, ItemGroup, ListHeader } from './components/item'
 import { ItemCollapse, ItemCollapseGroup } from './components/item-collapse'
-import { ItemSliding, ItemSlidingOptions } from './components/item-sliding'
+import { ItemSliding, ItemOptions } from './components/item-sliding'
 import Label from './components/label'
 import List from './components/list'
 import Loading from './components/loading'
@@ -108,7 +108,7 @@ module.exports = {
   ItemCollapse,
   ItemCollapseGroup,
   ItemSliding,
-  ItemSlidingOptions,
+  ItemOptions,
   Label,
   List,
   Loading,
@@ -194,7 +194,7 @@ module.exports = {
     Vue.component(ItemCollapse.name, ItemCollapse)
     Vue.component(ItemCollapseGroup.name, ItemCollapseGroup)
     Vue.component(ItemSliding.name, ItemSliding)
-    Vue.component(ItemSlidingOptions.name, ItemSlidingOptions)
+    Vue.component(ItemOptions.name, ItemOptions)
     Vue.component(Label.name, Label)
     Vue.component(List.name, List)
     Vue.component(Menus.name, Menus)

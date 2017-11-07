@@ -1,54 +1,54 @@
 <template>
-    <App>
+    <vm-app>
         <!--menu menu-->
         <!--type: overlay/reveal/push-->
-        <Menus id="menu" side="left" type="reveal">
-            <Content>
-                <List>
+        <vm-menus id="menu" side="left" type="reveal">
+            <vm-content>
+                <vm-list>
                     <!--开始-->
-                    <ListHeader>
+                    <vm-list-header>
                         <span>{{$t('menu.start')}}</span>
-                    </ListHeader>
+                    </vm-list-header>
                     <!--group-->
-                    <ItemGroup>
+                    <vm-item-group>
                         <!--wait 表示等待关闭事件-->
-                        <Item button :to="{name: 'introduce'}" wait>
-                            <Icon slot="item-left" name="apps"></Icon>
+                        <vm-item button :to="{name: 'introduce'}" wait>
+                            <vm-icon slot="item-left" name="apps"></vm-icon>
                             <span>{{$t('menu.introduce')}}</span>
-                        </Item>
-                    </ItemGroup>
-                    <ListHeader>{{$t('menu.character')}}</ListHeader>
+                        </vm-item>
+                    </vm-item-group>
+                    <vm-list-header>{{$t('menu.character')}}</vm-list-header>
                     <!--group-->
-                    <ItemGroup>
-                        <Item button :to="{name: 'config'}" wait>
-                            <Icon slot="item-left" name="settings"></Icon>
+                    <vm-item-group>
+                        <vm-item button :to="{name: 'config'}" wait>
+                            <vm-icon slot="item-left" name="settings"></vm-icon>
                             <span>{{$t('menu.configParameter')}}</span>
-                        </Item>
-                        <Item button :to="{name: 'platform'}" wait>
-                            <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
+                        </vm-item>
+                        <vm-item button :to="{name: 'platform'}" wait>
+                            <vm-icon slot="item-left" md="logo-android" ios="logo-apple"></vm-icon>
                             <span>{{$t('menu.platformParameter')}}</span>
-                        </Item>
-                        <Item button :to="{name: 'crossPlatform'}" wait>
-                            <Icon slot="item-left" name="logo-javascript"></Icon>
+                        </vm-item>
+                        <vm-item button :to="{name: 'crossPlatform'}" wait>
+                            <vm-icon slot="item-left" name="logo-javascript"></vm-icon>
                             <span>{{$t('menu.crossPlatform')}}</span>
-                        </Item>
-                        <Item>
-                            <Icon slot="item-left" name="plane"></Icon>
+                        </vm-item>
+                        <vm-item>
+                            <vm-icon slot="item-left" name="plane"></vm-icon>
                             <span>{{$t('menu.switchLanguage')}}({{$i18n.locale}})</span>
-                            <Toggle slot="item-right"
+                            <vm-toggle slot="item-right"
                                     :value="$i18n.locale==='cn'"
-                                    @onChange="onToggleChangeHandler"></Toggle>
-                        </Item>
-                    </ItemGroup>
-                </List>
-            </Content>
-        </Menus>
-        <Nav :showIndicatorWhenPageChange="true">
+                                    @onChange="onToggleChangeHandler"></vm-toggle>
+                        </vm-item>
+                    </vm-item-group>
+                </vm-list>
+            </vm-content>
+        </vm-menus>
+        <vm-nav :showIndicatorWhenPageChange="true">
             <!--<keep-alive>-->
             <router-view></router-view>
             <!--</keep-alive>-->
-        </Nav>
-    </App>
+        </vm-nav>
+    </vm-app>
 </template>
 <script type="text/javascript">
   /**
@@ -71,11 +71,11 @@
       }
     },
     mounted () {
+      console.log('mountedmounted')
       this.$platform.onNetworkChange((type) => {
         alert(`网路状况发生变化, 当前状态: ${type}, 即将立即推出App!`)
         this.$platform.exitApp()
       })
     }
   }
-</script>
-<style lang="less"></style>
+</script><style lang="less"></style>

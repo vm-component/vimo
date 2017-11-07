@@ -33,7 +33,7 @@
   }
 </script>
 <style lang="less">
-    @import "../themes/default.less";
+    @import "../../themes/default.less";
 
     .popMenu.popover-ios .popover-content {
         width: 146px;

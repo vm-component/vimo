@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Title</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content" :fullscreen="true">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Title</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content" :fullscreen="true">
             <img class="imgBox" src="./img/1.jpg" :style="{'transform':'scale('+scaleValue+')'}">
             <Scroll slot="fixedTop" class="scrollBox" @scroll="onScrollHandler" :probeType="3">
                 <div class="scrollBox__inner">
@@ -37,8 +37,8 @@
                     </div>
                 </div>
             </Scroll>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .scrollBox {

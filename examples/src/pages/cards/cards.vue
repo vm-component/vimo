@@ -1,23 +1,23 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Cards</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Cards</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list>
                 <!--header-->
-                <ListHeader>
+                <vm-list-header>
                     <span>Contents</span>
-                </ListHeader>
+                </vm-list-header>
                 <!--group-->
-                <Item button :to="{name:'cards.basicCards'}">基础卡片</Item>
-                <Item button :to="{name:'cards.listsInCards'}">Card与List组合</Item>
-                <Item button :to="{name:'cards.advancedCards'}">更丰富的Card</Item>
-            </List>
-        </Content>
-    </Page>
+                <vm-item button :to="{name:'cards.basicCards'}">基础卡片</vm-item>
+                <vm-item button :to="{name:'cards.listsInCards'}">Card与List组合</vm-item>
+                <vm-item button :to="{name:'cards.advancedCards'}">更丰富的Card</vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 </style>

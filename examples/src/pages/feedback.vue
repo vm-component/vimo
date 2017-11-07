@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Feedback</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Feedback</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
             <Feedback v-model="feedbackInfo" :maxlength="100" :maximage="4"></Feedback>
             <div padding>
                 <h5>简介</h5>
@@ -19,8 +19,8 @@
                     <img class="result-img" :src="data.code" v-for="(data, index) in feedbackInfo.images" :key="index">
                 </section>
             </div>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .result-img {

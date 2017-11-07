@@ -1,95 +1,95 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Fab</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Fab</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
             <Fab slot="fixed" top right edge ref="fab1">
                 <FabButton mini>
-                    <Icon name="add"></Icon>
+                    <vm-icon name="add"></vm-icon>
                 </FabButton>
                 <FabList side="bottom">
                     <FabButton @click="clickHandler('facebook')">
-                        <Icon name="logo-facebook"></Icon>
+                        <vm-icon name="logo-facebook"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('twitter')">
-                        <Icon name="logo-twitter"></Icon>
+                        <vm-icon name="logo-twitter"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('vimeo')">
-                        <Icon name="logo-vimeo"></Icon>
+                        <vm-icon name="logo-vimeo"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('googleplus')">
-                        <Icon name="logo-googleplus"></Icon>
+                        <vm-icon name="logo-googleplus"></vm-icon>
                     </FabButton>
                 </FabList>
             </Fab>
 
             <Fab slot="fixed" top left ref="fab2">
                 <FabButton color="secondary">
-                    <Icon name="arrow-dropright"></Icon>
+                    <vm-icon name="arrow-dropright"></vm-icon>
                 </FabButton>
                 <FabList side="right">
                     <FabButton @click="clickHandler('facebook')">
-                        <Icon name="logo-facebook"></Icon>
+                        <vm-icon name="logo-facebook"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('twitter')">
-                        <Icon name="logo-twitter"></Icon>
+                        <vm-icon name="logo-twitter"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('vimeo')">
-                        <Icon name="logo-vimeo"></Icon>
+                        <vm-icon name="logo-vimeo"></vm-icon>
                     </FabButton>
                 </FabList>
                 <FabList side="bottom">
                     <FabButton @click="clickHandler('googleplus')">
-                        <Icon name="logo-googleplus"></Icon>
+                        <vm-icon name="logo-googleplus"></vm-icon>
                     </FabButton>
                 </FabList>
             </Fab>
 
             <Fab slot="fixed" center middle ref="fab3">
                 <FabButton color="danger">
-                    <Icon name="md-share"></Icon>
+                    <vm-icon name="md-share"></vm-icon>
                 </FabButton>
                 <FabList side="right">
                     <FabButton @click="clickHandler('facebook')" color="danger">
-                        <Icon name="logo-facebook"></Icon>
+                        <vm-icon name="logo-facebook"></vm-icon>
                     </FabButton>
                 </FabList>
                 <FabList side="bottom">
                     <FabButton @click="clickHandler('googleplus')" color="secondary">
-                        <Icon name="logo-googleplus"></Icon>
+                        <vm-icon name="logo-googleplus"></vm-icon>
                     </FabButton>
                 </FabList>
                 <FabList side="top">
                     <FabButton @click="clickHandler('vimeo')" color="primary">
-                        <Icon name="logo-vimeo"></Icon>
+                        <vm-icon name="logo-vimeo"></vm-icon>
                     </FabButton>
                 </FabList>
                 <FabList side="left">
                     <FabButton @click="clickHandler('twitter')" color="dark">
-                        <Icon name="logo-twitter"></Icon>
+                        <vm-icon name="logo-twitter"></vm-icon>
                     </FabButton>
                 </FabList>
             </Fab>
 
             <Fab slot="fixed" bottom left ref="fab4">
                 <FabButton color="dark">
-                    <Icon name="arrow-dropup"></Icon>
+                    <vm-icon name="arrow-dropup"></vm-icon>
                 </FabButton>
                 <FabList side="top">
                     <FabButton @click="clickHandler('facebook')" color="danger">
-                        <Icon name="logo-facebook"></Icon>
+                        <vm-icon name="logo-facebook"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('googleplus')" color="secondary">
-                        <Icon name="logo-googleplus"></Icon>
+                        <vm-icon name="logo-googleplus"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('twitter')" color="dark">
-                        <Icon name="logo-twitter"></Icon>
+                        <vm-icon name="logo-twitter"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('vimeo')" color="primary">
-                        <Icon name="logo-vimeo"></Icon>
+                        <vm-icon name="logo-vimeo"></vm-icon>
                     </FabButton>
                 </FabList>
             </Fab>
@@ -97,20 +97,20 @@
 
             <Fab slot="fixed" bottom right ref="fab5">
                 <FabButton color="dark">
-                    <Icon name="arrow-dropleft"></Icon>
+                    <vm-icon name="arrow-dropleft"></vm-icon>
                 </FabButton>
                 <FabList side="left">
                     <FabButton @click="clickHandler('facebook')" color="danger">
-                        <Icon name="logo-facebook"></Icon>
+                        <vm-icon name="logo-facebook"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('googleplus')" color="secondary">
-                        <Icon name="logo-googleplus"></Icon>
+                        <vm-icon name="logo-googleplus"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('twitter')" color="dark">
-                        <Icon name="logo-twitter"></Icon>
+                        <vm-icon name="logo-twitter"></vm-icon>
                     </FabButton>
                     <FabButton @click="clickHandler('vimeo')" color="primary">
-                        <Icon name="logo-vimeo"></Icon>
+                        <vm-icon name="logo-vimeo"></vm-icon>
                     </FabButton>
                 </FabList>
             </Fab>
@@ -146,8 +146,8 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

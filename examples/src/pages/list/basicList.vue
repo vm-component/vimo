@@ -1,18 +1,18 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>BasicList</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List>
-                <Item button v-for="(item,index) in list" :key="index">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>BasicList</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list>
+                <vm-item button v-for="(item,index) in list" :key="index">
                     {{item}}
-                </Item>
-            </List>
-        </Content>
-    </Page>
+                </vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less"></style>
 <script type="text/javascript">

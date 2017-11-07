@@ -5,7 +5,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Item/ItemSlidingOptions
+   * @component Item/vm-item-options
    * @description
    *
    * 这个组件是 ItemSliding 组件的子组件, 两者配合使用.
@@ -19,7 +19,7 @@
    * @see component:ItemSliding
    * */
   export default{
-    name: 'ItemSlidingOptions',
+    name: 'vm-item-options',
     data () {
       return {}
     },

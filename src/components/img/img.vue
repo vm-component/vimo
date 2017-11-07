@@ -55,12 +55,12 @@
    *
    * @demo #/img
    * @usage
-   * <Img width="100%" height="200" src="static/1.jpg">
+   * <vm-img width="100%" height="200" src="static/1.jpg">
    *
    * */
   import { isPresent, registerListener } from '../../util/util'
   export default{
-    name: 'Img',
+    name: 'vm-img',
     props: {
       src: String,
       alt: {

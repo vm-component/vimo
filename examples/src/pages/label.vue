@@ -1,14 +1,14 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Label</Title>
-            </Navbar>
-        </Header>
-        <Content>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Label</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content>
 
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .main {

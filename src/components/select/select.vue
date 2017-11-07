@@ -5,11 +5,11 @@
         <div class="select-icon">
             <div class="select-icon-inner"></div>
         </div>
-        <button @click="onPointerDownHandler($event)"
+        <vm-button @click="onPointerDownHandler($event)"
                 ref="button"
                 :id="id"
                 class="item-cover">
-        </button>
+        </vm-button>
         <slot></slot>
     </div>
 </template>
@@ -68,8 +68,8 @@
    * @demo #/select
    *
    * @usage
-   * <Item>
-   *    <Label>Gender</Label>
+   * <vm-item>
+   *    <vm-label>Gender</vm-label>
    *    <Select item-right placeholder="Select" interface="alert"
    *            @ onChange="onChange"
    *            @ onSelect="onSelect"
@@ -77,7 +77,7 @@
    *        <Option value="f" checked>Female</Option>
    *        <Option value="m">Male</Option>
    *    </Select>
-   * </Item>
+   * </vm-item>
    * */
   import { setElementClass, isTrueProperty, isBlank, isCheckedProperty } from '../../util/util'
   import ActionSheet from '../action-sheet'

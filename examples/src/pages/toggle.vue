@@ -1,76 +1,76 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>
                     Toggle
-                </Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List>
-                <ListHeader>
+                </vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list>
+                <vm-list-header>
                     <span>普通使用</span>
-                </ListHeader>
-                <Item>
+                </vm-list-header>
+                <vm-item>
                     <span>Toggle Danger</span>
-                    <Toggle slot="item-right" color="danger" v-model="displayData.danger"></Toggle>
-                </Item>
-                <Item>
+                    <vm-toggle slot="item-right" color="danger" v-model="displayData.danger"></vm-toggle>
+                </vm-item>
+                <vm-item>
                     <span>Toggle Primary</span>
-                    <Toggle slot="item-right" color="primary" v-model="displayData.primary"></Toggle>
-                </Item>
-                <Item>
+                    <vm-toggle slot="item-right" color="primary" v-model="displayData.primary"></vm-toggle>
+                </vm-item>
+                <vm-item>
                     <span>Toggle Dark</span>
-                    <Toggle slot="item-right" color="dark" v-model="displayData.dark"></Toggle>
-                </Item>
-                <Item>
+                    <vm-toggle slot="item-right" color="dark" v-model="displayData.dark"></vm-toggle>
+                </vm-item>
+                <vm-item>
                     <span>Toggle Light</span>
-                    <Toggle slot="item-right" color="light" v-model="displayData.light"></Toggle>
-                </Item>
-                <Item>
+                    <vm-toggle slot="item-right" color="light" v-model="displayData.light"></vm-toggle>
+                </vm-item>
+                <vm-item>
                     <span>Toggle Disabled</span>
-                    <Toggle slot="item-right" :disabled="displayData.disabled" v-model="displayData.disabled"></Toggle>
-                </Item>
-            </List>
+                    <vm-toggle slot="item-right" :disabled="displayData.disabled" v-model="displayData.disabled"></vm-toggle>
+                </vm-item>
+            </vm-list>
 
 
             <section padding>
                 <h5>单独使用</h5>
                 <div class="customer-standalone">
-                    <Toggle slot="item-right" color="danger" v-model="displayData.danger"></Toggle>
+                    <vm-toggle slot="item-right" color="danger" v-model="displayData.danger"></vm-toggle>
                 </div>
             </section>
 
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>高级用法</span>
-                </ListHeader>
-                <Item>
+                </vm-list-header>
+                <vm-item>
                     <span>下方按钮控制</span>
-                    <Toggle v-model="checked" slot="item-right" :disabled="disabled"
-                            @onChange="toggleChange"></Toggle>
-                </Item>
-            </List>
+                    <vm-toggle v-model="checked" slot="item-right" :disabled="disabled"
+                            @onChange="toggleChange"></vm-toggle>
+                </vm-item>
+            </vm-list>
 
-            <Grid>
-                <Row>
-                    <Column>
-                        <Button block @click="checked = !checked">设置开/闭</Button>
-                    </Column>
-                    <Column>
-                        <Button block @click="disabled = !disabled">设置禁用/启用</Button>
-                    </Column>
-                </Row>
-                <Row justify-content-center>
-                    <Column text-center col-12>当前状态, checked: {{checked}}, disabled: {{disabled}}</Column>
-                    <Column text-center col-12>* 使用v-model切换状态, 不支持checked属性</Column>
-                </Row>
-            </Grid>
+            <vm-grid>
+                <vm-row>
+                    <vm-col>
+                        <vm-button block @click="checked = !checked">设置开/闭</vm-button>
+                    </vm-col>
+                    <vm-col>
+                        <vm-button block @click="disabled = !disabled">设置禁用/启用</vm-button>
+                    </vm-col>
+                </vm-row>
+                <vm-row justify-content-center>
+                    <vm-col text-center col-12>当前状态, checked: {{checked}}, disabled: {{disabled}}</vm-col>
+                    <vm-col text-center col-12>* 使用v-model切换状态, 不支持checked属性</vm-col>
+                </vm-row>
+            </vm-grid>
 
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .customer-standalone {

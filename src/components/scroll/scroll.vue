@@ -103,7 +103,7 @@
   import props from './props'
 
   export default {
-    name: 'Scroll',
+    name: 'vm-scroll',
     data () {
       return {
         jsScrollInstance: null

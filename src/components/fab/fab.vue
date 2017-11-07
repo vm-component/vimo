@@ -53,20 +53,20 @@
    * @usage
    * <Fab slot="fixed" bottom right ref="fab5">
    *    <FabButton color="dark">
-   *        <Icon name="arrow-dropleft"></Icon>
+   *        <vm-icon name="arrow-dropleft"></vm-icon>
    *    </FabButton>
    *    <FabList side="left">
    *        <FabButton @click="clickHandler('facebook')" color="danger">
-   *            <Icon name="logo-facebook"></Icon>
+   *            <vm-icon name="logo-facebook"></vm-icon>
    *        </FabButton>
    *        <FabButton @click="clickHandler('googleplus')" color="secondary">
-   *            <Icon name="logo-googleplus"></Icon>
+   *            <vm-icon name="logo-googleplus"></vm-icon>
    *        </FabButton>
    *        <FabButton @click="clickHandler('twitter')" color="dark">
-   *            <Icon name="logo-twitter"></Icon>
+   *            <vm-icon name="logo-twitter"></vm-icon>
    *        </FabButton>
    *        <FabButton @click="clickHandler('vimeo')" color="primary">
-   *            <Icon name="logo-vimeo"></Icon>
+   *            <vm-icon name="logo-vimeo"></vm-icon>
    *        </FabButton>
    *    </FabList>
    * </Fab>
@@ -84,7 +84,7 @@
    * @demo #/fab
    * */
   export default{
-    name: 'Fab',
+    name: 'vm-fab',
     data () {
       return {
         listsActive: false,             // 组件开闭状态

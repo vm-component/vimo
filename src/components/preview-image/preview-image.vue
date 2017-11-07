@@ -76,7 +76,7 @@
   import { Slides, Slide } from '../slides/index'
 
   export default {
-    name: 'PreviewImage',
+    name: 'vm-preview-image',
     data () {
       return {
         selected: '',

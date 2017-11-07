@@ -76,7 +76,7 @@
   import Autosize from 'autosize'
 
   export default {
-    name: 'Textarea',
+    name: 'vm-textarea',
     data () {
       return {
         max: this.maxlength,

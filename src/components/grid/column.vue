@@ -16,6 +16,6 @@
    *
    * */
   export default {
-    name: 'Column'
+    name: 'vm-col'
   }
 </script>

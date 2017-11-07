@@ -12,13 +12,13 @@
         </div>
         <div class="picker-opts" ref="colEle"
              :style="{'maxWidth':col.optionsWidth}">
-            <button v-for="(o,index) in col.options" :key="index"
+            <vm-button v-for="(o,index) in col.options" :key="index"
                     :class="{'picker-opt-disabled':o.disabled}"
                     class="picker-opt"
                     disable-activated
                     @click="optClick($event, index)">
                 {{o.text}}
-            </button>
+            </vm-button>
         </div>
         <!--suffix-->
         <div v-if="col.suffix" class="picker-suffix" :style="{'width':col.suffixWidth}">{{col.suffix}}</div>
@@ -33,7 +33,7 @@
   const FRAME_MS = (1000 / 60)
   const MAX_PICKER_SPEED = 60
   export default {
-    name: 'PickerCol',
+    name: 'vm-picker-col',
     data () {
       return {
         isInit: false,

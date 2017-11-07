@@ -72,25 +72,25 @@
    * @demo #/range
    *
    * @usage
-   * <List>
-   *    <ListHeader>
+   * <vm-list>
+   *    <vm-list-header>
    *        <span>Brightness</span>
-   *        <Badge slot="item-right">{{brightness}}</Badge>
-   *    </ListHeader>
-   *    <Item>
+   *        <vm-badge slot="item-right">{{brightness}}</vm-badge>
+   *    </vm-list-header>
+   *    <vm-item>
    *         <Range v-model="brightness">
-   *            <Icon slot="range-left" small name="sunny"></Icon>
-   *            <Icon slot="range-right" name="sunny"></Icon>
+   *            <vm-icon slot="range-left" small name="sunny"></vm-icon>
+   *            <vm-icon slot="range-right" name="sunny"></vm-icon>
    *        </Range>
-   *    </Item>
-   * </List>
+   *    </vm-item>
+   * </vm-list>
    *
    * */
   import RangeKnobHandle from './range-knob-handle.vue'
   import { setElementClass, pointerCoord, clamp, isNumber, isObject, isString } from '../../util/util'
 
   export default {
-    name: 'Range',
+    name: 'vm-range',
     data () {
       return {
         ticks: [], // 移动的标尺

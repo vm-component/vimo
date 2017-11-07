@@ -4,7 +4,7 @@
     </footer>
 </template>
 <style lang="less">
-    @import "../themes/index";
+    @import "../../themes/index";
 
     .ion-footer {
         position: absolute;
@@ -39,7 +39,7 @@
    *
    * */
   export default {
-    name: 'Footer',
+    name: 'vm-footer',
     data () {
       return {
         // -------- public --------

@@ -86,17 +86,17 @@
    *            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, eaque earum eum
    *            ex expedita facere fugit ipsa ipsum minima nemo nostrum, pariatur placeat qui quis quod
    *            quos repellendus tempora unde.</p>
-   *        <List>
-   *            <Item>
-   *                <Label>名称</Label>
+   *        <vm-list>
+   *            <vm-item>
+   *                <vm-label>名称</vm-label>
    *                <Input v-model="name" type="text" placeholder="请输入用户名" clear-input></Input>
-   *            </Item>
-   *            <Item>
-   *                <Label>密码</Label>
+   *            </vm-item>
+   *            <vm-item>
+   *                <vm-label>密码</vm-label>
    *                <Input v-model="password" type="password" placeholder="请输入密码" clear-input></Input>
-   *            </Item>
-   *        </List>
-   *        <Button block @click="closePopSheet">确认</Button>
+   *            </vm-item>
+   *        </vm-list>
+   *        <vm-button block @click="closePopSheet">确认</vm-button>
    *    </section>
    * </PopSheet>
    *
@@ -107,7 +107,7 @@
   const NOOP = () => {}
 
   export default {
-    name: 'PopSheet',
+    name: 'vm-pop-sheet',
     props: {
       enableBackdropDismiss: {
         type: Boolean,

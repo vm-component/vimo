@@ -1,56 +1,56 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>折叠列表</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>折叠列表</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
 
             <div padding>
                 <p>折叠列表不支持重叠组合, 最多只有一级折叠.</p>
             </div>
-            <List>
-                <ListHeader>普通Item</ListHeader>
-                <Item button>
+            <vm-list>
+                <vm-list-header>普通Item</vm-list-header>
+                <vm-item button>
                     <span>你好</span>
-                    <Note slot="item-right">Hello</Note>
-                </Item>
-                <Item button>
+                    <vm-note slot="item-right">Hello</vm-note>
+                </vm-item>
+                <vm-item button>
                     <span>移动端组件库</span>
-                    <Note slot="item-right">Vimo</Note>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>折叠列表</ListHeader>
-                <ItemCollapseGroup>
-                    <ItemCollapse title="Cars">
-                        <Icon slot="item-left" name="car"></Icon>
-                        <Item button>
-                            <Icon slot="item-left" name="wifi"></Icon>
+                    <vm-note slot="item-right">Vimo</vm-note>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>折叠列表</vm-list-header>
+                <vm-item-collapse-group>
+                    <vm-item-collapse title="Cars">
+                        <vm-icon slot="item-left" name="car"></vm-icon>
+                        <vm-item button>
+                            <vm-icon slot="item-left" name="wifi"></vm-icon>
                             Wi-Fi
-                            <Note slot="item-right">XXX-Office</Note>
-                        </Item>
-                        <Item>
-                            <Icon slot="item-left" name="plane"></Icon>
+                            <vm-note slot="item-right">XXX-Office</vm-note>
+                        </vm-item>
+                        <vm-item>
+                            <vm-icon slot="item-left" name="plane"></vm-icon>
                             <span>飞行模式</span>
-                            <Toggle slot="item-right" :checked="true"></Toggle>
-                        </Item>
-                    </ItemCollapse>
-                    <ItemCollapse title="Apple">
-                        <Icon slot="item-left" name="logo-apple"></Icon>
-                        <Note slot="item-right">请选择</Note>
-                        <Item button>MacBook Air</Item>
-                        <Item button>MacBook Pro</Item>
-                        <Item button>iPhone 8</Item>
-                    </ItemCollapse>
-                </ItemCollapseGroup>
-            </List>
+                            <vm-toggle slot="item-right" :checked="true"></vm-toggle>
+                        </vm-item>
+                    </vm-item-collapse>
+                    <vm-item-collapse title="Apple">
+                        <vm-icon slot="item-left" name="logo-apple"></vm-icon>
+                        <vm-note slot="item-right">请选择</vm-note>
+                        <vm-item button>MacBook Air</vm-item>
+                        <vm-item button>MacBook Pro</vm-item>
+                        <vm-item button>iPhone 8</vm-item>
+                    </vm-item-collapse>
+                </vm-item-collapse-group>
+            </vm-list>
 
-            <List>
-                <ListHeader>纯文本</ListHeader>
-                <ItemCollapseGroup accordion>
-                    <ItemCollapse>
+            <vm-list>
+                <vm-list-header>纯文本</vm-list-header>
+                <vm-item-collapse-group accordion>
+                    <vm-item-collapse>
                         <div slot="item-title">
                             文本1
                         </div>
@@ -58,8 +58,8 @@
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, aut autem dolor eligendi eum fugiat illo minima necessitatibus obcaecati omnis quidem repellendus. Aperiam ipsa numquam perspiciatis quod saepe totam ullam.
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, aut autem dolor eligendi eum fugiat illo minima necessitatibus obcaecati omnis quidem repellendus. Aperiam ipsa numquam perspiciatis quod saepe totam ullam.
                         </section>
-                    </ItemCollapse>
-                    <ItemCollapse>
+                    </vm-item-collapse>
+                    <vm-item-collapse>
                         <div slot="item-title">
                             文本2
                         </div>
@@ -67,8 +67,8 @@
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
                         </section>
-                    </ItemCollapse>
-                    <ItemCollapse>
+                    </vm-item-collapse>
+                    <vm-item-collapse>
                         <div slot="item-title">
                             文本3
                         </div>
@@ -76,35 +76,35 @@
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
                         </section>
-                    </ItemCollapse>
-                </ItemCollapseGroup>
-            </List>
-            <List>
-                <ListHeader>手风琴列表(只开启一个)</ListHeader>
-                <ItemCollapseGroup accordion>
-                    <ItemCollapse title="This Is Title1">
-                        <Item>subItem1</Item>
-                        <Item>subItem2</Item>
-                        <Item>subItem3</Item>
-                    </ItemCollapse>
-                    <ItemCollapse>
+                    </vm-item-collapse>
+                </vm-item-collapse-group>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>手风琴列表(只开启一个)</vm-list-header>
+                <vm-item-collapse-group accordion>
+                    <vm-item-collapse title="This Is Title1">
+                        <vm-item>subItem1</vm-item>
+                        <vm-item>subItem2</vm-item>
+                        <vm-item>subItem3</vm-item>
+                    </vm-item-collapse>
+                    <vm-item-collapse>
                         <template slot="item-title">
                             This Is Title2 &ensp;
-                            <Icon name="information-circle"></Icon>
+                            <vm-icon name="information-circle"></vm-icon>
                         </template>
-                        <Item button>subItem1</Item>
-                        <Item button>subItem2</Item>
-                        <Item button>subItem3</Item>
-                    </ItemCollapse>
-                    <ItemCollapse title="This Is Title3">
-                        <Item button>subItem1</Item>
-                        <Item button>subItem2</Item>
-                        <Item button>subItem3</Item>
-                    </ItemCollapse>
-                </ItemCollapseGroup>
-            </List>
-        </Content>
-    </Page>
+                        <vm-item button>subItem1</vm-item>
+                        <vm-item button>subItem2</vm-item>
+                        <vm-item button>subItem3</vm-item>
+                    </vm-item-collapse>
+                    <vm-item-collapse title="This Is Title3">
+                        <vm-item button>subItem1</vm-item>
+                        <vm-item button>subItem2</vm-item>
+                        <vm-item button>subItem3</vm-item>
+                    </vm-item-collapse>
+                </vm-item-collapse-group>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

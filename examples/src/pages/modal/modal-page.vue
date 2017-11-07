@@ -1,20 +1,20 @@
 <template>
-    <Page>
-        <Header>
-            <Toolbar>
-                <Buttons end slot="buttons">
-                    <Button role="bar-button" type="solid" @click="closeModal">
+    <vm-page>
+        <vm-header>
+            <vm-toolbar>
+                <vm-buttons end slot="buttons">
+                    <vm-button role="bar-button" type="solid" @click="closeModal">
                         Close
-                    </Button>
-                </Buttons>
-                <Title>测试页面</Title>
-            </Toolbar>
-        </Header>
-        <Content padding ref="content">
+                    </vm-button>
+                </vm-buttons>
+                <vm-title>测试页面</vm-title>
+            </vm-toolbar>
+        </vm-header>
+        <vm-content padding ref="content">
             <h5>说明</h5>
             <p>Hello, 这里是 Modal 测试页面, 这个页面具有Page组件的完整特性!</p>
-            <Button block @click="closeModal">关闭Modal</Button>
-            <Button block @click="scrollToBottom">滚动到底部</Button>
+            <vm-button block @click="closeModal">关闭Modal</vm-button>
+            <vm-button block @click="scrollToBottom">滚动到底部</vm-button>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
             <p>
@@ -33,17 +33,17 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
-            <Button block @click="scrollToTop">滚动到顶部</Button>
+            <vm-button block @click="scrollToTop">滚动到顶部</vm-button>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolor dolore excepturi in itaque iure, magni minima nam officia porro possimus quaerat quos similique sint unde velit vero vitae voluptatibus.
             </p>
-        </Content>
-        <Footer>
-            <Toolbar>
-                <Title>Modal Toolbar Footer</Title>
-            </Toolbar>
-        </Footer>
-    </Page>
+        </vm-content>
+        <vm-footer>
+            <vm-toolbar>
+                <vm-title>Modal Toolbar Footer</vm-title>
+            </vm-toolbar>
+        </vm-footer>
+    </vm-page>
 </template>
 
 <script type="text/javascript">

@@ -20,16 +20,16 @@
    *
    * 组合关系如下, img的宽度为 width: 100%
    * ```
-   * <Card>
+   * <vm-card>
    *    <img src="">
-   *    <CardHeader>
-   *         <CardTitle>CardTitle</CardTitle>
-   *    </CardHeader>
-   *    <CardContent>
-   *        <CardTitle>CardTitle</CardTitle>
+   *    <vm-card-header>
+   *         <vm-card-title>CardTitle</vm-card-title>
+   *    </vm-card-header>
+   *    <vm-card-content>
+   *        <vm-card-title>CardTitle</vm-card-title>
    *        <p>CardContent</p>
-   *    </CardContent>
-   * </Card>
+   *    </vm-card-content>
+   * </vm-card>
    * ```
    *
    * #### CardHeader
@@ -71,7 +71,7 @@
    * */
   import mixin from './mixin'
   export default{
-    name: 'Card',
+    name: 'vm-card',
     data () {
       return {
         componentName: 'card'

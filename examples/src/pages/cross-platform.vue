@@ -1,19 +1,19 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar ref="navbar" color="primary">
-                <Title ref="title" @onTitleClick="onTitleClickHandler">API Test</Title>
-                <Buttons right slot="buttons">
-                    <Button @click="personHandler" role="bar-button">
-                        <Icon name="icon-vue"></Icon>
-                    </Button>
-                    <Button @click="showPopMenu" role="bar-button">
-                        <Icon name="icon-vimo"></Icon>
-                    </Button>
-                </Buttons>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar ref="navbar" color="primary">
+                <vm-title ref="title" @onTitleClick="onTitleClickHandler">API Test</vm-title>
+                <vm-buttons right slot="buttons">
+                    <vm-button @click="personHandler" role="bar-button">
+                        <vm-icon name="icon-vue"></vm-icon>
+                    </vm-button>
+                    <vm-button @click="showPopMenu" role="bar-button">
+                        <vm-icon name="icon-vimo"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
             <h1>跨平台组件</h1>
             <p>第一点, 并不是所有组件都支持跨平台. 跨平台是指使用H5的组件能打开其余平台的UI控件. 比如: H5使用Alert组件在业务中书写, 如果配置正确, 则在钉钉和支付宝中打开平台对应的alert组件.</p>
             <p>所以, <strong>其他平台支持的UI控件 + 能用H5实现的 = 跨平台组件</strong></p>
@@ -22,60 +22,60 @@
             <h4>弹窗组件</h4>
             <!--提示框 Alert-->
             <strong>提示框 Alert</strong>
-            <Button block @click="openAlert()">Alert</Button>
+            <vm-button block @click="openAlert()">Alert</vm-button>
             <strong>结果</strong>
             <p class="result">{{alertResult}}</p>
             <!--确认框 Confirm-->
             <strong>确认框 Confirm</strong>
-            <Button block @click="openConfirm">Confirm</Button>
+            <vm-button block @click="openConfirm">Confirm</vm-button>
             <strong>结果</strong>
             <p class="result">{{confirmResult}}</p>
             <!--输入框 Prompt-->
             <strong>输入框 Prompt</strong>
-            <Button block @click="openPrompt">Prompt</Button>
+            <vm-button block @click="openPrompt">Prompt</vm-button>
             <strong>结果</strong>
             <p class="result">{{promptResult}}</p>
             <!--震动 Vibrate-->
             <strong>震动 Vibrate(Android Only)</strong>
-            <Button block @click="vibrate">Vibrate</Button>
+            <vm-button block @click="vibrate">Vibrate</vm-button>
             <strong>结果</strong>
             <p class="result">{{vibrateResult}}</p>
             <!--等待 Loading-->
             <strong>等待 Loading</strong>
-            <Button block @click="openLoading">Loading</Button>
+            <vm-button block @click="openLoading">Loading</vm-button>
             <strong>结果</strong>
             <p class="result">{{loadingResult}}</p>
             <!--弱提示 Toast-->
             <strong>弱提示 Toast</strong>
-            <Button block @click="openToast">Toast</Button>
+            <vm-button block @click="openToast">Toast</vm-button>
             <strong>结果</strong>
             <p class="result">{{toastResult}}</p>
             <!--选择器 ActionSheet-->
             <strong>选择器 ActionSheet</strong>
-            <Button block @click="openActionSheet">ActionSheet</Button>
+            <vm-button block @click="openActionSheet">ActionSheet</vm-button>
             <strong>结果</strong>
             <p class="result">{{actionsheetResult}}</p>
 
             <h5>导航栏</h5>
-            <Button block @click="btnTitle">设置标题文字</Button>
-            <Button block @click="btnImage">设置标题图片(url)</Button>
-            <Button block @click="showOptionButton">显示右侧按钮</Button>
-            <Button block @click="hideOptionButton">隐藏右侧按钮</Button>
-            <Button block @click="btnReset">重置导航栏</Button>
-            <Button block @click="showPopMenu">显示右侧按钮菜单</Button>
+            <vm-button block @click="btnTitle">设置标题文字</vm-button>
+            <vm-button block @click="btnImage">设置标题图片(url)</vm-button>
+            <vm-button block @click="showOptionButton">显示右侧按钮</vm-button>
+            <vm-button block @click="hideOptionButton">隐藏右侧按钮</vm-button>
+            <vm-button block @click="btnReset">重置导航栏</vm-button>
+            <vm-button block @click="showPopMenu">显示右侧按钮菜单</vm-button>
 
             <h5>选择器Picker</h5>
             <p>选择的数据: {{smoothie}}</p>
-            <Button block @click="oneColumns">单列Picker</Button>
-            <Button block @click="twoColumns">双列Picker</Button>
+            <vm-button block @click="oneColumns">单列Picker</vm-button>
+            <vm-button block @click="twoColumns">双列Picker</vm-button>
 
             <h5>图片预览</h5>
-            <Button block @click="openAlbum">图片预览</Button>
+            <vm-button block @click="openAlbum">图片预览</vm-button>
             <h5>城市选择</h5>
-            <Button block @click="$router.push({name:'chooseCity'})">城市选择</Button>
+            <vm-button block @click="$router.push({name:'chooseCity'})">城市选择</vm-button>
 
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

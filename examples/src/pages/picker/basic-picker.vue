@@ -1,29 +1,29 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Basic</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Basic</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
 
             <h5>简介</h5>
             <p>Picker组件将顶部的button和每列的属性都发放给外部进行自定义, 此外, 每列的columns可以附加前缀和后缀, 比如说明这列是Hour, 右边列是Minus等, 另外, 列的宽度也可定义.</p>
 
-            <Button block @click="simpleColumns">simple</Button>
-            <Button block @click="oneColumns">1 Columns</Button>
-            <Button block @click="twoColumns">2 Columns</Button>
-            <Button block @click="threeColumns">3 Columns</Button>
-            <Button block @click="prefixLabel">Prefix Label</Button>
-            <Button block @click="suffixLabel">Suffix Label</Button>
-            <Button block @click="columnSizes">Columns with sizes</Button>
+            <vm-button block @click="simpleColumns">simple</vm-button>
+            <vm-button block @click="oneColumns">1 Columns</vm-button>
+            <vm-button block @click="twoColumns">2 Columns</vm-button>
+            <vm-button block @click="threeColumns">3 Columns</vm-button>
+            <vm-button block @click="prefixLabel">Prefix Label</vm-button>
+            <vm-button block @click="suffixLabel">Suffix Label</vm-button>
+            <vm-button block @click="columnSizes">Columns with sizes</vm-button>
 
             <p padding>
                 <code>Smoothie: {{ smoothie }}</code><br>
                 <code>Timer: {{ timer }}</code><br>
             </p>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

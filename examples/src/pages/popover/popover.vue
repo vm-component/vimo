@@ -1,17 +1,17 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>this.$popover</Title>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>this.$popover</vm-title>
                 <!--menutoggle-->
-                <Buttons slot="buttons" right>
-                    <Button icon-only role="bar-button" menutoggle @click="openSetting($event)">
-                        <Icon class="icon" name="more" color="dark"></Icon>
-                    </Button>
-                </Buttons>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content" ref="content">
+                <vm-buttons slot="buttons" right>
+                    <vm-button icon-only role="bar-button" menutoggle @click="openSetting($event)">
+                        <vm-icon class="icon" name="more" color="dark"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content" ref="content">
 
             <h5>简介</h5>
             <p>Popover组件是作用是,</p>
@@ -58,8 +58,8 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aut corporis culpa dolor esse eveniet exercitationem fuga hic illum incidunt ipsa minima nam optio quia sint, tempore veritatis. Deleniti, rem.</p>
 
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .specialText {

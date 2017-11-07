@@ -121,7 +121,7 @@
   import REGEXP from '../../util/regexp'
 
   export default {
-    name: 'Input',
+    name: 'vm-input',
     components: {
       'vm-button': Button
     },

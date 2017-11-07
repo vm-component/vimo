@@ -9,7 +9,7 @@
 </style>
 <script type="text/javascript">
   export default {
-    name: 'Icon',
+    name: 'vm-icon',
     props: {
       /**
        * 指定图标使用模式

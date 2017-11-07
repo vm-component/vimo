@@ -1,184 +1,184 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Buttons left slot="buttons">
-                    <Button icon-only role="bar-button" @click="toolbarButtonClick('contact')">
-                        <Icon class="icon" name="contact"></Icon>
-                    </Button>
-                    <Button icon-only role="bar-button" @click="toolbarButtonClick('more')">
-                        <Icon class="icon" name="more"></Icon>
-                    </Button>
-                </Buttons>
-                <Title>Toolbar</Title>
-                <Buttons end slot="buttons">
-                    <Button icon-only role="bar-button" @click="toolbarButtonClick('search')">
-                        <Icon class="icon" name="search"></Icon>
-                    </Button>
-                </Buttons>
-            </Navbar>
-        </Header>
-        <Content>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-buttons left slot="buttons">
+                    <vm-button icon-only role="bar-button" @click="toolbarButtonClick('contact')">
+                        <vm-icon class="icon" name="contact"></vm-icon>
+                    </vm-button>
+                    <vm-button icon-only role="bar-button" @click="toolbarButtonClick('more')">
+                        <vm-icon class="icon" name="more"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
+                <vm-title>Toolbar</vm-title>
+                <vm-buttons end slot="buttons">
+                    <vm-button icon-only role="bar-button" @click="toolbarButtonClick('search')">
+                        <vm-icon class="icon" name="search"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
+            </vm-navbar>
+        </vm-header>
+        <vm-content>
             <div padding>
                 <h1>Toolbar组件</h1>
                 <p>组件用于放置Title/Segment/Searchbar等组件, 也可以放置操作的按钮. 可定义slot插槽决定摆放的位置.</p>
                 <p>Toolbar组件不同于Navbar组件, 前者可放置在任何位置, 且只有展示的功能.</p>
             </div>
             <!--1-->
-            <Toolbar color="primary">
+            <vm-toolbar color="primary">
                 <!--title-->
-                <Title>This is a long title long title</Title>
-            </Toolbar>
+                <vm-title>This is a long title long title</vm-title>
+            </vm-toolbar>
 
             <!--2-->
-            <Toolbar color="danger">
+            <vm-toolbar color="danger">
                 <!--start-->
-                <Buttons start slot="buttons">
-                    <Button icon-only role="bar-button">
-                        <Icon class="icon" name="contact"></Icon>
-                    </Button>
-                    <Button icon-only role="bar-button">
-                        <Icon class="icon" name="search"></Icon>
-                    </Button>
-                </Buttons>
+                <vm-buttons start slot="buttons">
+                    <vm-button icon-only role="bar-button">
+                        <vm-icon class="icon" name="contact"></vm-icon>
+                    </vm-button>
+                    <vm-button icon-only role="bar-button">
+                        <vm-icon class="icon" name="search"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
                 <!--start-->
-                <Buttons end slot="buttons">
-                    <Button icon-only role="bar-button">
-                        <Icon class="icon" name="more"></Icon>
-                    </Button>
-                </Buttons>
+                <vm-buttons end slot="buttons">
+                    <vm-button icon-only role="bar-button">
+                        <vm-icon class="icon" name="more"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
                 <!--title-->
-                <Title>My Toolbar Title</Title>
-            </Toolbar>
+                <vm-title>My Toolbar Title</vm-title>
+            </vm-toolbar>
 
             <!--3-->
-            <Toolbar>
+            <vm-toolbar>
                 <!--start-->
-                <Buttons start slot="buttons">
-                    <Button icon-only role="bar-button" color="danger">
-                        <Icon class="icon" name="contact"></Icon>
-                    </Button>
-                </Buttons>
-                <Buttons start slot="buttons">
-                    <Button icon-only role="bar-button" color="secondary">
-                        <Icon class="icon" name="search"></Icon>
-                    </Button>
-                </Buttons>
+                <vm-buttons start slot="buttons">
+                    <vm-button icon-only role="bar-button" color="danger">
+                        <vm-icon class="icon" name="contact"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
+                <vm-buttons start slot="buttons">
+                    <vm-button icon-only role="bar-button" color="secondary">
+                        <vm-icon class="icon" name="search"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
                 <!--end-->
-                <Buttons end slot="buttons">
-                    <Button icon-only role="bar-button" color="danger">
-                        <Icon class="icon" name="more"></Icon>
-                    </Button>
-                </Buttons>
+                <vm-buttons end slot="buttons">
+                    <vm-button icon-only role="bar-button" color="danger">
+                        <vm-icon class="icon" name="more"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
                 <!--title-->
-                <Title>My Toolbar Title</Title>
-            </Toolbar>
+                <vm-title>My Toolbar Title</vm-title>
+            </vm-toolbar>
 
             <!--4-->
-            <Toolbar>
+            <vm-toolbar>
                 <!--start-->
-                <Buttons start slot="buttons">
-                    <Button icon-only role="bar-button" type="solid">
-                        <Icon class="icon" name="contact"></Icon>
-                    </Button>
-                </Buttons>
+                <vm-buttons start slot="buttons">
+                    <vm-button icon-only role="bar-button" type="solid">
+                        <vm-icon class="icon" name="contact"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
 
                 <!--end-->
-                <Buttons end slot="buttons">
-                    <Button icon-right role="bar-button" color="secondary" type="solid">
+                <vm-buttons end slot="buttons">
+                    <vm-button icon-right role="bar-button" color="secondary" type="solid">
                         <span>Help</span>
-                        <Icon class="icon" name="help-circle"></Icon>
-                    </Button>
-                </Buttons>
+                        <vm-icon class="icon" name="help-circle"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
                 <!--title-->
-                <Title>Solid</Title>
-            </Toolbar>
+                <vm-title>Solid</vm-title>
+            </vm-toolbar>
 
             <!--5-->
-            <Toolbar>
+            <vm-toolbar>
                 <!--start-->
-                <Buttons start slot="buttons">
-                    <Button icon-only role="bar-button" outline>
-                        <Icon class="icon" name="contact"></Icon>
-                    </Button>
-                </Buttons>
-                <Buttons start slot="buttons">
-                    <Button icon-only role="bar-button" outline color="danger">
-                        <Icon class="icon" name="contact"></Icon>
-                    </Button>
-                </Buttons>
+                <vm-buttons start slot="buttons">
+                    <vm-button icon-only role="bar-button" outline>
+                        <vm-icon class="icon" name="contact"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
+                <vm-buttons start slot="buttons">
+                    <vm-button icon-only role="bar-button" outline color="danger">
+                        <vm-icon class="icon" name="contact"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
 
                 <!--end-->
-                <Buttons end slot="buttons">
-                    <Button icon-right role="bar-button" color="secondary" outline>
+                <vm-buttons end slot="buttons">
+                    <vm-button icon-right role="bar-button" color="secondary" outline>
                         <span>Help</span>
-                        <Icon class="icon" name="help-circle"></Icon>
-                    </Button>
-                </Buttons>
+                        <vm-icon class="icon" name="help-circle"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
                 <!--title-->
-                <Title>Outline</Title>
-            </Toolbar>
+                <vm-title>Outline</vm-title>
+            </vm-toolbar>
 
             <!--6-->
-            <Toolbar>
+            <vm-toolbar>
                 <!--menutoggle-->
-                <Button left icon-only role="bar-button" menutoggle slot="buttons">
-                    <Icon class="icon" name="menu"></Icon>
-                </Button>
+                <vm-button left icon-only role="bar-button" menutoggle slot="buttons">
+                    <vm-icon class="icon" name="menu"></vm-icon>
+                </vm-button>
                 <!--title-->
-                <Title>Left Menu</Title>
-            </Toolbar>
+                <vm-title>Left Menu</vm-title>
+            </vm-toolbar>
 
             <!--7-->
-            <Toolbar>
+            <vm-toolbar>
                 <!--menutoggle-->
-                <Button right icon-only role="bar-button" menutoggle slot="buttons">
-                    <Icon class="icon" name="menu"></Icon>
-                </Button>
+                <vm-button right icon-only role="bar-button" menutoggle slot="buttons">
+                    <vm-icon class="icon" name="menu"></vm-icon>
+                </vm-button>
                 <!--title-->
-                <Title>Right Menu</Title>
-            </Toolbar>
+                <vm-title>Right Menu</vm-title>
+            </vm-toolbar>
 
             <!--7-->
-            <Toolbar>
+            <vm-toolbar>
                 <!--menutoggle-->
-                <Buttons end slot="buttons">
-                    <Button icon-only role="bar-button">
-                        <Icon class="icon" name="search"></Icon>
-                    </Button>
-                </Buttons>
+                <vm-buttons end slot="buttons">
+                    <vm-button icon-only role="bar-button">
+                        <vm-icon class="icon" name="search"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
                 <!--title-->
-                <Title>Right Menu</Title>
-            </Toolbar>
+                <vm-title>Right Menu</vm-title>
+            </vm-toolbar>
 
             <!--8-->
-            <Toolbar>
+            <vm-toolbar>
                 <!--menutoggle-->
-                <Buttons end slot="buttons">
-                    <Button icon-only role="bar-button">
-                        <Icon class="icon" name="search"></Icon>
-                    </Button>
-                </Buttons>
+                <vm-buttons end slot="buttons">
+                    <vm-button icon-only role="bar-button">
+                        <vm-icon class="icon" name="search"></vm-icon>
+                    </vm-button>
+                </vm-buttons>
                 <!--content-->
-                <Segment :value="relationship8" @ionChange="onSegmentChange8" color="danger">
-                    <SegmentButton value="friend1" @ionSelect="onSelectChangeFriend1">friend1</SegmentButton>
-                    <SegmentButton value="friend2" @ionSelect="onSelectChangeFriend2">friend2</SegmentButton>
-                </Segment>
-            </Toolbar>
+                <vm-segment :value="relationship8" @ionChange="onSegmentChange8" color="danger">
+                    <vm-segment-button value="friend1" @ionSelect="onSelectChangeFriend1">friend1</vm-segment-button>
+                    <vm-segment-button value="friend2" @ionSelect="onSelectChangeFriend2">friend2</vm-segment-button>
+                </vm-segment>
+            </vm-toolbar>
 
             <!--9-->
-            <Toolbar>
+            <vm-toolbar>
                 <!--content-->
-                <Segment :value="relationship9" @ionChange="onSegmentChange9">
-                    <SegmentButton value="friend1">friend1</SegmentButton>
-                    <SegmentButton value="friend2">friend2</SegmentButton>
-                    <SegmentButton value="friend3">friend2</SegmentButton>
-                </Segment>
-            </Toolbar>
+                <vm-segment :value="relationship9" @ionChange="onSegmentChange9">
+                    <vm-segment-button value="friend1">friend1</vm-segment-button>
+                    <vm-segment-button value="friend2">friend2</vm-segment-button>
+                    <vm-segment-button value="friend3">friend2</vm-segment-button>
+                </vm-segment>
+            </vm-toolbar>
 
 
             <!--10-->
-            <Toolbar>
+            <vm-toolbar>
                 <Searchbar :animated="true"
                            :debounce="1000"
                            mode="ios"
@@ -190,10 +190,10 @@
                            @ionBlur="onBlur"
                            @ionCancel="onCancel"
                            @ionClear="onClear"></Searchbar>
-            </Toolbar>
+            </vm-toolbar>
 
             <!--11-->
-            <Toolbar color="primary">
+            <vm-toolbar color="primary">
                 <Searchbar :animated="true"
                            :debounce="1000"
                            v-model="myInput"
@@ -204,10 +204,10 @@
                            @ionBlur="onBlur"
                            @ionCancel="onCancel"
                            @ionClear="onClear"></Searchbar>
-            </Toolbar>
-        </Content>
-        <Footer>
-            <Toolbar>
+            </vm-toolbar>
+        </vm-content>
+        <vm-footer>
+            <vm-toolbar>
                 <Searchbar :animated="true"
                            :debounce="1000"
                            v-model="myInput"
@@ -218,9 +218,9 @@
                            @ionBlur="onBlur"
                            @ionCancel="onCancel"
                            @ionClear="onClear"></Searchbar>
-            </Toolbar>
-        </Footer>
-    </Page>
+            </vm-toolbar>
+        </vm-footer>
+    </vm-page>
 </template>
 <style lang="less">
     .main {

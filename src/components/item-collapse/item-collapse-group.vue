@@ -14,7 +14,7 @@
    *
    * */
   export default {
-    name: 'ItemCollapseGroup',
+    name: 'vm-item-collapse-group',
     props: {
       accordion: Boolean
     },

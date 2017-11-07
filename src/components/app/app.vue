@@ -113,7 +113,7 @@
 
   let scrollDisTimer = null                     // 计时器
   export default {
-    name: 'App',
+    name: 'vm-app',
     data () {
       return {
         disabledTimeRecord: 0,          // 禁用计时
@@ -246,8 +246,8 @@
       }
     },
     created () {
-      console.assert(this.$platform, `The Component of <App> need 'platform' instance`)
-      console.assert(this.$config, `The Component of <App> need 'config' instance`)
+      console.assert(this.$platform, `The Component of <vm-app> need 'platform' instance`)
+      console.assert(this.$config, `The Component of <vm-app> need 'config' instance`)
 
       /**
        * $app对外方法
@@ -270,6 +270,7 @@
       this.isClickBlockEnabled = true
     },
     mounted () {
+      console.log('mounted')
       if (window.VM) {
         window.VM.$app = this
         // 用于判断组件是否在VM的组件树中

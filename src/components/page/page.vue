@@ -68,22 +68,22 @@
    * @usage
    *
    * <template>
-   *    <Page>
-   *        <Header>
-   *            <Navbar>
-   *                <Title>Demo</Title>
-   *            </Navbar>
-   *        </Header>
-   *        <Content>
+   *    <vm-page>
+   *        <vm-header>
+   *            <vm-navbar>
+   *                <vm-title>Demo</vm-title>
+   *            </vm-navbar>
+   *        </vm-header>
+   *        <vm-content>
    *            <h1>这里是内容</h1>
-   *        </Content>
-   *    </Page>
+   *        </vm-content>
+   *    </vm-page>
    * </template>
    *
    * */
   let initPageZIndex = 1000
   export default{
-    name: 'Page',
+    name: 'vm-page',
     data () {
       return {
         pageZIndex: 0

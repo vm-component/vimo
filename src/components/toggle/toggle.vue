@@ -9,12 +9,12 @@
         <div class="toggle-icon" :class="{'toggle-checked':isChecked,'toggle-activated':activated}">
             <div class="toggle-inner"></div>
         </div>
-        <button role="checkbox"
+        <vm-button role="checkbox"
                 type="button"
                 ion-button="item-cover"
                 :id="id"
                 class="item-cover">
-        </button>
+        </vm-button>
     </div>
 </template>
 <script type="text/javascript">
@@ -53,37 +53,37 @@
    * @fires component:Toggle#onChange
    * @demo #/toggle
    * @usage
-   * <List>
-   *    <ListHeader>
+   * <vm-list>
+   *    <vm-list-header>
    *        普通使用
-   *    </ListHeader>
-   *    <Item>
+   *    </vm-list-header>
+   *    <vm-item>
    *        Toggle Normal
-   *        <Toggle slot="item-right"></Toggle>
-   *    </Item>
-   *    <Item>
+   *        <vm-toggle slot="item-right"></vm-toggle>
+   *    </vm-item>
+   *    <vm-item>
    *        Red Toggle
-   *        <Toggle slot="item-right" color="danger"></Toggle>
-   *    </Item>
-   *    <Item>
+   *        <vm-toggle slot="item-right" color="danger"></vm-toggle>
+   *    </vm-item>
+   *    <vm-item>
    *        Toggle Open
-   *        <Toggle slot="item-right"></Toggle>
-   *    </Item>
-   *    <Item>
+   *        <vm-toggle slot="item-right"></vm-toggle>
+   *    </vm-item>
+   *    <vm-item>
    *        Toggle Close
-   *        <Toggle slot="item-right"></Toggle>
-   *    </Item>
-   *    <Item>
+   *        <vm-toggle slot="item-right"></vm-toggle>
+   *    </vm-item>
+   *    <vm-item>
    *        Toggle Disabled
-   *        <Toggle slot="item-right" v-model="checked"></Toggle>
-   *    </Item>
-   * </List>
+   *        <vm-toggle slot="item-right" v-model="checked"></vm-toggle>
+   *    </vm-item>
+   * </vm-list>
    *
    * */
   import { setElementClass } from '../../util/util'
 
   export default {
-    name: 'Toggle',
+    name: 'vm-toggle',
     data () {
       return {
         isChecked: this.value,       // 选中状态

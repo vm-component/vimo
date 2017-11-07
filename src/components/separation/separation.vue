@@ -63,7 +63,7 @@
    * @usage
    *
    * <Separation>
-   *    <Icon name="logo-chrome" small></Icon>
+   *    <vm-icon name="logo-chrome" small></vm-icon>
    *    <span>I Love Chrome</span>
    * </Separation>
    *

@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>城市选择器</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>城市选择器</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
 
             <h5>简介</h5>
             <p>
@@ -14,9 +14,9 @@
             <h5>Picker组件</h5>
             <p><strong>初始值: </strong>{{selectedCity}}</p>
             <p><strong>当前选择的值</strong>: {{province}}-{{city}}-{{district}}</p>
-            <Button block @click="openCityPicker">城市选择</Button>
-        </Content>
-    </Page>
+            <vm-button block @click="openCityPicker">城市选择</vm-button>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less"></style>
 <script type="text/javascript">

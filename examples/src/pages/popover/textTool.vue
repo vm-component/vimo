@@ -1,75 +1,75 @@
 <template>
-    <Content>
-        <List radio-group v-model="fontFamily" @onChange="changeFontFamily">
-            <Row no-padding>
-                <Column no-padding>
-                    <Item role="popover-dot" class="text-button popover-text-smaller"
+    <vm-content>
+        <vm-list radio-group v-model="fontFamily" @onChange="changeFontFamily">
+            <vm-row no-padding>
+                <vm-col no-padding>
+                    <vm-item role="popover-dot" class="text-button popover-text-smaller"
                           @click.native="changeFontSize('smaller')">
                         <div text-center class="block">A</div>
-                    </Item>
-                </Column>
-                <Column no-padding>
-                    <Item role="popover-dot" class="text-button popover-text-larger"
+                    </vm-item>
+                </vm-col>
+                <vm-col no-padding>
+                    <vm-item role="popover-dot" class="text-button popover-text-larger"
                           @click.native="changeFontSize('larger')">
                         <div text-center class="block">A</div>
-                    </Item>
-                </Column>
-            </Row>
-            <Row no-padding class="row-dots">
-                <Column no-padding>
+                    </vm-item>
+                </vm-col>
+            </vm-row>
+            <vm-row no-padding class="row-dots">
+                <vm-col no-padding>
                     <div class="popover-dot-box" :class="{'selected':background == 'white'}" @click="changeBackground('white')">
-                        <Button role="popover-dot" class="popover-dot-white"></Button>
+                        <vm-button role="popover-dot" class="popover-dot-white"></vm-button>
                     </div>
-                </Column>
-                <Column no-padding>
+                </vm-col>
+                <vm-col no-padding>
                     <div class="popover-dot-box" :class="{'selected':background == 'tan'}" @click="changeBackground('tan')">
-                        <Button role="popover-dot" class="popover-dot-tan"></Button>
+                        <vm-button role="popover-dot" class="popover-dot-tan"></vm-button>
                     </div>
-                </Column>
-                <Column no-padding>
+                </vm-col>
+                <vm-col no-padding>
                     <div class="popover-dot-box" :class="{'selected':background == 'grey'}" @click="changeBackground('grey')">
-                        <Button role="popover-dot" class="popover-dot-grey"></Button>
+                        <vm-button role="popover-dot" class="popover-dot-grey"></vm-button>
                     </div>
-                </Column>
-                <Column no-padding>
+                </vm-col>
+                <vm-col no-padding>
                     <div class="popover-dot-box" :class="{'selected':background == 'black'}" @click="changeBackground('black')">
-                        <Button role="popover-dot" class="popover-dot-black"></Button>
+                        <vm-button role="popover-dot" class="popover-dot-black"></vm-button>
                     </div>
-                </Column>
-            </Row>
-            <ItemDivider color="dark">
-                <Label>Font Family</Label>
-            </ItemDivider>
-            <Item class="text-athelas">
-                <Label>Athelas</Label>
-                <Radio slot="item-left" value="Athelas"></Radio>
-            </Item>
-            <Item class="text-charter">
-                <Label>Charter</Label>
-                <Radio slot="item-left" value="Charter"></Radio>
-            </Item>
-            <Item class="text-iowan">
-                <Label>Iowan</Label>
-                <Radio slot="item-left" value="Iowan"></Radio>
-            </Item>
-            <Item class="text-palatino">
-                <Label>Palatino</Label>
-                <Radio slot="item-left" value="Palatino"></Radio>
-            </Item>
-            <Item class="text-san-francisco">
-                <Label>San Francisco</Label>
-                <Radio slot="item-left" value="San Francisco"></Radio>
-            </Item>
-            <Item class="text-seravek">
-                <Label>Seravek</Label>
-                <Radio slot="item-left" value="Seravek"></Radio>
-            </Item>
-            <Item class="text-times-new-roman">
-                <Label>Times New Roman</Label>
-                <Radio slot="item-left" value="Times New Roman"></Radio>
-            </Item>
-        </List>
-    </Content>
+                </vm-col>
+            </vm-row>
+            <vm-item-divider color="dark">
+                <vm-label>Font Family</vm-label>
+            </vm-item-divider>
+            <vm-item class="text-athelas">
+                <vm-label>Athelas</vm-label>
+                <vm-radio slot="item-left" value="Athelas"></vm-radio>
+            </vm-item>
+            <vm-item class="text-charter">
+                <vm-label>Charter</vm-label>
+                <vm-radio slot="item-left" value="Charter"></vm-radio>
+            </vm-item>
+            <vm-item class="text-iowan">
+                <vm-label>Iowan</vm-label>
+                <vm-radio slot="item-left" value="Iowan"></vm-radio>
+            </vm-item>
+            <vm-item class="text-palatino">
+                <vm-label>Palatino</vm-label>
+                <vm-radio slot="item-left" value="Palatino"></vm-radio>
+            </vm-item>
+            <vm-item class="text-san-francisco">
+                <vm-label>San Francisco</vm-label>
+                <vm-radio slot="item-left" value="San Francisco"></vm-radio>
+            </vm-item>
+            <vm-item class="text-seravek">
+                <vm-label>Seravek</vm-label>
+                <vm-radio slot="item-left" value="Seravek"></vm-radio>
+            </vm-item>
+            <vm-item class="text-times-new-roman">
+                <vm-label>Times New Roman</vm-label>
+                <vm-radio slot="item-left" value="Times New Roman"></vm-radio>
+            </vm-item>
+        </vm-list>
+    </vm-content>
 </template>
 <style scoped lang="less">
 

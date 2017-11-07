@@ -1,10 +1,10 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>下划线</Title>
-            </Navbar>
-        </Header>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>下划线</vm-title>
+            </vm-navbar>
+        </vm-header>
         <Tabs mode="md" :tabsHighlight="true" tabsLayout="icon-top" tabsPlacement="bottom">
             <router-view></router-view>
             <Tab slot="tab" :to="{name:'tabHighLight.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger"
@@ -14,7 +14,7 @@
             <Tab slot="tab" :to="{name:'tabHighLight.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star"
                  :enabled="true"></Tab>
         </Tabs>
-    </Page>
+    </vm-page>
 </template>
 <style scoped lang="less"></style>
 <script type="text/javascript">

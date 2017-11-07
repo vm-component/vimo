@@ -2,13 +2,13 @@
     <div class="ion-refresher-content">
         <div class="refresher-pulling">
             <div class="refresher-pulling-icon" v-if="pullingIcon">
-                <Icon :name="pullingIcon"></Icon>
+                <vm-icon :name="pullingIcon"></vm-icon>
             </div>
             <div class="refresher-pulling-text" v-html="pullingText" v-if="pullingText"></div>
         </div>
         <div class="refresher-refreshing">
             <div class="refresher-refreshing-icon">
-                <Spinner :name="refreshingSpinner"></Spinner>
+                <vm-spinner :name="refreshingSpinner"></vm-spinner>
             </div>
             <div class="refresher-refreshing-text" v-html="refreshingText" v-if="refreshingText"></div>
         </div>
@@ -38,7 +38,7 @@
   import Icon from '../icon/index'
   import Spinner from '../spinner/index'
   export default{
-    name: 'RefresherContent',
+    name: 'vm-refresher-content',
     props: {
       pullingIcon: {
         type: String,

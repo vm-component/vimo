@@ -1,25 +1,25 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Event</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List>
-                <ListHeader>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Event</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list>
+                <vm-list-header>
                     <span>事件测试</span>
-                </ListHeader>
-                <Item>
-                    <Label color="primary">短文本</Label>
+                </vm-list-header>
+                <vm-item>
+                    <vm-label color="primary">短文本</vm-label>
                     <Textarea @onKeyup.enter="submit"
                               autosize
                               @onBlur="onBlurtHandler"
                               @onFocus="onFocusHandler"
                               @onInput="onInputHandler"
                               placeholder="请输入..."></Textarea>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
             <p class="event__p">
                 <strong>触发记录:</strong>
             </p>
@@ -31,8 +31,8 @@
                 </li>
                 <li v-if="eventListDisplay.length === 0">空</li>
             </ul>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default {

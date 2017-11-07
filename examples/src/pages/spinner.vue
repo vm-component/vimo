@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Spinner</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Spinner</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
             <h1>Spinner组件</h1>
             <p>嗯, 菊花图...</p>
 
@@ -56,8 +56,8 @@
             <Spinner :paused="true" name="circles"></Spinner>
             <Spinner :paused="true" name="crescent"></Spinner>
             <Spinner :paused="true" name="dots"></Spinner>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
 </style>

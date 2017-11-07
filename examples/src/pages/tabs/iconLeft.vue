@@ -1,10 +1,10 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>ICON在左边</Title>
-            </Navbar>
-        </Header>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>ICON在左边</vm-title>
+            </vm-navbar>
+        </vm-header>
         <Tabs tabsLayout="icon-left" tabsPlacement="bottom">
             <router-view></router-view>
             <Tab slot="tab" :to="{name:'iconLeft.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger"
@@ -14,7 +14,7 @@
             <Tab slot="tab" :to="{name:'iconLeft.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star"
                  :enabled="true"></Tab>
         </Tabs>
-    </Page>
+    </vm-page>
 </template>
 <style scoped lang="less"></style>
 <script type="text/javascript">

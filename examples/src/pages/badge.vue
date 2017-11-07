@@ -1,43 +1,43 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Badage</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Badage</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
             <div padding>
                 <h5>
-                    <Badge>组件</Badge>&ensp;简介
+                    <vm-badge>组件</vm-badge>&ensp;简介
                 </h5>
             </div>
 
-            <List>
-                <ListHeader>菜单</ListHeader>
-                <Item button>
+            <vm-list>
+                <vm-list-header>菜单</vm-list-header>
+                <vm-item button>
                     <span>西红柿炒鸡蛋</span>
-                    <Badge slot="item-right">new</Badge>
-                </Item>
-                <Item button>
+                    <vm-badge slot="item-right">new</vm-badge>
+                </vm-item>
+                <vm-item button>
                     <span>牛肉面</span>
-                    <Badge slot="item-right" color="danger">Top5</Badge>
-                </Item>
-                <Item button>
+                    <vm-badge slot="item-right" color="danger">Top5</vm-badge>
+                </vm-item>
+                <vm-item button>
                     <span>肉夹馍</span>
-                    <Badge slot="item-right" color="secondary">陕西</Badge>
-                </Item>
-                <Item button>
+                    <vm-badge slot="item-right" color="secondary">陕西</vm-badge>
+                </vm-item>
+                <vm-item button>
                     <span>松鼠桂鱼</span>
-                    <Badge slot="item-right" color="dark">江南</Badge>
-                </Item>
-                <Item button>
+                    <vm-badge slot="item-right" color="dark">江南</vm-badge>
+                </vm-item>
+                <vm-item button>
                     <span>酱骨</span>
-                    <Note slot="item-right">我比较喜欢</Note>
-                    <Badge slot="item-right" color="light">东北</Badge>
-                </Item>
-            </List>
-        </Content>
-    </Page>
+                    <vm-note slot="item-right">我比较喜欢</vm-note>
+                    <vm-badge slot="item-right" color="light">东北</vm-badge>
+                </vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

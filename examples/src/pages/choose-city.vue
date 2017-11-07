@@ -1,18 +1,18 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>城市选择器</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>城市选择器</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
             <h5>城市选择器组件</h5>
             <p>这个组件是一个弹出层组件, 数据使用的是本地数据, 不过正常来说应该是从后台获取的. </p>
             <p>结果: {{selectCity.city}} {{selectCity.adCode}}</p>
-            <Button block @click="openCitySelector">打开城市选择器(本地数据)</Button>
-            <Button block @click="openCitySelectorWithCustomerData">打开城市选择器(自定义数据)</Button>
-        </Content>
-    </Page>
+            <vm-button block @click="openCitySelector">打开城市选择器(本地数据)</vm-button>
+            <vm-button block @click="openCitySelectorWithCustomerData">打开城市选择器(自定义数据)</vm-button>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default{

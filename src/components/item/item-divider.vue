@@ -13,7 +13,7 @@
   import ItemMixin from './item-mixin.vue'
   export default{
     mixins: [ItemMixin],
-    name: 'ItemDivider',
+    name: 'vm-item-divider',
     data () {
       return {
         itemTypeName: 'item-divider'

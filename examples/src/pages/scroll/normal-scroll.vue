@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Normal Scroll</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content ">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Normal Scroll</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content ">
             <h5>简介</h5>
 
             <p>Scroll组件是对better-scroll的包装, 因为其滚动性能会比iScroll好点.</p>
@@ -66,8 +66,8 @@
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illum itaque molestias provident quisquam soluta voluptatum! Deserunt doloribus, ipsam laboriosam, nesciunt nostrum odio placeat reprehenderit sed sequi velit vitae voluptatem!</p>
                 </Scroll>
             </div>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .demo {

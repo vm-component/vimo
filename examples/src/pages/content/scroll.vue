@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title ref="title">Content</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content" ref="content" padding :fullscreen="false"
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title ref="title">Content</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content" ref="content" padding :fullscreen="false"
                  @onScrollStart="onScrollStartHandler"
                  @onScrollEnd="onScrollEndtHandler"
                  @onScroll="onScrollHandler">
@@ -16,13 +16,13 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad adipisci at, dolore dolorum ex harum id quae quaerat suscipit tempora tempore, temporibus ut voluptas voluptatibus! Cupiditate dignissimos dolorem voluptatibus!</p>
 
             <p>通过在组件上使用ref属性获取组件的控制权, 比如获取Title组件的控制权修改document.title</p>
-            <Button @click="setTitle('Hello Vue')" small outline>点击设置Title='Hello Vue'</Button>
+            <vm-button @click="setTitle('Hello Vue')" small outline>点击设置Title='Hello Vue'</vm-button>
 
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut dignissimos, eum impedit maxime natus necessitatibus quas qui quidem repellendus sapiente tempore. Aspernatur excepturi harum laborum quasi? Ab eius, excepturi?</p>
-            <Button block @click="scrollToBottom()">滚动到底部</Button>
-            <Button block @click="scrollBottomBy400()">向下滚动400</Button>
-            <Button block @click="scrollToElement">滚动到下面的元素</Button>
+            <vm-button block @click="scrollToBottom()">滚动到底部</vm-button>
+            <vm-button block @click="scrollBottomBy400()">向下滚动400</vm-button>
+            <vm-button block @click="scrollToElement">滚动到下面的元素</vm-button>
 
 
             <p>
@@ -62,7 +62,7 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
-            <Button block @click="scrollToTop()">返回顶部</Button>
+            <vm-button block @click="scrollToTop()">返回顶部</vm-button>
 
 
             <p>
@@ -77,9 +77,9 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam, ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
 
             <section slot="fixedBottom" class="stateBar">
-                <Grid no-padding>
-                    <Row no-padding v-if="ev">
-                        <Column>
+                <vm-grid no-padding>
+                    <vm-row no-padding v-if="ev">
+                        <vm-col>
                             <strong text-danger>滚动状态:</strong>
                             <p>ScrollTop: {{ev.scrollTop}}</p>
                             <p>scrollHeight: {{ev.scrollHeight}}</p>
@@ -87,19 +87,19 @@
                             <p>deltaY: {{ev.deltaY}}</p>
                             <p>velocityY: {{parseInt(ev.velocityY * 1000) / 1000}}</p>
                             <p>directionY: {{ev.directionY}}</p>
-                        </Column>
-                        <Column>
+                        </vm-col>
+                        <vm-col>
                             <strong>固定属性:</strong>
                             <p>滚动状态: {{scrollState}}</p>
                             <p>contentTop: {{ev.contentTop}}</p>
                             <p>contentHeight: {{ev.contentHeight}}</p>
                             <p>contentBottom: {{ev.contentBottom}}</p>
-                        </Column>
-                    </Row>
-                </Grid>
+                        </vm-col>
+                    </vm-row>
+                </vm-grid>
             </section>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

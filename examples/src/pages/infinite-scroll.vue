@@ -1,22 +1,22 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>InfiniteScroll</Title>
-            </Navbar>
-        </Header>
-        <Content>
-            <List>
-                <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
-            </List>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>InfiniteScroll</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content>
+            <vm-list>
+                <vm-item v-for="(i,index) in list" :key="index">{{i}}</vm-item>
+            </vm-list>
             <InfiniteScroll ref="infiniteScroll" class="infiniteScroll" :enabled="true" threshold="10%"
                             @onInfinite="onInfinite">
                 <!--<InfiniteScroll class="infiniteScroll" :enabled="true" threshold="20%" @onInfinite="$event.waitFor(onInfinitePromise())">-->
                 <InfiniteScrollContent loadingSpinner="ios" loadingText="正在加载..."></InfiniteScrollContent>
                 <h5 class="loadedAll" text-center>全部加载完毕</h5>
             </InfiniteScroll>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .ion-infinite-scroll {

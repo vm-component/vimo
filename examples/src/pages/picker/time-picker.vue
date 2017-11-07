@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Datetime Picker</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Datetime Picker</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
 
             <div padding>
                 <h5>简介</h5>
@@ -13,92 +13,92 @@
                     时间选择器可以根据指定的日期格式选择制定日期, 或者指定的时间段. 通过v-model可以穿入如下类型: Date日起对象/ISO格式的时间String/能转化为Date对象的字符串 这三类. 但是v-model返回的数据都是ISO格式日期String, 如果期望返回每个column返回的详细结果, 请监听onChange事件.</p>
             </div>
 
-            <List>
-                <ListHeader>Choose Date</ListHeader>
-                <Item>
-                    <Label>Default</Label>
+            <vm-list>
+                <vm-list-header>Choose Date</vm-list-header>
+                <vm-item>
+                    <vm-label>Default</vm-label>
                     <Datetime slot="item-right"></Datetime>
-                </Item>
-                <Item>
-                    <Label>MMMM</Label>
+                </vm-item>
+                <vm-item>
+                    <vm-label>MMMM</vm-label>
                     <Datetime slot="item-right" displayFormat="MMMM" v-model="monthOnly"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>MM DD YY</Label>
+                <vm-item>
+                    <vm-label>MM DD YY</vm-label>
                     <Datetime slot="item-right" displayFormat="MM DD YY" v-model="placeholderDate"
                               placeholder="Select Date"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>YYYY</Label>
+                <vm-item>
+                    <vm-label>YYYY</vm-label>
                     <Datetime slot="item-right" displayFormat="YYYY" min="1981" max="2002"
                               v-model="wwwInvented"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>MMMM YY</Label>
+                <vm-item>
+                    <vm-label>MMMM YY</vm-label>
                     <Datetime slot="item-right" displayFormat="MMMM YY" min="1989-06-04" max="2004-08-23"
                               v-model="netscapeReleased"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>MM/DD/YYYY</Label>
+                <vm-item>
+                    <vm-label>MM/DD/YYYY</vm-label>
                     <Datetime slot="item-right" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09"
                               v-model="firefoxReleased"
                               class="e2eOpenMMDDYYYY"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>DDD. MMM DD, YY(本地)</Label>
+                <vm-item>
+                    <vm-label>DDD. MMM DD, YY(本地)</vm-label>
                     <Datetime slot="item-right" v-model="operaReleased" min="1990-02" max="2018"
                               displayFormat="DDD. MMM DD, YY"
                               monthShortNames="一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月"
                               :dayShortNames="customShortDay"></Datetime>
-                </Item>
-                <Item>
-                    <Label>D MMM YYYY H:mm</Label>
+                </vm-item>
+                <vm-item>
+                    <vm-label>D MMM YYYY H:mm</vm-label>
                     <Datetime slot="item-right" displayFormat="D MMM YYYY H:mm" min="1997" max="2010"
                               v-model="webkitOpenSourced"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>DDDD MMM D, YYYY</Label>
+                <vm-item>
+                    <vm-label>DDDD MMM D, YYYY</vm-label>
                     <Datetime slot="item-right" displayFormat="DDDD MMM D, YYYY" min="2005" max="2016"
                               v-model="chromeReleased"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>HH:mm</Label>
+                <vm-item>
+                    <vm-label>HH:mm</vm-label>
                     <Datetime slot="item-right" displayFormat="HH:mm" v-model="time"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>h:mm a (with event)</Label>
+                <vm-item>
+                    <vm-label>h:mm a (with event)</vm-label>
                     <Datetime slot="item-right" @onChange="onChange($event)" @onCancel="onCancel($event)"
                               displayFormat="h:mm a"
                               v-model="time"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>hh:mm A (15 min steps)</Label>
+                <vm-item>
+                    <vm-label>hh:mm A (15 min steps)</vm-label>
                     <Datetime slot="item-right" displayFormat="h:mm A" minuteValues="0,15,30,45"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>Leap years, summer months</Label>
+                <vm-item>
+                    <vm-label>Leap years, summer months</vm-label>
                     <Datetime slot="item-right" displayFormat="MM/YYYY" pickerFormat="MMMM YYYY"
                               :yearValues="leapYearsArray"
                               monthValues="6,7,8"
                               v-model="leapYearsSummerMonths"></Datetime>
-                </Item>
+                </vm-item>
 
-                <Item>
-                    <Label>Specific days/months/years</Label>
+                <vm-item>
+                    <vm-label>Specific days/months/years</vm-label>
                     <Datetime slot="item-right" monthValues="6,7,8" yearValues="2014,2015"
                               dayValues="01,02,03,04,05,06,08,09,10, 11, 12, 13, 14"
                               displayFormat="DD/MMM/YYYY" v-model="specificDaysMonthsYears"></Datetime>
-                </Item>
+                </vm-item>
 
 
                 <p padding>
@@ -114,37 +114,37 @@
                     <code>time: {{time}}</code><br>
                     <code>Leap year, summer months: {{leapYearsSummerMonths}}</code><br>
                     <code>Specific days/months/years: {{specificDaysMonthsYears}}</code><br>
-                    <Grid>
-                        <Row justify-content-center>
-                            <Button block @click="clearLeapYear()">Clear Leap Years</Button>
-                        </Row>
-                    </Grid>
+                    <vm-grid>
+                        <vm-row justify-content-center>
+                            <vm-button block @click="clearLeapYear()">Clear Leap Years</vm-button>
+                        </vm-row>
+                    </vm-grid>
                 </p>
 
-                <Item>
-                    <Label>time now</Label>
+                <vm-item>
+                    <vm-label>time now</vm-label>
                     <Datetime slot="item-right" displayFormat="MMM DD, YYYY HH:mm " v-model="convertedDate"></Datetime>
-                </Item>
+                </vm-item>
 
                 <p padding>
-                    <Grid>
-                        <Row justify-content-center>
+                    <vm-grid>
+                        <vm-row justify-content-center>
                             {{convertedDate}}
-                        </Row>
-                        <Row justify-content-center>
-                            <Button block @click="convertDate()">Convert myDate To Date</Button>
-                        </Row>
-                    </Grid>
+                        </vm-row>
+                        <vm-row justify-content-center>
+                            <vm-button block @click="convertDate()">Convert myDate To Date</vm-button>
+                        </vm-row>
+                    </vm-grid>
                 </p>
 
-                <Item>
-                    <Label>HH:mm:ss</Label>
+                <vm-item>
+                    <vm-label>HH:mm:ss</vm-label>
                     <Datetime slot="item-right" displayFormat="HH:mm:ss" v-model="time"></Datetime>
-                </Item>
+                </vm-item>
 
-            </List>
-        </Content>
-    </Page>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

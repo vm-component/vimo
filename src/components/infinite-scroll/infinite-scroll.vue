@@ -62,10 +62,10 @@
    *
    * @usage
    *
-   * <InfiniteScroll threshold="20%" @onInfinite="onInfinite">
-   *    <InfiniteScrollContent loadingSpinner="ios" loadingText="正在加载..."></InfiniteScrollContent>
+   * <vm-infinite-scroll threshold="20%" @onInfinite="onInfinite">
+   *    <vm-infinite-scroll-content loadingSpinner="ios" loadingText="正在加载..."></vm-infinite-scroll-content>
    *    <h5 class="loadedAll" text-center>全部加载完毕</h5>
-   * </InfiniteScroll>
+   * </vm-infinite-scroll>
    *
    * // ....
    *  .ion-infinite-scroll{
@@ -106,7 +106,7 @@
   const STATE_DISABLED = 'disabled'
   const STATE_LOADING = 'loading'
   export default {
-    name: 'InfiniteScroll',
+    name: 'vm-infinite-scroll',
     props: {
       // 可用状态
       enabled: {
@@ -194,14 +194,14 @@
        *
        * @example
        *
-       * <Content>
-       *  <List>
-       *      <Item v-for="item of items">{{item}}</Item>
-       *  </List>
+       * <vm-content>
+       *  <vm-list>
+       *      <vm-item v-for="item of items">{{item}}</vm-item>
+       *  </vm-list>
        *  <InfiniteScroll @onInfinite="$event.waitFor(doInfinite())">
        *      <InfiniteScrollContent></InfiniteScrollContent>
        *  </InfiniteScroll>
-       * </Content>
+       * </vm-content>
        *
        * @example
        * // ...

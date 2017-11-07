@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>固定内容</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content" padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>固定内容</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content" padding>
 
             <div slot="fixed" padding class="fixedContent">
                 <strong>业务有需求将部分内容固定到顶部或者固定到底部, 这部分固定内容不随页面的滚动而移动, 就像这样.</strong>
@@ -49,8 +49,8 @@
             <div slot="fixedBottom" padding class="fixedContent">
                 <strong>业务有需求将部分内容固定到顶部或者固定到底部, 这部分固定内容不随页面的滚动而移动, 就像这样.</strong>
             </div>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .fixedContent {

@@ -17,7 +17,7 @@
 </style>
 <script type="text/javascript">
   /**
-   * @component Item/ItemSliding
+   * @component Item/vm-item-sliding
    * @description
    *
    * ## 列表组件 / ItemSliding滑动选择组件
@@ -25,18 +25,18 @@
    * 这个组件是对Item组件的拓展, 当左右滑动时出现可选择的按钮, 这个组件在部分安卓机上卡顿明显, 使用起来效果不太好, 但是在IOS上很流畅.
    *
    *
-   * ### 子组件ItemSlidingOptions
+   * ### 子组件ItemOptions
    *
-   * ItemSlidingOptions只能在ItemSliding组件中使用
+   * ItemOptions只能在ItemSliding组件中使用
    *
    * ### 如何使用
    *
    * ```
    * // 引入
-   * import { ItemSlidingOptions, ItemSliding } from 'vimo/lib/item-sliding'
+   * import { ItemOptions, ItemSliding } from 'vimo/lib/item-sliding'
    * // 安装
    * export default{
-   *   components: { ItemSlidingOptions, ItemSliding }
+   *   components: { ItemOptions, ItemSliding }
    * }
    * ```
    *
@@ -53,33 +53,33 @@
    *
    * @usage
    *
-   * <ItemSliding>
-   *    <Item>
-   *        <Avatar slot="item-left">
+   * <vm-item-sliding>
+   *    <vm-item>
+   *        <vm-avatar slot="item-left">
    *            <img src="./img/avatar-ts-woody.png">
-   *        </Avatar>
-   *        <Label>
+   *        </vm-avatar>
+   *        <vm-label>
    *            <h2>两边都有按钮</h2>
    *            <p>试试 ↔️️ 都滑动</p>
-   *        </Label>
-   *    </Item>
-   *    <ItemSlidingOptions side="left">
-   *        <Button color="primary" @click="clickText">
-   *            <Icon name="text"></Icon>
+   *        </vm-label>
+   *    </vm-item>
+   *    <vm-item-options side="left">
+   *        <vm-button color="primary" @click="clickText">
+   *            <vm-icon name="text"></vm-icon>
    *            <span>Text</span>
-   *        </Button>
-   *        <Button color="secondary" @click="clickCall">
-   *            <Icon name="call"></Icon>
+   *        </vm-button>
+   *        <vm-button color="secondary" @click="clickCall">
+   *            <vm-icon name="call"></vm-icon>
    *            <span>Call</span>
-   *        </Button>
-   *     </ItemSlidingOptions>
-   *     <ItemSlidingOptions side="right">
-   *        <Button color="primary" @click="clickEmail">
-   *            <Icon name="mail"></Icon>
+   *        </vm-button>
+   *     </vm-item-options>
+   *     <vm-item-options side="right">
+   *        <vm-button color="primary" @click="clickEmail">
+   *            <vm-icon name="mail"></vm-icon>
    *            <span>Email</span>
-   *        </Button>
-   *    </ItemSlidingOptions>
-   * </ItemSliding>
+   *        </vm-button>
+   *    </vm-item-options>
+   * </vm-item-sliding>
    * */
   import { pointerCoord, transitionEnd } from '../../util/util.js'
 
@@ -109,7 +109,7 @@
   const MAX_DELTAX = 20
 
   export default {
-    name: 'ItemSliding',
+    name: 'vm-item-sliding',
     data () {
       return {
         timer: null,
@@ -362,11 +362,11 @@
           if (componentIs(item, 'item')) {
             this.itemComponent = item
           }
-          if (componentIs(item, 'ItemSlidingOptions') && item.side === 'left') {
+          if (componentIs(item, 'ItemOptions') && item.side === 'left') {
             this.leftOptions = item
             side |= this.getSides(item)
           }
-          if (componentIs(item, 'ItemSlidingOptions') && item.side === 'right') {
+          if (componentIs(item, 'ItemOptions') && item.side === 'right') {
             this.rightOptions = item
             side |= this.getSides(item)
           }

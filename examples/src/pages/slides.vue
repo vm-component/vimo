@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Slides</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content slidesPage">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Slides</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content slidesPage">
             <h1>跑马灯组件</h1>
             <p>Slides组件是 <strong>Swiper插件</strong>
                的移植和拓展, Swiper初始化传递的属性对应Vue组件的props, Swiper属性中定义的钩子事件对应Vue组件的事件系统. 两者无缝对接, 使用上没有差异.</p>
@@ -22,11 +22,11 @@
                 </Slide>
             </Slides>
 
-            <Grid no-padding>
-                <Row justify-content-center>
-                    <Button outline small @click="loadAsyncImg">Load Img</Button>
-                </Row>
-            </Grid>
+            <vm-grid no-padding>
+                <vm-row justify-content-center>
+                    <vm-button outline small @click="loadAsyncImg">Load Img</vm-button>
+                </vm-row>
+            </vm-grid>
 
             <h5>Default Setup</h5>
             <Slides class="swiper" ref="defaultSwiper">
@@ -259,12 +259,12 @@
                 </Slide>
             </Slides>
 
-            <Grid no-padding>
-                <Row justify-content-center>
-                    <Button outline small @click="addSlide"> 末尾添加slide</Button>
-                    <Button outline small @click="removeSlide"> 末尾删除slide</Button>
-                </Row>
-            </Grid>
+            <vm-grid no-padding>
+                <vm-row justify-content-center>
+                    <vm-button outline small @click="addSlide"> 末尾添加slide</vm-button>
+                    <vm-button outline small @click="removeSlide"> 末尾删除slide</vm-button>
+                </vm-row>
+            </vm-grid>
 
 
             <h5>Hash导航</h5>
@@ -489,8 +489,8 @@
                 </Slide>
             </Slides>
 
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 
 <style scoped lang="less">

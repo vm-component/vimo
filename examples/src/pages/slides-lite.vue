@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Slides-Lite</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Slides-Lite</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
             <h5>简述</h5>
             <p>
                 因为有时候在移动端, 轮播不需要特别复杂, 但是引入完整功能的swiper会使得项目体积过大, 因此进入精简版的 slide组件适用于这个场景. </p>
@@ -39,8 +39,8 @@
                 <Slide class="slide slide-2">2</Slide>
                 <Slide class="slide slide-3">3</Slide>
             </Slides>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .slides {

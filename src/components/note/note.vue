@@ -17,7 +17,7 @@
    *
    * */
   export default{
-    name: 'Note',
+    name: 'vm-note',
     props: {
       /**
        * 按钮color：primary、secondary、danger、light、dark

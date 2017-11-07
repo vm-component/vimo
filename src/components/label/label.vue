@@ -40,7 +40,7 @@
   import { setElementClass } from '../../util/util'
 
   export default {
-    name: 'Label',
+    name: 'vm-label',
     data () {
       return {
         itemComponent: null // 父元素Item实例

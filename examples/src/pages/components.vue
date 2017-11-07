@@ -1,400 +1,354 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>组件列表</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content" record-position>
-            <List>
-                <ListHeader>布局/Layout</ListHeader>
-                <Item button :to="{path: '/app'}">
-                    <Icon slot="item-left" name="apps"></Icon>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>组件列表</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content" record-position>
+            <vm-list>
+                <vm-list-header>布局/Layout</vm-list-header>
+                <vm-item button :to="{path: '/app'}">
+                    <vm-icon slot="item-left" name="apps"></vm-icon>
                     <span>根组件</span>
-                    <Note slot="item-right">App</Note>
-                </Item>
-                <Item button :to="{name: 'nav'}">
-                    <Icon slot="item-left" name="navigate"></Icon>
+                    <vm-note slot="item-right">App</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'nav'}">
+                    <vm-icon slot="item-left" name="navigate"></vm-icon>
                     <span>导航组件</span>
-                    <Note slot="item-right">Nav</Note>
-                </Item>
-                <Item button :to="{name: 'content'}">
-                    <Icon slot="item-left" name="paper"></Icon>
+                    <vm-note slot="item-right">Nav</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'content'}">
+                    <vm-icon slot="item-left" name="paper"></vm-icon>
                     <span>页面组件</span>
-                    <Note slot="item-right">Page</Note>
-                </Item>
-                <Item button :to="{name: 'grid'}">
-                    <Icon slot="item-left" name="grid"></Icon>
+                    <vm-note slot="item-right">Page</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'grid'}">
+                    <vm-icon slot="item-left" name="grid"></vm-icon>
                     <span>栅格</span>
-                    <Note slot="item-right">Grid</Note>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>基础服务/Service</ListHeader>
-                <Item button :to="{name:'config'}">
-                    <Icon slot="item-left" name="settings"></Icon>
+                    <vm-note slot="item-right">Grid</vm-note>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>基础服务/Service</vm-list-header>
+                <vm-item button :to="{name:'config'}">
+                    <vm-icon slot="item-left" name="settings"></vm-icon>
                     <span>配置参数</span>
-                    <Note slot="item-right">Config</Note>
-                </Item>
-                <Item button :to="{name:'platform'}">
-                    <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
+                    <vm-note slot="item-right">Config</vm-note>
+                </vm-item>
+                <vm-item button :to="{name:'platform'}">
+                    <vm-icon slot="item-left" md="logo-android" ios="logo-apple"></vm-icon>
                     <span>平台参数</span>
-                    <Note slot="item-right">Platform</Note>
-                </Item>
-                <Item button :to="{name:'history'}">
-                    <Icon slot="item-left" name="logo-buffer"></Icon>
+                    <vm-note slot="item-right">Platform</vm-note>
+                </vm-item>
+                <vm-item button :to="{name:'history'}">
+                    <vm-icon slot="item-left" name="logo-buffer"></vm-icon>
                     <span>历史记录</span>
-                    <Note slot="item-right">History</Note>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>跨平台组件/Cross</ListHeader>
-                <Item button :to="{name:'crossPlatform'}">
-                    <Icon slot="item-left" name="logo-javascript"></Icon>
-                    <Label>
+                    <vm-note slot="item-right">History</vm-note>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>跨平台组件/Cross</vm-list-header>
+                <vm-item button :to="{name:'crossPlatform'}">
+                    <vm-icon slot="item-left" name="logo-javascript"></vm-icon>
+                    <vm-label>
                         <h2>跨平台组件</h2>
                         <p>支付宝/钉钉/微信/自研Hybrid</p>
-                    </Label>
-                    <Note slot="item-right">Cross Platform</Note>
-                </Item>
-            </List>
-            <List>
+                    </vm-label>
+                    <vm-note slot="item-right">Cross Platform</vm-note>
+                </vm-item>
+            </vm-list>
+            <vm-list>
                 <!--通用组件-->
-                <ListHeader>通用组件/Common</ListHeader>
-                <Item button :to="{name: 'button'}">
-                    <Icon slot="item-left" name="download"></Icon>
+                <vm-list-header>通用组件/Common</vm-list-header>
+                <vm-item button :to="{name: 'button'}">
+                    <vm-icon slot="item-left" name="download"></vm-icon>
                     <span>按钮</span>
-                    <Note slot="item-right">Button</Note>
-                </Item>
-                <Item button :to="{name: 'icon'}">
-                    <Icon slot="item-left" name="ionitron"></Icon>
+                    <vm-note slot="item-right">Button</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'icon'}">
+                    <vm-icon slot="item-left" name="ionitron"></vm-icon>
                     <span>图标</span>
-                    <Note slot="item-right">Icon</Note>
-                </Item>
-                <Item button :to="{name: 'spinner'}">
-                    <Icon slot="item-left" name="medical"></Icon>
+                    <vm-note slot="item-right">Icon</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'spinner'}">
+                    <vm-icon slot="item-left" name="medical"></vm-icon>
                     <span>菊花图</span>
-                    <Note slot="item-right">Spinner</Note>
-                </Item>
-                <Item button :to="{name: 'badge'}">
-                    <Icon slot="item-left" name="ribbon"></Icon>
+                    <vm-note slot="item-right">Spinner</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'badge'}">
+                    <vm-icon slot="item-left" name="ribbon"></vm-icon>
                     <span>徽章</span>
-                    <Note slot="item-right">Badge</Note>
-                </Item>
-                <Item button :to="{name: 'toolbar'}">
-                    <Icon slot="item-left" name="briefcase"></Icon>
+                    <vm-note slot="item-right">Badge</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'toolbar'}">
+                    <vm-icon slot="item-left" name="briefcase"></vm-icon>
                     <span>工具条</span>
-                    <Note slot="item-right">Toolbar</Note>
-                </Item>
-                <Item button :to="{name: 'img'}">
-                    <Icon slot="item-left" name="image"></Icon>
+                    <vm-note slot="item-right">Toolbar</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'img'}">
+                    <vm-icon slot="item-left" name="image"></vm-icon>
                     <span>图片</span>
-                    <Note slot="item-right">Img</Note>
-                </Item>
-                <Item button :to="{name: 'backdrop'}">
-                    <Icon slot="item-left" name="barcode"></Icon>
+                    <vm-note slot="item-right">Img</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'backdrop'}">
+                    <vm-icon slot="item-left" name="barcode"></vm-icon>
                     <span>幕布</span>
-                    <Note slot="item-right">Backdrop</Note>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>数据录入/Data Entry</ListHeader>
-                <Item button :to="{name: 'toggle'}">
-                    <Icon slot="item-left" name="swap"></Icon>
+                    <vm-note slot="item-right">Backdrop</vm-note>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>数据录入/Data Entry</vm-list-header>
+                <vm-item button :to="{name: 'toggle'}">
+                    <vm-icon slot="item-left" name="swap"></vm-icon>
                     <span>开关</span>
-                    <Note slot="item-right">Toggle</Note>
-                </Item>
-                <Item button :to="{name: 'checkbox'}">
-                    <Icon slot="item-left" name="checkbox"></Icon>
+                    <vm-note slot="item-right">Toggle</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'checkbox'}">
+                    <vm-icon slot="item-left" name="checkbox"></vm-icon>
                     <span>复选框</span>
-                    <Note slot="item-right">Checkbox</Note>
-                </Item>
-                <Item button :to="{name: 'radio'}">
-                    <Icon slot="item-left" name="radio-button-on"></Icon>
+                    <vm-note slot="item-right">Checkbox</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'radio'}">
+                    <vm-icon slot="item-left" name="radio-button-on"></vm-icon>
                     <span>单选框</span>
-                    <Note slot="item-right">Radio</Note>
-                </Item>
-                <Item button :to="{name: 'select'}">
-                    <Icon slot="item-left" name="list-box"></Icon>
+                    <vm-note slot="item-right">Radio</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'select'}">
+                    <vm-icon slot="item-left" name="list-box"></vm-icon>
                     <span>选择弹层</span>
-                    <Note slot="item-right">Select</Note>
-                </Item>
-                <Item button :to="{name: 'input'}">
-                    <Icon slot="item-left" name="backspace"></Icon>
+                    <vm-note slot="item-right">Select</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'input'}">
+                    <vm-icon slot="item-left" name="backspace"></vm-icon>
                     <span>输入框</span>
-                    <Note slot="item-right">Input</Note>
-                </Item>
-                <Item button :to="{name: 'textarea'}">
-                    <Icon slot="item-left" name="reorder"></Icon>
+                    <vm-note slot="item-right">Input</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'textarea'}">
+                    <vm-icon slot="item-left" name="reorder"></vm-icon>
                     <span>多行输入</span>
-                    <Note slot="item-right">Textarea</Note>
-                </Item>
-                <Item button :to="{name: 'range'}">
-                    <Icon slot="item-left" name="options"></Icon>
+                    <vm-note slot="item-right">Textarea</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'range'}">
+                    <vm-icon slot="item-left" name="options"></vm-icon>
                     <span>范围选择</span>
-                    <Note slot="item-right">Range</Note>
-                </Item>
-                <Item button :to="{name: 'searchbar'}">
-                    <Icon slot="item-left" name="search"></Icon>
+                    <vm-note slot="item-right">Range</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'searchbar'}">
+                    <vm-icon slot="item-left" name="search"></vm-icon>
                     <span>搜索栏</span>
-                    <Note slot="item-right">SearchBar</Note>
-                </Item>
-                <Item button :to="{name: 'feedback'}">
-                    <Icon slot="item-left" name="archive"></Icon>
+                    <vm-note slot="item-right">SearchBar</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'feedback'}">
+                    <vm-icon slot="item-left" name="archive"></vm-icon>
                     <span>反馈</span>
-                    <Note slot="item-right">Feedback</Note>
-                </Item>
-                <Item button :to="{name: 'chooseCity'}">
-                    <Icon slot="item-left" name="boat"></Icon>
+                    <vm-note slot="item-right">Feedback</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'chooseCity'}">
+                    <vm-icon slot="item-left" name="boat"></vm-icon>
                     <span>城市选择</span>
-                    <Note slot="item-right">ChooseCity</Note>
-                </Item>
-                <Item button :to="{name: 'slideBox'}">
-                    <Icon slot="item-left" name="key"></Icon>
+                    <vm-note slot="item-right">ChooseCity</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'slideBox'}">
+                    <vm-icon slot="item-left" name="key"></vm-icon>
                     <span>滑动验证</span>
-                    <Note slot="item-right">SlideBox</Note>
-                </Item>
-                <Item button :to="{name: 'picker'}">
-                    <Icon slot="item-left" name="basket"></Icon>
+                    <vm-note slot="item-right">SlideBox</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'picker'}">
+                    <vm-icon slot="item-left" name="basket"></vm-icon>
                     <span>单多列选择器</span>
-                    <Note slot="item-right">Picker</Note>
-                </Item>
-                <Item button :to="{name: 'sheet'}">
-                    <Icon slot="item-left" name="car"></Icon>
+                    <vm-note slot="item-right">Picker</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'sheet'}">
+                    <vm-icon slot="item-left" name="car"></vm-icon>
                     <span>弹出单</span>
-                    <Note slot="item-right">Sheet</Note>
-                </Item>
-                <Item button :to="{name: 'popSheet'}">
-                    <Icon slot="item-left" name="car"></Icon>
+                    <vm-note slot="item-right">Sheet</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'popSheet'}">
+                    <vm-icon slot="item-left" name="car"></vm-icon>
                     <span>弹出窗</span>
-                    <Note slot="item-right">PopSheet</Note>
-                </Item>
-                <Item button>
-                    <Icon slot="item-left" name="star"></Icon>
-                    <Label>数字支付键盘(未完成)</Label>
-                    <Note slot="item-right">Keyboard-1</Note>
-                </Item>
-                <Item button>
-                    <Icon slot="item-left" name="star"></Icon>
-                    <Label>第三方保密键盘(未完成)</Label>
-                    <Note slot="item-right">Keyboard-2</Note>
-                </Item>
-                <Item button>
-                    <Icon slot="item-left" name="star"></Icon>
-                    <Label>进步器(未完成)</Label>
-                    <Note slot="item-right">Stepper</Note>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>数据加载/Data Loading</ListHeader>
-                <Item button :to="{name: 'infinite-scroll'}">
-                    <Icon slot="item-left" name="arrow-dropup-circle"></Icon>
+                    <vm-note slot="item-right">PopSheet</vm-note>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>数据加载/Data Loading</vm-list-header>
+                <vm-item button :to="{name: 'infinite-scroll'}">
+                    <vm-icon slot="item-left" name="arrow-dropup-circle"></vm-icon>
                     <span>无限滚动</span>
-                    <Note slot="item-right">InfiniteScroll</Note>
-                </Item>
-                <Item button :to="{name: 'refresher'}">
-                    <Icon slot="item-left" name="arrow-dropdown-circle"></Icon>
+                    <vm-note slot="item-right">InfiniteScroll</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'refresher'}">
+                    <vm-icon slot="item-left" name="arrow-dropdown-circle"></vm-icon>
                     <span>下拉刷新</span>
-                    <Note slot="item-right">Refresher</Note>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>内容展示/Content Display</ListHeader>
-                <Item button :to="{name: 'list'}">
-                    <Icon slot="item-left" name="list"></Icon>
+                    <vm-note slot="item-right">Refresher</vm-note>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>内容展示/Content Display</vm-list-header>
+                <vm-item button :to="{name: 'list'}">
+                    <vm-icon slot="item-left" name="list"></vm-icon>
                     <span>列表</span>
-                    <Note slot="item-right">List</Note>
-                </Item>
-                <Item button :to="{name:'list.collapse'}">
-                    <Icon slot="item-left" name="list"></Icon>
+                    <vm-note slot="item-right">List</vm-note>
+                </vm-item>
+                <vm-item button :to="{name:'list.collapse'}">
+                    <vm-icon slot="item-left" name="list"></vm-icon>
                     <span>手风琴</span>
-                    <Note slot="item-right">Collapse</Note>
-                </Item>
-                <Item button :to="{name:'list.slidingList'}">
-                    <Icon slot="item-left" name="list"></Icon>
+                    <vm-note slot="item-right">Collapse</vm-note>
+                </vm-item>
+                <vm-item button :to="{name:'list.slidingList'}">
+                    <vm-icon slot="item-left" name="list"></vm-icon>
                     <span>侧滑操作</span>
-                    <Note slot="item-right">SlidingItem</Note>
-                </Item>
-                <Item button :to="{name: 'slides'}">
-                    <Icon slot="item-left" name="photos"></Icon>
+                    <vm-note slot="item-right">SlidingItem</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'slides'}">
+                    <vm-icon slot="item-left" name="photos"></vm-icon>
                     <span>轮播/跑马灯</span>
-                    <Note slot="item-right">Slides</Note>
-                </Item>
-                <Item button :to="{name: 'slidesLite'}">
-                    <Icon slot="item-left" name="film"></Icon>
+                    <vm-note slot="item-right">Slides</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'slidesLite'}">
+                    <vm-icon slot="item-left" name="film"></vm-icon>
                     <span>轮播(Lite)</span>
-                    <Note slot="item-right">SlidesLite</Note>
-                </Item>
-                <Item button :to="{name: 'cards'}">
-                    <Icon slot="item-left" name="calendar"></Icon>
+                    <vm-note slot="item-right">SlidesLite</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'cards'}">
+                    <vm-icon slot="item-left" name="calendar"></vm-icon>
                     <span>卡片</span>
-                    <Note slot="item-right">Cards</Note>
-                </Item>
-                <Item button :to="{name: 'scroll'}">
-                    <Icon slot="item-left" name="flash"></Icon>
+                    <vm-note slot="item-right">Cards</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'scroll'}">
+                    <vm-icon slot="item-left" name="flash"></vm-icon>
                     <span>滚动</span>
-                    <Note slot="item-right">Scroll</Note>
-                </Item>
-                <Item button :to="{name: 'separation'}">
-                    <Icon slot="item-left" name="remove"></Icon>
+                    <vm-note slot="item-right">Scroll</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'separation'}">
+                    <vm-icon slot="item-left" name="remove"></vm-icon>
                     <span>分割段</span>
-                    <Note slot="item-right">Separation</Note>
-                </Item>
-                <Item button :to="{name: 'deeplink'}">
-                    <Icon slot="item-left" name="link"></Icon>
+                    <vm-note slot="item-right">Separation</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'deeplink'}">
+                    <vm-icon slot="item-left" name="link"></vm-icon>
                     <span>跳转到App</span>
-                    <Note slot="item-right">Deeplink</Note>
-                </Item>
-                <Item button :to="{name: 'previewImage'}">
-                    <Icon slot="item-left" name="image"></Icon>
+                    <vm-note slot="item-right">Deeplink</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'previewImage'}">
+                    <vm-icon slot="item-left" name="image"></vm-icon>
                     <span>图片预览</span>
-                    <Note slot="item-right">PreviewImage</Note>
-                </Item>
-                <Item button>
-                    <Icon slot="item-left" name="star"></Icon>
-                    <span>步骤条(未完成)</span>
-                    <Note slot="item-right">Steps</Note>
-                </Item>
-                <Item button>
-                    <Icon slot="item-left" name="star"></Icon>
+                    <vm-note slot="item-right">PreviewImage</vm-note>
+                </vm-item>
+                <vm-item button>
+                    <vm-icon slot="item-left" name="star"></vm-icon>
                     <span>返回顶部(未完成)</span>
-                    <Note slot="item-right">BackToTop</Note>
-                </Item>
-                <Item button>
-                    <Icon slot="item-left" name="star"></Icon>
-                    <Label>
-                        <h2>状态页面(未完成)</h2>
-                        <p>成功/失败/开发中/无信号/空白</p>
-                    </Label>
-                    <Note slot="item-right">StatePage</Note>
-                </Item>
-                <Item button>
-                    <Icon slot="item-left" name="star"></Icon>
+                    <vm-note slot="item-right">BackToTop</vm-note>
+                </vm-item>
+                <vm-item button>
+                    <vm-icon slot="item-left" name="star"></vm-icon>
                     <span>评分(未完成)</span>
-                    <Note slot="item-right">Rating</Note>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>提示&操作/Notice&Action</ListHeader>
-                <Item button :to="{name: 'alert'}">
-                    <Icon slot="item-left" name="alert"></Icon>
+                    <vm-note slot="item-right">Rating</vm-note>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>提示&操作/Notice&Action</vm-list-header>
+                <vm-item button :to="{name: 'alert'}">
+                    <vm-icon slot="item-left" name="alert"></vm-icon>
                     <span>对话框</span>
-                    <Note slot="item-right">Alert</Note>
-                </Item>
-                <Item button :to="{name: 'loading'}">
-                    <Icon slot="item-left" name="refresh"></Icon>
+                    <vm-note slot="item-right">Alert</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'loading'}">
+                    <vm-icon slot="item-left" name="refresh"></vm-icon>
                     <span>加载提示</span>
-                    <Note slot="item-right">Loading</Note>
-                </Item>
-                <Item button :to="{name: 'indicator'}">
-                    <Icon slot="item-left" name="more"></Icon>
+                    <vm-note slot="item-right">Loading</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'indicator'}">
+                    <vm-icon slot="item-left" name="more"></vm-icon>
                     <span>指示器</span>
-                    <Note slot="item-right">Indicator</Note>
-                </Item>
-                <Item button :to="{name: 'modal'}">
-                    <Icon slot="item-left" name="chatboxes"></Icon>
+                    <vm-note slot="item-right">Indicator</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'modal'}">
+                    <vm-icon slot="item-left" name="chatboxes"></vm-icon>
                     <span>弹出页</span>
-                    <Note slot="item-right">Modal</Note>
-                </Item>
-                <Item button :to="{name: 'toast'}">
-                    <Icon slot="item-left" name="information-circle"></Icon>
+                    <vm-note slot="item-right">Modal</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'toast'}">
+                    <vm-icon slot="item-left" name="information-circle"></vm-icon>
                     <span>通知</span>
-                    <Note slot="item-right">Toast</Note>
-                </Item>
-                <Item button :to="{name: 'popover'}">
-                    <Icon slot="item-left" name="text"></Icon>
+                    <vm-note slot="item-right">Toast</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'popover'}">
+                    <vm-icon slot="item-left" name="text"></vm-icon>
                     <span>提示框</span>
-                    <Note slot="item-right">Popover</Note>
-                </Item>
-                <Item button :to="{name: 'actionSheet'}">
-                    <Icon slot="item-left" name="list-box"></Icon>
+                    <vm-note slot="item-right">Popover</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'actionSheet'}">
+                    <vm-icon slot="item-left" name="list-box"></vm-icon>
                     <span>选择单</span>
-                    <Note slot="item-right">ActionSheet</Note>
-                </Item>
-                <Item button :to="{name: 'fab'}">
-                    <Icon slot="item-left" name="basketball"></Icon>
+                    <vm-note slot="item-right">ActionSheet</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'fab'}">
+                    <vm-icon slot="item-left" name="basketball"></vm-icon>
                     <span>浮动按钮</span>
-                    <Note slot="item-right">Fab</Note>
-                </Item>
-                <Item button :to="{name: 'noticeBar'}">
-                    <Icon slot="item-left" name="compass"></Icon>
+                    <vm-note slot="item-right">Fab</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'noticeBar'}">
+                    <vm-icon slot="item-left" name="compass"></vm-icon>
                     <span>提示条</span>
-                    <Note slot="item-right">NoticeBar</Note>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>内容切换/Switch</ListHeader>
-                <Item button>
-                    <Icon slot="item-left" name="book"></Icon>
-                    <span>菜单(Demo未实现)</span>
-                    <Note slot="item-right">Menus</Note>
-                </Item>
-                <Item button :to="{name: 'segment'}">
-                    <Icon slot="item-left" name="book"></Icon>
+                    <vm-note slot="item-right">NoticeBar</vm-note>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>内容切换/Switch</vm-list-header>
+                <vm-item button>
+                    <vm-icon slot="item-left" name="book"></vm-icon>
+                    <span>菜单</span>
+                    <vm-note slot="item-right">Menus</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'segment'}">
+                    <vm-icon slot="item-left" name="book"></vm-icon>
                     <span>小标签</span>
-                    <Note slot="item-right">Segment</Note>
-                </Item>
-                <Item button :to="{name: 'scrollSegment'}">
-                    <Icon slot="item-left" name="egg"></Icon>
+                    <vm-note slot="item-right">Segment</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'scrollSegment'}">
+                    <vm-icon slot="item-left" name="egg"></vm-icon>
                     <span>滚动标签</span>
-                    <Note slot="item-right">ScrollSegment</Note>
-                </Item>
-                <Item button :to="{name: 'tabs'}">
-                    <Icon slot="item-left" name="link"></Icon>
+                    <vm-note slot="item-right">ScrollSegment</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'tabs'}">
+                    <vm-icon slot="item-left" name="link"></vm-icon>
                     <span>大标签</span>
-                    <Note slot="item-right">Tabs</Note>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>
+                    <vm-note slot="item-right">Tabs</vm-note>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>
                     <span>第三方模块/Third Part</span>
-                </ListHeader>
-                <Item button :to="{name: 'storage'}">
-                    <Icon slot="item-left" name="filing"></Icon>
+                </vm-list-header>
+                <vm-item button :to="{name: 'storage'}">
+                    <vm-icon slot="item-left" name="filing"></vm-icon>
                     <span>本地存储</span>
-                    <Note slot="item-right">Storage</Note>
-                </Item>
-                <Item button :to="{name: 'geo'}">
-                    <Icon slot="item-left" name="pin"></Icon>
+                    <vm-note slot="item-right">Storage</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'geo'}">
+                    <vm-icon slot="item-left" name="pin"></vm-icon>
                     <span>获取位置</span>
-                    <Note slot="item-right">Geolocation</Note>
-                </Item>
-                <!--<Item button :to="{name: 'log'}">-->
-                    <!--<Icon slot="item-left" name="analytics"></Icon>-->
-                    <!--<span>日志</span>-->
-                    <!--<Note slot="item-right">Log</Note>-->
-                <!--</Item>-->
+                    <vm-note slot="item-right">Geolocation</vm-note>
+                </vm-item>
+                <vm-item button :to="{name: 'log'}">
+                    <vm-icon slot="item-left" name="analytics"></vm-icon>
+                    <span>日志</span>
+                    <vm-note slot="item-right">Log</vm-note>
+                </vm-item>
                 <!--&lt;!&ndash;Demo&ndash;&gt;-->
-                <!--<ListHeader>-->
+                <!--<vm-list-header>-->
                 <!--<span>Demo</span>-->
-                <!--</ListHeader>-->
+                <!--</vm-list-header>-->
                 <!--&lt;!&ndash;group&ndash;&gt;-->
-                <!--<ItemGroup>-->
-                <!--<Item button :to="{name: 'demo'}">Demo</Item>-->
-                <!--<Item button :to="{name: 'demo_banshi'}">办事指南</Item>-->
-                <!--<Item button :to="{name: 'ghostvue'}">ghost</Item>-->
-                <!--<Item button :to="{name: 'gl-input'}">GL-Input</Item>-->
-                <!--<Item button :to="{name: 'log'}">Log</Item>-->
-                <!--</ItemGroup>-->
-            </List>
-        </Content>
-    </Page>
+                <!--<vm-item-group>-->
+                <!--<vm-item button :to="{name: 'demo'}">Demo</vm-item>-->
+                <!--<vm-item button :to="{name: 'demo_banshi'}">办事指南</vm-item>-->
+                <!--<vm-item button :to="{name: 'ghostvue'}">ghost</vm-item>-->
+                <!--<vm-item button :to="{name: 'gl-input'}">GL-Input</vm-item>-->
+                <!--<vm-item button :to="{name: 'log'}">Log</vm-item>-->
+                <!--</vm-item-group>-->
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
-<style scoped lang="less">
-</style>
-<script type="text/javascript">
-  export default {
-    name: 'ComponentDemo',
-    data () {
-      return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {},
-    mounted () {},
-    activated () {},
-    components: {}
-  }
-</script>

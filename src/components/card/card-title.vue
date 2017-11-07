@@ -5,14 +5,14 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Card/CardTitle
+   * @component Card/card-title
    * @description
    *
    * ## 卡片组件 / CardTitle组件
    **/
   import mixin from './mixin'
   export default{
-    name: 'CardTitle',
+    name: 'vm-card-title',
     data () {
       return {
         componentName: 'card-title'

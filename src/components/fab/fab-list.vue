@@ -20,7 +20,7 @@
    * */
   import { setElementClass, isTrueProperty } from '../../util/util'
   export default{
-    name: 'FabList',
+    name: 'vm-fab-list',
     data () {
       return {
         fabs: [],

@@ -44,21 +44,21 @@
    * @demo #/refresher
    * @see component:Base/Content
    * @usage
-   * <Page>
-   *    <Header>
-   *        <Navbar>
-   *            <Title>Refresher</Title>
-   *        </Navbar>
-   *    </Header>
-   *    <Content>
+   * <vm-page>
+   *    <vm-header>
+   *        <vm-navbar>
+   *            <vm-title>Refresher</vm-title>
+   *        </vm-navbar>
+   *    </vm-header>
+   *    <vm-content>
    *        <Refresher slot="refresher" @onRefresh="doRefresh($event)" @onPull="doPulling($event)">
    *            <RefresherContent pullingText="下拉刷新..." refreshingText="正在刷新..."></RefresherContent>
    *            </Refresher>
-   *        <List>
-   *            <Item v-for="i in list">{{i}}</Item>
-   *        </List>
-   *    </Content>
-   * </Page>
+   *        <vm-list>
+   *            <vm-item v-for="i in list">{{i}}</vm-item>
+   *        </vm-list>
+   *    </vm-content>
+   * </vm-page>
    *
    *
    * // ...
@@ -88,7 +88,7 @@
   const STATE_COMPLETING = 'completing'
   const DAMP = 0.5// 滑动阻尼
   export default {
-    name: 'Refresher',
+    name: 'vm-refresher',
     data () {
       return {
         // -------- public --------

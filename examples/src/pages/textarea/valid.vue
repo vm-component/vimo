@@ -1,22 +1,22 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Valid</Title>
-            </Navbar>
-        </Header>
-        <Content>
-            <List>
-                <ListHeader>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Valid</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content>
+            <vm-list>
+                <vm-list-header>
                     <span>必填验证</span>
-                </ListHeader>
-                <Item>
-                    <Label stacked color="primary">地址</Label>
+                </vm-list-header>
+                <vm-item>
+                    <vm-label stacked color="primary">地址</vm-label>
                     <Textarea placeholder="Required..." showFocusHighlight required></Textarea>
-                </Item>
-            </List>
-        </Content>
-    </Page>
+                </vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default {

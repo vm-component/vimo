@@ -22,10 +22,10 @@
    * import Avatar from 'vimo/lib/avatar'
    * Vue.component(Avatar.name, Avatar)
    *
-   * <Avatar><img src=''></Avatar>
+   * <vm-avatar><img src=''></vm-avatar>
    *
    * */
   export default {
-    name: 'Avatar'
+    name: 'vm-avatar'
   }
 </script>

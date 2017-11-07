@@ -52,10 +52,10 @@
    * ```
    *
    * @usage
-   * <Item>
-   *    <Label>MMMM</Label>
-   *    <Datetime slot="item-right" displayFormat="MMMM" v-model="monthOnly"></Datetime>
-   * </Item>
+   * <vm-item>
+   *    <vm-label>MMMM</vm-label>
+   *    <vm-datetime slot="item-right" displayFormat="MMMM" v-model="monthOnly"></vm-datetime>
+   * </vm-item>
    *
    * @props {String} [min] - ISO 8601 datetime 的时间格式, 1996-12-19
    * @props {String} [max] - ISO 8601 datetime 的时间格式, 1996-12-19
@@ -105,7 +105,7 @@
   const DEFAULT_FORMAT = 'MMM D, YYYY'
   // const DEFAULT_FORMAT = 'YYYY/MM/DD'
   export default {
-    name: 'Datetime',
+    name: 'vm-datetime',
     data () {
       return {
         itemComponent: null, // 父组件Item实例

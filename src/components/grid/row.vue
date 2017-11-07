@@ -5,7 +5,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Grid/Row
+   * @component Grid/vm-row
    * @description
    *
    * ## 栅格组件 / Row组件
@@ -16,6 +16,6 @@
    *
    * */
   export default{
-    name: 'Row'
+    name: 'vm-row'
   }
 </script>

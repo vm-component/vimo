@@ -1,108 +1,108 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Advanced Cards</Title>
-            </Navbar>
-        </Header>
-        <Content>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Advanced Cards</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content>
 
             <!--card type 1-->
-            <Card>
+            <vm-card>
                 <img src="./img/nin-live.png"/>
-                <CardContent>
-                    <CardTitle>
+                <vm-card-content>
+                    <vm-card-title>
                         <span> Nine Inch Nails Live</span>
-                    </CardTitle>
+                    </vm-card-title>
                     <p>
                         The most popular industrial group ever, and largely
                         responsible for bringing the music to a mass audience.
                     </p>
-                </CardContent>
-                <Row>
-                    <Column>
-                        <Button small clear>
-                            <Icon class="icon" name="star"></Icon>
+                </vm-card-content>
+                <vm-row>
+                    <vm-col>
+                        <vm-button small clear>
+                            <vm-icon class="icon" name="star"></vm-icon>
                             <span>Favourite</span>
-                        </Button>
-                    </Column>
-                    <Column>
-                        <Button small clear>
-                            <Icon class="icon" name="car"></Icon>
+                        </vm-button>
+                    </vm-col>
+                    <vm-col>
+                        <vm-button small clear>
+                            <vm-icon class="icon" name="car"></vm-icon>
                             <span>Music</span>
-                        </Button>
-                    </Column>
-                    <Column>
-                        <Button small clear>
-                            <Icon class="icon" name="share"></Icon>
+                        </vm-button>
+                    </vm-col>
+                    <vm-col>
+                        <vm-button small clear>
+                            <vm-icon class="icon" name="share"></vm-icon>
                             <span>Share</span>
-                        </Button>
-                    </Column>
-                </Row>
-            </Card>
+                        </vm-button>
+                    </vm-col>
+                </vm-row>
+            </vm-card>
 
             <!--card type 2-->
-            <Card class="card-background-page">
+            <vm-card class="card-background-page">
                 <img src="./img/card-saopaolo.png"/>
                 <div class="card-title">São Paulo</div>
                 <div class="card-subtitle">41 Listings</div>
-            </Card>
-            <Card class="card-background-page">
+            </vm-card>
+            <vm-card class="card-background-page">
                 <img src="./img/card-amsterdam.png"/>
                 <div class="card-title">Amsterdam</div>
                 <div class="card-subtitle">64 Listings</div>
-            </Card>
-            <Card class="card-background-page">
+            </vm-card>
+            <vm-card class="card-background-page">
                 <img src="./img/card-sf.png"/>
                 <div class="card-title">San Francisco</div>
                 <div class="card-subtitle">72 Listings</div>
-            </Card>
-            <Card class="card-background-page">
+            </vm-card>
+            <vm-card class="card-background-page">
                 <img src="./img/card-madison.png"/>
                 <div class="card-title">Madison</div>
                 <div class="card-subtitle">28 Listings</div>
-            </Card>
+            </vm-card>
 
 
             <!--card type 3-->
-            <Card>
-                <Item>
-                    <Avatar item-left>
+            <vm-card>
+                <vm-item>
+                    <vm-avatar item-left>
                         <img src="./img/marty-avatar.png">
-                    </Avatar>
-                    <Label>
+                    </vm-avatar>
+                    <vm-label>
                         <h2>Marty McFly</h2>
                         <p>November 5, 1955</p>
-                    </Label>
-                </Item>
+                    </vm-label>
+                </vm-item>
                 <img src="./img/advance-card-bttf.png">
-                <CardContent>
+                <vm-card-content>
                     <p>
                         Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a
                         DeLorean?! Whoa. This is heavy.</p>
-                </CardContent>
-                <Row>
-                    <Column>
-                        <Button clear small>
-                            <Icon name="thumbs-up"></Icon>
+                </vm-card-content>
+                <vm-row>
+                    <vm-col>
+                        <vm-button clear small>
+                            <vm-icon name="thumbs-up"></vm-icon>
                             <div>12 Likes</div>
-                        </Button>
-                    </Column>
-                    <Column>
-                        <Button clear small>
-                            <Icon name="text"></Icon>
+                        </vm-button>
+                    </vm-col>
+                    <vm-col>
+                        <vm-button clear small>
+                            <vm-icon name="text"></vm-icon>
                             <div>4 Comments</div>
-                        </Button>
-                    </Column>
-                    <Column align-self-center text-center>
-                        <Note>
+                        </vm-button>
+                    </vm-col>
+                    <vm-col align-self-center text-center>
+                        <vm-note>
                             <span>11h ago</span>
-                        </Note>
-                    </Column>
-                </Row>
-            </Card>
-        </Content>
-    </Page>
+                        </vm-note>
+                    </vm-col>
+                </vm-row>
+            </vm-card>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
 

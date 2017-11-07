@@ -1,22 +1,22 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Textarea</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Textarea</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
             <div padding>
                 <p>Textarea组件使用示例</p>
             </div>
-            <List>
-                <ListHeader>使用场景</ListHeader>
-                <Item button :to="{name:'textarea.normal'}">普通用法</Item>
-                <Item button :to="{name:'textarea.event'}">输入事件</Item>
-                <Item button :to="{name:'textarea.valid'}">验证</Item>
-            </List>
-        </Content>
-    </Page>
+            <vm-list>
+                <vm-list-header>使用场景</vm-list-header>
+                <vm-item button :to="{name:'textarea.normal'}">普通用法</vm-item>
+                <vm-item button :to="{name:'textarea.event'}">输入事件</vm-item>
+                <vm-item button :to="{name:'textarea.valid'}">验证</vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default {

@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Deeplink</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Deeplink</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
             <h5>简介</h5>
 
             <p>Deeplink用于跳转到原生App的方法, 如果安装了App则启动app并跳转, 如果没安装app则进入下载页面. 我这里只安装了知乎和网易新闻, 没安装Twitter. </p>
@@ -17,24 +17,24 @@
 
             <h5>示例</h5>
             <p>知乎: JS判断APP是否安装?</p>
-            <Grid no-padding>
-                <Row>
-                    <Column>
-                        <Button small outline @click="viewInZhihuApp">在知乎App中浏览</Button>
-                    </Column>
-                </Row>
-            </Grid>
+            <vm-grid no-padding>
+                <vm-row>
+                    <vm-col>
+                        <vm-button small outline @click="viewInZhihuApp">在知乎App中浏览</vm-button>
+                    </vm-col>
+                </vm-row>
+            </vm-grid>
 
             <p>网易新闻: 刘强东力挺顺丰：我相信王卫为人，质疑菜鸟违法</p>
-            <Grid no-padding>
-                <Row>
-                    <Column>
-                        <Button small outline @click="viewInNetEaseApp">在网易新闻中浏览</Button>
-                    </Column>
-                </Row>
-            </Grid>
-        </Content>
-    </Page>
+            <vm-grid no-padding>
+                <vm-row>
+                    <vm-col>
+                        <vm-button small outline @click="viewInNetEaseApp">在网易新闻中浏览</vm-button>
+                    </vm-col>
+                </vm-row>
+            </vm-grid>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

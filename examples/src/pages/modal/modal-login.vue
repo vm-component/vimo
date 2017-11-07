@@ -1,43 +1,43 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Login</Title>
-                <Buttons right slot="buttons">
-                    <Button role="bar-button" type="solid" @click="$modal.dismiss()">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Login</vm-title>
+                <vm-buttons right slot="buttons">
+                    <vm-button role="bar-button" type="solid" @click="$modal.dismiss()">
                         关闭
-                    </Button>
-                </Buttons>
-            </Navbar>
-        </Header>
-        <Content padding>
-            <List>
-                <ListHeader>请输入</ListHeader>
-                <Item>
-                    <Icon name="person" slot="item-left"></Icon>
-                    <Label>用户名</Label>
+                    </vm-button>
+                </vm-buttons>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
+            <vm-list>
+                <vm-list-header>请输入</vm-list-header>
+                <vm-item>
+                    <vm-icon name="person" slot="item-left"></vm-icon>
+                    <vm-label>用户名</vm-label>
                     <Input type="text" v-model="username" clearInput></Input>
-                </Item>
-                <Item>
-                    <Icon name="key" slot="item-left"></Icon>
-                    <Label>密码</Label>
+                </vm-item>
+                <vm-item>
+                    <vm-icon name="key" slot="item-left"></vm-icon>
+                    <vm-label>密码</vm-label>
                     <Input type="password" v-model="password" clearInput></Input>
-                </Item>
-            </List>
-            <Grid>
-                <Row justify-content-center>
-                    <Column col-6>
-                        <Button block @click="login">登录</Button>
-                    </Column>
-                </Row>
-                <Row>
-                    <Column>
+                </vm-item>
+            </vm-list>
+            <vm-grid>
+                <vm-row justify-content-center>
+                    <vm-col col-6>
+                        <vm-button block @click="login">登录</vm-button>
+                    </vm-col>
+                </vm-row>
+                <vm-row>
+                    <vm-col>
                         <p text-center>点击查看 <span class="secret" @click="secret">隐私政策</span></p>
-                    </Column>
-                </Row>
-            </Grid>
-        </Content>
-    </Page>
+                    </vm-col>
+                </vm-row>
+            </vm-grid>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
     .login {

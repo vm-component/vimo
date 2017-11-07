@@ -47,30 +47,30 @@
    * @slot item-right - 这部分继承Item组件
    *
    * @usage
-   * <List>
-   *    <ListHeader>手风琴列表(只开启一个)</ListHeader>
-   *    <ItemCollapseGroup accordion>
-   *        <ItemCollapse title="This Is Title1">
-   *            <Item>subItem1</Item>
-   *            <Item>subItem2</Item>
-   *            <Item>subItem3</Item>
-   *        </ItemCollapse>
-   *        <ItemCollapse>
+   * <vm-list>
+   *    <vm-list-header>手风琴列表(只开启一个)</vm-list-header>
+   *    <vm-item-collapse-group accordion>
+   *        <vm-item-collapse title="This Is Title1">
+   *            <vm-item>subItem1</vm-item>
+   *            <vm-item>subItem2</vm-item>
+   *            <vm-item>subItem3</vm-item>
+   *        </vm-item-collapse>
+   *        <vm-item-collapse>
    *            <template slot="item-title">
    *                This Is Title2 &ensp;
-   *                <Icon name="information-circle"></Icon>
+   *                <vm-icon name="information-circle"></vm-icon>
    *            </template>
-   *            <Item detail-push>subItem1</Item>
-   *            <Item detail-push>subItem2</Item>
-   *            <Item detail-push>subItem3</Item>
-   *        </ItemCollapse>
-   *        <ItemCollapse title="This Is Title3">
-   *            <Item detail-push>subItem1</Item>
-   *            <Item detail-push>subItem2</Item>
-   *            <Item detail-push>subItem3</Item>
-   *        </ItemCollapse>
-   *    </ItemCollapseGroup>
-   * </List>
+   *            <vm-item detail-push>subItem1</vm-item>
+   *            <vm-item detail-push>subItem2</vm-item>
+   *            <vm-item detail-push>subItem3</vm-item>
+   *        </vm-item-collapse>
+   *        <vm-item-collapse title="This Is Title3">
+   *            <vm-item detail-push>subItem1</vm-item>
+   *            <vm-item detail-push>subItem2</vm-item>
+   *            <vm-item detail-push>subItem3</vm-item>
+   *        </vm-item-collapse>
+   *    </vm-item-collapse-group>
+   * </vm-list>
    *
    * @demo #/collapseList
    * */
@@ -78,7 +78,7 @@
   import { getSize } from './styleTools'
 
   export default {
-    name: 'ItemCollapse',
+    name: 'vm-item-collapse',
     data () {
       return {
         enable: true,               // 是否能点击

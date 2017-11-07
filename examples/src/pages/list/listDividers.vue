@@ -1,28 +1,28 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>ListDividers</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <ItemGroup>
-                <ItemDivider color="light">A</ItemDivider>
-                <Item>Angola</Item>
-                <Item>Angular</Item>
-                <Item>America</Item>
-                <Item>Arg</Item>
-            </ItemGroup>
-            <ItemGroup>
-                <ItemDivider color="light">B</ItemDivider>
-                <Item>Bee</Item>
-                <Item>Book</Item>
-                <Item>Back</Item>
-                <Item>Bear</Item>
-            </ItemGroup>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>ListDividers</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-item-group>
+                <vm-item-divider color="light">A</vm-item-divider>
+                <vm-item>Angola</vm-item>
+                <vm-item>Angular</vm-item>
+                <vm-item>America</vm-item>
+                <vm-item>Arg</vm-item>
+            </vm-item-group>
+            <vm-item-group>
+                <vm-item-divider color="light">B</vm-item-divider>
+                <vm-item>Bee</vm-item>
+                <vm-item>Book</vm-item>
+                <vm-item>Back</vm-item>
+                <vm-item>Bear</vm-item>
+            </vm-item-group>
 
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
 

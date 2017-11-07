@@ -42,7 +42,7 @@
    *
    * */
   export default {
-    name: 'Buttons',
+    name: 'vm-buttons',
     props: {
       left: Boolean,
       right: Boolean,

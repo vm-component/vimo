@@ -13,7 +13,7 @@
   import ItemMixin from './item-mixin.vue'
   export default{
     mixins: [ItemMixin],
-    name: 'ListHeader',
+    name: 'vm-list-header',
     data () {
       return {
         itemTypeName: 'list-header'

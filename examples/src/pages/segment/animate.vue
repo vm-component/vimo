@@ -1,19 +1,19 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Animate切换</Title>
-            </Navbar>
-            <Toolbar>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Animate切换</vm-title>
+            </vm-navbar>
+            <vm-toolbar>
                 <!--content-->
-                <Segment v-model="fruit" @onChange="onChangeHandler">
-                    <SegmentButton value="apple" @onSelect="onSelectHandler">Apple</SegmentButton>
-                    <SegmentButton value="orange" @onSelect="onSelectHandler">Orange</SegmentButton>
-                    <SegmentButton value="pear" @onSelect="onSelectHandler">Pear</SegmentButton>
-                </Segment>
-            </Toolbar>
-        </Header>
-        <Content padding class="outer-content" ref="content">
+                <vm-segment v-model="fruit" @onChange="onChangeHandler">
+                    <vm-segment-button value="apple" @onSelect="onSelectHandler">Apple</vm-segment-button>
+                    <vm-segment-button value="orange" @onSelect="onSelectHandler">Orange</vm-segment-button>
+                    <vm-segment-button value="pear" @onSelect="onSelectHandler">Pear</vm-segment-button>
+                </vm-segment>
+            </vm-toolbar>
+        </vm-header>
+        <vm-content padding class="outer-content" ref="content">
             <section class="transitionBox">
                 <transition name="animate">
                     <!--content_1-->
@@ -68,8 +68,8 @@
                     </section>
                 </transition>
             </section>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .transitionBox {

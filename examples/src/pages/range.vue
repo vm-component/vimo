@@ -1,90 +1,90 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Range</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Range</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>Brightness</span>
-                    <Badge slot="item-right">{{brightness}}</Badge>
-                </ListHeader>
-                <Item>
+                    <vm-badge slot="item-right">{{brightness}}</vm-badge>
+                </vm-list-header>
+                <vm-item>
                     <Range v-model="brightness">
-                        <Icon slot="range-left" small name="sunny"></Icon>
-                        <Icon slot="range-right" name="sunny"></Icon>
+                        <vm-icon slot="range-left" small name="sunny"></vm-icon>
+                        <vm-icon slot="range-right" name="sunny"></vm-icon>
                     </Range>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>Saturation</span>
-                    <Badge slot="item-right" color="secondary">{{saturation}}</Badge>
-                </ListHeader>
-                <Item>
+                    <vm-badge slot="item-right" color="secondary">{{saturation}}</vm-badge>
+                </vm-list-header>
+                <vm-item>
                     <Range :min="-200" :max="200" :pin="true" v-model="saturation" color="secondary">
-                        <Label slot="range-left">-200</Label>
-                        <Label slot="range-right">200</Label>
+                        <vm-label slot="range-left">-200</vm-label>
+                        <vm-label slot="range-right">200</vm-label>
                     </Range>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
 
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>Warmth</span>
-                    <Badge slot="item-right" color="danger">{{warmth}}</Badge>
-                </ListHeader>
-                <Item>
+                    <vm-badge slot="item-right" color="danger">{{warmth}}</vm-badge>
+                </vm-list-header>
+                <vm-item>
                     <Range :min="1000" :max="2000" :step="100" :snaps="true" v-model="warmth" color="danger">
-                        <Icon slot="range-left" small color="danger" name="thermometer"></Icon>
-                        <Icon slot="range-right" color="danger" name="thermometer"></Icon>
+                        <vm-icon slot="range-left" small color="danger" name="thermometer"></vm-icon>
+                        <vm-icon slot="range-right" color="danger" name="thermometer"></vm-icon>
                     </Range>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>Structure</span>
-                    <Badge slot="item-right" color="dark">{{structure.lower}}</Badge>
-                    <Badge slot="item-right" color="dark">{{structure.upper}}</Badge>
-                </ListHeader>
-                <Item>
+                    <vm-badge slot="item-right" color="dark">{{structure.lower}}</vm-badge>
+                    <vm-badge slot="item-right" color="dark">{{structure.upper}}</vm-badge>
+                </vm-list-header>
+                <vm-item>
                     <Range :dualKnobs="true" :pin="true" v-model="structure"
                            color="dark">
-                        <Label slot="range-left">-0</Label>
-                        <Label slot="range-right">100</Label>
+                        <vm-label slot="range-left">-0</vm-label>
+                        <vm-label slot="range-right">100</vm-label>
                     </Range>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>Disable</span>
-                    <Badge slot="item-right" color="secondary">{{disableRange}}</Badge>
-                </ListHeader>
-                <Item>
+                    <vm-badge slot="item-right" color="secondary">{{disableRange}}</vm-badge>
+                </vm-list-header>
+                <vm-item>
                     <Range :disabled="disabled" :min="-200" :max="200" :pin="true" v-model="disableRange"
                            color="secondary">
-                        <Label slot="range-left">-200</Label>
-                        <Label slot="range-right">200</Label>
+                        <vm-label slot="range-left">-200</vm-label>
+                        <vm-label slot="range-right">200</vm-label>
                     </Range>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
 
-            <Grid>
-                <Row justify-content-center>
-                    <Column col-6>
-                        <Button block @click="disableToggle">Disabled Toggle</Button>
-                    </Column>
-                </Row>
-            </Grid>
-        </Content>
-    </Page>
+            <vm-grid>
+                <vm-row justify-content-center>
+                    <vm-col col-6>
+                        <vm-button block @click="disableToggle">Disabled Toggle</vm-button>
+                    </vm-col>
+                </vm-row>
+            </vm-grid>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 </style>

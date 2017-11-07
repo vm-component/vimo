@@ -1,16 +1,16 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Buttons right slot="buttons">
-                    <Button role="bar-button" type="solid" @click="$modal.dismiss()">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-buttons right slot="buttons">
+                    <vm-button role="bar-button" type="solid" @click="$modal.dismiss()">
                         好的
-                    </Button>
-                </Buttons>
-                <Title>隐私政策</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+                    </vm-button>
+                </vm-buttons>
+                <vm-title>隐私政策</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
             <p><strong>Apple 隐私政策已于 2016 年 9 月 12 日更新</strong></p>
             <p><strong>Apple 非常重视你的隐私。因此我们制定了涵盖如何收集、使用、披露、转让以及存储你的信息的隐私政策。请花些时间熟悉我们针对客户隐私的做法，如有任何疑问，请联系我们。</strong></p>
             个人信息的收集和使用
@@ -118,8 +118,8 @@
             Apple 可随时对其隐私政策加以更新。如果我们对隐私政策作出重大变更，我们将在公司网站上发布通告和经更新的隐私政策。
 
             Apple Inc. 1 Infinite Loop, Cupertino, California, USA, 95014
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

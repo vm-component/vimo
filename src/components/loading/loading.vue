@@ -127,7 +127,7 @@
   const NOOP = () => {}
 
   export default {
-    name: 'Loading',
+    name: 'vm-loading',
     props: {
       spinner: {
         type: String,

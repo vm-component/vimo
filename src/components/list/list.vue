@@ -50,90 +50,90 @@
    * @usage
    * <!--普通使用-->
    * <template>
-   *    <Page>
-   *        <Header>
-   *            <Navbar>
-   *                <Title>List</Title>
-   *            </Navbar>
-   *         </Header>
-   *        <Content class="outer-content">
-   *            <List>
+   *    <vm-page>
+   *        <vm-header>
+   *            <vm-navbar>
+   *                <vm-title>List</vm-title>
+   *            </vm-navbar>
+   *         </vm-header>
+   *        <vm-content class="outer-content">
+   *            <vm-list>
    *                <!--header-->
-   *                <ListHeader>
+   *                <vm-list-header>
    *                    <span>Contents</span>
-   *                </ListHeader>
+   *                </vm-list-header>
    *                <!--group-->
-   *                <ItemGroup>
-   *                    <Item button to="list.listForAll">ListForAll</Item>
-   *                    <Item button :to="{name:'list.basicList'}">BasicList</Item>
-   *                    <Item button :to="{name:'list.noLine'}">NoLine</Item>
-   *                    <Item button :to="{name:'list.insetList'}">InsetList</Item>
-   *                    <Item button :to="{name:'list.listDividers'}">ListDividers</Item>
-   *                    <Item button :to="{name:'list.listHeaders'}">listHeaders</Item>
-   *                    <Item button :to="{name:'list.iconList'}">IconList</Item>
-   *                    <Item button :to="{name:'list.avatarList'}">AvatarList</Item>
-   *                    <Item button :to="{name:'list.multi-lineList'}">Multi-lineList</Item>
-   *                    <Item button :to="{name:'list.slidingList'}">SlidingList</Item>
-   *                    <Item button :to="{name:'list.reorder'}">Reorder</Item>
-   *                    <Item button :to="{name:'list.thumbnailList'}">ThumbnailList</Item>
-   *                </ItemGroup>
-   *            </List>
-   *        </Content>
-   *    </Page>
+   *                <vm-item-group>
+   *                    <vm-item button to="list.listForAll">ListForAll</vm-item>
+   *                    <vm-item button :to="{name:'list.basicList'}">BasicList</vm-item>
+   *                    <vm-item button :to="{name:'list.noLine'}">NoLine</vm-item>
+   *                    <vm-item button :to="{name:'list.insetList'}">InsetList</vm-item>
+   *                    <vm-item button :to="{name:'list.listDividers'}">ListDividers</vm-item>
+   *                    <vm-item button :to="{name:'list.listHeaders'}">listHeaders</vm-item>
+   *                    <vm-item button :to="{name:'list.iconList'}">IconList</vm-item>
+   *                    <vm-item button :to="{name:'list.avatarList'}">AvatarList</vm-item>
+   *                    <vm-item button :to="{name:'list.multi-lineList'}">Multi-lineList</vm-item>
+   *                    <vm-item button :to="{name:'list.slidingList'}">SlidingList</vm-item>
+   *                    <vm-item button :to="{name:'list.reorder'}">Reorder</vm-item>
+   *                    <vm-item button :to="{name:'list.thumbnailList'}">ThumbnailList</vm-item>
+   *                </vm-item-group>
+   *            </vm-list>
+   *        </vm-content>
+   *    </vm-page>
    * </template>
    *
    * <!--多列布局(两列三行)-->
-   * <List>
-   *    <ListHeader>
+   * <vm-list>
+   *    <vm-list-header>
    *        <span>today</span>
-   *    </ListHeader>
-   *    <Item>
-   *        <Avatar slot="item-left">
+   *    </vm-list-header>
+   *    <vm-item>
+   *        <vm-avatar slot="item-left">
    *            <img src="./img/avatar-ts-woody.png">
-   *        </Avatar>
-   *        <Label>
+   *        </vm-avatar>
+   *        <vm-label>
    *            <h2>Woody</h2>
    *            <h3>Hello world</h3>
    *            <h4>This is third line</h4>
    *            <p>This town ain't big enough for the two of us!</p>
-   *        </Label>
-   *    </Item>
-   *    <Item>
-   *        <Avatar slot="item-left">
+   *        </vm-label>
+   *    </vm-item>
+   *    <vm-item>
+   *        <vm-avatar slot="item-left">
    *            <img src="./img/avatar-ts-buzz.png">
-   *        </Avatar>
-   *        <Label>
+   *        </vm-avatar>
+   *        <vm-label>
    *            <h2>Buzz Lightyear</h2>
    *            <h3>Hello world</h3>
    *            <p>My eyeballs could have been sucked from their sockets!</p>
-   *        </Label>
-   *    </Item>
-   * </List>
+   *        </vm-label>
+   *    </vm-item>
+   * </vm-list>
    *
    * <!--Radio-->
-   * <List radio-group v-model="fruits" :disabled="isListDisabled" @onChange="onChangeHandler">
-   *    <ListHeader>Fruits</ListHeader>
-   *    <Item>
-   *        <Label>Apple</Label>
-   *        <Radio value="apple" :disabled="isAppleDisabled" @onSelect="onSelectHandler"></Radio>
-   *    </Item>
-   *    <Item>
-   *        <Label>Banana</Label>
-   *        <Radio value="banana" color="danger" @onSelect="onSelectHandler"></Radio>
-   *    </Item>
-   *    <Item>
-   *        <Label>Cherry (secondary color)</Label>
-   *        <Radio value="cherry" color="secondary" @onSelect="onSelectHandler"></Radio>
-   *    </Item>
-   *    <Item>
-   *        <Label>Disabled</Label>
-   *        <Radio value="disabled" :disabled="true" @onSelect="onSelectHandler"></Radio>
-   *    </Item>
-   *    <Item>
-   *        <Label>Default</Label>
-   *        <Radio value="default" @onSelect="onSelectHandler"></Radio>
-   *    </Item>
-   * </List>
+   * <vm-list radio-group v-model="fruits" :disabled="isListDisabled" @onChange="onChangeHandler">
+   *    <vm-list-header>Fruits</vm-list-header>
+   *    <vm-item>
+   *        <vm-label>Apple</vm-label>
+   *        <vm-radio value="apple" :disabled="isAppleDisabled" @onSelect="onSelectHandler"></vm-radio>
+   *    </vm-item>
+   *    <vm-item>
+   *        <vm-label>Banana</vm-label>
+   *        <vm-radio value="banana" color="danger" @onSelect="onSelectHandler"></vm-radio>
+   *    </vm-item>
+   *    <vm-item>
+   *        <vm-label>Cherry (secondary color)</vm-label>
+   *        <vm-radio value="cherry" color="secondary" @onSelect="onSelectHandler"></vm-radio>
+   *    </vm-item>
+   *    <vm-item>
+   *        <vm-label>Disabled</vm-label>
+   *        <vm-radio value="disabled" :disabled="true" @onSelect="onSelectHandler"></vm-radio>
+   *    </vm-item>
+   *    <vm-item>
+   *        <vm-label>Default</vm-label>
+   *        <vm-radio value="default" @onSelect="onSelectHandler"></vm-radio>
+   *    </vm-item>
+   * </vm-list>
    *
    * @fires component:List#onChange
    *
@@ -141,7 +141,7 @@
    * @demo #/list
    */
   export default {
-    name: 'List',
+    name: 'vm-list',
     data () {
       return {
         // -------- Radio --------

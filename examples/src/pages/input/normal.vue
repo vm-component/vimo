@@ -1,88 +1,88 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Normal</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List>
-                <ListHeader>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Normal</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list>
+                <vm-list-header>
                     <span>布局</span>
-                </ListHeader>
-                <Item>
-                    <Label color="primary">Inline Label</Label>
+                </vm-list-header>
+                <vm-item>
+                    <vm-label color="primary">Inline Label</vm-label>
                     <Input placeholder="Text Input"></Input>
-                </Item>
-                <Item>
-                    <Label color="primary" fixed>Fixed Label with fixed width</Label>
+                </vm-item>
+                <vm-item>
+                    <vm-label color="primary" fixed>Fixed Label with fixed width</vm-label>
                     <Input type="tel" placeholder="Tel Input"></Input>
-                </Item>
-                <Item>
+                </vm-item>
+                <vm-item>
                     <Input type="number" placeholder="Number Input with no label"></Input>
-                </Item>
-                <Item>
-                    <Label color="primary" stacked>Stacked Label</Label>
+                </vm-item>
+                <vm-item>
+                    <vm-label color="primary" stacked>Stacked Label</vm-label>
                     <Input type="email" placeholder="Email Input"></Input>
-                </Item>
-                <Item>
-                    <Label color="primary" floating>Floating Label</Label>
+                </vm-item>
+                <vm-item>
+                    <vm-label color="primary" floating>Floating Label</vm-label>
                     <Input type="text"></Input>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>
                     <span>右侧清除按钮</span>
-                </ListHeader>
-                <Item>
+                </vm-list-header>
+                <vm-item>
                     <Input placeholder="Clear Input" clearInput></Input>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>Password(自动清除)</span>
-                </ListHeader>
-                <Item>
-                    <Label color="primary" stacked>Password</Label>
+                </vm-list-header>
+                <vm-item>
+                    <vm-label color="primary" stacked>Password</vm-label>
                     <Input type="password" placeholder="Password Input"></Input>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>Test</span>
-                </ListHeader>
-                <Item>
-                    <Label color="primary">TestValue</Label>
+                </vm-list-header>
+                <vm-item>
+                    <vm-label color="primary">TestValue</vm-label>
                     <Input :clearInput="true"
                            :max="18"
                            placeholder="最多输入18个字符"
                            v-model="testValue"
                            :disabled="testDisabled"></Input>
-                </Item>
-                <Item>
+                </vm-item>
+                <vm-item>
                     <span slot="item-left"> 当前的值({{testValue.length}}): {{testValue}}</span>
-                    <Button slot="item-right" small outline @click="testDisabled = !testDisabled">Disable</Button>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>Focus Highlight</ListHeader>
-                <Item>
-                    <Label color="primary">聚焦高亮</Label>
+                    <vm-button slot="item-right" small outline @click="testDisabled = !testDisabled">Disable</vm-button>
+                </vm-item>
+            </vm-list>
+            <vm-list>
+                <vm-list-header>Focus Highlight</vm-list-header>
+                <vm-item>
+                    <vm-label color="primary">聚焦高亮</vm-label>
                     <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
-                </Item>
-            </List>
+                </vm-item>
+            </vm-list>
 
-            <List>
-                <ListHeader>Input单独使用</ListHeader>
+            <vm-list>
+                <vm-list-header>Input单独使用</vm-list-header>
 
                 <section class="customer">
                     <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
                 </section>
-            </List>
-        </Content>
-    </Page>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default {

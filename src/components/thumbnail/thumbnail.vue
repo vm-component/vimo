@@ -18,6 +18,6 @@
    * @demo #/thumbnailList
    * */
   export default{
-    name: 'Thumbnail'
+    name: 'vm-thumbnail'
   }
 </script>

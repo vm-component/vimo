@@ -1,5 +1,5 @@
 <template>
-    <nav class="ion-nav"
+    <div class="ion-nav"
          :class="[
            menuContentClass,
            menuContentTypeClass,
@@ -12,7 +12,7 @@
             <slot></slot>
         </transition>
         <div class="nav-decor"></div>
-    </nav>
+    </div>
 </template>
 <style lang="less">
     .ion-nav {
@@ -50,7 +50,7 @@
    *
    * */
   export default {
-    name: 'Nav',
+    name: 'vm-nav',
     props: {
       // 转场动画名称
       // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition/fade-transition

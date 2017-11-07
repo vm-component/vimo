@@ -1,17 +1,17 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>PreviewImage</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>PreviewImage</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
             <h5>图片预览组件</h5>
             <p>如果实在支付宝环境，则使用支付宝的组件</p>
-            <Button block @click="openAlbum1">从第一个开始</Button>
-            <Button block @click="openAlbum2">从第二个开始</Button>
-        </Content>
-    </Page>
+            <vm-button block @click="openAlbum1">从第一个开始</vm-button>
+            <vm-button block @click="openAlbum2">从第二个开始</vm-button>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default{

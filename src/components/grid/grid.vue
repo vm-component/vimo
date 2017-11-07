@@ -17,11 +17,11 @@
    *
    * 栅格系统类似于 **Bootstrap's grid system**, 其本质是基于flex布局.
    *
-   * Vimo的栅格由**Grid/Row/Column**三个组件组成, Grid定义外部flex容器, Row定义行, Column定义列. 栅格系统的默认列为12行. 当然, 以上都是可以通过修改Scss文件定制的, 但是这么做的人应该很少.
+   * Vimo的栅格由**Grid/vm-row/Column**三个组件组成, Grid定义外部flex容器, Row定义行, Column定义列. 栅格系统的默认列为12行. 当然, 以上都是可以通过修改Scss文件定制的, 但是这么做的人应该很少.
    *
    * > 注意: 如果不了解Bootstrap和Flexbox请再恶补相关的知识.
    *
-   * ### Grid/Row/Colume组件属性
+   * ### Grid/vm-row/Colume组件属性
    *
    * 下列属性写在组件标签中即可生效, 名称及含义与flex相似, 具体请看右边示例:
    *
@@ -79,21 +79,21 @@
    *
    * @demo #/grid
    * @usage
-   * <Grid no-padding>
-   *    <Row justify-content-center align-items-center>
-   *        <Column pull-sm-4>
+   * <vm-grid no-padding>
+   *    <vm-row justify-content-center align-items-center>
+   *        <vm-col pull-sm-4>
    *            1 of 3
-   *        </Column>
-   *        <Column>
+   *        </vm-col>
+   *        <vm-col>
    *            2 of 3
-   *        </Column>
-   *        <Column>
+   *        </vm-col>
+   *        <vm-col>
    *            3 of 3
-   *        </Column>
-   *    </Row>
-   * </Grid>
+   *        </vm-col>
+   *    </vm-row>
+   * </vm-grid>
    * */
   export default {
-    name: 'Grid'
+    name: 'vm-grid'
   }
 </script>

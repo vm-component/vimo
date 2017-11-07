@@ -1,51 +1,51 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Lists In Cards</Title>
-            </Navbar>
-        </Header>
-        <Content>
-            <Card>
-                <CardHeader>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Lists In Cards</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content>
+            <vm-card>
+                <vm-card-header>
                     Explore Nearby
-                </CardHeader>
+                </vm-card-header>
 
-                <List>
-                    <Item button>
-                        <Icon name="person" slot="item-left"></Icon>
+                <vm-list>
+                    <vm-item button>
+                        <vm-icon name="person" slot="item-left"></vm-icon>
                         Shopping
-                    </Item>
+                    </vm-item>
 
-                    <Item button>
-                        <Icon name="calculator" slot="item-left"></Icon>
+                    <vm-item button>
+                        <vm-icon name="calculator" slot="item-left"></vm-icon>
                         Hospital
-                    </Item>
+                    </vm-item>
 
-                    <Item button>
-                        <Icon name="camera" slot="item-left"></Icon>
+                    <vm-item button>
+                        <vm-icon name="camera" slot="item-left"></vm-icon>
                         Cafe
-                    </Item>
+                    </vm-item>
 
-                    <Item button>
-                        <Icon name="paw" slot="item-left"></Icon>
+                    <vm-item button>
+                        <vm-icon name="paw" slot="item-left"></vm-icon>
                         Dog Park
-                    </Item>
+                    </vm-item>
 
-                    <Item button>
-                        <Icon name="beer" slot="item-left"></Icon>
+                    <vm-item button>
+                        <vm-icon name="beer" slot="item-left"></vm-icon>
                         Pub
-                    </Item>
+                    </vm-item>
 
-                    <Item button>
-                        <Icon name="easel" slot="item-left"></Icon>
+                    <vm-item button>
+                        <vm-icon name="easel" slot="item-left"></vm-icon>
                         Space
-                    </Item>
+                    </vm-item>
 
-                </List>
-            </Card>
-        </Content>
-    </Page>
+                </vm-list>
+            </vm-card>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default{}

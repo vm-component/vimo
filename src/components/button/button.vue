@@ -57,17 +57,17 @@
    *
    * @demo #/button
    * @usage
-   * <Button full>full</Button>
-   * <Button outline full color="secondary">outline + full</Button>
-   * <Button color="dark">
-   *    <Icon class="icon" name="star"></Icon>
+   * <vm-button full>full</vm-button>
+   * <vm-button outline full color="secondary">outline + full</vm-button>
+   * <vm-button color="dark">
+   *    <vm-icon class="icon" name="star"></vm-icon>
    *    <span>Left Icon</span>
-   * </Button>
+   * </vm-button>
    * */
   import { setElementClass, isTrueProperty } from '../../util/util'
 
   export default {
-    name: 'Button',
+    name: 'vm-button',
     props: {
       /**
        * 按钮color：primary、secondary、danger、light、dark

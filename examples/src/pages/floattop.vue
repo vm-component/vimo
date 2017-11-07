@@ -1,18 +1,18 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Floattop</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Floattop</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
 
             <Floattop>
                 CREATE MY ACCOUNT
             </Floattop>
 
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
     .main {

@@ -26,7 +26,7 @@
    * */
   import { isTrueProperty, isString, isPresent } from '../../util/util'
   export default{
-    name: 'SegmentButton',
+    name: 'ion-segment-button',
     data () {
       return {
         theValue: null, // 当前环境的value副本

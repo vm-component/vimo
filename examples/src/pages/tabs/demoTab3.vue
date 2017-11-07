@@ -1,5 +1,5 @@
 <template>
-    <Content padding>
+    <vm-content padding>
         <h3>这个是Tab3的内容</h3>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque deleniti dicta dolores exercitationem fugiat, libero magni nam. Aperiam aspernatur cum illum maiores maxime natus perspiciatis quae, quam ullam veniam.</p>
@@ -31,7 +31,7 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at, aut consequuntur cumque doloremque, dolorum eaque eos et hic ipsam laborum natus neque officiis quia, rem repellendus reprehenderit similique voluptas.</p>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at, aut consequuntur cumque doloremque, dolorum eaque eos et hic ipsam laborum natus neque officiis quia, rem repellendus reprehenderit similique voluptas.</p>
-    </Content>
+    </vm-content>
 </template>
 <style lang="less">
     .main {

@@ -1,74 +1,74 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Storage</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Storage</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
             <h5>简要</h5>
             <p>vm-storage插件主要是简化操作本地存储, 并且在项目初始化的时候将需要的数据序列化到内存中存储, 方法有: get/set/remove/clear/supported等.</p>
             <p>前缀用于区分app作用于, 且Storage只能存储以下类型: String(能序列化的)/Object/Array这三类.</p>
             <h5>localStorage</h5>
-            <Grid>
-                <Row>
-                    <Column col-4>前缀:</Column>
-                    <Column col-8>{{$localStorage._p}}</Column>
-                </Row>
-                <Row>
-                    <Column col-4>Storage中:</Column>
-                    <Column col-8>
+            <vm-grid>
+                <vm-row>
+                    <vm-col col-4>前缀:</vm-col>
+                    <vm-col col-8>{{$localStorage._p}}</vm-col>
+                </vm-row>
+                <vm-row>
+                    <vm-col col-4>Storage中:</vm-col>
+                    <vm-col col-8>
                         <div class="detailBox"
                              v-for="(value,key) in $localStorage.get()"
                              v-if="key.indexOf('_') !== 0">
-                            <Row><span class="detailBox__title">{{key}}:</span></Row>
-                            <Row><span class="detailBox__value">{{value}}</span></Row>
+                            <vm-row><span class="detailBox__title">{{key}}:</span></vm-row>
+                            <vm-row><span class="detailBox__value">{{value}}</span></vm-row>
                         </div>
-                    </Column>
-                </Row>
+                    </vm-col>
+                </vm-row>
 
-                <Row>
-                    <Column col-4>localStorage中:</Column>
-                    <Column col-8>
+                <vm-row>
+                    <vm-col col-4>localStorage中:</vm-col>
+                    <vm-col col-8>
                         <div class="detailBox" v-for="(value,key) in localStorageList">
-                            <Row><span class="detailBox__title">{{key}}:</span></Row>
-                            <Row><span class="detailBox__value">{{value}}</span></Row>
+                            <vm-row><span class="detailBox__title">{{key}}:</span></vm-row>
+                            <vm-row><span class="detailBox__value">{{value}}</span></vm-row>
                         </div>
-                    </Column>
-                </Row>
-            </Grid>
+                    </vm-col>
+                </vm-row>
+            </vm-grid>
             <h5>SessionStorage</h5>
-            <Grid>
-                <Row>
-                    <Column col-4>前缀:</Column>
-                    <Column col-8>{{$sessionStorage._p}}</Column>
-                </Row>
+            <vm-grid>
+                <vm-row>
+                    <vm-col col-4>前缀:</vm-col>
+                    <vm-col col-8>{{$sessionStorage._p}}</vm-col>
+                </vm-row>
 
-                <Row>
-                    <Column col-4>Storage中:</Column>
-                    <Column col-8>
+                <vm-row>
+                    <vm-col col-4>Storage中:</vm-col>
+                    <vm-col col-8>
                         <div class="detailBox"
                              v-for="(value,key) in $sessionStorage.get()"
                              v-if="key.indexOf('_') !== 0">
-                            <Row><span class="detailBox__title">{{key}}:</span></Row>
-                            <Row><span class="detailBox__value">{{value}}</span></Row>
+                            <vm-row><span class="detailBox__title">{{key}}:</span></vm-row>
+                            <vm-row><span class="detailBox__value">{{value}}</span></vm-row>
                         </div>
-                    </Column>
-                </Row>
+                    </vm-col>
+                </vm-row>
 
-                <Row>
-                    <Column col-4>sessionStorage中:</Column>
-                    <Column col-8>
+                <vm-row>
+                    <vm-col col-4>sessionStorage中:</vm-col>
+                    <vm-col col-8>
                         <div class="detailBox" v-for="(value,key) in sessionStorageList">
-                            <Row><span class="detailBox__title">{{key}}:</span></Row>
-                            <Row><span class="detailBox__value">{{value}}</span></Row>
+                            <vm-row><span class="detailBox__title">{{key}}:</span></vm-row>
+                            <vm-row><span class="detailBox__value">{{value}}</span></vm-row>
                         </div>
-                    </Column>
-                </Row>
-            </Grid>
+                    </vm-col>
+                </vm-row>
+            </vm-grid>
 
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .detailBox {

@@ -1,32 +1,32 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>ListHeaders</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List>
-                <ListHeader>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>ListHeaders</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list>
+                <vm-list-header>
                     Action-1
-                </ListHeader>
-                <ItemGroup>
-                    <Item>Terminator II</Item>
-                    <Item>The Empire Strikes Back</Item>
-                    <Item>Blade Runner</Item>
-                </ItemGroup>
+                </vm-list-header>
+                <vm-item-group>
+                    <vm-item>Terminator II</vm-item>
+                    <vm-item>The Empire Strikes Back</vm-item>
+                    <vm-item>Blade Runner</vm-item>
+                </vm-item-group>
 
-                <ListHeader>
+                <vm-list-header>
                     Action-2
-                </ListHeader>
-                <ItemGroup>
-                    <Item>Terminator II</Item>
-                    <Item>The Empire Strikes Back</Item>
-                    <Item>Blade Runner</Item>
-                </ItemGroup>
-            </List>
-        </Content>
-    </Page>
+                </vm-list-header>
+                <vm-item-group>
+                    <vm-item>Terminator II</vm-item>
+                    <vm-item>The Empire Strikes Back</vm-item>
+                    <vm-item>Blade Runner</vm-item>
+                </vm-item-group>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

@@ -15,6 +15,6 @@
    * @demo #/list
    * */
   export default {
-    name: 'ItemGroup'
+    name: 'vm-item-group'
   }
 </script>

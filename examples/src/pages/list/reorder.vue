@@ -1,27 +1,27 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Reorder</Title>
-                <Buttons end>
-                    <Button clear @click="toggleEdit()">{{editButton}}</Button>
-                </Buttons>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List class="chat-sliding-demo">
-                <ListHeader>Playlist(正在开发)</ListHeader>
-                <ItemGroup :reorder="editing" @onItemReorder="reorderData($event)">
-                    <Item v-for="(song,index) in songs" :key="index">
-                        <Label>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Reorder</vm-title>
+                <vm-buttons end>
+                    <vm-button clear @click="toggleEdit()">{{editButton}}</vm-button>
+                </vm-buttons>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list class="chat-sliding-demo">
+                <vm-list-header>Playlist(正在开发)</vm-list-header>
+                <vm-item-group :reorder="editing" @onItemReorder="reorderData($event)">
+                    <vm-item v-for="(song,index) in songs" :key="index">
+                        <vm-label>
                             <h2>{{ song.title }}</h2>
                             <p>{{ song.band }} • {{ song.album }}</p>
-                        </Label>
-                    </Item>
-                </ItemGroup>
-            </List>
-        </Content>
-    </Page>
+                        </vm-label>
+                    </vm-item>
+                </vm-item-group>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .main {

@@ -1,41 +1,41 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Sheet</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Sheet</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
             <h1>Sheet组件</h1>
             <p>组件用于弹出进一步选择的弹出层, 比如选择尺码/支付方式/分享方式等.</p>
             <p>当前支付方式选择: {{type}}</p>
 
-            <List>
-                <ListHeader>特性</ListHeader>
-                <Item>
-                    <Label>显示背景</Label>
-                    <Toggle v-model="showBackdrop"></Toggle>
-                </Item>
-                <Item>
-                    <Label>点击背景关闭</Label>
-                    <Toggle v-model="enableBackdropDismiss"></Toggle>
-                </Item>
-            </List>
+            <vm-list>
+                <vm-list-header>特性</vm-list-header>
+                <vm-item>
+                    <vm-label>显示背景</vm-label>
+                    <vm-toggle v-model="showBackdrop"></vm-toggle>
+                </vm-item>
+                <vm-item>
+                    <vm-label>点击背景关闭</vm-label>
+                    <vm-toggle v-model="enableBackdropDismiss"></vm-toggle>
+                </vm-item>
+            </vm-list>
 
 
-            <List radio-group v-model="direction">
-                <ListHeader>打开方向</ListHeader>
-                <Item>
-                    <Label>底部</Label>
-                    <Radio value="bottom"></Radio>
-                </Item>
-                <Item>
-                    <Label>顶部</Label>
-                    <Radio value="top"></Radio>
-                </Item>
-            </List>
+            <vm-list radio-group v-model="direction">
+                <vm-list-header>打开方向</vm-list-header>
+                <vm-item>
+                    <vm-label>底部</vm-label>
+                    <vm-radio value="bottom"></vm-radio>
+                </vm-item>
+                <vm-item>
+                    <vm-label>顶部</vm-label>
+                    <vm-radio value="top"></vm-radio>
+                </vm-item>
+            </vm-list>
 
-            <Button block @click="openPaySheet">选择支付方式</Button>
+            <vm-button block @click="openPaySheet">选择支付方式</vm-button>
 
             <article>
                 <p>
@@ -82,26 +82,26 @@
                     <div class="pay-sheet-title">选择支付方式</div>
                     <div class="pay-sheet-container">
                         <div class="pay-sheet-content" @click="choose('alipay')">
-                            <Icon class="pay-sheet-icon" name="icon-alipay"></Icon>
+                            <vm-icon class="pay-sheet-icon" name="icon-alipay"></vm-icon>
                             <p class="pay-sheet-name">支付宝</p>
                         </div>
                         <div class="pay-sheet-content" @click="choose('wechat')">
-                            <Icon class="pay-sheet-icon" name="icon-wechat"></Icon>
+                            <vm-icon class="pay-sheet-icon" name="icon-wechat"></vm-icon>
                             <p class="pay-sheet-name">微信</p>
                         </div>
                         <div class="pay-sheet-content" @click="choose('unipay')">
-                            <Icon class="pay-sheet-icon" name="icon-unionpay"></Icon>
+                            <vm-icon class="pay-sheet-icon" name="icon-unionpay"></vm-icon>
                             <p class="pay-sheet-name">银联</p>
                         </div>
                     </div>
                     <div class="pay-sheet-buttons">
-                        <Button full clear class="pay-sheet-button" @click="closePaySheet">取消</Button>
+                        <vm-button full clear class="pay-sheet-button" @click="closePaySheet">取消</vm-button>
                     </div>
                 </section>
             </Sheet>
             <!--shareSheet-->
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default {

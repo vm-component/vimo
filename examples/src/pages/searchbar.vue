@@ -1,10 +1,10 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Searchbar</Title>
-            </Navbar>
-            <Toolbar>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Searchbar</vm-title>
+            </vm-navbar>
+            <vm-toolbar>
                 <Searchbar :animated="true"
                            placeholder="Search"
                            :debounce="100"
@@ -12,20 +12,20 @@
                            v-model="myInput"
                            :showCancelButton="true"
                            cancelButtonText="取消"></Searchbar>
-            </Toolbar>
-        </Header>
-        <Content class="outer-content">
+            </vm-toolbar>
+        </vm-header>
+        <vm-content class="outer-content">
             <div padding>
                 <p>Search debounce: 100</p>
                 <p no-margin>Search Value: {{myInput}}</p>
             </div>
-            <List>
-                <ItemGroup>
-                    <Item button v-for="(city,index) in filteredList" :key="index">{{city.city}}</Item>
-                </ItemGroup>
-            </List>
-        </Content>
-    </Page>
+            <vm-list>
+                <vm-item-group>
+                    <vm-item button v-for="(city,index) in filteredList" :key="index">{{city.city}}</vm-item>
+                </vm-item-group>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 </style>

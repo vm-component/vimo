@@ -44,16 +44,16 @@
    * @demo #/checkbox
    *
    * @usage
-   * <Item>
-   *    <Label>Danger</Label>
-   *    <Checkbox slot="item-left" color="danger" v-model="testModal" :disabled="testDisabled" @onChange="onCheckboxChange"></Checkbox>
-   * </Item>
+   * <vm-item>
+   *    <vm-label>Danger</vm-label>
+   *    <vm-checkbox slot="item-left" color="danger" v-model="testModal" :disabled="testDisabled" @onChange="onCheckboxChange"></vm-checkbox>
+   * </vm-item>
    * */
   import { setElementClass } from '../../util/util'
   import Button from '../button/index'
 
   export default {
-    name: 'Checkbox',
+    name: 'vm-checkbox',
     components: {'vm-button': Button},
     data () {
       return {

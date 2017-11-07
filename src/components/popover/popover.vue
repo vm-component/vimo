@@ -148,7 +148,7 @@
   const NOOP = () => {}
 
   export default {
-    name: 'Popover',
+    name: 'vm-popover',
     data () {
       return {
         htmlComponent: '',

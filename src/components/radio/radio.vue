@@ -3,12 +3,12 @@
         <div class="radio-icon" :class="{'radio-checked':isChecked}">
             <div class="radio-inner"></div>
         </div>
-        <button role="radio" @click="onPointerDownHandler($event)"
+        <vm-button role="radio" @click="onPointerDownHandler($event)"
                 type="button"
                 :id="id"
                 ion-button="item-cover"
                 class="item-cover">
-        </button>
+        </vm-button>
     </div>
 </template>
 <script type="text/javascript">
@@ -57,36 +57,36 @@
    * @fire component:Radio#onSelect - 点按选择时触发
    * @demo #/radio
    * @usage
-   * <List radio-group v-model="fruits" :disabled="isListDisabled">
-   *    <ListHeader>Fruits</ListHeader>
-   *    <Item>
-   *        <Label>Apple</Label>
-   *        <Radio value="apple" :disabled="isAppleDisabled" @onSelect="onSelectHandler"></Radio>
-   *    </Item>
-   *    <Item>
-   *        <Label>Banana</Label>
-   *        <Radio value="banana" color="danger" @onSelect="onSelectHandler"></Radio>
-   *    </Item>
-   *    <Item>
-   *        <Label>Cherry (secondary color)</Label>
-   *        <Radio value="cherry" color="secondary" @onSelect="onSelectHandler"></Radio>
-   *    </Item>
-   *    <Item>
-   *         <Label>Disabled</Label>
-   *        <Radio value="disabled" :disabled="true" @onSelect="onSelectHandler"></Radio>
-   *    </Item>
-   *    <Item>
-   *        <Label>Default</Label>
-   *        <Radio value="default" @onSelect="onSelectHandler"></Radio>
-   *    </Item>
-   * </List>
+   * <vm-list radio-group v-model="fruits" :disabled="isListDisabled">
+   *    <vm-list-header>Fruits</vm-list-header>
+   *    <vm-item>
+   *        <vm-label>Apple</vm-label>
+   *        <vm-radio value="apple" :disabled="isAppleDisabled" @onSelect="onSelectHandler"></vm-radio>
+   *    </vm-item>
+   *    <vm-item>
+   *        <vm-label>Banana</vm-label>
+   *        <vm-radio value="banana" color="danger" @onSelect="onSelectHandler"></vm-radio>
+   *    </vm-item>
+   *    <vm-item>
+   *        <vm-label>Cherry (secondary color)</vm-label>
+   *        <vm-radio value="cherry" color="secondary" @onSelect="onSelectHandler"></vm-radio>
+   *    </vm-item>
+   *    <vm-item>
+   *         <vm-label>Disabled</vm-label>
+   *        <vm-radio value="disabled" :disabled="true" @onSelect="onSelectHandler"></vm-radio>
+   *    </vm-item>
+   *    <vm-item>
+   *        <vm-label>Default</vm-label>
+   *        <vm-radio value="default" @onSelect="onSelectHandler"></vm-radio>
+   *    </vm-item>
+   * </vm-list>
    *
    * */
   import { setElementClass, isTrueProperty } from '../../util/util'
 
   let id = 0
   export default {
-    name: 'Radio',
+    name: 'vm-radio',
     data () {
       return {
         isChecked: false,               // 内部 选中

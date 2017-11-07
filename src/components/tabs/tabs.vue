@@ -59,14 +59,14 @@
    * @demo #/tabs
    * @usage
    *
-   * <Page>
+   * <vm-page>
    *    <Tabs tabsLayout="icon-top" tabsPlacement="bottom" @onTabChange="onTabChange" ref=tabs>
    *        <router-view></router-view>
    *        <Tab slot="tab" :to="{name:'tabsBottom.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger" tabIcon="person"></Tab>
    *        <Tab slot="tab" :to="{name:'tabsBottom.demoTab2'}" tabBadge="2" tabTitle="Cars" tabBadgeStyle="dark" tabIcon="car"></Tab>
    *        <Tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></Tab>
    *    </Tabs>
-   * </Page>
+   * </vm-page>
    *
    * ...
    * computed: {
@@ -96,7 +96,7 @@
   import css from '../../util/getCss'
 
   export default {
-    name: 'Tabs',
+    name: 'vm-tabs',
     props: {
       color: [String],
       mode: {

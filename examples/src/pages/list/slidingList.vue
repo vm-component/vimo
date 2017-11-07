@@ -1,187 +1,187 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>SlidingList</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>SlidingList</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
 
-            <List>
-                <ListHeader>Demo填充数据</ListHeader>
-                <Item>填充数据</Item>
-                <Item>填充数据</Item>
-            </List>
+            <vm-list>
+                <vm-list-header>Demo填充数据</vm-list-header>
+                <vm-item>填充数据</vm-item>
+                <vm-item>填充数据</vm-item>
+            </vm-list>
 
 
-            <List>
-                <ListHeader>
+            <vm-list>
+                <vm-list-header>
                     <span>SlidingList Demo</span>
-                </ListHeader>
-                <ItemSliding>
-                    <Item>
-                        <Avatar slot="item-left">
+                </vm-list-header>
+                <vm-item-sliding>
+                    <vm-item>
+                        <vm-avatar slot="item-left">
                             <img src="./img/avatar-ts-woody.png">
-                        </Avatar>
-                        <Label>
+                        </vm-avatar>
+                        <vm-label>
                             <h2>两边都有按钮</h2>
                             <p>试试 ↔️️ 都滑动</p>
-                        </Label>
-                    </Item>
-                    <ItemSlidingOptions side="left">
-                        <Button color="primary" @click="clickText">
-                            <Icon name="text"></Icon>
+                        </vm-label>
+                    </vm-item>
+                    <vm-item-options side="left">
+                        <vm-button color="primary" @click="clickText">
+                            <vm-icon name="text"></vm-icon>
                             <span>Text</span>
-                        </Button>
-                        <Button color="secondary" @click="clickCall">
-                            <Icon name="call"></Icon>
+                        </vm-button>
+                        <vm-button color="secondary" @click="clickCall">
+                            <vm-icon name="call"></vm-icon>
                             <span>Call</span>
-                        </Button>
-                    </ItemSlidingOptions>
-                    <ItemSlidingOptions side="right">
-                        <Button color="primary" @click="clickEmail">
-                            <Icon name="mail"></Icon>
+                        </vm-button>
+                    </vm-item-options>
+                    <vm-item-options side="right">
+                        <vm-button color="primary" @click="clickEmail">
+                            <vm-icon name="mail"></vm-icon>
                             <span>Email</span>
-                        </Button>
-                    </ItemSlidingOptions>
-                </ItemSliding>
-                <ItemSliding>
-                    <Item>
-                        <Avatar slot="item-left">
+                        </vm-button>
+                    </vm-item-options>
+                </vm-item-sliding>
+                <vm-item-sliding>
+                    <vm-item>
+                        <vm-avatar slot="item-left">
                             <img src="./img/avatar-ts-buzz.png">
-                        </Avatar>
-                        <Label>
+                        </vm-avatar>
+                        <vm-label>
                             <h2>按钮在右边</h2>
                             <p>⬅️ 滑动出现按钮</p>
-                        </Label>
-                    </Item>
-                    <ItemSlidingOptions side="right">
-                        <Button color="primary" @click="clickEmail">
-                            <Icon name="mail"></Icon>
+                        </vm-label>
+                    </vm-item>
+                    <vm-item-options side="right">
+                        <vm-button color="primary" @click="clickEmail">
+                            <vm-icon name="mail"></vm-icon>
                             <span>Email</span>
-                        </Button>
-                    </ItemSlidingOptions>
-                </ItemSliding>
-                <ItemSliding>
-                    <Item>
-                        <Avatar slot="item-left">
+                        </vm-button>
+                    </vm-item-options>
+                </vm-item-sliding>
+                <vm-item-sliding>
+                    <vm-item>
+                        <vm-avatar slot="item-left">
                             <img src="./img/avatar-ts-buzz.png">
-                        </Avatar>
-                        <Label>
+                        </vm-avatar>
+                        <vm-label>
                             <h2>按钮在左边</h2>
                             <p>➡️ 滑动出现按钮</p>
-                        </Label>
-                    </Item>
-                    <ItemSlidingOptions side="left">
-                        <Button color="primary" @click="clickText">
-                            <Icon name="text"></Icon>
+                        </vm-label>
+                    </vm-item>
+                    <vm-item-options side="left">
+                        <vm-button color="primary" @click="clickText">
+                            <vm-icon name="text"></vm-icon>
                             <span>Text</span>
-                        </Button>
-                        <Button color="secondary" @click="clickCall">
-                            <Icon name="call"></Icon>
+                        </vm-button>
+                        <vm-button color="secondary" @click="clickCall">
+                            <vm-icon name="call"></vm-icon>
                             <span>Call</span>
-                        </Button>
-                    </ItemSlidingOptions>
-                </ItemSliding>
+                        </vm-button>
+                    </vm-item-options>
+                </vm-item-sliding>
 
-                <ItemSliding>
-                    <Item>
-                        <Avatar slot="item-left">
+                <vm-item-sliding>
+                    <vm-item>
+                        <vm-avatar slot="item-left">
                             <img src="./img/avatar-ts-hamm.png">
-                        </Avatar>
-                        <Label>
+                        </vm-avatar>
+                        <vm-label>
                             <h2>按钮在右边</h2>
                             <p>⬅️ 滑动出现按钮，再滑动则执行</p>
-                        </Label>
-                    </Item>
+                        </vm-label>
+                    </vm-item>
 
-                    <ItemSlidingOptions side="right">
-                        <Button expandable color="danger" @click="clickDelete">
-                            <Icon name="trash"></Icon>
+                    <vm-item-options side="right">
+                        <vm-button expandable color="danger" @click="clickDelete">
+                            <vm-icon name="trash"></vm-icon>
                             <span>Delete</span>
-                        </Button>
-                    </ItemSlidingOptions>
-                </ItemSliding>
+                        </vm-button>
+                    </vm-item-options>
+                </vm-item-sliding>
 
-                <ItemSliding>
-                    <Item>
-                        <Avatar slot="item-left">
+                <vm-item-sliding>
+                    <vm-item>
+                        <vm-avatar slot="item-left">
                             <img src="./img/avatar-ts-hamm.png">
-                        </Avatar>
-                        <label>
+                        </vm-avatar>
+                        <vm-label>
                             <h2>Icon在左边的</h2>
                             <p>⬅️ 滑动出现按钮</p>
-                        </label>
-                    </Item>
+                        </vm-label>
+                    </vm-item>
 
-                    <ItemSlidingOptions side="right" icon-left>
-                        <Button color="danger" @click="clickDelete">
-                            <Icon name="trash"></Icon>
+                    <vm-item-options side="right" icon-left>
+                        <vm-button color="danger" @click="clickDelete">
+                            <vm-icon name="trash"></vm-icon>
                             <span>Delete</span>
-                        </Button>
-                    </ItemSlidingOptions>
-                </ItemSliding>
+                        </vm-button>
+                    </vm-item-options>
+                </vm-item-sliding>
 
-            </List>
+            </vm-list>
 
-            <List>
-                <ListHeader>测试</ListHeader>
-                <ItemSliding
+            <vm-list>
+                <vm-list-header>测试</vm-list-header>
+                <vm-item-sliding
                         :disabled="disabled"
                         ref="itemSlidingComponent"
                         @onDrag="slidingDrag"
                         @onSwipeLeft="slidingDragLeft"
                         @onSwipeRight="slidingDragRight"
                         @onSwipe="slidingSwipe">
-                    <Item>
-                        <Avatar slot="item-left">
+                    <vm-item>
+                        <vm-avatar slot="item-left">
                             <img src="./img/avatar-ts-woody.png">
-                        </Avatar>
-                        <Label>
+                        </vm-avatar>
+                        <vm-label>
                             <h2>事件监听</h2>
                             <p>↔️ 滑动出现按钮</p>
-                        </Label>
-                    </Item>
-                    <ItemSlidingOptions side="left">
-                        <Button expandable color="danger" @click="clickDelete">
-                            <Icon name="trash"></Icon>
+                        </vm-label>
+                    </vm-item>
+                    <vm-item-options side="left">
+                        <vm-button expandable color="danger" @click="clickDelete">
+                            <vm-icon name="trash"></vm-icon>
                             <span>Delete</span>
-                        </Button>
-                    </ItemSlidingOptions>
-                    <ItemSlidingOptions side="right">
-                        <Button color="danger" @click="clickDelete">
-                            <Icon name="trash"></Icon>
+                        </vm-button>
+                    </vm-item-options>
+                    <vm-item-options side="right">
+                        <vm-button color="danger" @click="clickDelete">
+                            <vm-icon name="trash"></vm-icon>
                             <span>Delete</span>
-                        </Button>
-                    </ItemSlidingOptions>
-                </ItemSliding>
-            </List>
+                        </vm-button>
+                    </vm-item-options>
+                </vm-item-sliding>
+            </vm-list>
 
             <div text-center>
                 <p text-center>slidingPercent: {{slidingPercent}}</p>
                 <p text-center>openAmount: {{openAmount}}</p>
                 <p text-center>disabled: {{disabled}}</p>
-                <Button @click="closeItem" outline small>closeItem</Button>
-                <Button @click="openRightOptions" outline small>openRightOptions</Button>
-                <Button @click="openLeftOptions" outline small>openLeftOptions</Button>
-                <Button @click="getSlidingPercent" outline small>getSlidingPercent</Button>
-                <Button @click="getOpenAmount" outline small>getOpenAmount</Button>
-                <Button @click="disabled=!disabled" outline small>setDisabled</Button>
+                <vm-button @click="closeItem" outline small>closeItem</vm-button>
+                <vm-button @click="openRightOptions" outline small>openRightOptions</vm-button>
+                <vm-button @click="openLeftOptions" outline small>openLeftOptions</vm-button>
+                <vm-button @click="getSlidingPercent" outline small>getSlidingPercent</vm-button>
+                <vm-button @click="getOpenAmount" outline small>getOpenAmount</vm-button>
+                <vm-button @click="disabled=!disabled" outline small>setDisabled</vm-button>
             </div>
 
-            <List>
-                <ListHeader>Demo填充数据</ListHeader>
-                <Item>填充数据</Item>
-                <Item>填充数据</Item>
-                <Item>填充数据</Item>
-                <Item>填充数据</Item>
-                <Item>填充数据</Item>
-                <Item>填充数据</Item>
-                <Item>填充数据</Item>
-                <Item>填充数据</Item>
-            </List>
-        </Content>
-    </Page>
+            <vm-list>
+                <vm-list-header>Demo填充数据</vm-list-header>
+                <vm-item>填充数据</vm-item>
+                <vm-item>填充数据</vm-item>
+                <vm-item>填充数据</vm-item>
+                <vm-item>填充数据</vm-item>
+                <vm-item>填充数据</vm-item>
+                <vm-item>填充数据</vm-item>
+                <vm-item>填充数据</vm-item>
+                <vm-item>填充数据</vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
 

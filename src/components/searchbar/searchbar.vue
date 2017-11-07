@@ -17,7 +17,7 @@
                        color="dark"
                        class="searchbar-md-cancel"
                        role="button">
-                <Icon mode="md" name="md-arrow-back"></Icon>
+                <vm-icon mode="md" name="md-arrow-back"></vm-icon>
             </vm-button>
 
             <!--input左边的search按钮-->
@@ -106,12 +106,12 @@
    *
    * @usage
    * <template>
-   *    <Page>
-   *    <Header>
-   *        <Navbar>
-   *            <Title>Searchbar</Title>
-   *        </Navbar>
-   *        <Toolbar>
+   *    <vm-page>
+   *    <vm-header>
+   *        <vm-navbar>
+   *            <vm-title>Searchbar</vm-title>
+   *        </vm-navbar>
+   *        <vm-toolbar>
    *            <Searchbar :animated="true"
    *                placeholder="Search"
    *                :debounce="0"
@@ -123,13 +123,13 @@
    *                @onBlur="onBlur"
    *                @onCancel="onCancel"
    *                @onClear="onClear"></Searchbar>
-   *         </Toolbar>
-   *     </Header>
-   *    <Content padding>
+   *         </vm-toolbar>
+   *     </vm-header>
+   *    <vm-content padding>
    *        <p>Search debounce: 100</p>
    *        <p>Search Value: {{myInput}}</p>
-   *    </Content>
-   *    </Page>
+   *    </vm-content>
+   *    </vm-page>
    * </template>
    * */
   import Button from '../button/index'
@@ -137,7 +137,7 @@
   import { isNumber, isBoolean } from '../../util/util'
 
   export default {
-    name: 'Searchbar',
+    name: 'vm-searchbar',
     data () {
       return {
         isCancelVisible: false,

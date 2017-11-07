@@ -1,11 +1,11 @@
 <template>
-    <button ion-fab @click="clickHandler" :class="[modeClass,colorClass]" :mini="mini">
-        <Icon name="close" class="fab-close-icon"></Icon>
+    <vm-button ion-fab @click="clickHandler" :class="[modeClass,colorClass]" :mini="mini">
+        <vm-icon name="close" class="fab-close-icon"></vm-icon>
         <span class="button-inner">
             <slot></slot>
         </span>
         <!--<div class="button-effect"></div>-->
-    </button>
+    </vm-button>
 </template>
 <script type="text/javascript">
   /**
@@ -27,7 +27,7 @@
   import Icon from '../icon/index'
   import { setElementClass } from '../../util/util'
   export default{
-    name: 'FabButton',
+    name: 'vm-fab-button',
     data () {
       return {
         isMainButton: false

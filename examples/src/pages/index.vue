@@ -1,31 +1,31 @@
 <template>
-    <Page>
+    <vm-page>
         <!--content-->
-        <Header>
+        <vm-header>
             <!--menutoggle-->
-            <Navbar hide-back-button>
+            <vm-navbar hide-back-button>
                 <!--menutoggle-->
-                <Buttons right slot="buttons">
-                    <Button @click="$menus.toggle('menu')" role="bar-button" menutoggle>
-                        <!--<Icon name="more"></Icon>-->
+                <vm-buttons right slot="buttons">
+                    <vm-button @click="$menus.toggle('menu')" role="bar-button" menutoggle>
+                        <!--<vm-icon name="more"></vm-icon>-->
                         <span>菜单</span>
-                    </Button>
-                </Buttons>
-                <Title @onTitleClick="onTitleClickHandler" :title="$t('index.title')"></Title>
-            </Navbar>
-        </Header>
-        <Content padding>
-            <article class="index scrollContent">
-                <Grid class="vimo">
-                    <Row class="vimo__logo">
-                        <Column text-center no-padding>
+                    </vm-button>
+                </vm-buttons>
+                <vm-title @onTitleClick="onTitleClickHandler" :title="$t('index.title')"></vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
+            <div class="index scrollContent">
+                <vm-grid class="vimo">
+                    <vm-row class="vimo__logo">
+                        <vm-col text-center no-padding>
                             <div class="vimo__logo--img">
                                 <img src="../assets/vimo.png">
                             </div>
-                        </Column>
-                    </Row>
-                    <Row class="vimo__text">
-                        <Column text-center>
+                        </vm-col>
+                    </vm-row>
+                    <vm-row class="vimo__text">
+                        <vm-col text-center>
                             <h1>VIMO</h1>
                             <p>v{{vimo.version}}</p>
                             <p class="message">{{$t('index.message')}}</p>
@@ -35,20 +35,20 @@
                             <a class="star" href="#"><img
                                     src="https://img.shields.io/github/forks/vm-component/vimo.svg?style=social&label=Fork"
                                     alt="Fork"></a>
-                        </Column>
-                    </Row>
-                    <Row class="vimo__btns">
-                        <Button block solid @click="$router.push({'name':'components','meta':{newWindow:true}})">
+                        </vm-col>
+                    </vm-row>
+                    <vm-row class="vimo__btns">
+                        <vm-button block solid @click="$router.push({'name':'components','meta':{newWindow:true}})">
                             {{$t('index.component')}}
-                        </Button>
-                        <Button block solid @click="$menus.open('menu')">
+                        </vm-button>
+                        <vm-button block solid @click="$menus.open('menu')">
                             {{$t('index.menu')}}
-                        </Button>
-                    </Row>
-                </Grid>
-            </article>
-        </Content>
-        <Footer class="index inspired">
+                        </vm-button>
+                    </vm-row>
+                </vm-grid>
+            </div>
+        </vm-content>
+        <vm-footer class="index inspired">
             <p class="inspired__name">INSPIRED BY</p>
             <div class="inspired__logos">
                 <section>
@@ -58,8 +58,8 @@
                     <i class="inspired__logos--vue"></i><span>Vue.js</span>
                 </section>
             </div>
-        </Footer>
-    </Page>
+        </vm-footer>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .index.scrollContent {

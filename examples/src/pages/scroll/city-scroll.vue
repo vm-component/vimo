@@ -1,28 +1,28 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>City</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content" ref="content" :enableJsScroll="enableJsScroll">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>City</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content" ref="content" :enableJsScroll="enableJsScroll">
             <Scroll :probeType="3" ref="scroll" class="scrollBox">
-                <List>
-                    <ItemGroup v-for="(classify,index) in cityList" :key="index">
-                        <ItemDivider sticky color="light" class="itemGroup" :id="classify.name | getClassifyId">
+                <vm-list>
+                    <vm-item-group v-for="(classify,index) in cityList" :key="index">
+                        <vm-item-divider sticky color="light" class="itemGroup" :id="classify.name | getClassifyId">
                             {{classify.name}}
-                        </ItemDivider>
-                        <Item v-for="city in classify.cities" :key="city.cityid">{{city.name}}</Item>
-                    </ItemGroup>
-                </List>
+                        </vm-item-divider>
+                        <vm-item v-for="city in classify.cities" :key="city.cityid">{{city.name}}</vm-item>
+                    </vm-item-group>
+                </vm-list>
             </Scroll>
             <div slot="fixedTop" class="shortcut" ref="shortcut"
                  @touchstart="onTouchShortcut"
                  @touchmove="onTouchShortcut">
                 <div class="shortcut__item" :data-id="item" v-for="item in shortcutList">{{item.name}}</div>
             </div>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .scrollBox {

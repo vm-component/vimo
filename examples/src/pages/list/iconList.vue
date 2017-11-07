@@ -1,49 +1,49 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>IconList</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List>
-                <ListHeader>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>IconList</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list>
+                <vm-list-header>
                     <span>classes</span>
-                </ListHeader>
+                </vm-list-header>
 
-                <Item>
-                    <Icon name="planet" slot="item-left"></Icon>
-                    <Label>Astronomy</Label>
-                    <Note slot="item-right">To the moon</Note>
-                </Item>
+                <vm-item>
+                    <vm-icon name="planet" slot="item-left"></vm-icon>
+                    <vm-label>Astronomy</vm-label>
+                    <vm-note slot="item-right">To the moon</vm-note>
+                </vm-item>
 
-                <Item>
-                    <Icon name="body" slot="item-left"></Icon>
-                    <Label>Muggle Studies</Label>
-                    <Toggle slot="item-right" :checked="false"></Toggle>
-                </Item>
+                <vm-item>
+                    <vm-icon name="body" slot="item-left"></vm-icon>
+                    <vm-label>Muggle Studies</vm-label>
+                    <vm-toggle slot="item-right" :checked="false"></vm-toggle>
+                </vm-item>
 
-                <Item>
-                    <Icon name="leaf" slot="item-left"></Icon>
-                    <Label>Herbology</Label>
-                    <Icon name="rose" slot="item-right"></Icon>
-                </Item>
+                <vm-item>
+                    <vm-icon name="leaf" slot="item-left"></vm-icon>
+                    <vm-label>Herbology</vm-label>
+                    <vm-icon name="rose" slot="item-right"></vm-icon>
+                </vm-item>
 
-                <Item>
-                    <Icon name="flask" slot="item-left"></Icon>
-                    <label>Potions</label>
-                    <Button slot="item-right" outline color="primary">Btn</Button>
-                </Item>
+                <vm-item>
+                    <vm-icon name="flask" slot="item-left"></vm-icon>
+                    <vm-label>Potions</vm-label>
+                    <vm-button slot="item-right" outline color="primary">Btn</vm-button>
+                </vm-item>
 
 
-                <Item @click.native="onClickHandler" :to="{'name':'components'}">
-                    <Icon name="flask" slot="item-left"></Icon>
-                    <label>Click</label>
-                    <Button slot="item-right" outline color="primary">Btn</Button>
-                </Item>
-            </List>
-        </Content>
-    </Page>
+                <vm-item @click.native="onClickHandler" :to="{'name':'components'}">
+                    <vm-icon name="flask" slot="item-left"></vm-icon>
+                    <vm-label>Click</vm-label>
+                    <vm-button slot="item-right" outline color="primary">Btn</vm-button>
+                </vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less"></style>
 <script type="text/javascript">

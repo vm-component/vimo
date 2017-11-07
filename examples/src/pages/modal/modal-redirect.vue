@@ -1,17 +1,17 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Modal中跳转</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Modal中跳转</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
             <p>Content</p>
 
-            <Button @click="toPage({name:'alert'})">Go to Alert Page</Button>
-            <Button @click="toPage({name:'actionSheet'})">Go to ActionSheet Page</Button>
-        </Content>
-    </Page>
+            <vm-button @click="toPage({name:'alert'})">Go to Alert Page</vm-button>
+            <vm-button @click="toPage({name:'actionSheet'})">Go to ActionSheet Page</vm-button>
+        </vm-content>
+    </vm-page>
 </template>
 <script type="text/javascript">
   export default {

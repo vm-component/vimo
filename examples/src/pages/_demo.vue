@@ -1,17 +1,17 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Demo</Title>
-            </Navbar>
-        </Header>
-        <Content>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Demo</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content>
             <h1>这里是内容</h1>
 
-        </Content>
-        <Footer>
-        </Footer>
-    </Page>
+        </vm-content>
+        <vm-footer>
+        </vm-footer>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .main {

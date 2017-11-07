@@ -1,18 +1,18 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>NoLine</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List no-lines>
-                <Item button v-for="(item,index) in list" :key="index">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>NoLine</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list no-lines>
+                <vm-item button v-for="(item,index) in list" :key="index">
                     {{item}}
-                </Item>
-            </List>
-        </Content>
-    </Page>
+                </vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

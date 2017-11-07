@@ -1,19 +1,19 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>手势切换</Title>
-            </Navbar>
-            <Toolbar>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>手势切换</vm-title>
+            </vm-navbar>
+            <vm-toolbar>
                 <!--content-->
-                <Segment v-model="fruit">
-                    <SegmentButton value="apple">Apple</SegmentButton>
-                    <SegmentButton value="orange">Orange</SegmentButton>
-                    <SegmentButton value="pear">Pear</SegmentButton>
-                </Segment>
-            </Toolbar>
-        </Header>
-        <Content class="outer-content">
+                <vm-segment v-model="fruit">
+                    <vm-segment-button value="apple">Apple</vm-segment-button>
+                    <vm-segment-button value="orange">Orange</vm-segment-button>
+                    <vm-segment-button value="pear">Pear</vm-segment-button>
+                </vm-segment>
+            </vm-toolbar>
+        </vm-header>
+        <vm-content class="outer-content">
             <Slides ref="slides" :resistanceRatio="0"
                     @onSlideChangeEnd="onSlideChangeEndHandler">
                 <!-- 幻灯内容 -->
@@ -73,8 +73,8 @@
                 </Slide>
                 <!-- ... -->
             </Slides>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .slide {

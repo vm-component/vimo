@@ -1,42 +1,42 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Radio</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List radio-group v-model="fruits" :disabled="isListDisabled" @onChange="onChangeHandler">
-                <ListHeader>Fruits</ListHeader>
-                <Item>
-                    <Label>Apple</Label>
-                    <Radio value="apple" :disabled="isAppleDisabled" @onSelect="onSelectHandler"></Radio>
-                </Item>
-                <Item>
-                    <Label>Banana</Label>
-                    <Radio value="banana" color="danger" @onSelect="onSelectHandler"></Radio>
-                </Item>
-                <Item>
-                    <Label>Cherry (secondary color)</Label>
-                    <Radio value="cherry" color="secondary" @onSelect="onSelectHandler"></Radio>
-                </Item>
-                <Item>
-                    <Label>Disabled</Label>
-                    <Radio value="disabled" :disabled="true" @onSelect="onSelectHandler"></Radio>
-                </Item>
-                <Item>
-                    <Label>Default</Label>
-                    <Radio value="default" @onSelect="onSelectHandler"></Radio>
-                </Item>
-            </List>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Radio</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list radio-group v-model="fruits" :disabled="isListDisabled" @onChange="onChangeHandler">
+                <vm-list-header>Fruits</vm-list-header>
+                <vm-item>
+                    <vm-label>Apple</vm-label>
+                    <vm-radio value="apple" :disabled="isAppleDisabled" @onSelect="onSelectHandler"></vm-radio>
+                </vm-item>
+                <vm-item>
+                    <vm-label>Banana</vm-label>
+                    <vm-radio value="banana" color="danger" @onSelect="onSelectHandler"></vm-radio>
+                </vm-item>
+                <vm-item>
+                    <vm-label>Cherry (secondary color)</vm-label>
+                    <vm-radio value="cherry" color="secondary" @onSelect="onSelectHandler"></vm-radio>
+                </vm-item>
+                <vm-item>
+                    <vm-label>Disabled</vm-label>
+                    <vm-radio value="disabled" :disabled="true" @onSelect="onSelectHandler"></vm-radio>
+                </vm-item>
+                <vm-item>
+                    <vm-label>Default</vm-label>
+                    <vm-radio value="default" @onSelect="onSelectHandler"></vm-radio>
+                </vm-item>
+            </vm-list>
 
             <div text-center>
                 <p text-center>当前选择: {{fruits}}</p>
-                <Button @click="fruits='apple'" outline small>Select Apple</Button>
-                <Button @click="fruits='banana'" outline small>Select Banana</Button>
-                <Button @click="fruits='cherry'" outline small>Select Cherry</Button>
-                <Button @click="isAppleDisabled=!isAppleDisabled" outline small>Set Apple Disabled</Button>
-                <Button @click="isListDisabled=!isListDisabled" outline small>Set List Disabled</Button>
+                <vm-button @click="fruits='apple'" outline small>Select Apple</vm-button>
+                <vm-button @click="fruits='banana'" outline small>Select Banana</vm-button>
+                <vm-button @click="fruits='cherry'" outline small>Select Cherry</vm-button>
+                <vm-button @click="isAppleDisabled=!isAppleDisabled" outline small>Set Apple Disabled</vm-button>
+                <vm-button @click="isListDisabled=!isListDisabled" outline small>Set List Disabled</vm-button>
             </div>
 
             <div padding>
@@ -44,36 +44,36 @@
                 <p>如果是点击则触发onSelect和onChange, 如果是改变v-model的值, 则只触发onSelect的值.</p>
             </div>
 
-            <List radio-group v-model="currencies">
-                <ListHeader>Dynamic Data(currencies)</ListHeader>
-                <Item v-for="(item,index) in dynamicCurrencies" :key="index">
-                    <Label>{{item}}</Label>
-                    <Radio :value="item" @onSelect="onSelectHandler"></Radio>
-                </Item>
-            </List>
+            <vm-list radio-group v-model="currencies">
+                <vm-list-header>Dynamic Data(currencies)</vm-list-header>
+                <vm-item v-for="(item,index) in dynamicCurrencies" :key="index">
+                    <vm-label>{{item}}</vm-label>
+                    <vm-radio :value="item" @onSelect="onSelectHandler"></vm-radio>
+                </vm-item>
+            </vm-list>
             <div padding>
                 <code><b>dynamicCurrencies:</b> {{dynamicCurrencies}}</code><br>
             </div>
             <div text-center>
                 <p text-center>当前选择: {{currencies}}</p>
-                <Button @click="addDynamicCurrencies" outline small>加载数据</Button>
-                <Button @click="currencies='USD'" outline small>Select USD</Button>
-                <Button @click="currencies='EUR'" outline small>Select EUR</Button>
+                <vm-button @click="addDynamicCurrencies" outline small>加载数据</vm-button>
+                <vm-button @click="currencies='USD'" outline small>Select USD</vm-button>
+                <vm-button @click="currencies='EUR'" outline small>Select EUR</vm-button>
             </div>
 
-            <List radio-group :disabled="true" v-model="relationship">
-                <ListHeader>Disabled radio-group</ListHeader>
-                <Item>
-                    <Label>Friends</Label>
-                    <Radio value="friends"></Radio>
-                </Item>
-                <Item>
-                    <Label>Enemies</Label>
-                    <Radio value="enemies"></Radio>
-                </Item>
-            </List>
-        </Content>
-    </Page>
+            <vm-list radio-group :disabled="true" v-model="relationship">
+                <vm-list-header>Disabled radio-group</vm-list-header>
+                <vm-item>
+                    <vm-label>Friends</vm-label>
+                    <vm-radio value="friends"></vm-radio>
+                </vm-item>
+                <vm-item>
+                    <vm-label>Enemies</vm-label>
+                    <vm-radio value="enemies"></vm-radio>
+                </vm-item>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style lang="less">
 </style>

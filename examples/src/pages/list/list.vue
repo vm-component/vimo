@@ -1,35 +1,35 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>List</Title>
-            </Navbar>
-        </Header>
-        <Content class="outer-content">
-            <List>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>List</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content class="outer-content">
+            <vm-list>
                 <!--header-->
-                <ListHeader>
+                <vm-list-header>
                     <span>Contents</span>
-                </ListHeader>
+                </vm-list-header>
                 <!--group-->
-                <ItemGroup>
-                    <Item button to="list.listForAll">全特性</Item>
-                    <Item button :to="{name:'list.basicList'}">基础List</Item>
-                    <Item button :to="{name:'list.noLine'}">没有Border</Item>
-                    <Item button :to="{name:'list.insetList'}">嵌入模式</Item>
-                    <Item button :to="{name:'list.listDividers'}">List分隔符</Item>
-                    <Item button :to="{name:'list.listHeaders'}">ListHeader</Item>
-                    <Item button :to="{name:'list.iconList'}">带Icon的List</Item>
-                    <Item button :to="{name:'list.avatarList'}">圆形头像List</Item>
-                    <Item button :to="{name:'list.thumbnailList'}">方形头像List</Item>
-                    <Item button :to="{name:'list.multi-lineList'}">多行元素</Item>
-                    <Item button :to="{name:'list.slidingList'}">滑动列表</Item>
-                    <!--<Item button :to="{name:'list.reorder'}">Reorder</Item>-->
-                    <Item button :to="{name:'list.collapse'}">折叠列表</Item>
-                </ItemGroup>
-            </List>
-        </Content>
-    </Page>
+                <vm-item-group>
+                    <vm-item button to="list.listForAll">全特性</vm-item>
+                    <vm-item button :to="{name:'list.basicList'}">基础List</vm-item>
+                    <vm-item button :to="{name:'list.noLine'}">没有Border</vm-item>
+                    <vm-item button :to="{name:'list.insetList'}">嵌入模式</vm-item>
+                    <vm-item button :to="{name:'list.listDividers'}">List分隔符</vm-item>
+                    <vm-item button :to="{name:'list.listHeaders'}">ListHeader</vm-item>
+                    <vm-item button :to="{name:'list.iconList'}">带Icon的List</vm-item>
+                    <vm-item button :to="{name:'list.avatarList'}">圆形头像List</vm-item>
+                    <vm-item button :to="{name:'list.thumbnailList'}">方形头像List</vm-item>
+                    <vm-item button :to="{name:'list.multi-lineList'}">多行元素</vm-item>
+                    <vm-item button :to="{name:'list.slidingList'}">滑动列表</vm-item>
+                    <!--<vm-item button :to="{name:'list.reorder'}">Reorder</vm-item>-->
+                    <vm-item button :to="{name:'list.collapse'}">折叠列表</vm-item>
+                </vm-item-group>
+            </vm-list>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .main {

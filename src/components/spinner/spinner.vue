@@ -61,7 +61,7 @@
    * */
 
   export default{
-    name: 'Spinner',
+    name: 'vm-spinner',
     props: {
       // 按钮color：primary、secondary、danger、light、dark
       color: [String],

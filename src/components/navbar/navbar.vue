@@ -64,22 +64,22 @@
    * 正确设置导航条参考请参考下面代码, 强烈建议按钮设置不超过两个
    *
    * ```
-   * <Buttons right slot="buttons">
-   *     <Button @click="$menus.open('menu')" role="bar-button">
+   * <vm-buttons right slot="buttons">
+   *     <vm-button @click="$menus.open('menu')" role="bar-button">
    *          WITH OUT SPAN
-   *     </Button>
-   *     <Button @click="$menus.open('menu')" role="bar-button">
+   *     </vm-button>
+   *     <vm-button @click="$menus.open('menu')" role="bar-button">
    *          <span>WITH SPAN</span>
-   *     </Button>
-   *     <Button @click="$menus.open('menu')" color="dark" role="bar-button">
-   *          <Icon name="icon-vue"></Icon>
-   *          <Badge>0</Badge>
-   *     </Button>
-   *     <Button @click="$menus.open('menu')" color="dark" role="bar-button">
-   *          <Icon name="qr-scanner"></Icon>
-   *          <Badge>12</Badge>
-   *     </Button>
-   * </Buttons>
+   *     </vm-button>
+   *     <vm-button @click="$menus.open('menu')" color="dark" role="bar-button">
+   *          <vm-icon name="icon-vue"></vm-icon>
+   *          <vm-badge>0</vm-badge>
+   *     </vm-button>
+   *     <vm-button @click="$menus.open('menu')" color="dark" role="bar-button">
+   *          <vm-icon name="qr-scanner"></vm-icon>
+   *          <vm-badge>12</vm-badge>
+   *     </vm-button>
+   * </vm-buttons>
    * ```
    *
    * 并不是所有的Alipya的JSSDK都有H5对应的方法, 因为有些JSSDK不常用或者H5无法实现或者即使实现在业务中使用还不如单独设置简便, 因此Vimo目前实现的功能如下:
@@ -121,19 +121,19 @@
    *
    * @usage
    * <template>
-   *  <Page>
-   *    <Header>
-   *      <Navbar :hideBackButton="false" color="danger">
-   *        <Title>Demo</Title>
-   *        <Button right icon-only role="bar-button" menutoggle slot="buttons">
-   *            <Icon class="icon" name="menu"></Icon>
-   *        </Button>
-   *      <Navbar>
-   *    </Header>
-   *    <Content>
+   *  <vm-page>
+   *    <vm-header>
+   *      <vm-navbar :hideBackButton="false" color="danger">
+   *        <vm-title>Demo</vm-title>
+   *        <vm-button right icon-only role="bar-button" menutoggle slot="buttons">
+   *            <vm-icon class="icon" name="menu"></vm-icon>
+   *        </vm-button>
+   *      <vm-navbar>
+   *    </vm-header>
+   *    <vm-content>
    *      <h1>这里是内容</h1>
-   *    </Content>
-   *  </Page>
+   *    </vm-content>
+   *  </vm-page>
    * </template>
    * */
   import ToolbarMixins from '../toolbar/toolbarMixins.vue'
@@ -142,7 +142,7 @@
   import { isArray, isString } from '../../util/util'
 
   export default {
-    name: 'Navbar',
+    name: 'vm-navbar',
     mixins: [ToolbarMixins],
     components: {
       'vm-button': Button,
@@ -374,9 +374,9 @@
       }
     },
     created () {
-      console.assert(this.$platform, `The Component of <Navbar> need 'platform' instance`)
-      console.assert(this.$config, `The Component of <Navbar> need 'config' instance`)
-      console.assert(window.VM, `The Component of <Navbar> need 'window.VM' instance`)
+      console.assert(this.$platform, `The Component of <vm-navbar> need 'platform' instance`)
+      console.assert(this.$config, `The Component of <vm-navbar> need 'config' instance`)
+      console.assert(window.VM, `The Component of <vm-navbar> need 'window.VM' instance`)
 
       this.refreshBackButtonStatus()
     },

@@ -1,36 +1,36 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>Position</Title>
-            </Navbar>
-        </Header>
-        <Content padding>
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>Position</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding>
             <div v-for="bi in btn">
-                <Button @click="getPosition(bi.name)" v-bind:color="bi.color">{{bi.name}}</Button>
+                <vm-button @click="getPosition(bi.name)" v-bind:color="bi.color">{{bi.name}}</vm-button>
             </div>
-            <Grid>
-                <Row>
-                    <Column col-4>type</Column>
-                    <Column>
+            <vm-grid>
+                <vm-row>
+                    <vm-col col-4>type</vm-col>
+                    <vm-col>
                         {{type}}
-                    </Column>
-                </Row>
-                <Row>
-                    <Column>lat</Column>
-                    <Column>
+                    </vm-col>
+                </vm-row>
+                <vm-row>
+                    <vm-col>lat</vm-col>
+                    <vm-col>
                         {{lat}}
-                    </Column>
-                </Row>
-                <Row>
-                    <Column col-4>lng</Column>
-                    <Column>
+                    </vm-col>
+                </vm-row>
+                <vm-row>
+                    <vm-col col-4>lng</vm-col>
+                    <vm-col>
                         {{lng}}
-                    </Column>
-                </Row>
-            </Grid>
-        </Content>
-    </Page>
+                    </vm-col>
+                </vm-row>
+            </vm-grid>
+        </vm-content>
+    </vm-page>
 
 
 </template>

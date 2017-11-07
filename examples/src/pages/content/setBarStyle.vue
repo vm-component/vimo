@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header ref="header">
-            <Navbar color="danger">
-                <Title>设置Bar的样式</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content" @onScroll="onScrollHandler" :fullscreen="true">
+    <vm-page>
+        <vm-header ref="header">
+            <vm-navbar color="danger">
+                <vm-title>设置Bar的样式</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content" @onScroll="onScrollHandler" :fullscreen="true">
             <h1>Section</h1>
             <section>
                 <p>向下滚动, 则Header将渐变消失, 当滚回来的时候则显示. </p>
@@ -75,8 +75,8 @@
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
             </section>
-        </Content>
-    </Page>
+        </vm-content>
+    </vm-page>
 </template>
 <style scoped lang="less">
 

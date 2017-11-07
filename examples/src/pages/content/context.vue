@@ -1,11 +1,11 @@
 <template>
-    <Page>
-        <Header>
-            <Navbar>
-                <Title>文本</Title>
-            </Navbar>
-        </Header>
-        <Content padding class="outer-content">
+    <vm-page>
+        <vm-header>
+            <vm-navbar>
+                <vm-title>文本</vm-title>
+            </vm-navbar>
+        </vm-header>
+        <vm-content padding class="outer-content">
 
             <h1>这个是h1标签</h1>
             <h2>这个是h2标签</h2>
@@ -16,7 +16,7 @@
             <p>这个是p标签</p>
             <a href="http://xiangsongtao.com" target="_blank">跳转到我的首页</a>
 
-            <Button block @click="$history.toRoot()">返回首页</Button>
+            <vm-button block @click="$history.toRoot()">返回首页</vm-button>
             <hr>
             <!--<strong>strong</strong>-->
             <!--<i>i</i>-->
@@ -30,17 +30,17 @@
                 <li>在build/vue-loader.conf.js文件中将注释解开: postcss: [require('postcss-px2rem')({remUnit: 50})]</li>
             </ul>
 
-        </Content>
-        <Footer>
-            <Toolbar>
-                <Segment value="1">
-                    <SegmentButton value="1">第一章</SegmentButton>
-                    <SegmentButton value="2">第二章</SegmentButton>
-                    <SegmentButton value="3">第三章</SegmentButton>
-                </Segment>
-            </Toolbar>
-        </Footer>
-    </Page>
+        </vm-content>
+        <vm-footer>
+            <vm-toolbar>
+                <vm-segment value="1">
+                    <vm-segment-button value="1">第一章</vm-segment-button>
+                    <vm-segment-button value="2">第二章</vm-segment-button>
+                    <vm-segment-button value="3">第三章</vm-segment-button>
+                </vm-segment>
+            </vm-toolbar>
+        </vm-footer>
+    </vm-page>
 </template>
 <style scoped lang="less">
     .main {
