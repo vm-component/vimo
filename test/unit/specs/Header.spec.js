@@ -34,7 +34,7 @@ describe('Header', function () {
 
   it('@config: component must have a name', function () {
     wrapper = mount(Header, options)
-    expect(wrapper.name()).to.equal('Header')
+    expect(wrapper.name()).to.equal('vm-header')
   })
 
   it('@config: have the right className', function () {

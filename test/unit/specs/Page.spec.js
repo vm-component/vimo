@@ -28,7 +28,7 @@ describe('Page', function () {
 
   it('@config: component must have a name', function () {
     wrapper = mount(Page, opts)
-    expect(wrapper.name()).to.equal('Page')
+    expect(wrapper.name()).to.equal('vm-page')
   })
 
   it('@config: renders the correct text', function () {

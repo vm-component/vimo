@@ -54,7 +54,7 @@ describe('Badge', function () {
       }
     })
     wrapper = mount(Badge, opts)
-    expect(wrapper.name()).to.equal('Badge')
+    expect(wrapper.name()).to.equal('vm-badge')
   })
 
   it('@config: have the right className', function () {

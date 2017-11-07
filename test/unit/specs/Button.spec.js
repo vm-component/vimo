@@ -70,7 +70,7 @@ describe('Button', function () {
       }
     })
     wrapper = mount(Button, opts)
-    expect(wrapper.name()).to.equal('Button')
+    expect(wrapper.name()).to.equal('vm-button')
   })
 
   it('@config: have the right className', function () {
@@ -320,9 +320,9 @@ describe('Button', function () {
   })
 
   it('@slots: icon-only', function () {
-    var res = Vue.compile('<vm-button><Icon name="car"></Icon></vm-button>')
+    var res = Vue.compile('<vm-button icon-only><vm-icon name="car"></vm-icon></vm-button>')
     let Temp = {
-      components: {'vm-button': Button, Icon},
+      components: {'vm-button': Button, 'vm-icon': Icon},
       render: res.render
     }
     wrapper = mount(Temp)
@@ -330,28 +330,28 @@ describe('Button', function () {
   })
 
   it('@slots: icon-left', function () {
-    var res = Vue.compile('<vm-button><Icon name="car"></Icon>Icon</vm-button>')
+    var res = Vue.compile('<vm-button icon-left><vm-icon name="car"></vm-icon>Icon</vm-button>')
     wrapper = mount({
       render: res.render,
-      components: {'vm-button': Button, Icon}
+      components: {'vm-button': Button, 'vm-icon': Icon}
     })
     expect(wrapper.hasAttribute('icon-left', '')).to.equal(true)
   })
 
   it('@slots: icon-right', function () {
-    var res = Vue.compile('<vm-button>Icon<Icon name="car"></Icon></vm-button>')
+    var res = Vue.compile('<vm-button icon-right>Icon<vm-icon name="car"></vm-icon></vm-button>')
     wrapper = mount({
       render: res.render,
-      components: {'vm-button': Button, Icon}
+      components: {'vm-button': Button, 'vm-icon': Icon}
     })
     expect(wrapper.hasAttribute('icon-right', '')).to.equal(true)
   })
 
   it('@parent: Item', function () {
-    var res = Vue.compile('<Item><vm-button>Icon<Icon name="car"></Icon></vm-button></Item>')
+    var res = Vue.compile('<vm-item><vm-button>Icon<vm-icon name="car"></vm-icon></vm-button></vm-item>')
     wrapper = mount({
       render: res.render,
-      components: {'vm-button': Button, Item, Icon}
+      components: {'vm-button': Button, 'vm-item': Item, 'vm-icon': Icon}
     })
     expect(wrapper.html().indexOf('item-button') > -1).to.equal(true)
   })

@@ -24,13 +24,13 @@ describe('App', function () {
 
   it('@config: renders the correct markup', function () {
     wrapper = mount(App, opts)
-    const result = `<article version="${window.VM.version}" class="ion-app ios platform-ios enable-hover"><section class="app-root"><span>Name</span></section> <aside id="modalPortal"></aside> <aside id="sheetPortal"></aside> <aside id="alertPortal"></aside> <aside id="loadingPortal"></aside> <aside id="toastPortal"></aside> <aside class="click-block click-block-enabled"></aside> </article>`
+    const result = `<div version="${window.VM.version}" class="ion-app ios platform-ios enable-hover"><div class="app-root"><span>Name</span></div> <div id="modalPortal"></div> <div id="sheetPortal"></div> <div id="alertPortal"></div> <div id="loadingPortal"></div> <div id="toastPortal"></div> <div class="click-block click-block-enabled"></div> </div>`
     expect(wrapper.html()).to.equal(result)
   })
 
   it('@config: component must have a name', function () {
     wrapper = mount(App, opts)
-    expect(wrapper.name()).to.equal('App')
+    expect(wrapper.name()).to.equal('vm-app')
   })
 
   it('@config: renders the correct text', function () {

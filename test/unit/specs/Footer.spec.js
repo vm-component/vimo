@@ -34,7 +34,7 @@ describe('Footer', function () {
 
   it('@config: component must have a name', function () {
     wrapper = mount(Footer, options)
-    expect(wrapper.name()).to.equal('Footer')
+    expect(wrapper.name()).to.equal('vm-footer')
   })
 
   it('@config: have the right className', function () {

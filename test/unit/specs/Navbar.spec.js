@@ -32,7 +32,7 @@ describe('Navbar', function () {
         default: '<span>Name</span>'
       }
     })
-    expect(wrapper.name()).to.equal('Navbar')
+    expect(wrapper.name()).to.equal('vm-navbar')
   })
 
   it('@config: renders the correct text', function () {

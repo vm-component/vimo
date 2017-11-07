@@ -46,7 +46,7 @@ describe('Avatar', function () {
       }
     })
     wrapper = mount(Avatar, opts)
-    expect(wrapper.name()).to.equal('Avatar')
+    expect(wrapper.name()).to.equal('vm-avatar')
   })
 
   it('@config: have the right className', function () {
