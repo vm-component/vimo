@@ -2,7 +2,7 @@
     <vm-list radio-group v-model="checkedValue" @onChange="onRadioChecked($event)">
         <vm-item v-for="option in options" key="idx">
             <vm-label>{{option.label}}</vm-label>
-            <vm-radio :value="option.value" :disabled="option.disabled" @onSelect="onSelectHandler($event)"></vm-radio>
+            <vm-radio :value="option.value" :disabled="option.disabled"></vm-radio>
         </vm-item>
     </vm-list>
 </template>
@@ -36,28 +36,12 @@
     methods: {
       onRadioChecked (value) {
 
-        console.log(value)
-
         let checkedOption = this.options.find(option => option.value === value);
         if (checkedOption && checkedOption.handler) {
           checkedOption.handler();
         }
 
         Popover.dismiss()
-      },
-
-      onSelectHandler (value) {
-
-        console.log('onSelectHandler ' + value)
-//
-//        console.log(value)
-//
-//        let checkedOption = this.options.find(option => option.value === value);
-//        if (checkedOption && checkedOption.handler) {
-//          checkedOption.handler();
-//        }
-//
-//        $popover.dismiss(value)
       },
 
       getValue() {
