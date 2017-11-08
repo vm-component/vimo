@@ -161,11 +161,11 @@
     },
     mounted () {
       this.$children.forEach((child) => {
-        if (child.$options._componentTag.toLowerCase() === 'fabbutton') {
+        if (child.$options._componentTag.toLowerCase() === 'vm-fab-button') {
           this.mainFabButtonComponent = child
         }
 
-        if (child.$options._componentTag.toLowerCase() === 'fablist') {
+        if (child.$options._componentTag.toLowerCase() === 'vm-fab-list') {
           this.fabListComponents.push(child)
         }
       })

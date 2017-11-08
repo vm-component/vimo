@@ -3,11 +3,9 @@
         <div class="radio-icon" :class="{'radio-checked':isChecked}">
             <div class="radio-inner"></div>
         </div>
-        <vm-button role="radio" @click="onPointerDownHandler($event)"
+        <vm-button role="item-cover" @click="onPointerDownHandler($event)"
                 type="button"
-                :id="id"
-                ion-button="item-cover"
-                class="item-cover">
+                :id="id">
         </vm-button>
     </div>
 </template>

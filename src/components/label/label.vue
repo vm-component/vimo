@@ -81,7 +81,7 @@
        * floating:  当input为空的时候, label盖在input上面; 当input有值, 则浮动到上部
        * stacked: floating的特例, 不管有没有值, 都浮动到上部
        * */
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-label-fixed', this.fixed)
         setElementClass(this.itemComponent.$el, 'item-label-floating', this.floating)

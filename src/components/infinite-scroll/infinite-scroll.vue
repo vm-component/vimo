@@ -298,7 +298,7 @@
       init () {
         let pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
         pageComponentChildrenList.forEach((component) => {
-          if (component.$options._componentTag.toLowerCase() === 'content') {
+          if (component.$options._componentTag.toLowerCase() === 'vm-content') {
             this.contentComponent = component
           }
         })

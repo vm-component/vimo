@@ -509,7 +509,7 @@
       this.theValue = parseDate(this.value)
     },
     mounted () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
       }
       console.assert(this.itemComponent, 'The component of Datetime must in Item component.')

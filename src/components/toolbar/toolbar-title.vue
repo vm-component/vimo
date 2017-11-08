@@ -196,7 +196,7 @@
         this.titleInner = this.getTitle()
         if (this.$parent.$options._componentTag) {
           let navbarComponent = this.$parent
-          if (navbarComponent.$options._componentTag.toLowerCase() === 'navbar') {
+          if (navbarComponent.$options._componentTag.toLowerCase() === 'vm-navbar') {
             this.setTitle(this.titleInner)
             this.isTitleInNavbar = true
           }

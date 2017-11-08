@@ -129,7 +129,7 @@
         // 目前只能沿着继承顺序查找
         let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
         _pageComponentChildrenList.forEach((component) => {
-          if (component.$options._componentTag.toLowerCase() === 'content') {
+          if (component.$options._componentTag.toLowerCase() === 'vm-content') {
             this.contentComponent = component
             this.contentComponent.addImg(this)
           }

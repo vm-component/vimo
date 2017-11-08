@@ -9,7 +9,7 @@
 <a href="#"><img src="https://img.shields.io/github/license/vm-component/Vimo.svg" alt="liense"></a>
 </p>
 
-<h4 align="center"><p align="center">A H5 Platform For Hybrid</p></h4>
+<h4 align="center"><p align="center">A H5 Platform For Hybrid Inspired by Vue.js & Ionic</p></h4>
 
 <h5 align="center"><p align="center" style="color:red;">(目前在内部测试及文档教程编写)</p></h5>
 

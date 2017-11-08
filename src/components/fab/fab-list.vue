@@ -73,7 +73,7 @@
     },
     mounted () {
       this.$children.forEach((child) => {
-        if (child.$options._componentTag.toLowerCase() === 'fabbutton') {
+        if (child.$options._componentTag.toLowerCase() === 'vm-fab-button') {
           this.fabs.push(child)
         }
       })

@@ -580,7 +580,7 @@
     },
     mounted () {
       // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-input', true)
         setElementClass(this.itemComponent.$el, 'show-focus-highlight', this.showFocusHighlight)

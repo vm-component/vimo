@@ -127,7 +127,7 @@
     },
     mounted () {
       // find parent component
-      if (this.$parent.$options._componentTag.toLowerCase() === 'segment') {
+      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-segment') {
         this.parentComponent = this.$parent
       } else {
         console.error('The component of SegmentButton must combine with Segment component!')
