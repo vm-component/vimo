@@ -381,6 +381,7 @@
           popoverCSS.top = targetTop - popoverHeight - (arrowHeight - 1)
           nativeEle.className = nativeEle.className + ' popover-bottom'
           originY = 'bottom'
+
           // If there isn't room for it to pop up above the target cut it off
         } else if (targetTop + targetHeight + popoverHeight > bodyHeight) {
           popoverEle.style.bottom = POPOVER_IOS_BODY_PADDING + '%'
@@ -424,7 +425,8 @@
             $data: this.data
           })
         }
-
+      },
+      updatePositionView () {
         // 计算位置
         // 渲染传入的组件
         if (this.mode === 'ios') {
@@ -443,7 +445,6 @@
       }
     },
     mounted () {
-
       let getType = (val) => Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
 
       if (getType(this.component) === 'object') {
@@ -463,6 +464,10 @@
         }
         this.init(this.component)
       }
-    }
+    },
+
+    updated() {
+      this.isActive && this.updatePositionView();
+    },
   }
 </script>
