@@ -1,7 +1,7 @@
 <template>
     <div class="toolbar ion-navbar" :class="[colorClass]"
          v-show="!hideNavBar">
-        <div ref="toolbarBackground" class="toolbar-background"></div>
+        <div ref="toolbarBackground" class="toolbar-background" :class="'toolbar-background'+mode"></div>
         <div class="toolbar-content">
             <slot></slot>
         </div>

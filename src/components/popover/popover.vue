@@ -17,10 +17,10 @@
         </transition>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "popover";
-    @import "popover.ios.less";
-    @import "popover.md.less";
+    @import "popover.ios";
+    @import "popover.md";
 
     // transitioName = 'popover-ios'
     .popover-ios-enter-active, .popove-ios-leave-active {

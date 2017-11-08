@@ -1,0 +1,39 @@
+@import "../../themes/globals.ios";
+
+// iOS Modals
+// --------------------------------------------------
+
+/// @prop - Background color for the modal
+$modal-ios-background-color:          $background-ios-color !default;
+
+/// @prop - Border radius for the modal
+$modal-ios-border-radius:             10px !default;
+
+.ios .modal-wrapper {
+  // hidden by default to prevent flickers, the animation will show it
+ // @include transform(translate3d(0, 100%, 0));
+
+  @media only screen and (min-width: $modal-inset-min-width) and (min-height: $modal-inset-min-height-small) {
+    @include border-radius($modal-ios-border-radius);
+
+    overflow: hidden;
+  }
+}
+
+// transition 'fadeup'
+.ios .modal-fadeup-enter-active {
+  transition: transform .4s cubic-bezier(.36, .66, .04, 1);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.ios .modal-fadeup-leave-active {
+  transition: transform .3s ease-out;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.ios .modal-fadeup-enter, .ios .modal-fadeup-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}

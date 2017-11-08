@@ -1,0 +1,73 @@
+@import "../../themes/globals.ios";
+
+// iOS App
+// --------------------------------------------------
+
+.ion-app.ios {
+  font-family: $font-family-ios-base;
+  font-size: $font-size-ios-base;
+  background-color: $background-ios-color;
+}
+
+
+.ion-app.ios .page-enter-active,
+.ion-app.ios .page-leave-active
+{
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(.36, .66, .04, 1);
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+}
+
+.ion-app.ios[transition-direction="forward"] {
+  .page-enter {
+    transform: translate3d(100%, 0, 0);
+    opacity: 1;
+    z-index: 2;
+  }
+  .page-enter-active {
+    box-shadow: 0 0 10px rgba(0,0,0,.15);
+  }
+  .page-enter-to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    z-index: 2;
+  }
+  .page-leave {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    z-index: 1;
+  }
+  .page-leave-to {
+    transform: translate3d(-33%, 0, 0);
+    opacity: 0;
+    z-index: 1;
+  }
+}
+
+.ion-app.ios[transition-direction="back"] {
+  .page-enter {
+    transform: translate3d(-33%, 0, 0);
+    opacity: 0.8;
+    z-index: 1;
+  }
+  .page-enter-to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    z-index: 1;
+  }
+  .page-leave {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    z-index: 2;
+  }
+  .page-leave-active {
+    box-shadow: 0 0 10px rgba(0,0,0,.15);
+  }
+  .page-leave-to {
+    transform: translate3d(100%, 0, 0);
+    opacity: 1;
+    z-index: 2;
+  }
+}
+

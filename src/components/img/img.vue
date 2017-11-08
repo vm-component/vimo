@@ -6,7 +6,7 @@
         </transition>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "img";
 
     .fade-enter-active, .fade-leave-active {

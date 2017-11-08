@@ -21,16 +21,7 @@
         <slot name="outer"></slot>
     </div>
 </template>
-<style lang="less">
-    @import "app.less";
-    // Page Animate
-    // --------------------------------------------------
-    @import "transition/fade-bottom-transition";
-    @import "transition/fade-right-transition";
-    @import "transition/fade-transition";
-    @import "transition/ios-transition";
-    @import "transition/zoom-transition";
-</style>
+
 <script type="text/javascript">
   /**
    * @component App
@@ -279,3 +270,17 @@
     }
   }
 </script>
+
+<style lang="scss">
+    @import 'app';
+    @import 'app.ios';
+    @import 'app.md';
+
+    // Page Animate
+    // --------------------------------------------------
+    @import "transition/fade-bottom-transition";
+    @import "transition/fade-right-transition";
+    @import "transition/fade-transition";
+    @import "transition/ios-transition";
+    @import "transition/zoom-transition";
+</style>

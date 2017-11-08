@@ -32,8 +32,8 @@
     }
   }
 </script>
-<style lang="less">
-    @import "../../themes/default.less";
+<style lang="scss">
+    @import "../../themes/globals";
 
     .popMenu.popover-ios .popover-content {
         width: 146px;
@@ -96,7 +96,7 @@
                     min-height: 10px;
                     color: #fff;
                     border-radius: 14px;
-                    background-color: @danger;
+                    background-color: #f53d3d;
                 }
             }
         }

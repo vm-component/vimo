@@ -4,7 +4,8 @@
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: String
+      color: String,
+      mode: 'ios',
     },
     computed: {
       colorClass () {
@@ -13,8 +14,9 @@
     }
   }
 </script>
-<style lang="less">
-    @import "toolbar-base.less";
-    @import "toolbar.less";
-    @import "toolbar-button";
+<style lang="scss">
+    @import "toolbar";
+    @import "toolbar.button";
+    @import "toolbar.ios";
+    @import "toolbar.md";
 </style>

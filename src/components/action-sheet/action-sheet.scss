@@ -1,0 +1,55 @@
+@import "../../themes/globals";
+
+// Action Sheet
+// --------------------------------------------------
+
+/// @prop - Width of the action sheet
+$action-sheet-width:                             100% !default;
+
+/// @prop - Maximum width of the action sheet
+$action-sheet-max-width:                         500px !default;
+
+
+.ion-action-sheet {
+  @include position(0, null, null, 0);
+
+  position: absolute;
+  z-index: $z-index-overlay;
+  display: block;
+
+  width: $action-sheet-width;
+  height: $action-sheet-width;
+}
+
+.action-sheet-wrapper {
+  @include position(null, 0, 0, 0);
+  @include margin(auto);
+  //@include transform(translate3d(0, 100%, 0));
+  @include transform(translate3d(0, 0, 0));
+
+  position: absolute;
+  z-index: $z-index-overlay-wrapper;
+  display: block;
+
+  width: $action-sheet-width;
+  max-width: $action-sheet-max-width;
+}
+
+.action-sheet-button {
+  width: $action-sheet-width;
+}
+
+// transition fadeup
+.ion-action-sheet-fadeup-enter-active {
+  transition: transform .4s cubic-bezier(.36, .66, .04, 1);
+  transform: translate3d(0, 0, 0);
+}
+
+.ion-action-sheet-fadeup-leave-active {
+  transition: transform .3s cubic-bezier(.36, .66, .04, 1);
+  transform: translate3d(0, 100%, 0);
+}
+
+.ion-action-sheet-fadeup-enter, .ion-action-sheet-fadeup-leave-to {
+  transform: translate3d(0, 100%, 0);
+}

@@ -11,11 +11,12 @@
         </div>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "item";
-    @import "item.ios.less";
-    @import "item.md.less";
+    @import "item.ios";
+    @import "item.md";
     @import "item-media";
+    @import "item-reorder";
 </style>
 <script type="text/javascript">
   import addItemAttr from '../../util/addItemAttr.js'

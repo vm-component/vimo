@@ -299,8 +299,8 @@
     }
   }
 </script>
-<style lang="less">
+<style lang="scss">
     @import "sheet";
-    @import "sheet.ios.less";
-    @import "sheet.md.less";
+    @import "sheet.ios";
+    @import "sheet.md";
 </style>

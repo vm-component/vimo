@@ -1,0 +1,43 @@
+@import "../../themes/globals";
+
+// Loading Indicator
+// --------------------------------------------------
+
+.ion-loading {
+  @include position(0, 0, 0, 0);
+
+  position: absolute;
+  z-index: $z-index-overlay;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  contain: strict;
+}
+
+.loading-wrapper {
+  z-index: $z-index-overlay-wrapper;
+  display: flex;
+
+  align-items: center;
+
+  //opacity: 0;
+}
+
+
+// transition fadeup
+.ion-loading-fadeup-enter-active {
+  //transition: transform .4s ease-in-out;
+  transition: opacity .2s ease-in-out;
+  transform: scale(1);
+}
+
+.ion-loading-fadeup-leave-active {
+  transition: transform .35s  ease-in-out;
+}
+
+.ion-loading-fadeup-enter, .ion-alert-fadeup-leave-to {
+  transform: scale(0.9);
+}

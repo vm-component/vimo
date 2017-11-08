@@ -1,0 +1,69 @@
+@import "../../themes/globals";
+
+// Sheet
+// --------------------------------------------------
+
+$sheet-width: 100%;
+$sheet-max-width: 500px;
+
+.vm-sheet {
+  overflow: hidden;
+  &.vm-sheet-visible {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: $z-index-overlay;
+    display: block;
+
+    width: $sheet-width;
+    height: $sheet-width;
+  }
+
+  &.sheet-direction-bottom {
+    .sheet-wrapper {
+      bottom: 0;
+      top: auto;
+    }
+
+    // transitioName = 'sheet'
+    .sheet-enter-active, .sheet-leave-active {
+      transform: translateY(0%);
+    }
+
+    .sheet-enter, .sheet-leave-active {
+      transform: translateY(100%);
+    }
+  }
+
+  &.sheet-direction-top {
+    .sheet-wrapper {
+      top: 0;
+      bottom: auto;
+    }
+
+    // transitioName = 'sheet'
+    .sheet-enter-active, .sheet-leave-active {
+      transform: translateY(0%);
+    }
+
+    .sheet-enter, .sheet-leave-active {
+      transform: translateY(-100%);
+    }
+  }
+
+  .sheet-wrapper {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: $z-index-overlay-wrapper;
+    display: block;
+
+    margin: auto;
+
+    width: $sheet-width;
+    max-width: $sheet-max-width;
+    // added
+    transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
+  }
+}
+

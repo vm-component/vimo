@@ -10,10 +10,10 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
-    @import "item-sliding.less";
-    @import "item-sliding.ios.less";
-    @import "item-sliding.md.less";
+<style lang="scss">
+    @import "item-sliding";
+    @import "item-sliding.ios";
+    @import "item-sliding.md";
 </style>
 <script type="text/javascript">
   /**

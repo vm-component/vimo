@@ -16,7 +16,6 @@
         </vm-tabs>
     </vm-page>
 </template>
-<style scoped lang="less"></style>
 <script type="text/javascript">
   export default{}
 </script>

@@ -10,10 +10,10 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "fab";
-    @import "fab.ios.less";
-    @import "fab.md.less";
+    @import "fab.ios";
+    @import "fab.md";
 </style>
 <script type="text/javascript">
   /**

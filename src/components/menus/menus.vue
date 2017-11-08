@@ -21,10 +21,10 @@
         </transition>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "menus";
-    @import "menus.ios.less";
-    @import "menus.md.less";
+    @import "menus.ios";
+    @import "menus.md";
 
     /*slideInLeft*/
     /*animate class*/

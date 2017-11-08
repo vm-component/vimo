@@ -1,0 +1,35 @@
+/*-------- md 进入动画(forward) --------*/
+/*    fade-right-transition-forward    */
+
+// 进入的页面
+.fade-right-transition-forward-enter {
+  transform: translateX(40px);
+  opacity: 0 !important;
+}
+
+.fade-right-transition-forward-enter-active {
+  transition: -webkit-transform 500ms cubic-bezier(0.36, 0.66, 0.04, 1), opacity 500ms cubic-bezier(0.36, 0.66, 0.04, 1);
+}
+
+// 退出的页面
+.fade-right-transition-forward-leave-active {
+  transition-duration: 500ms;
+}
+
+/*-------- md 后退动画(backward) --------*/
+/*    fade-right-transition-backward    */
+
+// 进入的页面
+.fade-right-transition-backward-enter {
+}
+
+.fade-right-transition-backward-enter-active {
+  transition-duration: 500ms;
+}
+
+// 退出的页面
+.fade-right-transition-backward-leave-active {
+  transform: translateX(40px);
+  opacity: 0 !important;
+  transition: -webkit-transform 500ms cubic-bezier(0.36, 0.66, 0.04, 1), opacity 500ms cubic-bezier(0.36, 0.66, 0.04, 1);
+}

@@ -1,0 +1,27 @@
+@import "../../themes/globals";
+
+// Icon
+// --------------------------------------------------
+.ion-icon {
+    display: inline-block;
+    font-size: 1.2em;
+}
+
+.ion-icon {
+    display: inline-block;
+    font-family: "Ionicons";
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-rendering: auto;
+    text-transform: none;
+    speak: none;
+}
+
+.ion-icon[small] {
+    min-height: 1.1em;
+    font-size: 1.1em;
+}

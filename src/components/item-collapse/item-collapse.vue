@@ -24,10 +24,10 @@
         </transition>
     </div>
 </template>
-<style lang="less">
-    @import "item-collapse.less";
-    @import "item-collapse.ios.less";
-    @import "item-collapse.md.less";
+<style lang="scss">
+    @import "item-collapse";
+    @import "item-collapse.ios";
+    @import "item-collapse.md";
 </style>
 <script type="text/javascript">
   /**

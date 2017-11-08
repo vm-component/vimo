@@ -206,7 +206,7 @@
     }
   }
 </script>
-<style lang="less">
-    @import "toggle.ios.less";
-    @import "toggle.md.less";
+<style lang="scss">
+    @import "toggle.ios";
+    @import "toggle.md";
 </style>

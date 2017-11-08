@@ -71,11 +71,10 @@
       }
     },
     mounted () {
-      console.log('mountedmounted')
       this.$platform.onNetworkChange((type) => {
         alert(`网路状况发生变化, 当前状态: ${type}, 即将立即推出App!`)
         this.$platform.exitApp()
       })
     }
   }
-</script><style lang="less"></style>
+</script>

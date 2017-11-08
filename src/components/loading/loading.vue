@@ -224,10 +224,10 @@
     }
   }
 </script>
-<style lang="less">
+<style lang="scss">
     @import "loading";
-    @import "loading.ios.less";
-    @import "loading.md.less";
+    @import "loading.ios";
+    @import "loading.md";
 
     .ion-loading.indicator {
         .loading-wrapper {

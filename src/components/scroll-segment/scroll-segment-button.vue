@@ -3,7 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     .vm-scroll-segment-button {
         position: relative;
         display: block;

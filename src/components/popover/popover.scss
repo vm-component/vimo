@@ -1,0 +1,63 @@
+@import "../../themes/globals";
+
+// Popover
+// --------------------------------------------------
+
+
+.ion-popover {
+  @include position(0, 0, 0, 0);
+
+  position: absolute;
+
+  z-index: $z-index-overlay;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.popover-wrapper {
+  z-index: $z-index-overlay-wrapper;
+
+  opacity: 1;
+}
+
+.popover-content {
+  position: absolute;
+  z-index: $z-index-overlay-wrapper;
+
+  display: flex;
+
+  overflow: auto;
+
+  flex-direction: column;
+}
+
+.popover-content .ion-list {
+  margin-bottom: 0;
+}
+
+.popover-content .ion-content,
+.popover-content .scroll-content {
+  contain: none;
+}
+
+.popover-content .scroll-content {
+  position: relative;
+}
+
+.ion-popover .ion-backdrop {
+  opacity: .08;
+}
+
+// transition fadeup
+.ion-popover-fadeup-enter-active, .ion-popover-fadeup-leave-active {
+  transition: opacity .15s ease;
+  opacity: 1;
+}
+
+.ion-popover-fadeup-enter, .ion-popover-fadeup-leave-to {
+  opacity: 0;
+  transition: opacity ease .15s;
+}

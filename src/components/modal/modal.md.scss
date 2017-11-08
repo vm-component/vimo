@@ -1,0 +1,46 @@
+@import "../../themes/globals.md";
+
+// Material Design Modals
+// --------------------------------------------------
+
+/// @prop - Background color for the modal
+$modal-md-background-color:       $background-md-color !default;
+
+/// @prop - Box shadow color of the alert
+$modal-inset-box-shadow-color:    rgba(0, 0, 0, .4) !default;
+
+/// @prop - Box shadow of the alert
+$modal-inset-box-shadow:          0 28px 48px $modal-inset-box-shadow-color !default;
+
+.md .modal-wrapper {
+  @include transform(translate3d(0, 0, 0));
+
+  opacity: 1;
+
+  @media only screen and (min-width: $modal-inset-min-width) and (min-height: $modal-inset-min-height-small) {
+    @include border-radius(2px);
+
+    overflow: hidden;
+
+    box-shadow: $modal-inset-box-shadow;
+  }
+
+}
+
+// transition 'fadeup'
+.md .modal-fadeup-enter-active {
+  transition: transform .4s cubic-bezier(.36, .66, .04, 1);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.md .modal-fadeup-leave-active {
+  transition: transform .2s cubic-bezier(0.47,0,0.745,0.715);
+  transform: translateY(0);
+  opacity: 0.99;
+}
+
+.md .modal-fadeup-enter, .md .modal-fadeup-leave-to {
+  transform: translateY(40px);
+  opacity: 0;
+}

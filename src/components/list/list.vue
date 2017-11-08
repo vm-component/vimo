@@ -248,8 +248,8 @@
     }
   }
 </script>
-<style lang="less">
+<style lang="scss">
     @import "list";
-    @import "list.ios.less";
-    @import "list.md.less";
+    @import "list.ios";
+    @import "list.md";
 </style>

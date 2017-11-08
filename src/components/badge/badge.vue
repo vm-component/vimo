@@ -3,10 +3,10 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "badge";
-    @import "badge.ios.less";
-    @import "badge.md.less";
+    @import "badge.ios";
+    @import "badge.md";
 </style>
 <script type="text/javascript">
 

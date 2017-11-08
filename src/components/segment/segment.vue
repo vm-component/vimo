@@ -3,10 +3,10 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "segment";
-    @import "segment.ios.less";
-    @import "segment.md.less";
+    @import "segment.ios";
+    @import "segment.md";
 </style>
 <script type="text/javascript">
   /**

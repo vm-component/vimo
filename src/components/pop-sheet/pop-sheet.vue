@@ -281,8 +281,8 @@
     }
   }
 </script>
-<style lang="less">
-    @import "pop-sheet.less";
-    @import "pop-sheet.ios.less";
-    @import "pop-sheet.md.less";
+<style lang="scss">
+    @import "pop-sheet";
+    @import "pop-sheet.ios";
+    @import "pop-sheet.md";
 </style>

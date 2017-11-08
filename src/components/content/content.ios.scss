@@ -1,0 +1,69 @@
+@import "../../themes/globals.ios";
+
+// iOS Content
+// --------------------------------------------------
+
+/// @prop - Background color of the outer content
+$content-ios-outer-background:          #efeff4 !default;
+
+/// @prop - Background color of the content when making transition
+$content-ios-transition-background:     #000 !default;
+
+.content-ios {
+  color: $text-ios-color;
+  background-color: $background-ios-color;
+}
+
+.content-ios.outer-content {
+  background: $content-ios-outer-background;
+}
+
+.content-ios hr {
+  height: $hairlines-width;
+
+  background-color: rgba(0, 0, 0, .12);
+}
+
+
+// iOS Content Padding
+// --------------------------------------------------
+
+@include content-padding($content-ios-padding);
+
+
+// iOS Content Margin
+// --------------------------------------------------
+
+@include content-margin($content-ios-margin);
+
+
+// iOS Content Scroll
+// --------------------------------------------------
+
+.content-ios:not([no-bounce]) > .scroll-content::before,
+.content-ios:not([no-bounce]) > .scroll-content::after {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  content: "";
+}
+
+.content-ios:not([no-bounce]) > .scroll-content::before {
+  bottom: -1px;
+}
+
+.content-ios:not([no-bounce]) > .scroll-content::after {
+  top: -1px;
+}
+
+
+
+
+// After a Header Toolbar
+
+.header-ios ~ .content-ios > .scroll-content {
+  margin-top: $toolbar-ios-height;
+}
+

@@ -72,11 +72,11 @@
 
                 <vm-item>
                     <vm-label>Gender</vm-label>
-                    <vm-select item-right placeholder="Multi Select" interface="alert" :multiple="true"
+                    <vm-select item-right placeholder="Popover Select" interface="popover"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
-                        <vm-option value="f">Female</vm-option>
+                        <vm-option value="f" checked>Female</vm-option>
                         <vm-option value="m">Male</vm-option>
                     </vm-select>
                 </vm-item>
@@ -95,6 +95,20 @@
                 <vm-item>
                     <vm-label>能修改选中值文本</vm-label>
                     <vm-select item-right placeholder="请选择" selectedText="已选择" interface="alert" :multiple="true">
+                        <vm-option value="f">Female</vm-option>
+                        <vm-option value="m">Male</vm-option>
+                    </vm-select>
+                </vm-item>
+            </vm-list>
+
+            <vm-list>
+                <vm-list-header>多选</vm-list-header>
+                <vm-item>
+                    <vm-label>Gender</vm-label>
+                    <vm-select item-right placeholder="Multi Select" interface="alert" :multiple="true"
+                               @onChange="onChange"
+                               @onSelect="onSelect"
+                               @onCancel="onCancel">
                         <vm-option value="f">Female</vm-option>
                         <vm-option value="m">Male</vm-option>
                     </vm-select>

@@ -24,10 +24,10 @@
                    @click="clearTextInput()"></vm-button>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "input";
-    @import "input.ios.less";
-    @import "input.md.less";
+    @import "input.ios";
+    @import "input.md";
 </style>
 <script type="text/javascript">
   /**

@@ -4,11 +4,11 @@
         <span class="button-inner"><slot></slot></span>
     </button>
 </template>
-<style lang="less">
-    @import "button.less";
-    @import "button.md.less";
-    @import "button.ios.less";
-    @import "button-icon.less";
+<style lang="scss">
+    @import "button";
+    @import "button.md";
+    @import "button.ios";
+    @import "button-icon";
 </style>
 <script type="text/javascript">
   /**

@@ -19,7 +19,7 @@
         </transition>
     </section>
 </template>
-<style lang="less">
+<style lang="scss">
 
     .vm-previewImage.previewImage {
         display: block;

@@ -126,7 +126,7 @@
     }
   }
 </script>
-<style lang="less">
-    @import "checkbox.ios.less";
-    @import "checkbox.md.less";
+<style lang="scss">
+    @import "checkbox.ios";
+    @import "checkbox.md";
 </style>

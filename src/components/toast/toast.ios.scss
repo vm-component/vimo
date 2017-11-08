@@ -1,0 +1,105 @@
+@import "../../themes/globals.ios";
+
+// iOS Toast
+// --------------------------------------------------
+
+/// @prop - Background of the toast wrapper
+$toast-ios-background:                            rgba(0, 0, 0, .9) !default;
+
+/// @prop - Border radius of the toast wrapper
+$toast-ios-border-radius:                         .65rem !default;
+
+/// @prop - Color of the toast title
+$toast-ios-title-color:                           #fff !default;
+
+/// @prop - Font size of the toast title
+$toast-ios-title-font-size:                       1.4rem !default;
+
+// deprecated
+$toast-ios-title-padding:                         null !default;
+
+/// @prop - Padding top of the toast title
+$toast-ios-title-padding-top:                     1.5rem !default;
+
+/// @prop - Padding end of the toast title
+$toast-ios-title-padding-end:                     $toast-ios-title-padding-top !default;
+
+/// @prop - Padding bottom of the toast title
+$toast-ios-title-padding-bottom:                  $toast-ios-title-padding-top !default;
+
+/// @prop - Padding start of the toast title
+$toast-ios-title-padding-start:                   $toast-ios-title-padding-end !default;
+
+
+.toast-ios .toast-wrapper {
+  @include position-horizontal(10px, 10px);
+  @include margin(auto);
+  @include border-radius($toast-ios-border-radius);
+
+  position: absolute;
+
+  z-index: $z-index-overlay-wrapper;
+  display: block;
+
+  max-width: $toast-max-width;
+
+  background: $toast-ios-background;
+}
+
+.toast-ios .toast-wrapper.toast-top {
+  top: 10px;
+}
+
+.toast-ios .toast-wrapper.toast-bottom {
+  bottom: 10px;
+}
+
+.toast-ios .toast-wrapper.toast-middle {
+  opacity: 1;
+  top: 38%;
+}
+
+.toast-ios .toast-message {
+  font-size: $toast-ios-title-font-size;
+
+  color: $toast-ios-title-color;
+
+  @include deprecated-variable(padding, $toast-ios-title-padding) {
+    @include padding($toast-ios-title-padding-top, $toast-ios-title-padding-end, $toast-ios-title-padding-bottom, $toast-ios-title-padding-start);
+  }
+}
+
+// transition 'top'
+.ios .toast-fade-top-enter-active, .ios .toast-fade-top-leave-active {
+  transition: transform .4s cubic-bezier(.36, .66, .04, 1);
+  ransform: translateY(10px);
+  opacity: 1;
+}
+
+.ios .toast-fade-top-enter, .ios .toast-fade-top-leave-to {
+  transition: transform .3s cubic-bezier(.36, .66, .04, 1);
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+// transition 'bottom'
+.ios .toast-fade-bottom-enter-active, .ios .toast-fade-bottom-leave-active {
+  transition: transform .4s cubic-bezier(.36, .66, .04, 1);
+  ransform: translateY(10px);
+  opacity: 1;
+}
+
+.ios .toast-fade-bottom-enter, .ios .toast-fade-bottom-leave-to {
+  transition: transform .3s cubic-bezier(.36, .66, .04, 1);
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+// transition 'middle'
+.ios .toast-fade-bottom-enter-active, .ios .toast-fade-bottom-leave-active {
+  opacity: 1;
+}
+
+.ios .toast-fade-bottom-enter, .ios .toast-fade-bottom-leave-to {
+  opacity: 0.01;
+}

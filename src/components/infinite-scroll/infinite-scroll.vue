@@ -3,7 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "infinite-scroll";
 </style>
 <script type="text/javascript">

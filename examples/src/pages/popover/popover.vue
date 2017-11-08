@@ -2,7 +2,7 @@
     <vm-page>
         <vm-header>
             <vm-navbar>
-                <vm-title>this.$popover</vm-title>
+                <vm-title>Popover</vm-title>
                 <!--menutoggle-->
                 <vm-buttons slot="buttons" right>
                     <vm-button icon-only role="bar-button" menutoggle @click="openSetting($event)">

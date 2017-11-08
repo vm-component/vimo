@@ -51,10 +51,10 @@
         </vm-button>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "searchbar";
-    @import "searchbar.ios.less";
-    @import "searchbar.md.less";
+    @import "searchbar.ios";
+    @import "searchbar.md";
 </style>
 <script type="text/javascript">
   /**

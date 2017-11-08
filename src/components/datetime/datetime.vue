@@ -13,10 +13,10 @@
         </vm-button>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "datetime";
-    @import "datetime.ios.less";
-    @import "datetime.md.less";
+    @import "datetime.ios";
+    @import "datetime.md";
 </style>
 <script type="text/javascript">
   /**

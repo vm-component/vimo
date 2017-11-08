@@ -1,5 +1,5 @@
 <template>
-    <div content class="ion-content">
+    <div content class="ion-content" :class="['content-'+mode, hasRefresher?'has-refresher':'']">
         <div ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
             <!--Fixed-->
             <slot name="fixed"></slot>
@@ -16,9 +16,13 @@
         <slot name="refresher"></slot>
     </div>
 </template>
-<style lang="less">
+
+<style lang="scss">
     @import "content";
+    @import "content.ios";
+    @import "content.md";
 </style>
+
 <script type="text/javascript">
   /**
    * @typedef {Object} ContentDimension   - Content组件的维度尺寸信息
@@ -113,12 +117,16 @@
    * </template>
    *
    * */
-  import { transitionEnd, parsePxUnit } from '../../util/util'
+  import { transitionEnd, parsePxUnit, isPresent } from '../../util/util'
   import { ScrollView } from './scroll-view'
 
   export default {
     name: 'vm-content',
     props: {
+      mode: {
+        type: String,
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
+      },
       fullscreen: Boolean,
       recordPosition: {
         type: Boolean,
@@ -128,6 +136,8 @@
     data () {
       return {
         isFullscreen: this.fullscreen,
+
+        hasRefresher: false,
 
         fixedElementStyle: {},  // 固定内容的位置样式
         scrollElementStyle: {}, // 滑动内容的位置样式
@@ -559,6 +569,9 @@
       this._imgVelMax = this.$config && this.$config.getNumber('imgVelocityMax', 3)
       this._scroll = new ScrollView()
       this._imgs = []
+
+      this.hasRefresher = this.$slots && isPresent(this.$slots['refresher']);
+
     },
     mounted () {
       this.init()

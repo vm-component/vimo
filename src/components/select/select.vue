@@ -13,10 +13,10 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "select";
-    @import "select.ios.less";
-    @import "select.md.less";
+    @import "select.ios";
+    @import "select.md";
 </style>
 <script type="text/javascript">
   /**

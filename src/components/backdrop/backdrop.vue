@@ -11,7 +11,7 @@
              v-show="isActiveLocal"></div>
     </transition>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "backdrop";
 
     // transitioName = 'backdrop'

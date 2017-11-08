@@ -6,10 +6,10 @@
         <slot></slot>
     </label>
 </template>
-<style lang="less">
+<style lang="scss">
     @import "label";
-    @import "label.ios.less";
-    @import "label.md.less";
+    @import "label.ios";
+    @import "label.md";
 </style>
 <script type="text/javascript">
   /**
