@@ -11,7 +11,7 @@
             <div class="popover-wrapper" v-show="isActive">
                 <div class="popover-arrow" ref="popoverArrow"></div>
                 <div class="popover-content" ref="popoverContent">
-                    <div class="popover-viewport" ref="popoverViewport" v-html="htmlComponent"></div>
+                    <div class="popover-viewport" ref="popoverViewport"></div>
                 </div>
             </div>
         </transition>
@@ -139,19 +139,19 @@
    * @demo #/popover
    * */
   import Vue from 'vue'
-  import Backdrop from '../backdrop'
   import { urlChange, parsePxUnit } from '../../util/util'
   import css from '../../util/getCss'
+  import VmBackdrop from "../backdrop/backdrop.vue";
 
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
   const NOOP = () => {}
 
   export default {
+    components: {VmBackdrop},
     name: 'vm-popover',
     data () {
       return {
-        htmlComponent: '',
         presentCallback: NOOP,  // 开启的promise
         dismissCallback: NOOP,  // 关闭的promise
         unreg: null,            // 页面切换的pagechange监听函数
@@ -443,6 +443,7 @@
       }
     },
     mounted () {
+
       let getType = (val) => Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
 
       if (getType(this.component) === 'object') {
@@ -456,11 +457,12 @@
           this.init(component)
         })
       } else {
-        // 如果 this.component 是html模板string的话
-        this.htmlComponent = this.component
-        this.init()
+        // 如果 this.component 是html模板string的话(支持组件)
+        this.component = {
+          template: '<div>' + this.component + '</div>'
+        }
+        this.init(this.component)
       }
-    },
-    components: {Backdrop}
+    }
   }
 </script>
