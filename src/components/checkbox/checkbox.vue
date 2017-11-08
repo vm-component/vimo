@@ -46,7 +46,7 @@
    * @usage
    * <vm-item>
    *    <vm-label>Danger</vm-label>
-   *    <vm-checkbox slot="item-left" color="danger" v-model="testModal" :disabled="testDisabled" @onChange="onCheckboxChange"></vm-checkbox>
+   *    <vm-checkbox slot="item-start" color="danger" v-model="testModal" :disabled="testDisabled" @onChange="onCheckboxChange"></vm-checkbox>
    * </vm-item>
    * */
   import { setElementClass } from '../../util/util'

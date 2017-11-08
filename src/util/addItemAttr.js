@@ -1,6 +1,6 @@
 /**
  * 根据slot的名称, 将名称当做属性写到每个子元素上
- * 例如: 为slot="item-left"/slot="item-right"的沟槽设定属性
+ * 例如: 为slot="item-start"/slot="item-end"的沟槽设定属性
  * */
 import { isObject, isPresent } from './util'
 

@@ -54,7 +54,7 @@
    * @usage
    * <vm-item>
    *    <vm-label>MMMM</vm-label>
-   *    <vm-datetime slot="item-right" displayFormat="MMMM" v-model="monthOnly"></vm-datetime>
+   *    <vm-datetime slot="item-end" displayFormat="MMMM" v-model="monthOnly"></vm-datetime>
    * </vm-item>
    *
    * @props {String} [min] - ISO 8601 datetime 的时间格式, 1996-12-19

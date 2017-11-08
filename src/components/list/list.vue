@@ -84,7 +84,7 @@
    *        <span>today</span>
    *    </vm-list-header>
    *    <vm-item>
-   *        <vm-avatar slot="item-left">
+   *        <vm-avatar slot="item-start">
    *            <img src="./img/avatar-ts-woody.png">
    *        </vm-avatar>
    *        <vm-label>
@@ -95,7 +95,7 @@
    *        </vm-label>
    *    </vm-item>
    *    <vm-item>
-   *        <vm-avatar slot="item-left">
+   *        <vm-avatar slot="item-start">
    *            <img src="./img/avatar-ts-buzz.png">
    *        </vm-avatar>
    *        <vm-label>

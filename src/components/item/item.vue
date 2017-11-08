@@ -55,8 +55,8 @@
    *
    *
    * @slot 空 - 放置在中间, 默认位置
-   * @slot item-left - 放置在左边
-   * @slot item-right - 放置在左边
+   * @slot item-start - 放置在左边
+   * @slot item-end - 放置在左边
    *
    * @demo #/list
    * @see component:List
@@ -66,40 +66,40 @@
    * <vm-list>
    *    <vm-list-header>
    *            setting
-   *        <vm-button slot="item-right" clear>
+   *        <vm-button slot="item-end" clear>
    *            <vm-icon name="cog"></vm-icon>
    *        </vm-button>
    *    </vm-list-header>
    *    <vm-item-group>
    *        <vm-item>
-   *            <vm-icon slot="item-left" color="danger" name="plane"></vm-icon>
+   *            <vm-icon slot="item-start" color="danger" name="plane"></vm-icon>
    *            <span>Airplane Mode</span>
-   *            <vm-toggle slot="item-right" @ionChange="toggleChange"
+   *            <vm-toggle slot="item-end" @ionChange="toggleChange"
    *                :checked="toggleValue"></vm-toggle>
    *        </vm-item>
    *    <vm-item button>
-   *            <vm-icon slot="item-left" color="primary" name="wifi"></vm-icon>
+   *            <vm-icon slot="item-start" color="primary" name="wifi"></vm-icon>
    *                Wi-Fi
-   *            <vm-note slot="item-right">The Interwebz</vm-note>
+   *            <vm-note slot="item-end">The Interwebz</vm-note>
    *        </vm-item>
    *        <vm-item button>
-   *            <vm-icon slot="item-left" color="primary" name="bluetooth"></vm-icon>
+   *            <vm-icon slot="item-start" color="primary" name="bluetooth"></vm-icon>
    *                Bluetooth
-   *            <vm-note slot="item-right">Off</vm-note>
+   *            <vm-note slot="item-end">Off</vm-note>
    *        </vm-item>
    *    </vm-item-group>
    *    <vm-item-divider color="primary">
    *        Other Setting
-   *        <vm-button slot="item-right" outline color="light">Clear</vm-button>
+   *        <vm-button slot="item-end" outline color="light">Clear</vm-button>
    *    </vm-item-divider>
    *    <vm-item button>
-   *            <vm-icon slot="item-left" color="secondary" name="call"></vm-icon>
+   *            <vm-icon slot="item-start" color="secondary" name="call"></vm-icon>
    *            Cellular
    *    </vm-item>
    *    <vm-item button>
-   *         <vm-icon slot="item-left" color="secondary" name="link"></vm-icon>
+   *         <vm-icon slot="item-start" color="secondary" name="link"></vm-icon>
    *            Personal Hotspot
-   *        <vm-note slot="item-right">Off</vm-note>
+   *        <vm-note slot="item-end">Off</vm-note>
    *    </vm-item>
    * </vm-list>
    *

@@ -55,7 +55,7 @@
    *
    * <vm-item-sliding>
    *    <vm-item>
-   *        <vm-avatar slot="item-left">
+   *        <vm-avatar slot="item-start">
    *            <img src="./img/avatar-ts-woody.png">
    *        </vm-avatar>
    *        <vm-label>

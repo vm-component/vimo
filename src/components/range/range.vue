@@ -75,7 +75,7 @@
    * <vm-list>
    *    <vm-list-header>
    *        <span>Brightness</span>
-   *        <vm-badge slot="item-right">{{brightness}}</vm-badge>
+   *        <vm-badge slot="item-end">{{brightness}}</vm-badge>
    *    </vm-list-header>
    *    <vm-item>
    *         <vm-range v-model="brightness">

@@ -1,5 +1,6 @@
 <template>
     <div class="ion-menu"
+         role="navigation"
          :id="id"
          :type="type"
          :side="side"

@@ -58,23 +58,23 @@
    *    </vm-list-header>
    *    <vm-item>
    *        Toggle Normal
-   *        <vm-toggle slot="item-right"></vm-toggle>
+   *        <vm-toggle slot="item-end"></vm-toggle>
    *    </vm-item>
    *    <vm-item>
    *        Red Toggle
-   *        <vm-toggle slot="item-right" color="danger"></vm-toggle>
+   *        <vm-toggle slot="item-end" color="danger"></vm-toggle>
    *    </vm-item>
    *    <vm-item>
    *        Toggle Open
-   *        <vm-toggle slot="item-right"></vm-toggle>
+   *        <vm-toggle slot="item-end"></vm-toggle>
    *    </vm-item>
    *    <vm-item>
    *        Toggle Close
-   *        <vm-toggle slot="item-right"></vm-toggle>
+   *        <vm-toggle slot="item-end"></vm-toggle>
    *    </vm-item>
    *    <vm-item>
    *        Toggle Disabled
-   *        <vm-toggle slot="item-right" v-model="checked"></vm-toggle>
+   *        <vm-toggle slot="item-end" v-model="checked"></vm-toggle>
    *    </vm-item>
    * </vm-list>
    *

@@ -51,7 +51,6 @@ module.exports = {
       `${base}/src/components/slides`,
       `${base}/src/components/slides-lite`,
       `${base}/src/components/tabs`,
-      `${base}/src/components/textarea`,
       `${base}/src/components/alert`,
       `${base}/src/components/action-sheet`,
       `${base}/src/components/loading`,

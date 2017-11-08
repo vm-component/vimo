@@ -70,7 +70,7 @@
    * @usage
    * <vm-item>
    *    <vm-label>Gender</vm-label>
-   *    <vm-select item-right placeholder="Select" interface="alert"
+   *    <vm-select item-end placeholder="Select" interface="alert"
    *            @ onChange="onChange"
    *            @ onSelect="onSelect"
    *            @ onCancel="onCancel">

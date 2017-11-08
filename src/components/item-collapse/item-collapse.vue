@@ -2,7 +2,7 @@
     <div :class="[{'item-collapse-open':isActive},collapseClass]" class="item-collapse">
         <div :class="[itemClass,colorClass]"
              class="ion-item item-block" @click="onPointerDownHandler">
-            <slot name="item-left"></slot>
+            <slot name="item-start"></slot>
             <div class="item-inner">
                 <div class="input-wrapper" v-if="title">
                     {{title}}
@@ -11,7 +11,7 @@
                     <slot name="item-title"></slot>
                 </div>
                 <div class="item-arrow"></div>
-                <slot name="item-right"></slot>
+                <slot name="item-end"></slot>
             </div>
         </div>
         <transition @before-enter="beforeEnter"
@@ -43,8 +43,8 @@
    *
    * @slot 空 - 这部分将放置在伸缩盒子中
    * @slot item-title - 对属性title的拓展, 如果包含复杂的显示结构, 比如增加了ICON
-   * @slot item-left - 这部分继承Item组件
-   * @slot item-right - 这部分继承Item组件
+   * @slot item-start - 这部分继承Item组件
+   * @slot item-end - 这部分继承Item组件
    *
    * @usage
    * <vm-list>

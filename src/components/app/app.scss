@@ -224,6 +224,7 @@ sub {
 // --------------------------------------------------
 
 .ion-app,
+.ion-nav,
 .ion-tab,
 .ion-tabs,
 .app-root {
@@ -237,6 +238,7 @@ sub {
   height: 100%;
 }
 
+.ion-nav,
 .ion-tab,
 .ion-tabs {
   overflow: hidden;
@@ -251,6 +253,7 @@ sub {
 }
 
 .ion-app,
+.ion-nav,
 .ion-tab,
 .ion-tabs,
 .app-root,
