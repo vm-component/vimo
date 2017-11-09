@@ -56,11 +56,11 @@ describe('Test platform.js with mock config', function () {
   })
 
   it('versions()', function () {
-    expect(JSON.stringify(platform.versions())).to.equal('{"ios":{"str":"10.2.0","num":10.2,"major":10,"minor":2,"third":0},"alipay":{"str":"9.0.1","num":9,"major":9,"minor":0,"third":1}}')
+    expect(JSON.stringify(platform.versions())).to.equal('{"ios":{"str":"10.2.0","num":10.2,"major":10,"minor":2,"patch":0},"alipay":{"str":"9.0.1","num":9,"major":9,"minor":0,"patch":1}}')
   })
 
   it('version()', function () {
-    expect(JSON.stringify(platform.version())).to.equal('{"str":"10.2.0","num":10.2,"major":10,"minor":2,"third":0}')
+    expect(JSON.stringify(platform.version())).to.equal('{"str":"10.2.0","num":10.2,"major":10,"minor":2,"patch":0}')
   })
 
   it('platforms()', function () {

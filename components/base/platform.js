@@ -443,7 +443,7 @@ class Platform {
         return {
           major: val[1],
           minor: val[2],
-          third: val[3]
+          patch: val[3]
         }
       }
     }
@@ -682,14 +682,14 @@ class PlatformNode {
       if (v) {
         if (!v.major) v.major = '0'
         if (!v.minor) v.minor = '0'
-        if (!v.third) v.third = '0'
-        const str = v.major + '.' + v.minor + (v.third ? '.' + v.third : '')
+        if (!v.patch) v.patch = '0'
+        const str = v.major + '.' + v.minor + (v.patch ? '.' + v.patch : '')
         return {
           str: str,
           num: parseFloat(str),
           major: parseInt(v.major, 10),
           minor: parseInt(v.minor, 10),
-          third: parseInt(v.third, 10)
+          patch: parseInt(v.patch, 10)
         }
       }
     }
@@ -852,7 +852,7 @@ export function setupPlatform (config = {}) {
   p.setQueryParams(new QueryParams())
   !p.navigatorPlatform() && p.setNavigatorPlatform(window.navigator.platform)
   !p.userAgent() && p.setUserAgent(window.navigator.userAgent)
-  !p.lang() && p.setLang('zh-cn', true)
+  !p.lang() && p.setLang('zh-CN', true)
 
   // 设置css类型
   p.setCssProps()

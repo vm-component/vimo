@@ -75,6 +75,7 @@
   "dependencies": {
     "autosize": "^3.0.20",
     "better-scroll": "^1.3.0",
+    "lodash.debounce": "^4.0.8",
     "swipe-js-iso": "^2.0.3",
     "swiper": "^3.4.2"
   },
