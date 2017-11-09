@@ -10,24 +10,24 @@
                 <vm-list-header>Checkbox</vm-list-header>
                 <vm-item>
                     <vm-label>Danger</vm-label>
-                    <vm-checkbox slot="item-left" color="danger" v-model="displayData.danger"></vm-checkbox>
-                    <vm-toggle slot="item-right"></vm-toggle>
+                    <vm-checkbox slot="item-start" color="danger" v-model="displayData.danger"></vm-checkbox>
+                    <vm-toggle slot="item-end"></vm-toggle>
                 </vm-item>
                 <vm-item>
                     <vm-label>Primary</vm-label>
-                    <vm-checkbox slot="item-left" color="primary" v-model="displayData.primary"></vm-checkbox>
+                    <vm-checkbox slot="item-start" color="primary" v-model="displayData.primary"></vm-checkbox>
                 </vm-item>
                 <vm-item>
                     <vm-label>Dark</vm-label>
-                    <vm-checkbox slot="item-left" color="dark" v-model="displayData.dark"></vm-checkbox>
+                    <vm-checkbox slot="item-start" color="dark" v-model="displayData.dark"></vm-checkbox>
                 </vm-item>
                 <vm-item>
                     <vm-label>Light</vm-label>
-                    <vm-checkbox slot="item-left" color="light" v-model="displayData.light"></vm-checkbox>
+                    <vm-checkbox slot="item-start" color="light" v-model="displayData.light"></vm-checkbox>
                 </vm-item>
                 <vm-item>
                     <vm-label>Disabled</vm-label>
-                    <vm-checkbox slot="item-left" :disabled="displayData.disabled"
+                    <vm-checkbox slot="item-start" :disabled="displayData.disabled"
                               v-model="displayData.disabled"></vm-checkbox>
                 </vm-item>
             </vm-list>
@@ -45,7 +45,7 @@
                 <vm-list-header>使用 v-modal 绑定</vm-list-header>
                 <vm-item>
                     <vm-label>Danger</vm-label>
-                    <vm-checkbox slot="item-left" color="danger" v-model="testModal" :disabled="testDisabled"
+                    <vm-checkbox slot="item-start" color="danger" v-model="testModal" :disabled="testDisabled"
                               @onChange="onCheckboxChange"></vm-checkbox>
                 </vm-item>
             </vm-list>

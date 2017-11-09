@@ -3,10 +3,7 @@
         <div class="radio-icon" :class="{'radio-checked':isChecked}">
             <div class="radio-inner"></div>
         </div>
-        <vm-button role="item-cover" @click="onPointerDownHandler($event)"
-                type="button"
-                :id="id">
-        </vm-button>
+        <vm-button role="radio" @click="onPointerDownHandler($event)" :id="id"></vm-button>
     </div>
 </template>
 <script type="text/javascript">
@@ -79,7 +76,7 @@
    *    </vm-item>
    * </vm-list>
    *
-   * */
+   **/
   import { setElementClass, isTrueProperty } from '../../util/util'
   import VmButton from "../button/button.vue";
 
@@ -123,7 +120,7 @@
     methods: {
       /**
        * 设置当前radio的禁用状态
-       * */
+       **/
       setDisabled (isDisabled) {
         this.setChecked(null)
         this.isDisabled = isDisabled
@@ -132,7 +129,7 @@
 
       /**
        * 设置当前的radio的选中状态
-       * */
+       **/
       setChecked (checked) {
         let isChecked = (checked === this.value) && !this.isDisabled
         if (this.isChecked !== isChecked) {
@@ -144,7 +141,7 @@
 
       /**
        * 当radio点击时
-       * */
+       **/
       onPointerDownHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
@@ -153,7 +150,7 @@
 
       /**
        * init
-       * */
+       **/
       init () {
         // 找到外部item实例
         if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {

@@ -17,77 +17,77 @@
                 <vm-list-header>Choose Date</vm-list-header>
                 <vm-item>
                     <vm-label>Default</vm-label>
-                    <vm-datetime slot="item-right"></vm-datetime>
+                    <vm-datetime slot="item-end"></vm-datetime>
                 </vm-item>
                 <vm-item>
                     <vm-label>MMMM</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="MMMM" v-model="monthOnly"></vm-datetime>
+                    <vm-datetime slot="item-end" displayFormat="MMMM" v-model="monthOnly"></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>MM DD YY</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="MM DD YY" v-model="placeholderDate"
+                    <vm-datetime slot="item-end" displayFormat="MM DD YY" v-model="placeholderDate"
                               placeholder="Select Date"></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>YYYY</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="YYYY" min="1981" max="2002"
+                    <vm-datetime slot="item-end" displayFormat="YYYY" min="1981" max="2002"
                               v-model="wwwInvented"></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>MMMM YY</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="MMMM YY" min="1989-06-04" max="2004-08-23"
+                    <vm-datetime slot="item-end" displayFormat="MMMM YY" min="1989-06-04" max="2004-08-23"
                               v-model="netscapeReleased"></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>MM/DD/YYYY</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09"
+                    <vm-datetime slot="item-end" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09"
                               v-model="firefoxReleased"
                               class="e2eOpenMMDDYYYY"></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>DDD. MMM DD, YY(本地)</vm-label>
-                    <vm-datetime slot="item-right" v-model="operaReleased" min="1990-02" max="2018"
+                    <vm-datetime slot="item-end" v-model="operaReleased" min="1990-02" max="2018"
                               displayFormat="DDD. MMM DD, YY"
                               monthShortNames="一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月"
                               :dayShortNames="customShortDay"></vm-datetime>
                 </vm-item>
                 <vm-item>
                     <vm-label>D MMM YYYY H:mm</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="D MMM YYYY H:mm" min="1997" max="2010"
+                    <vm-datetime slot="item-end" displayFormat="D MMM YYYY H:mm" min="1997" max="2010"
                               v-model="webkitOpenSourced"></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>DDDD MMM D, YYYY</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="DDDD MMM D, YYYY" min="2005" max="2016"
+                    <vm-datetime slot="item-end" displayFormat="DDDD MMM D, YYYY" min="2005" max="2016"
                               v-model="chromeReleased"></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>HH:mm</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="HH:mm" v-model="time"></vm-datetime>
+                    <vm-datetime slot="item-end" displayFormat="HH:mm" v-model="time"></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>h:mm a (with event)</vm-label>
-                    <vm-datetime slot="item-right" @onChange="onChange($event)" @onCancel="onCancel($event)"
+                    <vm-datetime slot="item-end" @onChange="onChange($event)" @onCancel="onCancel($event)"
                               displayFormat="h:mm a"
                               v-model="time"></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>hh:mm A (15 min steps)</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="h:mm A" minuteValues="0,15,30,45"></vm-datetime>
+                    <vm-datetime slot="item-end" displayFormat="h:mm A" minuteValues="0,15,30,45"></vm-datetime>
                 </vm-item>
 
                 <vm-item>
                     <vm-label>Leap years, summer months</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="MM/YYYY" pickerFormat="MMMM YYYY"
+                    <vm-datetime slot="item-end" displayFormat="MM/YYYY" pickerFormat="MMMM YYYY"
                               :yearValues="leapYearsArray"
                               monthValues="6,7,8"
                               v-model="leapYearsSummerMonths"></vm-datetime>
@@ -95,7 +95,7 @@
 
                 <vm-item>
                     <vm-label>Specific days/months/years</vm-label>
-                    <vm-datetime slot="item-right" monthValues="6,7,8" yearValues="2014,2015"
+                    <vm-datetime slot="item-end" monthValues="6,7,8" yearValues="2014,2015"
                               dayValues="01,02,03,04,05,06,08,09,10, 11, 12, 13, 14"
                               displayFormat="DD/MMM/YYYY" v-model="specificDaysMonthsYears"></vm-datetime>
                 </vm-item>
@@ -123,7 +123,7 @@
 
                 <vm-item>
                     <vm-label>time now</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="MMM DD, YYYY HH:mm " v-model="convertedDate"></vm-datetime>
+                    <vm-datetime slot="item-end" displayFormat="MMM DD, YYYY HH:mm " v-model="convertedDate"></vm-datetime>
                 </vm-item>
 
                 <p padding>
@@ -139,7 +139,7 @@
 
                 <vm-item>
                     <vm-label>HH:mm:ss</vm-label>
-                    <vm-datetime slot="item-right" displayFormat="HH:mm:ss" v-model="time"></vm-datetime>
+                    <vm-datetime slot="item-end" displayFormat="HH:mm:ss" v-model="time"></vm-datetime>
                 </vm-item>
 
             </vm-list>

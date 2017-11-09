@@ -74,7 +74,7 @@
                            show-valid-highlight
                            show-invalid-highlight
                            placeholder="请输入至少4位" type="securityCode" check clearInput></vm-input>
-                    <span slot="item-right">*验证码*</span>
+                    <span slot="item-end">*验证码*</span>
                 </vm-item>
                 <vm-item>
                     <vm-label color="primary">中文</vm-label>

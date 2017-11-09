@@ -10,14 +10,9 @@
    *
    * ## 卡片组件 / CardHeader组件
    **/
-  import mixin from './mixin'
+  import ThemeMixins from '../../themes/theme.mixins'
   export default{
     name: 'vm-card-header',
-    data () {
-      return {
-        componentName: 'card-header'
-      }
-    },
-    extends: mixin
+    mixins: [ThemeMixins],
   }
 </script>

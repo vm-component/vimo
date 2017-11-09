@@ -17,46 +17,46 @@
                 <vm-list-header>测试</vm-list-header>
                 <vm-item class="log">
                     <span>console.log(new Date())</span>
-                    <vm-button slot="item-right" outline small @click="printLog">Print</vm-button>
+                    <vm-button slot="item-end" outline small @click="printLog">Print</vm-button>
                 </vm-item>
                 <vm-item class="debug">
                     <span>console.debug(new Date())</span>
-                    <vm-button slot="item-right" outline small @click="printDebug">Print</vm-button>
+                    <vm-button slot="item-end" outline small @click="printDebug">Print</vm-button>
                 </vm-item>
                 <vm-item class="info">
                     <span>console.info(new Date())</span>
-                    <vm-button slot="item-right" outline small @click="printInfo">Print</vm-button>
+                    <vm-button slot="item-end" outline small @click="printInfo">Print</vm-button>
                 </vm-item>
                 <vm-item class="warn">
                     <span>console.warn(new Date())</span>
-                    <vm-button slot="item-right" outline small @click="printWarn">Print</vm-button>
+                    <vm-button slot="item-end" outline small @click="printWarn">Print</vm-button>
                 </vm-item>
                 <vm-item class="error">
                     <span>console.error(new Date())</span>
-                    <vm-button slot="item-right" outline small @click="printError">Print</vm-button>
+                    <vm-button slot="item-end" outline small @click="printError">Print</vm-button>
                 </vm-item>
                 <vm-item class="assert">
                     <span>console.assert(new Date())</span>
-                    <vm-button slot="item-right" outline small @click="printAssert">Print</vm-button>
+                    <vm-button slot="item-end" outline small @click="printAssert">Print</vm-button>
                 </vm-item>
             </vm-list>
             <vm-list>
                 <vm-list-header>特殊错误</vm-list-header>
                 <vm-item class="error">
                     <span>JSON.parse error</span>
-                    <vm-button slot="item-right" outline small @click="jsonError">Print</vm-button>
+                    <vm-button slot="item-end" outline small @click="jsonError">Print</vm-button>
                 </vm-item>
                 <vm-item class="error">
                     <span>自定义错误</span>
-                    <vm-button slot="item-right" outline small @click="editedError">Print</vm-button>
+                    <vm-button slot="item-end" outline small @click="editedError">Print</vm-button>
                 </vm-item>
                 <vm-item class="error">
                     <span>url解析错误</span>
-                    <vm-button slot="item-right" outline small @click="decodeUrlError">Print</vm-button>
+                    <vm-button slot="item-end" outline small @click="decodeUrlError">Print</vm-button>
                 </vm-item>
                 <vm-item class="error">
                     <span>在window上监听error事件(最终)</span>
-                    <vm-button slot="item-right" outline small @click="withoutTryCatch">Print</vm-button>
+                    <vm-button slot="item-end" outline small @click="withoutTryCatch">Print</vm-button>
                 </vm-item>
             </vm-list>
         </vm-content>

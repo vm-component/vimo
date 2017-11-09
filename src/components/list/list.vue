@@ -38,7 +38,7 @@
    * }
    * ```
    *
-   * @props {string} [mode=ios]        - 样式模式
+   * @props {string} [mode=ios]         - 样式模式
    * @props {Boolean} [radioGroup=false]  - 是否为radioGroup
    * @props {String} [value]  - 支持v-model
    * @props {Boolean} [disabled=false]  - 当前radio的禁用状态
@@ -56,7 +56,7 @@
    *            <vm-list>
    *                <!--header-->
    *                <vm-list-header>
-   *                    <span>Contents</span>
+   *                    Contents
    *                </vm-list-header>
    *                <!--group-->
    *                <vm-item-group>
@@ -134,10 +134,13 @@
    * @fires component:List#onChange
    *
    * @see component:Item
+   * @see component:ListHeader
    * @demo #/list
    */
+  import ThemeMixins from '../../themes/theme.mixins';
   export default {
     name: 'vm-list',
+    mixins: [ThemeMixins],
     data () {
       return {
         // -------- Radio --------
@@ -148,15 +151,8 @@
     },
     props: {
       /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
-      /**
        * shouldEnable whether the item-sliding should be enabled or not
-       * */
+       **/
       sliding: Boolean,
 
       // -------- Radio --------
@@ -183,19 +179,13 @@
         }
       }
     },
-    computed: {
-      // 环境样式
-      modeClass () {
-        return `list-${this.mode}`
-      }
-    },
     methods: {
 
       // -------- Radio --------
       /**
        * radio组件点击时执行这个命令
        * @private
-       * */
+       **/
       onRadioChange (value) {
         this.radioComponentList.forEach((radioComponent) => {
           if (!radioComponent.isDisabled) {
@@ -215,7 +205,7 @@
       /**
        * 禁用全部radio
        * @private
-       * */
+       **/
       disableAllRadio (isDisable) {
         this.radioComponentList.forEach((radioComponent) => {
           radioComponent.setDisabled(isDisable)
@@ -225,7 +215,7 @@
       /**
        * 让radio组件记录自己
        * @private
-       * */
+       **/
       recordRadio (radioComponent) {
         this.radioComponentList.push(radioComponent)
 

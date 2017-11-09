@@ -1,23 +1,11 @@
 <template>
-    <header class="ion-header" :class="[{'hide-bar':isHide}]" :style="style">
+    <header class="ion-header" :class="[modeClass, {'hide-bar':isHide}]" :style="style">
         <!--right button placeholder-->
         <div ref="rightButtonPlaceholder" id="rightButtonPlaceholder"></div>
         <slot></slot>
     </header>
 </template>
 <style lang="scss">
-    @import "../../themes/globals";
-
-    .ion-header {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: $z-index-toolbar;
-        display: block;
-        width: 100%;
-        transition: -webkit-transform ease 300ms;
-    }
-
     .ion-header.hide-bar {
         transform: translateY(-100%);
     }
@@ -47,9 +35,11 @@
    * @see component:Footer
    * @demo #/content
    *
-   * */
+   **/
+  import ThemeMixins from '../../themes/theme.mixins';
   export default {
     name: 'vm-header',
+    mixins: [ThemeMixins],
     data () {
       return {
         isHide: false,
@@ -61,7 +51,7 @@
        * @function hide
        * @description
        * 隐藏Header
-       * */
+       **/
       hide () {
         this.isHide = true
       },
@@ -70,7 +60,7 @@
        * @function show
        * @description
        * 显示Header
-       * */
+       **/
       show () {
         this.isHide = false
       },
@@ -79,7 +69,7 @@
        * @function toggle
        * @description
        * Toggle显示Header
-       * */
+       **/
       toggle () {
         this.isHide = !this.isHide
       },
@@ -90,7 +80,7 @@
        * @see https://cn.vuejs.org/v2/guide/class-and-style.html#对象语法-1
        * @description
        * 设置Header的样式
-       * */
+       **/
       setStyle (style) {
         this.style = style
       }

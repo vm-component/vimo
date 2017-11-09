@@ -63,6 +63,7 @@
    * @see http://router.vuejs.org/zh-cn/index.html
    *
    * @usage
+   *
    * <vm-list>
    *    <vm-list-header>
    *            setting
@@ -74,10 +75,9 @@
    *        <vm-item>
    *            <vm-icon slot="item-start" color="danger" name="plane"></vm-icon>
    *            <span>Airplane Mode</span>
-   *            <vm-toggle slot="item-end" @ionChange="toggleChange"
-   *                :checked="toggleValue"></vm-toggle>
+   *            <vm-toggle slot="item-end" @ionChange="toggleChange" :checked="toggleValue"></vm-toggle>
    *        </vm-item>
-   *    <vm-item button>
+   *        <vm-item button>
    *            <vm-icon slot="item-start" color="primary" name="wifi"></vm-icon>
    *                Wi-Fi
    *            <vm-note slot="item-end">The Interwebz</vm-note>
@@ -103,24 +103,21 @@
    *    </vm-item>
    * </vm-list>
    *
-   * */
-  import ItemMixin from './item-mixin.vue'
-  import { isPresent, isString } from '../../util/util'
+   **/
+  import { isUndefined, isPresent, isString } from '../../util/util'
+  import ItemMixin from './item-mixin.vue';
+  import VmReorder from "./item-reorder.vue";
 
   export default {
-    mixins: [ItemMixin],
+    components: {VmReorder},
     name: 'vm-item',
-    data () {
-      return {
-        isInMenu: this.wait // 判断是否在menu组件中, 如果在menu中, 则
-      }
-    },
+    mixins: [ItemMixin],
     props: {
       /**
        * 指向跳转
        * 当被点击后，内部会立刻把 to 的值传到 router.push()
        * 所以这个值可以是一个字符串或者是描述目标位置的对象
-       * */
+       **/
       to: [String, Object],
 
       append: Boolean,
@@ -128,18 +125,27 @@
       /**
        * 设置 replace 属性的话，当点击时，会调用 router.replace()
        * 而不是 router.push()，于是导航后不会留下 history 记录。
-       * */
+       **/
       replace: Boolean,
 
       /**
        * 如果是在menus中, 可以设置这个值, 当menus完全关闭时再出发跳转动作
-       * */
-      wait: Boolean
+       **/
+      wait: Boolean,
+      button: Boolean
+    },
+    created () {
+      this.hasReorder = this.$parent.$options.name === 'vm-item-group' && this.$parent.allowReorder;
+    },
+    mounted () {
+      if (this.button) {
+        this.setElementAttribute('detail-push');
+      }
     },
     methods: {
       /**
        * 类似于a标签跳转
-       * */
+       **/
       clickHandler ($event) {
         const _this = this
         const router = this.$router
@@ -204,4 +210,3 @@
     }
   }
 </script>
-

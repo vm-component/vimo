@@ -26,8 +26,8 @@ export default {
       toolbarMinHeight: 56, // toolbar的默认最小高度
       mode: 'md', // 模式
       backButtonText: '返回', // 后退按钮文字
-      backButtonIcon: 'icon-arrow-back', // 后退图标
-      onPullIcon: 'icon-md-arrow-down',
+      backButtonIcon: 'arrow-back', // 后退图标
+      onPullIcon: 'arrow-down',
       iconMode: 'md', // icon的模式
       menuType: 'overlay', // menu组件的展开默认类型
       spinner: 'crescent',
@@ -58,8 +58,8 @@ export default {
       toolbarMinHeight: 44,
       mode: 'ios',
       backButtonText: '返回',
-      backButtonIcon: 'icon-arrow-back', // 后退图标
-      onPullIcon: 'icon-ios-arrow-down',
+      backButtonIcon: 'arrow-back', // 后退图标
+      onPullIcon: 'arrow-down',
       iconMode: 'ios',
       menuType: 'reveal',
       spinner: 'ios',

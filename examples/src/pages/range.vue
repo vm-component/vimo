@@ -10,7 +10,7 @@
             <vm-list>
                 <vm-list-header>
                     <span>Brightness</span>
-                    <vm-badge slot="item-right">{{brightness}}</vm-badge>
+                    <vm-badge slot="item-end">{{brightness}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
                     <vm-range v-model="brightness">
@@ -23,7 +23,7 @@
             <vm-list>
                 <vm-list-header>
                     <span>Saturation</span>
-                    <vm-badge slot="item-right" color="secondary">{{saturation}}</vm-badge>
+                    <vm-badge slot="item-end" color="secondary">{{saturation}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
                     <vm-range :min="-200" :max="200" :pin="true" v-model="saturation" color="secondary">
@@ -37,7 +37,7 @@
             <vm-list>
                 <vm-list-header>
                     <span>Warmth</span>
-                    <vm-badge slot="item-right" color="danger">{{warmth}}</vm-badge>
+                    <vm-badge slot="item-end" color="danger">{{warmth}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
                     <vm-range :min="1000" :max="2000" :step="100" :snaps="true" v-model="warmth" color="danger">
@@ -50,8 +50,8 @@
             <vm-list>
                 <vm-list-header>
                     <span>Structure</span>
-                    <vm-badge slot="item-right" color="dark">{{structure.lower}}</vm-badge>
-                    <vm-badge slot="item-right" color="dark">{{structure.upper}}</vm-badge>
+                    <vm-badge slot="item-end" color="dark">{{structure.lower}}</vm-badge>
+                    <vm-badge slot="item-end" color="dark">{{structure.upper}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
                     <vm-range :dualKnobs="true" :pin="true" v-model="structure"
@@ -65,7 +65,7 @@
             <vm-list>
                 <vm-list-header>
                     <span>Disable</span>
-                    <vm-badge slot="item-right" color="secondary">{{disableRange}}</vm-badge>
+                    <vm-badge slot="item-end" color="secondary">{{disableRange}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
                     <vm-range :disabled="disabled" :min="-200" :max="200" :pin="true" v-model="disableRange"

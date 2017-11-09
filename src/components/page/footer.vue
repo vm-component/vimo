@@ -1,21 +1,9 @@
 <template>
-    <footer class="ion-footer" :class="[{'hide-bar':isHide}]" :style="style">
+    <footer class="ion-footer" :class="[modeClass, {'hide-bar':isHide}]" :style="style">
         <slot></slot>
     </footer>
 </template>
 <style lang="scss">
-    @import "../../themes/globals";
-
-    .ion-footer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        z-index: $z-index-toolbar;
-        display: block;
-        width: 100%;
-        transition: -webkit-transform ease 300ms;
-    }
-
     .ion-footer.hide-bar {
         transform: translateY(100%);
     }
@@ -37,9 +25,12 @@
    *
    * @demo #/content
    *
-   * */
+   **/
+  import ThemeMixins from '../../themes/theme.mixins';
+
   export default {
     name: 'vm-footer',
+    mixins: [ThemeMixins],
     data () {
       return {
         // -------- public --------
@@ -53,7 +44,7 @@
        * @function hide
        * @description
        * 隐藏Footer
-       * */
+       **/
       hide () {
         this.isHide = true
       },
@@ -62,7 +53,7 @@
        * @function show
        * @description
        * 显示Footer
-       * */
+       **/
       show () {
         this.isHide = false
       },
@@ -71,7 +62,7 @@
        * @function toggle
        * @description
        * Toggle显示Footer
-       * */
+       **/
       toggle () {
         this.isHide = !this.isHide
       },
@@ -82,7 +73,7 @@
        * @see https://cn.vuejs.org/v2/guide/class-and-style.html#对象语法-1
        * @description
        * 设置Footer的样式
-       * */
+       **/
       setStyle (style) {
         this.style = style
       }

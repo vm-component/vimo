@@ -1,9 +1,5 @@
 <template>
-    <div class="ion-buttons bar-buttons"
-         :class="[modeClass]"
-         :left="left"
-         :right="right"
-         :end="end">
+    <div class="ion-buttons" :class="[modeClass]">
         <slot></slot>
     </div>
 </template>
@@ -40,28 +36,28 @@
    *
    * @see component:Toolbar
    *
-   * */
+   **/
+  import ToolbarMixins from './toolbarMixins.vue'
   export default {
     name: 'vm-buttons',
+    mixins: [ToolbarMixins],
     props: {
       left: Boolean,
       right: Boolean,
       end: Boolean,
-      mode: {
-        type: String,
-        default: 'ios'
-      }
     },
-    computed: {
-      // 环境样式
-      modeClass () {
-        return `bar-buttons-${this.mode}`
-      }
+    created() {
+      this.roleName = 'bar-buttons'
+    },
+    mounted() {
+      let postion = this.getPosition();
+      console.log('postion ' + postion)
+      this.setElementAttribute(postion, '');
     },
     methods: {
       /**
        * @private
-       * */
+       **/
       getPosition () {
         if (this.right || this.end) {
           return 'right'

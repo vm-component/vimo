@@ -14,32 +14,32 @@
                 <vm-list-header>普通Item</vm-list-header>
                 <vm-item button>
                     <span>你好</span>
-                    <vm-note slot="item-right">Hello</vm-note>
+                    <vm-note slot="item-end">Hello</vm-note>
                 </vm-item>
                 <vm-item button>
                     <span>移动端组件库</span>
-                    <vm-note slot="item-right">Vimo</vm-note>
+                    <vm-note slot="item-end">Vimo</vm-note>
                 </vm-item>
             </vm-list>
             <vm-list>
                 <vm-list-header>折叠列表</vm-list-header>
                 <vm-item-collapse-group>
                     <vm-item-collapse title="Cars">
-                        <vm-icon slot="item-left" name="car"></vm-icon>
+                        <vm-icon slot="item-start" name="car"></vm-icon>
                         <vm-item button>
-                            <vm-icon slot="item-left" name="wifi"></vm-icon>
+                            <vm-icon slot="item-start" name="wifi"></vm-icon>
                             Wi-Fi
-                            <vm-note slot="item-right">XXX-Office</vm-note>
+                            <vm-note slot="item-end">XXX-Office</vm-note>
                         </vm-item>
                         <vm-item>
-                            <vm-icon slot="item-left" name="plane"></vm-icon>
+                            <vm-icon slot="item-start" name="plane"></vm-icon>
                             <span>飞行模式</span>
-                            <vm-toggle slot="item-right" :checked="true"></vm-toggle>
+                            <vm-toggle slot="item-end" :checked="true"></vm-toggle>
                         </vm-item>
                     </vm-item-collapse>
                     <vm-item-collapse title="Apple">
-                        <vm-icon slot="item-left" name="logo-apple"></vm-icon>
-                        <vm-note slot="item-right">请选择</vm-note>
+                        <vm-icon slot="item-start" name="logo-apple"></vm-icon>
+                        <vm-note slot="item-end">请选择</vm-note>
                         <vm-item button>MacBook Air</vm-item>
                         <vm-item button>MacBook Pro</vm-item>
                         <vm-item button>iPhone 8</vm-item>

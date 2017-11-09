@@ -68,15 +68,10 @@
    *
    * @demo #/cards
    *
-   * */
-  import mixin from './mixin'
+   **/
+  import ThemeMixins from '../../themes/theme.mixins'
   export default{
     name: 'vm-card',
-    data () {
-      return {
-        componentName: 'card'
-      }
-    },
-    extends: mixin
+    mixins: [ThemeMixins],
   }
 </script>

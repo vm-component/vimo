@@ -20,7 +20,7 @@
                 </vm-list-header>
                 <vm-item-sliding>
                     <vm-item>
-                        <vm-avatar slot="item-left">
+                        <vm-avatar slot="item-start">
                             <img src="./img/avatar-ts-woody.png">
                         </vm-avatar>
                         <vm-label>
@@ -47,7 +47,7 @@
                 </vm-item-sliding>
                 <vm-item-sliding>
                     <vm-item>
-                        <vm-avatar slot="item-left">
+                        <vm-avatar slot="item-start">
                             <img src="./img/avatar-ts-buzz.png">
                         </vm-avatar>
                         <vm-label>
@@ -64,7 +64,7 @@
                 </vm-item-sliding>
                 <vm-item-sliding>
                     <vm-item>
-                        <vm-avatar slot="item-left">
+                        <vm-avatar slot="item-start">
                             <img src="./img/avatar-ts-buzz.png">
                         </vm-avatar>
                         <vm-label>
@@ -86,7 +86,7 @@
 
                 <vm-item-sliding>
                     <vm-item>
-                        <vm-avatar slot="item-left">
+                        <vm-avatar slot="item-start">
                             <img src="./img/avatar-ts-hamm.png">
                         </vm-avatar>
                         <vm-label>
@@ -105,7 +105,7 @@
 
                 <vm-item-sliding>
                     <vm-item>
-                        <vm-avatar slot="item-left">
+                        <vm-avatar slot="item-start">
                             <img src="./img/avatar-ts-hamm.png">
                         </vm-avatar>
                         <vm-label>
@@ -134,7 +134,7 @@
                         @onSwipeRight="slidingDragRight"
                         @onSwipe="slidingSwipe">
                     <vm-item>
-                        <vm-avatar slot="item-left">
+                        <vm-avatar slot="item-start">
                             <img src="./img/avatar-ts-woody.png">
                         </vm-avatar>
                         <vm-label>

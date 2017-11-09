@@ -25,9 +25,7 @@
                             <div class="alert-radio-icon">
                                 <div class="alert-radio-inner"></div>
                             </div>
-                            <div class="alert-radio-label">
-                                <span>{{i.label}}</span>
-                            </div>
+                            <div class="alert-radio-label">{{i.label}}</div>
                         </vm-button>
                     </div>
                     <div class="alert-checkbox-group" v-if="inputType==='checkbox'">
@@ -37,9 +35,7 @@
                             <div class="alert-checkbox-icon">
                                 <div class="alert-checkbox-inner"></div>
                             </div>
-                            <div class="alert-checkbox-label">
-                                <span>{{i.label}}</span>
-                            </div>
+                            <div class="alert-checkbox-label">{{i.label}}</div>
                         </vm-button>
                     </div>
                     <div v-if="inputType!='radio' && inputType!='checkbox'" class="alert-input-group">
@@ -52,9 +48,7 @@
                 <div class="alert-button-group" :class="{'alert-button-group-vertical':buttonsForDisplay.length>2}">
                     <vm-button role="alert-button" v-for="(b,index) in buttonsForDisplay" :key="index"
                                @click="btnClick(b)"
-                               :class="[b.cssClass]">
-                        <span>{{b.text}}</span>
-                    </vm-button>
+                               :class="[b.cssClass]">{{b.text}}</vm-button>
                 </div>
             </div>
         </transition>
@@ -145,7 +139,7 @@
         /**
          * Alert State
          * @private
-         * */
+         **/
         inputsForDispaly: [],   // inputs数据再加工
         isActive: false,        // 是否活动状态
         enabled: false,         // 是否在过渡态的状态判断，如果在动画中则为false
@@ -188,7 +182,7 @@
       /**
        * ActionSheet Animate Hooks
        * @private
-       * */
+       **/
       beforeEnter() {
         this.$app && this.$app.setEnabled(false, 200)
         this.enabled = false // 不允许过渡中途操作
@@ -222,7 +216,7 @@
        * 点击backdrop,关闭actionsheet，
        * 如存在cancel按钮，点击按钮关闭actionsheet
        * @private
-       * */
+       **/
       bdClick() {
         if (this.enabled && this.enableBackdropDismiss && this.buttonsForDisplay.length > 0) {
           let cancelBtn = this.buttonsForDisplay.find(b => b.role === 'cancel')
@@ -240,7 +234,7 @@
        * 点击下方的按钮
        * @param {object} button  - button数组，包含全部role
        * @private
-       * */
+       **/
       btnClick(button) {
         if (!this.enabled) {
           return
@@ -268,7 +262,7 @@
        * Radio Button Click
        * @param {object} checkedInput  - Radio 选中项
        * @private
-       * */
+       **/
       rbClick(checkedInput) {
         if (this.enabled) {
           this.inputsForDispaly.forEach(input => {
@@ -286,7 +280,7 @@
        * CheckBox Button Click
        * @param {object} checkedInput  - CheckBox 选中项
        * @private
-       * */
+       **/
       cbClick(checkedInput) {
         if (this.enabled) {
           checkedInput.checked = !checkedInput.checked
@@ -300,7 +294,7 @@
       /**
        * 获取inputs中的信息
        * @private
-       * */
+       **/
       getValues() {
         if (this.inputType === 'radio' && this.inputsForDispaly.length > 0) {
           // this is an alert with radio buttons (single value select)
@@ -333,7 +327,7 @@
       /**
        * ActionSheet启动之前去除focus效果，因为存在键盘
        * @private
-       * */
+       **/
       focusOutActiveElement() {
         const activeElement = document.activeElement
         activeElement && activeElement.blur && activeElement.blur()
@@ -386,7 +380,7 @@
       /**
        * inputs数组初始化组件
        * @private
-       * */
+       **/
       init() {
         if (!this.inputs || this.inputs.length === 0) {
           return []

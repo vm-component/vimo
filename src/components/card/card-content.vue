@@ -10,15 +10,10 @@
    *
    * ## 卡片组件 / CardContent组件
    **/
-  import mixin from './mixin'
+  import ThemeMixins from '../../themes/theme.mixins'
 
   export default {
     name: 'vm-card-content',
-    data () {
-      return {
-        componentName: 'card-content'
-      }
-    },
-    extends: mixin
+    mixins: [ThemeMixins],
   }
 </script>

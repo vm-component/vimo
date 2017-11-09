@@ -23,10 +23,10 @@
    * @fires component:Segment#onSelect
    * @see component:Segment
    *
-   * */
+   **/
   import { isTrueProperty, isString, isPresent } from '../../util/util'
   export default{
-    name: 'ion-segment-button',
+    name: 'vm-segment-button',
     data () {
       return {
         theValue: null, // 当前环境的value副本
@@ -40,12 +40,12 @@
     props: {
       /**
        * 当前button的激活值
-       * */
+       **/
       value: [String, Number],
       disabled: [Boolean],
       /**
        * mode 按钮风格 ios/window/android/we/alipay
-       * */
+       **/
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode') || 'ios' }
@@ -60,7 +60,7 @@
       /**
        * 设置当前组件的禁用状态
        * @private
-       * */
+       **/
       setDisabled (isDisabled) {
         this.setState(null)
         this.isDisabled = isDisabled
@@ -69,7 +69,7 @@
       /**
        * 设置当前子组件选中状态
        * @private
-       * */
+       **/
       setState (stateValue) {
         let isSelected = (stateValue === this.theValue) && !this.isDisabled
         if (this.isSelected !== isSelected) {
@@ -86,7 +86,7 @@
       /**
        * 子组件点击告知父组件
        * @private
-       * */
+       **/
       onPointerDownHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
@@ -99,7 +99,7 @@
        * 获取组件的value值
        * @return {String}
        * @private
-       * */
+       **/
       getValue () {
         if (this.isInit) {
           return this.theValue

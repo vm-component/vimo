@@ -14,12 +14,12 @@
             <vm-list>
                 <vm-list-header>请输入</vm-list-header>
                 <vm-item>
-                    <vm-icon name="person" slot="item-left"></vm-icon>
+                    <vm-icon name="person" slot="item-start"></vm-icon>
                     <vm-label>用户名</vm-label>
                     <vm-input type="text" v-model="username" clearInput></vm-input>
                 </vm-item>
                 <vm-item>
-                    <vm-icon name="key" slot="item-left"></vm-icon>
+                    <vm-icon name="key" slot="item-start"></vm-icon>
                     <vm-label>密码</vm-label>
                     <vm-input type="password" v-model="password" clearInput></vm-input>
                 </vm-item>

@@ -13,7 +13,7 @@
                     <vm-item-group>
                         <!--wait 表示等待关闭事件-->
                         <vm-item button :to="{name: 'introduce'}" wait>
-                            <vm-icon slot="item-left" name="apps"></vm-icon>
+                            <vm-icon slot="item-start" name="apps"></vm-icon>
                             <span>{{$t('menu.introduce')}}</span>
                         </vm-item>
                     </vm-item-group>
@@ -21,21 +21,21 @@
                     <!--group-->
                     <vm-item-group>
                         <vm-item button :to="{name: 'config'}" wait>
-                            <vm-icon slot="item-left" name="settings"></vm-icon>
+                            <vm-icon slot="item-start" name="settings"></vm-icon>
                             <span>{{$t('menu.configParameter')}}</span>
                         </vm-item>
                         <vm-item button :to="{name: 'platform'}" wait>
-                            <vm-icon slot="item-left" md="logo-android" ios="logo-apple"></vm-icon>
+                            <vm-icon slot="item-start" md="logo-android" ios="logo-apple"></vm-icon>
                             <span>{{$t('menu.platformParameter')}}</span>
                         </vm-item>
                         <vm-item button :to="{name: 'crossPlatform'}" wait>
-                            <vm-icon slot="item-left" name="logo-javascript"></vm-icon>
+                            <vm-icon slot="item-start" name="logo-javascript"></vm-icon>
                             <span>{{$t('menu.crossPlatform')}}</span>
                         </vm-item>
                         <vm-item>
-                            <vm-icon slot="item-left" name="plane"></vm-icon>
+                            <vm-icon slot="item-start" name="plane"></vm-icon>
                             <span>{{$t('menu.switchLanguage')}}({{$i18n.locale}})</span>
-                            <vm-toggle slot="item-right"
+                            <vm-toggle slot="item-end"
                                     :value="$i18n.locale==='cn'"
                                     @onChange="onToggleChangeHandler"></vm-toggle>
                         </vm-item>
@@ -55,7 +55,7 @@
    * @name App.vue
    * @description
    * 项目描述
-   * */
+   **/
   export default {
     name: 'RootDemo',
     data () {

@@ -1,20 +1,20 @@
 <template>
-    <div class="toolbar ion-navbar" :class="[colorClass]"
-         v-show="!hideNavBar">
-        <div ref="toolbarBackground" class="toolbar-background" :class="'toolbar-background'+mode"></div>
-        <div class="toolbar-content">
+    <div class="ion-navbar toolbar" :class="['toolbar-'+mode, colorClass]" v-show="!hideNavBar">
+        <div ref="toolbarBackground" class="toolbar-background":class="['toolbar-background-'+mode]"></div>
+        <div class="toolbar-content" :class="['toolbar-content-'+mode]">
             <slot></slot>
         </div>
         <vm-button v-if="!hideBb"
-                   @click="backButtonClickHandler"
                    role="bar-button"
-                   class="back-button">
-            <vm-icon class="back-button-icon" :name="bbIcon"></vm-icon>
-            <span class="back-button-text">{{backText}}</span>
+                   :class="['back-button','back-button-'+mode,'show-back-button']"
+                   @click="backButtonClickHandler">
+            <vm-icon :class="['back-button-icon','back-button-icon-'+mode]" :name="bbIcon"></vm-icon>
+            <span :class="['back-button-text','back-button-text-'+mode]" v-if="backText && mode ==='ios'">{{backText}}</span>
         </vm-button>
         <slot name="buttons"></slot>
     </div>
 </template>
+
 <script type="text/javascript">
   /**
    * @component Navbar
@@ -113,6 +113,7 @@
    * @see History
    * @DEMO #/cross-platform
    *
+   * @props {String} [mode=ios] - ios|md
    * @props {String} [color] - 颜色
    * @props {Boolean} [hideBackButton=false] - 是否显示后退按钮
    *
@@ -135,7 +136,7 @@
    *    </vm-content>
    *  </vm-page>
    * </template>
-   * */
+   **/
   import ToolbarMixins from '../toolbar/toolbarMixins.vue'
   import { isArray, isString } from '../../util/util'
   import VmButton from "../button/button.vue";
@@ -151,7 +152,7 @@
     props: {
       /**
        * 是否显示后退按钮
-       * */
+       **/
       hideBackButton: Boolean
     },
     data () {
@@ -159,7 +160,7 @@
         hideRightButtons: false,
 
         hideBb: this.hideBackButton,
-        bbIcon: this.$config && this.$config.get('backButtonIcon', 'icon-arrow-back') || 'icon-arrow-back',
+        bbIcon: this.$config && this.$config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
         backText: this.$config && this.$config.get('backButtonText', '返回') || '返回'
       }
     },
@@ -176,7 +177,7 @@
        * @function showOptionButton
        * @description
        * 设置导航条右侧按钮显示(只是对alipay平台的), dingtalk通过url改变
-       * */
+       **/
       showOptionButton () {
         this.$platform.showNavbarOptionButton && this.$platform.showNavbarOptionButton()
       },
@@ -184,7 +185,7 @@
        * @function hideOptionButton
        * @description
        * 设置导航条右侧按钮隐藏(只是对alipay平台的), dingtalk通过url改变
-       * */
+       **/
       hideOptionButton () {
         this.$platform.hideNavbarOptionButton && this.$platform.hideNavbarOptionButton()
       },
@@ -233,7 +234,7 @@
        *       }
        *     }
        * ])
-       * */
+       **/
       showPopMenu (dataList) {
         let tmps = []
         if (dataList && isArray(dataList)) {
@@ -288,7 +289,7 @@
        * @function reset
        * @description
        * 重置之前的样式设置
-       * */
+       **/
       reset () {
         this.$platform.resetNavbarTitleAndColor && this.$platform.resetNavbarTitleAndColor()
         this.$platform.resetNavbarOptionButton && this.$platform.resetNavbarOptionButton()
@@ -298,7 +299,7 @@
 
       /**
        * @private
-       * */
+       **/
       backButtonClickHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
@@ -308,7 +309,7 @@
       /**
        * 手动设置是否显示后退按钮
        * @private
-       * */
+       **/
       refreshBackButtonStatus () {
         if (!this.hideBb) {
           this.hideBb = !this.$history.canGoBack()
@@ -320,7 +321,7 @@
       /**
        * 如果运行在webview中(alipay/dingtalk), 则执行修改navbar的初始化工作
        * @private
-       * */
+       **/
       initWhenInWebview () {
         if (this.$platform.platforms().length < 3) return
         // 如果在平台中则进行下面的分支
@@ -328,12 +329,12 @@
           /**
            * 初始化Navbar右侧的按钮组
            * 如果在webview中则提取template中的按钮信息, 写给webview.
-           * */
+           **/
           this.$platform.setNavbarOptionButton && this.$platform.setNavbarOptionButton(this.$slots.buttons)
           /**
            * 初始化webview中Navbar的背景和底部边框, 只处理具有颜色class的情况
            * 只支持alipay, 不支持dingtalk, 因为dingtalk是通过url修改标题颜色的.
-           * */
+           **/
           if (this.$platform.is('alipay')) {
             if (this.color) {
               // 1. 获取背景色
@@ -363,7 +364,7 @@
       /**
        * 初始化
        * @private
-       * */
+       **/
       init () {
         this.initWhenInWebview()
         if (this.$root === window.VM.$root) {

@@ -7,7 +7,6 @@
                 <!--menutoggle-->
                 <vm-buttons right slot="buttons">
                     <vm-button @click="$menus.toggle('menu')" role="bar-button" menutoggle>
-                        <!--<vm-icon name="more"></vm-icon>-->
                         <span>菜单</span>
                     </vm-button>
                 </vm-buttons>

@@ -13,32 +13,32 @@
 
                 <vm-list>
                     <vm-item button>
-                        <vm-icon name="person" slot="item-left"></vm-icon>
+                        <vm-icon name="person" slot="item-start"></vm-icon>
                         Shopping
                     </vm-item>
 
                     <vm-item button>
-                        <vm-icon name="calculator" slot="item-left"></vm-icon>
+                        <vm-icon name="calculator" slot="item-start"></vm-icon>
                         Hospital
                     </vm-item>
 
                     <vm-item button>
-                        <vm-icon name="camera" slot="item-left"></vm-icon>
+                        <vm-icon name="camera" slot="item-start"></vm-icon>
                         Cafe
                     </vm-item>
 
                     <vm-item button>
-                        <vm-icon name="paw" slot="item-left"></vm-icon>
+                        <vm-icon name="paw" slot="item-start"></vm-icon>
                         Dog Park
                     </vm-item>
 
                     <vm-item button>
-                        <vm-icon name="beer" slot="item-left"></vm-icon>
+                        <vm-icon name="beer" slot="item-start"></vm-icon>
                         Pub
                     </vm-item>
 
                     <vm-item button>
-                        <vm-icon name="easel" slot="item-left"></vm-icon>
+                        <vm-icon name="easel" slot="item-start"></vm-icon>
                         Space
                     </vm-item>
 

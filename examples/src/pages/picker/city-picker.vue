@@ -35,7 +35,7 @@
     methods: {
       /**
        * 打开由Picker组件实现的城市选择器
-       * */
+       **/
       openCityPicker () {
         const _this = this
         this.$cityPicker.present({

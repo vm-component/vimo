@@ -42,31 +42,31 @@
             </vm-item-divider>
             <vm-item class="text-athelas">
                 <vm-label>Athelas</vm-label>
-                <vm-radio slot="item-left" value="Athelas"></vm-radio>
+                <vm-radio slot="item-start" value="Athelas"></vm-radio>
             </vm-item>
             <vm-item class="text-charter">
                 <vm-label>Charter</vm-label>
-                <vm-radio slot="item-left" value="Charter"></vm-radio>
+                <vm-radio slot="item-start" value="Charter"></vm-radio>
             </vm-item>
             <vm-item class="text-iowan">
                 <vm-label>Iowan</vm-label>
-                <vm-radio slot="item-left" value="Iowan"></vm-radio>
+                <vm-radio slot="item-start" value="Iowan"></vm-radio>
             </vm-item>
             <vm-item class="text-palatino">
                 <vm-label>Palatino</vm-label>
-                <vm-radio slot="item-left" value="Palatino"></vm-radio>
+                <vm-radio slot="item-start" value="Palatino"></vm-radio>
             </vm-item>
             <vm-item class="text-san-francisco">
                 <vm-label>San Francisco</vm-label>
-                <vm-radio slot="item-left" value="San Francisco"></vm-radio>
+                <vm-radio slot="item-start" value="San Francisco"></vm-radio>
             </vm-item>
             <vm-item class="text-seravek">
                 <vm-label>Seravek</vm-label>
-                <vm-radio slot="item-left" value="Seravek"></vm-radio>
+                <vm-radio slot="item-start" value="Seravek"></vm-radio>
             </vm-item>
             <vm-item class="text-times-new-roman">
                 <vm-label>Times New Roman</vm-label>
-                <vm-radio slot="item-left" value="Times New Roman"></vm-radio>
+                <vm-radio slot="item-start" value="Times New Roman"></vm-radio>
             </vm-item>
         </vm-list>
     </vm-content>

@@ -17,7 +17,7 @@ let options = {
     mode: 'ios'
   },
   slots: {
-    default: '<span>ButtonTest</span>'
+    default: 'ButtonTest'
   }
 }
 
@@ -37,18 +37,8 @@ describe('Button', function () {
       }
     })
     wrapper = mount(Button, opts)
-    const result = '<button class="disable-hover ion-button button button-md button-md-primary"><span class="button-inner"><span>ButtonTest</span></span></button>'
+    const result = '<button class="disable-hover ion-button button button-md button-default button-default-md button-md-primary"> <span class="button-inner">ButtonTest</span> <div class="button-effect"></div></button>'
     expect(wrapper.html()).to.equal(result)
-  })
-
-  it('@config: renders the correct text', function () {
-    let opts = deepAssign(cloneDeep(options), {
-      slots: {
-        default: '<span>ButtonTest</span>'
-      }
-    })
-    wrapper = mount(Button, opts)
-    expect(wrapper.text()).to.equal('ButtonTest')
   })
 
   // it's also easy to check for the existence of elements
@@ -71,6 +61,16 @@ describe('Button', function () {
     })
     wrapper = mount(Button, opts)
     expect(wrapper.name()).to.equal('vm-button')
+  })
+
+  it('@config: renders the correct text', function () {
+    let opts = deepAssign(cloneDeep(options), {
+      slots: {
+        default: 'ButtonTest'
+      }
+    })
+    wrapper = mount(Button, opts)
+    expect(wrapper.text().trim()).to.equal('ButtonTest')
   })
 
   it('@config: have the right className', function () {

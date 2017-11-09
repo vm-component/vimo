@@ -93,7 +93,7 @@
    * @slot [outer]         插入到最外部， 用于定义在所有页面和弹出层之上的结构组件，比如：landscape-prompt组件
    *
    * @demo #/app
-   * */
+   **/
 
   import ClickBlock from './click-block'
   import { setElementClass, isString, isPresent } from '../../util/util'
@@ -148,7 +148,7 @@
        * @example
        * this.$app && this.$app.setEnabled(false, 400) -> 400ms内页面不可点击, 400ms过后可正常使用
        * this.$app && this.$app.setEnabled(true) -> 64ms后解除锁定
-       * */
+       **/
       setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
         this.disabledTimeRecord = (isEnabled ? 0 : Date.now() + duration)
         this.isEnabled = isEnabled
@@ -174,7 +174,7 @@
        * @example
        * this.$app && this.$app.setDisableScroll(true, 400) -> 400ms内页面不可滚动, 400ms过后可正常使用
        * this.$app && this.$app.setDisableScroll(false) ->立即解除锁定
-       * */
+       **/
       setDisableScroll (isScrollDisabled, duration = 0) {
         if (duration > 0 && isScrollDisabled) {
           this.isScrollDisabled = isScrollDisabled
@@ -204,7 +204,7 @@
        * @param {String}  _title.title - 标题
        * @description
        * 设置document.title的值, 如果传入的是string, 则为title的字符串, 如果是对象, 则title字段为标题名称
-       * */
+       **/
       setDocTitle (_title) {
         if (isString(_title)) {
           _title = {title: _title}
@@ -242,7 +242,7 @@
 
       /**
        * $app对外方法
-       * */
+       **/
       let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
       proto.$app = this
 

@@ -22,7 +22,7 @@ describe('Page', function () {
 
   it('@config: renders the correct markup', function () {
     wrapper = mount(Page, opts)
-    const result = `<div class="ion-page" style="z-index: 1001;"><span>Name</span></div>`
+    const result = `<div class="ion-page show-page" style="z-index: 1001;"><span>Name</span></div>`
     expect(wrapper.html()).to.equal(result)
   })
 

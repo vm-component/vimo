@@ -9,7 +9,6 @@
     @import "badge.md";
 </style>
 <script type="text/javascript">
-
   /**
    * @component Badge
    * @description
@@ -28,30 +27,9 @@
    * @usage
    * <vm-badge :color="danger">99</vm-badge>
    **/
+  import ThemeMixins from '../../themes/theme.mixins'
   export default {
     name: 'vm-badge',
-    props: {
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: String,
-      /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      }
-    },
-    computed: {
-      // 环境样式
-      modeClass () {
-        return `badge badge-${this.mode}`
-      },
-      // 颜色
-      colorClass () {
-        return this.color ? (`badge-${this.mode}-${this.color}`) : ''
-      }
-    }
+    mixins: [ThemeMixins]
   }
 </script>

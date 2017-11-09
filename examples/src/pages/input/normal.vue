@@ -62,8 +62,8 @@
                            :disabled="testDisabled"></vm-input>
                 </vm-item>
                 <vm-item>
-                    <span slot="item-left"> 当前的值({{testValue.length}}): {{testValue}}</span>
-                    <vm-button slot="item-right" small outline @click="testDisabled = !testDisabled">Disable</vm-button>
+                    <span slot="item-start"> 当前的值({{testValue.length}}): {{testValue}}</span>
+                    <vm-button slot="item-end" small outline @click="testDisabled = !testDisabled">Disable</vm-button>
                 </vm-item>
             </vm-list>
             <vm-list>

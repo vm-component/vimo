@@ -67,7 +67,7 @@
             <!--card type 3-->
             <vm-card>
                 <vm-item>
-                    <vm-avatar item-left>
+                    <vm-avatar item-start>
                         <img src="./img/marty-avatar.png">
                     </vm-avatar>
                     <vm-label>

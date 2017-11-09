@@ -1,12 +1,13 @@
 <template>
-    <div class="toolbar ion-toolbar" :class="[colorClass]">
-        <div class="toolbar-background"></div>
-        <div class="toolbar-content">
+    <div class="ion-toolbar" :class="[modeClass, colorClass]">
+        <div class="toolbar-background" :class="'toolbar-background-'+mode"></div>
+        <div class="toolbar-content" :class="['toolbar-content-'+mode]">
             <slot></slot>
         </div>
         <slot name="buttons"></slot>
     </div>
 </template>
+
 <script type="text/javascript">
   /**
    * @component Toolbar
@@ -84,13 +85,12 @@
    *    <!--title-->
    *    <vm-title>Left Menu</vm-title>
    * </vm-toolbar>
-   * */
+   **/
 
   import ToolbarMixins from './toolbarMixins.vue'
 
   export default {
     name: 'vm-toolbar',
     mixins: [ToolbarMixins],
-    computed: {}
   }
 </script>

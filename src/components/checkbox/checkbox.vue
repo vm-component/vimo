@@ -3,11 +3,7 @@
         <div class="checkbox-icon" :class="{'checkbox-checked':checkedValue}">
             <div class="checkbox-inner"></div>
         </div>
-        <vm-button role="item-cover"
-                   @click="onPointerDownHandler()"
-                   type="button"
-                   class="item-cover">
-        </vm-button>
+        <vm-button role="checkbox" :disabled="disabled" @click="onPointerDownHandler()"></vm-button>
     </div>
 </template>
 <script type="text/javascript">
@@ -48,13 +44,21 @@
    *    <vm-label>Danger</vm-label>
    *    <vm-checkbox slot="item-start" color="danger" v-model="testModal" :disabled="testDisabled" @onChange="onCheckboxChange"></vm-checkbox>
    * </vm-item>
-   * */
+   **/
   import { setElementClass } from '../../util/util'
-  import Button from '../button/index'
+  import ThemeMixins from '../../themes/theme.mixins'
+  import VmButton from "../button/button.vue";
 
   export default {
     name: 'vm-checkbox',
-    components: {'vm-button': Button},
+    mixins: [ThemeMixins],
+    components: {
+      VmButton
+    },
+    props: {
+      disabled: Boolean,
+      value: Boolean,
+    },
     data () {
       return {
         checkedValue: this.value,           // 内部维护的checked
@@ -63,29 +67,12 @@
         itemComponent: null                 // item组件实例
       }
     },
-    props: {
-      disabled: Boolean,
-      value: Boolean,
-      color: String,
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      }
-    },
     watch: {
       disabled (val) {
         this.setDisabled(val)
       },
       value (val) {
         this.setChecked(val)
-      }
-    },
-    computed: {
-      modeClass () {
-        return `checkbox checkbox-${this.mode}`
-      },
-      colorClass () {
-        return this.color ? (`checkbox-${this.mode}-${this.color}`) : ''
       }
     },
     methods: {
@@ -114,9 +101,9 @@
     },
     mounted () {
       // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
+      if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
-        setElementClass(this.itemComponent.$el, 'item-checkbox', true)
+        this.itemComponent.setElementClass('item-checkbox', true)
       }
 
       this.setChecked(this.value)

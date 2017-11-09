@@ -16,7 +16,7 @@
                 <vm-list-header>单选</vm-list-header>
                 <vm-item>
                     <vm-label fixed>Gender(fixed)</vm-label>
-                    <vm-select item-right placeholder="Select" interface="action-sheet"
+                    <vm-select item-end placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Fixed Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
@@ -27,7 +27,7 @@
                 </vm-item>
                 <vm-item>
                     <vm-label stacked>Gender(stacked)</vm-label>
-                    <vm-select item-right placeholder="Select" interface="action-sheet"
+                    <vm-select item-end placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Stacked Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
@@ -38,7 +38,7 @@
                 </vm-item>
                 <vm-item>
                     <vm-label floating>Gender(floating)</vm-label>
-                    <vm-select item-right placeholder="Select" interface="action-sheet"
+                    <vm-select item-end placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Foating Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
@@ -49,7 +49,7 @@
                 </vm-item>
                 <vm-item>
                     <vm-label>Gender</vm-label>
-                    <vm-select item-right placeholder="Select" interface="action-sheet"
+                    <vm-select item-end placeholder="Select" interface="action-sheet"
                             :selectOptions="{title:'Normal Label'}"
                             @onChange="onChange"
                             @onSelect="onSelect"
@@ -61,7 +61,7 @@
 
                 <vm-item>
                     <vm-label>Gender</vm-label>
-                    <vm-select item-right placeholder="Select" interface="alert"
+                    <vm-select item-end placeholder="Select" interface="alert"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
@@ -72,7 +72,7 @@
 
                 <vm-item>
                     <vm-label>Gender</vm-label>
-                    <vm-select item-right placeholder="Popover Select" interface="popover"
+                    <vm-select item-end placeholder="Popover Select" interface="popover"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
@@ -83,7 +83,7 @@
 
                 <vm-item>
                     <vm-label>Gender</vm-label>
-                    <vm-select item-right placeholder="Disabled Select" :disabled="true" interface="alert" :multiple="true"
+                    <vm-select item-end placeholder="Disabled Select" :disabled="true" interface="alert" :multiple="true"
                             @onChange="onChange"
                             @onSelect="onSelect"
                             @onCancel="onCancel">
@@ -94,7 +94,7 @@
 
                 <vm-item>
                     <vm-label>能修改选中值文本</vm-label>
-                    <vm-select item-right placeholder="请选择" selectedText="已选择" interface="alert" :multiple="true">
+                    <vm-select item-end placeholder="请选择" selectedText="已选择" interface="alert" :multiple="true">
                         <vm-option value="f">Female</vm-option>
                         <vm-option value="m">Male</vm-option>
                     </vm-select>
@@ -105,7 +105,7 @@
                 <vm-list-header>多选</vm-list-header>
                 <vm-item>
                     <vm-label>Gender</vm-label>
-                    <vm-select item-right placeholder="Multi Select" interface="alert" :multiple="true"
+                    <vm-select item-end placeholder="Multi Select" interface="alert" :multiple="true"
                                @onChange="onChange"
                                @onSelect="onSelect"
                                @onCancel="onCancel">

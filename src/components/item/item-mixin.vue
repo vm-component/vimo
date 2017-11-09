@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-item" :class="[itemClass,itemTypeClass,colorClass]" @click="clickHandler($event)">
+    <div class="ion-item" :class="[itemClass, itemTypeClass, colorClass]" @click="clickHandler($event)">
         <!--以下组件显示在此处：[item-start],ion-checkbox:not([item-end])-->
         <slot name="item-start"></slot>
         <div class="item-inner">
@@ -7,7 +7,9 @@
                 <slot></slot>
             </div>
             <!--以下组件显示在此处：[item-end],ion-radio,ion-toggle-->
-            <slot name="item-end"></slot>
+            <slot name="item-end">
+                <ion-reorder v-if="hasReorder"></ion-reorder>
+            </slot>
         </div>
     </div>
 </template>
@@ -19,28 +21,17 @@
     @import "item-reorder";
 </style>
 <script type="text/javascript">
-  import addItemAttr from '../../util/addItemAttr.js'
-
+  import ThemeMixins from '../../themes/theme.mixins';
   export default {
-    props: {
-      /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: String
+    mixins: [ThemeMixins],
+    data() {
+        return {
+          hasReorder: false
+        };
     },
     computed: {
       itemClass () {
-        return `item-${this.mode}`
-      },
-      colorClass () {
-        return this.color ? (`item-${this.mode}-${this.color}`) : ''
+        return `item item-${this.mode}`
       },
       itemTypeClass () {
         return `item-block`
@@ -56,7 +47,16 @@
     },
     mounted () {
       // 为slot="item-start"/slot="item-end"的沟槽设定属性
-      addItemAttr(this.$slots)
+      if (this.$slots['item-start']) {
+        this.$slots['item-start'].forEach(function (item) {
+          item.elm.setAttribute('item-start', '')
+        })
+      }
+      if (this.$slots['item-end']) {
+        this.$slots['item-end'].forEach(function (item) {
+          item.elm.setAttribute('item-end', '')
+        })
+      }
     }
   }
 </script>

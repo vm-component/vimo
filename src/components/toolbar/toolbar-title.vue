@@ -1,10 +1,17 @@
 <template>
-    <div class="ion-title">
+    <div class="ion-title" :class="[modeClass]">
         <div class="toolbar-title"
+             :class="['toolbar-title-'+mode]"
              :style="{color:titleColor}"
              @click="titleClick" v-html="titleInner"></div>
     </div>
 </template>
+<style lang="scss">
+    @import "toolbar";
+    @import "toolbar.button";
+    @import "toolbar.ios";
+    @import "toolbar.md";
+</style>
 <script type="text/javascript">
   /**
    * @component Toolbar/Title
@@ -68,11 +75,13 @@
    *      this.titleComponent.setTitle('title')
    * }
    *
-   * */
+   **/
   import { isPresent } from '../../util/util'
+  import ToolbarMixins from './toolbarMixins.vue'
 
   export default {
     name: 'vm-title',
+    mixins: [ToolbarMixins],
     data () {
       return {
         titleColor: null,
@@ -80,19 +89,6 @@
         isTitleInNavbar: false, // 这个title组件在navbar中
         isHeaderInApp: false // 包裹当前组件的Header在App组件中
       }
-    },
-    props: {
-      /**
-       * mode 按钮风格
-       * */
-      mode: {
-        type: String,
-        default () { return isPresent(this.$config) && this.$config.get('mode', 'ios') || 'ios' }
-      },
-      /**
-       * 设置的title值
-       * */
-      title: String
     },
     watch: {
       title () {
@@ -108,13 +104,13 @@
        * @description
        * 获取Title组件中的title, 兼容各种模式
        * @return {String}
-       * */
+       **/
       getTitle () {
         let _title = ''
         /**
          * 组件获取了传入的title值，之后通过全局注册的$setTitle方法
          * 设置document.title（此处做了兼容）
-         * */
+         **/
         if (this.title) {
           // prop传入title值
           // eg: <vm-title title="Toolbar"></vm-title>
@@ -148,7 +144,7 @@
        * @param {String|Object} title.title - title
        * @param {String|Object} title.image - image
        * @param {boolean} [changeDocTitle=true] - 是否设置doc的title, 默认是同步设置的
-       * */
+       **/
       setTitle (title, changeDocTitle = true) {
         let _title = {}
         if (typeof title === 'string') {
@@ -170,7 +166,7 @@
        * @description
        * 设置Title文字的颜色
        * @param {String} color - color, 例如 #ff0000
-       * */
+       **/
       setTitleColor (color) {
         this.titleColor = color
       },
@@ -179,7 +175,7 @@
        * @function reset
        * @description
        * 重置Title文字的颜色, 目前可用平台: Alipay
-       * */
+       **/
       reset () {
         this.titleColor = null
         this.$platform && this.$platform.resetNavbarOptionButton && this.$platform.resetNavbarOptionButton()
@@ -191,7 +187,7 @@
        * 且, 一个Page只能拥有一个Navbar, 当在Navbar中设置Title, 则Title的方法
        * 将赋予页面Page(document.title),
        * @private
-       * */
+       **/
       init () {
         this.titleInner = this.getTitle()
         if (this.$parent.$options._componentTag) {
@@ -214,7 +210,7 @@
       /**
        * 点击标题时触发事件
        * @private
-       * */
+       **/
       titleClick () {
         if (this.isTitleInNavbar) {
           /**

@@ -70,7 +70,7 @@
       },
       /**
        * backdrop偏移量, 用于定制化显示
-       * */
+       **/
       top: {
         type: Number,
         default: 0

@@ -23,7 +23,7 @@ describe('Header', function () {
 
   it('@config: renders the correct markup', function () {
     wrapper = mount(Header, options)
-    const result = '<header class="ion-header"><div id="rightButtonPlaceholder"></div> <span>Test</span></header>'
+    const result = '<header class="ion-header header header-ios"><div id="rightButtonPlaceholder"></div> <span>Test</span></header>'
     expect(wrapper.html().trim()).to.equal(result)
   })
 

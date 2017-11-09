@@ -24,7 +24,7 @@
    *
    * <vm-avatar><img src=''></vm-avatar>
    *
-   * */
+   **/
   export default {
     name: 'vm-avatar'
   }

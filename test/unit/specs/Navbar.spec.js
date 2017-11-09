@@ -19,17 +19,17 @@ describe('Navbar', function () {
   it('@config: renders the correct markup', function () {
     wrapper = mount(Navbar, {
       slots: {
-        default: '<span>Name</span>'
+        default: 'Name'
       }
     })
-    const result = `<div class="toolbar ion-navbar" style="display: none;"><div class="toolbar-background"></div> <div class="toolbar-content"><span>Name</span></div> <!----> </div>`
+    const result = `<div class="ion-navbar toolbar toolbar-ios" style="display: none;"><div class="toolbar-background toolbar-background-ios"></div> <div class="toolbar-content toolbar-content-ios">Name</div> <!----> </div>`
     expect(wrapper.html()).to.equal(result)
   })
 
   it('@config: component must have a name', function () {
     wrapper = mount(Navbar, {
       slots: {
-        default: '<span>Name</span>'
+        default: 'Name'
       }
     })
     expect(wrapper.name()).to.equal('vm-navbar')
@@ -38,7 +38,7 @@ describe('Navbar', function () {
   it('@config: renders the correct text', function () {
     wrapper = mount(Navbar, {
       slots: {
-        default: '<span>Name</span>'
+        default: 'Name'
       }
     })
     expect(wrapper.text().trim()).to.equal('Name')
@@ -47,10 +47,10 @@ describe('Navbar', function () {
   it('@slots: buttons', function () {
     wrapper = mount(Navbar, {
       slots: {
-        buttons: '<span>Name</span>'
+        buttons: 'Name'
       }
     })
-    const result = `<div class="toolbar ion-navbar" style="display: none;"><div class="toolbar-background"></div> <div class="toolbar-content"></div> <!----> <span>Name</span></div>`
+    const result = `<div class="ion-navbar toolbar toolbar-ios" style="display: none;"><div class="toolbar-background toolbar-background-ios"></div> <div class="toolbar-content toolbar-content-ios"></div> <!----> Name</div>`
     expect(wrapper.html()).to.equal(result)
   })
 

@@ -24,7 +24,7 @@
                            placeholder="'XX-XX-XXX' 数字格式"></vm-input>
                 </vm-item>
                 <vm-item>
-                    <vm-label fixed slot="item-left">验证条件</vm-label>
+                    <vm-label fixed slot="item-start">验证条件</vm-label>
                     <p>{{regex.toString()}}</p>
                 </vm-item>
             </vm-list>

@@ -16,24 +16,24 @@
                 <vm-list-header>菜单</vm-list-header>
                 <vm-item button>
                     <span>西红柿炒鸡蛋</span>
-                    <vm-badge slot="item-right">new</vm-badge>
+                    <vm-badge slot="item-end">new</vm-badge>
                 </vm-item>
                 <vm-item button>
                     <span>牛肉面</span>
-                    <vm-badge slot="item-right" color="danger">Top5</vm-badge>
+                    <vm-badge slot="item-end" color="danger">Top5</vm-badge>
                 </vm-item>
                 <vm-item button>
                     <span>肉夹馍</span>
-                    <vm-badge slot="item-right" color="secondary">陕西</vm-badge>
+                    <vm-badge slot="item-end" color="secondary">陕西</vm-badge>
                 </vm-item>
                 <vm-item button>
                     <span>松鼠桂鱼</span>
-                    <vm-badge slot="item-right" color="dark">江南</vm-badge>
+                    <vm-badge slot="item-end" color="dark">江南</vm-badge>
                 </vm-item>
                 <vm-item button>
                     <span>酱骨</span>
-                    <vm-note slot="item-right">我比较喜欢</vm-note>
-                    <vm-badge slot="item-right" color="light">东北</vm-badge>
+                    <vm-note slot="item-end">我比较喜欢</vm-note>
+                    <vm-badge slot="item-end" color="light">东北</vm-badge>
                 </vm-item>
             </vm-list>
         </vm-content>

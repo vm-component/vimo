@@ -14,23 +14,23 @@
                 </vm-list-header>
                 <vm-item>
                     <span>Toggle Danger</span>
-                    <vm-toggle slot="item-right" color="danger" v-model="displayData.danger"></vm-toggle>
+                    <vm-toggle slot="item-end" color="danger" v-model="displayData.danger"></vm-toggle>
                 </vm-item>
                 <vm-item>
                     <span>Toggle Primary</span>
-                    <vm-toggle slot="item-right" color="primary" v-model="displayData.primary"></vm-toggle>
+                    <vm-toggle slot="item-end" color="primary" v-model="displayData.primary"></vm-toggle>
                 </vm-item>
                 <vm-item>
                     <span>Toggle Dark</span>
-                    <vm-toggle slot="item-right" color="dark" v-model="displayData.dark"></vm-toggle>
+                    <vm-toggle slot="item-end" color="dark" v-model="displayData.dark"></vm-toggle>
                 </vm-item>
                 <vm-item>
                     <span>Toggle Light</span>
-                    <vm-toggle slot="item-right" color="light" v-model="displayData.light"></vm-toggle>
+                    <vm-toggle slot="item-end" color="light" v-model="displayData.light"></vm-toggle>
                 </vm-item>
                 <vm-item>
                     <span>Toggle Disabled</span>
-                    <vm-toggle slot="item-right" :disabled="displayData.disabled" v-model="displayData.disabled"></vm-toggle>
+                    <vm-toggle slot="item-end" :disabled="displayData.disabled" v-model="displayData.disabled"></vm-toggle>
                 </vm-item>
             </vm-list>
 
@@ -38,7 +38,7 @@
             <section padding>
                 <h5>单独使用</h5>
                 <div class="customer-standalone">
-                    <vm-toggle slot="item-right" color="danger" v-model="displayData.danger"></vm-toggle>
+                    <vm-toggle slot="item-end" color="danger" v-model="displayData.danger"></vm-toggle>
                 </div>
             </section>
 
@@ -49,7 +49,7 @@
                 </vm-list-header>
                 <vm-item>
                     <span>下方按钮控制</span>
-                    <vm-toggle v-model="checked" slot="item-right" :disabled="disabled"
+                    <vm-toggle v-model="checked" slot="item-end" :disabled="disabled"
                             @onChange="toggleChange"></vm-toggle>
                 </vm-item>
             </vm-list>

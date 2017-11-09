@@ -21,7 +21,7 @@ export default class ClickBlock {
    * @param {number} expire
    * @return {Promise}
    * @private
-   * */
+   **/
   activate (shouldShow, expire = 100) {
     return new Promise((resolve) => {
       if (!this.clickBlockElement) {
@@ -43,7 +43,7 @@ export default class ClickBlock {
    * @internal
    * @param {boolean} shouldShow
    * @private
-   * */
+   **/
   _activate (shouldShow) {
     if (this._showing !== shouldShow) {
       this._setElementClass('click-block-active', shouldShow)
@@ -53,7 +53,7 @@ export default class ClickBlock {
 
   /**
    * @private
-   * */
+   **/
   _getClickBlockElement () {
     let _clickBlockElement = document.querySelectorAll(CLICK_BLOCK_POSITION)
     if (!_clickBlockElement || _clickBlockElement.length === 0) {
@@ -67,7 +67,7 @@ export default class ClickBlock {
    * @param {string} className
    * @param {boolean} add
    * @private
-   * */
+   **/
   _setElementClass (className, add) {
     this.clickBlockElement && setElementClass(this.clickBlockElement, className, add)
   }

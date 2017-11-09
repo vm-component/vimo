@@ -12,34 +12,34 @@
                 </vm-list-header>
 
                 <vm-item>
-                    <vm-icon name="planet" slot="item-left"></vm-icon>
+                    <vm-icon name="planet" slot="item-start"></vm-icon>
                     <vm-label>Astronomy</vm-label>
-                    <vm-note slot="item-right">To the moon</vm-note>
+                    <vm-note slot="item-end">To the moon</vm-note>
                 </vm-item>
 
                 <vm-item>
-                    <vm-icon name="body" slot="item-left"></vm-icon>
+                    <vm-icon name="body" slot="item-start"></vm-icon>
                     <vm-label>Muggle Studies</vm-label>
-                    <vm-toggle slot="item-right" :checked="false"></vm-toggle>
+                    <vm-toggle slot="item-end" :checked="false"></vm-toggle>
                 </vm-item>
 
                 <vm-item>
-                    <vm-icon name="leaf" slot="item-left"></vm-icon>
+                    <vm-icon name="leaf" slot="item-start"></vm-icon>
                     <vm-label>Herbology</vm-label>
-                    <vm-icon name="rose" slot="item-right"></vm-icon>
+                    <vm-icon name="rose" slot="item-end"></vm-icon>
                 </vm-item>
 
                 <vm-item>
-                    <vm-icon name="flask" slot="item-left"></vm-icon>
+                    <vm-icon name="flask" slot="item-start"></vm-icon>
                     <vm-label>Potions</vm-label>
-                    <vm-button slot="item-right" outline color="primary">Btn</vm-button>
+                    <vm-button slot="item-end" outline color="primary">Btn</vm-button>
                 </vm-item>
 
 
                 <vm-item @click.native="onClickHandler" :to="{'name':'components'}">
-                    <vm-icon name="flask" slot="item-left"></vm-icon>
+                    <vm-icon name="flask" slot="item-start"></vm-icon>
                     <vm-label>Click</vm-label>
-                    <vm-button slot="item-right" outline color="primary">Btn</vm-button>
+                    <vm-button slot="item-end" outline color="primary">Btn</vm-button>
                 </vm-item>
             </vm-list>
         </vm-content>
