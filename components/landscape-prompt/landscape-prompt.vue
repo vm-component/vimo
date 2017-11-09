@@ -1,5 +1,5 @@
 <template>
-    <div class="vm-landscape-prompt">
+    <div class="vm-landscape-prompt" v-if="isMobile">
         <div id="orientLayer" class="mod-orient-layer">
             <div class="mod-orient-layer__content">
                 <i class="icon mod-orient-layer__icon-orient"></i>
@@ -25,7 +25,13 @@
    *
    * */
   export default {
-    name: 'LandscapePrompt'
+    name: 'LandscapePrompt',
+    data () {
+      return {
+        // 不是mobile时, 不启用这个组件
+        isMobile: !!window.navigator.userAgent.match(/AppleWebKit.*Mobile.*/) // 是否为移动终端
+      }
+    }
   }
 </script>
 <style lang="less">
