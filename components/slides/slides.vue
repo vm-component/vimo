@@ -142,7 +142,7 @@
     data () {
       return {
         timer: null,            // 子组件注册的计时器
-        swiper: null,   // Swiper插件的实例
+        swiper: null,           // Swiper插件的实例
         id: this._uid,          // 当前组件的id
         init: false             // 是否初始化
       }
