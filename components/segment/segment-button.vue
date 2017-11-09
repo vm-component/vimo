@@ -2,7 +2,6 @@
     <div @click="onPointerDownHandler($event)" class="segment-button"
          :class="{'segment-activated':isSelected,'segment-button-disabled':isDisabled}">
         <slot></slot>
-        <!--<div class="button-effect"></div>-->
     </div>
 </template>
 <script type="text/javascript">
@@ -24,15 +23,26 @@
    * @see component:Segment
    *
    * */
-  import { isTrueProperty, isString, isPresent } from '../util/util'
-  export default{
+  import { isTrueProperty, isString, isPresent, noop } from '../util/util'
+  import checkParentComponentName from '../util/checkParentComponentName.js'
+
+  export default {
     name: 'SegmentButton',
+    inject: {
+      recordChild: {
+        from: 'recordChild',
+        default: noop
+      },
+      onChildChange: {
+        from: 'onChildChange',
+        default: noop
+      }
+    },
     data () {
       return {
         theValue: null, // 当前环境的value副本
 
         isInit: false,
-        parentComponent: null, // 父组件实例
         isSelected: false, // 标志当前是否选中
         isDisabled: false
       }
@@ -42,7 +52,7 @@
        * 当前button的激活值
        * */
       value: [String, Number],
-      disabled: [Boolean],
+      disabled: Boolean,
       /**
        * mode 按钮风格 ios/window/android/we/alipay
        * */
@@ -90,7 +100,7 @@
       onPointerDownHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
-        this.parentComponent && this.parentComponent.onChildChange(this.theValue)
+        this.onChildChange(this.theValue)
       },
 
       /**
@@ -125,17 +135,15 @@
         }
       }
     },
-    mounted () {
-      // find parent component
-      if (this.$parent.$options._componentTag.toLowerCase() === 'segment') {
-        this.parentComponent = this.$parent
-      } else {
+    created () {
+        /* istanbul ignore if */
+      if (process.env.NODE_ENV !== 'production' && !checkParentComponentName(this, 'segment')) {
         console.error('The component of SegmentButton must combine with Segment component!')
-        return false
+        return
       }
 
-      // let father to record me
-      this.parentComponent.recordChild(this)
+      // let parent to record this comp
+      this.recordChild(this)
 
       // define value
       this.theValue = this.getValue()

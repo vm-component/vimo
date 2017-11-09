@@ -97,7 +97,7 @@
     },
     computed: {
       swiperInstance () {
-        return this.$refs.slides.swiperInstance
+        return this.$refs.slides.swiper
       }
     },
     methods: {

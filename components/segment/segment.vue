@@ -25,7 +25,7 @@
    *
    * 1. 初始化时, 子组件自己的this传递给父组件, recordChild()
    * 2. 子组件点击时, 调用父组件的 onChildChange 函数, 传递自己的value
-   * 3. 父组件得到value触发input更新v-modal值, 之后遍历子组件, 触发组件的setChecked, 传递value
+   * 3. 父组件得到value触发onChange更新v-modal值, 之后遍历子组件, 触发组件的setChecked, 传递value
    * 4. 子组件根据传入的value设置自己的状态
    *
    * ### 异步加载子组件
@@ -54,7 +54,6 @@
    * @fires component:Segment#onChange
    * @demo #/segment
    *
-   *
    * @usage
    * <Header>
    *    <Navbar>
@@ -72,8 +71,14 @@
    * </Header>
    *
    * */
-  export default{
+  import debounce from 'lodash.debounce'
+
+  export default {
     name: 'Segment',
+    model: {
+      prop: 'value',
+      event: 'onChange'
+    },
     props: {
       /**
        * 接收value信息
@@ -82,21 +87,20 @@
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: [String],
+      color: String,
       /**
-       * mode 按钮风格 ios/window/android/we/alipay
+       * mode 按钮风格 ios/android
        * */
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode') || 'ios' }
       },
-      disabled: [Boolean]
+      disabled: Boolean
     },
     data () {
       return {
         // value的缓存值，因为props的value不能直接修改
         childComponents: [],
-        timer: null,
         theValue: this.value
       }
     },
@@ -116,41 +120,40 @@
         return this.color ? (`segment-${this.mode}-${this.color}`) : ''
       }
     },
-    methods: {
-
-      // ------ for children ------
-      /**
-       * 记录子组件, 这个由子组件自己找到并调用
-       * @param {Object} childComponent - 子组件实例(子组件的this)
-       * @private
-       * */
-      recordChild (childComponent) {
-        this.childComponents.push(childComponent)
-
-        this.timer && window.clearTimeout(this.timer)
-        this.timer = setTimeout(() => {
-          // 更新子组件状态
-          this.refreshChildState(this.value)
-        }, 0)
-      },
-
-      /**
-       * 子组件点击时操作此函数
-       * @param {string} value - 当前子组件的点击值
-       * @private
-       * */
-      onChildChange (value) {
-        // 更新子组件状态
-        this.refreshChildState(value)
-        this.$emit('input', value)
+    provide () {
+      let _this = this
+      return {
         /**
-         * @event component:Segment#onChange
-         * @description 子元素 样式更新后发送onChange事件，并传入value变化值
-         * @property {string} value - 滚动事件对象
-         */
-        this.$emit('onChange', value)
-      },
+         * 记录子组件, 这个由子组件自己找到并调用
+         * @param {Object} childComponent - 子组件实例(子组件的this)
+         * @private
+         * */
+        recordChild (childComponent) {
+          _this.childComponents.push(childComponent)
+          debounce(() => {
+            // 更新子组件状态
+            _this.refreshChildState(_this.value)
+          }, 0)()
+        },
 
+        /**
+         * 子组件点击时操作此函数
+         * @param {string} value - 当前子组件的点击值
+         * @private
+         * */
+        onChildChange (value) {
+          // 更新子组件状态
+          _this.refreshChildState(value)
+          /**
+           * @event component:Segment#onChange
+           * @description 子元素 样式更新后发送onChange事件，并传入value变化值
+           * @property {string} value - 滚动事件对象
+           */
+          _this.$emit('onChange', value)
+        }
+      }
+    },
+    methods: {
       /**
        * 更新子组件状态
        * @private

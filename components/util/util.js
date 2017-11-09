@@ -106,9 +106,9 @@ export const isObject = val => typeof val === 'object'
  * */
 export const isDate = val =>
   Object.prototype.toString
-    .call(val)
-    .match(/^(\[object )(\w+)\]$/i)[2]
-    .toLowerCase() === 'date'
+  .call(val)
+  .match(/^(\[object )(\w+)\]$/i)[2]
+  .toLowerCase() === 'date'
 
 /**
  * @function isRegexp
@@ -119,9 +119,9 @@ export const isDate = val =>
  * */
 export const isRegexp = val =>
   Object.prototype.toString
-    .call(val)
-    .match(/^(\[object )(\w+)\]$/i)[2]
-    .toLowerCase() === 'regexp'
+  .call(val)
+  .match(/^(\[object )(\w+)\]$/i)[2]
+  .toLowerCase() === 'regexp'
 
 /**
  * @function isArray
@@ -275,13 +275,11 @@ export function urlChange (callback) {
  * @param {array} [unregisterListenersCollection] - 如果提供Function[], 则unReg将压如这个列表中
  * @return {Function}                             - 返回removeEventListener的函数
  */
-export function registerListener (
-  ele,
-  eventName,
-  callback,
-  opts = {},
-  unregisterListenersCollection
-) {
+export function registerListener (ele,
+                                  eventName,
+                                  callback,
+                                  opts = {},
+                                  unregisterListenersCollection) {
   // use event listener options when supported
   // otherwise it's just a boolean for the "capture" arg
   const listenerOpts = isPassive()
@@ -372,14 +370,14 @@ export function pointerCoord (ev) {
     var changedTouches = ev.changedTouches
     if (changedTouches && changedTouches.length > 0) {
       var touch = changedTouches[0]
-      return { x: touch.clientX, y: touch.clientY }
+      return {x: touch.clientX, y: touch.clientY}
     }
     var pageX = ev.pageX
     if (pageX !== undefined) {
-      return { x: pageX, y: ev.pageY }
+      return {x: pageX, y: ev.pageY}
     }
   }
-  return { x: 0, y: 0 }
+  return {x: 0, y: 0}
 }
 
 // /**
@@ -608,6 +606,8 @@ export function firstUpperCase (str) {
 export function parsePxUnit (val) {
   return !!val && val.indexOf('px') > 0 ? parseInt(val, 10) : 0
 }
+
+export function noop () {}
 
 // /**
 //  * 从数组中移除某个item
