@@ -69,7 +69,6 @@
  *
  */
 import Vue from 'vue'
-import getInsertPosition from '../util/getInsertPosition'
 import actionSheetComponent from './action-sheet.vue'
 
 const ActionSheet = Vue.extend(actionSheetComponent)
@@ -82,9 +81,7 @@ const ActionSheet = Vue.extend(actionSheetComponent)
  * @private
  * */
 function ActionSheetFactory (options) {
-  let el = getInsertPosition('sheetPortal').appendChild(
-    document.createElement('div')
-  )
+  let el = document.body.appendChild(document.createElement('div'))
   return new ActionSheet({el, propsData: options})
 }
 
@@ -118,7 +115,6 @@ function getPresentDismissIns (Factory) {
      * */
     present (options) {
       return new Promise(resolve => {
-        // 如果btn太多, 则原生组件放不下
         let isHandled =
           !options.isH5 &&
           window.VM &&
@@ -158,9 +154,11 @@ function getPresentDismissIns (Factory) {
       return new Promise(resolve => {
         if (this._i && this._i.isActive) {
           this._i.dismiss().then(() => {
+            this._i = null
             resolve()
           })
         } else {
+          this._i = null
           resolve()
         }
       })
