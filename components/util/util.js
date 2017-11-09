@@ -607,8 +607,6 @@ export function parsePxUnit (val) {
   return !!val && val.indexOf('px') > 0 ? parseInt(val, 10) : 0
 }
 
-export function noop () {}
-
 // /**
 //  * 从数组中移除某个item
 //  * @param {Array} array - 处理的数组
