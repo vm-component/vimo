@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-action-sheet" :class="[modeClass,cssClass]">
+    <div class="ion-action-sheet" :class="[modeClass, customerClass]">
         <vm-backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
                      :isActive="isActive"></vm-backdrop>
         <transition
@@ -89,6 +89,9 @@
     computed: {
       modeClass () {
         return `action-sheet-${this.mode}`
+      },
+      customerClass () {
+        return this.cssClass && this.cssClass.trim()
       }
     },
     methods: {
