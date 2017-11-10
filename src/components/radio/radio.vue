@@ -78,12 +78,14 @@
    *
    **/
   import { setElementClass, isTrueProperty } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import VmButton from "../button/button.vue";
 
   let id = 0
   export default {
     components: {VmButton},
     name: 'vm-radio',
+    mixins: [ThemeMixins],
     data () {
       return {
         isChecked: false,               // 内部 选中
@@ -91,31 +93,21 @@
         itemComponent: null,            // item组件实例
         radioGroupComponent: null,      // list(radioGroup)组件实例
         isInit: false,                  // 初始化状态
-        id: `rb-${id++}`               // id
+        id: `rb-${id++}`                // id
       }
     },
     props: {
       // 固定值
       value: String,
       disabled: Boolean,
-      color: String,
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      }
     },
     watch: {
       disabled (val) {
         this.setDisabled(isTrueProperty(val))
       }
     },
-    computed: {
-      modeClass () {
-        return `radio radio-${this.mode}`
-      },
-      colorClass () {
-        return this.color ? (`radio-${this.mode}-${this.color}`) : ''
-      }
+    mounted () {
+      this.init()
     },
     methods: {
       /**
@@ -124,7 +116,7 @@
       setDisabled (isDisabled) {
         this.setChecked(null)
         this.isDisabled = isDisabled
-        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-radio-disabled', isDisabled)
+        this.itemComponent && this.itemComponent.setElementClass('item-radio-disabled', isDisabled)
       },
 
       /**
@@ -135,7 +127,7 @@
         if (this.isChecked !== isChecked) {
           this.isChecked = isChecked
           this.isInit && this.isChecked && this.$emit('onSelect', this.value)
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-checked', this.isChecked)
+          this.itemComponent && this.itemComponent.setElementClass('item-checkbox-checked', this.isChecked)
         }
       },
 
@@ -173,9 +165,6 @@
 
         this.isInit = true
       }
-    },
-    mounted () {
-      this.init()
     }
   }
 </script>

@@ -1,19 +1,11 @@
 <template>
     <div class="ion-toggle"
-         :class="[modeClass,colorClass,{'toggle-disabled':isDisabled}]"
-         @mousedown="pointStart($event)"
-         @touchstart="pointStart($event)"
-         @mouseup="pointEnd($event)"
-         @touchend="pointEnd($event)"
+         :class="[modeClass,colorClass,{'toggle-checked':isChecked,'toggle-disabled':isDisabled}]"
          @click="clickHandler($event)">
-        <div class="toggle-icon" :class="{'toggle-checked':isChecked,'toggle-activated':activated}">
+        <div class="toggle-icon">
             <div class="toggle-inner"></div>
         </div>
-        <vm-button role="item-cover"
-                type="button"
-                :id="id"
-                class="item-cover">
-        </vm-button>
+        <vm-button role="checkbox" :disabled="isDisabled" :checked="isChecked" :id="id"></vm-button>
     </div>
 </template>
 <script type="text/javascript">
@@ -78,37 +70,17 @@
    *    </vm-item>
    * </vm-list>
    *
-   * */
-  import { setElementClass } from '../../util/util'
+   **/
+  import {isTrueProperty} from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
 
   export default {
     name: 'vm-toggle',
-    data () {
-      return {
-        isChecked: this.value,       // 选中状态
-        isDisabled: this.disabled,      // 禁用状态
-        activated: false,
-        id: this._uid,
-        init: false,            // 是否初始化
-        itemComponent: null    // 父组件item的句柄
-      }
-    },
+    mixins: [ThemeMixins],
     props: {
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: {
-        type: String,
-        default: ''
-      },
-
       /**
        * 是否被禁
-       * */
+       **/
       disabled: {
         type: Boolean,
         default: false
@@ -120,34 +92,40 @@
         default: false
       }
     },
+    data() {
+      return {
+        isChecked: isTrueProperty(this.value),       // 选中状态
+        isDisabled: isTrueProperty(this.disabled),      // 禁用状态
+        activated: false,
+        id: this._uid,
+        init: false,            // 是否初始化
+        itemComponent: null    // 父组件item的句柄
+      }
+    },
     watch: {
-      disabled (val) {
+      disabled(val) {
         this.setDisabled(val)
       },
-      value (val) {
+      value(val) {
         this.setChecked(val)
       }
     },
-    computed: {
-      // 环境样式
-      modeClass () {
-        return `toggle toggle-${this.mode}`
-      },
-      // 颜色
-      colorClass () {
-        return this.color ? (`toggle-${this.mode}-${this.color}`) : ''
+    mounted() {
+      if (this.$parent && this.$parent.$options.name && this.$parent.$options.name.toLowerCase() === 'vm-item') {
+        this.itemComponent = this.$parent
+        this.itemComponent.setElementClass('item-toggle', true)
+        this.setItemCheckedClass(this.isChecked)
+        this.setItemDisabledClass(this.isDisabled)
       }
+
+      this.setChecked(this.value)
+      this.setDisabled(this.disabled)
+
+      this.init = true
     },
     methods: {
 
-      // -------- private --------
-      pointStart () {
-        this.activated = true
-      },
-      pointEnd () {
-        this.activated = false
-      },
-      clickHandler () {
+      clickHandler() {
         this.setChecked(!this.isChecked)
       },
 
@@ -155,7 +133,7 @@
        * 设置为被点击状态
        * @param {boolean} isChecked
        */
-      setChecked (isChecked) {
+      setChecked(isChecked) {
         if (isChecked !== this.isChecked) {
           this.isChecked = isChecked
           if (this.init) {
@@ -171,38 +149,23 @@
           this.setItemCheckedClass(isChecked)
         }
       },
-      setItemCheckedClass (isChecked) {
-        this.itemComponent && this.itemComponent.$el && setElementClass(this.itemComponent.$el, 'item-toggle-checked', isChecked)
+      setItemCheckedClass(isChecked) {
+        this.itemComponent && this.itemComponent.setElementClass('item-toggle-checked', isChecked)
       },
 
       /**
        * 设置禁用状态
        * @param {boolean} isDisabled
        */
-      setDisabled (isDisabled) {
+      setDisabled(isDisabled) {
         if (isDisabled !== this.isDisabled) {
           this.isDisabled = isDisabled
           this.setItemDisabledClass(isDisabled)
         }
       },
-      setItemDisabledClass (isDisabled) {
-        this.itemComponent && this.itemComponent.$el && setElementClass(this.itemComponent.$el, 'item-toggle-disabled', isDisabled)
+      setItemDisabledClass(isDisabled) {
+        this.itemComponent && this.itemComponent.setElementClass('item-toggle-disabled', isDisabled)
       }
-    },
-    mounted () {
-      if (this.$parent && this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
-        this.itemComponent = this.$parent
-        if (this.itemComponent.$el) {
-          setElementClass(this.itemComponent.$el, 'item-toggle', true)
-          this.setItemCheckedClass(this.isChecked)
-          this.setItemDisabledClass(this.isDisabled)
-        }
-      }
-
-      this.setChecked(this.value)
-      this.setDisabled(this.disabled)
-
-      this.init = true
     }
   }
 </script>

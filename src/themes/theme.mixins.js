@@ -5,7 +5,7 @@ export default {
   name: 'base',
   data() {
     return {
-      elelmentId: 'vm-' + Math.random().toString(36).substring(3, 10),
+      // elelmentId: 'vm-' + Math.random().toString(36).substring(3, 10),
       roleName: this.$options.name.replace('vm-', '')
     }
   },

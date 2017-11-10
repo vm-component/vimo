@@ -17,8 +17,8 @@
                     <vm-item>
                         <vm-icon slot="item-start" color="danger" name="plane"></vm-icon>
                         <span>Airplane Mode</span>
-                        <vm-toggle slot="item-end" @ionChange="toggleChange"
-                                :checked="toggleValue"></vm-toggle>
+                        <vm-toggle slot="item-end" color="secondary" @ionChange="toggleChange"
+                                v-model="toggleValue"></vm-toggle>
                     </vm-item>
                     <vm-item button>
                         <vm-icon slot="item-start" color="primary" name="wifi"></vm-icon>
