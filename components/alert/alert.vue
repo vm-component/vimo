@@ -343,13 +343,6 @@
         if (this.isActive) {
           this.isActive = false // 动起来
           this.unReg && this.unReg()
-          if (!this.enabled) {
-            this.$nextTick(() => {
-              this.dismissCallback()
-              this.$el.remove()
-              this.enabled = true
-            })
-          }
           // remove from App Component
           appComponentManager.removeChild(this)
           return new Promise((resolve) => { this.dismissCallback = resolve })

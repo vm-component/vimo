@@ -60,22 +60,6 @@ describe('Alert', function () {
     })
   })
 
-  it('@action<controller>: time', (cb) => {
-    AlertController.present(opts).then(() => {
-      AlertController.present(opts).then(() => {
-        expect(AlertController._i.isActive).to.be.ok
-      })
-      // expect(AlertController._i.isActive).to.be.ok
-      setTimeout(() => {
-        AlertController.dismiss()
-        AlertController.dismiss().then(() => {
-          expect(AlertController._i.isActive).to.not.be.ok
-          cb()
-        })
-      }, 500)
-    })
-  })
-
   it('@input', function () {
     let opts = {
       propsData: {
