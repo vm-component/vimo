@@ -151,6 +151,7 @@ module.exports = {
   Toolbar,
   Toggle,
   install (Vue, options = {}) {
+    /* istanbul ignore if */
     if (this.installed) return
     core(Vue, options)
 

@@ -10,7 +10,6 @@ var webpackConfig = merge(baseConfig, {
   module: {
     rules: utils.styleLoaders()
   },
-  devtool: '#inline-source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

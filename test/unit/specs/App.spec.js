@@ -51,12 +51,12 @@ describe('App', function () {
   it('setEnabled(false)', (cb) => {
     wrapper = mount(App)
 
-    wrapper.vm.setEnabled(false, 400)
+    wrapper.vm.setEnabled(false, 10)
     expect(wrapper.vm.isEnabled).to.not.be.ok
     setTimeout(() => {
       expect(wrapper.vm.isEnabled).to.be.ok
       cb()
-    }, 500)
+    }, 1000)
   })
 
   it('setEnabled(true)', (cb) => {
@@ -66,7 +66,7 @@ describe('App', function () {
     setTimeout(() => {
       expect(wrapper.vm.isEnabled).to.be.ok
       cb()
-    }, 100)
+    }, 1000)
   })
 
   it('setDisableScroll(false)', function () {
