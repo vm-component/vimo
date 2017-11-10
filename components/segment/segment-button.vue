@@ -23,19 +23,21 @@
    * @see component:Segment
    *
    * */
-  import { isTrueProperty, isString, isPresent, noop } from '../util/util'
-  import checkParentComponentName from '../util/checkParentComponentName.js'
+  import { isTrueProperty, isString, isPresent } from '../util/util'
+  import componentIsMatch from '../util/componentIsMatch.js'
+
+  const NOOP = () => {}
 
   export default {
     name: 'SegmentButton',
     inject: {
       recordChild: {
         from: 'recordChild',
-        default: noop
+        default: NOOP
       },
       onChildChange: {
         from: 'onChildChange',
-        default: noop
+        default: NOOP
       }
     },
     data () {
@@ -137,7 +139,7 @@
     },
     created () {
         /* istanbul ignore if */
-      if (process.env.NODE_ENV !== 'production' && !checkParentComponentName(this, 'segment')) {
+      if (process.env.NODE_ENV !== 'production' && !componentIsMatch(this.$parent, 'segment')) {
         console.error('The component of SegmentButton must combine with Segment component!')
         return
       }
