@@ -1,9 +1,14 @@
 <template>
     <Page>
         <Header>
-            <Navbar>
+            <Toolbar>
                 <Title>Modal中跳转</Title>
-            </Navbar>
+                <Buttons right slot="buttons">
+                    <Button role="bar-button" type="solid" @click="$modal.dismiss()">
+                        关闭
+                    </Button>
+                </Buttons>
+            </Toolbar>
         </Header>
         <Content padding class="outer-content">
             <p>Content</p>
@@ -21,20 +26,15 @@
     },
     props: {},
     watch: {},
-    computed: {
-      $router () {
-        return this.$options.$data && this.$options.$data.$router
-      }
-    },
+    computed: {},
     methods: {
       toPage (route) {
         this.$modal.dismiss().then(() => {
-          this.$router.push(route)
+          this.parentRouter.push(route)
         })
       }
     },
     created () {},
-    mounted () {},
     activated () {},
     deactivate () {},
     components: {},

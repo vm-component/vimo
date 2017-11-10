@@ -272,14 +272,14 @@ export function urlChange (callback) {
  * @param {object} [opts]                         - addEventListener的第三个参数 EventListenerOptions
  * @param {object} [opts.capture]                 - capture
  * @param {object} [opts.passive]                 - passive
- * @param {array} [unregisterListenersCollection] - 如果提供Function[], 则unReg将压如这个列表中
+ * @param {Array} [unregisterListenersCollection=[]] - 如果提供Function[], 则unReg将压如这个列表中
  * @return {Function}                             - 返回removeEventListener的函数
  */
 export function registerListener (ele,
                                   eventName,
                                   callback,
                                   opts = {},
-                                  unregisterListenersCollection) {
+                                  unregisterListenersCollection = []) {
   // use event listener options when supported
   // otherwise it's just a boolean for the "capture" arg
   const listenerOpts = isPassive()

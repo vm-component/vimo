@@ -10,7 +10,6 @@
 
             <p>Modal组件是对当页内容的补充, 用于较多数据的展示和操作, 比如相册查看/登录/大段信息提示等</p>
 
-
             <Button block @click="openModal">点击打开Modal</Button>
 
             <h5>相册查看</h5>
@@ -24,7 +23,6 @@
             <p><strong>返回的登录数据</strong></p>
             <p>用户名: {{username}}</p>
             <p>密码: {{password}}</p>
-
 
         </Content>
     </Page>
@@ -54,9 +52,10 @@
       redirect () {
         this.$modal.present({
           name: 'redirect',
+          animateName: 'fade-right',
           component: import('./modal-redirect.vue'),
           data: {
-            $router: this.$router
+            parentRouter: this.$router
           },
           showBackdrop: true,
           enableBackdropDismiss: false,

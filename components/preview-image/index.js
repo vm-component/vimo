@@ -46,7 +46,7 @@ function present (options) {
     console.debug('PreviewImage 组件使用H5模式!')
     Modal.present({
       component: PreviewImageComponent,
-      mode: 'zoom',
+      animateName: 'zoom',
       data: {
         current: options.current || 0,
         urls: options.urls

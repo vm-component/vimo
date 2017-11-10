@@ -1,7 +1,10 @@
 <template>
     <div class="ion-modal">
-        <Backdrop :enableBackdropDismiss="enableBackdropDismiss" :hidden="!showBackdrop" :bdClick="bdClick"
-                  :isActive="isActive"></Backdrop>
+        <Backdrop
+                :enableBackdropDismiss="enableBackdropDismiss"
+                :hidden="!showBackdrop"
+                :bdClick="bdClick"
+                :isActive="isActive"></Backdrop>
         <transition
                 :name="transitionClass"
                 @before-enter="beforeEnter"
@@ -9,68 +12,27 @@
                 @before-leave="beforeLeave"
                 @after-leave="afterLeave">
             <div class="modal-wrapper" v-show="isActive">
-                <!--用户自定义的port位置-->
+                <!--page in here-->
                 <div class="modalPageLoadPort" ref="modalViewport"></div>
             </div>
         </transition>
     </div>
 </template>
-<style lang="less">
-    @import "modal";
-    @import "modal.ios.less";
-    @import "modal.md.less";
-
-    // transitioName = 'modal-zoom'
-    .modal-zoom-enter-active, .modal-zoom-leave-active {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    .modal-zoom-enter, .modal-zoom-leave-active {
-        transform: scale(0.9);
-        opacity: 0.01;
-    }
-
-    // transitioName = 'modal-fade'
-    .modal-fade-enter-active, .modal-fade-leave-active {
-        opacity: 1;
-    }
-
-    .modal-fade-enter, .modal-fade-leave-active {
-        opacity: 0.01;
-    }
-
-    // transitioName = 'modal-fade-right'
-    .modal-fade-right-enter-active, .modal-fade-right-leave-active {
-        transform: translateX(0);
-        opacity: 1;
-    }
-
-    .modal-fade-right-enter, .modal-fade-right-leave-active {
-        transform: translateX(40px);
-        opacity: 0;
-    }
-
-
-</style>
 <script type="text/javascript">
   import Vue from 'vue'
   import Backdrop from '../backdrop'
+  import * as appComponentManager from '../util/appComponentManager'
 
   const NOOP = () => {}
 
   export default {
     name: 'Modal',
     props: {
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      },
-
+      animateName: String,
       // 放入的页面组件
       component: [Object, String, Function, Promise],
       // 传递给页面的数据
-      data: Object,
+      pageData: Object,
       onDismiss: Function,
       showBackdrop: {
         type: Boolean,
@@ -94,14 +56,13 @@
     },
     computed: {
       transitionClass () {
-        return `modal-${this.mode}`
+        return this.animateName ? `modal-${this.animateName}` : `modal`
       },
       modalViewportElement () {
         return this.$refs.modalViewport
       }
     },
     methods: {
-
       /**
        * 点击backdrop
        * @private
@@ -139,6 +100,9 @@
        * */
       present () {
         this.isActive = true
+        // 在App组件中记录, 便于devtool中debug
+        // add comp in app comp
+        appComponentManager.addChild(this)
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
       dismiss (dataBack) {
@@ -152,6 +116,9 @@
               this.enabled = true
             })
           }
+
+          // 在App组件中记录, 便于devtool中debug
+          appComponentManager.removeChild(this)
           return new Promise((resolve) => { this.dismissCallback = resolve })
         } else {
           return new Promise((resolve) => { resolve() })
@@ -160,13 +127,17 @@
       init (component) {
         // 页面挂载
         const Component = Vue.extend(component)
+        // TODO: 这部分和Content组件相关, Content组件需要调整
         window.setTimeout(() => {
-          // eslint-disable-next-line no-new
-          var PageComponent = new Component({
-            el: this.modalViewportElement,
-            $data: this.data
+          this.$nextTick(() => {
+            // eslint-disable-next-line no-new
+            var PageComponent = new Component({
+              el: this.modalViewportElement,
+              data: this.pageData,
+              $data: this.pageData // 为了兼容
+            })
+            this.$children.push(PageComponent)
           })
-          this.$children.push(PageComponent)
         }, 0)
       }
     },
@@ -186,7 +157,10 @@
         // 如果 this.component 是html模板string的话
         this.htmlComponent = this.component
       } else {
-        console.error('props of component must pass in right value!')
+          /* istanbul ignore if */
+        if (process.env.NODE_ENV !== 'production') {
+          console.error('props of "component" must pass in right value!')
+        }
       }
     },
     components: {
@@ -194,3 +168,8 @@
     }
   }
 </script>
+<style lang="less">
+    @import "modal.less";
+    @import "modal.ios.less";
+    @import "modal.md.less";
+</style>

@@ -57,10 +57,7 @@
   export default {
     name: 'LoginModalDemo',
     data () {
-      return {
-        username: this.$options.$data && this.$options.$data.username || 'null',
-        password: this.$options.$data && this.$options.$data.password || 'null'
-      }
+      return {}
     },
     props: {},
     watch: {},
@@ -80,9 +77,11 @@
         })
       }
     },
-    created () {
+    created () {},
+    mounted () {
+      console.log('thisthisthis')
+      console.log(this)
     },
-    mounted () {},
     activated () {}
   }
 </script>

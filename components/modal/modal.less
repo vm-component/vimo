@@ -33,7 +33,7 @@
 
   contain: strict;
 
-  z-index: @z-index-overlay-modal;
+  z-index: @z-index-overlay + @z-index-overlay-modal;
 }
 
 .ion-modal .ion-backdrop {
@@ -67,4 +67,49 @@
     width: @modal-inset-width;
     height: @modal-inset-height-large;
   }
+}
+
+// transition && animate
+// --------------------------------------------------
+
+// transitioName = 'modal'
+.modal-enter-active, .modal-leave-active {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+.modal-enter, .modal-leave-active {
+  transform: translateY(40px);
+  opacity: 0.01;
+}
+
+// transitioName = 'modal-zoom'
+.modal-zoom-enter-active, .modal-zoom-leave-active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-zoom-enter, .modal-zoom-leave-active {
+  transform: scale(0.9);
+  opacity: 0.01;
+}
+
+// transitioName = 'modal-fade'
+.modal-fade-enter-active, .modal-fade-leave-active {
+  opacity: 1;
+}
+
+.modal-fade-enter, .modal-fade-leave-active {
+  opacity: 0.01;
+}
+
+// transitioName = 'modal-fade-right'
+.modal-fade-right-enter-active, .modal-fade-right-leave-active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.modal-fade-right-enter, .modal-fade-right-leave-active {
+  transform: translateX(40px);
+  opacity: 0;
 }

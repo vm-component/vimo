@@ -198,7 +198,6 @@ module.exports = {
     Vue.component(ItemSliding.name, ItemSliding)
     Vue.component(ItemSlidingOptions.name, ItemSlidingOptions)
     Vue.component(Label.name, Label)
-    Vue.component(LandscapePrompt.name, LandscapePrompt)
     Vue.component(List.name, List)
     Vue.component(Menus.name, Menus)
     Vue.component(Note.name, Note)
