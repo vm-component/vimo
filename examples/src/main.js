@@ -53,6 +53,9 @@ Vue.use(vmGeo, {
 })
 Vue.use(vmStorage)
 
+// 安装 LandscapePrompt 横屏时提示用户
+Vue.use(vimo.LandscapePrompt)
+
 // eslint-disable-next-line no-new
 new AttachFastClick(document.body)
 // eslint-disable-next-line no-new
@@ -64,15 +67,9 @@ new Vue({
   created () {
     this.$platform.ready().then((data) => {
       console.log(`Platform Ready && Init Info: ${data}`)
-      // alert(`Platform Ready && Init Info: ${data}`)
     }, (data) => {
       console.error(`Platform Ready && Init Info: ${data}`)
-      // alert(`Platform Ready && Init Info: ${data}`)
     })
-
-    window.setTimeout(() => {
-      // alert(`window.WebViewJavascriptBridge: ${JSON.stringify(Object.keys(window.WebViewJavascriptBridge))}`)
-    }, 1000)
   },
   components: {App}
 })
