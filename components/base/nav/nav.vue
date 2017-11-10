@@ -3,7 +3,7 @@
          :class="[
            menuContentClass,
            menuContentTypeClass,
-           menuContentSideeClass,
+           menuContentSideClass,
            {'menu-content-open':isMenuOpen}]">
         <div nav-viewport></div>
         <div v-if="isMenuOpen" @click="tapToCloseMenu" class="click-cover"></div>
@@ -77,7 +77,7 @@
         menuSide: 'left', // 方向
         menuContentClass: null,
         menuContentTypeClass: null,
-        menuContentSideeClass: null
+        menuContentSideClass: null
       }
     },
     methods: {
@@ -137,7 +137,7 @@
           this.menuType = this.$menus.menuIns[menuId].type
           this.menuContentClass = `menu-content`
           this.menuContentTypeClass = `menu-content-${this.menuType}`
-          this.menuContentSideeClass = `menu-content-${this.menuSide}`
+          this.menuContentSideClass = `menu-content-${this.menuSide}`
         }
       },
 
