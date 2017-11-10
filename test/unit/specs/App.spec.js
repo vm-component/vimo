@@ -121,7 +121,7 @@ describe('App', function () {
     let opts = 'test123'
     let options = ''
     window.VM.platform.setNavbarTitle = function (_opts) {
-      console.log('setDocTitle() 使用测试版本')
+      // console.log('setDocTitle() 使用测试版本')
       options = _opts
       expect(JSON.stringify(options)).to.equal(JSON.stringify({title: opts}))
       window.VM.platform.setNavbarTitle = undefined

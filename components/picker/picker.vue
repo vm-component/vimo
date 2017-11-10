@@ -121,6 +121,7 @@
   import PickerCol from './picker-col.vue'
   import Backdrop from '../backdrop'
   import Button from '../button/index'
+  import * as appComponentManager from '../util/appComponentManager'
 
   const NOOP = () => {}
 
@@ -221,6 +222,8 @@
        * */
       present () {
         this.isActive = true
+        // add to App Component
+        appComponentManager.addChild(this)
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
@@ -230,10 +233,16 @@
        * 关闭
        * */
       dismiss () {
-        this.isActive = false
-        this.unreg && this.unreg()
-        this.onDismiss && this.onDismiss()
-        return new Promise((resolve) => { this.dismissCallback = resolve })
+        if (this.isActive) {
+          this.isActive = false
+          this.unreg && this.unreg()
+          this.onDismiss && this.onDismiss()
+          // remove from App Component
+          appComponentManager.removeChild(this)
+          return new Promise((resolve) => { this.dismissCallback = resolve })
+        } else {
+          return new Promise((resolve) => { resolve() })
+        }
       },
 
       /**

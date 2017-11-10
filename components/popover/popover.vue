@@ -142,6 +142,7 @@
   import Backdrop from '../backdrop'
   import { urlChange, parsePxUnit } from '../util/util'
   import css from '../util/getCss'
+  import * as appComponentManager from '../util/appComponentManager'
 
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
@@ -163,7 +164,7 @@
     props: {
       component: [Object, String, Function, Promise],
       onDismiss: Function,
-      data: [Object],
+      popData: Object,
       ev: [Object, MouseEvent], // 点击元素的事件
       mode: {
         type: String,
@@ -240,6 +241,18 @@
       },
 
       /**
+       * @function present
+       * @description
+       * 开启组件
+       * */
+      present () {
+        this.isActive = true
+        // add to App Component
+        appComponentManager.addChild(this)
+        return new Promise((resolve) => { this.presentCallback = resolve })
+      },
+
+      /**
        * @function dismiss
        * @description
        * 关闭组件
@@ -255,20 +268,12 @@
               this.enabled = true
             })
           }
+          // remove from App Component
+          appComponentManager.removeChild(this)
           return new Promise((resolve) => { this.dismissCallback = resolve })
         } else {
           return new Promise((resolve) => { resolve() })
         }
-      },
-
-      /**
-       * @function present
-       * @description
-       * 开启组件
-       * */
-      present () {
-        this.isActive = true
-        return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
       /**
@@ -419,10 +424,12 @@
         if (component) {
           const Component = Vue.extend(component)
           // eslint-disable-next-line no-new
-          new Component({
+          let PageComponent = new Component({
             el: this.popoverViewportEle,
-            $data: this.data
+            data: this.popData,
+            $data: this.popData
           })
+          this.$children.push(PageComponent)
         }
 
         // 计算位置

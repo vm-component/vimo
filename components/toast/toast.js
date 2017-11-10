@@ -65,6 +65,12 @@
  })
  *```
  *
+ * #### 4. present方法
+ *
+ *```
+ Toast.present('Bottom was added successfully',1000)
+ *```
+ *
  * @props {string} message - Toast显示的message, 如果文本过程则折行并自动撑开容器
  * @props {number} [duration=3000] - Toast开启时间, 过期后关闭
  * @props {string} [position="bottom"] - Toast开启放置的位置. 可以是: "top", "middle", "bottom".
@@ -82,10 +88,9 @@
 import Vue from 'vue'
 import { isObject, isString } from '../util/util'
 import ToastComponent from './toast.vue'
+import getInsertPosition from '../util/getInsertPosition'
 
 const Toast = Vue.extend(ToastComponent)
-const DOM_INSERT_POSITION = 'toastPortal' // 插入的DOM位置
-const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback选项
 
 /**
  * 创建ToastInstance, 并且根据传参指纹构建对象
@@ -93,15 +98,11 @@ const DOM_INSERT_POSITION_FALLBACK = 'app' // fallback选项
  * @private
  * */
 function ToastFactory () {
-  let _args = Array.from(arguments)
+  let _args = Array.prototype.slice.call(arguments)
   let propsData = {}
 
   // get el position
-  let _insertPosition =
-    document.getElementById(DOM_INSERT_POSITION) ||
-    document.getElementById(DOM_INSERT_POSITION_FALLBACK) ||
-    document.body
-  let el = _insertPosition.appendChild(document.createElement('div'))
+  let el = getInsertPosition('toastPortal').appendChild(document.createElement('div'))
 
   if (_args.length === 2) {
     propsData = {
@@ -120,7 +121,7 @@ function ToastFactory () {
     propsData = _args[0]
   }
 
-  let h5Toast = new Toast({ el, propsData: propsData })
+  let h5Toast = new Toast({el, propsData: propsData})
   return {
     present () {
       return new Promise(resolve => {
@@ -143,9 +144,9 @@ function ToastFactory () {
     dismiss () {
       return new Promise(resolve => {
         window.VM &&
-          window.VM.platform &&
-          window.VM.platform.hideToast &&
-          window.VM.platform.hideToast()
+        window.VM.platform &&
+        window.VM.platform.hideToast &&
+        window.VM.platform.hideToast()
         h5Toast.dismiss().then(() => {
           resolve()
         })
@@ -172,9 +173,12 @@ function ToastFactory () {
  * @return {ToastInstance} 返回Toast的实例
  * @private
  * */
-export default function (...args) {
+function _toast (...args) {
   let _instance = ToastFactory(...args)
   // 自动开启
   _instance.present()
   return _instance
 }
+
+_toast.present = _toast
+export default _toast

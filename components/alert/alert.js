@@ -178,7 +178,6 @@ function getPresentDismissIns (Factory) {
         if (isHandled) {
           resolve()
         } else {
-          console.info('Alert 组件使用H5模式!')
           if (this._i && this._i.isActive) {
             this._i.dismiss().then(() => {
               this._i = Factory(options)

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import getInsertPosition from '../util/getInsertPosition'
 import popoverComponent from './popover.vue'
+
 const Popover = Vue.extend(popoverComponent)
 
 // ---------- functions ----------
@@ -9,7 +10,9 @@ function PopoverFactory (options) {
   let el = getInsertPosition('alertPortal').appendChild(
     document.createElement('div')
   )
-  return new Popover({ el, propsData: options })
+  options.popData = options.data
+  delete options.data
+  return new Popover({el, propsData: options})
 }
 
 function getPresentDismissIns (Factory) {

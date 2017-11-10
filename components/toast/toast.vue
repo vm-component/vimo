@@ -1,5 +1,5 @@
 <template>
-    <div class="toast" :class="[modeClass,cssClass]">
+    <div class="ion-toast" :class="[modeClass,customerClass]">
         <transition :name="transitionClass"
                     @before-enter="beforeEnter"
                     @after-enter="afterEnter"
@@ -24,6 +24,7 @@
 <script type="text/javascript">
   import { urlChange } from '../util/util'
   import Button from '../button/index'
+  import * as appComponentManager from '../util/appComponentManager'
 
   const NOOP = () => {}
 
@@ -55,7 +56,7 @@
       // execute when component closed and animate done
       onDismiss: {
         type: Function,
-        default () { return function () {} }
+        default: NOOP
       },
       mode: {
         type: String,
@@ -86,6 +87,9 @@
       },
       transitionClass () {
         return `toast-${this.position}-${this.mode}`
+      },
+      customerClass () {
+        return this.cssClass && this.cssClass.trim()
       }
     },
     methods: {
@@ -158,6 +162,8 @@
             })
           }, this.duration)
         }
+        // add to App Component
+        appComponentManager.addChild(this)
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
@@ -175,6 +181,8 @@
               this.enabled = true
             })
           }
+          // remove from App Component
+          appComponentManager.removeChild(this)
           return new Promise((resolve) => { this.dismissCallback = resolve })
         } else {
           return new Promise((resolve) => { resolve() })

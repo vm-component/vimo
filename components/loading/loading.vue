@@ -123,6 +123,7 @@
   import { urlChange } from '../util/util'
   import Backdrop from '../backdrop'
   import Spinner from '../spinner/index'
+  import * as appComponentManager from '../util/appComponentManager'
 
   const NOOP = () => {}
 
@@ -216,6 +217,8 @@
             this.dismiss()
           }, this.duration)
         }
+        // add to App Component
+        appComponentManager.addChild(this)
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
@@ -237,6 +240,8 @@
               this.enabled = true
             })
           }
+          // remove from App Component
+          appComponentManager.removeChild(this)
           return new Promise((resolve) => { this.dismissCallback = resolve })
         } else {
           return new Promise((resolve) => { resolve() })

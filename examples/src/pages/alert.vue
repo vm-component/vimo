@@ -125,12 +125,6 @@
           enableBackdropDismiss: true,
           inputs: [
             {
-              type: 'text',
-              name: 'username',
-              placeholder: '用户名',
-              value: ''
-            },
-            {
               type: 'password',
               name: 'password',
               placeholder: '密码',
@@ -226,7 +220,8 @@
               text: '取消',
               role: 'cancel',
               handler: () => {
-                // alert('必须选择');
+                console.log('必须选择')
+                this.$toast('必须选择')
                 return false
               }
             },
@@ -307,6 +302,7 @@
               text: '取消',
               role: 'cancel',
               handler: () => {
+                console.log('必须选择')
                 return false
               }
             },

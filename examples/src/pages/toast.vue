@@ -99,7 +99,7 @@
       },
       showCloseBtnToast () {
         const _this = this
-        _this.$toast({
+        _this.$toast.present({
           message: 'Top with Button was added successfully',
           duration: 3000, // 这个不生效
           position: 'top',
@@ -112,11 +112,7 @@
           }
         })
       }
-
     },
-    mounted () {
-      console.log('toast.vue')
-      console.log(this)
-    }
+    mounted () {}
   }
 </script>

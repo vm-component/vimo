@@ -70,7 +70,7 @@
  */
 import Vue from 'vue'
 import actionSheetComponent from './action-sheet.vue'
-
+import getInsertPosition from '../util/getInsertPosition'
 const ActionSheet = Vue.extend(actionSheetComponent)
 
 /**
@@ -81,7 +81,7 @@ const ActionSheet = Vue.extend(actionSheetComponent)
  * @private
  * */
 function ActionSheetFactory (options) {
-  let el = document.body.appendChild(document.createElement('div'))
+  let el = getInsertPosition('sheetPortal').appendChild(document.createElement('div'))
   return new ActionSheet({el, propsData: options})
 }
 

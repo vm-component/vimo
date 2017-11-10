@@ -86,6 +86,7 @@
   import Backdrop from '../backdrop/index'
   import Button from '../button/index'
   import { urlChange } from '../util/util'
+  import * as appComponentManager from '../util/appComponentManager'
 
   const NOOP = () => {}
 
@@ -326,6 +327,8 @@
        */
       present () {
         this.isActive = true
+        // add to App Component
+        appComponentManager.addChild(this)
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
@@ -347,6 +350,8 @@
               this.enabled = true
             })
           }
+          // remove from App Component
+          appComponentManager.removeChild(this)
           return new Promise((resolve) => { this.dismissCallback = resolve })
         } else {
           return new Promise((resolve) => { resolve() })
