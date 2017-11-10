@@ -84,6 +84,7 @@ export default {
       // 下面分别分析出生日期和校验位
       var re, len, arrSplit, dtmBirth, bGoodDay, arrInt, arrCh, nTemp, k
       len = num.length
+      /* istanbul ignore if */
       if (len === 15) {
         re = new RegExp(/^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/)
         arrSplit = num.match(re)
@@ -138,12 +139,13 @@ export default {
           }
           valnum = arrCh[nTemp % 11]
           if (valnum !== num.substr(17, 1)) {
-            console.debug('18位身份证的校验码不正确！应该为：' + valnum)
+            console.debug('18位身份证的校验码不正确！应该为：' + num.substr(17, 1) + '->' + valnum)
             return false
           }
           return true
         }
       }
+      /* istanbul ignore next */
       return false
     }
   },

@@ -10,6 +10,7 @@ export default function loadScript (url, cb) {
   _script.setAttribute('src', url)
   _head.appendChild(_script)
   _script.onload = function () {
+    /* istanbul ignore next */
     cb && cb()
   }
 }

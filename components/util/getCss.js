@@ -21,6 +21,7 @@ class CssGenerate {
     if (!this.css.transform) {
       return this.getCss()
     } else {
+      /* istanbul ignore next */
       return this.css
     }
   }

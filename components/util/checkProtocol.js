@@ -4,6 +4,7 @@
  * */
 export default function checkProtocol (url) {
   let splitArr = url.split('//')
+  /* istanbul ignore if  */
   if (window.location.protocol.toLowerCase().indexOf('https') > -1) {
     splitArr[0] = 'https:'
   } else {
