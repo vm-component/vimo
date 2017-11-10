@@ -71,6 +71,7 @@
 import Vue from 'vue'
 import actionSheetComponent from './action-sheet.vue'
 import getInsertPosition from '../util/getInsertPosition'
+
 const ActionSheet = Vue.extend(actionSheetComponent)
 
 /**
@@ -121,10 +122,11 @@ function getPresentDismissIns (Factory) {
           window.VM.platform &&
           window.VM.platform.actionSheet &&
           window.VM.platform.actionSheet(options)
+        /* istanbul ignore if */
         if (isHandled) {
           resolve()
         } else {
-          console.debug('ActionSheet 组件使用H5模式!')
+          /* istanbul ignore if */
           if (this._i && this._i.isActive) {
             this._i.dismiss().then(() => {
               this._i = Factory(options)
@@ -134,8 +136,8 @@ function getPresentDismissIns (Factory) {
               })
             })
           } else {
+            // normal present
             this._i = Factory(options)
-            // 自动开启
             this._i.present().then(() => {
               resolve()
             })
@@ -152,6 +154,7 @@ function getPresentDismissIns (Factory) {
      * */
     dismiss () {
       return new Promise(resolve => {
+        /* istanbul ignore else */
         if (this._i && this._i.isActive) {
           this._i.dismiss().then(() => {
             this._i = null

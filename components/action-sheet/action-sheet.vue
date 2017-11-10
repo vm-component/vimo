@@ -41,7 +41,7 @@
     </div>
 </template>
 <script type="text/javascript">
-  import { urlChange, focusOutActiveElement } from '../util/util'
+  import { urlChange } from '../util/util'
   import Backdrop from '../backdrop/index'
   import Button from '../button/index'
   import Icon from '../icon/index'
@@ -65,7 +65,7 @@
       },
       mode: {
         type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
+        default () { return this.$config && this.$config.get('mode', 'ios') || /* istanbul ignore next */ 'ios' }
       },
       dismissOnPageChange: {
         type: Boolean,
@@ -106,11 +106,6 @@
       },
       afterEnter () {
         this.presentCallback()
-        focusOutActiveElement()
-        let focusableEle = document.querySelector('button')
-        if (focusableEle) {
-          focusableEle.focus()
-        }
         this.enabled = true
       },
       beforeLeave () {
@@ -132,6 +127,7 @@
        * @private
        */
       bdClick () {
+          /* istanbul ignore if */
         if (this.enabled && this.enableBackdropDismiss) {
           if (this.cancelButton) {
             this.click(this.cancelButton)
@@ -149,6 +145,7 @@
        * @private
        */
       click (button) {
+          /* istanbul ignore if  */
         if (!this.enabled) {
           return
         }
@@ -191,16 +188,10 @@
        * @private
        * */
       dismiss () {
+          /* istanbul ignore else */
         if (this.isActive) {
           this.isActive = false
           this.unReg && this.unReg()
-          if (!this.enabled) {
-            this.$nextTick(() => {
-              this.dismissCallback()
-              this.$el.remove()
-              this.enabled = true
-            })
-          }
           // remove from App Component
           appComponentManager.removeChild(this)
           return new Promise((resolve) => { this.dismissCallback = resolve })
@@ -216,6 +207,7 @@
       init () {
         let arr = this.buttons
         let _buttons = []
+          /* istanbul ignore if  */
         if (!Array.isArray(arr)) {
           return
         }
@@ -248,6 +240,7 @@
     created () {
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
+        /* istanbul ignore if  */
       if (this.dismissOnPageChange) {
         this.unReg = urlChange(() => {
           this.isActive && this.dismiss()

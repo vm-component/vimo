@@ -21,18 +21,25 @@
             <Button block @click="showActionSheet4()" color="primary">
                 <span>Button很多</span>
             </Button>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto blanditiis debitis dolores, magnam magni minus, molestiae odio perspiciatis possimus quam, quibusdam reiciendis repellat sint veniam. Blanditiis eaque excepturi quaerat.</p>
         </Content>
     </Page>
 </template>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'action-sheet',
     data () {
       return {}
