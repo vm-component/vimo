@@ -175,9 +175,11 @@ function getPresentDismissIns (Factory) {
           window.VM.platform &&
           window.VM.platform.alert &&
           window.VM.platform.alert(options)
+        /* istanbul ignore if */
         if (isHandled) {
           resolve()
         } else {
+          /* istanbul ignore if */
           if (this._i && this._i.isActive) {
             this._i.dismiss().then(() => {
               this._i = Factory(options)
@@ -205,6 +207,7 @@ function getPresentDismissIns (Factory) {
      * */
     dismiss () {
       return new Promise(resolve => {
+        /* istanbul ignore else */
         if (this._i && this._i.isActive) {
           this._i.dismiss().then(() => {
             resolve()

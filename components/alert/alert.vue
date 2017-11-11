@@ -316,8 +316,6 @@
         activeElement && activeElement.blur && activeElement.blur()
       },
 
-      // -------- public --------
-
       /**
        * @function present
        * @description
