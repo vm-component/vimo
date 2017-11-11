@@ -222,25 +222,7 @@
         window.setTimeout(() => {
           let isHandled = !!this.$platform && !!this.$platform.setNavbarTitle && this.$platform.setNavbarTitle(_title)
           if (!isHandled) {
-            if (this.$platform && this.$platform.platforms().length <= 2) {
-              // PC端
-              document.title = _title.title || ''
-            } else {
-              // 利用iframe的onload事件刷新页面
-              document.title = _title.title
-              let iframe = document.createElement('iframe')
-              // 空白图片
-              iframe.src = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=='
-              iframe.style.visibility = 'hidden'
-              iframe.style.width = '1px'
-              iframe.style.height = '1px'
-              iframe.onload = function () {
-                window.setTimeout(function () {
-                  document.body.removeChild(iframe)
-                }, 0)
-              }
-              document.body.appendChild(iframe)
-            }
+            document.title = _title.title || ''
           }
         }, 16 * 5)
       }
