@@ -88,6 +88,7 @@
    * */
   import RangeKnobHandle from './range-knob-handle.vue'
   import { setElementClass, pointerCoord, clamp, isNumber, isObject, isString } from '../util/util'
+  import throttle from 'lodash.throttle'
 
   export default {
     name: 'Range',
@@ -248,8 +249,16 @@
 
           // update the active knob's position
           this.updateRange(current, this._rect, true)
+
+          // 告知v-model
+          this.$_emit()
         }
       },
+
+      $_emit: throttle(function () {
+        // 频发触发会导致卡顿
+        this.$emit('input', JSON.parse(JSON.stringify(this.valueInner)))
+      }, 16 * 3),
 
       /**
        * 拖动停止
@@ -263,9 +272,6 @@
 
           // update the active knob's position
           this.updateRange(pointerCoord(ev), this._rect, false)
-
-          // 告知v-model
-          this.$emit('input', JSON.parse(JSON.stringify(this.valueInner)))
         }
       },
 
@@ -343,7 +349,7 @@
         return clamp(this.min, ratio, this.max)
       },
       /**
-       * @param {number} ratio
+       * @param {number} value
        */
       valueToRatio (value) {
         value = Math.round((value - this.min) / this.step) * this.step
