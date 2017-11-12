@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-fab-list" :side="side">
+    <div class="ion-fab-list" :side="side" :style="sideMargin">
         <slot></slot>
     </div>
 </template>
@@ -19,47 +19,81 @@
    * @demo #/fab
    * */
   import { setElementClass, isTrueProperty } from '../util/util'
-  export default{
+  import { parsePxUnit } from '../util/util'
+
+  export default {
     name: 'FabList',
     data () {
       return {
         fabs: [],
+        sideMargin: {},
         visible: false
       }
     },
     props: {
       side: {
         type: String,
-        default: 'bottom'
+        default: 'bottom',
+        validator (val) {
+          return ['top', 'bottom', 'left', 'right'].indexOf(val) > -1
+        }
       },
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode') }
       }
     },
+    provide () {
+      let _this = this
+      return {
+        fabListComponent: _this
+      }
+    },
+    inject: {
+      fabComponent: {
+        from: 'fabComponent',
+        default: null
+      }
+    },
     methods: {
       /**
-       * @param {Boolean} val - val
+       * @param {Boolean} visible - val
        * @private
        */
-      setVisible (val) {
-        let visible = isTrueProperty(val)
+      $_setVisible (visible) {
+        let _this = this
         if (visible === this.visible) {
           return
         }
         this.visible = visible
 
         let fabs = this.fabs
-        let i = 1
+
+        let interval = 16 * 3
+
         if (visible) {
-          fabs.forEach(fab => {
-            window.setTimeout(() => fab.setElementClass('show', true), i * 30)
-            i++
-          })
+          this.$_setElementClass('fab-list-active', visible)
+          for (let i = 0, len = fabs.length; len > i; i++) {
+            window.setTimeout(() => {
+              let fab = fabs[i]
+              fab.$_setElementClass('show', true)
+            }, i * interval)
+          }
         } else {
-          fabs.forEach(fab => fab.setElementClass('show', false))
+          for (let i = 0, len = fabs.length; len > i; i++) {
+            (function (i) {
+              window.setTimeout(() => {
+                let fab = fabs[i]
+                fab.$_setElementClass('show', false)
+                if (fabs.length - 1 === i) {
+                  window.setTimeout(() => {
+                    _this.$_setElementClass('fab-list-active', visible)
+                  }, 300)
+                }
+              }, i * interval)
+            })(i)
+          }
         }
-        this.setElementClass('fab-list-active', visible)
       },
 
       /**
@@ -67,26 +101,26 @@
        * @param {Boolean} add - whether
        * @private
        * */
-      setElementClass (className, add) {
+      $_setElementClass (className, add) {
         setElementClass(this.$el, className, add)
       }
     },
+    created () {
+      this.fabComponent.fabListComponents.push(this)
+    },
     mounted () {
-      this.$children.forEach((child) => {
-        if (child.$options._componentTag.toLowerCase() === 'fabbutton') {
-          this.fabs.push(child)
-        }
-      })
+      let fabSize = parsePxUnit(window.getComputedStyle(this.fabComponent.$el).height)
+      let fabContentMargin = this.fabComponent.fabContentMargin
 
-      if (this.fabs.length === 0) {
-        console.error('The FabList component need at least one BabButton component, please check!')
+      this.sideMargin = {
+        margin: `${fabSize + fabContentMargin}px 0`
       }
 
-      const className = `fab-${this.mode}-in-list`
-      this.fabs.forEach((fab) => {
-        fab.setElementClass('fab-in-list', true)
-        fab.setElementClass(className, true)
-      })
+      if (this.side === 'left' || this.side === 'right') {
+        this.sideMargin = {
+          margin: `0 ${fabSize + fabContentMargin}px`
+        }
+      }
     }
   }
 </script>

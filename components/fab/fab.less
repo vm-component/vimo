@@ -9,12 +9,6 @@
 /// @prop - Width and height of the FAB button mini
 @fab-mini-size: 40px;
 
-/// @prop - Margin of the FAB Container
-@fab-content-margin: 10px;
-
-/// @prop - Margin of the FAB List
-@fab-list-margin: 10px;
-
 /// @prop - Background color of the button in a list
 @fab-list-button-background-color: #f4f4f4;
 
@@ -72,44 +66,8 @@
 // --------------------------------------------------
 
 .ion-fab {
-  position: absolute;
+  position: fixed;
   z-index: @z-index-fixed-content;
-
-  &[center] {
-    left: 50%;
-
-    margin-left: -@fab-size / 2;
-  }
-
-  &[middle] {
-    top: 50%;
-
-    margin-top: -@fab-size / 2;
-  }
-
-  &[top] {
-    top: @fab-content-margin;
-  }
-
-  &[right] {
-    right: @fab-content-margin;
-  }
-
-  &[bottom] {
-    bottom: @fab-content-margin;
-  }
-
-  &[left] {
-    left: @fab-content-margin;
-  }
-
-  &[top][edge] {
-    top: -@fab-size / 2;
-  }
-
-  &[bottom][edge] {
-    bottom: -@fab-size / 2;
-  }
 }
 
 // FAB list (speed dial)
@@ -123,8 +81,6 @@
   flex-direction: column;
   align-items: center;
 
-  margin: @fab-size + @fab-list-margin 0;
-
   min-width: @fab-size;
   min-height: @fab-size;
 }
@@ -136,13 +92,11 @@
   height: @fab-mini-size;
 
   opacity: 0;
-  visibility: hidden;
   transform: scale(0);
 }
 
 .fab-in-list.show {
   opacity: 1;
-  visibility: visible;
   transform: scale(1);
 }
 
@@ -162,16 +116,12 @@
   right: 0;
 
   flex-direction: row-reverse;
-
-  margin: 0 @fab-size + @fab-list-margin;
 }
 
 .ion-fab-list[side=right] {
   left: 0;
 
   flex-direction: row;
-
-  margin: 0 @fab-size + @fab-list-margin;
 }
 
 // FAB animation

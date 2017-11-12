@@ -1,19 +1,12 @@
 <template>
-    <div class="ion-fab"
-         :top="top"
-         :bottom="bottom"
-         :left="left"
-         :right="right"
-         :middle="middle"
-         :center="center"
-         :edge="edge">
+    <div class="ion-fab" :style="styleObj">
         <slot></slot>
     </div>
 </template>
 <style lang="less">
-    @import "fab";
-    @import "fab.ios.less";
-    @import "fab.md.less";
+    @import "./fab.less";
+    @import "./fab.ios.less";
+    @import "./fab.md.less";
 </style>
 <script type="text/javascript">
   /**
@@ -72,24 +65,28 @@
    * </Fab>
    *
    *
-   * @props {Boolean} top - 设置放置位置
-   * @props {Boolean} bottom - 设置放置位置
-   * @props {Boolean} left - 设置放置位置
-   * @props {Boolean} right - 设置放置位置
-   * @props {Boolean} middle - 设置放置位置
-   * @props {Boolean} center - 设置放置位置
-   * @props {Boolean} edge - 设置放置位置, 放在Header/Footer组件与Content组件交界处
+   * @props {Boolean} [top] - 设置放置位置
+   * @props {Boolean} [bottom] - 设置放置位置
+   * @props {Boolean} [left] - 设置放置位置
+   * @props {Boolean} [right] - 设置放置位置
+   * @props {Boolean} [middle] - 设置放置位置
+   * @props {Boolean} [center] - 设置放置位置
+   * @props {Boolean} [edge] - 设置放置位置, 放在Header/Footer组件与Content组件交界处
+   * @props {Boolean} [fabContentMargin=10] - 靠边的距离, 默认是1opx
    *
    *
    * @demo #/fab
    * */
-  export default{
+
+  import { parsePxUnit } from '../util/util'
+
+  export default {
     name: 'Fab',
     data () {
       return {
         listsActive: false,             // 组件开闭状态
-        mainFabButtonComponent: null,   // FAB的主要FabButton组件, 这个必须有
-        fabListComponents: []           // FabList 组件
+        fabListComponents: [],           // FabList 组件
+        styleObj: {}
       }
     },
     props: {
@@ -99,84 +96,99 @@
       right: Boolean,
       middle: Boolean,
       center: Boolean,
-      edge: Boolean
+      edge: Boolean,
+      fabContentMargin: {
+        type: Number,
+        default: 10
+      }
+    },
+    inject: ['contentComponent'],
+    provide () {
+      let _this = this
+      return {
+        fabComponent: _this
+      }
     },
     methods: {
-
-      /**
-       * 主按钮点击后
-       * @private
-       * */
-      clickHandler (ev) {
-        if (this.canActivateList(ev)) {
-          this.toggleList()
-        }
-      },
-
-      /**
-       * 主按钮点击后
-       * @param {*} ev
-       * @return {Boolean}
-       * @private
-       * */
-      canActivateList (ev) {
-        if (this.fabListComponents.length > 0 && this.mainFabButtonComponent && ev.target) {
-          let ele = ev.target.closest('.ion-fab>[ion-fab]')
-          return (ele && ele === this.mainFabButtonComponent.$el)
-        }
-        return false
-      },
-
       /**
        * @private
        */
-      toggleList () {
-        this.setActiveLists(!this.listsActive)
+      $_toggleList () {
+        this.$app && this.$app.setEnabled(false, 300)
+        this.$_setActiveLists(!this.listsActive)
       },
 
       /**
        * @param {Boolean} isActive
        * @private
        */
-      setActiveLists (isActive) {
+      $_setActiveLists (isActive) {
         if (isActive === this.listsActive) {
           return
         }
         for (let list of this.fabListComponents) {
-          list.setVisible(isActive)
+          list.$_setVisible(isActive)
         }
-        this.mainFabButtonComponent.setActiveClose(isActive)
         this.listsActive = isActive
       },
 
-      // ------ public ------
+      /**
+       * 尺寸计算
+       * @private
+       * */
+      $_setPosition () {
+        let fabContentMargin = this.fabContentMargin
+        let fabSize = parsePxUnit(window.getComputedStyle(this.$el).height)
+        let style = {}
+
+        if (this.top) {
+          style.top = `${this.contentComponent.headerBarHeight + fabContentMargin}px`
+          if (this.edge) {
+            style.top = `${this.contentComponent.headerBarHeight - fabSize / 2}px`
+          }
+        }
+
+        if (this.bottom) {
+          style.bottom = `${fabContentMargin}px`
+          if (this.edge) {
+            style.bottom = `${-fabSize / 2}px`
+          }
+        }
+
+        if (this.left) {
+          style.left = `${fabContentMargin}px`
+        }
+
+        if (this.right) {
+          style.right = `${fabContentMargin}px`
+        }
+
+        if (this.center) {
+          style.left = '50%'
+          style.marginLeft = `${-fabSize / 2}px`
+        }
+
+        if (this.middle) {
+          style.top = '50%'
+          style.marginLeft = `${-fabSize / 2}px`
+        }
+
+        return style
+      },
+
       /**
        * @function close
        * @description
        * 关闭组件, 通过ref获组件示例. 一般点击主按钮关闭组件
        * */
       close () {
-        this.setActiveLists(false)
+        this.$_setActiveLists(false)
       }
     },
     mounted () {
-      this.$children.forEach((child) => {
-        if (child.$options._componentTag.toLowerCase() === 'fabbutton') {
-          this.mainFabButtonComponent = child
-        }
-
-        if (child.$options._componentTag.toLowerCase() === 'fablist') {
-          this.fabListComponents.push(child)
-        }
+      this.$nextTick(() => {
+        this.styleObj = this.$_setPosition()
       })
-
-      if (!this.mainFabButtonComponent || this.fabListComponents.length === 0) {
-        console.error('The Fab component need at least one BabButton component and FabList component, please check!')
-        return
-      }
-
-      // 给主按钮绑定click事件
-      this.mainFabButtonComponent.$el.addEventListener('click', this.clickHandler.bind(this))
     }
   }
 </script>

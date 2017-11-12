@@ -76,13 +76,6 @@
   background-color: @fab-md-list-button-background-color-activated;
 }
 
-// Material Design FAB Ripple
-// --------------------------------------------------
-
-.fab-md .button-effect {
-  background-color: contrast(@fab-md-background-color, black, white, @contrast-threshold);
-}
-
 // Generate MD FAB colors
 // --------------------------------------------------
 
@@ -109,10 +102,6 @@
 
     .fab-md-@{color-name}:active {
       background-color: @bg-color-activated;
-    }
-
-    .fab-md-@{color-name} .button-effect {
-      background-color: @fg-color;
     }
   }
 }

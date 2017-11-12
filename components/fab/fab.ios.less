@@ -69,7 +69,6 @@
 
     // content
     @bg-color: @color-base;
-    @bg-color-activated: darken(@bg-color, @darken-amount);
     @fg-color: @color-contrast;
 
     .fab-ios-@{color-name} {
@@ -77,8 +76,8 @@
       background-color: @bg-color;
     }
 
-    .fab-ios-@{color-name}.activated {
-      background-color: @bg-color-activated;
+    .fab-ios-@{color-name}:active {
+      background-color: darken(@bg-color, @darken-amount);
     }
   }
 }
