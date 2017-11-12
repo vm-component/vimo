@@ -59,7 +59,8 @@
    *
    * */
   import { isPresent, registerListener } from '../util/util'
-  export default{
+
+  export default {
     name: 'Img',
     props: {
       src: String,
@@ -86,7 +87,6 @@
         canRequest: false,      // 这个值是由content组件控制的!
         canRender: false,       // 这个值是由content组件控制的!
 
-        contentComponent: null, // 当前页面的Content组件
         hasLoaded: false,       // 判断图片是否真正下载完毕
         requestingSrc: null,    // 当前正在请求的src
         renderedSrc: null,      // 已经下载完毕渲染完毕的src
@@ -98,6 +98,7 @@
         unRegLoadImg: null      // {function} 解除当前的注册事件
       }
     },
+    inject: ['contentComponent'], // 当前页面的Content组件
     watch: {
       width () {
         this.setDims()
@@ -115,6 +116,8 @@
        * @private
        * */
       init () {
+        console.assert(this.contentComponent, 'Img组件必须在Content组件中才能正常工作!')
+
         // 获取img元素
         this.imgElement = this.$refs.img
 
@@ -124,18 +127,7 @@
         // 根据src初始化部分参数
         this.initSrcValue()
 
-        // 获取Page组件中的Content组件this
-        // mounted的触发顺序是从最内层向外进行的, 故如果获取$vnode中的context, 则得不到有效值
-        // 目前只能沿着继承顺序查找
-        let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
-        _pageComponentChildrenList.forEach((component) => {
-          if (component.$options._componentTag.toLowerCase() === 'content') {
-            this.contentComponent = component
-            this.contentComponent.addImg(this)
-          }
-        })
-
-        console.assert(this.contentComponent, 'Img组件必须在Content组件中才能正常工作!')
+        this.contentComponent.$_addImg(this)
       },
 
       /**
@@ -163,7 +155,7 @@
        * */
       update () {
         // 图片的更新需要受到Content组件的控制 => Img组件的canRequest和canRender两个值
-        if (this.src && this.contentComponent && this.contentComponent.isImgsUpdatable()) {
+        if (this.src && this.contentComponent && this.contentComponent.$_isImgUpdatable()) {
           if (this.canRequest && (this.src !== this.renderedSrc && this.src !== this.requestingSrc) && !this.hasLoaded) {
             // 图片没请求过也没下载过页面渲染过的情况
             // 对img元素监听load事件, 事件结束解绑
