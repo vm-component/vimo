@@ -1,0 +1,58 @@
+
+.fluid1 {
+  .ion-app, .ion-nav, .ion-tabs, .app-root, .ion-page {
+    height: inherit;
+    overflow: inherit;
+    max-height: inherit;
+    position: relative;
+    contain: layout style;
+  }
+
+  .ion-page > .ion-content {
+    position: inherit;
+  }
+
+  .ion-page {
+    contain: layout style;
+  }
+
+  .ion-footer,
+  .ion-header {
+    position: fixed;
+    contain: layout style;
+  }
+
+  .ion-content {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    contain: layout style;
+  }
+
+  .scroll-content {
+    position: relative;
+    contain: layout style;
+    overflow-x: inherit;
+    overflow-y: inherit;
+  }
+
+  .click-block-enabled {
+    position: fixed;
+  }
+
+  .ion-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    contain: layout style;
+    height: auto;
+  }
+
+  .modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    contain: layout style;
+    height: auto;
+  }
+}

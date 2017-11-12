@@ -22,14 +22,7 @@
     </article>
 </template>
 <style lang="less">
-    @import "app.less";
-    // Page Animate
-    // --------------------------------------------------
-    @import "transition/fade-bottom-transition";
-    @import "transition/fade-right-transition";
-    @import "transition/fade-transition";
-    @import "transition/ios-transition";
-    @import "transition/zoom-transition";
+    @import "./app.less";
 </style>
 <script type="text/javascript">
   /**

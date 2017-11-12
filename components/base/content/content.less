@@ -13,23 +13,22 @@
   display: block;
 
   width: 100%;
-  height: 100%;
 
-  contain: layout size style;
+  contain: layout style;
 
   color: @text-color;
   background-color: @background-color;
 }
 
-.ion-page > .ion-content {
-  position: absolute;
-}
+//.ion-page > .ion-content {
+//  position: absolute;
+//}
 
 // Scrollable Content
 // --------------------------------------------------
 
 .scroll-content {
-  position: absolute;
+  position: relative;
   //top: 1px;
   top: 0;
   right: 0;
@@ -38,12 +37,10 @@
   z-index: @z-index-scroll-content;
   display: block;
 
-  overflow-x: hidden;
-  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
 
-  contain: size style layout;
+  contain: style layout;
 }
 
 .disable-scroll .ion-page,
@@ -58,29 +55,33 @@
 // --------------------------------------------------
 
 .fixed-content {
-  position: absolute;
+  position: relative !important;
+  z-index: auto !important;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
   display: block;
 }
 
-.fixed-content [fixed] {
-  position: absolute;
-  z-index: @z-index-fixed-content; // 999
+.fixed-content [fixed],
+.fixed-content [fixedtop],
+.fixed-content [fixedbottom] {
+  position: fixed;
+  z-index: @z-index-fixed-content;
   transform: translateZ(0);
+}
+
+.fixed-content [fixedtop],
+.fixed-content [fixedbottom] {
+  width: 100%;
 }
 
 // fixed Position
 .fixed-content [fixedTop] {
-  width: 100%;
   top: 0;
 }
 
 .fixed-content [fixedBottom] {
   bottom: 0;
-  width: 100%;
 }
 
 // Content
@@ -106,25 +107,4 @@
 .ion-content hr {
   height: @hairlines-width;
   background-color: rgba(0, 0, 0, .12);
-}
-
-// Content Scroll
-// --------------------------------------------------
-
-.ion-content:not([no-bounce]) > .scroll-content::before,
-.ion-content:not([no-bounce]) > .scroll-content::after {
-  position: absolute;
-
-  width: 1px; /*no*/
-  height: 1px; /*no*/
-
-  content: "";
-}
-
-.ion-content:not([no-bounce]) > .scroll-content::before {
-  bottom: -1px; /*no*/
-}
-
-.ion-content:not([no-bounce]) > .scroll-content::after {
-  top: -1px; /*no*/
 }

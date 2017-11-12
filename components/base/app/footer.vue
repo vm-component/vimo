@@ -5,9 +5,8 @@
 </template>
 <style lang="less">
     @import "../../themes/index";
-
     .ion-footer {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         z-index: @z-index-toolbar;
