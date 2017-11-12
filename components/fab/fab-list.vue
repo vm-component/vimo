@@ -73,26 +73,32 @@
 
         if (visible) {
           this.$_setElementClass('fab-list-active', visible)
-          for (let i = 0, len = fabs.length; len > i; i++) {
-            window.setTimeout(() => {
-              let fab = fabs[i]
-              fab.$_setElementClass('show', true)
-            }, i * interval)
-          }
-        } else {
-          for (let i = 0, len = fabs.length; len > i; i++) {
-            (function (i) {
+          this.$nextTick(() => {
+            for (let i = 0, len = fabs.length; len > i; i++) {
               window.setTimeout(() => {
                 let fab = fabs[i]
-                fab.$_setElementClass('show', false)
-                if (fabs.length - 1 === i) {
-                  window.setTimeout(() => {
-                    _this.$_setElementClass('fab-list-active', visible)
-                  }, 300)
-                }
+                fab.$_setElementClass('show', true)
               }, i * interval)
-            })(i)
-          }
+            }
+          })
+        } else {
+          this.$nextTick(() => {
+            for (let i = 0, len = fabs.length; len > i; i++) {
+              (function (i) {
+                window.setTimeout(() => {
+                  let fab = fabs[i]
+                  fab.$_setElementClass('show', false)
+                  if (fabs.length - 1 === i) {
+                    window.setTimeout(() => {
+                      _this.$nextTick(() => {
+                        _this.$_setElementClass('fab-list-active', visible)
+                      })
+                    }, 300)
+                  }
+                }, i * interval)
+              })(i)
+            }
+          })
         }
       },
 
