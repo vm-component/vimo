@@ -353,7 +353,7 @@ export function docReady (callback) {
 
 /**
  * 根据click或者touch的事件对象, 获取event事件对象中的点击位置(坐标xy值)
- * @param {any} ev - 事件对象
+ * @param {TouchEvent} ev - 事件对象
  * @return  {PointerCoordinates}
  * */
 export function pointerCoord (ev) {

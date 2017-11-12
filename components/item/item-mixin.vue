@@ -18,7 +18,7 @@
     @import "item-media";
 </style>
 <script type="text/javascript">
-  import addItemAttr from '../util/addItemAttr.js'
+  import addItemAttr from '../util/addSlotNameToAttr.js'
 
   export default {
     props: {

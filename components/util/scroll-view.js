@@ -6,13 +6,13 @@
  *
  * @private
  * */
-import { isBoolean, isNumber, isPresent, registerListener } from '../../util/util'
+import { isBoolean, isNumber, isPresent, registerListener } from './util'
 
 const SCROLL_END_DEBOUNCE_MS = 80
 const FRAME_MS = (1000 / 60)
 const EVENT_OPTS = {passive: true}
 
-export class ScrollView {
+export default class ScrollView {
   constructor () {
     this.isScrolling = false       // 判断正在滚动
     this.initialized = false       // 判断是否已完成初始化
@@ -23,7 +23,6 @@ export class ScrollView {
     this.transform = window.VM && window.VM.platform && window.VM.platform.css.transform
 
     this._el = null                   // scrollElement 当前滚动实例的元素
-    this._cel = null                  // contentElement 当前滚动实例的元素
 
     this._lsn = null                  // 监听函数 listen, 用于nativeScrll
     this._endTmr = null               // 事件记录 timeout, 用于nativeScrll
@@ -31,14 +30,17 @@ export class ScrollView {
     // 滚动对象
     this.ev = {
       timeStamp: 0,
-      scrollTop: 0,
+
       scrollLeft: 0,
+      scrollTop: 0,
+
       scrollHeight: 0,
       scrollWidth: 0,
+
       contentHeight: 0,
       contentWidth: 0,
-      contentTop: 0,
-      contentBottom: 0,
+      contentTop: 0,      // 内容顶部到上边框的距离
+
       startY: 0,
       startX: 0,
       deltaY: 0,
@@ -57,15 +59,16 @@ export class ScrollView {
 
   /**
    * 滚动对象初始化
-   * @param {HTMLElement} ele
    * @private
    * */
-  init (ele) {
+  init () {
     if (!this.initialized) {
       this.initialized = true
-      console.assert(ele, 'scroll-view, element can not be null')
-      this._el = ele
-      this._cel = ele.parentElement
+      this._el = document.documentElement
+
+      this.ev.scrollHeight = this._el.scrollHeight
+      this.ev.scrollWidth = this._el.scrollWidth
+
       this.enableNativeScrolling()
     }
   }
@@ -75,10 +78,6 @@ export class ScrollView {
    * @private
    * */
   enableNativeScrolling () {
-    if (!this._el) {
-      return
-    }
-
     const self = this
     const ev = self.ev
     const positions = [] // number[]
@@ -89,11 +88,11 @@ export class ScrollView {
     function scrollCallback (scrollEvent) {
       ev.timeStamp = scrollEvent.timeStamp
 
-      // 获取当前的 scrollTop
       ev.scrollTop = self.getTop()
-
-      // 获取当前的 scrollLeft
       ev.scrollLeft = self.getLeft()
+
+      ev.scrollHeight = self.getHeight()
+      ev.scrollWidth = self.getWidth()
 
       if (!self.isScrolling) {
         // scroll start
@@ -174,7 +173,7 @@ export class ScrollView {
     // a scroll event callback will always be right before the raf callback
     // so there's little to no value of using raf here since it'll all ways immediately
     // call the raf if it was set within the scroll event, so this will save us some time
-    self._lsn = registerListener(self._el, 'scroll', scrollCallback, EVENT_OPTS)
+    self._lsn = registerListener(window, 'scroll', scrollCallback, EVENT_OPTS)
   }
 
   /**
@@ -182,7 +181,7 @@ export class ScrollView {
    * @private
    * */
   getHeight () {
-    return this._el && this._el.scrollHeight
+    return this._el.scrollHeight
   }
 
   /**
@@ -190,7 +189,7 @@ export class ScrollView {
    * @private
    * */
   getWidth () {
-    return this._el && this._el.scrollWidth
+    return this._el.scrollWidth
   }
 
   /**
@@ -199,7 +198,7 @@ export class ScrollView {
    * @private
    */
   getTop () {
-    return this._el && this._el.scrollTop
+    return document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
   }
 
   /**
@@ -208,7 +207,7 @@ export class ScrollView {
    * @private
    */
   getLeft () {
-    return this._el && this._el.scrollLeft
+    return document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft
   }
 
   /**
@@ -217,7 +216,7 @@ export class ScrollView {
    * @private
    */
   setTop (top) {
-    this._el.scrollTop = top
+    window.scrollTo(0, top)
   }
 
   /**
@@ -226,7 +225,7 @@ export class ScrollView {
    * @private
    */
   setLeft (left) {
-    this._el.scrollLeft = left
+    window.scrollTo(left, 0)
   }
 
   /**
@@ -260,10 +259,10 @@ export class ScrollView {
   /**
    * scrollTo
    * 滚动到, 绝对滚动
-   * @param {number} [x=0] - 横轴位置
-   * @param {number} [y=0] - 纵轴位置
-   * @param {number} [duration=300] - 滚动时间
-   * @param {Function} done
+   * @param {Number} [x=0] - 横轴位置
+   * @param {Number} [y=0] - 纵轴位置
+   * @param {Number} [duration=300] - 滚动时间
+   * @param {Function} [done]
    * @return {Promise}
    */
   scrollTo (x = 0, y = 0, duration = 300, done) {
@@ -276,12 +275,6 @@ export class ScrollView {
         done = resolve
       })
     }
-    if (!el) {
-      // invalid element
-      console.assert(el, 'The method of scrollTo() need scrollElement!')
-      done()
-      return promise
-    }
 
     // scroll animation loop w/ easing
     // credit https://gist.github.com/dezinezync/5487119
@@ -292,8 +285,8 @@ export class ScrollView {
       return promise
     }
 
-    const fromY = el.scrollTop
-    const fromX = el.scrollLeft
+    const fromY = this.getTop()
+    const fromX = this.getLeft()
 
     const maxAttempts = (duration / 16) + 100
     const transform = this.transform
@@ -308,9 +301,9 @@ export class ScrollView {
     let step = () => {
       attempts++
 
-      if (!this._el || stopScroll || attempts > maxAttempts) {
-        this.isScrolling = false;
-        (el.style)[transform] = ''
+      if (stopScroll || attempts > maxAttempts) {
+        this.isScrolling = false
+        el.style[transform] = ''
         done()
         return
       }
@@ -338,7 +331,6 @@ export class ScrollView {
       } else {
         stopScroll = true
         this.isScrolling = false
-        // (el.style)[transform] = '';
         done()
       }
     }
@@ -365,10 +357,7 @@ export class ScrollView {
    * @return {Promise}
    */
   scrollToBottom (duration = 300) {
-    let y = 0
-    if (this._el) {
-      y = this._el.scrollHeight - this._el.clientHeight
-    }
+    let y = this.getHeight() - this._el.clientHeight
     return this.scrollTo(0, y, duration)
   }
 
@@ -391,9 +380,9 @@ export class ScrollView {
    * scrollToElement
    * 滚动到某个元素, 默认滚动到顶部对其, 如果offsetX/offsetY传入的是boolean类型, 且为true, 则滚动到屏幕中间
    * @param {Element} el - 元素Element
-   * @param {number} [duration=300] - 滚动时间
-   * @param {number|Boolean} [offsetX=0] - 元素位置距离屏幕顶部的距离
-   * @param {number|Boolean} [offsetY=0] - 元素位置距离屏幕左侧的距离
+   * @param {Number} [duration=300] - 滚动时间
+   * @param {Number|Boolean} [offsetX=0] - 元素位置距离屏幕顶部的距离
+   * @param {Number|Boolean} [offsetY=0] - 元素位置距离屏幕左侧的距离
    * @param {Function} [done]
    * @return {Promise}
    * */
@@ -423,7 +412,7 @@ export class ScrollView {
       }
 
       if (isBoolean(offsetY) && offsetY) {
-        y -= ((this.ev.contentHeight - el.offsetHeight) / 2)
+        y -= ((window.innerHeight - el.offsetHeight) / 2)
       }
     }
 
