@@ -12,16 +12,7 @@
     </transition>
 </template>
 <style lang="less">
-    @import "backdrop";
-
-    // transitioName = 'backdrop'
-    .backdrop-enter-active, .backdrop-leave-active {
-        transition: opacity 200ms;
-    }
-
-    .backdrop-enter, .backdrop-leave-active {
-        opacity: 0
-    }
+    @import "./backdrop.less";
 </style>
 <script type="text/javascript">
   /**
