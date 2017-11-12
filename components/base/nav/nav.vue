@@ -5,13 +5,11 @@
            menuContentTypeClass,
            menuContentSideClass,
            {'menu-content-open':isMenuOpen}]">
-        <div nav-viewport></div>
         <div v-if="isMenuOpen" @click="tapToCloseMenu" class="click-cover"></div>
         <!--animate-->
         <transition :name="pageTransitionName">
             <slot></slot>
         </transition>
-        <div class="nav-decor"></div>
     </nav>
 </template>
 <style lang="less">
