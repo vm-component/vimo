@@ -60,7 +60,6 @@
 
     .fixedTop {
         top: 150px;
-        position: absolute;
         background: rgba(145, 255, 191, 0.95);
     }
 </style>

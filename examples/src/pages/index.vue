@@ -111,11 +111,10 @@
     .index.inspired {
         width: 100%;
         height: 55px;
-        position: absolute;
         bottom: 0;
         border-top: 1px solid #eee;
         text-align: center;
-        background: rgba(256, 256, 256, 0.7);
+        background: #fff;
         .inspired__name {
             font-size: 14px;
             line-height: 120%;

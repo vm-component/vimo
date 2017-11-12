@@ -7,17 +7,19 @@
  *
  */
 export default {
+  pageTransition: '',
+  recordPosition: false,
+  showIndicatorWhenPageChange: false, // 转场是否提前添加动画
   platforms: {
-    mobile: {
-      recordPosition: false
-    },
-    ios: {
-      pageTransition: 'fade-right-transition'
-    },
-    android: {
-      pageTransition: 'zoom-transition'
-    }
+    // mobile: {
+    //   recordPosition: false
+    // },
+    // ios: {
+    //   pageTransition: 'fade-right-transition'
+    // },
+    // android: {
+    //   pageTransition: 'zoom-transition'
+    // }
   },
-  showIndicatorWhenPageChange: true, // 转场是否提前添加动画
   domain: ''
 }

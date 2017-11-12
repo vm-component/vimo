@@ -3,7 +3,7 @@
         <!--menu menu-->
         <!--type: overlay/reveal/push-->
         <Menus id="menu" side="left" type="reveal">
-            <Content>
+            <article>
                 <List>
                     <!--开始-->
                     <ListHeader>
@@ -41,9 +41,9 @@
                         </Item>
                     </ItemGroup>
                 </List>
-            </Content>
+            </article>
         </Menus>
-        <Nav :showIndicatorWhenPageChange="true">
+        <Nav>
             <!--<keep-alive>-->
             <router-view></router-view>
             <!--</keep-alive>-->

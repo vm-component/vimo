@@ -38,11 +38,12 @@
 </style>
 <script type="text/javascript">
   export default {
-    name: 'page',
+    name: 'InfiniteScrollDemo',
     data () {
       return {
-        i: 0,
-        total: 40,
+        page: 1,
+        size: 30,
+        timer: null,
         list: []
       }
     },
@@ -55,31 +56,33 @@
     },
     methods: {
       fetchData () {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           let list = []
-          window.setTimeout(() => {
-            if (this.total > 0) {
-              for (let j = 0; this.total > 0 && j < 20; j++, this.i++, this.total--) {
-                this.list.push(`item - ${this.i}`)
-              }
-              resolve(list)
-            } else {
-              reject([])
+          this.timer && window.clearTimeout(this.timer)
+          this.timer = window.setTimeout(() => {
+            for (let j = 0; j < this.size; j++) {
+              list.push(`item - ${j + (this.page - 1) * this.size}`)
             }
-          }, 500)
+            this.page++
+            resolve(list)
+            console.log('sended')
+          }, 100)
         })
       },
       onInfinite () {
-        console.debug('onInfinite')
+        console.log('onInfinite')
         this.fetchData().then((list) => {
-          this.list = [].concat(this.list, list)
-          // 当前异步完成
-          this.infiniteScrollComponent && this.infiniteScrollComponent.complete()
-          console.debug('onInfinite-complete')
-        }, () => {
-          // 当前异步结束, 没有新数据了
-          this.infiniteScrollComponent && this.infiniteScrollComponent.enable(false)
-          console.debug('onInfinite-enable-false')
+          let length = list.length
+          if (length < this.size) {
+            // 当前异步结束, 没有新数据了
+            this.infiniteScrollComponent && this.infiniteScrollComponent.enable(false)
+            console.log('onInfinite-enable-false')
+          } else {
+            this.list = [].concat(this.list, list)
+            // 当前异步完成
+            this.infiniteScrollComponent && this.infiniteScrollComponent.complete()
+            console.log('onInfinite-complete')
+          }
         })
       },
       onInfinitePromise () {
@@ -98,7 +101,7 @@
       }
     },
     created () {
-      this.onInfinite(this.infiniteScrollComponent)
+      this.onInfinite()
     },
     mounted () {},
     activated () {}

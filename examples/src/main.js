@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import AttachFastClick from 'fastclick'
+// import AttachFastClick from 'fastclick'
 import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
 import 'ionicons/dist/css/ionicons.css'
@@ -57,7 +57,7 @@ Vue.use(vmStorage)
 Vue.use(vimo.LandscapePrompt)
 
 // eslint-disable-next-line no-new
-new AttachFastClick(document.body)
+// new AttachFastClick(document.body)
 // eslint-disable-next-line no-new
 new Vue({
   el: '#app',

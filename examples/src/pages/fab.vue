@@ -11,16 +11,16 @@
                     <Icon name="add"></Icon>
                 </FabButton>
                 <FabList side="bottom">
-                    <FabButton @click="clickHandler('facebook')">
+                    <FabButton @click="clickHandler($event,'facebook')">
                         <Icon name="logo-facebook"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('twitter')">
+                    <FabButton @click="clickHandler($event,'twitter')">
                         <Icon name="logo-twitter"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('vimeo')">
+                    <FabButton @click="clickHandler($event,'vimeo')">
                         <Icon name="logo-vimeo"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('googleplus')">
+                    <FabButton @click="clickHandler($event,'googleplus')">
                         <Icon name="logo-googleplus"></Icon>
                     </FabButton>
                 </FabList>
@@ -31,18 +31,18 @@
                     <Icon name="arrow-dropright"></Icon>
                 </FabButton>
                 <FabList side="right">
-                    <FabButton @click="clickHandler('facebook')">
+                    <FabButton @click="clickHandler($event,'facebook')">
                         <Icon name="logo-facebook"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('twitter')">
+                    <FabButton @click="clickHandler($event,'twitter')">
                         <Icon name="logo-twitter"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('vimeo')">
+                    <FabButton @click="clickHandler($event,'vimeo')">
                         <Icon name="logo-vimeo"></Icon>
                     </FabButton>
                 </FabList>
                 <FabList side="bottom">
-                    <FabButton @click="clickHandler('googleplus')">
+                    <FabButton @click="clickHandler($event,'googleplus')">
                         <Icon name="logo-googleplus"></Icon>
                     </FabButton>
                 </FabList>
@@ -53,22 +53,22 @@
                     <Icon name="md-share"></Icon>
                 </FabButton>
                 <FabList side="right">
-                    <FabButton @click="clickHandler('facebook')" color="danger">
+                    <FabButton @click="clickHandler($event,'facebook')" color="danger">
                         <Icon name="logo-facebook"></Icon>
                     </FabButton>
                 </FabList>
                 <FabList side="bottom">
-                    <FabButton @click="clickHandler('googleplus')" color="secondary">
+                    <FabButton @click="clickHandler($event,'googleplus')" color="secondary">
                         <Icon name="logo-googleplus"></Icon>
                     </FabButton>
                 </FabList>
                 <FabList side="top">
-                    <FabButton @click="clickHandler('vimeo')" color="primary">
+                    <FabButton @click="clickHandler($event,'vimeo')" color="primary">
                         <Icon name="logo-vimeo"></Icon>
                     </FabButton>
                 </FabList>
                 <FabList side="left">
-                    <FabButton @click="clickHandler('twitter')" color="dark">
+                    <FabButton @click="clickHandler($event,'twitter')" color="dark">
                         <Icon name="logo-twitter"></Icon>
                     </FabButton>
                 </FabList>
@@ -79,16 +79,16 @@
                     <Icon name="arrow-dropup"></Icon>
                 </FabButton>
                 <FabList side="top">
-                    <FabButton @click="clickHandler('facebook')" color="danger">
+                    <FabButton @click="clickHandler($event,'facebook')" color="danger">
                         <Icon name="logo-facebook"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('googleplus')" color="secondary">
+                    <FabButton @click="clickHandler($event,'googleplus')" color="secondary">
                         <Icon name="logo-googleplus"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('twitter')" color="dark">
+                    <FabButton @click="clickHandler($event,'twitter')" color="dark">
                         <Icon name="logo-twitter"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('vimeo')" color="primary">
+                    <FabButton @click="clickHandler($event,'vimeo')" color="primary">
                         <Icon name="logo-vimeo"></Icon>
                     </FabButton>
                 </FabList>
@@ -100,16 +100,16 @@
                     <Icon name="arrow-dropleft"></Icon>
                 </FabButton>
                 <FabList side="left">
-                    <FabButton @click="clickHandler('facebook')" color="danger">
+                    <FabButton @click="clickHandler($event,'facebook')" color="danger">
                         <Icon name="logo-facebook"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('googleplus')" color="secondary">
+                    <FabButton @click="clickHandler($event,'googleplus')" color="secondary">
                         <Icon name="logo-googleplus"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('twitter')" color="dark">
+                    <FabButton @click="clickHandler($event,'twitter')" color="dark">
                         <Icon name="logo-twitter"></Icon>
                     </FabButton>
-                    <FabButton @click="clickHandler('vimeo')" color="primary">
+                    <FabButton @click="clickHandler($event,'vimeo')" color="primary">
                         <Icon name="logo-vimeo"></Icon>
                     </FabButton>
                 </FabList>
@@ -153,14 +153,12 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'name',
     methods: {
-      clickHandler (value) {
-        for (let key in this.$refs) {
-          this.$refs[key].close()
-        }
-        console.debug('当前点击的是: ' + value)
+      clickHandler (fabComponent, value) {
+        fabComponent.close()
+        console.log('当前点击的是: ' + value)
       }
     }
   }

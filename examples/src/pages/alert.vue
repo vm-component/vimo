@@ -15,6 +15,18 @@
             <Button color="dark" block @click="checkbox()">Checkbox</Button>
             <Button color="primary" block @click="radio()">Radio</Button>
             <Button color="primary" block @click="image()">Image</Button>
+            <article>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime, molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime, molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime, molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime, molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime, molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
+            </article>
         </Content>
     </Page>
 </template>

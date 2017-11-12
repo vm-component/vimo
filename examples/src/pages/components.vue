@@ -5,7 +5,7 @@
                 <Title>组件列表</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" record-position>
+        <Content class="outer-content">
             <List>
                 <ListHeader>布局/Layout</ListHeader>
                 <Item button :to="{path: '/app'}">
