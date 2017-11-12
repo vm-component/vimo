@@ -16,7 +16,7 @@
             <div class="range-bar" role="presentation"></div>
             <div class="range-bar range-bar-active" :style="{ left: barL,right:barR }" ref="bar"
                  role="presentation"></div>
-            <vm-rangeKnobHandle
+            <vm-range-knob-handle
                     :ratio="ratioA"
                     :val="valA"
                     :pin="pin"
@@ -24,8 +24,8 @@
                     :min="min"
                     :max="max"
                     :disabled="disabled">
-            </vm-rangeKnobHandle>
-            <vm-rangeKnobHandle
+            </vm-range-knob-handle>
+            <vm-range-knob-handle
                     :ratio="ratioB"
                     :val="valB"
                     :pin="pin"
@@ -34,7 +34,7 @@
                     :max="max"
                     :disabled="disabled"
                     v-if="dualKnobs">
-            </vm-rangeKnobHandle>
+            </vm-range-knob-handle>
         </div>
         <slot name="range-right"></slot>
     </div>
@@ -86,11 +86,16 @@
    * </vm-list>
    *
    * */
-  import RangeKnobHandle from './range-knob-handle.vue'
   import { setElementClass, pointerCoord, clamp, isNumber, isObject, isString } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
+  import VmRangeKnobHandle from './range-knob-handle.vue'
 
   export default {
     name: 'vm-range',
+    mixins: [ThemeMixins],
+    components: {
+      VmRangeKnobHandle
+    },
     data () {
       return {
         ticks: [], // 移动的标尺
@@ -118,10 +123,6 @@
     },
     props: {
       /**
-       * 颜色: "primary", "secondary", "danger", "light", and "dark"
-       */
-      color: String,
-      /**
        * 是否禁用
        * */
       disabled: Boolean,
@@ -143,10 +144,6 @@
         type: Number,
         default: 0
       },
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      },
       /**
        * 当拖动knob时显示大头针提示
        * */
@@ -163,7 +160,6 @@
         type: Number,
         default: 1
       },
-
       /**
        * v-model对应的值,
        * 需要出发input事件
@@ -171,15 +167,6 @@
       value: [String, Number, Object]
     },
     computed: {
-      // 环境样式
-      modeClass () {
-        return `range range-${this.mode}`
-      },
-      // 颜色
-      colorClass () {
-        return this.color ? (`range-${this.mode}-${this.color}`) : ''
-      },
-
       /**
        * 返回knob现在的位置比, ratio数值在0/1之间,
        * 如果使用了两个knob, 则返回最小那个
@@ -200,6 +187,12 @@
         }
         return 0
       }
+    },
+    created () {
+      this.initData()
+    },
+    mounted () {
+      this.initDOM()
     },
     methods: {
       /**
@@ -416,7 +409,7 @@
        */
       initDOM () {
         // 在item父元素上添加类item-range
-        if (this.$parent && this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
+        if (this.$parent && this.$parent.$options.name && this.$parent.$options.name.toLowerCase() === 'vm-item') {
           this._item = this.$parent
           if (this._item.$el) {
             setElementClass(this._item.$el, 'item-range', true)
@@ -471,15 +464,6 @@
         // 更新bar
         this.updateBar()
       }
-    },
-    created () {
-      this.initData()
-    },
-    mounted () {
-      this.initDOM()
-    },
-    components: {
-      RangeKnobHandle: RangeKnobHandle
     }
   }
 </script>

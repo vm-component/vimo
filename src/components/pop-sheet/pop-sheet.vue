@@ -101,21 +101,22 @@
    * </vm-pop-sheet>
    *
    * */
-  import Backdrop from '../backdrop'
   import { urlChange } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
+  import VmBackdrop from '../backdrop/backdrop.vue'
 
   const NOOP = () => {}
 
   export default {
     name: 'vm-pop-sheet',
+    mixins: [ThemeMixins],
+    components: {
+      VmBackdrop
+    },
     props: {
       enableBackdropDismiss: {
         type: Boolean,
         default () { return true }
-      },
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
       dismissOnPageChange: {
         type: Boolean,
@@ -147,12 +148,6 @@
         dismissCallback: NOOP,
 
         unReg: null         // 页面变化的解绑函数
-      }
-    },
-    computed: {
-      // 设置ActionSheet的风格
-      modeClass () {
-        return `pop-sheet-${this.mode}`
       }
     },
     methods: {
@@ -275,9 +270,6 @@
           this.isActive && this.dismiss()
         })
       }
-    },
-    components: {
-      Backdrop
     }
   }
 </script>

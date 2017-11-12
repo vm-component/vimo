@@ -118,15 +118,13 @@
    *
    * */
   import { transitionEnd, parsePxUnit, isPresent } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import { ScrollView } from './scroll-view'
 
   export default {
     name: 'vm-content',
+    mixins: [ThemeMixins],
     props: {
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      },
       fullscreen: Boolean,
       recordPosition: {
         type: Boolean,

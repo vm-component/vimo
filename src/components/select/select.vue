@@ -80,6 +80,7 @@
    * </vm-item>
    * */
   import { setElementClass, isTrueProperty, isBlank, isCheckedProperty } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import ActionSheet from '../action-sheet'
   import Popover from '../popover'
   import Alert from '../alert'
@@ -91,6 +92,7 @@
   export default {
     components: {VmButton},
     name: 'vm-select',
+    mixins: [ThemeMixins],
     data () {
       return {
         isDisabled: this.disabled,      // 内部 禁用
@@ -132,11 +134,6 @@
       },
       // 选择组件的文本提示, 代替选择的option选项
       selectedText: String,
-      // 模式
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
       value: [Object, String, Array]
     },
     watch: {
@@ -145,9 +142,6 @@
       }
     },
     computed: {
-      modeClass () {
-        return `select select-${this.mode}`
-      },
       buttonElement () {
         return this.$refs.button
       }
@@ -377,7 +371,7 @@
     },
     mounted () {
       // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
+      if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-select', true)
       } else {

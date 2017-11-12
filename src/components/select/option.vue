@@ -48,7 +48,7 @@
     },
     created () {
       this.label = this.getText()
-      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-select') {
+      if (this.$parent.$options.name.toLowerCase() === 'vm-select') {
         this.selectComponent = this.$parent
         this.selectComponent.recordOption(this)
       }

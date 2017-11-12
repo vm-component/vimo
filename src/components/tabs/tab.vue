@@ -33,16 +33,14 @@
    * <vm-tab slot="tab" :to="{name:'tabsBottom.demoTab3'}" tabBadge="7" tabTitle="Star" tabIcon="star" :enabled="true"></vm-tab>
    *
    * */
+  import ThemeMixins from '../../themes/theme.mixins'
   import Badge from '../badge'
 
   let _tabId = -1
   export default {
     name: 'vm-tab',
+    mixins: [ThemeMixins],
     props: {
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
       // 是否能选择
       enabled: {
         type: Boolean,
@@ -119,7 +117,7 @@
     },
     created () {
       this.refreshMatchState()
-      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'vm-tabs', 'Tab component must combine with Tabs')
+      console.assert(this.$parent.$options.name.toLowerCase() === 'vm-tabs', 'Tab component must combine with Tabs')
     },
     components: {Badge}
   }

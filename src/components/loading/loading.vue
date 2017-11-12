@@ -90,16 +90,19 @@
    *
    * */
   import { urlChange } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import VmBackdrop from "../backdrop/backdrop.vue";
   import VmSpinner from "../spinner/spinner.vue";
 
   const NOOP = () => {}
 
   export default {
+    name: 'vm-loading',
+    mixins: [ThemeMixins],
     components: {
       VmSpinner,
-      VmBackdrop},
-    name: 'vm-loading',
+      VmBackdrop
+    },
     props: {
       spinner: {
         type: String,
@@ -115,10 +118,6 @@
       dismissOnPageChange: {
         type: Boolean,
         default () { return true }
-      },
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
       }
     },
     data () {
@@ -136,10 +135,6 @@
       }
     },
     computed: {
-      // 设置ActionSheet的风格
-      modeClass () {
-        return `loading-${this.mode}`
-      },
       showSpinner () {
         return this.spinner !== 'hide'
       },

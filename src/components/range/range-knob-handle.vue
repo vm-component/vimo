@@ -9,7 +9,7 @@
 </template>
 <script type="text/javascript">
   export default{
-    name: 'RangeKnobHandle',
+    name: 'vm-range-knob-handle',
     props: {
       ratio: {
         type: Number,

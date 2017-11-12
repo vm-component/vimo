@@ -25,8 +25,10 @@
    *
    **/
   import { isTrueProperty, isString, isPresent } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   export default{
     name: 'vm-segment-button',
+    mixins: [ThemeMixins],
     data () {
       return {
         theValue: null, // 当前环境的value副本
@@ -43,13 +45,6 @@
        **/
       value: [String, Number],
       disabled: [Boolean],
-      /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       **/
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      }
     },
     watch: {
       disabled (val) {
@@ -127,7 +122,7 @@
     },
     mounted () {
       // find parent component
-      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-segment') {
+      if (this.$parent.$options.name.toLowerCase() === 'vm-segment') {
         this.parentComponent = this.$parent
       } else {
         console.error('The component of SegmentButton must combine with Segment component!')

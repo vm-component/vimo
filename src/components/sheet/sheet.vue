@@ -111,11 +111,13 @@
    * */
   import Backdrop from '../backdrop'
   import { urlChange } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
 
   const NOOP = () => {}
 
   export default {
     name: 'vm-sheet',
+    mixins: [ThemeMixins],
     props: {
       direction: {
         type: String,
@@ -127,10 +129,6 @@
       enableBackdropDismiss: {
         type: Boolean,
         default: true
-      },
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       },
       dismissOnPageChange: {
         type: Boolean,
@@ -165,10 +163,6 @@
       }
     },
     computed: {
-      // 设置ActionSheet的风格
-      modeClass () {
-        return `sheet-${this.mode}`
-      },
       directionClass () {
         return `sheet-direction-${this.direction}`
       }

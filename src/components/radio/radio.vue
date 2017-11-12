@@ -145,7 +145,7 @@
        **/
       init () {
         // 找到外部item实例
-        if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
+        if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
           this.itemComponent = this.$parent
           setElementClass(this.itemComponent.$el, 'item-radio', true)
         }

@@ -16,31 +16,11 @@
    * @props {String} [mode='ios'] - 模式
    *
    * */
+  import ThemeMixins from '../../themes/theme.mixins'
+
   export default{
     name: 'vm-note',
-    props: {
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: [String],
-      /**
-       * mode 按钮风格
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      }
-    },
-    computed: {
-      // 环境样式
-      modeClass () {
-        return `note note-${this.mode}`
-      },
-      // 颜色
-      colorClass () {
-        return this.color ? (`note-${this.mode}-${this.color}`) : ''
-      }
-    }
+    mixins: [ThemeMixins]
   }
 </script>
 <style lang="scss">

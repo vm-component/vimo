@@ -69,7 +69,7 @@
     computed: {
       iconName() {
         let name = this.name;
-        if (!(/^md-|^ios-|^logo-/.test(name))) {
+        if (!(/^md-|^ios-|^logo-|^icon-/.test(name))) {
           // this does not have one of the defaults
           // so lets auto add in the mode prefix for them
           return this.mode + '-' + name;
@@ -113,7 +113,11 @@
           iconName += '-outline';
         }
 
-        let css = 'ion-' + iconName;
+        // ios-star-outline -> ion-ios-star-outline
+        // ios-star -> ion-ios-star-outline
+        // icon-star -> icon-star
+        let css = iconMode === 'icon' ? iconName : 'ion-' + iconName;
+
         if (this.css === css) {
           return;
         }

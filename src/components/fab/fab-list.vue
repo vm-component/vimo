@@ -19,8 +19,10 @@
    * @demo #/fab
    * */
   import { setElementClass, isTrueProperty } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   export default{
     name: 'vm-fab-list',
+    mixins: [ThemeMixins],
     data () {
       return {
         fabs: [],
@@ -32,10 +34,6 @@
         type: String,
         default: 'bottom'
       },
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') }
-      }
     },
     methods: {
       /**
@@ -61,15 +59,6 @@
         }
         this.setElementClass('fab-list-active', visible)
       },
-
-      /**
-       * @param {String} className - className
-       * @param {Boolean} add - whether
-       * @private
-       * */
-      setElementClass (className, add) {
-        setElementClass(this.$el, className, add)
-      }
     },
     mounted () {
       this.$children.forEach((child) => {

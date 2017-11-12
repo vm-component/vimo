@@ -190,7 +190,7 @@
        **/
       init () {
         this.titleInner = this.getTitle()
-        if (this.$parent.$options._componentTag) {
+        if (this.$parent.$options.name) {
           let navbarComponent = this.$parent
           if (navbarComponent.$options._componentTag.toLowerCase() === 'vm-navbar') {
             this.setTitle(this.titleInner)

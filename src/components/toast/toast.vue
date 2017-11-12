@@ -8,9 +8,9 @@
             <div v-show="isActive" class="toast-wrapper" :class="[positionClass]">
                 <div class="toast-container">
                     <div class="toast-message" id="toast-hdr" v-if="message">{{message}}</div>
-                    <button class="toast-button" clear v-if="showCloseButton" @click="cbClick()">
+                    <vm-button class="toast-button" clear v-if="showCloseButton" @click="cbClick()">
                         <span>{{closeButtonText}}</span>
-                    </button>
+                    </vm-button>
                 </div>
             </div>
         </transition>
@@ -23,11 +23,17 @@
 </style>
 <script type="text/javascript">
   import { urlChange } from '../../util/util'
-  import Button from '../button/index'
+  import ThemeMixins from '../../themes/theme.mixins'
+  import VmButton from '../button/button.vue'
 
   const NOOP = () => {}
 
   export default {
+    name: 'vm-toast',
+    mixins: [ThemeMixins],
+    components: {
+      VmButton
+    },
     props: {
       message: {
         type: String,
@@ -56,10 +62,6 @@
       onDismiss: {
         type: Function,
         default () { return function () {} }
-      },
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       }
     },
     data () {
@@ -76,16 +78,18 @@
       }
     },
     computed: {
-      // set mode class of ActionSheet
-      modeClass () {
-        return `toast-${this.mode}`
-      },
       // position class
       positionClass () {
         return `toast-${this.position}`
       },
       transitionClass () {
         return `toast-${this.position}-${this.mode}`
+      }
+    },
+    mounted () {
+      if (this.dismissOnPageChange) {
+        // mounted before data ready, so no need to judge the `dismissOnPageChange` value
+        this.unreg = urlChange(this.dismissOnPageChangeHandler)
       }
     },
     methods: {
@@ -180,15 +184,6 @@
           return new Promise((resolve) => { resolve() })
         }
       }
-    },
-    mounted () {
-      if (this.dismissOnPageChange) {
-        // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-        this.unreg = urlChange(this.dismissOnPageChangeHandler)
-      }
-    },
-    components: {
-      'vm-button': Button
     }
   }
 </script>

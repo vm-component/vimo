@@ -48,6 +48,7 @@
    * <vm-backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive"></vm-backdrop>
    **/
   let NOOP = function () {}
+
   export default {
     name: 'vm-backdrop',
     data () {

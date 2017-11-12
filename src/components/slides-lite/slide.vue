@@ -30,7 +30,7 @@
   export default {
     name: 'vm-slide-lite',
     mounted () {
-      if (this.$parent.$options._componentTag.toLowerCase().indexOf('slides') > -1) {
+      if (this.$parent.$options.name.toLowerCase().indexOf('slides') > -1) {
         // 告知父组件进行初始化
         this.$parent.initSlides()
       }

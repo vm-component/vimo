@@ -117,6 +117,7 @@
    * @demo #/picker
    * */
   import { isString, isPresent, isNumber, urlChange } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import VmPickerCol from './picker-col.vue'
   import VmBackdrop from "../backdrop/backdrop.vue";
   import VmButton from "../button/button.vue";
@@ -125,6 +126,7 @@
 
   export default {
     name: 'vm-picker',
+    mixins: [ThemeMixins],
     components: {
       VmButton,
       VmBackdrop,
@@ -152,10 +154,6 @@
         type: Array,
         required: true
       },
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
       cssClass: String,
       enableBackdropDismiss: {
         type: Boolean,
@@ -169,9 +167,23 @@
       onSelect: Function,
       onDismiss: Function
     },
-    computed: {
-      modeClass () {
-        return `picker-${this.mode}`
+    created () {
+      this.normalizeData()
+
+      // dismissOnPageChange
+      if (this.dismissOnPageChange) {
+        this.unreg = urlChange(() => {
+          this.isActive && this.dismiss()
+        })
+      }
+    },
+    beforeMount () {
+      let pickerCmpElements = document.querySelectorAll('.ion-picker-cmp')
+      if (pickerCmpElements.length > 0) {
+        pickerCmpElements.forEach((ele) => {
+          ele.remove()
+          console.error('beforeMount find Picker opened!')
+        })
       }
     },
     methods: {
@@ -378,25 +390,6 @@
       refresh () {
         this.cols.forEach(column => {
           column.refresh()
-        })
-      }
-    },
-    created () {
-      this.normalizeData()
-
-      // dismissOnPageChange
-      if (this.dismissOnPageChange) {
-        this.unreg = urlChange(() => {
-          this.isActive && this.dismiss()
-        })
-      }
-    },
-    beforeMount () {
-      let pickerCmpElements = document.querySelectorAll('.ion-picker-cmp')
-      if (pickerCmpElements.length > 0) {
-        pickerCmpElements.forEach((ele) => {
-          ele.remove()
-          console.error('beforeMount find Picker opened!')
         })
       }
     }

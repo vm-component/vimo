@@ -38,41 +38,21 @@
    * @demo #/input-normal
    * */
   import { setElementClass } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
 
   export default {
     name: 'vm-label',
+    mixins: [ThemeMixins],
     data () {
       return {
         itemComponent: null // 父元素Item实例
       }
     },
     props: {
-      /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: String,
-
       // label格式
       fixed: Boolean,
       floating: Boolean,
       stacked: Boolean
-    },
-    computed: {
-      // 环境样式
-      modeClass () {
-        return `label-${this.mode}`
-      },
-      // 颜色
-      colorClass () {
-        return this.color ? (`label-${this.mode}-${this.color}`) : ''
-      }
     },
     mounted () {
       /**
@@ -81,11 +61,11 @@
        * floating:  当input为空的时候, label盖在input上面; 当input有值, 则浮动到上部
        * stacked: floating的特例, 不管有没有值, 都浮动到上部
        * */
-      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
+      if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
-        setElementClass(this.itemComponent.$el, 'item-label-fixed', this.fixed)
-        setElementClass(this.itemComponent.$el, 'item-label-floating', this.floating)
-        setElementClass(this.itemComponent.$el, 'item-label-stacked', this.stacked)
+        this.itemComponent.setElementClass('item-label-fixed', this.fixed)
+        this.itemComponent.setElementClass('item-label-floating', this.floating)
+        this.itemComponent.setElementClass('item-label-stacked', this.stacked)
       }
     }
   }

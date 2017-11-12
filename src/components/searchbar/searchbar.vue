@@ -19,7 +19,6 @@
                        role="button">
                 <vm-icon mode="md" name="md-arrow-back"></vm-icon>
             </vm-button>
-
             <!--input左边的search按钮-->
             <div ref="searchbarIcon" class="searchbar-search-icon"></div>
             <input ref="searchbarInput" class="searchbar-input" id="searchbarInput"
@@ -132,12 +131,18 @@
    *    </vm-page>
    * </template>
    * */
-  import Button from '../button/index'
-  import Icon from '../icon/index'
   import { isNumber, isBoolean } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
+  import VmButton from "../button/button.vue";
+  import VmIcon from "../icon/icon.vue";
 
   export default {
+    components: {
+      VmIcon,
+      VmButton
+    },
     name: 'vm-searchbar',
+    mixins: [ThemeMixins],
     data () {
       return {
         isCancelVisible: false,
@@ -160,17 +165,6 @@
       }
     },
     props: {
-      /**
-       * The predefined color to use. For example: "primary", "secondary", "danger".
-       * */
-      color: String,
-      /**
-       * The mode to apply to this component. Mode can be ios, wp, or md.
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
       /**
        * Set the the cancel button text. Default: "Cancel".
        * */
@@ -255,12 +249,21 @@
       spellcheckValue () {
         return this.spellcheck === '' || this.spellcheck === 'true' || this.spellcheck === true
       },
-      // class处理
-      modeClass () {
-        return this.mode ? `searchbar-${this.mode}` : ''
-      },
-      colorClass () {
-        return this.color ? `searchbar-${this.mode}-${this.color}` : ''
+    },
+    mounted () {
+      this.searchbarIconElement = this.$refs.searchbarIcon
+      this.searchbarInputElement = this.$refs.searchbarInput
+      this.cancelButtonElement = this.$refs.cancelButton.$el
+      this.positionElements()
+
+      if (isBoolean(this.autofocus) && this.autofocus) {
+        this.setFocus()
+      }
+
+      if (isNumber(this.autofocus) && this.autofocus > 0) {
+        window.setTimeout(() => {
+          this.setFocus()
+        }, this.autofocus)
       }
     },
     methods: {
@@ -480,25 +483,6 @@
           }
         }
       }
-    },
-    mounted () {
-      this.searchbarIconElement = this.$refs.searchbarIcon
-      this.searchbarInputElement = this.$refs.searchbarInput
-      this.cancelButtonElement = this.$refs.cancelButton.$el
-      this.positionElements()
-
-      if (isBoolean(this.autofocus) && this.autofocus) {
-        this.setFocus()
-      }
-
-      if (isNumber(this.autofocus) && this.autofocus > 0) {
-        window.setTimeout(() => {
-          this.setFocus()
-        }, this.autofocus)
-      }
-    },
-    components: {
-      'vm-button': Button, Icon
     }
   }
 </script>

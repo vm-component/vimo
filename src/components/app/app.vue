@@ -95,8 +95,9 @@
    * @demo #/app
    **/
 
+  import { isString, isPresent } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import ClickBlock from './click-block'
-  import { setElementClass, isString, isPresent } from '../../util/util'
 
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
@@ -105,6 +106,7 @@
   let scrollDisTimer = null                     // 计时器
   export default {
     name: 'vm-app',
+    mixins: [ThemeMixins],
     data () {
       return {
         disabledTimeRecord: 0,          // 禁用计时
@@ -116,12 +118,6 @@
         isEnabled: true,                // 可点击状态
 
         version: isPresent(window.VM) && window.VM.version
-      }
-    },
-    props: {
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
       }
     },
     computed: {
@@ -194,7 +190,7 @@
        */
       setClass (className, isAdd = false) {
         if (className) {
-          setElementClass(this.$el, className, isAdd)
+          this.setElementClass(className, isAdd)
         }
       },
 

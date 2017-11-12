@@ -26,7 +26,7 @@
   import Spinner from '../spinner/index'
 
   export default {
-    name: 'InfiniteScrollContent',
+    name: 'vm-infinite-scroll-sontent',
     props: {
       // loading的旋转图标
       loadingSpinner: {

@@ -11,7 +11,6 @@
         <div v-if="nextButton" :class="nextButtonClass"></div>
         <!-- Add Scrollbar -->
         <div v-if="scrollbar" :class="scrollbarClass"></div>
-
     </div>
 </template>
 <style lang="scss">
@@ -42,8 +41,6 @@
             }
         }
     }
-
-
 </style>
 <script type="text/javascript">
   /**

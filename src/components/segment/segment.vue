@@ -72,24 +72,15 @@
    * </vm-header>
    *
    * */
+  import ThemeMixins from '../../themes/theme.mixins'
   export default{
     name: 'vm-segment',
+    mixins: [ThemeMixins],
     props: {
       /**
        * 接收value信息
        * */
       value: [String, Number],
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: [String],
-      /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
       disabled: [Boolean]
     },
     data () {
@@ -104,16 +95,6 @@
       value (value) {
         // 更新子组件状态
         this.refreshChildState(value)
-      }
-    },
-    computed: {
-      // 环境样式
-      modeClass () {
-        return `segment-${this.mode}`
-      },
-      // 颜色
-      colorClass () {
-        return this.color ? (`segment-${this.mode}-${this.color}`) : ''
       }
     },
     methods: {

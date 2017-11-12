@@ -24,10 +24,14 @@
    * @see component:Fab
    * @demo #/fab
    * */
-  import Icon from '../icon/index'
   import { setElementClass } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
+  import VmIcon from '../icon/icon.vue'
+
   export default{
     name: 'vm-fab-button',
+    mixins: [ThemeMixins],
+    components: {VmIcon},
     data () {
       return {
         isMainButton: false
@@ -35,20 +39,6 @@
     },
     props: {
       mini: Boolean,
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') }
-      },
-      color: String
-    },
-    watch: {},
-    computed: {
-      modeClass () {
-        return `fab fab-${this.mode}`
-      },
-      colorClass () {
-        return this.color && `fab-${this.mode}-${this.color}`
-      }
     },
     methods: {
       /**
@@ -75,7 +65,6 @@
       setActiveClose (closeVisible) {
         this.setElementClass('fab-close-active', closeVisible)
       }
-    },
-    components: {Icon}
+    }
   }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="spinner" :class=[colorClass,nameClass,pausedClass]>
+    <div class="ion-spinner" :class=[colorClass,nameClass,pausedClass]>
         <svg v-if="circles && circles.length>0" viewBox="0 0 64 64" v-for="i in circles" :style="i.style">
             <circle :r="i.r" transform="translate(32,32)"></circle>
         </svg>
@@ -59,19 +59,12 @@
    * <vm-spinner duration="3000" name="dots"></vm-spinner>
    * <vm-spinner :paused="true" name="ios"></vm-spinner>
    * */
+  import ThemeMixins from '../../themes/theme.mixins'
 
   export default{
     name: 'vm-spinner',
+    mixins: [ThemeMixins],
     props: {
-      // 按钮color：primary、secondary、danger、light、dark
-      color: [String],
-
-      // mode 按钮平台 ios/window/android
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
-
       // name 风格
       // ios/ios-small/bubbles/circles/crescent/dots
       name: String,
@@ -102,14 +95,6 @@
       }
     },
     computed: {
-      // primary、secondary、danger、light、dark
-      colorClass () {
-        return this.color ? `spinner-${this.mode}-${this.color}` : null
-      },
-      // 设置Alert的风格
-      modeClass () {
-        return this.mode ? `spinner-${this.mode}` : null
-      },
       pausedClass () {
         return this.paused ? 'spinner-paused' : null
       }

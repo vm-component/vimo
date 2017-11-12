@@ -46,7 +46,7 @@
       }
     },
     mounted () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-scroll-segment') {
+      if (this.$parent.$options.name.toLowerCase() === 'vm-scroll-segment') {
         this.scrollSegmentComponent = this.$parent
         this.scrollSegmentComponent.record(this)
         this.activeClass = this.scrollSegmentComponent.activeClass

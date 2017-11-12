@@ -12,13 +12,13 @@
         </div>
         <div class="picker-opts" ref="colEle"
              :style="{'maxWidth':col.optionsWidth}">
-            <vm-button v-for="(o,index) in col.options" :key="index"
+            <button v-for="(o,index) in col.options" :key="index"
                     :class="{'picker-opt-disabled':o.disabled}"
                     class="picker-opt"
                     disable-activated
                     @click="optClick($event, index)">
                 {{o.text}}
-            </vm-button>
+            </button>
         </div>
         <!--suffix-->
         <div v-if="col.suffix" class="picker-suffix" :style="{'width':col.suffixWidth}">{{col.suffix}}</div>
@@ -27,14 +27,12 @@
 <script type="text/javascript">
   import { pointerCoord, clamp, parsePxUnit } from '../../util/util'
   import css from '../../util/getCss'
-  import VmButton from "../button/button.vue";
 
   const PICKER_OPT_SELECTED = 'picker-opt-selected'
   const DECELERATION_FRICTION = 0.97
   const FRAME_MS = (1000 / 60)
   const MAX_PICKER_SPEED = 60
   export default {
-    components: {VmButton},
     name: 'vm-picker-col',
     data () {
       return {

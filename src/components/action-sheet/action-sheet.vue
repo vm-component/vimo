@@ -13,7 +13,7 @@
                     <!--group normal-->
                     <div class="action-sheet-group">
                         <div class="action-sheet-title" v-if="title">
-                            <span>{{title}}</span>
+                            {{title}}
                             <div class="action-sheet-sub-title" v-if="subTitle">{{subTitle}}</div>
                         </div>
                         <div class="action-sheet-buttons">
@@ -42,6 +42,7 @@
 </template>
 <script type="text/javascript">
   import {urlChange, focusOutActiveElement} from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import VmBackdrop from "../backdrop/backdrop.vue";
   import VmButton from "../button/button.vue";
   import VmIcon from "../icon/icon.vue";
@@ -50,7 +51,8 @@
   }
 
   export default {
-    name: 'ActionSheet',
+    name: 'vm-action-sheet',
+    mixins: [ThemeMixins],
     components: {
       VmIcon,
       VmBackdrop,
@@ -67,12 +69,6 @@
       enableBackdropDismiss: {
         type: Boolean,
         default: true
-      },
-      mode: {
-        type: String,
-        default() {
-          return this.$config && this.$config.get('mode', 'ios') || 'ios'
-        }
       },
       dismissOnPageChange: {
         type: Boolean,
@@ -92,11 +88,6 @@
         dismissCallback: NOOP,
 
         unReg: null         // 页面变化的解绑函数
-      }
-    },
-    computed: {
-      modeClass() {
-        return `action-sheet-${this.mode}`
       }
     },
     created() {

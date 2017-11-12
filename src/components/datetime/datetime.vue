@@ -85,8 +85,9 @@
    * @fires component:Datetime#onChange
    * */
   import { isBlank, isPresent, isTrueProperty, isArray, isString, setElementClass } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import Picker from '../picker/index'
-  import Button from '../button/index'
+  import VmButton from '../button/button.vue'
   import {
     dateValueRange,
     renderDateTime,
@@ -106,6 +107,8 @@
   // const DEFAULT_FORMAT = 'YYYY/MM/DD'
   export default {
     name: 'vm-datetime',
+    mixins: [ThemeMixins],
+    components: {VmButton},
     data () {
       return {
         itemComponent: null, // 父组件Item实例
@@ -150,11 +153,6 @@
         type: Object,
         default () { return {} }
       },
-
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      }
     },
     watch: {
       disabled (val) {
@@ -509,7 +507,7 @@
       this.theValue = parseDate(this.value)
     },
     mounted () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
+      if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
       }
       console.assert(this.itemComponent, 'The component of Datetime must in Item component.')
@@ -526,8 +524,7 @@
       // update how the datetime value is displayed as formatted text
       this.updateText()
       this.checkHasValue(this.theValue)
-    },
-    components: {'vm-button': Button}
+    }
   }
 
   /**

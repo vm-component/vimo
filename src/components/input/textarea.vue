@@ -73,10 +73,12 @@
    * <vm-textarea @onBlur="blur($event)" @onFocus="focus($event)" @onInput="onInput($event)" placeholder="Enter a description"></vm-textarea>
    * */
   import { hasFocus, setElementClass, isPresent, isNumber } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import Autosize from 'autosize'
 
   export default {
     name: 'vm-textarea',
+    mixins: [ThemeMixins],
     data () {
       return {
         max: this.maxlength,
@@ -114,14 +116,6 @@
        * */
       autofocus: Boolean,
 
-      /**
-       * 当前平台
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      },
-
       placeholder: String,
 
       /**
@@ -155,9 +149,6 @@
       }
     },
     computed: {
-      modeClass () {
-        return `input-${this.mode}`
-      },
       textInputClass () {
         return `text-input-${this.mode}`
       },
@@ -338,7 +329,7 @@
       }
 
       // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
+      if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-textarea', true)
         setElementClass(this.itemComponent.$el, 'item-input', true)

@@ -116,13 +116,15 @@
    * <vm-input placeholder="请输入至少4位" type="securityCode" check clearInput></vm-input>
    * <vm-input placeholder="XX-XX-XXX格式" type="text" check :regex=/\d{2}-\d{2}-\d{3}/ clearInput></vm-input>
    * */
-  import { hasFocus, setElementClass, isObject, isBlank, isPresent, isFunction, isRegexp } from '../../util/util'
+  import { hasFocus, isObject, isBlank, isPresent, isFunction, isRegexp } from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import REGEXP from '../../util/regexp'
   import VmButton from "../button/button.vue";
 
   export default {
-    components: {VmButton},
     name: 'vm-input',
+    mixins: [ThemeMixins],
+    components: {VmButton},
     props: {
       /**
        * focus时, 下划线是否高亮
@@ -185,14 +187,6 @@
        * 设置数字变化的阶梯值, 只对type=number有效
        * */
       step: Number,
-
-      /**
-       * 当前平台
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      },
 
       placeholder: String,
 
@@ -258,9 +252,6 @@
       }
     },
     computed: {
-      modeClass () {
-        return `input-${this.mode}`
-      },
       textInputClass () {
         return `text-input text-input-${this.mode}`
       },
@@ -362,8 +353,8 @@
            * @property {string} type - 当前检查的value的类型
            */
           this.$emit('onValid', this.inputValue, this.type)
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', true)
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', false)
+          this.itemComponent && this.itemComponent.setElementClass('ng-valid', true)
+          this.itemComponent && this.itemComponent.setElementClass('ng-invalid', false)
         } else {
           /**
            * @event  component:Input#onInvalid
@@ -372,8 +363,8 @@
            * @property {string} type - 当前检查的value的类型
            */
           this.$emit('onInvalid', this.inputValue, this.type)
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', false)
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', true)
+          this.itemComponent && this.itemComponent.setElementClass('ng-valid', false)
+          this.itemComponent && this.itemComponent.setElementClass('ng-invalid', true)
         }
       },
 
@@ -478,7 +469,7 @@
          * @description focus事件
          */
         this.$emit('onFocus')
-        this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-touched', true)
+        this.itemComponent && this.itemComponent.setElementClass('ng-touched', true)
       },
 
       /**
@@ -548,9 +539,9 @@
        */
       setItemHasFocusClass (isFocus) {
         if (this.itemComponent) {
-          setElementClass(this.itemComponent.$el, 'input-has-focus', isFocus)
+          this.itemComponent.setElementClass('input-has-focus', isFocus)
         }
-        setElementClass(this.$el, 'input-has-focus', isFocus)
+        this.setElementClass('input-has-focus', isFocus)
       },
 
       /**
@@ -559,9 +550,9 @@
        */
       setItemHasValueClass () {
         if (this.itemComponent) {
-          setElementClass(this.itemComponent.$el, 'input-has-value', this.hasValue)
+          this.itemComponent.setElementClass('input-has-value', this.hasValue)
         }
-        setElementClass(this.$el, 'input-has-value', this.hasValue)
+        this.setElementClass('input-has-value', this.hasValue)
       }
     },
     created () {
@@ -580,12 +571,12 @@
     },
     mounted () {
       // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-item') {
+      if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
-        setElementClass(this.itemComponent.$el, 'item-input', true)
-        setElementClass(this.itemComponent.$el, 'show-focus-highlight', this.showFocusHighlight)
-        setElementClass(this.itemComponent.$el, 'show-valid-highlight', this.showValidHighlight)
-        setElementClass(this.itemComponent.$el, 'show-invalid-highlight', this.showInvalidHighlight)
+        this.itemComponent.setElementClass('item-input', true)
+        this.itemComponent.setElementClass('show-focus-highlight', this.showFocusHighlight)
+        this.itemComponent.setElementClass('show-valid-highlight', this.showValidHighlight)
+        this.itemComponent.setElementClass('show-invalid-highlight', this.showInvalidHighlight)
       }
 
       // 初始化时,判断是否有value

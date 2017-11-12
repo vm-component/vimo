@@ -88,20 +88,6 @@
         height: null                // 未展开的内容高度
       }
     },
-    props: {
-      title: String,
-      /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       * */
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: String
-    },
     computed: {
       itemCollapseInnerElement () {
         return this.$refs.itemCollapseInner
@@ -111,9 +97,6 @@
       },
       itemClass () {
         return `item-${this.mode}`
-      },
-      colorClass () {
-        return this.color ? (`item-${this.mode}-${this.color}`) : ''
       }
     },
     methods: {
@@ -156,7 +139,7 @@
       }
     },
     created () {
-      if (parentNodeIs(this, 'ItemCollapseGroup')) {
+      if (this.$parent && this.$parent.$options.name.toLowerCase() === 'vm-item-collapse-group') {
         this.itemGroupComponent = this.$parent
         this.itemGroupComponent.recordItemCollapse(this)
       }
@@ -165,11 +148,20 @@
       this.height = getSize(this.itemCollapseInnerElement).height
       this.isInit = true
 
-      addItemAttr(this.$slots)
-    }
+      // 为slot="item-start"/slot="item-end"的沟槽设定属性
+      if (this.$slots['item-start']) {
+        this.$slots['item-start'].forEach(function (item) {
+          item.elm.setAttribute('item-start', '')
+        })
+      }
+      if (this.$slots['item-end']) {
+        this.$slots['item-end'].forEach(function (item) {
+          item.elm.setAttribute('item-end', '')
+        })
+      }    }
   }
 
   function parentNodeIs (node, name = '') {
-    return node && node.$parent && node.$parent.$options._componentTag.toLowerCase() === name.toLowerCase()
+    return node && this.$parent && this.$parent.$options.name.toLowerCase() === name.toLowerCase()
   }
 </script>

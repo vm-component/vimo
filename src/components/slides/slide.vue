@@ -26,7 +26,7 @@
       }
     },
     created () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'vm-slides') {
+      if (this.$parent.$options.name.toLowerCase() === 'vm-slides') {
         this.slidesComponent = this.$parent
         this.zoom = this.slidesComponent.zoom
         this.slidesComponent.initSlides()

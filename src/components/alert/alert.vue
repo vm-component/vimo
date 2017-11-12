@@ -78,6 +78,7 @@
 </style>
 <script type="text/javascript">
   import {urlChange} from '../../util/util'
+  import ThemeMixins from '../../themes/theme.mixins'
   import VmBackdrop from "../backdrop/backdrop.vue";
   import VmButton from "../button/button.vue";
 
@@ -85,7 +86,8 @@
   }
 
   export default {
-    name: 'Alert',
+    name: 'vm-alert',
+    mixins: [ThemeMixins],
     components: {
       VmButton,
       VmBackdrop
@@ -121,12 +123,6 @@
           return true
         }
       },
-      mode: {
-        type: String,
-        default() {
-          return this.$config && this.$config.get('mode', 'ios') || 'ios'
-        }
-      },
       dismissOnPageChange: {
         type: Boolean,
         default() {
@@ -153,10 +149,6 @@
       }
     },
     computed: {
-      // 设置Alert的风格
-      modeClass() {
-        return `alert-${this.mode}`
-      },
       buttonsForDisplay() {
         // 如果是string则转化为对象
         return this.buttons.map(button => {

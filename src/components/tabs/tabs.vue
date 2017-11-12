@@ -94,15 +94,12 @@
    * */
   import { parsePxUnit, firstUpperCase, setElementClass } from '../../util/util'
   import css from '../../util/getCss'
+  import ThemeMixins from '../../themes/theme.mixins'
 
   export default {
     name: 'vm-tabs',
+    mixins: [ThemeMixins],
     props: {
-      color: [String],
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode') || 'ios' }
-      },
       // tab下面是否显示选中bar
       tabsHighlight: {
         type: Boolean,
@@ -144,14 +141,6 @@
       }
     },
     computed: {
-      // 环境样式
-      modeClass () {
-        return `tabs-${this.mode}`
-      },
-      // 颜色
-      colorClass () {
-        return this.color ? (`tabs-${this.mode}-${this.color}`) : ''
-      },
       // tabbar元素
       tabbarElement () {
         return this.$refs.tabbar
@@ -347,7 +336,7 @@
       }
     },
     mounted () {
-      console.assert(this.$parent.$options._componentTag.toLowerCase() === 'vm-page', 'Tabs component must place in Page Component')
+      console.assert(this.$parent.$options.name.toLowerCase() === 'vm-page', 'Tabs component must place in Page Component')
       // 初始化
       this.initTabs()
     }

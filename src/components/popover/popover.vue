@@ -141,6 +141,7 @@
   import Vue from 'vue'
   import { urlChange, parsePxUnit } from '../../util/util'
   import css from '../../util/getCss'
+  import ThemeMixins from '../../themes/theme.mixins'
   import VmBackdrop from "../backdrop/backdrop.vue";
 
   const POPOVER_IOS_BODY_PADDING = 2
@@ -148,27 +149,14 @@
   const NOOP = () => {}
 
   export default {
-    components: {VmBackdrop},
     name: 'vm-popover',
-    data () {
-      return {
-        presentCallback: NOOP,  // 开启的promise
-        dismissCallback: NOOP,  // 关闭的promise
-        unreg: null,            // 页面切换的pagechange监听函数
-
-        isActive: false,        // 内部控制是否开启
-        enabled: false          // 内部判断当前组件是否在动画中
-      }
-    },
+    mixins: [ThemeMixins],
+    components: {VmBackdrop},
     props: {
       component: [Object, String, Function, Promise],
       onDismiss: Function,
       data: [Object],
       ev: [Object, MouseEvent], // 点击元素的事件
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      },
       cssClass: String,
       showBackdrop: {
         type: Boolean,
@@ -183,13 +171,17 @@
         default: true
       }
     },
+    data () {
+      return {
+        presentCallback: NOOP,  // 开启的promise
+        dismissCallback: NOOP,  // 关闭的promise
+        unreg: null,            // 页面切换的pagechange监听函数
+
+        isActive: false,        // 内部控制是否开启
+        enabled: false          // 内部判断当前组件是否在动画中
+      }
+    },
     computed: {
-      modeClass () {
-        return `popover popover-${this.mode}`
-      },
-      colorClass () {
-        return this.color && `popover-${this.mode}-${this.color}`
-      },
       popoverTransitionName () {
         return `popover-${this.mode}`
       },

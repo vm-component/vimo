@@ -55,19 +55,16 @@
 </style>
 <script type="text/javascript">
   import Vue from 'vue'
+  import ThemeMixins from '../../themes/theme.mixins'
   import VmBackdrop from "../backdrop/backdrop.vue";
 
   const NOOP = () => {}
 
   export default {
-    components: {VmBackdrop},
     name: 'vm-modal',
+    mixins: [ThemeMixins],
+    components: {VmBackdrop},
     props: {
-      mode: {
-        type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      },
-
       // 放入的页面组件
       component: [Object, String, Function, Promise],
       // 传递给页面的数据

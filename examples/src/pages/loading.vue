@@ -20,25 +20,39 @@
             <vm-button block @click="dismissWhenChangeUrl()">页面切换关闭loading</vm-button>
 
             <p>类型有: ios/ios-small/bubbles/circles/crescent/dots</p>
-            <vm-button block @click="showIos()">显示 ios</vm-button>
-            <vm-button block @click="showIosSmall()">显示 ios-small</vm-button>
-            <vm-button block @click="showBubbles()">显示 Bubbles</vm-button>
-            <vm-button block @click="showCircles()">显示 circles</vm-button>
-            <vm-button block @click="showCrescent()">显示 crescent</vm-button>
-            <vm-button block @click="showDots()">显示 dots</vm-button>
+            <vm-list>
+                <vm-item button @click.native="showIos()">
+                    <vm-spinner slot="item-start" name="ios"></vm-spinner>
+                    Show iOS
+                </vm-item>
+                <vm-item button @click.native="showIosSmall()">
+                    <vm-spinner slot="item-start" name="ios-small"></vm-spinner>
+                    Show iOS Small
+                </vm-item>
+                <vm-item button @click.native="showDots()">
+                    <vm-spinner slot="item-start" name="dots"></vm-spinner>
+                    Show Dots
+                </vm-item>
+                <vm-item button @click.native="showBubbles()">
+                    <vm-spinner slot="item-start" name="bubbles"></vm-spinner>
+                    Show Bubbles
+                </vm-item>
+                <vm-item button @click.native="showCircles()">
+                    <vm-spinner slot="item-start" name="circles"></vm-spinner>
+                    Show Circles
+                </vm-item>
+                <vm-item button @click.native="showCrescent()">
+                    <vm-spinner slot="item-start" name="crescent"></vm-spinner>
+                    Show Crescent
+                </vm-item>
+            </vm-list>
 
-            <p>不显示Backdrop</p>
-            <vm-button block @click="showNoBackDrop()">不显示Backdrop</vm-button>
-
-
-            <p>在一个loading中定时打开另一个</p>
-            <vm-button block @click="showOther()">连续开启</vm-button>
-
-            <p>没有旋转样式(NoSpinner)</p>
-            <vm-button block @click="showNoSpinner()">showNoSpinner</vm-button>
-
-            <p>自定义内容</p>
-            <vm-button block @click="showCusContent()">showCusContent</vm-button>
+            <vm-list title="Custom Loading Indicators">
+                <vm-item button @click.native="showNoBackDrop()">不显示Backdrop</vm-item>
+                <vm-item button @click.native="showOther()">连续开启</vm-item>
+                <vm-item button @click.native="showCusContent()">showNoSpinner</vm-item>
+                <vm-item button @click.native="showCusContent()">showCusContent</vm-item>
+            </vm-list>
 
         </vm-content>
     </vm-page>
@@ -49,7 +63,6 @@
     }
 </style>
 <script type="text/javascript">
-
   export default {
     data () {
       return {}
