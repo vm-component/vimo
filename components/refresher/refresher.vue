@@ -134,7 +134,6 @@
         progress: null, // 表示对当前进度. 0:原始状态,为下拉; >1: 刷新开始
 
         // -------- private --------
-        contentComponent: null, // Content组件的this
         appliedStyles: false,
         didStart: false,
         lastCheck: 0,
@@ -171,11 +170,12 @@
     },
     watch: {
       enabled (val) {
-        this.setListeners(val)
+        this.$_setListeners(val)
       }
     },
+    // Content组件的实例注入
+    inject: ['contentComponent'],
     methods: {
-      // -------- public --------
       /**
        * @function complete
        * @description
@@ -183,7 +183,7 @@
        * 状态由`refreshing` -> `completing`.
        */
       complete () {
-        this.closeRefresher(STATE_COMPLETING, '120ms')
+        this.$_closeRefresher(STATE_COMPLETING, '120ms')
         // 重新计算尺寸, 必须
         this.contentComponent.resize()
       },
@@ -194,31 +194,15 @@
        * 取消 refresher, 其状态由`refreshing` -> `cancelling`
        */
       cancel () {
-        this.closeRefresher(STATE_CANCELLING, '')
-      },
-
-      // -------- private --------
-      init () {
-        let _pageComponentChildrenList = this.$vnode.context.$children[0].$children || []
-        _pageComponentChildrenList.forEach((component) => {
-          if (component.$options._componentTag.toLowerCase() === 'content') {
-            this.contentComponent = component
-          }
-        })
-        console.assert(this.contentComponent, 'Refresher组件必须要在Content组件下使用')
-
-        setElementClass(this.contentComponent.$el, 'has-refresher', true)
-
-        this.setListeners(this.enabled)
+        this.$_closeRefresher(STATE_CANCELLING, '')
       },
 
       /**
        * @param {Boolean} shouldListen -
        * */
-      setListeners (shouldListen) {
+      $_setListeners (shouldListen) {
         // 如果解绑函数存在则全部解绑
         if (this.unregs && this.unregs.length > 0) {
-//          console.debug('refresher.vue 解除绑定')
           this.unregs.forEach((_unreg) => {
             _unreg && _unreg()
           })
@@ -228,17 +212,17 @@
         // 等待Content完毕
         this.$nextTick(() => {
           if (shouldListen) {
-            let contentElement = this.contentComponent.getScrollElement()
-            console.assert(contentElement, 'Refresh Component need Content Ready!::<Component>setListeners()')
+            let contentElement = this.contentComponent.$_getScrollElement()
+            console.assert(contentElement, 'Refresh Component need Content Ready!::<Component>$_setListeners()')
             // TODO: 对于点击事件应该同统一封装一层
-            registerListener(contentElement, 'touchstart', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs)
-            registerListener(contentElement, 'mousedown', this.pointerDownHandler.bind(this), {'passive': false}, this.unregs)
+            registerListener(contentElement, 'touchstart', this.$_pointerDownHandler.bind(this), {'passive': false}, this.unregs)
+            registerListener(contentElement, 'mousedown', this.$_pointerDownHandler.bind(this), {'passive': false}, this.unregs)
 
-            registerListener(contentElement, 'touchmove', this.pointerMoveHandler.bind(this), {'passive': false}, this.unregs)
-            registerListener(contentElement, 'mousemove', this.pointerMoveHandler.bind(this), {'passive': false}, this.unregs)
+            registerListener(contentElement, 'touchmove', this.$_pointerMoveHandler.bind(this), {'passive': false}, this.unregs)
+            registerListener(contentElement, 'mousemove', this.$_pointerMoveHandler.bind(this), {'passive': false}, this.unregs)
 
-            registerListener(contentElement, 'touchend', this.pointerUpHandler.bind(this), {'passive': false}, this.unregs)
-            registerListener(contentElement, 'mouseup', this.pointerUpHandler.bind(this), {'passive': false}, this.unregs)
+            registerListener(contentElement, 'touchend', this.$_pointerUpHandler.bind(this), {'passive': false}, this.unregs)
+            registerListener(contentElement, 'mouseup', this.$_pointerUpHandler.bind(this), {'passive': false}, this.unregs)
           }
         })
       },
@@ -246,7 +230,7 @@
       /**
        * @param {TouchEvent} ev - 点击事件
        * */
-      pointerDownHandler (ev) {
+      $_pointerDownHandler (ev) {
         // 如果多点触摸, 则直接返回
         if (ev.touches && ev.touches.length > 1) {
           return false
@@ -255,19 +239,18 @@
           return false
         }
 
-        let contentDimensions = this.contentComponent.getContentDimensions()
-        let scrollHostScrollTop = contentDimensions.scrollTop
+        let scrollHostScrollTop = this.contentComponent.scrollView.getTop()
         // 如果当前的scrollTop大于0, 意味着页面在别的位置, 不是停在顶部, 不是在refresher状态, 直接退出
         if (scrollHostScrollTop > 0) {
           return false
         }
 
         let coord = pointerCoord(ev)
-//        console.debug('Pull-to-refresh, onStart', ev.type, 'y:', coord.y)
 
         // refresher定位
-        if (contentDimensions.contentTop > 0) {
-          let newTop = contentDimensions.contentTop + 'px'
+        let contentTop = this.contentComponent.headerBarHeight
+        if (contentTop > 0) {
+          let newTop = contentTop + 'px'
           if (this.top !== newTop) {
             this.top = newTop
           }
@@ -283,7 +266,7 @@
       /**
        * @param {TouchEvent} ev - 点击事件
        * */
-      pointerMoveHandler (ev) {
+      $_pointerMoveHandler (ev) {
         // 滑动部分的处理函数在滑动过程中会执行很多次, 因此会有节流的处理,
         // 另外DOM的操作除非必要, 否则不进行
         // 多点触摸则直接返回
@@ -324,7 +307,7 @@
 
           if (this.appliedStyles) {
             // reset the styles only if they were applied
-            this.setCss(0, '', false, '') // y/duration/overflow/delay
+            this.$_setCss(0, '', false, '') // y/duration/overflow/delay
             return 5
           }
 
@@ -333,7 +316,7 @@
 
         // 正式进入 refresher
         if (this.state === STATE_INACTIVE) {
-          let scrollHostScrollTop = this.contentComponent.getContentDimensions().scrollTop
+          let scrollHostScrollTop = this.contentComponent.scrollView.ev.scrollTop
           if (scrollHostScrollTop > 0) {
             this.progress = 0
             this.startY = null
@@ -353,13 +336,12 @@
         ev.preventDefault()
 
         // 进入 pulling 状态, 开始移动scroll element
-        this.setCss((this.deltaY * this.damp), '0ms', true, '')
+        this.$_setCss((this.deltaY * this.damp), '0ms', true, '')
 
         // 进行滚动吧
-        this.goScroll()
+        this.$_goScroll()
       },
-
-      goScroll () {
+      $_goScroll () {
         // set pull progress
         this.progress = (this.deltaY * this.damp / this.pullMin)
 
@@ -391,7 +373,7 @@
 
         if (this.deltaY * this.damp > this.pullMax) {
           // they pulled farther than the max, so kick off the refresh
-          this.beginRefresh()
+          this.$_beginRefresh()
           return 3
         }
 
@@ -400,9 +382,9 @@
 
         return 4
       },
-      pointerUpHandler () {
+      $_pointerUpHandler () {
         if (this.state === STATE_READY) {
-          this.beginRefresh()
+          this.$_beginRefresh()
         } else if (this.state === STATE_PULLING) {
           // 返回原点
           this.cancel()
@@ -410,11 +392,11 @@
         // reset
         this.startY = null
       },
-      beginRefresh () {
+      $_beginRefresh () {
         this.state = STATE_REFRESHING
 
         // 将content放置在开口处
-        this.setCss(this.pullMin, (this.snapbackDuration + 'ms'), true, '')
+        this.$_setCss(this.pullMin, (this.snapbackDuration + 'ms'), true, '')
 
         // 发送事件 onRefresh
         /**
@@ -428,7 +410,7 @@
        * @param {string} state
        * @param {string} delay
        * */
-      closeRefresher (state, delay) {
+      $_closeRefresher (state, delay) {
         var timer // number
 
         function close (ev) {
@@ -440,19 +422,19 @@
           this.state = STATE_INACTIVE
           this.progress = 0
           this.didStart = this.startY = this.currentY = this.deltaY = null
-          this.setCss(0, '0ms', false, '')
+          this.$_setCss(0, '0ms', false, '')
         }
 
         // create fallback timer incase something goes wrong with transitionEnd event
         timer = window.setTimeout(close.bind(this), 600)
 
         // create transition end event on the content's scroll element
-        this.contentComponent.onScrollElementTransitionEnd(close.bind(this))
+        this.contentComponent.$_onScrollElementTransitionEnd(close.bind(this))
 
         // reset set the styles on the scroll element
         // set that the refresh is actively cancelling/completing
         this.state = state
-        this.setCss(0, '', true, delay)
+        this.$_setCss(0, '', true, delay)
       },
 
       /**
@@ -461,21 +443,18 @@
        * @param {Boolean} overflowVisible -
        * @param {String} delay -
        **/
-      setCss (y, duration, overflowVisible, delay) {
+      $_setCss (y, duration, overflowVisible, delay) {
         this.appliedStyles = (y > 0)
         const Css = this.$platform.css
-        console.assert(Css, '无法获取platform中的css样式定义,refresher/refresher.vue::<Function>setCss()')
-        this.contentComponent.setScrollElementStyle(Css.transform, ((y > 0) ? 'translateY(' + y + 'px) translateZ(0px)' : 'translateZ(0px)'))
-        this.contentComponent.setScrollElementStyle(Css.transitionDuration, duration)
-        this.contentComponent.setScrollElementStyle(Css.transitionDelay, delay)
-        this.contentComponent.setScrollElementStyle('overflow', (overflowVisible ? 'hidden' : ''))
+        this.contentComponent.$_setScrollElementStyle(Css.transform, ((y > 0) ? 'translateY(' + y + 'px) translateZ(0px)' : 'translateZ(0px)'))
+        this.contentComponent.$_setScrollElementStyle(Css.transitionDuration, duration)
+        this.contentComponent.$_setScrollElementStyle(Css.transitionDelay, delay)
+        this.contentComponent.$_setScrollElementStyle('overflow', (overflowVisible ? 'hidden' : ''))
       }
     },
     mounted () {
-      console.assert(this.$platform, `Refersher组件需要在Platform模块中使用`)
-      console.assert(this.$platform, `Refersher组件需要在Content组件中使用`)
-      // 需要等待父元素mounted, 故这里初始化需要延迟
-      this.$nextTick(() => { this.init() })
+      setElementClass(this.contentComponent.$el, 'has-refresher', true)
+      this.$_setListeners(this.enabled)
     }
   }
 </script>
