@@ -4,12 +4,11 @@
     </div>
 </template>
 <style lang="less">
-    @import "badge";
-    @import "badge.ios.less";
-    @import "badge.md.less";
+    @import "./badge.less";
+    @import "./badge.ios.less";
+    @import "./badge.md.less";
 </style>
 <script type="text/javascript">
-
   /**
    * @component Badge
    * @description
