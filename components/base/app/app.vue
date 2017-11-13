@@ -1,6 +1,6 @@
 <template>
     <article class="ion-app" :version="version"
-             :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
+             :class="[modeClass,platformClass,hoverClass]">
         <!--app-root start-->
         <section class="app-root">
             <slot></slot>
@@ -174,16 +174,23 @@
        * @param {Boolean} isScrollDisabled - 是否禁止滚动点击 true:禁止滚动/false:可以滚动
        * @param {number} duration - 时间过后则自动解锁
        * @example
+       * this.$app && this.$app.setDisableScroll(true) -> 页面不可滚动
        * this.$app && this.$app.setDisableScroll(true, 400) -> 400ms内页面不可滚动, 400ms过后可正常使用
        * this.$app && this.$app.setDisableScroll(false) ->立即解除锁定
        * */
       setDisableScroll (isScrollDisabled, duration = 0) {
-        if (duration > 0 && isScrollDisabled) {
-          this.isScrollDisabled = isScrollDisabled
-          window.clearTimeout(scrollDisTimer)
-          scrollDisTimer = window.setTimeout(() => {
-            this.isScrollDisabled = false
-          }, duration)
+        if (isScrollDisabled) {
+          // duration ms内页面不可滚动, duration ms过后可正常使用
+          this.$_disableScroll()
+          if (duration > 0) {
+            window.clearTimeout(scrollDisTimer)
+            scrollDisTimer = window.setTimeout(() => {
+              this.$_enableScroll()
+            }, duration)
+          }
+        } else {
+          // 立即解除锁定
+          this.$_enableScroll()
         }
       },
 
@@ -218,6 +225,53 @@
             document.title = _title.title || ''
           }
         }, 16 * 5)
+      },
+
+      /**
+       * @private
+       * */
+      $_enableScroll () {
+        this.isScrollDisabled = false
+        if (window.removeEventListener) {
+          window.removeEventListener('DOMMouseScroll', this.$_preventDefault, false)
+          window.removeEventListener('touchmove', this.$_preventDefault, false)
+        }
+        window.onmousewheel = document.onmousewheel = document.onkeydown = null
+      },
+      /**
+       * @private
+       * */
+      $_disableScroll () {
+        this.isScrollDisabled = true
+        if (window.addEventListener) {
+          window.addEventListener('DOMMouseScroll', this.$_preventDefault, false)
+          window.addEventListener('touchmove', this.$_preventDefault, false)
+        }
+        window.onmousewheel = document.onmousewheel = this.$_preventDefault
+        document.onkeydown = this.$_keydown
+      },
+      /**
+       * @private
+       * */
+      $_preventDefault (e) {
+        e = e || window.event
+        if (e.preventDefault)
+          e.preventDefault()
+        e.returnValue = false
+      },
+      /**
+       * @private
+       * */
+      $_keydown (e) {
+        // left: 37, up: 38, right: 39, down: 40,
+        // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+        var keys = [37, 38, 39, 40]
+        for (var i = keys.length; i--;) {
+          if (e.keyCode === keys[i]) {
+            this.$_preventDefault(e)
+            return
+          }
+        }
       }
     },
     created () {
