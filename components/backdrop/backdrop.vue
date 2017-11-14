@@ -1,6 +1,6 @@
 <template>
     <transition
-            name="backdrop"
+            name="fade"
             @before-enter="beforeEnter"
             @after-leave="afterLeave">
         <div class="ion-backdrop"
@@ -13,6 +13,7 @@
 </template>
 <style lang="less">
     @import "./backdrop.less";
+    @import "../themes/transition/fade.less";
 </style>
 <script type="text/javascript">
   /**
