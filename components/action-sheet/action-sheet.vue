@@ -176,16 +176,8 @@
   }
 </script>
 <style lang="less">
-    @import "action-sheet";
-    @import "action-sheet.ios.less";
-    @import "action-sheet.md.less";
-
-    // transitioName = 'action-sheet'
-    .action-sheet-enter-active, .action-sheet-leave-active {
-        transform: translateY(0%);
-    }
-
-    .action-sheet-enter, .action-sheet-leave-active {
-        transform: translateY(100%);
-    }
+    @import "./action-sheet.less";
+    @import "./action-sheet.ios.less";
+    @import "./action-sheet.md.less";
+    @import "../themes/transition/action-sheet.less";
 </style>
