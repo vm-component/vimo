@@ -46,6 +46,9 @@ export default {
     getNativeElement() {
       return this.$el;
     },
+    hasElementClass(classname) {
+      return this.$el.classList.contains(classname);
+    },
     setElementClass(classname, add = true) {
       this.$el.classList[add ? 'add' : 'remove'](classname);
     },

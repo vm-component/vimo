@@ -86,9 +86,9 @@
         }
       },
 
-      small: Boolean,
-      default: Boolean,
-      large: Boolean,
+      small: [Boolean, String],
+      default: [Boolean, String],
+      large: [Boolean, String],
 
       /**
        * 激活模式, 按下时的效果
@@ -104,21 +104,21 @@
       /**
        * 形状：full(宽度100%无圆角)/block(宽度100%有圆角)/menutoggle
        **/
-      full: Boolean,
-      block: Boolean,
-      menutoggle: Boolean,
+      full: [Boolean, String],
+      block: [Boolean, String],
+      menutoggle: [Boolean, String],
 
       /**
        * 按钮类型： solid实心/outline只有边框/clear空心
        **/
-      outline: Boolean,
-      clear: Boolean,
-      solid: Boolean,
+      outline: [Boolean, String],
+      clear: [Boolean, String],
+      solid: [Boolean, String],
 
       /**
        * 样式加强
        **/
-      strong: Boolean
+      strong: [Boolean, String]
     },
     data () {
       return {
@@ -135,15 +135,17 @@
 
       this.roleName = this.role;
 
-      let parentName = this.$parent.$options.name.toLowerCase();
+      if (this.$parent) {
+        let parentName = this.$parent.$options.name.toLowerCase();
 
-      // 如果是在组件 buttons 下则修改前缀为 bar-button-
-      if (parentName === 'vm-buttons' || parentName === 'vm-toolbar' || parentName === 'vm-navbar') {
-        this.roleName = 'bar-button';
-      }
+        // 如果是在组件 buttons 下则修改前缀为 bar-button-
+        if (parentName === 'vm-buttons' || parentName === 'vm-toolbar' || parentName === 'vm-navbar') {
+          this.roleName = 'bar-button';
+        }
 
-      if (this.role === 'radio' || this.role === 'checkbox' || this.role === 'select') {
-        this.roleName = 'item-cover';
+        if (this.role === 'radio' || this.role === 'checkbox' || this.role === 'select') {
+          this.roleName = 'item-cover';
+        }
       }
 
       this.getProps()
@@ -270,7 +272,7 @@
 
       // 如果icon是在item中的话, 则设置 class="item-button"
       addClassInItemComp () {
-        if (this.$parent.$el && this.$parent.$el.className && this.$parent.$el.className.indexOf('item') > -1) {
+        if (this.$parent && this.$parent.hasElementClass('ion-item')) {
           // button in items should add class of 'item-button'
           this.setElementClass('item-button')
         }

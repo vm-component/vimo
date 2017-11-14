@@ -17,7 +17,7 @@ let options = {
     mode: 'ios'
   },
   slots: {
-    default: 'ButtonTest'
+    default: '<span>ButtonTest</span>'
   }
 }
 
@@ -37,7 +37,7 @@ describe('Button', function () {
       }
     })
     wrapper = mount(Button, opts)
-    const result = '<button class="disable-hover ion-button button button-md button-default button-default-md button-md-primary"> <span class="button-inner">ButtonTest</span> <div class="button-effect"></div></button>'
+    const result = '<button class="disable-hover ion-button button button-md button-default button-default-md button-md-primary"> <span class="button-inner"><span>ButtonTest</span></span> <div class="button-effect"></div></button>'
     expect(wrapper.html()).to.equal(result)
   })
 
@@ -66,7 +66,7 @@ describe('Button', function () {
   it('@config: renders the correct text', function () {
     let opts = deepAssign(cloneDeep(options), {
       slots: {
-        default: 'ButtonTest'
+        default: '<span>ButtonTest</span>'
       }
     })
     wrapper = mount(Button, opts)
@@ -130,7 +130,7 @@ describe('Button', function () {
         active: true
       },
       slots: {
-        default: '<span>small</span>'
+        default: '<span>active</span>'
       }
     })
     wrapper = mount(Button, opts)
@@ -172,10 +172,11 @@ describe('Button', function () {
         round: true
       },
       slots: {
-        default: '<span>round</span>'
+        default: '<span>Round</span>'
       }
     })
     wrapper = mount(Button, opts)
+    console.log(wrapper)
     expect(wrapper.hasClass('button-round-ios')).to.equal(true)
   })
 
@@ -186,7 +187,7 @@ describe('Button', function () {
         full: true
       },
       slots: {
-        default: '<span>round</span>'
+        default: '<span>Round</span>'
       }
     })
     wrapper = mount(Button, opts)
