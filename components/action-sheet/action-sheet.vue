@@ -41,16 +41,14 @@
     </div>
 </template>
 <script type="text/javascript">
-  import { urlChange } from '../util/util'
   import Backdrop from '../backdrop/index'
   import Button from '../button/index'
   import Icon from '../icon/index'
-  import * as appComponentManager from '../util/appComponentManager'
-
-  const NOOP = () => {}
+  import popupExtend from '../util/popup-extend'
 
   export default {
     name: 'ActionSheet',
+    extends: popupExtend,
     props: {
       title: String,
       subTitle: String,
@@ -66,25 +64,12 @@
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode', 'ios') || /* istanbul ignore next */ 'ios' }
-      },
-      dismissOnPageChange: {
-        type: Boolean,
-        default: true
       }
     },
     data () {
       return {
-        isActive: false,    // ActionSheet 开启状态
-        enabled: false,     // 是否在过渡态的状态判断，如果在动画中则为false
-
         normalButtons: [],  // 普通按钮组
-        cancelButton: null, // 取消按钮(组)，一般放在下面
-
-        // promise
-        presentCallback: NOOP,
-        dismissCallback: NOOP,
-
-        unReg: null         // 页面变化的解绑函数
+        cancelButton: null // 取消按钮(组)，一般放在下面
       }
     },
     computed: {
@@ -96,29 +81,6 @@
       }
     },
     methods: {
-      /**
-       * ActionSheet Animate Hooks
-       * @private
-       * */
-      beforeEnter () {
-        this.enabled = false // 不允许过渡中途操作
-        this.$app && this.$app.setEnabled(false, 400)
-      },
-      afterEnter () {
-        this.presentCallback()
-        this.enabled = true
-      },
-      beforeLeave () {
-        this.enabled = false
-        this.$app && this.$app.setEnabled(false, 400)
-      },
-      afterLeave () {
-        this.dismissCallback()
-        // 删除DOM
-        this.$el.remove()
-        this.enabled = true
-      },
-
       /**
        * @function bdClick
        * @description
@@ -167,40 +129,6 @@
       },
 
       /**
-       * @function present
-       * @description
-       * 打开ActionSheet
-       * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
-       * @private
-       */
-      present () {
-        this.isActive = true
-        // add to App Component
-        appComponentManager.addChild(this)
-        return new Promise((resolve) => { this.presentCallback = resolve })
-      },
-
-      /**
-       * @function dismiss
-       * @description
-       * 关闭ActionSheet
-       * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
-       * @private
-       * */
-      dismiss () {
-          /* istanbul ignore else */
-        if (this.isActive) {
-          this.isActive = false
-          this.unReg && this.unReg()
-          // remove from App Component
-          appComponentManager.removeChild(this)
-          return new Promise((resolve) => { this.dismissCallback = resolve })
-        } else {
-          return new Promise((resolve) => { resolve() })
-        }
-      },
-
-      /**
        * 初始化buttons
        * @private
        * */
@@ -239,13 +167,6 @@
     },
     created () {
       this.init()
-      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-        /* istanbul ignore if  */
-      if (this.dismissOnPageChange) {
-        this.unReg = urlChange(() => {
-          this.isActive && this.dismiss()
-        })
-      }
     },
     components: {
       'vm-backdrop': Backdrop,
