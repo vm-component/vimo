@@ -59,6 +59,7 @@
 <script type="text/javascript">
   import { pointerCoord, clamp } from '../util/util'
   import popupExtend from '../util/popup-extend'
+  import loadScript from '../util/load-script'
 
   export default {
     name: 'ChooseCity',
@@ -169,43 +170,13 @@
 
       /**
        * 获取当前位置
-       * TODO: 需要审查
        * @private
        * */
       getCurrentLocation () {
-        function getScript (mapJsUrl) {
-          return new Promise((resolve, reject) => {
-            let sc = document.createElement('script')
-            sc.type = 'text/javascript'
-            sc.src = mapJsUrl
-            sc.onload = sc.onreadystatechange = function () {
-              if (!this.readyState || /^(loaded|complete)$/.test(this.readyState)) {
-                resolve()
-                sc.onload = sc.onreadystatechange = null
-              }
-            }
-            sc.onerror = function (err) {
-              reject(err)
-              sc.onerror = null
-            }
-            document.body.appendChild(sc)
-          })
-        }
-
         return new Promise((resolve, reject) => {
-          let getCurrentPosition = () => {
-            new window.AMap.Geolocation().getCurrentPosition((status, result) => {
-              if (status === 'complete') {
-                resolve(result)
-              } else {
-                reject(status)
-              }
-            })
-          }
-
-          if (typeof window.AMap === 'undefined') {
-            getScript(`//webapi.amap.com/maps?v=1.3&key=${this.$options.$data.ak}`).then(() => {
-              window.setTimeout(function () {
+          if (!window.AMap) {
+            loadScript(`https://webapi.amap.com/maps?v=1.3&key=${this.ak}`, () => {
+              window.setTimeout(() => {
                 if (!window.AMap || !window.AMap.Map) { return }
                 let map = new window.AMap.Map('')
                 map.plugin('AMap.Geolocation', () => {
@@ -217,12 +188,23 @@
                    * */
                   getCurrentPosition()
                 })
-              }, 100)
-            }, (err) => {
-              reject(err)
+              }, 50)
             })
           } else {
             getCurrentPosition()
+          }
+
+          function getCurrentPosition () {
+            new window.AMap.Geolocation({
+              timeout: 1,    // 超过10秒后停止定位，
+              maximumAge: 60000  // 定位结果缓存0毫秒，60s
+            }).getCurrentPosition((status, result) => {
+              if (status === 'complete') {
+                resolve(result)
+              } else {
+                reject(status)
+              }
+            })
           }
         })
       },
@@ -251,12 +233,21 @@
           })
         }
 
-        // TODO 字母排序
-//        _cities.sort(function (a, b) {
-//          return a.letter > b.letter
-//        })
+        // 字母排序
+        let _map = {}
+        _cities.forEach((item, index) => {
+          _map[item.letter] = index
+        })
 
-        return _cities
+        let _keys = Object.keys(_map)
+        _keys.sort()
+
+        let _tmp = []
+        _keys.forEach((item) => {
+          _tmp.push(_cities[_map[item]])
+        })
+
+        return _tmp
       },
 
       /**
@@ -273,6 +264,7 @@
               }
             }
           }, () => {
+            debugger
             this.currentCity = {
               adCode: null,
               city: '定位失败'
