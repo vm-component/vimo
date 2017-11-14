@@ -16,10 +16,11 @@ import LoadingComponent from './loading.vue'
 import GeneratePopUpInstance from '../util/GeneratePopUpInstance.js'
 
 class LoadingInstance extends GeneratePopUpInstance {
-  normalizeOptions (options) {
+  normalizeOptions (options = {}) {
     if (isString(options)) {
       options = {content: options}
     }
+    options.scrollControl = false
     return options
   }
 

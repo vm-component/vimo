@@ -121,15 +121,16 @@
    * },
    *
    * */
-  import { urlChange } from '../util/url-change'
   import Backdrop from '../backdrop'
   import Spinner from '../spinner/index'
-  import * as appComponentManager from '../util/appComponentManager'
-
-  const NOOP = () => {}
+  import popupExtend from '../util/popup-extend'
 
   export default {
     name: 'Loading',
+    extends: popupExtend,
+    components: {
+      Backdrop, Spinner
+    },
     props: {
       spinner: {
         type: String,
@@ -149,16 +150,7 @@
     },
     data () {
       return {
-        isActive: false, // 开启状态
-        enabled: false, // 组件当前是否进入正常状态的标示(正常显示状态 和 正常退出状态)
-
-        // promise
-        presentCallback: NOOP,
-        dismissCallback: NOOP,
-
-        startTime: null,
-        timer: null,
-        unreg: null
+        timer: null
       }
     },
     computed: {
@@ -171,79 +163,17 @@
       }
     },
     methods: {
-      // -------- private --------
-      /**
-       * ActionSheet Animate Hooks
-       * */
-      beforeEnter () {
-        this.$app && this.$app.setEnabled(false, 200)
-        this.enabled = false
-      },
-      afterEnter () {
-        this.presentCallback()
-        this.enabled = true
-      },
-      beforeLeave () {
-        this.$app && this.$app.setEnabled(false, 200)
-        this.enabled = false
-      },
-      afterLeave () {
-        // 删除DOM
-        this.dismissCallback()
-        this.$el.remove()
-        this.enabled = true
-      },
-
-      // -------- public --------
-      /**
-       * @function present
-       * @description
-       * 打开Loading
-       * @param {Object} options - 给组件props传参的对象, 这部分在loading.js中定义
-       * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
-       */
-      present () {
-        this.startTime = new Date().getTime()
-        this.isActive = true
+      beforePresent () {
         if (parseInt(this.duration) > 16) {
           this.timer && window.clearTimeout(this.timer)
           this.timer = window.setTimeout(() => {
             this.dismiss()
           }, this.duration)
         }
-        // add to App Component
-        appComponentManager.addChild(this)
-        return new Promise((resolve) => { this.presentCallback = resolve })
       },
-
-      /**
-       * @function dismiss
-       * @description
-       * 关闭Loading
-       * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
-       * */
-      dismiss () {
-        if (this.isActive) {
-          this.isActive = false // 动起来
-          this.timer && window.clearTimeout(this.timer)
-          this.unreg && this.unreg()
-          if (!this.enabled) {
-            this.$nextTick(() => {
-              this.$el.remove()
-              this.dismissCallback()
-              this.enabled = true
-            })
-          }
-          // remove from App Component
-          appComponentManager.removeChild(this)
-          return new Promise((resolve) => { this.dismissCallback = resolve })
-        } else {
-          return new Promise((resolve) => { resolve() })
-        }
+      beforeDismiss () {
+        this.timer && window.clearTimeout(this.timer)
       }
-    },
-    components: {
-      Backdrop, Spinner
     }
   }
 </script>
