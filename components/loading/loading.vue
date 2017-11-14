@@ -1,7 +1,7 @@
 <template>
     <div class="ion-loading" :class="[modeClass,cssClass]">
         <Backdrop :isActive="isActive && showBackdrop" :enableBackdropDismiss="false"></Backdrop>
-        <transition :name="transitionClass"
+        <transition name="alert"
                     @before-enter="beforeEnter"
                     @after-enter="afterEnter"
                     @before-leave="beforeLeave"
@@ -19,6 +19,7 @@
     @import "loading";
     @import "loading.ios.less";
     @import "loading.md.less";
+    @import "../themes/transition/alert.less";
 
     .ion-loading.indicator {
         .loading-wrapper {
@@ -120,7 +121,7 @@
    * },
    *
    * */
-  import { urlChange } from '../util/util'
+  import { urlChange } from '../util/url-change'
   import Backdrop from '../backdrop'
   import Spinner from '../spinner/index'
   import * as appComponentManager from '../util/appComponentManager'
@@ -141,10 +142,6 @@
         default: true
       },
       duration: Number,
-      dismissOnPageChange: {
-        type: Boolean,
-        default () { return true }
-      },
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode') || 'ios' }
@@ -171,9 +168,6 @@
       },
       showSpinner () {
         return this.spinner !== 'hide'
-      },
-      transitionClass () {
-        return `loading-${this.mode}`
       }
     },
     methods: {
@@ -246,13 +240,6 @@
         } else {
           return new Promise((resolve) => { resolve() })
         }
-      }
-    },
-    created () {
-      if (this.dismissOnPageChange) {
-        this.unreg = urlChange(() => {
-          this.isActive && this.dismiss()
-        })
       }
     },
     components: {
