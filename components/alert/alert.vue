@@ -80,18 +80,19 @@
         transform: scale(0.9);
         opacity: 0;
     }
-
 </style>
 <script type="text/javascript">
   import Backdrop from '../backdrop/index'
   import Button from '../button/index'
-  import { urlChange } from '../util/util'
-  import * as appComponentManager from '../util/appComponentManager'
-
-  const NOOP = () => {}
+  import popupExtend from '../util/popup-extend'
 
   export default {
     name: 'Alert',
+    extends: popupExtend,
+    components: {
+      'vm-backdrop': Backdrop,
+      'vm-button': Button
+    },
     props: {
       image: String,
       title: String,
@@ -120,10 +121,6 @@
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      },
-      dismissOnPageChange: {
-        type: Boolean,
-        default () { return true }
       }
     },
     data () {
@@ -133,15 +130,8 @@
          * @private
          * */
         inputsForDispaly: [],   // inputs数据再加工
-        isActive: false,        // 是否活动状态
-        enabled: false,         // 是否在过渡态的状态判断，如果在动画中则为false
-
         inputType: null,        // Alert中含有的input类型，radio、checkbox
-        isAlertTop: false,      // 是否将alert放到顶部，用于input输入时显示虚拟键盘
-
-        dismissCallback: NOOP,
-        presentCallback: NOOP,
-        unReg: null             // url变化关闭的注册函数
+        isAlertTop: false      // 是否将alert放到顶部，用于input输入时显示虚拟键盘
       }
     },
     computed: {
@@ -160,39 +150,6 @@
       }
     },
     methods: {
-      // -------- private --------
-
-      /**
-       * ActionSheet Animate Hooks
-       * @private
-       * */
-      beforeEnter () {
-        this.$app && this.$app.setEnabled(false, 200)
-        this.enabled = false // 不允许过渡中途操作
-      },
-      afterEnter () {
-        // 执行开启的promise
-        this.presentCallback()
-
-        this.focusOutActiveElement()
-        let focusableEle = this.$el.querySelector('input')
-        if (focusableEle) {
-          focusableEle.focus()
-        }
-        this.enabled = true
-      },
-      beforeLeave () {
-        this.$app && this.$app.setEnabled(false, 200)
-        this.enabled = false
-      },
-      afterLeave () {
-        // 执行关闭的promise
-        this.dismissCallback()
-        // 移除DOM
-        this.$el.remove()
-        this.enabled = true
-      },
-
       /**
        * @function bdClick
        * @description
@@ -317,39 +274,6 @@
       },
 
       /**
-       * @function present
-       * @description
-       * 打开组件
-       * @returns {Promise} 当关闭动画执行完毕后触发resolved
-       * @private
-       */
-      present () {
-        this.isActive = true
-        // add to App Component
-        appComponentManager.addChild(this)
-        return new Promise((resolve) => { this.presentCallback = resolve })
-      },
-
-      /**
-       * @function dismiss
-       * @description
-       * 关闭组件
-       * @returns {Promise} 当关闭动画执行完毕后触发resolved
-       * @private
-       */
-      dismiss () {
-        if (this.isActive) {
-          this.isActive = false // 动起来
-          this.unReg && this.unReg()
-          // remove from App Component
-          appComponentManager.removeChild(this)
-          return new Promise((resolve) => { this.dismissCallback = resolve })
-        } else {
-          return new Promise((resolve) => { resolve() })
-        }
-      },
-
-      /**
        * inputs数组初始化组件
        * @private
        * */
@@ -405,16 +329,6 @@
     },
     created () {
       this.init()
-      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-      if (this.dismissOnPageChange) {
-        this.unReg = urlChange(() => {
-          this.isActive && this.dismiss()
-        })
-      }
-    },
-    components: {
-      'vm-backdrop': Backdrop,
-      'vm-button': Button
     }
   }
 </script>
