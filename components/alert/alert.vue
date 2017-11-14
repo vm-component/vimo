@@ -61,25 +61,10 @@
     </div>
 </template>
 <style lang="less">
-    @import "alert";
-    @import "alert.ios.less";
-    @import "alert.md.less";
-
-    // transitioName = 'alert'
-    .alert-enter-active, .alert-leave-active {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    .alert-enter {
-        transform: scale(1.1);
-        opacity: 0;
-    }
-
-    .alert-leave-active {
-        transform: scale(0.9);
-        opacity: 0;
-    }
+    @import "./alert.less";
+    @import "./alert.ios.less";
+    @import "./alert.md.less";
+    @import "../themes/transition/alert.less";
 </style>
 <script type="text/javascript">
   import Backdrop from '../backdrop/index'
