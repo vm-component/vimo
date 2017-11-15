@@ -12,8 +12,9 @@
     </article>
 </template>
 <style lang="less">
-    @import "content.less";
-    @import "scroll-content.less";
+    @import "./content.less";
+    @import "./content.ios.less";
+    @import "./content.md.less";
 </style>
 <script type="text/javascript">
   /**
@@ -106,6 +107,8 @@
   import cssFormat from '../../util/cssFormat'
   import ScrollView from '../../util/scroll-view'
   import addSlotNameToAttr from '../../util/addSlotNameToAttr.js'
+  import registerListener from '../../util/register-listener.js'
+  import throttle from 'lodash.throttle'
 
   export default {
     name: 'Content',
@@ -116,8 +119,13 @@
 
         scrollView: new ScrollView(),  // 滚动的实例
 
+        headerComponent: null,
+        footerComponent: null,
+        isComponentFetched: false,
         headerBarHeight: 0,
         footerBarHeight: 0,
+
+        resizeUnReg: null,
 
         imgs: [],      // 子组件Img的实例列表
         imgReqBfr: this.$config && this.$config.getNumber('imgRequestBuffer', 1400),  // 1400
@@ -132,11 +140,9 @@
       }
     },
     computed: {
-      // fixedElement的DOM句柄
       fixedElement () {
         return this.$refs.fixedElement
       },
-      // scrollConent的DOM句柄
       scrollElement () {
         return this.$refs.scrollElement
       }
@@ -150,7 +156,7 @@
       resize () {
         // 等待DOM更新完毕
         this.$nextTick(() => {
-          this.$_recalculateContentDimensions()
+          this.$_recalculateBarDimensions()
         })
       },
       /**
@@ -228,7 +234,36 @@
         return this.scrollView.scrollToElement(el, duration, offsetX, offsetY, done)
       },
 
-      // -------- private --------
+      /**
+       * 重新获取Footer/Header尺寸
+       * @private
+       * */
+      $_recalculateBarDimensions () {
+        if (this.headerComponent) {
+          let ele = this.headerComponent.$el
+          this.headerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
+        }
+        if (this.footerComponent) {
+          let ele = this.footerComponent.$el
+          this.footerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
+        }
+        this.scrollElementStyle = {
+          marginTop: cssFormat(this.headerBarHeight),
+          marginBottom: cssFormat(this.footerBarHeight),
+          minHeight: cssFormat(window.innerHeight - this.headerBarHeight - this.footerBarHeight)
+        }
+
+        this.fixedElementStyle = {
+          marginTop: cssFormat(this.headerBarHeight),
+          marginBottom: cssFormat(this.footerBarHeight),
+          height: cssFormat(window.innerHeight - this.headerBarHeight - this.footerBarHeight)
+        }
+
+        // scrollElement 尺寸计算
+        this.scrollView.ev.contentHeight = this.scrollElement.clientHeight - this.headerBarHeight - this.footerBarHeight
+        this.scrollView.ev.contentTop = this.headerBarHeight
+        this.scrollView.ev.contentWidth = this.scrollElement.clientWidth
+      },
 
       /**
        * 重新计算Content组件的尺寸维度
@@ -236,32 +271,22 @@
        * @private
        * */
       $_recalculateContentDimensions () {
-        // 获取Footer/Header信息
-        let children = this.$parent.$children
-        children.forEach((child) => {
-          let ele = child.$el
-          if (componentIsMatch(child, 'header')) {
-            this.headerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
-          } else if (componentIsMatch(child, 'footer')) {
-            this.footerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
-          }
-        })
-
-        this.scrollElementStyle = {
-          marginTop: cssFormat(this.headerBarHeight),
-          marginBottom: cssFormat(this.footerBarHeight),
-          minHeight: cssFormat(window.innerHeight - this.headerBarHeight)
+        // 获取Footer/Header信息, catch
+        if (!this.isComponentFetched) {
+          let children = this.$parent.$children
+          children.forEach((child) => {
+            if (componentIsMatch(child, 'header')) {
+              this.headerComponent = child
+              this.isComponentFetched = true
+            } else if (componentIsMatch(child, 'footer')) {
+              this.footerComponent = child
+              this.isComponentFetched = true
+            }
+          })
         }
 
-        this.fixedElementStyle = {
-          marginTop: cssFormat(this.headerBarHeight),
-          marginBottom: cssFormat(this.footerBarHeight)
-        }
-
-        // scrollElement 尺寸计算
-        this.scrollView.ev.contentHeight = this.scrollElement.clientHeight - this.headerBarHeight - this.footerBarHeight
-        this.scrollView.ev.contentTop = this.headerBarHeight
-        this.scrollView.ev.contentWidth = this.scrollElement.clientWidth
+        // 计算Header/Footer的高度尺寸
+        this.$_recalculateBarDimensions()
 
         // 流式布局, init(获取尺寸的元素, 监听滚动的元素)
         this.scrollView.init()
@@ -334,6 +359,16 @@
       // 置顶
       window.scrollTo(0, 0)
 
+      // 窗口变化重新计算容器
+      this.resizeUnReg = registerListener(window, 'resize', throttle(() => {
+        // 计算并设置当前Content的位置及尺寸
+        this.$root.$emit('window:resize')
+        this.$_recalculateBarDimensions()
+      }, 200, {
+        leading: false,
+        trailing: true
+      }))
+
       /**
        * @event component:Base/Content#onScrollStart
        * @description 滚动开始时触发的事件
@@ -341,7 +376,7 @@
        */
       this.scrollView.scrollStart = (ev) => {
         this.$emit('onScrollStart', ev)
-        this.$eventBus && this.$eventBus.$emit('onScrollStart', ev)
+        this.$root && this.$root.$emit('onScrollStart', ev)
       }
 
       /**
@@ -351,7 +386,7 @@
        */
       this.scrollView.scroll = (ev) => {
         this.$emit('onScroll', ev)
-        this.$eventBus && this.$eventBus.$emit('onScroll', ev)
+        this.$root && this.$root.$emit('onScroll', ev)
         this.$_imgUpdate(ev)
       }
 
@@ -362,7 +397,7 @@
        */
       this.scrollView.scrollEnd = (ev) => {
         this.$emit('onScrollEnd', ev)
-        this.$eventBus && this.$eventBus.$emit('onScrollEnd', ev)
+        this.$root && this.$root.$emit('onScrollEnd', ev)
         this.$_imgUpdate(ev)
       }
     },
@@ -374,6 +409,7 @@
       this.$_recalculateContentDimensions()
     },
     destroyed () {
+      this.resizeUnReg && this.resizeUnReg()
       this.scrollView.destroy()
     }
   }

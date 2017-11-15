@@ -20,16 +20,12 @@
   background-color: @background-color;
 }
 
-//.ion-page > .ion-content {
-//  position: absolute;
-//}
 
 // Scrollable Content
 // --------------------------------------------------
 
 .scroll-content {
   position: relative;
-  //top: 1px;
   top: 0;
   right: 0;
   bottom: 0;
@@ -43,23 +39,24 @@
   contain: style layout;
 }
 
-.disable-scroll .ion-page,
-.disable-scroll .ion-page .ion-content,
-.disable-scroll .ion-page .ion-content .fixed-content,
-.disable-scroll .ion-page .ion-content .scroll-content {
-  pointer-events: none;
-  touch-action: none;
+.disable-scroll{
+  position: fixed;
+  width: 100%;
 }
 
 // Fixed Content (fixed and fab)
 // --------------------------------------------------
 
 .fixed-content {
-  position: relative !important;
+  position: absolute !important;
   z-index: auto !important;
   top: 0;
   left: 0;
+  width: 100%;
   display: block;
+  height: 100%;
+  bottom: 0;
+  right: 0;
 }
 
 .fixed-content [fixed],
