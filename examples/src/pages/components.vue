@@ -3,6 +3,12 @@
         <Header>
             <Navbar>
                 <Title>组件列表</Title>
+                <Buttons right slot="buttons">
+                    <Button @click="$menus.toggle('menu')" role="bar-button" menutoggle>
+                        <!--<Icon name="more"></Icon>-->
+                        <span>菜单</span>
+                    </Button>
+                </Buttons>
             </Navbar>
         </Header>
         <Content class="outer-content">
@@ -13,11 +19,11 @@
                     <span>根组件</span>
                     <Note slot="item-right">App</Note>
                 </Item>
-                <Item button :to="{name: 'nav'}">
-                    <Icon slot="item-left" name="navigate"></Icon>
-                    <span>导航组件</span>
-                    <Note slot="item-right">Nav</Note>
-                </Item>
+                <!--<Item button :to="{name: 'nav'}">-->
+                    <!--<Icon slot="item-left" name="navigate"></Icon>-->
+                    <!--<span>导航组件</span>-->
+                    <!--<Note slot="item-right">Nav</Note>-->
+                <!--</Item>-->
                 <Item button :to="{name: 'content'}">
                     <Icon slot="item-left" name="paper"></Icon>
                     <span>页面组件</span>
@@ -324,9 +330,9 @@
             </List>
             <List>
                 <ListHeader>内容切换/Switch</ListHeader>
-                <Item button>
+                <Item button :to="{name: 'menus'}">
                     <Icon slot="item-left" name="book"></Icon>
-                    <span>菜单(Demo未实现)</span>
+                    <span>菜单</span>
                     <Note slot="item-right">Menus</Note>
                 </Item>
                 <Item button :to="{name: 'segment'}">

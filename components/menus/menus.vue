@@ -15,48 +15,22 @@
                 @after-enter="afterEnter"
                 @before-leave="beforeLeave"
                 @after-leave="afterLeave">
-            <div class="menu-inner" v-if="isOpen">
+            <div class="menu-inner" v-show="isActive">
                 <slot></slot>
             </div>
         </transition>
     </div>
 </template>
 <style lang="less">
-    @import "menus";
-    @import "menus.ios.less";
-    @import "menus.md.less";
-
-    /*slideInLeft*/
-    /*animate class*/
-    .slideInLeft-enter-active,
-    .slideInLeft-leave-active {
-        transform: translateX(0);
-    }
-
-    .slideInLeft-enter,
-    .slideInLeft-leave-active {
-        transform: translateX(-100%);
-        transition: all cubic-bezier(0.2, 0, 1, 1) 280ms;
-    }
-
-    /*slideInRight*/
-    /*animate class*/
-    .slideInRight-enter-active,
-    .slideInRight-leave-active {
-        transform: translateX(0);
-    }
-
-    .slideInRight-enter,
-    .slideInRight-leave-active {
-        transform: translateX(100%);
-        transition: all cubic-bezier(0, 0, 1, 1) 280ms;
-    }
-
+    @import "./menus.less";
+    @import "./menus.ios.less";
+    @import "./menus.md.less";
 </style>
 <script type="text/javascript">
   import { firstUpperCase } from '../util/util'
   import { recordMenuInstance } from './menus'
   import Backdrop from '../backdrop'
+  import focusOutActiveElement from '../util/focusOutActiveElement'
 
   const NOOP = () => {}
 
@@ -64,7 +38,7 @@
     name: 'Menus',
     data () {
       return {
-        isOpen: false, // menu-inner 动画控制
+        isActive: false, // menu-inner 动画控制
         showMenu: false, // 整体menu显示控制
         showBackdrop: false, // 是否显示半灰色蒙层
         animationName: '', // 过度动画名称
@@ -88,35 +62,40 @@
         default: 'left'
       },
       /**
-       * menu打开的类型: overlay/reveal/push
+       * menu打开的类型: overlay/reveal
        * */
       type: {
         type: String,
         default () {
           return this.$config && this.$config.get('menuType', 'overlay')
+        },
+        validator (val) {
+          return ['overlay', 'reveal'].indexOf(val) > -1
         }
-      },
-      /**
-       * 是否禁用menu
-       * */
-      enabled: {
-        type: Boolean,
-        default: true
       }
+    },
+    watch: {
+      type () {},
+      side () {}
     },
     methods: {
       // 过渡钩子
       beforeEnter () {
+        this.$root && this.$root.$emit('onMenuOpen', this.id)
+        this.showMenu = true
         this.$app && this.$app.setEnabled(false, 300)
+        focusOutActiveElement()
       },
       afterEnter () {
         this.presentCallback()
       },
       beforeLeave () {
+        this.$root && this.$root.$emit('onMenuClosing', this.id)
         this.$app && this.$app.setEnabled(false, 300)
+        focusOutActiveElement()
       },
       afterLeave () {
-        this.$eventBus && this.$eventBus.$emit('onMenuClosed', this.id)
+        this.$root && this.$root.$emit('onMenuClosed', this.id)
         this.dismissCallback()
         this.showMenu = false
       },
@@ -126,25 +105,16 @@
        * @return {Promise}
        * */
       openMenu () {
-        if (!this.enabled) {
-          this.presentCallback()
+        if (this.type === 'overlay') {
+          this.showBackdrop = true
+          this.animationName = `slide-in-${this.side}`
         } else {
-          this.showMenu = true
-          if (this.type === 'overlay') {
-            this.showBackdrop = true
-            // 确定左右动画
-            this.animationName = 'slideIn' + firstUpperCase(this.side)
-          }
-
-          if (this.type === 'push') {
-            // this.showBackdrop = true;
-            // 确定左右动画
-            this.animationName = 'slideIn' + firstUpperCase(this.side)
-          }
-
-          this.isOpen = true
-          this.$eventBus && this.$eventBus.$emit('onMenuOpen', this.id)
+          this.showBackdrop = false
+          this.animationName = ''
         }
+
+        this.isActive = true
+        this.$app && this.$app.$_disableScroll()
         return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
@@ -153,13 +123,9 @@
        * @return {Promise}
        * */
       closeMenu () {
-        if (!this.enabled) {
-          this.dismissCallback()
-        } else {
-          this.showBackdrop = false
-          this.isOpen = false
-          this.$eventBus && this.$eventBus.$emit('onMenuClosing', this.id)
-        }
+        this.showBackdrop = false
+        this.isActive = false
+        this.$app && this.$app.$_enableScroll()
         return new Promise((resolve) => { this.dismissCallback = resolve })
       }
     },

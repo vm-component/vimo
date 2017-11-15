@@ -7,15 +7,17 @@
 @menu-small-width: @menu-width - 40px;
 
 .ion-menu {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -1;
+  z-index: 0;
   opacity: 1;
   display: none;
-  contain: strict;
+  overflow: hidden;
+
+  //contain: layout style;
 }
 
 .ion-menu.show-menu {
@@ -23,7 +25,7 @@
 }
 
 .menu-inner {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: auto;
   bottom: 0;
@@ -36,16 +38,13 @@
   width: @menu-width;
   height: 100%;
 
-  // inner从左边进入出去
-  transform: translate3d(0, 0, 0);
-  transition: all cubic-bezier(0, 0, 0, 1) 280ms;
-  contain: strict;
-}
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 
-.menu-inner > .ion-header,
-.menu-inner > .ion-content,
-.menu-inner > .ion-footer {
-  position: absolute;
+  // inner从左边进入出去
+  //transform: translate3d(0, 0, 0);
+  transition: all cubic-bezier(0, 0, 0, 1) 280ms;
+  //contain: layout style;
 }
 
 .ion-menu[side=right] > .menu-inner {
@@ -59,16 +58,11 @@
 
 // Nav组件的class
 .menu-content {
-  transform: translate3d(0, 0, 0);
-  // 结束的动画函数
   transition: all cubic-bezier(0, 0, 0.6, 1) 280ms;
 }
 
 .menu-content-open {
   cursor: pointer;
-  // 开始的动画函数
-  touch-action: manipulation;
-
 }
 
 .menu-content-open .ion-pane,
@@ -79,19 +73,21 @@
   pointer-events: none;
 }
 
-.menu-content-push.menu-content-open,
+.menu-content-reveal.ion-nav {
+  position: absolute;
+}
+
 .menu-content-reveal.menu-content-open {
-  transform: translateX(304px);
+  left: 304px;
   @media (max-width: 340px) {
-    transform: translateX(264px);
+    left: 264px;
   }
 }
 
-.menu-content-push.menu-content-right.menu-content-open,
 .menu-content-reveal.menu-content-right.menu-content-open {
-  transform: translateX(-304px);
+  left: -304px;
   @media (max-width: 340px) {
-    transform: translateX(-264px);
+    left: -264px;
   }
 }
 
@@ -110,15 +106,15 @@
 }
 
 .ion-menu[type=reveal].show-menu {
-  z-index: 0;
+  //z-index: 0;
 }
 
 .ion-menu[type=reveal] .menu-inner {
-  transform: translate3d(0, 0, 0);
+  //transform: translate3d(0, 0, 0);
 }
 
 .ion-menu[type=reveal].show-menu .menu-inner {
-  transform: translate3d(0, 0, 0);
+  //transform: translate3d(0, 0, 0);
 }
 
 // Menu Overlay
@@ -129,19 +125,31 @@
 }
 
 .ion-menu[type=overlay].show-menu {
-  z-index: 1;
+  z-index: @z-index-overlay + @z-index-overlay-sheet;
 }
 
-// Menu Push
-// --------------------------------------------------
-.ion-menu[type=push] {
+/*slide-in-left*/
+/*animate class*/
+.slide-in-left-enter-active,
+.slide-in-left-leave-active {
+  left: 0;
 }
 
-.ion-menu[type=push].show-menu {
-  z-index: 0;
+.slide-in-left-enter,
+.slide-in-left-leave-active {
+  left: -100%;
+  transition: all cubic-bezier(0.2, 0, 1, 1) 280ms;
 }
 
+/*slide-in-right*/
+/*animate class*/
+.slide-in-right-enter-active,
+.slide-in-right-leave-active {
+  right: 0 !important;
+}
 
-
-
-
+.slide-in-right-enter,
+.slide-in-right-leave-active {
+  right: -100% !important;
+  transition: all cubic-bezier(0, 0, 1, 1) 280ms;
+}

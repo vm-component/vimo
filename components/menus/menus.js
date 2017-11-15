@@ -10,7 +10,7 @@
  *
  * ### 关于事件
  *
- * Menus组件的事件是在$$eventBus中传播的, 切记
+ * Menus组件的事件是在$root中传播的, 切记
  *
  * ### 如何引入
  * ```
@@ -28,8 +28,7 @@
  *
  * @props  {string}  id               - 要打开menu的id，与open方法中的id对用应
  * @props  {String}  [side=left]      - 从哪个方向打开  可选 left/right
- * @props  {String}  [type=overlay]   - 用什么方式打开  可选 overlay/reveal/push
- * @props  {boolean} [enabled=true]   - 是否精致禁止使用menu
+ * @props  {String}  [type=overlay]   - 用什么方式打开  可选 overlay/reveal
  *
  * @fires component:Menus#onMenuOpen
  * @fires component:Menus#onMenuClosing
@@ -39,7 +38,7 @@
  *
  * @usage
  *
- * <Menu id="menu" side="left" type="push" :enabled="false"></Menu>
+ * <Menu id="menu" side="left" type="overlay"></Menu>
  *
  * var vm = new Vue();
  * vm.$menus.menuIns: 当前缓存的menu实例对象
@@ -57,13 +56,13 @@
 
 /**
  * @event component:Menus#onMenuOpen
- * @description menu开启事件, 传递menuId,可通过$eventBus.$on()去监听。
+ * @description menu开启事件, 传递menuId,可通过$root.$on()去监听。
  * @example
  * new Vue({
    *    methods: {
    *     open: function () {
    *       this.$menu.open('aaa');
-   *       this.$$eventBus.$on("onMenuOpen", function () {
+   *       this.$root.$on("onMenuOpen", function () {
    *         //...
    *       })
    *     }
@@ -74,12 +73,12 @@
 
 /**
  * @event component:Menus#onMenuClosing
- * @description menu触发关闭事件,正在关闭...,可通过$eventBus.$on()去监听。
+ * @description menu触发关闭事件,正在关闭...,可通过$root.$on()去监听。
  */
 
 /**
  * @event component:Menus#onMenuClosed
- * @description menu关闭动画完毕,可通过$eventBus.#on()去监听。
+ * @description menu关闭动画完毕,可通过$root.#on()去监听。
  */
 
 /**
@@ -158,7 +157,7 @@
     * })
  */
 
-import { urlChange } from '../util/util'
+import { urlChange } from '../util/url-change'
 export function recordMenuInstance (instance) {
   // 如果没安装
   let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(instance))
@@ -170,9 +169,9 @@ export function recordMenuInstance (instance) {
 
 class Menus {
   constructor () {
-    this.currentMenuId = null
-    this.menuIns = {}
-    this._unReg = null // for url change
+    this.currentMenuId = null // 当前打开的menuID
+    this.menuIns = {}         // menu实例队列
+    this._unReg = null        // for url change
   }
 
   /**

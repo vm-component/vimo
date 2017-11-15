@@ -9,6 +9,7 @@ import VueI18n from 'vue-i18n'
 import vmGeo from 'vm-geo'
 import vmStorage from 'vm-storage'
 import router from './router'
+import store from './store.js'
 
 if (process.env.NODE_ENV === 'development') {
   Vue.config.productionTip = false
@@ -62,6 +63,7 @@ Vue.use(vimo.LandscapePrompt)
 new Vue({
   el: '#app',
   router,
+  store,
   i18n,
   template: '<App/>',
   created () {
