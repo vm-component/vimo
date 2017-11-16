@@ -32,31 +32,22 @@
  *    })
  *  }
  * */
-import Modal from '../modal/index'
 import PreviewImageComponent from './preview-image.vue'
+import GeneratePopUpInstance from '../util/GeneratePopUpInstance.js'
 
-function present (options) {
-  let isHandled =
-    !options.isH5 &&
-    window.VM &&
-    window.VM.platform &&
-    window.VM.platform.previewImage &&
-    window.VM.platform.previewImage(options)
-  if (!isHandled) {
-    console.debug('PreviewImage 组件使用H5模式!')
-    Modal.present({
-      component: PreviewImageComponent,
-      animateName: 'zoom',
-      data: {
-        current: options.current || 0,
-        urls: options.urls
-      },
-      showBackdrop: true,
-      enableBackdropDismiss: true
-    })
+class PreviewImageInstance extends GeneratePopUpInstance {
+  normalizeOptions (options) {
+    options.recordInHistory = true
+    return options
+  }
+
+  isPresentHandled (options) {
+    return !options.isH5 &&
+      window.VM &&
+      window.VM.platform &&
+      window.VM.platform.previewImage &&
+      window.VM.platform.previewImage(options)
   }
 }
 
-export default {
-  present
-}
+export default new PreviewImageInstance(PreviewImageComponent, 'modalPortal')
