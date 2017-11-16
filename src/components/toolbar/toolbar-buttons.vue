@@ -52,7 +52,7 @@
     mounted() {
       let postion = this.getPosition();
       console.log('postion ' + postion)
-      this.setElementAttribute(postion, '');
+      this.$el.setAttribute(postion, '');
     },
     methods: {
       /**

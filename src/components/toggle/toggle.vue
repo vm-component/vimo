@@ -113,7 +113,7 @@
     mounted() {
       if (this.$parent && this.$parent.$options.name && this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
-        this.itemComponent.setElementClass('item-toggle', true)
+        setElementClass(this.itemComponent.$el, 'item-toggle', true)
         this.setItemCheckedClass(this.isChecked)
         this.setItemDisabledClass(this.isDisabled)
       }
@@ -150,7 +150,7 @@
         }
       },
       setItemCheckedClass(isChecked) {
-        this.itemComponent && this.itemComponent.setElementClass('item-toggle-checked', isChecked)
+        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-toggle-checked', isChecked)
       },
 
       /**
@@ -164,7 +164,7 @@
         }
       },
       setItemDisabledClass(isDisabled) {
-        this.itemComponent && this.itemComponent.setElementClass('item-toggle-disabled', isDisabled)
+        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-toggle-disabled', isDisabled)
       }
     }
   }

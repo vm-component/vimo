@@ -95,7 +95,7 @@
    * @demo #/app
    **/
 
-  import { isString, isPresent } from '../../util/util'
+  import { isString, isPresent, setElementClass } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
   import ClickBlock from './click-block'
 
@@ -190,7 +190,7 @@
        */
       setClass (className, isAdd = false) {
         if (className) {
-          this.setElementClass(className, isAdd)
+          setElementClass(this.$el, className, isAdd)
         }
       },
 

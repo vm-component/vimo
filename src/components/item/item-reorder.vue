@@ -64,7 +64,7 @@
 
         this.reorderList.reorderPrepare();
 
-        const item = this.selectedItem.getNativeElement();
+        const item = this.selectedItem.$el;
         if (!item) {
           console.error('reorder node not found');
           return false;
@@ -83,7 +83,7 @@
         this.offset = pointerCoord(ev);
         this.offset.y += this.lastScrollPosition;
 
-        this.selectedItem.setElementClass(ITEM_REORDER_ACTIVE, true);
+        setElementClass(this.selectedItem.$el, ITEM_REORDER_ACTIVE, true);
         this.reorderList.reorderStart();
         return true;
       },

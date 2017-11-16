@@ -116,7 +116,7 @@
       setDisabled (isDisabled) {
         this.setChecked(null)
         this.isDisabled = isDisabled
-        this.itemComponent && this.itemComponent.setElementClass('item-radio-disabled', isDisabled)
+        this.itemComponent && setElementClass(this.itemComponent.$el, 'item-radio-disabled', isDisabled)
       },
 
       /**
@@ -127,7 +127,7 @@
         if (this.isChecked !== isChecked) {
           this.isChecked = isChecked
           this.isInit && this.isChecked && this.$emit('onSelect', this.value)
-          this.itemComponent && this.itemComponent.setElementClass('item-checkbox-checked', this.isChecked)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-checked', this.isChecked)
         }
       },
 

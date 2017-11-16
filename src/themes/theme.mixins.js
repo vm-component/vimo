@@ -16,7 +16,9 @@ export default {
     },
     mode: {
       type: String,
-      default () { return this.$config && this.$config.get('mode') || 'ios' }
+      default() {
+        return this.$config && this.$config.get('mode') || 'ios'
+      }
     },
     color: {
       type: String,
@@ -29,7 +31,12 @@ export default {
           'light',
           'secondary',
           'danger',
-          'dark'
+          'dark',
+          'energized',
+          'royal',
+          'subtle',
+          'vibrant',
+          'bright'
         ].indexOf(value) > -1
       }
     }
@@ -40,23 +47,6 @@ export default {
     },
     colorClass() {
       return this.color ? (`${this.roleName}-${this.mode}-${this.color}`) : ''
-    }
-  },
-  methods: {
-    getNativeElement() {
-      return this.$el;
-    },
-    hasElementClass(classname) {
-      return this.$el.classList.contains(classname);
-    },
-    setElementClass(classname, add = true) {
-      this.$el.classList[add ? 'add' : 'remove'](classname);
-    },
-    setElementStyle(name, value) {
-      this.$el.style[name] = value;
-    },
-    setElementAttribute(name, value = '') {
-      this.$el.setAttribute(name, value);
     }
   }
 }

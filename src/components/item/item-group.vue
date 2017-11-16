@@ -59,7 +59,7 @@
       },
 
       reorderStart() {
-        this.setElementClass('reorder-list-active', true);
+        setElementClass(this.$el, 'reorder-list-active', true);
       },
 
       reorderEmit(fromIndex, toIndex) {
@@ -82,7 +82,7 @@
         let children = this.$el.children;
         let len = children.length;
 
-        this.setElementClass('reorder-list-active', false);
+        setElementClass(this.$el, 'reorder-list-active', false);
         let transform = 'transform';
         for (let i = 0; i < len; i++) {
           children[i].style[transform] = '';

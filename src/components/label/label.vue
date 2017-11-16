@@ -63,9 +63,9 @@
        * */
       if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
-        this.itemComponent.setElementClass('item-label-fixed', this.fixed)
-        this.itemComponent.setElementClass('item-label-floating', this.floating)
-        this.itemComponent.setElementClass('item-label-stacked', this.stacked)
+        setElementClass(this.itemComponent.$el, 'item-label-fixed', this.fixed)
+        setElementClass(this.itemComponent.$el, 'item-label-floating', this.floating)
+        setElementClass(this.itemComponent.$el, 'item-label-stacked', this.stacked)
       }
     }
   }

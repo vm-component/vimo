@@ -103,7 +103,7 @@
       // 找到外部item实例
       if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
-        this.itemComponent.setElementClass('item-checkbox', true)
+        setElementClass(this.itemComponent.$el, 'item-checkbox', true)
       }
 
       this.setChecked(this.value)

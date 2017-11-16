@@ -139,7 +139,7 @@
     },
     mounted () {
       if (this.button) {
-        this.setElementAttribute('detail-push');
+        this.$el.setAttribute('detail-push', '');
       }
     },
     methods: {

@@ -353,8 +353,8 @@
            * @property {string} type - 当前检查的value的类型
            */
           this.$emit('onValid', this.inputValue, this.type)
-          this.itemComponent && this.itemComponent.setElementClass('ng-valid', true)
-          this.itemComponent && this.itemComponent.setElementClass('ng-invalid', false)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', true)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', false)
         } else {
           /**
            * @event  component:Input#onInvalid
@@ -363,8 +363,8 @@
            * @property {string} type - 当前检查的value的类型
            */
           this.$emit('onInvalid', this.inputValue, this.type)
-          this.itemComponent && this.itemComponent.setElementClass('ng-valid', false)
-          this.itemComponent && this.itemComponent.setElementClass('ng-invalid', true)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', false)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', true)
         }
       },
 
@@ -469,7 +469,7 @@
          * @description focus事件
          */
         this.$emit('onFocus')
-        this.itemComponent && this.itemComponent.setElementClass('ng-touched', true)
+        this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-touched', true)
       },
 
       /**
@@ -539,9 +539,9 @@
        */
       setItemHasFocusClass (isFocus) {
         if (this.itemComponent) {
-          this.itemComponent.setElementClass('input-has-focus', isFocus)
+          setElementClass(this.itemComponent.$el, 'input-has-focus', isFocus)
         }
-        this.setElementClass('input-has-focus', isFocus)
+        setElementClass(this.$el, 'input-has-focus', isFocus)
       },
 
       /**
@@ -550,9 +550,9 @@
        */
       setItemHasValueClass () {
         if (this.itemComponent) {
-          this.itemComponent.setElementClass('input-has-value', this.hasValue)
+          setElementClass(this.itemComponent.$el, 'input-has-value', this.hasValue)
         }
-        this.setElementClass('input-has-value', this.hasValue)
+        setElementClass(this.$el, 'input-has-value', this.hasValue)
       }
     },
     created () {
@@ -573,10 +573,10 @@
       // 找到外部item实例
       if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
-        this.itemComponent.setElementClass('item-input', true)
-        this.itemComponent.setElementClass('show-focus-highlight', this.showFocusHighlight)
-        this.itemComponent.setElementClass('show-valid-highlight', this.showValidHighlight)
-        this.itemComponent.setElementClass('show-invalid-highlight', this.showInvalidHighlight)
+        setElementClass(this.itemComponent.$el, 'item-input', true)
+        setElementClass(this.itemComponent.$el, 'show-focus-highlight', this.showFocusHighlight)
+        setElementClass(this.itemComponent.$el, 'show-valid-highlight', this.showValidHighlight)
+        setElementClass(this.itemComponent.$el, 'show-invalid-highlight', this.showInvalidHighlight)
       }
 
       // 初始化时,判断是否有value

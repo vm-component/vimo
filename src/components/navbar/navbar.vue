@@ -115,7 +115,7 @@
    *
    * @props {String} [mode=ios] - ios|md
    * @props {String} [color] - 颜色
-   * @props {Boolean} [hideBackButton=false] - 是否显示后退按钮
+   * @props {Boolean|String} [hideBackButton=false] - 是否隐藏后退按钮
    *
    * @slot [空] 作为内容, 比如Title/Searchbar/Segment放置的位置
    * @slot [buttons] 按钮组, 别忘记加[left]/[right]/[end]属性标记位置
@@ -137,8 +137,8 @@
    *  </vm-page>
    * </template>
    **/
+  import { isArray, isString, isTrueProperty } from '../../util/util'
   import ToolbarMixins from '../toolbar/toolbarMixins.vue'
-  import { isArray, isString } from '../../util/util'
   import VmButton from "../button/button.vue";
   import VmIcon from "../icon/icon.vue";
 
@@ -153,13 +153,14 @@
       /**
        * 是否显示后退按钮
        **/
-      hideBackButton: Boolean
+      hideBackButton: {
+        type: [Boolean, String],
+        default: false
+      }
     },
     data () {
       return {
-        hideRightButtons: false,
-
-        hideBb: this.hideBackButton,
+        hideBb: isTrueProperty(this.hideBackButton),
         bbIcon: this.$config && this.$config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
         backText: this.$config && this.$config.get('backButtonText', '返回') || '返回'
       }

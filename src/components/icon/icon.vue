@@ -45,7 +45,7 @@
    * <vm-icon name="ios-clock"></vm-icon>
    * <vm-icon name="logo-twitter"></vm-icon>
    **/
-  import {isTrueProperty} from '../../util/util'
+  import {isTrueProperty, setElementClass} from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins';
 
   export default {
@@ -86,14 +86,14 @@
     },
     mounted () {
       if (this.$parent.$options.name === 'vm-item') {
-        this.setElementClass('item-icon', true)
+        setElementClass(this.$el, 'item-icon', true)
       }
 
       this.update();
     },
     destroyed() {
       if (this.css) {
-        this.setElementClass(this.css, false);
+        setElementClass(this.$el, this.css, false);
       }
     },
     methods: {
@@ -122,13 +122,13 @@
           return;
         }
         if (this.css) {
-          this.setElementClass(this.css, false);
+          setElementClass(this.$el, this.css, false);
         }
         this.css = css;
-        this.setElementClass(css, true);
+        setElementClass(this.$el, css, true);
 
         let label = iconName.replace('ios-', '').replace('md-', '').replace('-', ' ');
-        this.setElementAttribute('aria-label', label);
+        this.$el.setAttribute('aria-label', label);
       }
     }
   };
