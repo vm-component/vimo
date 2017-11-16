@@ -54,8 +54,7 @@
                     <vm-badge slot="item-end" color="dark">{{structure.upper}}</vm-badge>
                 </vm-list-header>
                 <vm-item>
-                    <vm-range :dualKnobs="true" :pin="true" v-model="structure"
-                           color="dark">
+                    <vm-range :dual="true" :pin="true" :step="1" :min="0" :max="100" v-model="structure" color="dark">
                         <vm-label slot="range-left">-0</vm-label>
                         <vm-label slot="range-right">100</vm-label>
                     </vm-range>
