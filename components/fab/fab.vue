@@ -142,9 +142,9 @@
         let style = {}
 
         if (this.top) {
-          style.top = `${this.contentComponent.headerBarHeight + fabContentMargin}px`
+          style.top = `${fabContentMargin}px`
           if (this.edge) {
-            style.top = `${this.contentComponent.headerBarHeight - fabSize / 2}px`
+            style.top = `${-fabSize / 2}px`
           }
         }
 
@@ -171,6 +171,7 @@
         if (this.middle) {
           style.top = '50%'
           style.marginLeft = `${-fabSize / 2}px`
+          style.position = 'fixed'
         }
 
         return style
