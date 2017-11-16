@@ -74,7 +74,7 @@
    *
    * @demo #/collapseList
    * */
-  import addItemAttr from '../util/addSlotNameToAttr.js'
+  import addItemAttr from '../util/add-slot-name-to-attr.js'
   import { getSize } from './styleTools'
 
   export default {
