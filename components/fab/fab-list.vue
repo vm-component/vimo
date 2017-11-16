@@ -18,8 +18,7 @@
    * @see component:Fab
    * @demo #/fab
    * */
-  import { setElementClass, isTrueProperty } from '../util/util'
-  import { parsePxUnit } from '../util/util'
+  import { setElementClass, parsePxUnit } from '../util/util'
 
   export default {
     name: 'FabList',
