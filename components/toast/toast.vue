@@ -17,18 +17,17 @@
     </div>
 </template>
 <style lang="less">
-    @import "toast";
-    @import "toast.ios.less";
-    @import "toast.md.less";
+    @import "./toast.less";
+    @import "./toast.ios.less";
+    @import "./toast.md.less";
 </style>
 <script type="text/javascript">
-  import { urlChange } from '../util/util'
   import Button from '../button/index'
-  import * as appComponentManager from '../util/appComponentManager'
-
-  const NOOP = () => {}
+  import popupExtend from '../util/popup-extend'
 
   export default {
+    name: 'Toast',
+    extends: popupExtend,
     props: {
       message: {
         type: String,
@@ -51,12 +50,10 @@
         type: String,
         default: 'Close'
       },
-      // whether to close component when page change
-      dismissOnPageChange: Boolean,
       // execute when component closed and animate done
       onDismiss: {
         type: Function,
-        default: NOOP
+        default: function () {}
       },
       mode: {
         type: String,
@@ -65,15 +62,7 @@
     },
     data () {
       return {
-        // component state
-        isActive: false, // open state
-        enabled: false, // 组件当前是否进入正常状态的标示(正常显示状态 和 正常退出状态)
-
-        // prmiseCallback
-        presentCallback: NOOP,
-        dismissCallback: NOOP,
-        timer: null, // timer
-        unreg: null
+        timer: null // timer
       }
     },
     computed: {
@@ -93,30 +82,6 @@
       }
     },
     methods: {
-      // -------- private --------
-      /**
-       * Animate Hooks
-       * @private
-       * */
-      beforeEnter () {
-        this.$app && this.$app.setEnabled(false, 400)
-        this.enabled = false
-      },
-      afterEnter () {
-        this.presentCallback()
-        this.enabled = true
-      },
-      beforeLeave () {
-        this.$app && this.$app.setEnabled(false, 400)
-        this.enabled = false
-      },
-      afterLeave () {
-        this.dismissCallback()
-        // 删除DOM
-        this.$el.remove()
-        this.enabled = true
-      },
-
       /**
        * click close button to close
        * @private
@@ -127,33 +92,7 @@
         })
       },
 
-      /**
-       * the handler of dismiss the page when route change
-       * @private
-       */
-      dismissOnPageChangeHandler () {
-        if (this.isActive) {
-          if (this.showCloseButton) {
-            this.cbClick()
-          }
-
-          if (this.timer) {
-            window.clearTimeout(this.timer)
-            this.timer = null
-            this.dismiss().then(() => {
-              this.onDismiss && this.onDismiss()
-            })
-          }
-        }
-      },
-
-      // -------- public --------
-      /**
-       * open current component instance
-       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
-       */
-      present () {
-        this.isActive = true
+      beforePresent () {
         if (!this.showCloseButton) {
           this.timer = window.setTimeout(() => {
             this.timer = null
@@ -162,39 +101,13 @@
             })
           }, this.duration)
         }
-        // add to App Component
-        appComponentManager.addChild(this)
-        return new Promise((resolve) => { this.presentCallback = resolve })
       },
 
-      /**
-       * close current component instance
-       * @returns {Promise} Returns a promise which is resolved when the transition has completed.
-       */
-      dismiss () {
-        if (this.isActive) {
-          this.isActive = false // move
-          if (!this.enabled) {
-            this.$nextTick(() => {
-              this.dismissCallback()
-              this.$el.remove()
-              this.enabled = true
-            })
-          }
-          // remove from App Component
-          appComponentManager.removeChild(this)
-          return new Promise((resolve) => { this.dismissCallback = resolve })
-        } else {
-          return new Promise((resolve) => { resolve() })
-        }
+      beforeDismiss () {
+        this.timer && window.clearTimeout(this.timer)
       }
     },
-    mounted () {
-      if (this.dismissOnPageChange) {
-        // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-        this.unreg = urlChange(this.dismissOnPageChangeHandler)
-      }
-    },
+    mounted () {},
     components: {
       'vm-button': Button
     }
