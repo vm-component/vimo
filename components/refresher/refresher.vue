@@ -78,7 +78,8 @@
    *  },
    * */
 
-  import { setElementClass, registerListener, pointerCoord } from '../util/util'
+  import { setElementClass, pointerCoord } from '../util/util'
+  import registerListener from 'components/util/register-listener'
 
   const STATE_INACTIVE = 'inactive'
   const STATE_PULLING = 'pulling'
