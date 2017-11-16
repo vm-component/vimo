@@ -93,7 +93,7 @@
    *
    * */
   import { parsePxUnit, firstUpperCase, setElementClass } from '../util/util'
-  import css from '../util/getCss'
+  import css from '../util/get-css'
 
   export default {
     name: 'Tabs',
