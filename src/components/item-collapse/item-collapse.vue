@@ -74,7 +74,6 @@
    *
    * @demo #/collapseList
    * */
-  import addItemAttr from '../../util/addItemAttr.js'
   import { getSize } from './styleTools'
 
   export default {
