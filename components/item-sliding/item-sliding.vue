@@ -261,7 +261,7 @@
         this.firstCoord = pointerCoord(ev)
         this.firstTimestamp = new Date().getTime()
         this.startSliding(this.firstCoord.x)
-        this.$eventBus && this.$eventBus.$emit('onItemSlidingOpen', this)
+        this.$root && this.$root.$emit('onItemSlidingOpen', this)
         this.isDraggingFromStart = true
       },
 
@@ -315,7 +315,9 @@
 
         if (this.openAmount === 0 && !this.unregister) {
           // 如果点击结束后, 组件未开启, 且未动画, 则设为disabled状态
-          this.activeClass = {'active-slide': false}
+          window.setTimeout(() => {
+            this.activeClass = {'active-slide': false}
+          }, 300)
           this.state = SLIDING_STATE.Disabled
         }
       },
@@ -377,12 +379,12 @@
         this.optsDirty = true
 
         //  事件注册
-        this.$eventBus && this.$eventBus.$on('onItemSlidingOpen', (ins) => {
+        this.$root && this.$root.$on('onItemSlidingOpen', (ins) => {
           if (this !== ins) {
             this.close()
           }
         })
-        this.$eventBus && this.$eventBus.$on('onScroll', () => {
+        this.$root && this.$root.$on('onScroll', () => {
           this.close()
         })
       },
@@ -622,8 +624,8 @@
       this.init()
     },
     destroyed () {
-      this.$eventBus && this.$eventBus.$off('onItemSlidingOpen')
-      this.$eventBus && this.$eventBus.$off('onScroll')
+      this.$root && this.$root.$off('onItemSlidingOpen')
+      this.$root && this.$root.$off('onScroll')
     }
   }
 
