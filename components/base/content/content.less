@@ -20,7 +20,6 @@
   background-color: @background-color;
 }
 
-
 // Scrollable Content
 // --------------------------------------------------
 
@@ -39,7 +38,7 @@
   contain: style layout;
 }
 
-.disable-scroll{
+.disable-scroll {
   position: fixed;
   width: 100%;
 }
@@ -48,37 +47,28 @@
 // --------------------------------------------------
 
 .fixed-content {
-  position: absolute !important;
-  z-index: auto !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: block;
-  height: 100%;
-  bottom: 0;
-  right: 0;
-}
-
-.fixed-content [fixed],
-.fixed-content [fixedtop],
-.fixed-content [fixedbottom] {
   position: fixed;
   z-index: @z-index-fixed-content;
-  transform: translateZ(0);
-}
 
-.fixed-content [fixedtop],
-.fixed-content [fixedbottom] {
   width: 100%;
-}
+  display: block;
+  height: 0;
+  left: 0;
 
-// fixed Position
-.fixed-content [fixedTop] {
-  top: 0;
-}
+  [fixed],
+  [fixed-top],
+  [fixed-bottom] {
+    position: absolute;
+    z-index: @z-index-fixed-content+10;
+  }
 
-.fixed-content [fixedBottom] {
-  bottom: 0;
+  [fixed],
+  [fixed-top] {
+    top: 0;
+  }
+  [fixed-bottom] {
+    bottom: 0;
+  }
 }
 
 // Content
@@ -87,18 +77,6 @@
 // outer-content是用户自定义类, 不是由组件自己添加的
 .ion-content.outer-content {
   background: @content-outer-background;
-}
-
-.ios {
-  .ion-content.outer-content {
-    background: @content-ios-outer-background;
-  }
-}
-
-.md {
-  .ion-content.outer-content {
-    background: @content-md-outer-background;
-  }
 }
 
 .ion-content hr {

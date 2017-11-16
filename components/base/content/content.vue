@@ -1,10 +1,12 @@
 <template>
     <article content class="ion-content">
-        <section ref="fixedElement" class="fixed-content" :style="fixedElementStyle">
+        <div class="fixed-content fixed-top" :style="{'top':`${headerBarHeight}px`}">
             <slot name="fixed"></slot>
-            <slot name="fixedTop"></slot>
-            <slot name="fixedBottom"></slot>
-        </section>
+            <slot name="fixed-top"></slot>
+        </div>
+        <div class="fixed-content fixed-bottom" :style="{'bottom':`${footerBarHeight}px`}">
+            <slot name="fixed-bottom"></slot>
+        </div>
         <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
             <slot></slot>
         </section>
@@ -75,15 +77,13 @@
    * @demo #/content
    *
    * @slot 空                slot为空则将内容插入到scroll中
-   * @slot [fixed]          默认值, 固定到顶部
-   * @slot [fixedTop]       固定到顶部
-   * @slot [fixedBottom]    固定到底部
+   * @slot [fixed-top]       固定到顶部
+   * @slot [fixed-bottom]    固定到底部
    * @slot [refresher]      refresher组件的位置
    *
    * @fires component:Base/Content#onScrollStart
    * @fires component:Base/Content#onScroll
    * @fires component:Base/Content#onScrollEnd
-   *
    *
    * @usage
    * <template>
@@ -102,11 +102,11 @@
    *
    * */
   import { transitionEnd, parsePxUnit } from '../../util/util'
-  import componentIsMatch from '../../util/componentIsMatch'
-  import { updateImgs, sortTopToBottom } from './img-util'
-  import cssFormat from '../../util/cssFormat'
+  import componentIsMatch from '../../util/component-is-match'
+  import { updateImgs } from './img-util'
+  import cssFormat from '../../util/css-format'
   import ScrollView from '../../util/scroll-view'
-  import addSlotNameToAttr from '../../util/addSlotNameToAttr.js'
+  import addSlotNameToAttr from '../../util/add-slot-name-to-attr.js'
   import registerListener from '../../util/register-listener.js'
   import throttle from 'lodash.throttle'
 
@@ -139,10 +139,13 @@
         contentComponent: _this
       }
     },
+    inject: {
+      isBox: {
+        from: 'isBox',
+        default: false
+      }
+    },
     computed: {
-      fixedElement () {
-        return this.$refs.fixedElement
-      },
       scrollElement () {
         return this.$refs.scrollElement
       }
@@ -180,8 +183,6 @@
        * @return {Promise} 当滚动动画完毕后返回promise
        */
       scrollToTop (duration = 300) {
-        // 页面防止点击
-        this.$app && this.$app.setDisableScroll(true, duration)
         return this.scrollView.scrollToTop(duration)
       },
       /**
@@ -193,8 +194,6 @@
        * @return {Promise} 当滚动动画完毕后返回promise
        */
       scrollToBottom (duration = 300) {
-        // 页面防止点击
-        this.$app && this.$app.setDisableScroll(true, duration)
         return this.scrollView.scrollToBottom(duration)
       },
 
@@ -214,7 +213,6 @@
        * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
       scrollBy (x, y, duration = 300, done) {
-        this.$app && this.$app.setDisableScroll(true, duration)
         return this.scrollView.scrollBy(x, y, duration, done)
       },
 
@@ -230,7 +228,6 @@
        * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
       scrollToElement (el, duration = 300, offsetX = 0, offsetY = 0, done) {
-        this.$app && this.$app.setDisableScroll(true, duration)
         return this.scrollView.scrollToElement(el, duration, offsetX, offsetY, done)
       },
 
@@ -255,14 +252,17 @@
 
         this.fixedElementStyle = {
           marginTop: cssFormat(this.headerBarHeight),
-          marginBottom: cssFormat(this.footerBarHeight),
-          height: cssFormat(window.innerHeight - this.headerBarHeight - this.footerBarHeight)
+          marginBottom: cssFormat(this.footerBarHeight)
         }
 
         // scrollElement 尺寸计算
         this.scrollView.ev.contentHeight = this.scrollElement.clientHeight - this.headerBarHeight - this.footerBarHeight
         this.scrollView.ev.contentTop = this.headerBarHeight
         this.scrollView.ev.contentWidth = this.scrollElement.clientWidth
+
+        if (this.isBox) {
+          this.scrollElementStyle.minHeight = null
+        }
       },
 
       /**
@@ -289,7 +289,11 @@
         this.$_recalculateBarDimensions()
 
         // 流式布局, init(获取尺寸的元素, 监听滚动的元素)
-        this.scrollView.init()
+        if (this.isBox) {
+          this.scrollView.init(this.scrollElement, this.scrollElement)
+        } else {
+          this.scrollView.init(document.documentElement, window)
+        }
 
         // initial imgs refresh
         this.$_imgUpdate(this.scrollView.ev)
