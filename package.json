@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "A Vue2.x UI Project For Mobile & HyBrid",
   "author": "nostaff <nostaff@sina.com>",
-  "homepage": "https://git.yue360.com/nostaff/vimo",
+  "homepage": "https://github.com/nostaff/vimo",
   "license": "MIT",
   "keywords": [
     "vimo",
@@ -65,8 +65,12 @@
     }
   },
   "repository": {
-    "type": "https",
-    "url": "https://git.yue360.com/nostaff/vimo.git"
+    "type": "git",
+    "url": "git@github.com:nostaff/vimo.git"
+  },
+  "demo": {
+    "type": "git",
+    "url": "git@github.com:nostaff/vimo-demo.git"
   },
   "dependencies": {
     "autosize": "^3.0.20",

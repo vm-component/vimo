@@ -12,7 +12,7 @@ var version = require('../package.json').version
 var name = require('../package.json').name
 
 console.log(chalk.cyan('-------------------------------------------'))
-console.log(chalk.cyan(`Releasing the ${name}@${version} to the Gituhub...`))
+console.log(chalk.cyan(`Releasing the ${name}@${version} to the Github...`))
 console.log(chalk.cyan('-------------------------------------------'))
 
 conventionalGithubReleaser({
