@@ -20,11 +20,6 @@ const addLogo = (vimoVer, vueVer) => {
 }
 
 export default function core (Vue, options) {
-  const eventBus = new Vue()
-
-  // 全局事件总线（各个组件共用）中央事件总线
-  Vue.prototype.$eventBus = eventBus
-
   // init base (config/platform/history)
   const platform = setupPlatform(options.pltConf)
   const config = setupConfig(options.custConf, platform)
