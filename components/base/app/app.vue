@@ -1,6 +1,7 @@
 <template>
     <article class="ion-app" :version="version"
-             :class="[modeClass,platformClass,hoverClass]">
+             :style="styleObj"
+             :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
         <!--app-root start-->
         <section class="app-root">
             <slot></slot>
@@ -116,6 +117,8 @@
 
         isScrolling: false,             // 可滚动状态
         isEnabled: true,                // 可点击状态
+        scrollTop: 0,                   // 记录scrollTop, 用于disable scroll
+        styleObj: {},
 
         version: isPresent(window.VM) && window.VM.version
       }
@@ -124,6 +127,12 @@
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
+      }
+    },
+    provide () {
+      let _this = this
+      return {
+        $app: _this
       }
     },
     computed: {
@@ -230,68 +239,57 @@
       /**
        * @private
        * */
-      $_enableScroll () {
-        this.isScrollDisabled = false
-        if (window.removeEventListener) {
-          window.removeEventListener('DOMMouseScroll', this.$_preventDefault, false)
-          window.removeEventListener('touchmove', this.$_preventDefault, false)
-        }
-        window.onmousewheel = document.onmousewheel = document.onkeydown = null
-      },
-      /**
-       * @private
-       * */
       $_disableScroll () {
-        this.isScrollDisabled = true
-        if (window.addEventListener) {
-          window.addEventListener('DOMMouseScroll', this.$_preventDefault, false)
-          window.addEventListener('touchmove', this.$_preventDefault, false)
-        }
-        window.onmousewheel = document.onmousewheel = this.$_preventDefault
-        document.onkeydown = this.$_keydown
-      },
-      /**
-       * @private
-       * */
-      $_preventDefault (e) {
-        e = e || window.event
-        if (e.preventDefault)
-          e.preventDefault()
-        e.returnValue = false
-      },
-      /**
-       * @private
-       * */
-      $_keydown (e) {
-        // left: 37, up: 38, right: 39, down: 40,
-        // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-        var keys = [37, 38, 39, 40]
-        for (var i = keys.length; i--;) {
-          if (e.keyCode === keys[i]) {
-            this.$_preventDefault(e)
-            return
+        if (!this.isScrollDisabled) {
+          this.isScrollDisabled = true
+          this.scrollTop = window.scrollY
+          this.styleObj = {
+            top: -this.scrollTop + 'px'
           }
         }
+      },
+
+      /**
+       * @private
+       * */
+      $_enableScroll () {
+        if (this.isScrollDisabled) {
+          this.isScrollDisabled = false
+          // scrollTop lost after set position:fixed, restore it back.
+          this.$nextTick(() => {
+            window.scrollTo(0, this.scrollTop)
+          })
+        }
+      },
+
+      /**
+       * @private
+       * */
+      $_addChild (vm) {
+        this.$children.push(vm)
+      },
+
+      /**
+       * @private
+       * */
+      $_removeChild (vm) {
+        let uid = vm._uid
+        let index = this.$children.map((item) => item._uid).indexOf(uid)
+        this.$children.splice(index, 1)
       }
     },
     created () {
-      console.assert(this.$platform, `The Component of <App> need 'platform' instance`)
-      console.assert(this.$config, `The Component of <App> need 'config' instance`)
-
-      /**
-       * $app对外方法
-       * */
       let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
       proto.$app = this
 
       const _this = this
-      this.$eventBus.$on('onScrollStart', () => {
+      this.$root.$on('onScrollStart', () => {
         _this.isScrolling = true
       })
-      this.$eventBus.$on('onScroll', () => {
+      this.$root.$on('onScroll', () => {
         _this.isScrolling = true
       })
-      this.$eventBus.$on('onScrollEnd', () => {
+      this.$root.$on('onScrollEnd', () => {
         _this.isScrolling = false
       })
 

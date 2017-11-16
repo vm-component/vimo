@@ -94,6 +94,14 @@
       setStyle (style) {
         this.style = style
       }
+    },
+    created () {
+      this.$root.$on('onMenuOpen', () => {
+        this.hide()
+      })
+      this.$root.$on('onMenuClosing', () => {
+        this.show()
+      })
     }
   }
 </script>

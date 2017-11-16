@@ -20,7 +20,6 @@ export default class ClickBlock {
    * @param {boolean} shouldShow
    * @param {number} expire
    * @return {Promise}
-   * @private
    * */
   activate (shouldShow, expire = 100) {
     return new Promise((resolve) => {
