@@ -33,7 +33,7 @@ import Label from './label'
 import LandscapePrompt from './landscape-prompt'
 import List from './list'
 import Loading from './loading'
-import Menus from './menus'
+import Menu from './menu'
 import Modal from './modal'
 import Note from './note'
 import NoticeBar from './noticebar'
@@ -114,7 +114,7 @@ module.exports = {
   LandscapePrompt,
   List,
   Loading,
-  Menus,
+  Menu,
   Modal,
   Note,
   NoticeBar,
@@ -200,7 +200,7 @@ module.exports = {
     Vue.component(ItemSlidingOptions.name, ItemSlidingOptions)
     Vue.component(Label.name, Label)
     Vue.component(List.name, List)
-    Vue.component(Menus.name, Menus)
+    Vue.component(Menu.name, Menu)
     Vue.component(Note.name, Note)
     Vue.component(NoticeBar.name, NoticeBar)
     Vue.component(Radio.name, Radio)
