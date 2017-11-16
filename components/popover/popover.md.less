@@ -46,3 +46,40 @@
 .popover-md .popover-viewport {
   transition-delay: 100ms;
 }
+
+// transitioName = 'popover-md'
+.popover-md {
+  .popover-wrapper {
+    transition: opacity ease 100ms;
+    .popover-content {
+      transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 300ms;
+      .popover-viewport {
+        transition: opacity ease 300ms;
+      }
+    }
+  }
+}
+
+.popover-md-enter {
+  opacity: 1;
+  .popover-content {
+    transform: scale(1);
+  }
+  .popover-viewport {
+    opacity: 1;
+  }
+}
+
+.popover-md-enter-active {
+  opacity: 0;
+  .popover-content {
+    transform: scale(0);
+  }
+  .popover-viewport {
+    opacity: 0;
+  }
+}
+
+.popover-md-leave-active {
+  opacity: 0;
+}

@@ -74,3 +74,14 @@
 .popover-ios.popover-bottom .popover-arrow::after {
   top: -6px;
 }
+
+// transitioName = 'popover-ios'
+.popover-ios-enter-active, .popove-ios-leave-active {
+  transition: opacity ease .1s;
+  opacity: 1;
+}
+
+.popover-ios-enter, .popover-ios-leave-active {
+  opacity: 0;
+  transition: opacity ease .1s;
+}

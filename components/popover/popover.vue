@@ -11,65 +11,17 @@
             <div class="popover-wrapper" v-show="isActive">
                 <div class="popover-arrow" ref="popoverArrow"></div>
                 <div class="popover-content" ref="popoverContent">
-                    <div class="popover-viewport" ref="popoverViewport" v-html="htmlComponent"></div>
+                    <div class="popover-viewport" ref="viewport" v-html="htmlComponent"></div>
+                    <component :is="theComponent" :data="data"></component>
                 </div>
             </div>
         </transition>
     </div>
 </template>
 <style lang="less">
-    @import "popover";
-    @import "popover.ios.less";
-    @import "popover.md.less";
-
-    // transitioName = 'popover-ios'
-    .popover-ios-enter-active, .popove-ios-leave-active {
-        transition: opacity ease .1s;
-        opacity: 1;
-    }
-
-    .popover-ios-enter, .popover-ios-leave-active {
-        opacity: 0;
-        transition: opacity ease .1s;
-    }
-
-    // transitioName = 'popover-md'
-    .popover-md {
-        .popover-wrapper {
-            transition: opacity ease 100ms;
-            .popover-content {
-                transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 300ms;
-                .popover-viewport {
-                    transition: opacity ease 300ms;
-                }
-            }
-        }
-    }
-
-    .popover-md-enter {
-        opacity: 1;
-        .popover-content {
-            transform: scale(1);
-        }
-        .popover-viewport {
-            opacity: 1;
-        }
-    }
-
-    .popover-md-enter-active {
-        opacity: 0;
-        .popover-content {
-            transform: scale(0);
-        }
-        .popover-viewport {
-            opacity: 0;
-        }
-    }
-
-    .popover-md-leave-active {
-        opacity: 0;
-    }
-
+    @import "./popover.less";
+    @import "./popover.ios.less";
+    @import "./popover.md.less";
 </style>
 <script type="text/javascript">
   /**
@@ -138,33 +90,29 @@
    *
    * @demo #/popover
    * */
-  import Vue from 'vue'
   import Backdrop from '../backdrop'
-  import { urlChange, parsePxUnit } from '../util/util'
-  import css from '../util/getCss'
-  import * as appComponentManager from '../util/appComponentManager'
+  import { parsePxUnit } from '../util/util'
+  import css from '../util/get-css'
 
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
-  const NOOP = () => {}
+
+  import popupExtend from '../util/popup-extend'
+  import prepareComponent from '../util/prepare-component'
 
   export default {
     name: 'Popover',
+    extends: popupExtend,
     data () {
       return {
         htmlComponent: '',
-        presentCallback: NOOP,  // 开启的promise
-        dismissCallback: NOOP,  // 关闭的promise
-        unreg: null,            // 页面切换的pagechange监听函数
-
-        isActive: false,        // 内部控制是否开启
-        enabled: false          // 内部判断当前组件是否在动画中
+        theComponent: ''
       }
     },
     props: {
       component: [Object, String, Function, Promise],
       onDismiss: Function,
-      popData: Object,
+      data: Object,
       ev: [Object, MouseEvent], // 点击元素的事件
       mode: {
         type: String,
@@ -176,10 +124,6 @@
         default: true
       },
       enableBackdropDismiss: {
-        type: Boolean,
-        default: true
-      },
-      dismissOnPageChange: {
         type: Boolean,
         default: true
       }
@@ -200,36 +144,11 @@
       arrowEle () {
         return this.$refs.popoverArrow
       },
-      popoverViewportEle () {
-        return this.$refs.popoverViewport
+      viewportEle () {
+        return this.$refs.viewport
       }
     },
     methods: {
-      /**
-       * ActionSheet Animate Hooks
-       * @private
-       * */
-      beforeEnter () {
-        this.enabled = false // 不允许过渡中途操作
-        this.$app && this.$app.setEnabled(false, 300)
-      },
-      afterEnter () {
-        this.presentCallback()
-        this.enabled = true
-      },
-      beforeLeave () {
-        this.enabled = false
-        this.$app && this.$app.setEnabled(false, 300)
-      },
-      afterLeave () {
-        this.dismissCallback()
-        this.onDismiss && this.onDismiss()
-
-        // 删除DOM
-        this.$el.remove()
-        this.enabled = true
-      },
-
       /**
        * 点击backdrop
        * @private
@@ -237,42 +156,6 @@
       bdClick () {
         if (this.enabled && this.enableBackdropDismiss) {
           this.dismiss()
-        }
-      },
-
-      /**
-       * @function present
-       * @description
-       * 开启组件
-       * */
-      present () {
-        this.isActive = true
-        // add to App Component
-        appComponentManager.addChild(this)
-        return new Promise((resolve) => { this.presentCallback = resolve })
-      },
-
-      /**
-       * @function dismiss
-       * @description
-       * 关闭组件
-       * */
-      dismiss () {
-        if (this.isActive) {
-          this.isActive = false // 动起来
-          this.unreg && this.unreg()
-          if (!this.enabled) {
-            this.$nextTick(() => {
-              this.dismissCallback()
-              this.$el.remove()
-              this.enabled = true
-            })
-          }
-          // remove from App Component
-          appComponentManager.removeChild(this)
-          return new Promise((resolve) => { this.dismissCallback = resolve })
-        } else {
-          return new Promise((resolve) => { resolve() })
         }
       },
 
@@ -417,23 +300,15 @@
         }
       },
 
+      beforeDismiss (data) {
+        this.onDismiss && this.onDismiss(data)
+      },
+
       /**
        * init
        * */
-      init (component) {
-        if (component) {
-          const Component = Vue.extend(component)
-          // eslint-disable-next-line no-new
-          let PageComponent = new Component({
-            el: this.popoverViewportEle,
-            data: this.popData,
-            $data: this.popData
-          })
-          this.$children.push(PageComponent)
-        }
-
-        // 计算位置
-        // 渲染传入的组件
+      init () {
+        // 计算位置 渲染传入的组件
         if (this.mode === 'ios') {
           this.iosPositionView(this.$el, this.ev)
         } else {
@@ -441,32 +316,15 @@
         }
       }
     },
-    created () {
-      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-      if (this.dismissOnPageChange) {
-        this.unreg = urlChange(() => {
-          this.isActive && this.dismiss()
-        })
-      }
-    },
     mounted () {
-      let getType = (val) => Object.prototype.toString.call(val).match(/^(\[object )(\w+)\]$/i)[2].toLowerCase()
-
-      if (getType(this.component) === 'object') {
-        this.init(this.component)
-      } else if (getType(this.component) === 'function') {
-        this.component((component) => {
-          this.init(component)
-        })
-      } else if (getType(this.component) === 'promise') {
-        this.component.then((component) => {
-          this.init(component)
-        })
-      } else {
-        // 如果 this.component 是html模板string的话
+      prepareComponent(this.component).then((component) => {
+        this.theComponent = component
+        this.init()
+      }, () => {
+        // 如果不是 Component 则当做 html字符串处理
         this.htmlComponent = this.component
         this.init()
-      }
+      })
     },
     components: {Backdrop}
   }
