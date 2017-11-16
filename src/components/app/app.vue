@@ -257,7 +257,6 @@
       this.isClickBlockEnabled = true
     },
     mounted () {
-      console.log('mounted')
       if (window.VM) {
         window.VM.$app = this
         // 用于判断组件是否在VM的组件树中

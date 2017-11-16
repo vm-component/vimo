@@ -1,6 +1,6 @@
 <template>
     <div class="ion-navbar toolbar" :class="['toolbar-'+mode, colorClass]" v-show="!hideNavBar">
-        <div ref="toolbarBackground" class="toolbar-background":class="['toolbar-background-'+mode]"></div>
+        <div ref="toolbarBackground" class="toolbar-background" :class="['toolbar-background-'+mode]"></div>
         <div class="toolbar-content" :class="['toolbar-content-'+mode]">
             <slot></slot>
         </div>
