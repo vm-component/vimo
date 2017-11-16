@@ -157,8 +157,8 @@
 
           // 如果在menu跳转, 则需要等待menu关闭后再跳转
           if (this.isInMenu) {
-            this.$menus.close()
-            this.$eventBus && this.$eventBus.$on('onMenuClosed', directToHandler)
+            this.$menu.close()
+            this.$root && this.$root.$on('onMenuClosed', directToHandler)
           } else {
             // 正常情况
             doRedirect()
@@ -167,7 +167,7 @@
           // 事件处理函数
           // eslint-disable-next-line no-inner-declarations
           function directToHandler () {
-            _this.$eventBus && _this.$eventBus.$off('onMenuClosed', directToHandler)
+            _this.$root && _this.$root.$off('onMenuClosed', directToHandler)
             doRedirect()
           }
 
