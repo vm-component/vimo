@@ -186,8 +186,8 @@
       assignCss(assignCssClass) {
         let role = this.roleName;
         if (role) {
-          this.setElementClass(role, assignCssClass); // button
-          this.setElementClass(`${role}-${this.mode}`, assignCssClass); // button
+          setElementClass(this.$el, role, assignCssClass); // button
+          setElementClass(this.$el, `${role}-${this.mode}`, assignCssClass); // button
 
           this.setClass(this.style, assignCssClass); // button-clear
           this.setClass(this.shape, assignCssClass); // button-round
@@ -207,8 +207,8 @@
       setClass(type, assignCssClass) {
         if (type && this.init) {
           type = type.toLocaleLowerCase();
-          this.setElementClass(`${this.roleName}-${type}`, assignCssClass);
-          this.setElementClass(`${this.roleName}-${type}-${this.mode}`, assignCssClass);
+          setElementClass(this.$el, `${this.roleName}-${type}`, assignCssClass);
+          setElementClass(this.$el, `${this.roleName}-${type}-${this.mode}`, assignCssClass);
         }
       },
 
@@ -229,7 +229,7 @@
           className += (style !== null && style !== '' && style !== 'default' ? '-' + style.toLowerCase() : '')
 
           if (color !== null && color !== '') {
-            this.setElementClass(`${className}-${this.mode}-${color}`, isAdd);
+            setElementClass(this.$el, `${className}-${this.mode}-${color}`, isAdd);
           }
         }
       },
@@ -238,23 +238,24 @@
       addIconBtnPosition () {
         let _firstSlot = null
         let _lastSlot = null
-        let _length = this.getSlotLength()
+        let _length = this.$slots && this.$slots.default ? this.$slots.default.length : 0
+
         if (_length > 0) {
           _firstSlot = this.$slots.default[0]
           _lastSlot = this.$slots.default[_length - 1]
           // icon-only
           if (_length === 1 && this.isIconComponent(_firstSlot)) {
-            this.setElementAttribute('icon-only', '')
+            this.$el.setAttribute('icon-only', '')
           }
 
           if (_length > 1) {
             // icon left
             if (this.isIconComponent(_firstSlot) && this.roleName !== 'bar-button') {
-              this.setElementAttribute('icon-left', '')
+              this.$el.setAttribute('icon-left', '')
             }
             // icon right
             if (this.isIconComponent(_lastSlot)) {
-              this.setElementAttribute('icon-right', '')
+              this.$el.setAttribute('icon-right', '')
             }
           }
         }
@@ -265,16 +266,11 @@
         return !!slot.componentOptions && !!slot.componentOptions.tag && slot.componentOptions.tag.toLowerCase() === 'vm-icon'
       },
 
-      // 获取slot的数量
-      getSlotLength () {
-        return (this.$slots && this.$slots.default) ? this.$slots.default.length : 0
-      },
-
       // 如果icon是在item中的话, 则设置 class="item-button"
       addClassInItemComp () {
-        if (this.$parent && this.$parent.hasElementClass('ion-item')) {
+        if (this.$parent && this.$parent.$el.classList.contains('ion-item')) {
           // button in items should add class of 'item-button'
-          this.setElementClass('item-button')
+          setElementClass(this.$el, 'item-button', true)
         }
       }
     }

@@ -57,7 +57,7 @@
         } else {
           fabs.forEach(fab => fab.setElementClass('show', false))
         }
-        this.setElementClass('fab-list-active', visible)
+        setElementClass(this.$el, 'fab-list-active', visible)
       },
     },
     mounted () {
