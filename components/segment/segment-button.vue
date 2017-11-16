@@ -24,7 +24,7 @@
    *
    * */
   import { isTrueProperty, isString, isPresent } from '../util/util'
-  import componentIsMatch from '../util/componentIsMatch.js'
+  import componentIsMatch from '../util/component-is-match.js'
 
   const NOOP = () => {}
 
