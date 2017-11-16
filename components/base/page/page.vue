@@ -1,5 +1,5 @@
 <template>
-    <article class="ion-page" :style="{zIndex:pageZIndex}">
+    <article class="ion-page" :style="{zIndex:pageZIndex}" :class="{'ion-box':isBox}">
         <slot></slot>
     </article>
 </template>
@@ -22,6 +22,40 @@
         opacity: 1;
         z-index: 10;
     }
+
+    .ion-box {
+        // 将page中在页面布局absolute化
+        &.ion-page {
+            height: 100%;
+            position: absolute;
+            contain: strict;
+            .ion-header {
+                position: absolute;
+            }
+            .ion-footer {
+                position: absolute;
+            }
+            .ion-content {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                .scroll-content {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    width: 100%;
+                    overflow: scroll;
+                    -webkit-overflow-scrolling: touch;
+                }
+            }
+        }
+
+        .fixed-content [fixed], .fixed-content [fixed-top], .fixed-content [fixed-bottom] {
+            position: absolute;
+        }
+    }
 </style>
 <script type="text/javascript">
   /**
@@ -32,8 +66,9 @@
    *
    * Page组件是业务的根组件, 用于包裹业务层, 仅此而已. 切记, template标签内有且只有一个标签, 且必须为Page, 例如这样:
    *
-   * @usage
+   * @props {Boolean} [box=false] - 是否为盒子模型(固定高度宽度布局)
    *
+   * @usage
    * <template>
    *    <Page>
    *        <Header>
@@ -54,6 +89,27 @@
     data () {
       return {
         pageZIndex: 0
+      }
+    },
+    props: {
+      box: Boolean // 盒子模型(固定高度宽度布局)
+    },
+    provide () {
+      let _this = this
+      return {
+        isBox: _this.isBox
+      }
+    },
+    inject: {
+      // Modal 组件可能包裹 Page 组件, 则使用Box布局
+      modalComponent: {
+        from: 'modalComponent',
+        default: null
+      }
+    },
+    computed: {
+      isBox () {
+        return !!this.box || !!this.modalComponent
       }
     },
     created () {
