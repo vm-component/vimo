@@ -8,7 +8,7 @@
                 @after-enter="afterEnter"
                 @before-leave="beforeLeave"
                 @after-leave="afterLeave">
-            <div class="sheet-wrapper" v-show="isActive" @touchmove="onTouchMoveHandler($event)">
+            <div class="sheet-wrapper" v-show="isActive">
                 <div class="sheet-container">
                     <slot></slot>
                 </div>
@@ -80,7 +80,6 @@
    * @props {String} [direction='button'] - 表单出现位置, 只能是: 'bottom', 'top' 两个方向
    * @props {Boolean} [enableBackdropDismiss=true] - 点击背景关闭组件
    * @props {String} [mode='ios'] - 模式
-   * @props {Boolean} [dismissOnPageChange=true] - 页面切换关闭组件
    * @props {boolean} [showBackdrop=true] - 是否显示黑色背景
    *
    * @demo #/sheet
@@ -110,12 +109,11 @@
    *
    * */
   import Backdrop from '../backdrop'
-  import { urlChange } from '../util/util'
-
-  const NOOP = () => {}
+  import animateExtend from '../util/animate-extend'
 
   export default {
     name: 'Sheet',
+    extends: animateExtend,
     props: {
       direction: {
         type: String,
@@ -131,10 +129,6 @@
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      },
-      dismissOnPageChange: {
-        type: Boolean,
-        default: true
       },
       showBackdrop: {
         type: Boolean,
@@ -153,15 +147,7 @@
          * isVisible | 判断是否在可视区 | false  | true              | true              | true              | true              | false
          * @private
          * */
-        isActive: false,    // Sheet 开启关闭状态, 显示动画开启 -> 触发关闭dismiss
-        isVisible: false,    // 是否处在显示阶段, 显示动画开启 -> 关闭动画完全关闭
-        enabled: true,     // 是否在过渡态的状态判断，如果在动画中则为false (补漏的)
-
-        // promise
-        presentCallback: NOOP,
-        dismissCallback: NOOP,
-
-        unReg: null         // 页面变化的解绑函数
+        isVisible: false    // 是否处在显示阶段, 显示动画开启 -> 关闭动画完全关闭
       }
     },
     computed: {
@@ -175,124 +161,32 @@
     },
     methods: {
       /**
-       * ActionSheet Animate Hooks
-       * @private
-       * */
-      beforeEnter () {
-        this.enabled = false // 不允许过渡中途操作
-        this.isVisible = true
-        this.$app && this.$app.setEnabled(false, 400)
-      },
-      afterEnter () {
-        this.presentCallback()
-        this.focusOutActiveElement()
-        let focusableEle = document.querySelector('button')
-        if (focusableEle) {
-          focusableEle.focus()
-        }
-        this.enabled = true
-        this.isVisible = true
-      },
-      beforeLeave () {
-        this.enabled = false
-        this.isVisible = true
-        this.$app && this.$app.setEnabled(false, 400)
-      },
-      afterLeave () {
-        this.dismissCallback()
-        this.enabled = true
-        this.isVisible = false
-      },
-
-      /**
-       * ActionSheet启动之前去除focus效果，因为存在键盘
-       * @private
-       * */
-      focusOutActiveElement () {
-        // only button？
-        const activeElement = document.activeElement
-        activeElement && activeElement.blur && activeElement.blur()
-      },
-
-      /**
        * @function bdClick
        * @description
-       * 点击backdrop,关闭actionsheet
+       * 点击backdrop
        * @private
        */
       bdClick () {
         if (this.enableBackdropDismiss) {
           this.dismiss()
         }
-      },
-
-      /**
-       * @function click
-       * @description
-       * 点击下方按钮
-       * @param {object} button Button Click Handler
-       * @private
-       */
-      click (button) {
-        let shouldDismiss = true
-        if (button.handler) {
-          // a handler has been provided, execute it
-          if (button.handler() === false) {
-            // if the return value of the handler is false then do not dismiss
-            shouldDismiss = false
-          }
-        }
-
-        // 当前不是在过渡动画中(dismissing中)，
-        // 如果是在dismissing中，则意味着正在关闭，
-        // 这里不必进行
-        if (shouldDismiss) {
-          this.dismiss()
-        }
-      },
-
-      /**
-       * @function present
-       * @description
-       * 打开ActionSheet
-       * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
-       */
-      present () {
-        this.isActive = true
-        return new Promise((resolve) => { this.presentCallback = resolve })
-      },
-
-      /**
-       * @function dismiss
-       * @description
-       * 关闭ActionSheet, 如果组件还在动画中, 则执行dismiss没有动作
-       * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
-       * */
-      dismiss () {
-        if (!this.enabled) {
-          return new Promise((resolve) => { resolve() })
-        }
-        if (this.isActive) {
-          this.isActive = false // 动起来
-          this.unReg && this.unReg()
-          return new Promise((resolve) => { this.dismissCallback = resolve })
-        } else {
-          return new Promise((resolve) => { resolve() })
-        }
-      },
-
-      onTouchMoveHandler ($event) {
-        $event.preventDefault()
-        $event.stopPropagation()
       }
     },
     created () {
-      // mounted before data ready, so no need to judge the `dismissOnPageChange` value
-      if (this.dismissOnPageChange) {
-        this.unReg = urlChange(() => {
-          this.isActive && this.dismiss()
-        })
-      }
+      this.$on('animate:beforeEnter', () => {
+        this.isVisible = true
+      })
+      this.$on('animate:afterLeave', () => {
+        this.isVisible = false
+      })
+
+      this.$on('animate:present', () => {
+        this.$app && this.$app.$_disableScroll()
+      })
+
+      this.$on('animate:dismiss', () => {
+        this.$app && this.$app.$_enableScroll()
+      })
     },
     components: {
       Backdrop
