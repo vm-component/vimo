@@ -206,7 +206,7 @@
           }
         }
 
-        this.$eventBus.$on('onTitleClick', () => {
+        this.$root.$on('onTitleClick', () => {
           this.$emit('onTitleClick')
         })
       },
