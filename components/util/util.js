@@ -16,6 +16,8 @@
  * @property {number} y - y坐标
  * */
 
+import registerListener from 'components/util/register-listener'
+
 /**
  * @function isBoolean
  * @description 判断传入值是否为 Boolean
@@ -234,67 +236,6 @@ export function transitionEnd (el, callbackFn) {
 }
 
 /**
- * urlChange(popstate)注册，绑定的函数触发后会自动解绑
- * @param {function} callback - 回调函数
- * @return {function} - 解绑函数
- * */
-export function urlChange (callback) {
-  let unReg = function () /* istanbul ignore next */ {}
-
-  const onStateChange = ev => {
-    /* istanbul ignore next */
-    unReg && unReg()
-    /* istanbul ignore next */
-    callback(ev)
-  }
-  unReg = registerListener(window, 'popstate', onStateChange, {})
-  return unReg
-}
-
-/**
- *
- * 给addEventListener增加passive属性, 如果不支持将降级使用!!opts.capture, 事件的关闭需要自己手动解除, 切记!!
- * @param {any} ele                               - 监听的元素
- * @param {string} eventName                      - 监听的名称
- * @param {function} callback                     - 回调
- * @param {object} [opts]                         - addEventListener的第三个参数 EventListenerOptions
- * @param {object} [opts.capture]                 - capture
- * @param {object} [opts.passive]                 - passive
- * @param {Array} [unregisterListenersCollection=[]] - 如果提供Function[], 则unReg将压如这个列表中
- * @return {Function}                             - 返回removeEventListener的函数
- */
-export function registerListener (ele,
-                                  eventName,
-                                  callback,
-                                  opts = {},
-                                  unregisterListenersCollection = []) {
-  // use event listener options when supported
-  // otherwise it's just a boolean for the "capture" arg
-  const listenerOpts = isPassive()
-    ? {
-      capture: !!opts.capture,
-      passive: !!opts.passive
-    }
-    : !!opts.capture
-
-  // use the native addEventListener
-  ele['addEventListener'](eventName, callback, listenerOpts)
-
-  let unReg = function unregisterListener () {
-    ele['removeEventListener'](eventName, callback, listenerOpts)
-  }
-
-  if (
-    unregisterListenersCollection &&
-    Array.isArray(unregisterListenersCollection)
-  ) {
-    unregisterListenersCollection.push(unReg)
-  }
-
-  return unReg
-}
-
-/**
  * 判断的当前浏览器是否支持isPassive属性
  * @return {Boolean}
  * */
@@ -412,7 +353,11 @@ export function hasClass (obj, cls) {
 
 export function addClass (obj, cls) {
   if (!hasClass(obj, cls)) {
-    obj.className += ' ' + cls
+    if (obj.className.trim()) {
+      obj.className += ' ' + cls
+    } else {
+      obj.className = cls
+    }
   }
 }
 

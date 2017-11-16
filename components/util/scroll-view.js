@@ -6,7 +6,8 @@
  *
  * @private
  * */
-import { isBoolean, isNumber, isPresent, registerListener } from './util'
+import { isBoolean, isNumber, isPresent } from './util'
+import registerListener from 'components/util/register-listener'
 
 const SCROLL_END_DEBOUNCE_MS = 80
 const FRAME_MS = (1000 / 60)
@@ -23,6 +24,7 @@ export default class ScrollView {
     this.transform = window.VM && window.VM.platform && window.VM.platform.css.transform
 
     this._el = null                   // scrollElement 当前滚动实例的元素
+    this._evel = null                 // scrollElement 当前滚动实例的元素
 
     this._lsn = null                  // 监听函数 listen, 用于nativeScrll
     this._endTmr = null               // 事件记录 timeout, 用于nativeScrll
@@ -59,12 +61,14 @@ export default class ScrollView {
 
   /**
    * 滚动对象初始化
-   * @private
+   * @param {Element|Window} element - 滚动元素
+   * @param {Element|Window} eventElement - 监听滚动的元素
    * */
-  init () {
+  init (element, eventElement = element) {
     if (!this.initialized) {
       this.initialized = true
-      this._el = document.documentElement
+      this._el = element
+      this._evel = eventElement
 
       this.ev.scrollHeight = this._el.scrollHeight
       this.ev.scrollWidth = this._el.scrollWidth
@@ -173,7 +177,7 @@ export default class ScrollView {
     // a scroll event callback will always be right before the raf callback
     // so there's little to no value of using raf here since it'll all ways immediately
     // call the raf if it was set within the scroll event, so this will save us some time
-    self._lsn = registerListener(window, 'scroll', scrollCallback, EVENT_OPTS)
+    self._lsn = registerListener(this._evel, 'scroll', scrollCallback, EVENT_OPTS)
   }
 
   /**
@@ -198,7 +202,11 @@ export default class ScrollView {
    * @private
    */
   getTop () {
-    return document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+    if (this._evel === window) {
+      return window.scrollY
+    } else {
+      return this._el.scrollTop
+    }
   }
 
   /**
@@ -207,7 +215,7 @@ export default class ScrollView {
    * @private
    */
   getLeft () {
-    return document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft
+    return this._el.scrollLeft
   }
 
   /**
@@ -216,7 +224,11 @@ export default class ScrollView {
    * @private
    */
   setTop (top) {
-    window.scrollTo(0, top)
+    if (this._evel === window) {
+      return window.scrollTo(0, top)
+    } else {
+      this._el.scrollTop = top
+    }
   }
 
   /**
@@ -225,7 +237,7 @@ export default class ScrollView {
    * @private
    */
   setLeft (left) {
-    window.scrollTo(left, 0)
+    this._el.scrollLeft = left
   }
 
   /**
@@ -243,6 +255,7 @@ export default class ScrollView {
   destroy () {
     this.stop()
 
+    this.initialized = false
     this._endTmr && window.clearTimeout(this._endTmr)
     this._lsn && this._lsn()
     this._lsn = null
