@@ -264,7 +264,6 @@
               }
             }
           }, () => {
-            debugger
             this.currentCity = {
               adCode: null,
               city: '定位失败'
