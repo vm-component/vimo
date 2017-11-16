@@ -26,7 +26,7 @@
 </template>
 <script type="text/javascript">
   import { pointerCoord, clamp, parsePxUnit } from '../util/util'
-  import css from '../util/getCss'
+  import css from '../util/get-css'
 
   const PICKER_OPT_SELECTED = 'picker-opt-selected'
   const DECELERATION_FRICTION = 0.97

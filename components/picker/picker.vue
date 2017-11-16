@@ -14,8 +14,7 @@
                          :key="index"
                          class="picker-toolbar-button"
                          :class="[b.cssRole]">
-                        <vm-button @click="btnClick(b)" :class="b.cssClass" class="picker-button" clear>{{b.text}}
-                        </vm-button>
+                        <vm-button @click="btnClick(b)" :class="b.cssClass" class="picker-button" clear>{{b.text}}</vm-button>
                     </div>
                 </div>
                 <div class="picker-columns">
@@ -117,24 +116,18 @@
    *
    * @demo #/picker
    * */
-  import { isString, isPresent, isNumber, urlChange } from '../util/util'
+  import { isString, isPresent, isNumber } from '../util/util'
   import PickerCol from './picker-col.vue'
   import Backdrop from '../backdrop'
   import Button from '../button/index'
-  import * as appComponentManager from '../util/appComponentManager'
-
-  const NOOP = () => {}
+  import popupExtend from '../util/popup-extend'
 
   export default {
     name: 'Picker',
+    components: {'vm-backdrop': Backdrop, PickerCol, 'vm-button': Button},
+    extends: popupExtend,
     data () {
       return {
-        isActive: false,        // 控制当前组件的激活状态
-        enabled: true,          // 是否不在动画中(是否为可行为状态)
-
-        dismissCallback: NOOP,  // 关闭的回调
-        presentCallback: NOOP,  // 打开的回调
-
         cols: [],               // 每列的数据
         timer: null,            // 计时器
         unreg: null             // 页面切换关闭组件的解绑函数
@@ -158,10 +151,6 @@
         type: Boolean,
         default: true
       },
-      dismissOnPageChange: {
-        type: Boolean,
-        default: true
-      },
       onChange: Function,
       onSelect: Function,
       onDismiss: Function
@@ -173,29 +162,6 @@
     },
     methods: {
       /**
-       * Component Animate Hooks
-       * @private
-       * */
-      beforeEnter () {
-        this.enabled = false // 不允许过渡中途操作
-        this.$app && this.$app.setEnabled(false, 400)
-      },
-      afterEnter () {
-        this.presentCallback()
-        this.enabled = true
-      },
-      beforeLeave () {
-        this.enabled = false
-        this.$app && this.$app.setEnabled(false, 400)
-      },
-      afterLeave () {
-        this.dismissCallback()
-        // 删除DOM
-        this.$el.remove()
-        this.enabled = true
-      },
-
-      /**
        * 背景backdrop点击
        * @private
        * */
@@ -204,47 +170,6 @@
           this.dismiss()
         }
       },
-
-      /**
-       * @function present
-       * @param {object} options - 传入参数
-       * @param {Object} options.buttons - 组件初始化的button数据
-       * @param {Array} options.columns - 组件初始化的column数据
-       * @param {String} options.column.name - 组件初始化的column数据
-       * @param {String} options.columns.align - 组件初始化的column数据
-       * @param {String} [options.mode='ios'] - 模式
-       * @param {String} [options.cssClass] - 样式
-       * @param {Boolean} [options.enableBackdropDismiss=true] - 点击backdrop是否能关闭
-       * @param {Function} [options.onChange=noop] - picker数据变化时触发, 某一个col变化也触发, 返回最新值
-       * @param {Function} [options.onSelect=noop] - 某一列发生变化时触发
-       * @description
-       * 开启
-       * */
-      present () {
-        this.isActive = true
-        // add to App Component
-        appComponentManager.addChild(this)
-        return new Promise((resolve) => { this.presentCallback = resolve })
-      },
-
-      /**
-       * @function dismiss
-       * @description
-       * 关闭
-       * */
-      dismiss () {
-        if (this.isActive) {
-          this.isActive = false
-          this.unreg && this.unreg()
-          this.onDismiss && this.onDismiss()
-          // remove from App Component
-          appComponentManager.removeChild(this)
-          return new Promise((resolve) => { this.dismissCallback = resolve })
-        } else {
-          return new Promise((resolve) => { resolve() })
-        }
-      },
-
       /**
        * 标题左右的两个按钮点击(取消/确定)
        * @private
@@ -388,13 +313,6 @@
     },
     created () {
       this.normalizeData()
-
-      // dismissOnPageChange
-      if (this.dismissOnPageChange) {
-        this.unreg = urlChange(() => {
-          this.isActive && this.dismiss()
-        })
-      }
     },
     beforeMount () {
       let pickerCmpElements = document.querySelectorAll('.ion-picker-cmp')
@@ -404,7 +322,6 @@
           console.error('beforeMount find Picker opened!')
         })
       }
-    },
-    components: {'vm-backdrop': Backdrop, PickerCol, 'vm-button': Button}
+    }
   }
 </script>
