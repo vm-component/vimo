@@ -29,9 +29,10 @@ import {
   pointerCoord,
   removeClass,
   setElementClass,
-  transitionEnd} from '../../../components/util/util.js'
+  transitionEnd
+} from '../../../components/util/util.js'
 import { urlChange } from 'components/util/url-change'
-import { registerListener } from 'components/util/register-listener'
+import registerListener from 'components/util/register-listener'
 
 // ,isString,isNumber,isFunction
 describe('util', function () {

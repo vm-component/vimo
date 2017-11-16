@@ -134,7 +134,7 @@ describe('App', function () {
 
   it('$on(onScrollStart)', (cb) => {
     wrapper = mount(App)
-    wrapper.vm.$eventBus.$emit('onScrollStart')
+    wrapper.vm.$root.$emit('onScrollStart')
     setTimeout(() => {
       expect(wrapper.vm.isScrolling).to.be.ok
       cb()
@@ -143,7 +143,7 @@ describe('App', function () {
 
   it('$on(onScroll)', (cb) => {
     wrapper = mount(App)
-    wrapper.vm.$eventBus.$emit('onScroll')
+    wrapper.vm.$root.$emit('onScroll')
     setTimeout(() => {
       expect(wrapper.vm.isScrolling).to.be.ok
       cb()
@@ -152,7 +152,7 @@ describe('App', function () {
 
   it('$on(onScrollEnd)', (cb) => {
     wrapper = mount(App)
-    wrapper.vm.$eventBus.$emit('onScrollEnd')
+    wrapper.vm.$root.$emit('onScrollEnd')
     setTimeout(() => {
       expect(wrapper.vm.isScrolling).to.not.be.ok
       cb()
