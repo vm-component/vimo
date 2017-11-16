@@ -5,7 +5,7 @@
                 <Title ref="title">Content</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" ref="content" padding :fullscreen="false"
+        <Content class="outer-content" ref="content" padding
                  @onScrollStart="onScrollStartHandler"
                  @onScrollEnd="onScrollEndtHandler"
                  @onScroll="onScrollHandler">
@@ -76,7 +76,7 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam, ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
 
-            <section slot="fixedBottom" class="stateBar">
+            <section slot="fixed-bottom" class="stateBar">
                 <Grid no-padding>
                     <Row no-padding v-if="ev">
                         <Column>
@@ -106,6 +106,8 @@
     .stateBar {
         background: rgba(256, 256, 256, 0.9);
         padding: 10px 20px;
+        bottom: 0;
+        width: 100%;
         p {
             margin: 5px 0;
         }

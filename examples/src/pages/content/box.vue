@@ -1,8 +1,8 @@
 <template>
-    <Page>
+    <Page box>
         <Header>
             <Navbar>
-                <Title>流式布局</Title>
+                <Title>盒子布局</Title>
             </Navbar>
         </Header>
         <Content class="outer-content" padding ref="content">
@@ -18,7 +18,7 @@
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fuga iste iusto nihil officia possimus sit ullam. Aperiam architecto dolor ex harum iste laboriosam nostrum possimus quibusdam. Provident, sequi similique?</p>
                 <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fuga iste iusto nihil officia possimus sit ullam. Aperiam architecto dolor ex harum iste laboriosam nostrum possimus quibusdam. Provident, sequi similique?</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fuga iste iusto nihil officia possimus sit ullam. Aperiam architecto dolor ex harum iste laboriosam nostrum possimus quibusdam. Provident, sequi similique?</p>
             </article>
             <!--Button-->
             <Button block @click="scrollToBottom">滚动到底部</Button>

@@ -54,7 +54,7 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae consequuntur ea id, in ipsa maxime perspiciatis, praesentium quae quo repudiandae sit tempora unde ut.</p>
 
-            <section slot="fixedBottom" class="stateBar">
+            <section slot="fixed-bottom" class="stateBar">
                 <Grid no-padding>
                     <Row no-padding>
                         <Column>
@@ -86,6 +86,7 @@
     .stateBar {
         background: rgba(256, 256, 256, 0.9);
         padding: 10px 20px;
+        width: 100%;
         p {
             margin: 5px 0;
         }

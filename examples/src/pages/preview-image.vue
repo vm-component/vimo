@@ -10,11 +10,31 @@
             <p>如果实在支付宝环境，则使用支付宝的组件</p>
             <Button block @click="openAlbum1">从第一个开始</Button>
             <Button block @click="openAlbum2">从第二个开始</Button>
+            <article>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam at autem, beatae commodi doloremque eligendi exercitationem minima mollitia nobis numquam praesentium sapiente sint, sit veniam vero voluptate! Aliquam, quo?</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam at autem, beatae commodi doloremque eligendi exercitationem minima mollitia nobis numquam praesentium sapiente sint, sit veniam vero voluptate! Aliquam, quo?</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam at autem, beatae commodi doloremque eligendi exercitationem minima mollitia nobis numquam praesentium sapiente sint, sit veniam vero voluptate! Aliquam, quo?</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam at autem, beatae commodi doloremque eligendi exercitationem minima mollitia nobis numquam praesentium sapiente sint, sit veniam vero voluptate! Aliquam, quo?</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam at autem, beatae commodi doloremque eligendi exercitationem minima mollitia nobis numquam praesentium sapiente sint, sit veniam vero voluptate! Aliquam, quo?</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam at autem, beatae commodi doloremque eligendi exercitationem minima mollitia nobis numquam praesentium sapiente sint, sit veniam vero voluptate! Aliquam, quo?</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam at autem, beatae commodi doloremque eligendi exercitationem minima mollitia nobis numquam praesentium sapiente sint, sit veniam vero voluptate! Aliquam, quo?</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam at autem, beatae commodi doloremque eligendi exercitationem minima mollitia nobis numquam praesentium sapiente sint, sit veniam vero voluptate! Aliquam, quo?</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam at autem, beatae commodi doloremque eligendi exercitationem minima mollitia nobis numquam praesentium sapiente sint, sit veniam vero voluptate! Aliquam, quo?</p>
+            </article>
         </Content>
     </Page>
 </template>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'name',
     data () {
       return {}

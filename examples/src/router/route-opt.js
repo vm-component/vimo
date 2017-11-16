@@ -295,6 +295,13 @@ let routes = [
       require(['@/pages/pop-sheet.vue'], resolve)
     }
   },
+  {
+    path: '/menu',
+    name: 'menu',
+    component (resolve) {
+      require(['@/pages/menu.vue'], resolve)
+    }
+  },
   // ----  component/Form组件 ----
 
   {
@@ -376,6 +383,13 @@ let routes = [
     name: 'log',
     component (resolve) {
       require(['@/pages/log.vue'], resolve)
+    }
+  },
+  {
+    path: '*',
+    name: 'notFound',
+    component (resolve) {
+      require(['@/pages/not-found.vue'], resolve)
     }
   }
 

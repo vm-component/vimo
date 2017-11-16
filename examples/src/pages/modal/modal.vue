@@ -12,9 +12,6 @@
 
             <Button block @click="openModal">点击打开Modal</Button>
 
-            <h5>相册查看</h5>
-            <p>这一页将需要查看的数据传给Modal组件, Modal组件使用Slides组件对图片轮播</p>
-            <Button block @click="openAlbum">打开相册</Button>
             <h5>Modal内跳转</h5>
             <Button block @click="redirect">开启</Button>
             <h5>登录:</h5>
@@ -23,6 +20,19 @@
             <p><strong>返回的登录数据</strong></p>
             <p>用户名: {{username}}</p>
             <p>密码: {{password}}</p>
+            <Button block @click="secret">隐私政策</Button>
+            <article>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio eaque in, iste ut voluptatem. Adipisci beatae blanditiis deserunt dolor, ipsum, iste iusto necessitatibus nisi odio perspiciatis sint temporibus, voluptatibus.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio eaque in, iste ut voluptatem. Adipisci beatae blanditiis deserunt dolor, ipsum, iste iusto necessitatibus nisi odio perspiciatis sint temporibus, voluptatibus.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio eaque in, iste ut voluptatem. Adipisci beatae blanditiis deserunt dolor, ipsum, iste iusto necessitatibus nisi odio perspiciatis sint temporibus, voluptatibus.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio eaque in, iste ut voluptatem. Adipisci beatae blanditiis deserunt dolor, ipsum, iste iusto necessitatibus nisi odio perspiciatis sint temporibus, voluptatibus.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio eaque in, iste ut voluptatem. Adipisci beatae blanditiis deserunt dolor, ipsum, iste iusto necessitatibus nisi odio perspiciatis sint temporibus, voluptatibus.</p>
+            </article>
 
         </Content>
     </Page>
@@ -37,6 +47,8 @@
 </style>
 <script type="text/javascript">
   import modalPageComponent from './modal-page.vue'
+  import modalRedirectComponent from './modal-redirect.vue'
+  import modalLoginComponent from './modal-login.vue'
 
   export default {
     data () {
@@ -49,11 +61,20 @@
     watch: {},
     computed: {},
     methods: {
+      secret () {
+        this.$modal.present({
+          name: 'SecretModalDemo',
+          animateName: 'fade-bottom',
+          component: import('./modal-secret.vue'),
+          showBackdrop: true,
+          enableBackdropDismiss: false
+        })
+      },
       redirect () {
         this.$modal.present({
-          name: 'redirect',
+          name: 'RedirectModalDemo',
           animateName: 'fade-right',
-          component: import('./modal-redirect.vue'),
+          component: modalRedirectComponent,
           data: {
             parentRouter: this.$router
           },
@@ -69,7 +90,8 @@
         const _this = this
         this.$modal.present({
           name: 'LoginModalDemo',
-          component: import('./modal-login.vue'),
+          animateName: 'fade-bottom',
+          component: modalLoginComponent,
           data: {
             username: this.username,
             password: this.password
@@ -85,19 +107,10 @@
           }
         })
       },
-      openAlbum () {
-        this.$previewImage.present({
-          current: 0,
-          urls: [
-            'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
-            'https://img.alicdn.com/tps/TB1pfG4IFXXXXc6XXXXXXXXXXXX.jpg',
-            'https://img.alicdn.com/tps/TB1h9xxIFXXXXbKXXXXXXXXXXXX.jpg'
-          ]
-        })
-      },
       openModal () {
         this.$modal.present({
           component: modalPageComponent,
+          animateName: 'fade-bottom',
           onDismiss () {
             console.log('onDismiss')
           }

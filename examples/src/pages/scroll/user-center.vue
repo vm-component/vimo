@@ -5,7 +5,7 @@
                 <Title>Title</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" :fullscreen="true">
+        <Content class="outer-content">
             <img class="imgBox" src="./img/1.jpg" :style="{'transform':'scale('+scaleValue+')'}">
             <Scroll slot="fixedTop" class="scrollBox" @scroll="onScrollHandler" :probeType="3">
                 <div class="scrollBox__inner">

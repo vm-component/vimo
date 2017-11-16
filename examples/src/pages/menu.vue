@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Menus</Title>
+                <Title>Menu</Title>
             </Navbar>
         </Header>
         <Content padding class="outer-content">
@@ -29,7 +29,7 @@
                     <Radio value="right"></Radio>
                 </Item>
             </List>
-            <Button block @click="$menus.open('menu')">Menus Open</Button>
+            <Button block @click="$menu.open('menu')">Open Menu</Button>
         </Content>
     </Page>
 </template>
@@ -47,7 +47,7 @@
     computed: {
       menusType: {
         get () {
-          return this.$store.state.menus.type
+          return this.$store.state.menu.type
         },
         set (v) {
           this.$store.commit('SET_MENUS', {type: v})
@@ -55,7 +55,7 @@
       },
       menusSide: {
         get () {
-          return this.$store.state.menus.side
+          return this.$store.state.menu.side
         },
         set (v) {
           this.$store.commit('SET_MENUS', {side: v})

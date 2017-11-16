@@ -12,7 +12,7 @@ const store = new Vuex.Store({
   //   })
   // ],
   state: {
-    menus: {
+    menu: {
       side: 'left', // left/right
       type: 'reveal' // overlay/reveal
     }
@@ -28,10 +28,10 @@ const store = new Vuex.Store({
   mutations: {
     SET_MENUS: (state, {side, type}) => {
       if (side) {
-        state.menus.side = side
+        state.menu.side = side
       }
       if (type) {
-        state.menus.type = type
+        state.menu.type = type
       }
     }
 

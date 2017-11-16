@@ -72,6 +72,11 @@
 
   export default {
     methods: {
+      data () {
+        return {
+
+        }
+      },
       openSetting ($event) {
         this.$popover.present({
           ev: $event,                           // 事件

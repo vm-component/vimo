@@ -6,7 +6,7 @@
             <Navbar hide-back-button>
                 <!--menutoggle-->
                 <Buttons right slot="buttons">
-                    <Button @click="$menus.toggle('menu')" role="bar-button" menutoggle>
+                    <Button @click="$menu.toggle('menu')" role="bar-button" menutoggle>
                         <!--<Icon name="more"></Icon>-->
                         <span>菜单</span>
                     </Button>
@@ -14,8 +14,8 @@
                 <Title @onTitleClick="onTitleClickHandler" :title="$t('index.title')"></Title>
             </Navbar>
         </Header>
-        <Content padding>
-            <article class="index scrollContent">
+        <Content>
+            <article class="index scrollContent" padding>
                 <Grid class="vimo">
                     <Row class="vimo__logo">
                         <Column text-center no-padding>
@@ -41,7 +41,7 @@
                         <Button block solid @click="$router.push({'name':'components','meta':{newWindow:true}})">
                             {{$t('index.component')}}
                         </Button>
-                        <Button block solid @click="$menus.open('menu')">
+                        <Button block solid @click="$menu.open('menu')">
                             {{$t('index.menu')}}
                         </Button>
                     </Row>
@@ -68,12 +68,17 @@
         display: flex;
         justify-content: center;
         align-content: center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         .vimo {
             display: flex;
             justify-content: center;
             align-content: center;
             flex-direction: column;
-            /*padding-bottom: 45px;*/
+            padding-bottom: 45px;
             .vimo__logo {
                 flex: 110px 0 0; /*no*/
                 .vimo__logo--img {

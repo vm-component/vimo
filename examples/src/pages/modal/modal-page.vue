@@ -10,33 +10,40 @@
                 <Title>测试页面</Title>
             </Toolbar>
         </Header>
-        <Content padding ref="content">
+        <Content class="outer-content" padding ref="content">
             <h5>说明</h5>
             <p>Hello, 这里是 Modal 测试页面, 这个页面具有Page组件的完整特性!</p>
             <Button block @click="closeModal">关闭Modal</Button>
             <Button block @click="scrollToBottom">滚动到底部</Button>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
-            <Button block @click="scrollToTop">滚动到顶部</Button>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolor dolore excepturi in itaque iure, magni minima nam officia porro possimus quaerat quos similique sint unde velit vero vitae voluptatibus.
-            </p>
+            <article>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
+                <Button block @click="scrollToTop">滚动到顶部</Button>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolor dolore excepturi in itaque iure, magni minima nam officia porro possimus quaerat quos similique sint unde velit vero vitae voluptatibus.
+                </p>
+            </article>
+
+            <article class="fixed" slot="fixed-bottom">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dignissimos distinctio dolore doloremque eius est explicabo illum </p>
+            </article>
         </Content>
         <Footer>
             <Toolbar>
@@ -74,4 +81,44 @@
     }
   }
 </script>
-<style scoped lang="less"></style>
+<style scoped lang="less">
+    .fixed {
+        background: rgb(74, 154, 113);
+    }
+
+    .modal-article {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        .modal-header {
+            height: 44px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+        .modal-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            overflow: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+        .modal-footer {
+            height: 44px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+    }
+</style>

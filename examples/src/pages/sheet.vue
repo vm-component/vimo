@@ -74,7 +74,7 @@
             <!--paySheet-->
             <Sheet
                     ref="paySheet"
-                    slot="fixed"
+                    slot="fixed-bottom"
                     :direction="direction"
                     :showBackdrop="showBackdrop"
                     :enableBackdropDismiss="enableBackdropDismiss">
@@ -101,6 +101,9 @@
             </Sheet>
             <!--shareSheet-->
         </Content>
+        <Footer>
+            <Toolbar><Title>Title Here</Title></Toolbar>
+        </Footer>
     </Page>
 </template>
 <script type="text/javascript">

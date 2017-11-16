@@ -1,5 +1,5 @@
 <template>
-    <Content>
+    <article class="text-tool">
         <List radio-group v-model="fontFamily" @onChange="changeFontFamily">
             <Row no-padding>
                 <Column no-padding>
@@ -69,7 +69,7 @@
                 <Radio slot="item-left" value="Times New Roman"></Radio>
             </Item>
         </List>
-    </Content>
+    </article>
 </template>
 <style scoped lang="less">
 
@@ -85,7 +85,7 @@
         padding: 0;
     }
 
-    .popover-dot-box{
+    .popover-dot-box {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -220,11 +220,10 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'comp',
     data () {
       return {
-        contentEle: null,
         fontFamily: '',
         background: '',
         colors: {
@@ -244,7 +243,8 @@
             'bg': 'rgb(0, 0, 0)',
             'fg': 'rgb(255, 255, 255)'
           }
-        }
+        },
+        contentEle: this.$attrs.data.contentEle
       }
     },
     methods: {
@@ -276,7 +276,6 @@
       }
     },
     created () {
-      this.contentEle = this.$options.$data.contentEle
       this.background = this.getColorName(this.contentEle.style.backgroundColor)
       this.setFontFamily()
     }

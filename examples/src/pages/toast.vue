@@ -21,6 +21,12 @@
             <Button block @click="toastMiddle()">显示在中间</Button>
             <Button block @click="toastMiddleWithBtn()">显示在中间 + 按钮</Button>
             <Button block @click="showCloseBtnToast()">显示在顶部 + 按钮</Button>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga rerum tenetur unde. Ab accusamus aliquam amet corporis cupiditate deleniti deserunt, expedita, id impedit modi nulla obcaecati quia, rem sint temporibus!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga rerum tenetur unde. Ab accusamus aliquam amet corporis cupiditate deleniti deserunt, expedita, id impedit modi nulla obcaecati quia, rem sint temporibus!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga rerum tenetur unde. Ab accusamus aliquam amet corporis cupiditate deleniti deserunt, expedita, id impedit modi nulla obcaecati quia, rem sint temporibus!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga rerum tenetur unde. Ab accusamus aliquam amet corporis cupiditate deleniti deserunt, expedita, id impedit modi nulla obcaecati quia, rem sint temporibus!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga rerum tenetur unde. Ab accusamus aliquam amet corporis cupiditate deleniti deserunt, expedita, id impedit modi nulla obcaecati quia, rem sint temporibus!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga rerum tenetur unde. Ab accusamus aliquam amet corporis cupiditate deleniti deserunt, expedita, id impedit modi nulla obcaecati quia, rem sint temporibus!</p>
         </Content>
     </Page>
 </template>
@@ -36,7 +42,7 @@
     computed: {},
     methods: {
       toastBottomOnlyString () {
-        let _toastIns = this.$toast('Toast Bottom Only String', 4000)
+        let _toastIns = this.$toast.present('Toast Bottom Only String', 4000)
         setTimeout(function () {
           _toastIns.dismiss()
         }, 3000)

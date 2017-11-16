@@ -3,7 +3,7 @@
         <!--menu menu-->
         <!--type: overlay/reveal-->
         <!--type: left/right/-->
-        <Menus id="menu" :side="menus.side" :type="menus.type">
+        <Menu id="menu" :side="menu.side" :type="menu.type">
             <List>
                 <!--开始-->
                 <ListHeader>
@@ -41,7 +41,7 @@
                     </Item>
                 </ItemGroup>
             </List>
-        </Menus>
+        </Menu>
         <Nav>
             <!--<keep-alive>-->
             <router-view></router-view>
@@ -64,7 +64,7 @@
     },
     computed: {
       ...mapState([
-        'menus'
+        'menu'
       ])
     },
     methods: {

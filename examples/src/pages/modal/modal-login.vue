@@ -1,14 +1,14 @@
 <template>
     <Page>
         <Header>
-            <Navbar>
+            <Toolbar>
                 <Title>Login</Title>
                 <Buttons right slot="buttons">
                     <Button role="bar-button" type="solid" @click="$modal.dismiss()">
                         关闭
                     </Button>
                 </Buttons>
-            </Navbar>
+            </Toolbar>
         </Header>
         <Content padding>
             <List>
@@ -57,7 +57,10 @@
   export default {
     name: 'LoginModalDemo',
     data () {
-      return {}
+      return {
+        username: this.$attrs.data.username,
+        password: this.$attrs.data.password
+      }
     },
     props: {},
     watch: {},
@@ -65,6 +68,8 @@
     methods: {
       secret () {
         this.$modal.present({
+          name: 'SecretModalDemo',
+          animateName: 'fade-bottom',
           component: modalSecretComponent,
           showBackdrop: true,
           enableBackdropDismiss: false
@@ -78,10 +83,7 @@
       }
     },
     created () {},
-    mounted () {
-      console.log('thisthisthis')
-      console.log(this)
-    },
+    mounted () {},
     activated () {}
   }
 </script>

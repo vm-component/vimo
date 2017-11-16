@@ -5,7 +5,7 @@
                 <Title>设置Bar的样式</Title>
             </Navbar>
         </Header>
-        <Content padding class="outer-content" @onScroll="onScrollHandler" :fullscreen="true">
+        <Content padding class="outer-content" @onScroll="onScrollHandler">
             <h1>Section</h1>
             <section>
                 <p>向下滚动, 则Header将渐变消失, 当滚回来的时候则显示. </p>

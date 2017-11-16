@@ -1,14 +1,14 @@
 <template>
     <Page>
         <Header>
-            <Navbar>
+            <Toolbar>
                 <Buttons right slot="buttons">
                     <Button role="bar-button" type="solid" @click="$modal.dismiss()">
                         好的
                     </Button>
                 </Buttons>
                 <Title>隐私政策</Title>
-            </Navbar>
+            </Toolbar>
         </Header>
         <Content padding class="outer-content">
             <p><strong>Apple 隐私政策已于 2016 年 9 月 12 日更新</strong></p>
@@ -125,7 +125,7 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'modal-secret'
   }
 </script>

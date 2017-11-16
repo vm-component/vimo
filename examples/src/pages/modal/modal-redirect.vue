@@ -26,7 +26,11 @@
     },
     props: {},
     watch: {},
-    computed: {},
+    computed: {
+      parentRouter () {
+        return this.$attrs.data.parentRouter
+      }
+    },
     methods: {
       toPage (route) {
         this.$modal.dismiss().then(() => {

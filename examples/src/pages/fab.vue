@@ -74,7 +74,7 @@
                 </FabList>
             </Fab>
 
-            <Fab slot="fixed" bottom left ref="fab4">
+            <Fab slot="fixed-bottom" bottom left ref="fab4">
                 <FabButton color="dark">
                     <Icon name="arrow-dropup"></Icon>
                 </FabButton>
@@ -94,8 +94,7 @@
                 </FabList>
             </Fab>
 
-
-            <Fab slot="fixed" bottom right ref="fab5">
+            <Fab slot="fixed-bottom" bottom right ref="fab5">
                 <FabButton color="dark">
                     <Icon name="arrow-dropleft"></Icon>
                 </FabButton>
@@ -147,6 +146,9 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
         </Content>
+        <Footer>
+            <Toolbar><Title>Footer</Title></Toolbar>
+        </Footer>
     </Page>
 </template>
 <style scoped lang="less">

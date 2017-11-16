@@ -24,10 +24,10 @@ export default [
     }
   },
   {
-    path: '/content-fullscreen',
-    name: 'contentFullscreen',
+    path: '/page-box',
+    name: 'pageBox',
     component (resolve) {
-      require(['@/pages/content/fullscreen.vue'], resolve)
+      require(['@/pages/content/box.vue'], resolve)
     }
   },
   {

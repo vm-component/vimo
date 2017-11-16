@@ -9,8 +9,8 @@
 import { docReady } from '../../../../components/util/util'
 import { PLATFORM_INIT_TIMEOUT } from './variable'
 import platformAliPayDrive from './platform-alipay-drive'
-import loadScript from '../../../../components/util/loadScript'
-import checkProtocol from '../../../../components/util/checkProtocol'
+import loadScript from '../../../../components/util/load-script'
+import checkProtocol from '../../../../components/util/check-protocol'
 
 export default {
   initialize (plt) {

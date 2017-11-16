@@ -4,7 +4,7 @@
             <Navbar>
                 <Title>组件列表</Title>
                 <Buttons right slot="buttons">
-                    <Button @click="$menus.toggle('menu')" role="bar-button" menutoggle>
+                    <Button @click="$menu.toggle('menu')" role="bar-button" menutoggle>
                         <!--<Icon name="more"></Icon>-->
                         <span>菜单</span>
                     </Button>
@@ -330,10 +330,10 @@
             </List>
             <List>
                 <ListHeader>内容切换/Switch</ListHeader>
-                <Item button :to="{name: 'menus'}">
+                <Item button :to="{name: 'menu'}">
                     <Icon slot="item-left" name="book"></Icon>
                     <span>菜单</span>
-                    <Note slot="item-right">Menus</Note>
+                    <Note slot="item-right">Menu</Note>
                 </Item>
                 <Item button :to="{name: 'segment'}">
                     <Icon slot="item-left" name="book"></Icon>

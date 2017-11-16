@@ -11,6 +11,15 @@
             <p>结果: {{selectCity.city}} {{selectCity.adCode}}</p>
             <Button block @click="openCitySelector">打开城市选择器(本地数据)</Button>
             <Button block @click="openCitySelectorWithCustomerData">打开城市选择器(自定义数据)</Button>
+            <article>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio eligendi impedit qui ullam! Corporis dignissimos iste iusto labore numquam, praesentium quidem totam. Commodi consectetur dolore doloribus facere impedit nam, placeat?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio eligendi impedit qui ullam! Corporis dignissimos iste iusto labore numquam, praesentium quidem totam. Commodi consectetur dolore doloribus facere impedit nam, placeat?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio eligendi impedit qui ullam! Corporis dignissimos iste iusto labore numquam, praesentium quidem totam. Commodi consectetur dolore doloribus facere impedit nam, placeat?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio eligendi impedit qui ullam! Corporis dignissimos iste iusto labore numquam, praesentium quidem totam. Commodi consectetur dolore doloribus facere impedit nam, placeat?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio eligendi impedit qui ullam! Corporis dignissimos iste iusto labore numquam, praesentium quidem totam. Commodi consectetur dolore doloribus facere impedit nam, placeat?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio eligendi impedit qui ullam! Corporis dignissimos iste iusto labore numquam, praesentium quidem totam. Commodi consectetur dolore doloribus facere impedit nam, placeat?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio eligendi impedit qui ullam! Corporis dignissimos iste iusto labore numquam, praesentium quidem totam. Commodi consectetur dolore doloribus facere impedit nam, placeat?</p>
+            </article>
         </Content>
     </Page>
 </template>

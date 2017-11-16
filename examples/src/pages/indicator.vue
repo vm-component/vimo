@@ -15,6 +15,24 @@
             <Button block @click="openIndicator300">Open 300ms</Button>
             <Button block @click="openIndicator100">Open 100ms</Button>
             <Button block @click="openIndicator20">Open 20ms</Button>
+            <Button block @click="special">Special</Button>
+
+            <article>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eaque eos et ex facilis ipsam mollitia obcaecati officiis omnis perferendis sed, tempore velit voluptates? Aperiam cupiditate debitis provident quis quo.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eaque eos et ex facilis ipsam mollitia obcaecati officiis omnis perferendis sed, tempore velit voluptates? Aperiam cupiditate debitis provident quis quo.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eaque eos et ex facilis ipsam mollitia obcaecati officiis omnis perferendis sed, tempore velit voluptates? Aperiam cupiditate debitis provident quis quo.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eaque eos et ex facilis ipsam mollitia obcaecati officiis omnis perferendis sed, tempore velit voluptates? Aperiam cupiditate debitis provident quis quo.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eaque eos et ex facilis ipsam mollitia obcaecati officiis omnis perferendis sed, tempore velit voluptates? Aperiam cupiditate debitis provident quis quo.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eaque eos et ex facilis ipsam mollitia obcaecati officiis omnis perferendis sed, tempore velit voluptates? Aperiam cupiditate debitis provident quis quo.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda eaque eos et ex facilis ipsam mollitia obcaecati officiis omnis perferendis sed, tempore velit voluptates? Aperiam cupiditate debitis provident quis quo.</p>
+            </article>
         </Content>
     </Page>
 </template>
@@ -22,12 +40,33 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'name',
     data () {
       return {}
     },
     methods: {
+      special () {
+        this.$indicator.present()
+        this.$indicator.present()
+        this.$indicator.present()
+        setTimeout(() => {
+          this.$indicator.dismiss()
+        }, 20)
+        setTimeout(() => {
+          this.$indicator.dismiss()
+        }, 100)
+        setTimeout(() => {
+          this.$indicator.dismiss()
+        }, 200)
+
+        setTimeout(() => {
+          this.$indicator.present()
+        }, 200)
+        setTimeout(() => {
+          this.$indicator.dismiss()
+        }, 400)
+      },
       openIndicatorInfinity () {
         this.$indicator.present()
         setTimeout(() => {

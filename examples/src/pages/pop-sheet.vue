@@ -44,11 +44,15 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci amet blanditiis consequatur, delectus deleniti dolor ea, excepturi fuga laborum nemo provident recusandae rerum soluta vel veritatis vitae voluptatem voluptates!</p>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci amet blanditiis consequatur, delectus deleniti dolor ea, excepturi fuga laborum nemo provident recusandae rerum soluta vel veritatis vitae voluptatem voluptates!</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci amet blanditiis consequatur, delectus deleniti dolor ea, excepturi fuga laborum nemo provident recusandae rerum soluta vel veritatis vitae voluptatem voluptates!</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci amet blanditiis consequatur, delectus deleniti dolor ea, excepturi fuga laborum nemo provident recusandae rerum soluta vel veritatis vitae voluptatem voluptates!</p>
             </section>
             <!--paySheet-->
             <PopSheet
                     ref="popSheet"
-                    slot="fixed"
+                    slot="fixed-bottom"
                     :enableBackdropDismiss="enableBackdropDismiss"
                     :showBackdrop="showBackdrop">
                 <section class="popSheet">
@@ -117,10 +121,7 @@
 </script>
 <style scoped lang="less">
     .popSheet {
-        /*height: 300px;*/
         width: 300px;
-        background: #fff;
-        border-radius: 10px;
         padding: 25px;
     }
 </style>
