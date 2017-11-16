@@ -1,5 +1,5 @@
 /* eslint-disable no-undef,no-unused-expressions */
-import componentIsMatch from '../../../components/util/componentIsMatch'
+import componentIsMatch from '../../../components/util/component-is-match'
 
 // ,isString,isNumber,isFunction
 describe('componentIsMatch', function () {

@@ -27,12 +27,11 @@ import {
   isUndefined,
   parsePxUnit,
   pointerCoord,
-  registerListener,
   removeClass,
   setElementClass,
-  transitionEnd,
-  urlChange
-} from '../../../components/util/util.js'
+  transitionEnd} from '../../../components/util/util.js'
+import { urlChange } from 'components/util/url-change'
+import { registerListener } from 'components/util/register-listener'
 
 // ,isString,isNumber,isFunction
 describe('util', function () {
