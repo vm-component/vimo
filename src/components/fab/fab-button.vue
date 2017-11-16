@@ -1,11 +1,13 @@
 <template>
-    <vm-button ion-fab @click="clickHandler" :class="[modeClass,colorClass]" :mini="mini">
+    <button ion-fab @click="clickHandler"
+            :class="[modeClass,colorClass]"
+            :mini="mini">
         <vm-icon name="close" class="fab-close-icon"></vm-icon>
         <span class="button-inner">
             <slot></slot>
         </span>
-        <!--<div class="button-effect"></div>-->
-    </vm-button>
+        <div class="button-effect"></div>
+    </button>
 </template>
 <script type="text/javascript">
   /**
@@ -39,6 +41,14 @@
     },
     props: {
       mini: Boolean,
+    },
+    computed: {
+      modeClass () {
+        return `fab fab-${this.mode}`
+      },
+      colorClass () {
+        return this.color && `fab-${this.mode}-${this.color}`
+      }
     },
     methods: {
       /**

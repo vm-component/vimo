@@ -7,7 +7,7 @@
         </vm-header>
         <vm-content padding>
             <vm-fab slot="fixed" top right edge ref="fab1">
-                <vm-fab-button mini>
+                <vm-fab-button mini color="vibrant">
                     <vm-icon name="add"></vm-icon>
                 </vm-fab-button>
                 <vm-fab-list side="bottom">
