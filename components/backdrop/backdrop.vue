@@ -39,7 +39,6 @@
    * @usage
    * <Backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss" :isActive="isActive"></Backdrop>
    * */
-  let NOOP = function () {}
   export default {
     name: 'Backdrop',
     data () {
@@ -58,7 +57,7 @@
       // 点击背景的处理方式
       bdClick: {
         type: Function,
-        default: NOOP
+        default: function () {}
       },
       /**
        * backdrop偏移量, 用于定制化显示
