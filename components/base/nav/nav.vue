@@ -5,7 +5,7 @@
            menuContentTypeClass,
            menuContentSideClass,
            {'menu-content-open':isMenuOpen}]">
-        <div v-if="isMenuOpen" @click="tapToCloseMenu" class="click-cover"></div>
+        <div v-if="isMenuOpen" @click="tapToCloseMenu" @touchmove="stopActive($event)" class="click-cover"></div>
         <!--animate-->
         <!--<transition :name="pageTransitionName">-->
         <slot></slot>
@@ -17,10 +17,13 @@
         .click-cover {
             position: absolute;
             top: 0;
+            bottom: 0;
+            right: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 9999;
+            z-index: 1100;
+            overflow: hidden;
         }
     }
 </style>
@@ -57,7 +60,7 @@
         // ----------- Menu -----------
         isMenuOpen: false, // ion-menu开启
         menuId: null, // menuId
-        menuType: '', // overlay/reveal/push  这里只处理 reveal/push
+        menuType: '', // overlay/reveal  这里只处理 reveal
         menuSide: 'left', // 方向
         menuContentClass: null,
         menuContentTypeClass: null,
@@ -71,23 +74,21 @@
        * @private
        * */
       initNav () {
-        if (!this.$router) return
         // nav 动画切换部分
         const vm = this
-
         // 页面切换显示Indicator
-        if (this.showIndicatorWhenPageChange) {
+        if (vm.$router && vm.showIndicatorWhenPageChange) {
           import('../../indicator').then((component) => {
-            this.IndicatorComponent = component.default
-            this.$router.beforeEach((to, from, next) => {
+            vm.IndicatorComponent = component.default
+            vm.$router.beforeEach((to, from, next) => {
               if (vm.$history.getDirection() === 'forward') {
-                this.IndicatorComponent.present()
+                vm.IndicatorComponent.present()
               }
               next()
             })
-            this.$router.afterEach(() => {
+            vm.$router.afterEach(() => {
               if (vm.$history.getDirection() === 'forward') {
-                this.IndicatorComponent.dismiss()
+                vm.IndicatorComponent.dismiss()
               }
             })
           })
@@ -100,9 +101,14 @@
        * @private
        * */
       tapToCloseMenu () {
-        this.$nextTick(() => {
-          this.isMenuOpen && this.$menus.close()
-        })
+        this.isMenuOpen && this.$menu.close()
+      },
+
+      stopActive ($event) {
+        if (this.isMenuOpen) {
+          $event.preventDefault()
+          $event.stopPropagation()
+        }
       },
 
       /**
@@ -112,12 +118,22 @@
       setMenuInfo (menuId) {
         if (menuId) {
           this.menuId = menuId
-          this.menuSide = this.$menus.menuIns[menuId].side
-          this.menuType = this.$menus.menuIns[menuId].type
+          this.menuSide = this.$menu.menuIns[menuId].side
+          this.menuType = this.$menu.menuIns[menuId].type
           this.menuContentClass = `menu-content`
           this.menuContentTypeClass = `menu-content-${this.menuType}`
           this.menuContentSideClass = `menu-content-${this.menuSide}`
         }
+      },
+
+      clearMenuInfo () {
+        this.menuId = null
+        this.menuSide = 'left'
+        this.menuType = ''
+        this.menuContentClass = null
+        this.menuContentClass = null
+        this.menuContentTypeClass = null
+        this.menuContentSideClass = null
       },
 
       /**
@@ -126,14 +142,15 @@
        * */
       initMenu () {
         // 监听menu的组件事件
-        this.$eventBus.$on('onMenuOpen', (menuId) => {
+        this.$root.$on('onMenuOpen', (menuId) => {
           this.setMenuInfo(menuId)
           this.isMenuOpen = true
         })
-        this.$eventBus.$on('onMenuClosing', () => {
+        this.$root.$on('onMenuClosing', () => {
           this.isMenuOpen = false
+//          this.clearMenuInfo()
         })
-        this.$eventBus.$on('onMenuClosed', () => {
+        this.$root.$on('onMenuClosed', () => {
           this.menuContentTypeClass = null
         })
       }
@@ -143,7 +160,7 @@
       this.initMenu()
 
       //  初始化导航
-//      this.initNav()
+      this.initNav()
     }
   }
 </script>
