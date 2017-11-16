@@ -35,7 +35,7 @@
 
 import { defaults, isFunction, isObject, isPresent } from '../util/util'
 import PLATFORM_DEFAULT_CONFIGS from './platform-default-configs'
-import css from '../util/getCss'
+import css from '../util/get-css'
 
 class Platform {
   constructor () {
