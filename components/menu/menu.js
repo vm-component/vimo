@@ -1,5 +1,5 @@
 /**
- * @component Menus
+ * @component Menu
  * @description
  *
  * ## 菜单组件 / Menus组件
@@ -15,13 +15,13 @@
  * ### 如何引入
  * ```
  * // 引入
- * import Menus from 'vimo/lib/menus'
+ * import Menu from 'vimo/lib/menu'
  * // 安装
- * Vue.component(Menus.name, Menus)
+ * Vue.component(Menu.name, Menu)
  * // 或者
  * export default{
    *   components: {
-   *    Menus
+   *    Menu
    *  }
    * }
  * ```
@@ -30,9 +30,9 @@
  * @props  {String}  [side=left]      - 从哪个方向打开  可选 left/right
  * @props  {String}  [type=overlay]   - 用什么方式打开  可选 overlay/reveal
  *
- * @fires component:Menus#onMenuOpen
- * @fires component:Menus#onMenuClosing
- * @fires component:Menus#onMenuClosed
+ * @fires component:Menu#onMenuOpen
+ * @fires component:Menu#onMenuClosing
+ * @fires component:Menu#onMenuClosed
  *
  * @demo #/
  *
@@ -41,11 +41,11 @@
  * <Menu id="menu" side="left" type="overlay"></Menu>
  *
  * var vm = new Vue();
- * vm.$menus.menuIns: 当前缓存的menu实例对象
- * vm.$menus.currentMenuId: 当前开启的menuId
- * vm.$menus.open('menuId'): 打开id为menuId1的menu
- * vm.$menus.close(): 关闭打开的menu
- * vm.$menus.toggle('menuId'): 如果开启则关闭, 如果没开启的则打开id为menuId1的menu
+ * vm.$menu.menuIns: 当前缓存的menu实例对象
+ * vm.$menu.currentMenuId: 当前开启的menuId
+ * vm.$menu.open('menuId'): 打开id为menuId1的menu
+ * vm.$menu.close(): 关闭打开的menu
+ * vm.$menu.toggle('menuId'): 如果开启则关闭, 如果没开启的则打开id为menuId1的menu
  *
  *
  *
@@ -55,7 +55,7 @@
 // 事件
 
 /**
- * @event component:Menus#onMenuOpen
+ * @event component:Menu#onMenuOpen
  * @description menu开启事件, 传递menuId,可通过$root.$on()去监听。
  * @example
  * new Vue({
@@ -72,12 +72,12 @@
  */
 
 /**
- * @event component:Menus#onMenuClosing
+ * @event component:Menu#onMenuClosing
  * @description menu触发关闭事件,正在关闭...,可通过$root.$on()去监听。
  */
 
 /**
- * @event component:Menus#onMenuClosed
+ * @event component:Menu#onMenuClosed
  * @description menu关闭动画完毕,可通过$root.#on()去监听。
  */
 
@@ -161,13 +161,13 @@ import { urlChange } from '../util/url-change'
 export function recordMenuInstance (instance) {
   // 如果没安装
   let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(instance))
-  if (!proto.$menus) {
-    proto.$menus = new Menus()
+  if (!proto.$menu) {
+    proto.$menu = new Menu()
   }
-  proto.$menus.record(instance)
+  proto.$menu.record(instance)
 }
 
-class Menus {
+class Menu {
   constructor () {
     this.currentMenuId = null // 当前打开的menuID
     this.menuIns = {}         // menu实例队列

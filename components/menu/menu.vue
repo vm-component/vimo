@@ -6,7 +6,7 @@
          :class="{'show-menu':showMenu}">
         <!--组件自己维护backdrop-->
         <Backdrop
-                @click.native="$menus.close()"
+                @click.native="$menu.close()"
                 :isActive="showBackdrop"
                 :class="{'show-backdrop':showBackdrop}"></Backdrop>
         <transition
@@ -22,20 +22,19 @@
     </div>
 </template>
 <style lang="less">
-    @import "./menus.less";
-    @import "./menus.ios.less";
-    @import "./menus.md.less";
+    @import "./menu.less";
+    @import "./menu.ios.less";
+    @import "./menu.md.less";
 </style>
 <script type="text/javascript">
-  import { firstUpperCase } from '../util/util'
-  import { recordMenuInstance } from './menus'
+  import { recordMenuInstance } from './menu'
   import Backdrop from '../backdrop'
-  import focusOutActiveElement from '../util/focusOutActiveElement'
+  import focusOutActiveElement from '../util/focus-out-active-element'
 
   const NOOP = () => {}
 
   export default {
-    name: 'Menus',
+    name: 'Menu',
     data () {
       return {
         isActive: false, // menu-inner 动画控制
