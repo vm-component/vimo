@@ -10,7 +10,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: @z-index-overlay + @z-index-overlay-actionSheet;
+  z-index: @z-index-overlay + @z-index-overlay-sheet;
   display: block;
 
   width: @action-sheet-width;
@@ -29,9 +29,8 @@
 
   width: @action-sheet-width;
   max-width: @action-sheet-max-width;
-  // add
-  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
 
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
 }
 
 .action-sheet-group {
