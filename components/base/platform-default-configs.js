@@ -13,10 +13,7 @@ export default {
   },
   mobile: {
     settings: {
-      mode: 'ios', // 默认使用IOS样式
-      recordPosition: false, // Content组件是否记录滚动位置
-      indicatorPresentMinTime: 200 + 16 * 8, // Indicator最短开启时间 一般是 328ms
-      indicatorMaxDuration: 5000 // Indicator开启的最大时间
+      mode: 'ios' // 默认使用IOS样式
     }
   },
   android: {
