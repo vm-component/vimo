@@ -63,6 +63,9 @@ $picker-md-option-text-color:                 $list-md-text-color !default;
 /// @prop - Font size of the picker option
 $picker-md-option-font-size:                  22px !default;
 
+/// @prop - Font size of the picker option small text
+$picker-md-option-small-size:                 18px !default;
+
 /// @prop - Height of the picker option
 $picker-md-option-height:                     42px !default;
 
@@ -92,7 +95,7 @@ $picker-md-option-selected-color:             color($colors-md, primary) !defaul
 }
 
 .picker-md .picker-button,
-.picker-md .picker-button:active {
+.picker-md .picker-button.activated {
   @include margin(0);
 
   height: $picker-md-button-height;
@@ -152,6 +155,10 @@ $picker-md-option-selected-color:             color($colors-md, primary) !defaul
   @include deprecated-variable(padding, $picker-md-option-padding) {
     @include padding($picker-md-option-padding-top, $picker-md-option-padding-end, $picker-md-option-padding-bottom, $picker-md-option-padding-start);
   }
+}
+
+.picker-md.small-text .picker-opt {
+  font-size: $picker-md-option-small-size;
 }
 
 .picker-md .picker-prefix,

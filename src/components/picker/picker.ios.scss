@@ -66,6 +66,9 @@ $picker-ios-option-text-color:                 $list-ios-text-color !default;
 /// @prop - Font size of the picker option
 $picker-ios-option-font-size:                  20px !default;
 
+/// @prop - Font size of the picker option
+$picker-ios-option-small-size:                 16px !default;
+
 /// @prop - Height of the picker option
 $picker-ios-option-height:                     42px !default;
 
@@ -109,7 +112,7 @@ $picker-button-ios-strong-font-weight:         600 !default;
 }
 
 .picker-ios .picker-button,
-.picker-ios .picker-button:active {
+.picker-ios .picker-button.activated {
   @include margin(0);
 
   height: $picker-ios-button-height;
@@ -167,6 +170,11 @@ $picker-button-ios-strong-font-weight:         600 !default;
   @include deprecated-variable(padding, $picker-ios-option-padding) {
     @include padding($picker-ios-option-padding-top, $picker-ios-option-padding-end, $picker-ios-option-padding-bottom, $picker-ios-option-padding-start);
   }
+}
+
+
+.picker-ios.small-text .picker-opt {
+  font-size: $picker-ios-option-small-size;
 }
 
 .picker-ios .picker-above-highlight {

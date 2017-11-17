@@ -35,12 +35,18 @@
     @import "picker.ios";
     @import "picker.md";
 
-    // transitioName = 'picker'
-    .picker-enter-active, .picker-leave-active {
-        transform: translateY(0%);
+    // transition fadeup
+    .picker-enter-active {
+        transition: transform .45s cubic-bezier(.36, .66, .04, 1);
+        transform: translateY(0);
     }
 
-    .picker-enter, .picker-leave-active {
+    .picker-leave-active {
+        transition: transform .4s cubic-bezier(.36, .66, .04, 1);
+        transform: translateY(100%);
+    }
+
+    .picker-enter, .picker-leave-to {
         transform: translateY(100%);
     }
 </style>

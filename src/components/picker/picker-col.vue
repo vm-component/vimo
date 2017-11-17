@@ -385,6 +385,14 @@
         }
       },
 
+      reset () {
+        this.col.selectedIndex = 0
+        window.setTimeout(() => {
+          this.update(0, 0, true, false)
+          this.refresh()
+        }, 0)
+      },
+
       getOptHeight () {
         // get the height of one option
         let height

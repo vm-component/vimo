@@ -68,7 +68,7 @@ $picker-max-width:                         500px !default;
 
 .picker-col {
   position: relative;
-  //display: flex;
+  display: flex;
 
   flex: 1;
   justify-content: center;
@@ -168,18 +168,3 @@ $picker-max-width:                         500px !default;
   pointer-events: none;
 }
 
-
-// transition fadeup
-.ion-picker-fadeup-enter-active {
-  transition: transform .45s cubic-bezier(.36, .66, .04, 1);
-  transform: translateY(0);
-}
-
-.ion-picker-fadeup-leave-active {
-  transition: transform .4s cubic-bezier(.36, .66, .04, 1);
-  transform: translateY(100%);
-}
-
-.ion-picker-fadeup-enter, .ion-picker-fadeup-leave-to {
-  transform: translateY(100%);
-}
