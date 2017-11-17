@@ -571,10 +571,10 @@ $alert-md-checkbox-icon-transform:            rotate(45deg) !default;
   height: $alert-md-checkbox-icon-height;
 
   border-width: $alert-md-checkbox-icon-border-width;
-  border-top-width: 0;
-  border-left-width: 0;
   border-style: $alert-md-checkbox-icon-border-style;
   border-color: $alert-md-checkbox-icon-border-color;
+  border-top-width: 0;
+  border-left-width: 0;
   transform: $alert-md-checkbox-icon-transform;
 }
 

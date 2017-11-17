@@ -115,10 +115,10 @@ $checkbox-ios-item-end-margin-start:      0 !default;
   height: 9px;
 
   border-width: $checkbox-ios-icon-checkmark-width;
-  border-top-width: 0;
-  border-left-width: 0;
   border-style: $checkbox-ios-icon-checkmark-style;
   border-color: $checkbox-ios-icon-checkmark-color;
+  border-top-width: 0;
+  border-left-width: 0;
   transform: rotate(45deg);
 }
 
