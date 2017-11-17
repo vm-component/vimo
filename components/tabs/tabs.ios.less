@@ -3,7 +3,7 @@
 // iOS Tabs
 // --------------------------------------------------
 
-/// @prop - Border on the tabbar (border-top when [tabsPlacement=bottom] and border-bottom when [tabsPlacement=top])
+/// @prop - Border on the tabbar (border-top when [tabs-placement=bottom] and border-bottom when [tabs-placement=top])
 @tabs-ios-border: @hairlines-width solid @tabs-ios-border-color;
 
 /// @prop - Padding on the tab button
@@ -40,7 +40,7 @@
   background: @tabs-ios-background;
 }
 
-.tabs-ios[tabsPlacement=top] .tabbar {
+.tabs-ios[tabs-placement=top] .tabbar {
   border-top: 0;
   border-bottom: @tabs-ios-border;
 }
@@ -91,26 +91,26 @@
   vertical-align: top;
 }
 
-.tabs-ios[tabsLayout=icon-right] .tab-button .tab-button-text,
-.tabs-ios[tabsLayout=icon-left] .tab-button .tab-button-text {
+.tabs-ios[tabs-layout=icon-right] .tab-button .tab-button-text,
+.tabs-ios[tabs-layout=icon-left] .tab-button .tab-button-text {
   font-size: 14px;
   line-height: 1.1;
 }
 
-.tabs-ios[tabsLayout=icon-right] .tab-button .ion-icon,
-.tabs-ios[tabsLayout=icon-left] .tab-button .ion-icon {
+.tabs-ios[tabs-layout=icon-right] .tab-button .ion-icon,
+.tabs-ios[tabs-layout=icon-left] .tab-button .ion-icon {
   min-width: 24px;
   height: 26px;
 
   font-size: 24px;
 }
 
-.tabs-ios[tabsLayout=icon-hide] .tab-button,
+.tabs-ios[tabs-layout=icon-hide] .tab-button,
 .tabs-ios .tab-button.has-title-only {
   min-height: @tabs-ios-tab-min-height - 8;
 }
 
-.tabs-ios[tabsLayout=icon-hide] .tab-button .tab-button-text,
+.tabs-ios[tabs-layout=icon-hide] .tab-button .tab-button-text,
 .tabs-ios .tab-button.has-title-only .tab-button-text {
   margin: 2px 0;
 
@@ -118,7 +118,7 @@
   line-height: 1.1;
 }
 
-.tabs-ios[tabsLayout=title-hide] .tab-button,
+.tabs-ios[tabs-layout=title-hide] .tab-button,
 .tabs-ios .tab-button.icon-only {
   min-height: @tabs-ios-tab-min-height - 8;
   // added

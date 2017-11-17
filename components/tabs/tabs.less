@@ -1,65 +1,73 @@
 @import "../themes/index.less";
 
+.ion-tabs {
+  overflow: hidden;
+  width: 100%;
+  contain: content;
+  //padding: 4px;
+  //min-height: 44px;
+}
+
 // Tabs
 // --------------------------------------------------
-.tabs-content {
-  position: absolute;
+//.tabs-content {
+//position: relative;
+//width: 100%;
+//height: 100%;
+//top: 0;
+//right: 0;
+//bottom: 0;
+//left: 0;
+//z-index: 1;
+//display: block;
+//overflow: hidden;
+//contain: size style layout;
+.tabs-content-wrap {
+  position: relative;
   width: 100%;
+  display: block;
+  padding: 0;
+  margin: 0;
   top: 0;
-  right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1;
-  display: block;
-  overflow: hidden;
-  contain: size style layout;
-  .tabs-content-wrap {
-    position: absolute;
+  right: 0;
+  box-sizing: border-box;
+  .wrap-inner {
+    position: relative;
     width: 100%;
+    height: 100%;
     display: block;
-    padding: 0;
     margin: 0;
     top: 0;
     bottom: 0;
-    left: 0;
-    right: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+    contain: size style layout;
     box-sizing: border-box;
-    .wrap-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: block;
-      margin: 0;
-      top: 0;
-      bottom: 0;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
-      will-change: scroll-position;
-      contain: size style layout;
-      box-sizing: border-box;
-    }
   }
 }
 
+//}
+
 .tabbar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: relative;
   z-index: @z-index-toolbar;
   display: flex;
 
   width: 100%;
 
   // default to hidden until ready
-  opacity: 0;
+  opacity: 1;
 }
 
 .tabbar.show-tabbar {
   opacity: 1;
 }
 
-[tabsPlacement=top] > .tabbar {
+[tabs-placement=top] > .tabbar {
   top: 0;
   bottom: auto;
 }
@@ -127,22 +135,22 @@
   white-space: normal;
 }
 
-[tabsLayout=icon-bottom] .tab-button .tab-button-icon {
+[tabs-layout=icon-bottom] .tab-button .tab-button-icon {
   order: 10;
 }
 
-[tabsLayout=icon-left] .tab-button,
-[tabsLayout=icon-right] .tab-button {
+[tabs-layout=icon-left] .tab-button,
+[tabs-layout=icon-right] .tab-button {
   flex-direction: row;
 }
 
-[tabsLayout=icon-left] .tab-button .tab-button-icon {
+[tabs-layout=icon-left] .tab-button .tab-button-icon {
   padding-right: 8px;
 
   text-align: right;
 }
 
-[tabsLayout=icon-right] .tab-button .tab-button-icon {
+[tabs-layout=icon-right] .tab-button .tab-button-icon {
   order: 10;
 
   padding-left: 8px;
@@ -152,8 +160,8 @@
 
 .tab-hidden,
 .tab-highlight,
-[tabsLayout=icon-hide] .tab-button-icon,
-[tabsLayout=title-hide] .tab-button-text {
+[tabs-layout=icon-hide] .tab-button-icon,
+[tabs-layout=title-hide] .tab-button-text {
   display: none;
 }
 
@@ -178,9 +186,9 @@
   right: ~'calc(50% - 30px)';
 }
 
-[tabsLayout=icon-bottom] .tab-badge,
-[tabsLayout=icon-left] .tab-badge,
-[tabsLayout=icon-right] .tab-badge {
+[tabs-layout=icon-bottom] .tab-badge,
+[tabs-layout=icon-left] .tab-badge,
+[tabs-layout=icon-right] .tab-badge {
   right: ~'calc(50% - 50px)';
 }
 
