@@ -176,7 +176,6 @@ describe('Button', function () {
       }
     })
     wrapper = mount(Button, opts)
-    console.log(wrapper)
     expect(wrapper.hasClass('button-round-ios')).to.equal(true)
   })
 
