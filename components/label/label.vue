@@ -7,9 +7,9 @@
     </label>
 </template>
 <style lang="less">
-    @import "label";
-    @import "label.ios.less";
-    @import "label.md.less";
+    @import "./label.less";
+    @import "./label.ios.less";
+    @import "./label.md.less";
 </style>
 <script type="text/javascript">
   /**
@@ -41,11 +41,6 @@
 
   export default {
     name: 'Label',
-    data () {
-      return {
-        itemComponent: null // 父元素Item实例
-      }
-    },
     props: {
       /**
        * mode 按钮风格 ios/window/android/we/alipay
@@ -74,6 +69,12 @@
         return this.color ? (`label-${this.mode}-${this.color}`) : ''
       }
     },
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     mounted () {
       /**
        * 可以是fixed/floating/stacked，这个和input与label的位置相关
@@ -81,11 +82,10 @@
        * floating:  当input为空的时候, label盖在input上面; 当input有值, 则浮动到上部
        * stacked: floating的特例, 不管有没有值, 都浮动到上部
        * */
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
-        this.itemComponent = this.$parent
-        setElementClass(this.itemComponent.$el, 'item-label-fixed', this.fixed)
-        setElementClass(this.itemComponent.$el, 'item-label-floating', this.floating)
-        setElementClass(this.itemComponent.$el, 'item-label-stacked', this.stacked)
+      if (this.itemComponent) {
+        this.itemComponent.labelClass['item-label-fixed'] = this.fixed
+        this.itemComponent.labelClass['item-label-floating'] = this.floating
+        this.itemComponent.labelClass['item-label-stacked'] = this.stacked
       }
     }
   }

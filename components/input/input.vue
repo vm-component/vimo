@@ -1,6 +1,6 @@
 <template>
-    <div class="ion-input" :class="[modeClass,{'clearInput':clearInput}]">
-        <div class="input-innerWrap" @click="clickToFocus($event)">
+    <div class="ion-input" :class="[modeClass,{'clearInput':clearInput}]" @click="$_clickToFocus($event)">
+        <div class="input-innerWrap">
             <input ref="input"
                    :class="[textInputClass]"
                    :value="inputValue"
@@ -12,22 +12,22 @@
                    :min="min"
                    :step="step"
                    :autofocus="autofocus"
-                   @keyup="inputKeyUp($event)"
-                   @blur="inputBlurred($event)"
-                   @focus="inputFocused($event)"
-                   @input="inputChanged($event)"
-                   @keydown="inputKeyDown($event)">
+                   @keyup="$_inputKeyUp($event)"
+                   @blur="$_inputBlurred($event)"
+                   @focus="$_inputFocused($event)"
+                   @input="$_inputChanged($event)"
+                   @keydown="$_inputKeyDown($event)">
         </div>
         <vm-button v-if="clearInput && hasValue"
                    clear
                    class="text-input-clear-icon"
-                   @click="clearTextInput()"></vm-button>
+                   @click="$_clearTextInput()"></vm-button>
     </div>
 </template>
 <style lang="less">
-    @import "input";
-    @import "input.ios.less";
-    @import "input.md.less";
+    @import "./input.less";
+    @import "./input.ios.less";
+    @import "./input.md.less";
 </style>
 <script type="text/javascript">
   /**
@@ -116,9 +116,10 @@
    * <Input placeholder="请输入至少4位" type="securityCode" check clearInput></Input>
    * <Input placeholder="XX-XX-XXX格式" type="text" check :regex=/\d{2}-\d{2}-\d{3}/ clearInput></Input>
    * */
-  import { hasFocus, setElementClass, isObject, isBlank, isPresent, isFunction, isRegexp } from '../util/util'
+  import { hasFocus, isObject, isBlank, isPresent, isFunction, isRegexp } from '../util/util'
   import Button from '../button/index'
   import REGEXP from '../util/regexp'
+  import debounce from 'lodash.debounce'
 
   export default {
     name: 'Input',
@@ -224,14 +225,15 @@
       // 自定义输入结果验证的正则表达式
       regex: RegExp,
 
-      // 是否check输入结果, 如果regex有值, 则开启, 否自关闭.
-      // 如果check开启, 但是regex无值, 则使用内置判断
-      // 默认关闭check
-      // check只是作为内部正误标示, 对外提交不起作用
-      // 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名
-      // 这样的话, 验证位置就会统一.
+      /**
+       * 是否check输入结果, 如果regex有值, 则开启, 否自关闭.
+       * 如果check开启, 但是regex无值, 则使用内置判断
+       * 默认关闭check
+       * check只是作为内部正误标示, 对外提交不起作用
+       * 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名
+       * 这样的话, 验证位置就会统一.
+       * */
       check: Boolean
-
     },
     data () {
       return {
@@ -240,15 +242,17 @@
         typeValue: this.type, // 内部type值
         checkValue: this.check || this.regex, // 内部check值, 判断是否需要验证结果
 
-        itemComponent: null, // 外部item组件实例 -> 修改class
-
         isValid: false, // 验证结果
 
-        timer: null,
+        executeEmit () {},
 
         clearOnEditValue: this.clearOnEdit, // 内部维护的clearOnEdit副本, 因为会修改的
         didBlurAfterEdit: false, // clearOnEdit状态唤起的标志
-        shouldBlur: true // 点击清楚按钮时使用
+        shouldBlur: true, // 点击清楚按钮时使用
+        inputClass: {
+          'input-has-value': false,
+          'input-has-focus': false
+        }
       }
     },
     watch: {
@@ -274,13 +278,30 @@
         return (inputValue !== null && inputValue !== undefined && inputValue !== '')
       }
     },
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     methods: {
+      /**
+       * 设置当前组件为focus状态
+       * @public
+       * */
+      setFocus () {
+        if (!hasFocus(this.inputElement)) {
+          this.inputElement.focus()
+        }
+      },
+
       /**
        * 边界检查
        * @param {String|Number} val - 数值
        * @param {String} text - 对应的string
+       * @private
        * */
-      checkBoundary ($event) {
+      $_checkBoundary ($event) {
         let inputText = $event.target.value // text
         let resetValue = null
 
@@ -329,19 +350,21 @@
       /**
        * @event component:Input#onKeyup
        * @description keyup事件
+       * @private
        */
-      inputKeyUp ($event) {
+      $_inputKeyUp ($event) {
         this.$emit('onKeyup', $event)
       },
 
       /**
        * @event component:Input#onKeydown
        * @description keydown事件
+       * @private
        */
-      inputKeyDown ($event) {
+      $_inputKeyDown ($event) {
         this.$emit('onKeydown', $event)
         if (this.clearOnEditValue) {
-          this.checkClearOnEdit()
+          this.$_checkClearOnEdit()
         }
 
         this.oldInputValue = this.inputValue
@@ -351,11 +374,11 @@
        * 执行验证, 如果错误则设置ng-invalid, 正确则设置ng-valid
        * @private
        * */
-      verification () {
+      $_verification () {
         // 只有开启才检查
         if (!this.checkValue) return
 
-        this.isValid = this.getVerifyResult(this.inputValue, this.type)
+        this.isValid = this.$_getVerifyResult(this.inputValue, this.type)
         if (this.isValid) {
           /**
            * @event  component:Input#onValid
@@ -364,8 +387,10 @@
            * @property {string} type - 当前检查的value的类型
            */
           this.$emit('onValid', this.inputValue, this.type)
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', true)
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', false)
+          if (this.itemComponent) {
+            this.itemComponent.inputClass['ng-valid'] = true
+            this.itemComponent.inputClass['ng-invalid'] = false
+          }
         } else {
           /**
            * @event  component:Input#onInvalid
@@ -374,8 +399,10 @@
            * @property {string} type - 当前检查的value的类型
            */
           this.$emit('onInvalid', this.inputValue, this.type)
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', false)
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', true)
+          if (this.itemComponent) {
+            this.itemComponent.inputClass['ng-valid'] = false
+            this.itemComponent.inputClass['ng-invalid'] = true
+          }
         }
       },
 
@@ -386,9 +413,9 @@
        * @return Boolean
        * @private
        * */
-      getVerifyResult (value, type = 'text') {
+      $_getVerifyResult (value, type = 'text') {
         if (!isPresent(value)) {
-          console.debug('当前没有值, 验证跳过, 返回 false!')
+          // '当前没有值, 验证跳过, 返回 false!'
           return false
         }
 
@@ -404,7 +431,7 @@
 
         // 如果没有正则信息则返回true, 表示不验证
         if (!isPresent(_regex)) {
-          console.error('未找到匹配type:' + type + '的regex, 验证跳过, 返回 false!')
+          // '未找到匹配type:' + type + '的regex, 验证跳过, 返回 false!'
           return false
         }
 
@@ -418,36 +445,28 @@
           return _regex.test(value)
         }
 
-        console.error('regex:' + _regex + '不是正则/函数, 验证跳过, 返回 false!')
+        // 'regex:' + _regex + '不是正则/函数, 验证跳过, 返回 false!'
         return false
       },
 
       /**
        * 当该组件被点击的时候触发, 扩大focus触发范围
+       * @private
        */
-      clickToFocus () {
+      $_clickToFocus () {
         this.setFocus()
-      },
-
-      /**
-       * 设置当前组件为focus状态
-       * */
-      setFocus () {
-        if (!hasFocus(this.inputElement)) {
-          this.inputElement.focus()
-        }
       },
 
       /**
        * 监听并发送blur事件
        * @private
        */
-      inputBlurred () {
+      $_inputBlurred () {
         // debug: clearInput会在onBlur之后,造成blur后点击clearInput失效, 故需要延迟blur
         window.setTimeout(() => {
           if (this.shouldBlur) {
             // 向父组件Item添加标记
-            this.setItemHasFocusClass(false)
+            this.$_setItemHasFocusClass(false)
 
             /**
              * @event component:Input#onBlur
@@ -460,7 +479,7 @@
             }
 
             // 验证输入结果
-            this.verification()
+            this.$_verification()
           } else {
             this.shouldBlur = true
           }
@@ -471,16 +490,18 @@
        * 监听并发送focus事件
        * @private
        */
-      inputFocused () {
+      $_inputFocused () {
         // 向父组件Item添加标记
-        this.setItemHasFocusClass(true)
+        this.$_setItemHasFocusClass(true)
         this.setFocus()
         /**
          * @event  component:Input#onFocus
          * @description focus事件
          */
         this.$emit('onFocus')
-        this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-touched', true)
+        if (this.itemComponent) {
+          this.itemComponent.inputClass['ng-touched'] = true
+        }
       },
 
       /**
@@ -488,43 +509,53 @@
        * @param {Event} [$event] - 事件(可选)
        * @private
        */
-      inputChanged ($event) {
+      $_inputChanged ($event) {
         if ($event && $event.target) {
           // 输入限制检查
-          this.inputValue = this.checkBoundary($event)
+          this.inputValue = this.$_checkBoundary($event)
         } else {
           // clear的情况
+          // 需要同步设置input元素的值
+          this.inputElement.value = null
           this.inputValue = null
         }
 
-        this.setItemHasValueClass()
+        this.$_setItemHasValueClass()
 
         // debounce
-        window.clearTimeout(this.timer)
-        this.timer = window.setTimeout(() => {
-          // 组件对外事件
-          /**
-           * @event  component:Input#onInput
-           * @description input事件
-           * @property {*} value - 当前输入的值
-           */
-          this.$emit('onInput', this.inputValue)
-          this.$emit('input', this.inputValue)
-        }, this.debounce)
+        this.executeEmit()
+      },
+
+      $_initDebounce () {
+        if (this.debounce > 0) {
+          return debounce(function () {
+            /**
+             * @event  component:Input#onInput
+             * @description input事件
+             * @property {*} value - 当前输入的值
+             */
+            this.$emit('onInput', this.inputValue)
+            this.$emit('input', this.inputValue)
+          }, this.debounce)
+        } else {
+          return () => {
+            this.$emit('onInput', this.inputValue)
+            this.$emit('input', this.inputValue)
+          }
+        }
       },
 
       /**
        * @private
        * */
-      checkClearOnEdit () {
+      $_checkClearOnEdit () {
         if (!this.clearOnEditValue) {
           return
         }
 
         // clearOnEdit模式激活,并且input有值
         if (this.didBlurAfterEdit && this.hasValue) {
-          this.inputValue = ''
-          this.inputChanged()
+          this.$_inputChanged()
         }
 
         // 重置标记
@@ -535,35 +566,35 @@
        * 点击清除输入项
        * @private
        * */
-      clearTextInput () {
+      $_clearTextInput () {
         this.inputValue = ''
-        this.inputChanged()
+        this.$_inputChanged()
         this.shouldBlur = false
 
         this.setFocus()
-        this.setItemHasFocusClass(true)
+        this.$_setItemHasFocusClass(true)
       },
 
       /**
        *  设置父组件Item被点中时的class
        *  @private
        */
-      setItemHasFocusClass (isFocus) {
+      $_setItemHasFocusClass (isFocus) {
         if (this.itemComponent) {
-          setElementClass(this.itemComponent.$el, 'input-has-focus', isFocus)
+          this.itemComponent.inputClass['input-has-focus'] = isFocus
         }
-        setElementClass(this.$el, 'input-has-focus', isFocus)
+        this.inputClass['input-has-focus'] = isFocus
       },
 
       /**
        *  设置父组件Item有值时的class
        *  @private
        */
-      setItemHasValueClass () {
+      $_setItemHasValueClass () {
         if (this.itemComponent) {
-          setElementClass(this.itemComponent.$el, 'input-has-value', this.hasValue)
+          this.itemComponent.inputClass['input-has-value'] = this.hasValue
         }
-        setElementClass(this.$el, 'input-has-value', this.hasValue)
+        this.inputClass['input-has-value'] = !!this.hasValue
       }
     },
     created () {
@@ -579,19 +610,28 @@
       } else {
         this.typeValue = this.type
       }
+
+      // 生成emit执行体
+      this.executeEmit = this.$_initDebounce()
     },
     mounted () {
       // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
-        this.itemComponent = this.$parent
-        setElementClass(this.itemComponent.$el, 'item-input', true)
-        setElementClass(this.itemComponent.$el, 'show-focus-highlight', this.showFocusHighlight)
-        setElementClass(this.itemComponent.$el, 'show-valid-highlight', this.showValidHighlight)
-        setElementClass(this.itemComponent.$el, 'show-invalid-highlight', this.showInvalidHighlight)
+      if (this.itemComponent) {
+        this.itemComponent.inputClass['item-input'] = true
+        this.itemComponent.inputClass['show-focus-highlight'] = this.showFocusHighlight
+        this.itemComponent.inputClass['show-valid-highlight'] = this.showValidHighlight
+        this.itemComponent.inputClass['show-invalid-highlight'] = this.showInvalidHighlight
       }
 
       // 初始化时,判断是否有value
-      this.setItemHasValueClass()
+      this.$_setItemHasValueClass()
+
+      // 手动focus
+      if (this.autofocus) {
+        window.setTimeout(() => {
+          this.setFocus()
+        }, 16 * 3)
+      }
     }
   }
 </script>

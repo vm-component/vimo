@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-item" :class="[itemClass,itemTypeClass,colorClass]" @click="clickHandler($event)">
+    <div class="ion-item" :class="[itemClass,inputClass,labelClass,itemTypeClass,colorClass]" @click="$_clickHandler($event)">
         <!--以下组件显示在此处：[item-left],ion-checkbox:not([item-right])-->
         <slot name="item-left"></slot>
         <div class="item-inner">
@@ -12,15 +12,37 @@
     </div>
 </template>
 <style lang="less">
-    @import "item";
-    @import "item.ios.less";
-    @import "item.md.less";
-    @import "item-media";
+    @import "./item.less";
+    @import "./item.ios.less";
+    @import "./item.md.less";
+    @import "./item-media.less";
 </style>
 <script type="text/javascript">
   import addItemAttr from '../util/add-slot-name-to-attr.js'
 
   export default {
+    data () {
+      return {
+        // 用于 Input 元素添加class类名
+        inputClass: {
+          'input-has-focus': false,
+          'input-has-value': false,
+          'item-input': false,
+          'ng-touched': false,
+          'ng-valid': false,
+          'ng-invalid': false,
+          'show-focus-highlight': false,
+          'show-invalid-highlight': false,
+          'show-valid-highlight': false
+        },
+        // 用于 Label 元素添加class类名
+        labelClass: {
+          'item-label-fixed': false,
+          'item-label-floating': false,
+          'item-label-stacked': false
+        }
+      }
+    },
     props: {
       /**
        * mode 按钮风格 ios/window/android/we/alipay
@@ -45,11 +67,17 @@
         return `item-block`
       }
     },
+    provide () {
+      const _this = this
+      return {
+        itemComponent: _this
+      }
+    },
     methods: {
       /**
        * 点击代理
        * */
-      clickHandler ($event) {
+      $_clickHandler ($event) {
         this.$emit('click', $event)
       }
     },

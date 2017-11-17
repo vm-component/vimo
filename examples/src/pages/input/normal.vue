@@ -35,17 +35,32 @@
                     <span>右侧清除按钮</span>
                 </ListHeader>
                 <Item>
-                    <Input placeholder="Clear Input" clearInput></Input>
+                    <Input v-model="normalValue" placeholder="Clear Input" clearInput></Input>
+                </Item>
+                <Item>
+                    <Label>Value:</Label>
+                    <span slot="item-right">{{normalValue}}</span>
                 </Item>
             </List>
-
+            <List>
+                <ListHeader>
+                    <span>Debounce</span>
+                </ListHeader>
+                <Item>
+                    <Input v-model="debounceValue" :debounce="1000" placeholder="Debounce 1000ms" clearInput></Input>
+                </Item>
+                <Item>
+                    <Label>Value:</Label>
+                    <span slot="item-right">{{debounceValue}}</span>
+                </Item>
+            </List>
             <List>
                 <ListHeader>
                     <span>Password(自动清除)</span>
                 </ListHeader>
                 <Item>
                     <Label color="primary" stacked>Password</Label>
-                    <Input type="password" placeholder="Password Input"></Input>
+                    <Input type="password" placeholder="Password Input" clear-input></Input>
                 </Item>
             </List>
 
@@ -62,7 +77,7 @@
                            :disabled="testDisabled"></Input>
                 </Item>
                 <Item>
-                    <span slot="item-left"> 当前的值({{testValue.length}}): {{testValue}}</span>
+                    <span slot="item-left"> 当前的值({{testValue ? testValue.length : 0}}): {{testValue}}</span>
                     <Button slot="item-right" small outline @click="testDisabled = !testDisabled">Disable</Button>
                 </Item>
             </List>
@@ -89,6 +104,8 @@
     name: 'InputDemo',
     data () {
       return {
+        debounceValue: null,
+        normalValue: null,
         testValue: 'Edit...',
         testDisabled: false
       }
