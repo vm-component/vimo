@@ -18,6 +18,9 @@
 
   color: @text-color;
   background-color: @background-color;
+
+  // fix: in ios safari of margin in children layout
+  overflow: hidden;
 }
 
 // Scrollable Content
@@ -56,6 +59,7 @@
   left: 0;
 
   [fixed],
+  [refresher],
   [fixed-top],
   [fixed-bottom] {
     position: absolute;
@@ -63,6 +67,7 @@
   }
 
   [fixed],
+  [refresher],
   [fixed-top] {
     top: 0;
   }

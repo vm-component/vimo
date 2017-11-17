@@ -1,5 +1,6 @@
 <template>
-    <article class="ion-content">
+    <article class="ion-content" :class="refreshClass">
+        <slot name="refresher"></slot>
         <div class="fixed-content fixed-top" :style="{'top':`${headerBarHeight}px`}">
             <slot name="fixed"></slot>
             <slot name="fixed-top"></slot>
@@ -10,7 +11,6 @@
         <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
             <slot></slot>
         </section>
-        <slot name="refresher"></slot>
     </article>
 </template>
 <style lang="less">
@@ -112,8 +112,18 @@
 
   export default {
     name: 'Content',
+    inject: ['pageComponent'],
+    provide () {
+      let _this = this
+      return {
+        contentComponent: _this
+      }
+    },
     data () {
       return {
+        refreshClass: {
+          'has-refresher': false
+        },
         fixedElementStyle: {},  // 固定内容的位置样式
         scrollElementStyle: {}, // 滑动内容的位置样式
 
@@ -133,21 +143,12 @@
         imgVelMax: this.$config && this.$config.getNumber('imgVelocityMax', 3)
       }
     },
-    provide () {
-      let _this = this
-      return {
-        contentComponent: _this
-      }
-    },
-    inject: {
-      isBox: {
-        from: 'isBox',
-        default: false
-      }
-    },
     computed: {
       scrollElement () {
         return this.$refs.scrollElement
+      },
+      isBox () {
+        return this.pageComponent.isBox
       }
     },
     methods: {
@@ -236,6 +237,9 @@
        * @private
        * */
       $_recalculateBarDimensions () {
+        const StyleTop = 'marginTop'
+        const StyleBottom = 'marginBottom'
+
         if (this.headerComponent) {
           let ele = this.headerComponent.$el
           this.headerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
@@ -245,14 +249,14 @@
           this.footerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
         }
         this.scrollElementStyle = {
-          marginTop: cssFormat(this.headerBarHeight),
-          marginBottom: cssFormat(this.footerBarHeight),
+          [StyleTop]: cssFormat(this.headerBarHeight),
+          [StyleBottom]: cssFormat(this.footerBarHeight),
           minHeight: cssFormat(window.innerHeight - this.headerBarHeight - this.footerBarHeight)
         }
 
         this.fixedElementStyle = {
-          marginTop: cssFormat(this.headerBarHeight),
-          marginBottom: cssFormat(this.footerBarHeight)
+          [StyleTop]: cssFormat(this.headerBarHeight),
+          [StyleBottom]: cssFormat(this.footerBarHeight)
         }
 
         // scrollElement 尺寸计算
@@ -404,6 +408,8 @@
         this.$root && this.$root.$emit('onScrollEnd', ev)
         this.$_imgUpdate(ev)
       }
+
+      this.$root.$emit('content:created', this)
     },
     mounted () {
       // fix业务将slot的name贴到attr上, 便于class样式处理
@@ -411,6 +417,8 @@
 
       // 计算并设置当前Content的位置及尺寸
       this.$_recalculateContentDimensions()
+
+      this.$root.$emit('content:mounted', this)
     },
     destroyed () {
       this.resizeUnReg && this.resizeUnReg()

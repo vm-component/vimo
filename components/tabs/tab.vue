@@ -116,12 +116,7 @@
         this.$_refreshMatchState()
       }
     },
-    inject: {
-      tabsComponent: {
-        from: 'tabsComponent',
-        default: null
-      }
-    },
+    inject: ['tabsComponent'],
     methods: {
       /**
        * 当前路由是否匹配当前Tab组件状态

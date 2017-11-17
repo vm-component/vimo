@@ -26,24 +26,12 @@
   import { isTrueProperty, isString, isPresent } from '../util/type'
   import componentIsMatch from '../util/component-is-match.js'
 
-  const NOOP = () => {}
-
   export default {
     name: 'SegmentButton',
-    inject: {
-      recordChild: {
-        from: 'recordChild',
-        default: NOOP
-      },
-      onChildChange: {
-        from: 'onChildChange',
-        default: NOOP
-      }
-    },
+    inject: ['segmentComponent'],
     data () {
       return {
         theValue: null, // 当前环境的value副本
-
         isInit: false,
         isSelected: false, // 标志当前是否选中
         isDisabled: false
@@ -102,7 +90,7 @@
       onPointerDownHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
-        this.onChildChange(this.theValue)
+        this.segmentComponent.onChildChange(this.theValue)
       },
 
       /**
@@ -145,7 +133,7 @@
       }
 
       // let parent to record this comp
-      this.recordChild(this)
+      this.segmentComponent.recordChild(this)
 
       // define value
       this.theValue = this.getValue()

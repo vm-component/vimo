@@ -86,6 +86,19 @@
   let initPageZIndex = 1000
   export default {
     name: 'Page',
+    inject: {
+      // Modal 组件可能包裹 Page 组件, 则使用Box布局
+      modalComponent: {
+        from: 'modalComponent',
+        default: null
+      }
+    },
+    provide () {
+      let _this = this
+      return {
+        pageComponent: _this
+      }
+    },
     data () {
       return {
         pageZIndex: 0
@@ -93,19 +106,6 @@
     },
     props: {
       box: Boolean // 盒子模型(固定高度宽度布局)
-    },
-    provide () {
-      let _this = this
-      return {
-        isBox: _this.isBox
-      }
-    },
-    inject: {
-      // Modal 组件可能包裹 Page 组件, 则使用Box布局
-      modalComponent: {
-        from: 'modalComponent',
-        default: null
-      }
     },
     computed: {
       isBox () {
@@ -121,6 +121,10 @@
       } else {
         this.pageZIndex = initPageZIndex
       }
+      this.$root.$emit('page:created')
+    },
+    mounted () {
+      this.$root.$emit('page:mounted')
     }
   }
 </script>

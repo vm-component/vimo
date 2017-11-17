@@ -80,6 +80,7 @@
 
   import { setElementClass, pointerCoord } from '../util/util'
   import registerListener from 'components/util/register-listener'
+  import css from '../util/get-css'
 
   const STATE_INACTIVE = 'inactive'
   const STATE_PULLING = 'pulling'
@@ -90,12 +91,14 @@
   const DAMP = 0.5// 滑动阻尼
   export default {
     name: 'Refresher',
+    // Content组件的实例注入
+    inject: ['contentComponent', 'appComponent'],
     data () {
       return {
         // -------- public --------
         /**
          * @name state
-         * @type {number}
+         * @type {String}
          * @description Refresher 的状态, 可以使下面的一个值:
          * - `inactive` - Refresher 当前时隐藏状态, 没有下拉 或者 刷新
          * - `pulling` - Refresher 当前正在被下拉, 但是还没达到触发刷新的点
@@ -172,10 +175,17 @@
     watch: {
       enabled (val) {
         this.$_setListeners(val)
+      },
+      state (val) {
+        if (val === STATE_INACTIVE) {
+          this.appComponent && this.appComponent.setDisableScroll(false)
+        }
+
+        if (val === STATE_PULLING) {
+          this.appComponent && this.appComponent.setDisableScroll(true)
+        }
       }
     },
-    // Content组件的实例注入
-    inject: ['contentComponent'],
     methods: {
       /**
        * @function complete
@@ -248,15 +258,6 @@
 
         let coord = pointerCoord(ev)
 
-        // refresher定位
-        let contentTop = this.contentComponent.headerBarHeight
-        if (contentTop > 0) {
-          let newTop = contentTop + 'px'
-          if (this.top !== newTop) {
-            this.top = newTop
-          }
-        }
-
         // 记录开始位置
         this.startY = this.currentY = coord.y
         this.progress = 0
@@ -273,6 +274,17 @@
         // 多点触摸则直接返回
         if (ev.touches && ev.touches.length > 1) {
           return 1
+        }
+
+        // 如果页面在滚动, 或者scrollTop != 0
+        if (this.contentComponent && this.contentComponent.isScrolling) {
+          return 9
+        }
+
+        // 不能存在scrollTop为负的情况
+        if (this.contentComponent && this.contentComponent.scrollView && this.contentComponent.scrollView.ev.scrollTop < 0) {
+          // fix: 有些机型存在scrollTop为负的情况
+          return 10
         }
 
         // 以下状态将返回
@@ -352,7 +364,7 @@
           /**
            * @event component:Refresher#onStart
            * @description 开始下拉的事件, 事件传递组件的this
-           * @property {RefreshComponent} this - 组件实例
+           * @property {Component} this - 组件实例
            */
           this.$emit('onStart', this)
         }
@@ -361,7 +373,7 @@
         /**
          * @event component:Refresher#onPull
          * @description 下拉并且看到了refresher, 事件传递组件的this
-         * @property {RefreshComponent} this - 组件实例
+         * @property {Component} this - 组件实例
          */
         this.$emit('onPull', this)
 
@@ -403,7 +415,7 @@
         /**
          * @event component:Refresher#onRefresh
          * @description 进入 refreshing 状态时触发, 事件传递组件的this
-         * @property {RefreshComponent} this - 组件实例
+         * @property {Component} this - 组件实例
          */
         this.$emit('onRefresh', this)
       },
@@ -439,23 +451,30 @@
       },
 
       /**
-       * @param {Number} y -
-       * @param {String} duration -
-       * @param {Boolean} overflowVisible -
-       * @param {String} delay -
+       * @param {Number} y - 纵坐标
+       * @param {String} duration - duration
+       * @param {Boolean} overflowVisible - overflowVisible
+       * @param {String} delay - delay
        **/
       $_setCss (y, duration, overflowVisible, delay) {
         this.appliedStyles = (y > 0)
-        const Css = this.$platform.css
-        this.contentComponent.$_setScrollElementStyle(Css.transform, ((y > 0) ? 'translateY(' + y + 'px) translateZ(0px)' : 'translateZ(0px)'))
-        this.contentComponent.$_setScrollElementStyle(Css.transitionDuration, duration)
-        this.contentComponent.$_setScrollElementStyle(Css.transitionDelay, delay)
+        this.contentComponent.$_setScrollElementStyle(css.transform, ((y > 0) ? 'translateY(' + y + 'px) translateZ(0px)' : 'translateZ(0px)'))
+        this.contentComponent.$_setScrollElementStyle(css.transitionDuration, duration)
+        this.contentComponent.$_setScrollElementStyle(css.transitionDelay, delay)
         this.contentComponent.$_setScrollElementStyle('overflow', (overflowVisible ? 'hidden' : ''))
       }
     },
     mounted () {
-      setElementClass(this.contentComponent.$el, 'has-refresher', true)
+      this.contentComponent.refreshClass['has-refresher'] = true
       this.$_setListeners(this.enabled)
+
+      this.$root.$on('content:mounted', () => {
+        // refresher定位
+        if (this.contentComponent) {
+          let contentTop = this.contentComponent.headerBarHeight || 0
+          this.top = `${contentTop}px`
+        }
+      })
     }
   }
 </script>

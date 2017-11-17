@@ -50,16 +50,16 @@
    * */
   export default {
     name: 'Header',
-    data () {
-      return {
-        isHide: false,
-        style: {}
-      }
-    },
     provide () {
       let _this = this
       return {
         headerComponent: _this
+      }
+    },
+    data () {
+      return {
+        isHide: false,
+        style: {}
       }
     },
     methods: {
@@ -108,6 +108,10 @@
       this.$root.$on('onMenuClosing', () => {
         this.show()
       })
+      this.$root.$emit('header:created', this)
+    },
+    mounted () {
+      this.$root.$emit('header:mounted', this)
     }
   }
 </script>

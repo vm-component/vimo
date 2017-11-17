@@ -63,6 +63,7 @@
 
   export default {
     name: 'Img',
+    inject: ['contentComponent'],
     props: {
       src: String,
       alt: {
@@ -99,7 +100,6 @@
         unRegLoadImg: null      // {function} 解除当前的注册事件
       }
     },
-    inject: ['contentComponent'], // 当前页面的Content组件
     watch: {
       width () {
         this.setDims()

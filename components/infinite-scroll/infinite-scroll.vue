@@ -107,6 +107,7 @@
   const STATE_LOADING = 'loading'
   export default {
     name: 'InfiniteScroll',
+    inject: ['contentComponent'],
     props: {
       // 可用状态
       enabled: {
@@ -125,7 +126,6 @@
         state: (this.enabled ? STATE_ENABLED : STATE_DISABLED) // 内部状态
       }
     },
-    inject: ['contentComponent'], // Content组件的实例
     watch: {
       enabled () {
         this.enable(this.enabled)

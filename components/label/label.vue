@@ -40,6 +40,12 @@
 
   export default {
     name: 'Label',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     props: {
       /**
        * mode 按钮风格 ios/window/android/we/alipay
@@ -66,12 +72,6 @@
       // 颜色
       colorClass () {
         return this.color ? (`label-${this.mode}-${this.color}`) : ''
-      }
-    },
-    inject: {
-      itemComponent: {
-        from: 'itemComponent',
-        default: null
       }
     },
     mounted () {

@@ -75,6 +75,12 @@
 
   export default {
     name: 'Segment',
+    provide () {
+      let _this = this
+      return {
+        segmentComponent:_this
+      }
+    },
     model: {
       prop: 'value',
       event: 'onChange'
@@ -120,39 +126,6 @@
         return this.color ? (`segment-${this.mode}-${this.color}`) : ''
       }
     },
-    provide () {
-      let _this = this
-      return {
-        /**
-         * 记录子组件, 这个由子组件自己找到并调用
-         * @param {Object} childComponent - 子组件实例(子组件的this)
-         * @private
-         * */
-        recordChild (childComponent) {
-          _this.childComponents.push(childComponent)
-          debounce(() => {
-            // 更新子组件状态
-            _this.refreshChildState(_this.value)
-          }, 0)()
-        },
-
-        /**
-         * 子组件点击时操作此函数
-         * @param {string} value - 当前子组件的点击值
-         * @private
-         * */
-        onChildChange (value) {
-          // 更新子组件状态
-          _this.refreshChildState(value)
-          /**
-           * @event component:Segment#onChange
-           * @description 子元素 样式更新后发送onChange事件，并传入value变化值
-           * @property {string} value - 滚动事件对象
-           */
-          _this.$emit('onChange', value)
-        }
-      }
-    },
     methods: {
       /**
        * 更新子组件状态
@@ -164,6 +137,35 @@
             childComponent.setState(value)
           }
         })
+      },
+
+      /**
+       * 记录子组件, 这个由子组件自己找到并调用
+       * @param {Object} childComponent - 子组件实例(子组件的this)
+       * @private
+       * */
+      recordChild (childComponent) {
+        this.childComponents.push(childComponent)
+        debounce(() => {
+          // 更新子组件状态
+          this.refreshChildState(this.value)
+        }, 0)()
+      },
+
+      /**
+       * 子组件点击时操作此函数
+       * @param {string} value - 当前子组件的点击值
+       * @private
+       * */
+      onChildChange (value) {
+        // 更新子组件状态
+        this.refreshChildState(value)
+        /**
+         * @event component:Segment#onChange
+         * @description 子元素 样式更新后发送onChange事件，并传入value变化值
+         * @property {string} value - 滚动事件对象
+         */
+        this.$emit('onChange', value)
       }
     }
   }

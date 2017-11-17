@@ -124,6 +124,12 @@
 
   export default {
     name: 'Input',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     components: {
       'vm-button': Button
     },
@@ -277,12 +283,6 @@
       hasValue () {
         const inputValue = this.inputValue
         return (inputValue !== null && inputValue !== undefined && inputValue !== '')
-      }
-    },
-    inject: {
-      itemComponent: {
-        from: 'itemComponent',
-        default: null
       }
     },
     methods: {

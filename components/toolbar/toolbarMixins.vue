@@ -7,10 +7,7 @@
       color: String
     },
     inject: {
-      appComponent: {
-        from: 'appComponent',
-        default: null
-      },
+      appComponent: 'appComponent',
       headerComponent: {
         from: 'headerComponent',
         default: null

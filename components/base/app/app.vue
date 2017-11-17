@@ -294,13 +294,16 @@
 
       // 设置当前可点击
       this.isClickBlockEnabled = true
+      this.$root.$emit('app:created', this)
     },
     mounted () {
       if (window.VM) {
+        // for debug
         window.VM.$app = this
         // 用于判断组件是否在VM的组件树中
         window.VM.$root = this.$root
       }
+      this.$root.$emit('app:mounted', this)
     }
   }
 </script>

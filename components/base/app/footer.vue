@@ -100,6 +100,10 @@
       this.$root.$on('onMenuClosing', () => {
         this.show()
       })
+      this.$root.$emit('footer:created', this)
+    },
+    mounted () {
+      this.$root.$emit('footer:mounted', this)
     }
   }
 </script>
