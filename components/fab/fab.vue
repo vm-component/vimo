@@ -82,6 +82,12 @@
 
   export default {
     name: 'Fab',
+    provide () {
+      let _this = this
+      return {
+        fabComponent: _this
+      }
+    },
     data () {
       return {
         listsActive: false,             // 组件开闭状态
@@ -100,13 +106,6 @@
       fabContentMargin: {
         type: Number,
         default: 10
-      }
-    },
-    inject: ['contentComponent'],
-    provide () {
-      let _this = this
-      return {
-        fabComponent: _this
       }
     },
     methods: {

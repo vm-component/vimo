@@ -32,6 +32,13 @@
 
   export default {
     name: 'FabButton',
+    inject: {
+      fabComponent: 'fabComponent',
+      fabListComponent: {
+        from: 'fabListComponent',
+        default: null
+      }
+    },
     props: {
       mini: Boolean,
       mode: {
@@ -39,16 +46,6 @@
         default () { return this.$config && this.$config.get('mode') }
       },
       color: String
-    },
-    inject: {
-      fabComponent: {
-        from: 'fabComponent',
-        default: null
-      },
-      fabListComponent: {
-        from: 'fabListComponent',
-        default: null
-      }
     },
     computed: {
       isMainButton () {

@@ -22,6 +22,13 @@
 
   export default {
     name: 'FabList',
+    inject: ['fabComponent'],
+    provide () {
+      let _this = this
+      return {
+        fabListComponent: _this
+      }
+    },
     data () {
       return {
         fabs: [],
@@ -42,18 +49,6 @@
         default () { return this.$config && this.$config.get('mode') }
       }
     },
-    provide () {
-      let _this = this
-      return {
-        fabListComponent: _this
-      }
-    },
-    inject: {
-      fabComponent: {
-        from: 'fabComponent',
-        default: null
-      }
-    },
     methods: {
       /**
        * @param {Boolean} visible - val
@@ -67,37 +62,45 @@
         this.visible = visible
 
         let fabs = this.fabs
-
         let interval = 16 * 3
 
         if (visible) {
           this.$_setElementClass('fab-list-active', visible)
-          this.$nextTick(() => {
-            for (let i = 0, len = fabs.length; len > i; i++) {
-              window.setTimeout(() => {
-                let fab = fabs[i]
-                fab.$_setElementClass('show', true)
-              }, i * interval)
-            }
-          })
-        } else {
-          this.$nextTick(() => {
-            for (let i = 0, len = fabs.length; len > i; i++) {
-              (function (i) {
+          let count = fabs.length
+          let i = 0
+          let step = () => {
+            if (count > i) {
+              window.requestAnimationFrame(() => {
+                fabs[i].$_setElementClass('show', true)
+                i++
                 window.setTimeout(() => {
-                  let fab = fabs[i]
-                  fab.$_setElementClass('show', false)
-                  if (fabs.length - 1 === i) {
-                    window.setTimeout(() => {
-                      _this.$nextTick(() => {
-                        _this.$_setElementClass('fab-list-active', visible)
-                      })
-                    }, 300)
-                  }
-                }, i * interval)
-              })(i)
+                  step()
+                }, interval)
+              })
             }
-          })
+          }
+
+          window.setTimeout(() => {
+            step()
+          }, interval)
+        } else {
+          let count = fabs.length - 1
+          let i = -1
+          let step = () => {
+            if (count > i) {
+              window.requestAnimationFrame(() => {
+                fabs[count].$_setElementClass('show', false)
+                count--
+                window.setTimeout(() => {
+                  step()
+                }, interval)
+              })
+            } else {
+              _this.$_setElementClass('fab-list-active', visible)
+            }
+          }
+
+          step()
         }
       },
 
