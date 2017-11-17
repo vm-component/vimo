@@ -120,7 +120,7 @@ const CityPicker = {
           columns.push({
             name: 'city',
             selectedIndex: getCodeIndex(cityCode, data),
-            align: 'left',
+            // align: 'left',
             options: data
           })
 
