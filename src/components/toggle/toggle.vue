@@ -71,7 +71,7 @@
    * </vm-list>
    *
    **/
-  import {isTrueProperty} from '../../util/util'
+  import {isTrueProperty, setElementClass} from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
 
   export default {
