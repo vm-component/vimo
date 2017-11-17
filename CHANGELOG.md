@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/nostaff/vimo/compare/v0.8.1...v1.1.0) (2017-11-17)
+
+
+### Bug Fixes
+
+* Button unit test ([3f32a3d](https://github.com/nostaff/vimo/commit/3f32a3d))
+* Picker样式错误 ([8f998da](https://github.com/nostaff/vimo/commit/8f998da))
+* popover获取自身高度错误，导致弹出位置错误的bug ([1deb9aa](https://github.com/nostaff/vimo/commit/1deb9aa))
+* setElementClass 引入 ([65c2dcd](https://github.com/nostaff/vimo/commit/65c2dcd))
+* 修复fab button样式错误 ([a42bc0c](https://github.com/nostaff/vimo/commit/a42bc0c))
+* 修复package中repository书写的问题 ([5096cae](https://github.com/nostaff/vimo/commit/5096cae))
+* 将bordor-top-width 放在border-witdh后，防止webpack后属性合并导致top的设置被覆盖 ([805b235](https://github.com/nostaff/vimo/commit/805b235))
+
+
+### Features
+
+* less ==> scss ([307ee5a](https://github.com/nostaff/vimo/commit/307ee5a))
+* remove landscape  prompt ([4673d24](https://github.com/nostaff/vimo/commit/4673d24))
+* select 组件支持popover弹出选项 ([c459fab](https://github.com/nostaff/vimo/commit/c459fab))
+* select 组件支持popover弹出选项 ([84fe791](https://github.com/nostaff/vimo/commit/84fe791))
+* 添加Item单元测试 ([b31f50e](https://github.com/nostaff/vimo/commit/b31f50e))
+* 移除setElementClass函数 ([109ebe8](https://github.com/nostaff/vimo/commit/109ebe8))
+* 移除setElementClass函数 ([aaced54](https://github.com/nostaff/vimo/commit/aaced54))
+
+
+### Performance Improvements
+
+* App组件增加slot=outer结构，用于在整体结构外部添加组件，比如landscape-prompt组件 ([8a0bcb3](https://github.com/nostaff/vimo/commit/8a0bcb3))
+* UI升级到IONIC3.5 ([0f39cdb](https://github.com/nostaff/vimo/commit/0f39cdb))
+* UI升级到IONIC3.5 ([9ba4d87](https://github.com/nostaff/vimo/commit/9ba4d87))
+* UI升级到IONIC3.5 ，less改用scss ([0a7f5ae](https://github.com/nostaff/vimo/commit/0a7f5ae))
+* UI升级到IONIC3.5 ，less改用scss ([bd67838](https://github.com/nostaff/vimo/commit/bd67838))
+* 新增组件LandscapePrompt组件，当手机横屏时黑屏并提示用户竖屏浏览。 ([d96efd1](https://github.com/nostaff/vimo/commit/d96efd1))
+* 组件extend底层组件的mode color等属性 ([aba7e73](https://github.com/nostaff/vimo/commit/aba7e73))
+
+
+
 <a name="0.8.1"></a>
 ## [0.8.1](https://github.com/vm-component//vimo/compare/v0.8.0...v0.8.1) (2017-10-25)
 
