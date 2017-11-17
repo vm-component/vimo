@@ -5,6 +5,7 @@
 </template>
 <style lang="less">
     @import "../../themes/index";
+
     .ion-footer {
         position: fixed;
         bottom: 0;
@@ -44,6 +45,12 @@
         // -------- public --------
         isHide: false,
         style: {}
+      }
+    },
+    provide () {
+      let _this = this
+      return {
+        footerComponent: _this
       }
     },
     methods: {

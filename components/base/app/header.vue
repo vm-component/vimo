@@ -56,6 +56,12 @@
         style: {}
       }
     },
+    provide () {
+      let _this = this
+      return {
+        headerComponent: _this
+      }
+    },
     methods: {
       /**
        * @function hide
