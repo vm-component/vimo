@@ -102,23 +102,29 @@
       // cancel按钮显示文本
       cancelText: {
         type: String,
-        default () { return '取消' }
+        default: '取消'
       },
       // OK按钮显示文本
       okText: {
         type: String,
-        default () { return '确认' }
+        default: '确认'
       },
       disabled: [Boolean],
       // 显示界面类型, 可以是'action-sheet','alert'两个
       interface: {
         type: String,
-        default () { return 'alert' }
+        default: 'alert',
+        validator (val) {
+          return ~[
+            'alert',
+            'action-sheet'
+          ].indexOf(val)
+        }
       },
       // 单选多选,默认为单选
-      multiple: [Boolean],
+      multiple: Boolean,
       // 当未选择时显示的值
-      placeholder: [String],
+      placeholder: String,
       // select组件掉用alert和action-sheet组件的, 这个是针对传入的参数
       // title/subTitle/message/cssClass/enableBackdropDismiss等
       selectOptions: {

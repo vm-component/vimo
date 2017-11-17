@@ -1,5 +1,5 @@
 <template>
-    <article content class="ion-content">
+    <article class="ion-content">
         <div class="fixed-content fixed-top" :style="{'top':`${headerBarHeight}px`}">
             <slot name="fixed"></slot>
             <slot name="fixed-top"></slot>

@@ -24,12 +24,14 @@
    * ```
    *
    * */
+  import isMobile from '../util/mobile'
+
   export default {
     name: 'LandscapePrompt',
     data () {
       return {
         // 不是mobile时, 不启用这个组件
-        isMobile: !!window.navigator.userAgent.match(/AppleWebKit.*Mobile.*/) // 是否为移动终端
+        isMobile: isMobile // 是否为移动终端
       }
     }
   }
