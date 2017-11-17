@@ -27,7 +27,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
 </style>
 <script type="text/javascript">
   import cityList from '../../../src/components/choose-city/cities.json'

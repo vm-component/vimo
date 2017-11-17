@@ -136,7 +136,7 @@
     mounted () {}
   }
 </script>
-<style scoped lang="less">
+<style scoped lang="scss">
 
     .icon-alipay {
         background: url('../assets/icon-alipay.png') no-repeat center center/auto 100%;

@@ -7,7 +7,7 @@
         <div class="vm-separation-line"></div>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     .vm-separation {
         width: 100%;
         margin: 15px 0;

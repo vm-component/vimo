@@ -222,7 +222,7 @@
         </vm-footer>
     </vm-page>
 </template>
-<style lang="less">
+<style lang="scss">
     .main {
         height: 100%;
     }

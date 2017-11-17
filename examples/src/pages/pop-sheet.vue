@@ -115,7 +115,7 @@
     destroyed () {}
   }
 </script>
-<style scoped lang="less">
+<style scoped lang="scss">
     .popSheet {
         /*height: 300px;*/
         width: 300px;

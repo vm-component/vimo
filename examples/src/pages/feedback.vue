@@ -22,7 +22,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .result-img {
         width: 100px;
         height: 100px;

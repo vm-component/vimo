@@ -80,7 +80,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style lang="less">
+<style lang="scss">
     .iconDemo .icon {
         font-size: 40px;
     }

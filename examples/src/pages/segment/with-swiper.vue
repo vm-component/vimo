@@ -76,7 +76,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .slide {
         overflow: scroll;
     }

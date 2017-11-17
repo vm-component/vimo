@@ -111,7 +111,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .buttons {
         text-align: center;
     }

@@ -5,7 +5,7 @@
         </div>
     </div>
 </template>
-<style lang="less">
+<style lang="scss">
     .vm-scroll.wrapper {
         position: relative;
         width: 100%;

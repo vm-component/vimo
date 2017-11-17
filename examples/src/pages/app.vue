@@ -69,7 +69,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style lang="less">
+<style lang="scss">
     .hello-vimo-here {
         text-align: center;
         color: red;
@@ -82,7 +82,7 @@
         }
     }
 </style>
-<style scoped lang="less">
+<style scoped lang="scss">
     .stateBar {
         background: rgba(256, 256, 256, 0.9);
         padding: 10px 20px;

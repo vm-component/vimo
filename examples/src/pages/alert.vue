@@ -18,7 +18,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style lang="less">
+<style lang="scss">
     .alertCssOuterMain {
         .alert-image-box {
             display: flex;

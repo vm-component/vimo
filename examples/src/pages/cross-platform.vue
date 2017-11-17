@@ -77,7 +77,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
 
     .result {
         border: 1px dashed #333;

@@ -263,7 +263,7 @@
     }
   }
 </script>
-<style lang="less">
+<style lang="scss">
     .vm-city-selector {
         .city-selector {
             .city-selector__group--header {

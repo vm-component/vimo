@@ -77,7 +77,7 @@
     methods: {}
   }
 </script>
-<style scoped lang="less">
+<style scoped lang="scss">
     .customer {
         width: 80%;
         background-color: #ffffff;

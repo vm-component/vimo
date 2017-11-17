@@ -1,4 +1,4 @@
-<style lang="less">
+<style lang="scss">
     .slides-lite {
         &.slides-container {
             overflow: hidden;

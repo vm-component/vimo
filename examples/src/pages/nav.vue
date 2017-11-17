@@ -46,7 +46,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .detailBox {
         margin-bottom: 5px;
 

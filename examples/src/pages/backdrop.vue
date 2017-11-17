@@ -41,7 +41,7 @@
     </vm-page>
 </template>
 
-<style lang="less">
+<style lang="scss">
     #backdropInDiv {
         display: flex;
         justify-content: center;

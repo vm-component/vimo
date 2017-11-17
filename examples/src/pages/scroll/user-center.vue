@@ -40,7 +40,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .scrollBox {
         position: absolute;
         top: 0;

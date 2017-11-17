@@ -18,7 +18,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .ion-infinite-scroll {
         .loadedAll {
             display: none;

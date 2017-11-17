@@ -46,7 +46,7 @@
         </vm-content>
     </vm-page>
 </template>
-<style lang="less">
+<style lang="scss">
     .dashBox {
         padding: 0;
     }

@@ -1,4 +1,4 @@
-<style lang="less">
+<style lang="scss">
     .slide-lite {
         width: 100%;
         position: relative;
