@@ -83,7 +83,7 @@
    *  },
    *
    * */
-  import { isNumber, isObject, parsePxUnit, firstUpperCase, setElementClass } from '../util/util'
+  import { isNumber } from '../util/type'
   import css from '../util/get-css'
 
   export default {

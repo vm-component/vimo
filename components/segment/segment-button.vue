@@ -23,7 +23,7 @@
    * @see component:Segment
    *
    * */
-  import { isTrueProperty, isString, isPresent } from '../util/util'
+  import { isTrueProperty, isString, isPresent } from '../util/type'
   import componentIsMatch from '../util/component-is-match.js'
 
   const NOOP = () => {}

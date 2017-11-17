@@ -6,8 +6,8 @@
  *
  * @private
  * */
-import { isBoolean, isNumber, isPresent } from './util'
 import registerListener from 'components/util/register-listener'
+import { isBoolean, isNumber, isPresent } from './type'
 
 const SCROLL_END_DEBOUNCE_MS = 80
 const FRAME_MS = (1000 / 60)

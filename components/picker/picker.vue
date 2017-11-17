@@ -116,7 +116,7 @@
    *
    * @demo #/picker
    * */
-  import { isString, isPresent, isNumber } from '../util/util'
+  import { isNumber, isString, isPresent } from '../util/type'
   import PickerCol from './picker-col.vue'
   import Backdrop from '../backdrop'
   import Button from '../button/index'

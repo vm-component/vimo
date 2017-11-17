@@ -11,7 +11,7 @@
  * @return {Promise} - 关闭动画结束的promise
  * @private
  * */
-import { isString } from '../util/util'
+import { isString } from '../util/type'
 import LoadingComponent from './loading.vue'
 import GeneratePopUpInstance from '../util/GeneratePopUpInstance.js'
 

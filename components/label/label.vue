@@ -37,7 +37,6 @@
    * @see component:Input
    * @demo #/input-normal
    * */
-  import { setElementClass } from '../util/util'
 
   export default {
     name: 'Label',

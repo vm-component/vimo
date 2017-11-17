@@ -64,7 +64,8 @@
    *    <span>Left Icon</span>
    * </Button>
    * */
-  import { setElementClass, isTrueProperty } from '../util/util'
+  import { setElementClass } from '../util/util'
+  import { isTrueProperty } from '../util/type'
   import disableHover from '../util/disable-hover'
 
   export default {

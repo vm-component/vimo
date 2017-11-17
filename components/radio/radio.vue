@@ -82,7 +82,8 @@
    * </List>
    *
    * */
-  import { setElementClass, isTrueProperty } from '../util/util'
+  import { setElementClass } from '../util/util'
+  import { isTrueProperty } from '../util/type'
 
   let id = 0
   export default {

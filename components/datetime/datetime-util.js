@@ -25,7 +25,7 @@
  *
  * @private
  * */
-import { isBlank, isDate, isPresent, isString } from '../util/util'
+import { isBlank, isDate, isPresent, isString } from '../util/type'
 
 const FORMAT_YYYY = 'YYYY'
 const FORMAT_YY = 'YY'

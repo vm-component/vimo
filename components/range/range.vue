@@ -87,7 +87,8 @@
    *
    * */
   import RangeKnobHandle from './range-knob-handle.vue'
-  import { setElementClass, pointerCoord, clamp, isNumber, isObject, isString } from '../util/util'
+  import { setElementClass, pointerCoord, clamp } from '../util/util'
+  import { isString, isObject, isNumber } from '../util/type'
   import throttle from 'lodash.throttle'
 
   export default {

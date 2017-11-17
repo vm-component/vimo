@@ -68,7 +68,7 @@
  *  }
  *
  */
-import { isArray } from '../util/util'
+import { isArray } from '../util/type'
 import Picker from '../picker/index'
 
 const CityPicker = {

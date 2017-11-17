@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import getInsertPosition from './get-insert-position'
-import { isObject } from './util'
+import { isObject } from './type'
 
 /**
  * 当前类用于生成PopUp对象

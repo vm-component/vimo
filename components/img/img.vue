@@ -58,7 +58,7 @@
    * <Img width="100%" height="200" src="static/1.jpg">
    *
    * */
-  import { isPresent } from '../util/util'
+  import { isPresent } from '../util/type'
   import registerListener from 'components/util/register-listener'
 
   export default {

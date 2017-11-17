@@ -87,7 +87,7 @@
 
 import ToastComponent from './toast.vue'
 import GeneratePopUpInstance from '../util/GeneratePopUpInstance.js'
-import { isObject, isString } from '../util/util'
+import { isObject, isString } from '../util/type'
 
 class ToastInstance extends GeneratePopUpInstance {
   normalizeOptions () {

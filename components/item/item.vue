@@ -105,7 +105,7 @@
    *
    * */
   import ItemMixin from './item-mixin.vue'
-  import { isPresent, isString } from '../util/util'
+  import { isPresent, isString } from '../util/type'
 
   export default {
     mixins: [ItemMixin],
@@ -140,7 +140,7 @@
       /**
        * 类似于a标签跳转
        * */
-      clickHandler ($event) {
+      $_clickHandler ($event) {
         const _this = this
         const router = this.$router
         const current = this.$route

@@ -1,6 +1,6 @@
-import { isBlank, isBoolean, isObject, isString } from '../util/util'
 import LoadingComponent from '../loading/loading.vue'
 import GeneratePopUpInstance from '../util/GeneratePopUpInstance.js'
+import { isBlank, isBoolean, isObject, isString } from '../util/type'
 
 var debounce = require('lodash.debounce')
 var throttle = require('lodash.throttle')

@@ -139,7 +139,7 @@
   import ToolbarMixins from '../../toolbar/toolbarMixins.vue'
   import Button from '../../button/button.vue'
   import Icon from '../../icon/index'
-  import { isArray, isString } from '../../util/util'
+  import { isString, isArray } from '../../util/type'
 
   export default {
     name: 'Navbar',

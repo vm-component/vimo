@@ -8,31 +8,16 @@ import {
   hasClass,
   hasFocus,
   isActive,
-  isArray,
-  isBlank,
-  isBoolean,
-  isCheckedProperty,
-  isDate,
-  isDefined,
-  isFunction,
-  isNumber,
-  isObject,
-  isPassive,
-  isPlainObject,
-  isPresent,
-  isPrimitive,
-  isRegexp,
-  isString,
-  isTrueProperty,
-  isUndefined,
   parsePxUnit,
   pointerCoord,
   removeClass,
   setElementClass,
   transitionEnd
 } from '../../../components/util/util.js'
+
 import { urlChange } from 'components/util/url-change'
 import registerListener from 'components/util/register-listener'
+import { isArray, isBoolean, isDate, isDefined, isFunction, isPresent, isString, isUndefined } from 'components/util/type'
 
 // ,isString,isNumber,isFunction
 describe('util', function () {

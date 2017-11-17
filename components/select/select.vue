@@ -79,7 +79,8 @@
    *    </Select>
    * </Item>
    * */
-  import { setElementClass, isTrueProperty, isBlank, isCheckedProperty } from '../util/util'
+  import { setElementClass } from '../util/util'
+  import { isCheckedProperty, isTrueProperty, isBlank } from '../util/type'
   import ActionSheet from '../action-sheet'
   import Alert from '../alert'
 

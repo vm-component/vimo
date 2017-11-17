@@ -84,7 +84,8 @@
    * @fires component:Datetime#onCancel
    * @fires component:Datetime#onChange
    * */
-  import { isBlank, isPresent, isTrueProperty, isArray, isString, setElementClass } from '../util/util'
+  import { setElementClass } from '../util/util'
+  import { isArray, isBlank, isPresent, isString, isTrueProperty } from '../util/type'
   import Picker from '../picker/index'
   import Button from '../button/index'
   import {

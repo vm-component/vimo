@@ -134,7 +134,7 @@
    * */
   import Button from '../button/index'
   import Icon from '../icon'
-  import { isNumber, isBoolean } from '../util/util'
+  import { isNumber, isBoolean } from '../util/type'
 
   export default {
     name: 'Searchbar',

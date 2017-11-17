@@ -72,7 +72,7 @@
    * <Feedback v-model="feedbackInfo" :maxlength="100" :maximage="4"></Feedback>
    * */
   import canvasResize from './fixImage'
-  import { isString, isArray } from '../util/util'
+  import { isArray, isString } from '../util/type'
   import Textarea from '../input'
   import PreviewImage from '../preview-image'
 

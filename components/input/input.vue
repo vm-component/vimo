@@ -116,10 +116,11 @@
    * <Input placeholder="请输入至少4位" type="securityCode" check clearInput></Input>
    * <Input placeholder="XX-XX-XXX格式" type="text" check :regex=/\d{2}-\d{2}-\d{3}/ clearInput></Input>
    * */
-  import { hasFocus, isObject, isBlank, isPresent, isFunction, isRegexp } from '../util/util'
+  import { hasFocus } from '../util/util'
   import Button from '../button/index'
   import REGEXP from '../util/regexp'
   import debounce from 'lodash.debounce'
+  import { isObject, isFunction, isRegexp, isBlank, isPresent } from '../util/type'
 
   export default {
     name: 'Input',

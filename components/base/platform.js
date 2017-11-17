@@ -33,9 +33,10 @@
  *
  * */
 
-import { defaults, isFunction, isObject, isPresent } from '../util/util'
+import { defaults } from '../util/util'
 import PLATFORM_DEFAULT_CONFIGS from './platform-default-configs'
 import css from '../util/get-css'
+import { isFunction, isObject, isPresent } from '../util/type'
 
 class Platform {
   constructor () {
@@ -472,11 +473,9 @@ class Platform {
    * @return {boolean}
    * @private
    */
-  isPlatformMatch (
-    queryStringName,
-    userAgentAtLeastHas,
-    userAgentMustNotHave = []
-  ) {
+  isPlatformMatch (queryStringName,
+                   userAgentAtLeastHas,
+                   userAgentMustNotHave = []) {
     // platform可以取值的参数: ios/android/iphone/
     const queryValue = this._qp.get('platform')
     if (queryValue) {
