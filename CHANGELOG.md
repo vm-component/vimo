@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/nostaff/vimo/compare/v1.1.0...v1.1.1) (2017-11-17)
+
+
+### Bug Fixes
+
+* picker样式修复 ([30dd704](https://github.com/nostaff/vimo/commit/30dd704))
+* 城市 列表改为默认的剧中 ([18eddb1](https://github.com/nostaff/vimo/commit/18eddb1))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/nostaff/vimo/compare/v0.8.1...v1.1.0) (2017-11-17)
 

@@ -1,6 +1,6 @@
 {
   "name": "vimon",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Vue2.x UI Project For Mobile & HyBrid",
   "author": "nostaff <nostaff@sina.com>",
   "homepage": "https://github.com/nostaff/vimo",
@@ -38,7 +38,6 @@
     "rullup-test": "rollup -c build/rollup.umd.conf.js",
     "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
-    "prepush": "npm run test",
     "release": "standard-version && npm run pub && git push --follow-tags origin master && npm publish",
     "ci-demo-release": "npm run demo:build && node build/demo-publish.js",
     "ci-docs-release": "npm run docs:build && node build/docs-publish.js",
