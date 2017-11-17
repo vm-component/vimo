@@ -88,9 +88,14 @@ a {
   color: @link-color;
 }
 
-.enable-hover a:hover {
+a:hover {
   opacity: .7;
   cursor: pointer;
+}
+
+.disable-hover a:hover {
+  opacity: inherit;
+  cursor: inherit;
 }
 
 h1,
@@ -213,7 +218,6 @@ sub {
 
 .ion-app,
 .ion-nav,
-.ion-tabs,
 .app-root {
   position: static;
   top: 0;
@@ -226,7 +230,6 @@ sub {
 
 .ion-app,
 .ion-nav,
-.ion-tabs,
 .app-root,
 .ion-page {
   contain: layout style;

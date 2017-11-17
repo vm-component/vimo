@@ -1,6 +1,6 @@
 <template>
-    <button class="disable-hover ion-button" @click="clickHandler($event)" :active="active"
-            :class="[modeClass,itemClass]">
+    <button class="ion-button" @click="clickHandler($event)" :active="active"
+            :class="[modeClass,itemClass,{'disable-hover':disableHover}]">
         <span class="button-inner"><slot></slot></span>
     </button>
 </template>
@@ -65,6 +65,7 @@
    * </Button>
    * */
   import { setElementClass, isTrueProperty } from '../util/util'
+  import disableHover from '../util/disable-hover'
 
   export default {
     name: 'Button',
@@ -132,6 +133,7 @@
     },
     data () {
       return {
+        disableHover: disableHover,
         itemClass: '',
         size: null,         // large/small/default
         style: null,        // outline/clear/solid

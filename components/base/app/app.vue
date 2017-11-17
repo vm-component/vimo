@@ -1,7 +1,7 @@
 <template>
     <article class="ion-app" :version="version"
              :style="styleObj"
-             :class="[modeClass,platformClass,hoverClass,{'disable-scroll':isScrollDisabled}]">
+             :class="[modeClass,platformClass,{'disable-hover':disableHover},{'disable-scroll':isScrollDisabled}]">
         <!--app-root start-->
         <section class="app-root">
             <slot></slot>
@@ -100,6 +100,7 @@
 
   import ClickBlock from './click-block'
   import { setElementClass, isString, isPresent } from '../../util/util'
+  import disableHover from '../../util/disable-hover'
 
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
@@ -110,6 +111,7 @@
     name: 'App',
     data () {
       return {
+        disableHover: disableHover,     // 禁用计时
         disabledTimeRecord: 0,          // 禁用计时
         scrollTimeRecord: 0,            // 滚动计时
         isScrollDisabled: false,        // 控制页面是否能滚动
@@ -132,7 +134,7 @@
     provide () {
       let _this = this
       return {
-        $app: _this
+        appComponent: _this
       }
     },
     computed: {
@@ -141,10 +143,6 @@
       },
       platformClass () {
         return `platform-${this.mode}`
-      },
-      hoverClass () {
-        let _isMobile = navigator.userAgent.match(/AppleWebKit.*Mobile.*/)
-        return _isMobile ? 'disable-hover' : 'enable-hover'
       }
     },
     methods: {

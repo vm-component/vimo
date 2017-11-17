@@ -6,6 +6,20 @@
        * */
       color: String
     },
+    inject: {
+      appComponent: {
+        from: 'appComponent',
+        default: null
+      },
+      headerComponent: {
+        from: 'headerComponent',
+        default: null
+      },
+      footerComponent: {
+        from: 'footerComponent',
+        default: null
+      }
+    },
     computed: {
       colorClass () {
         return this.color ? (`toolbar-${this.color}`) : ''
