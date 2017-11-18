@@ -16,7 +16,7 @@
 
             <p><strong>3秒内页面无法点击</strong></p>
             <small>在当前页面覆盖一层透明蒙版, 阻挡进一步操作.</small>
-            <Button block @click="$app.setEnabled(false,3000)">冷冻页面</Button>
+            <Button block @click="setDisabled">冷冻页面</Button>
 
             <p><strong>3秒内页面无法滚动</strong></p>
             <small>组织滚动元素操作事件</small>
@@ -106,6 +106,11 @@
       }
     },
     methods: {
+      setDisabled () {
+        this.$app.setEnabled(false, 1000)
+        this.$app.setEnabled(true)
+        this.$app.setEnabled(false, 3000)
+      },
       getTime () {
         return new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds()
       },

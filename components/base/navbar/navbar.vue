@@ -6,7 +6,7 @@
             <slot></slot>
         </div>
         <vm-button v-if="!hideBb"
-                   @click="backButtonClickHandler"
+                   @click="$_backButtonClickHandler"
                    role="bar-button"
                    class="back-button">
             <vm-icon class="back-button-icon" :name="bbIcon"></vm-icon>
@@ -87,7 +87,7 @@
    * - 在Navbar组件中Title组件能同步更新WebView中的Title
    * - 在Navbar组件中的背景色(backgroundColor, 前提是使用: primary, secondary, danger, light, dark 设置的颜色)能同步更新到WebView中, 如果页面切换则重置设置.
    * - 对Navbar组件调用showPopMenu方法, 可在右侧显示popover组件, 如果是在WebView中, 则使用原生方法(Alipay), PS: 因为是弹出层组件, 所以是方法调用开启.
-   * - 监听Title组件的'onTitleClick'事件, 可以监听点击Title文本的事件, 如果是在WebView中, 则触发原生事件, 页面将不干扰
+   * - 监听Title组件的'title:click'事件, 可以监听点击Title文本的事件, 如果是在WebView中, 则触发原生事件, 页面将不干扰
    *
    * ### 关于导航条在Hybrid下的表现
    *
@@ -107,7 +107,7 @@
    *
    * ** 不建议在keepAlive模式使用 **
    *
-   * 因为Navbar组件在此模式下只执行最后一个页面的Navbar更新, 如果页面已经打开过, 则会导致样式状态问题. 解决办法是在`activated`钩子中执行Navbar组件的`initWhenInWebview`方法, 这个是内部方法, 表示重新初始化Navbar组件.
+   * 因为Navbar组件在此模式下只执行最后一个页面的Navbar更新, 如果页面已经打开过, 则会导致样式状态问题. 解决办法是在`activated`钩子中执行Navbar组件的`$_initWhenInWebview`方法, 这个是内部方法, 表示重新初始化Navbar组件.
    *
    * @see component:Toolbar
    * @see History
@@ -136,13 +136,19 @@
    *  </Page>
    * </template>
    * */
-  import ToolbarMixins from '../../toolbar/toolbarMixins.vue'
+  import ToolbarMixins from '../../toolbar/toolbar-extends.vue'
   import Button from '../../button/button.vue'
   import Icon from '../../icon/index'
   import { isString, isArray } from '../../util/type'
 
   export default {
     name: 'Navbar',
+    provide () {
+      const _this = this
+      return {
+        navbarComponent: _this
+      }
+    },
     mixins: [ToolbarMixins],
     components: {
       'vm-button': Button,
@@ -157,7 +163,6 @@
     data () {
       return {
         hideRightButtons: false,
-
         hideBb: this.hideBackButton,
         bbIcon: this.$config && this.$config.get('backButtonIcon', 'icon-arrow-back') || 'icon-arrow-back',
         backText: this.$config && this.$config.get('backButtonText', '返回') || '返回'
@@ -294,12 +299,10 @@
         this.$platform.resetNavbarOptionButton && this.$platform.resetNavbarOptionButton()
       },
 
-      // -------- private --------
-
       /**
        * @private
        * */
-      backButtonClickHandler ($event) {
+      $_backButtonClickHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
         window.history.back()
@@ -309,19 +312,17 @@
        * 手动设置是否显示后退按钮
        * @private
        * */
-      refreshBackButtonStatus () {
+      $_refreshBackButtonStatus () {
         if (!this.hideBb) {
           this.hideBb = !this.$history.canGoBack()
         }
       },
 
-      // -------- for webview --------
-
       /**
        * 如果运行在webview中(alipay/dingtalk), 则执行修改navbar的初始化工作
        * @private
        * */
-      initWhenInWebview () {
+      $_initWhenInWebview () {
         if (this.$platform.platforms().length < 3) return
         // 如果在平台中则进行下面的分支
         this.$platform.ready().then(() => {
@@ -364,8 +365,8 @@
        * 初始化
        * @private
        * */
-      init () {
-        this.initWhenInWebview()
+      $_init () {
+        this.$_initWhenInWebview()
         if (this.$root === window.VM.$root) {
           // 只记录这个流的navbar: App->Nav->Page->Header->Navbar
           // 其余形式的navbar不记录
@@ -378,13 +379,13 @@
       console.assert(this.$config, `The Component of <Navbar> need 'config' instance`)
       console.assert(window.VM, `The Component of <Navbar> need 'window.VM' instance`)
 
-      this.refreshBackButtonStatus()
+      this.$_refreshBackButtonStatus()
     },
     mounted () {
-      this.init()
+      this.$_init()
     },
     activated () {
-      this.init()
+      this.$_init()
     }
   }
 </script>

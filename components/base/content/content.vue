@@ -112,7 +112,18 @@
 
   export default {
     name: 'Content',
-    inject: ['pageComponent'],
+    inject: {
+      appComponent: {
+        from: 'appComponent',
+        default: null
+      },
+      pageComponent: 'pageComponent',
+      // modal的上级不是nav
+      navComponent: {
+        from: 'navComponent',
+        default: null
+      }
+    },
     provide () {
       let _this = this
       return {
@@ -124,14 +135,12 @@
         refreshClass: {
           'has-refresher': false
         },
+
         fixedElementStyle: {},  // 固定内容的位置样式
         scrollElementStyle: {}, // 滑动内容的位置样式
 
         scrollView: new ScrollView(),  // 滚动的实例
 
-        headerComponent: null,
-        footerComponent: null,
-        isComponentFetched: false,
         headerBarHeight: 0,
         footerBarHeight: 0,
 
@@ -149,6 +158,12 @@
       },
       isBox () {
         return this.pageComponent.isBox
+      },
+      headerComponent () {
+        return this.pageComponent.$_getHeaderComponent()
+      },
+      footerComponent () {
+        return this.pageComponent.$_getFooterComponent()
       }
     },
     methods: {
@@ -237,8 +252,8 @@
        * @private
        * */
       $_recalculateBarDimensions () {
-        const StyleTop = 'marginTop'
-        const StyleBottom = 'marginBottom'
+        const STYLE_TOP = 'marginTop'
+        const STYLE_BOTTOM = 'marginBottom'
 
         if (this.headerComponent) {
           let ele = this.headerComponent.$el
@@ -248,15 +263,15 @@
           let ele = this.footerComponent.$el
           this.footerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
         }
+
         this.scrollElementStyle = {
-          [StyleTop]: cssFormat(this.headerBarHeight),
-          [StyleBottom]: cssFormat(this.footerBarHeight),
-          minHeight: cssFormat(window.innerHeight - this.headerBarHeight - this.footerBarHeight)
+          [STYLE_TOP]: cssFormat(this.headerBarHeight),
+          [STYLE_BOTTOM]: cssFormat(this.footerBarHeight)
         }
 
         this.fixedElementStyle = {
-          [StyleTop]: cssFormat(this.headerBarHeight),
-          [StyleBottom]: cssFormat(this.footerBarHeight)
+          [STYLE_TOP]: cssFormat(this.headerBarHeight),
+          [STYLE_BOTTOM]: cssFormat(this.footerBarHeight)
         }
 
         // scrollElement 尺寸计算
@@ -264,8 +279,9 @@
         this.scrollView.ev.contentTop = this.headerBarHeight
         this.scrollView.ev.contentWidth = this.scrollElement.clientWidth
 
-        if (this.isBox) {
-          this.scrollElementStyle.minHeight = null
+        // 盒子布局不需要min-height
+        if (!this.isBox) {
+          this.scrollElementStyle.minHeight = cssFormat(window.innerHeight - this.headerBarHeight - this.footerBarHeight)
         }
       },
 
@@ -275,20 +291,6 @@
        * @private
        * */
       $_recalculateContentDimensions () {
-        // 获取Footer/Header信息, catch
-        if (!this.isComponentFetched) {
-          let children = this.$parent.$children
-          children.forEach((child) => {
-            if (componentIsMatch(child, 'header')) {
-              this.headerComponent = child
-              this.isComponentFetched = true
-            } else if (componentIsMatch(child, 'footer')) {
-              this.footerComponent = child
-              this.isComponentFetched = true
-            }
-          })
-        }
-
         // 计算Header/Footer的高度尺寸
         this.$_recalculateBarDimensions()
 

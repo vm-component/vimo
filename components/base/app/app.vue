@@ -98,7 +98,6 @@
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // 等待业务完毕的额外时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
 
-  let scrollDisTimer = null                     // 计时器
   export default {
     name: 'App',
     provide () {
@@ -114,7 +113,8 @@
 
         isClickBlockEnabled: false,     // 控制是否能点击 click-block-enabled
         isClickBlockActive: false,      // 控制是否激活 '冷冻'效果 click-block-active
-        timer: null,
+        clickBlockTimer: null,
+        disableScrollTimer: null,
 
         isScrolling: false,             // 可滚动状态
         isEnabled: true,                // 可点击状态
@@ -191,8 +191,8 @@
           // duration ms内页面不可滚动, duration ms过后可正常使用
           this.$_disableScroll()
           if (duration > 0) {
-            window.clearTimeout(scrollDisTimer)
-            scrollDisTimer = window.setTimeout(() => {
+            this.disableScrollTimer && window.clearTimeout(this.disableScrollTimer)
+            this.disableScrollTimer = window.setTimeout(() => {
               this.$_enableScroll()
             }, duration)
           }

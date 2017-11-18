@@ -86,11 +86,17 @@
    * </Toolbar>
    * */
 
-  import ToolbarMixins from './toolbarMixins.vue'
+  import ToolbarExtends from './toolbar-extends.vue'
 
   export default {
     name: 'Toolbar',
-    mixins: [ToolbarMixins],
+    provide () {
+      const _this = this
+      return {
+        toolbarComponent: _this
+      }
+    },
+    extends: ToolbarExtends,
     computed: {}
   }
 </script>

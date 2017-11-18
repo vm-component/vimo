@@ -40,17 +40,18 @@
    * */
   export default {
     name: 'Footer',
+    inject: ['pageComponent'],
+    provide () {
+      let _this = this
+      return {
+        footerComponent: _this
+      }
+    },
     data () {
       return {
         // -------- public --------
         isHide: false,
         style: {}
-      }
-    },
-    provide () {
-      let _this = this
-      return {
-        footerComponent: _this
       }
     },
     methods: {
@@ -94,6 +95,8 @@
       }
     },
     created () {
+      this.pageComponent.footerComponent = this
+
       this.$root.$on('onMenuOpen', () => {
         this.hide()
       })

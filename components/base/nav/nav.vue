@@ -45,6 +45,12 @@
    * */
   export default {
     name: 'Nav',
+    provide () {
+      const _this = this
+      return {
+        navComponent: _this
+      }
+    },
     props: {
       // 转场是否开启Indicator
       showIndicatorWhenPageChange: {

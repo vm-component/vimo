@@ -101,7 +101,9 @@
     },
     data () {
       return {
-        pageZIndex: 0
+        pageZIndex: 0,
+        headerComponent: null,
+        footerComponent: null
       }
     },
     props: {
@@ -110,6 +112,14 @@
     computed: {
       isBox () {
         return !!this.box || !!this.modalComponent
+      }
+    },
+    methods: {
+      $_getHeaderComponent () {
+        return this.headerComponent
+      },
+      $_getFooterComponent () {
+        return this.footerComponent
       }
     },
     created () {

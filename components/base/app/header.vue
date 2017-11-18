@@ -50,6 +50,7 @@
    * */
   export default {
     name: 'Header',
+    inject: ['pageComponent'],
     provide () {
       let _this = this
       return {
@@ -102,6 +103,8 @@
       }
     },
     created () {
+      this.pageComponent.headerComponent = this
+
       this.$root.$on('onMenuOpen', () => {
         this.hide()
       })

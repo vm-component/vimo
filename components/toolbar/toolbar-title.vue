@@ -40,7 +40,7 @@
    *
    * @props {String} [mode=ios] - 模式
    * @props {String} [title] - 标题
-   * @fires component:Title#onTitleClick
+   * @fires component:Title#title:click
    * @see component:Toolbar
    * @usage
    * <template>
@@ -73,12 +73,24 @@
 
   export default {
     name: 'Title',
+    inject: {
+      appComponent: {
+        from: 'appComponent',
+        default: null
+      },
+      headerComponent: {
+        from: 'headerComponent',
+        default: null
+      },
+      navbarComponent: {
+        from: 'navbarComponent',
+        default: null
+      }
+    },
     data () {
       return {
         titleColor: null,
-        titleInner: this.title,
-        isTitleInNavbar: false, // 这个title组件在navbar中
-        isHeaderInApp: false // 包裹当前组件的Header在App组件中
+        titleInner: this.title
       }
     },
     props: {
@@ -100,6 +112,16 @@
         if (this.isTitleInNavbar) {
           this.setTitle(this.titleInner)
         }
+      }
+    },
+    computed: {
+      // 这个title组件在navbar中
+      isTitleInNavbar () {
+        return !!this.navbarComponent
+      },
+      // 包裹当前组件的Header在App组件中
+      isHeaderInApp () {
+        return !!this.appComponent && !!this.headerComponent && !!this.navbarComponent
       }
     },
     methods: {
@@ -194,20 +216,15 @@
        * */
       init () {
         this.titleInner = this.getTitle()
-        if (this.$parent.$options._componentTag) {
-          let navbarComponent = this.$parent
-          if (navbarComponent.$options._componentTag.toLowerCase() === 'navbar') {
-            this.setTitle(this.titleInner)
-            this.isTitleInNavbar = true
-          }
-          if (window.VM && this.$root === window.VM.$root) {
-            this.isHeaderInApp = true
-            window.VM.$title = this
-          }
+        if (this.isTitleInNavbar) {
+          this.setTitle(this.titleInner)
+        }
+        if (this.isHeaderInApp) {
+          window.VM.$title = this
         }
 
-        this.$root.$on('onTitleClick', () => {
-          this.$emit('onTitleClick')
+        this.$root.$on('title:click', () => {
+          this.$emit('title:click')
         })
       },
 
@@ -218,10 +235,10 @@
       titleClick () {
         if (this.isTitleInNavbar) {
           /**
-           * @event component:Title#onTitleClick
+           * @event component:Title#title:click
            * @description 点击title时触发
            */
-          this.$emit('onTitleClick')
+          this.$emit('title:click', this)
         }
       }
     },
