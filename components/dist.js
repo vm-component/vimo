@@ -67,7 +67,7 @@ if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefin
 }
 
 // 通过script脚本使用, 资源全部打包, 不推荐
-module.exports = {
+export default {
   App,
   Footer,
   Header,
