@@ -119,7 +119,7 @@
         type: String,
         default: 'bottom',
         validator (val) {
-          return ['bottom', 'top'].indexOf(val) > -1
+          return ~['bottom', 'top'].indexOf(val)
         }
       },
       enableBackdropDismiss: {
@@ -133,7 +133,9 @@
       showBackdrop: {
         type: Boolean,
         default: true
-      }
+      },
+      // 滚动控制, 默认开启
+      scrollControl: Boolean
     },
     data () {
       return {
@@ -181,11 +183,15 @@
       })
 
       this.$on('animate:present', () => {
-        this.$app && this.$app.$_disableScroll()
+        if (this.scrollControl) {
+          this.$app && this.$app.$_disableScroll()
+        }
       })
 
       this.$on('animate:dismiss', () => {
-        this.$app && this.$app.$_enableScroll()
+        if (this.scrollControl) {
+          this.$app && this.$app.$_enableScroll()
+        }
       })
     },
     components: {
@@ -194,7 +200,7 @@
   }
 </script>
 <style lang="less">
-    @import "sheet";
-    @import "sheet.ios.less";
-    @import "sheet.md.less";
+    @import "./sheet.less";
+    @import "./sheet.ios.less";
+    @import "./sheet.md.less";
 </style>

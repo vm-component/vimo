@@ -118,7 +118,9 @@
       showBackdrop: {
         type: Boolean,
         default: true
-      }
+      },
+      // 滚动控制, 默认开启
+      scrollControl: Boolean
     },
     data () {
       return {
@@ -163,11 +165,15 @@
       })
 
       this.$on('animate:present', () => {
-        this.$app && this.$app.$_disableScroll()
+        if (this.scrollControl) {
+          this.$app && this.$app.$_disableScroll()
+        }
       })
 
       this.$on('animate:dismiss', () => {
-        this.$app && this.$app.$_enableScroll()
+        if (this.scrollControl) {
+          this.$app && this.$app.$_enableScroll()
+        }
       })
     },
     components: {
