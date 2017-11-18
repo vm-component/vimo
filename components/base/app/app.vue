@@ -2,23 +2,16 @@
     <article class="ion-app" :version="version"
              :style="styleObj"
              :class="[modeClass,platformClass,{'disable-hover':disableHover},{'disable-scroll':isScrollDisabled}]">
-        <!--app-root start-->
         <section class="app-root">
             <slot></slot>
         </section>
-        <!--modal portal-->
         <aside id="modalPortal"></aside>
-        <!--蒙层指示,action-sheet,choose-sheet,picker等 sheetPortal-->
         <aside id="sheetPortal"></aside>
-        <!--alert portal-->
         <aside id="alertPortal"></aside>
-        <!--loading portal-->
         <aside id="loadingPortal"></aside>
-        <!--toast portal-->
         <aside id="toastPortal"></aside>
-        <!--当页面被点击的时候，防止在动画的过程中再次点击页面导致bug的蒙层，全局最高！z-index=99999-->
         <aside class="click-block"
-               :class="[{'click-block-enabled':isClickBlockEnabled}]"></aside>
+               :class="[{'click-block-enabled':isClickBlockEnabled,'click-block-active':isClickBlockActive}]"></aside>
         <slot name="outer"></slot>
     </article>
 </template>
@@ -98,25 +91,30 @@
    * @demo #/app
    * */
 
-  import ClickBlock from './click-block'
   import { setElementClass } from '../../util/util'
   import { isString, isPresent } from '../../util/type'
   import disableHover from '../../util/disable-hover'
 
-  const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // click_blcok等待时间
+  const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // 等待业务完毕的额外时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
-  const clickBlockInstance = new ClickBlock()
 
   let scrollDisTimer = null                     // 计时器
   export default {
     name: 'App',
+    provide () {
+      let _this = this
+      return {
+        appComponent: _this
+      }
+    },
     data () {
       return {
         disableHover: disableHover,     // 禁用计时
-        disabledTimeRecord: 0,          // 禁用计时
-        scrollTimeRecord: 0,            // 滚动计时
         isScrollDisabled: false,        // 控制页面是否能滚动
-        isClickBlockEnabled: false,     // 控制是否激活 '冷冻'效果 click-block-enabled
+
+        isClickBlockEnabled: false,     // 控制是否能点击 click-block-enabled
+        isClickBlockActive: false,      // 控制是否激活 '冷冻'效果 click-block-active
+        timer: null,
 
         isScrolling: false,             // 可滚动状态
         isEnabled: true,                // 可点击状态
@@ -130,12 +128,6 @@
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
-      }
-    },
-    provide () {
-      let _this = this
-      return {
-        appComponent: _this
       }
     },
     computed: {
@@ -160,18 +152,26 @@
        * this.$app && this.$app.setEnabled(true) -> 64ms后解除锁定
        * */
       setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
-        this.disabledTimeRecord = (isEnabled ? 0 : Date.now() + duration)
-        this.isEnabled = isEnabled
         if (isEnabled) {
-          // disable the click block if it's enabled, or the duration is tiny
-          clickBlockInstance.activate(false, CLICK_BLOCK_BUFFER_IN_MILLIS).then(() => {
+          // 解锁
+          if (this.isClickBlockActive) {
+            this.timer && window.clearTimeout(this.timer)
+            this.timer = window.setTimeout(() => {
+              this.isClickBlockActive = false
+              this.isEnabled = true
+            }, CLICK_BLOCK_BUFFER_IN_MILLIS)
+          } else {
             this.isEnabled = true
-          })
+          }
         } else {
-          // show the click block for duration + some number
-          clickBlockInstance.activate(true, duration + CLICK_BLOCK_BUFFER_IN_MILLIS).then(() => {
+          // 枷锁
+          this.isEnabled = false
+          this.isClickBlockActive = true
+          this.timer && window.clearTimeout(this.timer)
+          this.timer = window.setTimeout(() => {
+            this.isClickBlockActive = false
             this.isEnabled = true
-          })
+          }, duration + CLICK_BLOCK_BUFFER_IN_MILLIS)
         }
       },
 
@@ -236,6 +236,26 @@
       },
 
       /**
+       * @param {Boolean} shouldShow
+       * @param {Number} [expire=100]
+       * @return {Promise}
+       * @private
+       * */
+      $_activate (shouldShow, expire = 100) {
+        return new Promise((resolve) => {
+          if (this.isEnabled !== shouldShow) {
+            this.isEnabled = shouldShow
+
+            window.setTimeout(() => {
+              this.isEnabled = false
+            }, expire)
+          } else {
+            resolve()
+          }
+        })
+      },
+
+      /**
        * @private
        * */
       $_disableScroll () {
@@ -281,26 +301,25 @@
       let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
       proto.$app = this
 
-      const _this = this
       this.$root.$on('onScrollStart', () => {
-        _this.isScrolling = true
+        this.isScrolling = true
       })
       this.$root.$on('onScroll', () => {
-        _this.isScrolling = true
+        this.isScrolling = true
       })
       this.$root.$on('onScrollEnd', () => {
-        _this.isScrolling = false
+        this.isScrolling = false
       })
 
-      // 设置当前可点击
-      this.isClickBlockEnabled = true
       this.$root.$emit('app:created', this)
     },
     mounted () {
+      // 设置当前可点击
+      this.isClickBlockEnabled = true
+
+      // for debug
       if (window.VM) {
-        // for debug
         window.VM.$app = this
-        // 用于判断组件是否在VM的组件树中
         window.VM.$root = this.$root
       }
       this.$root.$emit('app:mounted', this)
