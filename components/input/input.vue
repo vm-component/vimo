@@ -514,36 +514,40 @@
         if ($event && $event.target) {
           // 输入限制检查
           this.inputValue = this.$_checkBoundary($event)
+          // debounce
+          this.executeEmit()
         } else {
           // clear的情况
           // 需要同步设置input元素的值
           this.inputElement.value = null
           this.inputValue = null
+          // 立即发送变化, 不需要debounce
+          this.$_emitChange()
         }
 
         this.$_setItemHasValueClass()
-
-        // debounce
-        this.executeEmit()
       },
 
       $_initDebounce () {
         if (this.debounce > 0) {
           return debounce(function () {
-            /**
-             * @event  component:Input#onInput
-             * @description input事件
-             * @property {*} value - 当前输入的值
-             */
-            this.$emit('onInput', this.inputValue)
-            this.$emit('input', this.inputValue)
+            this.$_emitChange()
           }, this.debounce)
         } else {
           return () => {
-            this.$emit('onInput', this.inputValue)
-            this.$emit('input', this.inputValue)
+            this.$_emitChange()
           }
         }
+      },
+
+      $_emitChange () {
+        /**
+         * @event  component:Input#onInput
+         * @description input事件
+         * @property {*} value - 当前输入的值
+         */
+        this.$emit('onInput', this.inputValue)
+        this.$emit('input', this.inputValue)
       },
 
       /**
