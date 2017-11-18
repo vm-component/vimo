@@ -5,7 +5,7 @@
                 <Title>Refresher</Title>
             </Navbar>
         </Header>
-        <Content class="outer-content" record-position>
+        <Content class="outer-content" record-position ref="content" @onScroll="onScrollHandler">
             <Refresher slot="refresher" :enabled="enabled" @onRefresh="doRefresh($event)">
                 <RefresherContent
                         pullingText="下拉刷新..."
@@ -13,7 +13,9 @@
                 </RefresherContent>
             </Refresher>
             <div padding class="state" text-center>
-                <p>状态: {{enabled}}</p>
+                <p>Refresher Enabled: {{enabled}}</p>
+                <p>IsScrollDisabled: {{$app.isScrollDisabled}}</p>
+                <p>PageScrollTop: {{ev.scrollTop}}</p>
                 <Button small outline @click="toggleDisabled">禁用/启用</Button>
             </div>
             <List>
@@ -28,20 +30,28 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'RefresherDemo',
     data () {
       return {
         i: 0,
         list: [],
 
-        enabled: true
+        enabled: true,
+        ev: true
       }
     },
     props: {},
     watch: {},
-    computed: {},
+    computed: {
+      contentComponent () {
+        return this.$refs.content
+      }
+    },
     methods: {
+      onScrollHandler (ev) {
+        this.ev = ev
+      },
       //
       toggleDisabled () {
         this.enabled = !this.enabled

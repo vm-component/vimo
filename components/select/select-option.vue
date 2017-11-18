@@ -10,7 +10,7 @@
    *
    * @demo #/select
    **/
-  import { isBlank } from '../util/util'
+  import { isBlank } from '../util/type'
 
   export default {
     name: 'SelectOption',
@@ -24,9 +24,9 @@
     },
     props: {
       value: [Object, String, Array],
-      disabled: [Boolean],
-      text: [String],
-      checked: [Boolean]
+      disabled: Boolean,
+      text: String,
+      checked: Boolean
     },
     methods: {
       getText () {

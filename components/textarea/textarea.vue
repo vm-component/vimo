@@ -72,7 +72,8 @@
    * <Textarea placeholder="Text Textarea">
    * <Textarea @onBlur="blur($event)" @onFocus="focus($event)" @onInput="onInput($event)" placeholder="Enter a description"></Textarea>
    * */
-  import { hasFocus, setElementClass, isPresent, isNumber } from '../util/util'
+  import { hasFocus, setElementClass } from '../util/util'
+  import { isPresent, isNumber } from '../util/type'
   import Autosize from 'autosize'
 
   export default {
