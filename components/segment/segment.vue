@@ -78,7 +78,7 @@
     provide () {
       let _this = this
       return {
-        segmentComponent:_this
+        segmentComponent: _this
       }
     },
     model: {

@@ -102,7 +102,6 @@
    *
    * */
   import { transitionEnd, parsePxUnit } from '../../util/util'
-  import componentIsMatch from '../../util/component-is-match'
   import { updateImgs } from './img-util'
   import cssFormat from '../../util/css-format'
   import ScrollView from '../../util/scroll-view'

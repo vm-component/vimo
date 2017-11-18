@@ -78,7 +78,7 @@
    *  },
    * */
 
-  import { setElementClass, pointerCoord } from '../util/util'
+  import { pointerCoord } from '../util/util'
   import registerListener from 'components/util/register-listener'
   import css from '../util/get-css'
 

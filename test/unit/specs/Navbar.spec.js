@@ -85,7 +85,7 @@ describe('Navbar', function () {
     window.VM.platform.resetNavbarOptionButton.restore() // 消除监视
   })
 
-  it('backButtonClickHandler()', function () {
+  it('$_backButtonClickHandler()', function () {
     let $event = {
       preventDefault () {},
       stopPropagation () {}
@@ -95,7 +95,7 @@ describe('Navbar', function () {
     sinon.spy($event, 'preventDefault') // 监视crawler.launch，这是个function
     sinon.spy($event, 'stopPropagation') // 监视crawler.launch，这是个function
     wrapper = mount(Navbar, {})
-    wrapper.vm.backButtonClickHandler($event)
+    wrapper.vm.$_backButtonClickHandler($event)
     expect($event.preventDefault.callCount === 1).to.be.ok
     expect($event.stopPropagation.callCount === 1).to.be.ok
     $event.preventDefault.restore() // 消除监视
