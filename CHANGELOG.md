@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.9.3"></a>
+## [0.9.3](https://github.com/vm-component/vimo/compare/v0.9.2...v0.9.3) (2017-11-19)
+
+
+### Bug Fixes
+
+* modal打开时的滚动控制问题修复 ([9912080](https://github.com/vm-component/vimo/commit/9912080))
+* 修复Content组件测试时$app未找到的问题 ([dddbcea](https://github.com/vm-component/vimo/commit/dddbcea))
+
+
+
 <a name="0.9.2"></a>
 ## [0.9.2](https://github.com/vm-component/vimo/compare/v0.9.1...v0.9.2) (2017-11-19)
 
