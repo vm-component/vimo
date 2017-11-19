@@ -79,9 +79,9 @@
    **/
   import { setElementClass, isTrueProperty } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmButton from "../button/button.vue";
+  import VmButton from '../button/button.vue'
 
-  let id = 0
+let id = 0
   export default {
     components: {VmButton},
     name: 'vm-radio',
@@ -99,7 +99,7 @@
     props: {
       // 固定值
       value: String,
-      disabled: Boolean,
+      disabled: Boolean
     },
     watch: {
       disabled (val) {

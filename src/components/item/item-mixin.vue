@@ -21,13 +21,13 @@
     @import "item-reorder";
 </style>
 <script type="text/javascript">
-  import ThemeMixins from '../../themes/theme.mixins';
-  export default {
+  import ThemeMixins from '../../themes/theme.mixins'
+export default {
     mixins: [ThemeMixins],
-    data() {
-        return {
-          hasReorder: false
-        };
+    data () {
+      return {
+        hasReorder: false
+      }
     },
     computed: {
       itemClass () {

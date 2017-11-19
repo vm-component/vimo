@@ -119,9 +119,9 @@
   import { setElementClass, hasFocus, isObject, isBlank, isPresent, isFunction, isRegexp } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
   import REGEXP from '../../util/regexp'
-  import VmButton from "../button/button.vue";
+  import VmButton from '../button/button.vue'
 
-  export default {
+export default {
     name: 'vm-input',
     mixins: [ThemeMixins],
     components: {VmButton},

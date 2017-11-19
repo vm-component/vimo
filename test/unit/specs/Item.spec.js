@@ -3,7 +3,7 @@
 import { mount } from 'vue-test-utils'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
-import vimo from '../../../src/dist'
+import vimo from '../../../src'
 
 let Item = vimo.Item
 let wrapper = null

@@ -15,9 +15,9 @@
    * @demo #/list
    **/
   import { isTrueProperty } from '../../util/util'
-  import ThemeMixins from '../../themes/theme.mixins';
+  import ThemeMixins from '../../themes/theme.mixins'
 
-  export default {
+export default {
     name: 'vm-item-group',
     mixins: [ThemeMixins],
     props: {
@@ -28,9 +28,9 @@
       reorderEnabled: {
         type: Boolean,
         default: false
-      },
+      }
     },
-    data() {
+    data () {
       return {
         contentCmp: null,
 
@@ -49,63 +49,63 @@
       }
     },
     methods: {
-      reorderPrepare() {
-        let ele = this.$el;
-        let children = ele.children;
+      reorderPrepare () {
+        let ele = this.$el
+        let children = ele.children
         for (let i = 0, ilen = children.length; i < ilen; i++) {
-          var child = children[i];
-          child.dataset.order = i;
+          var child = children[i]
+          child.dataset.order = i
         }
       },
 
-      reorderStart() {
-        setElementClass(this.$el, 'reorder-list-active', true);
+      reorderStart () {
+        setElementClass(this.$el, 'reorder-list-active', true)
       },
 
-      reorderEmit(fromIndex, toIndex) {
-        this.reorderReset();
+      reorderEmit (fromIndex, toIndex) {
+        this.reorderReset()
         if (fromIndex !== toIndex) {
-          const indexes = {from: fromIndex, to: toIndex};
+          const indexes = {from: fromIndex, to: toIndex}
           this.$emit('onItemReorder', indexes)
         }
       },
 
-      scrollContent(scroll) {
-        const scrollTop = this.contentCmp.scrollTop + scroll;
+      scrollContent (scroll) {
+        const scrollTop = this.contentCmp.scrollTop + scroll
         if (scroll !== 0) {
-          this.contentCmp.scrollTo(0, scrollTop, 0);
+          this.contentCmp.scrollTo(0, scrollTop, 0)
         }
-        return scrollTop;
+        return scrollTop
       },
 
-      reorderReset() {
-        let children = this.$el.children;
-        let len = children.length;
+      reorderReset () {
+        let children = this.$el.children
+        let len = children.length
 
-        setElementClass(this.$el, 'reorder-list-active', false);
-        let transform = 'transform';
+        setElementClass(this.$el, 'reorder-list-active', false)
+        let transform = 'transform'
         for (let i = 0; i < len; i++) {
-          children[i].style[transform] = '';
+          children[i].style[transform] = ''
         }
-        this.lastToIndex = -1;
+        this.lastToIndex = -1
       },
 
-      reorderMove(fromIndex, toIndex, itemHeight) {
+      reorderMove (fromIndex, toIndex, itemHeight) {
         if (this.lastToIndex === -1) {
-          this.lastToIndex = fromIndex;
+          this.lastToIndex = fromIndex
         }
-        let lastToIndex = this.lastToIndex;
-        this.lastToIndex = toIndex;
+        let lastToIndex = this.lastToIndex
+        this.lastToIndex = toIndex
 
-        /********* DOM READ ********** */
-        let children = this.$el.children;
+      /** ******* DOM READ ********** */
+        let children = this.$el.children
 
-        /********* DOM WRITE ********* */
-        let transform = 'transform';
+      /** ******* DOM WRITE ********* */
+        let transform = 'transform'
         if (toIndex >= lastToIndex) {
           for (let i = lastToIndex; i <= toIndex; i++) {
             if (i !== fromIndex) {
-              children[i].style[transform] = (i > fromIndex) ? `translateY(${-itemHeight}px)` : '';
+              children[i].style[transform] = (i > fromIndex) ? `translateY(${-itemHeight}px)` : ''
             }
           }
         }
@@ -113,7 +113,7 @@
         if (toIndex <= lastToIndex) {
           for (let i = toIndex; i <= lastToIndex; i++) {
             if (i !== fromIndex) {
-              children[i].style[transform] = (i < fromIndex) ? `translateY(${itemHeight}px)` : '';
+              children[i].style[transform] = (i < fromIndex) ? `translateY(${itemHeight}px)` : ''
             }
           }
         }

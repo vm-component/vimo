@@ -1,7 +1,7 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
 import { mount } from 'vue-test-utils'
-import vimo from '../../../src/dist'
+import vimo from '../../../src'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
 

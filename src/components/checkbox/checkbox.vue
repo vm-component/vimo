@@ -45,9 +45,9 @@
    *    <vm-checkbox slot="item-start" color="danger" v-model="testModal" :disabled="testDisabled" @onChange="onCheckboxChange"></vm-checkbox>
    * </vm-item>
    **/
-  import { setElementClass } from '../../util/util'
+  import {setElementClass} from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmButton from "../button/button.vue";
+  import VmButton from '../button/button.vue'
 
   export default {
     name: 'vm-checkbox',
@@ -57,9 +57,9 @@
     },
     props: {
       disabled: Boolean,
-      value: Boolean,
+      value: Boolean
     },
-    data () {
+    data() {
       return {
         checkedValue: this.value,           // 内部维护的checked
         disabledValue: this.disabled,       // 内部维护的disabled
@@ -68,15 +68,15 @@
       }
     },
     watch: {
-      disabled (val) {
+      disabled(val) {
         this.setDisabled(val)
       },
-      value (val) {
+      value(val) {
         this.setChecked(val)
       }
     },
     methods: {
-      setChecked (isChecked) {
+      setChecked(isChecked) {
         if (isChecked !== this.checkedValue) {
           this.checkedValue = isChecked
           if (this.init) {
@@ -91,15 +91,15 @@
           this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-checked', isChecked)
         }
       },
-      setDisabled (isDisabled) {
+      setDisabled(isDisabled) {
         this.disabledValue = isDisabled
         this.itemComponent && setElementClass(this.itemComponent.$el, 'item-checkbox-disabled', isDisabled)
       },
-      onPointerDownHandler () {
+      onPointerDownHandler() {
         this.setChecked(!this.checkedValue)
       }
     },
-    mounted () {
+    mounted() {
       // 找到外部item实例
       if (this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent

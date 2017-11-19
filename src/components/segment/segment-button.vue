@@ -44,7 +44,7 @@
        * 当前button的激活值
        **/
       value: [String, Number],
-      disabled: [Boolean],
+      disabled: [Boolean]
     },
     watch: {
       disabled (val) {

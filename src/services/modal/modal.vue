@@ -56,9 +56,9 @@
 <script type="text/javascript">
   import Vue from 'vue'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmBackdrop from "../../components/backdrop/backdrop.vue";
+  import VmBackdrop from '../../components/backdrop/backdrop.vue'
 
-  const NOOP = () => {}
+const NOOP = () => {}
 
   export default {
     name: 'vm-modal',

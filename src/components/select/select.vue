@@ -84,11 +84,10 @@
   import ActionSheet from '../../services/action-sheet'
   import Popover from '../../services/popover'
   import Alert from '../../services/alert'
-  import VmButton from "../button/button.vue";
-  import SelectPopover from "./select-popover.vue";
+  import VmButton from '../button/button.vue'
+import SelectPopover from './select-popover.vue'
 
-
-  let id = 0
+let id = 0
   export default {
     components: {VmButton},
     name: 'vm-select',
@@ -206,8 +205,8 @@
         }
 
         if (this.interface === 'popover' && !ev) {
-          console.warn('Interface cannot be "popover" without UIEvent.');
-          this.interface = 'alert';
+          console.warn('Interface cannot be "popover" without UIEvent.')
+          this.interface = 'alert'
         }
 
         if (this.interface === 'action-sheet') {
@@ -244,9 +243,7 @@
 
           // 初始化并开启
           ActionSheet.present(selectOptions)
-
         } else if (this.interface === 'popover') {
-
           let popoverOptions = this.optionComponents.map(input => {
             return {
               label: input.label,
@@ -260,25 +257,23 @@
                 this.$emit('input', input.optionValue)
               }
             }
-          });
+          })
 
-          var popoverCssClass = 'select-popover';
+          var popoverCssClass = 'select-popover'
 
-          // If the user passed a cssClass for the select, add it
-          popoverCssClass += selectOptions.cssClass ? ' ' + selectOptions.cssClass : '';
+        // If the user passed a cssClass for the select, add it
+          popoverCssClass += selectOptions.cssClass ? ' ' + selectOptions.cssClass : ''
 
-          // ev.target is readonly.
-          // place popover regarding to ion-select instead of .button-inner
-          Object.defineProperty(ev, 'target', { value: ev.currentTarget.parentNode });
-          selectOptions.ev = ev;
-          selectOptions.component = SelectPopover;
-          selectOptions.cssClass = popoverCssClass;
-          selectOptions.data = {options: popoverOptions};
+        // ev.target is readonly.
+        // place popover regarding to ion-select instead of .button-inner
+          Object.defineProperty(ev, 'target', { value: ev.currentTarget.parentNode })
+          selectOptions.ev = ev
+          selectOptions.component = SelectPopover
+          selectOptions.cssClass = popoverCssClass
+          selectOptions.data = {options: popoverOptions}
 
-          Popover.present(selectOptions);
-
+          Popover.present(selectOptions)
         } else {
-
           this.interface = 'alert'
           // 从option中获取input参数
           selectOptions.inputs = this.optionComponents.map(input => {

@@ -74,9 +74,9 @@
   import canvasResize from './fixImage'
   import { isString, isArray } from '../../util/util'
   import PreviewImage from '../../services/preview-image/index'
-  import VmTextarea from "../input/input.vue";
+  import VmTextarea from '../input/input.vue'
 
-  export default {
+export default {
     name: 'vm-feedback',
     components: {
       VmTextarea

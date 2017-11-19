@@ -36,11 +36,12 @@
    * @demo #/content
    *
    **/
-  import ThemeMixins from '../../themes/theme.mixins';
+  import ThemeMixins from '../../themes/theme.mixins'
+
   export default {
     name: 'vm-header',
     mixins: [ThemeMixins],
-    data () {
+    data() {
       return {
         isHide: false,
         style: {}
@@ -52,7 +53,7 @@
        * @description
        * 隐藏Header
        **/
-      hide () {
+      hide() {
         this.isHide = true
       },
 
@@ -61,7 +62,7 @@
        * @description
        * 显示Header
        **/
-      show () {
+      show() {
         this.isHide = false
       },
 
@@ -70,7 +71,7 @@
        * @description
        * Toggle显示Header
        **/
-      toggle () {
+      toggle() {
         this.isHide = !this.isHide
       },
 
@@ -81,7 +82,7 @@
        * @description
        * 设置Header的样式
        **/
-      setStyle (style) {
+      setStyle(style) {
         this.style = style
       }
     }

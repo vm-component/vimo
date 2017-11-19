@@ -26,9 +26,9 @@
    * @demo #/content
    *
    **/
-  import ThemeMixins from '../../themes/theme.mixins';
+  import ThemeMixins from '../../themes/theme.mixins'
 
-  export default {
+export default {
     name: 'vm-footer',
     mixins: [ThemeMixins],
     data () {

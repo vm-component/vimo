@@ -125,10 +125,10 @@
   import { isString, isPresent, isNumber, urlChange } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
   import VmPickerCol from './picker-col.vue'
-  import VmBackdrop from "../../components/backdrop/backdrop.vue";
-  import VmButton from "../../components/button/button.vue";
+  import VmBackdrop from '../../components/backdrop/backdrop.vue'
+import VmButton from '../../components/button/button.vue'
 
-  const NOOP = () => {}
+const NOOP = () => {}
 
   export default {
     name: 'vm-picker',

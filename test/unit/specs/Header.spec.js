@@ -2,7 +2,7 @@
 
 import 'ionicons/dist/css/ionicons.css'
 import { mount } from 'vue-test-utils'
-import vimo from '../../../src/dist'
+import vimo from '../../../src'
 
 let Header = vimo.Header
 let wrapper = null

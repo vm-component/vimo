@@ -40,7 +40,7 @@
       }
     },
     props: {
-      mini: Boolean,
+      mini: Boolean
     },
     computed: {
       modeClass () {

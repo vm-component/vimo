@@ -92,7 +92,7 @@
         default: false
       }
     },
-    data() {
+    data () {
       return {
         isChecked: isTrueProperty(this.value),       // 选中状态
         isDisabled: isTrueProperty(this.disabled),      // 禁用状态
@@ -103,14 +103,14 @@
       }
     },
     watch: {
-      disabled(val) {
+      disabled (val) {
         this.setDisabled(val)
       },
-      value(val) {
+      value (val) {
         this.setChecked(val)
       }
     },
-    mounted() {
+    mounted () {
       if (this.$parent && this.$parent.$options.name && this.$parent.$options.name.toLowerCase() === 'vm-item') {
         this.itemComponent = this.$parent
         setElementClass(this.itemComponent.$el, 'item-toggle', true)
@@ -125,7 +125,7 @@
     },
     methods: {
 
-      clickHandler() {
+      clickHandler () {
         this.setChecked(!this.isChecked)
       },
 
@@ -133,7 +133,7 @@
        * 设置为被点击状态
        * @param {boolean} isChecked
        */
-      setChecked(isChecked) {
+      setChecked (isChecked) {
         if (isChecked !== this.isChecked) {
           this.isChecked = isChecked
           if (this.init) {
@@ -149,7 +149,7 @@
           this.setItemCheckedClass(isChecked)
         }
       },
-      setItemCheckedClass(isChecked) {
+      setItemCheckedClass (isChecked) {
         this.itemComponent && setElementClass(this.itemComponent.$el, 'item-toggle-checked', isChecked)
       },
 
@@ -157,13 +157,13 @@
        * 设置禁用状态
        * @param {boolean} isDisabled
        */
-      setDisabled(isDisabled) {
+      setDisabled (isDisabled) {
         if (isDisabled !== this.isDisabled) {
           this.isDisabled = isDisabled
           this.setItemDisabledClass(isDisabled)
         }
       },
-      setItemDisabledClass(isDisabled) {
+      setItemDisabledClass (isDisabled) {
         this.itemComponent && setElementClass(this.itemComponent.$el, 'item-toggle-disabled', isDisabled)
       }
     }

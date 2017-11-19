@@ -46,12 +46,12 @@
    * <vm-icon name="logo-twitter"></vm-icon>
    **/
   import {isTrueProperty, setElementClass} from '../../util/util'
-  import ThemeMixins from '../../themes/theme.mixins';
+  import ThemeMixins from '../../themes/theme.mixins'
 
-  export default {
+export default {
     name: 'vm-icon',
     mixins: [ThemeMixins],
-    data() {
+    data () {
       return {
         css: '',
         isActive: isTrueProperty(this.active)
@@ -67,21 +67,21 @@
       active: [String, Boolean]
     },
     computed: {
-      iconName() {
-        let name = this.name;
+      iconName () {
+        let name = this.name
         if (!(/^md-|^ios-|^logo-|^icon-/.test(name))) {
           // this does not have one of the defaults
           // so lets auto add in the mode prefix for them
-          return this.mode + '-' + name;
+          return this.mode + '-' + name
         }
-        return name;
+        return name
       }
     },
     watch: {
-      active(val) {
-        this.isActive = isTrueProperty(val);
+      active (val) {
+        this.isActive = isTrueProperty(val)
 
-        this.update();
+        this.update()
       }
     },
     mounted () {
@@ -89,49 +89,49 @@
         setElementClass(this.$el, 'item-icon', true)
       }
 
-      this.update();
+      this.update()
     },
-    destroyed() {
+    destroyed () {
       if (this.css) {
-        setElementClass(this.$el, this.css, false);
+        setElementClass(this.$el, this.css, false)
       }
     },
     methods: {
-      update() {
-        let iconName;
+      update () {
+        let iconName
 
         if (this.ios && this.mode === 'ios') {
-          iconName = this.ios;
+          iconName = this.ios
         } else if (this.md && this.mode === 'md') {
-          iconName = this.md;
+          iconName = this.md
         } else {
-          iconName = this.iconName;
+          iconName = this.iconName
         }
 
-        let iconMode = iconName.split('-', 2)[0];
+        let iconMode = iconName.split('-', 2)[0]
         if (iconMode === 'ios' && this.isActive && iconName.indexOf('logo-') < 0 && iconName.indexOf('-outline') < 0) {
-          iconName += '-outline';
+          iconName += '-outline'
         }
 
         // ios-star-outline -> ion-ios-star-outline
         // ios-star -> ion-ios-star-outline
         // icon-star -> icon-star
-        let css = iconMode === 'icon' ? iconName : 'ion-' + iconName;
+        let css = iconMode === 'icon' ? iconName : 'ion-' + iconName
 
         if (this.css === css) {
-          return;
+          return
         }
         if (this.css) {
-          setElementClass(this.$el, this.css, false);
+          setElementClass(this.$el, this.css, false)
         }
-        this.css = css;
-        setElementClass(this.$el, css, true);
+        this.css = css
+        setElementClass(this.$el, css, true)
 
-        let label = iconName.replace('ios-', '').replace('md-', '').replace('-', ' ');
-        this.$el.setAttribute('aria-label', label);
+        let label = iconName.replace('ios-', '').replace('md-', '').replace('-', ' ')
+        this.$el.setAttribute('aria-label', label)
       }
     }
-  };
+  }
 </script>
 
 <style lang="scss">

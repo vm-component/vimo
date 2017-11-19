@@ -43,11 +43,11 @@
 <script type="text/javascript">
   import {urlChange, focusOutActiveElement} from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmBackdrop from "../../components/backdrop/backdrop.vue";
-  import VmButton from "../../components/button/button.vue";
-  import VmIcon from "../../components/icon/icon.vue";
+  import VmBackdrop from '../../components/backdrop/backdrop.vue'
+import VmButton from '../../components/button/button.vue'
+import VmIcon from '../../components/icon/icon.vue'
 
-  const NOOP = () => {
+const NOOP = () => {
   }
 
   export default {
@@ -56,7 +56,7 @@
     components: {
       VmIcon,
       VmBackdrop,
-      VmButton,
+      VmButton
     },
     props: {
       title: String,
@@ -75,7 +75,7 @@
         default: true
       }
     },
-    data() {
+    data () {
       return {
         isActive: false,    // ActionSheet 开启状态
         enabled: false,     // 是否在过渡态的状态判断，如果在动画中则为false
@@ -90,7 +90,7 @@
         unReg: null         // 页面变化的解绑函数
       }
     },
-    created() {
+    created () {
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
@@ -105,11 +105,11 @@
        * ActionSheet Animate Hooks
        * @private
        * */
-      beforeEnter() {
+      beforeEnter () {
         this.enabled = false // 不允许过渡中途操作
         this.$app && this.$app.setEnabled(false, 400)
       },
-      afterEnter() {
+      afterEnter () {
         this.presentCallback()
         focusOutActiveElement()
         let focusableEle = document.querySelector('button')
@@ -118,11 +118,11 @@
         }
         this.enabled = true
       },
-      beforeLeave() {
+      beforeLeave () {
         this.enabled = false
         this.$app && this.$app.setEnabled(false, 400)
       },
-      afterLeave() {
+      afterLeave () {
         this.dismissCallback()
         // 删除DOM
         this.$el.remove()
@@ -136,7 +136,7 @@
        * 如存在cancel按钮的handler，则点击backdrop执行此handler
        * @private
        */
-      bdClick() {
+      bdClick () {
         if (this.enabled && this.enableBackdropDismiss) {
           if (this.cancelButton) {
             this.click(this.cancelButton)
@@ -153,7 +153,7 @@
        * @param {object} button Button Click Handler
        * @private
        */
-      click(button) {
+      click (button) {
         if (!this.enabled) {
           return
         }
@@ -181,7 +181,7 @@
        * @returns {Promise}  结果返回Promise, 当动画完毕后执行resolved
        * @private
        */
-      present() {
+      present () {
         this.isActive = true
         return new Promise((resolve) => {
           this.presentCallback = resolve
@@ -195,7 +195,7 @@
        * @return {Promise} 结果返回Promise, 当动画完毕后执行resolved
        * @private
        * */
-      dismiss() {
+      dismiss () {
         if (this.isActive) {
           this.isActive = false
           this.unReg && this.unReg()
@@ -220,7 +220,7 @@
        * 初始化buttons
        * @private
        * */
-      init() {
+      init () {
         let arr = this.buttons
         let _buttons = []
         if (!Array.isArray(arr)) {

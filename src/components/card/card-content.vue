@@ -14,6 +14,6 @@
 
   export default {
     name: 'vm-card-content',
-    mixins: [ThemeMixins],
+    mixins: [ThemeMixins]
   }
 </script>

@@ -91,10 +91,10 @@
    * */
   import { urlChange } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmBackdrop from "../../components/backdrop/backdrop.vue";
-  import VmSpinner from "../../components/spinner/spinner.vue";
+  import VmBackdrop from '../../components/backdrop/backdrop.vue'
+import VmSpinner from '../../components/spinner/spinner.vue'
 
-  const NOOP = () => {}
+const NOOP = () => {}
 
   export default {
     name: 'vm-loading',

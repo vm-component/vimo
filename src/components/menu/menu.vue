@@ -23,9 +23,9 @@
     </div>
 </template>
 <style lang="scss">
-    @import "menus";
-    @import "menus.ios";
-    @import "menus.md";
+    @import "menu";
+    @import "menu.ios";
+    @import "menu.md";
 
     /*slideInLeft*/
     /*animate class*/
@@ -56,14 +56,14 @@
 </style>
 <script type="text/javascript">
   import { firstUpperCase } from '../../util/util'
-  import { recordMenuInstance } from './menus'
-  import VmBackdrop from "../backdrop/backdrop.vue";
+  import { recordMenuInstance } from './menu'
+  import VmBackdrop from '../backdrop/backdrop.vue'
 
-  const NOOP = () => {}
+const NOOP = () => {}
 
   export default {
     components: {VmBackdrop},
-    name: 'vm-menus',
+    name: 'vm-menu',
     data () {
       return {
         isOpen: false, // menu-inner 动画控制

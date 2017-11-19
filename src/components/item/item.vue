@@ -105,10 +105,10 @@
    *
    **/
   import { isUndefined, isPresent, isString } from '../../util/util'
-  import ItemMixin from './item-mixin.vue';
-  import VmReorder from "./item-reorder.vue";
+  import ItemMixin from './item-mixin.vue'
+import VmReorder from './item-reorder.vue'
 
-  export default {
+export default {
     components: {VmReorder},
     name: 'vm-item',
     mixins: [ItemMixin],
@@ -135,11 +135,11 @@
       button: Boolean
     },
     created () {
-      this.hasReorder = this.$parent.$options.name === 'vm-item-group' && this.$parent.allowReorder;
+      this.hasReorder = this.$parent.$options.name === 'vm-item-group' && this.$parent.allowReorder
     },
     mounted () {
       if (this.button) {
-        this.$el.setAttribute('detail-push', '');
+        this.$el.setAttribute('detail-push', '')
       }
     },
     methods: {

@@ -223,6 +223,10 @@ const CityPicker = {
         })
       }
     }
+  },
+
+  install (Vue) {
+    Vue.prototype.$chooseCity = this
   }
 }
 export default CityPicker

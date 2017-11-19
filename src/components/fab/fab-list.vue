@@ -33,7 +33,7 @@
       side: {
         type: String,
         default: 'bottom'
-      },
+      }
     },
     methods: {
       /**
@@ -58,7 +58,7 @@
           fabs.forEach(fab => fab.setElementClass('show', false))
         }
         setElementClass(this.$el, 'fab-list-active', visible)
-      },
+      }
     },
     mounted () {
       this.$children.forEach((child) => {

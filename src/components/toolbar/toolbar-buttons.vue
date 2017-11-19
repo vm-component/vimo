@@ -44,15 +44,15 @@
     props: {
       left: Boolean,
       right: Boolean,
-      end: Boolean,
+      end: Boolean
     },
-    created() {
+    created () {
       this.roleName = 'bar-buttons'
     },
-    mounted() {
-      let postion = this.getPosition();
+    mounted () {
+      let postion = this.getPosition()
       console.log('postion ' + postion)
-      this.$el.setAttribute(postion, '');
+      this.$el.setAttribute(postion, '')
     },
     methods: {
       /**

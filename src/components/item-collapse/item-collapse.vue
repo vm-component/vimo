@@ -157,7 +157,8 @@
         this.$slots['item-end'].forEach(function (item) {
           item.elm.setAttribute('item-end', '')
         })
-      }    }
+      }
+    }
   }
 
   function parentNodeIs (node, name = '') {

@@ -1,2 +1,9 @@
-export { default as RefresherContent } from './refresher-content.vue'
-export { default as Refresher } from './refresher.vue'
+import Refresher from './refresher.vue'
+import RefresherContent from './refresher-content.vue'
+
+Refresher.install = function (Vue) {
+  Vue.component(Refresher.name, Refresher)
+  Vue.component(RefresherContent.name, RefresherContent)
+}
+
+export default Refresher

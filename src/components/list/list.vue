@@ -137,8 +137,8 @@
    * @see component:ListHeader
    * @demo #/list
    */
-  import ThemeMixins from '../../themes/theme.mixins';
-  export default {
+  import ThemeMixins from '../../themes/theme.mixins'
+export default {
     name: 'vm-list',
     mixins: [ThemeMixins],
     data () {

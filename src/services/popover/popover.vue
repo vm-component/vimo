@@ -142,9 +142,9 @@
   import { urlChange, parsePxUnit } from '../../util/util'
   import css from '../../util/getCss'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmBackdrop from "../../components/backdrop/backdrop.vue";
+  import VmBackdrop from '../../components/backdrop/backdrop.vue'
 
-  const POPOVER_IOS_BODY_PADDING = 2
+const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
   const NOOP = () => {}
 
@@ -458,8 +458,8 @@
       }
     },
 
-    updated() {
-      this.isActive && this.updatePositionView();
-    },
+    updated () {
+      this.isActive && this.updatePositionView()
+    }
   }
 </script>

@@ -86,7 +86,7 @@
    * */
   import { isBlank, isPresent, isTrueProperty, isArray, isString, setElementClass } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import Picker from '../picker/index'
+  import Picker from '../../services/picker/index'
   import VmButton from '../button/button.vue'
   import {
     dateValueRange,
@@ -152,7 +152,7 @@
       pickerOptions: {
         type: Object,
         default () { return {} }
-      },
+      }
     },
     watch: {
       disabled (val) {

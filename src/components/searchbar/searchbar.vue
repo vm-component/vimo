@@ -133,10 +133,10 @@
    * */
   import { isNumber, isBoolean } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmButton from "../button/button.vue";
-  import VmIcon from "../icon/icon.vue";
+  import VmButton from '../button/button.vue'
+import VmIcon from '../icon/icon.vue'
 
-  export default {
+export default {
     components: {
       VmIcon,
       VmButton
@@ -248,7 +248,7 @@
       },
       spellcheckValue () {
         return this.spellcheck === '' || this.spellcheck === 'true' || this.spellcheck === true
-      },
+      }
     },
     mounted () {
       this.searchbarIconElement = this.$refs.searchbarIcon

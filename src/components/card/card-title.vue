@@ -13,6 +13,6 @@
   import ThemeMixins from '../../themes/theme.mixins'
   export default{
     name: 'vm-card-title',
-    mixins: [ThemeMixins],
+    mixins: [ThemeMixins]
   }
 </script>

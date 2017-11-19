@@ -1,7 +1,7 @@
-import Checkbox from './checkbox.vue'
+import Content from './content.vue'
 
-Checkbox.install = function(Vue) {
-  Vue.component(Checkbox.name, Checkbox);
+Content.install = function (Vue) {
+  Vue.component(Content.name, Content)
 }
 
-export default Checkbox
+export default Content

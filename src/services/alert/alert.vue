@@ -79,10 +79,10 @@
 <script type="text/javascript">
   import {urlChange} from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmBackdrop from "../../components/backdrop/backdrop.vue";
-  import VmButton from "../../components/button/button.vue";
+  import VmBackdrop from '../../components/backdrop/backdrop.vue'
+import VmButton from '../../components/button/button.vue'
 
-  const NOOP = () => {
+const NOOP = () => {
   }
 
   export default {
@@ -101,7 +101,7 @@
       // Array button数组，包含全部role
       buttons: {
         type: Array,
-        default() {
+        default () {
           return []
         }
       },
@@ -112,25 +112,25 @@
       // type/value/label/checked/disabled
       inputs: {
         type: Array,
-        default() {
+        default () {
           return []
         }
       },
       // Boolean 允许点击backdrop关闭actionsheet
       enableBackdropDismiss: {
         type: Boolean,
-        default() {
+        default () {
           return true
         }
       },
       dismissOnPageChange: {
         type: Boolean,
-        default() {
+        default () {
           return true
         }
       }
     },
-    data() {
+    data () {
       return {
         /**
          * Alert State
@@ -149,7 +149,7 @@
       }
     },
     computed: {
-      buttonsForDisplay() {
+      buttonsForDisplay () {
         // 如果是string则转化为对象
         return this.buttons.map(button => {
           if (typeof button === 'string') {
@@ -159,7 +159,7 @@
         })
       }
     },
-    created() {
+    created () {
       this.init()
       // mounted before data ready, so no need to judge the `dismissOnPageChange` value
       if (this.dismissOnPageChange) {
@@ -175,11 +175,11 @@
        * ActionSheet Animate Hooks
        * @private
        **/
-      beforeEnter() {
+      beforeEnter () {
         this.$app && this.$app.setEnabled(false, 200)
         this.enabled = false // 不允许过渡中途操作
       },
-      afterEnter() {
+      afterEnter () {
         // 执行开启的promise
         this.presentCallback()
 
@@ -190,11 +190,11 @@
         }
         this.enabled = true
       },
-      beforeLeave() {
+      beforeLeave () {
         this.$app && this.$app.setEnabled(false, 200)
         this.enabled = false
       },
-      afterLeave() {
+      afterLeave () {
         // 执行关闭的promise
         this.dismissCallback()
         // 移除DOM
@@ -209,7 +209,7 @@
        * 如存在cancel按钮，点击按钮关闭actionsheet
        * @private
        **/
-      bdClick() {
+      bdClick () {
         if (this.enabled && this.enableBackdropDismiss && this.buttonsForDisplay.length > 0) {
           let cancelBtn = this.buttonsForDisplay.find(b => b.role === 'cancel')
           if (cancelBtn) {
@@ -227,7 +227,7 @@
        * @param {object} button  - button数组，包含全部role
        * @private
        **/
-      btnClick(button) {
+      btnClick (button) {
         if (!this.enabled) {
           return
         }
@@ -255,7 +255,7 @@
        * @param {object} checkedInput  - Radio 选中项
        * @private
        **/
-      rbClick(checkedInput) {
+      rbClick (checkedInput) {
         if (this.enabled) {
           this.inputsForDispaly.forEach(input => {
             input.checked = (checkedInput === input)
@@ -273,7 +273,7 @@
        * @param {object} checkedInput  - CheckBox 选中项
        * @private
        **/
-      cbClick(checkedInput) {
+      cbClick (checkedInput) {
         if (this.enabled) {
           checkedInput.checked = !checkedInput.checked
           if (checkedInput.handler) {
@@ -287,7 +287,7 @@
        * 获取inputs中的信息
        * @private
        **/
-      getValues() {
+      getValues () {
         if (this.inputType === 'radio' && this.inputsForDispaly.length > 0) {
           // this is an alert with radio buttons (single value select)
           // return the one value which is checked, otherwise undefined
@@ -320,7 +320,7 @@
        * ActionSheet启动之前去除focus效果，因为存在键盘
        * @private
        **/
-      focusOutActiveElement() {
+      focusOutActiveElement () {
         const activeElement = document.activeElement
         activeElement && activeElement.blur && activeElement.blur()
       },
@@ -334,7 +334,7 @@
        * @returns {Promise} 当关闭动画执行完毕后触发resolved
        * @private
        */
-      present() {
+      present () {
         this.isActive = true
         return new Promise((resolve) => {
           this.presentCallback = resolve
@@ -348,7 +348,7 @@
        * @returns {Promise} 当关闭动画执行完毕后触发resolved
        * @private
        */
-      dismiss() {
+      dismiss () {
         if (this.isActive) {
           this.isActive = false // 动起来
           this.unReg && this.unReg()
@@ -373,7 +373,7 @@
        * inputs数组初始化组件
        * @private
        **/
-      init() {
+      init () {
         if (!this.inputs || this.inputs.length === 0) {
           return []
         }

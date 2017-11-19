@@ -1,8 +1,8 @@
-import Avatar from './avatar';
+import App from './app.vue'
 
 /* istanbul ignore next */
-Avatar.install = function(Vue) {
-  Vue.component(Avatar.name, Avatar);
-};
+App.install = function (Vue) {
+  Vue.component(App.name, App)
+}
 
-export default Avatar;
+export default App

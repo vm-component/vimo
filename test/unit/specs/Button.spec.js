@@ -5,7 +5,7 @@ import sinon from 'sinon'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
 import Vue from 'vue'
-import vimo from '../../../src/dist'
+import vimo from '../../../src'
 
 let Button = vimo.Button
 let Icon = vimo.Icon

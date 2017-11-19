@@ -1,3 +1,11 @@
-export { default as Fab } from './fab.vue'
-export { default as FabButton } from './fab-button.vue'
-export { default as FabList } from './fab-list.vue'
+import Fab from './fab.vue'
+import FabButton from './fab-button.vue'
+import FabList from './fab-list.vue'
+
+Fab.install = function (Vue) {
+  Vue.component(Fab.name, Fab)
+  Vue.component(FabButton.name, FabButton)
+  Vue.component(FabList.name, FabList)
+}
+
+export default Fab

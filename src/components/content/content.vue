@@ -568,8 +568,7 @@
       this._scroll = new ScrollView()
       this._imgs = []
 
-      this.hasRefresher = this.$slots && isPresent(this.$slots['refresher']);
-
+      this.hasRefresher = this.$slots && isPresent(this.$slots['refresher'])
     },
     mounted () {
       this.init()

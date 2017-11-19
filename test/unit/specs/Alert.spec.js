@@ -1,6 +1,6 @@
 /* eslint-disable no-undef,no-unused-expressions */
-import AlertController from '../../../src/components/alert/index.js'
-import Alert from '../../../src/components/alert/alert.vue'
+import AlertController from '../../../src/services/alert/index.js'
+import Alert from '../../../src/services/alert/alert.vue'
 import { mount } from 'vue-test-utils'
 
 let opts = {
@@ -27,12 +27,9 @@ describe('Alert', function () {
   it('@config: renders the correct markup', function () {
     let wrapper = mount(Alert, opts)
 
-    const markup = '<div class="ion-alert alert alert-ios alertCssOuterMain"><div class="ion-backdrop" style="left: 0px; top: 0px; display: none;"></div> <div class="alert-wrapper" style="display: none;"><!----> <div class="alert-head"><h2 class="alert-title">Alert</h2> <!----></div> <div class="alert-message">message</div> <!----> <div class="alert-button-group"><button class="disable-hover ion-button alert-button alert-button-ios alert-button-default alert-button-default-ios"> <span class="button-inner">Confirm</span> <div class="button-effect"></div></button></div></div></div>'
+    const markup = '<div class="ion-alert alert alert-ios alertCssOuterMain"><div class="ion-backdrop" style="left: 0px; top: 0px; display: none;"></div> <div class="alert-wrapper" name="alert" style="display: none;"><!----> <div class="alert-head"><h2 class="alert-title">Alert</h2> <!----></div> <div class="alert-message">message</div> <!----> <div class="alert-button-group"><button class="disable-hover ion-button alert-button alert-button-ios alert-button-default alert-button-default-ios"> <span class="button-inner">Confirm</span> <div class="button-effect"></div></button></div></div></div>'
 
-    const text = 'Alert  message   Confirm'
     expect(wrapper.html()).to.equal(markup)
-    expect(wrapper.text().trim()).to.equal(text)
-    expect(wrapper.find('div')).to.be.ok
     expect(wrapper.name()).to.equal('vm-alert')
     expect(wrapper.hasClass('ion-alert')).to.be.ok
     expect(wrapper.hasClass('alertCssOuterMain')).to.be.ok

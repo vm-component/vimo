@@ -7,12 +7,12 @@
     </vm-list>
 </template>
 <script type="text/javascript">
-  import { isBlank, isTrueProperty } from '../../util/util'
-  import VmList from "../list/list.vue";
-  import VmItem from "../item/item.vue";
-  import VmLabel from "../label/label.vue";
-  import VmRadio from "../radio/radio.vue";
-  import Popover from "../../services/popover"
+  import {isBlank, isTrueProperty} from '../../util/util'
+  import VmList from '../list/list.vue'
+  import VmItem from '../item/item.vue'
+  import VmLabel from '../label/label.vue'
+  import VmRadio from '../radio/radio.vue'
+  import Popover from '../../services/popover'
 
   export default {
     name: 'ion-select-popover',
@@ -22,31 +22,30 @@
       VmItem,
       VmList
     },
-    data () {
+    data() {
       return {
         options: [],
         checkedValue: null
       }
     },
     created() {
-      this.options = this.$options.$data.options;
+      this.options = this.$options.$data.options
 
-      this.checkedValue = this.getValue();
+      this.checkedValue = this.getValue()
     },
     methods: {
-      onRadioChecked (value) {
-
-        let checkedOption = this.options.find(option => option.value === value);
+      onRadioChecked(value) {
+        let checkedOption = this.options.find(option => option.value === value)
         if (checkedOption && checkedOption.handler) {
-          checkedOption.handler();
+          checkedOption.handler()
         }
 
         Popover.dismiss()
       },
 
       getValue() {
-        let checkedOption = this.options.find(option => option.checked);
-        return checkedOption ? checkedOption.value : undefined;
+        let checkedOption = this.options.find(option => option.checked)
+        return checkedOption ? checkedOption.value : undefined
       }
     }
   }

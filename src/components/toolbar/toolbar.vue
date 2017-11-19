@@ -91,6 +91,6 @@
 
   export default {
     name: 'vm-toolbar',
-    mixins: [ToolbarMixins],
+    mixins: [ToolbarMixins]
   }
 </script>

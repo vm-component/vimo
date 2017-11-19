@@ -127,24 +127,24 @@
         style: 'default',   // outline/clear/solid
         shape: null,        // round/fab
         display: null,      // block/full
-        init: false,       //
+        init: false       //
       }
     },
     created () {
       this.init = true
 
-      this.roleName = this.role;
+      this.roleName = this.role
 
       if (this.$parent) {
-        let parentName = this.$parent.$options.name.toLowerCase();
+        let parentName = this.$parent.$options.name.toLowerCase()
 
-        // 如果是在组件 buttons 下则修改前缀为 bar-button-
+      // 如果是在组件 buttons 下则修改前缀为 bar-button-
         if (parentName === 'vm-buttons' || parentName === 'vm-toolbar' || parentName === 'vm-navbar') {
-          this.roleName = 'bar-button';
+          this.roleName = 'bar-button'
         }
 
         if (this.role === 'radio' || this.role === 'checkbox' || this.role === 'select') {
-          this.roleName = 'item-cover';
+          this.roleName = 'item-cover'
         }
       }
 
@@ -183,19 +183,19 @@
        * @private
        * @param {boolean} assignCssClass
        */
-      assignCss(assignCssClass) {
-        let role = this.roleName;
+      assignCss (assignCssClass) {
+        let role = this.roleName
         if (role) {
-          setElementClass(this.$el, role, assignCssClass); // button
-          setElementClass(this.$el, `${role}-${this.mode}`, assignCssClass); // button
+          setElementClass(this.$el, role, assignCssClass) // button
+          setElementClass(this.$el, `${role}-${this.mode}`, assignCssClass) // button
 
-          this.setClass(this.style, assignCssClass); // button-clear
-          this.setClass(this.shape, assignCssClass); // button-round
-          this.setClass(this.display, assignCssClass); // button-full
-          this.setClass(this.size, assignCssClass); // button-small
-          this.setClass(this.decorator, assignCssClass); // button-strong
+          this.setClass(this.style, assignCssClass) // button-clear
+          this.setClass(this.shape, assignCssClass) // button-round
+          this.setClass(this.display, assignCssClass) // button-full
+          this.setClass(this.size, assignCssClass) // button-small
+          this.setClass(this.decorator, assignCssClass) // button-strong
 
-          this.updateColor(this.color, assignCssClass); // button-secondary, bar-button-secondary
+          this.updateColor(this.color, assignCssClass) // button-secondary, bar-button-secondary
         }
       },
 
@@ -204,11 +204,11 @@
        * @param {string} type
        * @param {boolean} assignCssClass
        */
-      setClass(type, assignCssClass) {
+      setClass (type, assignCssClass) {
         if (type && this.init) {
-          type = type.toLocaleLowerCase();
-          setElementClass(this.$el, `${this.roleName}-${type}`, assignCssClass);
-          setElementClass(this.$el, `${this.roleName}-${type}-${this.mode}`, assignCssClass);
+          type = type.toLocaleLowerCase()
+          setElementClass(this.$el, `${this.roleName}-${type}`, assignCssClass)
+          setElementClass(this.$el, `${this.roleName}-${type}-${this.mode}`, assignCssClass)
         }
       },
 
@@ -229,7 +229,7 @@
           className += (style !== null && style !== '' && style !== 'default' ? '-' + style.toLowerCase() : '')
 
           if (color !== null && color !== '') {
-            setElementClass(this.$el, `${className}-${this.mode}-${color}`, isAdd);
+            setElementClass(this.$el, `${className}-${this.mode}-${color}`, isAdd)
           }
         }
       },
