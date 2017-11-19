@@ -260,9 +260,7 @@
             resolve()
           } else {
             try {
-              import('../popover/index.js').then(
-                // resolve
-                (component) => {
+              import('../../services/popover').then((component) => {
                   let Popover = component.default
                   Popover.present({
                     ev: {

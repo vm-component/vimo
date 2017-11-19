@@ -12,7 +12,7 @@
     </section>
 </template>
 <script type="text/javascript">
-  import Popover from '../popover/index'
+  import Popover from '../../services/popover/index'
 
   export default {
     name: 'PopMenu',

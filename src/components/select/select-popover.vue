@@ -12,7 +12,7 @@
   import VmItem from "../item/item.vue";
   import VmLabel from "../label/label.vue";
   import VmRadio from "../radio/radio.vue";
-  import Popover from "../popover"
+  import Popover from "../../services/popover"
 
   export default {
     name: 'ion-select-popover',

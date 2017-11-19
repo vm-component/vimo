@@ -98,7 +98,7 @@
 
         // 页面切换显示Indicator
         if (this.showIndicatorWhenPageChange) {
-          import('../indicator').then((component) => {
+          import('../../services/indicator').then((component) => {
             this.IndicatorComponent = component.default
             this.$router.beforeEach((to, from, next) => {
               if (vm.$history.getDirection() === 'forward') {

@@ -81,9 +81,9 @@
    * */
   import { setElementClass, isTrueProperty, isBlank, isCheckedProperty } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import ActionSheet from '../action-sheet'
-  import Popover from '../popover'
-  import Alert from '../alert'
+  import ActionSheet from '../../services/action-sheet'
+  import Popover from '../../services/popover'
+  import Alert from '../../services/alert'
   import VmButton from "../button/button.vue";
   import SelectPopover from "./select-popover.vue";
 
