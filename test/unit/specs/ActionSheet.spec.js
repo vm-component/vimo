@@ -1,6 +1,6 @@
 /* eslint-disable no-undef,no-unused-expressions */
 import ActionSheetController from '../../../components/action-sheet/index.js'
-import ActionSheet from 'components/action-sheet/action-sheet.vue'
+import ActionSheet from '../../../components/action-sheet/action-sheet.vue'
 import { mount } from 'vue-test-utils'
 let opts = {
   propsData: {

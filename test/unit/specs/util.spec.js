@@ -15,8 +15,8 @@ import {
   transitionEnd
 } from '../../../components/util/util.js'
 
-import { urlChange } from 'components/util/url-change'
-import registerListener from 'components/util/register-listener'
+import { urlChange } from '../../../components/util/url-change'
+import registerListener from '../../../components/util/register-listener'
 import {
   isArray,
   isBlank,
@@ -34,7 +34,7 @@ import {
   isString,
   isTrueProperty,
   isUndefined
-} from 'components/util/type'
+} from '../../../components/util/type'
 
 // ,isString,isNumber,isFunction
 describe('util', function () {
