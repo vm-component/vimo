@@ -18,7 +18,7 @@
    * @demo #/slidingList
    * @see component:ItemSliding
    * */
-  export default{
+  export default {
     name: 'ItemSlidingOptions',
     data () {
       return {}
@@ -27,7 +27,13 @@
       // item的位置
       side: {
         type: String,
-        default: 'right'
+        default: 'right',
+        validator (val) {
+          return ~[
+            'left',
+            'right'
+          ].indexOf(val)
+        }
       }
     },
     methods: {

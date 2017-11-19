@@ -4,12 +4,8 @@
              class="ion-item item-block" @click="onPointerDownHandler">
             <slot name="item-left"></slot>
             <div class="item-inner">
-                <div class="input-wrapper" v-if="title">
-                    {{title}}
-                </div>
-                <div class="input-wrapper" v-else>
-                    <slot name="item-title"></slot>
-                </div>
+                <div class="input-wrapper" v-if="title">{{title}}</div>
+                <div class="input-wrapper" v-else><slot name="item-title"></slot></div>
                 <div class="item-arrow"></div>
                 <slot name="item-right"></slot>
             </div>
@@ -18,9 +14,7 @@
                     @enter="enter"
                     @before-leave="beforeLeave"
                     @leave="leave">
-            <div class="item-collapse-inner" v-show="isActive" ref="itemCollapseInner">
-                <slot></slot>
-            </div>
+            <div class="item-collapse-inner" v-show="isActive" ref="itemCollapseInner"><slot></slot></div>
         </transition>
     </div>
 </template>

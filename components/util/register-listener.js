@@ -1,4 +1,23 @@
-import { isPassive } from 'components/util/util'
+/**
+ * 判断的当前浏览器是否支持isPassive属性
+ * @return {Boolean}
+ * */
+function isPassive () {
+  var supportsPassiveOption = false
+  try {
+    /* istanbul ignore next */
+    window.addEventListener(
+      'test',
+      null,
+      Object.defineProperty({}, 'passive', {
+        get: function () {
+          supportsPassiveOption = true
+        }
+      })
+    )
+  } catch (e) {}
+  return supportsPassiveOption
+}
 
 /**
  *

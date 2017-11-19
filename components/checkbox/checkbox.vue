@@ -4,6 +4,7 @@
             <div class="checkbox-inner"></div>
         </div>
         <vm-button role="item-cover"
+                   :mode="mode"
                    @click="onPointerDownHandler()"
                    type="button"
                    class="item-cover">
@@ -127,6 +128,6 @@
   }
 </script>
 <style lang="less">
-    @import "checkbox.ios.less";
-    @import "checkbox.md.less";
+    @import "./checkbox.ios.less";
+    @import "./checkbox.md.less";
 </style>

@@ -190,6 +190,7 @@
     }
 
     .card-ios-@{color-name} {
+      content: @color-name;
       color: @color-contrast;
       background-color: @color-base;
 
@@ -200,28 +201,28 @@
         color: @color-contrast;
       }
 
-      .get-all-colors(@type) {
-        @name: e('colors-@{type}');
-        @n: length(@@name);
-        .loop(@n);
-        .loop(@n) when (@n > 0) {
-          .loop((@n - 1)); // next iteration
-          @color-name: extract(@@name, @n);
-          @color-name-mode: e('@{color-name}-@{type}');
-          @color-base: @@color-name-mode;
-          @color-contrast: contrast(@color-base, black, white, @contrast-threshold);
+      .get-all-colors-inner(@type-inner) {
+        @name-inner: e('colors-@{type-inner}');
+        @n-inner: length(@@name-inner);
+        .loop(@n-inner);
+        .loop(@n-inner) when (@n-inner > 0) {
+          .loop((@n-inner - 1)); // next iteration
+          @color-name-inner: extract(@@name-inner, @n-inner);
+          @color-name-mode-inner: e('@{color-name-inner}-@{type-inner}');
+          @color-base-inner: @@color-name-mode-inner;
+          @color-contrast-inner: contrast(@color-base-inner, black, white, @contrast-threshold);
 
           // content
-          .text-ios-@{color-name},
-          .card-header-ios-@{color-name},
-          .card-title-ios-@{color-name},
-          .card-content-ios-@{color-name} {
-            color: @color-base;
+          .text-ios-@{color-name-inner},
+          .card-header-ios-@{color-name-inner},
+          .card-title-ios-@{color-name-inner},
+          .card-content-ios-@{color-name-inner} {
+            color: @color-base-inner;
           }
         }
       }
       // action
-      .get-all-colors(ios);
+      .get-all-colors-inner(ios);
     }
 
     .card-header-ios-@{color-name},

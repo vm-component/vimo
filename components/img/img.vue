@@ -59,7 +59,7 @@
    *
    * */
   import { isPresent } from '../util/type'
-  import registerListener from 'components/util/register-listener'
+  import registerListener from '../util/register-listener'
 
   export default {
     name: 'Img',

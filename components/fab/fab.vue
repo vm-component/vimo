@@ -186,9 +186,7 @@
       }
     },
     mounted () {
-      this.$nextTick(() => {
-        this.styleObj = this.$_setPosition()
-      })
+      this.styleObj = this.$_setPosition()
     }
   }
 </script>

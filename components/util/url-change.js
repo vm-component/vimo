@@ -1,4 +1,4 @@
-import registerListener from 'components/util/register-listener'
+import registerListener from './register-listener'
 
 /**
  * urlChange(popstate)注册，绑定的函数触发后会自动解绑

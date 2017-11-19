@@ -1,7 +1,5 @@
 <template>
-    <button
-            ion-fab
-            @click="$_clickHandler"
+    <button @click="$_clickHandler"
             :class="[modeClass,colorClass,isNormalButtonClass,{'fab-close-active':isMainButton && fabComponent.listsActive}]"
             :mini="mini">
         <Icon name="close" class="fab-close-icon"></Icon>

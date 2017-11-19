@@ -1,11 +1,8 @@
 <template>
     <div class="ion-item-sliding item-wrapper"
          @touchstart="onDragStart"
-         @mousedown="onDragStart"
          @touchend="onDragEnd"
-         @mouseup="onDragEnd"
          @touchmove="onDragMove"
-         @mousemove="onDragMove"
          :class="activeClass">
         <slot></slot>
     </div>
@@ -139,7 +136,7 @@
       }
     },
     props: {
-      disabled: [Boolean]
+      disabled: Boolean
     },
     methods: {
 
@@ -551,7 +548,7 @@
       },
 
       /**
-       * @param {SLIDING_STATE} state
+       * @param {String} state
        * @private
        * */
       setState (state) {

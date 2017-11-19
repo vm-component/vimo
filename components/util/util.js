@@ -16,8 +16,7 @@
  * @property {number} y - y坐标
  * */
 
-import registerListener from 'components/util/register-listener'
-// import { isObject } from 'components/util/type'
+import registerListener from './register-listener'
 
 // /**
 //  * @function isBlank
@@ -102,27 +101,6 @@ export function transitionEnd (el, callbackFn) {
   }
 
   return unregister
-}
-
-/**
- * 判断的当前浏览器是否支持isPassive属性
- * @return {Boolean}
- * */
-export function isPassive () {
-  var supportsPassiveOption = false
-  try {
-    /* istanbul ignore next */
-    window.addEventListener(
-      'test',
-      null,
-      Object.defineProperty({}, 'passive', {
-        get: function () {
-          supportsPassiveOption = true
-        }
-      })
-    )
-  } catch (e) {}
-  return supportsPassiveOption
 }
 
 /**

@@ -73,7 +73,7 @@
    * */
   import canvasResize from './fixImage'
   import { isArray, isString } from '../util/type'
-  import Textarea from '../input'
+  import Textarea from '../textarea'
   import PreviewImage from '../preview-image'
 
   export default {

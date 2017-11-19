@@ -8,6 +8,9 @@
         </div>
     </div>
 </template>
+<style lang="less">
+    @import "./landscape-prompt.less";
+</style>
 <script type="text/javascript">
   /**
    * @component LandscapePrompt
@@ -36,6 +39,3 @@
     }
   }
 </script>
-<style lang="less">
-    @import "./landscape-prompt.less";
-</style>

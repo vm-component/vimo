@@ -92,6 +92,7 @@ export default {
   Fab,
   FabButton,
   FabList,
+  Feedback,
   Column,
   Grid,
   Row,

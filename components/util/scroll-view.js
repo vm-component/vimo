@@ -6,7 +6,7 @@
  *
  * @private
  * */
-import registerListener from 'components/util/register-listener'
+import registerListener from '../util/register-listener'
 import { isBoolean, isNumber, isPresent } from './type'
 
 const SCROLL_END_DEBOUNCE_MS = 80
