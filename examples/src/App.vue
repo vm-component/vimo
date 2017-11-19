@@ -2,7 +2,7 @@
     <vm-app>
         <!--menu menu-->
         <!--type: overlay/reveal/push-->
-        <vm-menus id="menu" side="left" type="reveal">
+        <vm-menu id="menu" side="left" type="reveal">
             <vm-content>
                 <vm-list>
                     <!--开始-->
@@ -42,7 +42,7 @@
                     </vm-item-group>
                 </vm-list>
             </vm-content>
-        </vm-menus>
+        </vm-menu>
         <vm-nav :showIndicatorWhenPageChange="true">
             <!--<keep-alive>-->
             <router-view></router-view>

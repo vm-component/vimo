@@ -90,7 +90,11 @@ const ChooseCity = {
         onDismiss: finalOptions.onDismiss
       })
     }
+  },
+
+  install (Vue) {
+    Vue.prototype.$chooseCity = ChooseCity
   }
 }
-export default ChooseCity
 
+export default ChooseCity

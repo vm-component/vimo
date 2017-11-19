@@ -3,12 +3,14 @@ import App from './App.vue'
 import AttachFastClick from 'fastclick'
 import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
-import 'ionicons/dist/css/ionicons.css'
-import vimo from '../../src/dist'
+// import Core from '../../src/core'
+import Vimo from '../../src/index'
 import VueI18n from 'vue-i18n'
 import vmGeo from 'vm-geo'
 import vmStorage from 'vm-storage'
 import router from './router'
+
+console.log(Vimo)
 
 if (process.env.NODE_ENV === 'development') {
   Vue.config.productionTip = false
@@ -18,12 +20,36 @@ if (process.env.NODE_ENV === 'development') {
   Vue.config.silent = true
 }
 
-// 平台基础安装
-Vue.use(vimo, {
-  custConf: APP_CONFIGS,
+// // 全局引用
+// Vue.use(Vimo, {
+//   appConf: APP_CONFIGS,
+//   pltConf: PLATFORM_CONFIGS,
+//   router: router
+// })
+
+// // // 平台基础安装
+Vimo.core(Vue, {
+  appConf: APP_CONFIGS,
   pltConf: PLATFORM_CONFIGS,
   router: router
 })
+
+Vue.use(Vimo.App)
+Vue.use(Vimo.Header)
+Vue.use(Vimo.Footer)
+Vue.use(Vimo.Content)
+Vue.use(Vimo.Nav)
+Vue.use(Vimo.Navbar)
+Vue.use(Vimo.Page)
+Vue.use(Vimo.List)
+Vue.use(Vimo.Item)
+Vue.use(Vimo.Menu)
+Vue.use(Vimo.Grid)
+Vue.use(Vimo.Column)
+Vue.use(Vimo.Row)
+Vue.use(Vimo.Button)
+Vue.use(Vimo.Buttons)
+Vue.use(Vimo.Title)
 
 Vue.use(VueI18n)
 // Create VueI18n instance with options
@@ -55,6 +81,7 @@ Vue.use(vmStorage)
 
 // eslint-disable-next-line no-new
 new AttachFastClick(document.body)
+
 // eslint-disable-next-line no-new
 new Vue({
   el: '#app',
