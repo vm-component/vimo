@@ -43,9 +43,9 @@
 <script type="text/javascript">
   import {urlChange, focusOutActiveElement} from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmBackdrop from "../backdrop/backdrop.vue";
-  import VmButton from "../button/button.vue";
-  import VmIcon from "../icon/icon.vue";
+  import VmBackdrop from "../../components/backdrop/backdrop.vue";
+  import VmButton from "../../components/button/button.vue";
+  import VmIcon from "../../components/icon/icon.vue";
 
   const NOOP = () => {
   }

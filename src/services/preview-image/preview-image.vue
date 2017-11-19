@@ -73,7 +73,7 @@
 </style>
 <script type="text/javascript">
   import Modal from '../modal/index'
-  import { Slides, Slide } from '../slides/index'
+  import { Slides, Slide } from '../../components/slides/index'
 
   export default {
     name: 'vm-preview-image',

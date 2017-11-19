@@ -24,7 +24,7 @@
 <script type="text/javascript">
   import { urlChange } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmButton from '../button/button.vue'
+  import VmButton from '../../components/button/button.vue'
 
   const NOOP = () => {}
 

@@ -103,7 +103,7 @@
    * */
   import { urlChange } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmBackdrop from '../backdrop/backdrop.vue'
+  import VmBackdrop from '../../components/backdrop/backdrop.vue'
 
   const NOOP = () => {}
 

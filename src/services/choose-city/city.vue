@@ -45,7 +45,7 @@
 </template>
 <script type="text/javascript">
   import Modal from '../modal/index'
-  import Content from '../content/content.vue'
+  import Content from '../../components/content/content.vue'
   import { pointerCoord, clamp } from '../../util/util'
 
   export default {

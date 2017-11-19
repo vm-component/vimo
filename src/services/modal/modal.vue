@@ -56,7 +56,7 @@
 <script type="text/javascript">
   import Vue from 'vue'
   import ThemeMixins from '../../themes/theme.mixins'
-  import VmBackdrop from "../backdrop/backdrop.vue";
+  import VmBackdrop from "../../components/backdrop/backdrop.vue";
 
   const NOOP = () => {}
 
