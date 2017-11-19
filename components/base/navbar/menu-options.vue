@@ -28,7 +28,7 @@
       }
     },
     created () {
-      this.menusData = this.$options.$data.menusData
+      this.menusData = this.$attrs.data.menusData
     }
   }
 </script>
@@ -51,6 +51,7 @@
             padding: 0 4px;
             border-bottom: 1px solid #e7e7e7;
             font-size: 14px;
+            cursor: pointer;
             &:last-child {
                 border-bottom: none;
             }
