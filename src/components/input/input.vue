@@ -116,7 +116,7 @@
    * <vm-input placeholder="请输入至少4位" type="securityCode" check clearInput></vm-input>
    * <vm-input placeholder="XX-XX-XXX格式" type="text" check :regex=/\d{2}-\d{2}-\d{3}/ clearInput></vm-input>
    * */
-  import { hasFocus, isObject, isBlank, isPresent, isFunction, isRegexp } from '../../util/util'
+  import { setElementClass, hasFocus, isObject, isBlank, isPresent, isFunction, isRegexp } from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
   import REGEXP from '../../util/regexp'
   import VmButton from "../button/button.vue";
