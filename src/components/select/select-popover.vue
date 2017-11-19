@@ -7,7 +7,6 @@
     </vm-list>
 </template>
 <script type="text/javascript">
-  import {isBlank, isTrueProperty} from '../../util/util'
   import VmList from '../list/list.vue'
   import VmItem from '../item/item.vue'
   import VmLabel from '../label/label.vue'
@@ -22,19 +21,19 @@
       VmItem,
       VmList
     },
-    data() {
+    data () {
       return {
         options: [],
         checkedValue: null
       }
     },
-    created() {
+    created () {
       this.options = this.$options.$data.options
 
       this.checkedValue = this.getValue()
     },
     methods: {
-      onRadioChecked(value) {
+      onRadioChecked (value) {
         let checkedOption = this.options.find(option => option.value === value)
         if (checkedOption && checkedOption.handler) {
           checkedOption.handler()
@@ -43,7 +42,7 @@
         Popover.dismiss()
       },
 
-      getValue() {
+      getValue () {
         let checkedOption = this.options.find(option => option.checked)
         return checkedOption ? checkedOption.value : undefined
       }

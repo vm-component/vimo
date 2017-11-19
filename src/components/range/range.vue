@@ -14,14 +14,17 @@
             <vm-label range-left>{{min}}</vm-label>
         </slot>
         <div class="range-slider">
-            <div class="range-tick" :class="{'range-tick-active':tick.active}" role="presentation" v-for="(tick, index) in ticks" :style="'left:'+tick.left" v-if="snaps"></div>
+            <div class="range-tick" :class="{'range-tick-active':tick.active}" role="presentation" v-for="(tick, index) in ticks"
+                 :style="'left:'+tick.left" v-if="snaps"></div>
             <div class="range-bar" role="presentation"></div>
             <div class="range-bar range-bar-active" role="presentation" :style="{left: barL, right: barR}"></div>
-            <div class="range-knob-handle" role="slider" :aria-valuenow="valA" :aria-valuemin="min" :aria-valuemax="max" tabindex="0" :disabled="disabled" :style="{left: sliderA}">
+            <div class="range-knob-handle" role="slider" :aria-valuenow="valA" :aria-valuemin="min" :aria-valuemax="max" tabindex="0"
+                 :disabled="disabled" :style="{left: sliderA}">
                 <div class="range-pin" role="presentation" v-if="pin">{{valA}}</div>
                 <div class="range-knob" role="presentation"></div>
             </div>
-            <div class="range-knob-handle" role="slider" :aria-valuenow="valB" :aria-valuemin="min" :aria-valuemax="max" tabindex="1" :disabled="disabled" :style="{left: sliderB}" v-if="dual">
+            <div class="range-knob-handle" role="slider" :aria-valuenow="valB" :aria-valuemin="min" :aria-valuemax="max" tabindex="1"
+                 :disabled="disabled" :style="{left: sliderB}" v-if="dual">
                 <div class="range-pin" role="presentation" v-if="pin">{{valB}}</div>
                 <div class="range-knob" role="presentation"></div>
             </div>
@@ -80,10 +83,11 @@
    * </vm-list>
    *
    * */
-  import { setElementClass, pointerCoord, clamp, isNumber, isObject, isString } from '../../util/util'
+  import {pointerCoord, clamp} from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
-import VmLabel from '../label/label.vue'
-export default {
+  import VmLabel from '../label/label.vue'
+
+  export default {
     components: {VmLabel},
     name: 'vm-range',
     mixins: [ThemeMixins],
@@ -169,7 +173,7 @@ export default {
     created () {
       this.inputUpdated()
 
-    // build all the ticks if there are any to show
+      // build all the ticks if there are any to show
       this.createTicks()
     },
     mounted () {
@@ -198,21 +202,21 @@ export default {
         ev.preventDefault()
         ev.stopPropagation()
 
-      // get the start coordinates
+        // get the start coordinates
         const current = pointerCoord(ev)
 
-      // get the full dimensions of the slider element
+        // get the full dimensions of the slider element
         const rect = this.rect = this.$el.getBoundingClientRect()
 
-      // figure out which knob they started closer to
+        // figure out which knob they started closer to
         const ratio = clamp(0, (current.x - rect.left) / (rect.width), 1)
         this.activeB = this.dual && (Math.abs(ratio - this.ratioA) > Math.abs(ratio - this.ratioB))
 
-      // update the active knob's position
+        // update the active knob's position
         this._updatePos(current, rect, true)
 
-      // return true so the pointer events
-      // know everything's still valid
+        // return true so the pointer events
+        // know everything's still valid
         return true
       },
 
@@ -224,7 +228,7 @@ export default {
         ev.preventDefault()
         ev.stopPropagation()
 
-      // update the active knob's position
+        // update the active knob's position
         this._updatePos(pointerCoord(ev), this.rect, true)
       },
 
@@ -236,7 +240,7 @@ export default {
         ev.preventDefault()
         ev.stopPropagation()
 
-      // update the active knob's position
+        // update the active knob's position
         this._updatePos(pointerCoord(ev), this.rect, false)
       },
 

@@ -16,7 +16,7 @@
 const SCROLL_JUMP = 10
 const ITEM_REORDER_ACTIVE = 'reorder-active'
 
-import {pointerCoord, transitionEnd, reorderArray, hasClass} from '../../util/util'
+import {pointerCoord, hasClass, setElementClass} from '../../util/util'
   import VmIcon from '../icon/icon.vue'
 
   export default {

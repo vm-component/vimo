@@ -76,7 +76,6 @@
    * }
    *
    **/
-  import { isPresent } from '../../util/util'
   import ToolbarMixins from './toolbarMixins.vue'
 
   export default {

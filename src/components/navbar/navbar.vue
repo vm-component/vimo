@@ -158,7 +158,7 @@
         default: false
       }
     },
-    data() {
+    data () {
       return {
         hideBb: isTrueProperty(this.hideBackButton),
         bbIcon: this.$config && this.$config.get('backButtonIcon', 'arrow-back') || 'arrow-back',
@@ -166,10 +166,10 @@
       }
     },
     computed: {
-      hideNavBar() {
+      hideNavBar () {
         return this.$config && this.$config.getBoolean('hideNavBar', false)
       },
-      toolbarBackgroundElement() {
+      toolbarBackgroundElement () {
         return this.$refs.toolbarBackground
       }
     },
@@ -179,7 +179,7 @@
        * @description
        * 设置导航条右侧按钮显示(只是对alipay平台的), dingtalk通过url改变
        **/
-      showOptionButton() {
+      showOptionButton () {
         this.$platform.showNavbarOptionButton && this.$platform.showNavbarOptionButton()
       },
       /**
@@ -187,7 +187,7 @@
        * @description
        * 设置导航条右侧按钮隐藏(只是对alipay平台的), dingtalk通过url改变
        **/
-      hideOptionButton() {
+      hideOptionButton () {
         this.$platform.hideNavbarOptionButton && this.$platform.hideNavbarOptionButton()
       },
       /**
@@ -236,7 +236,7 @@
        *     }
        * ])
        **/
-      showPopMenu(dataList) {
+      showPopMenu (dataList) {
         let tmps = []
         if (dataList && isArray(dataList)) {
           dataList.forEach((item) => {
@@ -261,20 +261,20 @@
           } else {
             try {
               import('../../services/popover').then((component) => {
-                  let Popover = component.default
-                  Popover.present({
-                    ev: {
-                      target: window.document.getElementById('rightButtonPlaceholder') || null
-                    }, // 事件
-                    cssClass: 'popMenu',
-                    component: import('./menu-options.vue'),   // 传入组件
-                    data: {
-                      menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
-                    }
-                  }).then(() => {
-                    resolve()
-                  })
-                },
+                let Popover = component.default
+                Popover.present({
+                  ev: {
+                    target: window.document.getElementById('rightButtonPlaceholder') || null
+                  }, // 事件
+                  cssClass: 'popMenu',
+                  component: import('./menu-options.vue'),   // 传入组件
+                  data: {
+                    menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
+                  }
+                }).then(() => {
+                  resolve()
+                })
+              },
                 // reject
                 (err) => {
                   reject(err)
@@ -291,7 +291,7 @@
        * @description
        * 重置之前的样式设置
        **/
-      reset() {
+      reset () {
         this.$platform.resetNavbarTitleAndColor && this.$platform.resetNavbarTitleAndColor()
         this.$platform.resetNavbarOptionButton && this.$platform.resetNavbarOptionButton()
       },
@@ -301,7 +301,7 @@
       /**
        * @private
        **/
-      backButtonClickHandler($event) {
+      backButtonClickHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
         window.history.back()
@@ -311,7 +311,7 @@
        * 手动设置是否显示后退按钮
        * @private
        **/
-      refreshBackButtonStatus() {
+      refreshBackButtonStatus () {
         if (!this.hideBb) {
           this.hideBb = !this.$history.canGoBack()
         }
@@ -323,7 +323,7 @@
        * 如果运行在webview中(alipay/dingtalk), 则执行修改navbar的初始化工作
        * @private
        **/
-      initWhenInWebview() {
+      initWhenInWebview () {
         if (this.$platform.platforms().length < 3) return
         // 如果在平台中则进行下面的分支
         this.$platform.ready().then(() => {
@@ -366,7 +366,7 @@
        * 初始化
        * @private
        **/
-      init() {
+      init () {
         this.initWhenInWebview()
         if (this.$root === window.VM.$root) {
           // 只记录这个流的navbar: App->Nav->Page->Header->Navbar
@@ -375,17 +375,17 @@
         }
       }
     },
-    created() {
+    created () {
       console.assert(this.$platform, `The Component of <vm-navbar> need 'platform' instance`)
       console.assert(this.$config, `The Component of <vm-navbar> need 'config' instance`)
       console.assert(window.VM, `The Component of <vm-navbar> need 'window.VM' instance`)
 
       this.refreshBackButtonStatus()
     },
-    mounted() {
+    mounted () {
       this.init()
     },
-    activated() {
+    activated () {
       this.init()
     }
   }

@@ -161,7 +161,7 @@
     }
   }
 
-  function parentNodeIs (node, name = '') {
-    return node && this.$parent && this.$parent.$options.name.toLowerCase() === name.toLowerCase()
-  }
+//  function parentNodeIs (node, name = '') {
+//    return node && this.$parent && this.$parent.$options.name.toLowerCase() === name.toLowerCase()
+//  }
 </script>

@@ -16,14 +16,15 @@
                     :class="{'picker-opt-disabled':o.disabled}"
                     class="picker-opt"
                     disable-activated
-                    @click="optClick($event, index)">{{o.text}}</button>
+                    @click="optClick($event, index)">{{o.text}}
+            </button>
         </div>
         <!--suffix-->
         <div v-if="col.suffix" class="picker-suffix" :style="{'width':col.suffixWidth}">{{col.suffix}}</div>
     </div>
 </template>
 <script type="text/javascript">
-  import { pointerCoord, clamp, parsePxUnit } from '../../util/util'
+  import {pointerCoord, clamp, parsePxUnit} from '../../util/util'
   import css from '../../util/getCss'
 
   const PICKER_OPT_SELECTED = 'picker-opt-selected'
@@ -70,13 +71,13 @@
         // some "click" events to capture
         ev.preventDefault()
 
-      // cancel any previous raf's that haven't fired yet
+        // cancel any previous raf's that haven't fired yet
         window.cancelAnimationFrame(this.rafId)
 
         // remember where the pointer started from`
         this.startY = pointerCoord(ev).y
 
-      // reset everything
+        // reset everything
         this.velocity = 0
         this.pos.length = 0
         this.pos.push(this.startY, Date.now())
@@ -158,7 +159,7 @@
         let startPos = endPos
         let timeRange = (Date.now() - 100)
 
-      // move pointer to position measured 100ms ago
+        // move pointer to position measured 100ms ago
         for (var i = endPos; i > 0 && this.pos[i] > timeRange; i -= 2) {
           startPos = i
         }
@@ -168,7 +169,7 @@
           var timeOffset = (this.pos[endPos] - this.pos[startPos])
           var movedTop = (this.pos[startPos - 1] - this.pos[endPos - 1])
 
-        // based on XXms compute the movement to apply for each render step
+          // based on XXms compute the movement to apply for each render step
           var velocity = ((movedTop / timeOffset) * FRAME_MS)
           this.velocity = clamp(-MAX_PICKER_SPEED, velocity, MAX_PICKER_SPEED)
         }
@@ -192,7 +193,7 @@
           // still decelerating
           this.velocity *= DECELERATION_FRICTION
 
-        // do not let it go slower than a velocity of 1
+          // do not let it go slower than a velocity of 1
           this.velocity = (this.velocity > 0)
             ? Math.max(this.velocity, 1)
             : Math.min(this.velocity, -1)
@@ -221,7 +222,7 @@
           // needs to still get locked into a position so options line up
           var currentPos = Math.abs(this.y % this.optHeight)
 
-        // create a velocity in the direction it needs to scroll
+          // create a velocity in the direction it needs to scroll
           this.velocity = (currentPos > (this.optHeight / 2) ? 1 : -1)
           this.decelerate()
         }
@@ -247,7 +248,7 @@
         window.cancelAnimationFrame(this.rafId)
         this.velocity = 0
 
-      // so what y position we're at
+        // so what y position we're at
         this.update(y, duration, true, true)
       },
 
@@ -260,7 +261,6 @@
         let opt
         let optOffset
         let visible
-        let translateX
         let translateY
         let translateZ
         let rotateX
@@ -287,13 +287,11 @@
             if (Math.abs(rotateX) > 90) {
               visible = false
             } else {
-              translateX = 0
               translateY = 0
               translateZ = 90
               transform = `rotateX(${rotateX}deg) `
             }
           } else {
-            translateX = 0
             translateZ = 0
             translateY = optOffset
             if (Math.abs(translateY) > 170) {

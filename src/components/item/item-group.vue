@@ -14,10 +14,10 @@
    *
    * @demo #/list
    **/
-  import { isTrueProperty } from '../../util/util'
+  import {isTrueProperty, setElementClass} from '../../util/util'
   import ThemeMixins from '../../themes/theme.mixins'
 
-export default {
+  export default {
     name: 'vm-item-group',
     mixins: [ThemeMixins],
     props: {
@@ -97,10 +97,10 @@ export default {
         let lastToIndex = this.lastToIndex
         this.lastToIndex = toIndex
 
-      /** ******* DOM READ ********** */
+        /** ******* DOM READ ********** */
         let children = this.$el.children
 
-      /** ******* DOM WRITE ********* */
+        /** ******* DOM WRITE ********* */
         let transform = 'transform'
         if (toIndex >= lastToIndex) {
           for (let i = lastToIndex; i <= toIndex; i++) {

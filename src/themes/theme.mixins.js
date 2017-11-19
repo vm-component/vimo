@@ -3,7 +3,7 @@
  */
 export default {
   name: 'base',
-  data() {
+  data () {
     return {
       // elelmentId: 'vm-' + Math.random().toString(36).substring(3, 10),
       roleName: this.$options.name.replace('vm-', '')
@@ -16,14 +16,14 @@ export default {
     },
     mode: {
       type: String,
-      default() {
+      default () {
         return this.$config && this.$config.get('mode') || 'ios'
       }
     },
     color: {
       type: String,
       default: '',
-      validator(value) {
+      validator (value) {
         return [
           '',
           'default',
@@ -42,10 +42,10 @@ export default {
     }
   },
   computed: {
-    modeClass() {
+    modeClass () {
       return (`${this.roleName} ${this.roleName}-${this.mode}`)
     },
-    colorClass() {
+    colorClass () {
       return this.color ? (`${this.roleName}-${this.mode}-${this.color}`) : ''
     }
   }

@@ -104,7 +104,7 @@
    * </vm-list>
    *
    **/
-  import { isUndefined, isPresent, isString } from '../../util/util'
+  import { isPresent, isString } from '../../util/util'
   import ItemMixin from './item-mixin.vue'
 import VmReorder from './item-reorder.vue'
 
