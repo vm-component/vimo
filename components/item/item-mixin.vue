@@ -1,5 +1,9 @@
 <template>
-    <div class="ion-item" :class="[itemClass,inputClass,labelClass,itemTypeClass,colorClass]" @click="$_clickHandler($event)">
+    <div class="ion-item"
+         :detail-push="detailPush"
+         :button="button"
+         :class="[itemClass,inputClass,labelClass,itemTypeClass,colorClass]"
+         @click="$_clickHandler($event)">
         <!--以下组件显示在此处：[item-left],ion-checkbox:not([item-right])-->
         <slot name="item-left"></slot>
         <div class="item-inner">
@@ -54,7 +58,9 @@
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: String
+      color: String,
+      detailPush: Boolean,
+      button: Boolean
     },
     computed: {
       itemClass () {
