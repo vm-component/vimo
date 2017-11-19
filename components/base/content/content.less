@@ -38,12 +38,18 @@
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
 
+  overflow: hidden;
+
   contain: style layout;
 }
 
-.disable-scroll {
+.ion-app.disable-scroll {
   position: fixed;
   width: 100%;
+}
+
+.scroll-content.disable-scroll {
+  overflow: hidden !important;
 }
 
 // Fixed Content (fixed and fab)

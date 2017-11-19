@@ -52,6 +52,7 @@
             <!--paySheet-->
             <PopSheet
                     ref="popSheet"
+                    scroll-control
                     slot="fixed-bottom"
                     :enableBackdropDismiss="enableBackdropDismiss"
                     :showBackdrop="showBackdrop">

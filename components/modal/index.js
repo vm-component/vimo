@@ -70,6 +70,7 @@ function ModalFactory (options) {
   const Modal = Vue.extend(modalComponent)
   options.dismissOnPageChange = false
   options.recordInHistory = false
+  options.scrollControl = false
   return new Modal({
     el: getInsertPosition('modalPortal').appendChild(
       document.createElement('div')
@@ -121,8 +122,9 @@ function present (options = {}) {
     // record
     modalArr.push(modalInstance)
 
-    // 如果是第一次进入则监听url变化
+    // 如果是第一次进入
     if (unRegisterUrlChange.length === 0) {
+      // 则监听url变化
       registerListener(
         window,
         'popstate',
@@ -133,6 +135,10 @@ function present (options = {}) {
         {},
         unRegisterUrlChange
       )
+      // 锁定 Doc 滚动
+      this._scrollTop = window.scrollY
+      window.document.body.style.position = 'fixed'
+      window.document.body.style.top = -this._scrollTop + 'px'
     }
 
     presentPromise.then(() => {
@@ -159,9 +165,16 @@ function dismiss (dataBack, changeLocalHistory = true) {
   return new Promise(resolve => {
     // 总是关闭最后一次创建的modal
     let lastModalInstance = modalArr.pop()
-    // 如果是最后一个则解绑urlChange
+    // 如果是最后一个
     if (modalArr.length === 0) {
+      // 则解绑urlChange
       unRegisterAllListener()
+      // 滚动还原
+      this._scrollTop = window.scrollY
+      window.document.body.style.position = ''
+      window.document.body.style.top = ''
+      window.scrollTo(0, this._scrollTop)
+      this._scrollTop = 0
     }
 
     lastModalInstance.dismiss(dataBack).then(() => {
@@ -179,6 +192,7 @@ function unRegisterAllListener () {
 }
 
 export default {
+  _scrollTop: 0,
   present,
   dismiss
 }

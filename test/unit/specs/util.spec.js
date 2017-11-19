@@ -8,7 +8,6 @@ import {
   hasClass,
   hasFocus,
   isActive,
-  isPassive,
   parsePxUnit,
   pointerCoord,
   removeClass,
@@ -158,11 +157,6 @@ describe('util', function () {
   it('registerListener()', function () {
     let res = registerListener(window, 'onload', function () {})
     expect(isFunction(res)).to.ok
-  })
-
-  it('isPassive()', function () {
-    let res = isPassive(window, 'onload', function () {})
-    expect(res).to.not.ok
   })
 
   it('docReady()', function () {

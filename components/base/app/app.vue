@@ -1,7 +1,7 @@
 <template>
     <article class="ion-app" :version="version"
              :style="styleObj"
-             :class="[modeClass,platformClass,{'disable-hover':disableHover},{'disable-scroll':isScrollDisabled}]">
+             :class="[modeClass,platformClass,{'disable-hover':disableHover},{'disable-scroll':disableScroll}]">
         <section class="app-root">
             <slot></slot>
         </section>
@@ -110,6 +110,7 @@
       return {
         disableHover: disableHover,     // 禁用计时
         isScrollDisabled: false,        // 控制页面是否能滚动
+        disableScroll: false,
 
         isClickBlockEnabled: false,     // 控制是否能点击 click-block-enabled
         isClickBlockActive: false,      // 控制是否激活 '冷冻'效果 click-block-active
@@ -260,10 +261,25 @@
        * */
       $_disableScroll () {
         if (!this.isScrollDisabled) {
+          this.$root.$emit('app:disableScroll')
+          this.scrollTop = 0
+          this.styleObj = {}
           this.isScrollDisabled = true
-          this.scrollTop = window.scrollY
-          this.styleObj = {
-            top: -this.scrollTop + 'px'
+
+          // 如果页面高度小于窗口高度, 则不进行限制(限制没意义)
+          let windowHeight = window.innerHeight
+          let docHeight = window.document.documentElement.offsetHeight
+          if (windowHeight >= docHeight) {
+            this.disableScroll = false
+            if (process.env.NODE_ENV !== 'production') {
+              console.debug(`窗口高度:${windowHeight}, 页面高度: ${docHeight}, 当前情况setDisableScroll不生效.`)
+            }
+          } else {
+            this.disableScroll = true
+            this.scrollTop = window.scrollY
+            this.styleObj = {
+              top: -this.scrollTop + 'px'
+            }
           }
         }
       },
@@ -273,10 +289,16 @@
        * */
       $_enableScroll () {
         if (this.isScrollDisabled) {
+          this.$root.$emit('app:enableScroll')
           this.isScrollDisabled = false
-          // scrollTop lost after set position:fixed, restore it back.
+          this.disableScroll = false
           this.$nextTick(() => {
-            window.scrollTo(0, this.scrollTop)
+            // scrollTop lost after set position:fixed, restore it back.
+            let windowHeight = window.innerHeight
+            let docHeight = window.document.documentElement.offsetHeight
+            if (windowHeight < docHeight && this.scrollTop > 0) {
+              window.scrollTo(0, this.scrollTop)
+            }
           })
         }
       },
@@ -300,6 +322,7 @@
     created () {
       let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
       proto.$app = this
+      proto.$root = this.$root
 
       this.$root.$on('onScrollStart', () => {
         this.isScrolling = true

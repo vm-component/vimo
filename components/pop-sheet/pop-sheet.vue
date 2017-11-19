@@ -74,6 +74,7 @@
    * @props {Boolean} [enableBackdropDismiss=true] - 点击背景关闭组件
    * @props {String} [mode='ios'] - 模式
    * @props {boolean} [showBackdrop=true] - 是否显示黑色背景
+   * @props {boolean} [scrollControl=false] - 控制是否禁止滚动
    *
    * @demo #/pop-sheet
    * @usage

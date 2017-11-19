@@ -8,7 +8,7 @@
         <div class="fixed-content fixed-bottom" :style="{'bottom':`${footerBarHeight}px`}">
             <slot name="fixed-bottom"></slot>
         </div>
-        <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle">
+        <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle" :class="{'disable-scroll':isScrollDisabled}">
             <slot></slot>
         </section>
     </article>
@@ -112,16 +112,7 @@
   export default {
     name: 'Content',
     inject: {
-      appComponent: {
-        from: 'appComponent',
-        default: null
-      },
-      pageComponent: 'pageComponent',
-      // modal的上级不是nav
-      navComponent: {
-        from: 'navComponent',
-        default: null
-      }
+      pageComponent: 'pageComponent'
     },
     provide () {
       let _this = this
@@ -163,6 +154,9 @@
       },
       footerComponent () {
         return this.pageComponent.$_getFooterComponent()
+      },
+      isScrollDisabled () {
+        return this.$app.isScrollDisabled
       }
     },
     methods: {

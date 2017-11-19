@@ -15,6 +15,7 @@
             <p>Hello, 这里是 Modal 测试页面, 这个页面具有Page组件的完整特性!</p>
             <Button block @click="closeModal">关闭Modal</Button>
             <Button block @click="scrollToBottom">滚动到底部</Button>
+            <Button block @click="disableScroll">禁止滚动3000ms</Button>
             <article>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore eveniet excepturi illum impedit in incidunt inventore minima, molestias obcaecati odio officia porro quam quidem quo recusandae repudiandae veritatis, vero.</p>
@@ -73,6 +74,9 @@
       },
       scrollToTop () {
         this.content.scrollToTop()
+      },
+      disableScroll () {
+        this.$app.setDisableScroll(true, 3000)
       }
     },
     mounted () {
