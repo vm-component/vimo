@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.9.0"></a>
+# [0.9.0](https://github.com/vm-component/vimo/compare/v0.8.1...v0.9.0) (2017-11-19)
+
+
+### Bug Fixes
+
+* action-sheet动画整理 ([1972e1b](https://github.com/vm-component/vimo/commit/1972e1b))
+* App组件去除无用部分 ([c061b32](https://github.com/vm-component/vimo/commit/c061b32))
+* clearInput时, 不需debounce等待 ([18e7b5b](https://github.com/vm-component/vimo/commit/18e7b5b))
+* document.title的hack模式修改去除, 微信等平台已支持document.title设置title ([cb39e18](https://github.com/vm-component/vimo/commit/cb39e18))
+* fab在Content中的布局更新 ([df005b5](https://github.com/vm-component/vimo/commit/df005b5))
+* fab的font-size不应该使用rem的问题 ([055e83e](https://github.com/vm-component/vimo/commit/055e83e))
+* Indicator组件开启精简 ([432795e](https://github.com/vm-component/vimo/commit/432795e))
+* landscape-prompt组件只在mobile下展示 ([49b18e3](https://github.com/vm-component/vimo/commit/49b18e3))
+* landscape-prompt组件安装方式更改 ([2ddc309](https://github.com/vm-component/vimo/commit/2ddc309))
+* Modal组件调整及文档修改 ([66632b1](https://github.com/vm-component/vimo/commit/66632b1))
+* platform模块修改third->patch字段 ([3fa72fd](https://github.com/vm-component/vimo/commit/3fa72fd))
+* util重复引入bug修复 ([d128271](https://github.com/vm-component/vimo/commit/d128271))
+* 修复fab组件样式不可定制+动画退出直接消失的bug ([e94fc87](https://github.com/vm-component/vimo/commit/e94fc87))
+* 修复package中repository书写的问题 ([5096cae](https://github.com/vm-component/vimo/commit/5096cae))
+* 修复Range组件拖拽结束后才更新value的bug ([f184997](https://github.com/vm-component/vimo/commit/f184997))
+* 修复弹出层插入位置 ([e050046](https://github.com/vm-component/vimo/commit/e050046))
+* 修复部分组件引入type的问题 ([2e57570](https://github.com/vm-component/vimo/commit/2e57570))
+* 修改 babelrc, 以支持tree-shaking ([9b790ba](https://github.com/vm-component/vimo/commit/9b790ba))
+* 增加滚动控制scrollControl ([9012a3a](https://github.com/vm-component/vimo/commit/9012a3a))
+* 弹出层组件z-index调整 ([480999b](https://github.com/vm-component/vimo/commit/480999b))
+* 弹出层组件增加对vue-devtool的支持 ([ac43efe](https://github.com/vm-component/vimo/commit/ac43efe))
+* 弹层组件使用 position: fixed; 定位 ([ed73932](https://github.com/vm-component/vimo/commit/ed73932))
+
+
+### Features
+
+* App组件修改disableScroll等方法逻辑 ([c5edb71](https://github.com/vm-component/vimo/commit/c5edb71))
+* App组件的setDisableScroll方法重写 ([15ca418](https://github.com/vm-component/vimo/commit/15ca418))
+* Vimo基础布局全部改为流式布局 ([59f051b](https://github.com/vm-component/vimo/commit/59f051b))
+
+
+### Performance Improvements
+
+* App组件增加slot=outer结构，用于在整体结构外部添加组件，比如landscape-prompt组件 ([8a0bcb3](https://github.com/vm-component/vimo/commit/8a0bcb3))
+* Modal组件重构 ([1636756](https://github.com/vm-component/vimo/commit/1636756))
+* Picker代码重构 ([521c2db](https://github.com/vm-component/vimo/commit/521c2db))
+* popover重构 ([ad0a345](https://github.com/vm-component/vimo/commit/ad0a345))
+* PreviewImage组件脱离Modal组件 ([2940cc3](https://github.com/vm-component/vimo/commit/2940cc3))
+* Sheet重构 ([b66e7da](https://github.com/vm-component/vimo/commit/b66e7da))
+* Toast重构 ([0d2ebc6](https://github.com/vm-component/vimo/commit/0d2ebc6))
+* 新增组件LandscapePrompt组件，当手机横屏时黑屏并提示用户竖屏浏览。 ([d96efd1](https://github.com/vm-component/vimo/commit/d96efd1))
+* 更新segment组件, 使用provide/inject属性 ([87d5923](https://github.com/vm-component/vimo/commit/87d5923))
+
+
+
 <a name="0.8.1"></a>
 ## [0.8.1](https://github.com/vm-component//vimo/compare/v0.8.0...v0.8.1) (2017-10-25)
 
