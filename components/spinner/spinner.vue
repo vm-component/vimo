@@ -60,7 +60,7 @@
    * <Spinner :paused="true" name="ios"></Spinner>
    * */
 
-  export default{
+  export default {
     name: 'Spinner',
     props: {
       // 按钮color：primary、secondary、danger、light、dark
@@ -74,7 +74,20 @@
 
       // name 风格
       // ios/ios-small/bubbles/circles/crescent/dots
-      name: String,
+      name: {
+        type: String,
+        default: 'ios',
+        validator (val) {
+          return ~[
+            'ios',
+            'ios-small',
+            'bubbles',
+            'circles',
+            'crescent',
+            'dots'
+          ].indexOf(val)
+        }
+      },
 
       // duration 持续时间
       duration: String,
