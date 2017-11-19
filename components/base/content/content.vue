@@ -156,7 +156,7 @@
         return this.pageComponent.$_getFooterComponent()
       },
       isScrollDisabled () {
-        return this.$app.isScrollDisabled
+        return this.$app && this.$app.isScrollDisabled
       }
     },
     methods: {
