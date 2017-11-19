@@ -12,7 +12,6 @@ let opts = {
 }
 
 describe('Nav', function () {
-
   it('@base: renders the correct markup', function () {
     wrapper = mount(Nav, opts)
     const result = `<nav class="ion-nav"><!----> <span>default</span></nav>`
@@ -24,5 +23,4 @@ describe('Nav', function () {
     wrapper = mount(Nav, opts)
     expect(wrapper.name()).to.equal('Nav')
   })
-
 })

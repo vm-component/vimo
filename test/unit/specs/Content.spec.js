@@ -16,7 +16,6 @@ let opts = {
 }
 
 describe('Content', function () {
-
   it('@base: renders the correct markup', function () {
     wrapper = mount(Content, opts)
     const result = `<article class="ion-content"><span refresher="">refresher</span> <div class="fixed-content fixed-top" style="top: 0px;"><span fixed="">fixed</span> <span fixed-top="">fixed-top</span></div> <div class="fixed-content fixed-bottom" style="bottom: 0px;"><span fixed-bottom="">fixed-bottom</span></div> <section class="scroll-content"><span>default</span></section></article>`
@@ -28,5 +27,4 @@ describe('Content', function () {
     wrapper = mount(Content, opts)
     expect(wrapper.name()).to.equal('Content')
   })
-
 })

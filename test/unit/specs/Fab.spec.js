@@ -105,5 +105,4 @@ describe('Fab', function () {
       cb()
     }, 0)
   })
-
 })

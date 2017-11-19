@@ -15,7 +15,6 @@ let options = {
 }
 
 describe('Checkbox', function () {
-
   it('@base: renders the correct markup', function () {
     let opts = deepAssign(cloneDeep(options), {
       propsData: {
@@ -90,5 +89,4 @@ describe('Checkbox', function () {
     let html = `<div class="ion-checkbox checkbox checkbox-ios checkbox-ios-primary"><div class="checkbox-icon checkbox-checked"><div class="checkbox-inner"></div></div> <button class="ion-button item-cover item-cover item-cover-ios item-cover-ios-default" type="button"><span class="button-inner"></span></button></div>`
     expect(wrapper.html()).to.equal(html)
   })
-
 })
