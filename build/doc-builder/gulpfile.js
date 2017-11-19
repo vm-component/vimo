@@ -52,6 +52,7 @@ gulp.task('default', function () {
     gulp.watch([
       `${base}/README.md`,
       `${base}/src/components/**/*.*`,
+      `${base}/src/service/**/*.*`,
       './theme/**/*.*'
     ], function () {
       runSequence('make', function () {

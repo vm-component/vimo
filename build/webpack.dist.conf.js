@@ -7,7 +7,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var utils = require('../examples/build/utils')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var config = {
-  entry: path.resolve(__dirname, '..', 'src/dist.js'),
+  entry: path.resolve(__dirname, '..', 'src/index.js'),
   outputFileName: 'index.js',
   libraryTarget: 'umd',
   library: 'vimo',
