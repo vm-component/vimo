@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/nostaff/vimo/compare/v1.1.1...v1.2.0) (2017-11-20)
+
+
+### Bug Fixes
+
+* hint ([4f3343a](https://github.com/nostaff/vimo/commit/4f3343a))
+* setElementClass 引入 ([eabf29a](https://github.com/nostaff/vimo/commit/eabf29a))
+
+
+### Features
+
+* 修改组件的注册方式，为按需加载做准备 ([734d654](https://github.com/nostaff/vimo/commit/734d654))
+* 修改组件的注册方式，为按需加载做准备 ([7c2b507](https://github.com/nostaff/vimo/commit/7c2b507))
+* 修改组件的注册方式，为按需加载做准备 ([18c4765](https://github.com/nostaff/vimo/commit/18c4765))
+* 修改组件的注册方式，为按需加载做准备 ([19652aa](https://github.com/nostaff/vimo/commit/19652aa))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/nostaff/vimo/compare/v1.1.0...v1.1.1) (2017-11-17)
 
