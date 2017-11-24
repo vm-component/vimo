@@ -2,9 +2,8 @@
 
 import 'ionicons/dist/css/ionicons.css'
 import { mount } from 'vue-test-utils'
-import vimo from '../../../components/dist'
+import { Header } from 'vimo'
 
-let Header = vimo.Header
 let wrapper = null
 let options = {
   slots: {

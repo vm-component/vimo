@@ -2,9 +2,8 @@
 
 import 'ionicons/dist/css/ionicons.css'
 import { mount } from 'vue-test-utils'
-import vimo from '../../../components/dist'
+import { Footer } from 'vimo'
 
-let Footer = vimo.Footer
 let wrapper = null
 let options = {
   slots: {

@@ -1,11 +1,10 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
 import { mount } from 'vue-test-utils'
-import vimo from '../../../components/dist'
+import { Avatar } from 'vimo'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
 
-let Avatar = vimo.Avatar
 let wrapper = null
 let options = {
   propsData: {},

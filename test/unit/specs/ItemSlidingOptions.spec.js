@@ -1,9 +1,8 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
 import { mount } from 'vue-test-utils'
-import vimo from '../../../components/dist'
+import { ItemSlidingOptions } from 'vimo'
 
-let ItemSlidingOptions = vimo.ItemSlidingOptions
 let wrapper = null
 let options = {
   propsData: {

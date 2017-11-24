@@ -1,9 +1,8 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
 import { mount } from 'vue-test-utils'
-import vimo from '../../../components/dist'
+import { Img } from 'vimo'
 
-let Img = vimo.Img
 let wrapper = null
 let options = {
   propsData: {

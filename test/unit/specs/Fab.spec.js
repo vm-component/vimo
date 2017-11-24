@@ -3,9 +3,8 @@
 import { mount } from 'vue-test-utils'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
-import vimo from '../../../components/dist'
+import { Fab } from 'vimo'
 
-let Fab = vimo.Fab
 let wrapper = null
 let options = {
   slots: {

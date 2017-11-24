@@ -3,9 +3,8 @@
 import { mount } from 'vue-test-utils'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
-import vimo from '../../../components/dist'
+import { Checkbox } from 'vimo'
 
-let Checkbox = vimo.Checkbox
 let wrapper = null
 let options = {
   propsData: {

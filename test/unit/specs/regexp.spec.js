@@ -1,5 +1,5 @@
 /* eslint-disable no-undef,no-unused-expressions */
-import regexp from '../../../components/util/regexp'
+import regexp from '@util/regexp'
 
 // ,isString,isNumber,isFunction
 describe('regexp', function () {

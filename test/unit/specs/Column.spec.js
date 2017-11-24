@@ -1,9 +1,8 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
 import { mount } from 'vue-test-utils'
-import vimo from '../../../components/dist'
+import { Column } from 'vimo'
 
-let Column = vimo.Column
 let wrapper = null
 let options = {
   slots: {

@@ -1,11 +1,10 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
 import { mount } from 'vue-test-utils'
-import vimo from '../../../components/dist'
+import { App } from 'vimo'
 import deepAssign from 'deep-assign'
 import cloneDeep from 'lodash.clonedeep'
 
-let App = vimo.App
 let wrapper = null
 let opts = {
   slots: {
@@ -24,8 +23,7 @@ describe('App', function () {
 
   it('@base: renders the correct markup', function () {
     wrapper = mount(App, opts)
-    const result = `<article version="${window.VM.version}" class="ion-app ios platform-ios"><section class="app-root"><span>Name</span></section> <aside id="modalPortal"></aside> <aside id="sheetPortal"></aside> <aside id="alertPortal"></aside> <aside id="loadingPortal"></aside> <aside id="toastPortal"></aside> <aside class="click-block"></aside> </article>`
-
+    const result = `<article version="${window.VM.version}" class="ion-app ios app-ios platform-ios"><section class="app-root"><span>Name</span></section> <aside id="modalPortal"></aside> <aside id="sheetPortal"></aside> <aside id="alertPortal"></aside> <aside id="loadingPortal"></aside> <aside id="toastPortal"></aside> <aside class="click-block"></aside> </article>`
     expect(wrapper.html()).to.equal(result)
   })
 

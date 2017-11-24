@@ -1,9 +1,8 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
 import { mount } from 'vue-test-utils'
-import vimo from '../../../components/dist'
+import { Nav } from 'vimo'
 
-let Nav = vimo.Nav
 let wrapper = null
 let opts = {
   slots: {

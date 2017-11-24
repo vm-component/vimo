@@ -1,9 +1,8 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
 import { mount } from 'vue-test-utils'
-import vimo from '../../../components/dist'
+import { Row } from 'vimo'
 
-let Row = vimo.Row
 let wrapper = null
 let options = {
   slots: {

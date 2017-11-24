@@ -1,6 +1,6 @@
 /* eslint-disable no-undef,no-unused-expressions */
-import { setupConfig } from '../../../components/base/config'
-import { QueryParams, setupPlatform } from '../../../components/base/platform'
+import { setupConfig } from 'vimo/config/config'
+import { QueryParams, setupPlatform } from 'vimo/platform/platform'
 const MOCK_CONFIG = {
   urlString: 'http://www.xx.com/api/dashboard',
   urlFunction: function (platform) {

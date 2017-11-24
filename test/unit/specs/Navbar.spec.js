@@ -1,10 +1,9 @@
 /* eslint-disable no-undef,no-unused-expressions */
 
 import { mount } from 'vue-test-utils'
-import vimo from '../../../components/dist'
+import { Navbar } from 'vimo'
 import sinon from 'sinon'
 
-let Navbar = vimo.Navbar
 let wrapper = null
 
 describe('Navbar', function () {

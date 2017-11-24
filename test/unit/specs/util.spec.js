@@ -13,10 +13,10 @@ import {
   removeClass,
   setElementClass,
   transitionEnd
-} from '../../../components/util/util.js'
+} from '@util/util.js'
 
-import { urlChange } from '../../../components/util/url-change'
-import registerListener from '../../../components/util/register-listener'
+import { urlChange } from '@util/url-change'
+import registerListener from '@util/register-listener'
 import {
   isArray,
   isBlank,
@@ -34,7 +34,7 @@ import {
   isString,
   isTrueProperty,
   isUndefined
-} from '../../../components/util/type'
+} from '@util/type'
 
 // ,isString,isNumber,isFunction
 describe('util', function () {
