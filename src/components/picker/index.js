@@ -15,11 +15,13 @@ import GeneratePopUpInstance from '../../util/GeneratePopUpInstance.js'
  * @param {Function} [options.onSelect=noop] - 某一列发生变化时触发
  * @description
  * 开启
+ * @private
  * */
 /**
  * @function dismiss
  * @description
  * 关闭
+ * @private
  * */
 class PickerInstance extends GeneratePopUpInstance {
   isPresentHandled (options) {

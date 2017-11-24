@@ -36,9 +36,6 @@
     extends: popupExtend,
     data () {
       return {
-        /**
-         * Component Data
-         * */
         selected: '',
         images: [],
         activeIndex: 0 // initIndex

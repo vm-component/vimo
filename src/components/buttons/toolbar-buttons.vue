@@ -42,7 +42,7 @@
    *
    * */
   export default {
-    name: 'ToolbarButtons',
+    name: 'Buttons',
     props: {
       left: Boolean,
       right: Boolean,

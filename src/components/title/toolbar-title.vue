@@ -72,7 +72,7 @@
   import { isPresent } from '../../util/type'
 
   export default {
-    name: 'ToolbarTitle',
+    name: 'Title',
     inject: {
       appComponent: {
         from: 'appComponent',
