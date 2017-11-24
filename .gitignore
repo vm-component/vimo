@@ -7,6 +7,7 @@ test/e2e/reports
 selenium-debug.log
 
 backup/
+_lib/
 
 .DS_Store
 .idea

@@ -1,19 +1,53 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/env",
       {
         "modules": false
       }
     ],
-    "stage-2"
+    "@babel/stage-2"
   ],
   "comments": false,
-  "plugins": [
-    "transform-runtime"
-  ],
+  "plugins": [],
   "env": {
+    "demo": {
+      "presets": [
+        [
+          "@babel/env",
+          {
+            "modules": false
+          }
+        ],
+        "@babel/stage-2"
+      ],
+      "plugins": [
+        [
+          "import",
+          {
+            "libraryName": "vimo",
+            "libraryDirectory": "components"
+          }
+        ]
+      ]
+    },
+    "lib": {
+      "presets": [
+        "@babel/env",
+        "@babel/stage-2"
+      ]
+    },
     "test": {
+      "presets": [
+        [
+          "@babel/env",
+          {
+            "modules": false,
+            "useBuiltIns": "usage"
+          }
+        ],
+        "@babel/stage-2"
+      ],
       "plugins": [
         "istanbul"
       ]
