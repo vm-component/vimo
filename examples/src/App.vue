@@ -1,45 +1,26 @@
 <template>
     <App>
-        <!--menu menu-->
-        <!--type: overlay/reveal-->
-        <!--type: left/right/-->
         <Menu id="menu" :side="menu.side" :type="menu.type">
             <List>
-                <!--开始-->
                 <ListHeader>
-                    <span>{{$t('menu.start')}}</span>
+                    <span>开始</span>
                 </ListHeader>
-                <!--group-->
-                <!--<ItemGroup>-->
-                <!--wait 表示等待关闭事件-->
                 <Item button :to="{name: 'introduce'}" wait>
                     <Icon slot="item-left" name="apps"></Icon>
-                    <span>{{$t('menu.introduce')}}</span>
+                    <span>介绍</span>
                 </Item>
-                <!--</ItemGroup>-->
-                <!--<ListHeader>{{$t('menu.character')}}</ListHeader>-->
-                <!--group-->
-                <!--<ItemGroup>-->
                 <Item button :to="{name: 'config'}" wait>
                     <Icon slot="item-left" name="settings"></Icon>
-                    <span>{{$t('menu.configParameter')}}</span>
+                    <span>配置参数</span>
                 </Item>
                 <Item button :to="{name: 'platform'}" wait>
                     <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
-                    <span>{{$t('menu.platformParameter')}}</span>
+                    <span>平台参数</span>
                 </Item>
                 <Item button :to="{name: 'crossPlatform'}" wait>
                     <Icon slot="item-left" name="logo-javascript"></Icon>
-                    <span>{{$t('menu.crossPlatform')}}</span>
+                    <span>平台参数</span>
                 </Item>
-                <Item>
-                    <Icon slot="item-left" name="plane"></Icon>
-                    <span>{{$t('menu.switchLanguage')}}({{$i18n.locale}})</span>
-                    <Toggle slot="item-right"
-                            :value="$i18n.locale==='cn'"
-                            @onChange="onToggleChangeHandler"></Toggle>
-                </Item>
-                <!--</ItemGroup>-->
             </List>
         </Menu>
         <Nav>
@@ -50,15 +31,12 @@
     </App>
 </template>
 <script type="text/javascript">
-  /**
-   * @name App.vue
-   * @description
-   * 项目描述
-   * */
   import { mapState } from 'vuex'
+  import { Toggle, List, ListHeader, Icon, Item, Menu } from 'vimo'
 
   export default {
-    name: 'RootDemo',
+    name: 'AppDemo',
+    components: {Toggle, List, ListHeader, Icon, Item, Menu},
     data () {
       return {}
     },
@@ -66,15 +44,6 @@
       ...mapState([
         'menu'
       ])
-    },
-    methods: {
-      onToggleChangeHandler (val) {
-        if (val) {
-          this.$i18n.locale = 'cn'
-        } else {
-          this.$i18n.locale = 'en'
-        }
-      }
     },
     mounted () {
       this.$platform.onNetworkChange((type) => {

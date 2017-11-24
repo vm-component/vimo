@@ -1,17 +1,13 @@
 <template>
     <Page>
-        <!--content-->
         <Header>
-            <!--menutoggle-->
             <Navbar hide-back-button>
-                <!--menutoggle-->
                 <Buttons right slot="buttons">
                     <Button @click="$menu.toggle('menu')" role="bar-button" menutoggle>
-                        <!--<Icon name="more"></Icon>-->
-                        <span>菜单</span>
+                        <Icon name="more"></Icon>
                     </Button>
                 </Buttons>
-                <Title @onTitleClick="onTitleClickHandler" :title="$t('index.title')"></Title>
+                <Title @onTitleClick="onTitleClickHandler">Hello</Title>
             </Navbar>
         </Header>
         <Content>
@@ -28,7 +24,7 @@
                         <Column text-center>
                             <h1>VIMO</h1>
                             <p>v{{vimo.version}}</p>
-                            <p class="message">{{$t('index.message')}}</p>
+                            <p class="message">基于Vue2.x的移动端Hybrid框架</p>
                             <a class="star" href="#"><img
                                     src="https://img.shields.io/github/stars/vm-component/vimo.svg?style=social&label=Star"
                                     alt="Star"></a>
@@ -39,10 +35,10 @@
                     </Row>
                     <Row class="vimo__btns">
                         <Button block solid @click="$router.push({'name':'components','meta':{newWindow:true}})">
-                            {{$t('index.component')}}
+                            Component
                         </Button>
                         <Button block solid @click="$menu.open('menu')">
-                            {{$t('index.menu')}}
+                            Open Menu
                         </Button>
                     </Row>
                 </Grid>
@@ -164,8 +160,11 @@
     }
 </style>
 <script type="text/javascript">
+  import { Title, Buttons, Grid, Row, Column, Button } from 'vimo'
+
   export default {
     name: 'IndexDemo',
+    components: {Title, Buttons, Grid, Row, Column, Button},
     data () {
       return {
         vimo: window.VM

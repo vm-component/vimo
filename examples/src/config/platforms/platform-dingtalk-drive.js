@@ -5,7 +5,7 @@
  * 只有通用组件、不需要鉴权的组件才做平台化处理， 比如setTitle
  * */
 import Vue from 'vue'
-import { isArray, isFunction, isNumber, isPresent, isString } from '../../../../components/util/type'
+import { isArray, isFunction, isNumber, isPresent, isString } from '../../util/type'
 
 export default function (plt) {
   if (!window.dd) {

@@ -6,11 +6,11 @@
  * 4. 执行平台相关的驱动, 比如UI组件/导航条/页面切换等可用前端实现的通用部分(如果没有则不执行)
  * 5. 执行完毕触发 $platform.ready(), 平台就绪
  * */
-import { docReady } from '../../../../components/util/util'
+import { docReady } from '../../util/util'
 import { PLATFORM_INIT_TIMEOUT } from './variable'
 import platformAliPayDrive from './platform-alipay-drive'
-import loadScript from '../../../../components/util/load-script'
-import checkProtocol from '../../../../components/util/check-protocol'
+import loadScript from '../../util/load-script'
+import checkProtocol from '../../util/check-protocol'
 
 export default {
   initialize (plt) {

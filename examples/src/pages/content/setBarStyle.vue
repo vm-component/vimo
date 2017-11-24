@@ -82,7 +82,7 @@
 
 </style>
 <script type="text/javascript">
-  import { clamp } from '../../../../components/util/util'
+  import { clamp } from '../../../../src/util/util'
   export default{
     name: 'setBarStyle',
     data () {
