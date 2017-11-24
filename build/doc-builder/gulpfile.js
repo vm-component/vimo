@@ -13,7 +13,7 @@ var runSequence = require('run-sequence')
 var bs = require('browser-sync')
 var browserSync = bs.create()
 var reload = browserSync.reload
-var jsdocConfig = require('./config')
+var getJsdocConfig = require('./config')
 var plumber = require('gulp-plumber')
 var chalk = require('chalk')
 var base = path.resolve(__dirname, '../../')
@@ -33,9 +33,11 @@ gulp.task('resource', function () {
 
 // jsdoc
 gulp.task('make', ['resource'], function (cb) {
-  gulp.src([`${base}`], {read: false})
-  .pipe(plumber())
-  .pipe(jsdoc(jsdocConfig, cb))
+  getJsdocConfig(function (jsdocConfig) {
+    gulp.src([`${base}`], {read: false})
+    .pipe(plumber())
+    .pipe(jsdoc(jsdocConfig, cb))
+  })
 })
 
 // server
