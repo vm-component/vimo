@@ -18,7 +18,7 @@
                         :loop="true"
                         :autoplay="4000"
                         pagination=".swiper-pagination"
-                        @onTransitionEnd="onTransitionEndHandler"
+                        @onTransitionEnd="onTransitionEndHandler1"
                         class="slides">
                 <SlideLite class="slide slide-0">0</SlideLite>
                 <SlideLite class="slide slide-1">1</SlideLite>
@@ -32,7 +32,7 @@
                     :loop="true"
                     :autoplay="4000"
                     pagination=".swiper-pagination"
-                    @onTransitionEnd="onTransitionEndHandler"
+                    @onTransitionEnd="onTransitionEndHandler2"
                     class="slides">
                 <Slide class="slide slide-0">0</Slide>
                 <Slide class="slide slide-1">1</Slide>
@@ -85,10 +85,14 @@
     }
 </style>
 <script type="text/javascript">
-
   export default {
     methods: {
-      onTransitionEndHandler (swiper) {
+      onTransitionEndHandler1 (swiper) {
+        console.log('swiper1')
+        console.log(swiper)
+      },
+      onTransitionEndHandler2 (swiper) {
+        console.log('swiper2')
         console.log(swiper)
       }
     }

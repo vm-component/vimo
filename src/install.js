@@ -6,7 +6,7 @@ import { version } from '../package.json'
 const addLogo = (vimoVer, vueVer) => {
   // logo
   var vimoLogo = {
-    info: 'Powered by Vimo@' + vimoVer + ' and based on Vue@' + vueVer + ' \n源代码请访问GitHub https://github.com/vm-component/Vimo'
+    info: 'Powered by Vimo@' + vimoVer + ' and based on Vue@' + vueVer + ' \n源代码请访问GitHub https://github.com/vm-component/vimo'
   }
   window.console && console.info && console.info(vimoLogo.info)
 }

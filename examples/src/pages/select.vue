@@ -36,17 +36,17 @@
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
                 </Item>
-                <Item>
-                    <Label floating>Gender(floating)</Label>
-                    <Select item-right placeholder="Select" interface="action-sheet"
-                            :selectOptions="{title:'Foating Label'}"
-                            @onChange="onChange"
-                            @onSelect="onSelect"
-                            @onCancel="onCancel">
-                        <SelectOption value="f">Female</SelectOption>
-                        <SelectOption value="m">Male</SelectOption>
-                    </Select>
-                </Item>
+                <!--<Item>-->
+                    <!--<Label floating>Gender(floating)</Label>-->
+                    <!--<Select item-right placeholder="Select" interface="action-sheet"-->
+                            <!--:selectOptions="{title:'Foating Label'}"-->
+                            <!--@onChange="onChange"-->
+                            <!--@onSelect="onSelect"-->
+                            <!--@onCancel="onCancel">-->
+                        <!--<SelectOption value="f">Female</SelectOption>-->
+                        <!--<SelectOption value="m">Male</SelectOption>-->
+                    <!--</Select>-->
+                <!--</Item>-->
                 <Item>
                     <Label>Gender</Label>
                     <Select item-right placeholder="Select" interface="action-sheet"

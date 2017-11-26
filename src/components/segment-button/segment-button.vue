@@ -26,7 +26,12 @@
 
   export default {
     name: 'SegmentButton',
-    inject: ['segmentComponent'],
+    inject: {
+      segmentComponent: {
+        from: 'segmentComponent',
+        default: null
+      }
+    },
     data () {
       return {
         theValue: null, // 当前环境的value副本
@@ -81,7 +86,7 @@
       onPointerDownHandler ($event) {
         $event.preventDefault()
         $event.stopPropagation()
-        this.segmentComponent.onChildChange(this.theValue)
+        this.segmentComponent && this.segmentComponent.$_onChildChange(this.theValue)
       },
 
       /**
@@ -118,7 +123,7 @@
     },
     created () {
       // let parent to record this comp
-      this.segmentComponent.recordChild(this)
+      this.segmentComponent && this.segmentComponent.$_recordChild(this)
 
       // define value
       this.theValue = this.getValue()

@@ -44,7 +44,7 @@
       clickHandler ($event) {
         this.$emit('click', $event)
         this.$emit('onSelect', $event)
-        this.scrollSegmentComponent.refresh(this._uid, this.rect)
+        this.scrollSegmentComponent && this.scrollSegmentComponent.refresh(this._uid, this.rect)
       },
       setState (id) {
         this.isActive = (this._uid === id)

@@ -6,12 +6,6 @@ All notable changes to this project will be documented in this file. See [standa
 ## [0.9.6](https://github.com/vm-component/vimo/compare/v0.9.5...v0.9.6) (2017-11-26)
 
 
-
-<a name="0.9.5"></a>
-## [0.9.5](https://github.com/vm-component/vimo/compare/v0.9.4...v0.9.5) (2017-11-26)
-
-
-
 <a name="0.9.4"></a>
 ## [0.9.4](https://github.com/vm-component/vimo/compare/v0.9.3...v0.9.4) (2017-11-26)
 

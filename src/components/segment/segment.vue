@@ -24,7 +24,7 @@
    * ### 父子组件通信过程
    *
    * 1. 初始化时, 子组件自己的this传递给父组件, recordChild()
-   * 2. 子组件点击时, 调用父组件的 onChildChange 函数, 传递自己的value
+   * 2. 子组件点击时, 调用父组件的 $_refreshChildState 函数, 传递自己的value
    * 3. 父组件得到value触发onChange更新v-modal值, 之后遍历子组件, 触发组件的setChecked, 传递value
    * 4. 子组件根据传入的value设置自己的状态
    *
@@ -104,7 +104,7 @@
     watch: {
       value (value) {
         // 更新子组件状态
-        this.refreshChildState(value)
+        this.$_refreshChildState(value)
       }
     },
     methods: {
@@ -112,25 +112,23 @@
        * 更新子组件状态
        * @private
        * */
-      refreshChildState (value) {
+      $_refreshChildState: debounce(function (value) {
         this.childComponents.forEach((childComponent) => {
           if (!childComponent.isDisabled) {
             childComponent.setState(value)
           }
         })
-      },
+      }, 0),
 
       /**
        * 记录子组件, 这个由子组件自己找到并调用
        * @param {Object} childComponent - 子组件实例(子组件的this)
        * @private
        * */
-      recordChild (childComponent) {
+      $_recordChild (childComponent) {
         this.childComponents.push(childComponent)
-        debounce(() => {
-          // 更新子组件状态
-          this.refreshChildState(this.value)
-        }, 0)()
+        // 更新子组件状态
+        this.$_refreshChildState(this.value)
       },
 
       /**
@@ -138,9 +136,9 @@
        * @param {string} value - 当前子组件的点击值
        * @private
        * */
-      onChildChange (value) {
+      $_onChildChange (value) {
         // 更新子组件状态
-        this.refreshChildState(value)
+        this.$_refreshChildState(value)
         /**
          * @event component:Segment#onChange
          * @description 子元素 样式更新后发送onChange事件，并传入value变化值

@@ -20,15 +20,11 @@
   export default {
     name: 'Slide',
     inject: {
-      slidesComponent: {
-        from: 'slidesComponent',
-        default: null
-      }
+      slidesComponent: 'slidesComponent'
     },
     data () {
       return {
-        zoom: false,
-        slidesComponent: null
+        zoom: false
       }
     },
     created () {
