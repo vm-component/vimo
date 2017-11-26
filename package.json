@@ -25,6 +25,7 @@
     "lib"
   ],
   "scripts": {
+    "node:scss": "node examples/build/get-scss-variables.js",
     "demo:dev": "cross-env BABEL_ENV=demo node examples/build/dev-server.js",
     "demo:build": "cross-env BABEL_ENV=demo node examples/build/build.js",
     "docs:dev": "gulp default --gulpfile build/doc-builder/gulpfile.js",
@@ -224,5 +225,9 @@
       "!**/node_modules/**",
       "!**/vendor/**"
     ]
-  }
+  },
+  "theme": [
+    "examples/src/theme/variables.scss",
+    "examples/src/theme/variables-2.scss"
+  ]
 }

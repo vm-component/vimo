@@ -1,6 +1,7 @@
 var path = require('path')
 var config = require('../config/index')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var getScssVariables = require('./get-scss-variables')
 
 exports.assetsPath = function (_path) {
   var assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -51,8 +52,8 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', {indentedSyntax: true}),
-    scss: generateLoaders('sass'),
+    sass: generateLoaders('sass', {indentedSyntax: true, data: getScssVariables()}),
+    scss: generateLoaders('sass', {data: getScssVariables()}),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }

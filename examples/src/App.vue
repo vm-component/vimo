@@ -52,5 +52,14 @@
       })
     }
   }
+  // 如果都是defaut, 则取最后一个
+  // 如果都非default, 则取最后一个
 </script>
-<style lang="less"></style>
+<style lang="scss">
+    $color: red;
+    $color: blue !default;
+
+    body {
+        background: $a;
+    }
+</style>
