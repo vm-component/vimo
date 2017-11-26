@@ -171,8 +171,4 @@
       addItemAttr(this.$slots)
     }
   }
-
-  function parentNodeIs (node, name = '') {
-    return node && node.$parent && node.$parent.$options._componentTag.toLowerCase() === name.toLowerCase()
-  }
 </script>

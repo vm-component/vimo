@@ -428,7 +428,7 @@
        */
       initDOM () {
         // 在item父元素上添加类item-range
-        if(this.itemComponent){
+        if (this.itemComponent) {
           if (this.itemComponent.$el) {
             setElementClass(this.itemComponent.$el, 'item-range', true)
             // setElementClass(this.itemComponent.$el, 'item-range-disabled', this.disabled);

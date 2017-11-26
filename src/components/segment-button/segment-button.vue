@@ -23,7 +23,6 @@
    *
    * */
   import { isTrueProperty, isString, isPresent } from '../../util/type'
-  import componentIsMatch from '../../util/component-is-match.js'
 
   export default {
     name: 'SegmentButton',

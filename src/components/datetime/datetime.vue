@@ -515,7 +515,7 @@
       this.theValue = parseDate(this.value)
     },
     mounted () {
-      if(this.itemComponent){
+      if (this.itemComponent) {
         setElementClass(this.itemComponent.$el, 'item-datetime', true)
       }
 
