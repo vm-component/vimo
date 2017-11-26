@@ -61,6 +61,7 @@ import getInsertPosition from '../../util/get-insert-position'
 let modalArr = []       // modal实例的堆栈
 let unRegisterUrlChange = []
 let isModalEnable = true // 当modal处于打开过程和关闭过程中时为false, 其余状态为true
+let scrollTop = 0
 
 /**
  * 获取实例
@@ -136,9 +137,9 @@ function present (options = {}) {
         unRegisterUrlChange
       )
       // 锁定 Doc 滚动
-      this._scrollTop = window.scrollY
+      scrollTop = window.scrollY
       window.document.body.style.position = 'fixed'
-      window.document.body.style.top = -this._scrollTop + 'px'
+      window.document.body.style.top = -scrollTop + 'px'
     }
 
     presentPromise.then(() => {
@@ -170,11 +171,11 @@ function dismiss (dataBack, changeLocalHistory = true) {
       // 则解绑urlChange
       unRegisterAllListener()
       // 滚动还原
-      this._scrollTop = window.scrollY
+      scrollTop = window.scrollY
       window.document.body.style.position = ''
       window.document.body.style.top = ''
-      window.scrollTo(0, this._scrollTop)
-      this._scrollTop = 0
+      window.scrollTo(0, scrollTop)
+      scrollTop = 0
     }
 
     lastModalInstance.dismiss(dataBack).then(() => {
@@ -192,7 +193,6 @@ function unRegisterAllListener () {
 }
 
 export default {
-  _scrollTop: 0,
   present,
   dismiss
 }

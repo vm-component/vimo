@@ -7,7 +7,7 @@ var chalk = require('chalk')
 var config = require('./config')
 const fs = require('fs-extra')
 var glob = require('glob')
-var babel = require('@babel/core')
+var babel = require('babel-core')
 
 rm(`${config.libPath}`, err => {
   if (err) throw err
@@ -22,7 +22,7 @@ rm(`${config.libPath}`, err => {
       let index = 0
       files.forEach((file) => {
         babel.transformFile(file, {
-          presets: ['@babel/env', '@babel/stage-2']
+          presets: ['env', 'stage-2']
         }, (err, result) => {
           fs.createWriteStream(file)
           fs.writeFile(file, result.code, function (err) {

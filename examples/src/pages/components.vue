@@ -351,20 +351,20 @@
                     <Note slot="item-right">Tabs</Note>
                 </Item>
             </List>
-            <List>
-                <ListHeader>
-                    <span>第三方模块/Third Part</span>
-                </ListHeader>
-                <Item button :to="{name: 'storage'}">
-                    <Icon slot="item-left" name="filing"></Icon>
-                    <span>本地存储</span>
-                    <Note slot="item-right">Storage</Note>
-                </Item>
-                <Item button :to="{name: 'geo'}">
-                    <Icon slot="item-left" name="pin"></Icon>
-                    <span>获取位置</span>
-                    <Note slot="item-right">Geolocation</Note>
-                </Item>
+            <!--<List>-->
+                <!--<ListHeader>-->
+                    <!--<span>第三方模块/Third Part</span>-->
+                <!--</ListHeader>-->
+                <!--<Item button :to="{name: 'storage'}">-->
+                    <!--<Icon slot="item-left" name="filing"></Icon>-->
+                    <!--<span>本地存储</span>-->
+                    <!--<Note slot="item-right">Storage</Note>-->
+                <!--</Item>-->
+                <!--<Item button :to="{name: 'geo'}">-->
+                    <!--<Icon slot="item-left" name="pin"></Icon>-->
+                    <!--<span>获取位置</span>-->
+                    <!--<Note slot="item-right">Geolocation</Note>-->
+                <!--</Item>-->
                 <!--<Item button :to="{name: 'log'}">-->
                     <!--<Icon slot="item-left" name="analytics"></Icon>-->
                     <!--<span>日志</span>-->
@@ -382,7 +382,7 @@
                 <!--<Item button :to="{name: 'gl-input'}">GL-Input</Item>-->
                 <!--<Item button :to="{name: 'log'}">Log</Item>-->
                 <!--</ItemGroup>-->
-            </List>
+            <!--</List>-->
         </Content>
     </Page>
 </template>
