@@ -63,7 +63,12 @@
 
   export default {
     name: 'Img',
-    inject: ['contentComponent'],
+    inject: {
+      contentComponent: {
+        from: 'contentComponent',
+        default: null
+      }
+    },
     props: {
       src: String,
       alt: {
@@ -117,7 +122,7 @@
        * @private
        * */
       init () {
-        console.assert(this.contentComponent, 'Img组件必须在Content组件中才能正常工作!')
+        // console.assert(this.contentComponent, 'Img组件必须在Content组件中才能正常工作!')
 
         // 获取img元素
         this.imgElement = this.$refs.img
@@ -128,7 +133,7 @@
         // 根据src初始化部分参数
         this.initSrcValue()
 
-        this.contentComponent.$_addImg(this)
+        this.contentComponent && this.contentComponent.$_addImg(this)
       },
 
       /**

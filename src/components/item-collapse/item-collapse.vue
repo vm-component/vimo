@@ -5,7 +5,9 @@
             <slot name="item-left"></slot>
             <div class="item-inner">
                 <div class="input-wrapper" v-if="title">{{title}}</div>
-                <div class="input-wrapper" v-else><slot name="item-title"></slot></div>
+                <div class="input-wrapper" v-else>
+                    <slot name="item-title"></slot>
+                </div>
                 <div class="item-arrow"></div>
                 <slot name="item-right"></slot>
             </div>
@@ -14,7 +16,9 @@
                     @enter="enter"
                     @before-leave="beforeLeave"
                     @leave="leave">
-            <div class="item-collapse-inner" v-show="isActive" ref="itemCollapseInner"><slot></slot></div>
+            <div class="item-collapse-inner" v-show="isActive" ref="itemCollapseInner">
+                <slot></slot>
+            </div>
         </transition>
     </div>
 </template>
@@ -73,11 +77,16 @@
 
   export default {
     name: 'ItemCollapse',
+    inject: {
+      itemCollapseGroupComponent: {
+        from: 'itemCollapseGroupComponent',
+        default: null
+      }
+    },
     data () {
       return {
         enable: true,               // 是否能点击
         isInit: false,              // 是否初始化
-        itemGroupComponent: null,   // 父组件ItemGroup
         isActive: false,            // 当前组件状态
         height: null                // 未展开的内容高度
       }
@@ -146,13 +155,13 @@
        * 点击时
        * */
       onPointerDownHandler () {
-        this.enable && this.itemGroupComponent.onItemCollapseChange(this._uid)
+        this.enable && this.itemCollapseGroupComponent && this.itemCollapseGroupComponent.onItemCollapseChange(this._uid)
       }
     },
     created () {
-      if (parentNodeIs(this, 'ItemCollapseGroup')) {
-        this.itemGroupComponent = this.$parent
-        this.itemGroupComponent.recordItemCollapse(this)
+      if (this.itemCollapseGroupComponent) {
+        this.itemCollapseGroupComponent = this.$parent
+        this.itemCollapseGroupComponent.recordItemCollapse(this)
       }
     },
     mounted () {
@@ -161,9 +170,5 @@
 
       addItemAttr(this.$slots)
     }
-  }
-
-  function parentNodeIs (node, name = '') {
-    return node && node.$parent && node.$parent.$options._componentTag.toLowerCase() === name.toLowerCase()
   }
 </script>

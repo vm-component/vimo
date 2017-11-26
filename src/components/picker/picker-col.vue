@@ -34,12 +34,17 @@
   const MAX_PICKER_SPEED = 60
   export default {
     name: 'PickerCol',
+    inject: {
+      pickerComponent: {
+        from: 'pickerComponent',
+        default: null
+      }
+    },
     data () {
       return {
         isInit: false,
         rotateFactor: this.$config && this.$config.getNumber('pickerRotateFactor', 0) || 0,
         scaleFactor: this.$config && this.$config.getNumber('pickerScaleFactor', 1) || 1,
-        pickerComponent: null,          // 父组件 Picker 实例
 
         y: 0,
         colHeight: 0,
@@ -456,11 +461,9 @@
       init () {
         this.optHeight = this.getOptHeight()
 
-        if (this.$parent.$options.name.toLowerCase() === 'picker') {
-          this.pickerComponent = this.$parent
+        if (this.pickerComponent) {
+          this.pickerComponent.recordChildComponent(this)
         }
-        console.assert(this.pickerComponent, 'PickerCol组件需要在Picker组件内部使用, 请检查.')
-        this.pickerComponent.recordChildComponent(this)
 
         // set the scroll position for the selected option
         this.setSelected(this.col.selectedIndex, 0)

@@ -107,7 +107,12 @@
   const STATE_LOADING = 'loading'
   export default {
     name: 'InfiniteScroll',
-    inject: ['contentComponent'],
+    inject: {
+      contentComponent: {
+        from: 'contentComponent',
+        default: null
+      }
+    },
     props: {
       // 可用状态
       enabled: {
@@ -166,7 +171,7 @@
           if (this.state === STATE_LOADING) {
             this.state = STATE_ENABLED
             // 重新计算尺寸, 必须
-            this.contentComponent.resize()
+            this.contentComponent && this.contentComponent.resize()
           }
         })
       },
@@ -230,10 +235,10 @@
         if (shouldListen) {
           // 监听Content组件的onScroll事件
           // NOTICE: 这里是监听的是Content组件自己内部维护的事件`onScroll`
-          this.contentComponent.$on('onScroll', this.$_onScrollHandler)
+          this.contentComponent && this.contentComponent.$on('onScroll', this.$_onScrollHandler)
         } else {
           // 解除onScroll事件监听(Content组件)
-          this.contentComponent.$off('onScroll', this.$_onScrollHandler)
+          this.contentComponent && this.contentComponent.$off('onScroll', this.$_onScrollHandler)
         }
       },
 
@@ -260,7 +265,7 @@
           return 3
         }
 
-        const d = this.contentComponent.scrollView.ev
+        const d = this.contentComponent && this.contentComponent.scrollView.ev
 
         let reloadY = window.innerHeight
 
@@ -289,8 +294,10 @@
       }
     },
     mounted () {
-      console.assert(this.contentComponent, 'InfiniteScroll组件必须要在Content组件下使用')
-      setElementClass(this.contentComponent.$el, 'has-infinite-scroll', true)
+      // console.assert(this.contentComponent, 'InfiniteScroll组件必须要在Content组件下使用')
+      if (this.contentComponent) {
+        setElementClass(this.contentComponent.$el, 'has-infinite-scroll', true)
+      }
       this.$_setListeners(this.state !== STATE_DISABLED)
     },
     destroy () {

@@ -55,13 +55,18 @@
 
   export default {
     name: 'Checkbox',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     components: {'vm-button': Button},
     data () {
       return {
         checkedValue: this.value,           // 内部维护的checked
         disabledValue: this.disabled,       // 内部维护的disabled
-        init: false,                        // 是否初始化
-        itemComponent: null                 // item组件实例
+        init: false                        // 是否初始化
       }
     },
     props: {
@@ -114,9 +119,7 @@
       }
     },
     mounted () {
-      // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
-        this.itemComponent = this.$parent
+      if (this.itemComponent) {
         setElementClass(this.itemComponent.$el, 'item-checkbox', true)
       }
 

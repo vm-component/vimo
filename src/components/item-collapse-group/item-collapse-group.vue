@@ -15,6 +15,12 @@
    * */
   export default {
     name: 'ItemCollapseGroup',
+    provide () {
+      const _this = this
+      return {
+        itemCollapseGroupComponent: _this
+      }
+    },
     props: {
       accordion: Boolean
     },

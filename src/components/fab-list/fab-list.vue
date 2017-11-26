@@ -22,7 +22,12 @@
 
   export default {
     name: 'FabList',
-    inject: ['fabComponent'],
+    inject: {
+      fabComponent: {
+        from: 'fabComponent',
+        default: null
+      }
+    },
     provide () {
       let _this = this
       return {
@@ -114,19 +119,20 @@
       }
     },
     created () {
-      this.fabComponent.fabListComponents.push(this)
+      this.fabComponent && this.fabComponent.fabListComponents.push(this)
     },
     mounted () {
-      let fabSize = parsePxUnit(window.getComputedStyle(this.fabComponent.$el).height)
-      let fabContentMargin = this.fabComponent.fabContentMargin
-
-      this.sideMargin = {
-        margin: `${fabSize + fabContentMargin}px 0`
-      }
-
-      if (this.side === 'left' || this.side === 'right') {
+      if (this.fabComponent) {
+        let fabSize = parsePxUnit(window.getComputedStyle(this.fabComponent.$el).height)
+        let fabContentMargin = this.fabComponent.fabContentMargin
         this.sideMargin = {
-          margin: `0 ${fabSize + fabContentMargin}px`
+          margin: `${fabSize + fabContentMargin}px 0`
+        }
+
+        if (this.side === 'left' || this.side === 'right') {
+          this.sideMargin = {
+            margin: `0 ${fabSize + fabContentMargin}px`
+          }
         }
       }
     }

@@ -124,6 +124,12 @@
 
   export default {
     name: 'Picker',
+    provide () {
+      const _this = this
+      return {
+        pickerComponent: _this
+      }
+    },
     components: {'vm-backdrop': Backdrop, PickerCol, 'vm-button': Button},
     extends: popupExtend,
     data () {

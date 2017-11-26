@@ -354,7 +354,7 @@
         // 获取子组件实例
         let side = 0 // ITEM_SIDE_FLAGS None=0
         let componentIs = (component, name = '') => {
-          return component.$options._componentTag.toLowerCase() === name.toLowerCase()
+          return component.$options && component.$options._componentTag && component.$options._componentTag.toLowerCase() === name.toLowerCase()
         }
 
         this.$children.forEach((item) => {

@@ -41,10 +41,10 @@ export default {
   },
   created () {
     if (this.scrollControl) {
-      this.$app && this.$app.$_disableScroll()
+      this.$app && this.$app.$_disableScroll && this.$app.$_disableScroll()
     }
 
-    this.$app && this.$app.$_addChild(this)
+    this.$app && this.$app.$_addChild && this.$app.$_addChild(this)
 
     this.$_dismissOnPageChange = this.dismissOnPageChange
     this.$_recordInHistory = this.recordInHistory
@@ -99,9 +99,9 @@ export default {
   },
   destroyed () {
     if (this.scrollControl) {
-      this.$app && this.$app.$_enableScroll()
+      this.$app && this.$app.$_enableScroll && this.$app.$_enableScroll()
     }
-    this.$app && this.$app.$_removeChild(this)
+    this.$app && this.$app.$_removeChild && this.$app.$_removeChild(this)
     this.$el && this.$el.remove()
   }
 }

@@ -267,9 +267,7 @@
           let docHeight = window.document.documentElement.offsetHeight
           if (windowHeight >= docHeight) {
             this.disableScroll = false
-            if (process.env.NODE_ENV !== 'production') {
-              console.debug(`窗口高度:${windowHeight}, 页面高度: ${docHeight}, 当前情况setDisableScroll不生效.`)
-            }
+            // `窗口高度:${windowHeight}, 页面高度: ${docHeight}, 当前情况setDisableScroll不生效.`
           } else {
             this.disableScroll = true
             this.scrollTop = window.scrollY

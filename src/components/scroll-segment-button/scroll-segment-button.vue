@@ -22,14 +22,19 @@
    * ## 滑动片段组件 / ScrollSegmentButton
    *
    * */
-  export default{
+  export default {
     name: 'ScrollSegmentButton',
+    inject: {
+      scrollSegmentComponent: {
+        from: 'scrollSegmentComponent',
+        default: null
+      }
+    },
     data () {
       return {
         activeClass: '',
         isActive: false,
-        rect: null, // 当前组件的位置关系
-        scrollSegmentComponent: null
+        rect: null          // 当前组件的位置关系
       }
     },
     methods: {
@@ -46,8 +51,7 @@
       }
     },
     mounted () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'scrollsegment') {
-        this.scrollSegmentComponent = this.$parent
+      if (this.scrollSegmentComponent) {
         this.scrollSegmentComponent.record(this)
         this.activeClass = this.scrollSegmentComponent.activeClass
         // 获取当前组件的尺寸及距离页面的位置

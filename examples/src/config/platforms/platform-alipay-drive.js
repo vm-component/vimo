@@ -4,7 +4,6 @@
  * 当前处于平台初始化完毕阶段, window.AlipayJSBridge等私有变量存在且可用
  * 只有通用组件、不需要鉴权的组件才做平台化处理， 比如setTitle
  * */
-import Vue from 'vue'
 import { isArray, isFunction, isNumber, isPresent, isString } from '../../util/type'
 
 export default function (plt) {
@@ -29,11 +28,6 @@ export default function (plt) {
         isFunction(fn) && fn(result.networkInfo.toString().toLowerCase())
       })
     })
-  }, false)
-
-  // title 点击事件
-  document.addEventListener('titleClick', () => {
-    Vue.prototype.$eventBus && Vue.prototype.$eventBus.$emit('onTitleClick')
   }, false)
 
   // 注册平台退出方法 `exitApp`
