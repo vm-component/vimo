@@ -10,6 +10,12 @@
 <script type="text/javascript">
   export default {
     name: 'Icon',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     props: {
       /**
        * 指定图标使用模式
@@ -141,7 +147,7 @@
       this.update()
     },
     mounted () {
-      if (this.$parent.$el && this.$parent.$el.className && this.$parent.$el.className.indexOf('item') > -1) {
+      if (this.itemComponent) {
         // button in items should add class of 'item-button'
         this.itemClass = 'item-icon'
       }

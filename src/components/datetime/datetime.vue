@@ -107,9 +107,14 @@
   // const DEFAULT_FORMAT = 'YYYY/MM/DD'
   export default {
     name: 'Datetime',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     data () {
       return {
-        itemComponent: null, // 父组件Item实例
         theDisabled: this.disabled,
         text: '',
         theMin: this.min,
@@ -510,11 +515,9 @@
       this.theValue = parseDate(this.value)
     },
     mounted () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
-        this.itemComponent = this.$parent
+      if(this.itemComponent){
+        setElementClass(this.itemComponent.$el, 'item-datetime', true)
       }
-      console.assert(this.itemComponent, 'The component of Datetime must in Item component.')
-      setElementClass(this.itemComponent.$el, 'item-datetime', true)
 
       // first see if locale names were provided in the inputs
       // then check to see if they're in the config

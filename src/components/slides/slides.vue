@@ -138,6 +138,12 @@
 
   export default {
     name: 'Slides',
+    provide () {
+      const _this = this
+      return {
+        slidesComponent: _this
+      }
+    },
     props: getProps(),
     data () {
       return {

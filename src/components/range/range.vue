@@ -93,6 +93,12 @@
 
   export default {
     name: 'Range',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     data () {
       return {
         ticks: [], // 移动的标尺
@@ -108,7 +114,6 @@
         pressedA: false,
         pressedB: false,
 
-        _item: null, // 父组件item的句柄
         _sliderEl: null, // slider的DOM句柄
         _rect: null, // _sliderEl的尺寸对象
         _activeB: null, // 是否激活了B按钮
@@ -423,11 +428,10 @@
        */
       initDOM () {
         // 在item父元素上添加类item-range
-        if (this.$parent && this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'item') {
-          this._item = this.$parent
-          if (this._item.$el) {
-            setElementClass(this._item.$el, 'item-range', true)
-            // setElementClass(this._item.$el, 'item-range-disabled', this.disabled);
+        if(this.itemComponent){
+          if (this.itemComponent.$el) {
+            setElementClass(this.itemComponent.$el, 'item-range', true)
+            // setElementClass(this.itemComponent.$el, 'item-range-disabled', this.disabled);
           }
         }
 

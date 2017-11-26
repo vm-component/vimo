@@ -40,7 +40,12 @@
    * */
   export default {
     name: 'Footer',
-    inject: ['pageComponent'],
+    inject: {
+      pageComponent: {
+        from: 'pageComponent',
+        default: null
+      }
+    },
     provide () {
       let _this = this
       return {
@@ -95,7 +100,9 @@
       }
     },
     created () {
-      this.pageComponent.footerComponent = this
+      if (this.pageComponent) {
+        this.pageComponent.footerComponent = this
+      }
 
       this.$root.$on('onMenuOpen', () => {
         this.hide()

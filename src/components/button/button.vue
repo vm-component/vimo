@@ -70,6 +70,12 @@
 
   export default {
     name: 'Button',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     props: {
       /**
        * 按钮color：primary、secondary、danger、light、dark
@@ -274,8 +280,7 @@
 
       // 如果icon是在item中的话, 则设置 class="item-button"
       addClassInItemComp () {
-        if (this.$parent.$el && this.$parent.$el.className && this.$parent.$el.className.indexOf('item') > -1) {
-          // button in items should add class of 'item-button'
+        if (this.itemComponent) {
           this.addElementClass('item-button')
         }
       }

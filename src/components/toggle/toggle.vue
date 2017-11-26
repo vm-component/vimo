@@ -84,14 +84,19 @@
 
   export default {
     name: 'Toggle',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     data () {
       return {
-        isChecked: this.value,       // 选中状态
-        isDisabled: this.disabled,      // 禁用状态
+        isChecked: this.value,      // 选中状态
+        isDisabled: this.disabled,  // 禁用状态
         activated: false,
         id: this._uid,
-        init: false,            // 是否初始化
-        itemComponent: null    // 父组件item的句柄
+        init: false                 // 是否初始化
       }
     },
     props: {
@@ -191,13 +196,10 @@
       }
     },
     mounted () {
-      if (this.$parent && this.$parent.$options._componentTag && this.$parent.$options._componentTag.toLowerCase() === 'item') {
-        this.itemComponent = this.$parent
-        if (this.itemComponent.$el) {
-          setElementClass(this.itemComponent.$el, 'item-toggle', true)
-          this.setItemCheckedClass(this.isChecked)
-          this.setItemDisabledClass(this.isDisabled)
-        }
+      if (this.itemComponent) {
+        setElementClass(this.itemComponent.$el, 'item-toggle', true)
+        this.setItemCheckedClass(this.isChecked)
+        this.setItemDisabledClass(this.isDisabled)
       }
 
       this.setChecked(this.value)

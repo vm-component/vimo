@@ -88,11 +88,20 @@
   let id = 0
   export default {
     name: 'Radio',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      },
+      listComponent: {
+        from: 'listComponent',
+        default: null
+      }
+    },
     data () {
       return {
         isChecked: false,               // 内部 选中
         isDisabled: this.disabled,      // 内部 禁用
-        itemComponent: null,            // item组件实例
         radioGroupComponent: null,      // list(radioGroup)组件实例
         isInit: false,                  // 初始化状态
         id: `rb-${id++}`               // id
@@ -157,19 +166,16 @@
        * */
       init () {
         // 找到外部item实例
-        if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
-          this.itemComponent = this.$parent
+        if (this.itemComponent) {
           setElementClass(this.itemComponent.$el, 'item-radio', true)
         }
 
         // 找到外部List实例
-        if (this.$parent.$parent.$options._componentTag.toLowerCase() === 'list') {
-          let node = this.$parent.$parent
-          if (node.radioGroup) {
-            this.radioGroupComponent = node
+        if (this.listComponent) {
+          if (this.listComponent.radioGroup) {
+            this.radioGroupComponent = this.listComponent
             this.radioGroupComponent.recordRadio(this)
           }
-          console.assert(this.radioGroupComponent, 'Radio组件需要在List组件中加上`radio-group`属性才能正常使用v-model指令!')
         }
 
         // 初始化禁用状态

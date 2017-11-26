@@ -87,11 +87,22 @@
   let id = 0
   export default {
     name: 'Select',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
+    provide () {
+      const _this = this
+      return {
+        selectComponent: _this
+      }
+    },
     data () {
       return {
         isDisabled: this.disabled,      // 内部 禁用
         id: `rb-${id++}`,               // id
-        itemComponent: null,            // item组件实例
         optionComponents: [],           // Select子组件Option的集合
         texts: [],                      // 回显的数组
         text: null,                     // 回显的string, 已texts为基
@@ -341,8 +352,7 @@
     },
     mounted () {
       // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
-        this.itemComponent = this.$parent
+      if (this.itemComponent) {
         setElementClass(this.itemComponent.$el, 'item-select', true)
       } else {
         // 如果不在item中的话, 则button填充满整个组件. 否则填充整个Item组件.

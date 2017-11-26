@@ -31,7 +31,10 @@
   export default {
     name: 'FabButton',
     inject: {
-      fabComponent: 'fabComponent',
+      fabComponent: {
+        from: 'fabComponent',
+        default: null
+      },
       fabListComponent: {
         from: 'fabListComponent',
         default: null
@@ -80,7 +83,7 @@
     },
     created () {
       if (!this.isMainButton) {
-        this.fabListComponent.fabs.push(this)
+        this.fabListComponent && this.fabListComponent.fabs.push(this)
       }
     },
     components: {Icon}

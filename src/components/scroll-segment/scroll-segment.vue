@@ -79,6 +79,12 @@
   import { clamp } from '../../util/util'
   export default{
     name: 'ScrollSegment',
+    provide () {
+      const _this = this
+      return {
+        scrollSegmentComponent: _this
+      }
+    },
     data () {
       return {
         isInit: false,

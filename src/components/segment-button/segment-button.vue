@@ -118,12 +118,6 @@
       }
     },
     created () {
-        /* istanbul ignore if */
-      if (process.env.NODE_ENV !== 'production' && !componentIsMatch(this.$parent, 'segment')) {
-        console.error('The component of SegmentButton must combine with Segment component!')
-        return
-      }
-
       // let parent to record this comp
       this.segmentComponent.recordChild(this)
 

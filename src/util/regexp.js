@@ -72,14 +72,14 @@ export default {
       }
 
       if (!cityCode[num.substr(0, 2)]) {
-        if (process.env.NODE_ENV !== 'production') {
+        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
           console.log('地址编码错误')
         }
         return false
       }
       // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。
       if (!/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num)) {
-        if (process.env.NODE_ENV !== 'production') {
+        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
           console.log('输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X。')
         }
         return false
@@ -102,7 +102,7 @@ export default {
           dtmBirth.getMonth() + 1 === Number(arrSplit[3]) &&
           dtmBirth.getDate() === Number(arrSplit[4])
         if (!bGoodDay) {
-          if (process.env.NODE_ENV !== 'production') {
+          if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
             console.log('输入的身份证号里出生日期不对！')
           }
           return false
@@ -131,7 +131,7 @@ export default {
           dtmBirth.getMonth() + 1 === Number(arrSplit[3]) &&
           dtmBirth.getDate() === Number(arrSplit[4])
         if (!bGoodDay) {
-          if (process.env.NODE_ENV !== 'production') {
+          if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
             console.log('输入的身份证号里出生日期不对！')
           }
           return false
@@ -147,7 +147,7 @@ export default {
           }
           valnum = arrCh[nTemp % 11]
           if (valnum !== num.substr(17, 1)) {
-            if (process.env.NODE_ENV !== 'production') {
+            if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
               console.log('18位身份证的校验码不正确！应该为：' + num.substr(17, 1) + '->' + valnum)
             }
             return false

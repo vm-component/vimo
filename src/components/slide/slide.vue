@@ -19,6 +19,12 @@
    * */
   export default {
     name: 'Slide',
+    inject: {
+      slidesComponent: {
+        from: 'slidesComponent',
+        default: null
+      }
+    },
     data () {
       return {
         zoom: false,
@@ -26,8 +32,7 @@
       }
     },
     created () {
-      if (this.$parent.$options._componentTag.toLowerCase() === 'slides') {
-        this.slidesComponent = this.$parent
+      if (this.slidesComponent) {
         this.zoom = this.slidesComponent.zoom
         this.slidesComponent.initSlides()
       }

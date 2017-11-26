@@ -29,10 +29,16 @@
    * */
   export default {
     name: 'SlideLite',
+    inject: {
+      slidesLiteComponent: {
+        from: 'slidesLiteComponent',
+        default: null
+      }
+    },
     mounted () {
-      if (this.$parent.$options._componentTag.toLowerCase().indexOf('slides') > -1) {
+      if (this.slidesLiteComponent) {
         // 告知父组件进行初始化
-        this.$parent.initSlides()
+        this.slidesLiteComponent.initSlides()
       }
     }
   }

@@ -142,6 +142,12 @@
    */
   export default {
     name: 'List',
+    provide () {
+      const _this = this
+      return {
+        listComponent: _this
+      }
+    },
     data () {
       return {
         // -------- Radio --------

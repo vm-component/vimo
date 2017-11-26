@@ -78,12 +78,17 @@
 
   export default {
     name: 'Textarea',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
     data () {
       return {
         max: this.maxlength,
         isValid: false, // 验证结果
-        inputValue: this.value || '', // 内部value值
-        itemComponent: null // 外部item组件实例 -> 修改class
+        inputValue: this.value || '' // 内部value值
       }
     },
     props: {
@@ -339,8 +344,7 @@
       }
 
       // 找到外部item实例
-      if (this.$parent.$options._componentTag.toLowerCase() === 'item') {
-        this.itemComponent = this.$parent
+      if (this.itemComponent) {
         setElementClass(this.itemComponent.$el, 'item-textarea', true)
         setElementClass(this.itemComponent.$el, 'item-input', true)
         setElementClass(this.itemComponent.$el, 'show-focus-highlight', this.showFocusHighlight)

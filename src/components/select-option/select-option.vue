@@ -14,9 +14,14 @@
 
   export default {
     name: 'SelectOption',
+    inject: {
+      selectComponent: {
+        from: 'selectComponent',
+        default: null
+      }
+    },
     data () {
       return {
-        selectComponent: null,      // Select组件
         label: null,                // 获取标签
         isChecked: this.checked,    // check内部记录值
         optionValue: this.value     // value内部记录值
@@ -48,11 +53,10 @@
     },
     created () {
       this.label = this.getText()
-      if (this.$parent.$options._componentTag.toLowerCase() === 'select') {
-        this.selectComponent = this.$parent
+      if (this.selectComponent) {
         this.selectComponent.recordOption(this)
       }
-      console.assert(this.selectComponent, 'Option组件必须在Select组件之内使用!')
+
       if (isBlank(this.optionValue)) {
         this.optionValue = this.label
       }

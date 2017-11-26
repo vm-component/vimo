@@ -25,6 +25,12 @@
   import addItemAttr from '../../util/add-slot-name-to-attr.js'
 
   export default {
+    provide () {
+      const _this = this
+      return {
+        itemComponent: _this
+      }
+    },
     data () {
       return {
         // 用于 Input 元素添加class类名
@@ -71,12 +77,6 @@
       },
       itemTypeClass () {
         return `item-block`
-      }
-    },
-    provide () {
-      const _this = this
-      return {
-        itemComponent: _this
       }
     },
     methods: {
