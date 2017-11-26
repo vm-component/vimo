@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.9.4"></a>
+## [0.9.4](https://github.com/vm-component/vimo/compare/v0.9.3...v0.9.4) (2017-11-26)
+
+
+### Bug Fixes
+
+* 修复menus打不开的问题 ([d9b51d4](https://github.com/vm-component/vimo/commit/d9b51d4))
+* 修复pc模式鼠标样式->pointer ([081a181](https://github.com/vm-component/vimo/commit/081a181))
+
+
+
 <a name="0.9.3"></a>
 ## [0.9.3](https://github.com/vm-component/vimo/compare/v0.9.2...v0.9.3) (2017-11-19)
 
