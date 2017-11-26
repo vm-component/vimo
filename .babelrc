@@ -1,12 +1,12 @@
 {
   "presets": [
     [
-      "@babel/env",
+      "env",
       {
         "modules": false
       }
     ],
-    "@babel/stage-2"
+    "stage-2"
   ],
   "comments": false,
   "plugins": [],
@@ -14,12 +14,12 @@
     "demo": {
       "presets": [
         [
-          "@babel/env",
+          "env",
           {
             "modules": false
           }
         ],
-        "@babel/stage-2"
+        "stage-2"
       ],
       "plugins": [
         [
@@ -33,23 +33,20 @@
     },
     "lib": {
       "presets": [
-        "@babel/env",
-        "@babel/stage-2"
+        "env",
+        "stage-2"
       ]
     },
     "test": {
       "presets": [
         [
-          "@babel/env",
+          "env",
           {
-            "modules": false,
-            "useBuiltIns": "usage"
+            "targets": {
+              "node": "current"
+            }
           }
-        ],
-        "@babel/stage-2"
-      ],
-      "plugins": [
-        "istanbul"
+        ]
       ]
     }
   }
