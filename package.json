@@ -33,6 +33,7 @@
     "pub:lib": "cross-env BABEL_ENV=lib node build/lib-builder/index.js",
     "pub": "npm run pub:entry && npm run pub:lib",
     "test": "cross-env BABEL_ENV=test jest",
+    "test:-u": "cross-env BABEL_ENV=test npm test -- -u",
     "lint": "eslint --ext .js,.vue src examples/src test/unit/specs",
     "lint:fix": "npm run lint -- --fix",
     "rullup-test": "rollup -c build/rollup.umd.conf.js",

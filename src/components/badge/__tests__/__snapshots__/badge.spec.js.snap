@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Badge @base: matches snapshot 1`] = `<div class="ion-badge badge badge-ios badge-ios-primary"><span>Test</span></div>`;
