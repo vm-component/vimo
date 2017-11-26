@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionSheet @base: matches snapshot 1`] = `
+<div class="ion-action-sheet action-sheet-ios ActionSheetCssClass1 ActionSheetCssClass2">
+    <div class="ion-backdrop" style="left:0px;top:0px;display:none;"></div>
+    <div name="action-sheet" class="action-sheet-wrapper" style="display:none;">
+        <div class="action-sheet-container">
+            <div class="action-sheet-group">
+                <div class="action-sheet-title"><span>请选择操作</span>
+                    <div class="action-sheet-sub-title">注意，选择后不能撤销！</div>
+                </div>
+                <div class="action-sheet-buttons"><button icon-left="" class="ion-button action-sheet-button action-sheet-button-ios"><span class="button-inner"><!----> <span>增加</span></span></button><button icon-left="" class="ion-button action-sheet-button action-sheet-button-ios action-sheet-destructive action-sheet-destructive"><span class="button-inner"><!----> <span>删除</span></span></button>
+                    <button
+                        icon-left="" class="ion-button action-sheet-button action-sheet-button-ios action-sheet-selected action-sheet-selected"><span class="button-inner"><!----> <span>选择</span></span>
+                        </button>
+                </div>
+            </div>
+            <div class="action-sheet-group"><button icon-left="" class="ion-button action-sheet-cancel action-sheet-button action-sheet-button-ios"><span class="button-inner"><!----> <span>取消</span></span></button></div>
+        </div>
+    </div>
+</div>
+`;

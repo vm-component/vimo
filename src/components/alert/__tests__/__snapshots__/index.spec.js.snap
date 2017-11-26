@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert @checkbox 1`] = `
+<div class="ion-alert alert-ios">
+    <div class="ion-backdrop" style="left:0px;top:0px;display:none;"></div>
+    <div name="alert" class="alert-wrapper" style="display:none;">
+        <!---->
+        <div class="alert-head">
+            <h2 class="alert-title">水果来了</h2>
+            <!---->
+        </div>
+        <div class="alert-message">选择你喜欢吃的水果</div>
+        <div>
+            <!---->
+            <div class="alert-checkbox-group"><button id="alert-input-0" aria-checked="true" checked="checked" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>苹果</span></div></span></button>
+                <button
+                    id="alert-input-1" disabled="disabled" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>梨</span></div>
+            </span>
+            </button><button id="alert-input-2" aria-checked="true" checked="checked" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>香蕉</span></div></span></button>
+            <button
+                id="alert-input-3" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>橘子</span></div>
+        </span>
+        </button>
+    </div>
+    <!---->
+</div>
+<div class="alert-button-group"><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>取消</span></span></button><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>确定</span></span></button></div>
+</div>
+</div>
+`;
+
+exports[`Alert @input 1`] = `
+<div class="ion-alert alert-ios alert-top">
+    <div class="ion-backdrop" style="left:0px;top:0px;display:none;"></div>
+    <div name="alert" class="alert-wrapper" style="display:none;">
+        <!---->
+        <div class="alert-head">
+            <h2 class="alert-title">登录iTunes Store</h2>
+            <!---->
+        </div>
+        <div class="alert-message">请输入您Apple ID"apple@icloud.com"的密码</div>
+        <div>
+            <!---->
+            <!---->
+            <div class="alert-input-group">
+                <div class="alert-input-wrapper"><input id="alert-input-0" placeholder="密码" type="password" value="testPassword" class="alert-input"></div>
+            </div>
+        </div>
+        <div class="alert-button-group"><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>取消</span></span></button><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>确定</span></span></button></div>
+    </div>
+</div>
+`;
+
+exports[`Alert @radio 1`] = `
+<div class="ion-alert alert-ios">
+    <div class="ion-backdrop" style="left:0px;top:0px;display:none;"></div>
+    <div name="alert" class="alert-wrapper" style="display:none;">
+        <!---->
+        <div class="alert-head">
+            <h2 class="alert-title">水果来了</h2>
+            <!---->
+        </div>
+        <div class="alert-message">你只能选择一个</div>
+        <div>
+            <div role="radiogroup" class="alert-radio-group"><button aria-checked="true" id="alert-input-0" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>苹果</span></div></span></button>
+                <button
+                    disabled="disabled" id="alert-input-1" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>梨</span></div>
+            </span>
+            </button><button id="alert-input-2" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>香蕉</span></div></span></button>
+            <button
+                id="alert-input-3" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>橘子</span></div>
+        </span>
+        </button>
+    </div>
+    <!---->
+    <!---->
+</div>
+<div class="alert-button-group"><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>取消</span></span></button><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>确定</span></span></button></div>
+</div>
+</div>
+`;

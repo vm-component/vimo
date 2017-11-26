@@ -14,8 +14,8 @@ _lib/
 .tmp
 *.zip
 
-publish
 publish/
+coverage/
 lib/
 dist/
 es/
