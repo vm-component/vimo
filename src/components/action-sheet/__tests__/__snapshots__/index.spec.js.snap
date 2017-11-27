@@ -9,13 +9,12 @@ exports[`ActionSheet @base: matches snapshot 1`] = `
                 <div class="action-sheet-title"><span>请选择操作</span>
                     <div class="action-sheet-sub-title">注意，选择后不能撤销！</div>
                 </div>
-                <div class="action-sheet-buttons"><button icon-left="" class="ion-button action-sheet-button action-sheet-button-ios"><span class="button-inner"><!----> <span>增加</span></span></button><button icon-left="" class="ion-button action-sheet-button action-sheet-button-ios action-sheet-destructive action-sheet-destructive"><span class="button-inner"><!----> <span>删除</span></span></button>
+                <div class="action-sheet-buttons"><button icon-left="" class="ion-button action-sheet-button action-sheet-button-ios action-sheet-button-default action-sheet-button-default-ios action-sheet-button-ios-default"><span class="button-inner"><!----> <span>增加</span></span></button>
                     <button
-                        icon-left="" class="ion-button action-sheet-button action-sheet-button-ios action-sheet-selected action-sheet-selected"><span class="button-inner"><!----> <span>选择</span></span>
-                        </button>
-                </div>
+                        icon-left="" class="ion-button action-sheet-button action-sheet-button-ios action-sheet-button-default action-sheet-button-default-ios action-sheet-button-ios-default action-sheet-destructive action-sheet-destructive"><span class="button-inner"><!----> <span>删除</span></span>
+                        </button><button icon-left="" class="ion-button action-sheet-button action-sheet-button-ios action-sheet-button-default action-sheet-button-default-ios action-sheet-button-ios-default action-sheet-selected action-sheet-selected"><span class="button-inner"><!----> <span>选择</span></span></button></div>
             </div>
-            <div class="action-sheet-group"><button icon-left="" class="ion-button action-sheet-cancel action-sheet-button action-sheet-button-ios"><span class="button-inner"><!----> <span>取消</span></span></button></div>
+            <div class="action-sheet-group"><button icon-left="" class="ion-button action-sheet-cancel action-sheet-button action-sheet-button-ios action-sheet-button-default action-sheet-button-default-ios action-sheet-button-ios-default"><span class="button-inner"><!----> <span>取消</span></span></button></div>
         </div>
     </div>
 </div>

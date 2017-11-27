@@ -12,19 +12,19 @@ exports[`Alert @checkbox 1`] = `
         <div class="alert-message">选择你喜欢吃的水果</div>
         <div>
             <!---->
-            <div class="alert-checkbox-group"><button id="alert-input-0" aria-checked="true" checked="checked" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>苹果</span></div></span></button>
+            <div class="alert-checkbox-group"><button id="alert-input-0" aria-checked="true" checked="checked" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios alert-checkbox-button-default alert-checkbox-button-default-ios alert-checkbox-button-ios-default"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>苹果</span></div></span></button>
                 <button
-                    id="alert-input-1" disabled="disabled" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>梨</span></div>
+                    id="alert-input-1" disabled="disabled" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios alert-checkbox-button-default alert-checkbox-button-default-ios alert-checkbox-button-ios-default"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>梨</span></div>
             </span>
-            </button><button id="alert-input-2" aria-checked="true" checked="checked" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>香蕉</span></div></span></button>
+            </button><button id="alert-input-2" aria-checked="true" checked="checked" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios alert-checkbox-button-default alert-checkbox-button-default-ios alert-checkbox-button-ios-default"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>香蕉</span></div></span></button>
             <button
-                id="alert-input-3" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>橘子</span></div>
+                id="alert-input-3" class="ion-button alert-tappable alert-checkbox alert-checkbox-button alert-checkbox-button-ios alert-checkbox-button-default alert-checkbox-button-default-ios alert-checkbox-button-ios-default"><span class="button-inner"><div class="alert-checkbox-icon"><div class="alert-checkbox-inner"></div></div> <div class="alert-checkbox-label"><span>橘子</span></div>
         </span>
         </button>
     </div>
     <!---->
 </div>
-<div class="alert-button-group"><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>取消</span></span></button><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>确定</span></span></button></div>
+<div class="alert-button-group"><button class="ion-button alert-button alert-button-ios alert-button-default alert-button-default-ios alert-button-ios-default"><span class="button-inner"><span>取消</span></span></button><button class="ion-button alert-button alert-button-ios alert-button-default alert-button-default-ios alert-button-ios-default"><span class="button-inner"><span>确定</span></span></button></div>
 </div>
 </div>
 `;
@@ -46,7 +46,7 @@ exports[`Alert @input 1`] = `
                 <div class="alert-input-wrapper"><input id="alert-input-0" placeholder="密码" type="password" value="testPassword" class="alert-input"></div>
             </div>
         </div>
-        <div class="alert-button-group"><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>取消</span></span></button><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>确定</span></span></button></div>
+        <div class="alert-button-group"><button class="ion-button alert-button alert-button-ios alert-button-default alert-button-default-ios alert-button-ios-default"><span class="button-inner"><span>取消</span></span></button><button class="ion-button alert-button alert-button-ios alert-button-default alert-button-default-ios alert-button-ios-default"><span class="button-inner"><span>确定</span></span></button></div>
     </div>
 </div>
 `;
@@ -62,20 +62,20 @@ exports[`Alert @radio 1`] = `
         </div>
         <div class="alert-message">你只能选择一个</div>
         <div>
-            <div role="radiogroup" class="alert-radio-group"><button aria-checked="true" id="alert-input-0" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>苹果</span></div></span></button>
+            <div role="radiogroup" class="alert-radio-group"><button aria-checked="true" id="alert-input-0" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios alert-radio-button-default alert-radio-button-default-ios alert-radio-button-ios-default"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>苹果</span></div></span></button>
                 <button
-                    disabled="disabled" id="alert-input-1" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>梨</span></div>
+                    disabled="disabled" id="alert-input-1" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios alert-radio-button-default alert-radio-button-default-ios alert-radio-button-ios-default"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>梨</span></div>
             </span>
-            </button><button id="alert-input-2" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>香蕉</span></div></span></button>
+            </button><button id="alert-input-2" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios alert-radio-button-default alert-radio-button-default-ios alert-radio-button-ios-default"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>香蕉</span></div></span></button>
             <button
-                id="alert-input-3" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>橘子</span></div>
+                id="alert-input-3" class="ion-button alert-tappable alert-radio alert-radio-button alert-radio-button-ios alert-radio-button-default alert-radio-button-default-ios alert-radio-button-ios-default"><span class="button-inner"><div class="alert-radio-icon"><div class="alert-radio-inner"></div></div> <div class="alert-radio-label"><span>橘子</span></div>
         </span>
         </button>
     </div>
     <!---->
     <!---->
 </div>
-<div class="alert-button-group"><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>取消</span></span></button><button class="ion-button alert-button alert-button-ios"><span class="button-inner"><span>确定</span></span></button></div>
+<div class="alert-button-group"><button class="ion-button alert-button alert-button-ios alert-button-default alert-button-default-ios alert-button-ios-default"><span class="button-inner"><span>取消</span></span></button><button class="ion-button alert-button alert-button-ios alert-button-default alert-button-default-ios alert-button-ios-default"><span class="button-inner"><span>确定</span></span></button></div>
 </div>
 </div>
 `;

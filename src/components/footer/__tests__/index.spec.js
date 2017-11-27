@@ -12,7 +12,7 @@ let options = {
 describe('Footer', function () {
   it('@base: renders the correct markup', function () {
     let wrapper = mount(Footer, options)
-    const result = '<footer class="ion-footer"><span>Test</span></footer>'
+    const result = '<footer class="ion-footer footer-ios"><span>Test</span></footer>'
     expect(wrapper.html().trim()).toEqual(result)
   })
 
