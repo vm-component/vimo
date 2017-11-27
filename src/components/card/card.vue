@@ -3,11 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
-    @import "card";
-    @import "card.ios.less";
-    @import "card.md.less";
-</style>
+<style lang="scss" src="./card.scss"></style>
 <script type="text/javascript">
   /**
    * @component Card
@@ -70,7 +66,8 @@
    *
    * */
   import mixin from './mixin'
-  export default{
+
+  export default {
     name: 'Card',
     data () {
       return {

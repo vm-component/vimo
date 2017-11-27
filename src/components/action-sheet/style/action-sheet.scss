@@ -1,0 +1,74 @@
+@import "../../../themes/ionic.globals";
+
+// Action Sheet
+// --------------------------------------------------
+
+/// @prop - Width of the action sheet
+$action-sheet-width: 100% !default;
+
+/// @prop - Maximum width of the action sheet
+$action-sheet-max-width: 500px !default;
+
+.ion-action-sheet {
+    @include position(0, null, null, 0);
+    
+    position: fixed;
+    z-index: $z-index-overlay + $z-index-overlay-sheet;
+    display: block;
+    
+    width: $action-sheet-width;
+    height: $action-sheet-width;
+}
+
+.action-sheet-wrapper {
+    @include position(null, 0, 0, 0);
+    @include margin(auto);
+    
+    position: absolute;
+    z-index: $z-index-overlay-wrapper;
+    display: block;
+    
+    width: $action-sheet-width;
+    max-width: $action-sheet-max-width;
+    
+    pointer-events: none;
+    
+    transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
+}
+
+.action-sheet-button {
+    width: $action-sheet-width;
+}
+
+.action-sheet-container {
+    display: flex;
+    
+    flex-flow: column;
+    
+    justify-content: flex-end;
+    
+    height: 100%;
+    max-height: 100%;
+}
+
+.action-sheet-group {
+    overflow: scroll;
+    
+    flex-shrink: 2;
+    
+    pointer-events: all;
+    
+    .action-sheet-buttons {
+        max-height: 265px;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.action-sheet-group-cancel {
+    overflow: hidden;
+    
+    flex-shrink: 0;
+}

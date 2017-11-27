@@ -1,25 +1,8 @@
 <template>
-    <footer class="ion-footer" :class="[{'hide-bar':isHide}]" :style="style">
+    <footer class="ion-footer" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
         <slot></slot>
     </footer>
 </template>
-<style lang="less">
-    @import "../../themes/index";
-
-    .ion-footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: @z-index-toolbar;
-        display: block;
-        width: 100%;
-        transition: -webkit-transform ease 300ms;
-    }
-
-    .ion-footer.hide-bar {
-        transform: translateY(100%);
-    }
-</style>
 <script type="text/javascript">
   /**
    * @component Base/Footer
@@ -52,11 +35,24 @@
         footerComponent: _this
       }
     },
+    props: {
+      mode: {
+        type: String,
+        default () {
+          return (this.$config && this.$config.get('mode', 'ios')) || 'ios'
+        }
+      }
+    },
     data () {
       return {
         // -------- public --------
         isHide: false,
         style: {}
+      }
+    },
+    computed: {
+      modeClass () {
+        return `footer-${this.mode}`
       }
     },
     methods: {

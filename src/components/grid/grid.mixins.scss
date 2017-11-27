@@ -1,4 +1,5 @@
-//@import "../../themes/index.less";
+@import "../../themes/ionic.globals";
+@import "../../themes/ionic.mixins";
 
 // Responsive Mixins
 // --------------------------------------------------
@@ -7,17 +8,21 @@
 // ---------------------------------------------------------------------------------
 
 @mixin make-grid($padding-width: $grid-padding-width) {
-  padding: $padding-width / 2;
-  margin-left: auto;
-  margin-right: auto;
+  @include padding($padding-width / 2);
+  @include margin-horizontal(auto);
+
   width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
 
   // Remove the padding from the grid and all immediate children columns
   &[no-padding] {
-    padding: 0;
+    @include padding(0);
 
     > .row > .col {
-      padding: 0;
+      @include padding(0);
     }
   }
 }
@@ -90,17 +95,18 @@
   }
 }
 
+
 // Creates the base column which has shared styles among all columns
 // ---------------------------------------------------------------------------------
 
 @mixin make-column-base($padding-width: $grid-padding-width) {
+  @include padding($padding-width / 2);
+
   position: relative;
 
-  padding: $padding-width / 2;
-
   width: 100%;
-  margin: 0;
-  min-height: 1px; // Prevent columns from collapsing when empty  /*no*/
+  @include margin(0);
+  min-height: 1px; // Prevent columns from collapsing when empty
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
@@ -126,6 +132,7 @@
   }
 }
 
+
 // Create an individual column
 // ---------------------------------------------------------------------------------
 
@@ -138,6 +145,7 @@
   max-width: percentage($size / $columns);
 }
 
+
 // Adds padding to the column
 // ---------------------------------------------------------------------------------
 
@@ -145,37 +153,41 @@
   @each $breakpoint in map-keys($padding-widths) {
     @include media-breakpoint-up($breakpoint) {
       $padding-width: map-get($padding-widths, $breakpoint);
-      padding: ($padding-width / 2);
+      @include padding($padding-width / 2);
     }
   }
 }
 
-// Offset the column using margin-left
+
+// Offset the column using margin-start
 // ---------------------------------------------------------------------------------
 
 @mixin make-column-offset($size, $columns: $grid-columns) {
-  margin-left: percentage($size / $columns);
+  @include margin-horizontal(percentage($size / $columns), null);
 }
+
 
 // Push the column using left
 // ---------------------------------------------------------------------------------
 
 @mixin make-column-push($size, $columns: $grid-columns) {
-  left: if($size > 0, percentage($size / $columns), auto);
+  @include position(null, null, null, if($size > 0, percentage($size / $columns), auto));
 }
+
 
 // Pull the column using right
 // ---------------------------------------------------------------------------------
 
 @mixin make-column-pull($size, $columns: $grid-columns) {
-  right: if($size > 0, percentage($size / $columns), auto);
+  @include position(null, if($size > 0, percentage($size / $columns), auto), null, null);
 }
+
 
 // Determine which modifier to add
 // ---------------------------------------------------------------------------------
 
 @mixin make-column-modifier($type, $size, $columns) {
-  // Work around the lack of dynamic mixin .support (https://github.com/sass/sass/issues/626)
+  // Work around the lack of dynamic mixin @include support (https://github.com/sass/sass/issues/626)
   @if $type == push {
     @include make-column-push($size, $columns);
   } @else if $type == pull {
@@ -184,6 +196,7 @@
     @include make-column-offset($size, $columns);
   }
 }
+
 
 // Create the responsive grid columns
 // --------------------------------------------------
@@ -241,51 +254,5 @@
         }
       }
     }
-  }
-}
-
-// Breakpoint Mixins
-// ---------------------------------------------------------------------------------
-
-// Breakpoint viewport sizes and media queries.
-//
-// Breakpoints are defined as a map of (name: minimum width), order from small to large:
-//
-//    (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px)
-//
-// The map defined in the `$grid-breakpoints` global variable is used as the `$breakpoints` argument by default.
-
-// ---------------------------------------------------------------------------------
-
-// Minimum breakpoint width. Null for the smallest (first) breakpoint.
-//
-//    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
-//    576px
-@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
-  $min: map-get($breakpoints, $name);
-  @return if($min != 0, $min, null);
-}
-
-// Returns a blank string if smallest breakpoint, otherwise returns the name with a dash infront.
-// Useful for making responsive utilities.
-//
-//    >> breakpoint-infix(xs, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
-//    ""  (Returns a blank string)
-//    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
-//    "-sm"
-@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
-  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
-}
-
-// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
-// Makes the @content apply to the given breakpoint and wider.
-@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
-  $min: breakpoint-min($name, $breakpoints);
-  @if $min {
-    @media (min-width: $min) {
-      @content;
-    }
-  } @else {
-    @content;
   }
 }

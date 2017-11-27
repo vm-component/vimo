@@ -1,6 +1,6 @@
 <template>
     <div class="ion-title">
-        <div class="toolbar-title"
+        <div class="toolbar-title" :class="[modeClass]"
              :style="{color:titleColor}"
              @click="titleClick" v-html="titleInner"></div>
     </div>
@@ -115,6 +115,9 @@
       }
     },
     computed: {
+      modeClass () {
+        return `toolbar-title-${this.mode}`
+      },
       // 这个title组件在navbar中
       isTitleInNavbar () {
         return !!this.navbarComponent

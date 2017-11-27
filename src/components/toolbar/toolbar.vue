@@ -1,7 +1,7 @@
 <template>
-    <div class="toolbar ion-toolbar" :class="[colorClass]">
-        <div class="toolbar-background"></div>
-        <div class="toolbar-content">
+    <div class="toolbar ion-toolbar" :class="[colorClass,modeClass]">
+        <div class="toolbar-background" :class="backgroundClass"></div>
+        <div class="toolbar-content" :class="contentClass">
             <slot></slot>
         </div>
         <slot name="buttons"></slot>

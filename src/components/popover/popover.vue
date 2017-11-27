@@ -19,9 +19,9 @@
     </div>
 </template>
 <style lang="less">
-    @import "popover.less";
-    @import "popover.ios.less";
-    @import "popover.md.less";
+    @import "backup/popover.less";
+    @import "backup/popover.ios.less";
+    @import "backup/popover.md.less";
 </style>
 <script type="text/javascript">
   /**

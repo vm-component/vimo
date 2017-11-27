@@ -1,0 +1,12 @@
+@import "./style/picker.scss";
+@import "./style/picker.ios.scss";
+@import "./style/picker.md.scss";
+
+// transitioName = 'picker'
+.picker-enter-active, .picker-leave-active {
+  transform: translateY(0%);
+}
+
+.picker-enter, .picker-leave-active {
+  transform: translateY(100%);
+}

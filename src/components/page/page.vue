@@ -3,60 +3,6 @@
         <slot></slot>
     </article>
 </template>
-<style lang="less">
-
-    /// @prop - Background color of the content when making transition
-    @content-ios-transition-background: #000;
-
-    // Page Container Structure
-    // --------------------------------------------------
-    .ion-page {
-        position: relative;
-        top: 0;
-        left: 0;
-        display: block;
-
-        width: 100%;
-
-        // do not show, but still render so we can get dimensions
-        opacity: 1;
-        z-index: 10;
-    }
-
-    .ion-box {
-        // 将page中在页面布局absolute化
-        &.ion-page {
-            height: 100%;
-            position: absolute;
-            contain: strict;
-            .ion-header {
-                position: absolute;
-            }
-            .ion-footer {
-                position: absolute;
-            }
-            .ion-content {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 100%;
-                height: 100%;
-                .scroll-content {
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    width: 100%;
-                    overflow: scroll;
-                    -webkit-overflow-scrolling: touch;
-                }
-            }
-        }
-
-        .fixed-content [fixed], .fixed-content [fixed-top], .fixed-content [fixed-bottom] {
-            position: absolute;
-        }
-    }
-</style>
 <script type="text/javascript">
   /**
    * @component Base/Page

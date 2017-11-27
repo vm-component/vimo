@@ -3,6 +3,7 @@
         <slot></slot>
     </div>
 </template>
+<style lang="scss" src="./note.scss"></style>
 <script type="text/javascript">
   /**
    * @component Note
@@ -43,7 +44,3 @@
     }
   }
 </script>
-<style lang="less">
-    @import "note.ios.less";
-    @import "note.md.less";
-</style>

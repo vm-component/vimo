@@ -1,8 +1,8 @@
 <template>
-    <div class="toolbar ion-navbar" :class="[colorClass]"
+    <div class="toolbar ion-navbar" :class="[colorClass,modeClass]"
          v-show="!hideNavBar">
-        <div ref="toolbarBackground" class="toolbar-background"></div>
-        <div class="toolbar-content">
+        <div ref="toolbarBackground" class="toolbar-background" :class="backgroundClass"></div>
+        <div class="toolbar-content" :class="contentClass">
             <slot></slot>
         </div>
         <vm-button v-if="!hideBb"

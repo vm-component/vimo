@@ -30,20 +30,7 @@
         </transition>
     </div>
 </template>
-<style lang="less">
-    @import "picker";
-    @import "picker.ios.less";
-    @import "picker.md.less";
-
-    // transitioName = 'picker'
-    .picker-enter-active, .picker-leave-active {
-        transform: translateY(0%);
-    }
-
-    .picker-enter, .picker-leave-active {
-        transform: translateY(100%);
-    }
-</style>
+<style lang="scss" src="./picker.scss"></style>
 <script type="text/javascript">
   /**
    * @component Picker
