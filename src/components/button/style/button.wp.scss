@@ -7,16 +7,16 @@
 $button-wp-margin:                                        null !default;
 
 /// @prop - Margin top of the button
-$button-wp-margin-top:                                    .4rem !default;
+$button-wp-margin-top:                                    4px !default;
 
 /// @prop - Margin end of the button
-$button-wp-margin-end:                                    .2rem !default;
+$button-wp-margin-end:                                    2px !default;
 
 /// @prop - Margin bottom of the button
-$button-wp-margin-bottom:                                 .4rem !default;
+$button-wp-margin-bottom:                                 4px !default;
 
 /// @prop - Margin start of the button
-$button-wp-margin-start:                                  .2rem !default;
+$button-wp-margin-start:                                  2px !default;
 
 // deprecated
 $button-wp-padding:                                       null !default;
@@ -34,7 +34,7 @@ $button-wp-padding-bottom:                                $button-wp-padding-top
 $button-wp-padding-start:                                 $button-wp-padding-end !default;
 
 /// @prop - Height of the button
-$button-wp-height:                                        3.6rem !default;
+$button-wp-height:                                        36px !default;
 
 /// @prop - Border width of the button
 $button-wp-border-width:                                  3px !default;
@@ -49,7 +49,7 @@ $button-wp-border-color:                                  transparent !default;
 $button-wp-border-radius:                                 0 !default;
 
 /// @prop - Font size of the button text
-$button-wp-font-size:                                     1.4rem !default;
+$button-wp-font-size:                                     14px !default;
 
 /// @prop - Background color of the button
 $button-wp-background-color:                              color($colors-wp, primary) !default;
@@ -83,7 +83,7 @@ $button-wp-large-padding-start:                           $button-wp-large-paddi
 $button-wp-large-height:                                  2.8em !default;
 
 /// @prop - Font size of the large button
-$button-wp-large-font-size:                               2rem !default;
+$button-wp-large-font-size:                               20px !default;
 
 
 // Windows Small Button
@@ -108,7 +108,7 @@ $button-wp-small-padding-start:                           $button-wp-small-paddi
 $button-wp-small-height:                                  2.1em !default;
 
 /// @prop - Font size of the small button
-$button-wp-small-font-size:                               1.3rem !default;
+$button-wp-small-font-size:                               13px !default;
 
 /// @prop - Font size of an icon in the small button
 $button-wp-small-icon-font-size:                          1.4em !default;

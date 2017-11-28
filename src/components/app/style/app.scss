@@ -17,7 +17,7 @@
 
 // App
 // --------------------------------------------------
-// All font sizes use rem units
+// All font sizes use px units
 // By default, 1rem equals 10px. For example, 1.4rem  === 14px
 // $font-size-root value, which is on the <html> element
 // is what can scale all fonts
@@ -238,19 +238,12 @@ sub {
 .app-root {
   @include position(0, null, null, 0);
 
-  //position: absolute;
   position: static;
   z-index: $z-index-page-container;
   display: block;
 
   width: 100%;
-  //height: 100%;
 }
-
-.ion-nav{
-  //overflow: hidden;
-}
-
 
 .ion-app,
 .ion-nav,
@@ -264,26 +257,17 @@ sub {
   width: 100%;
 }
 
-//.disable-scroll .ion-page {
-//  pointer-events: none;
-//  touch-action: none;
-//}
-
 // Page Container Structure
 // --------------------------------------------------
 
 .ion-page {
   @include position(0, null, null, 0);
 
-  //position: absolute;
   position: relative;
   display: block;
 
   width: 100%;
-  //height: 100%;
 
-  // do not show, but still render so we can get dimensions
-  //opacity: 0;
   opacity: 1;
   
   z-index: 10;
@@ -291,6 +275,7 @@ sub {
 
 .ion-box {
   // 将page中在页面布局absolute化
+  // TODO: fixed??
   &.ion-page {
     height: 100%;
     position: absolute;
@@ -323,19 +308,15 @@ sub {
   }
 }
 
-//.ion-page.show-page {
-//  // show the page now that it's ready
-//  opacity: 1;
-//}
-
-
 // Toolbar Container Structure
+// --------------------------------------------------
+
+// Header Structure
 // --------------------------------------------------
 
 .ion-header {
   @include position(0, null, null, 0);
 
-  //position: absolute;
   position: fixed;
   z-index: $z-index-toolbar;
   display: block;
@@ -349,7 +330,8 @@ sub {
   transform: translateY(-100%);
 }
 
-#rightButtonPlaceholder {
+// place holder for pop menus
+#right-button-placeholder {
   width: 30px;
   bottom: 0;
   height: 1px;
@@ -357,10 +339,12 @@ sub {
   right: 9px;
 }
 
+// Footer Structure
+// --------------------------------------------------
+
 .ion-footer {
   @include position(null, null, 0, 0);
 
-  //position: absolute;
   position: fixed;
   z-index: $z-index-toolbar;
   display: block;
@@ -373,119 +357,3 @@ sub {
 .ion-footer.hide-bar {
   transform: translateY(100%);
 }
-
-// Misc
-// --------------------------------------------------
-//[app-viewport],
-//[overlay-portal],
-//[nav-viewport],
-//[tab-portal],
-//.nav-decor {
-//  display: none;
-//}
-//
-// Text Alignment
-// --------------------------------------------------
-//@if ($include-text-alignment-utilities == true) {
-//  // Creates text alignment attributes based on screen size
-//  @each $breakpoint in map-keys($screen-breakpoints) {
-//    $infix: breakpoint-infix($breakpoint, $screen-breakpoints);
-//
-//    @include media-breakpoint-up($breakpoint, $screen-breakpoints) {
-//      // Provide `[text-{bp}]` attributes for aligning the text based
-//      // on the breakpoint
-//      [text#{$infix}-center] {
-//        @include text-align(center, !important);
-//      }
-//
-//      [text#{$infix}-justify] {
-//        @include text-align(justify, !important);
-//      }
-//
-//      [text#{$infix}-start] {
-//        @include text-align(start, !important);
-//      }
-//
-//      [text#{$infix}-end] {
-//        @include text-align(end, !important);
-//      }
-//
-//      [text#{$infix}-left] {
-//        @include text-align(left, !important);
-//      }
-//
-//      [text#{$infix}-right] {
-//        @include text-align(right, !important);
-//      }
-//
-//      [text#{$infix}-nowrap] {
-//        // scss-lint:disable ImportantRule
-//        white-space: nowrap !important;
-//      }
-//
-//      [text#{$infix}-wrap] {
-//        // scss-lint:disable ImportantRule
-//        white-space: normal !important;
-//      }
-//    }
-//  }
-//}
-//// Text Transformation
-//// --------------------------------------------------
-//
-//@if ($include-text-transform-utilities == true) {
-//  // Creates text transform attributes based on screen size
-//  @each $breakpoint in map-keys($screen-breakpoints) {
-//    $infix: breakpoint-infix($breakpoint, $screen-breakpoints);
-//
-//    @include media-breakpoint-up($breakpoint, $screen-breakpoints) {
-//      // Provide `[text-{bp}]` attributes for transforming the text based
-//      // on the breakpoint
-//      [text#{$infix}-uppercase] {
-//        // scss-lint:disable ImportantRule
-//        text-transform: uppercase !important;
-//      }
-//
-//      [text#{$infix}-lowercase] {
-//        // scss-lint:disable ImportantRule
-//        text-transform: lowercase !important;
-//      }
-//
-//      [text#{$infix}-capitalize] {
-//        // scss-lint:disable ImportantRule
-//        text-transform: capitalize !important;
-//      }
-//    }
-//  }
-//}
-//
-//
-//// Float Elements
-//// --------------------------------------------------
-//
-//@if ($include-float-element-utilities == true) {
-//  // Creates text transform attributes based on screen size
-//  @each $breakpoint in map-keys($screen-breakpoints) {
-//    $infix: breakpoint-infix($breakpoint, $screen-breakpoints);
-//
-//    @include media-breakpoint-up($breakpoint, $screen-breakpoints) {
-//      // Provide `[float-{bp}]` attributes for floating the element based
-//      // on the breakpoint
-//      [float#{$infix}-left] {
-//        @include float(left, !important);
-//      }
-//
-//      [float#{$infix}-right] {
-//        @include float(right, !important);
-//      }
-//
-//      [float#{$infix}-start] {
-//        @include float(start, !important);
-//      }
-//
-//      [float#{$infix}-end] {
-//        @include float(end, !important);
-//      }
-//    }
-//  }
-//}
