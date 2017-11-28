@@ -18,7 +18,6 @@
                      :enabled="true"></Tab>
             </Tabs>
         </Footer>
-
     </Page>
 </template>
 <style scoped lang="less"></style>

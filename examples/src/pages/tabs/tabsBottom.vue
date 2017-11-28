@@ -1,13 +1,6 @@
 <template>
     <Page>
-        <Header>
-            <Navbar>
-                <Title>Tabs在底部</Title>
-            </Navbar>
-        </Header>
-        <Content>
-            <router-view></router-view>
-        </Content>
+        <router-view></router-view>
         <Footer>
             <Tabs :tabsLayout="tabsLayout" @onTabChange="onTabChange" tabsHighlight ref=tabs>
                 <Tab routerType="push" :to="{name:'tabsBottom.demoTab1'}" :tabBadge="tabBadge1" tabTitle="User" tabBadgeStyle="danger"

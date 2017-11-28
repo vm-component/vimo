@@ -24,21 +24,21 @@ export default [
         path: 'demoTab1',
         name: 'tabsBottom.demoTab1',
         component (resolve) {
-          require(['@/pages/tabs/demoTab1.vue'], resolve)
+          require(['@/pages/tabs/demoTab1-navbar.vue'], resolve)
         }
       },
       {
         path: 'demoTab2',
         name: 'tabsBottom.demoTab2',
         component (resolve) {
-          require(['@/pages/tabs/demoTab2.vue'], resolve)
+          require(['@/pages/tabs/demoTab2-navbar.vue'], resolve)
         }
       },
       {
         path: 'demoTab3',
         name: 'tabsBottom.demoTab3',
         component (resolve) {
-          require(['@/pages/tabs/demoTab3.vue'], resolve)
+          require(['@/pages/tabs/demoTab3-navbar.vue'], resolve)
         }
       }
     ]
