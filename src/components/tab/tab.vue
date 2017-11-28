@@ -32,10 +32,11 @@
    *
    * */
   import Badge from '../badge'
+  import Icon from '../icon'
 
   export default {
     name: 'Tab',
-    components: {Badge},
+    components: {Badge, Icon},
     props: {
       mode: {
         type: String,
