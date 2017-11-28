@@ -1,8 +1,8 @@
-@import "../../themes/index.less";
+@import "../../../themes/ionic.globals";
 
-@city-selector-background-color: #f4f4f4;
+$city-selector-background-color: #f4f4f4;
 
-@city-selector-background-color-active: #d9d9d9;
+$city-selector-background-color-active: #d9d9d9;
 
 .vm-city-selector {
   position: fixed;
@@ -17,9 +17,9 @@
 
   transition: transform ease 300ms, opacity ease 300ms;
 
-  background: @city-selector-background-color;
+  background: $city-selector-background-color;
 
-  z-index: @z-index-overlay + @z-index-overlay-modal;
+  z-index: $z-index-overlay + $z-index-overlay-modal;
 }
 
 .city-shortcut {
@@ -63,7 +63,7 @@
     .city-selector__group--header {
       font-size: 14px;
       color: #000;
-      background-color: @city-selector-background-color;
+      background-color: $city-selector-background-color;
       padding-left: 16px;
       position: relative;
       transition: background-color 200ms linear;
@@ -111,7 +111,7 @@
       }
     }
     .city-selector__group--item:active {
-      background-color: @city-selector-background-color-active;
+      background-color: $city-selector-background-color-active;
       transition-duration: 0ms;
     }
     .city-selector__group--hotBox {
@@ -121,7 +121,7 @@
       flex-wrap: wrap;
       padding: 0 14px;
       margin: 0 auto;
-      background-color: @city-selector-background-color;
+      background-color: $city-selector-background-color;
       .hotBox__wrap {
         box-sizing: border-box;
         width: 25%;
@@ -134,7 +134,7 @@
           padding: 12px 0;
           transition: background-color 200ms linear;
           &:active {
-            background: @city-selector-background-color-active;
+            background: $city-selector-background-color-active;
           }
         }
       }

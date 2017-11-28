@@ -42,10 +42,10 @@ $card-wp-padding-media-top:           10px !default;
 $card-wp-padding-media-bottom:        10px !default;
 
 /// @prop - Size of the card avatar
-$card-wp-avatar-size:                 4rem !default;
+$card-wp-avatar-size:                 40px !default;
 
 /// @prop - Size of the card thumbnail
-$card-wp-thumbnail-size:              8rem !default;
+$card-wp-thumbnail-size:              80px !default;
 
 /// @prop - Background color of the card
 $card-wp-background-color:            $list-wp-background-color !default;
@@ -60,7 +60,7 @@ $card-wp-box-shadow:                  0 1px 1px 1px $card-wp-box-shadow-color !d
 $card-wp-border-radius:               1px !default;
 
 /// @prop - Font size of the card
-$card-wp-font-size:                   1.4rem !default;
+$card-wp-font-size:                   14px !default;
 
 /// @prop - Line height of the card
 $card-wp-line-height:                 1.5 !default;
@@ -69,7 +69,7 @@ $card-wp-line-height:                 1.5 !default;
 $card-wp-text-color:                  #222 !default;
 
 /// @prop - Font size of card title
-$card-wp-title-font-size:             2.4rem !default;
+$card-wp-title-font-size:             24px !default;
 
 // deprecated
 $card-wp-title-padding:               null !default;
@@ -105,7 +105,7 @@ $card-wp-title-margin-start:          $card-wp-title-margin-end !default;
 $card-wp-title-text-color:            #222 !default;
 
 /// @prop - Font size of the card header
-$card-wp-header-font-size:            1.6rem !default;
+$card-wp-header-font-size:            16px !default;
 
 // deprecated
 $card-wp-header-padding:              null !default;
@@ -138,7 +138,7 @@ $card-wp-header-color:                #222 !default;
   box-shadow: $card-wp-box-shadow;
 }
 
-.card-wp ion-list {
+.card-wp .ion-list {
   @include margin(null, null, 0, null);
 }
 
@@ -175,7 +175,7 @@ $card-wp-header-color:                #222 !default;
 }
 
 .card .note-wp {
-  font-size: 1.3rem;
+  font-size: 13px;
 }
 
 .card-title-wp {
@@ -197,7 +197,7 @@ $card-wp-header-color:                #222 !default;
 .card-wp h1 {
   @include margin(0, 0, 2px);
 
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: normal;
   color: $card-wp-text-color;
 }
@@ -205,7 +205,7 @@ $card-wp-header-color:                #222 !default;
 .card-wp h2 {
   @include margin(2px, 0);
 
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: normal;
   color: $card-wp-text-color;
 }
@@ -216,7 +216,7 @@ $card-wp-header-color:                #222 !default;
 .card-wp h6 {
   @include margin(2px, 0);
 
-  font-size: 1.4rem;
+  font-size: 14px;
   font-weight: normal;
   color: $card-wp-text-color;
 }
@@ -224,13 +224,13 @@ $card-wp-header-color:                #222 !default;
 .card-wp p {
   @include margin(0, 0, 2px);
 
-  font-size: 1.4rem;
+  font-size: 14px;
   font-weight: normal;
   line-height: 1.5;
   color: $card-wp-text-color;
 }
 
-.card-wp + ion-card {
+.card-wp + .ion-card {
   @include margin(0, null, null, null);
 }
 

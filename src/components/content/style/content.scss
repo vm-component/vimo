@@ -11,22 +11,14 @@
     display: block;
     
     width: 100%;
-    //height: 100%;
     
-    //contain: layout size style;
     contain: layout style;
     
-    // fix: in ios safari of margin in children layout
-    //  overflow: hidden;
     &:before {
         content: " ";
         display: table;
     }
 }
-
-//.ion-page > .ion-content {
-//  position: absolute;
-//}
 
 a {
     color: $link-color;
@@ -43,27 +35,13 @@ a {
     z-index: $z-index-scroll-content;
     display: block;
     
-    //overflow-x: hidden;
-    //overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     will-change: scroll-position;
     
-    //contain: size style layout;
     contain: style layout;
     
     overflow: hidden;
 }
-
-//.ion-content.js-scroll > .scroll-content {
-//  position: relative;
-//
-//  min-height: 100%;
-//
-//  overflow-x: initial;
-//  overflow-y: initial;
-//  -webkit-overflow-scrolling: auto;
-//  will-change: initial;
-//}
 
 .scroll-content.disable-scroll {
     overflow: hidden !important;
@@ -75,21 +53,6 @@ a {
 
 // Fixed Content (ion-fixed and ion-fab)
 // --------------------------------------------------
-
-//.fixed-content {
-//  @include position(0, 0, 0, 0);
-//
-//  position: absolute;
-//  display: block;
-//}
-//
-//[ion-fixed] {
-//  position: absolute;
-//
-//  z-index: $z-index-fixed-content;
-//
-//  transform: translateZ(0);
-//}
 
 .fixed-content {
     position: fixed;

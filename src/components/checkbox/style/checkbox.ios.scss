@@ -28,7 +28,7 @@ $checkbox-ios-icon-border-style:          solid !default;
 $checkbox-ios-icon-border-radius:         50% !default;
 
 /// @prop - Width of the checkbox icon checkmark
-$checkbox-ios-icon-checkmark-width:       1px !default;
+$checkbox-ios-icon-checkmark-width:       1px !default; /* no */
 
 /// @prop - Style of the checkbox icon checkmark
 $checkbox-ios-icon-checkmark-style:       solid !default;
@@ -114,7 +114,7 @@ $checkbox-ios-item-end-margin-start:      0 !default;
   width: 4px;
   height: 9px;
 
-  border-width: $checkbox-ios-icon-checkmark-width;
+  border-width: $checkbox-ios-icon-checkmark-width; /* no */
   border-top-width: 0 !important;
   border-left-width: 0 !important;
   border-style: $checkbox-ios-icon-checkmark-style;

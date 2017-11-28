@@ -52,10 +52,7 @@
         </article>
     </transition>
 </template>
-<style lang="less">
-    @import "choose-city.less";
-    @import "../../animations/fade-right.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   import { pointerCoord, clamp } from '../../util/util'
   import popupExtend from '../../util/popup-extend'
@@ -73,13 +70,13 @@
       hotCities: {
         type: Array,
         default () {
-          return require('./hot-cities.json')
+          return require('./data/hot-cities.json')
         }
       },
       cities: {
         type: Array,
         default () {
-          return require('./cities.json')
+          return require('./data/cities.json')
         }
       },
       ak: {

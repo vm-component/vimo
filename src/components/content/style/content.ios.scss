@@ -53,36 +53,3 @@ $content-ios-transition-background:     #000 !default;
 // --------------------------------------------------
 
 @include content-margin('ios', $content-ios-margin);
-
-
-// iOS Content Scroll
-// --------------------------------------------------
-
-.content-ios:not([no-bounce]) > .scroll-content::before,
-.content-ios:not([no-bounce]) > .scroll-content::after {
-  position: absolute;
-
-  width: 1px;
-  height: 1px;
-
-  content: "";
-}
-
-.content-ios:not([no-bounce]) > .scroll-content::before {
-  bottom: -1px;
-}
-
-.content-ios:not([no-bounce]) > .scroll-content::after {
-  top: -1px;
-}
-
-.platform-core .content-ios .scroll-content::after,
-.platform-core .content-ios .scroll-content::before {
-  position: initial;
-
-  top: initial;
-  bottom: initial;
-
-  width: initial;
-  height: initial;
-}
