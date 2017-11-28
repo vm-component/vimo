@@ -87,6 +87,7 @@
     "swiper": "^3.4.2"
   },
   "devDependencies": {
+    "vue": "^2.5.8",
     "autoprefixer": "^6.7.2",
     "axios": "^0.16.2",
     "babel-core": "^6.26.0",
@@ -159,6 +160,7 @@
     "rimraf": "^2.6.0",
     "run-sequence": "^1.2.2",
     "sass-loader": "^6.0.6",
+    "scss-loader": "^0.0.1",
     "semver": "^5.3.0",
     "sinon": "^4.1.2",
     "standard": "^10.0.2",
