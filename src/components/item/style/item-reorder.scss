@@ -5,7 +5,7 @@ $reorder-initial-transform: 300% !default;
 // Item reorder
 // --------------------------------------------------
 
-ion-reorder {
+.ion-reorder {
   @include transform(translate3d($reorder-initial-transform, 0, 0));
 
   display: none;
@@ -26,21 +26,21 @@ ion-reorder {
   touch-action: manipulation;
 }
 
-.reorder-side-start ion-reorder {
+.reorder-side-start .ion-reorder {
   @include transform(translate3d(-$reorder-initial-transform, 0, 0));
 
   order: -1;
 }
 
-ion-reorder ion-icon {
+.ion-reorder .ion-icon {
   pointer-events: none;
 }
 
-.reorder-enabled ion-reorder {
+.reorder-enabled .ion-reorder {
   display: flex;
 }
 
-.reorder-visible ion-reorder {
+.reorder-visible .ion-reorder {
   @include transform(translate3d(0, 0, 0));
 }
 

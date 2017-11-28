@@ -4,7 +4,7 @@
 // --------------------------------------------------
 
 /// @prop - Font size of the item text
-$item-wp-body-text-font-size:        1.4rem !default;
+$item-wp-body-text-font-size:        14px !default;
 
 /// @prop - line height of the item text
 $item-wp-body-text-line-height:      1.5 !default;
@@ -19,7 +19,7 @@ $item-wp-body-text-color:            $list-wp-text-color !default;
 $item-wp-paragraph-text-color:       #666 !default;
 
 /// @prop - Font size of the item
-$item-wp-font-size:                  1.6rem !default;
+$item-wp-font-size:                  16px !default;
 
 /// @prop - Size of the avatar in the item
 $item-wp-avatar-size:                40px !default;
@@ -49,7 +49,7 @@ $item-wp-divider-background:         #fff !default;
 $item-wp-divider-border-bottom:      1px solid $list-wp-border-color !default;
 
 /// @prop - Font size for the divider
-$item-wp-divider-font-size:          2rem !default;
+$item-wp-divider-font-size:          20px !default;
 
 /// @prop - Background for the sliding content
 $item-wp-sliding-content-background: $list-wp-background-color !default;
@@ -80,14 +80,14 @@ $item-wp-sliding-content-background: $list-wp-background-color !default;
 .item-wp h1 {
   @include margin(0, 0, 2px);
 
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: normal;
 }
 
 .item-wp h2 {
   @include margin(2px, 0);
 
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: normal;
 }
 
@@ -97,7 +97,7 @@ $item-wp-sliding-content-background: $list-wp-background-color !default;
 .item-wp h6 {
   @include margin(2px, 0);
 
-  font-size: 1.4rem;
+  font-size: 14px;
   font-weight: normal;
   line-height: normal;
 }
@@ -107,7 +107,7 @@ $item-wp-sliding-content-background: $list-wp-background-color !default;
 
   overflow: inherit;
 
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: normal;
   text-overflow: inherit;
   color: $item-wp-paragraph-text-color;
@@ -148,10 +148,10 @@ $item-wp-sliding-content-background: $list-wp-background-color !default;
   @include margin($item-wp-padding-media-top, ($item-wp-padding-end / 2), $item-wp-padding-media-bottom, 0);
 }
 
-.item-wp ion-icon[item-left], // deprecated
-.item-wp ion-icon[item-right], // deprecated
-.item-wp ion-icon[item-start],
-.item-wp ion-icon[item-end] {
+.item-wp .ion-icon[item-left], // deprecated
+.item-wp .ion-icon[item-right], // deprecated
+.item-wp .ion-icon[item-start],
+.item-wp .ion-icon[item-end] {
   @include margin($item-wp-padding-icon-top, null, $item-wp-padding-icon-bottom, 0);
 }
 
@@ -160,10 +160,10 @@ $item-wp-sliding-content-background: $list-wp-background-color !default;
 
   height: 25px;
 
-  font-size: 1.2rem;
+  font-size: 12px;
 }
 
-.item-wp .item-button[icon-only] ion-icon,
+.item-wp .item-button[icon-only] .ion-icon,
 .item-wp .item-button[icon-only] {
   @include padding(0, 1px);
 }
@@ -173,24 +173,24 @@ $item-wp-sliding-content-background: $list-wp-background-color !default;
   line-height: $item-wp-body-text-line-height;
 }
 
-.item-wp ion-icon[item-left] + .item-inner, // deprecated
-.item-wp ion-icon[item-left] + .item-input, // deprecated
- .item-wp ion-icon[item-start] + .item-inner,
-.item-wp ion-icon[item-start] + .item-input {
+.item-wp .ion-icon[item-left] + .item-inner, // deprecated
+.item-wp .ion-icon[item-left] + .item-input, // deprecated
+ .item-wp .ion-icon[item-start] + .item-inner,
+.item-wp .ion-icon[item-start] + .item-input {
   @include margin-horizontal(($item-wp-padding-start / 2), null);
 }
 
-.item-wp ion-avatar[item-left], // deprecated
-.item-wp ion-thumbnail[item-left], // deprecated
-.item-wp ion-avatar[item-start],
-.item-wp ion-thumbnail[item-start] {
+.item-wp .ion-avatar[item-left], // deprecated
+.item-wp .ion-thumbnail[item-left], // deprecated
+.item-wp .ion-avatar[item-start],
+.item-wp .ion-thumbnail[item-start] {
   @include margin(($item-wp-padding-end / 2), $item-wp-padding-end, ($item-wp-padding-end / 2), 0);
 }
 
-.item-wp ion-avatar[item-right], // deprecated
-.item-wp ion-thumbnail[item-right], // deprecated
-.item-wp ion-avatar[item-end],
-.item-wp ion-thumbnail[item-end] {
+.item-wp .ion-avatar[item-right], // deprecated
+.item-wp .ion-thumbnail[item-right], // deprecated
+.item-wp .ion-avatar[item-end],
+.item-wp .ion-thumbnail[item-end] {
   @include margin($item-wp-padding-end / 2);
 }
 
@@ -198,13 +198,13 @@ $item-wp-sliding-content-background: $list-wp-background-color !default;
 // Windows Item Avatar
 // --------------------------------------------------
 
-.item-wp ion-avatar {
+.item-wp .ion-avatar {
   min-width: $item-wp-avatar-size;
   min-height: $item-wp-avatar-size;
 }
 
-.item-wp ion-avatar ion-img,
-.item-wp ion-avatar img {
+.item-wp .ion-avatar .ion-img,
+.item-wp .ion-avatar img {
   @include border-radius($item-wp-avatar-border-radius);
 
   overflow: hidden;
@@ -217,13 +217,13 @@ $item-wp-sliding-content-background: $list-wp-background-color !default;
 // Windows Item Thumbnail
 // --------------------------------------------------
 
-.item-wp ion-thumbnail {
+.item-wp .ion-thumbnail {
   min-width: $item-wp-thumbnail-size;
   min-height: $item-wp-thumbnail-size;
 }
 
-.item-wp ion-thumbnail ion-img,
-.item-wp ion-thumbnail img {
+.item-wp .ion-thumbnail .ion-img,
+.item-wp .ion-thumbnail img {
   width: $item-wp-thumbnail-size;
   height: $item-wp-thumbnail-size;
 }
@@ -272,6 +272,6 @@ $item-wp-sliding-content-background: $list-wp-background-color !default;
 // Windows Item Sliding
 // --------------------------------------------------
 
-.list-wp ion-item-sliding {
+.list-wp .ion-item-sliding {
   background-color: $item-wp-sliding-content-background;
 }

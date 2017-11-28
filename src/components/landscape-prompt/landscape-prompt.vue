@@ -8,8 +8,8 @@
         </div>
     </div>
 </template>
-<style lang="less">
-    @import "landscape-prompt.less";
+<style lang="scss">
+    @import "landscape-prompt.scss";
 </style>
 <script type="text/javascript">
   /**

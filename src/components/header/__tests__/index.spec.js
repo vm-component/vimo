@@ -12,7 +12,7 @@ let options = {
 describe('Header', function () {
   it('@base: renders the correct markup', function () {
     let wrapper = mount(Header, options)
-    const result = '<header class="ion-header header-ios"><div id="rightButtonPlaceholder"></div> <span>Test</span></header>'
+    const result = '<header class="ion-header header-ios"><div id="right-button-placeholder"></div> <span>Test</span></header>'
     expect(wrapper.html().trim()).toEqual(result)
   })
 

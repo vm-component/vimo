@@ -25,7 +25,12 @@
     inject: {
       fabComponent: {
         from: 'fabComponent',
-        default: null
+        default () {
+          if (process.env.NODE_ENV !== 'production') {
+            console.error('[Component] FabList组件 需要与 Fab组件 组合使用!')
+          }
+          return null
+        }
       }
     },
     provide () {

@@ -47,10 +47,12 @@ class LoadingInstance extends GeneratePopUpInstance {
   }
 }
 
+// 500ms内的关闭延后处理
 let _dismiss = LoadingInstance.prototype.dismiss
 let _debouncedDismiss = debounce(_dismiss, 500)
 LoadingInstance.prototype.dismiss = _debouncedDismiss
 
+// 500ms内的开启当做一个
 let _present = LoadingInstance.prototype.present
 let _debouncedPresent = throttle(_present, 500, {
   leading: true, // 首次触发, 之后不再触发

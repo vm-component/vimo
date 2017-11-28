@@ -1,4 +1,4 @@
-import { isObject, isString } from '../../util/type'
+import { isObject, isString } from './type'
 
 /**
  * 获取元素样式

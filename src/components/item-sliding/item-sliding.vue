@@ -7,11 +7,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
-    @import "item-sliding.less";
-    @import "item-sliding.ios.less";
-    @import "item-sliding.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Item/ItemSliding
