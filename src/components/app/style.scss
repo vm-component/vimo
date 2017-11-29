@@ -1,3 +1,12 @@
 @import "./style/app.scss";
 @import "./style/app.ios.scss";
 @import "./style/app.md.scss";
+
+// Typography
+// --------------------------------------------------
+
+@each $color-name, $color-base, $color-contrast in get-colors($colors) {
+    [text-#{$color-name}] {
+        color: $color-base;
+    }
+}

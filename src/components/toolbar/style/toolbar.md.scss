@@ -16,13 +16,13 @@ $toolbar-order-md: (
 ) !default;
 
 /// @prop - Font size of the toolbar title
-$toolbar-md-title-font-size:             2rem !default;
+$toolbar-md-title-font-size:             20px !default;
 
 /// @prop - Text color of the toolbar title
 $toolbar-md-title-text-color:            color-contrast($colors-md, $toolbar-md-background, md) !default;
 
 /// @prop - Font size of the toolbar button
-$toolbar-md-button-font-size:            1.4rem !default;
+$toolbar-md-button-font-size:            14px !default;
 
 /// @prop - Text color of the toolbar button
 $toolbar-md-button-color:                $toolbar-md-title-text-color !default;
@@ -55,13 +55,10 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 }
 
 
-// Material Design Header / Footer / Tabs Box Shadow
+// Material Design Header / Footer Box Shadow
 // --------------------------------------------------
-
 .header-md::after,
-.tabs-md[tabsPlacement="top"] > .tabbar::after,
-.footer-md::before,
-.tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+.footer-md::before{
   // using datauri png background image for improved scroll performance
   // rather than using `box-shadow: 0 2px 5px rgba(0,0,0,0.26);`
   // noticable performance difference on older Android devices
@@ -79,8 +76,7 @@ $toolbar-button-md-strong-font-weight:   bold !default;
   content: "";
 }
 
-.footer-md::before,
-.tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+.footer-md::before{
   @include position(-2px, null, auto, null);
   @include background-position(start, 0, top, 0);
 
@@ -88,9 +84,7 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 }
 
 .header-md[no-border]::after,
-.footer-md[no-border]::before,
-.tabs-md[tabsPlacement="top"][no-border] > .tabbar::after,
-.tabs-md[tabsPlacement="bottom"][no-border] > .tabbar::before {
+.footer-md[no-border]::before{
   display: none;
 }
 
@@ -138,6 +132,10 @@ $toolbar-button-md-strong-font-weight:   bold !default;
     .bar-button-outline-md {
       border-color: $color-contrast;
     }
+  
+    .back-button .button-inner{
+      @include arrow-back($color-contrast);
+    }
 
     @each $color-name, $color-base, $color-contrast in get-colors($colors-md, md) {
       @include md-bar-button-default($color-name, $color-base, $color-contrast);
@@ -182,7 +180,7 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 // --------------------------------------------------
 
 .bar-button-md {
-  @include margin(0, .2rem, 0, .2rem);
+  @include margin(0, .20px, 0, .20px);
   @include padding(0, 5px);
   @include border-radius($toolbar-md-button-border-radius);
 
@@ -210,6 +208,10 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 
     &:hover:not(.disable-hover) {
       color: $color-base;
+    }
+  
+    &.back-button{
+      @include arrow-back($color-base);
     }
   }
 
@@ -344,7 +346,7 @@ $toolbar-button-md-strong-font-weight:   bold !default;
   @include padding(0, 6px);
   @include text-align(start);
 
-  font-size: 2.4rem;
+  font-size: 17px;
   font-weight: normal;
 }
 
@@ -364,7 +366,7 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 .bar-button-menutoggle-md .ion-icon {
   @include padding(0, 6px);
 
-  font-size: 2.4rem;
+  font-size: 24px;
 }
 
 .bar-button-menutoggle-md[end],

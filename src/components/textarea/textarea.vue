@@ -21,11 +21,7 @@
         </div>
     </div>
 </template>
-<style lang="less">
-    @import "textarea";
-    @import "textarea.ios.less";
-    @import "textarea.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Textarea

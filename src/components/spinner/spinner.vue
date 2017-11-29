@@ -1,5 +1,5 @@
 <template>
-    <div class="spinner" :class=[colorClass,nameClass,pausedClass]>
+    <div class="ion-spinner" :class=[colorClass,nameClass,pausedClass]>
         <svg v-if="circles && circles.length>0" viewBox="0 0 64 64" v-for="i in circles" :style="i.style">
             <circle :r="i.r" transform="translate(32,32)"></circle>
         </svg>
@@ -8,11 +8,7 @@
         </svg>
     </div>
 </template>
-<style lang="less">
-    @import "spinner";
-    @import "spinner.ios.less";
-    @import "spinner.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Spinner

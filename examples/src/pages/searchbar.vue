@@ -30,7 +30,7 @@
 <style scoped lang="less">
 </style>
 <script type="text/javascript">
-  import cityList from '../../../src/components/choose-city/cities.json'
+  import cityList from '../../../src/components/choose-city/data/cities.json'
   export default {
     data () {
       return {

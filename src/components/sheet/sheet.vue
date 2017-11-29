@@ -16,6 +16,7 @@
         </transition>
     </div>
 </template>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Sheet
@@ -199,8 +200,3 @@
     }
   }
 </script>
-<style lang="less">
-    @import "sheet.less";
-    @import "sheet.ios.less";
-    @import "sheet.md.less";
-</style>

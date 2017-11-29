@@ -60,6 +60,6 @@
     $color: blue !default;
 
     body {
-        background: $a;
+        // background: $a;
     }
 </style>

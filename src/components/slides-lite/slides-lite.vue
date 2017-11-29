@@ -1,52 +1,3 @@
-<style lang="less">
-    .slides-lite {
-        &.slides-container {
-            overflow: hidden;
-            visibility: hidden;
-            position: relative;
-            margin-left: auto;
-            margin-right: auto;
-            z-index: 1;
-            width: 100%;
-            padding: 0;
-            display: flex;
-            .slides-wrapper {
-                overflow: hidden;
-                position: relative;
-                display: flex;
-                flex-wrap: nowrap;
-                width: 100%;
-                height: 100%;
-                padding: 0;
-            }
-        }
-        .swiper-pagination {
-            position: absolute;
-            text-align: center;
-            transition: 300ms;
-            transform: translate3d(0, 0, 0);
-            z-index: 10;
-            &.swiper-pagination-bullets {
-                bottom: 10px;
-                left: 0;
-                width: 100%;
-            }
-            .swiper-pagination-bullet {
-                margin: 0 5px;
-                width: 8px;
-                height: 8px;
-                display: inline-block;
-                border-radius: 100%;
-                background: #000;
-                opacity: .2;
-                &.swiper-pagination-bullet-active {
-                    opacity: 1;
-                    background: #007aff;
-                }
-            }
-        }
-    }
-</style>
 <template>
     <div class="slides-lite slides-container" :id="slideId">
         <div class='slides-wrapper'>
@@ -61,6 +12,7 @@
         </div>
     </div>
 </template>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component SlidesLite

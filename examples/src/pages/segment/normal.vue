@@ -6,7 +6,7 @@
             </Navbar>
             <Toolbar>
                 <!--content-->
-                <Segment v-model="fruit" @onChange="onChangeHandler">
+                <Segment v-model="fruit" >
                     <SegmentButton value="apple" @onSelect="onSelectHandler">Apple</SegmentButton>
                     <SegmentButton value="orange" @onSelect="onSelectHandler">Orange</SegmentButton>
                     <SegmentButton value="pear" @onSelect="onSelectHandler">Pear</SegmentButton>
@@ -16,7 +16,7 @@
             </Toolbar>
             <Toolbar color="primary">
                 <!--content-->
-                <Segment color="light" v-model="fruit" @onChange="onChangeHandler">
+                <Segment color="light" v-model="fruit">
                     <SegmentButton value="apple" @onSelect="onSelectHandler">Apple</SegmentButton>
                     <SegmentButton value="orange" @onSelect="onSelectHandler">Orange</SegmentButton>
                     <SegmentButton value="pear" @onSelect="onSelectHandler">Pear</SegmentButton>

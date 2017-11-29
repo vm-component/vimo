@@ -40,4 +40,4 @@
     }
   }
 </script>
-<style lang="scss" src="./toolbar.scss"></style>
+<style lang="scss" src="./style.scss"></style>

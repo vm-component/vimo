@@ -16,10 +16,10 @@ $toolbar-order-ios: (
 ) !default;
 
 /// @prop - Font size of the toolbar button
-$toolbar-ios-button-font-size:              1.7rem !default;
+$toolbar-ios-button-font-size:              17px !default;
 
 /// @prop - Font size of the toolbar title
-$toolbar-ios-title-font-size:               1.7rem !default;
+$toolbar-ios-title-font-size:               17px !default;
 
 /// @prop - Font weight of the toolbar title
 $toolbar-ios-title-font-weight:             600 !default;
@@ -133,7 +133,11 @@ $toolbar-button-ios-strong-font-weight:     600 !default;
     .bar-button-default-ios {
       color: $color-contrast;
     }
-
+  
+    .back-button .button-inner{
+      @include arrow-back($color-contrast);
+    }
+    
     @each $color-name, $color-base, $color-contrast in get-colors($colors-ios) {
       @include ios-bar-button-default($color-name, $color-base, $color-contrast);
       @include ios-bar-button-outline($color-name, $color-base, $color-contrast);
@@ -197,8 +201,11 @@ $toolbar-button-ios-strong-font-weight:     600 !default;
     &:active {
       opacity: .4;
     }
+    
+    &.back-button{
+      @include arrow-back($color-base);
+    }
   }
-
 }
 
 
@@ -321,7 +328,7 @@ $toolbar-button-ios-strong-font-weight:     600 !default;
 
   order: map-get($toolbar-order-ios, back-button);
 
-  min-height: 3.2rem;
+  min-height: 32px;
 
   line-height: 1;
   transform: translateZ(0);
@@ -334,7 +341,7 @@ $toolbar-button-ios-strong-font-weight:     600 !default;
 
   min-width: 18px;
 
-  font-size: 3.4rem;
+  font-size: 17px;
 }
 
 .back-button-text-ios {
@@ -356,7 +363,7 @@ $toolbar-button-ios-strong-font-weight:     600 !default;
   .ion-icon {
     @include padding(0, 6px);
 
-    font-size: 2.8rem;
+    font-size: 28px;
   }
 }
 

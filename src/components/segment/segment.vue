@@ -3,11 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
-    @import "segment";
-    @import "segment.ios.less";
-    @import "segment.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Segment
@@ -71,7 +67,6 @@
    * </Header>
    *
    * */
-  import debounce from 'lodash.debounce'
   import modeMixins from '../../util/mode-mixins.js'
 
   export default {
@@ -98,7 +93,8 @@
       return {
         // value的缓存值，因为props的value不能直接修改
         childComponents: [],
-        theValue: this.value
+        theValue: this.value,
+        timer: null
       }
     },
     watch: {
@@ -112,13 +108,13 @@
        * 更新子组件状态
        * @private
        * */
-      $_refreshChildState: debounce(function (value) {
+      $_refreshChildState (value) {
         this.childComponents.forEach((childComponent) => {
           if (!childComponent.isDisabled) {
             childComponent.setState(value)
           }
         })
-      }, 0),
+      },
 
       /**
        * 记录子组件, 这个由子组件自己找到并调用
@@ -127,8 +123,11 @@
        * */
       $_recordChild (childComponent) {
         this.childComponents.push(childComponent)
-        // 更新子组件状态
-        this.$_refreshChildState(this.value)
+        this.timer && window.clearTimeout(this.timer)
+        this.timer = window.setTimeout(() => {
+          // 更新子组件状态
+          this.$_refreshChildState(this.value)
+        }, 0)
       },
 
       /**

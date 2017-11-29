@@ -1,12 +1,12 @@
 <template>
     <div class="ion-toggle"
-         :class="[modeClass,colorClass,{'toggle-disabled':isDisabled}]"
+         :class="[modeClass,colorClass,{'toggle-disabled':isDisabled},{'toggle-checked':isChecked,'toggle-activated':activated}]"
          @mousedown="pointStart($event)"
          @touchstart="pointStart($event)"
          @mouseup="pointEnd($event)"
          @touchend="pointEnd($event)"
          @click="clickHandler($event)">
-        <div class="toggle-icon" :class="{'toggle-checked':isChecked,'toggle-activated':activated}">
+        <div class="toggle-icon">
             <div class="toggle-inner"></div>
         </div>
         <button role="checkbox"
@@ -17,6 +17,7 @@
         </button>
     </div>
 </template>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Toggle
@@ -209,7 +210,3 @@
     }
   }
 </script>
-<style lang="less">
-    @import "toggle.ios.less";
-    @import "toggle.md.less";
-</style>

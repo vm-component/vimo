@@ -1,0 +1,99 @@
+@import "../../../themes/ionic.globals.md";
+
+// Material Design Toast
+// --------------------------------------------------
+
+/// @prop - Background of the toast wrapper
+$toast-md-background:                            #333 !default;
+
+/// @prop - Color of the toast title
+$toast-md-title-color:                           #fff !default;
+
+/// @prop - Font size of the toast title
+$toast-md-title-font-size:                       15px !default;
+
+// deprecated
+$toast-md-title-padding:                         null !default;
+
+/// @prop - Padding top of the toast title
+$toast-md-title-padding-top:                     19px !default;
+
+/// @prop - Padding end of the toast title
+$toast-md-title-padding-end:                     16px !default;
+
+/// @prop - Padding bottom of the toast title
+$toast-md-title-padding-bottom:                  17px !default;
+
+/// @prop - Padding start of the toast title
+$toast-md-title-padding-start:                   $toast-md-title-padding-end !default;
+
+
+.toast-md .toast-wrapper {
+  @include position-horizontal(0, 0);
+  @include margin(auto);
+
+  position: absolute;
+
+  z-index: $z-index-overlay-wrapper;
+  display: block;
+
+  width: $toast-width;
+  max-width: $toast-max-width;
+
+  background: $toast-md-background;
+}
+
+.toast-md .toast-wrapper.toast-top {
+  top: 0;
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
+}
+
+.toast-md .toast-wrapper.toast-bottom {
+  bottom: 0;
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
+}
+
+.toast-md .toast-wrapper.toast-middle {
+  top: 38.2%;
+  transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
+}
+
+.toast-md .toast-message {
+  font-size: $toast-md-title-font-size;
+
+  color: $toast-md-title-color;
+
+  @include deprecated-variable(padding, $toast-md-title-padding) {
+    @include padding($toast-md-title-padding-top, $toast-md-title-padding-end, $toast-md-title-padding-bottom, $toast-md-title-padding-start);
+  }
+}
+
+// transition
+// --------------------------------------------------
+
+/*top*/
+.toast-top-md-enter-active, .toast-top-md-leave-active {
+  transform: translateY(0);
+}
+
+.toast-top-md-enter, .toast-top-md-leave-active {
+  transform: translateY(-130%);
+}
+
+/*bottom*/
+.toast-bottom-md-enter-active, .toast-bottom-md-leave-active {
+  transform: translateY(0);
+}
+
+.toast-bottom-md-enter, .toast-bottom-md-leave-active {
+  transform: translateY(130%);
+}
+
+/*middle*/
+.toast-middle-md-enter-active, .toast-middle-md-leave-active {
+  opacity: 1;
+}
+
+.toast-middle-md-enter, .toast-middle-md-leave-active {
+  opacity: 0.01;
+}

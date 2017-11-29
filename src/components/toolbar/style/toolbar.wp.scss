@@ -31,7 +31,7 @@ $toolbar-wp-title-padding-bottom:        $toolbar-wp-title-padding-top !default;
 $toolbar-wp-title-padding-start:         $toolbar-wp-title-padding-end !default;
 
 /// @prop - Font size of the toolbar title
-$toolbar-wp-title-font-size:             1.5rem !default;
+$toolbar-wp-title-font-size:             15px !default;
 
 /// @prop - Font weight of the toolbar title
 $toolbar-wp-title-font-weight:           bold !default;
@@ -43,7 +43,7 @@ $toolbar-wp-title-text-transform:        uppercase !default;
 $toolbar-wp-title-text-color:            color-contrast($colors-wp, $toolbar-wp-background, wp) !default;
 
 /// @prop - Font size of the toolbar button
-$toolbar-wp-button-font-size:            1.4rem !default;
+$toolbar-wp-button-font-size:            14px !default;
 
 /// @prop - Text color of the toolbar button
 $toolbar-wp-button-color:                color-contrast($colors-wp, $toolbar-wp-background, wp) !default;
@@ -159,7 +159,7 @@ $toolbar-button-wp-strong-font-weight:   bold !default;
 // --------------------------------------------------
 
 .bar-button-wp {
-  @include margin(0, .2rem);
+  @include margin(0, 2px);
   @include padding(0, 5px);
   @include border-radius($toolbar-wp-button-border-radius);
 
@@ -265,7 +265,7 @@ $toolbar-button-wp-strong-font-weight:   bold !default;
 // Windows Toolbar Button Icon
 // --------------------------------------------------
 
-.bar-button-wp.bar-button-icon-start ion-icon {
+.bar-button-wp.bar-button-icon-start .ion-icon {
   @include padding-horizontal(null, .3em);
 
   font-size: 1.4em;
@@ -274,7 +274,7 @@ $toolbar-button-wp-strong-font-weight:   bold !default;
   pointer-events: none;
 }
 
-.bar-button-wp.bar-button-icon-end ion-icon {
+.bar-button-wp.bar-button-icon-end .ion-icon {
   @include padding-horizontal(.4em, null);
 
   font-size: 1.4em;
@@ -286,7 +286,7 @@ $toolbar-button-wp-strong-font-weight:   bold !default;
 .bar-button-wp[icon-only] {
   @include padding(0);
 
-  ion-icon {
+  .ion-icon {
     @include padding(0, .1em);
 
     min-width: 28px;
@@ -315,7 +315,7 @@ $toolbar-button-wp-strong-font-weight:   bold !default;
   @include margin(0);
   @include padding(0, 6px);
 
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: normal;
 }
 
@@ -331,10 +331,10 @@ $toolbar-button-wp-strong-font-weight:   bold !default;
 
   min-width: 44px;
 
-  ion-icon {
+  .ion-icon {
     @include padding(0, 6px);
 
-    font-size: 2.4rem;
+    font-size: 24px;
   }
 }
 
