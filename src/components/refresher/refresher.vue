@@ -3,9 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
-    @import "./refresher.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Refresher
@@ -467,6 +465,8 @@
     mounted () {
       this.contentComponent.refreshClass['has-refresher'] = true
       this.$_setListeners(this.enabled)
+
+      // TODO: 页面切换后将disableScroll解除!!!
 
       this.$root.$on('content:mounted', () => {
         // refresher定位

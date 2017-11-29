@@ -1,4 +1,4 @@
-@import "../../themes/ionic.globals";
+@import "../../../themes/ionic.globals";
 
 // Range
 // --------------------------------------------------
@@ -17,29 +17,29 @@
   width: 100%;
 }
 
-.item-range ion-range {
+.item-range .ion-range {
   width: 100%;
 }
 
-.item-range ion-range ion-label {
+.item-range .ion-range .ion-label {
   align-self: center;
 }
 
-ion-range {
+.ion-range {
   position: relative;
   display: flex;
 
   align-items: center;
 }
 
-ion-range ion-label {
+.ion-range .ion-label {
   flex: initial;
 }
 
-ion-range ion-icon {
-  min-height: 2.4rem;
+.ion-range .ion-icon {
+  min-height: 24px;
 
-  font-size: 2.4rem;
+  font-size: 24px;
   line-height: 1;
 }
 

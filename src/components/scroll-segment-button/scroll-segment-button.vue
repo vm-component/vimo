@@ -3,17 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
-    .vm-scroll-segment-button {
-        position: relative;
-        display: block;
-        height: 100%;
-        box-sizing: border-box;
-    }
-
-    .segment-button-active {
-    }
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component ScrollSegment/ScrollSegmentButton

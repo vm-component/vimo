@@ -4,12 +4,12 @@
 // --------------------------------------------------
 
 
-ion-popover {
+.ion-popover {
   @include position(0, 0, 0, 0);
 
-  position: absolute;
+  position: fixed;
 
-  z-index: $z-index-overlay;
+  z-index: $z-index-overlay + $z-index-overlay-modal;
 
   display: flex;
 
@@ -20,7 +20,7 @@ ion-popover {
 .popover-wrapper {
   z-index: $z-index-overlay-wrapper;
 
-  opacity: 0;
+  //opacity: 0;
 }
 
 .popover-content {
@@ -34,7 +34,7 @@ ion-popover {
   flex-direction: column;
 }
 
-.popover-content ion-content,
+.popover-content .ion-content,
 .popover-content .scroll-content {
   contain: none;
 }

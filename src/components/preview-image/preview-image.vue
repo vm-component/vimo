@@ -26,6 +26,7 @@
         </section>
     </transition>
 </template>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   import Slides from '../slides'
   import Slide from '../slide'
@@ -71,6 +72,3 @@
     components: {Slides, Slide}
   }
 </script>
-<style lang="less">
-    @import "preview-image.less";
-</style>

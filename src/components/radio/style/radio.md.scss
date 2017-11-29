@@ -1,4 +1,4 @@
-@import "../../themes/ionic.globals.md";
+@import "../../../themes/ionic.globals.md";
 
 // Material Design Radio
 // --------------------------------------------------
@@ -128,7 +128,7 @@ $radio-md-item-end-margin-start:     0 !default;
 // -----------------------------------------
 
 .radio-md.radio-disabled,
-.item-md.item-radio-disabled ion-label {
+.item-md.item-radio-disabled .ion-label {
   opacity: $radio-md-disabled-opacity;
 
   pointer-events: none;
@@ -154,7 +154,7 @@ $radio-md-item-end-margin-start:     0 !default;
   }
 }
 
-.item-radio.item-md ion-label {
+.item-radio.item-md .ion-label {
   @include margin-horizontal(0, null);
 }
 
@@ -162,7 +162,7 @@ $radio-md-item-end-margin-start:     0 !default;
 // Material Design Radio Item Label: Checked
 // -----------------------------------------
 
-.item-radio-checked.item-md ion-label {
+.item-radio-checked.item-md .ion-label {
   color: $radio-md-color-on;
 }
 
@@ -172,7 +172,7 @@ $radio-md-item-end-margin-start:     0 !default;
 
 @mixin radio-theme-md($color-name, $color-base, $color-contrast) {
 
-  .item-radio-md-#{$color-name}.item-radio-checked ion-label {
+  .item-radio-md-#{$color-name}.item-radio-checked .ion-label {
     color: $color-base;
   }
 

@@ -1,0 +1,33 @@
+@import "./style/menu.scss";
+@import "./style/menu.ios.scss";
+@import "./style/menu.md.scss";
+
+
+// Menu Animate
+// --------------------------------------------------
+
+/*slide-in-left*/
+/*animate class*/
+.slide-in-left-enter-active,
+.slide-in-left-leave-active {
+    left: 0;
+}
+
+.slide-in-left-enter,
+.slide-in-left-leave-active {
+    left: -100%;
+    transition: all cubic-bezier(0.2, 0, 1, 1) 280ms;
+}
+
+/*slide-in-right*/
+/*animate class*/
+.slide-in-right-enter-active,
+.slide-in-right-leave-active {
+    right: 0 !important;
+}
+
+.slide-in-right-enter,
+.slide-in-right-leave-active {
+    right: -100% !important;
+    transition: all cubic-bezier(0, 0, 1, 1) 280ms;
+}

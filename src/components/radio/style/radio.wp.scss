@@ -1,4 +1,4 @@
-@import "../../themes/ionic.globals.wp";
+@import "../../../themes/ionic.globals.wp";
 
 // Windows Radio
 // --------------------------------------------------
@@ -127,7 +127,7 @@ $radio-wp-item-end-margin-start:      0 !default;
 // -----------------------------------------
 
 .radio-wp.radio-disabled,
-.item-wp.item-radio-disabled ion-label {
+.item-wp.item-radio-disabled .ion-label {
   opacity: $radio-wp-disabled-opacity;
 
   pointer-events: none;
@@ -157,7 +157,7 @@ $radio-wp-item-end-margin-start:      0 !default;
   }
 }
 
-.item-radio.item-wp ion-label {
+.item-radio.item-wp .ion-label {
   @include margin-horizontal(0, null);
 }
 

@@ -7,6 +7,7 @@
         </div>
     </div>
 </template>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component ScrollSegment
@@ -253,30 +254,3 @@
     }
   }
 </script>
-<style lang="less">
-    .vm-scroll-segment {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-        .scroll-segment-outer {
-            overflow-x: scroll;
-            overflow-y: hidden;
-            position: relative;
-            // for hide scroll bar
-            height: ~'calc(100% + 10px)';
-            -webkit-overflow-scrolling: touch;
-            &::-webkit-scrollbar {
-                display: none;
-            }
-        }
-
-        .scroll-segment-wrap {
-            display: inline-flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            // for hide scroll bar
-            height: ~'calc(100% - 10px)';
-        }
-    }
-</style>

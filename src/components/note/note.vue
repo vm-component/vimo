@@ -3,7 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="scss" src="./note.scss"></style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Note

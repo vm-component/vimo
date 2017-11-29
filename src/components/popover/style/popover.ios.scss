@@ -1,4 +1,4 @@
-@import "../../../themes/ionic.globals";
+@import "../../../themes/ionic.globals.ios";
 
 // iOS Popover
 // --------------------------------------------------
@@ -92,4 +92,18 @@ $popover-ios-arrow-background:          $popover-ios-background !default;
     @include background-position(end, $item-ios-padding-end - 2, center);
 
   }
+}
+
+
+// Animate transitioName = 'popover-ios'
+// --------------------------------------------------
+
+.popover-ios-enter-active, .popove-ios-leave-active {
+  transition: opacity ease .1s;
+  opacity: 1;
+}
+
+.popover-ios-enter, .popover-ios-leave-active {
+  opacity: 0;
+  transition: opacity ease .1s;
 }

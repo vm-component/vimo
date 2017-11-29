@@ -39,11 +39,7 @@
         <slot name="range-right"></slot>
     </div>
 </template>
-<style lang="less">
-    @import "range";
-    @import "range.ios.less";
-    @import "range.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    *
