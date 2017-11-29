@@ -15,9 +15,6 @@ $toolbar-order-wp: (
   menu-toggle-end: 7,
 ) !default;
 
-// deprecated
-$toolbar-wp-title-padding:               null !default;
-
 /// @prop - Padding top of the toolbar title
 $toolbar-wp-title-padding-top:           0 !default;
 
@@ -93,9 +90,7 @@ $toolbar-button-wp-strong-font-weight:   bold !default;
   text-transform: $toolbar-wp-title-text-transform;
   color: $toolbar-wp-title-text-color;
 
-  @include deprecated-variable(padding, $toolbar-wp-title-padding) {
     @include padding($toolbar-wp-title-padding-top, $toolbar-wp-title-padding-end, $toolbar-wp-title-padding-bottom, $toolbar-wp-title-padding-start);
-  }
 }
 
 @mixin wp-toolbar-theme($color-name, $color-base, $color-contrast) {

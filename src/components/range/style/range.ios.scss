@@ -66,9 +66,6 @@ $range-ios-pin-color:                         $text-ios-color !default;
 /// @prop - Font size of the range pin
 $range-ios-pin-font-size:                     12px !default;
 
-// deprecated
-$range-ios-pin-padding:                       null !default;
-
 /// @prop - Padding top of the range pin
 $range-ios-pin-padding-top:                   8px !default;
 
@@ -198,9 +195,7 @@ $range-ios-pin-padding-start:                 $range-ios-pin-padding-end !defaul
 
   transition: transform 120ms ease;
 
-  @include deprecated-variable(padding, $range-ios-pin-padding) {
     @include padding($range-ios-pin-padding-top, $range-ios-pin-padding-end, $range-ios-pin-padding-bottom, $range-ios-pin-padding-start);
-  }
 }
 
 .range-ios .range-knob-pressed .range-pin {

@@ -12,9 +12,6 @@ $toast-md-title-color:                           #fff !default;
 /// @prop - Font size of the toast title
 $toast-md-title-font-size:                       15px !default;
 
-// deprecated
-$toast-md-title-padding:                         null !default;
-
 /// @prop - Padding top of the toast title
 $toast-md-title-padding-top:                     19px !default;
 
@@ -63,9 +60,7 @@ $toast-md-title-padding-start:                   $toast-md-title-padding-end !de
 
   color: $toast-md-title-color;
 
-  @include deprecated-variable(padding, $toast-md-title-padding) {
     @include padding($toast-md-title-padding-top, $toast-md-title-padding-end, $toast-md-title-padding-bottom, $toast-md-title-padding-start);
-  }
 }
 
 // transition

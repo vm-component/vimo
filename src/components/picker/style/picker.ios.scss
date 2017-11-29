@@ -27,9 +27,6 @@ $picker-ios-button-text-color:                 color($colors-ios, primary) !defa
 /// @prop - Background of the picker button
 $picker-ios-button-background-color:           transparent !default;
 
-// deprecated
-$picker-ios-column-padding:                    null !default;
-
 /// @prop - Padding top of the picker column
 $picker-ios-column-padding-top:                0 !default;
 
@@ -44,9 +41,6 @@ $picker-ios-column-padding-start:              $picker-ios-column-padding-end !d
 
 /// @prop - Perspective of the picker column
 $picker-ios-column-perspective:                1000px !default;
-
-// deprecated
-$picker-ios-option-padding:                    null !default;
 
 /// @prop - Padding top of the picker option
 $picker-ios-option-padding-top:                0 !default;
@@ -127,9 +121,7 @@ $picker-button-ios-strong-font-weight:         600 !default;
 .picker-ios .picker-col {
   transform-style: preserve-3d;
 
-  @include deprecated-variable(padding, $picker-ios-column-padding) {
     @include padding($picker-ios-column-padding-top, $picker-ios-column-padding-end, $picker-ios-column-padding-bottom, $picker-ios-column-padding-start);
-  }
 }
 
 .picker-ios .picker-prefix,
@@ -164,9 +156,7 @@ $picker-button-ios-strong-font-weight:         600 !default;
 
   pointer-events: auto;
 
-  @include deprecated-variable(padding, $picker-ios-option-padding) {
     @include padding($picker-ios-option-padding-top, $picker-ios-option-padding-end, $picker-ios-option-padding-bottom, $picker-ios-option-padding-start);
-  }
 }
 
 .picker-ios .picker-above-highlight {

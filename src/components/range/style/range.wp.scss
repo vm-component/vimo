@@ -63,9 +63,6 @@ $range-wp-pin-color:                         color-contrast($colors-wp, $range-w
 /// @prop - Font size of the range pin
 $range-wp-pin-font-size:                     12px !default;
 
-// deprecated
-$range-wp-pin-padding:                       null !default;
-
 /// @prop - Padding top of the range pin
 $range-wp-pin-padding-top:                   8px !default;
 
@@ -192,9 +189,7 @@ $range-wp-pin-padding-start:                 $range-wp-pin-padding-end !default;
 
   transition: transform 120ms ease;
 
-  @include deprecated-variable(padding, $range-wp-pin-padding) {
     @include padding($range-wp-pin-padding-top, $range-wp-pin-padding-end, $range-wp-pin-padding-bottom, $range-wp-pin-padding-start);
-  }
 }
 
 .range-wp .range-knob-pressed .range-pin {
