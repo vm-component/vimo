@@ -459,12 +459,12 @@ $button-md-strong-font-weight:                  bold !default;
 
   pointer-events: none;
 
-  @include multi-dir() {
+  //@include multi-dir() {
     // scss-lint:disable PropertySpelling
     top: 0;
 
     left: 0;
-  }
+  //}
 }
 
 .md button .button-effect {

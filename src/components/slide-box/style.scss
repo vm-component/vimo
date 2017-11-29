@@ -1,95 +1,104 @@
 $green: #78c430;
 $red: #ef4644;
+
 .vm-slideBox {
-    position: relative;
+  position: relative;
+  height: 52px;
+  box-shadow: 0 0 3px #999;
+  background-color: #ddd;
+  overflow: hidden;
+
+  .vm-slideBox-placeholder {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(0.4, #4d4d4d), color-stop(0.5, white), color-stop(0.6, #4d4d4d), color-stop(1, #4d4d4d));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: slidetounlock 3s infinite;
+    -webkit-text-size-adjust: none;
+    line-height: 52px;
     height: 52px;
-    box-shadow: 0 0 3px #999;
-    background-color: #ddd;
+    text-align: center;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    color: #aaa;
+    @keyframes slidetounlock {
+      0% {
+        background-position: -200px 0
+      }
+
+      100% {
+        background-position: 200px 0
+      }
+    }
+  }
+
+  .vm-slideBox-track {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
-    .vm-slideBox-placeholder {
-        background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(.4, #4d4d4d), color-stop(.5, white), color-stop(.6, #4d4d4d), color-stop(1, #4d4d4d));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -webkit-animation: slidetounlock 3s infinite;
-        -webkit-text-size-adjust: none;
-        line-height: 52px;
-        height: 52px;
-        text-align: center;
-        font-size: 16px;
-        display: block;
-        width: 100%;
-        color: #aaa;
-        @keyframes slidetounlock {
-            0% {
-                background-position: -200px 0
-            }
-            100% {
-                background-position: 200px 0
-            }
-        }
-    }
-    .vm-slideBox-track {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
         
-        .track-background {
-            line-height: 52px;
-            height: 52px;
-            text-align: center;
-            font-size: 16px;
-            color: #fff;
-            width: 100%;
-        }
-        .track-btn {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 52px;
-            height: 52px;
-            cursor: pointer;
-            opacity: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #fff;
-            .icon-arrow-right {
-                width: 20px;
-                height: 20px;
-                background: #fff url(images/arrow.png) no-repeat center center/20px 20px;
-            }
-            .icon-ok {
-                width: 20px;
-                height: 20px;
-                background: #fff url(images/ok.png) no-repeat center center/20px 20px;
-            }
-            .icon-error {
-                width: 20px;
-                height: 20px;
-                background: #fff url(images/error.png) no-repeat center center/20px 20px;
-            }
-            .icon-refresh {
-                width: 20px;
-                height: 20px;
-                background: #fff url(images/refresh.png) no-repeat center center/20px 20px;
-                animation: revolve 2s linear infinite;
-            }
-            @keyframes revolve {
-                from {
-                    -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-                }
-                
-                to {
-                    -webkit-transform: rotate(360deg);
-                    transform: rotate(360deg);
-                }
-            }
-        }
+    .track-background {
+      line-height: 52px;
+      height: 52px;
+      text-align: center;
+      font-size: 16px;
+      color: #fff;
+      width: 100%;
     }
+
+    .track-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 52px;
+      height: 52px;
+      cursor: pointer;
+      opacity: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+
+      .icon-arrow-right {
+        width: 20px;
+        height: 20px;
+        background: #fff url(images/arrow.png) no-repeat center center/20px 20px;
+      }
+
+      .icon-ok {
+        width: 20px;
+        height: 20px;
+        background: #fff url(images/ok.png) no-repeat center center/20px 20px;
+      }
+
+      .icon-error {
+        width: 20px;
+        height: 20px;
+        background: #fff url(images/error.png) no-repeat center center/20px 20px;
+      }
+
+      .icon-refresh {
+        width: 20px;
+        height: 20px;
+        background: #fff url(images/refresh.png) no-repeat center center/20px 20px;
+        animation: revolve 2s linear infinite;
+      }
+      @keyframes revolve {
+        from {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+                
+        to {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
 }
 
 .vm-slideBox[state="inactive"],
@@ -97,36 +106,35 @@ $red: #ef4644;
 .vm-slideBox[state="checking"],
 .vm-slideBox[state="cancelling"],
 .vm-slideBox[state="completing"] {
-    .vm-slideBox-track {
-        .track-background {
-            background-color: $green;
-        }
+  .vm-slideBox-track {
+    .track-background {
+      background-color: $green;
     }
+  }
 }
 
 .vm-slideBox[state="failing"] {
-    .vm-slideBox-track {
-        .track-background {
-            background-color: $red;
-        }
+  .vm-slideBox-track {
+    .track-background {
+      background-color: $red;
     }
+  }
 }
 
 .vm-slideBox[state="cancelling"] {
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
     
-    &:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 100%;
-        z-index: 1;
-        pointer-events: none;
-    }
-    
-    .vm-slideBox-track {
-        transition: transform ease 500ms;
-        will-change: transform;
-    }
+  .vm-slideBox-track {
+    transition: transform ease 500ms;
+    will-change: transform;
+  }
 }

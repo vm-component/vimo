@@ -1,13 +1,14 @@
 .ion-textarea {
-    .input-count {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        font-size: 12px;
-        color: #bbb;
-        padding-right: 5px;
-        span {
-            color: #000;
-        }
+  .input-count {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 12px;
+    color: #bbb;
+    padding-right: 5px;
+
+    span {
+      color: #000;
     }
+  }
 }

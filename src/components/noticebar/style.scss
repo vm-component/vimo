@@ -1,113 +1,133 @@
 .vm-noticebar {
-    height: 35px;
-    width: 100%;
-    background: #fff9db;
-    position: relative;
-    padding: 0 3px;
+  height: 35px;
+  width: 100%;
+  background: #fff9db;
+  position: relative;
+  padding: 0 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
     
+  .vm-noticebar-wrap {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    
-    .vm-noticebar-wrap {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 100%;
-        overflow: hidden;
-        position: relative;
-        flex: 1;
-        .vm-noticebar-content {
-            white-space: nowrap;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: 1;
-            opacity: 1;
-            height: 100%;
-            font-size: 14px;
-            transition: opacity ease 100ms;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    flex: 1;
+
+    .vm-noticebar-content {
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      opacity: 1;
+      height: 100%;
+      font-size: 14px;
+      transition: opacity ease 100ms;
             
-            &.animate {
-                animation-name: animations;
-                /*检索或设置对象所应用的动画名称*/
-                /*animation-duration: 9s;*/
-                /*检索或设置对象动画的持续时间*/
-                animation-timing-function: linear;
-                /*检索或设置对象动画的过渡类型*/
-                /*animation-delay: 2s;*/
-                /*检索或设置对象动画延迟的时间*/
-                animation-iteration-count: infinite;
-                /*检索或设置对象动画的循环次数*/
-                animation-direction: normal;
-                /*检索或设置对象动画在循环中是否反向运动*/
-                animation-fill-mode: none;
-                /*检索或设置对象动画时间之外的状态*/
-                animation-play-state: running;
-            }
-        }
+      &.animate {
+        animation-name: animations;
+
+        /*检索或设置对象所应用的动画名称*/
+
+        /*animation-duration: 9s;*/
+
+        /*检索或设置对象动画的持续时间*/
+        animation-timing-function: linear;
+
+        /*检索或设置对象动画的过渡类型*/
+
+        /*animation-delay: 2s;*/
+
+        /*检索或设置对象动画延迟的时间*/
+        animation-iteration-count: infinite;
+
+        /*检索或设置对象动画的循环次数*/
+        animation-direction: normal;
+
+        /*检索或设置对象动画在循环中是否反向运动*/
+        animation-fill-mode: none;
+
+        /*检索或设置对象动画时间之外的状态*/
+        animation-play-state: running;
+      }
+    }
         
-        @keyframes animations {
-            0% {
-                opacity: 1;
-                transform: translate(0);
-            }
-            10% {
-                opacity: 1;
-                transform: translate(0);
-            }
-            97% {
-                opacity: 1;
-                transform: translate(-110%);
-            }
-            97.000001% {
-                display: none;
-                opacity: 0;
-                visibility: hidden;
-            }
-            98.9999999999% {
-                transform: translate(0);
-            }
-            99% {
-                opacity: 0;
-                display: block;
-                visibility: visible;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
+    @keyframes animations {
+      0% {
+        opacity: 1;
+        transform: translate(0);
+      }
+
+      10% {
+        opacity: 1;
+        transform: translate(0);
+      }
+
+      97% {
+        opacity: 1;
+        transform: translate(-110%);
+      }
+
+      97.000001% {
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      98.9999999999% {
+        transform: translate(0);
+      }
+
+      99% {
+        opacity: 0;
+        display: block;
+        visibility: visible;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
+  }
     
-    .vm-icon, .vm-action {
-        display: flex;
-        flex: 0 0 26px;
-        top: 0;
-        height: 35px;
-        justify-content: center;
-        align-items: center;
-        color: #ef4644;
-    }
-    .vm-icon {
-        left: 0;
-    }
-    .vm-action {
-        right: 0;
-    }
+  .vm-icon, .vm-action {
+    display: flex;
+    flex: 0 0 26px;
+    top: 0;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    color: #ef4644;
+  }
+
+  .vm-icon {
+    left: 0;
+  }
+
+  .vm-action {
+    right: 0;
+  }
     
-    .vm-icon-notice {
-        background: url(images/notice.png) no-repeat center center/15px 15px;
-    }
-    .vm-icon-warn {
-        background: url(images/warn.png) no-repeat center center/15px 15px;
-    }
-    .vm-icon-right {
-        background: url(images/right.png) no-repeat center center/15px 15px;
-    }
-    .vm-icon-close {
-        background: url(images/close.png) no-repeat center center/15px 15px;
-    }
+  .vm-icon-notice {
+    background: url(images/notice.png) no-repeat center center/15px 15px;
+  }
+
+  .vm-icon-warn {
+    background: url(images/warn.png) no-repeat center center/15px 15px;
+  }
+
+  .vm-icon-right {
+    background: url(images/right.png) no-repeat center center/15px 15px;
+  }
+
+  .vm-icon-close {
+    background: url(images/close.png) no-repeat center center/15px 15px;
+  }
 }

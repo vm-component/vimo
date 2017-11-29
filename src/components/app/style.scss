@@ -6,7 +6,7 @@
 // --------------------------------------------------
 
 @each $color-name, $color-base, $color-contrast in get-colors($colors) {
-    [text-#{$color-name}] {
-        color: $color-base;
-    }
+  [text-#{$color-name}] {
+    color: $color-base;
+  }
 }

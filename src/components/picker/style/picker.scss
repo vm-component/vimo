@@ -62,12 +62,6 @@ $picker-max-width:                         500px !default;
   justify-content: center;
 
   contain: strict;
-
-  // TODO: rtl??
-  @include rtl() {
-    // Date is the same format in both directions
-    flex-direction: row-reverse;
-  }
 }
 
 .picker-col {
@@ -150,23 +144,11 @@ $picker-max-width:                         500px !default;
 }
 
 .picker-opts-left {
-  @include ltr() {
     justify-content: flex-start;
-  }
-
-  @include rtl() {
-    justify-content: flex-end;
-  }
 }
 
 .picker-opts-right {
-  @include ltr() {
     justify-content: flex-end;
-  }
-
-  @include rtl() {
-    justify-content: flex-start;
-  }
 }
 
 .picker-above-highlight,
