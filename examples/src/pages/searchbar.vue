@@ -21,7 +21,7 @@
             </div>
             <List>
                 <ItemGroup>
-                    <Item button v-for="(city,index) in filteredList" :key="index">{{city.city}}</Item>
+                    <Item detail-push v-for="(city,index) in filteredList" :key="index">{{city.city}}</Item>
                 </ItemGroup>
             </List>
         </Content>

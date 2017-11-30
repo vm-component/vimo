@@ -13,13 +13,13 @@
             </div>
             <List>
                 <ListHeader>Demo列表</ListHeader>
-                <Item button :to="{name:'tabs.tabsBottom'}">Tab在底部</Item>
-                <Item button :to="{name:'tabs.tabsTop'}">Tab在顶部</Item>
-                <Item button :to="{name:'tabs.iconOnly'}">Tab只有ICON</Item>
-                <Item button :to="{name:'tabs.iconLeft'}">ICON在左边</Item>
-                <Item button :to="{name:'tabs.iconBottom'}">ICON在底部</Item>
-                <Item button :to="{name:'tabs.titleOnly'}">只有Tab文字</Item>
-                <Item button :to="{name:'tabs.tabHighLight'}">Tab下划线跟随</Item>
+                <Item detail-push :to="{name:'tabs.tabsBottom'}">Tab在底部</Item>
+                <Item detail-push :to="{name:'tabs.tabsTop'}">Tab在顶部</Item>
+                <Item detail-push :to="{name:'tabs.iconOnly'}">Tab只有ICON</Item>
+                <Item detail-push :to="{name:'tabs.iconLeft'}">ICON在左边</Item>
+                <Item detail-push :to="{name:'tabs.iconBottom'}">ICON在底部</Item>
+                <Item detail-push :to="{name:'tabs.titleOnly'}">只有Tab文字</Item>
+                <Item detail-push :to="{name:'tabs.tabHighLight'}">Tab下划线跟随</Item>
             </List>
         </Content>
     </Page>

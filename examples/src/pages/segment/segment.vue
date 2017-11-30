@@ -12,11 +12,11 @@
             </div>
             <List>
                 <ListHeader>使用场景</ListHeader>
-                <Item button :to="{name:'segmentNormal'}">普通用法</Item>
-                <Item button :to="{name:'segmentAnimate'}">使用animate切换</Item>
-                <Item button :to="{name:'segmentWithSwiper'}">使用手势切换</Item>
-                <Item button :to="{name:'segmentAsync'}">异步加载组件</Item>
-                <Item button :to="{name:'segmentNoValue'}">没标注value</Item>
+                <Item detail-push :to="{name:'segmentNormal'}">普通用法</Item>
+                <Item detail-push :to="{name:'segmentAnimate'}">使用animate切换</Item>
+                <Item detail-push :to="{name:'segmentWithSwiper'}">使用手势切换</Item>
+                <Item detail-push :to="{name:'segmentAsync'}">异步加载组件</Item>
+                <Item detail-push :to="{name:'segmentNoValue'}">没标注value</Item>
             </List>
         </Content>
     </Page>

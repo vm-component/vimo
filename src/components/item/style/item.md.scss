@@ -25,7 +25,7 @@ $item-md-avatar-border-radius: 50% !default;
 $item-md-thumbnail-size: 80px !default;
 
 /// @prop - Shows the detail arrow icon on an item
-$item-md-detail-push-show: false !default;
+$item-md-detail-push-show: true !default;
 
 /// @prop - Color of the detail arrow icon
 $item-md-detail-push-color: $list-md-border-color !default;
@@ -61,8 +61,12 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   @include padding-horizontal($item-md-padding-start, 0);
 }
 
-.item-md:active {
+//.item-md:active {
+//  background-color: $list-md-activated-background-color;
+//}
+.item-md[detail-push]:active {
   background-color: $list-md-activated-background-color;
+  transition-duration: 0ms;
 }
 
 .item-md[no-lines] {

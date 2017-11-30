@@ -9,7 +9,7 @@ var root = process.cwd()
 /**
  * 获取业务定义的scss的变量
  * */
-module.exports = function getScssVariables () {
+function getScssVariables () {
   const pkgPath = `${root}/package.json`
   const pkg = existsSync(pkgPath) ? require(pkgPath) : {}
   let data = null
@@ -30,7 +30,9 @@ module.exports = function getScssVariables () {
   return data
 }
 
-/**
+module.exports = getScssVariables()
+
+  /**
  * @param {String} path - path of *.scss file
  * @example
  *
