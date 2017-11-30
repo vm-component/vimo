@@ -1,4 +1,4 @@
-@import "../../themes/ionic.globals";
+@import "../../../themes/ionic.globals";
 
 // Infinite Scroll
 // --------------------------------------------------
@@ -79,10 +79,10 @@ $infinite-scroll-loading-text-margin-start: 32px !default;
 // Infinite Scroll Content States
 // --------------------------------------------------
 
-.ion-infinite-scroll-content[state=loading] .infinite-loading {
+.ion-infinite-scroll[state=loading] .ion-infinite-scroll-content .infinite-loading {
   display: block;
 }
 
-.ion-infinite-scroll-content[state=disabled] {
+.ion-infinite-scroll[state=disabled] .ion-infinite-scroll-content {
   display: none;
 }

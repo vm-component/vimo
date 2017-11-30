@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-textarea" :class="[modeClass]">
+    <div class="ion-textarea" :class="[modeClass,{'has-count': this.count > 0}]">
         <div class="input-innerWrap" @click="setFocus($event)">
             <textarea :class="[textInputClass]"
                       class="text-input"
@@ -17,7 +17,7 @@
                       @focus="inputFocused($event)"
                       @input="inputChanged($event)"
                       @keydown="inputKeyDown($event)"></textarea>
-            <div class="input-count" v-if="count > 0"><span>{{inputValue.length}}</span>/{{count}}</div>
+            <div class="input-count" v-if="count > 0">{{inputValue.length}}/{{count}}</div>
         </div>
     </div>
 </template>

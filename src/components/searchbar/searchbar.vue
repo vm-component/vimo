@@ -132,6 +132,7 @@
   import Icon from '../icon'
   import { isNumber, isBoolean } from '../../util/type'
 
+  // TODO: use padding-left to  animate is not prefect , hah
   export default {
     name: 'Searchbar',
     data () {

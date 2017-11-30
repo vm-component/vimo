@@ -208,7 +208,7 @@
         </Content>
         <Footer>
             <Toolbar>
-                <Searchbar :animated="true"
+                <Searchbar :animated="false"
                            :debounce="1000"
                            v-model="myInput"
                            :showCancelButton="true"

@@ -56,7 +56,7 @@ $item-ios-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' vie
 }
 
 .ion-item-collapse-group > .collapse-ios:last-child {
-  border-bottom: $hairlines-width solid $list-ios-border-color;
+  border-bottom: 1px solid $list-ios-border-color;
   
   .item-block {
     .item-inner {
@@ -66,11 +66,11 @@ $item-ios-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' vie
 }
 
 .ion-item-collapse-group > .collapse-ios.item-collapse-open:last-child {
-  border-bottom: 0;
+  //border-bottom: 0;
   
   .item-block {
     .item-inner {
-      border-bottom: $hairlines-width solid $list-ios-border-color;
+      border-bottom: 1px solid $list-ios-border-color;
     }
   }
 }

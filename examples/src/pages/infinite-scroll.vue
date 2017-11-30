@@ -7,6 +7,7 @@
         </Header>
         <Content>
             <List>
+                <Item v-for="(i,index) in 30" :key="index">demo-{{i}}</Item>
                 <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
             </List>
             <InfiniteScroll ref="infiniteScroll" class="infiniteScroll" :enabled="true" threshold="10%"

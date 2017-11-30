@@ -5,10 +5,13 @@
     bottom: 0;
     padding-right: 5px;
     font-size: 12px;
-    color: #bbb;
+    color: #000;
+  }
+}
 
-    span {
-      color: #000;
-    }
+.ion-textarea.has-count {
+  margin-bottom: 10px;
+  .input-innerWrap{
+    padding-bottom: 10px;
   }
 }

@@ -13,7 +13,7 @@
                 <ListHeader>示例</ListHeader>
                 <Item detail-push :to="{name:'normalScroll'}">简单示例</Item>
                 <Item detail-push :to="{name:'cityScroll'}">城市列表</Item>
-                <Item detail-push :to="{name:'userCenterScroll'}">用户中心</Item>
+                <!--<Item detail-push :to="{name:'userCenterScroll'}">用户中心</Item>-->
                 <!--<Item>1</Item>-->
                 <!--<Item>1</Item>-->
             </List>

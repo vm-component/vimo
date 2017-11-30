@@ -64,7 +64,7 @@ $checkbox-ios-item-end-margin-bottom: 9px !default;
 $checkbox-ios-item-end-margin-start: 0 !default;
 
 .checkbox-ios {
-  position: relative;
+  position: static;
   display: inline-block;
 }
 
@@ -127,8 +127,7 @@ $checkbox-ios-item-end-margin-start: 0 !default;
   @include margin($checkbox-ios-item-start-margin-top, $checkbox-ios-item-start-margin-end, $checkbox-ios-item-start-margin-bottom, $checkbox-ios-item-start-margin-start);
 }
 
-.item.item-ios .checkbox-ios[item-right], // deprecated
-.item.item-ios .checkbox-ios[item-end] {
+.item.item-ios .checkbox-ios[item-right] {
   @include margin($checkbox-ios-item-end-margin-top, $checkbox-ios-item-end-margin-end, $checkbox-ios-item-end-margin-bottom, $checkbox-ios-item-end-margin-start);
 }
 
