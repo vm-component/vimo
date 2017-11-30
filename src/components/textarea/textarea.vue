@@ -1,6 +1,6 @@
 <template>
     <div class="ion-textarea" :class="[modeClass,{'has-count': this.count > 0}]">
-        <div class="input-innerWrap" @click="setFocus($event)">
+        <div class="input-inner-wrap" @click="setFocus($event)">
             <textarea :class="[textInputClass]"
                       class="text-input"
                       :value="inputValue"

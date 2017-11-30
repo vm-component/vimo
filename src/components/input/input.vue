@@ -1,6 +1,6 @@
 <template>
     <div class="ion-input" :class="[modeClass,{'clearInput':clearInput}]" @click="$_clickToFocus($event)">
-        <div class="input-innerWrap">
+        <div class="input-inner-wrap">
             <input ref="input"
                    :class="[textInputClass]"
                    :value="inputValue"
