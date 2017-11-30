@@ -11,7 +11,7 @@
 }
 
 .ion-item-collapse-group {
-  & > .item-collapse > .ion-item > .item-inner {
+  .item-collapse > .ion-item > .item-inner {
     position: relative;
     padding-right: 32px;
   }

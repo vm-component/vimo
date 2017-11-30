@@ -5,7 +5,6 @@
 
 $colors-wp: copy-colors($colors) !default;
 
-
 $text-wp-color:                       $text-color !default;
 $background-wp-color:                 $background-color !default;
 $subdued-text-wp-color:               $subdued-text-color !default;
@@ -15,7 +14,6 @@ $font-size-wp-base:                   $font-size-base !default;
 
 $content-wp-padding:                  $content-padding !default;
 $content-wp-margin:                   $content-margin !default;
-
 
 // Windows Toolbar
 // --------------------------------------------------
@@ -28,7 +26,6 @@ $toolbar-wp-text-color:               $toolbar-text-color !default;
 $toolbar-wp-active-color:             $toolbar-active-color !default;
 $toolbar-wp-inactive-color:           $toolbar-inactive-color !default;
 
-
 // Windows Tabs
 // --------------------------------------------------
 
@@ -37,7 +34,6 @@ $tabs-wp-border-color:                transparent !default;
 $tabs-wp-tab-color-inactive:          $tabs-tab-color-inactive !default;
 $tabs-wp-tab-color-active:            $tabs-tab-color-active !default;
 
-
 // Windows List
 // --------------------------------------------------
 
@@ -45,7 +41,6 @@ $list-wp-text-color:                  $list-text-color !default;
 $list-wp-border-color:                transparent !default;
 $list-wp-background-color:            $list-background-color !default;
 $list-wp-activated-background-color:  #aaa !default;
-
 
 // Windows Item
 // --------------------------------------------------
@@ -62,7 +57,6 @@ $item-wp-padding-media-top:           9px !default;
 $item-wp-padding-media-bottom:        9px !default;
 $item-wp-padding-icon-top:            11px !default;
 $item-wp-padding-icon-bottom:         10px !default;
-
 
 // Windows Input
 // --------------------------------------------------

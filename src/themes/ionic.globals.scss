@@ -1,31 +1,23 @@
-
 // Ionic Version
 //@import "./version";
-
 
 // Global Functions
 @import "./ionic.functions";
 
-
 // Global Mixins
 @import "./ionic.mixins";
-
 
 // Global app direction
 $app-direction: ltr !default;
 
-
 // Global font path
 $font-path: "../fonts" !default;
-
 
 // Ionicons font path
 $ionicons-font-path: $font-path !default;
 
-
 // Hairline width
 $hairlines-width: 0.55px !default;
-
 
 // Z-Index
 // --------------------------------------------------

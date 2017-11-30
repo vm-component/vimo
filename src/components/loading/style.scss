@@ -8,11 +8,12 @@
     padding: 13px;
     color: #fff;
     background: rgba(0, 0, 0, 0.9);
-
-    circle, line {
+    
+    circle,
+    line {
       stroke: #fff !important;
     }
-
+    
     .loading-spinner {
       display: flex;
       width: 30px;
@@ -26,8 +27,9 @@
 .indicator.reverse {
   .loading-wrapper {
     background: rgba(256, 256, 256, 0.9);
-
-    circle, line {
+    
+    circle,
+    line {
       stroke: #000 !important;
     }
   }

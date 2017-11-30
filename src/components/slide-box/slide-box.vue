@@ -1,7 +1,7 @@
 <template>
-    <div class="vm-slideBox" :state="state">
-        <div class="vm-slideBox-placeholder">{{placeholder}}</div>
-        <div class="vm-slideBox-track" ref="slideBoxTrack" :style="{'transform':'translateX(-'+translateX+'px)'}">
+    <div class="vm-slide-box" :state="state">
+        <div class="vm-slide-box-placeholder">{{placeholder}}</div>
+        <div class="vm-slide-box-track" ref="slideBoxTrack" :style="{'transform':'translateX(-'+translateX+'px)'}">
             <div class="track-background">
                 <span v-if="state === 'checking'">{{checkingText}}</span>
                 <span v-if="state === 'completing'">{{completeText}}</span>

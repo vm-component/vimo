@@ -1,14 +1,14 @@
 $green: #78c430;
 $red: #ef4644;
 
-.vm-slideBox {
+.vm-slide-box {
   position: relative;
   height: 52px;
   overflow: hidden;
   background-color: #ddd;
   box-shadow: 0 0 3px #999;
 
-  .vm-slideBox-placeholder {
+  .vm-slide-box-placeholder {
     display: block;
     width: 100%;
     height: 52px;
@@ -16,12 +16,7 @@ $red: #ef4644;
     line-height: 52px;
     color: #aaa;
     text-align: center;
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(0.4, #4d4d4d), color-stop(0.5, white), color-stop(0.6, #4d4d4d), color-stop(1, #4d4d4d));
-    -webkit-background-clip: text;
-    -webkit-animation: slidetounlock 3s infinite;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-size-adjust: none;
-
+    background: gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(0.4, #4d4d4d), color-stop(0.5, #fff), color-stop(0.6, #4d4d4d), color-stop(1, #4d4d4d));
     @keyframes slidetounlock {
       0% {
         background-position: -200px 0;
@@ -33,7 +28,7 @@ $red: #ef4644;
     }
   }
 
-  .vm-slideBox-track {
+  .vm-slide-box-track {
     position: absolute;
     top: 0;
     left: 0;
@@ -66,36 +61,34 @@ $red: #ef4644;
       .icon-arrow-right {
         width: 20px;
         height: 20px;
-        background: #fff url(images/arrow.png) no-repeat center center/20px 20px;
+        background: #fff url("images/arrow.png") no-repeat center center/20px 20px;
       }
 
       .icon-ok {
         width: 20px;
         height: 20px;
-        background: #fff url(images/ok.png) no-repeat center center/20px 20px;
+        background: #fff url("images/ok.png") no-repeat center center/20px 20px;
       }
 
       .icon-error {
         width: 20px;
         height: 20px;
-        background: #fff url(images/error.png) no-repeat center center/20px 20px;
+        background: #fff url("images/error.png") no-repeat center center/20px 20px;
       }
 
       .icon-refresh {
         width: 20px;
         height: 20px;
-        background: #fff url(images/refresh.png) no-repeat center center/20px 20px;
+        background: #fff url("images/refresh.png") no-repeat center center/20px 20px;
         animation: revolve 2s linear infinite;
       }
 
       @keyframes revolve {
         from {
-          -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
         }
 
         to {
-          -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
         }
       }
@@ -103,27 +96,27 @@ $red: #ef4644;
   }
 }
 
-.vm-slideBox[state="inactive"],
-.vm-slideBox[state="sliding"],
-.vm-slideBox[state="checking"],
-.vm-slideBox[state="cancelling"],
-.vm-slideBox[state="completing"] {
-  .vm-slideBox-track {
+.vm-slide-box[state="inactive"],
+.vm-slide-box[state="sliding"],
+.vm-slide-box[state="checking"],
+.vm-slide-box[state="cancelling"],
+.vm-slide-box[state="completing"] {
+  .vm-slide-box-track {
     .track-background {
       background-color: $green;
     }
   }
 }
 
-.vm-slideBox[state="failing"] {
-  .vm-slideBox-track {
+.vm-slide-box[state="failing"] {
+  .vm-slide-box-track {
     .track-background {
       background-color: $red;
     }
   }
 }
 
-.vm-slideBox[state="cancelling"] {
+.vm-slide-box[state="cancelling"] {
   &::after {
     position: absolute;
     top: 0;
@@ -135,7 +128,7 @@ $red: #ef4644;
     content: "";
   }
 
-  .vm-slideBox-track {
+  .vm-slide-box-track {
     transition: transform ease 500ms;
     will-change: transform;
   }

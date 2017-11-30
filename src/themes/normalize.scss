@@ -1,6 +1,5 @@
 // ! normalize.css v3.0.2 | MIT License | github.com/necolas/normalize.css
 
-
 // HTML5 display definitions
 // ==========================================================================
 
@@ -20,7 +19,6 @@ audio:not([controls]) {
   height: 0;
 }
 
-
 // Text-level semantics
 // ==========================================================================
 
@@ -29,7 +27,6 @@ b,
 strong {
   font-weight: bold;
 }
-
 
 // Embedded content
 // ==========================================================================
@@ -45,7 +42,6 @@ img {
 svg:not(:root) {
   overflow: hidden;
 }
-
 
 // Grouping content
 // ==========================================================================
@@ -76,7 +72,6 @@ samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
-
 
 // Forms
 // ==========================================================================
@@ -130,7 +125,7 @@ html input[type="button"], // 1
 input[type="reset"],
 input[type="submit"] {
   cursor: pointer; // 3
-
+  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-appearance: button; // 2
 }
 
@@ -168,7 +163,7 @@ button {
   text-transform: none;
   cursor: pointer;
   border: 0;
-
+  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-appearance: button;
 }
 
@@ -204,7 +199,9 @@ input[type="radio"] {
 // Fix the cursor style for Chrome's increment/decrement buttons. For certain
 // `font-size` values of the `input`, it causes the cursor style of the
 // decrement button to change from `default` to `text`.
+/* stylelint-disable-next-line property-no-vendor-prefix */
 input[type="number"]::-webkit-inner-spin-button,
+  /* stylelint-disable-next-line property-no-vendor-prefix */
 input[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
@@ -214,9 +211,9 @@ input[type="number"]::-webkit-outer-spin-button {
 // padding (and `textfield` appearance).
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
+  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-appearance: none;
 }
-
 
 // Tables
 // ==========================================================================//

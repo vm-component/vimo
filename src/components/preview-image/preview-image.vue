@@ -5,9 +5,9 @@
             @after-enter="afterEnter"
             @before-leave="beforeLeave"
             @after-leave="afterLeave">
-        <section class="vm-previewImage previewImage" v-if="isActive">
+        <section class="vm-preview-image preview-image" v-if="isActive">
             <transition name="fade">
-                <div class="previewImage__inner" v-show="images.length>0">
+                <div class="preview-image-inner" v-show="images.length>0">
                     <p text-center class="info">{{activeIndex + 1}} / {{images.length}}</p>
                     <Slides class="slides"
                             :preloadImages="false"

@@ -34,27 +34,27 @@
       &.animate {
         animation-name: animations;
 
-        /*检索或设置对象动画在循环中是否反向运动*/
+        /* 检索或设置对象动画在循环中是否反向运动 */
         animation-fill-mode: none;
 
-        /*检索或设置对象动画时间之外的状态*/
+        /* 检索或设置对象动画时间之外的状态 */
         animation-play-state: running;
 
-        /*检索或设置对象所应用的动画名称*/
+        /* 检索或设置对象所应用的动画名称 */
 
-        /*animation-duration: 9s;*/
+        /* animation-duration: 9s; */
 
-        /*检索或设置对象动画的持续时间*/
+        /* 检索或设置对象动画的持续时间 */
         animation-timing-function: linear;
 
-        /*检索或设置对象动画的过渡类型*/
+        /* 检索或设置对象动画的过渡类型 */
 
-        /*animation-delay: 2s;*/
+        /* animation-delay: 2s; */
 
-        /*检索或设置对象动画延迟的时间*/
+        /* 检索或设置对象动画延迟的时间 */
         animation-iteration-count: infinite;
 
-        /*检索或设置对象动画的循环次数*/
+        /* 检索或设置对象动画的循环次数 */
         animation-direction: normal;
       }
     }
@@ -97,7 +97,8 @@
     }
   }
 
-  .vm-icon, .vm-action {
+  .vm-icon,
+  .vm-action {
     top: 0;
     display: flex;
     height: 35px;
@@ -116,18 +117,18 @@
   }
 
   .vm-icon-notice {
-    background: url(images/notice.png) no-repeat center center/15px 15px;
+    background: url("images/notice.png") no-repeat center center/15px 15px;
   }
 
   .vm-icon-warn {
-    background: url(images/warn.png) no-repeat center center/15px 15px;
+    background: url("images/warn.png") no-repeat center center/15px 15px;
   }
 
   .vm-icon-right {
-    background: url(images/right.png) no-repeat center center/15px 15px;
+    background: url("images/right.png") no-repeat center center/15px 15px;
   }
 
   .vm-icon-close {
-    background: url(images/close.png) no-repeat center center/15px 15px;
+    background: url("images/close.png") no-repeat center center/15px 15px;
   }
 }

@@ -5,9 +5,9 @@
 // Menu Animate
 // --------------------------------------------------
 
-/*slide-in-left*/
+/* slide-in-left */
 
-/*animate class*/
+/* animate class */
 .slide-in-left-enter-active,
 .slide-in-left-leave-active {
   left: 0;
@@ -19,9 +19,9 @@
   transition: all cubic-bezier(0.2, 0, 1, 1) 280ms;
 }
 
-/*slide-in-right*/
+/* slide-in-right */
 
-/*animate class*/
+/* animate class */
 .slide-in-right-enter-active,
 .slide-in-right-leave-active {
   right: 0 !important;

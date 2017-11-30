@@ -2,7 +2,7 @@
 @import "../../animations/zoom.scss";
 @import "../../animations/fade.scss";
 
-.vm-previewImage.previewImage {
+.vm-preview-image.preview-image {
   position: fixed;
   top: 0;
   right: 0;
@@ -13,7 +13,7 @@
   background: #000;
   transition: all ease 300ms;
 
-  .previewImage__inner {
+  .preview-image-inner {
     width: 100%;
     height: 100%;
 
@@ -22,15 +22,18 @@
       height: 100%;
 
       .slide {
-        display: flex;
         width: 100%;
         height: 100%;
-        align-items: center;
-        justify-content: center;
-
-        img {
-          width: 100%;
-        }
+   
+      }
+    }
+  
+    .slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 100%;
       }
     }
 

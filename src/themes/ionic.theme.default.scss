@@ -1,19 +1,15 @@
 @import "./ionic.globals";
 
-
 // Default Theme
 // ----------------------------------
 
 $colors: (
-
   primary:    #327eff,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
-
 ) !default;
-
 
 $text-color:                 #000 !default;
 $link-color:                 color($colors, primary) !default;
@@ -21,7 +17,7 @@ $background-color:           #fff !default;
 $subdued-text-color:         #666 !default;
 
 $font-family-base:           -apple-system, "Helvetica Neue", "Roboto", sans-serif !default;
-$font-size-base:             1.4rem !default; // 1.4rem == 14px
+$font-size-base:             14px !default; // 1.4rem == 14px
 
 $content-padding:            16px !default;
 $content-margin:             16px !default;
