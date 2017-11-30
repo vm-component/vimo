@@ -62,19 +62,13 @@ html {
 }
 
 body {
-  
-  //position: fixed;
-  //overflow: hidden;
-  
   width: 100%;
   max-width: 100%;
   word-wrap: break-word;
   user-select: none;
-  //height: 100%;
-  //max-height: 100%;
   
-  //-webkit-font-smoothing: antialiased;
-  //font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -webkit-user-drag: none;
   -ms-content-zooming: none;
@@ -231,6 +225,7 @@ sub {
   transform: translateY(-100%);
 }
 
+/* stylelint-disable */
 // place holder for pop menus
 #right-button-placeholder {
   position: absolute;
@@ -239,6 +234,7 @@ sub {
   width: 30px;
   height: 1px;
 }
+/* stylelint-enable */
 
 // Footer Structure
 // --------------------------------------------------

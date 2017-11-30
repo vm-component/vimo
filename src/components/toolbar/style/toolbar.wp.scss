@@ -199,17 +199,16 @@ $toolbar-button-wp-strong-font-weight: bold !default;
 
 @mixin wp-bar-button-outline($color-name, $color-base, $color-contrast) {
   .bar-button-outline-wp-#{$color-name} {
+    $fg-color: color-shade($color-base);
     color: $fg-color;
     background-color: transparent;
     border-color: $fg-color;
-    $fg-color: color-shade($color-base);
     
     &:active {
       color: $color-contrast;
       background-color: $fg-color;
     }
   }
-  
 }
 
 // Windows Toolbar Button Solid

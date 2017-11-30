@@ -215,14 +215,13 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
 
 @mixin ios-bar-button-outline($color-name, $color-base, $color-contrast) {
   .bar-button-outline-ios-#{$color-name} {
-    color: $fg-color;
+    color: $color-base;
     background-color: transparent;
-    border-color: $fg-color;
-    $fg-color: $color-base;
+    border-color: $color-base;
     
     &:active {
       color: $color-contrast;
-      background-color: $fg-color;
+      background-color: $color-base;
     }
   }
   
