@@ -10,15 +10,15 @@ $item-md-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' view
 // --------------------------------------------------
 
 .ion-item-collapse-group {
-  & > .collapse-md {
-    & > .item-md {
+  .collapse-md {
+    .item-md {
       &:active {
         background-color: $list-md-activated-background-color;
         transition-duration: 0ms;
       }
 
-      & > .item-inner {
-        & > .item-arrow {
+      .item-inner {
+        .item-arrow {
           position: absolute;
           top: 50%;
           right: 14px;
@@ -41,10 +41,10 @@ $item-md-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' view
     }
   }
 
-  & > .collapse-md.item-collapse-open {
-    & > .item-md {
-      & > .item-inner {
-        & > .item-arrow {
+  .collapse-md.item-collapse-open {
+    .item-md {
+      .item-inner {
+        .item-arrow {
           transform: rotate(90deg);
         }
       }
@@ -53,8 +53,8 @@ $item-md-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' view
 }
 
 .ion-item-collapse-group > .collapse-md:last-child {
-  & > .item-block {
-    & > .item-inner {
+  .item-block {
+    .item-inner {
       border-bottom: 0;
     }
   }
@@ -63,15 +63,15 @@ $item-md-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' view
 .ion-item-collapse-group > .collapse-md.item-collapse-open:last-child {
   border-bottom: 0;
 
-  & > .item-block {
-    & > .item-inner {
+  .item-block {
+    .item-inner {
       border-bottom: $hairlines-width solid $list-md-border-color;
     }
   }
 
   & .item-collapse-inner {
-    & > .item-block:last-child {
-      & > .item-inner {
+    .item-block:last-child {
+      .item-inner {
         border: none;
       }
     }
