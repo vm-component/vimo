@@ -17,7 +17,7 @@
    * @props {String} [mode='ios'] - 模式
    *
    * */
-  export default{
+  export default {
     name: 'Note',
     props: {
       /**

@@ -13,7 +13,7 @@ $pop-sheet-md-text-align: left;
 $pop-sheet-md-padding: 0;
 
 /// @prop - Box shadow color of the pop-sheet
-$pop-sheet-md-box-shadow-color: rgba(0, 0, 0, .4);
+$pop-sheet-md-box-shadow-color: rgba(0, 0, 0, 0.4);
 
 /// @prop - Box shadow of the pop-sheet
 $pop-sheet-md-box-shadow: 0 16px 20px $pop-sheet-md-box-shadow-color;
@@ -26,9 +26,7 @@ $pop-sheet-md-border-radius: 2px;
 
 .pop-sheet-md .sheet-container {
   padding: $pop-sheet-md-padding;
-
-  border-radius: $pop-sheet-md-border-radius;
   background-color: $pop-sheet-md-background;
-
+  border-radius: $pop-sheet-md-border-radius;
   box-shadow: $pop-sheet-md-box-shadow;
 }

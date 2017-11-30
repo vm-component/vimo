@@ -2,21 +2,17 @@
 // --------------------------------------------------
 
 .item-collapse-inner {
-  z-index: 1;
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
   position: relative;
-  transition: all ease 300ms;
+  z-index: 1;
   background-color: #fff;
+  opacity: 1;
+  transition: all ease 300ms;
+  transform: translate3d(0, 0, 0);
 }
 
 .ion-item-collapse-group {
-  & > .item-collapse {
-    & > .ion-item {
-      & > .item-inner {
-        position: relative;
-        padding-right: 32px;
-      }
-    }
+  & > .item-collapse > .ion-item > .item-inner {
+    position: relative;
+    padding-right: 32px;
   }
 }

@@ -8,14 +8,12 @@
 // ---------------------------------------------------------------------------------
 
 @mixin make-grid($padding-width: $grid-padding-width) {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
   @include padding($padding-width / 2);
   @include margin-horizontal(auto);
-
-  width: 100%;
-
-  display: flex;
-
-  flex-direction: column;
 
   // Remove the padding from the grid and all immediate children columns
   &[no-padding] {
@@ -95,21 +93,19 @@
   }
 }
 
-
 // Creates the base column which has shared styles among all columns
 // ---------------------------------------------------------------------------------
 
 @mixin make-column-base($padding-width: $grid-padding-width) {
-  @include padding($padding-width / 2);
-
   position: relative;
-
   width: 100%;
-  @include margin(0);
+  max-width: 100%;
   min-height: 1px; // Prevent columns from collapsing when empty
   flex-basis: 0;
   flex-grow: 1;
-  max-width: 100%;
+
+  @include padding($padding-width / 2);
+  @include margin(0);
 
   &[align-self-start] {
     align-self: flex-start;
@@ -132,19 +128,17 @@
   }
 }
 
-
 // Create an individual column
 // ---------------------------------------------------------------------------------
 
 @mixin make-column($size, $columns: $grid-columns) {
-  flex: 0 0 percentage($size / $columns);
   width: percentage($size / $columns);
   // Add a `max-width` to ensure content within each column does not blow out
   // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
   // do not appear to require this.
   max-width: percentage($size / $columns);
+  flex: 0 0 percentage($size / $columns);
 }
-
 
 // Adds padding to the column
 // ---------------------------------------------------------------------------------
@@ -153,11 +147,11 @@
   @each $breakpoint in map-keys($padding-widths) {
     @include media-breakpoint-up($breakpoint) {
       $padding-width: map-get($padding-widths, $breakpoint);
+
       @include padding($padding-width / 2);
     }
   }
 }
-
 
 // Offset the column using margin-start
 // ---------------------------------------------------------------------------------
@@ -166,14 +160,12 @@
   @include margin-horizontal(percentage($size / $columns), null);
 }
 
-
 // Push the column using left
 // ---------------------------------------------------------------------------------
 
 @mixin make-column-push($size, $columns: $grid-columns) {
   @include position(null, null, null, if($size > 0, percentage($size / $columns), auto));
 }
-
 
 // Pull the column using right
 // ---------------------------------------------------------------------------------
@@ -182,7 +174,6 @@
   @include position(null, if($size > 0, percentage($size / $columns), auto), null, null);
 }
 
-
 // Determine which modifier to add
 // ---------------------------------------------------------------------------------
 
@@ -190,13 +181,16 @@
   // Work around the lack of dynamic mixin @include support (https://github.com/sass/sass/issues/626)
   @if $type == push {
     @include make-column-push($size, $columns);
-  } @else if $type == pull {
+  }
+
+  @else if $type == pull {
     @include make-column-pull($size, $columns);
-  } @else if $type == offset {
+  }
+
+  @else if $type == offset {
     @include make-column-offset($size, $columns);
   }
 }
-
 
 // Create the responsive grid columns
 // --------------------------------------------------
@@ -219,16 +213,14 @@
     @include media-breakpoint-up($breakpoint, $breakpoints) {
       // Provide basic `[col-{bp}]` attributes for equal-width flexbox columns
       [col#{$infix}] {
+        max-width: 100%;
         flex-basis: 0;
         flex-grow: 1;
-
-        max-width: 100%;
       }
 
       [col#{$infix}-auto] {
-        flex: 0 0 auto;
-
         width: auto;
+        flex: 0 0 auto;
       }
 
       @for $i from 1 through $columns {
@@ -240,7 +232,7 @@
       @each $modifier in (pull, push) {
         @for $i from 0 through $columns {
           [#{$modifier}#{$infix}-#{$i}] {
-            @include make-column-modifier($modifier, $i, $columns)
+            @include make-column-modifier($modifier, $i, $columns);
           }
         }
       }
@@ -249,7 +241,7 @@
       @for $i from 0 through ($columns - 1) {
         @if not ($infix == "" and $i == 0) { // Avoid emitting useless [offset-xs-0]
           [offset#{$infix}-#{$i}] {
-            @include make-column-modifier(offset, $i, $columns)
+            @include make-column-modifier(offset, $i, $columns);
           }
         }
       }

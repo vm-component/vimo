@@ -4,120 +4,115 @@
 // --------------------------------------------------
 
 /// @prop - Margin top of the card
-$card-md-margin-top:                  10px !default;
+$card-md-margin-top: 10px !default;
 
 /// @prop - Margin end of the card
-$card-md-margin-end:                  10px !default;
+$card-md-margin-end: 10px !default;
 
 /// @prop - Margin bottom of the card
-$card-md-margin-bottom:               10px !default;
+$card-md-margin-bottom: 10px !default;
 
 /// @prop - Margin start of the card
-$card-md-margin-start:                10px !default;
-
+$card-md-margin-start: 10px !default;
 
 /// @prop - Padding top of the card
-$card-md-padding-top:                 13px !default;
+$card-md-padding-top: 13px !default;
 
 /// @prop - Padding right of the card
-$card-md-padding-end:                 16px !default;
+$card-md-padding-end: 16px !default;
 
 /// @prop - Padding bottom of the card
-$card-md-padding-bottom:              13px !default;
+$card-md-padding-bottom: 13px !default;
 
 /// @prop - Padding start of the card
-$card-md-padding-start:               16px !default;
+$card-md-padding-start: 16px !default;
 
 /// @prop - Padding top of the media on the card
-$card-md-padding-media-top:           10px !default;
+$card-md-padding-media-top: 10px !default;
 
 /// @prop - Padding bottom of the media on the card
-$card-md-padding-media-bottom:        10px !default;
+$card-md-padding-media-bottom: 10px !default;
 
 /// @prop - Size of the card avatar
-$card-md-avatar-size:                 40px !default;
+$card-md-avatar-size: 40px !default;
 
 /// @prop - Size of the card thumbnail
-$card-md-thumbnail-size:              80px !default;
+$card-md-thumbnail-size: 80px !default;
 
 /// @prop - Background color of the card
-$card-md-background-color:            $list-md-background-color !default;
+$card-md-background-color: $list-md-background-color !default;
 
 /// @prop - Box shadow of the card
-$card-md-box-shadow:                  0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12) !default;
+$card-md-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !default;
 
 /// @prop - Border radius of the card
-$card-md-border-radius:               2px !default;
-
+$card-md-border-radius: 2px !default;
 
 /// @prop - Font size of the card
-$card-md-font-size:                   14px !default;
+$card-md-font-size: 14px !default;
 
 /// @prop - Line height of the card
-$card-md-line-height:                 1.5 !default;
+$card-md-line-height: 1.5 !default;
 
 /// @prop - Color of the card text
-$card-md-text-color:                  #222 !default;
+$card-md-text-color: #222 !default;
 
 /// @prop - Font size of the card title
-$card-md-title-font-size:             24px !default;
+$card-md-title-font-size: 24px !default;
 
 /// @prop - Padding top of the card title
-$card-md-title-padding-top:           8px !default;
+$card-md-title-padding-top: 8px !default;
 
 /// @prop - Padding end of the card title
-$card-md-title-padding-end:           0 !default;
+$card-md-title-padding-end: 0 !default;
 
 /// @prop - Padding bottom of the card title
-$card-md-title-padding-bottom:        8px !default;
+$card-md-title-padding-bottom: 8px !default;
 
 /// @prop - Padding start of the card title
-$card-md-title-padding-start:         0 !default;
+$card-md-title-padding-start: 0 !default;
 
 /// @prop - Margin top of the card title
-$card-md-title-margin-top:            2px !default;
+$card-md-title-margin-top: 2px !default;
 
 /// @prop - Margin end of the card title
-$card-md-title-margin-end:            0 !default;
+$card-md-title-margin-end: 0 !default;
 
 /// @prop - Margin bottom of the card title
-$card-md-title-margin-bottom:         2px !default;
+$card-md-title-margin-bottom: 2px !default;
 
 /// @prop - Margin start of the card title
-$card-md-title-margin-start:          $card-md-title-margin-end !default;
+$card-md-title-margin-start: $card-md-title-margin-end !default;
 
 /// @prop - Color of the card title
-$card-md-title-text-color:            #222 !default;
+$card-md-title-text-color: #222 !default;
 
 /// @prop - Font size of the card header
-$card-md-header-font-size:            16px !default;
+$card-md-header-font-size: 16px !default;
 
 /// @prop - Padding top of the card header
-$card-md-header-padding-top:          16px !default;
+$card-md-header-padding-top: 16px !default;
 
 /// @prop - Padding end of the card header
-$card-md-header-padding-end:          $card-md-header-padding-top !default;
+$card-md-header-padding-end: $card-md-header-padding-top !default;
 
 /// @prop - Padding bottom of the card header
-$card-md-header-padding-bottom:       $card-md-header-padding-top !default;
+$card-md-header-padding-bottom: $card-md-header-padding-top !default;
 
 /// @prop - Padding start of the card header
-$card-md-header-padding-start:        $card-md-header-padding-end !default;
+$card-md-header-padding-start: $card-md-header-padding-end !default;
 
 /// @prop - Color of the card header
-$card-md-header-color:                #222 !default;
-
+$card-md-header-color: #222 !default;
 
 .card-md {
-  @include margin($card-md-margin-top, $card-md-margin-end, $card-md-margin-bottom, $card-md-margin-start);
-  @include border-radius($card-md-border-radius);
-
   width: calc(100% - #{($card-md-margin-end + $card-md-margin-start)});
-
   font-size: $card-md-font-size;
-
   background: $card-md-background-color;
   box-shadow: $card-md-box-shadow;
+
+  @include margin($card-md-margin-top, $card-md-margin-end, $card-md-margin-bottom, $card-md-margin-start);
+  @include border-radius($card-md-border-radius);
 }
 
 .card-md .ion-list {
@@ -135,17 +130,17 @@ $card-md-header-color:                #222 !default;
 }
 
 .card-content-md {
-  @include padding($card-md-padding-top, $card-md-padding-end, $card-md-padding-bottom, $card-md-padding-start);
-
   font-size: $card-md-font-size;
   line-height: $card-md-line-height;
+
+  @include padding($card-md-padding-top, $card-md-padding-end, $card-md-padding-bottom, $card-md-padding-start);
 }
 
 .card-header-md {
   font-size: $card-md-header-font-size;
   color: $card-md-header-color;
 
-    @include padding($card-md-header-padding-top, $card-md-header-padding-end, $card-md-header-padding-bottom, $card-md-header-padding-start);
+  @include padding($card-md-header-padding-top, $card-md-header-padding-end, $card-md-header-padding-bottom, $card-md-header-padding-start);
 }
 
 .card-header-md + .card-content-md,
@@ -159,62 +154,58 @@ $card-md-header-color:                #222 !default;
 
 .card-title-md {
   display: block;
-
   font-size: $card-md-title-font-size;
   line-height: 1.2;
   color: $card-md-title-text-color;
 
-    @include margin($card-md-title-margin-top, $card-md-title-margin-end, $card-md-title-margin-bottom, $card-md-title-margin-start);
-
-    @include padding($card-md-title-padding-top, $card-md-title-padding-end, $card-md-title-padding-bottom, $card-md-title-padding-start);
+  @include margin($card-md-title-margin-top, $card-md-title-margin-end, $card-md-title-margin-bottom, $card-md-title-margin-start);
+  @include padding($card-md-title-padding-top, $card-md-title-padding-end, $card-md-title-padding-bottom, $card-md-title-padding-start);
 }
 
 .card-md h1 {
-  @include margin(0, 0, 2px);
-
   font-size: 24px;
   font-weight: normal;
   color: $card-md-text-color;
+
+  @include margin(0, 0, 2px);
 }
 
 .card-md h2 {
-  @include margin(2px, 0);
-
   font-size: 16px;
   font-weight: normal;
   color: $card-md-text-color;
+
+  @include margin(2px, 0);
 }
 
 .card-md h3,
 .card-md h4,
 .card-md h5,
 .card-md h6 {
-  @include margin(2px, 0);
-
   font-size: 14px;
   font-weight: normal;
   color: $card-md-text-color;
+
+  @include margin(2px, 0);
 }
 
 .card-md p {
-  @include margin(0, 0, 2px);
-
   font-size: 14px;
   font-weight: normal;
   line-height: 1.5;
   color: $card-md-text-color;
+
+  @include margin(0, 0, 2px);
 }
 
 .card-md + ion-card {
   @include margin(0, null, null, null);
 }
 
-
 // Generate Material Design Card Colors
 // --------------------------------------------------
 
 @each $color-name, $color-base, $color-contrast in get-colors($colors-md) {
-
   .card-md .text-md-#{$color-name} {
     color: $color-base;
   }

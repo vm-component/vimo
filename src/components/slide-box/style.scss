@@ -4,63 +4,64 @@ $red: #ef4644;
 .vm-slideBox {
   position: relative;
   height: 52px;
-  box-shadow: 0 0 3px #999;
-  background-color: #ddd;
   overflow: hidden;
+  background-color: #ddd;
+  box-shadow: 0 0 3px #999;
 
   .vm-slideBox-placeholder {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(0.4, #4d4d4d), color-stop(0.5, white), color-stop(0.6, #4d4d4d), color-stop(1, #4d4d4d));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-animation: slidetounlock 3s infinite;
-    -webkit-text-size-adjust: none;
-    line-height: 52px;
-    height: 52px;
-    text-align: center;
-    font-size: 16px;
     display: block;
     width: 100%;
+    height: 52px;
+    font-size: 16px;
+    line-height: 52px;
     color: #aaa;
+    text-align: center;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(0.4, #4d4d4d), color-stop(0.5, white), color-stop(0.6, #4d4d4d), color-stop(1, #4d4d4d));
+    -webkit-background-clip: text;
+    -webkit-animation: slidetounlock 3s infinite;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-size-adjust: none;
+
     @keyframes slidetounlock {
       0% {
-        background-position: -200px 0
+        background-position: -200px 0;
       }
 
       100% {
-        background-position: 200px 0
+        background-position: 200px 0;
       }
     }
   }
 
   .vm-slideBox-track {
     position: absolute;
-    left: 0;
     top: 0;
-    height: 100%;
+    left: 0;
     width: 100%;
+    height: 100%;
     overflow: hidden;
-        
+
     .track-background {
-      line-height: 52px;
-      height: 52px;
-      text-align: center;
-      font-size: 16px;
-      color: #fff;
       width: 100%;
+      height: 52px;
+      font-size: 16px;
+      line-height: 52px;
+      color: #fff;
+      text-align: center;
     }
 
     .track-btn {
       position: absolute;
-      right: 0;
       top: 0;
+      right: 0;
+      display: flex;
       width: 52px;
       height: 52px;
       cursor: pointer;
-      opacity: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background: #fff;
+      opacity: 1;
+      align-items: center;
+      justify-content: center;
 
       .icon-arrow-right {
         width: 20px;
@@ -86,12 +87,13 @@ $red: #ef4644;
         background: #fff url(images/refresh.png) no-repeat center center/20px 20px;
         animation: revolve 2s linear infinite;
       }
+
       @keyframes revolve {
         from {
           -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
         }
-                
+
         to {
           -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
@@ -122,17 +124,17 @@ $red: #ef4644;
 }
 
 .vm-slideBox[state="cancelling"] {
-  &:after {
-    content: '';
+  &::after {
     position: absolute;
-    left: 0;
     top: 0;
-    height: 100%;
-    width: 100%;
+    left: 0;
     z-index: 1;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
+    content: "";
   }
-    
+
   .vm-slideBox-track {
     transition: transform ease 500ms;
     will-change: transform;

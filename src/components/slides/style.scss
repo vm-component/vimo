@@ -1,17 +1,17 @@
 @import "./style/slides.scss";
 
 .swiper-container {
+  display: flex;
   width: 100%;
   height: 100%;
   padding: 0;
-  display: flex;
   overflow: hidden;
 
   .swiper-wrapper {
+    display: flex;
     width: 100%;
     height: 100%;
     padding: 0;
-    display: flex;
 
     .swiper-slide {
       width: 100%;
@@ -21,8 +21,8 @@
 
       img {
         width: auto;
-        height: auto;
         max-width: 100%;
+        height: auto;
         max-height: 100%;
       }
     }

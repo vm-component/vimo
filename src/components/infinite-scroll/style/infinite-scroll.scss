@@ -3,71 +3,65 @@
 // Infinite Scroll
 // --------------------------------------------------
 
-
 /// @prop - Margin top of the infinite scroll loading icon
-$infinite-scroll-loading-margin-top:     0 !default;
+$infinite-scroll-loading-margin-top: 0 !default;
 
 /// @prop - Margin end of the infinite scroll loading icon
-$infinite-scroll-loading-margin-end:     0 !default;
+$infinite-scroll-loading-margin-end: 0 !default;
 
 /// @prop - Margin bottom of the infinite scroll loading icon
-$infinite-scroll-loading-margin-bottom:  32px !default;
+$infinite-scroll-loading-margin-bottom: 32px !default;
 
 /// @prop - Margin start of the infinite scroll loading icon
-$infinite-scroll-loading-margin-start:   0 !default;
+$infinite-scroll-loading-margin-start: 0 !default;
 
 /// @prop - Color of the infinite scroll loading indicator
-$infinite-scroll-loading-color:          #666 !default;
+$infinite-scroll-loading-color: #666 !default;
 
 /// @prop - Text color of the infinite scroll loading indicator
-$infinite-scroll-loading-text-color:     $infinite-scroll-loading-color !default;
+$infinite-scroll-loading-text-color: $infinite-scroll-loading-color !default;
 
 /// @prop - Margin top of the infinite scroll loading text
-$infinite-scroll-loading-text-margin-top:4px !default;
+$infinite-scroll-loading-text-margin-top: 4px !default;
 
 /// @prop - Margin end of the infinite scroll loading text
-$infinite-scroll-loading-text-margin-end:32px !default;
+$infinite-scroll-loading-text-margin-end: 32px !default;
 
 /// @prop - Margin bottom of the infinite scroll loading text
-$infinite-scroll-loading-text-margin-bottom:0 !default;
+$infinite-scroll-loading-text-margin-bottom: 0 !default;
 
 /// @prop - Margin start of the infinite scroll loading text
-$infinite-scroll-loading-text-margin-start:32px !default;
+$infinite-scroll-loading-text-margin-start: 32px !default;
 
 .ion-infinite-scroll {
   display: block;
-
   width: 100%;
 }
-
 
 // Infinite Scroll Content
 // --------------------------------------------------
 
 .ion-infinite-scroll-content {
-  @include text-align(center);
-
   display: flex;
-
+  height: 100%;
+  min-height: 84px;
   flex-direction: column;
   justify-content: center;
 
-  height: 100%;
-  min-height: 84px;
+  @include text-align(center);
 }
 
 .infinite-loading {
   display: none;
-
   width: 100%;
 
-    @include margin($infinite-scroll-loading-margin-top, $infinite-scroll-loading-margin-end, $infinite-scroll-loading-margin-bottom, $infinite-scroll-loading-margin-start);
+  @include margin($infinite-scroll-loading-margin-top, $infinite-scroll-loading-margin-end, $infinite-scroll-loading-margin-bottom, $infinite-scroll-loading-margin-start);
 }
 
 .infinite-loading-text {
   color: $infinite-scroll-loading-text-color;
 
-    @include margin($infinite-scroll-loading-text-margin-top, $infinite-scroll-loading-text-margin-end, $infinite-scroll-loading-text-margin-bottom, $infinite-scroll-loading-text-margin-start);
+  @include margin($infinite-scroll-loading-text-margin-top, $infinite-scroll-loading-text-margin-end, $infinite-scroll-loading-text-margin-bottom, $infinite-scroll-loading-text-margin-start);
 }
 
 .infinite-loading-spinner .spinner-ios line,
@@ -81,7 +75,6 @@ $infinite-scroll-loading-text-margin-start:32px !default;
 .infinite-loading-spinner .spinner-dots circle {
   fill: $infinite-scroll-loading-color;
 }
-
 
 // Infinite Scroll Content States
 // --------------------------------------------------

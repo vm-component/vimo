@@ -13,11 +13,10 @@ $sheet-md-text-align: left !default;
 $sheet-md-padding: 0 !default;
 
 .sheet-md {
-    text-align: $sheet-md-text-align;
+  text-align: $sheet-md-text-align;
 }
 
 .sheet-md .sheet-container {
-    padding: $sheet-md-padding;
-    
-    background: $sheet-md-background;
+  padding: $sheet-md-padding;
+  background: $sheet-md-background;
 }

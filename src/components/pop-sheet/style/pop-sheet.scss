@@ -9,38 +9,35 @@ $sheet-max-width: 500px !default;
   overflow: hidden;
 
   &.vm-pop-sheet-visible {
-    position: fixed!important;
+    position: fixed !important;
     top: 0;
-    left: 0;
-    bottom: 0;
     right: 0;
-
-    text-align: center;
-
+    bottom: 0;
+    left: 0;
+    z-index: $z-index-overlay + $z-index-overlay-sheet;
+    display: flex;
     width: 100%;
     height: 100%;
-
-    display: flex;
-    justify-content: center;
+    text-align: center;
     align-items: center;
-
-    z-index: $z-index-overlay + $z-index-overlay-sheet;
+    justify-content: center;
   }
 
   // transitioName = 'pop-sheet'
-  .pop-sheet-enter-active, .pop-sheet-leave-active {
-    transform: scale(1);
+  .pop-sheet-enter-active,
+  .pop-sheet-leave-active {
     opacity: 1;
+    transform: scale(1);
   }
 
   .pop-sheet-enter {
-    transform: scale(1.1);
     opacity: 0;
+    transform: scale(1.1);
   }
 
   .pop-sheet-leave-active {
-    transform: scale(0.9);
     opacity: 0;
+    transform: scale(0.9);
   }
 
   .sheet-wrapper {
@@ -49,7 +46,7 @@ $sheet-max-width: 500px !default;
     display: block;
     margin: auto;
     // added
-    transition: all cubic-bezier(.36, .66, .04, 1) 400ms;
+    transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 400ms;
   }
 }
 

@@ -4,11 +4,10 @@
 // --------------------------------------------------
 
 /// @prop - Background color of the outer content
-$content-ios-outer-background:          #efeff4 !default;
+$content-ios-outer-background: #efeff4 !default;
 
 /// @prop - Background color of the content when making transition
-$content-ios-transition-background:     #000 !default;
-
+$content-ios-transition-background: #000 !default;
 
 .content-ios {
   color: $text-ios-color;
@@ -21,35 +20,30 @@ $content-ios-transition-background:     #000 !default;
 
 .content-ios hr {
   height: $hairlines-width;
-
-  background-color: rgba(0, 0, 0, .12);
+  background-color: rgba(0, 0, 0, 0.12);
 }
 
 .ios .ion-page.show-page ~ .nav-decor {
-  @include position(0, null, null, 0);
-
+  
   // when ios pages transition, the leaving page grays out
   // this is the black square behind all pages so they gray out
   position: absolute;
   z-index: 0;
   display: block;
-
   width: 100%;
   height: 100%;
-
-  background: $content-ios-transition-background;
-
   pointer-events: none;
+  background: $content-ios-transition-background;
+  
+  @include position(0, null, null, 0);
 }
-
 
 // iOS Content Padding
 // --------------------------------------------------
 
-@include content-padding('ios', $content-ios-padding);
-
+@include content-padding("ios", $content-ios-padding);
 
 // iOS Content Margin
 // --------------------------------------------------
 
-@include content-margin('ios', $content-ios-margin);
+@include content-margin("ios", $content-ios-margin);

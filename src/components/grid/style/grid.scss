@@ -1,5 +1,4 @@
 @import "../../../themes/ionic.globals";
-
 @import "grid.mixins";
 
 // Grid
@@ -8,7 +7,6 @@
 // http://philipwalton.github.io/solved-by-flexbox/demos/grids/
 // Column layout based on the Bootstrap grid system:
 // http://v4-alpha.getbootstrap.com/layout/grid/
-
 
 // Grid Breakpoints
 // --------------------------------------------------
@@ -23,7 +21,6 @@ $grid-breakpoints: (
   xl: 1200px
 ) !default;
 
-
 // Grid Containers
 // --------------------------------------------------
 
@@ -35,15 +32,14 @@ $grid-max-widths: (
   xl: 1140px
 ) !default;
 
-
 // Grid Columns
 // --------------------------------------------------
 
 /// @prop - Number of columns for the grid
-$grid-columns:               12 !default;
+$grid-columns: 12 !default;
 
 /// @prop - Total width of the padding for the grid
-$grid-padding-width:         10px !default;
+$grid-padding-width: 10px !default;
 
 /// @prop - Padding for the columns for different screen sizes
 $grid-padding-widths: (
@@ -54,22 +50,19 @@ $grid-padding-widths: (
   xl: $grid-padding-width
 ) !default;
 
-
 // Check that the Sass maps are declared correctly
 // --------------------------------------------------
 
 @include assert-ascending($grid-breakpoints, "$grid-breakpoints");
 @include assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
-
 @include assert-ascending($grid-max-widths, "$grid-max-widths");
-
 
 // Grid
 // --------------------------------------------------
 
 .grid {
   @include make-grid();
-
+  
   &[fixed] {
     @include make-grid-max-widths();
   }
@@ -95,50 +88,53 @@ $grid-padding-widths: (
 // --------------------------------------------------
 [sudoku] {
   @mixin hairline() {
-    content: "";
     position: absolute;
-    background-color: #ddd;
     display: block;
+    content: "";
+    background-color: #ddd;
     transform-origin: 0 0;
   }
   
   .row {
     position: relative;
   }
+  
   .row::before {
-    @include hairline();
-    transform: scaleY(.5);
-    height: 1px;
-    width: 100%;
-    
-    left: 0;
-    right: auto;
     top: 0;
+    right: auto;
     bottom: auto;
-  }
-  .row:nth-last-child(1)::after {
-    @include hairline();
-    transform: scaleY(.5);
-    height: 1px;
-    width: 100%;
-    
     left: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(0.5);
+    
+    @include hairline();
+  }
+  
+  .row:nth-last-child(1)::after {
+    top: auto;
     right: auto;
     bottom: 0;
-    top: auto;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(0.5);
+    
+    @include hairline();
   }
   
   .col::before {
-    @include hairline();
-    transform: scaleX(.5);
-    height: 100%;
-    width: 1px;
-    
     top: 0;
+    right: auto;
     bottom: auto;
     left: 0;
-    right: auto;
+    width: 1px;
+    height: 100%;
+    transform: scaleX(0.5);
+    
+    @include hairline();
   }
+  
   .col:nth-child(1)::before {
     content: none;
   }

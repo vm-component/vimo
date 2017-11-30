@@ -4,14 +4,13 @@
 // --------------------------------------------------
 
 /// @prop - Color of the input highlight when valid
-$text-input-highlight-color-valid:       #32db64 !default;
+$text-input-highlight-color-valid: #32db64 !default;
 
 /// @prop - Color of the input highlight when invalid
-$text-input-highlight-color-invalid:     #f53d3d !default;
+$text-input-highlight-color-invalid: #f53d3d !default;
 
 /// @prop - Color of the input placeholder
-$text-input-placeholder-color:           #999 !default;
-
+$text-input-placeholder-color: #999 !default;
 
 // Input/Textarea Wrapper
 // --------------------------------------------------
@@ -20,17 +19,14 @@ $text-input-placeholder-color:           #999 !default;
 .ion-textarea {
   position: relative;
   display: block;
-
-  flex: 1;
-
   width: 100%;
+  flex: 1;
 }
 
 .item-input .ion-input,
 .item-input .ion-textarea {
   position: static;
 }
-
 
 // Textarea Within An Item
 // --------------------------------------------------
@@ -39,25 +35,20 @@ $text-input-placeholder-color:           #999 !default;
   align-items: stretch;
 }
 
-
 // Native Text Input
 // --------------------------------------------------
 
 .text-input {
+  display: inline-block;
+  width: 92%;
+  width: calc(100% - 10px);
+  background: transparent;
+  border: 0;
+  flex: 1;
+  
   @include placeholder($text-input-placeholder-color);
   @include appearance(none);
   @include border-radius(0);
-
-  display: inline-block;
-
-  flex: 1;
-
-  width: 92%;
-  width: calc(100% - 10px);
-
-  border: 0;
-
-  background: transparent;
 }
 
 textarea.text-input {
@@ -65,7 +56,7 @@ textarea.text-input {
 }
 
 .text-input[disabled] {
-  opacity: .4;
+  opacity: 0.4;
 }
 
 input.text-input:-webkit-autofill {
@@ -75,7 +66,6 @@ input.text-input:-webkit-autofill {
 .platform-mobile textarea.text-input {
   resize: none;
 }
-
 
 // Input Cover: Unfocused
 // --------------------------------------------------
@@ -87,20 +77,17 @@ input.text-input:-webkit-autofill {
 // The input cover is not clickable when the input is disabled
 
 .input-cover {
-  @include position(0, null, null, 0);
-
   position: absolute;
-
   width: 100%;
   height: 100%;
-
   touch-action: manipulation;
+  
+  @include position(0, null, null, 0);
 }
 
 .input[disabled] .input-cover {
   pointer-events: none;
 }
-
 
 // Input Cover: Focused
 // --------------------------------------------------
@@ -128,22 +115,19 @@ input.text-input:-webkit-autofill {
   pointer-events: auto;
 }
 
-
 // Clear Input Icon
 // --------------------------------------------------
 
 .text-input-clear-icon {
-  @include margin(0);
-  @include padding(0);
-  @include background-position(center);
-
   position: absolute;
   top: 0;
   display: none;
-
   height: 100%;
-
   background-repeat: no-repeat;
+  
+  @include margin(0);
+  @include padding(0);
+  @include background-position(center);
 }
 
 // TODO remove all uses of input-has-focus in v4

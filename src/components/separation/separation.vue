@@ -45,7 +45,7 @@
    * <Separation>分享</Separation>
    *
    * */
-  export default{
+  export default {
     name: 'Separation'
   }
 </script>

@@ -4,31 +4,27 @@
 // --------------------------------------------------
 
 .ion-list-header {
-  @include margin(0);
-  @include padding(0);
-
   display: flex;
+  width: 100%;
+  min-height: 40px;
   overflow: hidden;
-
   align-items: center;
   justify-content: space-between;
 
-  width: 100%;
-  min-height: 40px;
+  @include margin(0);
+  @include padding(0);
 }
 
 .ion-list {
+  display: block;
+  list-style-type: none;
+
   @include margin(0);
   @include padding(0);
-
-  display: block;
-
-  list-style-type: none;
 }
 
 .ion-list[inset] {
   overflow: hidden;
-
   transform: translateZ(0);
 }
 

@@ -4,64 +4,61 @@
 // --------------------------------------------------
 
 /// @prop - Font size of the item text
-$item-md-body-text-font-size:        14px !default;
+$item-md-body-text-font-size: 14px !default;
 
 /// @prop - line height of the item text
-$item-md-body-text-line-height:      1.5 !default;
+$item-md-body-text-line-height: 1.5 !default;
 
 /// @prop - Color of the item paragraph
-$item-md-paragraph-text-color:       #666 !default;
+$item-md-paragraph-text-color: #666 !default;
 
 /// @prop - Font size of the item
-$item-md-font-size:                  16px !default;
+$item-md-font-size: 16px !default;
 
 /// @prop - Size of the avatar in the item
-$item-md-avatar-size:                40px !default;
+$item-md-avatar-size: 40px !default;
 
 /// @prop - Border radius of the avatar in the item
-$item-md-avatar-border-radius:       50% !default;
+$item-md-avatar-border-radius: 50% !default;
 
 /// @prop - Size of the thumbnail in the item
-$item-md-thumbnail-size:             80px !default;
+$item-md-thumbnail-size: 80px !default;
 
 /// @prop - Shows the detail arrow icon on an item
-$item-md-detail-push-show:           false !default;
+$item-md-detail-push-show: false !default;
 
 /// @prop - Color of the detail arrow icon
-$item-md-detail-push-color:          $list-md-border-color !default;
+$item-md-detail-push-color: $list-md-border-color !default;
 
 /// @prop - Icon for the detail arrow
-$item-md-detail-push-svg:            "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' fill='#{$item-md-detail-push-color}'/></svg>" !default;
+$item-md-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'><path d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z' fill='#{$item-md-detail-push-color}'/></svg>" !default;
 
 /// @prop - Color for the divider
-$item-md-divider-color:              #858585 !default;
+$item-md-divider-color: #858585 !default;
 
 /// @prop - Background for the divider
-$item-md-divider-background:         #fff !default;
+$item-md-divider-background: #fff !default;
 
 /// @prop - Font size for the divider
-$item-md-divider-font-size:          $item-md-body-text-font-size !default;
+$item-md-divider-font-size: $item-md-body-text-font-size !default;
 
 /// @prop - Border bottom for the divider
-$item-md-divider-border-bottom:      1px solid $list-md-border-color !default;
+$item-md-divider-border-bottom: 1px solid $list-md-border-color !default;
 
 /// @prop - Background for the sliding content
 $item-md-sliding-content-background: $list-md-background-color !default;
 
-
 .item-md {
-  @include padding-horizontal($item-md-padding-start, 0);
-
   position: relative;
-
   font-size: $item-md-font-size;
   font-weight: normal;
-  text-transform: none;
-
   color: $list-md-text-color;
+  text-transform: none;
   background-color: $list-md-background-color;
   box-shadow: none;
-  transition: background-color 300ms cubic-bezier(.4, 0, .2, 1);
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  @include padding-horizontal($item-md-padding-start, 0);
 }
 
 .item-md:active {
@@ -73,47 +70,45 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 }
 
 .item-md h1 {
-  @include margin(0, 0, 2px);
-
   font-size: 24px;
   font-weight: normal;
+  
+  @include margin(0, 0, 2px);
 }
 
 .item-md h2 {
-  @include margin(2px, 0);
-
   font-size: 16px;
   font-weight: normal;
+  
+  @include margin(2px, 0);
 }
 
 .item-md h3,
 .item-md h4,
 .item-md h5,
 .item-md h6 {
-  @include margin(2px, 0);
-
   font-size: 14px;
   font-weight: normal;
   line-height: normal;
+  
+  @include margin(2px, 0);
 }
 
 .item-md p {
-  @include margin(0, 0, 2px);
-
   overflow: inherit;
-
   font-size: 14px;
   line-height: normal;
-  text-overflow: inherit;
   color: $item-md-paragraph-text-color;
+  text-overflow: inherit;
+  
+  @include margin(0, 0, 2px);
 }
 
 .item-md.item-block .item-inner {
-  @include padding-horizontal(null, ($item-md-padding-end / 2));
-
   border-bottom: 1px solid $list-md-border-color;
+  
+  @include padding-horizontal(null, ($item-md-padding-end / 2));
 }
-
 
 // Material Design Item Detail Push
 // --------------------------------------------------
@@ -123,15 +118,14 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   .item-md[detail-push] .item-inner,
   button.item-md:not([detail-none]) .item-inner,
   a.item-md:not([detail-none]) .item-inner {
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    
     @include svg-background-image($item-md-detail-push-svg, true);
     @include padding-horizontal(null, 32px);
     @include background-position(end, $item-md-padding-end - 2, center);
-
-    background-repeat: no-repeat;
-    background-size: 14px 14px;
   }
 }
-
 
 // Material Design Item Media
 // --------------------------------------------------
@@ -151,11 +145,10 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 }
 
 .item-md .item-button {
-  @include padding(0, .6em);
-
   height: 25px;
-
   font-size: 12px;
+  
+  @include padding(0, 0.6em);
 }
 
 .item-md .item-button[icon-only] .ion-icon,
@@ -184,7 +177,6 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   @include margin(($item-md-padding-end / 2));
 }
 
-
 // Material Design Item Avatar
 // --------------------------------------------------
 
@@ -195,14 +187,12 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 
 .item-md .ion-avatar .ion-img,
 .item-md .ion-avatar img {
-  @include border-radius($item-md-avatar-border-radius);
-
-  overflow: hidden;
-
   width: $item-md-avatar-size;
   height: $item-md-avatar-size;
+  overflow: hidden;
+  
+  @include border-radius($item-md-avatar-border-radius);
 }
-
 
 // Material Design Item Thumbnail
 // --------------------------------------------------
@@ -218,7 +208,6 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   height: $item-md-thumbnail-size;
 }
 
-
 // Material Design Item Group
 // --------------------------------------------------
 
@@ -231,19 +220,17 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   border: 0;
 }
 
-
 // Material Design Item Divider
 // --------------------------------------------------
 
 .item-divider-md {
-  @include padding-horizontal($item-md-padding-start, null);
-
-  border-bottom: $item-md-divider-border-bottom;
   font-size: $item-md-divider-font-size;
   color: $item-md-divider-color;
   background-color: $item-md-divider-background;
+  border-bottom: $item-md-divider-border-bottom;
+  
+  @include padding-horizontal($item-md-padding-start, null);
 }
-
 
 // Generate Material Design Item and Item Divider Colors
 // --------------------------------------------------
@@ -254,22 +241,21 @@ $item-md-sliding-content-background: $list-md-background-color !default;
   .item-md .text-md-#{$color-name} {
     color: $color-base;
   }
-
+  
   .item-md-#{$color-name},
   .item-divider-md-#{$color-name} {
     color: $color-contrast;
     background-color: $color-base;
-
+    
     p {
       color: $color-contrast;
     }
-
+    
     &:active {
       background-color: color-shade($color-base);
     }
   }
 }
-
 
 // Material Design Item Sliding
 // --------------------------------------------------
@@ -283,5 +269,5 @@ $item-md-sliding-content-background: $list-md-background-color !default;
 
 .item-md .ion-reorder {
   font-size: 1.5em;
-  opacity: .3;
+  opacity: 0.3;
 }

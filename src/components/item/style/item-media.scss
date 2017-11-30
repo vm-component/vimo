@@ -11,37 +11,33 @@
 
 .item > .ion-icon:first-child,
 .item-inner > .ion-icon:first-child {
-  @include text-align(center);
-
   min-width: 24px;
+
+  @include text-align(center);
 }
 
 .item > .ion-icon,
 .item-inner > .ion-icon {
-  min-height: 2.8rem;
-
-  font-size: 2.8rem;
+  min-height: 28px;
+  font-size: 28px;
   line-height: 1;
 }
 
 .item > .ion-icon[large],
 .item-inner > .ion-icon[large] {
-  min-height: 3.2rem;
-
-  font-size: 3.2rem;
+  min-height: 32px;
+  font-size: 32px;
 }
 
 .item > .ion-icon[small],
 .item-inner > .ion-icon[small] {
-  min-height: 1.8rem;
-
-  font-size: 1.8rem;
+  min-height: 18px;
+  font-size: 18px;
 }
 
 .ion-avatar,
 .ion-thumbnail {
   display: block;
-
   line-height: 1;
 }
 
@@ -51,13 +47,11 @@
 }
 
 .item-cover {
-  @include position(0, null, null, 0);
-
   position: absolute;
-
   width: 100%;
   height: 100%;
-
-  background: transparent;
   cursor: pointer;
+  background: transparent;
+
+  @include position(0, null, null, 0);
 }

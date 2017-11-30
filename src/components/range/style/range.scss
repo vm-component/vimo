@@ -4,17 +4,14 @@
 // --------------------------------------------------
 
 .item-range .item-inner {
-  overflow: visible;
-
   width: 100%;
+  overflow: visible;
 }
 
 .item-range .input-wrapper {
-  overflow: visible;
-
-  flex-direction: column;
-
   width: 100%;
+  overflow: visible;
+  flex-direction: column;
 }
 
 .item-range .ion-range {
@@ -28,7 +25,6 @@
 .ion-range {
   position: relative;
   display: flex;
-
   align-items: center;
 }
 
@@ -38,15 +34,12 @@
 
 .ion-range .ion-icon {
   min-height: 24px;
-
   font-size: 24px;
   line-height: 1;
 }
 
 .range-slider {
   position: relative;
-
-  flex: 1;
-
   cursor: pointer;
+  flex: 1;
 }

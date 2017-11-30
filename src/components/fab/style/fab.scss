@@ -4,71 +4,63 @@
 // --------------------------------------------------
 
 /// @prop - Width and height of the FAB button
-$fab-size:                              56px !default;
+$fab-size: 56px !default;
 
 /// @prop - Width and height of the FAB button mini
-$fab-mini-size:                         40px !default;
+$fab-mini-size: 40px !default;
 
 /// @prop - Margin of the FAB Container
-$fab-content-margin:                    10px !default;
+$fab-content-margin: 10px !default;
 
 /// @prop - Margin of the FAB List
-$fab-list-margin:                       10px !default;
+$fab-list-margin: 10px !default;
 
 /// @prop - Background color of the button in a list
-$fab-list-button-background-color:      #f4f4f4 !default;
-
+$fab-list-button-background-color: #f4f4f4 !default;
 
 .fab {
-  @include text-align(center);
-  @include appearance(none);
-  @include border-radius(50%);
-
   position: relative;
   z-index: 0;
   display: block;
-  overflow: hidden;
-
   width: $fab-size;
   height: $fab-size;
-
+  overflow: hidden;
   font-size: 14px;
   line-height: $fab-size;
   text-overflow: ellipsis;
   text-transform: none;
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color, opacity 100ms linear;
-
-  background-clip: padding-box;
-  font-kerning: none;
   user-select: none;
-
+  background-clip: padding-box;
+  transition: background-color, opacity 100ms linear;
+  font-kerning: none;
   contain: strict;
+  
+  @include text-align(center);
+  @include appearance(none);
+  @include border-radius(50%);
 }
 
 .fab .ion-icon {
-  flex: 1;
-
   font-size: 1.7em;
+  flex: 1;
 }
 
 // FAB mini
 // --------------------------------------------------
 
 .fab[mini] {
-  @include margin(($fab-size - $fab-mini-size) / 2);
-
   width: $fab-mini-size;
   height: $fab-mini-size;
-
   line-height: $fab-mini-size;
+  
+  @include margin(($fab-size - $fab-mini-size) / 2);
 }
 
 .fab[mini] .fab-close-icon {
   line-height: $fab-mini-size;
 }
-
 
 // FAB container
 // --------------------------------------------------
@@ -77,7 +69,7 @@ $fab-list-button-background-color:      #f4f4f4 !default;
   //position: absolute;
   position: fixed;
   z-index: $z-index-fixed-content;
-
+  
   //&[center] {
   //  @include position(null, null, null, 50%);
   //  @include margin-horizontal(-$fab-size / 2, null);
@@ -104,7 +96,7 @@ $fab-list-button-background-color:      #f4f4f4 !default;
   //    right: calc(#{$fab-content-margin} + env(safe-area-inset-right));
   //  }
   //}
-
+  
   //&[end] {
   //  @include position-horizontal(null, $fab-content-margin);
   //  @include safe-position-horizontal(null, $fab-content-margin);
@@ -140,33 +132,29 @@ $fab-list-button-background-color:      #f4f4f4 !default;
   //}
 }
 
-
 // FAB list (speed dial)
 // --------------------------------------------------
 
 .ion-fab-list {
-  @include margin($fab-size + $fab-list-margin, 0);
-
   position: absolute;
   top: 0;
   display: none;
-
-  flex-direction: column;
-  align-items: center;
-
   min-width: $fab-size;
   min-height: $fab-size;
+  flex-direction: column;
+  align-items: center;
+  
+  @include margin($fab-size + $fab-list-margin, 0);
 }
 
 .fab-in-list {
-  @include margin(8px, 0);
-
   width: $fab-mini-size;
   height: $fab-mini-size;
-
   opacity: 0;
   //visibility: hidden;
   transform: scale(0);
+  
+  @include margin(8px, 0);
 }
 
 .fab-in-list.show {
@@ -183,24 +171,22 @@ $fab-list-button-background-color:      #f4f4f4 !default;
 .ion-fab-list[side=top] {
   top: auto;
   bottom: 0;
-
   flex-direction: column-reverse;
 }
 
 .ion-fab-list[side=left] {
+  flex-direction: row-reverse;
+  
   @include margin(0, $fab-size + $fab-list-margin);
   @include position-horizontal(null, 0);
-
-  flex-direction: row-reverse;
 }
 
 .ion-fab-list[side=right] {
+  flex-direction: row;
+  
   @include margin(0, $fab-size + $fab-list-margin);
   @include position(null, null, null, 0);
-
-  flex-direction: row;
 }
-
 
 // FAB animation
 // --------------------------------------------------
@@ -210,15 +196,14 @@ $fab-list-button-background-color:      #f4f4f4 !default;
 }
 
 .fab-close-icon {
-  @include position(0, 0, null, 0);
-
   position: absolute;
-
   line-height: $fab-size;
   opacity: 0;
-  transform: scale(.4) rotateZ(-45deg);
   transition: all ease-in-out 300ms;
   transition-property: transform, opacity;
+  transform: scale(0.4) rotateZ(-45deg);
+  
+  @include position(0, 0, null, 0);
 }
 
 .fab .button-inner {
@@ -233,5 +218,5 @@ $fab-list-button-background-color:      #f4f4f4 !default;
 
 .fab-close-active .button-inner {
   opacity: 0;
-  transform: scale(.4) rotateZ(45deg);
+  transform: scale(0.4) rotateZ(45deg);
 }

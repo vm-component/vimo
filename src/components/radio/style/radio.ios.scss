@@ -4,53 +4,51 @@
 // --------------------------------------------------
 
 /// @prop - Color of the checked radio
-$radio-ios-color-on:                  color($colors-ios, primary) !default;
+$radio-ios-color-on: color($colors-ios, primary) !default;
 
 /// @prop - Width of the radio icon
-$radio-ios-icon-width:                16px !default;
+$radio-ios-icon-width: 16px !default;
 
 /// @prop - Height of the radio icon
-$radio-ios-icon-height:               21px !default;
+$radio-ios-icon-height: 21px !default;
 
 /// @prop - Border width of the radio icon
-$radio-ios-icon-border-width:         2px !default;
+$radio-ios-icon-border-width: 2px !default;
 
 /// @prop - Border style of the radio icon
-$radio-ios-icon-border-style:         solid !default;
+$radio-ios-icon-border-style: solid !default;
 
 /// @prop - Opacity of the disabled radio
-$radio-ios-disabled-opacity:          .3 !default;
+$radio-ios-disabled-opacity: 0.3 !default;
 
 /// @prop - Margin top of the item-start in a radio
-$radio-ios-item-start-margin-top:     8px !default;
+$radio-ios-item-start-margin-top: 8px !default;
 
 /// @prop - Margin end of the item-start in a radio
-$radio-ios-item-start-margin-end:     21px !default;
+$radio-ios-item-start-margin-end: 21px !default;
 
 /// @prop - Margin bottom of the item-start in a radio
-$radio-ios-item-start-margin-bottom:  8px !default;
+$radio-ios-item-start-margin-bottom: 8px !default;
 
 /// @prop - Margin start of the item-start in a radio
-$radio-ios-item-start-margin-start:   3px !default;
+$radio-ios-item-start-margin-start: 3px !default;
 
 /// @prop - Margin top of the item-end in a radio
-$radio-ios-item-end-margin-top:       $item-ios-padding-media-top !default;
+$radio-ios-item-end-margin-top: $item-ios-padding-media-top !default;
 
 /// @prop - Margin end of the item-end in a radio
-$radio-ios-item-end-margin-end:       11px !default;
+$radio-ios-item-end-margin-end: 11px !default;
 
 /// @prop - Margin bottom of the item-end in a radio
-$radio-ios-item-end-margin-bottom:    $item-ios-padding-media-bottom !default;
+$radio-ios-item-end-margin-bottom: $item-ios-padding-media-bottom !default;
 
 /// @prop - Margin start of the item-end in a radio
-$radio-ios-item-end-margin-start:     ($item-ios-padding-start / 2) !default;
-
+$radio-ios-item-end-margin-start: ($item-ios-padding-start / 2) !default;
 
 .radio-ios {
   position: relative;
   display: inline-block;
 }
-
 
 // iOS Radio Circle: Unchecked
 // -----------------------------------------
@@ -58,42 +56,35 @@ $radio-ios-item-end-margin-start:     ($item-ios-padding-start / 2) !default;
 .radio-ios .radio-icon {
   position: relative;
   display: block;
-
   width: $radio-ios-icon-width;
   height: $radio-ios-icon-height;
 }
-
 
 // iOS Radio Checkmark: Checked
 // -----------------------------------------
 
 .radio-ios .radio-checked .radio-inner {
-  @include position(4px, null, null, 7px);
-
   position: absolute;
-
   width: 5px;
   height: 12px;
-
+  border-color: $radio-ios-color-on;
+  border-style: $radio-ios-icon-border-style;
   border-width: $radio-ios-icon-border-width;
   border-top-width: 0 !important;
   border-left-width: 0 !important;
-  border-style: $radio-ios-icon-border-style;
-  border-color: $radio-ios-color-on;
   transform: rotate(45deg);
-}
 
+  @include position(4px, null, null, 7px);
+}
 
 // iOS Radio: Disabled
 // -----------------------------------------
 
 .radio-ios.radio-disabled,
 .item-ios.item-radio-disabled .ion-label {
-  opacity: $radio-ios-disabled-opacity;
-
   pointer-events: none;
+  opacity: $radio-ios-disabled-opacity;
 }
-
 
 // iOS Radio Within An Item
 // -----------------------------------------
@@ -102,18 +93,17 @@ $radio-ios-item-end-margin-start:     ($item-ios-padding-start / 2) !default;
   position: static;
   display: block;
 
-    @include margin($radio-ios-item-end-margin-top, $radio-ios-item-end-margin-end, $radio-ios-item-end-margin-bottom, $radio-ios-item-end-margin-start);
+  @include margin($radio-ios-item-end-margin-top, $radio-ios-item-end-margin-end, $radio-ios-item-end-margin-bottom, $radio-ios-item-end-margin-start);
 
-  &[item-left], // deprecated
+  &[item-left],
   &[item-start] {
-      @include margin($radio-ios-item-start-margin-top, $radio-ios-item-start-margin-end, $radio-ios-item-start-margin-bottom, $radio-ios-item-start-margin-start);
+    @include margin($radio-ios-item-start-margin-top, $radio-ios-item-start-margin-end, $radio-ios-item-start-margin-bottom, $radio-ios-item-start-margin-start);
   }
 }
 
 .item-radio.item-ios .ion-label {
   @include margin-horizontal(0, null);
 }
-
 
 // iOS Radio Item Label: Checked
 // -----------------------------------------
@@ -122,12 +112,10 @@ $radio-ios-item-end-margin-start:     ($item-ios-padding-start / 2) !default;
   color: $radio-ios-color-on;
 }
 
-
 // iOS Radio Color Mixin
 // --------------------------------------------------
 
 @mixin radio-theme-ios($color-name, $color-base) {
-
   .item-radio-ios-#{$color-name}.item-radio-checked .ion-label {
     color: $color-base;
   }
@@ -136,12 +124,11 @@ $radio-ios-item-end-margin-start:     ($item-ios-padding-start / 2) !default;
     color: $color-base;
   }
 
-  .radio-ios-#{$color-name} .radio-checked  .radio-inner {
+  .radio-ios-#{$color-name} .radio-checked .radio-inner {
     border-color: $color-base;
   }
 
 }
-
 
 // Generate iOS Radio Colors
 // --------------------------------------------------

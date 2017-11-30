@@ -3,30 +3,30 @@
 @import "../../animations/fade.scss";
 
 .vm-previewImage.previewImage {
-  display: block;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: $z-index-overlay + $z-index-overlay-modal;
+  display: block;
   background: #000;
   transition: all ease 300ms;
-  z-index: $z-index-overlay + $z-index-overlay-modal;
-    
+
   .previewImage__inner {
     width: 100%;
     height: 100%;
 
     .slides {
-      height: 100%;
       width: 100%;
+      height: 100%;
 
       .slide {
+        display: flex;
         width: 100%;
         height: 100%;
-        display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
 
         img {
           width: 100%;
@@ -37,14 +37,14 @@
     .info {
       position: fixed;
       bottom: 0;
-      padding: 20px 0;
-      background: rgba(0, 0, 0, 0.7);
+      z-index: 10;
       width: 100%;
-      text-align: center;
-      color: #fff;
+      padding: 20px 0;
       margin: 0;
       font-weight: bold;
-      z-index: 10;
+      color: #fff;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7);
     }
   }
 }

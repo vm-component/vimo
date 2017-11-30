@@ -343,7 +343,7 @@
                     right: 0;
                     z-index: 3;
                 }
-                &:after {
+                &::after {
                     content: '';
                     height: 1px;
                     width: 10px;

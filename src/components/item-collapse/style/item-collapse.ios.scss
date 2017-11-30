@@ -10,73 +10,75 @@ $item-ios-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' vie
 // --------------------------------------------------
 
 .ion-item-collapse-group {
-    & > .item-collapse {
-        & > .ion-item {
-            & > .item-inner {
-                position: relative;
-                padding-right: 32px;
-            }
-        }
+  & > .item-collapse {
+    & > .ion-item {
+      & > .item-inner {
+        position: relative;
+        padding-right: 32px;
+      }
     }
+  }
 }
 
 .ion-item-collapse-group {
-    & > .collapse-ios {
-        & > .item-ios {
-            &:active {
-                background-color: $list-ios-activated-background-color;
-                transition-duration: 0ms;
-            }
-            & > .item-inner {
-                & > .item-arrow {
-                    width: 14px;
-                    height: 14px;
-                    position: absolute;
-                    right: 14px;
-                    top: 50%;
-                    margin-top: -7px;
-    
-                    @include svg-background-image($item-ios-collapse-detail-push-svg, true);
-                    
-                    background-repeat: no-repeat;
-                    background-position: center center;
-                    background-size: 14px 14px;
-                    
-                    transition: all ease 200ms;
-                }
-            }
+  & > .collapse-ios {
+    & > .item-ios {
+      &:active {
+        background-color: $list-ios-activated-background-color;
+        transition-duration: 0ms;
+      }
+
+      & > .item-inner {
+        & > .item-arrow {
+          position: absolute;
+          top: 50%;
+          right: 14px;
+          width: 14px;
+          height: 14px;
+          margin-top: -7px;
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 14px 14px;
+          transition: all ease 200ms;
+
+          @include svg-background-image($item-ios-collapse-detail-push-svg, true);
         }
-        .item-collapse-inner {
-            overflow: hidden;
-            padding-left: 40px;
-        }
+      }
     }
-    
-    & > .collapse-ios.item-collapse-open {
-        & > .item-ios {
-            & > .item-inner {
-                & > .item-arrow {
-                    transform: rotate(90deg);
-                }
-            }
-        }
+
+    .item-collapse-inner {
+      padding-left: 40px;
+      overflow: hidden;
     }
+  }
+
+  & > .collapse-ios.item-collapse-open {
+    & > .item-ios {
+      & > .item-inner {
+        & > .item-arrow {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
 }
 
 .ion-item-collapse-group > .collapse-ios:last-child {
-    border-bottom: $hairlines-width solid $list-ios-border-color;
-    & > .item-block {
-        & > .item-inner {
-            border-bottom: 0;
-        }
+  border-bottom: $hairlines-width solid $list-ios-border-color;
+
+  & > .item-block {
+    & > .item-inner {
+      border-bottom: 0;
     }
+  }
 }
 
 .ion-item-collapse-group > .collapse-ios.item-collapse-open:last-child {
-    border-bottom: 0;
-    & > .item-block {
-        & > .item-inner {
-            border-bottom: $hairlines-width solid $list-ios-border-color;
-        }
+  border-bottom: 0;
+
+  & > .item-block {
+    & > .item-inner {
+      border-bottom: $hairlines-width solid $list-ios-border-color;
     }
+  }
 }

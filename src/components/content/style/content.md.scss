@@ -9,17 +9,15 @@
 }
 
 .content-md hr {
-  background-color: rgba(0, 0, 0, .08);
+  background-color: rgba(0, 0, 0, 0.08);
 }
-
 
 // Material Design Content Padding
 // --------------------------------------------------
 
-@include content-padding('md', $content-md-padding);
-
+@include content-padding("md", $content-md-padding);
 
 // Material Design Content Margin
 // --------------------------------------------------
 
-@include content-margin('md', $content-md-margin);
+@include content-margin("md", $content-md-margin);

@@ -158,6 +158,7 @@
  */
 
 import { urlChange } from '../../util/url-change'
+
 export default function recordMenuInstance (instance) {
   // 如果没安装
   let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(instance))

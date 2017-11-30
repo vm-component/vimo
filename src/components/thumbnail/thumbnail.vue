@@ -17,7 +17,7 @@
    * @see component:Avatar
    * @demo #/thumbnailList
    * */
-  export default{
+  export default {
     name: 'Thumbnail'
   }
 </script>

@@ -4,80 +4,79 @@
 // --------------------------------------------------
 
 /// @prop - Padding top/bottom of the range
-$range-ios-padding-vertical:                  8px !default;
+$range-ios-padding-vertical: 8px !default;
 
 /// @prop - Padding start/end of the range
-$range-ios-padding-horizontal:                16px !default;
+$range-ios-padding-horizontal: 16px !default;
 
 /// @prop - Height of the range slider
-$range-ios-slider-height:                     42px !default;
+$range-ios-slider-height: 42px !default;
 
 /// @prop - Width of the area that will select the range knob
-$range-ios-hit-width:                         42px !default;
+$range-ios-hit-width: 42px !default;
 
 /// @prop - Height of the area that will select the range knob
-$range-ios-hit-height:                        $range-ios-slider-height !default;
+$range-ios-hit-height: $range-ios-slider-height !default;
 
 /// @prop - Height of the range bar
-$range-ios-bar-height:                        1px !default;
+$range-ios-bar-height: 1px !default;
 
 /// @prop - Background of the range bar
-$range-ios-bar-background-color:              #bdbdbd !default;
+$range-ios-bar-background-color: #bdbdbd !default;
 
 /// @prop - Background of the active range bar
-$range-ios-bar-active-background-color:       color($colors-ios, primary) !default;
+$range-ios-bar-active-background-color: color($colors-ios, primary) !default;
 
 /// @prop - Width of the range knob
-$range-ios-knob-width:                        28px !default;
+$range-ios-knob-width: 28px !default;
 
 /// @prop - Height of the range knob
-$range-ios-knob-height:                       $range-ios-knob-width !default;
+$range-ios-knob-height: $range-ios-knob-width !default;
 
 /// @prop - Box shadow of the range knob
-$range-ios-knob-box-shadow:                   0 3px 1px rgba(0, 0, 0, .1), 0 4px 8px rgba(0, 0, 0, .13), 0 0 0 1px rgba(0, 0, 0, .02) !default;
+$range-ios-knob-box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02) !default;
 
 /// @prop - Border radius of the range knob
-$range-ios-knob-border-radius:                50% !default;
+$range-ios-knob-border-radius: 50% !default;
 
 /// @prop - Background of the range knob
-$range-ios-knob-background-color:             #fff !default;
+$range-ios-knob-background-color: #fff !default;
 
 /// @prop - Width of the range tick
-$range-ios-tick-width:                        $range-ios-bar-height !default;
+$range-ios-tick-width: $range-ios-bar-height !default;
 
 /// @prop - Height of the range tick
-$range-ios-tick-height:                       8px !default;
+$range-ios-tick-height: 8px !default;
 
 /// @prop - Border radius of the range tick
-$range-ios-tick-border-radius:                0 !default;
+$range-ios-tick-border-radius: 0 !default;
 
 /// @prop - Background of the range tick
-$range-ios-tick-background-color:             $range-ios-bar-background-color !default;
+$range-ios-tick-background-color: $range-ios-bar-background-color !default;
 
 /// @prop - Background of the active range tick
-$range-ios-tick-active-background-color:      $range-ios-bar-active-background-color !default;
+$range-ios-tick-active-background-color: $range-ios-bar-active-background-color !default;
 
 /// @prop - Background of the range pin
-$range-ios-pin-background-color:              transparent !default;
+$range-ios-pin-background-color: transparent !default;
 
 /// @prop - Color of the range pin
-$range-ios-pin-color:                         $text-ios-color !default;
+$range-ios-pin-color: $text-ios-color !default;
 
 /// @prop - Font size of the range pin
-$range-ios-pin-font-size:                     12px !default;
+$range-ios-pin-font-size: 12px !default;
 
 /// @prop - Padding top of the range pin
-$range-ios-pin-padding-top:                   8px !default;
+$range-ios-pin-padding-top: 8px !default;
 
 /// @prop - Padding end of the range pin
-$range-ios-pin-padding-end:                   $range-ios-pin-padding-top !default;
+$range-ios-pin-padding-end: $range-ios-pin-padding-top !default;
 
 /// @prop - Padding bottom of the range pin
-$range-ios-pin-padding-bottom:                $range-ios-pin-padding-top !default;
+$range-ios-pin-padding-bottom: $range-ios-pin-padding-top !default;
 
 /// @prop - Padding start of the range pin
-$range-ios-pin-padding-start:                 $range-ios-pin-padding-end !default;
-
+$range-ios-pin-padding-start: $range-ios-pin-padding-end !default;
 
 .range-ios {
   @include padding($range-ios-padding-vertical, $range-ios-padding-horizontal);
@@ -100,17 +99,14 @@ $range-ios-pin-padding-start:                 $range-ios-pin-padding-end !defaul
 }
 
 .range-ios .range-bar {
-  @include position(($range-ios-slider-height / 2), null, null, 0);
-  @include border-radius(1px);
-
   position: absolute;
-
   width: 100%;
   height: $range-ios-bar-height;
-
-  background: $range-ios-bar-background-color;
-
   pointer-events: none;
+  background: $range-ios-bar-background-color;
+  
+  @include position(($range-ios-slider-height / 2), null, null, 0);
+  @include border-radius(1px);
 }
 
 .range-ios.range-pressed .range-bar-active {
@@ -123,53 +119,43 @@ $range-ios-pin-padding-start:                 $range-ios-pin-padding-end !defaul
 
 .range-ios .range-bar-active {
   bottom: 0;
-
   width: auto;
-
   background: $range-ios-bar-active-background-color;
 }
 
 .range-ios .range-knob-handle {
+  position: absolute;
+  width: $range-ios-hit-width;
+  height: $range-ios-hit-height;
+  
   @include position(($range-ios-slider-height / 2), null, null, 0);
   @include margin(-($range-ios-hit-height / 2), null, null, -($range-ios-hit-width / 2));
   @include text-align(center);
-
-  position: absolute;
-
-  width: $range-ios-hit-width;
-  height: $range-ios-hit-height;
 }
 
 .range-ios .range-knob {
-  @include position(($range-ios-hit-height / 2) - ($range-ios-knob-height / 2) + ($range-ios-bar-height / 2) - .5px,
-          null, null, ($range-ios-hit-width / 2) - ($range-ios-knob-width / 2));
-  @include border-radius($range-ios-knob-border-radius);
-
   position: absolute;
-
   width: $range-ios-knob-width;
   height: $range-ios-knob-height;
-
-  background: $range-ios-knob-background-color;
-
-  box-shadow: $range-ios-knob-box-shadow;
-
   pointer-events: none;
+  background: $range-ios-knob-background-color;
+  box-shadow: $range-ios-knob-box-shadow;
+  
+  @include position(($range-ios-hit-height / 2) - ($range-ios-knob-height / 2) + ($range-ios-bar-height / 2) - 0.5px,
+  null, null, ($range-ios-hit-width / 2) - ($range-ios-knob-width / 2));
+  @include border-radius($range-ios-knob-border-radius);
 }
 
 .range-ios .range-tick {
-  @include margin-horizontal(-($range-ios-tick-width / 2), null);
-  @include border-radius($range-ios-tick-border-radius);
-
   position: absolute;
   top: ($range-ios-hit-height / 2) - ($range-ios-tick-height / 2) + ($range-ios-bar-height / 2);
-
   width: $range-ios-tick-width;
   height: $range-ios-tick-height;
-
-  background: $range-ios-tick-background-color;
-
   pointer-events: none;
+  background: $range-ios-tick-background-color;
+  
+  @include margin-horizontal(-($range-ios-tick-width / 2), null);
+  @include border-radius($range-ios-tick-border-radius);
 }
 
 .range-ios .range-tick-active {
@@ -177,25 +163,19 @@ $range-ios-pin-padding-start:                 $range-ios-pin-padding-end !defaul
 }
 
 .range-ios .range-pin {
-  @include text-align(center);
-  @include border-radius(50px);
-  @include transform(translate3d(0, 28px, 0), scale(.01));
-
   position: relative;
   top: -20px;
   display: inline-block;
-
   min-width: 28px;
-
   font-size: $range-ios-pin-font-size;
-
   color: $range-ios-pin-color;
-
   background: $range-ios-pin-background-color;
-
   transition: transform 120ms ease;
-
-    @include padding($range-ios-pin-padding-top, $range-ios-pin-padding-end, $range-ios-pin-padding-bottom, $range-ios-pin-padding-start);
+  
+  @include text-align(center);
+  @include border-radius(50px);
+  @include transform(translate3d(0, 28px, 0), scale(0.01));
+  @include padding($range-ios-pin-padding-top, $range-ios-pin-padding-end, $range-ios-pin-padding-bottom, $range-ios-pin-padding-start);
 }
 
 .range-ios .range-knob-pressed .range-pin {
@@ -203,20 +183,18 @@ $range-ios-pin-padding-start:                 $range-ios-pin-padding-end !defaul
 }
 
 .range-ios.range-disabled {
-  opacity: .5;
+  opacity: 0.5;
 }
-
 
 // Generate iOS Range Colors
 // --------------------------------------------------
 
 @each $color-name, $color-base, $color-contrast in get-colors($colors-ios) {
-
   .range-ios-#{$color-name} {
     .range-bar-active,
     .range-tick-active {
       background: $color-base;
     }
   }
-
+  
 }

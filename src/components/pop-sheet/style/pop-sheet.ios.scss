@@ -24,9 +24,7 @@ $pop-sheet-ios-box-shadow: none;
 
 .pop-sheet-ios .sheet-container {
   padding: $pop-sheet-ios-padding;
-
-  border-radius: $pop-sheet-ios-border-radius;
   background-color: $pop-sheet-ios-background;
-
+  border-radius: $pop-sheet-ios-border-radius;
   box-shadow: $pop-sheet-ios-box-shadow;
 }

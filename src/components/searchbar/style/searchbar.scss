@@ -6,10 +6,8 @@
 .ion-searchbar {
   position: relative;
   display: flex;
-
-  align-items: center;
-
   width: 100%;
+  align-items: center;
 }
 
 .searchbar-icon {
@@ -20,29 +18,25 @@
 .searchbar-input-container {
   position: relative;
   display: block;
-
-  flex-shrink: 1;
-
   width: 100%;
+  flex-shrink: 1;
 }
 
 .searchbar-input {
-  @include appearance(none);
   display: block;
-
   width: 100%;
-
-  border: 0;
   font-family: inherit;
+  border: 0;
+
+  @include appearance(none);
 }
 
 .searchbar-clear-icon {
+  display: none;
+  min-height: 0;
+
   @include margin(0);
   @include padding(0);
-
-  display: none;
-
-  min-height: 0;
 }
 
 .searchbar-has-value.searchbar-has-focus .searchbar-clear-icon {

@@ -11,7 +11,8 @@
    * ## 卡片组件 / CardTitle组件
    **/
   import mixin from '../card/mixin'
-  export default{
+
+  export default {
     name: 'CardTitle',
     data () {
       return {

@@ -25,7 +25,6 @@
     "lib"
   ],
   "scripts": {
-    "node:scss": "node examples/build/get-scss-variables.js",
     "demo:dev": "cross-env BABEL_ENV=demo node examples/build/dev-server.js",
     "demo:build": "cross-env BABEL_ENV=demo node examples/build/build.js",
     "docs:dev": "gulp default --gulpfile build/doc-builder/gulpfile.js",
@@ -35,6 +34,7 @@
     "pub": "npm run pub:entry && npm run pub:lib",
     "test": "cross-env BABEL_ENV=test jest",
     "test:-u": "cross-env BABEL_ENV=test npm test -- -u",
+    "stylelint": "stylelint 'src/{components,themes}/**/**.scss' --fix",
     "lint": "eslint --ext .js,.vue src examples/src test/unit/specs",
     "lint:fix": "npm run lint -- --fix",
     "rullup-test": "rollup -c build/rollup.umd.conf.js",
@@ -87,7 +87,6 @@
     "swiper": "^3.4.2"
   },
   "devDependencies": {
-    "vue": "^2.5.8",
     "autoprefixer": "^6.7.2",
     "axios": "^0.16.2",
     "babel-core": "^6.26.0",
@@ -165,6 +164,10 @@
     "sinon": "^4.1.2",
     "standard": "^10.0.2",
     "standard-version": "^4.2.0",
+    "stylelint": "^8.3.1",
+    "stylelint-order": "^0.7.0",
+    "stylelint-scss": "^2.1.0",
+    "stylelint-selector-no-utility": "^1.8.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.7",
     "validate-commit-msg": "^2.14.0",

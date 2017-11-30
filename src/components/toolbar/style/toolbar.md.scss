@@ -16,75 +16,68 @@ $toolbar-order-md: (
 ) !default;
 
 /// @prop - Font size of the toolbar title
-$toolbar-md-title-font-size:             20px !default;
+$toolbar-md-title-font-size: 20px !default;
 
 /// @prop - Text color of the toolbar title
-$toolbar-md-title-text-color:            color-contrast($colors-md, $toolbar-md-background, md) !default;
+$toolbar-md-title-text-color: color-contrast($colors-md, $toolbar-md-background, md) !default;
 
 /// @prop - Font size of the toolbar button
-$toolbar-md-button-font-size:            14px !default;
+$toolbar-md-button-font-size: 14px !default;
 
 /// @prop - Text color of the toolbar button
-$toolbar-md-button-color:                $toolbar-md-title-text-color !default;
+$toolbar-md-button-color: $toolbar-md-title-text-color !default;
 
 /// @prop - Border radius of the toolbar button
-$toolbar-md-button-border-radius:        2px !default;
+$toolbar-md-button-border-radius: 2px !default;
 
 /// @prop - Font weight of the strong toolbar button
-$toolbar-md-button-strong-font-weight:   bold !default;
+$toolbar-md-button-strong-font-weight: bold !default;
 
 /// @prop - Height of the navigation bar
-$navbar-md-height:                       $toolbar-md-height !default;
+$navbar-md-height: $toolbar-md-height !default;
 
-$toolbar-button-md-strong-font-weight:   bold !default;
-
+$toolbar-button-md-strong-font-weight: bold !default;
 
 .toolbar-md {
-  @include padding($toolbar-md-padding);
-
   min-height: $toolbar-md-height;
+  
+  @include padding($toolbar-md-padding);
 }
-
 
 // Material Design Toolbar Background
 // --------------------------------------------------
 
 .toolbar-background-md {
-  border-color: $toolbar-md-border-color;
   background: $toolbar-md-background;
+  border-color: $toolbar-md-border-color;
 }
-
 
 // Material Design Header / Footer Box Shadow
 // --------------------------------------------------
 .header-md::after,
-.footer-md::before{
+.footer-md::before {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  content: "";
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMVEUAAAAAAAAAAAAAAAAAAABPDueNAAAABXRSTlMUCS0gBIh/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==");
+  background-repeat: repeat-x;
   // using datauri png background image for improved scroll performance
   // rather than using `box-shadow: 0 2px 5px rgba(0,0,0,0.26);`
   // noticable performance difference on older Android devices
   @include position(null, null, -5px, 0);
   @include background-position(start, 0, top, -2px);
-
-  position: absolute;
-
-  width: 100%;
-  height: 5px;
-
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMVEUAAAAAAAAAAAAAAAAAAABPDueNAAAABXRSTlMUCS0gBIh/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==);
-  background-repeat: repeat-x;
-
-  content: "";
 }
 
-.footer-md::before{
+.footer-md::before {
+  height: 2px;
+  
   @include position(-2px, null, auto, null);
   @include background-position(start, 0, top, 0);
-
-  height: 2px;
 }
 
 .header-md[no-border]::after,
-.footer-md[no-border]::before{
+.footer-md[no-border]::before {
   display: none;
 }
 
@@ -92,35 +85,33 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 // --------------------------------------------------
 
 .toolbar-content-md {
-  flex: 1;
-  order: map-get($toolbar-order-md, content);
-
   min-width: 0;
   max-width: 100%;
+  flex: 1;
+  order: map-get($toolbar-order-md, content);
 }
 
 .toolbar-title-md {
-  @include padding(0, 12px);
-
   font-size: $toolbar-md-title-font-size;
   font-weight: 500;
   color: $toolbar-md-title-text-color;
+  
+  @include padding(0, 12px);
 }
 
 @mixin md-toolbar-theme($color-name, $color-base, $color-contrast) {
   .toolbar-md-#{$color-name} {
-
     .toolbar-background-md {
       background: $color-base;
     }
-
+    
     .bar-button-clear-md,
     .bar-button-default-md,
     .bar-button-outline-md,
     .toolbar-title-md {
       color: $color-contrast;
     }
-
+    
     .bar-button-clear-md,
     .bar-button-default-md,
     .bar-button-outline-md {
@@ -128,15 +119,15 @@ $toolbar-button-md-strong-font-weight:   bold !default;
         background-color: $color-contrast;
       }
     }
-
+    
     .bar-button-outline-md {
       border-color: $color-contrast;
     }
-  
-    .back-button .button-inner{
+    
+    .back-button .button-inner {
       @include arrow-back($color-contrast);
     }
-
+    
     @each $color-name, $color-base, $color-contrast in get-colors($colors-md, md) {
       @include md-bar-button-default($color-name, $color-base, $color-contrast);
       @include md-bar-button-outline($color-name, $color-base, $color-contrast);
@@ -145,14 +136,12 @@ $toolbar-button-md-strong-font-weight:   bold !default;
   }
 }
 
-
 // Material Design Toolbar Button Placement
 // --------------------------------------------------
 
 .bar-buttons-md {
-  order: map-get($toolbar-order-md, buttons-start);
-
   transform: translateZ(0);
+  order: map-get($toolbar-order-md, buttons-start);
 }
 
 .bar-buttons-md[left] {
@@ -164,32 +153,30 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 }
 
 .bar-buttons-md[end] {
-  @include text-align(end);
-
   order: map-get($toolbar-order-md, buttons-end);
+  
+  @include text-align(end);
 }
 
 .bar-buttons-md[right] {
-  @include text-align(right);
-
   order: map-get($toolbar-order-md, buttons-right);
+  
+  @include text-align(right);
 }
-
 
 // Material Design Toolbar Button Default
 // --------------------------------------------------
 
 .bar-button-md {
-  @include margin(0, .20px, 0, .20px);
-  @include padding(0, 5px);
-  @include border-radius($toolbar-md-button-border-radius);
-
   height: 32px;
-
-  border: 0;
   font-size: $toolbar-md-button-font-size;
   font-weight: 500;
   text-transform: uppercase;
+  border: 0;
+  
+  @include margin(0, 0.2px, 0, 0.2px);
+  @include padding(0, 5px);
+  @include border-radius($toolbar-md-button-border-radius);
 }
 
 .bar-button-solid-md,
@@ -199,67 +186,63 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 }
 
 @mixin md-bar-button-default($color-name, $color-base, $color-contrast) {
-
   .bar-button-#{$color-name}-md,
   .bar-button-clear-md-#{$color-name},
   .bar-button-md-#{$color-name} {
     color: $color-base;
     background-color: transparent;
-
+    
     &:hover:not(.disable-hover) {
       color: $color-base;
     }
-  
-    &.back-button{
+    
+    &.back-button {
       @include arrow-back($color-base);
     }
   }
-
+  
 }
-
 
 // Material Design Toolbar Button Outline
 // --------------------------------------------------
 
 .bar-button-outline-md {
-  border-width: 1px;
-  border-style: solid;
-  border-color: $toolbar-md-button-color;
   color: $toolbar-md-button-color;
   background-color: transparent;
-
+  border-color: $toolbar-md-button-color;
+  border-style: solid;
+  border-width: 1px;
+  
   &:hover:not(.disable-hover) {
-    opacity: .4;
+    opacity: 0.4;
   }
-
+  
   &:active {
     background-color: transparent;
   }
-
+  
   .button-effect {
     background-color: $toolbar-md-button-color;
   }
 }
 
 @mixin md-bar-button-outline($color-name, $color-base, $color-contrast) {
-
   .bar-button-outline-md-#{$color-name} {
-    $fg-color: color-shade($color-base);
-    border-color: $fg-color;
     color: $fg-color;
     background-color: transparent;
-
+    border-color: $fg-color;
+    $fg-color: color-shade($color-base);
+    
     &:active {
       background-color: transparent;
     }
-
+    
     .button-effect {
       background-color: $fg-color;
     }
   }
-
+  
 }
-
 
 // Material Design Toolbar Button Solid
 // --------------------------------------------------
@@ -267,11 +250,11 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 .bar-button-solid-md {
   color: color-contrast($colors-md, $toolbar-md-button-color, md);
   background-color: $toolbar-md-button-color;
-
+  
   &:hover:not(.disable-hover) {
     color: color-contrast($colors-md, $toolbar-md-button-color, md);
   }
-
+  
   &:active {
     color: color-contrast($colors-md, $toolbar-md-button-color, md);
     background-color: color-shade($toolbar-md-button-color);
@@ -279,39 +262,35 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 }
 
 @mixin md-bar-button-solid($color-name, $color-base, $color-contrast) {
-
   .bar-button-solid-md-#{$color-name} {
     color: $color-contrast;
     background-color: $color-base;
-
+    
     &:active {
       color: $color-contrast;
       background-color: color-shade($color-base);
     }
   }
-
+  
 }
-
 
 // Material Design Toolbar Button Icon
 // --------------------------------------------------
 
 .bar-button-md.bar-button-icon-start .ion-icon {
-  @include padding-horizontal(null, .3em);
-
   font-size: 1.4em;
-  line-height: .67;
-
+  line-height: 0.67;
   pointer-events: none;
+  
+  @include padding-horizontal(null, 0.3em);
 }
 
 .bar-button-md.bar-button-icon-end .ion-icon {
-  @include padding-horizontal(.4em, null);
-
   font-size: 1.4em;
-  line-height: .67;
-
+  line-height: 0.67;
   pointer-events: none;
+  
+  @include padding-horizontal(0.4em, null);
 }
 
 .bar-button-md[icon-only] {
@@ -319,65 +298,57 @@ $toolbar-button-md-strong-font-weight:   bold !default;
 }
 
 .bar-button-md[icon-only] .ion-icon {
-  @include padding(0, .1em);
-
   min-width: 28px;
-
   font-size: 1.8em;
-  line-height: .67;
-
+  line-height: 0.67;
   pointer-events: none;
+  
+  @include padding(0, 0.1em);
 }
-
 
 // Material Design Toolbar Back Button
 // --------------------------------------------------
 
 .back-button-md {
-  @include margin(0, 6px);
-
   min-width: 44px;
-
   box-shadow: none;
+  
+  @include margin(0, 6px);
 }
 
 .back-button-icon-md {
+  font-size: 17px;
+  font-weight: normal;
+  
   @include margin(0);
   @include padding(0, 6px);
   @include text-align(start);
-
-  font-size: 17px;
-  font-weight: normal;
 }
-
 
 // Material Design Toolbar Menu Toggle
 // --------------------------------------------------
 
 .bar-button-menutoggle-md {
+  min-width: 44px;
+  order: map-get($toolbar-order-md, menu-toggle-start);
+  
   @include margin(0, 6px);
   @include padding(0, 2px);
-
-  order: map-get($toolbar-order-md, menu-toggle-start);
-
-  min-width: 44px;
 }
 
 .bar-button-menutoggle-md .ion-icon {
-  @include padding(0, 6px);
-
   font-size: 24px;
+  
+  @include padding(0, 6px);
 }
 
 .bar-button-menutoggle-md[end],
 .bar-button-menutoggle-md[right] {
-  @include margin(0, 2px);
-
-  order: map-get($toolbar-order-md, menu-toggle-end);
-
   min-width: 28px;
+  order: map-get($toolbar-order-md, menu-toggle-end);
+  
+  @include margin(0, 2px);
 }
-
 
 // Material Design Toolbar Color Generation
 // --------------------------------------------------
@@ -391,7 +362,6 @@ $toolbar-button-md-strong-font-weight:   bold !default;
   @include md-bar-button-outline($color-name, $color-base, $color-contrast);
   @include md-bar-button-solid($color-name, $color-base, $color-contrast);
 }
-
 
 // MD strong Button
 // --------------------------------------------------

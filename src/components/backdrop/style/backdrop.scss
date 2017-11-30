@@ -7,20 +7,17 @@
 $backdrop-color: #000 !default;
 
 .ion-backdrop {
-  @include position(0, null, null, 0);
-
   position: absolute;
   z-index: $z-index-backdrop;
   display: block;
-
   width: 100%;
   height: 100%;
-
   background-color: $backdrop-color;
-  opacity: .4;
+  opacity: 0.4;
+  transition: opacity 200ms;
   transform: translateZ(0);
   
-  transition: opacity 200ms;
+  @include position(0, null, null, 0);
 }
 
 // fixed props

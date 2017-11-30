@@ -4,66 +4,65 @@
 // --------------------------------------------------
 
 /// @prop - Margin top of the list
-$list-ios-margin-top:                 10px !default;
+$list-ios-margin-top: 10px !default;
 
 // deprecated
-$list-ios-margin-right:               0 !default;
+$list-ios-margin-right: 0 !default;
 /// @prop - Margin end of the list
-$list-ios-margin-end:                 $list-ios-margin-right !default;
+$list-ios-margin-end: $list-ios-margin-right !default;
 
 /// @prop - Margin bottom of the list
-$list-ios-margin-bottom:              32px !default;
+$list-ios-margin-bottom: 32px !default;
 
 // deprecated
-$list-ios-margin-left:                0 !default;
+$list-ios-margin-left: 0 !default;
 /// @prop - Margin start of the list
-$list-ios-margin-start:               $list-ios-margin-left !default;
+$list-ios-margin-start: $list-ios-margin-left !default;
 
 /// @prop - Margin top of the inset list
-$list-inset-ios-margin-top:           16px !default;
+$list-inset-ios-margin-top: 16px !default;
 
 // deprecated
-$list-inset-ios-margin-right:         16px !default;
+$list-inset-ios-margin-right: 16px !default;
 /// @prop - Margin end of the inset list
-$list-inset-ios-margin-end:           $list-inset-ios-margin-right !default;
+$list-inset-ios-margin-end: $list-inset-ios-margin-right !default;
 
 /// @prop - Margin bottom of the inset list
-$list-inset-ios-margin-bottom:        16px !default;
+$list-inset-ios-margin-bottom: 16px !default;
 
 // deprecated
-$list-inset-ios-margin-left:          16px !default;
+$list-inset-ios-margin-left: 16px !default;
 /// @prop - Margin start of the inset list
-$list-inset-ios-margin-start:         $list-inset-ios-margin-left !default;
+$list-inset-ios-margin-start: $list-inset-ios-margin-left !default;
 
 /// @prop - Border radius of the inset list
-$list-inset-ios-border-radius:        4px !default;
+$list-inset-ios-border-radius: 4px !default;
 
 // deprecated
-$list-ios-header-padding-left:        $item-ios-padding-start !default;
+$list-ios-header-padding-left: $item-ios-padding-start !default;
 /// @prop - Padding start of the header in a list
-$list-ios-header-padding-start:       $list-ios-header-padding-left !default;
+$list-ios-header-padding-start: $list-ios-header-padding-left !default;
 
 /// @prop - Border bottom of the header in a list
-$list-ios-header-border-bottom:       $hairlines-width solid $list-ios-border-color !default;
+$list-ios-header-border-bottom: $hairlines-width solid $list-ios-border-color !default;
 
 /// @prop - Font size of the header in a list
-$list-ios-header-font-size:           12px !default;
+$list-ios-header-font-size: 12px !default;
 
 /// @prop - Font weight of the header in a list
-$list-ios-header-font-weight:         500 !default;
+$list-ios-header-font-weight: 500 !default;
 
 /// @prop - Letter spacing of the header in a list
-$list-ios-header-letter-spacing:      1px !default;
+$list-ios-header-letter-spacing: 1px !default;
 
 /// @prop - Text transform of the header in a list
-$list-ios-header-text-transform:      uppercase !default;
+$list-ios-header-text-transform: uppercase !default;
 
 /// @prop - Text color of the header in a list
-$list-ios-header-color:               #333 !default;
+$list-ios-header-color: #333 !default;
 
 /// @prop - Background color of the header in a list
-$list-ios-header-background-color:    transparent !default;
-
+$list-ios-header-background-color: transparent !default;
 
 // iOS Default List
 // --------------------------------------------------
@@ -103,19 +102,15 @@ $list-ios-header-background-color:    transparent !default;
 }
 
 .list-ios .ion-item-options .button {
-  @include margin(0);
-  @include border-radius(0);
-
   display: inline-flex;
-
-  align-items: center;
-
   height: 100%;
   min-height: 100%;
-
-  border: 0;
-
   box-sizing: border-box;
+  border: 0;
+  align-items: center;
+  
+  @include margin(0);
+  @include border-radius(0);
 }
 
 .list-ios .ion-item-options .button::before {
@@ -126,7 +121,6 @@ $list-ios-header-background-color:    transparent !default;
   @include margin(-$list-ios-margin-top, null, null, null);
   @include padding(0, null, null, null);
 }
-
 
 // iOS Inset List
 // --------------------------------------------------
@@ -162,7 +156,6 @@ $list-ios-header-background-color:    transparent !default;
   @include margin(0, null, null, null);
 }
 
-
 // iOS No Lines List
 // --------------------------------------------------
 
@@ -173,23 +166,21 @@ $list-ios-header-background-color:    transparent !default;
   border-width: 0;
 }
 
-
 // iOS List Header
 // --------------------------------------------------
 
 .list-header-ios {
-  @include padding-horizontal($list-ios-header-padding-start, null);
-  @include safe-area-padding-horizontal($list-ios-header-padding-start, null);
-
   position: relative;
-
-  border-bottom: $list-ios-header-border-bottom;
   font-size: $list-ios-header-font-size;
   font-weight: $list-ios-header-font-weight;
-  letter-spacing: $list-ios-header-letter-spacing;
-  text-transform: $list-ios-header-text-transform;
   color: $list-ios-header-color;
+  text-transform: $list-ios-header-text-transform;
+  letter-spacing: $list-ios-header-letter-spacing;
   background: $list-ios-header-background-color;
+  border-bottom: $list-ios-header-border-bottom;
+  
+  @include padding-horizontal($list-ios-header-padding-start, null);
+  @include safe-area-padding-horizontal($list-ios-header-padding-start, null);
 }
 
 // Generate iOS List Header Colors

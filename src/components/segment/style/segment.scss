@@ -3,26 +3,22 @@
 // Segment
 // --------------------------------------------------
 
-
 .ion-segment {
   display: flex;
-
+  width: 100%;
   flex: 1;
   align-items: center;
   justify-content: center;
-
-  width: 100%;
 }
 
 .segment-button {
-  @include margin-horizontal(0);
-  @include text-align(center);
-
   position: relative;
   display: block;
   overflow: hidden;
-
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
+  
+  @include margin-horizontal(0);
+  @include text-align(center);
 }

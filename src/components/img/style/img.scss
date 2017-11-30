@@ -4,24 +4,19 @@
 // --------------------------------------------------
 
 /// @prop - Color of the image when it hasn't fully loaded yet
-$img-placeholder-background:         #eee !default;
-
+$img-placeholder-background: #eee !default;
 
 .ion-img {
   display: inline-block;
-
   min-width: 20px;
   min-height: 20px;
-
   background: $img-placeholder-background;
-
   contain: strict;
 }
 
 .ion-img img {
+  transition: opacity 0.5s;
   object-fit: cover;
-  
-  transition: opacity .5s
 }
 
 //.ion-img.img-unloaded img {

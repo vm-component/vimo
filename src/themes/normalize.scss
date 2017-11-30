@@ -58,9 +58,9 @@ figure {
 hr {
   height: 1px;
 
-  border-width: 0;
-
   box-sizing: content-box;
+
+  border-width: 0;
 }
 
 // Contain overflow in all browsers.
@@ -99,9 +99,9 @@ textarea {
 }
 
 textarea {
-  overflow: auto;
 
   height: auto;
+  overflow: auto;
 
   font: inherit;
   color: inherit;
@@ -161,13 +161,13 @@ button .ion-label {
 }
 
 button {
-  border: 0;
   font-family: inherit;
   font-style: inherit;
   font-variant: inherit;
   line-height: 1;
   text-transform: none;
   cursor: pointer;
+  border: 0;
 
   -webkit-appearance: button;
 }
@@ -196,9 +196,9 @@ input::-moz-focus-inner {
 // 2. Remove excess padding in IE 8/9/10.
 input[type="checkbox"],
 input[type="radio"] {
-  padding: 0; // 2
 
   box-sizing: border-box; // 1
+  padding: 0; // 2
 }
 
 // Fix the cursor style for Chrome's increment/decrement buttons. For certain
@@ -223,8 +223,8 @@ input[type="search"]::-webkit-search-decoration {
 
 // Remove most spacing between table cells.
 table {
-  border-collapse: collapse;
   border-spacing: 0;
+  border-collapse: collapse;
 }
 
 td,

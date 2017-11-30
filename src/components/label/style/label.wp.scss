@@ -4,11 +4,10 @@
 // --------------------------------------------------
 
 /// @prop - Text color of the label by an input, select, or datetime
-$label-wp-text-color:                 #999 !default;
+$label-wp-text-color: #999 !default;
 
 /// @prop - Text color of the stacked/floating label when it is focused
-$label-wp-text-color-focused:         color($colors-wp, primary) !default;
-
+$label-wp-text-color-focused: color($colors-wp, primary) !default;
 
 // Windows Default Label
 // --------------------------------------------------
@@ -16,7 +15,6 @@ $label-wp-text-color-focused:         color($colors-wp, primary) !default;
 .label-wp {
   @include margin($item-wp-padding-top, ($item-wp-padding-end / 2), $item-wp-padding-bottom, 0);
 }
-
 
 // Windows Default Label Inside An Input/Select Item
 // --------------------------------------------------
@@ -26,7 +24,6 @@ $label-wp-text-color-focused:         color($colors-wp, primary) !default;
 .item-datetime .label-wp {
   color: $label-wp-text-color;
 }
-
 
 // Windows Stacked & Floating Labels
 // --------------------------------------------------
@@ -58,7 +55,7 @@ $label-wp-text-color-focused:         color($colors-wp, primary) !default;
 .input-has-focus .label-wp[floating],
 .item-input-has-value .label-wp[floating],
 .input-has-value .label-wp[floating] {
-  @include transform(translate3d(0, 0, 0), scale(.8));
+  @include transform(translate3d(0, 0, 0), scale(0.8));
 }
 
 .item-wp.item-label-stacked [item-right], // deprecated
@@ -68,12 +65,10 @@ $label-wp-text-color-focused:         color($colors-wp, primary) !default;
   @include margin($item-wp-padding-media-top + 4, null, $item-wp-padding-media-top + 4, null);
 }
 
-
 // Generate Windows Label colors
 // --------------------------------------------------
 
 @each $color-name, $color-base, $color-contrast in get-colors($colors-wp) {
-
   .label-wp-#{$color-name},
   .item-input .label-wp-#{$color-name},
   .item-select .label-wp-#{$color-name},

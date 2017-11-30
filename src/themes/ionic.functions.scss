@@ -42,7 +42,7 @@
     @return color-error($color-value);
   }
 
-  @return (red($color-value) * .299 + green($color-value) * .587 + blue($color-value) * .114) / 255 * 100%;
+  @return (red($color-value) * 0.299 + green($color-value) * 0.587 + blue($color-value) * 0.114) / 255 * 100%;
 }
 
 

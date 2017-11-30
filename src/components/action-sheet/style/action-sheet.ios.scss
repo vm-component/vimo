@@ -85,83 +85,77 @@ $action-sheet-ios-button-cancel-background: #fff !default;
 $action-sheet-ios-button-cancel-font-weight: 600 !default;
 
 .action-sheet-ios {
-    @include text-align($action-sheet-ios-text-align);
+  @include text-align($action-sheet-ios-text-align);
 }
 
 .action-sheet-ios .action-sheet-container {
-    @include padding($action-sheet-ios-padding-top, $action-sheet-ios-padding-end, $action-sheet-ios-padding-bottom, $action-sheet-ios-padding-start);
+  @include padding($action-sheet-ios-padding-top, $action-sheet-ios-padding-end, $action-sheet-ios-padding-bottom, $action-sheet-ios-padding-start);
 }
 
 .action-sheet-ios .action-sheet-group {
-    @include border-radius($action-sheet-ios-border-radius);
-    @include margin(null, null, $action-sheet-ios-group-margin-bottom - 2, null);
-    
-    background: $action-sheet-ios-background;
+  background: $action-sheet-ios-background;
+  @include border-radius($action-sheet-ios-border-radius);
+  @include margin(null, null, $action-sheet-ios-group-margin-bottom - 2, null);
 }
 
 .action-sheet-ios .action-sheet-group:first-child {
-    @include margin($action-sheet-ios-group-margin-top, null, null, null);
+  @include margin($action-sheet-ios-group-margin-top, null, null, null);
 }
 
 .action-sheet-ios .action-sheet-group:last-child {
-    @include margin(null, null, $action-sheet-ios-group-margin-bottom, null);
+  @include margin(null, null, $action-sheet-ios-group-margin-bottom, null);
 }
 
 .action-sheet-ios .action-sheet-title {
-    @include padding($action-sheet-ios-title-padding);
-    @include text-align($action-sheet-ios-text-align);
-    @include border-radius($action-sheet-ios-title-border-radius);
-    
-    border-bottom: $action-sheet-ios-button-border-width $action-sheet-ios-button-border-style $action-sheet-ios-border-color;
-    font-size: $action-sheet-ios-title-font-size;
-    font-weight: $action-sheet-ios-title-font-weight;
-    color: $action-sheet-ios-title-color;
-    
-    // 源文件没对此处理
-    .action-sheet-sub-title {
-        margin-top: 3%;
-        font-size: 77%;
-        line-height: 130%;
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+  font-size: $action-sheet-ios-title-font-size;
+  font-weight: $action-sheet-ios-title-font-weight;
+  color: $action-sheet-ios-title-color;
+  border-bottom: $action-sheet-ios-button-border-width $action-sheet-ios-button-border-style $action-sheet-ios-border-color;
+  @include padding($action-sheet-ios-title-padding);
+  @include text-align($action-sheet-ios-text-align);
+  @include border-radius($action-sheet-ios-title-border-radius);
+  // 源文件没对此处理
+  .action-sheet-sub-title {
+    max-width: 90%;
+    margin-top: 3%;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 77%;
+    line-height: 130%;
+  }
 }
 
 .action-sheet-ios .action-sheet-button {
-    @include margin(0);
-    @include padding($action-sheet-ios-button-padding);
-    
-    min-height: $action-sheet-ios-button-min-height;
-    
-    border-bottom: $action-sheet-ios-button-border-width $action-sheet-ios-button-border-style $action-sheet-ios-border-color;
-    font-size: $action-sheet-ios-button-font-size;
-    color: $action-sheet-ios-button-text-color;
-    background: $action-sheet-ios-button-background;
+  min-height: $action-sheet-ios-button-min-height;
+  font-size: $action-sheet-ios-button-font-size;
+  color: $action-sheet-ios-button-text-color;
+  background: $action-sheet-ios-button-background;
+  border-bottom: $action-sheet-ios-button-border-width $action-sheet-ios-button-border-style $action-sheet-ios-border-color;
+  @include margin(0);
+  @include padding($action-sheet-ios-button-padding);
 }
 
 .action-sheet-ios .action-sheet-button:last-child {
-    border-bottom-color: transparent;
+  border-bottom-color: transparent;
 }
 
 .action-sheet-ios .action-sheet-button:active {
-    @include margin(-$action-sheet-ios-button-border-width, null, null, null);
-    
-    border-top: $action-sheet-ios-button-border-width $action-sheet-ios-button-border-style $action-sheet-ios-button-background-activated;
-    border-bottom-color: $action-sheet-ios-button-background-activated;
-    background: $action-sheet-ios-button-background-activated;
+  background: $action-sheet-ios-button-background-activated;
+  border-top: $action-sheet-ios-button-border-width $action-sheet-ios-button-border-style $action-sheet-ios-button-background-activated;
+  border-bottom-color: $action-sheet-ios-button-background-activated;
+  @include margin(-$action-sheet-ios-button-border-width, null, null, null);
 }
 
 .action-sheet-ios .action-sheet-selected {
-    font-weight: bold;
-    background: #fff;
+  font-weight: bold;
+  background: #fff;
 }
 
 .action-sheet-ios .action-sheet-destructive {
-    color: $action-sheet-ios-button-destructive-text-color;
+  color: $action-sheet-ios-button-destructive-text-color;
 }
 
 .action-sheet-ios .action-sheet-cancel {
-    font-weight: $action-sheet-ios-button-cancel-font-weight;
-    background: $action-sheet-ios-button-cancel-background;
+  font-weight: $action-sheet-ios-button-cancel-font-weight;
+  background: $action-sheet-ios-button-cancel-background;
 }

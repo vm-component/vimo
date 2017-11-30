@@ -1,38 +1,44 @@
 .vm-noticebar {
-  height: 35px;
-  width: 100%;
-  background: #fff9db;
   position: relative;
-  padding: 0 3px;
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  height: 35px;
+  padding: 0 3px;
+  background: #fff9db;
   align-items: center;
-    
+  justify-content: space-between;
+
   .vm-noticebar-wrap {
+    position: relative;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
     height: 100%;
     overflow: hidden;
-    position: relative;
     flex: 1;
+    align-items: center;
+    justify-content: flex-start;
 
     .vm-noticebar-content {
-      white-space: nowrap;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       position: absolute;
-      left: 0;
       top: 0;
+      left: 0;
       z-index: 1;
-      opacity: 1;
+      display: flex;
       height: 100%;
       font-size: 14px;
+      white-space: nowrap;
+      opacity: 1;
       transition: opacity ease 100ms;
-            
+      align-items: center;
+      justify-content: center;
+
       &.animate {
         animation-name: animations;
+
+        /*检索或设置对象动画在循环中是否反向运动*/
+        animation-fill-mode: none;
+
+        /*检索或设置对象动画时间之外的状态*/
+        animation-play-state: running;
 
         /*检索或设置对象所应用的动画名称*/
 
@@ -50,15 +56,9 @@
 
         /*检索或设置对象动画的循环次数*/
         animation-direction: normal;
-
-        /*检索或设置对象动画在循环中是否反向运动*/
-        animation-fill-mode: none;
-
-        /*检索或设置对象动画时间之外的状态*/
-        animation-play-state: running;
       }
     }
-        
+
     @keyframes animations {
       0% {
         opacity: 1;
@@ -77,8 +77,8 @@
 
       97.000001% {
         display: none;
-        opacity: 0;
         visibility: hidden;
+        opacity: 0;
       }
 
       98.9999999999% {
@@ -86,9 +86,9 @@
       }
 
       99% {
-        opacity: 0;
         display: block;
         visibility: visible;
+        opacity: 0;
       }
 
       100% {
@@ -96,15 +96,15 @@
       }
     }
   }
-    
+
   .vm-icon, .vm-action {
-    display: flex;
-    flex: 0 0 26px;
     top: 0;
+    display: flex;
     height: 35px;
-    justify-content: center;
-    align-items: center;
     color: #ef4644;
+    flex: 0 0 26px;
+    align-items: center;
+    justify-content: center;
   }
 
   .vm-icon {
@@ -114,7 +114,7 @@
   .vm-action {
     right: 0;
   }
-    
+
   .vm-icon-notice {
     background: url(images/notice.png) no-repeat center center/15px 15px;
   }

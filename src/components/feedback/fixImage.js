@@ -326,9 +326,9 @@ var EXIF = (function () {
         if (debug) {
           console.log(
             'Not a valid marker at offset ' +
-              offset +
-              ', found: ' +
-              file.getByteAt(offset)
+            offset +
+            ', found: ' +
+            file.getByteAt(offset)
           )
         }
         return false // not a valid marker, something is wrong
@@ -823,14 +823,12 @@ var BinaryAjax = (function () {
     }
   }
 
-  function sendRequest (
-    strURL,
-    fncCallback,
-    fncError,
-    aRange,
-    bAcceptRanges,
-    iFileSize
-  ) {
+  function sendRequest (strURL,
+                        fncCallback,
+                        fncError,
+                        aRange,
+                        bAcceptRanges,
+                        iFileSize) {
     var oHTTP = createRequest()
     if (oHTTP) {
       var iDataOffset = 0
@@ -883,7 +881,7 @@ var BinaryAjax = (function () {
                     iDataLen
                   ),
                   fileSize:
-                    iFileSize || oHTTP.getResponseHeader('Content-Length')
+                  iFileSize || oHTTP.getResponseHeader('Content-Length')
                 }
                 fncCallback(oRes)
               } else {
@@ -986,9 +984,9 @@ export default function canvasResize (file, options) {
     },
     dataURLtoBlob: function (data) {
       var mimeString = data
-        .split(',')[0]
-        .split(':')[1]
-        .split(';')[0]
+      .split(',')[0]
+      .split(':')[1]
+      .split(';')[0]
       var byteString = atob(data.split(',')[1])
       var ab = new ArrayBuffer(byteString.length)
       var ia = new Uint8Array(ab)
@@ -1039,21 +1037,21 @@ export default function canvasResize (file, options) {
     rotate: function (orientation, angle) {
       var o = {
         // nothing
-        1: { 90: 6, 180: 3, 270: 8 },
+        1: {90: 6, 180: 3, 270: 8},
         // horizontal flip
-        2: { 90: 7, 180: 4, 270: 5 },
+        2: {90: 7, 180: 4, 270: 5},
         // 180 rotate left
-        3: { 90: 8, 180: 1, 270: 6 },
+        3: {90: 8, 180: 1, 270: 6},
         // vertical flip
-        4: { 90: 5, 180: 2, 270: 7 },
+        4: {90: 5, 180: 2, 270: 7},
         // vertical flip + 90 rotate right
-        5: { 90: 2, 180: 7, 270: 4 },
+        5: {90: 2, 180: 7, 270: 4},
         // 90 rotate right
-        6: { 90: 3, 180: 8, 270: 1 },
+        6: {90: 3, 180: 8, 270: 1},
         // horizontal flip + 90 rotate right
-        7: { 90: 4, 180: 5, 270: 2 },
+        7: {90: 4, 180: 5, 270: 2},
         // 90 rotate left
-        8: { 90: 1, 180: 6, 270: 3 }
+        8: {90: 1, 180: 6, 270: 3}
       }
       return o[orientation][angle] ? o[orientation][angle] : orientation
     },
@@ -1205,19 +1203,19 @@ export default function canvasResize (file, options) {
           var size =
             orientation >= 5 && orientation <= 8
               ? methods.newsize(
-                  img.height,
-                  img.width,
-                  $this.options.width,
-                  $this.options.height,
-                  $this.options.crop
-                )
+              img.height,
+              img.width,
+              $this.options.width,
+              $this.options.height,
+              $this.options.crop
+              )
               : methods.newsize(
-                  img.width,
-                  img.height,
-                  $this.options.width,
-                  $this.options.height,
-                  $this.options.crop
-                )
+              img.width,
+              img.height,
+              $this.options.width,
+              $this.options.height,
+              $this.options.crop
+              )
 
           var iw = img.width,
             ih = img.height

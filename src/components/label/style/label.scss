@@ -4,48 +4,41 @@
 // --------------------------------------------------
 
 .ion-label {
-  @include margin(0);
-
   display: block;
   overflow: hidden;
-
-  flex: 1;
-
   font-size: inherit;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex: 1;
+
+  @include margin(0);
 }
 
 .item-input .ion-label {
-  flex: initial;
-
   max-width: 200px;
-
   pointer-events: none;
+  flex: initial;
 }
 
 [text-wrap] .ion-label {
   white-space: normal;
 }
 
-
 // Stacked & Floating Inputs
 // --------------------------------------------------
 
 .ion-label[fixed] {
-  flex: 0 0 100px;
-
   width: 100px;
   min-width: 100px;
   max-width: 200px;
+  flex: 0 0 100px;
 }
 
 .item-label-stacked .ion-label,
 .item-label-floating .ion-label {
-  align-self: stretch;
-
   width: auto;
   max-width: 100%;
+  align-self: stretch;
 }
 
 .ion-label[stacked],
@@ -55,13 +48,12 @@
 
 .item-label-stacked .input-wrapper,
 .item-label-floating .input-wrapper {
-  flex: 1;
   flex-direction: column;
+  flex: 1;
 }
 
 .item-label-stacked .ion-select,
 .item-label-floating .ion-select {
-  align-self: stretch;
-
   max-width: 100%;
+  align-self: stretch;
 }

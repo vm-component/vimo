@@ -16,7 +16,7 @@ $action-sheet-wp-padding-top: 8px !default;
 $action-sheet-wp-padding-bottom: 8px !default;
 
 /// @prop - Box shadow color of the action sheet
-$action-sheet-wp-box-shadow-color: rgba(0, 0, 0, .2) !default;
+$action-sheet-wp-box-shadow-color: rgba(0, 0, 0, 0.2) !default;
 
 /// @prop - Box shadow of the action sheet
 $action-sheet-wp-box-shadow: 0 -1px 0 $action-sheet-wp-box-shadow-color !default;
@@ -97,64 +97,59 @@ $action-sheet-wp-icon-margin-bottom: 0 !default;
 $action-sheet-wp-icon-margin-start: 0 !default;
 
 .action-sheet-wp .action-sheet-title {
-    @include text-align($action-sheet-wp-title-text-align);
-    
-    font-size: $action-sheet-wp-title-font-size;
-    color: $action-sheet-wp-title-color;
-    
-    @include padding($action-sheet-wp-title-padding-top, $action-sheet-wp-title-padding-end, $action-sheet-wp-title-padding-bottom, $action-sheet-wp-title-padding-start);
+  font-size: $action-sheet-wp-title-font-size;
+  color: $action-sheet-wp-title-color;
+  
+  @include text-align($action-sheet-wp-title-text-align);
+  @include padding($action-sheet-wp-title-padding-top, $action-sheet-wp-title-padding-end, $action-sheet-wp-title-padding-bottom, $action-sheet-wp-title-padding-start);
 }
 
 .action-sheet-wp .action-sheet-button {
-    @include text-align($action-sheet-wp-button-text-align);
-    
-    min-height: $action-sheet-wp-button-height;
-    
-    font-size: $action-sheet-wp-button-font-size;
-    color: $action-sheet-wp-button-text-color;
-    background: $action-sheet-wp-button-background;
-    
-    @include padding($action-sheet-wp-button-padding-top, $action-sheet-wp-button-padding-end, $action-sheet-wp-button-padding-bottom, $action-sheet-wp-button-padding-start);
+  min-height: $action-sheet-wp-button-height;
+  font-size: $action-sheet-wp-button-font-size;
+  color: $action-sheet-wp-button-text-color;
+  background: $action-sheet-wp-button-background;
+  
+  @include text-align($action-sheet-wp-button-text-align);
+  @include padding($action-sheet-wp-button-padding-top, $action-sheet-wp-button-padding-end, $action-sheet-wp-button-padding-bottom, $action-sheet-wp-button-padding-start);
 }
 
 .action-sheet-wp .action-sheet-button:active {
-    background: $action-sheet-wp-button-background-activated;
+  background: $action-sheet-wp-button-background-activated;
 }
 
 .action-sheet-wp .action-sheet-icon {
-    @include padding(0);
-    @include text-align($action-sheet-wp-icon-text-align);
-    
-    width: $action-sheet-wp-icon-width;
-    
-    font-size: $action-sheet-wp-icon-font-size;
-    vertical-align: $action-sheet-wp-icon-vertical-align;
-    
-    @include margin($action-sheet-wp-icon-margin-top, $action-sheet-wp-icon-margin-end, $action-sheet-wp-icon-margin-bottom, $action-sheet-wp-icon-margin-start);
+  width: $action-sheet-wp-icon-width;
+  font-size: $action-sheet-wp-icon-font-size;
+  vertical-align: $action-sheet-wp-icon-vertical-align;
+  
+  @include padding(0);
+  @include text-align($action-sheet-wp-icon-text-align);
+  @include margin($action-sheet-wp-icon-margin-top, $action-sheet-wp-icon-margin-end, $action-sheet-wp-icon-margin-bottom, $action-sheet-wp-icon-margin-start);
 }
 
 .action-sheet-wp .action-sheet-group {
-    background: $action-sheet-wp-background;
+  background: $action-sheet-wp-background;
 }
 
 .action-sheet-wp .action-sheet-group:first-child {
-    @include padding($action-sheet-wp-padding-top, null, null, null);
-    
-    box-shadow: $action-sheet-wp-box-shadow;
+  box-shadow: $action-sheet-wp-box-shadow;
+  
+  @include padding($action-sheet-wp-padding-top, null, null, null);
 }
 
 .action-sheet-wp .action-sheet-group:last-child {
-    @include padding(null, null, $action-sheet-wp-padding-bottom, null);
+  @include padding(null, null, $action-sheet-wp-padding-bottom, null);
 }
 
 .action-sheet-wp .action-sheet-group .button-inner {
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .action-sheet-wp .action-sheet-selected {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .action-sheet-wp .action-sheet-cancel {
-    background: $action-sheet-wp-button-background;
+  background: $action-sheet-wp-button-background;
 }

@@ -78,7 +78,8 @@
    *
    * */
   import { clamp } from '../../util/util'
-  export default{
+
+  export default {
     name: 'ScrollSegment',
     provide () {
       const _this = this

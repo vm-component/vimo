@@ -6,30 +6,25 @@ $reorder-initial-transform: 300% !default;
 // --------------------------------------------------
 
 .ion-reorder {
-  @include transform(translate3d($reorder-initial-transform, 0, 0));
-
   display: none;
-
+  max-width: 40px;
+  height: 100%;
+  font-size: 1.7em;
+  pointer-events: all;
+  opacity: 0.25;
+  transition: transform 140ms ease-in;
   flex: 1;
   align-items: center;
   justify-content: center;
-
-  max-width: 40px;
-  height: 100%;
-
-  font-size: 1.7em;
-  opacity: .25;
-
-  transition: transform 140ms ease-in;
-
-  pointer-events: all;
   touch-action: manipulation;
+
+  @include transform(translate3d($reorder-initial-transform, 0, 0));
 }
 
 .reorder-side-start .ion-reorder {
-  @include transform(translate3d(-$reorder-initial-transform, 0, 0));
-
   order: -1;
+
+  @include transform(translate3d(-$reorder-initial-transform, 0, 0));
 }
 
 .ion-reorder .ion-icon {
@@ -47,7 +42,6 @@ $reorder-initial-transform: 300% !default;
 .reorder-list-active .item,
 .reorder-list-active .item-wrapper {
   transition: transform 300ms;
-
   will-change: transform;
 }
 
@@ -55,15 +49,12 @@ $reorder-initial-transform: 300% !default;
   pointer-events: none;
 }
 
-
 .item-wrapper.reorder-active,
 .item.reorder-active,
 .reorder-active {
   z-index: 4;
-
-  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-  opacity: .8;
-  transition: none;
-
   pointer-events: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  opacity: 0.8;
+  transition: none;
 }

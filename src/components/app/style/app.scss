@@ -1,19 +1,13 @@
-
 // Globals
 // --------------------------------------------------
 @import "../../../themes/ionic.globals";
 @import "../../../themes/ionic.mixins";
-
-
 // Normalize
 // --------------------------------------------------
 @import "../../../themes/normalize";
-
-
 // Util
 // --------------------------------------------------
 @import "../../../themes/util";
-
 
 // App
 // --------------------------------------------------
@@ -23,62 +17,31 @@
 // is what can scale all fonts
 
 /// @prop - Font size of the root html
-$font-size-root:               10px !default;
+$font-size-root: 10px !default;
 
 /// @prop - Font weight of all headings
-$headings-font-weight:         500 !default;
+$headings-font-weight: 500 !default;
 
 /// @prop - Line height of all headings
-$headings-line-height:         1.2 !default;
+$headings-line-height: 1.2 !default;
 
 /// @prop - Font size of heading level 1
-$h1-font-size:                 26px !default;
+$h1-font-size: 26px !default;
 
 /// @prop - Font size of heading level 2
-$h2-font-size:                 24px !default;
+$h2-font-size: 24px !default;
 
 /// @prop - Font size of heading level 3
-$h3-font-size:                 22px !default;
+$h3-font-size: 22px !default;
 
 /// @prop - Font size of heading level 4
-$h4-font-size:                 20px !default;
+$h4-font-size: 20px !default;
 
 /// @prop - Font size of heading level 5
-$h5-font-size:                 18px !default;
+$h5-font-size: 18px !default;
 
 /// @prop - Font size of heading level 6
-$h6-font-size:                 16px !default;
-
-
-//// Responsive Utilities
-//// --------------------------------------------------
-//
-///// @prop - Whether to include all of the responsive utility attributes
-//$include-responsive-utilities:          true !default;
-//
-///// @prop - Whether to include all of the responsive text alignment attributes
-//$include-text-alignment-utilities:      $include-responsive-utilities !default;
-//
-///// @prop - Whether to include all of the responsive text transform attributes
-//$include-text-transform-utilities:      $include-responsive-utilities !default;
-//
-///// @prop - Whether to include all of the responsive float attributes
-//$include-float-element-utilities:       $include-responsive-utilities !default;
-//
-//
-//// Screen Breakpoints
-//// --------------------------------------------------
-//
-///// @prop - The minimum dimensions at which your layout will change,
-///// adapting to different screen sizes, for use in media queries
-//$screen-breakpoints: (
-//  xs: 0,
-//  sm: 576px,
-//  md: 768px,
-//  lg: 992px,
-//  xl: 1200px
-//) !default;
-
+$h6-font-size: 16px !default;
 
 // App Structure
 // --------------------------------------------------
@@ -93,40 +56,34 @@ $h6-font-size:                 16px !default;
 html {
   width: 100%;
   //height: 100%;
-
+  
   font-size: $font-size-root;
-
   text-size-adjust: 100%;
 }
 
 body {
-  @include margin(0);
-  @include padding(0);
-
+  
   //position: fixed;
   //overflow: hidden;
-
+  
   width: 100%;
   max-width: 100%;
+  word-wrap: break-word;
+  user-select: none;
   //height: 100%;
   //max-height: 100%;
-
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-
+  
+  //-webkit-font-smoothing: antialiased;
+  //font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-
   -webkit-user-drag: none;
-
   -ms-content-zooming: none;
   touch-action: manipulation;
-
-  word-wrap: break-word;
-
   text-size-adjust: none;
-  user-select: none;
+  
+  @include margin(0);
+  @include padding(0);
 }
-
 
 // App Typography
 // --------------------------------------------------
@@ -140,13 +97,13 @@ a {
 //}
 
 a:hover {
-  opacity: .7;
   cursor: pointer;
+  opacity: 0.7;
 }
 
 .disable-hover a:hover {
-  opacity: inherit;
   cursor: inherit;
+  opacity: inherit;
 }
 
 h1,
@@ -155,41 +112,22 @@ h3,
 h4,
 h5,
 h6 {
-  @include margin(16px, null, 10px, null);
-
   font-weight: $headings-font-weight;
   line-height: $headings-line-height;
-}
-
-[padding] {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    &:first-child {
-      @include margin(-3px, null, null, null);
-    }
-  }
-}
-
-h1 + h2,
-h1 + h3,
-h2 + h3 {
-  @include margin(-3px, null, null, null);
+  
+  @include margin(16px, null, 10px, null);
 }
 
 h1 {
-  @include margin(20px, null, null, null);
-
   font-size: $h1-font-size;
+  
+  @include margin(20px, null, null, null);
 }
 
 h2 {
-  @include margin(18px, null, null, null);
-
   font-size: $h2-font-size;
+  
+  @include margin(18px, null, null, null);
 }
 
 h3 {
@@ -208,6 +146,25 @@ h6 {
   font-size: $h6-font-size;
 }
 
+h1 + h2,
+h1 + h3,
+h2 + h3 {
+  @include margin(-3px, null, null, null);
+}
+
+[padding] {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &:first-child {
+      @include margin(-3px, null, null, null);
+    }
+  }
+}
+
 small {
   font-size: 75%;
 }
@@ -215,20 +172,18 @@ small {
 sub,
 sup {
   position: relative;
-
   font-size: 75%;
   line-height: 0;
   vertical-align: baseline;
 }
 
 sup {
-  top: -.5em;
+  top: -0.5em;
 }
 
 sub {
-  bottom: -.25em;
+  bottom: -0.25em;
 }
-
 
 // Nav Container Structure
 // --------------------------------------------------
@@ -236,13 +191,12 @@ sub {
 .ion-app,
 .ion-nav,
 .app-root {
-  @include position(0, null, null, 0);
-
   position: static;
   z-index: $z-index-page-container;
   display: block;
-
   width: 100%;
+  
+  @include position(0, null, null, 0);
 }
 
 .ion-app,
@@ -257,41 +211,88 @@ sub {
   width: 100%;
 }
 
+// Toolbar Container Structure
+// --------------------------------------------------
+
+// Header Structure
+// --------------------------------------------------
+
+.ion-header {
+  position: fixed;
+  z-index: $z-index-toolbar;
+  display: block;
+  width: 100%;
+  transition: all ease 300ms;
+  
+  @include position(0, null, null, 0);
+}
+
+.ion-header.hide-bar {
+  transform: translateY(-100%);
+}
+
+// place holder for pop menus
+#right-button-placeholder {
+  position: absolute;
+  right: 9px;
+  bottom: 0;
+  width: 30px;
+  height: 1px;
+}
+
+// Footer Structure
+// --------------------------------------------------
+
+.ion-footer {
+  position: fixed;
+  z-index: $z-index-toolbar;
+  display: block;
+  width: 100%;
+  transition: -webkit-transform ease 300ms;
+  
+  @include position(null, null, 0, 0);
+}
+
+.ion-footer.hide-bar {
+  transform: translateY(100%);
+}
+
 // Page Container Structure
 // --------------------------------------------------
 
 .ion-page {
-  @include position(0, null, null, 0);
-
   position: relative;
+  z-index: 10;
   display: block;
-
   width: 100%;
-
   opacity: 1;
   
-  z-index: 10;
+  @include position(0, null, null, 0);
 }
 
 .ion-box {
   // 将page中在页面布局absolute化
   // TODO: fixed??
   &.ion-page {
-    height: 100%;
     position: absolute;
+    height: 100%;
     contain: strict;
+    
     .ion-header {
       position: absolute;
     }
+    
     .ion-footer {
       position: absolute;
     }
+    
     .ion-content {
       position: absolute;
       top: 0;
       bottom: 0;
       width: 100%;
       height: 100%;
+      
       .scroll-content {
         position: absolute;
         top: 0;
@@ -303,57 +304,9 @@ sub {
     }
   }
   
-  .fixed-content [fixed], .fixed-content [fixed-top], .fixed-content [fixed-bottom] {
+  .fixed-content [fixed],
+  .fixed-content [fixed-top],
+  .fixed-content [fixed-bottom] {
     position: absolute;
   }
-}
-
-// Toolbar Container Structure
-// --------------------------------------------------
-
-// Header Structure
-// --------------------------------------------------
-
-.ion-header {
-  @include position(0, null, null, 0);
-
-  position: fixed;
-  z-index: $z-index-toolbar;
-  display: block;
-
-  width: 100%;
-  
-  transition: all ease 300ms;
-}
-
-.ion-header.hide-bar {
-  transform: translateY(-100%);
-}
-
-// place holder for pop menus
-#right-button-placeholder {
-  width: 30px;
-  bottom: 0;
-  height: 1px;
-  position: absolute;
-  right: 9px;
-}
-
-// Footer Structure
-// --------------------------------------------------
-
-.ion-footer {
-  @include position(null, null, 0, 0);
-
-  position: fixed;
-  z-index: $z-index-toolbar;
-  display: block;
-
-  width: 100%;
-  
-  transition: -webkit-transform ease 300ms;
-}
-
-.ion-footer.hide-bar {
-  transform: translateY(100%);
 }
