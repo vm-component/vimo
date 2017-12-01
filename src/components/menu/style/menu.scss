@@ -79,18 +79,17 @@ $menu-small-width: $menu-width - 40px !default;
 
 .ion-menu .ion-backdrop {
   z-index: -1;
-  //display: none;
-  //opacity: .01;
 }
 
 .menu-content {
-  //@include transform(translate3d(0, 0, 0));
+  min-height: 100%; // add for box layout
   transition: all cubic-bezier(0, 0, 0.6, 1) 280ms;
 }
 
 .menu-content-open {
   cursor: pointer;
   touch-action: manipulation;
+  
 }
 
 .menu-content-open .ion-pane,

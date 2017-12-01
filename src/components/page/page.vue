@@ -53,7 +53,10 @@
       }
     },
     props: {
-      box: Boolean // 盒子模型(固定高度宽度布局)
+      box: {
+        type: Boolean,
+        default () { return this.$config && this.$config.getBoolean('box') || false } // 盒子模型(固定高度宽度布局)
+      }
     },
     computed: {
       isBox () {

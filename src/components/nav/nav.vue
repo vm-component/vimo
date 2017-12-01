@@ -7,26 +7,18 @@
            {'menu-content-open':isMenuOpen}]">
         <div v-if="isMenuOpen" @click="tapToCloseMenu" @touchmove="stopActive($event)" class="click-cover"></div>
         <!--animate-->
-        <!--<transition :name="pageTransitionName">-->
-        <slot></slot>
-        <!--</transition>-->
+        <!--need to distinguish-->
+        <template v-if="pageTransition">
+            <transition :name="pageTransitionName">
+                <slot></slot>
+            </transition>
+        </template>
+        <template v-else>
+            <slot></slot>
+        </template>
     </nav>
 </template>
-<style lang="less">
-    .ion-nav {
-        .click-cover {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1100;
-            overflow: hidden;
-        }
-    }
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Base/Nav
@@ -56,11 +48,18 @@
       showIndicatorWhenPageChange: {
         type: Boolean,
         default () { return this.$config && this.$config.getBoolean('showIndicatorWhenPageChange') }
+      },
+      // 转场动画名称
+      // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition/fade-transition
+      pageTransition: {
+        type: String,
+        default () { return this.$config && this.$config.get('pageTransition') }
       }
     },
     data () {
       return {
         // ----------- Nav -----------
+        pageTransitionName: null,
         IndicatorComponent: null,
 
         // ----------- Menu -----------
@@ -80,21 +79,33 @@
        * @private
        * */
       initNav () {
-        // nav 动画切换部分
         const vm = this
+        if (!this.$router) return
+        // pageTransition
+        if (this.pageTransition) {
+          this.$config.set('box', true)
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('[Nav] pageTransition特性只能在box模式下使用, 因此这里会自动设置为true.')
+          }
+          // nav 动画切换部分
+          this.$router.beforeEach((to, from, next) => {
+            this.pageTransitionName = `${this.pageTransition}-${this.$history.getDirection()}`
+            next()
+          })
+        }
         // 页面切换显示Indicator
-        if (vm.$router && vm.showIndicatorWhenPageChange) {
+        if (this.showIndicatorWhenPageChange) {
           import('../indicator').then((component) => {
-            vm.IndicatorComponent = component.default
-            vm.$router.beforeEach((to, from, next) => {
+            this.IndicatorComponent = component.default
+            this.$router.beforeEach((to, from, next) => {
               if (vm.$history.getDirection() === 'forward') {
-                vm.IndicatorComponent.present()
+                this.IndicatorComponent.present()
               }
               next()
             })
-            vm.$router.afterEach(() => {
+            this.$router.afterEach(() => {
               if (vm.$history.getDirection() === 'forward') {
-                vm.IndicatorComponent.dismiss()
+                this.IndicatorComponent.dismiss()
               }
             })
           })
@@ -154,7 +165,6 @@
         })
         this.$root.$on('onMenuClosing', () => {
           this.isMenuOpen = false
-//          this.clearMenuInfo()
         })
         this.$root.$on('onMenuClosed', () => {
           this.menuContentTypeClass = null
