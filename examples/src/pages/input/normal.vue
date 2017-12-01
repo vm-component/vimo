@@ -112,7 +112,7 @@
     }
   }
 </script>
-<style lang="less">
+<style lang="scss">
     .customer {
         width: 80%;
         height: 40px;

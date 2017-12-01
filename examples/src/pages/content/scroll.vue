@@ -101,7 +101,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
 
     .stateBar {
         background: rgba(256, 256, 256, 0.9);

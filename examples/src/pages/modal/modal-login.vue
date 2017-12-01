@@ -39,7 +39,7 @@
         </Content>
     </Page>
 </template>
-<style lang="less">
+<style lang="scss">
     .login {
         border: 1px solid #ddd;
         border-radius: 5px;

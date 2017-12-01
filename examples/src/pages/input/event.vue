@@ -103,7 +103,7 @@
     }
   }
 </script>
-<style scoped lang="less">
+<style scoped lang="scss">
     .event__p {
         padding-left: 40px;
     }

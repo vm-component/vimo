@@ -71,7 +71,7 @@
         </List>
     </article>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
 
     .block {
         width: 100%;

@@ -7,9 +7,10 @@
  *
  */
 export default {
-  pageTransition: '',
+  // pageTransition: '',
+  box: false,
   recordPosition: false,
-  showIndicatorWhenPageChange: false, // 转场是否提前添加动画
+  showIndicatorWhenPageChange: true, // 转场是否提前添加动画
   platforms: {
     // mobile: {
     //   recordPosition: false

@@ -98,7 +98,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .main {
 
     }

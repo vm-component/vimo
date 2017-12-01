@@ -222,7 +222,7 @@
         </Footer>
     </Page>
 </template>
-<style lang="less">
+<style lang="scss">
     .main {
         height: 100%;
     }

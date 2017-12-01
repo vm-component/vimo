@@ -85,7 +85,7 @@
     }
   }
 </script>
-<style scoped lang="less">
+<style scoped lang="scss">
     .fixed {
         background: rgb(74, 154, 113);
     }

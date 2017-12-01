@@ -21,7 +21,7 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at, aut consequuntur cumque doloremque, dolorum eaque eos et hic ipsam laborum natus neque officiis quia, rem repellendus reprehenderit similique voluptas.</p>
     </article>
 </template>
-<style lang="less">
+<style lang="scss">
     .main {
 
     }
