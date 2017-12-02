@@ -51,7 +51,7 @@ $tabs-ios-tab-icon-size: 30px !default;
   justify-content: center;
 }
 
-.tabs-ios[tabs-placement=top] .tabbar {
+.tabs-ios[tabsPlacement=top] .tabbar {
   border-top: 0;
   border-bottom: $tabs-ios-border;
 }

@@ -1,8 +1,8 @@
 <template>
     <article class="ion-tabs" :class="[modeClass,colorClass]"
-             :tabs-layout="tabsLayout"
-             :tabs-highlight="tabsHighlight"
-             :tabs-placement="tabsPlacement">
+             :tabsLayout="tabsLayout"
+             :tabsHighlight="tabsHighlight"
+             :tabsPlacement="tabsPlacement">
         <div class="tabbar" role="tablist" ref="tabbar">
             <slot></slot>
             <div ref="tabHighlight"
