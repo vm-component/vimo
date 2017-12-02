@@ -157,7 +157,7 @@
     * })
  */
 
-import { urlChange } from '../../util/url-change'
+import urlChange from '../../util/url-change'
 
 export default function recordMenuInstance (instance) {
   // 如果没安装
