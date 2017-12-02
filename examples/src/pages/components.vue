@@ -2,13 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>组件列表</Title>
-                <Buttons right slot="buttons">
-                    <Button @click="$menu.toggle('menu')" role="bar-button" menutoggle>
-                        <!--<Icon name="more"></Icon>-->
-                        <span>菜单</span>
-                    </Button>
-                </Buttons>
+                <Title>Components</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
@@ -19,11 +13,6 @@
                     <span>根组件</span>
                     <Note slot="item-right">App</Note>
                 </Item>
-                <!--<Item detail-push :to="{name: 'nav'}">-->
-                    <!--<Icon slot="item-left" name="navigate"></Icon>-->
-                    <!--<span>导航组件</span>-->
-                    <!--<Note slot="item-right">Nav</Note>-->
-                <!--</Item>-->
                 <Item detail-push :to="{name: 'content'}">
                     <Icon slot="item-left" name="paper"></Icon>
                     <span>页面组件</span>
@@ -150,28 +139,18 @@
                     <span>反馈</span>
                     <Note slot="item-right">Feedback</Note>
                 </Item>
-                <Item detail-push :to="{name: 'chooseCity'}">
-                    <Icon slot="item-left" name="boat"></Icon>
-                    <span>城市选择</span>
-                    <Note slot="item-right">ChooseCity</Note>
-                </Item>
-                <Item detail-push :to="{name: 'slideBox'}">
-                    <Icon slot="item-left" name="key"></Icon>
-                    <span>滑动验证</span>
-                    <Note slot="item-right">SlideBox</Note>
-                </Item>
                 <Item detail-push :to="{name: 'picker'}">
                     <Icon slot="item-left" name="basket"></Icon>
                     <span>单多列选择器</span>
                     <Note slot="item-right">Picker</Note>
                 </Item>
                 <Item detail-push :to="{name: 'sheet'}">
-                    <Icon slot="item-left" name="car"></Icon>
+                    <Icon slot="item-left" name="barcode"></Icon>
                     <span>弹出单</span>
                     <Note slot="item-right">Sheet</Note>
                 </Item>
                 <Item detail-push :to="{name: 'popSheet'}">
-                    <Icon slot="item-left" name="car"></Icon>
+                    <Icon slot="item-left" name="archive"></Icon>
                     <span>弹出窗</span>
                     <Note slot="item-right">PopSheet</Note>
                 </Item>
@@ -191,6 +170,34 @@
                     <Note slot="item-right">Stepper</Note>
                 </Item>
             </List>
+            <List>
+                <ListHeader>业务组件/Business Component</ListHeader>
+                <Item detail-push :to="{name: 'chooseCity'}">
+                    <Icon slot="item-left" name="boat"></Icon>
+                    <span>城市选择</span>
+                    <Note slot="item-right">ChooseCity</Note>
+                </Item>
+                <Item detail-push :to="{name: 'slideBox'}">
+                    <Icon slot="item-left" name="key"></Icon>
+                    <span>滑动验证</span>
+                    <Note slot="item-right">SlideBox</Note>
+                </Item>
+                <Item detail-push>
+                    <Icon slot="item-left" name="pricetag"></Icon>
+                    <span>分类选择(未完成)</span>
+                    <Note slot="item-right">Category</Note>
+                </Item>
+            </List>
+            <List>
+                <ListHeader>手势/Gesture</ListHeader>
+                <Item detail-push>
+                    <Icon slot="item-left" name="hand"></Icon>
+                    <span>手势(未完成)</span>
+                    <Note slot="item-right">Gesture</Note>
+                </Item>
+            </List>
+
+
             <List>
                 <ListHeader>数据加载/Data Loading</ListHeader>
                 <Item detail-push :to="{name: 'infinite-scroll'}">
@@ -212,12 +219,12 @@
                     <Note slot="item-right">List</Note>
                 </Item>
                 <Item detail-push :to="{name:'list.collapse'}">
-                    <Icon slot="item-left" name="list"></Icon>
+                    <Icon slot="item-left" name="filing"></Icon>
                     <span>手风琴</span>
                     <Note slot="item-right">Collapse</Note>
                 </Item>
                 <Item detail-push :to="{name:'list.slidingList'}">
-                    <Icon slot="item-left" name="list"></Icon>
+                    <Icon slot="item-left" name="hand"></Icon>
                     <span>侧滑操作</span>
                     <Note slot="item-right">SlidingItem</Note>
                 </Item>
@@ -246,11 +253,6 @@
                     <span>分割段</span>
                     <Note slot="item-right">Separation</Note>
                 </Item>
-                <Item detail-push :to="{name: 'deeplink'}">
-                    <Icon slot="item-left" name="link"></Icon>
-                    <span>跳转到App</span>
-                    <Note slot="item-right">Deeplink</Note>
-                </Item>
                 <Item detail-push :to="{name: 'previewImage'}">
                     <Icon slot="item-left" name="image"></Icon>
                     <span>图片预览</span>
@@ -268,16 +270,16 @@
                 </Item>
                 <Item button>
                     <Icon slot="item-left" name="star"></Icon>
+                    <span>评分(未完成)</span>
+                    <Note slot="item-right">Rating</Note>
+                </Item>
+                <Item button>
+                    <Icon slot="item-left" name="star"></Icon>
                     <Label>
                         <h2>状态页面(未完成)</h2>
                         <p>成功/失败/开发中/无信号/空白</p>
                     </Label>
                     <Note slot="item-right">StatePage</Note>
-                </Item>
-                <Item button>
-                    <Icon slot="item-left" name="star"></Icon>
-                    <span>评分(未完成)</span>
-                    <Note slot="item-right">Rating</Note>
                 </Item>
             </List>
             <List>
@@ -329,9 +331,9 @@
                 </Item>
             </List>
             <List>
-                <ListHeader>内容切换/Switch</ListHeader>
+                <ListHeader>导航/Navigator</ListHeader>
                 <Item detail-push :to="{name: 'menu'}">
-                    <Icon slot="item-left" name="book"></Icon>
+                    <Icon slot="item-left" name="apps"></Icon>
                     <span>菜单</span>
                     <Note slot="item-right">Menu</Note>
                 </Item>
@@ -349,6 +351,11 @@
                     <Icon slot="item-left" name="link"></Icon>
                     <span>大标签</span>
                     <Note slot="item-right">Tabs</Note>
+                </Item>
+                <Item detail-push :to="{name: 'deeplink'}">
+                    <Icon slot="item-left" name="arrow-forward"></Icon>
+                    <span>跳转到App</span>
+                    <Note slot="item-right">Deeplink</Note>
                 </Item>
             </List>
             <!--<List>-->

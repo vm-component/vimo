@@ -7,7 +7,7 @@
  *
  */
 export default {
-  // pageTransition: '',
+  pageTransition: '',
   box: false,
   recordPosition: false,
   showIndicatorWhenPageChange: true, // 转场是否提前添加动画

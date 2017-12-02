@@ -3,23 +3,32 @@
         <Menu id="menu" :side="menu.side" :type="menu.type">
             <List>
                 <ListHeader>
-                    <span>开始</span>
+                    <span>Start</span>
                 </ListHeader>
                 <Item button :to="{name: 'introduce'}" wait>
                     <Icon slot="item-left" name="apps"></Icon>
-                    <span>介绍</span>
+                    <span>Introduction</span>
                 </Item>
                 <Item button :to="{name: 'config'}" wait>
                     <Icon slot="item-left" name="settings"></Icon>
-                    <span>配置参数</span>
+                    <span>Config</span>
                 </Item>
                 <Item button :to="{name: 'platform'}" wait>
                     <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
-                    <span>平台参数</span>
+                    <span>Platfrom</span>
                 </Item>
                 <Item button :to="{name: 'crossPlatform'}" wait>
                     <Icon slot="item-left" name="logo-javascript"></Icon>
-                    <span>平台参数</span>
+                    <span>Cross Platorm</span>
+                </Item>
+            </List>
+            <List>
+                <ListHeader>
+                    <span>Main</span>
+                </ListHeader>
+                <Item button :to="{name: 'components'}" wait>
+                    <Icon slot="item-left" name="logo-rss"></Icon>
+                    <span>Components</span>
                 </Item>
             </List>
         </Menu>
@@ -52,14 +61,5 @@
       })
     }
   }
-  // 如果都是defaut, 则取最后一个
-  // 如果都非default, 则取最后一个
 </script>
-<style lang="scss">
-    $color: red;
-    $color: blue !default;
-
-    body {
-        // background: $a;
-    }
-</style>
+<style lang="scss"></style>

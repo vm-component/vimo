@@ -7,7 +7,7 @@
                         <Icon name="more"></Icon>
                     </Button>
                 </Buttons>
-                <Title @onTitleClick="onTitleClickHandler">Hello</Title>
+                <Title @onTitleClick="onTitleClickHandler">Aha!</Title>
             </Navbar>
         </Header>
         <Content>
@@ -24,7 +24,7 @@
                         <Column text-center>
                             <h1>VIMO</h1>
                             <p>v{{vimo.version}}</p>
-                            <p class="message">基于Vue2.x的移动端Hybrid框架</p>
+                            <p class="message">Mobile UI components for Vue.js</p>
                             <a class="star" href="#"><img
                                     src="https://img.shields.io/github/stars/vm-component/vimo.svg?style=social&label=Star"
                                     alt="Star"></a>
