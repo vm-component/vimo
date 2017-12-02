@@ -259,7 +259,7 @@ footer {
   color: #42b983; }
 
 .name, .signature {
-  font-family: Consolas, Monaco, "Andale Mono", monospace; }
+  font-family: Consolas, Monaco, 'Andale Mono', monospace; }
 
 .details {
   margin-top: 6px;
@@ -546,11 +546,9 @@ span.param-type, .params td .param-type, .param-type dd {
 @media only screen and (min-width: 320px) and (max-width: 780px) {
   table {
     display: block !important; }
-
   body {
     overflow-x: hidden;
     font-size: 14px; }
-
   nav {
     background: #fff;
     width: 250px;
@@ -565,22 +563,18 @@ span.param-type, .params td .param-type, .param-type dd {
     transition: left 0.2s;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch; }
-
   .navicon-button {
     display: inline-block;
     position: fixed;
     top: 0.5em;
     right: 0;
     z-index: 2; }
-
   #main {
     width: 100%; }
     #main .content {
       padding: 0; }
-
   #main h1.page-title {
     margin: 1.5em 0 0em; }
-
   #main {
     width: 100%; }
     #main .content {
@@ -598,14 +592,13 @@ span.param-type, .params td .param-type, .param-type dd {
           padding: 0; }
         #main .content .page-content .showcase {
           display: none; }
-
   footer {
     margin-left: 0;
     padding-left: 0;
     padding-right: 0; }
-
   .tag-source {
     display: none; } }
+
 /** Add a '#' to static members */
 [data-type="member"] a::before {
   content: '#';
@@ -616,5 +609,3 @@ span.param-type, .params td .param-type, .param-type dd {
 @media only screen and (min-width: 320px) and (max-width: 1400px) {
   #main .content .page-content .showcase {
     display: none; } }
-
-/*# sourceMappingURL=jsdoc.css.map */
