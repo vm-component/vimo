@@ -1,7 +1,7 @@
 /**
  * 当前文件用于popup的继承父类
  * */
-import { urlChange } from './url-change'
+import urlChange from './url-change'
 import animateExtend from './animate-extend'
 
 export default {

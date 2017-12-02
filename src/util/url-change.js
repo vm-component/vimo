@@ -5,7 +5,7 @@ import registerListener from './register-listener'
  * @param {function} callback - 回调函数
  * @return {function} - 解绑函数
  * */
-export function urlChange (callback) {
+export default function urlChange (callback) {
   let unReg = function () /* istanbul ignore next */ {}
 
   const onStateChange = ev => {
