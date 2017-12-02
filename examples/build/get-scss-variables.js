@@ -24,9 +24,6 @@ function getScssVariables () {
     }
   }
 
-  console.log('node-sass data:')
-  console.log(data)
-
   return data
 }
 
