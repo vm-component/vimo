@@ -40,6 +40,8 @@ $alert-input-placeholder-color: #999 !default;
 }
 
 .alert-wrapper {
+  position: absolute;
+  
   z-index: $z-index-overlay-wrapper;
   display: flex;
   min-width: $alert-min-width;

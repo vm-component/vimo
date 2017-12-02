@@ -369,7 +369,8 @@ $alert-md-checkbox-icon-transform: rotate(45deg) !default;
 .alert-md .alert-input {
   color: $alert-md-input-text-color;
   border-bottom: $alert-md-input-border-width $alert-md-input-border-style $alert-md-input-border-color;
-  
+  border-radius: 0;
+  @include appearance(none);
   @include margin($alert-md-input-margin-top, $alert-md-input-margin-end, $alert-md-input-margin-bottom, $alert-md-input-margin-start);
 }
 
