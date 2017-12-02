@@ -84,7 +84,11 @@
             <List>
                 <ListHeader>Focus Highlight</ListHeader>
                 <Item>
-                    <Label color="primary">聚焦高亮</Label>
+                    <Label color="primary">聚焦高亮1</Label>
+                    <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
+                </Item>
+                <Item>
+                    <Label color="primary">聚焦高亮2</Label>
                     <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
                 </Item>
             </List>

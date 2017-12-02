@@ -5,19 +5,19 @@
                 <ListHeader>
                     <span>Start</span>
                 </ListHeader>
-                <Item button :to="{name: 'introduce'}" wait>
+                <Item detail-push :to="{name: 'introduce'}" wait>
                     <Icon slot="item-left" name="apps"></Icon>
                     <span>Introduction</span>
                 </Item>
-                <Item button :to="{name: 'config'}" wait>
+                <Item detail-push :to="{name: 'config'}" wait>
                     <Icon slot="item-left" name="settings"></Icon>
                     <span>Config</span>
                 </Item>
-                <Item button :to="{name: 'platform'}" wait>
+                <Item detail-push :to="{name: 'platform'}" wait>
                     <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
                     <span>Platfrom</span>
                 </Item>
-                <Item button :to="{name: 'crossPlatform'}" wait>
+                <Item detail-push :to="{name: 'crossPlatform'}" wait>
                     <Icon slot="item-left" name="logo-javascript"></Icon>
                     <span>Cross Platorm</span>
                 </Item>
@@ -26,7 +26,7 @@
                 <ListHeader>
                     <span>Main</span>
                 </ListHeader>
-                <Item button :to="{name: 'components'}" wait>
+                <Item detail-push :to="{name: 'components'}" wait>
                     <Icon slot="item-left" name="logo-rss"></Icon>
                     <span>Components</span>
                 </Item>
