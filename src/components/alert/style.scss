@@ -1,4 +1,4 @@
-@import "style/alert";
-@import "style/alert.ios";
-@import "style/alert.md";
+@import "./style/alert.scss";
+@import "./style/alert.ios.scss";
+@import "./style/alert.md.scss";
 @import "../../animations/alert.scss";
