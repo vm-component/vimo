@@ -80,22 +80,21 @@ $text-input-md-highlight-color-invalid: $text-input-highlight-color-invalid !def
 }
 
 // Show the focus highlight when the input has focus
-@if ($text-input-md-show-focus-highlight) {
+.show-focus-highlight {
   // In order to get a 2px border we need to add an inset
   // box-shadow 1px (this is to avoid the div resizing)
-
-  // TODO remove all uses of input-has-focus in v4
-  .item-md.item-input.item-input-has-focus .item-inner,
-  .item-md.item-input.input-has-focus .item-inner {
+  
+  &.item-md.item-input.item-input-has-focus .item-inner,
+  &.item-md.item-input.input-has-focus .item-inner {
     @include md-input-highlight($text-input-md-highlight-color);
   }
-
+  
   // The last item in a list has a border on the item, not the
   // inner item, so add it to the item itself
-  .list-md .item-input.item-input-has-focus:last-child,
-  .list-md .item-input.input-has-focus:last-child {
+  &.list-md .item-input.item-input-has-focus:last-child,
+  &.list-md .item-input.input-has-focus:last-child {
     @include md-input-highlight($text-input-md-highlight-color);
-
+    
     .item-inner {
       box-shadow: none;
     }

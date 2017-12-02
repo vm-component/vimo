@@ -35,7 +35,7 @@ $text-input-ios-input-clear-icon-svg: "<svg xmlns='http://www.w3.org/2000/svg' v
 $text-input-ios-input-clear-icon-size: 18px !default;
 
 /// @prop - Show the focus highlight when the input has focus
-$text-input-ios-show-focus-highlight: false !default;
+$text-input-ios-show-focus-highlight: true !default;
 
 /// @prop - Show the valid highlight when it is valid and has a value
 $text-input-ios-show-valid-highlight: $text-input-ios-show-focus-highlight !default;
@@ -78,24 +78,19 @@ $text-input-ios-highlight-color-invalid: $text-input-highlight-color-invalid !de
   border-bottom-color: $highlight-color;
 }
 
-// Show the focus highlight when the input has focus
-@if ($text-input-ios-show-focus-highlight) {
+.show-focus-highlight {
   // In order to get a 2px border we need to add an inset
   // box-shadow 1px (this is to avoid the div resizing)
-  
-  // TODO remove all uses of input-has-focus in v4
-  // TODO remove all uses of input-has-value in v4
-  .item-ios.item-input.item-input-has-focus .item-inner,
-  .item-ios.item-input.input-has-focus .item-inner {
+  &.item-ios.item-input.item-input-has-focus .item-inner,
+  &.item-ios.item-input.input-has-focus .item-inner {
     @include ios-input-highlight($text-input-ios-highlight-color);
   }
   
   // The last item in a list has a border on the item, not the
   // inner item, so add it to the item itself
-  .list-ios .item-input.item-input-has-focus:last-child,
-  .list-ios .item-input.input-has-focus:last-child {
+  &.list-ios .item-input.item-input-has-focus:last-child,
+  &.list-ios .item-input.input-has-focus:last-child {
     @include ios-input-highlight($text-input-ios-highlight-color);
-    
     .item-inner {
       box-shadow: none;
     }
