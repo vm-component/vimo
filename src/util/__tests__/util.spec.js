@@ -15,7 +15,7 @@ import {
   transitionEnd
 } from '../util.js'
 
-import { urlChange } from '../url-change'
+import urlChange from '../url-change'
 import registerListener from '../register-listener'
 import {
   isArray,

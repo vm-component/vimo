@@ -11,10 +11,7 @@
              v-show="isActiveLocal"></div>
     </transition>
 </template>
-<style lang="less">
-    @import "backdrop.less";
-    @import "../../animations/fade.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Backdrop

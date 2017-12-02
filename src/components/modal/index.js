@@ -137,9 +137,7 @@ function present (options = {}) {
         unRegisterUrlChange
       )
       // 锁定 Doc 滚动
-      scrollTop = window.scrollY
-      window.document.body.style.position = 'fixed'
-      window.document.body.style.top = -scrollTop + 'px'
+      _disableScroll()
     }
 
     presentPromise.then(() => {
@@ -171,11 +169,7 @@ function dismiss (dataBack, changeLocalHistory = true) {
       // 则解绑urlChange
       unRegisterAllListener()
       // 滚动还原
-      scrollTop = window.scrollY
-      window.document.body.style.position = ''
-      window.document.body.style.top = ''
-      window.scrollTo(0, scrollTop)
-      scrollTop = 0
+      _enableScroll()
     }
 
     lastModalInstance.dismiss(dataBack).then(() => {
@@ -190,6 +184,24 @@ function dismiss (dataBack, changeLocalHistory = true) {
 function unRegisterAllListener () {
   unRegisterUrlChange.forEach(item => item && item())
   unRegisterUrlChange = []
+}
+
+function _disableScroll () {
+  let scrollHeight = window.document.documentElement.scrollHeight
+  let clientHeight = window.document.documentElement.clientHeight
+  if (scrollHeight > clientHeight) {
+    scrollTop = window.scrollY
+    window.document.body.style.position = 'fixed'
+    window.document.body.style.top = -scrollTop + 'px'
+  }
+}
+
+function _enableScroll () {
+  scrollTop = window.scrollY
+  window.document.body.style.position = ''
+  window.document.body.style.top = ''
+  window.scrollTo(0, scrollTop)
+  scrollTop = 0
 }
 
 export default {

@@ -1,0 +1,148 @@
+@import "../../../themes/ionic.globals";
+
+// Menu
+// --------------------------------------------------
+
+/// @prop - Width of the menu
+$menu-width: 304px !default;
+
+/// @prop - Width of the menu on small devices (under 340px)
+$menu-small-width: $menu-width - 40px !default;
+
+.ion-menu {
+  
+  //position: absolute;
+  position: fixed;
+  z-index: 0;
+  display: none;
+  overflow: hidden;
+  opacity: 1;
+  contain: strict;
+  
+  @include position(0, 0, 0, 0);
+}
+
+.ion-menu.show-menu {
+  display: block;
+}
+
+.menu-inner {
+  //@include transform(translate3d(-9999px, 0, 0));
+  
+  //position: absolute;
+  position: fixed;
+  z-index: 10;
+  display: block;
+  width: $menu-width;
+  height: 100%;
+  overflow: scroll;
+  
+  // inner从左边进入出去
+  //transform: translate3d(0, 0, 0);
+  transition: all cubic-bezier(0, 0, 0, 1) 280ms;
+  -webkit-overflow-scrolling: touch;
+  
+  @include position(0, auto, 0, 0);
+  //contain: layout style;
+}
+
+//.menu-inner > .ion-header,
+//.menu-inner > .ion-content,
+//.menu-inner > .ion-footer {
+//  position: absolute;
+//}
+
+//.ion-menu[side=left] > .menu-inner {
+//  @include multi-dir() {
+//    // scss-lint:disable PropertySpelling
+//    right: auto;
+//    left: 0;
+//  }
+//}
+//
+//.ion-menu[side=right] > .menu-inner {
+//  @include multi-dir() {
+//    // scss-lint:disable PropertySpelling
+//    right: 0;
+//    left: auto;
+//  }
+//}
+
+.ion-menu[side=right] > .menu-inner {
+  right: 0;
+  left: auto;
+}
+
+.ion-menu[side=end] > .menu-inner {
+  @include position-horizontal(auto, 0);
+}
+
+.ion-menu .ion-backdrop {
+  z-index: -1;
+}
+
+.menu-content {
+  min-height: 100%; // add for box layout
+  transition: all cubic-bezier(0, 0, 0.6, 1) 280ms;
+}
+
+.menu-content-open {
+  cursor: pointer;
+  touch-action: manipulation;
+  
+}
+
+.menu-content-open .ion-pane,
+.menu-content-open .ion-content,
+.menu-content-open .toolbar {
+  // the containing element itself should be clickable but
+  // everything inside of it should not clickable when menu is open
+  pointer-events: none;
+}
+
+.menu-content-reveal.ion-nav {
+  position: absolute;
+}
+
+.menu-content-reveal.menu-content-open {
+  left: 304px;
+  
+  @media (max-width: 340px) {
+    left: 264px;
+  }
+}
+
+.menu-content-reveal.menu-content-right.menu-content-open {
+  left: -304px;
+  
+  @media (max-width: 340px) {
+    left: -264px;
+  }
+}
+
+@media (max-width: 340px) {
+  .menu-inner {
+    width: $menu-small-width;
+  }
+}
+
+@media (max-width: 340px) {
+  .menu-inner {
+    width: $menu-small-width;
+  }
+  
+}
+
+// Menu Reveal
+// --------------------------------------------------
+// The content slides over to reveal the menu underneath.
+// The menu itself, which is under the content, does not move.
+
+// Menu Overlay
+// --------------------------------------------------
+// The menu slides over the content. The content
+// itself, which is under the menu, does not move.
+
+.ion-menu[type=overlay].show-menu {
+  z-index: $z-index-overlay + $z-index-overlay-sheet;
+}

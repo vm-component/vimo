@@ -7,32 +7,7 @@
         <div class="vm-separation-line"></div>
     </div>
 </template>
-<style lang="less">
-    .vm-separation {
-        width: 100%;
-        margin: 15px 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        .vm-separation-line {
-            position: relative;
-            flex: 1;
-            &:after {
-                content: '';
-                position: absolute;
-                top: 50%;
-                height: 0;
-                width: 100%;
-                border-top: 1px solid #dddddd;
-            }
-        }
-        .vm-separation-wrap {
-            padding: 0 10px;
-            color: #9f9f9f;
-        }
-    }
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Separation
@@ -70,7 +45,7 @@
    * <Separation>分享</Separation>
    *
    * */
-  export default{
+  export default {
     name: 'Separation'
   }
 </script>

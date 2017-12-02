@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button @base: matches snapshot 1`] = `<button class="ion-button button button-ios"><span class="button-inner"><span>Test</span></span></button>`;
+exports[`Button @base: matches snapshot 1`] = `<button class="ion-button button button-ios button-default button-default-ios button-ios-primary"><span class="button-inner"><span>Test</span></span></button>`;

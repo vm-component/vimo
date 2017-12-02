@@ -30,7 +30,7 @@
         </Content>
     </Page>
 </template>
-<style lang="less">
+<style lang="scss">
     .alertCssOuterMain {
         .alert-image-box {
             display: flex;

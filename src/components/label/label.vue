@@ -6,11 +6,7 @@
         <slot></slot>
     </label>
 </template>
-<style lang="less">
-    @import "label.less";
-    @import "label.ios.less";
-    @import "label.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Label
@@ -88,4 +84,5 @@
       }
     }
   }
+
 </script>

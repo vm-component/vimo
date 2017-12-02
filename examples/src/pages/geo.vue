@@ -189,7 +189,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .name {
         display: flex;
         justify-content: space-between;

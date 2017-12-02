@@ -42,7 +42,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .slides {
         width: 100%;
         min-width: 285px;

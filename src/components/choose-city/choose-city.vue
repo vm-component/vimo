@@ -9,39 +9,39 @@
             <div class="city-shortcut" ref="cityShortcut"
                  @touchstart="onTouchShortcut"
                  @touchmove="onTouchShortcut">
-                <div class="shortcut__item" :data-id="item.name" v-for="item in shortcutList">{{item.name}}</div>
+                <div class="shortcut-item" :data-id="item.name" v-for="item in shortcutList">{{item.name}}</div>
             </div>
             <div class="city-selector-container" ref="content">
                 <div class="city-selector">
                     <!--定位服务-->
                     <article class="city-selector__group" v-if="showLocatedCity">
-                        <section sticky color="light" class="city-selector__group--header">
+                        <section sticky color="light" class="group-header">
                             <span>你所在的地区</span>
                         </section>
-                        <section class="city-selector__group--hotBox">
-                            <div class="hotBox__wrap" @click="selectCity(currentCity)">
-                                <div class="hotBox__wrap--city">{{currentCity.city}}</div>
+                        <section class="group-hotbox">
+                            <div class="hotbox-wrap" @click="selectCity(currentCity)">
+                                <div class="wrap-city">{{currentCity.city}}</div>
                             </div>
                         </section>
                     </article>
                     <!--热门城市-->
                     <article class="city-selector__group" v-if="showHotCities && hotCities.length>0">
-                        <section sticky color="light" class="city-selector__group--header" :id="'★' | getClassifyId">
+                        <section sticky color="light" class="group-header" :id="'★' | getClassifyId">
                             <span>热门城市</span>
                         </section>
-                        <section class="city-selector__group--hotBox">
-                            <div class="hotBox__wrap" @click="selectCity(item)" v-for="item in hotCities"
+                        <section class="group-hotbox">
+                            <div class="hotbox-wrap" @click="selectCity(item)" v-for="item in hotCities"
                                  :key="item.adCode">
-                                <div class="hotBox__wrap--city">{{item.city}}</div>
+                                <div class="wrap-city">{{item.city}}</div>
                             </div>
                         </section>
                     </article>
                     <!--城市列表-->
                     <article class="city-selector__group" v-for="(classify,index) in cityList" :key="index">
                         <!--sticky-->
-                        <section class="city-selector__group--header" :id="classify.letter | getClassifyId">{{classify.letter}}
+                        <section class="group-header" :id="classify.letter | getClassifyId">{{classify.letter}}
                         </section>
-                        <section class="city-selector__group--item" v-for="item in classify.cities"
+                        <section class="group-item" v-for="item in classify.cities"
                                  :key="item.adCode"
                                  @click="selectCity(item)">
                             <div>{{item.city}}</div>
@@ -52,10 +52,7 @@
         </article>
     </transition>
 </template>
-<style lang="less">
-    @import "choose-city.less";
-    @import "../../animations/fade-right.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   import { pointerCoord, clamp } from '../../util/util'
   import popupExtend from '../../util/popup-extend'
@@ -73,13 +70,13 @@
       hotCities: {
         type: Array,
         default () {
-          return require('./hot-cities.json')
+          return require('./data/hot-cities.json')
         }
       },
       cities: {
         type: Array,
         default () {
-          return require('./cities.json')
+          return require('./data/cities.json')
         }
       },
       ak: {

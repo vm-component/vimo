@@ -71,7 +71,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .transitionBox {
         position: relative;
         width: 100%;

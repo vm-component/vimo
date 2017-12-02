@@ -28,7 +28,7 @@ describe('Button', function () {
       }
     })
     let wrapper = mount(Button, opts)
-    const result = '<button class="ion-button button button-md button-md-primary"><span class="button-inner"><span>Test</span></span></button>'
+    const result = '<button class="ion-button button button-md button-default button-default-md button-md-primary"><span class="button-inner"><span>Test</span></span></button>'
     expect(wrapper.html()).toEqual(result)
   })
 
@@ -313,10 +313,10 @@ describe('Button', function () {
       }
     })
     let wrapper = mount(Button, opts)
-    sinon.spy(wrapper.vm, 'clickHandler') // 监视crawler.launch，这是个function
+    sinon.spy(wrapper.vm, '$_clickHandler') // 监视crawler.launch，这是个function
     wrapper.trigger('click')
-    expect(wrapper.vm.clickHandler.callCount === 1).toBeTruthy()
-    wrapper.vm.clickHandler.restore() // 消除监视
+    expect(wrapper.vm.$_clickHandler.callCount === 1).toBeTruthy()
+    wrapper.vm.$_clickHandler.restore() // 消除监视
   })
 
   it('@slots: icon-only', function () {
@@ -326,7 +326,7 @@ describe('Button', function () {
       render: res.render
     }
     let wrapper = mount(Temp)
-    expect(wrapper.hasAttribute('icon-only', '')).toBeTruthy()
+    expect(wrapper.hasAttribute('icon-only', 'icon-only')).toBeTruthy()
   })
 
   it('@slots: icon-left', function () {
@@ -335,7 +335,7 @@ describe('Button', function () {
       render: res.render,
       components: {'vm-button': Button, Icon}
     })
-    expect(wrapper.hasAttribute('icon-left', '')).toBeTruthy()
+    expect(wrapper.hasAttribute('icon-left', 'icon-left')).toBeTruthy()
   })
 
   it('@slots: icon-right', function () {
@@ -344,7 +344,7 @@ describe('Button', function () {
       render: res.render,
       components: {'vm-button': Button, Icon}
     })
-    expect(wrapper.hasAttribute('icon-right', '')).toBeTruthy()
+    expect(wrapper.hasAttribute('icon-right', 'icon-right')).toBeTruthy()
   })
 
   it('@parent: Item', function () {

@@ -3,9 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
-    @import "./refresher.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Refresher
@@ -81,6 +79,7 @@
   import { pointerCoord } from '../../util/util'
   import registerListener from '../../util/register-listener'
   import css from '../../util/get-css'
+  import urlChange from '../../util/url-change'
 
   const STATE_INACTIVE = 'inactive'
   const STATE_PULLING = 'pulling'
@@ -89,6 +88,7 @@
   const STATE_CANCELLING = 'cancelling'
   const STATE_COMPLETING = 'completing'
   const DAMP = 0.5// 滑动阻尼
+
   export default {
     name: 'Refresher',
     // Content组件的实例注入
@@ -138,6 +138,7 @@
         progress: null, // 表示对当前进度. 0:原始状态,为下拉; >1: 刷新开始
 
         // -------- private --------
+        unReg: null,
         appliedStyles: false,
         didStart: false,
         lastCheck: 0,
@@ -196,7 +197,7 @@
       complete () {
         this.$_closeRefresher(STATE_COMPLETING, '120ms')
         // 重新计算尺寸, 必须
-        this.contentComponent.resize()
+        this.contentComponent && this.contentComponent.resize()
       },
 
       /**
@@ -222,7 +223,7 @@
         // 如果为true, 则添加事件监听
         // 等待Content完毕
         this.$nextTick(() => {
-          if (shouldListen) {
+          if (shouldListen && this.contentComponent) {
             let contentElement = this.contentComponent.$_getScrollElement()
             console.assert(contentElement, 'Refresh Component need Content Ready!::<Component>$_setListeners()')
             // TODO: 对于点击事件应该同统一封装一层
@@ -458,14 +459,26 @@
        **/
       $_setCss (y, duration, overflowVisible, delay) {
         this.appliedStyles = (y > 0)
-        this.contentComponent.$_setScrollElementStyle(css.transform, ((y > 0) ? 'translateY(' + y + 'px) translateZ(0px)' : 'translateZ(0px)'))
-        this.contentComponent.$_setScrollElementStyle(css.transitionDuration, duration)
-        this.contentComponent.$_setScrollElementStyle(css.transitionDelay, delay)
-        this.contentComponent.$_setScrollElementStyle('overflow', (overflowVisible ? 'hidden' : ''))
+        if (this.contentComponent) {
+          this.contentComponent.$_setScrollElementStyle(css.transform, ((y > 0) ? 'translateY(' + y + 'px) translateZ(0px)' : 'translateZ(0px)'))
+          this.contentComponent.$_setScrollElementStyle(css.transitionDuration, duration)
+          this.contentComponent.$_setScrollElementStyle(css.transitionDelay, delay)
+          this.contentComponent.$_setScrollElementStyle('overflow', (overflowVisible ? 'hidden' : ''))
+        }
       }
     },
+    created () {
+      this.unReg = urlChange(() => {
+        this.$app && this.$app.$_enableScroll && this.$app.$_enableScroll()
+        this.unReg && this.unReg()
+        this.cancel()
+      })
+    },
     mounted () {
-      this.contentComponent.refreshClass['has-refresher'] = true
+      if (this.contentComponent) {
+        this.contentComponent.refreshClass['has-refresher'] = true
+      }
+
       this.$_setListeners(this.enabled)
 
       this.$root.$on('content:mounted', () => {

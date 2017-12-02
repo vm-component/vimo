@@ -21,16 +21,16 @@
             </div>
             <List>
                 <ItemGroup>
-                    <Item button v-for="(city,index) in filteredList" :key="index">{{city.city}}</Item>
+                    <Item detail-push v-for="(city,index) in filteredList" :key="index">{{city.city}}</Item>
                 </ItemGroup>
             </List>
         </Content>
     </Page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
 </style>
 <script type="text/javascript">
-  import cityList from '../../../src/components/choose-city/cities.json'
+  import cityList from '../../../src/components/choose-city/data/cities.json'
   export default {
     data () {
       return {

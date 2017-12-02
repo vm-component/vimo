@@ -1,0 +1,30 @@
+@import "../../../themes/ionic.globals.ios";
+
+// iOS Pop Sheet
+// --------------------------------------------------
+
+/// @prop - Text align of the pop sheet
+$pop-sheet-ios-text-align: center;
+
+/// @prop - Padding of the pop sheet
+$pop-sheet-ios-padding: 0;
+
+/// @prop - Border radius of the alert
+$pop-sheet-ios-border-radius: 13px;
+
+/// @prop - Background color of the alert
+$pop-sheet-ios-background: #f8f8f8;
+
+/// @prop - Box shadow of the alert
+$pop-sheet-ios-box-shadow: none;
+
+.pop-sheet-ios {
+  text-align: $pop-sheet-ios-text-align;
+}
+
+.pop-sheet-ios .sheet-container {
+  padding: $pop-sheet-ios-padding;
+  background-color: $pop-sheet-ios-background;
+  border-radius: $pop-sheet-ios-border-radius;
+  box-shadow: $pop-sheet-ios-box-shadow;
+}

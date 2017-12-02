@@ -1,0 +1,37 @@
+@import "../../../themes/ionic.globals";
+
+// Button Icons
+// --------------------------------------------------
+
+// Icons inside of buttons with text
+@mixin button-icon {
+  font-size: 1.4em;
+  line-height: 0.67;
+  pointer-events: none;
+}
+
+[icon-left] .ion-icon, // deprecated
+[icon-start] .ion-icon {
+  @include button-icon;
+  @include padding-horizontal(null, 0.3em);
+}
+
+[icon-right] .ion-icon, // deprecated
+[icon-end] .ion-icon {
+  @include button-icon;
+  @include padding-horizontal(0.4em, null);
+}
+
+.button[icon-only] {
+  min-width: 0.9em;
+  
+  @include padding(0);
+}
+
+[icon-only] .ion-icon {
+  font-size: 1.8em;
+  line-height: 0.67;
+  pointer-events: none;
+  
+  @include padding(0, 0.5em);
+}

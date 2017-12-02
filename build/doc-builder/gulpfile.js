@@ -18,6 +18,17 @@ var plumber = require('gulp-plumber')
 var chalk = require('chalk')
 var base = path.resolve(__dirname, '../../')
 var docPath = `${base}/docs`
+var sass = require('gulp-sass')
+
+gulp.task('theme:sass', function () {
+  return gulp.src('./theme/scss/*.scss')
+  .pipe(sass().on('error', sass.logError))
+  .pipe(gulp.dest('./theme/static/styles'))
+})
+
+gulp.task('theme:sass:watch', function () {
+  gulp.watch('./theme/scss/*.scss', ['theme:sass'])
+})
 
 // clean
 // gulp.task('clean-doc', del.bind(['../docs/*'], {force: true}))
@@ -53,8 +64,7 @@ gulp.task('default', function () {
     })
     gulp.watch([
       `${base}/README.md`,
-      `${base}/components/**/*.*`,
-      './theme/**/*.*'
+      `${base}/src/components/**/*.*`
     ], function () {
       runSequence('make', function () {
         reload()

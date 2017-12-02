@@ -1,0 +1,168 @@
+@import "../../../themes/ionic.globals.wp";
+
+// Windows Checkbox
+// --------------------------------------------------
+
+/// @prop - Border bottom width of the checkbox
+$checkbox-wp-border-bottom-width: 1px !default;
+
+/// @prop - Border bottom style of the checkbox
+$checkbox-wp-border-bottom-style: solid !default;
+
+/// @prop - Border bottom color of the checkbox
+$checkbox-wp-border-bottom-color: $list-wp-border-color !default;
+
+/// @prop - Opacity of the disabled checkbox
+$checkbox-wp-disabled-opacity: 0.3 !default;
+
+/// @prop - Background color of the checkbox icon when off
+$checkbox-wp-icon-background-color-off: $list-wp-background-color !default;
+
+/// @prop - Background color of the checkbox icon when on
+$checkbox-wp-icon-background-color-on: color($colors-wp, primary) !default;
+
+/// @prop - Size of the checkbox icon
+$checkbox-wp-icon-size: 16px !default;
+
+/// @prop - Width of the checkbox icon checkmark
+$checkbox-wp-icon-checkmark-width: 1px !default;
+
+/// @prop - Style of the checkbox icon checkmark
+$checkbox-wp-icon-checkmark-style: solid !default;
+
+/// @prop - Color of the checkbox icon checkmark
+$checkbox-wp-icon-checkmark-color: color-contrast($colors-wp, $checkbox-wp-icon-background-color-on) !default;
+
+/// @prop - Border width of the checkbox icon
+$checkbox-wp-icon-border-width: 2px !default;
+
+/// @prop - Border style of the checkbox icon
+$checkbox-wp-icon-border-style: solid !default;
+
+/// @prop - Border radius of the checkbox icon
+$checkbox-wp-icon-border-radius: 0 !default;
+
+/// @prop - Border color of the checkbox icon when off
+$checkbox-wp-icon-border-color-off: #333 !default;
+
+/// @prop - Border color of the checkbox icon when on
+$checkbox-wp-icon-border-color-on: color($colors-wp, primary) !default;
+
+/// @prop - Margin top of the start checkbox item
+$checkbox-wp-item-start-margin-top: $item-wp-padding-media-top !default;
+
+/// @prop - Margin end of the start checkbox item
+$checkbox-wp-item-start-margin-end: $item-wp-padding-end !default;
+
+/// @prop - Margin bottom of the start checkbox item
+$checkbox-wp-item-start-margin-bottom: $item-wp-padding-media-bottom !default;
+
+/// @prop - Margin start of the start checkbox item
+$checkbox-wp-item-start-margin-start: 4px !default;
+
+/// @prop - Margin top of the end checkbox item
+$checkbox-wp-item-end-margin-top: 11px !default;
+
+/// @prop - Margin end of the end checkbox item
+$checkbox-wp-item-end-margin-end: 10px !default;
+
+/// @prop - Margin bottom of the end checkbox item
+$checkbox-wp-item-end-margin-bottom: 10px !default;
+
+/// @prop - Margin start of the end checkbox item
+$checkbox-wp-item-end-margin-start: 0 !default;
+
+.checkbox-wp {
+  position: relative;
+  display: inline-block;
+}
+
+// Windows Checkbox Outer Square: Unchecked
+// -----------------------------------------
+
+.checkbox-wp .checkbox-icon {
+  position: relative;
+  width: $checkbox-wp-icon-size;
+  height: $checkbox-wp-icon-size;
+  background-color: $checkbox-wp-icon-background-color-off;
+  border-color: $checkbox-wp-icon-border-color-off;
+  border-style: $checkbox-wp-icon-border-style;
+  border-width: $checkbox-wp-icon-border-width;
+  
+  @include border-radius($checkbox-wp-icon-border-radius);
+}
+
+// Windows Checkbox Outer Square: Checked
+// -----------------------------------------
+
+.checkbox-wp .checkbox-checked {
+  background-color: $checkbox-wp-icon-background-color-on;
+  border-color: $checkbox-wp-icon-border-color-on;
+}
+
+// Windows Checkbox Inner Checkmark: Checked
+// -----------------------------------------
+
+.checkbox-wp .checkbox-checked .checkbox-inner {
+  position: absolute;
+  width: 6px;
+  height: 12px;
+  border-color: $checkbox-wp-icon-checkmark-color;
+  border-style: $checkbox-wp-icon-checkmark-style;
+  border-width: $checkbox-wp-icon-checkmark-width;
+  border-top-width: 0;
+  border-left-width: 0;
+  transform: rotate(45deg);
+  
+  @include position(-2px, null, null, 3px);
+}
+
+// Windows Checkbox: Disabled
+// -----------------------------------------
+
+.checkbox-wp.checkbox-disabled,
+.item-wp.item-checkbox-disabled .ion-label {
+  pointer-events: none;
+  opacity: $checkbox-wp-disabled-opacity;
+}
+
+// Windows Checkbox Within An Item
+// -----------------------------------------
+
+.item.item-wp .checkbox-wp {
+  position: static;
+  display: block;
+  
+  @include margin($checkbox-wp-item-start-margin-top, $checkbox-wp-item-start-margin-end, $checkbox-wp-item-start-margin-bottom, $checkbox-wp-item-start-margin-start);
+}
+
+.item.item-wp .checkbox-wp[item-right], // deprecated
+.item.item-wp .checkbox-wp[item-end] {
+  @include margin($checkbox-wp-item-end-margin-top, $checkbox-wp-item-end-margin-end, $checkbox-wp-item-end-margin-bottom, $checkbox-wp-item-end-margin-start);
+}
+
+.checkbox-wp + .item-inner .ion-label {
+  @include margin-horizontal(0, null);
+}
+
+// Windows Checkbox Color Mixin
+// --------------------------------------------------
+
+@mixin checkbox-theme-wp($color-name, $color-base, $color-contrast) {
+  .checkbox-wp-#{$color-name} .checkbox-checked {
+    background-color: $color-base;
+    border-color: $color-base;
+  }
+  
+  .checkbox-wp-#{$color-name} .checkbox-checked .checkbox-inner {
+    border-color: $color-contrast;
+  }
+  
+}
+
+// Generate Windows Checkbox Colors
+// --------------------------------------------------
+
+@each $color-name, $color-base, $color-contrast in get-colors($colors-wp) {
+  @include checkbox-theme-wp($color-name, $color-base, $color-contrast);
+}

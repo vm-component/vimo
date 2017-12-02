@@ -1,5 +1,5 @@
 <template>
-    <article class="ion-app" :version="version"
+    <article class="ion-app" :version="version" :id="mode"
              :style="styleObj"
              :class="[mode,modeClass,platformClass,{'disable-hover':disableHover},{'disable-scroll':disableScroll}]">
         <section class="app-root">
@@ -15,11 +15,7 @@
         <slot name="outer"></slot>
     </article>
 </template>
-<style lang="less">
-    @import "app.less";
-    @import "app.ios.less";
-    @import "app.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Base/App
@@ -94,13 +90,12 @@
    * */
 
   import { setElementClass } from '../../util/util'
-  import { isString, isPresent } from '../../util/type'
+  import { isPresent, isString } from '../../util/type'
   import disableHover from '../../util/disable-hover'
+  import modeMixins from '../../util/mode-mixins.js'
 
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // 等待业务完毕的额外时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
-
-  import modeMixins from '../../util/mode-mixins.js'
 
   export default {
     name: 'App',

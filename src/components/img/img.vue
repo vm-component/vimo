@@ -6,17 +6,7 @@
         </transition>
     </div>
 </template>
-<style lang="less">
-    @import "img";
-
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .5s
-    }
-
-    .fade-enter, .fade-leave-active {
-        opacity: 0
-    }
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Img

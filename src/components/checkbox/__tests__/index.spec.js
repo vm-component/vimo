@@ -20,7 +20,7 @@ describe('Checkbox', function () {
       }
     })
     let wrapper = mount(Checkbox, opts)
-    const result = `<div class="ion-checkbox checkbox checkbox-md checkbox-md-primary"><div class="checkbox-icon"><div class="checkbox-inner"></div></div> <button class="ion-button item-cover item-cover item-cover-md item-cover-md-default" type="button"><span class="button-inner"></span></button></div>`
+    const result = `<div class="ion-checkbox checkbox checkbox-md checkbox-md-primary"><div class="checkbox-icon"><div class="checkbox-inner"></div></div> <button class="ion-button item-cover item-cover item-cover-md item-cover-default item-cover-default-md item-cover-md-default" type="button"><span class="button-inner"></span></button></div>`
     expect(wrapper.html()).toEqual(result)
   })
 
@@ -84,7 +84,7 @@ describe('Checkbox', function () {
       }
     })
     let wrapper = mount(Checkbox, opts)
-    let html = `<div class="ion-checkbox checkbox checkbox-ios checkbox-ios-primary"><div class="checkbox-icon checkbox-checked"><div class="checkbox-inner"></div></div> <button class="ion-button item-cover item-cover item-cover-ios item-cover-ios-default" type="button"><span class="button-inner"></span></button></div>`
+    let html = `<div class="ion-checkbox checkbox checkbox-ios checkbox-ios-primary"><div class="checkbox-icon checkbox-checked"><div class="checkbox-inner"></div></div> <button class="ion-button item-cover item-cover item-cover-ios item-cover-default item-cover-default-ios item-cover-ios-default" type="button"><span class="button-inner"></span></button></div>`
     expect(wrapper.html()).toEqual(html)
   })
 })

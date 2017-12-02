@@ -1,0 +1,49 @@
+$OFF_BOTTOM: 40px;
+$EASING: cubic-bezier(0.36, 0.66, 0.04, 1);
+$DURATION: 500ms;
+$CENTER: 0px;
+$OPACITY: opacity;
+$TRANSFORM: -webkit-transform;
+$OPACITY_ZERO: 0;
+
+// fade-right-transition Transition(forward)
+// --------------------------------------------------
+
+// 进入的页面
+.fade-right-transition-forward-enter {
+  position: absolute !important;
+  opacity: $OPACITY_ZERO !important;
+  transform: translateX($OFF_BOTTOM);
+}
+
+.fade-right-transition-forward-enter-active {
+  position: absolute !important;
+  transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
+}
+
+// 退出的页面
+.fade-right-transition-forward-leave-active {
+  position: absolute !important;
+  transition-duration: $DURATION;
+}
+
+// fade-right-transition Transition(backward)
+// --------------------------------------------------
+
+// 进入的页面
+.fade-right-transition-backward-enter {
+  position: absolute !important;
+}
+
+.fade-right-transition-backward-enter-active {
+  position: absolute !important;
+  transition-duration: $DURATION;
+}
+
+// 退出的页面
+.fade-right-transition-backward-leave-active {
+  position: absolute !important;
+  opacity: $OPACITY_ZERO !important;
+  transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
+  transform: translateX($OFF_BOTTOM);
+}

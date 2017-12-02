@@ -1,15 +1,15 @@
 <template>
     <div class="vm-landscape-prompt" v-if="isMobile">
-        <div id="orientLayer" class="mod-orient-layer">
-            <div class="mod-orient-layer__content">
-                <i class="icon mod-orient-layer__icon-orient"></i>
-                <div class="mod-orient-layer__desc">请在解锁模式下使用竖屏浏览</div>
+        <div class="orient-layer mod-orient-layer">
+            <div class="mod-orient-layer-content">
+                <i class="icon mod-orient-layer-icon-orient"></i>
+                <div class="mod-orient-layer-desc">请在解锁模式下使用竖屏浏览</div>
             </div>
         </div>
     </div>
 </template>
-<style lang="less">
-    @import "landscape-prompt.less";
+<style lang="scss">
+    @import "landscape-prompt.scss";
 </style>
 <script type="text/javascript">
   /**

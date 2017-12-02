@@ -3,11 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
-    @import "badge.less";
-    @import "badge.ios.less";
-    @import "badge.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Badge

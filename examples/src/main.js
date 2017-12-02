@@ -40,7 +40,7 @@ new Vue({
   template: '<AppComponent/>',
   created () {
     this.$platform.ready().then((data) => {
-      console.log(`Platform Ready && Init Info: ${data}`)
+      console.debug(`Platform Ready && Init Info: ${data}`)
     }, (data) => {
       console.error(`Platform Ready && Init Info: ${data}`)
     })

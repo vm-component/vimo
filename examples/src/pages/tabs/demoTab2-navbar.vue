@@ -27,7 +27,7 @@
         </Content>
     </article>
 </template>
-<style lang="less">
+<style lang="scss">
     .main {
 
     }

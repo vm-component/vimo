@@ -12,11 +12,7 @@
         </div>
     </article>
 </template>
-<style lang="less">
-    @import "tabs.less";
-    @import "tabs.ios.less";
-    @import "tabs.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Tabs
@@ -38,7 +34,7 @@
    * @props {String=} color                        - 颜色
    * @props {String} [mode='ios']                  - 模式
    * @props {Boolean} [tabsHighlight='false']      - tab下面是否显示选中bar, 只在md模式生效
-   * @props {String} [tabsLayout='icon-top']       - tabbar的样式，可选配置: icon-top, icon-left, icon-right, icon-bottom, icon-hide, title-hide.
+   * @props {String} [tabsLayout='icon-top']       - tabbar的样式，可选配置: icon-top, icon-start, icon-end, icon-bottom, icon-hide, title-hide.
    *
    *
    * @fires component:Tabs#onTabChange
@@ -51,7 +47,7 @@
    *        <router-view></router-view>
    *    </Content>
    *    <Footer>
-   *        <Tabs tabsLayout="icon-top" tabsPlacement="bottom" @onTabChange="onTabChange" ref=tabs>
+   *        <Tabs tabsLayout="icon-top" @onTabChange="onTabChange" ref=tabs>
    *            <router-view></router-view>
    *            <Tab slot="tab" :to="{name:'tabsBottom.demoTab1'}" tabBadge="13" tabTitle="User" tabBadgeStyle="danger" tabIcon="person"></Tab>
    *            <Tab slot="tab" :to="{name:'tabsBottom.demoTab2'}" tabBadge="2" tabTitle="Cars" tabBadgeStyle="dark" tabIcon="car"></Tab>
@@ -105,8 +101,8 @@
         validator (val) {
           return ~[
             'icon-top',
-            'icon-left',
-            'icon-right',
+            'icon-start',
+            'icon-end',
             'icon-bottom',
             'icon-hide',
             'title-hide'

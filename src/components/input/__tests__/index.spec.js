@@ -29,7 +29,7 @@ let options = {
 describe('Input', function () {
   it('@base: renders the correct markup', function () {
     let wrapper = mount(Input, options)
-    const result = `<div class="ion-input input-md clearInput"><div class="input-innerWrap"><input type="text" placeholder="this is a placeholder" disabled="disabled" readonly="readonly" max="100" min="1" step="1" autofocus="autofocus" class="text-input text-input-md"></div> <button class="ion-button text-input-clear-icon button button-ios button-clear button-clear-ios button-clear-ios-default"><span class="button-inner"></span></button></div>`
+    const result = `<div class="ion-input input-md clearInput"><div class="input-inner-wrap"><input type="text" placeholder="this is a placeholder" disabled="disabled" readonly="readonly" max="100" min="1" step="1" autofocus="autofocus" class="text-input text-input-md"></div> <button class="ion-button text-input-clear-icon button button-ios button-clear button-clear-ios button-clear-ios-default"><span class="button-inner"></span></button></div>`
     expect(wrapper.html()).toEqual(result)
   })
 

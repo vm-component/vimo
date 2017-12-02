@@ -1,0 +1,59 @@
+@import "../../../themes/ionic.globals";
+
+// Item Media
+// --------------------------------------------------
+// Icons, avatars, thumbnails, notes, etc.
+
+.item > .ion-icon[small]:first-child,
+.item-inner > .ion-icon[small]:first-child {
+  min-width: 18px;
+}
+
+.item > .ion-icon:first-child,
+.item-inner > .ion-icon:first-child {
+  min-width: 24px;
+  
+  @include text-align(center);
+}
+
+.item > .ion-icon,
+.item-inner > .ion-icon {
+  min-height: 28px;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.item > .ion-icon[large],
+.item-inner > .ion-icon[large] {
+  min-height: 32px;
+  font-size: 32px;
+}
+
+.item > .ion-icon[small],
+.item-inner > .ion-icon[small] {
+  min-height: 18px;
+  font-size: 18px;
+}
+
+.ion-avatar,
+.ion-thumbnail {
+  display: block;
+  line-height: 1;
+}
+
+.ion-avatar img,
+.ion-thumbnail img {
+  display: block;
+}
+
+button.item-cover,
+[ion-button].item-cover,
+.ion-button.item-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  
+  @include position(0, null, null, 0);
+}

@@ -51,6 +51,15 @@ export default class GeneratePopUpInstance {
   }
 
   /**
+   * 获取实例
+   * @return {Object}
+   * @override
+   * */
+  getInstance () {
+    return this._ins
+  }
+
+  /**
    * 构建组件实例
    * @param {Object} options - 参数
    * @private
@@ -59,8 +68,8 @@ export default class GeneratePopUpInstance {
     let el = getInsertPosition(this._position).appendChild(
       document.createElement('div')
     )
-    let PreviewImage = Vue.extend(this._component)
-    let _ins = new PreviewImage({propsData: options})
+    let Component = Vue.extend(this._component)
+    let _ins = new Component({propsData: options})
     _ins.$mount(el)
     return _ins
   }

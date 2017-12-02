@@ -1,0 +1,135 @@
+$green: #78c430;
+$red: #ef4644;
+
+.vm-slide-box {
+  position: relative;
+  height: 52px;
+  overflow: hidden;
+  background-color: #ddd;
+  box-shadow: 0 0 3px #999;
+
+  .vm-slide-box-placeholder {
+    display: block;
+    width: 100%;
+    height: 52px;
+    font-size: 16px;
+    line-height: 52px;
+    color: #aaa;
+    text-align: center;
+    background: gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(0.4, #4d4d4d), color-stop(0.5, #fff), color-stop(0.6, #4d4d4d), color-stop(1, #4d4d4d));
+    @keyframes slidetounlock {
+      0% {
+        background-position: -200px 0;
+      }
+
+      100% {
+        background-position: 200px 0;
+      }
+    }
+  }
+
+  .vm-slide-box-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .track-background {
+      width: 100%;
+      height: 52px;
+      font-size: 16px;
+      line-height: 52px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .track-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      width: 52px;
+      height: 52px;
+      cursor: pointer;
+      background: #fff;
+      opacity: 1;
+      align-items: center;
+      justify-content: center;
+
+      .icon-arrow-right {
+        width: 20px;
+        height: 20px;
+        background: #fff url("images/arrow.png") no-repeat center center/20px 20px;
+      }
+
+      .icon-ok {
+        width: 20px;
+        height: 20px;
+        background: #fff url("images/ok.png") no-repeat center center/20px 20px;
+      }
+
+      .icon-error {
+        width: 20px;
+        height: 20px;
+        background: #fff url("images/error.png") no-repeat center center/20px 20px;
+      }
+
+      .icon-refresh {
+        width: 20px;
+        height: 20px;
+        background: #fff url("images/refresh.png") no-repeat center center/20px 20px;
+        animation: revolve 2s linear infinite;
+      }
+
+      @keyframes revolve {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+}
+
+.vm-slide-box[state="inactive"],
+.vm-slide-box[state="sliding"],
+.vm-slide-box[state="checking"],
+.vm-slide-box[state="cancelling"],
+.vm-slide-box[state="completing"] {
+  .vm-slide-box-track {
+    .track-background {
+      background-color: $green;
+    }
+  }
+}
+
+.vm-slide-box[state="failing"] {
+  .vm-slide-box-track {
+    .track-background {
+      background-color: $red;
+    }
+  }
+}
+
+.vm-slide-box[state="cancelling"] {
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    content: "";
+  }
+
+  .vm-slide-box-track {
+    transition: transform ease 500ms;
+    will-change: transform;
+  }
+}

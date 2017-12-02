@@ -11,6 +11,7 @@
         </vm-button>
     </div>
 </template>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Checkbox
@@ -130,7 +131,3 @@
     }
   }
 </script>
-<style lang="less">
-    @import "checkbox.ios.less";
-    @import "checkbox.md.less";
-</style>

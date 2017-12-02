@@ -1,0 +1,17 @@
+.ion-textarea {
+  .input-count {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding-right: 5px;
+    font-size: 12px;
+    color: #000;
+  }
+}
+
+.ion-textarea.has-count {
+  margin-bottom: 10px;
+  .input-inner-wrap {
+    padding-bottom: 10px;
+  }
+}

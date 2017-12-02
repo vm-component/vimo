@@ -3,11 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
-    @import "list";
-    @import "list.ios.less";
-    @import "list.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component List

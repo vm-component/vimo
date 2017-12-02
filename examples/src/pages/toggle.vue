@@ -72,7 +72,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .customer-standalone {
         height: 44px;
         width: 80px;

@@ -15,12 +15,7 @@
         </div>
     </div>
 </template>
-<style lang="less">
-    @import "item.less";
-    @import "item.ios.less";
-    @import "item.md.less";
-    @import "item-media.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   import addItemAttr from '../../util/add-slot-name-to-attr.js'
 

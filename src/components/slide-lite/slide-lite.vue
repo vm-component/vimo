@@ -1,25 +1,9 @@
-<style lang="less">
-    .slide-lite {
-        width: 100%;
-        position: relative;
-        flex: 0 0 auto;
-        opacity: 1;
-        height: 100%;
-        box-sizing: border-box;
-    }
-
-    .slide-lite img {
-        width: auto;
-        height: auto;
-        max-width: 100%;
-        max-height: 100%;
-    }
-</style>
 <template>
     <div class="slide-lite">
         <slot></slot>
     </div>
 </template>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component SlidesLite/Slide

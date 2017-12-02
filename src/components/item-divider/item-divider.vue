@@ -11,7 +11,8 @@
    * @demo #/list
    * */
   import ItemMixin from '../item/item-mixin.vue'
-  export default{
+
+  export default {
     mixins: [ItemMixin],
     name: 'ItemDivider',
     data () {

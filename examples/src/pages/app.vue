@@ -6,13 +6,11 @@
             </Navbar>
         </Header>
         <Content class="outer-content" padding>
-
             <h1>App组件</h1>
             <p>
                 该组件是业务页面的父组件，业务页面挂载、页面状态、弹出层挂载安插等，都是在此组件中完成。
                 组件注册初始化时，会将App组件实例插入到Vue.prototype中，便于业务页面对App组件的操控。
             </p>
-
 
             <p><strong>3秒内页面无法点击</strong></p>
             <small>在当前页面覆盖一层透明蒙版, 阻挡进一步操作.</small>
@@ -69,7 +67,7 @@
         </Content>
     </Page>
 </template>
-<style lang="less">
+<style lang="scss">
     .hello-vimo-here {
         text-align: center;
         color: red;
@@ -82,7 +80,7 @@
         }
     }
 </style>
-<style scoped lang="less">
+<style scoped lang="scss">
     .stateBar {
         background: rgba(256, 256, 256, 0.9);
         padding: 10px 20px;

@@ -2,11 +2,7 @@
     <i class="ion-icon"
        :class="[colorClass,nameClass,itemClass,{'hide':hidden}]"></i>
 </template>
-<style lang="less">
-    @import "icon";
-    @import "icon.ios.less";
-    @import "icon.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   export default {
     name: 'Icon',
@@ -17,25 +13,11 @@
       }
     },
     props: {
-      /**
-       * 指定图标使用模式
-       * */
       mode: {
         type: String,
         default () { return this.$config && this.$config.get('iconMode') || 'ios' }
       },
-      /**
-       * 按钮color：
-       * primary:    #007aff,
-       * secondary:  #32db64,
-       * danger:     #d91e18,
-       * light:      #f4f4f4,
-       * dark:       #222,
-       * */
       color: String,
-      /**
-       * icon的名字, 默认的名字
-       * */
       name: [String, Boolean],
 
       /**

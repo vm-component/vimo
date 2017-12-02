@@ -22,11 +22,7 @@
         </transition>
     </div>
 </template>
-<style lang="less">
-    @import "item-collapse.less";
-    @import "item-collapse.ios.less";
-    @import "item-collapse.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Item/ItemCollapse
@@ -73,7 +69,7 @@
    * @demo #/collapseList
    * */
   import addItemAttr from '../../util/add-slot-name-to-attr.js'
-  import { getSize } from './style-tools'
+  import { getSize } from '../../util/style-tools'
 
   export default {
     name: 'ItemCollapse',

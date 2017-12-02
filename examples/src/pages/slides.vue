@@ -493,7 +493,7 @@
     </Page>
 </template>
 
-<style scoped lang="less">
+<style scoped lang="scss">
     .swiper {
         width: 100%;
         min-width: 285px;
@@ -538,7 +538,7 @@
 
 
 </style>
-<style lang="less">
+<style lang="scss">
     .slidesPage .swiper-container {
         outline: 1px solid #ddd;
     }

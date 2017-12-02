@@ -16,11 +16,7 @@
         </transition>
     </div>
 </template>
-<style lang="less">
-    @import "toast.less";
-    @import "toast.ios.less";
-    @import "toast.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   import Button from '../button'
   import popupExtend from '../../util/popup-extend'

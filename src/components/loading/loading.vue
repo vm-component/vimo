@@ -15,39 +15,7 @@
         </transition>
     </div>
 </template>
-<style lang="less">
-    @import "loading";
-    @import "loading.ios.less";
-    @import "loading.md.less";
-    @import "../../animations/alert.less";
-
-    .ion-loading.indicator {
-        .loading-wrapper {
-            background: rgba(0, 0, 0, 0.9);
-            color: #fff;
-            padding: 13px 13px;
-            circle, line {
-                stroke: #fff !important;
-            }
-            .loading-spinner {
-                height: 30px;
-                width: 30px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
-    }
-
-    .indicator.reverse {
-        .loading-wrapper {
-            background: rgba(256, 256, 256, 0.9);
-            circle, line {
-                stroke: #000 !important;
-            }
-        }
-    }
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Loading
@@ -59,7 +27,8 @@
    *
    * ### 关于大小Loading的问题
    *
-   * Loading的使用场景是这样的: 当用户访问数据/资源加载/需要等待操作的需求下使用, 完整的情况下需要向用户说明我这次Loading是做什么, 比如Loading是提示"**正在请求资源, 请稍后!**", 有时我们并不需提示, 只需要显示菊花图即可, 因为频繁的显示大Loading还是很烦的, 这里需要介绍下Indicator组件, 他是继承Loading组件, 但是只显示菊花图, 而且调用也简单, 不必每次传入参数.
+   * Loading的使用场景是这样的: 当用户访问数据/资源加载/需要等待操作的需求下使用, 完整的情况下需要向用户说明我这次Loading是做什么, 比如Loading是提示"**正在请求资源, 请稍后!**", 有时我们并不需提示, 只需要显示菊花图即可, 因为频繁的显示大Loading还是很烦的,
+   *   这里需要介绍下Indicator组件, 他是继承Loading组件, 但是只显示菊花图, 而且调用也简单, 不必每次传入参数.
    *
    * ### 弹出层
    *

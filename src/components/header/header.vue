@@ -1,35 +1,9 @@
 <template>
-    <header class="ion-header" :class="[{'hide-bar':isHide}]" :style="style">
-        <!--right button placeholder-->
-        <div ref="rightButtonPlaceholder" id="rightButtonPlaceholder"></div>
+    <header class="ion-header" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
+        <div ref="rightButtonPlaceholder" id="right-button-placeholder"></div>
         <slot></slot>
     </header>
 </template>
-<style lang="less">
-    @import "../../themes/index";
-
-    .ion-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: @z-index-toolbar;
-        display: block;
-        width: 100%;
-        transition: -webkit-transform ease 300ms;
-    }
-
-    .ion-header.hide-bar {
-        transform: translateY(-100%);
-    }
-
-    #rightButtonPlaceholder {
-        width: 30px;
-        bottom: 0;
-        height: 1px;
-        position: absolute;
-        right: 9px;
-    }
-</style>
 <script type="text/javascript">
   /**
    * @component Base/Header
@@ -62,10 +36,23 @@
         headerComponent: _this
       }
     },
+    props: {
+      mode: {
+        type: String,
+        default () {
+          return (this.$config && this.$config.get('mode', 'ios')) || 'ios'
+        }
+      }
+    },
     data () {
       return {
         isHide: false,
         style: {}
+      }
+    },
+    computed: {
+      modeClass () {
+        return `header-${this.mode}`
       }
     },
     methods: {
@@ -124,4 +111,5 @@
       this.$root.$emit('header:mounted', this)
     }
   }
+
 </script>

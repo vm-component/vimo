@@ -9,7 +9,7 @@
          {'searchbar-show-cancel':showCancelButton},
          {'searchbar-left-aligned':shouldAlignLeft}
          ]">
-        <div class="searchbar-input-container">
+        <div class="searchbar-input-container" @touchstart="setFocus">
             <!--在md模式下，md的取消按钮是在这里的，当点击inputs输入时，返回按钮将覆盖search按钮-->
             <vm-button mode="md"
                        @click="cancelSearchbar($event)"
@@ -51,11 +51,7 @@
         </vm-button>
     </div>
 </template>
-<style lang="less">
-    @import "searchbar";
-    @import "searchbar.ios.less";
-    @import "searchbar.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Searchbar
@@ -136,6 +132,7 @@
   import Icon from '../icon'
   import { isNumber, isBoolean } from '../../util/type'
 
+  // TODO: use padding-left to  animate is not prefect , hah
   export default {
     name: 'Searchbar',
     data () {

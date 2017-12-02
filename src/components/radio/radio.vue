@@ -11,6 +11,7 @@
         </button>
     </div>
 </template>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Radio
@@ -189,7 +190,3 @@
     }
   }
 </script>
-<style lang="less">
-    @import "radio.ios.less";
-    @import "radio.md.less";
-</style>

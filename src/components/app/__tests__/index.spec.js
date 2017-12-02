@@ -14,7 +14,7 @@ let opts = {
 describe('App', function () {
   it('@base: renders the correct markup', function () {
     const wrapper = mount(App, opts)
-    const result = `<article class="ion-app ios app-ios platform-ios"><section class="app-root"><span>Name</span></section> <aside id="modalPortal"></aside> <aside id="sheetPortal"></aside> <aside id="alertPortal"></aside> <aside id="loadingPortal"></aside> <aside id="toastPortal"></aside> <aside class="click-block"></aside> </article>`
+    const result = `<article id="ios" class="ion-app ios app-ios platform-ios"><section class="app-root"><span>Name</span></section> <aside id="modalPortal"></aside> <aside id="sheetPortal"></aside> <aside id="alertPortal"></aside> <aside id="loadingPortal"></aside> <aside id="toastPortal"></aside> <aside class="click-block"></aside> </article>`
     expect(wrapper.html()).toEqual(result)
   })
 

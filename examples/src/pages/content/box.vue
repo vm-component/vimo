@@ -68,7 +68,7 @@
         </Footer>
     </Page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .fixedContent {
         height: 72px;
         background: rgba(255, 125, 196, 0.95);

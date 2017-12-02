@@ -13,11 +13,7 @@
         </Footer>
     </Page>
 </template>
-<style scoped lang="less">
-    .main {
-
-    }
-</style>
+<style scoped lang="scss"></style>
 <script type="text/javascript">
   export default{
     data () {

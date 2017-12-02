@@ -40,6 +40,7 @@
         </transition>
     </div>
 </template>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   import Backdrop from '../backdrop'
   import Button from '../button'
@@ -49,8 +50,7 @@
 
   export default {
     name: 'ActionSheet',
-    mixins: [modeMixins],
-    extends: popupExtend,
+    mixins: [modeMixins, popupExtend],
     props: {
       title: String,
       subTitle: String,
@@ -170,9 +170,3 @@
     }
   }
 </script>
-<style lang="less">
-    @import "action-sheet.less";
-    @import "action-sheet.ios.less";
-    @import "action-sheet.md.less";
-    @import "../../animations/action-sheet.less";
-</style>

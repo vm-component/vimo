@@ -62,36 +62,35 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="less">
-
-    @log: #757575;
-    @debug: #36a8ee;
-    @info: #32b208;
-    @warn: #ff8f0e;
-    @error: #ff0000;
-    @assert: #ff0000;
+<style scoped lang="scss">
+    $log: #757575;
+    $debug: #36a8ee;
+    $info: #32b208;
+    $warn: #ff8f0e;
+    $error: #ff0000;
+    $assert: #ff0000;
     .log {
-        color: @log
+        color: $log;
     }
 
     .debug {
-        color: @debug
+        color: $debug;
     }
 
     .info {
-        color: @info
+        color: $info;
     }
 
     .warn {
-        color: @warn
+        color: $warn;
     }
 
     .error {
-        color: @error
+        color: $error;
     }
 
     .assert {
-        color: @assert
+        color: $assert;
     }
 </style>
 <script type="text/javascript">

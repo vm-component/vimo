@@ -262,7 +262,7 @@
     }
   }
 </script>
-<style lang="less">
+<style lang="scss">
     .vm-feedback.feedback__inputBox {
         border-bottom: 1px solid #f2f2f2;
         width: 100%;
@@ -343,7 +343,7 @@
                     right: 0;
                     z-index: 3;
                 }
-                &:after {
+                &::after {
                     content: '';
                     height: 1px;
                     width: 10px;

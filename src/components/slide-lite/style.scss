@@ -1,0 +1,15 @@
+.slide-lite {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  opacity: 1;
+  flex: 0 0 auto;
+}
+
+.slide-lite img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}

@@ -18,11 +18,7 @@
         </transition>
     </div>
 </template>
-<style lang="less">
-    @import "popover.less";
-    @import "popover.ios.less";
-    @import "popover.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Popover
@@ -291,7 +287,7 @@
         if (ev && ev.target) {
           return ev.target.getBoundingClientRect()
         } else {
-          let rightButtonPlaceholderElement = window.document.getElementById('rightButtonPlaceholder')
+          let rightButtonPlaceholderElement = window.document.getElementById('right-button-placeholder')
           if (rightButtonPlaceholderElement) {
             return rightButtonPlaceholderElement.getBoundingClientRect()
           } else {

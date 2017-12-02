@@ -1,0 +1,134 @@
+.vm-noticebar {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 35px;
+  padding: 0 3px;
+  background: #fff9db;
+  align-items: center;
+  justify-content: space-between;
+
+  .vm-noticebar-wrap {
+    position: relative;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+
+    .vm-noticebar-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      height: 100%;
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity ease 100ms;
+      align-items: center;
+      justify-content: center;
+
+      &.animate {
+        animation-name: animations;
+
+        /* 检索或设置对象动画在循环中是否反向运动 */
+        animation-fill-mode: none;
+
+        /* 检索或设置对象动画时间之外的状态 */
+        animation-play-state: running;
+
+        /* 检索或设置对象所应用的动画名称 */
+
+        /* animation-duration: 9s; */
+
+        /* 检索或设置对象动画的持续时间 */
+        animation-timing-function: linear;
+
+        /* 检索或设置对象动画的过渡类型 */
+
+        /* animation-delay: 2s; */
+
+        /* 检索或设置对象动画延迟的时间 */
+        animation-iteration-count: infinite;
+
+        /* 检索或设置对象动画的循环次数 */
+        animation-direction: normal;
+      }
+    }
+
+    @keyframes animations {
+      0% {
+        opacity: 1;
+        transform: translate(0);
+      }
+
+      10% {
+        opacity: 1;
+        transform: translate(0);
+      }
+
+      97% {
+        opacity: 1;
+        transform: translate(-110%);
+      }
+
+      97.000001% {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      98.9999999999% {
+        transform: translate(0);
+      }
+
+      99% {
+        display: block;
+        visibility: visible;
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+
+  .vm-icon,
+  .vm-action {
+    top: 0;
+    display: flex;
+    height: 35px;
+    color: #ef4644;
+    flex: 0 0 26px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .vm-icon {
+    left: 0;
+  }
+
+  .vm-action {
+    right: 0;
+  }
+
+  .vm-icon-notice {
+    background: url("images/notice.png") no-repeat center center/15px 15px;
+  }
+
+  .vm-icon-warn {
+    background: url("images/warn.png") no-repeat center center/15px 15px;
+  }
+
+  .vm-icon-right {
+    background: url("images/right.png") no-repeat center center/15px 15px;
+  }
+
+  .vm-icon-close {
+    background: url("images/close.png") no-repeat center center/15px 15px;
+  }
+}

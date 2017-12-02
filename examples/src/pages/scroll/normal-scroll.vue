@@ -69,7 +69,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .demo {
         border: 1px solid #ddd;
         background: #fff;

@@ -13,11 +13,7 @@
         </vm-button>
     </div>
 </template>
-<style lang="less">
-    @import "datetime";
-    @import "datetime.ios.less";
-    @import "datetime.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Datetime
@@ -85,22 +81,24 @@
    * @fires component:Datetime#onChange
    * */
   import { setElementClass } from '../../util/util'
-  import { isArray, isBlank, isPresent, isString, isTrueProperty } from '../../util/type'
+  import { isBlank, isPresent, isTrueProperty } from '../../util/type'
   import Picker from '../picker'
   import Button from '../button'
   import {
+    convertDataToISO,
+    convertFormatToKey,
+    convertToArrayOfNumbers,
+    convertToArrayOfStrings,
+    dateDataSortValue,
+    dateSortValue,
     dateValueRange,
+    daysInMonth,
+    getValueFromFormat,
+    parseDate,
+    parseTemplate,
     renderDateTime,
     renderTextFormat,
-    convertFormatToKey,
-    getValueFromFormat,
-    parseTemplate,
-    parseDate,
-    updateDate,
-    convertDataToISO,
-    daysInMonth,
-    dateSortValue,
-    dateDataSortValue
+    updateDate
   } from './datetime-util'
 
   const DEFAULT_FORMAT = 'MMM D, YYYY'
@@ -532,76 +530,5 @@
       this.checkHasValue(this.theValue)
     },
     components: {'vm-button': Button}
-  }
-
-  /**
-   * Use to convert a string of comma separated numbers or
-   * an array of numbers, and clean up any user input
-   * @example
-   * '1,2,4,5'      ->  [1,2,3,5]
-   * '[1,2,3,4]'    ->  [1,2,3,4]
-   * [1,2,3,a]      ->  [1,2,3]
-   * @private
-   */
-  function convertToArrayOfNumbers (input, type) {
-    var values = []
-
-    if (isString(input)) {
-      // convert the string to an array of strings
-      // auto remove any whitespace and [] characters
-      input = input.replace(/\[|\]|\s/g, '').split(',')
-    }
-
-    if (isArray(input)) {
-      // ensure each value is an actual number in the returned array
-      input.forEach((num) => {
-        num = parseInt(num, 10)
-        if (!isNaN(num)) {
-          values.push(num)
-        }
-      })
-    }
-
-    if (!values.length) {
-      console.warn(`Invalid "${type}Values". Must be an array of numbers, or a comma separated string of numbers.`)
-    }
-
-    return values
-  }
-
-  /**
-   * Use to convert a string of comma separated strings or
-   * an array of strings, and clean up any user input
-   * @example
-   * 'a,b,c,d'      ->  [a,b,c,d]
-   * '[a,b,c,d]'    ->  [a,b,c,d]
-   * @private
-   */
-  function convertToArrayOfStrings (input, type) {
-    if (isPresent(input)) {
-      var values = []
-
-      if (isString(input)) {
-        // convert the string to an array of strings
-        // auto remove any [] characters
-        input = input.replace(/\[|\]/g, '').split(',')
-      }
-
-      if (isArray(input)) {
-        // trim up each string value
-        input.forEach((val) => {
-          val = val.trim()
-          if (val) {
-            values.push(val)
-          }
-        })
-      }
-
-      if (!values.length) {
-        console.warn(`Invalid "${type}Names". Must be an array of strings, or a comma separated string.`)
-      }
-
-      return values
-    }
   }
 </script>

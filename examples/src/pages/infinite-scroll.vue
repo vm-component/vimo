@@ -7,6 +7,7 @@
         </Header>
         <Content>
             <List>
+                <Item v-for="(i,index) in 30" :key="index">demo-{{i}}</Item>
                 <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
             </List>
             <InfiniteScroll ref="infiniteScroll" class="infiniteScroll" :enabled="true" threshold="10%"
@@ -18,7 +19,7 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
     .ion-infinite-scroll {
         .loadedAll {
             display: none;

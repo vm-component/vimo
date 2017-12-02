@@ -1,15 +1,17 @@
 <template>
-    <button class="ion-button" @click="clickHandler($event)" :active="active"
-            :class="[modeClass,itemClass,{'disable-hover':disableHover}]">
+    <button class="ion-button"
+            :active="active"
+            :icon-only="iconOnly"
+            :icon-left="iconLeft"
+            :icon-right="iconRight"
+            :class="[modeClass, styleClass, shapeClass, displayClass, sizeClass, decoratorClass, colorClass,
+              {'disable-hover':disableHover},
+              {'item-button':isInItemComponent}]"
+            @click="$_clickHandler($event)">
         <span class="button-inner"><slot></slot></span>
     </button>
 </template>
-<style lang="less">
-    @import "button.less";
-    @import "button.md.less";
-    @import "button.ios.less";
-    @import "button-icon.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Button
@@ -64,8 +66,6 @@
    *    <span>Left Icon</span>
    * </Button>
    * */
-  import { setElementClass } from '../../util/util'
-  import { isTrueProperty } from '../../util/type'
   import disableHover from '../../util/disable-hover'
 
   export default {
@@ -95,7 +95,7 @@
       },
 
       small: Boolean,
-      default: Boolean,
+      'default': Boolean,
       large: Boolean,
 
       /**
@@ -141,90 +141,76 @@
     data () {
       return {
         disableHover: disableHover,
-        itemClass: '',
-        size: null,         // large/small/default
-        style: null,        // outline/clear/solid
+
+        style: 'default',        // outline/clear/solid
         shape: null,        // round/fab
         display: null,      // block/full
-        init: false,       //
+        size: null,         // large/small/default
+        decorator: null,     // strong
 
-        theMode: ''
+        styleClass: null,
+        shapeClass: null,
+        displayClass: null,
+        sizeClass: null,
+        decoratorClass: null,
+        colorClass: null,
+
+        iconOnly: false,
+        iconLeft: false,
+        iconRight: false
+
       }
     },
     computed: {
       // 环境样式
       modeClass () {
-        return this.theMode ? (`${this.role} ${this.role}-${this.theMode}`) : this.role
+        return this.mode ? (`${this.role} ${this.role}-${this.mode}`) : this.role
+      },
+      isInItemComponent () {
+        return !!this.itemComponent
       }
     },
     methods: {
-      clickHandler ($event) {
+      /**
+       * @private
+       * @param {Object} $event - $event
+       */
+      $_clickHandler ($event) {
         this.$emit('click', $event)
       },
 
-      // 获取元素属性
-      getProps () {
-        isTrueProperty(this.small) && (this.size = 'small')
-        isTrueProperty(this.default) && (this.size = 'default')
-        isTrueProperty(this.large) && (this.size = 'large')
-
-        isTrueProperty(this.outline) && (this.style = 'outline')
-        isTrueProperty(this.clear) && (this.style = 'clear')
-        isTrueProperty(this.solid) && (this.style = 'solid')
-
-        isTrueProperty(this.round) && (this.shape = 'round')
-
-        isTrueProperty(this.full) && (this.display = 'full')
-        isTrueProperty(this.block) && (this.display = 'block')
-        isTrueProperty(this.menutoggle) && (this.display = 'menutoggle')
-
-        isTrueProperty(this.strong) && (this.decorator = 'strong')
-      },
-
       /**
        * @private
-       * @param {boolean} assignCssClass - add or remove
        */
-      assignCss () {
+      $_assignCss () {
         let role = this.role
         if (role) {
-          this.setClass(this.style) // button-clear
-          this.setClass(this.shape) // button-round
-          this.setClass(this.display) // button-full
-          this.setClass(this.size) // button-small
-          this.setClass(this.decorator) // button-strong
+          this.styleClass = this.$_setClass(this.style) // button-clear
+          this.shapeClass = this.$_setClass(this.shape) // button-round
+          this.displayClass = this.$_setClass(this.display) // button-full
+          this.sizeClass = this.$_setClass(this.size) // button-small
+          this.decoratorClass = this.$_setClass(this.decorator) // button-strong
         }
-        this.updateColor(this.color) // button-secondary, bar-button-secondary
+        this.colorClass = this.$_setColor(this.color) // button-secondary, bar-button-secondary
       },
 
       /**
+       * @param {String} type
        * @private
-       * @param {string} type
        */
-      setClass (type) {
-        if (type && this.init) {
+      $_setClass (type) {
+        if (type) {
           type = type.toLocaleLowerCase()
-          this.addElementClass(`${this.role}-${type}`)
-          if (this.theMode) {
-            this.addElementClass(`${this.role}-${type}-${this.theMode}`)
-          }
+          return `${this.role}-${type} ${this.role}-${type}-${this.mode}`
         }
       },
 
       /**
-       * @param {string} className - className
-       * */
-      addElementClass (className) {
-        setElementClass(this.$el, className, true)
-      },
-
-      /**
+       * @param {String} color
        * @private
-       * @param {string} color
-       * @param {boolean} isAdd
        */
-      updateColor (color, isAdd) {
-        if (color && this.init) {
+      $_setColor (color) {
+        if (color) {
           // The class should begin with the button role
           // button, bar-button
           let className = this.role
@@ -232,72 +218,85 @@
           // If the role is not a bar-button, don't apply the solid style
           let style = this.style
           style = (this.role !== 'bar-button' && style === 'solid' ? 'default' : style)
+
           className += (style !== null && style !== '' && style !== 'default' ? '-' + style.toLowerCase() : '')
 
-          if (this.theMode) {
-            this.addElementClass(`${className}-${this.theMode}-${color}`)
-          } else {
-            this.addElementClass(`${className}-${color}`)
+          if (color !== null && color !== '') {
+            return `${className}-${this.mode}-${color}`
+          }
+        }
+
+        return ''
+      },
+
+      /**
+       * 设置icon button的左右位置
+       * @private
+       */
+      $_addIconBtnPosition () {
+        let firstSlot = null
+        let lastSlot = null
+        let length = this.$_getSlotLength(this.$slots)
+        if (length > 0) {
+          firstSlot = this.$slots.default[0]
+          lastSlot = this.$slots.default[length - 1]
+          if (length === 1 && this.$_isIconComponent(firstSlot)) {
+            this.iconOnly = 'icon-only'
+          }
+
+          if (length > 1) {
+            if (this.$_isIconComponent(firstSlot)) {
+              this.iconLeft = 'icon-left'
+            }
+            if (this.$_isIconComponent(lastSlot)) {
+              this.iconRight = 'icon-right'
+            }
           }
         }
       },
 
-      // 设置icon button的左右位置
-      addIconBtnPosition () {
-        let _firstSlot = null
-        let _lastSlot = null
-        let _length = this.getSlotLength(this.$slots)
-        if (_length > 0) {
-          _firstSlot = this.$slots.default[0]
-          _lastSlot = this.$slots.default[_length - 1]
-          // icon-only
-          if (_length === 1 && this.isIconComponent(_firstSlot)) {
-            this.$el.setAttribute('icon-only', '')
-          }
-
-          if (_length > 1) {
-            // icon left
-            if (this.isIconComponent(_firstSlot)) {
-              this.$el.setAttribute('icon-left', '')
-            }
-            // icon right
-            if (this.isIconComponent(_lastSlot)) {
-              this.$el.setAttribute('icon-right', '')
-            }
-          }
-        }
-      },
-
-      // 判断slot是icon组件
-      isIconComponent (slot) {
+      /**
+       * 判断slot是icon组件
+       * @private
+       * */
+      $_isIconComponent (slot) {
         return !!slot.componentOptions && !!slot.componentOptions.tag && slot.componentOptions.tag.toLowerCase() === 'icon'
       },
 
-      // 获取slot的数量
-      getSlotLength (slots) {
+      /**
+       * 获取slot的数量
+       * @private
+       * */
+      $_getSlotLength (slots) {
         return (slots && slots.default) ? slots.default.length : 0
       },
 
-      // 如果icon是在item中的话, 则设置 class="item-button"
-      addClassInItemComp () {
-        if (this.itemComponent) {
-          this.addElementClass('item-button')
-        }
+      /**
+       * @private
+       * */
+      $_classify () {
+        if (this.small) this.size = 'small'
+        if (this.default) this.size = 'default'
+        if (this.large) this.size = 'large'
+
+        if (this.outline) this.style = 'outline'
+        if (this.clear) this.style = 'clear'
+        if (this.solid) this.style = 'solid'
+
+        if (this.round) this.shape = 'round'
+
+        if (this.full) this.display = 'full'
+        if (this.block) this.display = 'block'
+        if (this.menutoggle) this.display = 'menutoggle'
+
+        if (this.strong) this.decorator = 'strong'
       }
     },
     created () {
-      this.getProps()
-      this.init = true
-      if (this.role === 'bar-button') {
-        this.theMode = null
-      } else {
-        this.theMode = this.mode
-      }
-    },
-    mounted () {
-      this.assignCss()
-      this.addIconBtnPosition()
-      this.addClassInItemComp()
+      this.$_classify()
+      this.$_assignCss()
+      this.$_addIconBtnPosition()
     }
   }
+
 </script>

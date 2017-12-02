@@ -1,5 +1,5 @@
 <template>
-    <article class="ion-content" :class="refreshClass">
+    <article class="ion-content" :class="[refreshClass,modeClass]">
         <slot name="refresher"></slot>
         <div class="fixed-content fixed-top" :style="{'top':`${headerBarHeight}px`}">
             <slot name="fixed"></slot>
@@ -13,49 +13,8 @@
         </section>
     </article>
 </template>
-<style lang="less">
-    @import "content.less";
-    @import "content.ios.less";
-    @import "content.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
-  /**
-   * @typedef {Object} ContentDimension   - Content组件的维度尺寸信息
-   * @property {number} contentHeight     - content offsetHeight,           content自身高度
-   * @property {number} contentTop        - content offsetTop,               content到窗体顶部的距离
-   * @property {number} contentBottom     - content offsetTop+offsetHeight,  content底部到窗体顶部的的距离
-   * @property {number} contentWidth      - content offsetWidth
-   * @property {number} contentLeft       - content contentLeft
-   * @property {number} contentRight      - content offsetLeft + offsetWidth
-   * @property {number} scrollHeight      - scroll scrollHeight
-   * @property {number} scrollTop         - scroll scrollTop
-   * @property {number} scrollBottom      - scroll scrollTop + scrollHeight
-   * @property {number} scrollWidth       - scroll scrollWidth
-   * @property {number} scrollLeft        - scroll scrollLeft
-   * @property {number} scrollRight       - scroll scrollLeft + scrollWidth
-   * */
-
-  /**
-   * @typedef {Object} ScrollEvent            - 滚动事件返回的滚动对象
-   * @property {number} timeStamp             - 滚动事件
-   * @property {number} scrollTop             -
-   * @property {number} scrollLeft            -
-   * @property {number} scrollHeight          -
-   * @property {number} scrollWidth           -
-   * @property {number} contentHeight         -
-   * @property {number} contentWidth          -
-   * @property {number} contentTop            -
-   * @property {number} contentBottom         -
-   * @property {number} startY                -
-   * @property {number} startX                -
-   * @property {number} deltaY                -
-   * @property {number} deltaX                -
-   * @property {number} velocityY             -
-   * @property {number} velocityX             -
-   * @property {number} directionY            -
-   * @property {number} directionX            -
-   * */
-
   /**
    * @component Base/Content
    * @description
@@ -120,6 +79,12 @@
         contentComponent: _this
       }
     },
+    props: {
+      mode: {
+        type: String,
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
+      }
+    },
     data () {
       return {
         refreshClass: {
@@ -148,6 +113,9 @@
       },
       isBox () {
         return this.pageComponent.isBox
+      },
+      modeClass () {
+        return `content-${this.mode}`
       },
       headerComponent () {
         return this.pageComponent.$_getHeaderComponent()
@@ -268,12 +236,14 @@
         }
 
         // scrollElement 尺寸计算
-        this.scrollView.ev.contentHeight = this.scrollElement.clientHeight - this.headerBarHeight - this.footerBarHeight
-        this.scrollView.ev.contentTop = this.headerBarHeight
-        this.scrollView.ev.contentWidth = this.scrollElement.clientWidth
+        if (this.scrollView && this.scrollView.ev) {
+          this.scrollView.ev.contentHeight = this.scrollElement.clientHeight - this.headerBarHeight - this.footerBarHeight
+          this.scrollView.ev.contentTop = this.headerBarHeight
+          this.scrollView.ev.contentWidth = this.scrollElement.clientWidth
+        }
 
         // 盒子布局不需要min-height
-        if (!this.isBox) {
+        if (!this.isBox && this.scrollElementStyle) {
           this.scrollElementStyle.minHeight = cssFormat(window.innerHeight - this.headerBarHeight - this.footerBarHeight)
         }
       },
@@ -420,4 +390,41 @@
       this.scrollView.destroy()
     }
   }
+
+  /**
+   * @typedef {Object} ContentDimension   - Content组件的维度尺寸信息
+   * @property {number} contentHeight     - content offsetHeight,           content自身高度
+   * @property {number} contentTop        - content offsetTop,               content到窗体顶部的距离
+   * @property {number} contentBottom     - content offsetTop+offsetHeight,  content底部到窗体顶部的的距离
+   * @property {number} contentWidth      - content offsetWidth
+   * @property {number} contentLeft       - content contentLeft
+   * @property {number} contentRight      - content offsetLeft + offsetWidth
+   * @property {number} scrollHeight      - scroll scrollHeight
+   * @property {number} scrollTop         - scroll scrollTop
+   * @property {number} scrollBottom      - scroll scrollTop + scrollHeight
+   * @property {number} scrollWidth       - scroll scrollWidth
+   * @property {number} scrollLeft        - scroll scrollLeft
+   * @property {number} scrollRight       - scroll scrollLeft + scrollWidth
+   * */
+
+  /**
+   * @typedef {Object} ScrollEvent            - 滚动事件返回的滚动对象
+   * @property {number} timeStamp             - 滚动事件
+   * @property {number} scrollTop             -
+   * @property {number} scrollLeft            -
+   * @property {number} scrollHeight          -
+   * @property {number} scrollWidth           -
+   * @property {number} contentHeight         -
+   * @property {number} contentWidth          -
+   * @property {number} contentTop            -
+   * @property {number} contentBottom         -
+   * @property {number} startY                -
+   * @property {number} startX                -
+   * @property {number} deltaY                -
+   * @property {number} deltaX                -
+   * @property {number} velocityY             -
+   * @property {number} velocityX             -
+   * @property {number} directionY            -
+   * @property {number} directionX            -
+   * */
 </script>

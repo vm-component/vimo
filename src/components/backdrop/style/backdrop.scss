@@ -1,0 +1,30 @@
+@import "../../../themes/ionic.globals";
+
+// Backdrop
+// --------------------------------------------------
+
+/// @prop - Color of the backdrop
+$backdrop-color: #000 !default;
+
+.ion-backdrop {
+  position: absolute;
+  z-index: $z-index-backdrop;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: $backdrop-color;
+  opacity: 0.4;
+  transition: opacity 200ms;
+  transform: translateZ(0);
+  
+  @include position(0, null, null, 0);
+}
+
+// fixed props
+.ion-backdrop.fixed {
+  position: fixed;
+}
+
+.ion-backdrop.backdrop-no-tappable {
+  cursor: auto;
+}

@@ -1,0 +1,60 @@
+@import "../../../themes/ionic.globals";
+
+$reorder-initial-transform: 300% !default;
+
+// Item reorder
+// --------------------------------------------------
+
+.ion-reorder {
+  display: none;
+  max-width: 40px;
+  height: 100%;
+  font-size: 1.7em;
+  pointer-events: all;
+  opacity: 0.25;
+  transition: transform 140ms ease-in;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+
+  @include transform(translate3d($reorder-initial-transform, 0, 0));
+}
+
+.reorder-side-start .ion-reorder {
+  order: -1;
+
+  @include transform(translate3d(-$reorder-initial-transform, 0, 0));
+}
+
+.ion-reorder .ion-icon {
+  pointer-events: none;
+}
+
+.reorder-enabled .ion-reorder {
+  display: flex;
+}
+
+.reorder-visible .ion-reorder {
+  @include transform(translate3d(0, 0, 0));
+}
+
+.reorder-list-active .item,
+.reorder-list-active .item-wrapper {
+  transition: transform 300ms;
+  will-change: transform;
+}
+
+.reorder-list-active .item-inner {
+  pointer-events: none;
+}
+
+.item-wrapper.reorder-active,
+.item.reorder-active,
+.reorder-active {
+  z-index: 4;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  opacity: 0.8;
+  transition: none;
+}

@@ -1,16 +1,17 @@
 <template>
-    <div class="toolbar ion-navbar" :class="[colorClass]"
+    <div class="toolbar ion-navbar" :class="[colorClass,modeClass]"
          v-show="!hideNavBar">
-        <div ref="toolbarBackground" class="toolbar-background"></div>
-        <div class="toolbar-content">
+        <div ref="toolbarBackground" class="toolbar-background" :class="backgroundClass"></div>
+        <div class="toolbar-content" :class="contentClass">
             <slot></slot>
         </div>
         <vm-button v-if="!hideBb"
                    @click="$_backButtonClickHandler"
                    role="bar-button"
+                   :class="[backButtonClass]"
                    class="back-button">
-            <vm-icon class="back-button-icon" :name="bbIcon"></vm-icon>
-            <span class="back-button-text">{{backText}}</span>
+            <vm-icon class="back-button-icon" :class="[backButtonIconClass]" :name="bbIcon"></vm-icon>
+            <span class="back-button-text" :class="[backButtonTextClass]">{{backText}}</span>
         </vm-button>
         <slot name="buttons"></slot>
     </div>
@@ -174,6 +175,15 @@
       },
       toolbarBackgroundElement () {
         return this.$refs.toolbarBackground
+      },
+      backButtonClass () {
+        return `back-button-${this.mode}`
+      },
+      backButtonIconClass () {
+        return `back-button-icon-${this.mode}`
+      },
+      backButtonTextClass () {
+        return `back-button-icon-${this.mode}`
       }
     },
     methods: {
@@ -269,7 +279,7 @@
                   let Popover = component.default
                   Popover.present({
                     ev: {
-                      target: window.document.getElementById('rightButtonPlaceholder') || null
+                      target: window.document.getElementById('right-button-placeholder') || null
                     }, // 事件
                     cssClass: 'popMenu',
                     component: import('./menu-options.vue'),   // 传入组件

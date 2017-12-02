@@ -1,0 +1,140 @@
+@import "../../../themes/ionic.globals";
+
+// Tabs
+// --------------------------------------------------
+
+.ion-tabs {
+  width: 100%;
+  overflow: hidden;
+  contain: content;
+}
+
+.tabbar {
+  position: relative;
+  z-index: $z-index-toolbar;
+  display: flex;
+  width: 100%;
+  opacity: 1;
+}
+
+.tabbar.show-tabbar {
+  opacity: 1;
+}
+
+[tabsPlacement=top] > .tabbar {
+  top: 0;
+  bottom: auto;
+}
+
+.tab-button {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  flex-direction: column;
+  user-select: none;
+  background: none;
+  border: 0;
+  flex: 1;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  
+  @include margin(0);
+  @include text-align(center);
+  @include border-radius(0);
+}
+
+.tab-disabled {
+  pointer-events: none;
+}
+
+.tab-disabled .ion-badge,
+.tab-disabled .ion-icon,
+.tab-disabled span {
+  opacity: 0.4;
+}
+
+.tab-button-text {
+  @include margin(3px, null, 2px, null);
+}
+
+.tab-button-text,
+.tab-button-icon {
+  display: none;
+  min-width: 26px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-self: center;
+}
+
+.has-icon .tab-button-icon,
+.has-title .tab-button-text {
+  display: block;
+}
+
+.has-title-only .tab-button-text {
+  white-space: normal;
+}
+
+[tabsLayout=icon-bottom] .tab-button .tab-button-icon {
+  order: 10;
+}
+
+[tabsLayout=icon-left] .tab-button, // deprecated
+[tabsLayout=icon-right] .tab-button, // deprecated
+[tabsLayout=icon-start] .tab-button,
+[tabsLayout=icon-end] .tab-button {
+  flex-direction: row;
+}
+
+[tabsLayout=icon-left] .tab-button .tab-button-icon, // deprecated
+[tabsLayout=icon-start] .tab-button .tab-button-icon {
+  @include padding-horizontal(null, 8px);
+  @include text-align(end);
+}
+
+[tabsLayout=icon-right] .tab-button .tab-button-icon, // deprecated
+[tabsLayout=icon-end] .tab-button .tab-button-icon {
+  order: 10;
+  
+  @include padding-horizontal(8px, null);
+  @include text-align(start);
+}
+
+.tab-hidden,
+.tab-highlight,
+[tabsLayout=icon-hide] .tab-button-icon,
+[tabsLayout=title-hide] .tab-button-text {
+  display: none;
+}
+
+// Tab Badges
+// --------------------------------------------------
+
+.tab-badge {
+  position: absolute;
+  height: auto;
+  font-size: 12px;
+  line-height: 16px;
+  
+  @include position(6%, 4%, null, null); // 4% fallback
+  @include position(null, calc(50% - 50px), null, null);
+  @include padding(1px, 6px);
+}
+
+.has-icon .tab-badge {
+  @include position(null, calc(50% - 30px), null, null);
+}
+
+[tabsLayout=icon-bottom] .tab-badge,
+[tabsLayout=icon-left] .tab-badge, // deprecated
+[tabsLayout=icon-right] .tab-badge, // deprecated
+[tabsLayout=icon-start] .tab-badge,
+[tabsLayout=icon-end] .tab-badge {
+  @include position(null, calc(50% - 50px), null, null);
+}

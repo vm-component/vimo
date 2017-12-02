@@ -3,11 +3,7 @@
         <slot></slot>
     </div>
 </template>
-<style lang="less">
-    @import "fab.less";
-    @import "fab.ios.less";
-    @import "fab.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Fab

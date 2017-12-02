@@ -3,23 +3,32 @@
         <Menu id="menu" :side="menu.side" :type="menu.type">
             <List>
                 <ListHeader>
-                    <span>开始</span>
+                    <span>Start</span>
                 </ListHeader>
-                <Item button :to="{name: 'introduce'}" wait>
+                <Item detail-push :to="{name: 'introduce'}" wait>
                     <Icon slot="item-left" name="apps"></Icon>
-                    <span>介绍</span>
+                    <span>Introduction</span>
                 </Item>
-                <Item button :to="{name: 'config'}" wait>
+                <Item detail-push :to="{name: 'config'}" wait>
                     <Icon slot="item-left" name="settings"></Icon>
-                    <span>配置参数</span>
+                    <span>Config</span>
                 </Item>
-                <Item button :to="{name: 'platform'}" wait>
+                <Item detail-push :to="{name: 'platform'}" wait>
                     <Icon slot="item-left" md="logo-android" ios="logo-apple"></Icon>
-                    <span>平台参数</span>
+                    <span>Platfrom</span>
                 </Item>
-                <Item button :to="{name: 'crossPlatform'}" wait>
+                <Item detail-push :to="{name: 'crossPlatform'}" wait>
                     <Icon slot="item-left" name="logo-javascript"></Icon>
-                    <span>平台参数</span>
+                    <span>Cross Platorm</span>
+                </Item>
+            </List>
+            <List>
+                <ListHeader>
+                    <span>Main</span>
+                </ListHeader>
+                <Item detail-push :to="{name: 'components'}" wait>
+                    <Icon slot="item-left" name="logo-rss"></Icon>
+                    <span>Components</span>
                 </Item>
             </List>
         </Menu>
@@ -53,4 +62,4 @@
     }
   }
 </script>
-<style lang="less"></style>
+<style lang="scss"></style>

@@ -23,17 +23,17 @@
             </div>
             <List>
                 <ListHeader>Character</ListHeader>
-                <Item button :to="{name:'contentContext'}">文本</Item>
-                <Item button :to="{name:'contentFixed'}">流式布局</Item>
-                <Item button :to="{name:'pageBox'}">盒子布局</Item>
-                <Item button :to="{name:'contentHideBars'}">隐藏头尾Bar</Item>
-                <Item button :to="{name:'contentSetBarStyle'}">设置Bar的样式</Item>
-                <Item button :to="{name:'contentScroll'}">滚动监听</Item>
+                <Item detail-push :to="{name:'contentContext'}">文本</Item>
+                <Item detail-push :to="{name:'contentFixed'}">流式布局</Item>
+                <Item detail-push :to="{name:'pageBox'}">盒子布局</Item>
+                <Item detail-push :to="{name:'contentHideBars'}">隐藏头尾Bar</Item>
+                <Item detail-push :to="{name:'contentSetBarStyle'}">设置Bar的样式</Item>
+                <Item detail-push :to="{name:'contentScroll'}">滚动监听</Item>
             </List>
         </Content>
     </Page>
 </template>
-<style scoped lang="less"></style>
+<style scoped lang="scss"></style>
 <script type="text/javascript">
   export default {
     data () {

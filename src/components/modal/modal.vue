@@ -18,6 +18,7 @@
         </transition>
     </div>
 </template>
+<style lang="scss" src="./modal.scss"></style>
 <script type="text/javascript">
   import Backdrop from '../backdrop'
   import popupExtend from '../../util/popup-extend'
@@ -83,11 +84,3 @@
     }
   }
 </script>
-<style lang="less">
-    @import "modal.less";
-    @import "modal.ios.less";
-    @import "modal.md.less";
-    @import "../../animations/fade-bottom.less";
-    @import "../../animations/fade-right.less";
-    @import "../../animations/zoom.less";
-</style>

@@ -1,6 +1,6 @@
 <template>
     <div class="ion-input" :class="[modeClass,{'clearInput':clearInput}]" @click="$_clickToFocus($event)">
-        <div class="input-innerWrap">
+        <div class="input-inner-wrap">
             <input ref="input"
                    :class="[textInputClass]"
                    :value="inputValue"
@@ -24,11 +24,7 @@
                    @click="$_clearTextInput()"></vm-button>
     </div>
 </template>
-<style lang="less">
-    @import "input.less";
-    @import "input.ios.less";
-    @import "input.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Input

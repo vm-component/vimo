@@ -3,6 +3,7 @@
         <slot></slot>
     </div>
 </template>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Note
@@ -16,7 +17,7 @@
    * @props {String} [mode='ios'] - 模式
    *
    * */
-  export default{
+  export default {
     name: 'Note',
     props: {
       /**
@@ -43,7 +44,3 @@
     }
   }
 </script>
-<style lang="less">
-    @import "note.ios.less";
-    @import "note.md.less";
-</style>

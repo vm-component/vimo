@@ -15,7 +15,7 @@
    * @see component:Grid
    *
    * */
-  export default{
+  export default {
     name: 'Row'
   }
 </script>

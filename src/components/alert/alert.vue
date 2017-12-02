@@ -60,12 +60,7 @@
         </transition>
     </div>
 </template>
-<style lang="less">
-    @import "alert.less";
-    @import "alert.ios.less";
-    @import "alert.md.less";
-    @import "../../animations/alert.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   import Backdrop from '../backdrop'
   import Button from '../button'

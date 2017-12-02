@@ -14,10 +14,7 @@
         </div>
     </div>
 </template>
-<style lang="less">
-    @import "refresher-content.ios.less";
-    @import "refresher-content.md.less";
-</style>
+<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Refresher/RefresherContent
@@ -37,7 +34,8 @@
    * */
   import Icon from '../icon'
   import Spinner from '../spinner'
-  export default{
+
+  export default {
     name: 'RefresherContent',
     props: {
       pullingIcon: {
