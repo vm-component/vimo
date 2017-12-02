@@ -236,12 +236,14 @@
         }
 
         // scrollElement 尺寸计算
-        this.scrollView.ev.contentHeight = this.scrollElement.clientHeight - this.headerBarHeight - this.footerBarHeight
-        this.scrollView.ev.contentTop = this.headerBarHeight
-        this.scrollView.ev.contentWidth = this.scrollElement.clientWidth
+        if (this.scrollView && this.scrollView.ev) {
+          this.scrollView.ev.contentHeight = this.scrollElement.clientHeight - this.headerBarHeight - this.footerBarHeight
+          this.scrollView.ev.contentTop = this.headerBarHeight
+          this.scrollView.ev.contentWidth = this.scrollElement.clientWidth
+        }
 
         // 盒子布局不需要min-height
-        if (!this.isBox) {
+        if (!this.isBox && this.scrollElementStyle) {
           this.scrollElementStyle.minHeight = cssFormat(window.innerHeight - this.headerBarHeight - this.footerBarHeight)
         }
       },
