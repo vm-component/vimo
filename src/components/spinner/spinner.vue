@@ -60,7 +60,7 @@
     name: 'Spinner',
     props: {
       // 按钮color：primary、secondary、danger、light、dark
-      color: [String],
+      color: String,
 
       // mode 按钮平台 ios/window/android
       mode: {
@@ -86,7 +86,7 @@
       },
 
       // duration 持续时间
-      duration: String,
+      duration: Number,
 
       // paused 是否暂停
       paused: Boolean
@@ -163,7 +163,7 @@
         }
       },
       _loadEle (spinner, index, total) {
-        let duration = parseInt(this.duration) || spinner.dur
+        let duration = this.duration || spinner.dur
         let data = spinner.fn(duration, index, total)
         data.style['animation-duration'] = parseInt(duration) + 'ms'
         return data

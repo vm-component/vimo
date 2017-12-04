@@ -39,11 +39,6 @@ npm install vimo
 Vimo项目初始化种子, 包括自定义主题文件. 点击进入项目地址: [vimo-start-kit](https://github.com/vm-component/vimo-start-kit)
 
 
-## COMPONENTS
-
-
-![组件清单](https://github.com/vm-component/Vimo/blob/master/examples/static/img/vimo_components.png?raw=true)
-
 ## DEPENDENT
 
 - vue 2.x

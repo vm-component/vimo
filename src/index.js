@@ -81,6 +81,7 @@ export { default as Textarea } from './components/textarea'
 export { default as Thumbnail } from './components/thumbnail'
 export { default as Title } from './components/title'
 export { default as Toast } from './components/toast'
+export { default as ToastState } from './components/toast-state'
 export { default as Toggle } from './components/toggle'
 export { default as Toolbar } from './components/toolbar'
 

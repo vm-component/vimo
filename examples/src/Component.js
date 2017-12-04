@@ -72,6 +72,7 @@ import {
   Thumbnail,
   Title,
   Toast,
+  ToastState,
   Toggle,
   Toolbar
 } from 'vimo'
@@ -81,6 +82,7 @@ export default function (Vue) {
   Vue.prototype.$loading = Loading
   Vue.prototype.$alert = Alert
   Vue.prototype.$toast = Toast
+  Vue.prototype.$toastState = ToastState
   Vue.prototype.$modal = Modal
   Vue.prototype.$indicator = Indicator
   Vue.prototype.$chooseCity = ChooseCity

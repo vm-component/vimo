@@ -159,6 +159,13 @@ let routes = [
       require(['@/pages/toast.vue'], resolve)
     }
   },
+  {
+    path: '/toast-state',
+    name: 'toastState',
+    component (resolve) {
+      require(['@/pages/toast-state.vue'], resolve)
+    }
+  },
 
   // ----  component/通用组件 ----
 

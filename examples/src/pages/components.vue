@@ -309,6 +309,11 @@
                     <span>通知</span>
                     <Note slot="item-right">Toast</Note>
                 </Item>
+                <Item detail-push :to="{name: 'toastState'}">
+                    <Icon slot="item-left" name="information-circle"></Icon>
+                    <span>通知(状态)</span>
+                    <Note slot="item-right">ToastState</Note>
+                </Item>
                 <Item detail-push :to="{name: 'popover'}">
                     <Icon slot="item-left" name="text"></Icon>
                     <span>提示框</span>
@@ -333,14 +338,6 @@
                     <Icon slot="item-left" name="star"></Icon>
                     <span>返回顶部(未完成)</span>
                     <Note slot="item-right">BackToTop</Note>
-                </Item>
-            </List>
-            <List>
-                <ListHeader>手势/Gesture</ListHeader>
-                <Item detail-push>
-                    <Icon slot="item-left" name="hand"></Icon>
-                    <span>手势(未完成)</span>
-                    <Note slot="item-right">Gesture</Note>
                 </Item>
             </List>
             <List>

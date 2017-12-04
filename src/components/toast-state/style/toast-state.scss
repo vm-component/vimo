@@ -1,0 +1,92 @@
+@import "../../../themes/ionic.globals";
+
+// Icon Toast
+// --------------------------------------------------
+
+/// @prop - Background of the toast wrapper
+$toast-state-background: rgba(0, 0, 0, 0.9) !default;
+
+/// @prop - Border radius of the toast wrapper
+$toast-state-border-radius: 6.5px !default;
+
+/// @prop - Color of the toast title
+$toast-state-title-color: #fff !default;
+
+/// @prop - Font size of the toast title
+$toast-state-title-font-size: 14px !default;
+
+/// @prop - Padding top of the toast title
+$toast-state-title-padding-top: 16px !default;
+
+/// @prop - Padding end of the toast title
+$toast-state-title-padding-end: $toast-state-title-padding-top !default;
+
+/// @prop - Padding bottom of the toast title
+$toast-state-title-padding-bottom: $toast-state-title-padding-top !default;
+
+/// @prop - Padding start of the toast title
+$toast-state-title-padding-start: $toast-state-title-padding-end !default;
+
+/// @prop - Width of the toast
+$toast-state-width: 100% !default;
+
+/// @prop - Max width of the toast
+$toast-state-max-width: 300px !default;
+
+.ion-toast-state {
+  position: fixed;
+  z-index: $z-index-overlay + $z-index-overlay-toast;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: $toast-state-width;
+  height: $toast-state-width;
+  pointer-events: none;
+  contain: strict;
+  
+  @include position(0, null, null, 0);
+}
+
+.toast-state-wrapper {
+  position: relative;
+  z-index: $z-index-overlay-wrapper;
+  display: block;
+  min-width: 150px;
+  max-width: $toast-state-max-width;
+  margin-bottom: 30px;
+  
+  transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 400ms;
+}
+
+.toast-state-container {
+  display: flex;
+  pointer-events: auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: $toast-state-background;
+  
+  @include margin(auto);
+  @include border-radius($toast-state-border-radius);
+  @include padding($toast-state-title-padding-top, $toast-state-title-padding-end, $toast-state-title-padding-bottom, $toast-state-title-padding-start);
+  
+  contain: content;
+  
+  .toast-state-icon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 11px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  
+  .toast-state-message {
+    flex: 1;
+    
+    font-size: $toast-state-title-font-size;
+    color: $toast-state-title-color;
+  }
+}
