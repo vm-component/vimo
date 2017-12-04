@@ -37,12 +37,12 @@ $toast-state-max-width: 300px !default;
   position: fixed;
   z-index: $z-index-overlay + $z-index-overlay-toast;
   display: flex;
-  justify-content: center;
-  align-items: center;
   
   width: $toast-state-width;
   height: $toast-state-width;
   pointer-events: none;
+  justify-content: center;
+  align-items: center;
   contain: strict;
   
   @include position(0, null, null, 0);
@@ -62,16 +62,16 @@ $toast-state-max-width: 300px !default;
 .toast-state-container {
   display: flex;
   pointer-events: auto;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   background: $toast-state-background;
+  justify-content: center;
+  align-items: center;
+  
+  contain: content;
   
   @include margin(auto);
   @include border-radius($toast-state-border-radius);
   @include padding($toast-state-title-padding-top, $toast-state-title-padding-end, $toast-state-title-padding-bottom, $toast-state-title-padding-start);
-  
-  contain: content;
   
   .toast-state-icon {
     display: inline-block;
@@ -84,9 +84,9 @@ $toast-state-max-width: 300px !default;
   }
   
   .toast-state-message {
-    flex: 1;
     
     font-size: $toast-state-title-font-size;
     color: $toast-state-title-color;
+    flex: 1;
   }
 }
