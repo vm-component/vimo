@@ -1,5 +1,5 @@
-$green: #78c430;
-$red: #ef4644;
+$track-normal-background-color: #78c430 !default;
+$track-failing-background-color: #ef4644 !default;
 
 .vm-slide-box {
   position: relative;
@@ -103,7 +103,7 @@ $red: #ef4644;
 .vm-slide-box[state="completing"] {
   .vm-slide-box-track {
     .track-background {
-      background-color: $green;
+      background-color: $track-normal-background-color;
     }
   }
 }
@@ -111,7 +111,7 @@ $red: #ef4644;
 .vm-slide-box[state="failing"] {
   .vm-slide-box-track {
     .track-background {
-      background-color: $red;
+      background-color: $track-failing-background-color;
     }
   }
 }

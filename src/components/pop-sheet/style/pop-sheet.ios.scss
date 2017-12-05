@@ -4,19 +4,19 @@
 // --------------------------------------------------
 
 /// @prop - Text align of the pop sheet
-$pop-sheet-ios-text-align: center;
+$pop-sheet-ios-text-align: center !default;
 
 /// @prop - Padding of the pop sheet
-$pop-sheet-ios-padding: 0;
+$pop-sheet-ios-padding: 0 !default;
 
 /// @prop - Border radius of the alert
-$pop-sheet-ios-border-radius: 13px;
+$pop-sheet-ios-border-radius: 13px !default;
 
 /// @prop - Background color of the alert
-$pop-sheet-ios-background: #f8f8f8;
+$pop-sheet-ios-background: #f8f8f8 !default;
 
 /// @prop - Box shadow of the alert
-$pop-sheet-ios-box-shadow: none;
+$pop-sheet-ios-box-shadow: none !default;
 
 .pop-sheet-ios {
   text-align: $pop-sheet-ios-text-align;
