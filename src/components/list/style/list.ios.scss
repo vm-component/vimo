@@ -152,7 +152,7 @@ $list-ios-header-background-color: transparent !default;
   border-bottom: 0;
 }
 
-.list-ios[inset] + ion-list[inset] {
+.list-ios[inset] + .ion-list[inset] {
   @include margin(0, null, null, null);
 }
 
