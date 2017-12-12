@@ -23,8 +23,8 @@
   @include padding(0);
   &::before,
   &::after {
-    content: " ";
     display: table;
+    content: " ";
   }
 }
 

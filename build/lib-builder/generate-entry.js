@@ -25,7 +25,7 @@ module.exports = function generateEntry (fileNames) {
       importString += _importString
     })
 
-    importString += `export { default as Install } from './install.js'\n`
+    importString += `export { default as Install } from './components/install.js'\n`
 
     importString += `\nvar ENV = process.env.NODE_ENV
 if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefined' && console.warn && typeof window !== 'undefined') {
@@ -41,5 +41,6 @@ if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefin
       }
       resolve && resolve()
     })
+
   })
 }
