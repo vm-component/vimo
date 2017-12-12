@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/vm-component/vimo/compare/v1.1.0...v1.1.1) (2017-12-12)
+
+
+### Bug Fixes
+
+* 更改Install模块位置 ([a783959](https://github.com/vm-component/vimo/commit/a783959))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/vm-component/vimo/compare/v0.9.7...v1.1.0) (2017-12-12)
 
