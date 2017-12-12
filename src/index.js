@@ -84,6 +84,7 @@ export { default as Toast } from './components/toast'
 export { default as ToastState } from './components/toast-state'
 export { default as Toggle } from './components/toggle'
 export { default as Toolbar } from './components/toolbar'
+export { default as Install } from './install.js'
 
 var ENV = process.env.NODE_ENV
 if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefined' && console.warn && typeof window !== 'undefined') {
