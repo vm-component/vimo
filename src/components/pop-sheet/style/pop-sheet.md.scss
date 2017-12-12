@@ -4,21 +4,21 @@
 // --------------------------------------------------
 
 /// @prop - Background color of the pop sheet
-$pop-sheet-md-background: #fafafa;
+$pop-sheet-md-background: #fafafa !default;
 
 /// @prop - Text align of the pop sheet
-$pop-sheet-md-text-align: left;
+$pop-sheet-md-text-align: left !default;
 
 /// @prop - Padding of the pop sheet
-$pop-sheet-md-padding: 0;
+$pop-sheet-md-padding: 0 !default;
 
 /// @prop - Box shadow color of the pop-sheet
-$pop-sheet-md-box-shadow-color: rgba(0, 0, 0, 0.4);
+$pop-sheet-md-box-shadow-color: rgba(0, 0, 0, 0.4) !default;
 
 /// @prop - Box shadow of the pop-sheet
-$pop-sheet-md-box-shadow: 0 16px 20px $pop-sheet-md-box-shadow-color;
+$pop-sheet-md-box-shadow: 0 16px 20px $pop-sheet-md-box-shadow-color !default;
 /// @prop - Border radius of the pop-sheet
-$pop-sheet-md-border-radius: 2px;
+$pop-sheet-md-border-radius: 2px !default;
 
 .pop-sheet-md {
   text-align: $pop-sheet-md-text-align;

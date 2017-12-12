@@ -43,7 +43,6 @@ module.exports = getScssVariables()
  *
  * */
 function resolvePath (path) {
-
   if (path) {
     // <rootDir>
     if (path.indexOf('<rootDir>') === 0) {
