@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/vm-component/vimo/compare/v0.9.7...v0.10.0) (2017-12-12)
+
+
+### Bug Fixes
+
+* button -> detail-push ([3f8c045](https://github.com/vm-component/vimo/commit/3f8c045))
+* content鲁棒性排查 ([f9494de](https://github.com/vm-component/vimo/commit/f9494de))
+* stylelint修复样式 ([699adfc](https://github.com/vm-component/vimo/commit/699adfc))
+* tab组件缺少对icon组件的引用 ([aaf6e00](https://github.com/vm-component/vimo/commit/aaf6e00))
+* 修复alert组件在ios手机上弹出层bug ([a2527ae](https://github.com/vm-component/vimo/commit/a2527ae))
+* 修复modal在md模式下看不到页面的情况 ([820c427](https://github.com/vm-component/vimo/commit/820c427))
+* 修复select组件样式bug ([4fe155b](https://github.com/vm-component/vimo/commit/4fe155b))
+* 修复tabs的tabsLayout属性不生效的问题 ([98d3b15](https://github.com/vm-component/vimo/commit/98d3b15))
+
+
+### Features
+
+* vimo引入后导出增加Install方法 ([6d6a3a9](https://github.com/vm-component/vimo/commit/6d6a3a9))
+* 增加toast-state组件 ([30c2102](https://github.com/vm-component/vimo/commit/30c2102))
+* 增加toast-state组件 ([9a61886](https://github.com/vm-component/vimo/commit/9a61886))
+
+
+### Performance Improvements
+
+* indicator实现逻辑优化 ([9b1cf63](https://github.com/vm-component/vimo/commit/9b1cf63))
+
+
+
 <a name="0.9.7"></a>
 ## [0.9.7](https://github.com/vm-component/vimo/compare/v0.9.6...v0.9.7) (2017-11-26)
 
