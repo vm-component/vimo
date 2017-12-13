@@ -26,7 +26,7 @@
    *
    * ```
    * // 引入
-   * import { ItemSlidingOptions, ItemSliding } from 'vimo/lib/item-sliding'
+   * import { ItemSlidingOptions, ItemSliding } from 'vimo'
    * // 安装
    * export default{
    *   components: { ItemSlidingOptions, ItemSliding }

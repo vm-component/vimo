@@ -39,7 +39,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import Input from 'vimo/lib/input'
+   * import { Input } from 'vimo'
    * // 安装
    * Vue.component(Input.name, Input)
    * // 或者

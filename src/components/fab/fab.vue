@@ -26,7 +26,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Fab, FabButton, FabList } from 'vimo/lib/fab'
+   * import { Fab, FabButton, FabList } from 'vimo'
    * // 安装
    * Vue.component(Fab.name, Fab)
    * Vue.component(FabButton.name, FabButton)

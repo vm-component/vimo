@@ -54,7 +54,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import SlideBox from 'vimo/lib/slide-box'
+   * import { SlideBox } from 'vimo'
    * // 安装
    * Vue.component(SlideBox.name, SlideBox)
    * // 或者

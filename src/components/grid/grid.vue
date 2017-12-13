@@ -68,7 +68,7 @@
    *
    * ```
    * // 引入
-   * import { Column, Grid, Row } from 'vimo/lib/grid'
+   * import { Column, Grid, Row } from 'vimo'
    * // 安装
    * Vue.component(Grid.name, Grid)
    * Vue.component(Row.name, Row)

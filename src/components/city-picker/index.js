@@ -20,7 +20,7 @@
  *
  * ### 如何引入
  * ```
- * import CityPicker from 'vimo/lib/city-picker'
+ * import { CityPicker } from 'vimo'
  * ```
  *
  * @props {Array} selectedCity - 默认选中的值, 这个也对应组件是两级还是三级的标志, 可以是数据: ['',''] ['','',''], 默认显示北京

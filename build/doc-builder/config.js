@@ -129,12 +129,16 @@ module.exports = function (cb) {
             'link': 'https://github.com/vm-component/vimo-start-kit'
           },
           {
+            'name': '主题替换 / Change Theme',
+            'link': 'https://github.com/vm-component/vimo/blob/master/THEME.md'
+          },
+          {
             'name': '更新日志 / Change Log',
             'link': 'https://github.com/vm-component/Vimo/blob/master/CHANGELOG.md'
           },
           {
             'name': '常见问题 / Question',
-            'link': '#'
+            'link': 'https://github.com/vm-component/vimo/blob/master/FAQ.md'
           }
         ]
       }

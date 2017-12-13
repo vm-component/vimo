@@ -16,7 +16,7 @@
 <style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
-   * @component Base/Content
+   * @component Content
    * @description
    *
    * ## 基础组件 / Content组件
@@ -40,9 +40,9 @@
    * @slot [fixed-bottom]    固定到底部
    * @slot [refresher]      refresher组件的位置
    *
-   * @fires component:Base/Content#onScrollStart
-   * @fires component:Base/Content#onScroll
-   * @fires component:Base/Content#onScrollEnd
+   * @fires component:Content#onScrollStart
+   * @fires component:Content#onScroll
+   * @fires component:Content#onScrollEnd
    *
    * @usage
    * <template>
@@ -343,7 +343,7 @@
       }))
 
       /**
-       * @event component:Base/Content#onScrollStart
+       * @event component:Content#onScrollStart
        * @description 滚动开始时触发的事件
        * @property {ScrollEvent} ev - 滚动事件对象
        */
@@ -353,7 +353,7 @@
       }
 
       /**
-       * @event component:Base/Content#onScroll
+       * @event component:Content#onScroll
        * @description 滚动时触发的事件
        * @property {ScrollEvent} ev - 滚动事件对象
        */
@@ -364,7 +364,7 @@
       }
 
       /**
-       * @event component:Base/Content#onScrollEnd
+       * @event component:Content#onScrollEnd
        * @description 滚动结束时触发的事件
        * @property {ScrollEvent} ev - 滚动事件对象
        */

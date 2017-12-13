@@ -37,7 +37,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { InfiniteScroll, InfiniteScrollContent } from 'vimo/lib/infinite-scroll'
+   * import { InfiniteScroll, InfiniteScrollContent } from 'vimo'
    * // 安装
    * Vue.component(InfiniteScroll.name, InfiniteScroll)
    * Vue.component(InfiniteScrollContent.name, InfiniteScrollContent)
@@ -56,7 +56,7 @@
    * @fires component:InfiniteScroll#onInfinite
    *
    * @demo #/infinite-scroll
-   * @see component:Base/Content
+   * @see component:Content
    *
    * @usage
    *

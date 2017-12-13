@@ -40,7 +40,7 @@
    *
    * ### 如何引入
    * ```
-   * import Feedback from 'vimo/lib/feedback'
+   * import { Feedback } from 'vimo'
    * Vue.component(Feedback.name, Feedback)
    * // 或者
    * export default{

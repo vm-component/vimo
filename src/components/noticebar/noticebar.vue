@@ -33,7 +33,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import NoticeBar from 'vimo/lib/noticebar'
+   * import { NoticeBar } from 'vimo'
    * // 安装
    * Vue.component(NoticeBar.name, NoticeBar)
    * // 或者

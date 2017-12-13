@@ -15,7 +15,7 @@
  * @demo #/choose-city
  *
  * @usage
- * import ChooseCity from 'vimo/lib/choose-city'
+ * import { ChooseCity } from 'vimo'
  *
  * function openCitySelector () {
  *    let _this = this

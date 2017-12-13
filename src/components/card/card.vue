@@ -46,7 +46,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Card, CardContent, CardHeader, CardTitle } from 'vimo/lib/card'
+   * import { Card, CardContent, CardHeader, CardTitle } from 'vimo'
    * // 安装
    * Vue.component(Card.name, Card)
    * Vue.component(CardContent.name, CardContent)

@@ -40,7 +40,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import Radio from 'vimo/lib/radio'
+   * import { Radio } from 'vimo'
    * // 安装
    * Vue.component(Radio.name, Radio)
    * // 或者

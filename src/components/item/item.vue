@@ -31,8 +31,7 @@
    *
    * ```
    * // 引入
-   * import List from 'vimo/lib/list'
-   * import { ListHeader, ItemGroup, Item, ItemDivider } from 'vimo/lib/item'
+   * import { List, ListHeader, ItemGroup, Item, ItemDivider } from 'vimo'
    * // 安装
    * Vue.component(List.name, List)
    * Vue.component(ListHeader.name, ListHeader)

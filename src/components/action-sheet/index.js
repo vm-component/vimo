@@ -23,7 +23,7 @@
  * @demo #/action-sheet
  * @example
  *
- * import ActionSheet from 'vimo/lib/action-sheet'
+ * import { ActionSheet } from 'vimo'
  *
  * ActionSheet.present({
  *  title: '请选择操作',
