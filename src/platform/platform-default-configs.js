@@ -6,7 +6,9 @@ export default {
   core: {
     settings: {
       mode: 'ios',
-      indicatorWaitTime: 20, // indicator开启等待时间, 20ms
+      indicatorPresentWaitTime: 20, // indicator开启等待时间, 20ms
+      indicatorPresentThrottleTime: 500, // indicator开启节流的时间
+      indicatorDismissDebounceTime: 500, // indicator关闭时需要持续显示的最短时间
       imgRequestBuffer: 1400,
       imgRenderBuffer: 600,
       imgVelocityMax: 3
