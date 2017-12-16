@@ -13,15 +13,25 @@ function getScssVariables () {
   const pkgPath = `${root}/package.json`
   const pkg = existsSync(pkgPath) ? require(pkgPath) : {}
   let data = null
-  if (pkg.theme) {
-    if (isString(pkg.theme)) {
-      let sassImport = resolvePath(pkg.theme)
+  let themePath = pkg.theme
+  if (!themePath) {
+    themePath = './src/theme/variables.scss'
+  }
+
+  if (isString(themePath)) {
+    if (existsSync(themePath)) {
+      let sassImport = resolvePath(themePath)
       data = `@charset "UTF-8"; @import ${sassImport};`
-    } else if (isArray(pkg.theme)) {
-      let sassImports = pkg.theme
-      sassImports = sassImports.map((item) => resolvePath(item))
-      data = `@charset "UTF-8"; @import ${sassImports.join(',')};`
     }
+  } else if (isArray(themePath)) {
+    let sassImports = themePath
+    sassImports = sassImports.map((item) => {
+      if (existsSync(themePath)) {
+        return resolvePath(item)
+      }
+      return ''
+    })
+    data = `@charset "UTF-8"; @import ${sassImports.join(',')};`
   }
 
   return data
@@ -29,7 +39,7 @@ function getScssVariables () {
 
 module.exports = getScssVariables()
 
-  /**
+/**
  * @param {String} path - path of *.scss file
  * @example
  *
@@ -43,6 +53,7 @@ module.exports = getScssVariables()
  *
  * */
 function resolvePath (path) {
+
   if (path) {
     // <rootDir>
     if (path.indexOf('<rootDir>') === 0) {

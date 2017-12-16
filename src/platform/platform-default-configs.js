@@ -6,6 +6,7 @@ export default {
   core: {
     settings: {
       mode: 'ios',
+      indicatorWaitTime: 20, // indicator开启等待时间, 20ms
       imgRequestBuffer: 1400,
       imgRenderBuffer: 600,
       imgVelocityMax: 3
