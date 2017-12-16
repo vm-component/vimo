@@ -26,11 +26,14 @@ function getScssVariables () {
   } else if (isArray(themePath)) {
     let sassImports = themePath
     sassImports = sassImports.map((item) => {
-      if (existsSync(themePath)) {
+      if (existsSync(item)) {
         return resolvePath(item)
+      } else {
+        console.log(`[Theme]: 主题目录不存在! ${item}`)
       }
       return ''
     })
+
     data = `@charset "UTF-8"; @import ${sassImports.join(',')};`
   }
 
@@ -53,7 +56,6 @@ module.exports = getScssVariables()
  *
  * */
 function resolvePath (path) {
-
   if (path) {
     // <rootDir>
     if (path.indexOf('<rootDir>') === 0) {
