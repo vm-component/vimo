@@ -8,18 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* 修复indicator设置为生效的问题 ([ddc1c6a](https://github.com/vm-component/vimo/commit/ddc1c6a))
-
-
-
-<a name="1.1.3"></a>
-## [1.1.3](https://github.com/vm-component/vimo/compare/v1.1.2...v1.1.3) (2017-12-16)
-
-
-
-<a name="1.1.2"></a>
-## [1.1.2](https://github.com/vm-component/vimo/compare/v1.1.1...v1.1.2) (2017-12-16)
-
+* 修复indicator设置未生效的问题 ([ddc1c6a](https://github.com/vm-component/vimo/commit/ddc1c6a))
 
 
 <a name="1.1.1"></a>

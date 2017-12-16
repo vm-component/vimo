@@ -2,9 +2,9 @@ import LoadingComponent from '../loading/loading.vue'
 import GeneratePopUpInstance from '../../util/GeneratePopUpInstance.js'
 import { isBlank, isBoolean, isObject, isString } from '../../util/type'
 
-let indicatorPresentWaitTime = null
-let indicatorPresentThrottleTime = null
-let indicatorDismissDebounceTime = null
+let indicatorPresentWaitTime = 70
+let indicatorPresentThrottleTime = 500
+let indicatorDismissDebounceTime = 500
 
 let debounce = require('lodash.debounce')
 let throttle = require('lodash.throttle')
@@ -61,26 +61,22 @@ let _presentDebounce = debounce(throttle(_present, indicatorPresentThrottleTime,
 }), indicatorPresentWaitTime)
 
 LoadingInstance.prototype.present = function () {
-  indicatorPresentWaitTime = indicatorPresentWaitTime || (window.VM && window.VM.config && window.VM.config.getNumber('indicatorPresentWaitTime', 20)) || 20
-  indicatorPresentThrottleTime = indicatorPresentThrottleTime || (window.VM && window.VM.config && window.VM.config.getNumber('indicatorPresentThrottleTime', 500)) || 500
-  indicatorDismissDebounceTime = indicatorDismissDebounceTime || (window.VM && window.VM.config && window.VM.config.getNumber('indicatorDismissDebounceTime', 500)) || 500
   // console.log('1 [LoadingInstance.prototype.present]')
-  // console.log(this)
   startTime = new Date().getTime()
   _presentDebounce.call(this, ...arguments)
 }
 
 LoadingInstance.prototype.dismiss = function () {
   // console.log('2 [LoadingInstance.prototype.dismiss]')
-  // console.log(this)
   let now = new Date().getTime()
   // console.log(`当前持续时间: ${now - startTime}ms`)
   if ((now - startTime < indicatorPresentWaitTime)) {
     // console.log('3 [LoadingInstance.prototype.dismiss] _debouncedPresent.cancel()')
     _presentDebounce.cancel()
+  } else {
+    // console.log('4 [LoadingInstance.prototype.dismiss] _dismissDebounce.call(this)')
+    _dismissDebounce.call(this)
   }
-  // console.log('4 [LoadingInstance.prototype.dismiss] _dismissDebounce.call(this)')
-  _dismissDebounce.call(this)
 }
 
 export default new LoadingInstance(LoadingComponent, 'loadingPortal')

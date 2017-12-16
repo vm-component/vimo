@@ -90,7 +90,6 @@ export default function (Vue) {
   Vue.prototype.$picker = Picker
   Vue.prototype.$popover = Popover
   Vue.prototype.$previewImage = PreviewImage
-
   Vue.component(Avatar.name, Avatar)
   Vue.component(Backdrop.name, Backdrop)
   Vue.component(Badge.name, Badge)
