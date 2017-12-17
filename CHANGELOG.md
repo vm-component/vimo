@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.6"></a>
+## [1.1.6](https://github.com/vm-component/vimo/compare/v1.1.5...v1.1.6) (2017-12-17)
+
+
+### Bug Fixes
+
+* 修复clearButton样式错位的问题 ([faf6952](https://github.com/vm-component/vimo/commit/faf6952))
+
+
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://github.com/vm-component/vimo/compare/v1.1.4...v1.1.5) (2017-12-16)
 
