@@ -45,6 +45,14 @@ $swiper-lazy-preloader-white: #fff !default;
 
 $swiper-lazy-preloader-white-svg: "<svg viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><defs><line id='l' x1='60' x2='60' y1='7' y2='27' stroke='#{$swiper-lazy-preloader-white}' stroke-width='11' stroke-linecap='round'/></defs><g><use xlink:href='#l' opacity='.27'/><use xlink:href='#l' opacity='.27' transform='rotate(30 60,60)'/><use xlink:href='#l' opacity='.27' transform='rotate(60 60,60)'/><use xlink:href='#l' opacity='.27' transform='rotate(90 60,60)'/><use xlink:href='#l' opacity='.27' transform='rotate(120 60,60)'/><use xlink:href='#l' opacity='.27' transform='rotate(150 60,60)'/><use xlink:href='#l' opacity='.37' transform='rotate(180 60,60)'/><use xlink:href='#l' opacity='.46' transform='rotate(210 60,60)'/><use xlink:href='#l' opacity='.56' transform='rotate(240 60,60)'/><use xlink:href='#l' opacity='.66' transform='rotate(270 60,60)'/><use xlink:href='#l' opacity='.75' transform='rotate(300 60,60)'/><use xlink:href='#l' opacity='.85' transform='rotate(330 60,60)'/></g></svg>" !default;
 
+$swiper-pagination-bullet-width: 8px !default;
+$swiper-pagination-bullet-height: 8px !default;
+
+$swiper-pagination-text-align: center !default;
+
+$vertical-swiper-pagination-bullet-margin: 5px 0 !default;
+$horizontal-swiper-pagination-bullet-margin: 0 5px !default;
+
 .swiper-container {
   position: relative;
   
@@ -166,7 +174,7 @@ $swiper-lazy-preloader-white-svg: "<svg viewBox='0 0 120 120' xmlns='http://www.
 .swiper-pagination {
   position: absolute;
   z-index: 10;
-  text-align: center;
+  text-align: $swiper-pagination-text-align;
   pointer-events: none;
   transition: 300ms;
   transform: translate3d(0, 0, 0);
@@ -188,8 +196,8 @@ $swiper-lazy-preloader-white-svg: "<svg viewBox='0 0 120 120' xmlns='http://www.
 /* Bullets */
 .swiper-pagination-bullet {
   display: inline-block;
-  width: 8px;
-  height: 8px;
+  width: $swiper-pagination-bullet-width;
+  height: $swiper-pagination-bullet-height;
   pointer-events: auto;
   background: $swiper-pagination-bullet-background;
   border-radius: 100%;
@@ -222,11 +230,11 @@ button.swiper-pagination-bullet {
 
 .swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
   display: block;
-  margin: 5px 0;
+  margin: $vertical-swiper-pagination-bullet-margin;
 }
 
 .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
-  margin: 0 5px;
+  margin: $horizontal-swiper-pagination-bullet-margin;
 }
 
 /* Progress */
