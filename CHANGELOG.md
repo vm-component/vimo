@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.7"></a>
+## [1.1.7](https://github.com/vm-component/vimo/compare/v1.1.6...v1.1.7) (2017-12-18)
+
+
+### Bug Fixes
+
+* 修复demo中navbar对平台初始化不正确的问题, 主要是button的click事件接收不到的问题 ([a0c078c](https://github.com/vm-component/vimo/commit/a0c078c))
+
+
+
 <a name="1.1.6"></a>
 ## [1.1.6](https://github.com/vm-component/vimo/compare/v1.1.5...v1.1.6) (2017-12-17)
 
