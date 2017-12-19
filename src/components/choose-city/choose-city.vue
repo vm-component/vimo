@@ -280,7 +280,9 @@
         this.shortcutTop = (docHieght - clientHeight) / 2
         this.shortcutList.forEach((item) => {
           let el = document.getElementById('city-' + item.name)
-          item.top = el.offsetTop + 1
+          if (el) {
+            item.top = el.offsetTop + 1
+          }
         })
       })
     }
