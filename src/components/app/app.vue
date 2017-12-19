@@ -237,10 +237,9 @@
       }
     },
     created () {
-      let proto = Reflect.getPrototypeOf(Reflect.getPrototypeOf(this))
+      let proto = this.__proto__.__proto__
       proto.$app = this
       proto.$root = this.$root
-
       this.$root.$on('onScrollStart', () => {
         this.isScrolling = true
       })
