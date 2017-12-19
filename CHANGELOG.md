@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.8"></a>
+## [1.1.8](https://github.com/vm-component/vimo/compare/v1.1.7...v1.1.8) (2017-12-19)
+
+
+### Bug Fixes
+
+* 修复alert未居中的bug ([f58e2ab](https://github.com/vm-component/vimo/commit/f58e2ab))
+* 修复choose-city没有hotcity报错的问题 ([9c49ca7](https://github.com/vm-component/vimo/commit/9c49ca7))
+
+
+
 <a name="1.1.7"></a>
 ## [1.1.7](https://github.com/vm-component/vimo/compare/v1.1.6...v1.1.7) (2017-12-18)
 
