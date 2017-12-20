@@ -36,7 +36,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import Datetime from 'vimo/lib/datetime'
+   * import { Datetime } from 'vimo'
    * // 安装
    * Vue.component(Datetime.name, Datetime)
    * // 或者

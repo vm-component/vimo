@@ -15,7 +15,7 @@
  * ### 如何引入
  * ```
  * // 引入
- * import Menu from 'vimo/lib/menu'
+ * import { Menu } from 'vimo'
  * // 安装
  * Vue.component(Menu.name, Menu)
  * // 或者

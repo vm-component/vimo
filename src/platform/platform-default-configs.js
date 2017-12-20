@@ -5,15 +5,15 @@
 export default {
   core: {
     settings: {
-      mode: 'ios',
-      imgRequestBuffer: 1400,
-      imgRenderBuffer: 600,
-      imgVelocityMax: 3
+      mode: 'ios'
     }
   },
   mobile: {
     settings: {
-      mode: 'ios' // 默认使用IOS样式
+      mode: 'ios',
+      imgRequestBuffer: 1400,
+      imgRenderBuffer: 600,
+      imgVelocityMax: 3
     }
   },
   android: {

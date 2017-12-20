@@ -24,9 +24,7 @@ a {
 
 // Scrollable Content
 // --------------------------------------------------
-
 .scroll-content {
-  
   //position: absolute;
   position: relative;
   z-index: $z-index-scroll-content;
@@ -36,7 +34,13 @@ a {
   will-change: scroll-position;
   contain: style layout;
   
-  @include position(0, 0, 0, 0);
+  &::after,
+  &::before {
+    display: table;
+    content: " ";
+  }
+  
+  @include position(-1px, 0, 0, 0);
 }
 
 .scroll-content.disable-scroll {

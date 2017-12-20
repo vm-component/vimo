@@ -35,7 +35,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { Select, SelectOption } from 'vimo/lib/select'
+   * import { Select, SelectOption } from 'vimo'
    * // 安装
    * Vue.component(Select.name, Select)
    * Vue.component(Option.name, SelectOption)

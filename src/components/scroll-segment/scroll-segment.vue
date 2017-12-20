@@ -28,7 +28,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import { ScrollSegment, ScrollSegmentButton } from 'vimo/lib/scroll-segment'
+   * import { ScrollSegment, ScrollSegmentButton } from 'vimo'
    * // 安装
    * Vue.component(ScrollSegment.name, ScrollSegment)
    * Vue.component(ScrollSegmentButton.name, ScrollSegmentButton)

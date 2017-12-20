@@ -14,9 +14,9 @@
             <Button block @click="openIndicatorReverse1000">Open 1000ms In Reverse Color</Button>
             <Button block @click="openIndicator300">Open 300ms</Button>
             <Button block @click="openIndicator100">Open 100ms</Button>
-            <Button block @click="openIndicator20">Open 20ms</Button>
+            <Button block @click="openIndicator70">Open 70ms</Button>
             <p>时间过短不开启, 开启的动作被cancel</p>
-            <Button block @click="openIndicator10">Open 10ms</Button>
+            <Button block @click="openIndicator50">Open 50ms</Button>
             <Button block @click="openIndicator5">Open 5ms</Button>
             <p>present多次执行, dismiss异步多次执行的特殊场景</p>
             <Button block @click="special">Special</Button>
@@ -105,17 +105,17 @@
           this.$indicator.dismiss()
         }, 100)
       },
-      openIndicator20 () {
+      openIndicator70 () {
         this.$indicator.present()
         setTimeout(() => {
           this.$indicator.dismiss()
-        }, 20)
+        }, 70)
       },
-      openIndicator10 () {
+      openIndicator50 () {
         this.$indicator.present()
         setTimeout(() => {
           this.$indicator.dismiss()
-        }, 10)
+        }, 50)
       },
       openIndicator5 () {
         this.$indicator.present()

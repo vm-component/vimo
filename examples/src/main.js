@@ -3,16 +3,15 @@ import AttachFastClick from 'fastclick'
 import APP_CONFIGS from './config/app-configs'
 import PLATFORM_CONFIGS from './config/platform-configs'
 import 'ionicons/dist/css/ionicons.css'
-import Vimo from 'vimo/install'
 import router from './router'
 import store from './store.js'
 import AppComponent from './App.vue'
 import InstallComponent from './Component'
-import { App, Content, Footer, Header, Nav, Navbar, Page } from 'vimo'
+import { App, Content, Footer, Header, Install, Nav, Navbar, Page } from 'vimo'
 
 // -----------------
 // 平台基础安装
-Vue.use(Vimo, {
+Vue.use(Install, {
   custConf: APP_CONFIGS,
   pltConf: PLATFORM_CONFIGS,
   router: router

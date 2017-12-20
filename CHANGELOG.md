@@ -2,8 +2,73 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-<a name="0.10.0"></a>
-# [0.10.0](https://github.com/vm-component/vimo/compare/v0.9.7...v0.10.0) (2017-12-04)
+<a name="1.1.9"></a>
+## [1.1.9](https://github.com/vm-component/vimo/compare/v1.1.8...v1.1.9) (2017-12-19)
+
+
+
+<a name="1.1.8"></a>
+## [1.1.8](https://github.com/vm-component/vimo/compare/v1.1.7...v1.1.8) (2017-12-19)
+
+
+### Bug Fixes
+
+* 修复alert未居中的bug ([f58e2ab](https://github.com/vm-component/vimo/commit/f58e2ab))
+* 修复choose-city没有hotcity报错的问题 ([9c49ca7](https://github.com/vm-component/vimo/commit/9c49ca7))
+
+
+
+<a name="1.1.7"></a>
+## [1.1.7](https://github.com/vm-component/vimo/compare/v1.1.6...v1.1.7) (2017-12-18)
+
+
+### Bug Fixes
+
+* 修复demo中navbar对平台初始化不正确的问题, 主要是button的click事件接收不到的问题 ([a0c078c](https://github.com/vm-component/vimo/commit/a0c078c))
+
+
+
+<a name="1.1.6"></a>
+## [1.1.6](https://github.com/vm-component/vimo/compare/v1.1.5...v1.1.6) (2017-12-17)
+
+
+### Bug Fixes
+
+* 修复clearButton样式错位的问题 ([faf6952](https://github.com/vm-component/vimo/commit/faf6952))
+
+
+
+<a name="1.1.5"></a>
+## [1.1.5](https://github.com/vm-component/vimo/compare/v1.1.4...v1.1.5) (2017-12-16)
+
+
+### Bug Fixes
+
+* 修复indicator开启等待时间: 20ms->70ms ([97aeb9b](https://github.com/vm-component/vimo/commit/97aeb9b))
+
+
+
+<a name="1.1.4"></a>
+## [1.1.4](https://github.com/vm-component/vimo/compare/v1.1.3...v1.1.4) (2017-12-16)
+
+
+### Bug Fixes
+
+* 修复indicator设置未生效的问题 ([ddc1c6a](https://github.com/vm-component/vimo/commit/ddc1c6a))
+
+
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/vm-component/vimo/compare/v1.1.0...v1.1.1) (2017-12-12)
+
+
+### Bug Fixes
+
+* 更改Install模块位置 ([a783959](https://github.com/vm-component/vimo/commit/a783959))
+
+
+
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/vm-component/vimo/compare/v0.9.7...v1.1.0) (2017-12-12)
 
 
 ### Bug Fixes
@@ -20,6 +85,36 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
+* vimo引入后导出增加Install方法 ([6d6a3a9](https://github.com/vm-component/vimo/commit/6d6a3a9))
+* 增加toast-state组件 ([30c2102](https://github.com/vm-component/vimo/commit/30c2102))
+* 增加toast-state组件 ([9a61886](https://github.com/vm-component/vimo/commit/9a61886))
+
+
+### Performance Improvements
+
+* indicator实现逻辑优化 ([9b1cf63](https://github.com/vm-component/vimo/commit/9b1cf63))
+
+
+
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/vm-component/vimo/compare/v0.9.7...v0.10.0) (2017-12-12)
+
+
+### Bug Fixes
+
+* button -> detail-push ([3f8c045](https://github.com/vm-component/vimo/commit/3f8c045))
+* content鲁棒性排查 ([f9494de](https://github.com/vm-component/vimo/commit/f9494de))
+* stylelint修复样式 ([699adfc](https://github.com/vm-component/vimo/commit/699adfc))
+* tab组件缺少对icon组件的引用 ([aaf6e00](https://github.com/vm-component/vimo/commit/aaf6e00))
+* 修复alert组件在ios手机上弹出层bug ([a2527ae](https://github.com/vm-component/vimo/commit/a2527ae))
+* 修复modal在md模式下看不到页面的情况 ([820c427](https://github.com/vm-component/vimo/commit/820c427))
+* 修复select组件样式bug ([4fe155b](https://github.com/vm-component/vimo/commit/4fe155b))
+* 修复tabs的tabsLayout属性不生效的问题 ([98d3b15](https://github.com/vm-component/vimo/commit/98d3b15))
+
+
+### Features
+
+* vimo引入后导出增加Install方法 ([6d6a3a9](https://github.com/vm-component/vimo/commit/6d6a3a9))
 * 增加toast-state组件 ([30c2102](https://github.com/vm-component/vimo/commit/30c2102))
 * 增加toast-state组件 ([9a61886](https://github.com/vm-component/vimo/commit/9a61886))
 

@@ -27,7 +27,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import Img from 'vimo/lib/img'
+   * import { Img } from 'vimo'
    * // 安装
    * Vue.component(Img.name, Img)
    * // 或者

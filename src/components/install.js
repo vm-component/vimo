@@ -1,7 +1,7 @@
-import { setupConfig } from './config/config'
-import { setupHistory } from './history/history'
-import { setupPlatform } from './platform/platform'
-import { version } from '../package.json'
+import { setupConfig } from '../config/config'
+import { setupHistory } from '../history/history'
+import { setupPlatform } from '../platform/platform'
+import { version } from '../../package.json'
 
 const addLogo = (vimoVer, vueVer) => {
   // logo

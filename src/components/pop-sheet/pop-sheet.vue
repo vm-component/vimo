@@ -34,7 +34,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import PopSheet from 'vimo/lib/pop-sheet'
+   * import { PopSheet } from 'vimo'
    * // 安装
    * Vue.component(PopSheet.name, PopSheet)
    * // 或者

@@ -37,7 +37,7 @@
    *
    * ```
    * // 引入
-   * import { Segment, SegmentButton } from 'vimo/lib/segment'
+   * import { Segment, SegmentButton } from 'vimo'
    * // 安装
    * Vue.component(Segment.name, Segment)
    * Vue.component(SegmentButton.name, SegmentButton)

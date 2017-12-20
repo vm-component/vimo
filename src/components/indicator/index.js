@@ -2,6 +2,10 @@ import LoadingComponent from '../loading/loading.vue'
 import GeneratePopUpInstance from '../../util/GeneratePopUpInstance.js'
 import { isBlank, isBoolean, isObject, isString } from '../../util/type'
 
+let indicatorPresentWaitTime = 70
+let indicatorPresentThrottleTime = 500
+let indicatorDismissDebounceTime = 500
+
 let debounce = require('lodash.debounce')
 let throttle = require('lodash.throttle')
 let startTime
@@ -50,25 +54,23 @@ class LoadingInstance extends GeneratePopUpInstance {
 
 let _present = LoadingInstance.prototype.present
 let _dismiss = LoadingInstance.prototype.dismiss
-let _dismissDebounce = debounce(_dismiss, 500)
-let _presentDebounce = debounce(throttle(_present, 500, {
+let _dismissDebounce = debounce(_dismiss, indicatorDismissDebounceTime)
+let _presentDebounce = debounce(throttle(_present, indicatorPresentThrottleTime, {
   leading: true, // 首次触发, 之后不再触发
   trailing: false
-}), 20)
+}), indicatorPresentWaitTime)
 
 LoadingInstance.prototype.present = function () {
   // console.log('1 [LoadingInstance.prototype.present]')
-  // console.log(this)
   startTime = new Date().getTime()
   _presentDebounce.call(this, ...arguments)
 }
 
 LoadingInstance.prototype.dismiss = function () {
   // console.log('2 [LoadingInstance.prototype.dismiss]')
-  // console.log(this)
   let now = new Date().getTime()
   // console.log(`当前持续时间: ${now - startTime}ms`)
-  if ((now - startTime < 20)) {
+  if ((now - startTime < indicatorPresentWaitTime)) {
     // console.log('3 [LoadingInstance.prototype.dismiss] _debouncedPresent.cancel()')
     _presentDebounce.cancel()
   } else {

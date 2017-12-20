@@ -25,6 +25,8 @@ module.exports = function generateEntry (fileNames) {
       importString += _importString
     })
 
+    importString += `export { default as Install } from './components/install.js'\n`
+
     importString += `\nvar ENV = process.env.NODE_ENV
 if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefined' && console.warn && typeof window !== 'undefined') {
   console.warn('You are using a whole package of vimo, ' + 'please read docs https://vm-component.github.io/vimo/ to reduce app bundle size.')
@@ -39,5 +41,6 @@ if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefin
       }
       resolve && resolve()
     })
+
   })
 }

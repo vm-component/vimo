@@ -55,7 +55,7 @@
    *
    * ```
    * // 引入
-   * import { Slides, Slide } from 'vimo/lib/slides'
+   * import { Slides, Slide } from 'vimo'
    * // 安装
    * Vue.component(Slides.name, Slides)
    * Vue.component(Slide.name, Slide)

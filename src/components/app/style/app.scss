@@ -292,7 +292,7 @@ sub {
       
       .scroll-content {
         position: absolute;
-        top: 0;
+        top: -1px;
         bottom: 0;
         width: 100%;
         overflow: scroll;

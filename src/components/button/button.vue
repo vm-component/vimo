@@ -24,7 +24,7 @@
    * ### 如何引入
    * ```
    * // 引入
-   * import Button from 'vimo/lib/button'
+   * import { Button } from 'vimo
    * // 安装
    * Vue.component(Button.name, Button)
    * // 或者

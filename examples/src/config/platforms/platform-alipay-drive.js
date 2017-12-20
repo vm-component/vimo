@@ -455,7 +455,7 @@ export default function (plt) {
         preventDefault: false,
         onClick (data) {
           // index 被点击的菜单项的索引，从0开始，从左到右
-          isFunction(rightButtonComponents[data.index].clickHandler) && rightButtonComponents[data.index].clickHandler()
+          isFunction(rightButtonComponents[data.index].$_clickHandler) && rightButtonComponents[data.index].$_clickHandler()
         },
         success () {
           console.log('Alipay:setOptionButton 设置成功')

@@ -40,7 +40,7 @@
    * @slot 空 - 指示器RefresherContent组件的插槽
    *
    * @demo #/refresher
-   * @see component:Base/Content
+   * @see component:Content
    * @usage
    * <Page>
    *    <Header>

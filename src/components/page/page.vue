@@ -5,7 +5,7 @@
 </template>
 <script type="text/javascript">
   /**
-   * @component Base/Page
+   * @component Page
    * @description
    *
    * ## 基础组件 / Page组件
