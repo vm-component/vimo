@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.10"></a>
+## [1.1.10](https://github.com/vm-component/vimo/compare/v1.1.9...v1.1.10) (2017-12-25)
+
+
+### Bug Fixes
+
+* 修复alert弹层调到backdrop底部的问题 ([57e82e4](https://github.com/vm-component/vimo/commit/57e82e4))
+
+
+
 <a name="1.1.9"></a>
 ## [1.1.9](https://github.com/vm-component/vimo/compare/v1.1.8...v1.1.9) (2017-12-19)
 
