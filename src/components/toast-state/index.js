@@ -27,7 +27,7 @@
  *
  *```
  ToastState.present({
-    message: 'Bottom was added successfully',
+    message: '只是文本',
     duration: 3000,
     dismissOnPageChange: true,
     onDismiss () {
@@ -35,11 +35,22 @@
     }
  })
  ToastState.present({
-    message: 'Top with Button was added successfully',
-    duration: 3000, // 这个不生效
+    message: '请稍后',
+    duration: 3000,
+    type: 'loading',
     spinner: {
       name:'ios'
     },
+    cssClass: 'showCloseBtnToastCssClass',
+    dismissOnPageChange: true,
+    onDismiss () {
+      console.debug('5 onDismiss in promise success!')
+    }
+ })
+ ToastState.present({
+    message: '请求成功',
+    duration: 3000,
+    type: 'success',
     cssClass: 'showCloseBtnToastCssClass',
     dismissOnPageChange: true,
     onDismiss () {
