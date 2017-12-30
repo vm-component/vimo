@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-input" :class="[modeClass,{'clearInput':clearInput}]" @click="$_clickToFocus($event)">
+    <div class="ion-input" :class="[modeClass,inputClass,{'clearInput':clearInput}]" @click="$_clickToFocus($event)">
         <div class="input-inner-wrap">
             <input ref="input"
                    :class="[textInputClass]"
@@ -116,7 +116,7 @@
   import Button from '../button'
   import REGEXP from '../../util/regexp'
   import debounce from 'lodash.debounce'
-  import { isObject, isFunction, isRegexp, isBlank, isPresent } from '../../util/type'
+  import { isBlank, isFunction, isObject, isPresent, isRegexp } from '../../util/type'
 
   export default {
     name: 'Input',
@@ -593,7 +593,7 @@
        */
       $_setItemHasValueClass () {
         if (this.itemComponent) {
-          this.itemComponent.inputClass['input-has-value'] = this.hasValue
+          this.itemComponent.inputClass['input-has-value'] = !!this.hasValue
         }
         this.inputClass['input-has-value'] = !!this.hasValue
       }
