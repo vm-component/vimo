@@ -77,6 +77,7 @@
       stringOnlyH5Only () {
         this.$loading.present({
           content: '只传入了String',
+          // showBackdrop: false,
           isH5: true
         })
         setTimeout(() => {

@@ -85,6 +85,7 @@
     "swiper": "^3.4.2"
   },
   "devDependencies": {
+    "@babel/polyfill": "^7.0.0-beta.39",
     "autoprefixer": "^6.7.2",
     "axios": "^0.16.2",
     "babel-core": "^6.26.0",
@@ -167,6 +168,7 @@
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.7",
     "validate-commit-msg": "^2.14.0",
+    "vconsole": "^3.1.0",
     "vue": "2.5.8",
     "vue-jest": "^1.0.0",
     "vue-loader": "^11.1.4",

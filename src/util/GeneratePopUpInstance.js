@@ -106,18 +106,16 @@ export default class GeneratePopUpInstance {
    * */
   dismiss () {
     return new Promise((resolve) => {
-      if (!this.isDismissHandled()) {
-        /* istanbul ignore else */
-        if (this._ins && this._ins.isActive) {
-          this._ins.dismiss().then(() => {
-            this._ins = null
-            resolve()
-          })
-        } else {
+      this.isDismissHandled()
+
+      /* istanbul ignore else */
+      if (this._ins && this._ins.isActive) {
+        this._ins.dismiss().then(() => {
           this._ins = null
           resolve()
-        }
+        })
       } else {
+        this._ins = null
         resolve()
       }
     })
