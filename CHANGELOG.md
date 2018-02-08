@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.11"></a>
+## [1.1.11](https://github.com/vm-component/vimo/compare/v1.1.10...v1.1.11) (2018-02-08)
+
+
+### Bug Fixes
+
+* 修复Input组件的clear-button不在item组件中使用时显示的bug ([d66c7fc](https://github.com/vm-component/vimo/commit/d66c7fc))
+* 修复loading和indicator在某些安卓机上显示的问题 ([f181e35](https://github.com/vm-component/vimo/commit/f181e35))
+* 修改app组件中关于弹层的逻辑 ([4f73150](https://github.com/vm-component/vimo/commit/4f73150))
+
+
+
 <a name="1.1.10"></a>
 ## [1.1.10](https://github.com/vm-component/vimo/compare/v1.1.9...v1.1.10) (2017-12-25)
 
