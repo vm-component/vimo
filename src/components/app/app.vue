@@ -218,25 +218,10 @@
             }
           })
         }
-      },
-
-      /**
-       * @private
-       * */
-      $_addChild (vm) {
-        this.$children.push(vm)
-      },
-
-      /**
-       * @private
-       * */
-      $_removeChild (vm) {
-        let uid = vm._uid
-        let index = this.$children.map((item) => item._uid).indexOf(uid)
-        this.$children.splice(index, 1)
       }
     },
     created () {
+      // eslint-disable-next-line no-proto
       let proto = this.__proto__.__proto__
       proto.$app = this
       proto.$root = this.$root

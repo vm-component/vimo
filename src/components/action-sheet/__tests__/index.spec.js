@@ -43,8 +43,7 @@ let options = {
   mocks: {
     $app: {
       setEnabled () {},
-      $_disableScroll () {},
-      $_addChild () {}
+      $_disableScroll () {}
     }
   }
 }
