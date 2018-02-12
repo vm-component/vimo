@@ -20,6 +20,7 @@ export default {
 
     /**
      * 在ready之前进行处理
+     * @override
      * */
     plt.beforeReady = function () {
       loadScript(jsSDKUrl, () => {

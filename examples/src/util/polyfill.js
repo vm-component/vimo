@@ -36,4 +36,4 @@ if (!('remove' in window.Element.prototype)) {
      * */
     window.cancelAnimationFrame = function (id) { clearTimeout(id) }
   }
-})();
+})()

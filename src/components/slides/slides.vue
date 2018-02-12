@@ -11,7 +11,6 @@
         <div v-if="nextButton" :class="nextButtonClass"></div>
         <!-- Add Scrollbar -->
         <div v-if="scrollbar" :class="scrollbarClass"></div>
-
     </div>
 </template>
 <style lang="scss" src="./style.scss"></style>
@@ -104,7 +103,7 @@
    *
    * */
   import Swiper from 'swiper'
-  import { getProps, getEvents } from './interface'
+  import { getEvents, getProps } from './interface'
 
   export default {
     name: 'Slides',

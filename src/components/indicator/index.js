@@ -13,7 +13,7 @@ let startTime
 class LoadingInstance extends GeneratePopUpInstance {
   normalizeOptions (options = {}) {
     if (isString(options)) {
-      options = {content: options}
+      options = { content: options }
     }
 
     let defaultOptions = {
@@ -75,7 +75,9 @@ LoadingInstance.prototype.dismiss = function () {
     _presentDebounce.cancel()
   } else {
     // console.log('4 [LoadingInstance.prototype.dismiss] _dismissDebounce.call(this)')
-    _dismissDebounce.call(this)
+    window.setTimeout(() => {
+      _dismissDebounce.call(this)
+    })
   }
 }
 

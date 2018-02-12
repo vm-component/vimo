@@ -161,7 +161,9 @@ import urlChange from '../../util/url-change'
 
 export default function recordMenuInstance (instance) {
   // 如果没安装
-  let proto = instance.__proto__.__proto__;
+  // TODO
+  // eslint-disable-next-line no-proto
+  let proto = instance.__proto__.__proto__
   if (!proto.$menu) {
     proto.$menu = new Menu()
   }
