@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.14"></a>
+## [1.1.14](https://github.com/vm-component/vimo/compare/v1.1.13...v1.1.14) (2018-02-26)
+
+
+### Bug Fixes
+
+* 修复indicator关闭失败的问题 ([be7c743](https://github.com/vm-component/vimo/commit/be7c743))
+* 修复reange组件在pc下操作报错的问题([#27](https://github.com/vm-component/vimo/issues/27)) ([e94b99d](https://github.com/vm-component/vimo/commit/e94b99d))
+
+
+
 <a name="1.1.13"></a>
 ## [1.1.13](https://github.com/vm-component/vimo/compare/v1.1.11...v1.1.13) (2018-02-12)
 
