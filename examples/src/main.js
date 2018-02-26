@@ -53,9 +53,6 @@ new Vue({
   template: '<AppComponent/>',
   created () {
     window.VM.platform.ready().then((data) => {
-      window.VM.platform.setNavbarTitle({
-        title: 'Test title'
-      })
       console.debug(`Platform Ready && Init Info: ${data}`)
     }, (data) => {
       console.error(`Platform Ready && Init Info: ${data}`)

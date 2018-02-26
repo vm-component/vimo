@@ -1,43 +1,44 @@
 <template>
-    <div class="ion-range"
-         :class="[modeClass,colorClass,{'range-pressed':pressed},{'range-disabled':disabled},{'range-has-pin':pin}]">
-        <slot name="range-left"></slot>
-        <div ref="slider"
-             class="range-slider"
-             @mouseup="pointerUp($event)"
-             @touchend="pointerUp($event)"
-             @mousemove="pointerMove($event)"
-             @touchmove="pointerMove($event)"
-             @mousedown="pointerDown($event)"
-             @touchstart="pointerDown($event)">
-            <div class="range-tick" v-for="t in ticks" :style="{ left: t.left }"
-                 :class="{'range-tick-active':t.active}"
-                 role="presentation"></div>
-            <div class="range-bar" role="presentation"></div>
-            <div class="range-bar range-bar-active" :style="{ left: barL,right:barR }" ref="bar"
-                 role="presentation"></div>
-            <RangeKnobHandle
-                    :ratio="ratioA"
-                    :val="valA"
-                    :pin="pin"
-                    :pressed="pressedA"
-                    :min="min"
-                    :max="max"
-                    :disabled="disabled">
-            </RangeKnobHandle>
-            <RangeKnobHandle
-                    :ratio="ratioB"
-                    :val="valB"
-                    :pin="pin"
-                    :pressed="pressedB"
-                    :min="min"
-                    :max="max"
-                    :disabled="disabled"
-                    v-if="dualKnobs">
-            </RangeKnobHandle>
-        </div>
-        <slot name="range-right"></slot>
+  <div class="ion-range"
+       :class="[modeClass,colorClass,{'range-pressed':pressed},{'range-disabled':disabled},{'range-has-pin':pin}]">
+    <slot name="range-left"></slot>
+    <div ref="slider"
+         class="range-slider"
+         @mouseup="pointerUp($event)"
+         @touchend="pointerUp($event)"
+         @mousemove="pointerMove($event)"
+         @mouseout="mouseOutHandler($event)"
+         @touchmove="pointerMove($event)"
+         @mousedown="pointerDown($event)"
+         @touchstart="pointerDown($event)">
+      <div class="range-tick" v-for="t in ticks" :style="{ left: t.left }"
+           :class="{'range-tick-active':t.active}"
+           role="presentation"></div>
+      <div class="range-bar" role="presentation"></div>
+      <div class="range-bar range-bar-active" :style="{ left: barL,right:barR }" ref="bar"
+           role="presentation"></div>
+      <RangeKnobHandle
+        :ratio="ratioA"
+        :val="valA"
+        :pin="pin"
+        :pressed="pressedA"
+        :min="min"
+        :max="max"
+        :disabled="disabled">
+      </RangeKnobHandle>
+      <RangeKnobHandle
+        :ratio="ratioB"
+        :val="valB"
+        :pin="pin"
+        :pressed="pressedB"
+        :min="min"
+        :max="max"
+        :disabled="disabled"
+        v-if="dualKnobs">
+      </RangeKnobHandle>
     </div>
+    <slot name="range-right"></slot>
+  </div>
 </template>
 <style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
@@ -83,11 +84,11 @@
    *
    * */
   import RangeKnobHandle from './range-knob-handle.vue'
-  import { setElementClass, pointerCoord, clamp } from '../../util/util'
-  import { isString, isObject, isNumber } from '../../util/type'
-  import throttle from 'lodash.throttle'
+import { clamp, pointerCoord, setElementClass } from '../../util/util'
+import { isNumber, isObject, isString } from '../../util/type'
+import throttle from 'lodash.throttle'
 
-  export default {
+export default {
     name: 'Range',
     inject: {
       itemComponent: {
@@ -99,6 +100,7 @@
       return {
         ticks: [], // 移动的标尺
         pressed: false, // 拖动knob
+        moving: false, //
 
         barL: 0, // 左边bar的位置
         barR: 0, // 右边bar的位置
@@ -148,7 +150,9 @@
       },
       mode: {
         type: String,
-        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
+        default () {
+          return this.$config && this.$config.get('mode', 'ios') || 'ios'
+        }
       },
       /**
        * 当拖动knob时显示大头针提示
@@ -205,6 +209,9 @@
       }
     },
     methods: {
+      mouseOutHandler () {
+        this.moving = false
+      },
       /**
        * 拖动开始
        * @param {UIEvent} ev
@@ -215,26 +222,28 @@
           return false
         }
 
-        // prevent default so scrolling does not happen
+        this.moving = true
+
+      // prevent default so scrolling does not happen
         ev.preventDefault()
         ev.stopPropagation()
 
-        // get the start coordinates
+      // get the start coordinates
         const current = pointerCoord(ev)
 
-        // 获取slider元素的尺寸
+      // 获取slider元素的尺寸
         const rect = this._rect = this._sliderEl.getBoundingClientRect()
 
-        // 判断点击的位置离那个knob近
+      // 判断点击的位置离那个knob近
         const ratio = clamp(0, (current.x - rect.left) / (rect.width), 1)
         this._activeB = (Math.abs(ratio - this.ratioA) > Math.abs(ratio - this.ratioB))
 
-        // 更新激活状态的knob位置
+      // 更新激活状态的knob位置
 
         this.updateRange(current, rect, true)
 
-        // return true so the pointer events
-        // know everything's still valid
+      // return true so the pointer events
+      // know everything's still valid
         return true
       },
 
@@ -244,15 +253,16 @@
        * */
       pointerMove (ev) {
         if (!this.disabled) {
-          // prevent default so scrolling does not happen
+          if (!this.moving) return
+        // prevent default so scrolling does not happen
           ev.preventDefault()
           ev.stopPropagation()
           const current = pointerCoord(ev)
 
-          // update the active knob's position
+        // update the active knob's position
           this.updateRange(current, this._rect, true)
 
-          // 告知v-model
+        // 告知v-model
           this.$_emit()
         }
       },
@@ -267,12 +277,13 @@
        * @param {UIEvent} ev
        * */
       pointerUp (ev) {
+        this.moving = false
         if (!this.disabled) {
           // prevent default so scrolling does not happen
           ev.preventDefault()
           ev.stopPropagation()
 
-          // update the active knob's position
+        // update the active knob's position
           this.updateRange(pointerCoord(ev), this._rect, false)
         }
       },
@@ -284,8 +295,9 @@
        * @param {boolean} isPressed
        */
       updateRange (current, rect, isPressed) {
-        // figure out where the pointer is currently at
-        // update the knob being interacted with
+        console.log(rect)
+      // figure out where the pointer is currently at
+      // update the knob being interacted with
         let ratio = clamp(0, (current.x - rect.left) / (rect.width), 1)
         let val = this.ratioToValue(ratio)
 
@@ -331,11 +343,11 @@
           }
           this.valueInner.lower = Math.min(this.valA, this.valB)
           this.valueInner.upper = Math.max(this.valA, this.valB)
-          // console.debug(`range, updateKnob: ${ratio}, lower: ${this.valueInner.lower}, upper: ${this.valueInner.upper}`);
+        // console.debug(`range, updateKnob: ${ratio}, lower: ${this.valueInner.lower}, upper: ${this.valueInner.upper}`);
         } else {
           // single knob only has one value
           this.valueInner = this.valA
-          // console.debug(`range, updateKnob: ${ratio}, value: ${this.valueInner}`);
+        // console.debug(`range, updateKnob: ${ratio}, value: ${this.valueInner}`);
         }
 
         this.updateBar()
@@ -427,14 +439,14 @@
         if (this.itemComponent) {
           if (this.itemComponent.$el) {
             setElementClass(this.itemComponent.$el, 'item-range', true)
-            // setElementClass(this.itemComponent.$el, 'item-range-disabled', this.disabled);
+          // setElementClass(this.itemComponent.$el, 'item-range-disabled', this.disabled);
           }
         }
 
         // 获取slider的DOM
         this._sliderEl = this.$refs.slider
 
-        // 为range左右添加属性
+      // 为range左右添加属性
         if (this.$slots && this.$slots['range-left']) {
           this.$slots['range-left'].forEach(function (item) {
             item.elm.setAttribute('range-left', '')
@@ -454,7 +466,7 @@
         // 设置标尺
         this.createTicks()
 
-        // 设置value的初始状态
+      // 设置value的初始状态
         if (isString(this.valueInner)) {
           let val = Math.round(this.valueInner)
           if (!isNaN(val)) {
