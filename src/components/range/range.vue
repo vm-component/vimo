@@ -2,15 +2,7 @@
   <div class="ion-range"
        :class="[modeClass,colorClass,{'range-pressed':pressed},{'range-disabled':disabled},{'range-has-pin':pin}]">
     <slot name="range-left"></slot>
-    <div ref="slider"
-         class="range-slider"
-         @mouseup="pointerUp($event)"
-         @touchend="pointerUp($event)"
-         @mousemove="pointerMove($event)"
-         @mouseout="mouseOutHandler($event)"
-         @touchmove="pointerMove($event)"
-         @mousedown="pointerDown($event)"
-         @touchstart="pointerDown($event)">
+    <div ref="slider" class="range-slider">
       <div class="range-tick" v-for="t in ticks" :style="{ left: t.left }"
            :class="{'range-tick-active':t.active}"
            role="presentation"></div>
@@ -83,12 +75,13 @@
    * </List>
    *
    * */
-  import RangeKnobHandle from './range-knob-handle.vue'
-import { clamp, pointerCoord, setElementClass } from '../../util/util'
-import { isNumber, isObject, isString } from '../../util/type'
-import throttle from 'lodash.throttle'
+  import RangeKnobHandle from './range-knob-handle.vue';
+  import { clamp, pointerCoord, setElementClass } from '../../util/util';
+  import { isNumber, isObject, isString } from '../../util/type';
+  import throttle from 'lodash.throttle';
+  import PointerEvents from './pointer-events.es5.js';
 
-export default {
+  export default {
     name: 'Range',
     inject: {
       itemComponent: {
@@ -96,7 +89,7 @@ export default {
         default: null
       }
     },
-    data () {
+    data() {
       return {
         ticks: [], // 移动的标尺
         pressed: false, // 拖动knob
@@ -118,8 +111,10 @@ export default {
 
         _timer: 0,
 
+        pointerEvents: null,
+
         valueInner: JSON.parse(JSON.stringify(this.value)) // value内部值
-      }
+      };
     },
     props: {
       /**
@@ -150,8 +145,8 @@ export default {
       },
       mode: {
         type: String,
-        default () {
-          return this.$config && this.$config.get('mode', 'ios') || 'ios'
+        default() {
+          return this.$config && this.$config.get('mode', 'ios') || 'ios';
         }
       },
       /**
@@ -179,112 +174,112 @@ export default {
     },
     computed: {
       // 环境样式
-      modeClass () {
-        return `range range-${this.mode}`
+      modeClass() {
+        return `range range-${this.mode}`;
       },
       // 颜色
-      colorClass () {
-        return this.color ? (`range-${this.mode}-${this.color}`) : ''
+      colorClass() {
+        return this.color ? (`range-${this.mode}-${this.color}`) : '';
       },
 
       /**
        * 返回knob现在的位置比, ratio数值在0/1之间,
        * 如果使用了两个knob, 则返回最小那个
        */
-      ratio () {
+      ratio() {
         if (this.dualKnobs) {
-          return Math.min(this.ratioA, this.ratioB)
+          return Math.min(this.ratioA, this.ratioB);
         }
-        return this.ratioA
+        return this.ratioA;
       },
 
       /**
        * 在有两个knob的情况下, 返回最大的按个knob的ratio
        */
-      ratioUpper () {
+      ratioUpper() {
         if (this.dualKnobs) {
-          return Math.max(this.ratioA, this.ratioB)
+          return Math.max(this.ratioA, this.ratioB);
         }
-        return 0
+        return 0;
       }
     },
     methods: {
-      mouseOutHandler () {
-        this.moving = false
+      mouseOutHandler() {
+        this.moving = false;
       },
       /**
        * 拖动开始
        * @param {UIEvent} ev
        * @return {boolean}
        * */
-      pointerDown (ev) {
+      pointerDown(ev) {
         if (this.disabled) {
-          return false
+          return false;
         }
 
-        this.moving = true
+        this.moving = true;
 
-      // prevent default so scrolling does not happen
-        ev.preventDefault()
-        ev.stopPropagation()
+        // prevent default so scrolling does not happen
+        ev.preventDefault();
+        ev.stopPropagation();
 
-      // get the start coordinates
-        const current = pointerCoord(ev)
+        // get the start coordinates
+        const current = pointerCoord(ev);
 
-      // 获取slider元素的尺寸
-        const rect = this._rect = this._sliderEl.getBoundingClientRect()
+        // 获取slider元素的尺寸
+        const rect = this._rect = this._sliderEl.getBoundingClientRect();
 
-      // 判断点击的位置离那个knob近
-        const ratio = clamp(0, (current.x - rect.left) / (rect.width), 1)
-        this._activeB = (Math.abs(ratio - this.ratioA) > Math.abs(ratio - this.ratioB))
+        // 判断点击的位置离那个knob近
+        const ratio = clamp(0, (current.x - rect.left) / (rect.width), 1);
+        this._activeB = (Math.abs(ratio - this.ratioA) > Math.abs(ratio - this.ratioB));
 
-      // 更新激活状态的knob位置
+        // 更新激活状态的knob位置
 
-        this.updateRange(current, rect, true)
+        this.updateRange(current, rect, true);
 
-      // return true so the pointer events
-      // know everything's still valid
-        return true
+        // return true so the pointer events
+        // know everything's still valid
+        return true;
       },
 
       /**
        * 拖动处理
        * @param {UIEvent} ev
        * */
-      pointerMove (ev) {
+      pointerMove(ev) {
         if (!this.disabled) {
-          if (!this.moving) return
-        // prevent default so scrolling does not happen
-          ev.preventDefault()
-          ev.stopPropagation()
-          const current = pointerCoord(ev)
+          if (!this.moving) return;
+          // prevent default so scrolling does not happen
+          ev.preventDefault();
+          ev.stopPropagation();
+          const current = pointerCoord(ev);
 
-        // update the active knob's position
-          this.updateRange(current, this._rect, true)
+          // update the active knob's position
+          this.updateRange(current, this._rect, true);
 
-        // 告知v-model
-          this.$_emit()
+          // 告知v-model
+          this.$_emit();
         }
       },
 
       $_emit: throttle(function () {
         // 频发触发会导致卡顿
-        this.$emit('input', JSON.parse(JSON.stringify(this.valueInner)))
+        this.$emit('input', JSON.parse(JSON.stringify(this.valueInner)));
       }, 16 * 3),
 
       /**
        * 拖动停止
        * @param {UIEvent} ev
        * */
-      pointerUp (ev) {
-        this.moving = false
+      pointerUp(ev) {
+        this.moving = false;
         if (!this.disabled) {
           // prevent default so scrolling does not happen
-          ev.preventDefault()
-          ev.stopPropagation()
+          ev.preventDefault();
+          ev.stopPropagation();
 
-        // update the active knob's position
-          this.updateRange(pointerCoord(ev), this._rect, false)
+          // update the active knob's position
+          this.updateRange(pointerCoord(ev), this._rect, false);
         }
       },
 
@@ -294,44 +289,43 @@ export default {
        * @param {ClientRect} rect
        * @param {boolean} isPressed
        */
-      updateRange (current, rect, isPressed) {
-        console.log(rect)
-      // figure out where the pointer is currently at
-      // update the knob being interacted with
-        let ratio = clamp(0, (current.x - rect.left) / (rect.width), 1)
-        let val = this.ratioToValue(ratio)
+      updateRange(current, rect, isPressed) {
+        // figure out where the pointer is currently at
+        // update the knob being interacted with
+        let ratio = clamp(0, (current.x - rect.left) / (rect.width), 1);
+        let val = this.ratioToValue(ratio);
 
         if (this.snaps) {
           // snaps the ratio to the current value
-          ratio = this.valueToRatio(val)
+          ratio = this.valueToRatio(val);
         }
 
         // update which knob is pressed
-        this.pressed = isPressed
+        this.pressed = isPressed;
 
         if (this._activeB) {
           // when the pointer down started it was determined
           // that knob B was the one they were interacting with
-          this.pressedB = isPressed
-          this.pressedA = false
-          this.ratioB = ratio
+          this.pressedB = isPressed;
+          this.pressedA = false;
+          this.ratioB = ratio;
 
           if (val === this.valB) {
             // hasn't changed
-            return false
+            return false;
           }
-          this.valB = val
+          this.valB = val;
         } else {
           // interacting with knob A
-          this.pressedA = isPressed
-          this.pressedB = false
-          this.ratioA = ratio
+          this.pressedA = isPressed;
+          this.pressedB = false;
+          this.ratioA = ratio;
 
           if (val === this.valA) {
             // hasn't changed
-            return false
+            return false;
           }
-          this.valA = val
+          this.valA = val;
         }
 
         // value has been updated
@@ -339,74 +333,72 @@ export default {
           // dual knobs have an lower and upper value
           if (!this.valueInner) {
             // ensure we're always updating the same object
-            this.valueInner = {}
+            this.valueInner = {};
           }
-          this.valueInner.lower = Math.min(this.valA, this.valB)
-          this.valueInner.upper = Math.max(this.valA, this.valB)
-        // console.debug(`range, updateKnob: ${ratio}, lower: ${this.valueInner.lower}, upper: ${this.valueInner.upper}`);
+          this.valueInner.lower = Math.min(this.valA, this.valB);
+          this.valueInner.upper = Math.max(this.valA, this.valB);
         } else {
           // single knob only has one value
-          this.valueInner = this.valA
-        // console.debug(`range, updateKnob: ${ratio}, value: ${this.valueInner}`);
+          this.valueInner = this.valA;
         }
 
-        this.updateBar()
-        return true
+        this.updateBar();
+        return true;
       },
 
       /**
        * @param {number} ratio
        */
-      ratioToValue (ratio) {
-        ratio = Math.round(((this.max - this.min) * ratio))
-        ratio = Math.round(ratio / this.step) * this.step + this.min
-        return clamp(this.min, ratio, this.max)
+      ratioToValue(ratio) {
+        ratio = Math.round(((this.max - this.min) * ratio));
+        ratio = Math.round(ratio / this.step) * this.step + this.min;
+        return clamp(this.min, ratio, this.max);
       },
       /**
        * @param {number} value
        */
-      valueToRatio (value) {
-        value = Math.round((value - this.min) / this.step) * this.step
-        value = value / (this.max - this.min)
-        return clamp(0, value, 1)
+      valueToRatio(value) {
+        value = Math.round((value - this.min) / this.step) * this.step;
+        value = value / (this.max - this.min);
+        return clamp(0, value, 1);
       },
 
       /**
        * 更新bar的位置
        */
-      updateBar () {
-        const ratioA = this.ratioA
-        const ratioB = this.ratioB
+      updateBar() {
+        const ratioA = this.ratioA;
+        const ratioB = this.ratioB;
         if (this.dualKnobs) {
-          this.barL = `${(Math.min(ratioA, ratioB) * 100)}%`
-          this.barR = `${100 - (Math.max(ratioA, ratioB) * 100)}%`
+          this.barL = `${(Math.min(ratioA, ratioB) * 100)}%`;
+          this.barR = `${100 - (Math.max(ratioA, ratioB) * 100)}%`;
         } else {
-          this.barL = ''
-          this.barR = `${100 - (ratioA * 100)}%`
+          this.barL = '';
+          this.barR = `${100 - (ratioA * 100)}%`;
         }
 
-        this.updateTicks()
+        this.updateTicks();
       },
 
       /**
        * 更新bar的位置
        * 更新标尺
        */
-      updateTicks () {
-        const ticks = this.ticks
-        const ratio = this.ratio
+      updateTicks() {
+        const ticks = this.ticks;
+        const ratio = this.ratio;
 
         if (this.snaps && ticks) {
           if (this.dualKnobs) {
-            var upperRatio = this.ratioUpper
+            var upperRatio = this.ratioUpper;
 
             ticks.forEach(t => {
-              t.active = (t.ratio >= ratio && t.ratio <= upperRatio)
-            })
+              t.active = (t.ratio >= ratio && t.ratio <= upperRatio);
+            });
           } else {
             ticks.forEach(t => {
-              t.active = (t.ratio <= ratio)
-            })
+              t.active = (t.ratio <= ratio);
+            });
           }
         }
       },
@@ -414,19 +406,19 @@ export default {
       /**
        * 在rangebar上画上移动的标尺
        * */
-      createTicks () {
+      createTicks() {
         if (this.snaps) {
           this.$nextTick(function () {
-            this.ticks = []
+            this.ticks = [];
             for (var value = this.min; value <= this.max; value += this.step) {
-              var ratio = this.valueToRatio(value)
+              var ratio = this.valueToRatio(value);
               this.ticks.push({
                 ratio: ratio,
                 left: `${ratio * 100}%`
-              })
+              });
             }
-            this.updateTicks()
-          })
+            this.updateTicks();
+          });
         }
       },
 
@@ -434,71 +426,76 @@ export default {
        * init
        * 为父元素item设置class需要等待mounted之后
        */
-      initDOM () {
+      initDOM() {
         // 在item父元素上添加类item-range
         if (this.itemComponent) {
           if (this.itemComponent.$el) {
-            setElementClass(this.itemComponent.$el, 'item-range', true)
-          // setElementClass(this.itemComponent.$el, 'item-range-disabled', this.disabled);
+            setElementClass(this.itemComponent.$el, 'item-range', true);
+            // setElementClass(this.itemComponent.$el, 'item-range-disabled', this.disabled);
           }
         }
 
         // 获取slider的DOM
-        this._sliderEl = this.$refs.slider
+        this._sliderEl = this.$refs.slider;
 
-      // 为range左右添加属性
+        // 为range左右添加属性
         if (this.$slots && this.$slots['range-left']) {
           this.$slots['range-left'].forEach(function (item) {
-            item.elm.setAttribute('range-left', '')
-          })
+            item.elm.setAttribute('range-left', '');
+          });
         }
         if (this.$slots && this.$slots['range-right']) {
           this.$slots['range-right'].forEach(function (item) {
-            item.elm.setAttribute('range-right', '')
-          })
+            item.elm.setAttribute('range-right', '');
+          });
         }
+
+        this.pointerEvents = new PointerEvents(this._sliderEl, this.pointerDown, this.pointerMove, this.pointerUp, {});
       },
       /**
        * init
        * 初始化传入数据并更新视图
        */
-      initData () {
+      initData() {
         // 设置标尺
-        this.createTicks()
+        this.createTicks();
 
-      // 设置value的初始状态
+        // 设置value的初始状态
         if (isString(this.valueInner)) {
-          let val = Math.round(this.valueInner)
+          let val = Math.round(this.valueInner);
           if (!isNaN(val)) {
-            this.valueInner = val
+            this.valueInner = val;
           } else {
-            this.valueInner = 0
+            this.valueInner = 0;
           }
         }
 
         if (isNumber(this.valueInner)) {
-          this.ratioA = this.valueToRatio(this.valueInner)
+          this.ratioA = this.valueToRatio(this.valueInner);
         }
 
         if (isObject(this.valueInner)) {
-          this.valA = Math.min(this.valueInner.lower, this.valueInner.upper)
-          this.valB = Math.max(this.valueInner.lower, this.valueInner.upper)
+          this.valA = Math.min(this.valueInner.lower, this.valueInner.upper);
+          this.valB = Math.max(this.valueInner.lower, this.valueInner.upper);
 
-          this.ratioA = this.valueToRatio(this.valA)
-          this.ratioB = this.valueToRatio(this.valB)
+          this.ratioA = this.valueToRatio(this.valA);
+          this.ratioB = this.valueToRatio(this.valB);
         }
         // 更新bar
-        this.updateBar()
+        this.updateBar();
       }
     },
-    created () {
-      this.initData()
+    created() {
+      this.initData();
     },
-    mounted () {
-      this.initDOM()
+    mounted() {
+      this.initDOM();
+    },
+    destroy() {
+      this.pointerEvents && this.pointerEvents.destroy();
     },
     components: {
       RangeKnobHandle: RangeKnobHandle
     }
-  }
+  };
 </script>
