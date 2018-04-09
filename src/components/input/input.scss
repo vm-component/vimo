@@ -1,0 +1,129 @@
+@import "../../themes/globals";
+
+// Input
+// --------------------------------------------------
+
+// Input/Textarea Wrapper
+// --------------------------------------------------
+
+.#{$prefix}-input,
+.#{$prefix}-textarea {
+  position: relative;
+  display: block;
+  width: 100%;
+  flex: 1;
+}
+
+.item-input .#{$prefix}-input,
+.item-input .#{$prefix}-textarea {
+  position: static;
+}
+
+// Textarea Within An Item
+// --------------------------------------------------
+
+.item.item-textarea {
+  align-items: stretch;
+}
+
+// Native Text Input
+// --------------------------------------------------
+
+.text-input {
+  display: inline-block;
+  width: 92%;
+  width: calc(100% - 10px);
+  background: transparent;
+  border: 0;
+  flex: 1;
+
+  @include placeholder($text-input-placeholder-color);
+  @include appearance(none);
+  @include border-radius(0);
+}
+
+textarea.text-input {
+  display: block;
+}
+
+.text-input[disabled] {
+  opacity: 0.4;
+}
+
+input.text-input:-webkit-autofill {
+  background-color: transparent;
+}
+
+.platform-mobile textarea.text-input {
+  resize: none;
+}
+
+// Input Cover: Unfocused
+// --------------------------------------------------
+// The input cover is the div that actually receives the
+// tap/click event when scroll assist is configured to true.
+// This make it so the native input element is not clickable.
+// This will only show when the scroll assist is configured
+// otherwise the .input-cover will not be rendered at all
+// The input cover is not clickable when the input is disabled
+
+.input-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  touch-action: manipulation;
+
+  @include position(0, null, null, 0);
+}
+
+.input[disabled] .input-cover {
+  pointer-events: none;
+}
+
+// Input Cover: Focused
+// --------------------------------------------------
+// When the input has focus, then the input cover should be hidden
+
+// TODO remove all uses of input-has-focus in v4
+.item-input-has-focus .input-cover,
+.input-has-focus .input-cover {
+  display: none;
+}
+
+.item-input-has-focus,
+.input-has-focus {
+  pointer-events: none;
+}
+
+.item-input-has-focus input,
+.input-has-focus input,
+.item-input-has-focus textarea,
+.input-has-focus textarea,
+.item-input-has-focus a,
+.input-has-focus a,
+.item-input-has-focus button,
+.input-has-focus button {
+  pointer-events: auto;
+}
+
+// Clear Input Icon
+// --------------------------------------------------
+
+.#{$prefix}-input .#{$prefix}-button.text-input-clear-icon {
+  position: absolute;
+  top: 0;
+  display: none;
+  height: 100%;
+  background-repeat: no-repeat;
+
+  @include margin(0);
+  @include padding(0);
+  @include background-position(center);
+}
+
+// TODO remove all uses of input-has-focus in v4
+// TODO remove all uses of input-has-value in v4
+.item-input-has-focus.item-input-has-value .text-input-clear-icon,
+.input-has-focus.input-has-value .text-input-clear-icon {
+  display: block;
+}

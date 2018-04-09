@@ -15,7 +15,6 @@
         <slot name="outer"></slot>
     </article>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   import { setElementClass } from '../../util/util'
   import { isPresent, isString } from '../../util/type'

@@ -1,9 +1,0 @@
-.zoom-enter-active, .zoom-leave-active {
-  transform: scale(1);
-  opacity: 1;
-}
-
-.zoom-enter, .zoom-leave-active {
-  transform: scale(0.9);
-  opacity: 0.01;
-}

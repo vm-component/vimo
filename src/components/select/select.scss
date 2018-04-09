@@ -1,0 +1,33 @@
+@import "../../themes/globals";
+
+// Select
+// --------------------------------------------------
+
+.#{$prefix}-select {
+  display: flex;
+  max-width: 45%;
+  overflow: hidden;
+}
+
+.select-text {
+  min-width: 16px;
+  overflow: hidden;
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.item-multiple-inputs .#{$prefix}-select {
+  position: relative;
+}
+
+.select-disabled,
+.item-select-disabled .#{$prefix}-label {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.select-popover .#{$prefix}-list {
+  @include margin($select-popover-list-margin-top, $select-popover-list-margin-end, $select-popover-list-margin-bottom, $select-popover-list-margin-start);
+}

@@ -1,0 +1,38 @@
+@import "../../themes/globals";
+
+// Toast
+// --------------------------------------------------
+
+.#{$prefix}-toast {
+  position: fixed;
+  z-index: $z-index-overlay + $z-index-overlay-toast;
+  display: block;
+  width: $toast-width;
+  height: $toast-width;
+  pointer-events: none;
+  contain: strict;
+
+  @include position(0, null, null, 0);
+}
+
+.toast-container {
+  display: flex;
+  pointer-events: auto;
+  align-items: center;
+  contain: content;
+
+  .toast-button {
+    font-size: 15px;
+
+    @include padding(19px, 16px, 17px);
+  }
+
+  .toast-message {
+    flex: 1;
+  }
+}
+
+.toast-wrapper {
+  z-index: $z-index-overlay-wrapper;
+  max-width: $toast-max-width;
+}

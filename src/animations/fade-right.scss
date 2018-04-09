@@ -1,9 +1,0 @@
-.fade-right-enter-active, .fade-right-leave-active {
-  transform: translateX(0px);
-  opacity: 1;
-}
-
-.fade-right-enter, .fade-right-leave-active {
-  transform: translateX(40px);
-  opacity: 0.01;
-}

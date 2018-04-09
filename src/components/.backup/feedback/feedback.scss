@@ -1,0 +1,125 @@
+.vm-feedback.feedback__inputBox {
+  border-bottom: 1px solid #f2f2f2;
+  width: 100%;
+  background: #fff;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  .feedback__inputBox--textareaBox {
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+  }
+  .feedback__text {
+    color: #8b8b8b;
+    font-size: 14px;
+    margin: 0;
+    text-align: right;
+    padding: 0 10px;
+  }
+  .feedback__inputBox--images {
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 10px;
+    .image {
+      width: 60px;
+      height: 60px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      /*overflow: hidden;*/
+      position: relative;
+
+      display: flex;
+      flex: 0 0 auto;
+      justify-content: center;
+      align-items: center;
+
+      border: 1px solid #eee;
+
+      background-repeat: no-repeat;
+      background-color: #eee;
+      background-position: center center;
+      background-size: cover;
+
+      .file {
+        display: none;
+      }
+      img {
+        width: 100%;
+        min-height: 100%;
+      }
+    }
+    .preview {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      top: 0;
+    }
+    .delete {
+      position: absolute;
+      height: 25px;
+      width: 25px;
+      top: -5px;
+      right: -5px;
+      z-index: 2;
+      &:before {
+        content: '';
+        position: absolute;
+        height: 16px;
+        width: 16px;
+        background: red;
+        border-radius: 100%;
+        top: 0;
+        right: 0;
+        z-index: 3;
+      }
+      &::after {
+        content: '';
+        height: 1px;
+        width: 10px;
+        position: absolute;
+        background: #fff;
+        top: 7px;
+        right: 3px;
+        z-index: 4;
+      }
+    }
+    .empty {
+      border: 1px dashed #8c8c8c;
+      background: #f3f3f3;
+      position: relative;
+      .file {
+        display: block !important;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+
+      &::before,
+      &::after {
+        background: #dadada;
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        content: '';
+      }
+      &::after {
+        margin-left: -1px;
+        margin-top: -15px;
+        height: 30px;
+        width: 2px;
+      }
+      &::before {
+        margin-left: -15px;
+        margin-top: -1px;
+        width: 30px;
+        height: 2px;
+      }
+    }
+  }
+}

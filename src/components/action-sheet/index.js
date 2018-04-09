@@ -1,3 +1,6 @@
+import actionSheetComponent from './action-sheet.vue'
+import GeneratePopUpInstance from '../../util/GeneratePopUpInstance.js'
+
 /**
  * @component ActionSheet
  * @description
@@ -97,17 +100,14 @@
  * @return {Promise}
  * */
 
-import actionSheetComponent from './action-sheet.vue'
-import GeneratePopUpInstance from '../../util/GeneratePopUpInstance.js'
-
 class ActionSheetInstance extends GeneratePopUpInstance {
-  isPresentHandled (options) {
-    return !options.isH5 &&
-      window.VM &&
-      window.VM.platform &&
-      window.VM.platform.actionSheet &&
-      window.VM.platform.actionSheet(options)
-  }
+  // isPresentHandled (options) {
+  //   return !options.isH5 &&
+  //     window.VM &&
+  //     window.VM.platform &&
+  //     window.VM.platform.actionSheet &&
+  //     window.VM.platform.actionSheet(options)
+  // }
 }
 
 export default new ActionSheetInstance(actionSheetComponent, 'sheetPortal')

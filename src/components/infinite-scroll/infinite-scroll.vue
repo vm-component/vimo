@@ -3,7 +3,6 @@
         <slot></slot>
     </div>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component InfiniteScroll
@@ -66,12 +65,12 @@
    * </InfiniteScroll>
    *
    * // ....
-   *  .ion-infinite-scroll{
+   *  .#{$prefix}-infinite-scroll{
    *      .loadedAll{
    *          display: none;
    *      }
    *   }
-   *  .ion-infinite-scroll[state=disabled]{
+   *  .#{$prefix}-infinite-scroll[state=disabled]{
    *      .loadedAll{
    *          display: block;
    *      }

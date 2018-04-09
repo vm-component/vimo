@@ -18,7 +18,6 @@
         </transition>
     </div>
 </template>
-<style lang="scss" src="./modal.scss"></style>
 <script type="text/javascript">
   import Backdrop from '../backdrop'
   import popupExtend from '../../util/popup-extend'

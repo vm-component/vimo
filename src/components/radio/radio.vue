@@ -11,7 +11,6 @@
         </button>
     </div>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Radio

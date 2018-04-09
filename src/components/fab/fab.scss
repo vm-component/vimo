@@ -1,0 +1,207 @@
+@import "../../themes/globals";
+
+// Floating Action Buttons
+// --------------------------------------------------
+
+.fab {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: $fab-size;
+  height: $fab-size;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: $fab-size;
+  text-overflow: ellipsis;
+  text-transform: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  background-clip: padding-box;
+  transition: background-color, opacity 100ms linear;
+  font-kerning: none;
+  contain: strict;
+
+  @include text-align(center);
+  @include appearance(none);
+  @include border-radius(50%);
+}
+
+.fab .#{$prefix}-icon {
+  font-size: 1.7em;
+  flex: 1;
+}
+
+// FAB mini
+// --------------------------------------------------
+
+.fab[mini] {
+  width: $fab-mini-size;
+  height: $fab-mini-size;
+  line-height: $fab-mini-size;
+
+  @include margin(($fab-size - $fab-mini-size) / 2);
+}
+
+.fab[mini] .fab-close-icon {
+  line-height: $fab-mini-size;
+}
+
+// FAB container
+// --------------------------------------------------
+
+.#{$prefix}-fab {
+  //position: absolute;
+  position: fixed;
+  z-index: $z-index-fixed-content;
+
+  //&[center] {
+  //  @include position(null, null, null, 50%);
+  //  @include margin-horizontal(-$fab-size / 2, null);
+  //}
+  //
+  //&[middle] {
+  //  @include margin(-$fab-size / 2, null, null, null);
+  //
+  //  top: 50%;
+  //}
+  //
+  //&[top] {
+  //  top: $fab-content-margin;
+  //}
+  //
+  //&[right] {
+  //  // scss-lint:disable PropertySpelling
+  //  @include multi-dir() {
+  //    right: $fab-content-margin;
+  //  }
+  //
+  //  @include multi-dir() {
+  //    right: calc(#{$fab-content-margin} + constant(safe-area-inset-right));
+  //    right: calc(#{$fab-content-margin} + env(safe-area-inset-right));
+  //  }
+  //}
+
+  //&[end] {
+  //  @include position-horizontal(null, $fab-content-margin);
+  //  @include safe-position-horizontal(null, $fab-content-margin);
+  //}
+  //
+  //&[bottom] {
+  //  bottom: $fab-content-margin;
+  //}
+  //
+  //&[left] {
+  //  // scss-lint:disable PropertySpelling
+  //  @include multi-dir() {
+  //    left: $fab-content-margin;
+  //  }
+  //
+  //  @include multi-dir() {
+  //    left: calc(#{$fab-content-margin} + constant(safe-area-inset-left));
+  //    left: calc(#{$fab-content-margin} + env(safe-area-inset-left));
+  //  }
+  //}
+  //
+  //&[start] {
+  //  @include position-horizontal($fab-content-margin, null);
+  //  @include safe-position-horizontal($fab-content-margin, null);
+  //}
+  //
+  //&[top][edge] {
+  //  top: -$fab-size / 2;
+  //}
+  //
+  //&[bottom][edge] {
+  //  bottom: -$fab-size / 2;
+  //}
+}
+
+// FAB list (speed dial)
+// --------------------------------------------------
+
+.#{$prefix}-fab-list {
+  position: absolute;
+  top: 0;
+  display: none;
+  min-width: $fab-size;
+  min-height: $fab-size;
+  flex-direction: column;
+  align-items: center;
+
+  @include margin($fab-size + $fab-list-margin, 0);
+}
+
+.fab-in-list {
+  width: $fab-mini-size;
+  height: $fab-mini-size;
+  opacity: 0;
+  //visibility: hidden;
+  transform: scale(0);
+
+  @include margin(8px, 0);
+}
+
+.fab-in-list.show {
+  opacity: 1;
+  //visibility: visible;
+  transform: scale(1);
+}
+
+.#{$prefix}-fab-list[side=left] .fab-in-list,
+.#{$prefix}-fab-list[side=right] .fab-in-list {
+  @include margin(0, 8px);
+}
+
+.#{$prefix}-fab-list[side=top] {
+  top: auto;
+  bottom: 0;
+  flex-direction: column-reverse;
+}
+
+.#{$prefix}-fab-list[side=left] {
+  flex-direction: row-reverse;
+
+  @include margin(0, $fab-size + $fab-list-margin);
+  @include position-horizontal(null, 0);
+}
+
+.#{$prefix}-fab-list[side=right] {
+  flex-direction: row;
+
+  @include margin(0, $fab-size + $fab-list-margin);
+  @include position(null, null, null, 0);
+}
+
+// FAB animation
+// --------------------------------------------------
+
+.fab-list-active {
+  display: flex;
+}
+
+.fab-close-icon {
+  position: absolute;
+  line-height: $fab-size;
+  opacity: 0;
+  transition: all ease-in-out 300ms;
+  transition-property: transform, opacity;
+  transform: scale(0.4) rotateZ(-45deg);
+
+  @include position(0, 0, null, 0);
+}
+
+.fab .button-inner {
+  transition: all ease-in-out 300ms;
+  transition-property: transform, opacity;
+}
+
+.fab-close-active .fab-close-icon {
+  opacity: 1;
+  transform: scale(1) rotateZ(0deg);
+}
+
+.fab-close-active .button-inner {
+  opacity: 0;
+  transform: scale(0.4) rotateZ(45deg);
+}

@@ -1,8 +1,8 @@
 <template>
-    <header class="ion-header" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
-        <div ref="rightButtonPlaceholder" id="right-button-placeholder"></div>
-        <slot></slot>
-    </header>
+  <header class="ion-header" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
+    <div ref="rightButtonPlaceholder" id="right-button-placeholder"></div>
+    <slot></slot>
+  </header>
 </template>
 <script type="text/javascript">
   /**

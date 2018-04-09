@@ -1,0 +1,33 @@
+@import "../../themes/globals";
+
+// DateTime
+// --------------------------------------------------
+
+.#{$prefix}-datetime {
+  display: flex;
+  overflow: hidden;
+}
+
+.datetime-text {
+  min-width: 16px;
+  min-height: 1.2em;
+  overflow: hidden;
+  font-size: inherit;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.datetime-disabled,
+.item-datetime-disabled .#{$prefix}-label {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.item-label-stacked .#{$prefix}-datetime,
+.item-label-floating .#{$prefix}-datetime {
+  width: 100%;
+
+  @include padding-horizontal(0, null);
+}

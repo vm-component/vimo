@@ -1,0 +1,29 @@
+@import "../../themes/globals";
+
+// Img
+// --------------------------------------------------
+
+.#{$prefix}-img {
+  display: inline-block;
+  min-width: 20px;
+  min-height: 20px;
+  background: $img-placeholder-background;
+  contain: strict;
+}
+
+.#{$prefix}-img img {
+  transition: opacity 0.5s;
+  object-fit: cover;
+}
+
+// Transition
+// --------------------------------------------------
+
+.fade-enter-active,
+.fade-leave-active {
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}

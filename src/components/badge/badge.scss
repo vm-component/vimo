@@ -1,0 +1,21 @@
+@import "../../themes/globals";
+
+// Badge
+// --------------------------------------------------
+
+.#{$prefix}-badge {
+  display: inline-block;
+  min-width: 10px;
+  font-size: $badge-font-size;
+  font-weight: $badge-font-weight;
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: baseline;
+
+  @include padding(3px, 8px);
+  @include text-align(center);
+}
+
+.#{$prefix}-badge:empty {
+  display: none;
+}

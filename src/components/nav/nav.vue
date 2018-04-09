@@ -18,7 +18,6 @@
         </template>
     </nav>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Nav
@@ -95,7 +94,7 @@
         }
         // 页面切换显示Indicator
         if (this.showIndicatorWhenPageChange) {
-          import('../indicator').then((component) => {
+          import('../.backup/indicator').then((component) => {
             this.IndicatorComponent = component.default
             this.$router.beforeEach((to, from, next) => {
               if (vm.$history.getDirection() === 'forward') {

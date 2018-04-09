@@ -1,0 +1,84 @@
+@import "../../themes/globals";
+
+// Loading Indicator
+// --------------------------------------------------
+
+.#{$prefix}-loading {
+
+  //position: absolute;
+  position: fixed;
+  z-index: $z-index-overlay + $z-index-overlay-loading;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  contain: strict;
+
+  @include position(0, 0, 0, 0);
+}
+
+.loading-wrapper {
+  z-index: $z-index-overlay-wrapper;
+  display: flex;
+  margin-bottom: 40px;
+
+  //opacity: 0;
+
+  font-size: 14px;
+
+  // addStyle
+  transition: transform ease-in-out 200ms, opacity ease-in-out 200ms;
+  align-items: center;
+}
+
+
+// Transition
+// --------------------------------------------------
+
+.alert-enter-active, .alert-leave-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.alert-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.alert-leave-active {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+// indicator
+
+.#{$prefix}-loading.indicator {
+  .loading-wrapper {
+    padding: 13px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.9);
+
+    circle,
+    line {
+      stroke: #fff !important;
+    }
+
+    .loading-spinner {
+      display: flex;
+      width: 30px;
+      height: 30px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.indicator.reverse {
+  .loading-wrapper {
+    background: rgba(256, 256, 256, 0.9);
+
+    circle,
+    line {
+      stroke: #000 !important;
+    }
+  }
+}

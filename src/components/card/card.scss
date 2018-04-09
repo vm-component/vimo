@@ -1,0 +1,25 @@
+@import "../../themes/globals";
+
+// Card
+// --------------------------------------------------
+
+.#{$prefix}-card {
+  display: block;
+  overflow: hidden;
+}
+
+.#{$prefix}-card img {
+  display: block;
+  width: 100%;
+}
+
+.#{$prefix}-card-header {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.#{$prefix}-card-content {
+  display: block;
+}

@@ -1,0 +1,95 @@
+@import "../../themes/globals";
+@import "./style/item-media.scss";
+
+// Item
+// --------------------------------------------------
+// Core structure only, dimensions belong in specific modes
+//
+// ".item" includes elements:
+//   ion-item
+//   [ion-item]
+//   ion-item-divider
+//   ion-list-header
+//
+// ".item-block" includes elements:
+//   ion-item
+//   [ion-item]
+
+.item {
+  contain: content;
+}
+
+.item-block {
+  display: flex;
+  width: 100%;
+  min-height: 44px;
+  overflow: hidden;
+  font-weight: normal;
+  line-height: normal;
+  color: inherit;
+  text-decoration: none;
+  border: 0;
+  align-items: center;
+  justify-content: space-between;
+
+  @include margin(0);
+  @include padding(0);
+  @include text-align(initial);
+}
+
+.item-inner {
+  display: flex;
+  min-height: inherit;
+  overflow: hidden;
+  flex-direction: inherit;
+  border: 0;
+  flex: 1;
+  align-items: inherit;
+  align-self: stretch;
+
+  @include margin(0);
+  @include padding(0);
+}
+
+.input-wrapper {
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-direction: inherit;
+  flex: 1;
+  align-items: inherit;
+  align-self: stretch;
+}
+
+.item[no-lines],
+.item.item[no-lines] .item-inner {
+  border: 0;
+}
+
+.#{$prefix}-item-group {
+  display: block;
+}
+
+.#{$prefix}-item-divider {
+  z-index: $z-index-item-divider;
+  display: flex;
+  width: 100%;
+  min-height: 30px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+
+  @include margin(0);
+  @include padding(0);
+}
+
+.#{$prefix}-item-divider[sticky] {
+  position: sticky;
+  top: 0;
+}
+
+[vertical-align-top],
+.#{$prefix}-input.item {
+  align-items: flex-start;
+}
+

@@ -1,0 +1,118 @@
+@import "../../themes/globals";
+
+// Refresher
+// --------------------------------------------------
+
+.#{$prefix}-refresher {
+  position: absolute;
+  z-index: $z-index-refresher;
+  display: none;
+  width: 100%;
+  height: $refresher-height;
+
+  @include position(0, null, null, 0);
+
+  &.refresher-active {
+    display: block;
+  }
+}
+
+.has-refresher > .scroll-content {
+  border-top: 1px solid $refresher-border-color;
+  transition: transform 320ms cubic-bezier(0.36, 0.66, 0.04, 1);
+  // when the refresher is let go or has completed
+  // this transition is what is used to put the
+  // scroll content back into it's original location
+  @include margin(-1px, null, null, null);
+}
+
+// Refresher Content
+// --------------------------------------------------
+
+.#{$prefix}-refresher-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.refresher-pulling,
+.refresher-refreshing {
+  display: none;
+  width: 100%;
+}
+
+.refresher-pulling-icon,
+.refresher-refreshing-icon {
+  font-size: $refresher-icon-font-size;
+  color: $refresher-icon-color;
+  transition: 200ms;
+
+  @include text-align(center);
+  @include transform-origin(center);
+}
+
+.refresher-pulling-text,
+.refresher-refreshing-text {
+  font-size: $refresher-text-font-size;
+  color: $refresher-text-color;
+
+  @include text-align(center);
+}
+
+.refresher-refreshing .spinner-ios line,
+.refresher-refreshing .spinner-ios-small line,
+.refresher-refreshing .spinner-crescent circle {
+  stroke: $refresher-icon-color;
+}
+
+.refresher-refreshing .spinner-bubbles circle,
+.refresher-refreshing .spinner-circles circle,
+.refresher-refreshing .spinner-dots circle {
+  fill: $refresher-icon-color;
+}
+
+// Refresher Content States
+// --------------------------------------------------
+
+.#{$prefix}-refresher[state=pulling] .#{$prefix}-refresher-content {
+  .refresher-pulling {
+    display: block;
+  }
+}
+
+.#{$prefix}-refresher[state=ready] .#{$prefix}-refresher-content {
+  .refresher-pulling {
+    display: block;
+  }
+
+  .refresher-pulling-icon {
+    transform: rotate(180deg);
+  }
+}
+
+.#{$prefix}-refresher[state=refreshing] .#{$prefix}-refresher-content {
+  .refresher-refreshing {
+    display: block;
+  }
+}
+
+.#{$prefix}-refresher[state=cancelling] .#{$prefix}-refresher-content {
+  .refresher-pulling {
+    display: block;
+  }
+
+  .refresher-pulling-icon {
+    transform: scale(0);
+  }
+}
+
+.#{$prefix}-refresher[state=completing] .#{$prefix}-refresher-content {
+  .refresher-refreshing {
+    display: block;
+  }
+
+  .refresher-refreshing-icon {
+    transform: scale(0);
+  }
+}

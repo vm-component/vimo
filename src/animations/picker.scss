@@ -1,8 +1,0 @@
-// transitioName = 'picker'
-.picker-enter-active, .picker-leave-active {
-    transform: translateY(0%);
-}
-
-.picker-enter, .picker-leave-active {
-    transform: translateY(100%);
-}

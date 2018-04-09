@@ -6,7 +6,6 @@
         <slot></slot>
     </label>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Label

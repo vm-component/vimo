@@ -15,7 +15,6 @@
         </div>
     </div>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   import addItemAttr from '../../util/add-slot-name-to-attr.js'
 

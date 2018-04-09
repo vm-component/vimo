@@ -30,7 +30,6 @@
         </transition>
     </div>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Picker
@@ -308,7 +307,7 @@
       this.normalizeData()
     },
     beforeMount () {
-      let pickerCmpElements = document.querySelectorAll('.ion-picker-cmp')
+      let pickerCmpElements = document.querySelectorAll('.#{$prefix}-picker-cmp')
       if (pickerCmpElements.length > 0) {
         pickerCmpElements.forEach((ele) => {
           ele.remove()

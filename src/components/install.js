@@ -1,6 +1,6 @@
-import { setupConfig } from '../config/config'
-import { setupHistory } from '../history/history'
-import { setupPlatform } from '../platform/platform'
+import { setupConfig } from '../.backup/config/config'
+import { setupHistory } from '../.backup/history/history'
+import { setupPlatform } from '../.backup/platform/platform'
 import { version } from '../../package.json'
 
 const addLogo = (vimoVer, vueVer) => {
@@ -27,12 +27,12 @@ export default function install (Vue, options) {
     vm: Vue
   }
 
-  Vue.prototype.$config = config
-  Vue.prototype.$platform = platform
-  Vue.prototype.$history = history // 监听route变化, 内建历史记录
+  // Vue.prototype.$config = config
+  // Vue.prototype.$platform = platform
+  // Vue.prototype.$history = history // 监听route变化, 内建历史记录
 
   // add logo
-  addLogo(version, Vue.version)
+  // addLogo(version, Vue.version)
 
   // ready event for VimoReady
   var ev = document.createEvent('HTMLEvents')

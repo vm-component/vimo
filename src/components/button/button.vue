@@ -11,7 +11,6 @@
         <span class="button-inner"><slot></slot></span>
     </button>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   /**
    * @component Button

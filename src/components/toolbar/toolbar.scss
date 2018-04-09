@@ -1,0 +1,86 @@
+@import "../../themes/globals";
+
+// Toolbar
+// --------------------------------------------------
+
+.#{$prefix}-toolbar {
+  position: relative;
+  z-index: $z-index-toolbar;
+}
+
+.toolbar {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  contain: content;
+}
+
+.toolbar-background {
+  position: absolute;
+  z-index: $z-index-toolbar-background;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border: 0;
+  transform: translateZ(0);
+  contain: strict;
+
+  @include position(0, null, null, 0);
+}
+
+.#{$prefix}-title {
+  display: flex;
+  transform: translateZ(0);
+  flex: 1;
+  align-items: center;
+}
+
+.toolbar-title {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.#{$prefix}-buttons {
+  display: block;
+  pointer-events: none;
+  transform: translateZ(0);
+
+  @include margin(0, 0.2rem);
+}
+
+.#{$prefix}-buttons button,
+.#{$prefix}-buttons a,
+.#{$prefix}-buttons input,
+.#{$prefix}-buttons textarea,
+.#{$prefix}-buttons div {
+  pointer-events: auto;
+}
+
+// Transparent Toolbar
+// --------------------------------------------------
+
+.toolbar[transparent] .toolbar-background {
+  background: transparent;
+  border-color: transparent;
+}
+
+// TODO this is a temp hack to fix segment overlapping ion-nav-item
+.#{$prefix}-buttons,
+.bar-button-menutoggle {
+  z-index: 99;
+  transform: translateZ(0);
+}
+
+// Navbar
+// --------------------------------------------------
+
+.#{$prefix}-navbar.toolbar {
+  display: flex;
+  transform: translateZ(0);
+}

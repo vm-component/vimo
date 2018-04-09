@@ -60,7 +60,6 @@
         </transition>
     </div>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   import Backdrop from '../backdrop'
   import Button from '../button'

@@ -1,4 +1,4 @@
-@import "../../../themes/ionic.globals";
+@import "../../../themes/globals";
 
 // Toolbar Buttons
 // --------------------------------------------------
@@ -14,14 +14,14 @@
   vertical-align: -webkit-baseline-middle; // the best for those that support it
   cursor: pointer;
   user-select: none;
-  
+
   @include margin(0);
   @include padding(0);
   @include text-align(center);
   @include appearance(none);
-  
+
   // Badge
-  .ion-badge {
+  .#{$prefix}-badge {
     position: absolute;
     top: 0;
     right: -4px;
@@ -31,11 +31,11 @@
 }
 
 .bar-button::after {
-  
+
   // used to make the button's hit area larger
   position: absolute;
   content: "";
-  
+
   @include position(-7px, -2px, -6px, -2px);
 }
 
@@ -75,10 +75,10 @@
 
 @mixin arrow-back($color) {
   $arrow-back-svg: "<svg t='1499003919115' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' p-id='3978' xmlns:xlink='http://www.w3.org/1999/xlink'><path d='M702.882 958.388l64.032-63.397-380.993-383.606 384.196-380.377-63.49-63.925-448.221 443.779z' p-id='3979' fill='#{$color}'/></svg>";
-  
+
   .icon-arrow-back {
     color: $color;
-    
+
     @include svg-background-image($arrow-back-svg);
   }
 }

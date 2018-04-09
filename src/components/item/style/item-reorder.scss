@@ -1,11 +1,9 @@
-@import "../../../themes/ionic.globals";
-
-$reorder-initial-transform: 300% !default;
+@import "../../../themes/globals";
 
 // Item reorder
 // --------------------------------------------------
 
-.ion-reorder {
+.#{$prefix}-reorder {
   display: none;
   max-width: 40px;
   height: 100%;
@@ -21,21 +19,21 @@ $reorder-initial-transform: 300% !default;
   @include transform(translate3d($reorder-initial-transform, 0, 0));
 }
 
-.reorder-side-start .ion-reorder {
+.reorder-side-start .#{$prefix}-reorder {
   order: -1;
 
   @include transform(translate3d(-$reorder-initial-transform, 0, 0));
 }
 
-.ion-reorder .ion-icon {
+.#{$prefix}-reorder .#{$prefix}-icon {
   pointer-events: none;
 }
 
-.reorder-enabled .ion-reorder {
+.reorder-enabled .#{$prefix}-reorder {
   display: flex;
 }
 
-.reorder-visible .ion-reorder {
+.reorder-visible .#{$prefix}-reorder {
   @include transform(translate3d(0, 0, 0));
 }
 

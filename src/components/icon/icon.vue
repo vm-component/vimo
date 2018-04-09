@@ -2,7 +2,6 @@
     <i class="ion-icon"
        :class="[colorClass,nameClass,itemClass,{'hide':hidden}]"></i>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   export default {
     name: 'Icon',

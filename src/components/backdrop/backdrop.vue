@@ -11,7 +11,6 @@
              v-show="isActiveLocal"></div>
     </transition>
 </template>
-<style lang="scss" src="./style.scss"></style>
 <script type="text/javascript">
   export default {
     name: 'Backdrop',
