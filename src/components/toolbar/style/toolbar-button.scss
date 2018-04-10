@@ -1,4 +1,4 @@
-@import "../../../themes/globals";
+@import "../../../style/globals";
 
 // Toolbar Buttons
 // --------------------------------------------------
@@ -71,14 +71,4 @@
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 16px 23px; /* no */
-}
-
-@mixin arrow-back($color) {
-  $arrow-back-svg: "<svg t='1499003919115' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' p-id='3978' xmlns:xlink='http://www.w3.org/1999/xlink'><path d='M702.882 958.388l64.032-63.397-380.993-383.606 384.196-380.377-63.49-63.925-448.221 443.779z' p-id='3979' fill='#{$color}'/></svg>";
-
-  .icon-arrow-back {
-    color: $color;
-
-    @include svg-background-image($arrow-back-svg);
-  }
 }

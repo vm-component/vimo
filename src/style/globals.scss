@@ -1,0 +1,324 @@
+// Global Functions
+@import "functions";
+// Global Mixins
+@import "mixins";
+@import "const";
+
+// Hairline width
+$hairlines-width: 0.55px !default;
+
+// Z-Index
+// --------------------------------------------------
+// Grouped by elements which would be siblings
+
+$z-index-menu-overlay: 80 !default;
+$z-index-overlay: 1000 !default;
+$z-index-overlay-toast: 300 !default;
+$z-index-overlay-loading: 250 !default;
+$z-index-overlay-alert: 200 !default;
+$z-index-overlay-sheet: 150 !default;
+$z-index-overlay-modal: 100 !default;
+$z-index-click-block: 99999 !default;
+
+$z-index-fixed-content: 999 !default;
+$z-index-scroll-content: 1 !default;
+$z-index-refresher: 0 !default;
+
+$z-index-page-container: 0 !default;
+$z-index-toolbar: 10 !default;
+$z-index-toolbar-background: -1 !default;
+
+$z-index-backdrop: 2 !default;
+$z-index-overlay-wrapper: 10 !default;
+
+$z-index-item-options: 1 !default;
+$z-index-item-divider: 100 !default;
+
+// Default Theme
+// ----------------------------------
+
+$colors: (
+  primary: #327eff,
+  secondary: #32db64,
+  danger: #f53d3d,
+  light: #f4f4f4,
+  dark: #222,
+) !default;
+
+$text-color: #000 !default;
+$link-color: color($colors, primary) !default;
+$background-color: #fff !default;
+$subdued-text-color: #666 !default;
+
+$font-family-base: -apple-system, "Helvetica Neue", "Roboto", sans-serif !default;
+$font-size-base: 14px !default; // 1.4rem == 14px
+
+$content-padding: 16px !default;
+$content-margin: 16px !default;
+
+$toolbar-background: #f8f8f8 !default;
+$toolbar-border-color: #b2b2b2 !default;
+$toolbar-text-color: $text-color !default;
+$toolbar-active-color: $link-color !default;
+$toolbar-inactive-color: #8c8c8c !default;
+
+$tabs-background: #f8f8f8 !default;
+$tabs-border-color: #b2b2b2 !default;
+$tabs-tab-color-inactive: #8c8c8c !default;
+$tabs-tab-color-active: $link-color !default;
+
+$list-text-color: $text-color !default;
+$list-background-color: $background-color !default;
+$list-border-color: #c8c7cc !default;
+
+// App
+// --------------------------------------------------
+
+/// @prop - Font size of the root html
+$font-size-root: 10px !default;
+
+/// @prop - Font weight of all headings
+$headings-font-weight: 500 !default;
+
+/// @prop - Line height of all headings
+$headings-line-height: 1.2 !default;
+
+/// @prop - Font size of heading level 1
+$h1-font-size: 26px !default;
+
+/// @prop - Font size of heading level 2
+$h2-font-size: 24px !default;
+
+/// @prop - Font size of heading level 3
+$h3-font-size: 22px !default;
+
+/// @prop - Font size of heading level 4
+$h4-font-size: 20px !default;
+
+/// @prop - Font size of heading level 5
+$h5-font-size: 18px !default;
+
+/// @prop - Font size of heading level 6
+$h6-font-size: 16px !default;
+
+// Action Sheet
+// --------------------------------------------------
+
+/// @prop - Width of the action sheet
+$action-sheet-width: 100% !default;
+
+/// @prop - Maximum width of the action sheet
+$action-sheet-max-width: 500px !default;
+
+// Alerts
+// --------------------------------------------------
+
+/// @prop - Minimum width of the alert
+$alert-min-width: 250px !default;
+
+/// @prop - Maximum height of the alert
+$alert-max-height: 90% !default;
+
+/// @prop - Line height of the alert button
+$alert-button-line-height: 20px !default;
+
+/// @prop - Font size of the alert button
+$alert-button-font-size: 14px !default;
+
+/// @prop - Color of the alert input placeholder
+$alert-input-placeholder-color: #999 !default;
+
+// Backdrop
+// --------------------------------------------------
+
+/// @prop - Color of the backdrop
+$backdrop-color: #000 !default;
+
+// Badge
+// --------------------------------------------------
+
+/// @prop - Font size of the badge
+$badge-font-size: 13px !default;
+
+/// @prop - Font weight of the badge
+$badge-font-weight: bold !default;
+
+// Buttons
+// --------------------------------------------------
+
+// deprecated
+$button-round-padding: null !default;
+
+/// @prop - Padding top of the round button
+$button-round-padding-top: 0 !default;
+
+/// @prop - Padding end of the round button
+$button-round-padding-end: 26px !default;
+
+/// @prop - Padding bottom of the round button
+$button-round-padding-bottom: $button-round-padding-top !default;
+
+/// @prop - Padding start of the round button
+$button-round-padding-start: $button-round-padding-end !default;
+
+/// @prop - Border radius of the round button
+$button-round-border-radius: 64px !default;
+
+// Floating Action Buttons
+// --------------------------------------------------
+
+/// @prop - Width and height of the FAB button
+$fab-size: 56px !default;
+
+/// @prop - Width and height of the FAB button mini
+$fab-mini-size: 40px !default;
+
+/// @prop - Margin of the FAB Container
+$fab-content-margin: 10px !default;
+
+/// @prop - Margin of the FAB List
+$fab-list-margin: 10px !default;
+
+/// @prop - Background color of the button in a list
+$fab-list-button-background-color: #f4f4f4 !default;
+
+// Grid
+// --------------------------------------------------
+// Using flexbox for the grid, originally inspired by Philip Walton:
+// http://philipwalton.github.io/solved-by-flexbox/demos/grids/
+// Column layout based on the Bootstrap grid system:
+// http://v4-alpha.getbootstrap.com/layout/grid/
+
+// Grid Breakpoints
+// --------------------------------------------------
+
+/// @prop - The minimum dimensions at which your layout will change,
+/// adapting to different screen sizes, for use in media queries
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+// Grid Containers
+// --------------------------------------------------
+
+/// @prop - Maximum width of the grid for different screen sizes
+$grid-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+) !default;
+
+// Img
+// --------------------------------------------------
+
+/// @prop - Color of the image when it hasn't fully loaded yet
+$img-placeholder-background: #eee !default;
+
+// Input
+// --------------------------------------------------
+
+/// @prop - Color of the input highlight when valid
+$text-input-highlight-color-valid: #32db64 !default;
+
+/// @prop - Color of the input highlight when invalid
+$text-input-highlight-color-invalid: #f53d3d !default;
+
+/// @prop - Color of the input placeholder
+$text-input-placeholder-color: #999 !default;
+
+// Item reorder
+// --------------------------------------------------
+
+$reorder-initial-transform: 300% !default;
+
+// Menu
+// --------------------------------------------------
+
+/// @prop - Width of the menu
+$menu-width: 304px !default;
+
+/// @prop - Width of the menu on small devices (under 340px)
+$menu-small-width: $menu-width - 40px !default;
+
+// Modals
+// --------------------------------------------------
+
+/// @prop - Min width of the modal inset
+$modal-inset-min-width: 768px !default;
+
+/// @prop - Minimum height of the small modal inset
+$modal-inset-min-height-small: 600px !default;
+
+/// @prop - Minimum height of the large modal inset
+$modal-inset-min-height-large: 768px !default;
+
+/// @prop - Width of the large modal inset
+$modal-inset-width: 600px !default;
+
+/// @prop - Height of the small modal inset
+$modal-inset-height-small: 500px !default;
+
+/// @prop - Height of the large modal inset
+$modal-inset-height-large: 600px !default;
+
+// Picker
+// --------------------------------------------------
+
+/// @prop - Width of the picker
+$picker-width: 100% !default;
+
+/// @prop - Max width of the picker
+$picker-max-width: 500px !default;
+
+// Refresher
+// --------------------------------------------------
+
+/// @prop - Height of the refresher
+$refresher-height: 70px !default;
+
+/// @prop - Color of the refresher icon
+$refresher-icon-color: #000 !default;
+
+/// @prop - Font size of the refresher icon
+$refresher-icon-font-size: 30px !default;
+
+/// @prop - Text color of the refresher content
+$refresher-text-color: #000 !default;
+
+/// @prop - Font size of the refresher content
+$refresher-text-font-size: 16px !default;
+
+/// @prop - Border color of the refresher
+$refresher-border-color: #ddd !default;
+// Select
+// --------------------------------------------------
+
+/// @prop - Margin top of the select popover list
+$select-popover-list-margin-top: -1px !default;
+
+// deprecated
+$select-popover-list-margin-right: 0 !default;
+/// @prop - Margin end of the select popover list
+$select-popover-list-margin-end: $select-popover-list-margin-right !default;
+
+/// @prop - Margin bottom of the select popover list
+$select-popover-list-margin-bottom: -1px !default;
+
+// deprecated
+$select-popover-list-margin-left: 0 !default;
+/// @prop - Margin start of the select popover list
+$select-popover-list-margin-start: $select-popover-list-margin-left !default;
+
+// Toast
+// --------------------------------------------------
+
+/// @prop - Width of the toast
+$toast-width: 100% !default;
+
+/// @prop - Max width of the toast
+$toast-max-width: 700px !default;
