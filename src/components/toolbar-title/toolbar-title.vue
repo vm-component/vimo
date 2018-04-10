@@ -222,9 +222,9 @@
         if (this.isTitleInNavbar) {
           this.setTitle(this.titleInner)
         }
-        if (this.isHeaderInApp) {
-          window.VM.$title = this
-        }
+        // if (this.isHeaderInApp) {
+        //   window.VM.$title = this
+        // }
 
         this.$root.$on('title:click', () => {
           this.$emit('title:click')
@@ -253,9 +253,9 @@
       if (this.isTitleInNavbar) {
         this.setTitle(this.titleInner)
       }
-      if (this.isHeaderInApp) {
-        window.VM.$title = this
-      }
+      // if (this.isHeaderInApp) {
+      //   window.VM.$title = this
+      // }
     }
   }
 </script>

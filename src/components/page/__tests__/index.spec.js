@@ -9,11 +9,11 @@ let opts = {
     default: '<span>Name</span>'
   },
   mocks: {
-    $history: {
-      getDirection () {
-        return 'forward'
-      }
-    }
+    // $history: {
+    //   getDirection () {
+    //     return 'forward'
+    //   }
+    // }
   }
 }
 

@@ -72,14 +72,14 @@
       }
     },
     created () {
-      let direction = this.$history.getDirection()
-      if (direction === 'forward') {
-        this.pageZIndex = ++initPageZIndex
-      } else if (direction === 'backward') {
-        this.pageZIndex = --initPageZIndex
-      } else {
-        this.pageZIndex = initPageZIndex
-      }
+      // let direction = this.$history.getDirection()
+      // if (direction === 'forward') {
+      //   this.pageZIndex = ++initPageZIndex
+      // } else if (direction === 'backward') {
+      //   this.pageZIndex = --initPageZIndex
+      // } else {
+      //   this.pageZIndex = initPageZIndex
+      // }
       this.$root.$emit('page:created')
     },
     mounted () {
