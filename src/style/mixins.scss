@@ -653,11 +653,6 @@
 // Content Margin
 // --------------------------------------------------
 
-.#{$prefix}-app [no-margin]:not(.#{$prefix}-content),
-.#{$prefix}-app [no-margin] .scroll-content {
-  @include margin(0);
-}
-
 @mixin content-margin($mode, $content-margin) {
   .#{$prefix}-app.#{$mode} [margin]:not(.#{$prefix}-content),
   .#{$prefix}-app.#{$mode} [margin] .scroll-content {
