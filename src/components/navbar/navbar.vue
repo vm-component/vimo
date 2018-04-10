@@ -273,25 +273,25 @@
             resolve()
           } else {
             try {
-              import('../popover/index.js').then(
-                // resolve
-                (component) => {
-                  let Popover = component.default
-                  Popover.present({
-                    ev: {
-                      target: window.document.getElementById('right-button-placeholder') || null
-                    }, // 事件
-                    cssClass: 'popMenu',
-                    component: import('./menu-options.vue'),   // 传入组件
-                    data: {
-                      menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
-                    }
-                  }).then(() => { resolve() })
-                },
-                // reject
-                (err) => {
-                  reject(err)
-                })
+              // import('../popover/index.js').then(
+              //   // resolve
+              //   (component) => {
+              //     let Popover = component.default
+              //     Popover.present({
+              //       ev: {
+              //         target: window.document.getElementById('right-button-placeholder') || null
+              //       }, // 事件
+              //       cssClass: 'popMenu',
+              //       component: import('./menu-options.vue'),   // 传入组件
+              //       data: {
+              //         menusData: tmps  // 传入数据, 内部通过`this.$options.$data`获取这个data
+              //       }
+              //     }).then(() => { resolve() })
+              //   },
+              //   // reject
+              //   (err) => {
+              //     reject(err)
+              //   })
             } catch (err) {
               reject(err)
             }

@@ -1,15 +1,4 @@
 <script type="text/javascript">
-  /**
-   * @component Item/ItemDivider
-   * @description
-   *
-   * ## 列表组件 / ItemDivider分割
-   *
-   * @props {String} [mode='ios'] - 模式
-   * @props {String} [color] - 颜色
-   *
-   * @demo #/list
-   * */
   import ItemMixin from '../item/item-mixin.vue'
 
   export default {

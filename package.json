@@ -25,7 +25,10 @@
     "lib"
   ],
   "scripts": {
-    "demo:es": "vimo-tools build es",
+    "build:es": "vimo-tools build es",
+    "build:lib": "vimo-tools build lib",
+    "build:style": "vimo-tools build style",
+    "build:entry": "vimo-tools build entry",
     "demo:dev": "cross-env BABEL_ENV=demo node examples/build/dev-server.js",
     "demo:build": "cross-env BABEL_ENV=demo node examples/build/build.js",
     "docs:dev": "gulp default --gulpfile build/doc-builder/gulpfile.js",

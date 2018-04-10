@@ -1,1 +1,1 @@
-export { default } from '../list-header/list-header.vue'
+export { default } from './list-header.vue'

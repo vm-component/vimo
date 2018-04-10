@@ -94,20 +94,20 @@
         }
         // 页面切换显示Indicator
         if (this.showIndicatorWhenPageChange) {
-          import('../.backup/indicator').then((component) => {
-            this.IndicatorComponent = component.default
-            this.$router.beforeEach((to, from, next) => {
-              if (vm.$history.getDirection() === 'forward') {
-                this.IndicatorComponent.present()
-              }
-              next()
-            })
-            this.$router.afterEach(() => {
-              if (vm.$history.getDirection() === 'forward') {
-                this.IndicatorComponent.dismiss()
-              }
-            })
-          })
+          // import('../.backup/indicator').then((component) => {
+          //   this.IndicatorComponent = component.default
+          //   this.$router.beforeEach((to, from, next) => {
+          //     if (vm.$history.getDirection() === 'forward') {
+          //       this.IndicatorComponent.present()
+          //     }
+          //     next()
+          //   })
+          //   this.$router.afterEach(() => {
+          //     if (vm.$history.getDirection() === 'forward') {
+          //       this.IndicatorComponent.dismiss()
+          //     }
+          //   })
+          // })
         }
       },
 
