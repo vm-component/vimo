@@ -426,14 +426,14 @@ let routes = [
 ]
 
 routes = routes.concat(contentRoutes)
-routes = routes.concat(segmentRoutes)
-routes = routes.concat(tabsRoutes)
+// routes = routes.concat(segmentRoutes)
+// routes = routes.concat(tabsRoutes)
 routes = routes.concat(listRoutes)
 routes = routes.concat(cardRoutes)
-routes = routes.concat(scrollRoutes)
-routes = routes.concat(pickerRoutes)
-routes = routes.concat(inputRoutes)
-routes = routes.concat(textareaRoutes)
+// routes = routes.concat(scrollRoutes)
+// routes = routes.concat(pickerRoutes)
+// routes = routes.concat(inputRoutes)
+// routes = routes.concat(textareaRoutes)
 
 export default {
   mode: 'hash',

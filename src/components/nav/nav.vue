@@ -87,10 +87,10 @@
             console.warn('[Nav] pageTransition特性只能在box模式下使用, 因此这里会自动设置为true.')
           }
           // nav 动画切换部分
-          this.$router.beforeEach((to, from, next) => {
-            this.pageTransitionName = `${this.pageTransition}-${this.$history.getDirection()}`
-            next()
-          })
+          // this.$router.beforeEach((to, from, next) => {
+          //   this.pageTransitionName = `${this.pageTransition}-${this.$history.getDirection()}`
+          //   next()
+          // })
         }
         // 页面切换显示Indicator
         if (this.showIndicatorWhenPageChange) {

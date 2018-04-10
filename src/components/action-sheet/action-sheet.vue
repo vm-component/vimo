@@ -1,38 +1,73 @@
 <template>
-  <div class="ion-action-sheet" :class="[modeClass, customerClass]">
-    <vm-backdrop :bdClick="bdClick" :enableBackdropDismiss="enableBackdropDismiss"
-                 :isActive="isActive"></vm-backdrop>
+  <div
+    :class="[modeClass, customerClass]"
+    class="ion-action-sheet"
+  >
+    <vm-backdrop
+      :bd-click="bdClick"
+      :enable-backdrop-dismiss="enableBackdropDismiss"
+      :is-active="isActive"
+    />
     <transition
       name="action-sheet"
       @before-enter="beforeEnter"
       @after-enter="afterEnter"
       @before-leave="beforeLeave"
       @after-leave="afterLeave">
-      <div class="action-sheet-wrapper" v-show="isActive">
+      <div
+        v-show="isActive"
+        class="action-sheet-wrapper"
+      >
         <div class="action-sheet-container">
           <!--group normal-->
           <div class="action-sheet-group">
-            <div class="action-sheet-title" v-if="title">
-              <span>{{title}}</span>
-              <div class="action-sheet-sub-title" v-if="subTitle">{{subTitle}}</div>
+            <div
+              v-if="title"
+              class="action-sheet-title"
+            >
+              <span>{{ title }}</span>
+              <div
+                v-if="subTitle"
+                class="action-sheet-sub-title"
+              >{{ subTitle }}
+              </div>
             </div>
             <div class="action-sheet-buttons">
-              <vm-button role="action-sheet-button" @click="click(b)" v-for="(b,index) in normalButtons"
-                         icon-left
-                         :key="index"
-                         :class="[b.cssClass,{'icon-left':b.icon}]">
-                <vm-icon :name="b.icon" v-if="b.icon" class="action-sheet-icon"></vm-icon>
-                <span>{{b.text}}</span>
+              <vm-button
+                v-for="(b,index) in normalButtons"
+                :key="index"
+                :class="[b.cssClass,{'icon-left':b.icon}]"
+                role="action-sheet-button"
+                icon-left
+                @click="click(b)"
+              >
+                <vm-icon
+                  v-if="b.icon"
+                  :name="b.icon"
+                  class="action-sheet-icon"
+                />
+                <span>{{ b.text }}</span>
               </vm-button>
             </div>
           </div>
           <!--group cancel-->
-          <div class="action-sheet-group" v-if="cancelButton">
-            <vm-button role="action-sheet-button" @click="click(cancelButton)" icon-left
-                       class="action-sheet-cancel" :class="cancelButton.cssClass">
-              <vm-icon :name="cancelButton.icon" v-if="cancelButton.icon"
-                       class="action-sheet-icon"></vm-icon>
-              <span>{{cancelButton.text || 'Cancel'}}</span>
+          <div
+            v-if="cancelButton"
+            class="action-sheet-group"
+          >
+            <vm-button
+              :class="cancelButton.cssClass"
+              icon-left
+              role="action-sheet-button"
+              class="action-sheet-cancel"
+              @click="click(cancelButton)"
+            >
+              <vm-icon
+                v-if="cancelButton.icon"
+                :name="cancelButton.icon"
+                class="action-sheet-icon"
+              />
+              <span>{{ cancelButton.text || 'Cancel' }}</span>
             </vm-button>
           </div>
         </div>
@@ -49,14 +84,30 @@
 
   export default {
     name: 'ActionSheet',
+    components: {
+      'vm-backdrop': Backdrop,
+      'vm-button': Button,
+      'vm-icon': Icon
+    },
     mixins: [modeMixins, popupExtend],
     props: {
-      title: String,
-      subTitle: String,
-      cssClass: String,
+      title: {
+        type: String,
+        default: '',
+      },
+      subTitle: {
+        type: String,
+        default: '',
+      },
+      cssClass: {
+        type: String,
+        default: '',
+      },
       buttons: {
         type: Array,
-        default: []
+        default() {
+          return []
+        }
       },
       enableBackdropDismiss: {
         type: Boolean,
@@ -73,6 +124,9 @@
       customerClass() {
         return this.cssClass && this.cssClass.trim();
       }
+    },
+    created() {
+      this.init();
     },
     methods: {
       /**
@@ -135,7 +189,7 @@
         }
         arr.forEach((button) => {
           if (typeof button === 'string') {
-            button = { text: button };
+            button = {text: button};
           }
 
           if (!button.cssClass) {
@@ -159,13 +213,5 @@
         this.normalButtons = _buttons;
       }
     },
-    created() {
-      this.init();
-    },
-    components: {
-      'vm-backdrop': Backdrop,
-      'vm-button': Button,
-      'vm-icon': Icon
-    }
   };
 </script>

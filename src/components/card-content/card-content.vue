@@ -5,7 +5,7 @@
 </template>
 <script type="text/javascript">
 
-  import mixin from '../card/mixin';
+  import mixin from '../../mixins/card-mixin/index';
 
   export default {
     name: 'CardContent',

@@ -49,7 +49,7 @@
         scrollTop: 0,                   // 记录scrollTop, 用于disable scroll
         styleObj: {},
 
-        version: isPresent(window.VM) && window.VM.version
+        version: 'x.x.x'
       }
     },
     computed: {

@@ -3,7 +3,7 @@ var utils = require('./utils')
 var config = require('../config/index')
 var vueLoaderConfig = require('./vue-loader.conf')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -24,9 +24,8 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'vimo': resolve('../src'),
-      '@pages': resolve('src/pages'),
-      '@components': resolve('../src/components'),
-      '@util': resolve('../src/util') // for vimo module
+      'vimo-theme-ios': resolve('../src/themes/ios'),
+      'vimo-theme-md': resolve('../src/themes/md'),
     }
   },
   module: {

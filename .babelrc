@@ -23,10 +23,25 @@
       ],
       "plugins": [
         [
-          "import",
+          "vimo",
           {
             "libraryName": "vimo",
-            "libraryDirectory": "components"
+            "libraryDirectory": "components",
+            "style": "scss",
+            "themes": [
+              {
+                "themeName": "vimo-theme-ios",
+                "themeDirectory": "components",
+                "themeExt": "scss",
+                "symbol": "ios"
+              },
+              {
+                "themeName": "vimo-theme-md",
+                "themeDirectory": "components",
+                "themeExt": "scss",
+                "symbol": "md"
+              }
+            ]
           }
         ]
       ]

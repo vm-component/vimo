@@ -10,7 +10,7 @@
    *
    * @demo #/list
    * */
-  import ItemMixin from '../item/item-mixin.vue'
+  import ItemMixin from '../../mixins/item-mixin/index'
 
   export default {
     mixins: [ItemMixin],

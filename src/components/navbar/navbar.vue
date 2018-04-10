@@ -137,8 +137,8 @@
    *  </Page>
    * </template>
    * */
-  import ToolbarMixins from '../toolbar/toolbar-extends.vue'
-  import Button from '../button/button.vue'
+  import ToolbarMixins from '../../mixins/toolbar-extends/index.js'
+  import Button from '../button'
   import Icon from '../icon'
   import { isString, isArray } from '../../util/type'
 
@@ -376,20 +376,20 @@
        * @private
        * */
       $_init () {
-        this.$_initWhenInWebview()
-        if (this.$root === window.VM.$root) {
-          // 只记录这个流的navbar: App->Nav->Page->Header->Navbar
-          // 其余形式的navbar不记录
-          window.VM.$navbar = this
-        }
+        // this.$_initWhenInWebview()
+        // if (this.$root === window.VM.$root) {
+        //   // 只记录这个流的navbar: App->Nav->Page->Header->Navbar
+        //   // 其余形式的navbar不记录
+        //   window.VM.$navbar = this
+        // }
       }
     },
     created () {
-      console.assert(this.$platform, `The Component of <Navbar> need 'platform' instance`)
-      console.assert(this.$config, `The Component of <Navbar> need 'config' instance`)
-      console.assert(window.VM, `The Component of <Navbar> need 'window.VM' instance`)
+      // console.assert(this.$platform, `The Component of <Navbar> need 'platform' instance`)
+      // console.assert(this.$config, `The Component of <Navbar> need 'config' instance`)
+      // console.assert(window.VM, `The Component of <Navbar> need 'window.VM' instance`)
 
-      this.$_refreshBackButtonStatus()
+      // this.$_refreshBackButtonStatus()
     },
     mounted () {
       this.$_init()
