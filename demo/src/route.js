@@ -1,17 +1,45 @@
-// 自动根据 components 中的文件生成懒加载路由
-// 切记手动编码, 会很繁琐的
-
+/** this file is generate automatic! */
 export default [
-  // {
-  //   path: '/multi',
-  //   name: 'multi',
-  //   components: require('./main/Multi.vue'),
-  // },
-  // {
-  //   path: '/async',
-  //   name: 'async',
-  //   component(resolve) {
-  //     require(['./main/Async.vue'], resolve)
-  //   }
-  // }
+  {
+    path: '/action-sheet',
+    name: 'actionSheet',
+    component (resolve) {
+      require(['@DemoComponent/action-sheet.vue'], resolve)
+    }
+  },
+  {
+    path: '/app',
+    name: 'app',
+    component (resolve) {
+      require(['@DemoComponent/app.vue'], resolve)
+    }
+  },
+  {
+    path: '/content',
+    name: 'content',
+    component (resolve) {
+      require(['@DemoComponent/content.vue'], resolve)
+    }
+  },
+  {
+    path: '/grid',
+    name: 'grid',
+    component (resolve) {
+      require(['@DemoComponent/grid.vue'], resolve)
+    }
+  },
+  {
+    path: '/introduce',
+    name: 'introduce',
+    component (resolve) {
+      require(['@DemoComponent/introduce.vue'], resolve)
+    }
+  },
+  {
+    path: '/nav',
+    name: 'nav',
+    component (resolve) {
+      require(['@DemoComponent/nav.vue'], resolve)
+    }
+  }
 ]
