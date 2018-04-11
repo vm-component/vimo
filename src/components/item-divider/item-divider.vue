@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  import ItemMixin from '../../mixins/item-mixin/item-mixin.vue'
+  import ItemMixin from '../../mixins/item-mixin/index'
 
   export default {
     mixins: [ItemMixin],

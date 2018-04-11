@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import getInsertPosition from './get-insert-position'
-import { isObject } from './type'
+import {isObject} from './type'
 
 /**
  * 当前类用于生成PopUp对象
@@ -9,11 +9,11 @@ import { isObject } from './type'
 export default class GeneratePopUpInstance {
   /**
    * @param {Object} component - 组件对象
-   * @param {String} position - 组件在DOM中插入位置
+   * @param {String} [position=null] - 组件在DOM中插入位置
    * */
-  constructor (component, position) {
+  constructor(component, position = null) {
     this._component = component        // 组件对象
-    this._position = position || null  // popup插入位置(id)
+    this._position = position  // popup插入位置(id)
     this._ins = null                   // PopUp实例
   }
 
@@ -22,7 +22,7 @@ export default class GeneratePopUpInstance {
    * @param {Object} options - 参数
    * @override
    * */
-  isPresentHandled (options) {
+  isPresentHandled(options) {
     return false
   }
 
@@ -31,7 +31,7 @@ export default class GeneratePopUpInstance {
    * @param {Object} options - 参数
    * @override
    * */
-  isDismissHandled (options) {
+  isDismissHandled(options) {
     return false
   }
 
@@ -41,7 +41,7 @@ export default class GeneratePopUpInstance {
    * @param {Object} options - 参数
    * @override
    * */
-  normalizeOptions (options) {
+  normalizeOptions(options) {
     let _args = Array.prototype.slice.call(arguments)
     if (isObject(_args[0])) {
       return _args[0]
@@ -55,7 +55,7 @@ export default class GeneratePopUpInstance {
    * @return {Object}
    * @override
    * */
-  getInstance () {
+  getInstance() {
     return this._ins
   }
 
@@ -64,7 +64,7 @@ export default class GeneratePopUpInstance {
    * @param {Object} options - 参数
    * @private
    * */
-  generateInstance (options) {
+  generateInstance(options) {
     let el = getInsertPosition(this._position).appendChild(
       document.createElement('div')
     )
@@ -79,7 +79,7 @@ export default class GeneratePopUpInstance {
    * @return {Promise}
    * @public
    * */
-  present () {
+  present() {
     let options = this.normalizeOptions(...arguments)
     return new Promise((resolve) => {
       if (!this.isPresentHandled(options)) {
@@ -104,7 +104,7 @@ export default class GeneratePopUpInstance {
    * @return {Promise}
    * @public
    * */
-  dismiss () {
+  dismiss() {
     return new Promise((resolve) => {
       this.isDismissHandled()
 

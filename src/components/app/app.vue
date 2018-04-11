@@ -1,23 +1,21 @@
 <template>
-    <article class="ion-app" :version="version" :id="mode"
-             :style="styleObj"
-             :class="[mode,modeClass,platformClass,{'disable-hover':disableHover},{'disable-scroll':disableScroll}]">
-        <section class="app-root">
-            <slot></slot>
-        </section>
-        <aside id="modalPortal"></aside>
-        <aside id="sheetPortal"></aside>
-        <aside id="alertPortal"></aside>
-        <aside id="loadingPortal"></aside>
-        <aside id="toastPortal"></aside>
-        <aside class="click-block"
-               :class="[{'click-block-enabled':isClickBlockEnabled,'click-block-active':isClickBlockActive}]"></aside>
-        <slot name="outer"></slot>
-    </article>
+  <article
+    :version="version"
+    :id="mode"
+    :style="styleObj"
+    :class="[mode,modeClass,platformClass,{'disable-hover':disableHover},{'disable-scroll':disableScroll}]"
+    class="ion-app app-root"
+  >
+    <slot></slot>
+    <aside
+      :class="[{'click-block-enabled':isClickBlockEnabled,'click-block-active':isClickBlockActive}]"
+      class="click-block"
+    />
+  </article>
 </template>
 <script type="text/javascript">
-  import { setElementClass } from '../../util/util'
-  import { isPresent, isString } from '../../util/type'
+  import {setElementClass} from '../../util/util'
+  import {isString} from '../../util/type'
   import disableHover from '../../util/disable-hover'
   import modeMixins from '../../util/mode-mixins.js'
 
@@ -27,13 +25,13 @@
   export default {
     name: 'App',
     mixins: [modeMixins],
-    provide () {
+    provide() {
       let _this = this
       return {
         appComponent: _this
       }
     },
-    data () {
+    data() {
       return {
         disableHover: disableHover,     // 禁用计时
         isScrollDisabled: false,        // 控制页面是否能滚动
@@ -53,7 +51,7 @@
       }
     },
     computed: {
-      platformClass () {
+      platformClass() {
         return `platform-${this.mode}`
       }
     },
@@ -70,7 +68,7 @@
        * this.$app && this.$app.setEnabled(false, 400) -> 400ms内页面不可点击, 400ms过后可正常使用
        * this.$app && this.$app.setEnabled(true) -> 64ms后解除锁定
        * */
-      setEnabled (isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
+      setEnabled(isEnabled, duration = CLICK_BLOCK_DURATION_IN_MILLIS) {
         if (isEnabled) {
           // 解锁
           if (this.isClickBlockActive) {
@@ -105,7 +103,7 @@
        * this.$app && this.$app.setDisableScroll(true, 400) -> 400ms内页面不可滚动, 400ms过后可正常使用
        * this.$app && this.$app.setDisableScroll(false) ->立即解除锁定
        * */
-      setDisableScroll (isScrollDisabled, duration = 0) {
+      setDisableScroll(isScrollDisabled, duration = 0) {
         if (isScrollDisabled) {
           // duration ms内页面不可滚动, duration ms过后可正常使用
           this.$_disableScroll()
@@ -128,7 +126,7 @@
        * @param {string} className - 样式名称
        * @param {boolean} [isAdd=false] - 是否添加
        */
-      setClass (className, isAdd = false) {
+      setClass(className, isAdd = false) {
         if (className) {
           setElementClass(this.$el, className, isAdd)
         }
@@ -141,7 +139,7 @@
        * @description
        * 设置document.title的值, 如果传入的是string, 则为title的字符串, 如果是对象, 则title字段为标题名称
        * */
-      setDocTitle (_title) {
+      setDocTitle(_title) {
         if (isString(_title)) {
           _title = {title: _title}
         }
@@ -160,7 +158,7 @@
        * @return {Promise}
        * @private
        * */
-      $_activate (shouldShow, expire = 100) {
+      $_activate(shouldShow, expire = 100) {
         return new Promise((resolve) => {
           if (this.isEnabled !== shouldShow) {
             this.isEnabled = shouldShow
@@ -177,7 +175,7 @@
       /**
        * @private
        * */
-      $_disableScroll () {
+      $_disableScroll() {
         if (!this.isScrollDisabled) {
           this.$root.$emit('app:disableScroll')
           this.scrollTop = 0
@@ -203,7 +201,7 @@
       /**
        * @private
        * */
-      $_enableScroll () {
+      $_enableScroll() {
         if (this.isScrollDisabled) {
           this.$root.$emit('app:enableScroll')
           this.isScrollDisabled = false
@@ -219,7 +217,7 @@
         }
       }
     },
-    created () {
+    created() {
       // eslint-disable-next-line no-proto
       let proto = this.__proto__.__proto__
       proto.$app = this
@@ -236,7 +234,7 @@
 
       this.$root.$emit('app:created', this)
     },
-    mounted () {
+    mounted() {
       // 设置当前可点击
       this.isClickBlockEnabled = true
 

@@ -23,9 +23,10 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'vimo': resolve('../src'),
-      'vimo-theme-ios': resolve('../src/themes/ios'),
-      'vimo-theme-md': resolve('../src/themes/md'),
+      'vimo': resolve('../lib'),
+      'vimo-theme-ios': resolve('../lib/themes/ios'),
+      'vimo-theme-md': resolve('../lib/themes/md'),
+      'vimo-theme-wp': resolve('../lib/themes/wp'),
     }
   },
   module: {

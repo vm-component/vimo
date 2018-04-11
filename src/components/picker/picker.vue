@@ -307,7 +307,8 @@
       this.normalizeData()
     },
     beforeMount () {
-      let pickerCmpElements = document.querySelectorAll('.#{$prefix}-picker-cmp')
+      // TODO: remove ion
+      let pickerCmpElements = document.querySelectorAll('.ion-picker-cmp')
       if (pickerCmpElements.length > 0) {
         pickerCmpElements.forEach((ele) => {
           ele.remove()

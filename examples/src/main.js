@@ -1,15 +1,18 @@
 import Vue from 'vue'
 import AttachFastClick from 'fastclick'
-// import APP_CONFIGS from './config/app-configs'
-// import PLATFORM_CONFIGS from './config/platform-configs'
+import config from './config';
 import 'ionicons/dist/css/ionicons.css'
 import router from './router'
 import store from './store.js'
 import AppComponent from './App.vue'
 import InstallComponent from './Component'
-import { App, Content, Footer, Header, Nav, Navbar, Page } from 'vimo'
+import {App, Content, Footer, Header, Nav, Navbar, Page} from 'vimo'
 import './util/polyfill'
 import '@babel/polyfill'
+// import APP_CONFIGS from './config/app-configs'
+// import PLATFORM_CONFIGS from './config/platform-configs'
+
+Vue.prototype.$config = config
 
 // -----------------
 // // 平台基础安装
@@ -35,11 +38,11 @@ if (process.env.NODE_ENV === 'development') {
   /**
    * 开发环境
    * */
-  Vue.config.productionTip = true
+  // Vue.config.productionTip = true
   // 安装vconsole
-  let VConsole = require('vconsole')
+  // let VConsole = require('vconsole')
   // eslint-disable-next-line no-new
-  new VConsole()
+  // new VConsole()
 } else {
 
 }
@@ -51,12 +54,12 @@ new Vue({
   router,
   store,
   template: '<AppComponent/>',
-  created () {
+  created() {
     // window.VM.platform.ready().then((data) => {
     //   console.debug(`Platform Ready && Init Info: ${data}`)
     // }, (data) => {
     //   console.error(`Platform Ready && Init Info: ${data}`)
     // })
   },
-  components: { AppComponent }
+  components: {AppComponent}
 })

@@ -3,11 +3,11 @@
     <Header>
       <Navbar hide-back-button>
         <ToolbarButtons right slot="buttons">
-          <Button @click="$menu.toggle('menu')" role="bar-button" menutoggle>
-            <Icon name="more"></Icon>
+          <Button role="bar-button" menutoggle>
+            <!--<Icon name="more"/>-->
           </Button>
         </ToolbarButtons>
-        <ToolbarTitle @onTitleClick="onTitleClickHandler">Aha!</ToolbarTitle>
+        <ToolbarTitle>Aha!</ToolbarTitle>
       </Navbar>
     </Header>
     <Content>
@@ -25,19 +25,21 @@
               <h1>VIMO</h1>
               <p>v{{vimo.version}}</p>
               <p class="message">Mobile UI components for Vue.js</p>
-              <a class="star" href="#"><img
-                src="https://img.shields.io/github/stars/vm-component/vimo.svg?style=social&label=Star"
-                alt="Star"></a>
-              <a class="star" href="#"><img
-                src="https://img.shields.io/github/forks/vm-component/vimo.svg?style=social&label=Fork"
-                alt="Fork"></a>
+              <!--<a class="star" href="#"><img-->
+              <!--src="https://img.shields.io/github/stars/vm-component/vimo.svg?style=social&label=Star"-->
+              <!--alt="Star"></a>-->
+              <!--<a class="star" href="#"><img-->
+              <!--src="https://img.shields.io/github/forks/vm-component/vimo.svg?style=social&label=Fork"-->
+              <!--alt="Fork"></a>-->
             </Column>
           </Row>
           <Row class="vimo__btns">
-            <Button block solid @click="$router.push({'name':'components','meta':{newWindow:true}})">
-              Component
-            </Button>
-            <Button block solid @click="$menu.open('menu')">
+            <route-link to="components">
+              <Button block solid>
+                Component
+              </Button>
+            </route-link>
+            <Button block solid>
               Open Menu
             </Button>
           </Row>
@@ -57,6 +59,30 @@
     </Footer>
   </Page>
 </template>
+<script type="text/javascript">
+  import {Button, Column, Grid, Row, ToolbarButtons, ToolbarTitle} from 'vimo'
+
+  export default {
+    name: 'DemoIndex',
+    components: {ToolbarTitle, ToolbarButtons, Grid, Row, Column, Button},
+    data() {
+      return {
+        vimo: {
+          version: 'x.x.x'
+        }
+      }
+    },
+    methods: {
+      onTitleClickHandler() {
+        alert('你点击了标题')
+      }
+    },
+    created() {
+    },
+    mounted() {
+    }
+  }
+</script>
 <style scoped lang="scss">
   .index.scrollContent {
     width: 100%;
@@ -159,28 +185,3 @@
     }
   }
 </style>
-<script type="text/javascript">
-  import {Button, Column, Grid, Row, ToolbarButtons, ToolbarTitle} from 'vimo'
-
-
-  export default {
-    name: 'IndexDemo',
-    components: {ToolbarTitle, ToolbarButtons, Grid, Row, Column, Button},
-    data() {
-      return {
-        vimo: {
-          version: 'x.x.x'
-        }
-      }
-    },
-    methods: {
-      onTitleClickHandler() {
-        alert('你点击了标题')
-      }
-    },
-    created() {
-    },
-    mounted() {
-    }
-  }
-</script>

@@ -9,60 +9,34 @@
     "stage-2"
   ],
   "comments": false,
-  "plugins": [],
-  "env": {
-    "demo": {
-      "presets": [
-        [
-          "env",
+  "plugins": [
+    [
+      "vimo",
+      {
+        "libraryName": "vimo",
+        "libraryDirectory": "components",
+        "style": "scss",
+        "themes": [
           {
-            "modules": false
-          }
-        ],
-        "stage-2"
-      ],
-      "plugins": [
-        [
-          "vimo",
+            "themeName": "vimo-theme-ios",
+            "themeDirectory": "components",
+            "themeExt": "scss",
+            "symbol": "ios"
+          },
           {
-            "libraryName": "vimo",
-            "libraryDirectory": "components",
-            "style": "scss",
-            "themes": [
-              {
-                "themeName": "vimo-theme-ios",
-                "themeDirectory": "components",
-                "themeExt": "scss",
-                "symbol": "ios"
-              },
-              {
-                "themeName": "vimo-theme-md",
-                "themeDirectory": "components",
-                "themeExt": "scss",
-                "symbol": "md"
-              }
-            ]
+            "themeName": "vimo-theme-md",
+            "themeDirectory": "components",
+            "themeExt": "scss",
+            "symbol": "md"
+          },
+          {
+            "themeName": "vimo-theme-wp",
+            "themeDirectory": "components",
+            "themeExt": "scss",
+            "symbol": "wp"
           }
         ]
-      ]
-    },
-    "lib": {
-      "presets": [
-        "env",
-        "stage-2"
-      ]
-    },
-    "test": {
-      "presets": [
-        [
-          "env",
-          {
-            "targets": {
-              "node": "current"
-            }
-          }
-        ]
-      ]
-    }
-  }
+      }
+    ]
+  ]
 }
