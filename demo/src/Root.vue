@@ -9,6 +9,8 @@
   export default {
     name: 'DemoRoot',
     methods: {},
+    mounted() {
+    },
     components: {}
   };
 </script>

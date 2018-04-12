@@ -359,12 +359,8 @@
 </template>
 <style scoped lang="scss"></style>
 <script type="text/javascript">
-
-  import {Icon, Item, ItemGroup, List, ListHeader, Note} from 'vimo'
-
   export default {
     name: 'DemoComponent',
-    components: {Item, ItemGroup, List, ListHeader, Note, Icon},
     data() {
       return {}
     },

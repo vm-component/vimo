@@ -1,78 +1,15 @@
 <template>
-    <div class="ion-title">
-        <div class="toolbar-title" :class="[modeClass]"
-             :style="{color:titleColor}"
-             @click="titleClick" v-html="titleInner"></div>
-    </div>
+  <div class="ion-title">
+    <div class="toolbar-title" :class="[modeClass]"
+         :style="{color:titleColor}"
+         @click="titleClick" v-html="titleInner"></div>
+  </div>
 </template>
 <script type="text/javascript">
-  /**
-   * @component Toolbar/Title
-   * @description
-   *
-   *
-   * ## 文档标题 / Title
-   *
-   * 设置顶部的title及document.title, 请使用ref获取Title组件的setTitle方法, 使用该方法会同步设置document.title(默认)
-   *
-   * ### 等级
-   *
-   * 只有在Navbar组件中的Title组件才会自动更新`document.title`的值,
-   *
-   *
-   * ### 如何引入
-   *
-   * ```
-   * // 引入
-   * import { Toolbar, Buttons, Title } from 'vimo'
-   * // 安装
-   * Vue.component(Toolbar.name, Toolbar)
-   * Vue.component(Title.name, Title)
-   * Vue.component(Buttons.name, Buttons)
-   * ```
-   *
-   *
-   * ### 如果在支付宝中
-   * 如果在支付宝中, 则使用支付宝的方式设置title及其壳子的title, 可用方法如下:
-   *
-   * - setTitle
-   * - reset
-   *
-   * @props {String} [mode=ios] - 模式
-   * @props {String} [title] - 标题
-   * @fires component:Title#title:click
-   * @see component:Toolbar
-   * @usage
-   * <template>
-   *  <Page>
-   *    <Header>
-   *      <Navbar>
-   *        <Title ref="title">Demo</Title>
-   *      <Navbar>
-   *    </Header>
-   *    <Content>
-   *      <h1>这里是内容</h1>
-   *    </Content>
-   *  </Page>
-   * </template>
-   *
-   * ...
-   *
-   * computed: {
-   *   titleComponent () {
-   *     return this.$refs.title
-   *   }
-   * },
-   * methods: {
-   *   setAllTitle () {
-   *      this.titleComponent.setTitle('title')
-   * }
-   *
-   * */
-  import { isPresent } from '../../util/type'
+  import {isPresent} from '../../util/type'
 
   export default {
-    name: 'Title',
+    name: 'ToolbarTitle',
     inject: {
       appComponent: {
         from: 'appComponent',
@@ -87,7 +24,7 @@
         default: null
       }
     },
-    data () {
+    data() {
       return {
         titleColor: null,
         titleInner: this.title
@@ -99,7 +36,9 @@
        * */
       mode: {
         type: String,
-        default () { return isPresent(this.$config) && this.$config.get('mode', 'ios') || 'ios' }
+        default() {
+          return isPresent(this.$config) && this.$config.get('mode', 'ios') || 'ios'
+        }
       },
       /**
        * 设置的title值
@@ -107,7 +46,7 @@
       title: String
     },
     watch: {
-      title () {
+      title() {
         this.titleInner = this.getTitle()
         if (this.isTitleInNavbar) {
           this.setTitle(this.titleInner)
@@ -115,15 +54,15 @@
       }
     },
     computed: {
-      modeClass () {
+      modeClass() {
         return `toolbar-title-${this.mode}`
       },
       // 这个title组件在navbar中
-      isTitleInNavbar () {
+      isTitleInNavbar() {
         return !!this.navbarComponent
       },
       // 包裹当前组件的Header在App组件中
-      isHeaderInApp () {
+      isHeaderInApp() {
         return !!this.appComponent && !!this.headerComponent && !!this.navbarComponent
       }
     },
@@ -134,7 +73,7 @@
        * 获取Title组件中的title, 兼容各种模式
        * @return {String}
        * */
-      getTitle () {
+      getTitle() {
         let _title = ''
         /**
          * 组件获取了传入的title值，之后通过全局注册的$setTitle方法
@@ -174,7 +113,7 @@
        * @param {String|Object} title.image - image
        * @param {boolean} [changeDocTitle=true] - 是否设置doc的title, 默认是同步设置的
        * */
-      setTitle (title, changeDocTitle = true) {
+      setTitle(title, changeDocTitle = true) {
         let _title = {}
         if (typeof title === 'string') {
           _title.title = title
@@ -196,7 +135,7 @@
        * 设置Title文字的颜色
        * @param {String} color - color, 例如 #ff0000
        * */
-      setTitleColor (color) {
+      setTitleColor(color) {
         this.titleColor = color
       },
 
@@ -205,7 +144,7 @@
        * @description
        * 重置Title文字的颜色, 目前可用平台: Alipay
        * */
-      reset () {
+      reset() {
         this.titleColor = null
         this.$platform && this.$platform.resetNavbarOptionButton && this.$platform.resetNavbarOptionButton()
       },
@@ -217,7 +156,7 @@
        * 将赋予页面Page(document.title),
        * @private
        * */
-      init () {
+      init() {
         this.titleInner = this.getTitle()
         if (this.isTitleInNavbar) {
           this.setTitle(this.titleInner)
@@ -235,7 +174,7 @@
        * 点击标题时触发事件
        * @private
        * */
-      titleClick () {
+      titleClick() {
         if (this.isTitleInNavbar) {
           /**
            * @event component:Title#title:click
@@ -245,10 +184,10 @@
         }
       }
     },
-    mounted () {
+    mounted() {
       this.init()
     },
-    activated () {
+    activated() {
       // BugFix: #15, keep-alive模式下不更新title的问题
       if (this.isTitleInNavbar) {
         this.setTitle(this.titleInner)

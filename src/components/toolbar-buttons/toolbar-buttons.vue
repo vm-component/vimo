@@ -9,7 +9,7 @@
 </template>
 <script type="text/javascript">
   export default {
-    name: 'Buttons',
+    name: 'ToolbarButtons',
     props: {
       left: Boolean,
       right: Boolean,

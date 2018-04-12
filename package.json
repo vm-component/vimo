@@ -29,6 +29,7 @@
     "demo:build": "vimo-tools demo build",
     "help": "vimo-tools --help",
     "build": "vimo-tools build",
+    "build:dist": "vimo-tools build dist",
     "build:es": "vimo-tools build es",
     "build:lib": "vimo-tools build lib",
     "build:style": "vimo-tools build style",
@@ -89,10 +90,11 @@
     "autosize": "^3.0.20",
     "better-scroll": "^1.3.0",
     "lodash.debounce": "^4.0.8",
+    "lodash.kebabcase": "^4.1.1",
     "lodash.throttle": "^4.1.1",
     "swipe-js-iso": "^2.0.3",
-    "lodash.kebabcase": "^4.1.1",
-    "swiper": "^3.4.2"
+    "swiper": "^3.4.2",
+    "tp-config": "^1.0.5"
   },
   "devDependencies": {
     "babel-plugin-vimo": "^1.0.0",

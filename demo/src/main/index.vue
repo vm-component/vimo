@@ -2,12 +2,12 @@
   <Page>
     <Header>
       <Navbar hide-back-button>
-        <ToolbarButtons right slot="buttons">
+        <Buttons right slot="buttons">
           <Button role="bar-button" menutoggle>
             <Icon name="more"></Icon>
           </Button>
-        </ToolbarButtons>
-        <ToolbarTitle>Aha!</ToolbarTitle>
+        </Buttons>
+        <Title>Aha!</Title>
       </Navbar>
     </Header>
     <Content>
@@ -160,11 +160,8 @@
   }
 </style>
 <script type="text/javascript">
-  import {Button, Column, Grid, Icon, Row, ToolbarButtons, ToolbarTitle} from 'vimo'
-
   export default {
     name: 'DemoIndex',
-    components: {ToolbarTitle, ToolbarButtons, Grid, Icon, Row, Column, Button},
     data() {
       return {
         vimo: {
