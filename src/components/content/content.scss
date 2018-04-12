@@ -8,9 +8,9 @@
   display: block;
   width: 100%;
   contain: layout style;
-
+  
   @include position(0, null, null, 0);
-
+  
   &::before {
     display: table;
     content: " ";
@@ -28,13 +28,13 @@
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
   contain: style layout;
-
+  
   &::after,
   &::before {
     display: table;
     content: " ";
   }
-
+  
   @include position(-1px, 0, 0, 0);
 }
 
@@ -56,7 +56,7 @@
   display: block;
   width: 100%;
   height: 0;
-
+  
   [fixed],
   [refresher],
   [fixed-top],
@@ -64,13 +64,13 @@
     position: absolute;
     z-index: $z-index-fixed-content + 10;
   }
-
+  
   [fixed],
   [refresher],
   [fixed-top] {
     top: 0;
   }
-
+  
   [fixed-bottom] {
     bottom: 0;
   }

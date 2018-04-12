@@ -1,4 +1,4 @@
-export { default } from './content.vue';
+export { default } from './content.vue'
 /**
  * @component Content
  * @description
@@ -44,7 +44,6 @@ export { default } from './content.vue';
  * </template>
  *
  * */
-
 
 /**
  * @typedef {Object} ContentDimension   - Content组件的维度尺寸信息

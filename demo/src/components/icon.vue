@@ -47,7 +47,6 @@
                 </Row>
             </Grid>
 
-
             <h4>自定义Icon</h4>
 
             <Icon name="icon-vue"></Icon>
@@ -121,7 +120,8 @@
 <script type="text/javascript">
   import modeIcons from 'ionicons/dist/data/mode-icons.json'
   import logoIcons from 'ionicons/dist/data/logo-icons.json'
-  export default{
+
+  export default {
     data () {
       return {
         modeIconList: [],

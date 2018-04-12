@@ -78,7 +78,7 @@
        * @private
        * */
       initNav () {
-        const vm = this
+        // const vm = this
         if (!this.$router) return
         // pageTransition
         if (this.pageTransition) {

@@ -11,7 +11,7 @@
   line-height: 1;
   white-space: nowrap;
   vertical-align: baseline;
-
+  
   @include padding(3px, 8px);
   @include text-align(center);
 }

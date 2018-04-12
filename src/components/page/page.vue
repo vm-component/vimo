@@ -29,7 +29,7 @@
    * </template>
    *
    * */
-  let initPageZIndex = 1000
+  // let initPageZIndex = 1000
   export default {
     name: 'Page',
     inject: {

@@ -1,4 +1,4 @@
-export { default } from './checkbox.vue';
+export { default } from './checkbox.vue'
 /**
  * @component Checkbox
  * @description

@@ -16,13 +16,13 @@ const routes = [
     name: 'components',
     component: require('./main/components.vue')
   }
-];
+]
 
 const config = {
   mode: 'hash',
   routes: routes.concat(subPageRoutes)  // （缩写）相当于 routes: routes
-};
+}
 
-const router = new Router(config);
-Vue.use(Router);
+const router = new Router(config)
+Vue.use(Router)
 export default router

@@ -9,7 +9,7 @@
   display: block;
   width: $action-sheet-width;
   height: $action-sheet-width;
-
+  
   @include position(0, null, null, 0);
 }
 
@@ -21,7 +21,7 @@
   max-width: $action-sheet-max-width;
   pointer-events: none;
   transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 400ms;
-
+  
   @include position(null, 0, 0, 0);
   @include margin(auto);
 }
@@ -42,7 +42,7 @@
   overflow: scroll;
   pointer-events: all;
   flex-shrink: 2;
-
+  
   .action-sheet-buttons {
     position: relative;
     z-index: 1;

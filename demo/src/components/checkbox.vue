@@ -40,7 +40,6 @@
                 <p>注意这部分样式的写法!</p>
             </section>
 
-
             <List>
                 <ListHeader>使用 v-modal 绑定</ListHeader>
                 <Item>

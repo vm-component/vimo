@@ -1,18 +1,18 @@
 <template>
-  <button class="ion-button"
-          :active="active"
-          :icon-only="iconOnly"
-          :icon-left="iconLeft"
-          :icon-right="iconRight"
-          :class="[modeClass, styleClass, shapeClass, displayClass, sizeClass, decoratorClass, colorClass,
+    <button class="ion-button"
+            :active="active"
+            :icon-only="iconOnly"
+            :icon-left="iconLeft"
+            :icon-right="iconRight"
+            :class="[modeClass, styleClass, shapeClass, displayClass, sizeClass, decoratorClass, colorClass,
               {'disable-hover':disableHover},
               {'item-button':isInItemComponent}]"
-          @click="$_clickHandler($event)">
-    <span class="button-inner"><slot></slot></span>
-  </button>
+            @click="$_clickHandler($event)">
+        <span class="button-inner"><slot></slot></span>
+    </button>
 </template>
 <script type="text/javascript">
-  import disableHover from '../../util/disable-hover';
+  import disableHover from '../../util/disable-hover'
 
   export default {
     name: 'Button',
@@ -28,8 +28,8 @@
        * */
       color: {
         type: String,
-        default() {
-          return 'default';
+        default () {
+          return 'default'
         }
       },
       /**
@@ -37,8 +37,8 @@
        * */
       mode: {
         type: String,
-        default() {
-          return this.$config && this.$config.get('mode', 'ios') || 'ios';
+        default () {
+          return this.$config && this.$config.get('mode', 'ios') || 'ios'
         }
       },
 
@@ -76,8 +76,8 @@
        * */
       role: {
         type: String,
-        default() {
-          return 'button';
+        default () {
+          return 'button'
         }
       },
 
@@ -86,7 +86,7 @@
        * */
       strong: Boolean
     },
-    data() {
+    data () {
       return {
         disableHover: disableHover,
 
@@ -107,15 +107,15 @@
         iconLeft: false,
         iconRight: false
 
-      };
+      }
     },
     computed: {
       // 环境样式
-      modeClass() {
-        return this.mode ? (`${this.role} ${this.role}-${this.mode}`) : this.role;
+      modeClass () {
+        return this.mode ? (`${this.role} ${this.role}-${this.mode}`) : this.role
       },
-      isInItemComponent() {
-        return !!this.itemComponent;
+      isInItemComponent () {
+        return !!this.itemComponent
       }
     },
     methods: {
@@ -123,33 +123,33 @@
        * @private
        * @param {Object} $event - $event
        */
-      $_clickHandler($event) {
-        this.$emit('click', $event);
+      $_clickHandler ($event) {
+        this.$emit('click', $event)
       },
 
       /**
        * @private
        */
-      $_assignCss() {
-        let role = this.role;
+      $_assignCss () {
+        let role = this.role
         if (role) {
-          this.styleClass = this.$_setClass(this.style); // button-clear
-          this.shapeClass = this.$_setClass(this.shape); // button-round
-          this.displayClass = this.$_setClass(this.display); // button-full
-          this.sizeClass = this.$_setClass(this.size); // button-small
-          this.decoratorClass = this.$_setClass(this.decorator); // button-strong
+          this.styleClass = this.$_setClass(this.style) // button-clear
+          this.shapeClass = this.$_setClass(this.shape) // button-round
+          this.displayClass = this.$_setClass(this.display) // button-full
+          this.sizeClass = this.$_setClass(this.size) // button-small
+          this.decoratorClass = this.$_setClass(this.decorator) // button-strong
         }
-        this.colorClass = this.$_setColor(this.color); // button-secondary, bar-button-secondary
+        this.colorClass = this.$_setColor(this.color) // button-secondary, bar-button-secondary
       },
 
       /**
        * @param {String} type
        * @private
        */
-      $_setClass(type) {
+      $_setClass (type) {
         if (type) {
-          type = type.toLocaleLowerCase();
-          return `${this.role}-${type} ${this.role}-${type}-${this.mode}`;
+          type = type.toLocaleLowerCase()
+          return `${this.role}-${type} ${this.role}-${type}-${this.mode}`
         }
       },
 
@@ -157,47 +157,47 @@
        * @param {String} color
        * @private
        */
-      $_setColor(color) {
+      $_setColor (color) {
         if (color) {
           // The class should begin with the button role
           // button, bar-button
-          let className = this.role;
+          let className = this.role
 
           // If the role is not a bar-button, don't apply the solid style
-          let style = this.style;
-          style = (this.role !== 'bar-button' && style === 'solid' ? 'default' : style);
+          let style = this.style
+          style = (this.role !== 'bar-button' && style === 'solid' ? 'default' : style)
 
-          className += (style !== null && style !== '' && style !== 'default' ? '-' + style.toLowerCase() : '');
+          className += (style !== null && style !== '' && style !== 'default' ? '-' + style.toLowerCase() : '')
 
           if (color !== null && color !== '') {
-            return `${className}-${this.mode}-${color}`;
+            return `${className}-${this.mode}-${color}`
           }
         }
 
-        return '';
+        return ''
       },
 
       /**
        * 设置icon button的左右位置
        * @private
        */
-      $_addIconBtnPosition() {
-        let firstSlot = null;
-        let lastSlot = null;
-        let length = this.$_getSlotLength(this.$slots);
+      $_addIconBtnPosition () {
+        let firstSlot = null
+        let lastSlot = null
+        let length = this.$_getSlotLength(this.$slots)
         if (length > 0) {
-          firstSlot = this.$slots.default[0];
-          lastSlot = this.$slots.default[length - 1];
+          firstSlot = this.$slots.default[0]
+          lastSlot = this.$slots.default[length - 1]
           if (length === 1 && this.$_isIconComponent(firstSlot)) {
-            this.iconOnly = 'icon-only';
+            this.iconOnly = 'icon-only'
           }
 
           if (length > 1) {
             if (this.$_isIconComponent(firstSlot)) {
-              this.iconLeft = 'icon-left';
+              this.iconLeft = 'icon-left'
             }
             if (this.$_isIconComponent(lastSlot)) {
-              this.iconRight = 'icon-right';
+              this.iconRight = 'icon-right'
             }
           }
         }
@@ -207,43 +207,43 @@
        * 判断slot是icon组件
        * @private
        * */
-      $_isIconComponent(slot) {
-        return !!slot.componentOptions && !!slot.componentOptions.tag && slot.componentOptions.tag.toLowerCase() === 'icon';
+      $_isIconComponent (slot) {
+        return !!slot.componentOptions && !!slot.componentOptions.tag && slot.componentOptions.tag.toLowerCase() === 'icon'
       },
 
       /**
        * 获取slot的数量
        * @private
        * */
-      $_getSlotLength(slots) {
-        return (slots && slots.default) ? slots.default.length : 0;
+      $_getSlotLength (slots) {
+        return (slots && slots.default) ? slots.default.length : 0
       },
 
       /**
        * @private
        * */
-      $_classify() {
-        if (this.small) this.size = 'small';
-        if (this.default) this.size = 'default';
-        if (this.large) this.size = 'large';
+      $_classify () {
+        if (this.small) this.size = 'small'
+        if (this.default) this.size = 'default'
+        if (this.large) this.size = 'large'
 
-        if (this.outline) this.style = 'outline';
-        if (this.clear) this.style = 'clear';
-        if (this.solid) this.style = 'solid';
+        if (this.outline) this.style = 'outline'
+        if (this.clear) this.style = 'clear'
+        if (this.solid) this.style = 'solid'
 
-        if (this.round) this.shape = 'round';
+        if (this.round) this.shape = 'round'
 
-        if (this.full) this.display = 'full';
-        if (this.block) this.display = 'block';
-        if (this.menutoggle) this.display = 'menutoggle';
+        if (this.full) this.display = 'full'
+        if (this.block) this.display = 'block'
+        if (this.menutoggle) this.display = 'menutoggle'
 
-        if (this.strong) this.decorator = 'strong';
+        if (this.strong) this.decorator = 'strong'
       }
     },
-    created() {
-      this.$_classify();
-      this.$_assignCss();
-      this.$_addIconBtnPosition();
+    created () {
+      this.$_classify()
+      this.$_assignCss()
+      this.$_addIconBtnPosition()
     }
-  };
+  }
 </script>

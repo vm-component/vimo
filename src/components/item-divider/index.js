@@ -1,4 +1,4 @@
-export { default } from './item-divider.vue';
+export { default } from './item-divider.vue'
 /**
  * @component Item/ItemDivider
  * @description

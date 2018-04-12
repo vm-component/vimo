@@ -8,7 +8,7 @@ $sheet-max-width: 500px !default;
 
 .vm-sheet {
   overflow: hidden;
-
+  
   &.vm-sheet-visible {
     position: fixed;
     top: 0;
@@ -18,43 +18,43 @@ $sheet-max-width: 500px !default;
     width: $sheet-width;
     height: $sheet-width;
   }
-
+  
   &.sheet-direction-bottom {
     .sheet-wrapper {
       top: auto;
       bottom: 0;
     }
-
+    
     // transitioName = 'sheet'
     .sheet-enter-active,
     .sheet-leave-active {
       transform: translateY(0%);
     }
-
+    
     .sheet-enter,
     .sheet-leave-active {
       transform: translateY(100%);
     }
   }
-
+  
   &.sheet-direction-top {
     .sheet-wrapper {
       top: 0;
       bottom: auto;
     }
-
+    
     // transitioName = 'sheet'
     .sheet-enter-active,
     .sheet-leave-active {
       transform: translateY(0%);
     }
-
+    
     .sheet-enter,
     .sheet-leave-active {
       transform: translateY(-100%);
     }
   }
-
+  
   .sheet-wrapper {
     position: absolute;
     right: 0;

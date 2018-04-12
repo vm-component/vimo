@@ -102,7 +102,7 @@
    *
    * @demo #/picker
    * */
-  import { isNumber, isString, isPresent } from '../../util/type'
+  import { isNumber, isPresent, isString } from '../../util/type'
   import PickerCol from './picker-col.vue'
   import Backdrop from '../backdrop'
   import Button from '../button'

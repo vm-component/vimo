@@ -10,13 +10,13 @@
   align-items: center;
   justify-content: center;
   contain: strict;
-
+  
   @include position(0, 0, 0, 0);
 }
 
 .#{$prefix}-alert.alert-top {
   align-items: flex-start;
-
+  
   @include padding(50px, null, null, null);
 }
 
@@ -26,21 +26,21 @@
 
 .alert-wrapper {
   position: relative;
-
+  
   z-index: $z-index-overlay-wrapper;
   display: flex;
   min-width: $alert-min-width;
   max-height: $alert-max-height;
   margin-bottom: 40px;
   flex-direction: column;
-
+  
   // make sure this layer is in the top
   opacity: 1;
-
+  
   // addStyle
   transition: all ease-in-out 200ms;
   contain: content;
-
+  
   .alert-image {
     width: 100%;
   }
@@ -53,7 +53,7 @@
 
 .alert-sub-title {
   font-weight: normal;
-
+  
   @include margin(5px, 0, 0);
   @include padding(0);
 }
@@ -67,7 +67,7 @@
 .alert-input {
   background: inherit;
   border: 0;
-
+  
   @include placeholder($alert-input-placeholder-color);
   @include padding(10px, 0);
 }
@@ -86,7 +86,7 @@
   display: block;
   font-size: $alert-button-font-size;
   line-height: $alert-button-line-height;
-
+  
   @include margin(0);
 }
 
@@ -95,7 +95,7 @@
   font-size: inherit;
   line-height: initial;
   background: transparent;
-
+  
   @include text-align(start);
   @include appearance(none);
   @include margin(0);

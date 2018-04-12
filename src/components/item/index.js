@@ -1,4 +1,4 @@
-export { default } from './item.vue';
+export { default } from './item.vue'
 /**
  * @component Item
  * @description

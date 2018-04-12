@@ -15,7 +15,7 @@
 </template>
 <script type="text/javascript">
   import { setElementClass } from '../../util/util'
-  import { isCheckedProperty, isTrueProperty, isBlank } from '../../util/type'
+  import { isBlank, isCheckedProperty, isTrueProperty } from '../../util/type'
   import ActionSheet from '../action-sheet'
   import Alert from '../alert'
 

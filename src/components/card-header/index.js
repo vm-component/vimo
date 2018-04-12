@@ -1,4 +1,4 @@
-export { default } from './card-header.vue';
+export { default } from './card-header.vue'
 /**
  * @component Card/CardHeader
  * @description

@@ -1,4 +1,4 @@
-export { default } from './item-group.vue';
+export { default } from './item-group.vue'
 /**
  * @component Item/ItemGroup
  * @description

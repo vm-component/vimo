@@ -17,7 +17,7 @@
   transition: background-color, opacity 100ms linear;
   font-kerning: none;
   contain: content;
-
+  
   @include text-align(center);
   @include appearance(none);
 }
@@ -73,7 +73,7 @@ button[disabled],
 .button-full.button-outline {
   border-right-width: 0;
   border-left-width: 0;
-
+  
   @include border-radius(0);
 }
 
@@ -101,7 +101,7 @@ button[disabled],
 
 .button[icon-only] {
   min-width: 0.9em;
-
+  
   @include padding(0);
 }
 
@@ -109,6 +109,6 @@ button[disabled],
   font-size: 1.8em;
   line-height: 0.67;
   pointer-events: none;
-
+  
   @include padding(0, 0.5em);
 }

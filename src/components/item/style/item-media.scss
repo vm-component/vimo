@@ -12,7 +12,7 @@
 .item > .#{$prefix}-icon:first-child,
 .item-inner > .#{$prefix}-icon:first-child {
   min-width: 24px;
-
+  
   @include text-align(center);
 }
 
@@ -54,6 +54,6 @@ button.item-cover,
   height: 100%;
   cursor: pointer;
   background: transparent;
-
+  
   @include position(0, null, null, 0);
 }

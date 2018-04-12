@@ -1,4 +1,4 @@
-export { default } from './fab.vue';
+export { default } from './fab.vue'
 /**
  * @component Fab
  * @description

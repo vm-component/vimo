@@ -1,4 +1,4 @@
-export { default } from './item-sliding-options.vue';
+export { default } from './item-sliding-options.vue'
 /**
  * @component Item/ItemSlidingOptions
  * @description

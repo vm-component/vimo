@@ -89,7 +89,7 @@
    *  }
    *
    * */
-  import { pointerCoord, clamp, transitionEnd } from '../../../util/util'
+  import { clamp, pointerCoord, transitionEnd } from '../../../util/util'
 
   const STATE_INACTIVE = 'inactive'         // 初始状态
   const STATE_SLIDING = 'sliding'           // 滑动状态

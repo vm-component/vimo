@@ -22,7 +22,7 @@
    * @see component:Segment
    *
    * */
-  import { isTrueProperty, isString, isPresent } from '../../util/type'
+  import { isPresent, isString, isTrueProperty } from '../../util/type'
 
   export default {
     name: 'SegmentButton',

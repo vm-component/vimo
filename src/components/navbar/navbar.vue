@@ -140,7 +140,7 @@
   import ToolbarMixins from '../../mixins/toolbar-extends/index.js'
   import Button from '../button'
   import Icon from '../icon'
-  import { isString, isArray } from '../../util/type'
+  import { isArray, isString } from '../../util/type'
 
   export default {
     name: 'Navbar',

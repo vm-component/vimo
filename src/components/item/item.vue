@@ -1,14 +1,14 @@
 <script type="text/javascript">
-  import ItemMixin from '../../mixins/item-mixin/index';
-  import { isPresent, isString } from '../../util/type';
+  import ItemMixin from '../../mixins/item-mixin/index'
+  import { isPresent, isString } from '../../util/type'
 
   export default {
     mixins: [ItemMixin],
     name: 'Item',
-    data() {
+    data () {
       return {
         isInMenu: this.wait // 判断是否在menu组件中, 如果在menu中, 则
-      };
+      }
     },
     props: {
       /**
@@ -35,68 +35,68 @@
       /**
        * 类似于a标签跳转
        * */
-      $_clickHandler($event) {
-        const _this = this;
-        const router = this.$router;
-        const current = this.$route;
-        let _to = this.to;
+      $_clickHandler ($event) {
+        const _this = this
+        const router = this.$router
+        const current = this.$route
+        let _to = this.to
         if (isPresent(router) && isPresent(current) && isPresent(_to)) {
           if (isString(_to)) {
             _to = {
               name: _to
-            };
+            }
           }
 
           // 返回数据: {location, route, href}
-          const { location } = router.resolve(_to, current, this.append);
+          const {location} = router.resolve(_to, current, this.append)
 
           // 如果在menu跳转, 则需要等待menu关闭后再跳转
           if (this.isInMenu) {
-            this.$menu.close();
-            this.$root && this.$root.$on('onMenuClosed', directToHandler);
+            this.$menu.close()
+            this.$root && this.$root.$on('onMenuClosed', directToHandler)
           } else {
             // 正常情况
-            doRedirect();
+            doRedirect()
           }
 
           // 事件处理函数
           // eslint-disable-next-line no-inner-declarations
-          function directToHandler() {
-            _this.$root && _this.$root.$off('onMenuClosed', directToHandler);
-            doRedirect();
+          function directToHandler () {
+            _this.$root && _this.$root.$off('onMenuClosed', directToHandler)
+            doRedirect()
           }
 
           // 跳转
           // eslint-disable-next-line no-inner-declarations
-          function doRedirect() {
+          function doRedirect () {
             if (_this.replace) {
-              router.replace(location);
+              router.replace(location)
             } else {
-              router.push(location);
+              router.push(location)
             }
           }
         } else {
-          this.$emit('click', $event);
+          this.$emit('click', $event)
         }
       },
       /**
        * 获取组件类Label的文本
        * */
-      getLabelText() {
-        let list = [];
+      getLabelText () {
+        let list = []
         if (this.$slots['default'] && this.$slots['default'].length > 0) {
-          list = this.$slots['default'];
+          list = this.$slots['default']
         }
         for (let i = 0, len = list.length; len > i; i++) {
-          let item = list[i];
-          let hasValue = !!item.tag || (!!item.text && !!item.text.trim());
+          let item = list[i]
+          let hasValue = !!item.tag || (!!item.text && !!item.text.trim())
           if (hasValue && item.elm && item.elm.textContent) {
-            return item.elm.textContent.toString().trim();
+            return item.elm.textContent.toString().trim()
           }
         }
-        return '';
+        return ''
       }
     }
-  };
+  }
 </script>
 

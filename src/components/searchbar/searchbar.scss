@@ -27,14 +27,14 @@
   width: 100%;
   font-family: inherit;
   border: 0;
-
+  
   @include appearance(none);
 }
 
 .searchbar-clear-icon {
   display: none;
   min-height: 0;
-
+  
   @include margin(0);
   @include padding(0);
 }

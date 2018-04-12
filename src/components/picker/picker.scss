@@ -10,7 +10,7 @@
   width: $picker-width;
   height: $picker-width;
   contain: strict;
-
+  
   @include position(0, null, null, 0);
 }
 
@@ -30,7 +30,7 @@
   flex-direction: column;
   transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 400ms;
   contain: strict;
-
+  
   @include position(null, 0, 0, 0);
   @include margin(auto);
 }
@@ -41,7 +41,7 @@
   overflow: hidden;
   justify-content: center;
   contain: strict;
-
+  
   @include margin(null, null, constant(safe-area-inset-bottom), null);
   @include margin(null, null, env(safe-area-inset-bottom), null);
 }
@@ -69,7 +69,7 @@
   max-width: 50%;
   white-space: nowrap;
   flex: 2;
-
+  
   @include text-align(end);
 }
 
@@ -79,7 +79,7 @@
   max-width: 50%;
   white-space: nowrap;
   flex: 2;
-
+  
   @include text-align(start);
 }
 
@@ -94,7 +94,7 @@
   transform: translate3d(-9999px, 0, 0);
   will-change: transform;
   contain: strict;
-
+  
   @include position(0, null, null, 0);
   @include text-align(center);
 }

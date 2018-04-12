@@ -10,7 +10,7 @@
   overflow: hidden;
   align-items: center;
   justify-content: space-between;
-
+  
   @include margin(0);
   @include padding(0);
 }
@@ -18,7 +18,7 @@
 .#{$prefix}-list {
   display: block;
   list-style-type: none;
-
+  
   @include margin(0);
   @include padding(0);
   &::before,

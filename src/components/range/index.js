@@ -1,4 +1,4 @@
-export { default } from './range.vue';
+export { default } from './range.vue'
 /**
  *
  * @component Range

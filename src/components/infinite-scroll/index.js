@@ -1,4 +1,4 @@
-export { default } from './infinite-scroll.vue';
+export { default } from './infinite-scroll.vue'
 /**
  * @component InfiniteScroll
  * @description

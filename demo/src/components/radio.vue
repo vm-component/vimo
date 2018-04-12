@@ -78,7 +78,7 @@
 <style lang="scss">
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'radio',
     data () {
       return {

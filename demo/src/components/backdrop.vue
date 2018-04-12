@@ -6,8 +6,6 @@
             </Navbar>
         </Header>
         <Content padding>
-
-
             <h3>BackDrop组件</h3>
 
             <h5>可以实例化调用也可以模板式调用</h5>
@@ -53,7 +51,7 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     data () {
       return {
         isActive: false,

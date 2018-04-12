@@ -3,8 +3,8 @@ import Vue from 'vue'
 
 const configs = {
   mode: 'ios'
-};
+}
 
-const config = new Config(configs);
-Vue.prototype.$config = config;
+const config = new Config(configs)
+Vue.prototype.$config = config
 export default config

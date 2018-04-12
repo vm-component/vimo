@@ -65,7 +65,7 @@
   export default {
     name: 'DemoIndex',
     components: {ToolbarTitle, ToolbarButtons, Grid, Row, Column, Button},
-    data() {
+    data () {
       return {
         vimo: {
           version: 'x.x.x'
@@ -73,13 +73,13 @@
       }
     },
     methods: {
-      onTitleClickHandler() {
+      onTitleClickHandler () {
         alert('你点击了标题')
       }
     },
-    created() {
+    created () {
     },
-    mounted() {
+    mounted () {
     }
   }
 </script>

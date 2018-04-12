@@ -4,7 +4,7 @@
 // --------------------------------------------------
 
 .#{$prefix}-menu {
-
+  
   //position: absolute;
   position: fixed;
   z-index: 0;
@@ -12,7 +12,7 @@
   overflow: hidden;
   opacity: 1;
   contain: strict;
-
+  
   @include position(0, 0, 0, 0);
 }
 
@@ -22,7 +22,7 @@
 
 .menu-inner {
   //@include transform(translate3d(-9999px, 0, 0));
-
+  
   //position: absolute;
   position: fixed;
   z-index: 10;
@@ -30,12 +30,12 @@
   width: $menu-width;
   height: 100%;
   overflow: scroll;
-
+  
   // inner从左边进入出去
   //transform: translate3d(0, 0, 0);
   transition: all cubic-bezier(0, 0, 0, 1) 280ms;
   -webkit-overflow-scrolling: touch;
-
+  
   @include position(0, auto, 0, 0);
   //contain: layout style;
 }
@@ -83,7 +83,7 @@
 .menu-content-open {
   cursor: pointer;
   touch-action: manipulation;
-
+  
 }
 
 .menu-content-open .#{$prefix}-pane,
@@ -100,7 +100,7 @@
 
 .menu-content-reveal.menu-content-open {
   left: 304px;
-
+  
   @media (max-width: 340px) {
     left: 264px;
   }
@@ -108,7 +108,7 @@
 
 .menu-content-reveal.menu-content-right.menu-content-open {
   left: -304px;
-
+  
   @media (max-width: 340px) {
     left: -264px;
   }
@@ -124,7 +124,7 @@
   .menu-inner {
     width: $menu-small-width;
   }
-
+  
 }
 
 // Menu Reveal
@@ -140,7 +140,6 @@
 .#{$prefix}-menu[type=overlay].show-menu {
   z-index: $z-index-overlay + $z-index-overlay-sheet;
 }
-
 
 // Menu Animate
 // --------------------------------------------------

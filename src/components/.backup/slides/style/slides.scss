@@ -55,7 +55,7 @@ $horizontal-swiper-pagination-bullet-margin: 0 5px !default;
 
 .swiper-container {
   position: relative;
-
+  
   /* Fix of Webkit flickering */
   z-index: 1;
   margin-right: auto;
@@ -158,7 +158,7 @@ $horizontal-swiper-pagination-bullet-margin: 0 5px !default;
 .swiper-container-rtl .swiper-button-next {
   right: auto;
   left: 10px;
-
+  
   @include svg-background-image($swiper-button-prev-main-svg);
 }
 
@@ -166,7 +166,7 @@ $horizontal-swiper-pagination-bullet-margin: 0 5px !default;
 .swiper-container-rtl .swiper-button-prev {
   right: 10px;
   left: auto;
-
+  
   @include svg-background-image($swiper-button-next-main-svg);
 }
 
@@ -209,7 +209,7 @@ button.swiper-pagination-bullet {
   margin: 0;
   border: none;
   box-shadow: none;
-
+  
   @include appearance(none);
 }
 
@@ -490,7 +490,7 @@ button.swiper-pagination-bullet {
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: 100%;
-
+  
   @include svg-background-image($swiper-lazy-preloader-dark-svg);
 }
 

@@ -9,7 +9,7 @@
     margin-left: auto;
     overflow: hidden;
     visibility: hidden;
-
+    
     .slides-wrapper {
       position: relative;
       display: flex;
@@ -20,20 +20,20 @@
       flex-wrap: nowrap;
     }
   }
-
+  
   .swiper-pagination {
     position: absolute;
     z-index: 10;
     text-align: center;
     transition: 300ms;
     transform: translate3d(0, 0, 0);
-
+    
     &.swiper-pagination-bullets {
       bottom: 10px;
       left: 0;
       width: 100%;
     }
-
+    
     .swiper-pagination-bullet {
       display: inline-block;
       width: 8px;
@@ -42,7 +42,7 @@
       background: #000;
       border-radius: 100%;
       opacity: 0.2;
-
+      
       &.swiper-pagination-bullet-active {
         background: #007aff;
         opacity: 1;

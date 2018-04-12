@@ -176,7 +176,6 @@
                 </Segment>
             </Toolbar>
 
-
             <!--10-->
             <Toolbar>
                 <Searchbar :animated="true"

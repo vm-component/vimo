@@ -1,8 +1,8 @@
 <template>
-  <header class="ion-header" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
-    <div ref="rightButtonPlaceholder" id="right-button-placeholder"></div>
-    <slot></slot>
-  </header>
+    <header class="ion-header" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
+        <div ref="rightButtonPlaceholder" id="right-button-placeholder"></div>
+        <slot></slot>
+    </header>
 </template>
 <script type="text/javascript">
   export default {
@@ -13,29 +13,29 @@
         default: null
       }
     },
-    provide() {
-      let _this = this;
+    provide () {
+      let _this = this
       return {
         headerComponent: _this
-      };
+      }
     },
     props: {
       mode: {
         type: String,
-        default() {
-          return (this.$config && this.$config.get('mode', 'ios')) || 'ios';
+        default () {
+          return (this.$config && this.$config.get('mode', 'ios')) || 'ios'
         }
       }
     },
-    data() {
+    data () {
       return {
         isHide: false,
         style: {}
-      };
+      }
     },
     computed: {
-      modeClass() {
-        return `header-${this.mode}`;
+      modeClass () {
+        return `header-${this.mode}`
       }
     },
     methods: {
@@ -44,8 +44,8 @@
        * @description
        * 隐藏Header
        * */
-      hide() {
-        this.isHide = true;
+      hide () {
+        this.isHide = true
       },
 
       /**
@@ -53,8 +53,8 @@
        * @description
        * 显示Header
        * */
-      show() {
-        this.isHide = false;
+      show () {
+        this.isHide = false
       },
 
       /**
@@ -62,8 +62,8 @@
        * @description
        * Toggle显示Header
        * */
-      toggle() {
-        this.isHide = !this.isHide;
+      toggle () {
+        this.isHide = !this.isHide
       },
 
       /**
@@ -73,26 +73,26 @@
        * @description
        * 设置Header的样式
        * */
-      setStyle(style) {
-        this.style = style;
+      setStyle (style) {
+        this.style = style
       }
     },
-    created() {
+    created () {
       if (this.pageComponent) {
-        this.pageComponent.headerComponent = this;
+        this.pageComponent.headerComponent = this
       }
 
       this.$root.$on('onMenuOpen', () => {
-        this.hide();
-      });
+        this.hide()
+      })
       this.$root.$on('onMenuClosing', () => {
-        this.show();
-      });
-      this.$root.$emit('header:created', this);
+        this.show()
+      })
+      this.$root.$emit('header:created', this)
     },
-    mounted() {
-      this.$root.$emit('header:mounted', this);
+    mounted () {
+      this.$root.$emit('header:mounted', this)
     }
-  };
+  }
 
 </script>

@@ -4,7 +4,7 @@
 // --------------------------------------------------
 
 .#{$prefix}-loading {
-
+  
   //position: absolute;
   position: fixed;
   z-index: $z-index-overlay + $z-index-overlay-loading;
@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   contain: strict;
-
+  
   @include position(0, 0, 0, 0);
 }
 
@@ -20,16 +20,15 @@
   z-index: $z-index-overlay-wrapper;
   display: flex;
   margin-bottom: 40px;
-
+  
   //opacity: 0;
-
+  
   font-size: 14px;
-
+  
   // addStyle
   transition: transform ease-in-out 200ms, opacity ease-in-out 200ms;
   align-items: center;
 }
-
 
 // Transition
 // --------------------------------------------------
@@ -56,12 +55,12 @@
     padding: 13px;
     color: #fff;
     background: rgba(0, 0, 0, 0.9);
-
+    
     circle,
     line {
       stroke: #fff !important;
     }
-
+    
     .loading-spinner {
       display: flex;
       width: 30px;
@@ -75,7 +74,7 @@
 .indicator.reverse {
   .loading-wrapper {
     background: rgba(256, 256, 256, 0.9);
-
+    
     circle,
     line {
       stroke: #000 !important;

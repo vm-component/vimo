@@ -9,9 +9,9 @@
   display: none;
   width: 100%;
   height: $refresher-height;
-
+  
   @include position(0, null, null, 0);
-
+  
   &.refresher-active {
     display: block;
   }
@@ -47,7 +47,7 @@
   font-size: $refresher-icon-font-size;
   color: $refresher-icon-color;
   transition: 200ms;
-
+  
   @include text-align(center);
   @include transform-origin(center);
 }
@@ -56,7 +56,7 @@
 .refresher-refreshing-text {
   font-size: $refresher-text-font-size;
   color: $refresher-text-color;
-
+  
   @include text-align(center);
 }
 
@@ -85,7 +85,7 @@
   .refresher-pulling {
     display: block;
   }
-
+  
   .refresher-pulling-icon {
     transform: rotate(180deg);
   }
@@ -101,7 +101,7 @@
   .refresher-pulling {
     display: block;
   }
-
+  
   .refresher-pulling-icon {
     transform: scale(0);
   }
@@ -111,7 +111,7 @@
   .refresher-refreshing {
     display: block;
   }
-
+  
   .refresher-refreshing-icon {
     transform: scale(0);
   }

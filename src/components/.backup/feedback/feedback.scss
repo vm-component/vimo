@@ -31,19 +31,19 @@
       box-sizing: border-box;
       /*overflow: hidden;*/
       position: relative;
-
+      
       display: flex;
       flex: 0 0 auto;
       justify-content: center;
       align-items: center;
-
+      
       border: 1px solid #eee;
-
+      
       background-repeat: no-repeat;
       background-color: #eee;
       background-position: center center;
       background-size: cover;
-
+      
       .file {
         display: none;
       }
@@ -99,7 +99,7 @@
         height: 100%;
         opacity: 0;
       }
-
+      
       &::before,
       &::after {
         background: #dadada;

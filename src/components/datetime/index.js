@@ -1,4 +1,4 @@
-export { default } from './datetime.vue';
+export { default } from './datetime.vue'
 /**
  * @component Datetime
  * @description

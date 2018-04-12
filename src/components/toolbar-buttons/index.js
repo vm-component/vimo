@@ -1,4 +1,4 @@
-export { default } from './toolbar-buttons.vue';
+export { default } from './toolbar-buttons.vue'
 /**
  * @component Toolbar/Buttons
  * @description

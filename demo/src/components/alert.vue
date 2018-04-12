@@ -17,15 +17,20 @@
             <Button color="primary" block @click="image()">Image</Button>
             <article>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime, molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime,
+                    molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime, molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime,
+                    molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime, molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime,
+                    molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime, molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime,
+                    molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime, molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur debitis deleniti doloribus eius laborum magni maiores maxime,
+                    molestias quidem. Amet esse excepturi, facilis illum magnam nulla quo repudiandae vero.</p>
             </article>
         </Content>
     </Page>

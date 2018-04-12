@@ -1,4 +1,4 @@
-export { default } from './item-sliding.vue';
+export { default } from './item-sliding.vue'
 /**
  * @component Item/ItemSliding
  * @description

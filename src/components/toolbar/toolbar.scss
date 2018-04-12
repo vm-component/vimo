@@ -27,7 +27,7 @@
   border: 0;
   transform: translateZ(0);
   contain: strict;
-
+  
   @include position(0, null, null, 0);
 }
 
@@ -50,7 +50,7 @@
   display: block;
   pointer-events: none;
   transform: translateZ(0);
-
+  
   @include margin(0, 0.2rem);
 }
 

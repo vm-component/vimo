@@ -10,7 +10,7 @@
   display: block;
   background: #000;
   transition: all ease 300ms;
-
+  
   .preview-image-inner {
     width: 100%;
     height: 100%;
@@ -22,7 +22,7 @@
         height: 100%;
       }
     }
-
+    
     .slide {
       display: flex;
       align-items: center;
@@ -31,7 +31,7 @@
         width: 100%;
       }
     }
-
+    
     .info {
       position: fixed;
       bottom: 0;
@@ -46,7 +46,6 @@
     }
   }
 }
-
 
 // Transition
 // --------------------------------------------------

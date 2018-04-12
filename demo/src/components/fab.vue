@@ -115,36 +115,50 @@
             </Fab>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <h5>注意</h5>
             <p>Fab需要手动放置在fixed的slot中, 关闭使用ref获取组件示例之后执行close()方法.</p>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
+                blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
         </Content>
         <Footer>
             <Toolbar><Title>Footer</Title></Toolbar>

@@ -7,7 +7,7 @@ $track-failing-background-color: #ef4644 !default;
   overflow: hidden;
   background-color: #ddd;
   box-shadow: 0 0 3px #999;
-
+  
   .vm-slide-box-placeholder {
     display: block;
     width: 100%;
@@ -21,13 +21,13 @@ $track-failing-background-color: #ef4644 !default;
       0% {
         background-position: -200px 0;
       }
-
+      
       100% {
         background-position: 200px 0;
       }
     }
   }
-
+  
   .vm-slide-box-track {
     position: absolute;
     top: 0;
@@ -35,7 +35,7 @@ $track-failing-background-color: #ef4644 !default;
     width: 100%;
     height: 100%;
     overflow: hidden;
-
+    
     .track-background {
       width: 100%;
       height: 52px;
@@ -44,7 +44,7 @@ $track-failing-background-color: #ef4644 !default;
       color: #fff;
       text-align: center;
     }
-
+    
     .track-btn {
       position: absolute;
       top: 0;
@@ -57,37 +57,37 @@ $track-failing-background-color: #ef4644 !default;
       opacity: 1;
       align-items: center;
       justify-content: center;
-
+      
       .icon-arrow-right {
         width: 20px;
         height: 20px;
         background: #fff url("images/arrow.png") no-repeat center center/20px 20px;
       }
-
+      
       .icon-ok {
         width: 20px;
         height: 20px;
         background: #fff url("images/ok.png") no-repeat center center/20px 20px;
       }
-
+      
       .icon-error {
         width: 20px;
         height: 20px;
         background: #fff url("images/error.png") no-repeat center center/20px 20px;
       }
-
+      
       .icon-refresh {
         width: 20px;
         height: 20px;
         background: #fff url("images/refresh.png") no-repeat center center/20px 20px;
         animation: revolve 2s linear infinite;
       }
-
+      
       @keyframes revolve {
         from {
           transform: rotate(0deg);
         }
-
+        
         to {
           transform: rotate(360deg);
         }
@@ -127,7 +127,7 @@ $track-failing-background-color: #ef4644 !default;
     pointer-events: none;
     content: "";
   }
-
+  
   .vm-slide-box-track {
     transition: transform ease 500ms;
     will-change: transform;

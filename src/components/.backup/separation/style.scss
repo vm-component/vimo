@@ -5,11 +5,11 @@
   margin: 15px 0;
   align-items: center;
   justify-content: center;
-
+  
   .vm-separation-line {
     position: relative;
     flex: 1;
-
+    
     &::after {
       position: absolute;
       top: 50%;
@@ -19,7 +19,7 @@
       border-top: 1px solid #ddd;
     }
   }
-
+  
   .vm-separation-wrap {
     padding: 0 10px;
     color: #9f9f9f;

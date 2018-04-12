@@ -53,7 +53,7 @@
     </transition>
 </template>
 <script type="text/javascript">
-  import { pointerCoord, clamp } from '../../../util/util'
+  import { clamp, pointerCoord } from '../../../util/util'
   import popupExtend from '../../../util/popup-extend'
   import loadScript from '../../../util/load-script'
 

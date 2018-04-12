@@ -7,7 +7,7 @@ $sheet-max-width: 500px !default;
 
 .vm-pop-sheet {
   overflow: hidden;
-
+  
   &.vm-pop-sheet-visible {
     position: fixed !important;
     top: 0;
@@ -22,24 +22,24 @@ $sheet-max-width: 500px !default;
     align-items: center;
     justify-content: center;
   }
-
+  
   // transitioName = 'pop-sheet'
   .pop-sheet-enter-active,
   .pop-sheet-leave-active {
     opacity: 1;
     transform: scale(1);
   }
-
+  
   .pop-sheet-enter {
     opacity: 0;
     transform: scale(1.1);
   }
-
+  
   .pop-sheet-leave-active {
     opacity: 0;
     transform: scale(0.9);
   }
-
+  
   .sheet-wrapper {
     position: relative;
     z-index: $z-index-overlay-wrapper;

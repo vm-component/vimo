@@ -14,9 +14,9 @@ template {
 // Focus Outline
 // --------------------------------------------------
 
-$focus-outline-border-color:   #51a7e8 !default;
-$focus-outline-border-width:   2px !default;
-$focus-outline-box-shadow:     0 0 8px 1px $focus-outline-border-color !default;
+$focus-outline-border-color: #51a7e8 !default;
+$focus-outline-border-width: 2px !default;
+$focus-outline-box-shadow: 0 0 8px 1px $focus-outline-border-color !default;
 
 :focus,
 :active {
@@ -51,14 +51,14 @@ $focus-outline-box-shadow:     0 0 8px 1px $focus-outline-border-color !default;
 .click-block-enabled {
   @include position(0, 0, 0, 0);
   @include transform(translate3d(0, -100%, 0), translateY(1px));
-
+  
   position: absolute;
-
+  
   z-index: $z-index-click-block;
   display: block;
-
+  
   opacity: 0;
-
+  
   contain: strict;
 }
 

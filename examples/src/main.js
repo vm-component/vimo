@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import AttachFastClick from 'fastclick'
-import config from './config';
+import config from './config'
 import 'ionicons/dist/css/ionicons.css'
 import router from './router'
 import store from './store.js'
@@ -53,13 +53,13 @@ new Vue({
   el: '#app',
   router,
   store,
-  template: '<AppComponent/>',
-  created() {
+  components: {AppComponent},
+  created () {
     // window.VM.platform.ready().then((data) => {
     //   console.debug(`Platform Ready && Init Info: ${data}`)
     // }, (data) => {
     //   console.error(`Platform Ready && Init Info: ${data}`)
     // })
   },
-  components: {AppComponent}
+  template: '<AppComponent/>'
 })

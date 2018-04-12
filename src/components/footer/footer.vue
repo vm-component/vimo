@@ -1,7 +1,7 @@
 <template>
-  <footer class="ion-footer" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
-    <slot></slot>
-  </footer>
+    <footer class="ion-footer" :class="[modeClass,{'hide-bar':isHide}]" :style="style">
+        <slot></slot>
+    </footer>
 </template>
 <script type="text/javascript">
   export default {
@@ -12,30 +12,30 @@
         default: null
       }
     },
-    provide() {
-      let _this = this;
+    provide () {
+      let _this = this
       return {
         footerComponent: _this
-      };
+      }
     },
     props: {
       mode: {
         type: String,
-        default() {
-          return (this.$config && this.$config.get('mode', 'ios')) || 'ios';
+        default () {
+          return (this.$config && this.$config.get('mode', 'ios')) || 'ios'
         }
       }
     },
-    data() {
+    data () {
       return {
         // -------- public --------
         isHide: false,
         style: {}
-      };
+      }
     },
     computed: {
-      modeClass() {
-        return `footer-${this.mode}`;
+      modeClass () {
+        return `footer-${this.mode}`
       }
     },
     methods: {
@@ -45,8 +45,8 @@
        * @description
        * 隐藏Footer
        * */
-      hide() {
-        this.isHide = true;
+      hide () {
+        this.isHide = true
       },
 
       /**
@@ -54,8 +54,8 @@
        * @description
        * 显示Footer
        * */
-      show() {
-        this.isHide = false;
+      show () {
+        this.isHide = false
       },
 
       /**
@@ -63,8 +63,8 @@
        * @description
        * Toggle显示Footer
        * */
-      toggle() {
-        this.isHide = !this.isHide;
+      toggle () {
+        this.isHide = !this.isHide
       },
 
       /**
@@ -74,25 +74,25 @@
        * @description
        * 设置Footer的样式
        * */
-      setStyle(style) {
-        this.style = style;
+      setStyle (style) {
+        this.style = style
       }
     },
-    created() {
+    created () {
       if (this.pageComponent) {
-        this.pageComponent.footerComponent = this;
+        this.pageComponent.footerComponent = this
       }
 
       this.$root.$on('onMenuOpen', () => {
-        this.hide();
-      });
+        this.hide()
+      })
       this.$root.$on('onMenuClosing', () => {
-        this.show();
-      });
-      this.$root.$emit('footer:created', this);
+        this.show()
+      })
+      this.$root.$emit('footer:created', this)
     },
-    mounted() {
-      this.$root.$emit('footer:mounted', this);
+    mounted () {
+      this.$root.$emit('footer:mounted', this)
     }
-  };
+  }
 </script>

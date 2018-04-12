@@ -25,7 +25,7 @@
     </div>
 </template>
 <script type="text/javascript">
-  import { pointerCoord, clamp, parsePxUnit } from '../../util/util'
+  import { clamp, parsePxUnit, pointerCoord } from '../../util/util'
   import css from '../../util/get-css'
 
   const PICKER_OPT_SELECTED = 'picker-opt-selected'

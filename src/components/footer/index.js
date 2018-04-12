@@ -1,4 +1,4 @@
-export { default } from './footer.vue';
+export { default } from './footer.vue'
 /**
  * @component Footer
  * @description

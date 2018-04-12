@@ -1,4 +1,4 @@
-export { default } from './card-content.vue';
+export { default } from './card-content.vue'
 /**
  * @component Card/CardContent
  * @description

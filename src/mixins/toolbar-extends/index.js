@@ -6,7 +6,7 @@ export default {
     color: String,
     mode: {
       type: String,
-      default() {
+      default () {
         return this.$config && this.$config.get('mode', 'ios') || 'ios'
       }
     }
@@ -26,16 +26,16 @@ export default {
     }
   },
   computed: {
-    colorClass() {
+    colorClass () {
       return this.color ? (`toolbar-${this.mode}-${this.color}`) : ''
     },
-    modeClass() {
+    modeClass () {
       return `toolbar-${this.mode}`
     },
-    backgroundClass() {
+    backgroundClass () {
       return `toolbar-background-${this.mode}`
     },
-    contentClass() {
+    contentClass () {
       return `toolbar-content-${this.mode}`
     }
   }

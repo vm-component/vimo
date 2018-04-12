@@ -54,7 +54,7 @@
 <script type="text/javascript">
   import Button from '../button'
   import Icon from '../icon'
-  import { isNumber, isBoolean } from '../../util/type'
+  import { isBoolean, isNumber } from '../../util/type'
 
   // TODO: use padding-left to  animate is not prefect , hah
   export default {

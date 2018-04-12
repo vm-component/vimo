@@ -13,7 +13,7 @@
   opacity: 0.4;
   transition: opacity 200ms;
   transform: translateZ(0);
-
+  
   @include position(0, null, null, 0);
 }
 

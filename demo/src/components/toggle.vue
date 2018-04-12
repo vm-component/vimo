@@ -34,14 +34,12 @@
                 </Item>
             </List>
 
-
             <section padding>
                 <h5>单独使用</h5>
                 <div class="customer-standalone">
                     <Toggle slot="item-right" color="danger" v-model="displayData.danger"></Toggle>
                 </div>
             </section>
-
 
             <List>
                 <ListHeader>
@@ -68,7 +66,6 @@
                     <Column text-center col-12>* 使用v-model切换状态, 不支持checked属性</Column>
                 </Row>
             </Grid>
-
         </Content>
     </Page>
 </template>

@@ -1,26 +1,26 @@
 .vm-landscape-prompt {
   position: fixed;
   z-index: 2000;
-
+  
   @keyframes rotation {
     10% {
       transform: rotate(90deg);
     }
-
+    
     50%,
     60% {
       transform: rotate(0deg);
     }
-
+    
     90% {
       transform: rotate(90deg);
     }
-
+    
     100% {
       transform: rotate(90deg);
     }
   }
-
+  
   .mod-orient-layer {
     position: fixed;
     top: 0;
@@ -31,9 +31,9 @@
     width: 100%;
     height: 100%;
     background: #000;
-
+    
   }
-
+  
   .mod-orient-layer-content {
     position: absolute;
     top: 45%;
@@ -41,7 +41,7 @@
     margin-top: -75px; /* no */
     text-align: center;
   }
-
+  
   .mod-orient-layer-icon-orient {
     display: inline-block;
     width: 67px; /* no */
@@ -51,7 +51,7 @@
     transform: rotate(90deg);
     animation: rotation infinite 1.5s ease-in-out;
   }
-
+  
   .mod-orient-layer-desc {
     margin-top: 20px; /* no */
     font-size: 15px; /* no */

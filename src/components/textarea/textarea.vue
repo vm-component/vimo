@@ -1,6 +1,6 @@
 <template>
-  <div class="ion-textarea" :class="[modeClass,{'has-count': this.count > 0}]">
-    <div class="input-inner-wrap" @click="setFocus($event)">
+    <div class="ion-textarea" :class="[modeClass,{'has-count': this.count > 0}]">
+        <div class="input-inner-wrap" @click="setFocus($event)">
             <textarea :class="[textInputClass]"
                       class="text-input"
                       :value="inputValue"
@@ -17,16 +17,16 @@
                       @focus="inputFocused($event)"
                       @input="inputChanged($event)"
                       @keydown="inputKeyDown($event)"></textarea>
-      <div class="input-count" v-if="count > 0">{{inputValue.length}}/{{count}}</div>
+            <div class="input-count" v-if="count > 0">{{inputValue.length}}/{{count}}</div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script type="text/javascript">
-  import { hasFocus, setElementClass } from '../../util/util';
-  import { isNumber, isPresent } from '../../util/type';
+  import { hasFocus, setElementClass } from '../../util/util'
+  import { isNumber, isPresent } from '../../util/type'
 
-  const Autosize = require('autosize');
+  const Autosize = require('autosize')
 
   export default {
     name: 'Textarea',
@@ -36,12 +36,12 @@
         default: null
       }
     },
-    data() {
+    data () {
       return {
         max: this.maxlength,
         isValid: false, // 验证结果
         inputValue: this.value || '' // 内部value值
-      };
+      }
     },
     props: {
       /**
@@ -77,8 +77,8 @@
        * */
       mode: {
         type: String,
-        default() {
-          return this.$config && this.$config.get('mode', 'ios') || 'ios';
+        default () {
+          return this.$config && this.$config.get('mode', 'ios') || 'ios'
         }
       },
 
@@ -110,23 +110,23 @@
       value: [String, Number, Object, Function]
     },
     watch: {
-      value(val) {
-        this.inputValue = val;
+      value (val) {
+        this.inputValue = val
       }
     },
     computed: {
-      modeClass() {
-        return `input-${this.mode}`;
+      modeClass () {
+        return `input-${this.mode}`
       },
-      textInputClass() {
-        return `text-input-${this.mode}`;
+      textInputClass () {
+        return `text-input-${this.mode}`
       },
-      textareaElement() {
-        return this.$refs.textarea;
+      textareaElement () {
+        return this.$refs.textarea
       },
-      hasValue() {
-        const inputValue = this.inputValue;
-        return (inputValue !== null && inputValue !== undefined && inputValue !== '');
+      hasValue () {
+        const inputValue = this.inputValue
+        return (inputValue !== null && inputValue !== undefined && inputValue !== '')
       }
     },
     methods: {
@@ -137,16 +137,16 @@
        * @description
        * 更新textarea组件
        * */
-      update() {
-        Autosize && Autosize.update(this.textareaElement);
+      update () {
+        Autosize && Autosize.update(this.textareaElement)
       },
       /**
        * @function destroy
        * @description
        * 销毁textarea组件
        * */
-      destroy() {
-        Autosize && Autosize.destroy(this.textareaElement);
+      destroy () {
+        Autosize && Autosize.destroy(this.textareaElement)
       },
 
       // -------- private --------
@@ -154,34 +154,34 @@
        * 对外传递onKeyup事件
        * @private
        * */
-      inputKeyUp($event) {
+      inputKeyUp ($event) {
         /**
          * @event  component:Textarea#onKeyup
          * @description onKeyup
          * @property {object} $event - 事件对象
          */
-        this.$emit('onKeyup', $event);
+        this.$emit('onKeyup', $event)
       },
 
       /**
        * 键盘按下事件
        * @private
        * */
-      inputKeyDown($event) {
+      inputKeyDown ($event) {
         /**
          * @event  component:Textarea#onKeydown
          * @description onKeydown
          * @property {object} $event - 事件对象
          */
-        this.$emit('onKeydown', $event);
+        this.$emit('onKeydown', $event)
       },
 
       /**
        * 设置当前组件为focus状态
        * */
-      setFocus() {
+      setFocus () {
         if (!hasFocus(this.textareaElement)) {
-          this.textareaElement.focus();
+          this.textareaElement.focus()
         }
       },
 
@@ -189,46 +189,46 @@
        * 监听并发送blur事件
        * @private
        */
-      inputBlurred() {
+      inputBlurred () {
         // 向父组件Item添加标记
-        this.setItemHasFocusClass(false);
+        this.setItemHasFocusClass(false)
 
         /**
          * @event  component:Textarea#onBlur
          * @description blur事件
          */
-        this.$emit('onBlur');
+        this.$emit('onBlur')
 
         // 验证输入结果
-        this.verification();
+        this.verification()
       },
 
       /**
        * 必填验证
        *
        * */
-      verification() {
-        if (!this.required) return;
+      verification () {
+        if (!this.required) return
 
-        this.isValid = this.hasValue;
+        this.isValid = this.hasValue
         if (this.isValid) {
           /**
            * @event  component:Textarea#onValid
            * @description 验证通过
            * @property {*} value - 当前检查的value
            */
-          this.$emit('onValid', this.inputValue);
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', true);
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', false);
+          this.$emit('onValid', this.inputValue)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', true)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', false)
         } else {
           /**
            * @event  component:Textarea#onInvalid
            * @description 验证失败
            * @property {*} value - 当前检查的value
            */
-          this.$emit('onInvalid', this.inputValue);
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', false);
-          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', true);
+          this.$emit('onInvalid', this.inputValue)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-valid', false)
+          this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-invalid', true)
         }
       },
 
@@ -236,78 +236,78 @@
        * 监听并发送focus事件
        * @private
        */
-      inputFocused() {
+      inputFocused () {
         // 向父组件Item添加标记
-        this.setItemHasFocusClass(true);
-        this.setFocus();
+        this.setItemHasFocusClass(true)
+        this.setFocus()
         /**
          * @event  component:Textarea#onFocus
          * @description focus事件
          */
-        this.$emit('onFocus');
-        this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-touched', true);
+        this.$emit('onFocus')
+        this.itemComponent && setElementClass(this.itemComponent.$el, 'ng-touched', true)
       },
 
       /**
        * 监听input事件, 更新input的value(inputValue)
        * @private
        */
-      inputChanged($event) {
-        this.inputValue = $event && $event.target ? $event.target.value : '';
-        this.setItemHasValueClass();
+      inputChanged ($event) {
+        this.inputValue = $event && $event.target ? $event.target.value : ''
+        this.setItemHasValueClass()
 
         /**
          * @event  component:Textarea#onInput
          * @description input事件
          * @property {*} value - 输入值
          */
-        this.$emit('input', this.inputValue);
-        this.$emit('onInput', this.inputValue);
+        this.$emit('input', this.inputValue)
+        this.$emit('onInput', this.inputValue)
       },
 
       /**
        *  设置父组件Item被点中时的class
        *  @private
        */
-      setItemHasFocusClass(isFocus) {
+      setItemHasFocusClass (isFocus) {
         if (this.itemComponent) {
-          setElementClass(this.itemComponent.$el, 'input-has-focus', isFocus);
+          setElementClass(this.itemComponent.$el, 'input-has-focus', isFocus)
         }
-        setElementClass(this.$el, 'input-has-focus', isFocus);
+        setElementClass(this.$el, 'input-has-focus', isFocus)
       },
 
       /**
        *  设置父组件Item有值时的class
        *  @private
        */
-      setItemHasValueClass() {
+      setItemHasValueClass () {
         if (this.itemComponent) {
-          setElementClass(this.itemComponent.$el, 'input-has-value', this.hasValue);
+          setElementClass(this.itemComponent.$el, 'input-has-value', this.hasValue)
         }
-        setElementClass(this.$el, 'input-has-value', this.hasValue);
+        setElementClass(this.$el, 'input-has-value', this.hasValue)
       }
     },
-    created() {
+    created () {
       if (isPresent(this.count) && isNumber(this.count)) {
-        this.max = this.count;
+        this.max = this.count
       }
     },
-    mounted() {
+    mounted () {
       if (this.autosize) {
-        Autosize(this.textareaElement);
+        Autosize(this.textareaElement)
       }
 
       // 找到外部item实例
       if (this.itemComponent) {
-        setElementClass(this.itemComponent.$el, 'item-textarea', true);
-        setElementClass(this.itemComponent.$el, 'item-input', true);
-        setElementClass(this.itemComponent.$el, 'show-focus-highlight', this.showFocusHighlight);
-        setElementClass(this.itemComponent.$el, 'show-valid-highlight', this.required);
-        setElementClass(this.itemComponent.$el, 'show-invalid-highlight', this.required);
+        setElementClass(this.itemComponent.$el, 'item-textarea', true)
+        setElementClass(this.itemComponent.$el, 'item-input', true)
+        setElementClass(this.itemComponent.$el, 'show-focus-highlight', this.showFocusHighlight)
+        setElementClass(this.itemComponent.$el, 'show-valid-highlight', this.required)
+        setElementClass(this.itemComponent.$el, 'show-invalid-highlight', this.required)
       }
 
       // 初始化时,判断是否有value
-      this.setItemHasValueClass();
+      this.setItemHasValueClass()
     }
-  };
+  }
 </script>

@@ -31,6 +31,7 @@
 </style>
 <script type="text/javascript">
   import cityList from '../../../src/components/.backup/choose-city/data/cities.json'
+
   export default {
     data () {
       return {

@@ -13,7 +13,7 @@ let startTime
 class LoadingInstance extends GeneratePopUpInstance {
   normalizeOptions (options = {}) {
     if (isString(options)) {
-      options = { content: options }
+      options = {content: options}
     }
 
     let defaultOptions = {

@@ -51,4 +51,4 @@
  *    <span>Left Icon</span>
  * </Button>
  * */
-export { default } from './button.vue';
+export { default } from './button.vue'

@@ -22,12 +22,11 @@
   import Backdrop from '../backdrop'
   import { parsePxUnit } from '../../util/util'
   import css from '../../util/get-css'
+  import popupExtend from '../../util/popup-extend'
+  import prepareComponent from '../../util/prepare-component'
 
   const POPOVER_IOS_BODY_PADDING = 2
   const POPOVER_MD_BODY_PADDING = 12
-
-  import popupExtend from '../../util/popup-extend'
-  import prepareComponent from '../../util/prepare-component'
 
   export default {
     name: 'Popover',

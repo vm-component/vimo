@@ -9,7 +9,8 @@
 
             <div padding>
                 <h1>Grid组件</h1>
-                <p>栅格系统类似于Bootstrap的栅格, 使用方法大同小异. 栅格组件用于 <strong>响应式布局</strong> 场景, 比如兼容 Mobile / Pad / PC 等设备. 一般移动小屏项目运用较少, 使用 <strong>Flex布局</strong> 即可Hold住绝大多数场景.</p>
+                <p>栅格系统类似于Bootstrap的栅格, 使用方法大同小异. 栅格组件用于 <strong>响应式布局</strong> 场景, 比如兼容 Mobile / Pad / PC 等设备. 一般移动小屏项目运用较少, 使用 <strong>Flex布局</strong>
+                   即可Hold住绝大多数场景.</p>
             </div>
 
             <div padding>
@@ -52,25 +53,17 @@
                         <Column>1 of 2</Column>
                         <Column>
                             2 of 2
-
-
                         </Column>
                     </Row>
                     <Row>
                         <Column>
                             1 of 3
-
-
                         </Column>
                         <Column>
                             2 of 3
-
-
                         </Column>
                         <Column>
                             3 of 3
-
-
                         </Column>
                     </Row>
                 </Grid>
@@ -80,35 +73,23 @@
                     <Row>
                         <Column>
                             1 of 3
-
-
                         </Column>
                         <Column col-8>
                             2 of 3 (col-8)
-
-
                         </Column>
                         <Column>
                             3 of 3
-
-
                         </Column>
                     </Row>
                     <Row>
                         <Column>
                             1 of 3
-
-
                         </Column>
                         <Column col-6>
                             2 of 3 (col-6)
-
-
                         </Column>
                         <Column>
                             3 of 3
-
-
                         </Column>
                     </Row>
                 </Grid>
@@ -202,7 +183,6 @@
                     </Row>
                 </Grid>
 
-
                 <p>8. push(左偏移-left)和pull(右偏移-right)的用法</p>
                 <Grid>
                     <Row>
@@ -214,7 +194,6 @@
                         </Column>
                     </Row>
                 </Grid>
-
 
                 <p>9. 针对特定屏幕尺寸的push和pull的用法</p>
                 <Grid>
@@ -279,7 +258,6 @@
                     </Row>
                 </Grid>
 
-
                 <p>11. 列对齐方式</p>
                 <Grid>
                     <Row style="outline:2px solid blue;">
@@ -305,7 +283,6 @@
                         </Column>
                     </Row>
                 </Grid>
-
 
                 <p>12. 水平对齐方式</p>
                 <Grid>
@@ -354,17 +331,12 @@
                         </Column>
                     </Row>
                 </Grid>
-
-
             </div>
-
         </Content>
     </Page>
 
 </template>
 <style scoped lang="scss">
-
-
     .demo {
         .grid, .row, .col {
             outline: 1px solid #a9a9a9;
@@ -388,7 +360,7 @@
 
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'name',
     data () {
       return {}

@@ -31,7 +31,7 @@
   border: 0;
   align-items: center;
   justify-content: space-between;
-
+  
   @include margin(0);
   @include padding(0);
   @include text-align(initial);
@@ -46,7 +46,7 @@
   flex: 1;
   align-items: inherit;
   align-self: stretch;
-
+  
   @include margin(0);
   @include padding(0);
 }
@@ -78,7 +78,7 @@
   overflow: hidden;
   align-items: center;
   justify-content: space-between;
-
+  
   @include margin(0);
   @include padding(0);
 }

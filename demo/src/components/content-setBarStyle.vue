@@ -13,67 +13,98 @@
             </section>
             <section>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
+                    necessitatibus nulla officia optio porro tenetur, veniam. Excepturi neque odio quisquam.</p>
             </section>
         </Content>
     </Page>
@@ -83,7 +114,8 @@
 </style>
 <script type="text/javascript">
   import { clamp } from '../../../src/util/util'
-  export default{
+
+  export default {
     name: 'setBarStyle',
     data () {
       return {}

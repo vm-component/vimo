@@ -1,4 +1,4 @@
-export { default } from './column.vue';
+export { default } from './column.vue'
 /**
  * @component Grid/Column
  * @description

@@ -11,7 +11,7 @@
   height: $toast-width;
   pointer-events: none;
   contain: strict;
-
+  
   @include position(0, null, null, 0);
 }
 
@@ -20,13 +20,13 @@
   pointer-events: auto;
   align-items: center;
   contain: content;
-
+  
   .toast-button {
     font-size: 15px;
-
+    
     @include padding(19px, 16px, 17px);
   }
-
+  
   .toast-message {
     flex: 1;
   }

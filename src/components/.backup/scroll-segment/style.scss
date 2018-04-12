@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-
+  
   .scroll-segment-outer {
     position: relative;
     // for hide scroll bar
@@ -11,12 +11,12 @@
     overflow-x: scroll;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-
+    
     &::-webkit-scrollbar {
       display: none;
     }
   }
-
+  
   .scroll-segment-wrap {
     display: inline-flex;
     // for hide scroll bar

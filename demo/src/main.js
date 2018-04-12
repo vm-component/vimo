@@ -5,9 +5,9 @@ import router from './router'
 import register from './register'
 import config from './config'
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
-register();
+register()
 
 new Vue({
   config,

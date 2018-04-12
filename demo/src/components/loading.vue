@@ -15,7 +15,6 @@
             <Button block @click="stringOnlyH5Only()">点击打开默认Loading(强制使用H5模式)</Button>
             <p>控制页面切换是否关闭loading</p>
 
-
             <Button block @click="showDefault()">页面切换不关闭loading(默认)</Button>
             <Button block @click="dismissWhenChangeUrl()">页面切换关闭loading</Button>
 
@@ -29,7 +28,6 @@
 
             <p>不显示Backdrop</p>
             <Button block @click="showNoBackDrop()">不显示Backdrop</Button>
-
 
             <p>在一个loading中定时打开另一个</p>
             <Button block @click="showOther()">连续开启</Button>

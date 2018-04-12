@@ -1,4 +1,4 @@
-export { default } from './input.vue';
+export { default } from './input.vue'
 /**
  * @component Input
  * @description
@@ -7,7 +7,8 @@ export { default } from './input.vue';
  *
  * ### 注意
  *
- * Input组件只能对以下类型的type作出相应 : `text`,`password`, `email`, `number`, `search`, `tel`, and `url`. 但是不适用一下类型: `checkbox`, `radio`, `toggle`, `range`, `select`, etc.
+ * Input组件只能对以下类型的type作出相应 : `text`,`password`, `email`, `number`, `search`, `tel`, and `url`. 但是不适用一下类型: `checkbox`, `radio`, `toggle`, `range`, `select`,
+ *   etc.
  *
  * ### 如何引入
  * ```
@@ -67,7 +68,8 @@ export { default } from './input.vue';
  * @props {*} [value]                         - 内容输入值
  * @props {Number} [debounce=0]               - 触发间隔
  * @props {RegExp} [regex]                    - 自定义正则
- * @props {Boolean} [check]                   - 是否check输入结果, 如果regex有值, 则开启, 否则关闭. 如果check开启, 但是regex无值, 则使用内置判断. 默认关闭check, check只是作为内部正误标示, 对外提交不起作用, 如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名, 这样的话, 验证位置就会统一.
+ * @props {Boolean} [check]                   - 是否check输入结果, 如果regex有值, 则开启, 否则关闭. 如果check开启, 但是regex无值, 则使用内置判断. 默认关闭check, check只是作为内部正误标示, 对外提交不起作用,
+ *   如果点击能知道各个input的状态, 需要在dom中search'ng-invalid'类名, 这样的话, 验证位置就会统一.
  *
  * @fires component:Input#onBlur
  * @fires component:Input#onFocus

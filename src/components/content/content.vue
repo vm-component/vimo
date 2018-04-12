@@ -1,49 +1,49 @@
 <template>
-  <article class="ion-content" :class="[refreshClass,modeClass]">
-    <slot name="refresher"></slot>
-    <div class="fixed-content fixed-top" :style="{'top':`${headerBarHeight}px`}">
-      <slot name="fixed"></slot>
-      <slot name="fixed-top"></slot>
-    </div>
-    <div class="fixed-content fixed-bottom" :style="{'bottom':`${footerBarHeight}px`}">
-      <slot name="fixed-bottom"></slot>
-    </div>
-    <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle"
-             :class="{'disable-scroll':isScrollDisabled}">
-      <slot></slot>
-    </section>
-  </article>
+    <article class="ion-content" :class="[refreshClass,modeClass]">
+        <slot name="refresher"></slot>
+        <div class="fixed-content fixed-top" :style="{'top':`${headerBarHeight}px`}">
+            <slot name="fixed"></slot>
+            <slot name="fixed-top"></slot>
+        </div>
+        <div class="fixed-content fixed-bottom" :style="{'bottom':`${footerBarHeight}px`}">
+            <slot name="fixed-bottom"></slot>
+        </div>
+        <section ref="scrollElement" class="scroll-content" :style="scrollElementStyle"
+                 :class="{'disable-scroll':isScrollDisabled}">
+            <slot></slot>
+        </section>
+    </article>
 </template>
 <script type="text/javascript">
 
-  import { parsePxUnit, transitionEnd } from '../../util/util';
-  import cssFormat from '../../util/css-format';
-  import ScrollView from '../../util/scroll-view';
-  import addSlotNameToAttr from '../../util/add-slot-name-to-attr.js';
-  import registerListener from '../../util/register-listener.js';
-  import { updateImgs } from './content-util.js';
+  import { parsePxUnit, transitionEnd } from '../../util/util'
+  import cssFormat from '../../util/css-format'
+  import ScrollView from '../../util/scroll-view'
+  import addSlotNameToAttr from '../../util/add-slot-name-to-attr.js'
+  import registerListener from '../../util/register-listener.js'
+  import { updateImgs } from './content-util.js'
 
-  const throttle = require('lodash.throttle');
+  const throttle = require('lodash.throttle')
   export default {
     name: 'Content',
     inject: {
       pageComponent: 'pageComponent'
     },
-    provide() {
-      let _this = this;
+    provide () {
+      let _this = this
       return {
         contentComponent: _this
-      };
+      }
     },
     props: {
       mode: {
         type: String,
-        default() {
-          return this.$config && this.$config.get('mode', 'ios') || 'ios';
+        default () {
+          return this.$config && this.$config.get('mode', 'ios') || 'ios'
         }
       }
     },
-    data() {
+    data () {
       return {
         refreshClass: {
           'has-refresher': false
@@ -63,26 +63,26 @@
         imgReqBfr: this.$config && this.$config.getNumber('imgRequestBuffer', 1400),  // 1400
         imgRndBfr: this.$config && this.$config.getNumber('imgRenderBuffer', 600),  // 400
         imgVelMax: this.$config && this.$config.getNumber('imgVelocityMax', 3)
-      };
+      }
     },
     computed: {
-      scrollElement() {
-        return this.$refs.scrollElement;
+      scrollElement () {
+        return this.$refs.scrollElement
       },
-      isBox() {
-        return this.pageComponent.isBox;
+      isBox () {
+        return this.pageComponent.isBox
       },
-      modeClass() {
-        return `content-${this.mode}`;
+      modeClass () {
+        return `content-${this.mode}`
       },
-      headerComponent() {
-        return this.pageComponent.$_getHeaderComponent();
+      headerComponent () {
+        return this.pageComponent.$_getHeaderComponent()
       },
-      footerComponent() {
-        return this.pageComponent.$_getFooterComponent();
+      footerComponent () {
+        return this.pageComponent.$_getFooterComponent()
       },
-      isScrollDisabled() {
-        return this.$app && this.$app.isScrollDisabled;
+      isScrollDisabled () {
+        return this.$app && this.$app.isScrollDisabled
       }
     },
     methods: {
@@ -91,11 +91,11 @@
        * @description
        * 当动态添加Header/Footer/Tabs或者修改了他的属性时, 重新计算Content组件的尺寸.
        * */
-      resize() {
+      resize () {
         // 等待DOM更新完毕
         this.$nextTick(() => {
-          this.$_recalculateBarDimensions();
-        });
+          this.$_recalculateBarDimensions()
+        })
       },
       /**
        * @function scrollTo
@@ -107,8 +107,8 @@
        * @param {Function=} done          - 当滚动结束时触发的回调
        * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
-      scrollTo(x, y, duration = 300, done) {
-        return this.scrollView.scrollTo(x, y, duration, done);
+      scrollTo (x, y, duration = 300, done) {
+        return this.scrollView.scrollTo(x, y, duration, done)
       },
       /**
        * @function scrollToTop
@@ -117,8 +117,8 @@
        * @param {Number} [duration=300] - 滚动动画的时间, 默认是300ms
        * @return {Promise} 当滚动动画完毕后返回promise
        */
-      scrollToTop(duration = 300) {
-        return this.scrollView.scrollToTop(duration);
+      scrollToTop (duration = 300) {
+        return this.scrollView.scrollToTop(duration)
       },
       /**
        *
@@ -128,8 +128,8 @@
        * @param {Number} [duration=300] - 滚动动画的时间, 默认是300ms
        * @return {Promise} 当滚动动画完毕后返回promise
        */
-      scrollToBottom(duration = 300) {
-        return this.scrollView.scrollToBottom(duration);
+      scrollToBottom (duration = 300) {
+        return this.scrollView.scrollToBottom(duration)
       },
 
       /**
@@ -147,8 +147,8 @@
        * @param {Function=} done          - 当滚动结束时触发的回调
        * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
-      scrollBy(x, y, duration = 300, done) {
-        return this.scrollView.scrollBy(x, y, duration, done);
+      scrollBy (x, y, duration = 300, done) {
+        return this.scrollView.scrollBy(x, y, duration, done)
       },
 
       /**
@@ -162,47 +162,47 @@
        * @param {Function=} done          - 当滚动结束时触发的回调
        * @return {Promise}                - 当回调done未定义的时候, 才返回Promise, 如果定义则返回undefined
        * */
-      scrollToElement(el, duration = 300, offsetX = 0, offsetY = 0, done) {
-        return this.scrollView.scrollToElement(el, duration, offsetX, offsetY, done);
+      scrollToElement (el, duration = 300, offsetX = 0, offsetY = 0, done) {
+        return this.scrollView.scrollToElement(el, duration, offsetX, offsetY, done)
       },
 
       /**
        * 重新获取Footer/Header尺寸
        * @private
        * */
-      $_recalculateBarDimensions() {
-        const STYLE_TOP = 'marginTop';
-        const STYLE_BOTTOM = 'marginBottom';
+      $_recalculateBarDimensions () {
+        const STYLE_TOP = 'marginTop'
+        const STYLE_BOTTOM = 'marginBottom'
 
         if (this.headerComponent) {
-          let ele = this.headerComponent.$el;
-          this.headerBarHeight = parsePxUnit(window.getComputedStyle(ele).height);
+          let ele = this.headerComponent.$el
+          this.headerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
         }
         if (this.footerComponent) {
-          let ele = this.footerComponent.$el;
-          this.footerBarHeight = parsePxUnit(window.getComputedStyle(ele).height);
+          let ele = this.footerComponent.$el
+          this.footerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
         }
 
         this.scrollElementStyle = {
           [STYLE_TOP]: cssFormat(this.headerBarHeight),
           [STYLE_BOTTOM]: cssFormat(this.footerBarHeight)
-        };
+        }
 
         this.fixedElementStyle = {
           [STYLE_TOP]: cssFormat(this.headerBarHeight),
           [STYLE_BOTTOM]: cssFormat(this.footerBarHeight)
-        };
+        }
 
         // scrollElement 尺寸计算
         if (this.scrollView && this.scrollView.ev) {
-          this.scrollView.ev.contentHeight = this.scrollElement.clientHeight - this.headerBarHeight - this.footerBarHeight;
-          this.scrollView.ev.contentTop = this.headerBarHeight;
-          this.scrollView.ev.contentWidth = this.scrollElement.clientWidth;
+          this.scrollView.ev.contentHeight = this.scrollElement.clientHeight - this.headerBarHeight - this.footerBarHeight
+          this.scrollView.ev.contentTop = this.headerBarHeight
+          this.scrollView.ev.contentWidth = this.scrollElement.clientWidth
         }
 
         // 盒子布局不需要min-height
         if (!this.isBox && this.scrollElementStyle) {
-          this.scrollElementStyle.minHeight = cssFormat(window.innerHeight - this.headerBarHeight - this.footerBarHeight);
+          this.scrollElementStyle.minHeight = cssFormat(window.innerHeight - this.headerBarHeight - this.footerBarHeight)
         }
       },
 
@@ -211,19 +211,19 @@
        * 因为这部分受以下因素影响：Header，Footer
        * @private
        * */
-      $_recalculateContentDimensions() {
+      $_recalculateContentDimensions () {
         // 计算Header/Footer的高度尺寸
-        this.$_recalculateBarDimensions();
+        this.$_recalculateBarDimensions()
 
         // 流式布局, init(获取尺寸的元素, 监听滚动的元素)
         if (this.isBox) {
-          this.scrollView.init(this.scrollElement, this.scrollElement);
+          this.scrollView.init(this.scrollElement, this.scrollElement)
         } else {
-          this.scrollView.init(document.documentElement, window);
+          this.scrollView.init(document.documentElement, window)
         }
 
         // initial imgs refresh
-        this.$_imgUpdate(this.scrollView.ev);
+        this.$_imgUpdate(this.scrollView.ev)
       },
 
       // -------- For Refresher Component --------
@@ -231,8 +231,8 @@
        * 获取scrollElement元素的Dom
        * @private
        * */
-      $_getScrollElement() {
-        return this.scrollElement;
+      $_getScrollElement () {
+        return this.scrollElement
       },
 
       /**
@@ -240,8 +240,8 @@
        * @param {function} callback - 过渡结束的回调, 回调传参TransitionEvent
        * @private
        */
-      $_onScrollElementTransitionEnd(callback) {
-        transitionEnd(this.scrollElement, callback);
+      $_onScrollElementTransitionEnd (callback) {
+        transitionEnd(this.scrollElement, callback)
       },
 
       /**
@@ -250,11 +250,11 @@
        * @param {any} val     - 属性值
        * @private
        */
-      $_setScrollElementStyle(prop, val) {
+      $_setScrollElementStyle (prop, val) {
         if (this.scrollElement) {
           this.$nextTick(() => {
-            this.scrollElement.style[prop] = val;
-          });
+            this.scrollElement.style[prop] = val
+          })
         }
       },
 
@@ -263,42 +263,42 @@
        * @param {object} img - Img组件的实例
        * @private
        */
-      $_addImg(img) {
-        this.imgs.push(img);
+      $_addImg (img) {
+        this.imgs.push(img)
       },
 
       /**
        * Img组件更新
        * @private
        */
-      $_imgUpdate(ev) {
+      $_imgUpdate (ev) {
         if (ev && this.scrollView.initialized && this.imgs.length && this.$_isImgUpdatable()) {
           this.$nextTick(() => {
-            updateImgs(this.imgs, ev.scrollTop, ev.contentHeight, ev.directionY, this.imgReqBfr, this.imgRndBfr);
-          });
+            updateImgs(this.imgs, ev.scrollTop, ev.contentHeight, ev.directionY, this.imgReqBfr, this.imgRndBfr)
+          })
         }
       },
       /**
        * @private
        * */
-      $_isImgUpdatable() {
+      $_isImgUpdatable () {
         // 当滚动不是太快的时候, Img组件更新才被允许, 这个速度由this.imgVelMax控制
-        return Math.abs(this.scrollView.ev.velocityY) < this.imgVelMax;
+        return Math.abs(this.scrollView.ev.velocityY) < this.imgVelMax
       }
     },
-    created() {
+    created () {
       // 置顶
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
 
       // 窗口变化重新计算容器
       this.resizeUnReg = registerListener(window, 'resize', throttle(() => {
         // 计算并设置当前Content的位置及尺寸
-        this.$root.$emit('window:resize');
-        this.$_recalculateBarDimensions();
+        this.$root.$emit('window:resize')
+        this.$_recalculateBarDimensions()
       }, 200, {
         leading: false,
         trailing: true
-      }));
+      }))
 
       /**
        * @event component:Content#onScrollStart
@@ -306,9 +306,9 @@
        * @property {ScrollEvent} ev - 滚动事件对象
        */
       this.scrollView.scrollStart = (ev) => {
-        this.$emit('onScrollStart', ev);
-        this.$root && this.$root.$emit('onScrollStart', ev);
-      };
+        this.$emit('onScrollStart', ev)
+        this.$root && this.$root.$emit('onScrollStart', ev)
+      }
 
       /**
        * @event component:Content#onScroll
@@ -316,10 +316,10 @@
        * @property {ScrollEvent} ev - 滚动事件对象
        */
       this.scrollView.scroll = (ev) => {
-        this.$emit('onScroll', ev);
-        this.$root && this.$root.$emit('onScroll', ev);
-        this.$_imgUpdate(ev);
-      };
+        this.$emit('onScroll', ev)
+        this.$root && this.$root.$emit('onScroll', ev)
+        this.$_imgUpdate(ev)
+      }
 
       /**
        * @event component:Content#onScrollEnd
@@ -327,25 +327,25 @@
        * @property {ScrollEvent} ev - 滚动事件对象
        */
       this.scrollView.scrollEnd = (ev) => {
-        this.$emit('onScrollEnd', ev);
-        this.$root && this.$root.$emit('onScrollEnd', ev);
-        this.$_imgUpdate(ev);
-      };
+        this.$emit('onScrollEnd', ev)
+        this.$root && this.$root.$emit('onScrollEnd', ev)
+        this.$_imgUpdate(ev)
+      }
 
-      this.$root.$emit('content:created', this);
+      this.$root.$emit('content:created', this)
     },
-    mounted() {
+    mounted () {
       // fix业务将slot的name贴到attr上, 便于class样式处理
-      addSlotNameToAttr(this.$slots);
+      addSlotNameToAttr(this.$slots)
 
       // 计算并设置当前Content的位置及尺寸
-      this.$_recalculateContentDimensions();
+      this.$_recalculateContentDimensions()
 
-      this.$root.$emit('content:mounted', this);
+      this.$root.$emit('content:mounted', this)
     },
-    destroyed() {
-      this.resizeUnReg && this.resizeUnReg();
-      this.scrollView.destroy();
+    destroyed () {
+      this.resizeUnReg && this.resizeUnReg()
+      this.scrollView.destroy()
     }
-  };
+  }
 </script>

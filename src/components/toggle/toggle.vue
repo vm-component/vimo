@@ -19,6 +19,7 @@
 </template>
 <script type="text/javascript">
   import { setElementClass } from '../../util/util'
+
   export default {
     name: 'Toggle',
     inject: {

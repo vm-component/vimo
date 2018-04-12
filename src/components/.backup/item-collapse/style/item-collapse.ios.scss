@@ -18,7 +18,7 @@ $item-ios-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' vie
       }
     }
   }
-
+  
   .collapse-ios {
     .item-ios {
       &:active {
@@ -26,7 +26,7 @@ $item-ios-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' vie
         transition-duration: 0ms;
       }
     }
-
+    
     .item-arrow {
       position: absolute;
       top: 50%;
@@ -38,16 +38,16 @@ $item-ios-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' vie
       background-position: center center;
       background-size: 14px 14px;
       transition: all ease 200ms;
-
+      
       @include svg-background-image($item-ios-collapse-detail-push-svg, true);
     }
-
+    
     .item-collapse-inner {
       padding-left: 40px;
       overflow: hidden;
     }
   }
-
+  
   .collapse-ios.item-collapse-open {
     .item-arrow {
       transform: rotate(90deg);
@@ -57,7 +57,7 @@ $item-ios-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' vie
 
 .#{$prefix}-item-collapse-group > .collapse-ios:last-child {
   border-bottom: 1px solid $list-ios-border-color;
-
+  
   .item-block {
     .item-inner {
       border-bottom: 0;
@@ -67,7 +67,7 @@ $item-ios-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' vie
 
 .#{$prefix}-item-collapse-group > .collapse-ios.item-collapse-open:last-child {
   //border-bottom: 0;
-
+  
   .item-block {
     .item-inner {
       border-bottom: 1px solid $list-ios-border-color;

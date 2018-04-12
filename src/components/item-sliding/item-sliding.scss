@@ -22,7 +22,7 @@
 
 .#{$prefix}-item-options {
   position: absolute;
-
+  
   //@include multi-dir() {
   // scss-lint:disable PropertySpelling
   top: 0;
@@ -33,11 +33,11 @@
   font-size: 14px;
   visibility: hidden;
   //}
-
+  
   //@include ltr() {
   justify-content: flex-end;
   //}
-
+  
   //@include rtl() {
   //  justify-content: flex-start;
   //
@@ -57,11 +57,11 @@
   right: auto;
   left: 0;
   //}
-
+  
   //@include ltr() {
   justify-content: flex-start;
   //}
-
+  
   //@include rtl() {
   //  justify-content: flex-end;
   //}
@@ -71,11 +71,11 @@
   height: 100%;
   box-sizing: content-box;
   box-shadow: none;
-
+  
   @include margin(0);
   @include padding(0, 0.7em);
   @include border-radius(0);
-
+  
   &:last-child {
     @include safe-area-padding-horizontal(null, 0.7em);
   }
@@ -86,7 +86,7 @@
   .button-inner {
     flex-direction: column;
   }
-
+  
   .#{$prefix}-icon {
     @include padding(null, 0, 0.3em, 0);
   }
@@ -100,29 +100,29 @@
   //    visibility: visible;
   //   }
   //}
-
+  
   .#{$prefix}-item,
   .#{$prefix}-item:active {
     position: relative;
     z-index: $z-index-item-options + 2;
     //transition: transform 500ms cubic-bezier(.36, .66, .04, 1);
-
+    
     pointer-events: none;
     opacity: 1;
     will-change: transform;
   }
-
+  
   .#{$prefix}-item-options {
     display: flex;
     pointer-events: auto;
     visibility: visible;
   }
-
+  
   &.active-options-left .#{$prefix}-item-options[side=left],
   &.active-options-right .#{$prefix}-item-options:not([side=left]) {
     z-index: $z-index-item-options + 1;
     width: 100%;
-
+    
     //visibility: visible;
   }
 }
@@ -138,36 +138,36 @@ button[expandable] {
 }
 
 .#{$prefix}-item-sliding.active-swipe-right button[expandable] {
-
+  
   //@include multi-dir() {
   // scss-lint:disable PropertySpelling
   padding-left: 90%;
   transition-duration: 0.6s;
   transition-property: padding-left;
   //}
-
+  
   //@include ltr() {
   order: 1;
   //}
-
+  
   //@include rtl() {
   //  order: -1;
   //}
 }
 
 .#{$prefix}-item-sliding.active-swipe-left button[expandable] {
-
+  
   //@include multi-dir() {
   // scss-lint:disable PropertySpelling
   padding-right: 90%;
   transition-duration: 0.6s;
   transition-property: padding-right;
   //}
-
+  
   //@include ltr() {
   order: -1;
   //}
-
+  
   //@include rtl() {
   //  order: 1;
   //}

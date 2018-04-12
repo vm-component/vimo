@@ -9,13 +9,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  
   @include position(0, 0, 0, 0);
 }
 
 .popover-wrapper {
   z-index: $z-index-overlay-wrapper;
-
+  
   //opacity: 0;
 }
 

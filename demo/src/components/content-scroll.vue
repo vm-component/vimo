@@ -11,19 +11,21 @@
                  @onScroll="onScrollHandler">
             <h1>Section</h1>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad adipisci at, dolore dolorum ex harum id quae quaerat suscipit tempora tempore, temporibus ut voluptas voluptatibus! Cupiditate dignissimos dolorem voluptatibus!</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad adipisci at, dolore dolorum ex harum id quae quaerat suscipit tempora tempore,
+                temporibus ut voluptas voluptatibus! Cupiditate dignissimos dolorem voluptatibus!</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad adipisci at, dolore dolorum ex harum id quae quaerat suscipit tempora tempore, temporibus ut voluptas voluptatibus! Cupiditate dignissimos dolorem voluptatibus!</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad adipisci at, dolore dolorum ex harum id quae quaerat suscipit tempora tempore,
+                temporibus ut voluptas voluptatibus! Cupiditate dignissimos dolorem voluptatibus!</p>
 
             <p>通过在组件上使用ref属性获取组件的控制权, 比如获取Title组件的控制权修改document.title</p>
             <Button @click="setTitle('Hello Vue')" small outline>点击设置Title='Hello Vue'</Button>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut dignissimos, eum impedit maxime natus necessitatibus quas qui quidem repellendus sapiente tempore. Aspernatur excepturi harum laborum quasi? Ab eius, excepturi?</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut dignissimos, eum impedit maxime natus necessitatibus quas qui quidem
+                repellendus sapiente tempore. Aspernatur excepturi harum laborum quasi? Ab eius, excepturi?</p>
             <Button block @click="scrollToBottom()">滚动到底部</Button>
             <Button block @click="scrollBottomBy400()">向下滚动400</Button>
             <Button block @click="scrollToElement">滚动到下面的元素</Button>
-
 
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda deserunt dicta dolorem dolorum ea est
@@ -54,27 +56,35 @@
                 exercitationem, fugit hic ipsa maiores minus molestias non quaerat quas ratione ut vel velit!</p>
             <p id="scrollToHere" style="color:red;">滚动到的就是这个元素</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem
+                commodi dolores error fugiat ipsa officia rem similique tempore.</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem
+                commodi dolores error fugiat ipsa officia rem similique tempore.</p>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem
+                commodi dolores error fugiat ipsa officia rem similique tempore.</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem commodi dolores error fugiat ipsa officia rem similique tempore.</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eligendi eos harum in incidunt natus optio quos, ratione. Aperiam aut autem
+                commodi dolores error fugiat ipsa officia rem similique tempore.</p>
             <Button block @click="scrollToTop()">返回顶部</Button>
 
-
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam, ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam,
+                ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam, ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam,
+                ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam, ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam,
+                ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam, ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam,
+                ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam, ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet consequatur doloribus earum ex exercitationem expedita facere fugit hic, ipsam,
+                ipsum labore, magnam nam odio pariatur quod sit ut veniam.</p>
 
             <section slot="fixed-bottom" class="stateBar">
                 <Grid no-padding>
@@ -114,7 +124,7 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     data () {
       return {
         scrollState: '',

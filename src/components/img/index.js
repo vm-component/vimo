@@ -1,4 +1,4 @@
-export { default } from './img.vue';
+export { default } from './img.vue'
 /**
  * @component Img
  * @description

@@ -8,7 +8,8 @@
         <Content padding class="outer-content">
             <h1>Nav组件</h1>
 
-            <p>Nav组件是在Page组件的外层, 用于 <strong>控制转场动画(animate)</strong> / <strong>转场的Indicator提示(showIndicatorWhenPageChange)</strong>等. 这部分的参数在项目初始化的时候就固定了, 后台不可动态修改. 属性可在组件上传入, 或者在配置中指定. </p>
+            <p>Nav组件是在Page组件的外层, 用于 <strong>控制转场动画(animate)</strong> / <strong>转场的Indicator提示(showIndicatorWhenPageChange)</strong>等. 这部分的参数在项目初始化的时候就固定了,
+               后台不可动态修改. 属性可在组件上传入, 或者在配置中指定. </p>
 
             <h5>转场动画</h5>
             <p>
@@ -60,7 +61,7 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'name',
     data () {
       return {}

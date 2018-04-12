@@ -28,6 +28,6 @@
 .item-label-stacked .#{$prefix}-datetime,
 .item-label-floating .#{$prefix}-datetime {
   width: 100%;
-
+  
   @include padding-horizontal(0, null);
 }

@@ -1,8 +1,8 @@
 <template>
-  <i
-    class="ion-icon"
-    :class="[colorClass,nameClass,itemClass,{'hide':hidden}]"
-  />
+    <i
+            class="ion-icon"
+            :class="[colorClass,nameClass,itemClass,{'hide':hidden}]"
+    />
 </template>
 <script type="text/javascript">
   export default {
@@ -16,7 +16,7 @@
     props: {
       mode: {
         type: String,
-        default() {
+        default () {
           return this.$config && this.$config.get('iconMode') || 'ios'
         }
       },
@@ -48,7 +48,7 @@
       ios: String,
       md: String
     },
-    data() {
+    data () {
       return {
         nameClass: '', // 最终显示的nameClass
         itemClass: '',
@@ -57,30 +57,30 @@
       }
     },
     watch: {
-      isActive() {
+      isActive () {
         this.update()
       },
-      name() {
+      name () {
         this.update()
       },
-      activeName() {
+      activeName () {
         this.update()
       },
-      ios() {
+      ios () {
         this.update()
       },
-      md() {
+      md () {
         this.update()
       }
     },
     computed: {
       // 颜色
-      colorClass() {
+      colorClass () {
         return this.color ? (`icon-${this.mode}-${this.color}`) : ''
       }
     },
     methods: {
-      getNameValue(val) {
+      getNameValue (val) {
         if (!(/^md-|^ios-|^logo-|^icon-/.test(val))) {
           // this does not have one of the defaults
           // so lets auto add in the mode prefix for them
@@ -89,7 +89,7 @@
           return val
         }
       },
-      update() {
+      update () {
         let iconName
         this.hidden = !this.name && !this.ios && !this.md
         if (this.hidden) return
@@ -128,10 +128,10 @@
         }
       }
     },
-    created() {
+    created () {
       this.update()
     },
-    mounted() {
+    mounted () {
       if (this.itemComponent) {
         // button in items should add class of 'item-button'
         this.itemClass = 'item-icon'
