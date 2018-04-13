@@ -8,7 +8,7 @@
     </div>
 </template>
 <script type="text/javascript">
-  import ToolbarExtends from '../../mixins/toolbar-extends/index.js'
+  import ToolbarExtends from '../../mixins/toolbar-mixin/index.js'
 
   export default {
     name: 'Toolbar',

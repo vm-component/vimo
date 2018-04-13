@@ -8,6 +8,7 @@ export default {
     mode: {
       type: String,
       default () {
+        console.log(this.$config)
         return this.$config && this.$config.get('mode', 'ios') || 'ios'
       }
     },

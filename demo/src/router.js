@@ -19,10 +19,13 @@ const routes = [
 ]
 
 const config = {
-  mode: 'hash',
+  mode: 'history',
   routes: routes.concat(subPageRoutes)  // （缩写）相当于 routes: routes
 }
 
 const router = new Router(config)
+
+console.log(router)
+
 Vue.use(Router)
 export default router

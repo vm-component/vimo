@@ -1,10 +1,12 @@
-import Config from 'tp-config'
-import Vue from 'vue'
-
-const configs = {
-  mode: 'ios'
+/**
+ * Created by Hsiang on 2017/3/20.
+ *
+ * # 应用层级的配置
+ *
+ * 包括domain/url/AK/ssecretID等
+ *
+ */
+export default {
+  mode: 'md',
+  box: false
 }
-
-const config = new Config(configs)
-Vue.prototype.$config = config
-export default config

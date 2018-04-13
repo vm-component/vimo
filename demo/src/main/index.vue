@@ -24,7 +24,7 @@
                         <Column text-center>
                             <h1>VIMO</h1>
                             <p>v{{vimo.version}}</p>
-                            <p class="message">Mobile UI components for Vue.js</p>
+                            <p class="message">基于Vue.js的移动端组件库</p>
                             <!--<a class="star" href="#"><img-->
                             <!--src="https://img.shields.io/github/stars/vm-component/vimo.svg?style=social&label=Star"-->
                             <!--alt="Star"></a>-->
@@ -35,10 +35,10 @@
                     </Row>
                     <Row class="vimo__btns">
                         <Button block solid @click="$router.push({'name':'components','meta':{newWindow:true}})">
-                            Component
+                            组件
                         </Button>
                         <Button block solid>
-                            Open Menu
+                            菜单
                         </Button>
                     </Row>
                 </Grid>

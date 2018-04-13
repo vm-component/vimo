@@ -6,8 +6,6 @@
            menuContentSideClass,
            {'menu-content-open':isMenuOpen}]">
         <div v-if="isMenuOpen" @click="tapToCloseMenu" @touchmove="stopActive($event)" class="click-cover"></div>
-        <!--animate-->
-        <!--need to distinguish-->
         <template v-if="pageTransition">
             <transition :name="pageTransitionName">
                 <slot></slot>
@@ -19,21 +17,6 @@
     </nav>
 </template>
 <script type="text/javascript">
-  /**
-   * @component Nav
-   * @description
-   *
-   * ## 基础组件 / Nav组件
-   *
-   * 这里是Page组件的父容器, 而且转场动画也是在这里执行.
-   *
-   * ### 页面切换是否需要Indicator的问题
-   *
-   * 添加这个功能是因为在有些使用情况下, 跳转加载大页面时会有很长时间的空白无交互期, 因此加上Indicator给用户提示正在下载将要去的页面的资源, 这个默认不开启.
-   *
-   * @props {Boolean} [showIndicatorWhenPageChange=false] - 页面切换是否显示Indicator
-   *
-   * */
   export default {
     name: 'Nav',
     provide () {
@@ -43,13 +26,14 @@
       }
     },
     props: {
-      // 转场是否开启Indicator
-      showIndicatorWhenPageChange: {
-        type: Boolean,
-        default () { return this.$config && this.$config.getBoolean('showIndicatorWhenPageChange') }
-      },
-      // 转场动画名称
-      // ios-transition/fade-bottom-transition/zoom-transition/fade-right-transition/fade-transition
+      /**
+       * 转场动画名称
+       * - ios-transition
+       * - fade-bottom-transition
+       * - zoom-transition
+       * - fade-right-transition
+       * - fade-transition
+       * */
       pageTransition: {
         type: String,
         default () { return this.$config && this.$config.get('pageTransition') }
@@ -68,7 +52,10 @@
         menuSide: 'left', // 方向
         menuContentClass: null,
         menuContentTypeClass: null,
-        menuContentSideClass: null
+        menuContentSideClass: null,
+
+        historyList: [],
+        direction: 'forward'
       }
     },
     methods: {
@@ -78,37 +65,26 @@
        * @private
        * */
       initNav () {
-        // const vm = this
+        // 创建时的第一个路由
         if (!this.$router) return
-        // pageTransition
-        if (this.pageTransition) {
-          this.$config.set('box', true)
-          if (process.env.NODE_ENV === 'development') {
-            console.warn('[Nav] pageTransition特性只能在box模式下使用, 因此这里会自动设置为true.')
+
+        this.historyList.push(this.$route.name)
+        // 注册钩子, 主要为按成路由方向的判断
+        this.$router.beforeHooks.push((to, from, next) => {
+          let index = this.historyList.indexOf(to.name)
+          if (index === -1) {
+            this.direction = `forward`
+            this.pageTransitionName = `${this.pageTransition}-forward`
+            this.historyList.push(to.name)
+            this.$root.$emit('nav:forward')
+          } else {
+            this.direction = `backward`
+            this.pageTransitionName = `${this.pageTransition}-backward`
+            this.historyList = this.historyList.slice(0, index + 1)
+            this.$root.$emit('nav:backward')
           }
-          // nav 动画切换部分
-          // this.$router.beforeEach((to, from, next) => {
-          //   this.pageTransitionName = `${this.pageTransition}-${this.$history.getDirection()}`
-          //   next()
-          // })
-        }
-        // 页面切换显示Indicator
-        if (this.showIndicatorWhenPageChange) {
-          // import('../.backup/indicator').then((component) => {
-          //   this.IndicatorComponent = component.default
-          //   this.$router.beforeEach((to, from, next) => {
-          //     if (vm.$history.getDirection() === 'forward') {
-          //       this.IndicatorComponent.present()
-          //     }
-          //     next()
-          //   })
-          //   this.$router.afterEach(() => {
-          //     if (vm.$history.getDirection() === 'forward') {
-          //       this.IndicatorComponent.dismiss()
-          //     }
-          //   })
-          // })
-        }
+          next()
+        })
       },
 
       // ----------- Menu -----------
@@ -173,9 +149,12 @@
     created () {
       // 初始化menu组件对应的监听处理
       this.initMenu()
-
       //  初始化导航
       this.initNav()
+      this.$root.$emit('nav:created', this)
+    },
+    mounted () {
+      this.$root.$emit('nav:mounted', this)
     }
   }
 </script>

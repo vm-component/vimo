@@ -14,10 +14,11 @@
     </article>
 </template>
 <script type="text/javascript">
-  import { setElementClass } from '../../util/util'
+  import Vue from 'vue'
   import { isString } from '../../util/type'
   import disableHover from '../../util/disable-hover'
   import modeMixins from '../../util/mode-mixins.js'
+  import { version } from '../../../package'
 
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // 等待业务完毕的额外时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态
@@ -26,7 +27,7 @@
     name: 'App',
     mixins: [modeMixins],
     provide () {
-      let _this = this
+      const _this = this
       return {
         appComponent: _this
       }
@@ -47,7 +48,7 @@
         scrollTop: 0,                   // 记录scrollTop, 用于disable scroll
         styleObj: {},
 
-        version: 'x.x.x'
+        version: version
       }
     },
     computed: {
@@ -127,8 +128,10 @@
        * @param {boolean} [isAdd=false] - 是否添加
        */
       setClass (className, isAdd = false) {
-        if (className) {
-          setElementClass(this.$el, className, isAdd)
+        if (isAdd) {
+          this.$el.classList.add(className)
+        } else {
+          this.$el.classList.remove(className)
         }
       },
 
@@ -140,16 +143,25 @@
        * 设置document.title的值, 如果传入的是string, 则为title的字符串, 如果是对象, 则title字段为标题名称
        * */
       setDocTitle (_title) {
-        if (isString(_title)) {
-          _title = {title: _title}
-        }
-        // BugFixed: 如果组件不是通过异步加载, 则他的执行顺序会很靠前, 此时平台的方法并未初始化完毕. 因此异步定时后在执行
-        window.setTimeout(() => {
-          let isHandled = !!this.$platform && !!this.$platform.setNavbarTitle && this.$platform.setNavbarTitle(_title)
-          if (!isHandled) {
-            document.title = _title.title || ''
+        if (this.$platform && this.$platform.setNavbarTitle) {
+          this.setDocTitle = (title) => {
+            if (isString(title)) {
+              title = {title: title}
+            }
+            this.$platform.setNavbarTitle(title)
           }
-        }, 16 * 5)
+        } else {
+          this.setDocTitle = (title) => {
+            if (isString(title)) {
+              title = {title: title}
+            }
+            window.setTimeout(() => {
+              document.title = title.title || ''
+            }, 16 * 5)
+          }
+
+        }
+        this.setDocTitle(_title)
       },
 
       /**
@@ -218,10 +230,9 @@
       }
     },
     created () {
-      // eslint-disable-next-line no-proto
-      let proto = this.__proto__.__proto__
-      proto.$app = this
-      proto.$root = this.$root
+      // install App Instance to prototype
+      Vue.prototype.$app = this
+
       this.$root.$on('onScrollStart', () => {
         this.isScrolling = true
       })
@@ -235,14 +246,9 @@
       this.$root.$emit('app:created', this)
     },
     mounted () {
+
       // 设置当前可点击
       this.isClickBlockEnabled = true
-
-      // for debug
-      if (window.VM) {
-        window.VM.$app = this
-        window.VM.$root = this.$root
-      }
       this.$root.$emit('app:mounted', this)
     }
   }

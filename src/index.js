@@ -62,6 +62,7 @@ export { default as Toggle } from './components/toggle'
 export { default as Toolbar } from './components/toolbar'
 export { default as ToolbarButtons } from './components/toolbar-buttons'
 export { default as ToolbarTitle } from './components/toolbar-title'
+export { default as Install } from './components/install'
 
 var ENV = process.env.NODE_ENV
 if (ENV && ENV !== 'production' && ENV !== 'test' && typeof console !== 'undefined' && console.warn && typeof window !== 'undefined') {

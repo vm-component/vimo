@@ -31,7 +31,7 @@ describe('Test platform.js without mock config', function () {
 
   // setCssProps()
   it('setCssProps()', function () {
-    expect(platform.css).toEqual({
+    expect(platform.Css).toEqual({
       'animationDelay': 'webkitAnimationDelay',
       'transform': 'webkitTransform',
       'transformOrigin': '-webkit-transform-origin',

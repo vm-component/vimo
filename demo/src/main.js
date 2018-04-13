@@ -3,14 +3,20 @@ import Vue from 'vue'
 import Root from './Root.vue'
 import router from './router'
 import register from './register'
-import config from './config'
+import appConfig from './config'
+import appPlatform from './platform'
+import Install from 'vimo/components/install.js'
 
 Vue.config.productionTip = false
+
+Vue.use(Install, {
+  custConf: appConfig,
+  pltConf: appPlatform
+})
 
 register()
 
 new Vue({
-  config,
   router,
   render: h => h(Root)
 }).$mount('#app')
