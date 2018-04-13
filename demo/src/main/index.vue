@@ -35,7 +35,7 @@
                     </Row>
                     <Row class="vimo__btns">
                         <Button block solid @click="$router.push({'name':'components','meta':{newWindow:true}})">
-                            组件
+                            {{$t('message.hello')}} 组件
                         </Button>
                         <Button block solid>
                             菜单

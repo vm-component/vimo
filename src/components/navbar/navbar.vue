@@ -41,11 +41,14 @@
       'vm-icon': Icon
     },
     props: {
-      hideBackButton: Boolean
+      hideBackButton: {
+        type: [Object, Boolean],
+        default: null
+      }
     },
     data () {
       return {
-        hideBb: this.hideBackButton,
+        hideBb: true,
         bbIcon: this.$config && this.$config.get('backButtonIcon', 'icon-arrow-back') || 'icon-arrow-back',
         backText: this.$config && this.$config.get('backButtonText', '返回') || '返回'
       }
@@ -67,15 +70,15 @@
     methods: {
       $_backButtonClickHandler () {
         window.history.back()
-      },
-      $_refreshBackButtonStatus () {
+      }
+    },
+    created () {
+      // 如果外部未指定, 则通过历史记录计算是否显示(前提是有Nav实例: this.navComponent)
+      if (typeof this.hideBackButton === 'object' && !this.hideBackButton) {
         if (this.navComponent) {
           this.hideBb = this.navComponent.historyList.length <= 1
         }
       }
-    },
-    created () {
-      this.$_refreshBackButtonStatus()
     }
   }
 </script>

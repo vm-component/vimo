@@ -4,7 +4,6 @@
     </article>
 </template>
 <script type="text/javascript">
-
   let initPageZIndex = 1000
   export default {
     name: 'Page',

@@ -7,13 +7,6 @@
 </template>
 <script type="application/javascript">
   export default {
-    name: 'DemoRoot',
-    methods: {},
-    mounted () {
-    },
-    components: {}
+    name: 'DemoRoot'
   }
 </script>
-<style lang="scss" scoped>
-
-</style>
