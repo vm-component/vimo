@@ -179,7 +179,9 @@ $button-ios-strong-font-weight: 600 !default;
   font-size: $button-ios-font-size;
   color: $button-ios-text-color;
   background-color: $button-ios-background-color;
-
+  
+  will-change: background-color, opacify;
+  
   @include border-radius($button-ios-border-radius);
   @include margin($button-ios-margin-top, $button-ios-margin-end, $button-ios-margin-bottom, $button-ios-margin-start);
   @include padding($button-ios-padding-top, $button-ios-padding-end, $button-ios-padding-bottom, $button-ios-padding-start);
@@ -201,12 +203,12 @@ $button-ios-strong-font-weight: 600 !default;
   $bg-color: $color-base;
   $bg-color-activated: color-shade($bg-color);
   $fg-color: $color-contrast;
-
+  
   .button-ios-#{$color-name} {
     color: $fg-color;
     background-color: $bg-color;
   }
-
+  
   .button-ios-#{$color-name}:active {
     background-color: $bg-color-activated;
   }
@@ -218,14 +220,14 @@ $button-ios-strong-font-weight: 600 !default;
 .button-large-ios {
   height: $button-ios-large-height;
   font-size: $button-ios-large-font-size;
-
+  
   @include padding($button-ios-large-padding-top, $button-ios-large-padding-end, $button-ios-large-padding-bottom, $button-ios-large-padding-start);
 }
 
 .button-small-ios {
   height: $button-ios-small-height;
   font-size: $button-ios-small-font-size;
-
+  
   @include padding($button-ios-small-padding-top, $button-ios-small-padding-end, $button-ios-small-padding-bottom, $button-ios-small-padding-start);
 }
 
@@ -246,7 +248,7 @@ $button-ios-strong-font-weight: 600 !default;
 .button-full-ios {
   border-right-width: 0;
   border-left-width: 0;
-
+  
   @include margin-horizontal(0);
   @include border-radius(0);
 }
@@ -260,7 +262,7 @@ $button-ios-strong-font-weight: 600 !default;
   border-color: $button-ios-outline-border-color;
   border-style: $button-ios-outline-border-style;
   border-width: $button-ios-outline-border-width;
-
+  
   @include border-radius($button-ios-outline-border-radius);
 }
 
@@ -279,7 +281,7 @@ $button-ios-strong-font-weight: 600 !default;
     background-color: $button-ios-outline-background-color;
     border-color: $color-base;
   }
-
+  
   .button-outline-ios-#{$color-name}:active {
     color: $color-contrast;
     background-color: $color-base;
@@ -310,17 +312,17 @@ $button-ios-strong-font-weight: 600 !default;
 
 @mixin ios-button-clear($color-name, $color-base, $color-contrast) {
   $fg-color: $color-base;
-
+  
   .button-clear-ios-#{$color-name} {
     color: $fg-color;
     background-color: $button-ios-clear-background-color;
     border-color: $button-ios-clear-border-color;
   }
-
+  
   .button-clear-ios-#{$color-name}:active {
     opacity: $button-ios-clear-opacity-activated;
   }
-
+  
   .button-clear-ios-#{$color-name}:hover:not(.disable-hover) {
     color: $fg-color;
   }

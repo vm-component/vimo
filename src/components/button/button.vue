@@ -4,7 +4,7 @@
             :icon-only="iconOnly"
             :icon-left="iconLeft"
             :icon-right="iconRight"
-            :class="[modeClass, styleClass, shapeClass, displayClass, sizeClass, decoratorClass, colorClass,
+            :class="[modeClass, styleClass, shapeClass, displayClass, sizeClass, decoratorClass, $_colorClass,
               {'disable-hover':disableHover},
               {'item-button':isInItemComponent}]"
             @click="$_clickHandler($event)">
@@ -13,34 +13,45 @@
 </template>
 <script type="text/javascript">
   import disableHover from '../../util/disable-hover'
+  import modeMixin from '../../mixins/mode-mixin/index.js'
 
   export default {
     name: 'Button',
+    mixins: [modeMixin],
     inject: {
       itemComponent: {
         from: 'itemComponent',
         default: null
+      },
+      testValue: {
+        from: 'testValue',
+        default: 'val??'
+      }
+    },
+    watch: {
+      testValue (val) {
+        console.log('watch testValue', val)
       }
     },
     props: {
-      /**
-       * 按钮color：primary、secondary、danger、light、dark
-       * */
-      color: {
-        type: String,
-        default () {
-          return 'default'
-        }
-      },
-      /**
-       * mode 按钮风格 ios/window/android/we/alipay
-       * */
-      mode: {
-        type: String,
-        default () {
-          return this.$config && this.$config.get('mode', 'ios') || 'ios'
-        }
-      },
+      // /**
+      //  * 按钮color：primary、secondary、danger、light、dark
+      //  * */
+      // color: {
+      //   type: String,
+      //   default () {
+      //     return 'default'
+      //   }
+      // },
+      // /**
+      //  * mode 按钮风格 ios/window/android/we/alipay
+      //  * */
+      // mode: {
+      //   type: String,
+      //   default () {
+      //     return this.$config && this.$config.get('mode', 'ios') || 'ios'
+      //   }
+      // },
 
       small: Boolean,
       'default': Boolean,
@@ -101,7 +112,7 @@
         displayClass: null,
         sizeClass: null,
         decoratorClass: null,
-        colorClass: null,
+        $_colorClass: null,
 
         iconOnly: false,
         iconLeft: false,
@@ -139,7 +150,7 @@
           this.sizeClass = this.$_setClass(this.size) // button-small
           this.decoratorClass = this.$_setClass(this.decorator) // button-strong
         }
-        this.colorClass = this.$_setColor(this.color) // button-secondary, bar-button-secondary
+        this.$_colorClass = this.$_setColor(this.color) // button-secondary, bar-button-secondary
       },
 
       /**
@@ -241,6 +252,8 @@
       }
     },
     created () {
+
+      console.log(this.testValue)
       this.$_classify()
       this.$_assignCss()
       this.$_addIconBtnPosition()

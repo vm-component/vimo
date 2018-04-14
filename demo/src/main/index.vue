@@ -7,7 +7,7 @@
                         <Icon name="more"></Icon>
                     </Button>
                 </Buttons>
-                <Title>Aha!</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content>
@@ -22,9 +22,9 @@
                     </Row>
                     <Row class="vimo__text">
                         <Column text-center>
-                            <h1>VIMO</h1>
+                            <h1>Vimo</h1>
                             <p>v{{vimo.version}}</p>
-                            <p class="message">基于Vue.js的移动端组件库</p>
+                            <p class="message">{{$t('desc')}}</p>
                             <!--<a class="star" href="#"><img-->
                             <!--src="https://img.shields.io/github/stars/vm-component/vimo.svg?style=social&label=Star"-->
                             <!--alt="Star"></a>-->
@@ -35,10 +35,16 @@
                     </Row>
                     <Row class="vimo__btns">
                         <Button block solid @click="$router.push({'name':'components','meta':{newWindow:true}})">
-                            {{$t('message.hello')}} 组件
+                            {{$t('components')}}
                         </Button>
                         <Button block solid>
-                            菜单
+                            {{$t('menu')}}
+                        </Button>
+                        <Button outline block solid @click="switchLanguage">
+                            {{$t('switchLanguage')}}({{$i18n.locale}})
+                        </Button>
+                        <Button outline block solid @click="changeMode">
+                            ChangeMode-{{mode}}
                         </Button>
                     </Row>
                 </Grid>
@@ -162,21 +168,49 @@
 <script type="text/javascript">
   export default {
     name: 'DemoIndex',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: 'Aha!',
+          desc: '基于Vue.js的移动端组件库',
+          components: '组件',
+          menu: '菜单',
+          switchLanguage: '切换语言'
+        },
+        'en-US': {
+          title: 'Aha!',
+          desc: 'Mobile UI Based on Vue.js',
+          components: 'Components',
+          menu: 'Menu',
+          switchLanguage: 'Switch Language'
+        }
+      }
+    },
     data () {
       return {
+        mode: this.$config.get('mode'),
         vimo: {
           version: 'x.x.x'
         }
       }
     },
     methods: {
-      onTitleClickHandler () {
-        alert('你点击了标题')
+      switchLanguage () {
+        if (this.$i18n.locale !== 'zh-CN') {
+          this.$store.commit('SET_LOCALE', {locale: 'zh-CN'})
+        } else {
+          this.$store.commit('SET_LOCALE', {locale: 'en-US'})
+        }
+      },
+      changeMode () {
+        if (this.mode === 'ios') {
+          this.$config.set('mode', 'md')
+          this.mode = this.$config.get('mode')
+        } else {
+          this.$config.set('mode', 'ios')
+          this.mode = this.$config.get('mode')
+        }
       }
-    },
-    created () {
-    },
-    mounted () {
     }
   }
 </script>

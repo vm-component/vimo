@@ -2,26 +2,23 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Components</Title>
+                <Title>{{ $t('title') }}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
             <List>
-                <ListHeader>布局/Layout</ListHeader>
+                <ListHeader>{{ $t('layout') }}</ListHeader>
                 <Item detail-push :to="{path: '/app'}">
                     <Icon slot="item-left" name="apps"></Icon>
-                    <span>根组件</span>
-                    <Note slot="item-right">App</Note>
+                    <span>{{$t('app')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'content'}">
                     <Icon slot="item-left" name="paper"></Icon>
-                    <span>页面组件</span>
-                    <Note slot="item-right">Page</Note>
+                    <span>{{$t('page')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'grid'}">
                     <Icon slot="item-left" name="grid"></Icon>
-                    <span>栅格</span>
-                    <Note slot="item-right">Grid</Note>
+                    <span>{{$t('grid')}}</span>
                 </Item>
             </List>
             <!--<List>-->
@@ -54,7 +51,7 @@
             <!--</Item>-->
             <!--</List>-->
             <List>
-                <ListHeader>导航/Navigator</ListHeader>
+                <ListHeader>{{$t('navigator')}}</ListHeader>
                 <Item detail-push :to="{name: 'menu'}">
                     <Icon slot="item-left" name="apps"></Icon>
                     <span>菜单</span>
@@ -361,6 +358,28 @@
 <script type="text/javascript">
   export default {
     name: 'DemoComponent',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '组件',
+          layout: '布局',
+          app: '根组件',
+          page: '页面组件',
+          grid: '栅格',
+          navigator: '导航',
+          rest: '页面组件'
+        },
+        'en-US': {
+          title: 'Components',
+          layout: 'Layout',
+          app: 'App',
+          page: 'Page',
+          grid: 'Grid',
+          navigator: 'Navigator',
+          rest: '页面组件'
+        }
+      }
+    },
     data () {
       return {}
     },

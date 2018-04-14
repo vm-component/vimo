@@ -50,7 +50,7 @@
       return {
         hideBb: true,
         bbIcon: this.$config && this.$config.get('backButtonIcon', 'icon-arrow-back') || 'icon-arrow-back',
-        backText: this.$config && this.$config.get('backButtonText', '返回') || '返回'
+        backText: this.$i18n ? this.$i18n.t('vimo.backBtn') : '返回'
       }
     },
     computed: {

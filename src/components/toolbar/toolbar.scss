@@ -26,7 +26,6 @@
   height: 100%;
   pointer-events: none;
   border: 0;
-  transform: translateZ(0);
   contain: strict;
   
   @include position(0, null, null, 0);
@@ -34,7 +33,6 @@
 
 .#{$prefix}-title {
   display: flex;
-  transform: translateZ(0);
   flex: 1;
   align-items: center;
 }
@@ -50,7 +48,6 @@
 .#{$prefix}-buttons {
   display: block;
   pointer-events: none;
-  transform: translateZ(0);
   
   @include margin(0, 0.2rem);
 }
@@ -75,7 +72,6 @@
 .#{$prefix}-buttons,
 .bar-button-menutoggle {
   z-index: 99;
-  transform: translateZ(0);
 }
 
 // Navbar
@@ -83,5 +79,4 @@
 
 .#{$prefix}-navbar.toolbar {
   display: flex;
-  transform: translateZ(0);
 }

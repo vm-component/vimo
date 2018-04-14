@@ -17,7 +17,7 @@
   import Vue from 'vue'
   import { isString } from '../../util/type'
   import disableHover from '../../util/disable-hover'
-  import modeMixins from '../../util/mode-mixins.js'
+  import modeMixin from '../../mixins/mode-mixin/index.js'
   import { version } from '../../../package'
 
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // 等待业务完毕的额外时间
@@ -25,10 +25,16 @@
 
   export default {
     name: 'App',
-    mixins: [modeMixins],
+    props: {
+      testValue: String
+    },
+    mixins: [modeMixin],
     provide () {
       const _this = this
       return {
+        testValue: {
+          a: _this.testValue
+        },
         appComponent: _this
       }
     },

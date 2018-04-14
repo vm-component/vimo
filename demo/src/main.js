@@ -1,30 +1,13 @@
 import 'ionicons/dist/css/ionicons.css'
+import Install from 'vimo/components/install.js'
 import Vue from 'vue'
 import Root from './Root.vue'
-import router from './router'
+import router from './router/index'
 import register from './register'
 import appConfig from './config'
 import appPlatform from './platform'
-import Install from 'vimo/components/install.js'
-import VueI18n from 'vue-i18n'
-
-const messages = {
-  en: {
-    message: {
-      hello: 'hello world'
-    }
-  },
-  ja: {
-    message: {
-      hello: 'こんにちは、世界'
-    }
-  }
-}
-
-const i18n = new VueI18n({
-  locale: 'ja', // set locale
-  messages: messages // set locale messages
-})
+import i18n from './i18n'
+import store from './store/index'
 
 Vue.config.productionTip = false
 
@@ -38,5 +21,6 @@ register()
 new Vue({
   i18n,
   router,
+  store,
   render: h => h(Root)
 }).$mount('#app')

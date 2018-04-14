@@ -66,7 +66,7 @@
    * </Header>
    *
    * */
-  import modeMixins from '../../util/mode-mixins.js'
+  import modeMixins from '../../mixins/mode-mixin/index.js'
 
   export default {
     name: 'Segment',

@@ -80,7 +80,7 @@
   import Button from '../button'
   import Icon from '../icon'
   import popupExtend from '../../util/popup-extend'
-  import modeMixins from '../../util/mode-mixins.js'
+  import modeMixins from '../../mixins/mode-mixin/index.js'
 
   export default {
     name: 'ActionSheet',

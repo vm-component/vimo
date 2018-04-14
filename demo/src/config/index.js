@@ -6,7 +6,10 @@
  * 包括domain/url/AK/ssecretID等
  *
  */
+import i18n from '../i18n'
+
 export default {
   mode: 'md',
+  backButtonText: i18n.t('vimo.backBtn'),
   box: false
 }

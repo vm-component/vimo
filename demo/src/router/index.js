@@ -8,13 +8,13 @@ const routes = [
     // index
     path: '/',
     name: 'index',
-    component: require('./main/index.vue')
+    component: require('../main/index.vue')
   },
   {
     // 目录
     path: '/components',
     name: 'components',
-    component: require('./main/components.vue')
+    component: require('../main/components.vue')
   }
 ]
 
@@ -23,9 +23,9 @@ const config = {
   routes: routes.concat(subPageRoutes)  // （缩写）相当于 routes: routes
 }
 
-const router = new Router(config)
+const index = new Router(config)
 
-console.log(router)
+console.log(index)
 
 Vue.use(Router)
-export default router
+export default index
