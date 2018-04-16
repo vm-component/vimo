@@ -54,29 +54,26 @@
                 <ListHeader>{{$t('navigator')}}</ListHeader>
                 <Item detail-push :to="{name: 'menu'}">
                     <Icon slot="item-left" name="apps"></Icon>
-                    <span>菜单</span>
-                    <Note slot="item-right">Menu</Note>
+                    <span>{{$t('menu')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'segment'}">
                     <Icon slot="item-left" name="book"></Icon>
-                    <span>小标签</span>
-                    <Note slot="item-right">Segment</Note>
+                    <span>{{$t('segment')}}</span>
                 </Item>
-                <Item detail-push :to="{name: 'scrollSegment'}">
-                    <Icon slot="item-left" name="egg"></Icon>
-                    <span>滚动标签</span>
-                    <Note slot="item-right">ScrollSegment</Note>
-                </Item>
+                <!--<Item detail-push :to="{name: 'scrollSegment'}">-->
+                <!--<Icon slot="item-left" name="egg"></Icon>-->
+                <!--<span>滚动标签</span>-->
+                <!--<Note slot="item-right">ScrollSegment</Note>-->
+                <!--</Item>-->
                 <Item detail-push :to="{name: 'tabs'}">
                     <Icon slot="item-left" name="link"></Icon>
-                    <span>大标签</span>
-                    <Note slot="item-right">Tabs</Note>
+                    <span>{{$t('tabs')}}</span>
                 </Item>
-                <Item detail-push :to="{name: 'deeplink'}">
-                    <Icon slot="item-left" name="arrow-forward"></Icon>
-                    <span>跳转到App</span>
-                    <Note slot="item-right">Deeplink</Note>
-                </Item>
+                <!--<Item detail-push :to="{name: 'deeplink'}">-->
+                <!--<Icon slot="item-left" name="arrow-forward"></Icon>-->
+                <!--<span>跳转到App</span>-->
+                <!--<Note slot="item-right">Deeplink</Note>-->
+                <!--</Item>-->
             </List>
             <List>
                 <!--通用组件-->
@@ -367,6 +364,11 @@
           page: '页面组件',
           grid: '栅格',
           navigator: '导航',
+
+          menu: '菜单',
+          segment: '小标签',
+          tabs: '大标签',
+
           rest: '页面组件'
         },
         'en-US': {
@@ -376,6 +378,11 @@
           page: 'Page',
           grid: 'Grid',
           navigator: 'Navigator',
+
+          menu: 'Menu',
+          segment: 'Segment',
+          tabs: 'Tabs',
+
           rest: '页面组件'
         }
       }

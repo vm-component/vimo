@@ -27,7 +27,6 @@
             <section padding class="hello-vimo-here">
                 <strong>{{$t('success')}}</strong>
             </section>
-
             <article>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur in rerum saepe sed. Architecto beatae

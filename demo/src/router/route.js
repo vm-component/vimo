@@ -197,6 +197,41 @@ export default [
     }
   },
   {
+    path: '/segment-animate',
+    name: 'segmentAnimate',
+    component (resolve) {
+      require(['@DemoComponent/segment-animate.vue'], resolve)
+    }
+  },
+  {
+    path: '/segment-async',
+    name: 'segmentAsync',
+    component (resolve) {
+      require(['@DemoComponent/segment-async.vue'], resolve)
+    }
+  },
+  {
+    path: '/segment-normal',
+    name: 'segmentNormal',
+    component (resolve) {
+      require(['@DemoComponent/segment-normal.vue'], resolve)
+    }
+  },
+  {
+    path: '/segment-with-swiper',
+    name: 'segmentWithSwiper',
+    component (resolve) {
+      require(['@DemoComponent/segment-with-swiper.vue'], resolve)
+    }
+  },
+  {
+    path: '/segment',
+    name: 'segment',
+    component (resolve) {
+      require(['@DemoComponent/segment.vue'], resolve)
+    }
+  },
+  {
     path: '/spinner',
     name: 'spinner',
     component (resolve) {

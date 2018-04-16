@@ -6,7 +6,17 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <h5>Menu Params</h5>
+            <h2>Menu Service:</h2>
+
+            <h5>this.$menu.present(id)</h5>
+            <p>开启指定Menu实例</p>
+            <h5>this.$menu.dismiss()</h5>
+            <p>关闭指定Menu实例</p>
+            <h5>this.$menu.toggle(id)</h5>
+            <p>Toggle指定Menu实例</p>
+
+            <h2>Menu Params:</h2>
+
             <List radio-group v-model="menusType">
                 <ListHeader>Type</ListHeader>
                 <Item>
