@@ -1,7 +1,7 @@
 <template>
     <Page>
         <Header>
-            <Navbar hide-back-button>
+            <Navbar :hide-back-button="true">
                 <Buttons right slot="buttons">
                     <Button role="bar-button" menutoggle>
                         <Icon name="more"></Icon>
@@ -43,9 +43,9 @@
                         <Button outline block solid @click="switchLanguage">
                             {{$t('switchLanguage')}}({{$i18n.locale}})
                         </Button>
-                        <Button outline block solid @click="changeMode">
-                            ChangeMode-{{mode}}
-                        </Button>
+                        <!--<Button outline block solid @click="changeMode">-->
+                        <!--ChangeMode-{{mode}}-->
+                        <!--</Button>-->
                     </Row>
                 </Grid>
             </article>
@@ -174,14 +174,14 @@
           title: 'Aha!',
           desc: '基于Vue.js的移动端组件库',
           components: '组件',
-          menu: '菜单',
+          menu: '打开菜单',
           switchLanguage: '切换语言'
         },
         'en-US': {
           title: 'Aha!',
           desc: 'Mobile UI Based on Vue.js',
           components: 'Components',
-          menu: 'Menu',
+          menu: 'Open Menu',
           switchLanguage: 'Switch Language'
         }
       }

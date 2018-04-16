@@ -9,7 +9,8 @@
 import i18n from '../i18n'
 
 export default {
-  mode: 'md',
+  // mode: 'md',
   backButtonText: i18n.t('vimo.backBtn'),
-  box: false
+  box: false,
+  autoHideBackButton: false // 是否自动根据历史记录隐藏后退按钮
 }

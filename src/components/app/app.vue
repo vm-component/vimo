@@ -25,16 +25,10 @@
 
   export default {
     name: 'App',
-    props: {
-      testValue: String
-    },
     mixins: [modeMixin],
     provide () {
       const _this = this
       return {
-        testValue: {
-          a: _this.testValue
-        },
         appComponent: _this
       }
     },

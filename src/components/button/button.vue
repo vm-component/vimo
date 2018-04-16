@@ -22,15 +22,6 @@
       itemComponent: {
         from: 'itemComponent',
         default: null
-      },
-      testValue: {
-        from: 'testValue',
-        default: 'val??'
-      }
-    },
-    watch: {
-      testValue (val) {
-        console.log('watch testValue', val)
       }
     },
     props: {
@@ -252,8 +243,6 @@
       }
     },
     created () {
-
-      console.log(this.testValue)
       this.$_classify()
       this.$_assignCss()
       this.$_addIconBtnPosition()

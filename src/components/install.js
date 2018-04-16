@@ -16,7 +16,9 @@ export default function install (Vue, options) {
     throw new Error('options ??')
   }
   const platform = setupPlatform(options.pltConf || {})
-  const config = new Config(Object.assign({}, options.custConf || {}, platform.settings()))
+  const platformSettings = platform.settings()
+  console.log('platformSettings:', platformSettings)
+  const config = new Config(Object.assign({}, options.custConf || {}, platformSettings))
   // 全局注册
   window.VM = {
     platform,

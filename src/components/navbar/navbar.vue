@@ -73,10 +73,13 @@
       }
     },
     created () {
+      // this.hideBb = false
       // 如果外部未指定, 则通过历史记录计算是否显示(前提是有Nav实例: this.navComponent)
       if (typeof this.hideBackButton === 'object' && !this.hideBackButton) {
-        if (this.navComponent) {
+        if (this.navComponent && this.$config && this.$config.getBoolean('autoHideBackButton', false)) {
           this.hideBb = this.navComponent.historyList.length <= 1
+        } else {
+          this.hideBb = this.hideBackButton
         }
       }
     }
