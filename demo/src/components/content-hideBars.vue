@@ -5,7 +5,7 @@
                 <Title>隐藏头尾</Title>
             </Navbar>
         </Header>
-        <Content padding class="outer-content" ref="content" @onScroll="onScrollHandler">
+        <Content fullscreen padding class="outer-content" ref="content" @onScroll="onScrollHandler">
 
             <h1>Section</h1>
             <p>ps: 如果在微信/支付宝/钉钉模式下, 可能看不到Header的效果.</p>

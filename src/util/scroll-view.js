@@ -21,10 +21,10 @@ export default class ScrollView {
     this.scroll = (ev) => {}       // 滚动进行的回调, 传入ev参数, 一般用于事件操作
     this.scrollEnd = (ev) => {}    // 滚动结束的回调, 传入ev参数, 一般用于事件操作
 
-    this.transform = window.VM && window.VM.platform && window.VM.platform.Css.transform
+    this.transform = 'webkitTransform'
 
-    this._el = null                   // scrollElement 当前滚动实例的元素
-    this._evel = null                 // scrollElement 当前滚动实例的元素
+    this._el = null                   // scrollElement 当前滚动的容器, el -> 自身
+    this._evel = null                 // scrollElement 监听滚动的元素, document.documentElement -> window
 
     this._lsn = null                  // 监听函数 listen, 用于nativeScrll
     this._endTmr = null               // 事件记录 timeout, 用于nativeScrll
@@ -57,12 +57,28 @@ export default class ScrollView {
       headerElement: null, // HTMLElement
       footerElement: null // HTMLElement
     }
+
+    const keys = [
+      'webkitTransform',
+      '-webkit-transform',
+      'webkit-transform',
+      'transform'
+    ]
+
+    const docEle = document.documentElement
+
+    for (let i = 0; i < keys.length; i++) {
+      if (docEle.style[keys[i]] !== undefined) {
+        this.transform = keys[i]
+        break
+      }
+    }
   }
 
   /**
    * 滚动对象初始化
-   * @param {Element|Window} element - 滚动元素
-   * @param {Element|Window} eventElement - 监听滚动的元素
+   * @param {Element|Window} element - 滚动元素, el -> 自身
+   * @param {Element|Window} eventElement - 监听滚动的元素, document.documentElement -> window
    * */
   init (element, eventElement = element) {
     if (!this.initialized) {

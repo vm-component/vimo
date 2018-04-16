@@ -23,7 +23,6 @@
   import registerListener from '../../util/register-listener.js'
   import { updateImgs } from './content-util.js'
 
-  const throttle = require('lodash.throttle')
   export default {
     name: 'Content',
     inject: {
@@ -41,7 +40,8 @@
         default () {
           return this.$config && this.$config.get('mode', 'ios') || 'ios'
         }
-      }
+      },
+      fullscreen: Boolean
     },
     data () {
       return {
@@ -49,13 +49,15 @@
           'has-refresher': false
         },
 
-        fixedElementStyle: {},  // 固定内容的位置样式
-        scrollElementStyle: {}, // 滑动内容的位置样式
+        fixedElementStyle: null,  // 固定内容的位置样式
+        scrollElementStyle: null, // 滑动内容的位置样式
 
         scrollView: new ScrollView(),  // 滚动的实例
 
         headerBarHeight: 0,
         footerBarHeight: 0,
+        contentPaddingTop: 0,
+        contentPaddingBottom: 0,
 
         resizeUnReg: null,
 
@@ -171,26 +173,33 @@
        * @private
        * */
       $_recalculateBarDimensions () {
-        const STYLE_TOP = 'marginTop'
-        const STYLE_BOTTOM = 'marginBottom'
 
-        if (this.headerComponent) {
-          let ele = this.headerComponent.$el
-          this.headerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
-        }
-        if (this.footerComponent) {
-          let ele = this.footerComponent.$el
-          this.footerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
-        }
+        // 尺寸信息一般不会再变动
+        if (!this.scrollElementStyle || !this.fixedElementStyle) {
+          const STYLE_TOP = this.fullscreen ? 'paddingTop' : 'marginTop'
+          const STYLE_BOTTOM = this.fullscreen ? 'paddingBottom' : 'marginBottom'
 
-        this.scrollElementStyle = {
-          [STYLE_TOP]: cssFormat(this.headerBarHeight),
-          [STYLE_BOTTOM]: cssFormat(this.footerBarHeight)
-        }
+          if (this.headerComponent) {
+            let ele = this.headerComponent.$el
+            this.headerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
+          }
+          if (this.footerComponent) {
+            let ele = this.footerComponent.$el
+            this.footerBarHeight = parsePxUnit(window.getComputedStyle(ele).height)
+          }
 
-        this.fixedElementStyle = {
-          [STYLE_TOP]: cssFormat(this.headerBarHeight),
-          [STYLE_BOTTOM]: cssFormat(this.footerBarHeight)
+          const StyleTop = this.headerBarHeight + (this.fullscreen ? this.contentPaddingTop : 0)
+          const StyleBottom = this.footerBarHeight + (this.fullscreen ? this.contentPaddingBottom : 0)
+
+          this.scrollElementStyle = {
+            [STYLE_TOP]: cssFormat(StyleTop),
+            [STYLE_BOTTOM]: cssFormat(StyleBottom)
+          }
+
+          this.fixedElementStyle = {
+            [STYLE_TOP]: cssFormat(StyleTop),
+            [STYLE_BOTTOM]: cssFormat(StyleBottom)
+          }
         }
 
         // scrollElement 尺寸计算
@@ -291,14 +300,13 @@
       window.scrollTo(0, 0)
 
       // 窗口变化重新计算容器
-      this.resizeUnReg = registerListener(window, 'resize', throttle(() => {
-        // 计算并设置当前Content的位置及尺寸
-        this.$root.$emit('window:resize')
-        this.$_recalculateBarDimensions()
-      }, 200, {
-        leading: false,
-        trailing: true
-      }))
+      this.resizeUnReg = registerListener(window, 'resize', () => {
+        requestAnimationFrame(() => {
+          // 计算并设置当前Content的位置及尺寸
+          this.$root.$emit('window:resize')
+          this.$_recalculateBarDimensions()
+        })
+      })
 
       /**
        * @event component:Content#onScrollStart
@@ -337,6 +345,9 @@
     mounted () {
       // fix业务将slot的name贴到attr上, 便于class样式处理
       addSlotNameToAttr(this.$slots)
+
+      this.contentPaddingTop = parsePxUnit(window.getComputedStyle(this.scrollElement).paddingTop)
+      this.contentPaddingBottom = parsePxUnit(window.getComputedStyle(this.scrollElement).paddingBottom)
 
       // 计算并设置当前Content的位置及尺寸
       this.$_recalculateContentDimensions()
