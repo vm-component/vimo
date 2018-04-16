@@ -81,13 +81,6 @@
       if (this.pageComponent) {
         this.pageComponent.headerComponent = this
       }
-
-      this.$root.$on('onMenuOpen', () => {
-        this.hide()
-      })
-      this.$root.$on('onMenuClosing', () => {
-        this.show()
-      })
       this.$root.$emit('header:created', this)
     },
     mounted () {

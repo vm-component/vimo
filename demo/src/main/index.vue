@@ -3,7 +3,7 @@
         <Header>
             <Navbar :hide-back-button="true">
                 <Buttons right slot="buttons">
-                    <Button role="bar-button" menutoggle>
+                    <Button role="bar-button" menutoggle @click="$menu.present('menu')">
                         <Icon name="more"></Icon>
                     </Button>
                 </Buttons>

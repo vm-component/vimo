@@ -159,12 +159,13 @@ sub {
 .#{$prefix}-app,
 .#{$prefix}-nav,
 .app-root {
-  position: static;
+  //position: static;
+  position: absolute;
   z-index: $z-index-page-container;
   display: block;
   width: 100%;
   
-  @include position(0, null, null, 0);
+  @include position(0, 0, 0, 0);
 }
 
 .#{$prefix}-app,
@@ -191,6 +192,8 @@ sub {
   display: block;
   width: 100%;
   transition: all ease 300ms;
+  
+  will-change: transform;
   
   @include position(0, null, null, 0);
 }
@@ -220,7 +223,7 @@ sub {
   display: block;
   width: 100%;
   transition: -webkit-transform ease 300ms;
-  
+  will-change: transform;
   @include position(null, null, 0, 0);
 }
 

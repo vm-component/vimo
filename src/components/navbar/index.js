@@ -48,17 +48,17 @@ export { default } from './navbar.vue'
  *
  * ```
  * <Buttons right slot="buttons">
- *     <Button @click="$menu.open('menu')" role="bar-button">
+ *     <Button @click="$menu.present('menu')" role="bar-button">
  *          WITH OUT SPAN
  *     </Button>
- *     <Button @click="$menu.open('menu')" role="bar-button">
+ *     <Button @click="$menu.present('menu')" role="bar-button">
  *          <span>WITH SPAN</span>
  *     </Button>
- *     <Button @click="$menu.open('menu')" color="dark" role="bar-button">
+ *     <Button @click="$menu.present('menu')" color="dark" role="bar-button">
  *          <Icon name="icon-vue"></Icon>
  *          <Badge>0</Badge>
  *     </Button>
- *     <Button @click="$menu.open('menu')" color="dark" role="bar-button">
+ *     <Button @click="$menu.present('menu')" color="dark" role="bar-button">
  *          <Icon name="qr-scanner"></Icon>
  *          <Badge>12</Badge>
  *     </Button>

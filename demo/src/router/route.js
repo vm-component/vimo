@@ -155,6 +155,13 @@ export default [
     }
   },
   {
+    path: '/menu',
+    name: 'menu',
+    component (resolve) {
+      require(['@DemoComponent/menu.vue'], resolve)
+    }
+  },
+  {
     path: '/nav',
     name: 'nav',
     component (resolve) {

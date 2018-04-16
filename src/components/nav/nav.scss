@@ -5,6 +5,8 @@
 @import "transitions/fade-transition";
 
 .#{$prefix}-nav {
+  will-change: transform;
+  
   .click-cover {
     position: absolute;
     top: 0;

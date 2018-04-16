@@ -5,7 +5,7 @@
                 <Title>设置Bar的样式</Title>
             </Navbar>
         </Header>
-        <Content padding class="outer-content" @onScroll="onScrollHandler">
+        <Content fullscreen padding class="outer-content" @onScroll="onScrollHandler">
             <h1>Section</h1>
             <section>
                 <p>向下滚动, 则Header将渐变消失, 当滚回来的时候则显示. </p>
@@ -117,11 +117,6 @@
 
   export default {
     name: 'setBarStyle',
-    data () {
-      return {}
-    },
-    props: {},
-    watch: {},
     computed: {
       headerComponent () {
         return this.$refs.header
@@ -130,15 +125,13 @@
     methods: {
       onScrollHandler (ev) {
         const TOP = 200
-        let precent = 1 - clamp(0, ev.scrollTop / TOP, 1)
-        this.headerComponent.setStyle({
-          opacity: precent
-        })
+        const precent = 1 - clamp(0, ev.scrollTop / TOP, 1)
+        const style = {
+          opacity: precent,
+          visibility: precent <= 0 ? 'hidden' : 'visible'
+        }
+        this.headerComponent.setStyle(style)
       }
-    },
-    created () {},
-    mounted () {},
-    activated () {},
-    components: {}
+    }
   }
 </script>

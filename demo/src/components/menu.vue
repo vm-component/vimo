@@ -6,7 +6,7 @@
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <h1>Menus参数设置</h1>
+            <h5>Menu Params</h5>
             <List radio-group v-model="menusType">
                 <ListHeader>Type</ListHeader>
                 <Item>
@@ -29,7 +29,10 @@
                     <Radio value="right"></Radio>
                 </Item>
             </List>
-            <Button block @click="$menu.open('menu')">Open Menu</Button>
+            <Button block @click="$menu.present('menu')">Open Menu</Button>
+            <hr>
+            <Button block @click="$menu.present('menu1')">Open Menu1</Button>
+            <Button block @click="$menu.present('menu2')">Open Menu2</Button>
         </Content>
     </Page>
 </template>
@@ -70,13 +73,7 @@
     beforeMount () {},
     mounted () {
       console.log(this.$store)
-    },
-    beforeUpdate () {},
-    updated () {},
-    activated () {},
-    deactivated () {},
-    beforeDestroy () {},
-    destroyed () {}
+    }
   }
 </script>
 <style scoped lang="scss">

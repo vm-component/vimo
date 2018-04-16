@@ -22,7 +22,8 @@
     </div>
 </template>
 <script type="text/javascript">
-  import recordMenuInstance from './record-menu-instance'
+  import Vue from 'vue'
+  import Menu from './Menu'
   import Backdrop from '../backdrop'
   import focusOutActiveElement from '../../util/focus-out-active-element'
 
@@ -46,7 +47,10 @@
       /**
        * 当前menu的id
        * */
-      id: String,
+      id: {
+        required: true,
+        type: String
+      },
       /**
        * menu从哪个位置出来, left/right
        * 默认:"left"
@@ -67,10 +71,6 @@
           return ['overlay', 'reveal'].indexOf(val) > -1
         }
       }
-    },
-    watch: {
-      type () {},
-      side () {}
     },
     methods: {
       // 过渡钩子
@@ -124,8 +124,11 @@
       }
     },
     created () {
-      // 记录当前实例
-      recordMenuInstance(this)
+      let proto = Vue.prototype
+      if (!proto.$menu) {
+        proto.$menu = new Menu()
+      }
+      proto.$menu.register(this)
     },
     components: {
       Backdrop

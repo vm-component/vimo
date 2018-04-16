@@ -82,13 +82,6 @@
       if (this.pageComponent) {
         this.pageComponent.footerComponent = this
       }
-
-      this.$root.$on('onMenuOpen', () => {
-        this.hide()
-      })
-      this.$root.$on('onMenuClosing', () => {
-        this.show()
-      })
       this.$root.$emit('footer:created', this)
     },
     mounted () {
