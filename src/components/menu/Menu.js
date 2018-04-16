@@ -1,4 +1,4 @@
-import urlChange from 'src/util/url-change'
+import urlChange from '../../util/url-change'
 
 export default class Menu {
   constructor () {
