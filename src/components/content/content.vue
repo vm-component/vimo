@@ -15,7 +15,6 @@
     </article>
 </template>
 <script type="text/javascript">
-
   import { parsePxUnit, transitionEnd } from '../../util/util'
   import cssFormat from '../../util/css-format'
   import ScrollView from '../../util/scroll-view'
@@ -227,6 +226,10 @@
         // 流式布局, init(获取尺寸的元素, 监听滚动的元素)
         if (this.isBox) {
           this.scrollView.init(this.scrollElement, this.scrollElement)
+          // 位置记录
+
+          // this.scrollView.getTop
+
         } else {
           this.scrollView.init(document.documentElement, window)
         }
@@ -293,11 +296,30 @@
       $_isImgUpdatable () {
         // 当滚动不是太快的时候, Img组件更新才被允许, 这个速度由this.imgVelMax控制
         return Math.abs(this.scrollView.ev.velocityY) < this.imgVelMax
+      },
+      /**
+       * @private
+       * */
+      $_writePosition () {
+        if (this.isBox) {
+          requestAnimationFrame(() => {
+            let _scrollPosition = window.sessionStorage.getItem(window.location.href)
+            _scrollPosition && this.scrollView.scrollTo(0, _scrollPosition, 0)
+          })
+        }
+      },
+      /**
+       * @private
+       * */
+      $_recordPosition (scrollTop) {
+        if (this.isBox) {
+          window.sessionStorage.setItem(window.location.href, scrollTop)
+        }
       }
     },
     created () {
       // 置顶
-      window.scrollTo(0, 0)
+      // window.scrollTo(0, 0)
 
       // 窗口变化重新计算容器
       this.resizeUnReg = registerListener(window, 'resize', () => {
@@ -327,6 +349,8 @@
         this.$emit('onScroll', ev)
         this.$root && this.$root.$emit('onScroll', ev)
         this.$_imgUpdate(ev)
+
+        this.$_recordPosition(ev.scrollTop)
       }
 
       /**
@@ -341,6 +365,8 @@
       }
 
       this.$root.$emit('content:created', this)
+
+      this.$_writePosition()
     },
     mounted () {
       // fix业务将slot的name贴到attr上, 便于class样式处理
@@ -353,6 +379,9 @@
       this.$_recalculateContentDimensions()
 
       this.$root.$emit('content:mounted', this)
+    },
+    activated () {
+      this.$_writePosition()
     },
     destroyed () {
       this.resizeUnReg && this.resizeUnReg()

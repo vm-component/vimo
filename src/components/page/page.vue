@@ -16,6 +16,10 @@
       navComponent: {
         from: 'navComponent',
         default: null
+      },
+      pageComponent: {
+        from: 'pageComponent',
+        default: null
       }
     },
     provide () {
@@ -53,15 +57,21 @@
       }
     },
     created () {
-      if (this.navComponent && this.navComponent.direction) {
-        let direction = this.navComponent.direction
-        if (direction === 'forward') {
-          this.pageZIndex = ++initPageZIndex
-        } else if (direction === 'backward') {
-          this.pageZIndex = --initPageZIndex
-        } else {
-          this.pageZIndex = initPageZIndex
+      if (!this.pageComponent) {
+        if (!this.pageComponent && this.navComponent && this.navComponent.direction) {
+          let direction = this.navComponent.direction
+          if (direction === 'forward') {
+            initPageZIndex += 1
+            this.pageZIndex = initPageZIndex
+          } else if (direction === 'backward') {
+            initPageZIndex -= 1
+            this.pageZIndex = initPageZIndex
+          } else {
+            this.pageZIndex = initPageZIndex
+          }
         }
+      } else {
+        this.pageZIndex = initPageZIndex
       }
       this.$root.$emit('page:created')
     },

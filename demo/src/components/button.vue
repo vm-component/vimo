@@ -6,12 +6,10 @@
             </Navbar>
         </Header>
         <Content padding>
-            <h1>Button组件</h1>
-            <p>该组件属于通用组件, 一般用于绑定事件触发动作, 可以是不用加native修饰符使用, 例如: @click="action()"</p>
             <h4>Colors</h4>
             <Grid>
                 <Row justify-content-center>
-                    <Button @click="primary()" color="primary">primary</Button>
+                    <Button color="primary">primary</Button>
                     <Button color="secondary" :isStrong="true">secondary</Button>
                     <Button color="danger">danger</Button>
                     <Button color="light">light</Button>
@@ -112,19 +110,5 @@
     </Page>
 </template>
 <style scoped lang="scss">
-    .buttons {
-        text-align: center;
-    }
 </style>
-<script type="text/javascript">
-  export default {
-    data () {
-      return {}
-    },
-    methods: {
-      primary: function () {
-        console.log('primary')
-      }
-    }
-  }
-</script>
+<script type="text/javascript"></script>

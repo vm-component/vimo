@@ -46,8 +46,9 @@
   display: block;
 }
 
-button.item-cover,
-[ion-button].item-cover,
+.item-cover[role="select"],
+.item-cover[role="radio"],
+.#{$prefix}-button.item-cover.item-button,
 .#{$prefix}-button.item-cover {
   position: absolute;
   width: 100%;

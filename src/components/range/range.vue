@@ -36,9 +36,10 @@
   import RangeKnobHandle from './range-knob-handle.vue'
   import { clamp, pointerCoord, setElementClass } from '../../util/util'
   import { isNumber, isObject, isString } from '../../util/type'
-  import PointerEvents from './pointer-events.es5.js'
+  import PointerEvents from 'tp-pointer-events'
 
   const throttle = require('lodash.throttle')
+
   export default {
     name: 'Range',
     inject: {
@@ -220,10 +221,12 @@
         }
       },
 
-      $_emit: throttle(function () {
-        // 频发触发会导致卡顿
-        this.$emit('input', JSON.parse(JSON.stringify(this.valueInner)))
-      }, 16 * 3),
+      $_emit () {
+        requestAnimationFrame(() => {
+          // 频发触发会导致卡顿
+          this.$emit('input', JSON.parse(JSON.stringify(this.valueInner)))
+        })
+      },
 
       /**
        * 拖动停止

@@ -6,12 +6,6 @@
             </Navbar>
         </Header>
         <Content class="outer-content">
-            <div padding>
-                <h5>
-                    <Badge>组件</Badge>&ensp;简介
-                </h5>
-            </div>
-
             <List>
                 <ListHeader>菜单</ListHeader>
                 <Item button>

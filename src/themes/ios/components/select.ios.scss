@@ -26,29 +26,29 @@ $select-ios-icon-color: #999 !default;
 $select-ios-placeholder-color: $select-ios-icon-color !default;
 
 .select-ios {
-  @include padding($select-ios-padding-top, $select-ios-padding-end, $select-ios-padding-bottom, $select-ios-padding-start);
-}
-
-.select-ios .select-placeholder {
-  color: $select-ios-placeholder-color;
-}
-
-.select-ios .select-icon {
-  position: relative;
-  width: 12px;
-  height: 18px;
-}
-
-.select-ios .select-icon .select-icon-inner {
-  position: absolute;
-  width: 0;
-  height: 0;
-  color: $select-ios-icon-color;
-  pointer-events: none;
-  border-top: 5px solid;
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
-
-  @include position(50%, null, null, 5px);
-  @include margin(-2px, null, null, null);
+  &.ion-select {
+    @include padding($select-ios-padding-top, $select-ios-padding-end, $select-ios-padding-bottom, $select-ios-padding-start);
+    margin: 0;
+  }
+  .select-placeholder {
+    color: $select-ios-placeholder-color;
+  }
+  .select-icon {
+    position: relative;
+    width: 12px;
+    height: 18px;
+  }
+  .select-icon .select-icon-inner {
+    position: absolute;
+    width: 0;
+    height: 0;
+    color: $select-ios-icon-color;
+    pointer-events: none;
+    border-top: 5px solid;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    
+    @include position(50%, null, null, 5px);
+    @include margin(-2px, null, null, null);
+  }
 }

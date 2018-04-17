@@ -96,6 +96,7 @@
     "swiper": "^3.4.2",
     "tp-config": "^1.0.5",
     "tp-platform": "^1.0.2",
+    "tp-pointer-events": "^1.0.0",
     "vue-i18n": "^7.6.0"
   },
   "devDependencies": {

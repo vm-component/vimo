@@ -94,7 +94,7 @@ $toggle-ios-item-end-padding-start: $item-ios-padding-start !default;
   pointer-events: none;
   background-color: $toggle-ios-border-color-off;
   transition: background-color $toggle-ios-transition-duration;
-
+  
   @include border-radius($toggle-ios-border-radius);
 }
 
@@ -107,7 +107,7 @@ $toggle-ios-item-end-padding-start: $item-ios-padding-start !default;
   background-color: $toggle-ios-background-color-off;
   transition: transform $toggle-ios-transition-duration;
   transform: scale3d(1, 1, 1);
-
+  
   @include position($toggle-ios-border-width, $toggle-ios-border-width, $toggle-ios-border-width, $toggle-ios-border-width);
   @include border-radius($toggle-ios-border-radius);
 }
@@ -124,7 +124,7 @@ $toggle-ios-item-end-padding-start: $item-ios-padding-start !default;
   transition: transform $toggle-ios-transition-duration, width 120ms ease-in-out 80ms, left 110ms ease-in-out 80ms, right 110ms ease-in-out 80ms;
   will-change: transform;
   contain: strict;
-
+  
   @include position($toggle-ios-border-width, null, null, $toggle-ios-border-width);
   @include border-radius($toggle-ios-handle-border-radius);
 }
@@ -196,6 +196,11 @@ $toggle-ios-item-end-padding-start: $item-ios-padding-start !default;
   @include padding($toggle-ios-item-start-padding-top, $toggle-ios-item-start-padding-end, $toggle-ios-item-start-padding-bottom, $toggle-ios-item-start-padding-start);
 }
 
+.item-ios .toggle-ios[item-right], // deprecated
+.item-ios .toggle-ios[item-end] {
+  margin: 0;
+}
+
 // iOS Toggle Color Mixin
 // --------------------------------------------------
 
@@ -203,7 +208,7 @@ $toggle-ios-item-end-padding-start: $item-ios-padding-start !default;
   .toggle-ios-#{$color-name}.toggle-checked .toggle-icon {
     background-color: $color-base;
   }
-
+  
 }
 
 // Generate iOS Toggle Colors

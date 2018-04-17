@@ -116,7 +116,7 @@
     }
   }
 </script>
-<style lang="scss">
+<style scoped lang="scss">
     .customer {
         width: 80%;
         height: 40px;

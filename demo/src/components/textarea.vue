@@ -11,9 +11,9 @@
             </div>
             <List>
                 <ListHeader>使用场景</ListHeader>
-                <Item detail-push :to="{name:'textarea.normal'}">普通用法</Item>
-                <Item detail-push :to="{name:'textarea.event'}">输入事件</Item>
-                <Item detail-push :to="{name:'textarea.valid'}">验证</Item>
+                <Item detail-push :to="{name:'textareaNormal'}">普通用法</Item>
+                <Item detail-push :to="{name:'textareaEvent'}">输入事件</Item>
+                <Item detail-push :to="{name:'textareaValid'}">验证</Item>
             </List>
         </Content>
     </Page>

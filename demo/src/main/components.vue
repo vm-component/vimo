@@ -65,96 +65,75 @@
                 <!--<span>滚动标签</span>-->
                 <!--<Note slot="item-right">ScrollSegment</Note>-->
                 <!--</Item>-->
-                <Item detail-push :to="{name: 'tabs'}">
+                <Item detail-push :to="{name: 'tabs.index'}">
                     <Icon slot="item-left" name="link"></Icon>
                     <span>{{$t('tabs')}}</span>
                 </Item>
-                <!--<Item detail-push :to="{name: 'deeplink'}">-->
-                <!--<Icon slot="item-left" name="arrow-forward"></Icon>-->
-                <!--<span>跳转到App</span>-->
-                <!--<Note slot="item-right">Deeplink</Note>-->
-                <!--</Item>-->
             </List>
             <List>
-                <!--通用组件-->
-                <ListHeader>通用组件/Common</ListHeader>
+                <ListHeader>{{$t('common')}}</ListHeader>
                 <Item detail-push :to="{name: 'button'}">
                     <Icon slot="item-left" name="download"></Icon>
-                    <span>按钮</span>
-                    <Note slot="item-right">Button</Note>
+                    <span>{{$t('button')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'icon'}">
                     <Icon slot="item-left" name="ionitron"></Icon>
-                    <span>图标</span>
-                    <Note slot="item-right">Icon</Note>
+                    <span>{{$t('icon')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'spinner'}">
                     <Icon slot="item-left" name="medical"></Icon>
-                    <span>菊花图</span>
-                    <Note slot="item-right">Spinner</Note>
+                    <span>{{$t('spinner')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'badge'}">
                     <Icon slot="item-left" name="ribbon"></Icon>
-                    <span>徽章</span>
-                    <Note slot="item-right">Badge</Note>
+                    <span>{{$t('badge')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'toolbar'}">
                     <Icon slot="item-left" name="briefcase"></Icon>
-                    <span>工具条</span>
-                    <Note slot="item-right">Toolbar</Note>
+                    <span>{{$t('toolbar')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'img'}">
                     <Icon slot="item-left" name="image"></Icon>
-                    <span>图片</span>
-                    <Note slot="item-right">Img</Note>
+                    <span>{{$t('image')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'backdrop'}">
                     <Icon slot="item-left" name="barcode"></Icon>
-                    <span>幕布</span>
-                    <Note slot="item-right">Backdrop</Note>
+                    <span>{{$t('backdrop')}}</span>
                 </Item>
             </List>
             <List>
-                <ListHeader>数据录入/Data Entry</ListHeader>
+                <ListHeader>{{$t('dataEntry')}}</ListHeader>
                 <Item detail-push :to="{name: 'toggle'}">
                     <Icon slot="item-left" name="swap"></Icon>
-                    <span>开关</span>
-                    <Note slot="item-right">Toggle</Note>
+                    <span>{{$t('toggle')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'checkbox'}">
                     <Icon slot="item-left" name="checkbox"></Icon>
-                    <span>复选框</span>
-                    <Note slot="item-right">Checkbox</Note>
+                    <span>{{$t('checkbox')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'radio'}">
                     <Icon slot="item-left" name="radio-button-on"></Icon>
-                    <span>单选框</span>
-                    <Note slot="item-right">Radio</Note>
+                    <span>{{$t('radio')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'select'}">
                     <Icon slot="item-left" name="list-box"></Icon>
-                    <span>选择弹层</span>
-                    <Note slot="item-right">Select</Note>
+                    <span>{{$t('select')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'input'}">
                     <Icon slot="item-left" name="backspace"></Icon>
-                    <span>输入框</span>
-                    <Note slot="item-right">Input</Note>
+                    <span>{{$t('input')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'textarea'}">
                     <Icon slot="item-left" name="reorder"></Icon>
-                    <span>多行输入</span>
-                    <Note slot="item-right">Textarea</Note>
+                    <span>{{$t('textarea')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'range'}">
                     <Icon slot="item-left" name="options"></Icon>
-                    <span>范围选择</span>
-                    <Note slot="item-right">Range</Note>
+                    <span>{{$t('range')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'searchbar'}">
                     <Icon slot="item-left" name="search"></Icon>
-                    <span>搜索栏</span>
-                    <Note slot="item-right">SearchBar</Note>
+                    <span>{{$t('searchbar')}}</span>
                 </Item>
                 <!--<Item detail-push :to="{name: 'feedback'}">-->
                 <!--<Icon slot="item-left" name="archive"></Icon>-->
@@ -163,19 +142,18 @@
                 <!--</Item>-->
                 <Item detail-push :to="{name: 'picker'}">
                     <Icon slot="item-left" name="basket"></Icon>
-                    <span>单多列选择器</span>
-                    <Note slot="item-right">Picker</Note>
+                    <span>{{$t('picker')}}</span>
                 </Item>
-                <Item detail-push :to="{name: 'sheet'}">
-                    <Icon slot="item-left" name="barcode"></Icon>
-                    <span>弹出单</span>
-                    <Note slot="item-right">Sheet</Note>
-                </Item>
-                <Item detail-push :to="{name: 'popSheet'}">
-                    <Icon slot="item-left" name="archive"></Icon>
-                    <span>弹出窗</span>
-                    <Note slot="item-right">PopSheet</Note>
-                </Item>
+                <!--<Item detail-push :to="{name: 'sheet'}">-->
+                    <!--<Icon slot="item-left" name="barcode"></Icon>-->
+                    <!--<span>弹出单</span>-->
+                    <!--<Note slot="item-right">Sheet</Note>-->
+                <!--</Item>-->
+                <!--<Item detail-push :to="{name: 'popSheet'}">-->
+                    <!--<Icon slot="item-left" name="archive"></Icon>-->
+                    <!--<span>弹出窗</span>-->
+                    <!--<Note slot="item-right">PopSheet</Note>-->
+                <!--</Item>-->
                 <!--<Item detail-push>-->
                 <!--<Icon slot="item-left" name="star"></Icon>-->
                 <!--<Label>数字支付键盘(未完成)</Label>-->
@@ -369,6 +347,26 @@
           segment: '小标签',
           tabs: '大标签',
 
+          common: '通用组件',
+          button: '按钮',
+          icon: '图标',
+          spinner: '菊花图',
+          badge: '徽章',
+          toolbar: '工具条',
+          image: '图片',
+          backdrop: '图幕布片',
+
+          dataEntry: '数据录入',
+          toggle: '开关',
+          checkbox: '复选框',
+          radio: '单选框',
+          select: '选择弹层',
+          input: '输入框',
+          textarea: '多行输入',
+          range: '范围选择',
+          searchbar: '搜索栏',
+          picker: '单多列选择器',
+
           rest: '页面组件'
         },
         'en-US': {
@@ -383,6 +381,26 @@
           segment: 'Segment',
           tabs: 'Tabs',
 
+          common: 'Common',
+          button: 'Button',
+          icon: 'Icon',
+          spinner: 'Spinner',
+          badge: 'Badge',
+          toolbar: 'Toolbar',
+          image: 'Img',
+          backdrop: 'Backdrop',
+
+          dataEntry: 'Data Entry',
+          toggle: 'Toggle',
+          checkbox: 'Checkbox',
+          radio: 'Radio',
+          select: 'Select',
+          input: 'Input',
+          textarea: 'Textarea',
+          range: 'Range',
+          searchbar: 'SearchBar',
+          picker: 'Picker',
+
           rest: '页面组件'
         }
       }
@@ -395,8 +413,6 @@
     computed: {},
     methods: {},
     created () {
-    },
-    mounted () {
     },
     activated () {
     }

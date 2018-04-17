@@ -6,12 +6,10 @@
             </Navbar>
         </Header>
         <Content class="outer-content">
-
             <div padding>
                 <h5>简介</h5>
                 <p>Select组件用于单类型数据但多选, 如果是多类型数据选择, 请选Picker组件.</p>
             </div>
-
             <List>
                 <ListHeader>单选</ListHeader>
                 <Item>
@@ -37,15 +35,15 @@
                     </Select>
                 </Item>
                 <!--<Item>-->
-                    <!--<Label floating>Gender(floating)</Label>-->
-                    <!--<Select item-right placeholder="Select" interface="action-sheet"-->
-                            <!--:selectOptions="{title:'Foating Label'}"-->
-                            <!--@onChange="onChange"-->
-                            <!--@onSelect="onSelect"-->
-                            <!--@onCancel="onCancel">-->
-                        <!--<SelectOption value="f">Female</SelectOption>-->
-                        <!--<SelectOption value="m">Male</SelectOption>-->
-                    <!--</Select>-->
+                <!--<Label floating>Gender(floating)</Label>-->
+                <!--<Select item-right placeholder="Select" interface="action-sheet"-->
+                <!--:selectOptions="{title:'Foating Label'}"-->
+                <!--@onChange="onChange"-->
+                <!--@onSelect="onSelect"-->
+                <!--@onCancel="onCancel">-->
+                <!--<SelectOption value="f">Female</SelectOption>-->
+                <!--<SelectOption value="m">Male</SelectOption>-->
+                <!--</Select>-->
                 <!--</Item>-->
                 <Item>
                     <Label>Gender</Label>
@@ -167,7 +165,6 @@
     </Page>
 </template>
 <style scoped lang="scss">
-
 </style>
 <script type="text/javascript">
   export default {

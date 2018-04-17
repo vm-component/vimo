@@ -141,6 +141,41 @@ export default [
     }
   },
   {
+    path: '/input-event',
+    name: 'inputEvent',
+    component (resolve) {
+      require(['@DemoComponent/input-event.vue'], resolve)
+    }
+  },
+  {
+    path: '/input-limit',
+    name: 'inputLimit',
+    component (resolve) {
+      require(['@DemoComponent/input-limit.vue'], resolve)
+    }
+  },
+  {
+    path: '/input-normal',
+    name: 'inputNormal',
+    component (resolve) {
+      require(['@DemoComponent/input-normal.vue'], resolve)
+    }
+  },
+  {
+    path: '/input-valid',
+    name: 'inputValid',
+    component (resolve) {
+      require(['@DemoComponent/input-valid.vue'], resolve)
+    }
+  },
+  {
+    path: '/input',
+    name: 'input',
+    component (resolve) {
+      require(['@DemoComponent/input.vue'], resolve)
+    }
+  },
+  {
     path: '/introduce',
     name: 'introduce',
     component (resolve) {
@@ -232,10 +267,75 @@ export default [
     }
   },
   {
+    path: '/select',
+    name: 'select',
+    component (resolve) {
+      require(['@DemoComponent/select.vue'], resolve)
+    }
+  },
+  {
     path: '/spinner',
     name: 'spinner',
     component (resolve) {
       require(['@DemoComponent/spinner.vue'], resolve)
+    }
+  },
+  {
+    path: '/tabs',
+    name: 'tabs',
+    component (resolve) {
+      require(['@DemoComponent/tabs.vue'], resolve)
+    },
+    children: [
+      {
+        path: '',
+        name: 'tabs.index',
+        component (resolve) {
+          require(['@DemoComponent/tabs/index.vue'], resolve)
+        }
+      },
+      {
+        path: 'tab1',
+        name: 'tabs.tab1',
+        component (resolve) {
+          require(['@DemoComponent/tabs/tab1.vue'], resolve)
+        }
+      },
+      {
+        path: 'tab2',
+        name: 'tabs.tab2',
+        component (resolve) {
+          require(['@DemoComponent/tabs/tab2.vue'], resolve)
+        }
+      }
+    ]
+  },
+  {
+    path: '/textarea-event',
+    name: 'textareaEvent',
+    component (resolve) {
+      require(['@DemoComponent/textarea-event.vue'], resolve)
+    }
+  },
+  {
+    path: '/textarea-normal',
+    name: 'textareaNormal',
+    component (resolve) {
+      require(['@DemoComponent/textarea-normal.vue'], resolve)
+    }
+  },
+  {
+    path: '/textarea-valid',
+    name: 'textareaValid',
+    component (resolve) {
+      require(['@DemoComponent/textarea-valid.vue'], resolve)
+    }
+  },
+  {
+    path: '/textarea',
+    name: 'textarea',
+    component (resolve) {
+      require(['@DemoComponent/textarea.vue'], resolve)
     }
   },
   {

@@ -25,7 +25,5 @@ const config = {
 
 const index = new Router(config)
 
-console.log(index)
-
 Vue.use(Router)
 export default index

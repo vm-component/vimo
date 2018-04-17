@@ -7,6 +7,7 @@
         </div>
         <button @click="onPointerDownHandler($event)"
                 ref="button"
+                role="select"
                 :id="id"
                 class="item-cover">
         </button>

@@ -6,55 +6,52 @@
             </Navbar>
         </Header>
         <Content padding class="iconDemo">
-            <h1>Icon组件</h1>
-            <p>Vimo的Icon可以使用ionicons或者自定义图标(需要以icon-开头)</p>
-
-            <h4>关于状态</h4>
+            <h4>State:</h4>
             <Grid>
                 <Row>
-                    <Column col-4 align-self-center>默认状态:</Column>
+                    <Column col-4 align-self-center>Default:</Column>
                     <Column col-8 align-self-center>
                         <Icon color="primary" name="book"></Icon>
                     </Column>
                 </Row>
                 <Row>
-                    <Column col-4 align-self-center>激活状态:</Column>
+                    <Column col-4 align-self-center>Active:</Column>
                     <Column col-8 align-self-center>
                         <Icon color="primary" name="book" :isActive="true"></Icon>
                     </Column>
                 </Row>
                 <Row>
-                    <Column col-4 align-self-center>非激活状态:</Column>
+                    <Column col-4 align-self-center>Inactivated:</Column>
                     <Column col-8 align-self-center>
                         <Icon color="primary" name="book" :isActive="false"></Icon>
                     </Column>
                 </Row>
             </Grid>
 
-            <h4>自定义激活状态</h4>
+            <h4>Customer Active State</h4>
             <Grid>
                 <Row>
-                    <Column col-4 align-self-center>激活状态:</Column>
+                    <Column col-4 align-self-center>Active:</Column>
                     <Column col-8 align-self-center>
                         <Icon color="primary" name="star" :isActive="true" activeName="ios-book"></Icon>
                     </Column>
                 </Row>
                 <Row>
-                    <Column col-4 align-self-center>非激活状态:</Column>
+                    <Column col-4 align-self-center>Inactivated:</Column>
                     <Column col-8 align-self-center>
                         <Icon color="primary" name="star" :isActive="false" activeName="ios-book"></Icon>
                     </Column>
                 </Row>
             </Grid>
 
-            <h4>自定义Icon</h4>
+            <h4>Customize Icon</h4>
 
             <Icon name="icon-vue"></Icon>
             <Icon name="icon-vimo"></Icon>
             <Icon name="icon-alipay"></Icon>
             <Icon name="icon-wechat"></Icon>
 
-            <h4>全平台显示一致</h4>
+            <h4>Uniform platform display</h4>
             <Icon name="md-star"></Icon>
 
             <h4>Logo Icons</h4>

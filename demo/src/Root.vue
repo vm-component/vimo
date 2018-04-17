@@ -35,18 +35,24 @@
         <Menu id="menu1" side="left" type="reveal">
             <div padding>
                 <h3>Menu1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus beatae blanditiis cupiditate dolor, doloribus eligendi est eum hic, molestias mollitia nam neque perferendis quia reiciendis rem vel, veniam voluptatum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus beatae blanditiis cupiditate dolor, doloribus eligendi est eum hic, molestias mollitia nam neque perferendis quia reiciendis rem vel, veniam voluptatum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus beatae blanditiis cupiditate dolor, doloribus eligendi est eum hic, molestias mollitia nam neque perferendis quia reiciendis rem vel, veniam voluptatum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus beatae blanditiis cupiditate dolor, doloribus eligendi est eum hic,
+                   molestias mollitia nam neque perferendis quia reiciendis rem vel, veniam voluptatum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus beatae blanditiis cupiditate dolor, doloribus eligendi est eum hic,
+                   molestias mollitia nam neque perferendis quia reiciendis rem vel, veniam voluptatum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus beatae blanditiis cupiditate dolor, doloribus eligendi est eum hic,
+                   molestias mollitia nam neque perferendis quia reiciendis rem vel, veniam voluptatum.</p>
                 <Button block @click="$menu.present('menu2')">Open Menu2</Button>
             </div>
         </Menu>
         <Menu id="menu2" side="right" type="overlay">
             <div padding>
                 <h3>Menu2</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem enim facilis fuga magni nisi non officia pariatur sed. Commodi consequuntur esse, ex exercitationem fugiat nisi quisquam quod vitae voluptas? Impedit?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem enim facilis fuga magni nisi non officia pariatur sed. Commodi consequuntur esse, ex exercitationem fugiat nisi quisquam quod vitae voluptas? Impedit?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem enim facilis fuga magni nisi non officia pariatur sed. Commodi consequuntur esse, ex exercitationem fugiat nisi quisquam quod vitae voluptas? Impedit?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem enim facilis fuga magni nisi non officia pariatur sed. Commodi consequuntur
+                   esse, ex exercitationem fugiat nisi quisquam quod vitae voluptas? Impedit?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem enim facilis fuga magni nisi non officia pariatur sed. Commodi consequuntur
+                   esse, ex exercitationem fugiat nisi quisquam quod vitae voluptas? Impedit?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem enim facilis fuga magni nisi non officia pariatur sed. Commodi consequuntur
+                   esse, ex exercitationem fugiat nisi quisquam quod vitae voluptas? Impedit?</p>
                 <Button block @click="$menu.present('menu1')">Open Menu1</Button>
             </div>
         </Menu>

@@ -71,7 +71,6 @@
       // ios/ios-small/bubbles/circles/crescent/dots
       name: {
         type: String,
-        default: 'ios',
         validator (val) {
           return ~[
             'ios',

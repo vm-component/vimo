@@ -11,10 +11,10 @@
             </div>
             <List>
                 <ListHeader>使用场景</ListHeader>
-                <Item detail-push :to="{name:'input.normal'}">普通用法</Item>
-                <Item detail-push :to="{name:'input.valid'}">输入验证</Item>
-                <Item detail-push :to="{name:'input.limit'}">输入限制</Item>
-                <Item detail-push :to="{name:'input.event'}">输入事件</Item>
+                <Item detail-push :to="{name:'inputNormal'}">普通用法</Item>
+                <Item detail-push :to="{name:'inputValid'}">输入验证</Item>
+                <Item detail-push :to="{name:'inputLimit'}">输入限制</Item>
+                <Item detail-push :to="{name:'inputEvent'}">输入事件</Item>
             </List>
         </Content>
     </Page>
