@@ -18,6 +18,9 @@
     position: relative;
     display: block;
     width: 100%;
+    
+    will-change: width;
+    transform: translate3d(0, 0, 0);
     flex-shrink: 1;
   }
   

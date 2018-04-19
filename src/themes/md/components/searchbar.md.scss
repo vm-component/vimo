@@ -70,6 +70,7 @@ $searchbar-md-input-clear-icon-size: 22px !default;
 // -----------------------------------------
 
 .searchbar-md .searchbar-search-icon {
+  z-index: 1;
   width: $searchbar-md-input-search-icon-size + 1;
   height: $searchbar-md-input-search-icon-size + 1;
   
@@ -81,6 +82,7 @@ $searchbar-md-input-clear-icon-size: 22px !default;
 // -----------------------------------------
 
 .searchbar-md .searchbar-md-cancel {
+  z-index: 1;
   display: none;
   width: $searchbar-md-input-search-icon-size + 1;
   height: 100%;
