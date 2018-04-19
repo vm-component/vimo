@@ -7,13 +7,9 @@
         </Header>
         <Content padding class="outer-content">
             <h2>Menu Service:</h2>
-
-            <h5>this.$menu.present(id)</h5>
-            <p>开启指定Menu实例</p>
-            <h5>this.$menu.dismiss()</h5>
-            <p>关闭指定Menu实例</p>
-            <h5>this.$menu.toggle(id)</h5>
-            <p>Toggle指定Menu实例</p>
+            <p><strong>this.$menu.present(id)</strong></p>
+            <p><strong>this.$menu.dismiss()</strong></p>
+            <p><strong>this.$menu.toggle(id)</strong></p>
 
             <h2>Menu Params:</h2>
 
@@ -41,8 +37,16 @@
             </List>
             <Button block @click="$menu.present('menu')">Open Menu</Button>
             <hr>
-            <Button block @click="$menu.present('menu1')">Open Menu1</Button>
-            <Button block @click="$menu.present('menu2')">Open Menu2</Button>
+            <Grid>
+                <Row>
+                    <Column>
+                        <Button block @click="$menu.present('menu1')">Open Menu1</Button>
+                    </Column>
+                    <Column>
+                        <Button block @click="$menu.present('menu2')">Open Menu2</Button>
+                    </Column>
+                </Row>
+            </Grid>
         </Content>
     </Page>
 </template>

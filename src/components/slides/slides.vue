@@ -14,9 +14,10 @@
     </div>
 </template>
 <script type="text/javascript">
-  import Swiper from 'swiper'
-  console.log(Swiper)
   import { getEvents, getProps } from './interface'
+
+  const Swiper = require('swiper')
+
   export default {
     name: 'Slides',
     provide () {

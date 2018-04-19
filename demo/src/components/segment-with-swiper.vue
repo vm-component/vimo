@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>手势切换</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
             <Toolbar>
                 <!--content-->
@@ -20,7 +20,6 @@
                 <Slide padding class="slide">
                     <!--content_1-->
                     <section class="content_1">
-                        <strong>手势切换其实是Segment组件和Slides组件的结合</strong>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut culpa labore laborum magni qui quo sed voluptatibus! Aliquam doloremque eveniet facilis nam odio quisquam sequi totam veniam voluptate voluptatem. Ea.
                         </p>
@@ -41,7 +40,6 @@
                 <Slide padding class="slide">
                     <!--content_2-->
                     <section class="content_2">
-                        <strong>手势切换其实是Segment组件和Slides组件的结合</strong>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cum et ex facilis mollitia nesciunt omnis suscipit ullam. Ab at delectus deserunt, doloribus ex nihil praesentium quibusdam reiciendis ullam voluptatibus?</p>
                         <img src="../../static/orange_1.jpeg">
@@ -57,7 +55,6 @@
                 <Slide padding class="slide">
                     <!--content_3-->
                     <section class="content_3">
-                        <strong>手势切换其实是Segment组件和Slides组件的结合</strong>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A at aut ea eos esse est itaque iure, iusto, libero nam nostrum pariatur quasi quibusdam quis sed sequi tenetur vel veniam.</p>
                         <img src="../../static/pear_1.jpeg">
@@ -83,7 +80,17 @@
 </style>
 <script type="text/javascript">
   export default {
-    name: 'WithSwiper',
+    name: 'DemoWithSwiper',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '手势切换签',
+        },
+        'en-US': {
+          title: 'Gesture switching',
+        }
+      }
+    },
     data () {
       return {
         fruit: 'apple',

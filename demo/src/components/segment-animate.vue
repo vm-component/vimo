@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Animate切换</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
             <Toolbar>
                 <!--content-->
@@ -18,7 +18,6 @@
                 <transition name="animate">
                     <!--content_1-->
                     <section class="content_1" v-if="fruit==='apple'">
-                        <strong>这里的动画使用的是Vue原生的"transition"组件完成, 目前实现的效果是单向移动渐变动画.</strong>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut culpa labore laborum magni qui quo sed voluptatibus! Aliquam
                             doloremque eveniet facilis nam odio quisquam sequi totam veniam voluptate voluptatem. Ea.
@@ -43,7 +42,6 @@
                 <transition name="animate">
                     <!--content_2-->
                     <section class="content_2" v-if="fruit==='orange'">
-                        <strong>这里的动画使用的是Vue原生的"transition"组件完成, 目前实现的效果是单向移动渐变动画.</strong>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cum et ex facilis mollitia nesciunt omnis suscipit ullam. Ab at
                             delectus deserunt, doloribus ex nihil praesentium quibusdam reiciendis ullam voluptatibus?</p>
@@ -60,7 +58,6 @@
                 <transition name="animate">
                     <!--content_3-->
                     <section class="content_3" v-if="fruit==='pear'">
-                        <strong>这里的动画使用的是Vue原生的"transition"组件完成, 目前实现的效果是单向移动渐变动画.</strong>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A at aut ea eos esse est itaque iure, iusto, libero nam nostrum pariatur
                             quasi quibusdam quis sed sequi tenetur vel veniam.</p>
@@ -114,7 +111,17 @@
 </style>
 <script type="text/javascript">
   export default {
-    name: 'Animate',
+    name: 'DemoSegmentAnimate',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '使用animate切换'
+        },
+        'en-US': {
+          title: 'Use animate'
+        }
+      }
+    },
     data () {
       return {
         fruit: 'apple'

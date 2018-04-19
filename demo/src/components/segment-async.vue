@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>组件异步加载</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
             <Toolbar class="dashBox">
                 <section class="dashLine">
@@ -18,31 +18,39 @@
             </Toolbar>
         </Header>
         <Content padding>
-            <h1>Title</h1>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
-            <div><strong>当前选择的结果: {{fruit}}</strong></div>
-            <div><strong>onChange返回结果: {{onChangeValue}}</strong></div>
-            <div><strong>onSelected返回结果: {{onSelectValue}}</strong></div>
-            <Button block @click="getSegmentData">点击加载Segment</Button>
-            <Button block @click="addSegmentBtn">增加一个按钮</Button>
-            <Button block @click="fruit='orange'">设置为Orange</Button>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum
+                officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
+            <div><strong>Current: {{fruit}}</strong></div>
+            <div><strong>onChange: {{onChangeValue}}</strong></div>
+            <div><strong>onSelected: {{onSelectValue}}</strong></div>
+            <Button block @click="getSegmentData">Add Segment Async</Button>
+            <Button block @click="addSegmentBtn">Add Btn</Button>
+            <Button block @click="fruit='orange'">Set Orange</Button>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum
+                officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum
+                officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum
+                officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum
+                officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum
+                officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum
+                officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum
+                officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut blanditiis deserunt dolorem eos id maiores, modi neque nisi non, nostrum
+                officia pariatur porro quo recusandae tenetur ullam ut vitae!</p>
         </Content>
     </Page>
 </template>
@@ -59,8 +67,18 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
+  export default {
     name: 'async',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '异步加载组件'
+        },
+        'en-US': {
+          title: 'Async loading'
+        }
+      }
+    },
     data () {
       return {
         segmentList: [],
@@ -80,16 +98,12 @@
             {
               value: 'orange',
               name: 'Orange'
-            },
-            {
-              value: 'pear',
-              name: 'Pear'
             }
           ]
         }
       },
       addSegmentBtn () {
-        if (this.segmentList.length === 3) {
+        if (this.segmentList.length === 2) {
           this.segmentList.push({
             value: 'banana',
             name: 'Banana'

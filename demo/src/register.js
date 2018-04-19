@@ -27,6 +27,8 @@ import {
   InfiniteScrollContent,
   Input,
   Item,
+  ItemCollapse,
+  ItemCollapseGroup,
   ItemDivider,
   ItemGroup,
   ItemSliding,
@@ -45,6 +47,9 @@ import {
   Popover,
   Radio,
   Range,
+  Separation,
+  Slides,
+  Slide,
   Refresher,
   RefresherContent,
   Row,
@@ -114,8 +119,8 @@ export default function () {
   Vue.component(ListHeader.name, ListHeader)
   Vue.component(ItemDivider.name, ItemDivider)
   Vue.component(ItemGroup.name, ItemGroup)
-  // Vue.component(ItemCollapse.name, ItemCollapse)
-  // Vue.component(ItemCollapseGroup.name, ItemCollapseGroup)
+  Vue.component(ItemCollapse.name, ItemCollapse)
+  Vue.component(ItemCollapseGroup.name, ItemCollapseGroup)
   Vue.component(ItemSliding.name, ItemSliding)
   Vue.component(ItemSlidingOptions.name, ItemSlidingOptions)
   Vue.component(Label.name, Label)
@@ -135,12 +140,12 @@ export default function () {
   Vue.component(SegmentButton.name, SegmentButton)
   Vue.component(Select.name, Select)
   Vue.component(SelectOption.name, SelectOption)
-  // Vue.component(Separation.name, Separation)
+  Vue.component(Separation.name, Separation)
   // Vue.component(Sheet.name, Sheet)
   // Vue.component(PopSheet.name, PopSheet)
   // Vue.component(SlideBox.name, SlideBox)
-  // Vue.component(Slides.name, Slides)
-  // Vue.component(Slide.name, Slide)
+  Vue.component(Slides.name, Slides)
+  Vue.component(Slide.name, Slide)
   // Vue.component(SlidesLite.name, SlidesLite)
   // Vue.component(SlideLite.name, SlideLite)
   Vue.component(Spinner.name, Spinner)

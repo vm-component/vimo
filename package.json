@@ -92,7 +92,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.kebabcase": "^4.1.1",
     "lodash.throttle": "^4.1.1",
-    "swipe-js-iso": "^2.0.3",
+    "swipe-js-iso": "^2.0.4",
     "swiper": "^3.4.2",
     "tp-config": "^1.0.5",
     "tp-platform": "^1.0.2",

@@ -18,7 +18,7 @@
   import { isString } from '../../util/type'
   import disableHover from '../../util/disable-hover'
   import modeMixin from '../../mixins/mode-mixin/index.js'
-  import { version } from '../../../package'
+  import { version } from '../../../package.json'
 
   const CLICK_BLOCK_BUFFER_IN_MILLIS = 64       // 等待业务完毕的额外时间
   const CLICK_BLOCK_DURATION_IN_MILLIS = 700    // 时间过后回复可点击状态

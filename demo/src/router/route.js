@@ -435,6 +435,13 @@ export default [
     }
   },
   {
+    path: '/slides',
+    name: 'slides',
+    component (resolve) {
+      require(['@DemoComponent/slides.vue'], resolve)
+    }
+  },
+  {
     path: '/spinner',
     name: 'spinner',
     component (resolve) {
