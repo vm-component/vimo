@@ -176,7 +176,7 @@
                 <Searchbar :animated="true"
                            :debounce="1000"
                            mode="ios"
-                           v-model="myInput"
+                           v-model="myInput1"
                            :showCancelButton="true"
                            cancelButtonText="取消"
                            @ionInput="onInput"
@@ -190,7 +190,7 @@
             <Toolbar color="primary">
                 <Searchbar :animated="true"
                            :debounce="1000"
-                           v-model="myInput"
+                           v-model="myInput2"
                            :showCancelButton="true"
                            cancelButtonText="取消"
                            @ionInput="onInput"
@@ -204,7 +204,7 @@
             <Toolbar>
                 <Searchbar :animated="false"
                            :debounce="1000"
-                           v-model="myInput"
+                           v-model="myInput3"
                            :showCancelButton="true"
                            cancelButtonText="取消"
                            @ionInput="onInput"
@@ -227,7 +227,9 @@
       return {
         relationship8: 'friend1',
         relationship9: 'friend2',
-        myInput: ''
+        myInput1: '',
+        myInput2: '',
+        myInput3: ''
       }
     },
     methods: {

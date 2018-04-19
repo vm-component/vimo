@@ -65,7 +65,7 @@ $searchbar-ios-toolbar-input-background: rgba(0, 0, 0, 0.08) !default;
   background: $searchbar-ios-background-color;
   border-top: $hairlines-width solid transparent;
   border-bottom: $hairlines-width solid $searchbar-ios-border-color;
-
+  
   @include padding($searchbar-ios-padding-vertical, $searchbar-ios-padding-horizontal);
 }
 
@@ -74,7 +74,7 @@ $searchbar-ios-toolbar-input-background: rgba(0, 0, 0, 0.08) !default;
 
 @mixin ios-searchbar-icon($svg-icon, $fg-color) {
   $svg: str-replace($svg-icon, "fg-color", $fg-color);
-
+  
   @include svg-background-image($svg, true);
 }
 
@@ -87,7 +87,7 @@ $searchbar-ios-toolbar-input-background: rgba(0, 0, 0, 0.08) !default;
   height: $searchbar-ios-input-search-icon-size + 1;
   background-repeat: no-repeat;
   background-size: $searchbar-ios-input-search-icon-size;
-
+  
   @include position(9px, null, null, 9px);
   @include ios-searchbar-icon($searchbar-ios-input-search-icon-svg, $searchbar-ios-input-search-icon-color);
   @include margin-horizontal(calc(50% - 60px), null);
@@ -102,7 +102,7 @@ $searchbar-ios-toolbar-input-background: rgba(0, 0, 0, 0.08) !default;
   font-weight: 400;
   color: $searchbar-ios-input-text-color;
   background-color: $searchbar-ios-input-background-color;
-
+  
   @include placeholder($searchbar-ios-input-placeholder-color);
   @include padding(0, 28px);
   @include border-radius(5px);
@@ -117,7 +117,7 @@ $searchbar-ios-toolbar-input-background: rgba(0, 0, 0, 0.08) !default;
   height: 100%;
   background-repeat: no-repeat;
   background-size: $searchbar-ios-input-clear-icon-size;
-
+  
   @include position(0, 0, null, null);
   @include ios-searchbar-icon($searchbar-ios-input-clear-icon-svg, $searchbar-ios-input-clear-icon-color);
   @include background-position(center);
@@ -131,7 +131,10 @@ $searchbar-ios-toolbar-input-background: rgba(0, 0, 0, 0.08) !default;
   height: 30px;
   cursor: pointer;
   flex-shrink: 0;
-
+  
+  will-change: margin-left, opacity;
+  transform: translate3d(0, 0, 0);
+  
   @include padding(0, 0, 0, 8px);
   @include margin-horizontal(0, null);
 }
@@ -186,34 +189,34 @@ $searchbar-ios-toolbar-input-background: rgba(0, 0, 0, 0.08) !default;
 
 @each $color-name, $color-base, $color-contrast in get-colors($colors-ios) {
   $fg-color: rgba($color-contrast, 0.5);
-
+  
   .searchbar-ios-#{$color-name} .searchbar-ios-cancel {
     color: $color-base;
   }
-
+  
   .searchbar-ios-#{$color-name} .searchbar-ios-cancel:hover:not(.disable-hover) {
     color: color-shade($color-base);
   }
-
+  
   .toolbar-ios-#{$color-name} .searchbar-ios .searchbar-search-icon {
     @include ios-searchbar-icon($searchbar-ios-input-search-icon-svg, $fg-color);
   }
-
+  
   .toolbar-ios-#{$color-name} .searchbar-ios .searchbar-input {
     color: $color-contrast;
     background: rgba($color-contrast, 0.08);
-
+    
     @include placeholder($fg-color);
   }
-
+  
   .toolbar-ios-#{$color-name} .searchbar-ios .searchbar-clear-icon {
     @include ios-searchbar-icon($searchbar-ios-input-clear-icon-svg, $fg-color);
   }
-
+  
   .toolbar-ios-#{$color-name} .searchbar-ios .searchbar-ios-cancel {
     color: color-contrast($colors-ios, $color-base, ios);
   }
-
+  
 }
 
 // Searchbar animation
@@ -237,7 +240,7 @@ $searchbar-ios-toolbar-input-background: rgba(0, 0, 0, 0.08) !default;
   pointer-events: none;
   opacity: 0;
   transition: $searchbar-ios-cancel-transition;
-
+  
   @include margin-horizontal(null, -100%);
   @include transform(translate3d(0, 0, 0));
 }

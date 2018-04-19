@@ -4,12 +4,14 @@
 // Toolbar
 // --------------------------------------------------
 
+.#{$prefix}-navbar,
 .#{$prefix}-toolbar {
   position: relative;
   z-index: $z-index-toolbar;
 }
 
 .toolbar {
+  position: relative;
   display: flex;
   width: 100%;
   overflow: hidden;

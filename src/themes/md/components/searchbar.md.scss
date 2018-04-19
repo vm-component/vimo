@@ -62,7 +62,7 @@ $searchbar-md-input-clear-icon-size: 22px !default;
 
 .searchbar-md {
   background: $searchbar-md-background-color;
-
+  
   @include padding($searchbar-md-padding-top, $searchbar-md-padding-end, $searchbar-md-padding-bottom, $searchbar-md-padding-start);
 }
 
@@ -72,7 +72,7 @@ $searchbar-md-input-clear-icon-size: 22px !default;
 .searchbar-md .searchbar-search-icon {
   width: $searchbar-md-input-search-icon-size + 1;
   height: $searchbar-md-input-search-icon-size + 1;
-
+  
   @include position(11px, null, null, 16px);
   @include svg-background-image($searchbar-md-input-search-icon-svg, true);
 }
@@ -84,8 +84,8 @@ $searchbar-md-input-clear-icon-size: 22px !default;
   display: none;
   width: $searchbar-md-input-search-icon-size + 1;
   height: 100%;
-
-  @include position(0, null, null, 10px);
+  
+  @include position(0, 14px, null, 10px);
   @include margin(0);
 }
 
@@ -115,7 +115,7 @@ $searchbar-md-input-clear-icon-size: 22px !default;
   color: $searchbar-md-input-text-color;
   background-color: $searchbar-md-input-background-color;
   box-shadow: $searchbar-md-input-box-shadow;
-
+  
   @include placeholder($searchbar-md-input-placeholder-color);
   @include padding(6px, 55px);
   @include border-radius($searchbar-md-input-border-radius);
@@ -128,13 +128,14 @@ $searchbar-md-input-clear-icon-size: 22px !default;
 .searchbar-md .searchbar-clear-icon {
   position: absolute;
   width: $searchbar-md-input-clear-icon-size;
+  box-sizing: content-box;
   height: 100%;
   background-repeat: no-repeat;
   background-size: $searchbar-md-input-clear-icon-size;
-
-  @include position(0, 13px, null, null);
+  
+  @include position(0, 0, null, null);
   @include svg-background-image($searchbar-md-input-clear-icon-svg);
-  @include padding(0);
+  @include padding(0, 13px);
   @include background-position(center);
 }
 
@@ -161,7 +162,9 @@ $searchbar-md-input-clear-icon-size: 22px !default;
 }
 
 .toolbar .searchbar-md .searchbar-md-cancel {
-  @include position-horizontal(14px, null);
+  @include position-horizontal(0, null);
+  @include padding(0, 14px);
+  box-sizing: content-box;
 }
 
 // Searchbar Cancel Icon (iOS only)

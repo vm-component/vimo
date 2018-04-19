@@ -1,4 +1,5 @@
 import 'ionicons/dist/css/ionicons.css'
+import AttachFastClick from 'fastclick'
 import Install from 'vimo/components/install.js'
 import Vue from 'vue'
 import Root from './Root.vue'
@@ -10,6 +11,9 @@ import i18n from './i18n'
 import store from './store/index'
 
 Vue.config.productionTip = false
+
+// eslint-disable-next-line no-new
+new AttachFastClick(document.body)
 
 Vue.use(Install, {
   custConf: appConfig,

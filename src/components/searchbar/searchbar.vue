@@ -9,7 +9,7 @@
          {'searchbar-show-cancel':showCancelButton},
          {'searchbar-left-aligned':shouldAlignLeft}
          ]">
-        <div class="searchbar-input-container" @touchstart="setFocus">
+        <div class="searchbar-input-container">
             <!--在md模式下，md的取消按钮是在这里的，当点击inputs输入时，返回按钮将覆盖search按钮-->
             <vm-button mode="md"
                        @click="cancelSearchbar($event)"
@@ -19,7 +19,6 @@
                        role="button">
                 <Icon mode="md" name="md-arrow-back"></Icon>
             </vm-button>
-
             <!--input左边的search按钮-->
             <div ref="searchbarIcon" class="searchbar-search-icon"></div>
             <input ref="searchbarInput" class="searchbar-input" id="searchbarInput"
@@ -36,7 +35,7 @@
             <vm-button clear
                        class="searchbar-clear-icon"
                        :mode="mode"
-                       @click="clearInput($event)"
+                       @click.capture="clearInput($event)"
                        role="button"></vm-button>
         </div>
 
