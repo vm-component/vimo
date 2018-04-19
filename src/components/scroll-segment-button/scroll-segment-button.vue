@@ -3,15 +3,7 @@
         <slot></slot>
     </div>
 </template>
-
 <script type="text/javascript">
-  /**
-   * @component ScrollSegment/ScrollSegmentButton
-   * @description
-   *
-   * ## 滑动片段组件 / ScrollSegmentButton
-   *
-   * */
   export default {
     name: 'ScrollSegmentButton',
     inject: {

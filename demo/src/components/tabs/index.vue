@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Tab.Index</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding>
@@ -34,8 +34,18 @@
         </Content>
     </Page>
 </template>
-<style lang="scss">
-</style>
 <script type="text/javascript">
-  export default {}
+  export default {
+    nem: 'DemoUser',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '用户相关'
+        },
+        'en-US': {
+          title: 'About User'
+        }
+      }
+    }
+  }
 </script>

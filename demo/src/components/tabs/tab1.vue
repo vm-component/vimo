@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar hide-back-button>
-                <Title>Tab.Tab1</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding>
@@ -35,11 +35,18 @@
         </Content>
     </Page>
 </template>
-<style lang="scss">
-    .main {
-
-    }
-</style>
 <script type="text/javascript">
-  export default {}
+  export default {
+    name: 'DemoCars',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '汽车相关'
+        },
+        'en-US': {
+          title: 'About Cars'
+        }
+      }
+    }
+  }
 </script>

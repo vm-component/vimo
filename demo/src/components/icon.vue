@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Icon</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding class="iconDemo">
@@ -119,6 +119,17 @@
   import logoIcons from 'ionicons/dist/data/logo-icons.json'
 
   export default {
+    name: 'DemoIcon',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '图标'
+        },
+        'en-US': {
+          title: 'Icon'
+        }
+      }
+    },
     data () {
       return {
         modeIconList: [],

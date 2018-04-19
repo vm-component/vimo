@@ -2,52 +2,45 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Badage</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
             <List>
-                <ListHeader>菜单</ListHeader>
+                <ListHeader>Demo</ListHeader>
                 <Item button>
-                    <span>西红柿炒鸡蛋</span>
+                    <span>Apple</span>
                     <Badge slot="item-right">new</Badge>
                 </Item>
                 <Item button>
-                    <span>牛肉面</span>
+                    <span>Pear</span>
                     <Badge slot="item-right" color="danger">Top5</Badge>
                 </Item>
                 <Item button>
-                    <span>肉夹馍</span>
-                    <Badge slot="item-right" color="secondary">陕西</Badge>
+                    <span>Tomato</span>
+                    <Badge slot="item-right" color="secondary">Hot</Badge>
                 </Item>
                 <Item button>
-                    <span>松鼠桂鱼</span>
-                    <Badge slot="item-right" color="dark">江南</Badge>
-                </Item>
-                <Item button>
-                    <span>酱骨</span>
-                    <Note slot="item-right">我比较喜欢</Note>
-                    <Badge slot="item-right" color="light">东北</Badge>
+                    <span>Orange</span>
+                    <Note slot="item-right">I Like It</Note>
+                    <Badge slot="item-right" color="dark">3</Badge>
                 </Item>
             </List>
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
-
-</style>
 <script type="text/javascript">
   export default {
-    name: 'name',
-    data () {
-      return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {},
-    mounted () {},
-    activated () {}
+    name: 'DemoBadge',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '徽章'
+        },
+        'en-US': {
+          title: 'Badge'
+        }
+      }
+    }
   }
 </script>

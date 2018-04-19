@@ -386,6 +386,13 @@ export default [
     }
   },
   {
+    path: '/scroll-segment',
+    name: 'scrollSegment',
+    component (resolve) {
+      require(['@DemoComponent/scroll-segment.vue'], resolve)
+    }
+  },
+  {
     path: '/searchbar',
     name: 'searchbar',
     component (resolve) {

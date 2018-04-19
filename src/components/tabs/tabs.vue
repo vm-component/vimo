@@ -13,9 +13,7 @@
     </article>
 </template>
 <script type="text/javascript">
-
   import { isNumber } from '../../util/type'
-  import css from '../../util/get-css'
 
   export default {
     name: 'Tabs',
@@ -47,6 +45,8 @@
     },
     data () {
       return {
+        transform: 'webkitTransform',
+
         tabHighlightStyle: {},
         canTabHighlightAnimate: false,
         selectedIndex: -1 // 内部使用的, 表示当前处于激活的Tab的index
@@ -194,13 +194,30 @@
         let transform = `translate3d(${_offsetLeft}px,0,0) scaleX(${this.tabElementWidth})`
 
         this.tabHighlightStyle = {
-          [css.transform]: transform
+          [this.transform]: transform
         }
 
         // wait for style set
         !this.$isServer && window.requestAnimationFrame(() => {
           this.canTabHighlightAnimate = true
         })
+      }
+    },
+    created () {
+      const keys = [
+        'webkitTransform',
+        '-webkit-transform',
+        'webkit-transform',
+        'transform'
+      ]
+
+      const docEle = document.documentElement
+
+      for (let i = 0; i < keys.length; i++) {
+        if (docEle.style[keys[i]] !== undefined) {
+          this.transform = keys[i]
+          break
+        }
       }
     },
     mounted () {

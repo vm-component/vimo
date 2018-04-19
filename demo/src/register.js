@@ -47,17 +47,19 @@ import {
   Popover,
   Radio,
   Range,
-  Separation,
-  Slides,
-  Slide,
   Refresher,
   RefresherContent,
   Row,
+  ScrollSegment,
+  ScrollSegmentButton,
   Searchbar,
   Segment,
   SegmentButton,
   Select,
   SelectOption,
+  Separation,
+  Slide,
+  Slides,
   Spinner,
   Tab,
   Tabs,
@@ -133,8 +135,8 @@ export default function () {
   Vue.component(Refresher.name, Refresher)
   Vue.component(RefresherContent.name, RefresherContent)
   // Vue.component(Scroll.name, Scroll)
-  // Vue.component(ScrollSegment.name, ScrollSegment)
-  // Vue.component(ScrollSegmentButton.name, ScrollSegmentButton)
+  Vue.component(ScrollSegment.name, ScrollSegment)
+  Vue.component(ScrollSegmentButton.name, ScrollSegmentButton)
   Vue.component(Searchbar.name, Searchbar)
   Vue.component(Segment.name, Segment)
   Vue.component(SegmentButton.name, SegmentButton)

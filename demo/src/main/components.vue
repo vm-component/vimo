@@ -60,11 +60,10 @@
                     <Icon slot="item-left" name="book"></Icon>
                     <span>{{$t('segment')}}</span>
                 </Item>
-                <!--<Item detail-push :to="{name: 'scrollSegment'}">-->
-                <!--<Icon slot="item-left" name="egg"></Icon>-->
-                <!--<span>滚动标签</span>-->
-                <!--<Note slot="item-right">ScrollSegment</Note>-->
-                <!--</Item>-->
+                <Item detail-push :to="{name: 'scrollSegment'}">
+                    <Icon slot="item-left" name="egg"></Icon>
+                    <span>{{$t('scrollSegment')}}</span>
+                </Item>
                 <Item detail-push :to="{name: 'tabs.index'}">
                     <Icon slot="item-left" name="link"></Icon>
                     <span>{{$t('tabs')}}</span>
@@ -344,6 +343,7 @@
           navigator: '导航',
           menu: '菜单',
           segment: '小标签',
+          scrollSegment: '滚动标签',
           tabs: '大标签',
           // 通用组件
           common: '通用组件',
@@ -353,7 +353,7 @@
           badge: '徽章',
           toolbar: '工具条',
           image: '图片',
-          backdrop: '图幕布片',
+          backdrop: '幕布',
           // 数据录入
           dataEntry: '数据录入',
           toggle: '开关',
@@ -383,6 +383,7 @@
           navigator: 'Navigator',
           menu: 'Menu',
           segment: 'Segment',
+          scrollSegment: 'Scroll Segment',
           tabs: 'Tabs',
           // 通用组件
           common: 'Common',

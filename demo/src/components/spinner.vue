@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Spinner</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding>
@@ -161,8 +161,16 @@
 </style>
 <script type="text/javascript">
   export default {
-    data () {
-      return {}
+    name: 'DemoSpinner',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '菊花图'
+        },
+        'en-US': {
+          title: 'Spinner'
+        }
+      }
     }
   }
 </script>

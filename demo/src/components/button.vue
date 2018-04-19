@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Button</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding>
@@ -111,4 +111,18 @@
 </template>
 <style scoped lang="scss">
 </style>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+  export default {
+    name: 'DemoButton',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '按钮'
+        },
+        'en-US': {
+          title: 'Button'
+        }
+      }
+    }
+  }
+</script>

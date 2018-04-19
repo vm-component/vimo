@@ -2,26 +2,38 @@
     <Page>
         <Header>
             <Navbar>
-                <Title title="Backdrop"></Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding>
-            <p>打开Backdrop, 4000ms之后关闭, 或者点击关闭</p>
+            <p>
+                <strong>Normal</strong>
+            </p>
             <Button block @click="present">打开Backdrop</Button>
 
-            <p>打开Backdrop, 上部留白100px, 点击关闭</p>
+            <p>
+                <strong>top: 100px</strong>
+            </p>
             <Button block @click="presentWithTopWhite">Open Backdrop</Button>
 
-            <p>打开Backdrop, 右边留白100px, 点击关闭</p>
+            <p>
+                <strong>left: 100px</strong>
+            </p>
             <Button block @click="presentWithRightWhite">Open Backdrop</Button>
 
-            <p>打开Backdrop, 底部留白100px, 点击关闭</p>
+            <p>
+                <strong>bottom: 100px</strong>
+            </p>
             <Button block @click="presentWithBottomWhite">Open Backdrop</Button>
 
-            <p>打开Backdrop, 左边留白100px, 点击关闭</p>
+            <p>
+                <strong>right: 100px</strong>
+            </p>
             <Button block @click="presentWithLeftWhite">Open Backdrop</Button>
 
-            <p>在下面的DIV中显示Backdrop, 点击关闭(模板式)</p>
+            <p>
+                <strong>Inner present</strong>
+            </p>
             <div id="backdropInDiv">
                 <Backdrop :isActive="isActiveInner" :bdClick="function () {isActiveInner=!isActiveInner}"></Backdrop>
                 <span>Hello, Vimo!</span>
@@ -34,7 +46,6 @@
         </Content>
     </Page>
 </template>
-
 <style lang="scss">
     #backdropInDiv {
         display: flex;
@@ -48,6 +59,16 @@
 </style>
 <script type="text/javascript">
   export default {
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '幕布'
+        },
+        'en-US': {
+          title: 'Backdrop'
+        }
+      }
+    },
     data () {
       return {
         isActive: false,

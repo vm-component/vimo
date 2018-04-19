@@ -2,26 +2,24 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>网易新闻</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
             <section class="scrollBar">
                 <ScrollSegment v-model="newIndex">
                     <ScrollSegmentButton v-for="(item, index) in arrs" :key="index">
-                        <div class="scrollBar__btn">{{item}}</div>
+                        <div class="scrollBar__btn">
+                            <strong>{{item}}</strong>
+                        </div>
                     </ScrollSegmentButton>
                 </ScrollSegment>
             </section>
         </Header>
         <Content class="outer-content">
-
             <div padding>
-                <h4>简介</h4>
-                <p>这个组件专注于提供水平滚动的业务需求, 比如像上方的滚动选择条. 通过给value传递index确定初始化时, 哪个btn将被选中.</p>
                 <p>
-                    此外, 监听组件的onChange事件可也判断是哪个Btn被选择. 比如当前的新闻类别为: <strong>{{newIndex}} {{arrs[newIndex]}}</strong>
+                    Current: <strong>{{newIndex}} {{arrs[newIndex]}}</strong>
                 </p>
-                <p>组件是根据组件的的中心定位, 当左右两边或有障碍物时, 居中效果会有偏移.</p>
-                <p>另外, 只有在手机上才能体验到左右回弹的效果.</p>
+                <p>{{$t('notice')}}</p>
             </div>
 
             <section class="horizontal">
@@ -180,19 +178,18 @@
             </section>
 
             <div padding>
-                <h4>异步子组件</h4>
-                <p>可以通过增加value值实现手动控制,</p>
+                <strong>{{$t('async')}}</strong>
             </div>
             <Grid no-padding>
                 <Row>
                     <Column class="colBox">
-                        <Button outline small @click="changedValue--">Minus -- </Button>
+                        <Button outline small @click="changedValue--">{{$t('minus')}}</Button>
                     </Column>
                     <Column class="colBox">
                         Value: {{changedValue}}
                     </Column>
                     <Column class="colBox">
-                        <Button outline small @click="changedValue++">Add ++ </Button>
+                        <Button outline small @click="changedValue++">{{$t('add')}}</Button>
                     </Column>
                 </Row>
                 <ScrollSegment v-model="changedValue" class="header-scroll">
@@ -210,8 +207,10 @@
         height: 38px;
         background: #fff;
         position: relative;
+        padding: 0 10px;
         .scrollBar__btn {
-            width: 60px;
+            padding: 0 10px;
+            min-width: 60px;
             height: 100%;
             display: flex;
             justify-content: center;
@@ -323,12 +322,32 @@
     }
 </style>
 <script type="text/javascript">
-  export default{
-    name: 'name',
+  export default {
+    name: 'DemoScrollSegment',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '滚动标签',
+          arrs: ['头条', '科技', '独家', '搞笑', '娱乐', '体育', '视频', '财经', '汽车'],
+          async: '异步数据+手动切换',
+          minus: '下一个',
+          add: '上一个',
+          notice: '组件是根据组件的的中心定位, 当左右两边或有障碍物时, 居中效果会有偏移. 另外, 只有在手机上才能体验到左右回弹的效果.'
+        },
+        'en-US': {
+          title: 'ScrollSegment',
+          arrs: ['Hot', 'Science', 'Exclusive', 'Funny', 'Entertainment', 'Sport', 'Video', 'Finance', 'Cars'],
+          'async': 'Async data + Manual switching',
+          minus: 'Minus',
+          add: 'Add',
+          notice: 'The components are positioned according to the center of the component. When there are obstacles on the right and left sides, the centering effect will be offset. In addition, the effect of left and right rebound can only be experienced on the mobile phone.'
+        }
+      }
+    },
     data () {
       return {
         changedValue: 3,
-        arrs: ['头条', '科技', '独家', '搞笑', '娱乐', '体育', '视频', '财经', '汽车'],
+        arrs: this.$t('arrs'),
         asynData: [],
         newIndex: 2
       }
