@@ -2,16 +2,12 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>
-                    Toggle
-                </Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
             <List>
-                <ListHeader>
-                    <span>普通使用</span>
-                </ListHeader>
+                <ListHeader>Demo</ListHeader>
                 <Item>
                     <span>Toggle Danger</span>
                     <Toggle slot="item-right" color="danger" v-model="displayData.danger"></Toggle>
@@ -33,37 +29,34 @@
                     <Toggle slot="item-right" :disabled="displayData.disabled" v-model="displayData.disabled"></Toggle>
                 </Item>
             </List>
-
             <section padding>
-                <h5>单独使用</h5>
+                <p><strong>Use alone</strong></p>
                 <div class="customer-standalone">
                     <Toggle slot="item-right" color="danger" v-model="displayData.danger"></Toggle>
                 </div>
             </section>
-
             <List>
                 <ListHeader>
-                    <span>高级用法</span>
+                    <span>Advance</span>
                 </ListHeader>
                 <Item>
-                    <span>下方按钮控制</span>
+                    <span>{{$t('itemNotice')}}</span>
                     <Toggle v-model="checked" slot="item-right" :disabled="disabled"
                             @onChange="toggleChange"></Toggle>
                 </Item>
             </List>
-
             <Grid>
                 <Row>
                     <Column>
-                        <Button block @click="checked = !checked">设置开/闭</Button>
+                        <Button block @click="checked = !checked">{{$t('open')}}</Button>
                     </Column>
                     <Column>
-                        <Button block @click="disabled = !disabled">设置禁用/启用</Button>
+                        <Button block @click="disabled = !disabled">{{$t('disable')}}</Button>
                     </Column>
                 </Row>
                 <Row justify-content-center>
-                    <Column text-center col-12>当前状态, checked: {{checked}}, disabled: {{disabled}}</Column>
-                    <Column text-center col-12>* 使用v-model切换状态, 不支持checked属性</Column>
+                    <Column text-center col-12>{{$t('currentState')}}, checked: {{checked}}, disabled: {{disabled}}</Column>
+                    <Column text-center col-12>* {{$t('notice')}}</Column>
                 </Row>
             </Grid>
         </Content>
@@ -81,7 +74,27 @@
 </style>
 <script type="text/javascript">
   export default {
-    name: 'toggle',
+    name: 'DemoToggle',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '开关',
+          itemNotice: '下方按钮控制',
+          open: '设置开/闭',
+          disable: '设置禁用/启用',
+          currentState: '当前状态',
+          notice: '使用v-model切换状态, 不支持checked属性'
+        },
+        'en-US': {
+          title: 'Toggle',
+          itemNotice: 'Use button control',
+          open: 'Set on/off',
+          disable: 'Set disabled/enabled',
+          currentState: 'Current state',
+          notice: 'Use v-model switch state, does not support checked attribute'
+        }
+      }
+    },
     data () {
       return {
         displayData: {
@@ -91,12 +104,10 @@
           light: true,
           disabled: true
         },
-
         checked: true,
         disabled: false
       }
     },
-    props: {},
     watch: {
       displayData: {
         handler () {
