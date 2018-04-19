@@ -83,7 +83,7 @@ $picker-button-ios-strong-font-weight: 600 !default;
 
 .picker-ios .picker-toolbar-button {
   flex: 1;
-
+  
   @include text-align(end);
 }
 
@@ -93,7 +93,7 @@ $picker-button-ios-strong-font-weight: 600 !default;
 
 .picker-ios .picker-toolbar-cancel {
   font-weight: normal;
-
+  
   @include text-align(start);
 }
 
@@ -102,7 +102,7 @@ $picker-button-ios-strong-font-weight: 600 !default;
   height: $picker-ios-button-height;
   color: $picker-ios-button-text-color;
   background: $picker-ios-button-background-color;
-
+  
   @include margin(0);
 }
 
@@ -113,7 +113,7 @@ $picker-button-ios-strong-font-weight: 600 !default;
 
 .picker-ios .picker-col {
   transform-style: preserve-3d;
-
+  
   @include padding($picker-ios-column-padding-top, $picker-ios-column-padding-end, $picker-ios-column-padding-bottom, $picker-ios-column-padding-start);
 }
 
@@ -138,7 +138,7 @@ $picker-button-ios-strong-font-weight: 600 !default;
   transition-timing-function: ease-out;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-
+  
   @include margin(0);
   @include transform-origin(center, center);
   @include padding($picker-ios-option-padding-top, $picker-ios-option-padding-end, $picker-ios-option-padding-bottom, $picker-ios-option-padding-start);
@@ -150,16 +150,16 @@ $picker-button-ios-strong-font-weight: 600 !default;
   display: block;
   width: 100%;
   height: $picker-ios-option-offset-y + 4px;
-  background:
-    linear-gradient(
+  background: linear-gradient(
       to bottom,
       rgba($picker-ios-background-color, 1) 20%,
       rgba($picker-ios-background-color, 0.7) 100%
-    );
+  );
   border-bottom: 1px solid $picker-ios-border-color;
-
+  
+  will-change: transform;
   @include position(0, null, null, 0);
-  //@include transform(translate3d(0, 0, 90px));
+  @include transform(translate3d(0, 0, 90px));
 }
 
 .picker-ios .picker-below-highlight {
@@ -168,14 +168,14 @@ $picker-button-ios-strong-font-weight: 600 !default;
   display: block;
   width: 100%;
   height: $picker-ios-option-offset-y + $picker-ios-option-height;
-  background:
-    linear-gradient(
+  background: linear-gradient(
       to top,
       rgba($picker-ios-background-color, 1) 30%,
       rgba($picker-ios-background-color, 0.7) 100%
-    );
+  );
   border-top: 1px solid $picker-ios-border-color;
-
+  
+  will-change: transform;
   @include position($picker-ios-option-offset-y + $picker-ios-option-height - 4, null, null, 0);
-  //@include transform(translate3d(0, 0, 90px));
+  @include transform(translate3d(0, 0, 90px));
 }

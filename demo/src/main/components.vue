@@ -172,7 +172,7 @@
             </List>
             <List>
                 <ListHeader>数据加载/Data Loading</ListHeader>
-                <Item detail-push :to="{name: 'infinite-scroll'}">
+                <Item detail-push :to="{name: 'infiniteScroll'}">
                     <Icon slot="item-left" name="arrow-dropup-circle"></Icon>
                     <span>无限滚动</span>
                     <Note slot="item-right">InfiniteScroll</Note>
