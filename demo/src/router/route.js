@@ -204,6 +204,41 @@ export default [
     }
   },
   {
+    path: '/picker-base',
+    name: 'pickerBase',
+    component (resolve) {
+      require(['@DemoComponent/picker-base.vue'], resolve)
+    }
+  },
+  {
+    path: '/picker-city',
+    name: 'pickerCity',
+    component (resolve) {
+      require(['@DemoComponent/picker-city.vue'], resolve)
+    }
+  },
+  {
+    path: '/picker-datetime',
+    name: 'pickerDatetime',
+    component (resolve) {
+      require(['@DemoComponent/picker-datetime.vue'], resolve)
+    }
+  },
+  {
+    path: '/picker-time',
+    name: 'pickerTime',
+    component (resolve) {
+      require(['@DemoComponent/picker-time.vue'], resolve)
+    }
+  },
+  {
+    path: '/picker',
+    name: 'picker',
+    component (resolve) {
+      require(['@DemoComponent/picker.vue'], resolve)
+    }
+  },
+  {
     path: '/radio',
     name: 'radio',
     component (resolve) {

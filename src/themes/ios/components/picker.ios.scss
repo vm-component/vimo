@@ -159,7 +159,7 @@ $picker-button-ios-strong-font-weight: 600 !default;
   border-bottom: 1px solid $picker-ios-border-color;
 
   @include position(0, null, null, 0);
-  @include transform(translate3d(0, 0, 90px));
+  //@include transform(translate3d(0, 0, 90px));
 }
 
 .picker-ios .picker-below-highlight {
@@ -177,5 +177,5 @@ $picker-button-ios-strong-font-weight: 600 !default;
   border-top: 1px solid $picker-ios-border-color;
 
   @include position($picker-ios-option-offset-y + $picker-ios-option-height - 4, null, null, 0);
-  @include transform(translate3d(0, 0, 90px));
+  //@include transform(translate3d(0, 0, 90px));
 }

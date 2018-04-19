@@ -38,7 +38,7 @@
   import { isNumber, isObject, isString } from '../../util/type'
   import PointerEvents from 'tp-pointer-events'
 
-  const throttle = require('lodash.throttle')
+  // const throttle = require('lodash.throttle')
 
   export default {
     name: 'Range',

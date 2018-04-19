@@ -1,8 +1,6 @@
 <template>
     <div class="picker-col"
-         @touchstart="pointerStart"
-         @touchmove="pointerMove"
-         @touchend="pointerEnd"
+         ref="pickerCol"
          :style="{'maxWidth':col.columnWidth}"
          :class="[col.cssClass,{'picker-opts-right':(col.align=='right'),'picker-opts-left':(col.align=='left')}]">
         <!--prefix-->
@@ -27,6 +25,7 @@
 <script type="text/javascript">
   import { clamp, parsePxUnit, pointerCoord } from '../../util/util'
   import css from '../../util/get-css'
+  import PointerEvents from 'tp-pointer-events'
 
   const PICKER_OPT_SELECTED = 'picker-opt-selected'
   const DECELERATION_FRICTION = 0.97
@@ -45,6 +44,8 @@
         isInit: false,
         rotateFactor: this.$config && this.$config.getNumber('pickerRotateFactor', 0) || 0,
         scaleFactor: this.$config && this.$config.getNumber('pickerScaleFactor', 1) || 1,
+
+        pointerEvents: null,
 
         y: 0,
         colHeight: 0,
@@ -68,6 +69,9 @@
     computed: {
       colEle () {
         return this.$refs.colEle
+      },
+      pickerColElement () {
+        return this.$refs.pickerCol
       }
     },
     methods: {
@@ -351,12 +355,12 @@
 
           selected = selectedIndex === i
           if (visible) {
-            transform += `translate3d(0px,${translateY}px,${translateZ}px) `
+            transform += `translate3d(0px,${translateY}px,${translateZ}px)`
             if (this.scaleFactor !== 1 && !selected) {
               transform += scaleStr
             }
           } else {
-            transform = 'translate3d(-9999px,0px,0px)'
+            transform = 'translate3d(-99999px, 0px, 0px)'
           }
           // Update transition duration
           if (duration !== opt._dur) {
@@ -467,11 +471,18 @@
 
         // set the scroll position for the selected option
         this.setSelected(this.col.selectedIndex, 0)
+
+        this.pointerEvents = new PointerEvents(this.pickerColElement, this.pointerStart, this.pointerMove, this.pointerEnd, {})
+
         this.isInit = true
+
       }
     },
     mounted () {
       this.init()
+    },
+    destroy () {
+      this.pointerEvents && this.pointerEvents.destroy()
     }
   }
 </script>
