@@ -452,7 +452,7 @@
     mounted () {
       this.initDOM()
     },
-    destroy () {
+    destroyed () {
       this.pointerEvents && this.pointerEvents.destroy()
     },
     components: {

@@ -43,3 +43,7 @@
   cursor: pointer;
   flex: 1;
 }
+
+.range-knob-handle {
+  touch-action: pan-x;
+}

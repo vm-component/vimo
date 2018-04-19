@@ -9,6 +9,8 @@
   display: block;
   width: 100%;
   overflow: hidden;
+  
+  //touch-action: pan-x;
 }
 
 .#{$prefix}-item-sliding .#{$prefix}-item {
@@ -16,6 +18,12 @@
   position: static;
   pointer-events: none;
   opacity: 1;
+  
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  
+  touch-action: pan-x;
+  
   //z-index: 2;
   transition: transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1);
 }

@@ -37,9 +37,6 @@
                         <Button block solid @click="$router.push({'name':'components','meta':{newWindow:true}})">
                             {{$t('components')}}
                         </Button>
-                        <Button block solid>
-                            {{$t('menu')}}
-                        </Button>
                         <Button outline block solid @click="switchLanguage">
                             {{$t('switchLanguage')}}({{$i18n.locale}})
                         </Button>

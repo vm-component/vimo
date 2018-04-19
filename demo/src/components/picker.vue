@@ -6,39 +6,35 @@
             </Navbar>
         </Header>
         <Content class="outer-content">
-            <div padding>
-                <h5>简介</h5>
-                <p>
-                    Pick组件用于多列数据选择场景, 比如城市三级/时间选择/自定义多列选择等.
-                </p>
-            </div>
             <List>
-                <ListHeader>Character</ListHeader>
-                <Item detail-push :to="{name:'pickerBase'}">Picker基础组件</Item>
-                <Item detail-push :to="{name:'pickerTime'}">日期选择</Item>
-                <Item detail-push :to="{name:'pickerDatetime'}">日期范围选择</Item>
-                <Item detail-push :to="{name:'pickerCity'}">城市联动</Item>
+                <ListHeader>Demo</ListHeader>
+                <Item detail-push :to="{name:'pickerBase'}">{{$t('basic')}}</Item>
+                <Item detail-push :to="{name:'pickerTime'}">{{$t('pickerTime')}}</Item>
+                <Item detail-push :to="{name:'pickerDatetime'}">{{$t('rangePicker')}}</Item>
+                <Item detail-push :to="{name:'pickerCity'}">{{$t('cityPicker')}}</Item>
             </List>
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
 <script type="text/javascript">
-  export default{
-    name: 'name',
-    data () {
-      return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {},
-    mounted () {},
-    activated () {},
-    components: {
+  export default {
+    name: 'DemoPick',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          basic: '基础使用',
+          pickerTime: '日期事件选择',
+          rangePicker: '日期范围选择',
+          cityPicker: '城市选择'
+        },
+        'en-US': {
+          basic: 'Basic Usage',
+          pickerTime: 'DateTime Picker',
+          rangePicker: 'Range Picker',
+          cityPicker: 'City Picker'
+        }
+      }
     }
   }
 </script>

@@ -145,14 +145,14 @@
                     <span>{{$t('picker')}}</span>
                 </Item>
                 <!--<Item detail-push :to="{name: 'sheet'}">-->
-                    <!--<Icon slot="item-left" name="barcode"></Icon>-->
-                    <!--<span>弹出单</span>-->
-                    <!--<Note slot="item-right">Sheet</Note>-->
+                <!--<Icon slot="item-left" name="barcode"></Icon>-->
+                <!--<span>弹出单</span>-->
+                <!--<Note slot="item-right">Sheet</Note>-->
                 <!--</Item>-->
                 <!--<Item detail-push :to="{name: 'popSheet'}">-->
-                    <!--<Icon slot="item-left" name="archive"></Icon>-->
-                    <!--<span>弹出窗</span>-->
-                    <!--<Note slot="item-right">PopSheet</Note>-->
+                <!--<Icon slot="item-left" name="archive"></Icon>-->
+                <!--<span>弹出窗</span>-->
+                <!--<Note slot="item-right">PopSheet</Note>-->
                 <!--</Item>-->
                 <!--<Item detail-push>-->
                 <!--<Icon slot="item-left" name="star"></Icon>-->
@@ -171,16 +171,14 @@
                 <!--</Item>-->
             </List>
             <List>
-                <ListHeader>数据加载/Data Loading</ListHeader>
+                <ListHeader>{{$t('dataLoading')}}</ListHeader>
                 <Item detail-push :to="{name: 'infiniteScroll'}">
                     <Icon slot="item-left" name="arrow-dropup-circle"></Icon>
-                    <span>无限滚动</span>
-                    <Note slot="item-right">InfiniteScroll</Note>
+                    <span>{{$t('infiniteScroll')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'refresher'}">
                     <Icon slot="item-left" name="arrow-dropdown-circle"></Icon>
-                    <span>下拉刷新</span>
-                    <Note slot="item-right">Refresher</Note>
+                    <span>{{$t('refresher')}}</span>
                 </Item>
             </List>
             <List>
@@ -337,16 +335,17 @@
       messages: {
         'zh-CN': {
           title: '组件',
+          // 布局
           layout: '布局',
           app: '根组件',
           page: '页面组件',
           grid: '栅格',
+          // 导航
           navigator: '导航',
-
           menu: '菜单',
           segment: '小标签',
           tabs: '大标签',
-
+          // 通用组件
           common: '通用组件',
           button: '按钮',
           icon: '图标',
@@ -355,7 +354,7 @@
           toolbar: '工具条',
           image: '图片',
           backdrop: '图幕布片',
-
+          // 数据录入
           dataEntry: '数据录入',
           toggle: '开关',
           checkbox: '复选框',
@@ -366,21 +365,26 @@
           range: '范围选择',
           searchbar: '搜索栏',
           picker: '单多列选择器',
+          // 数据加载
+          dataLoading: '数据加载',
+          infiniteScroll: '无限滚动',
+          refresher: '下拉刷新',
 
           rest: '页面组件'
         },
         'en-US': {
           title: 'Components',
+          // 布局
           layout: 'Layout',
           app: 'App',
           page: 'Page',
           grid: 'Grid',
+          // 导航
           navigator: 'Navigator',
-
           menu: 'Menu',
           segment: 'Segment',
           tabs: 'Tabs',
-
+          // 通用组件
           common: 'Common',
           button: 'Button',
           icon: 'Icon',
@@ -389,7 +393,7 @@
           toolbar: 'Toolbar',
           image: 'Img',
           backdrop: 'Backdrop',
-
+          // 数据录入
           dataEntry: 'Data Entry',
           toggle: 'Toggle',
           checkbox: 'Checkbox',
@@ -400,6 +404,10 @@
           range: 'Range',
           searchbar: 'SearchBar',
           picker: 'Picker',
+          // 数据加载
+          dataLoading: 'Data Loading',
+          infiniteScroll: 'Infinite Scroll',
+          refresher: 'Refresher',
 
           rest: '页面组件'
         }

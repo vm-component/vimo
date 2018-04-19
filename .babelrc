@@ -28,12 +28,6 @@
             "themeDirectory": "components",
             "themeExt": "scss",
             "symbol": "md"
-          },
-          {
-            "themeName": "vimo-theme-wp",
-            "themeDirectory": "components",
-            "themeExt": "scss",
-            "symbol": "wp"
           }
         ]
       }

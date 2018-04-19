@@ -2,15 +2,13 @@
     <Page>
         <Header ref="header">
             <Navbar color="danger">
-                <Title>设置Bar的样式</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content fullscreen padding class="outer-content" @onScroll="onScrollHandler">
-            <h1>Section</h1>
-            <section>
-                <p>向下滚动, 则Header将渐变消失, 当滚回来的时候则显示. </p>
-                <p>ps: 如果在微信/支付宝/钉钉模式下, 可能看不到Header的效果.</p>
-            </section>
+            <p>
+                <strong>ps: {{$t('notice')}}</strong>
+            </p>
             <section>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque error eum expedita porro veniam. Autem dolore earum hic maxime
@@ -116,7 +114,19 @@
   import { clamp } from '../../../src/util/util'
 
   export default {
-    name: 'setBarStyle',
+    name: 'DemoSetBarStyle',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '设置Bar的样式',
+          notice: '如果在微信/支付宝/钉钉模式下, 可能看不到Header的效果.'
+        },
+        'en-US': {
+          title: 'Set Bar Style',
+          notice: 'If you are in WeChat/Alipay/Stick mode, you may not see the effect of Header.'
+        }
+      }
+    },
     computed: {
       headerComponent () {
         return this.$refs.header

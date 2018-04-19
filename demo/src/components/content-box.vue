@@ -2,15 +2,13 @@
     <Page box>
         <Header>
             <Navbar>
-                <Title>盒子布局</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content" padding ref="content">
-            <div slot="fixed-top" padding class="fixedContent fixedTop0">
-                <strong>业务有需求将部分内容固定到顶部或者固定到底部, 这部分固定内容不随页面的滚动而移动, 就像这样.</strong>
-            </div>
             <div slot="fixed-top" padding class="fixedContent fixedTop">
-                <strong>或者固定到页面的某个位置. 这部分使用的都是slot属性: fixed(默认在上)/fixed-top/fixed-bottom </strong>
+                <strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci amet autem consectetur cupiditate dolorem dolorum excepturi
+                        laborum molestias nesciunt, pariatur perferendis porro qui quis sapiente sed sunt totam ullam.</strong>
             </div>
             <article>
                 <p>
@@ -24,7 +22,7 @@
                     ex harum iste laboriosam nostrum possimus quibusdam. Provident, sequi similique?</p>
             </article>
             <!--Button-->
-            <Button block @click="scrollToBottom">滚动到底部</Button>
+            <Button block @click="scrollToBottom">{{$t('scrollToBottom')}}</Button>
             <article>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fuga iste iusto nihil officia possimus sit ullam. Aperiam architecto dolor
@@ -66,7 +64,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fuga iste iusto nihil officia possimus sit ullam. Aperiam architecto dolor
                     ex harum iste laboriosam nostrum possimus quibusdam. Provident, sequi similique?</p>
             </article>
-            <Button block @click="scrollToTop">滚动到顶部</Button>
+            <Button block @click="scrollToTop">{{$t('scrollToTop')}}</Button>
             <article>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque fuga iste iusto nihil officia possimus sit ullam. Aperiam architecto dolor
@@ -79,38 +77,50 @@
                     ex harum iste laboriosam nostrum possimus quibusdam. Provident, sequi similique?</p>
             </article>
             <div slot="fixed-bottom" padding class="fixedContent ">
-                <strong>业务有需求将部分内容固定到顶部或者固定到底部, 这部分固定内容不随页面的滚动而移动, 就像这样.</strong>
+                <strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias eius explicabo impedit inventore magni, nulla numquam odio odit omnis
+                        possimus quia quisquam rerum sapiente temporibus totam unde vel velit veniam?</strong>
             </div>
         </Content>
         <Footer>
-            <Toolbar><Title>This is a Footer</Title></Toolbar>
+            <Toolbar><Title>{{$t('notice')}}</Title></Toolbar>
         </Footer>
     </Page>
 </template>
 <style scoped lang="scss">
     .fixedContent {
-        height: 72px;
+        /*height: 72px;*/
         background: rgba(255, 125, 196, 0.95);
     }
 
     .fixedTop {
-        top: 72px;
+        /*top: 72px;*/
         background: rgba(145, 255, 191, 0.95);
     }
 
     .fixedBottom {
-        bottom: 72px;
+        /*bottom: 72px;*/
         background: rgba(145, 255, 191, 0.95);
     }
 </style>
 <script type="text/javascript">
   export default {
-    name: 'name',
-    data () {
-      return {}
+    name: 'DemoBox',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '盒子布局',
+          scrollToBottom: '滚动到底部',
+          scrollToTop: '滚动到顶部',
+          notice: '这个是Footer'
+        },
+        'en-US': {
+          title: 'BoxLayout',
+          scrollToBottom: 'Scroll To Bottom',
+          scrollToTop: 'Scroll To Top',
+          notice: 'This is a Footer'
+        }
+      }
     },
-    props: {},
-    watch: {},
     computed: {
       content () {
         return this.$refs.content
@@ -123,10 +133,6 @@
       scrollToTop () {
         this.content.scrollToTop()
       }
-    },
-    created: function () {},
-    mounted: function () {},
-    activated: function () {},
-    components: {}
+    }
   }
 </script>

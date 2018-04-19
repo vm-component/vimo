@@ -481,7 +481,7 @@
     mounted () {
       this.init()
     },
-    destroy () {
+    destroyed () {
       this.pointerEvents && this.pointerEvents.destroy()
     }
   }

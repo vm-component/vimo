@@ -43,6 +43,34 @@ export default [
     }
   },
   {
+    path: '/card-advanced',
+    name: 'cardAdvanced',
+    component (resolve) {
+      require(['@DemoComponent/card-advanced.vue'], resolve)
+    }
+  },
+  {
+    path: '/card-basic',
+    name: 'cardBasic',
+    component (resolve) {
+      require(['@DemoComponent/card-basic.vue'], resolve)
+    }
+  },
+  {
+    path: '/card-list',
+    name: 'cardList',
+    component (resolve) {
+      require(['@DemoComponent/card-list.vue'], resolve)
+    }
+  },
+  {
+    path: '/cards',
+    name: 'cards',
+    component (resolve) {
+      require(['@DemoComponent/cards.vue'], resolve)
+    }
+  },
+  {
     path: '/checkbox',
     name: 'checkbox',
     component (resolve) {
@@ -180,6 +208,104 @@ export default [
     name: 'introduce',
     component (resolve) {
       require(['@DemoComponent/introduce.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-all',
+    name: 'listAll',
+    component (resolve) {
+      require(['@DemoComponent/list-all.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-avatar',
+    name: 'listAvatar',
+    component (resolve) {
+      require(['@DemoComponent/list-avatar.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-basic',
+    name: 'listBasic',
+    component (resolve) {
+      require(['@DemoComponent/list-basic.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-collapse',
+    name: 'listCollapse',
+    component (resolve) {
+      require(['@DemoComponent/list-collapse.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-dividers',
+    name: 'listDividers',
+    component (resolve) {
+      require(['@DemoComponent/list-dividers.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-headers',
+    name: 'listHeaders',
+    component (resolve) {
+      require(['@DemoComponent/list-headers.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-icon',
+    name: 'listIcon',
+    component (resolve) {
+      require(['@DemoComponent/list-icon.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-inset',
+    name: 'listInset',
+    component (resolve) {
+      require(['@DemoComponent/list-inset.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-multi',
+    name: 'listMulti',
+    component (resolve) {
+      require(['@DemoComponent/list-multi.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-noLine',
+    name: 'listNoLine',
+    component (resolve) {
+      require(['@DemoComponent/list-noLine.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-reorder',
+    name: 'listReorder',
+    component (resolve) {
+      require(['@DemoComponent/list-reorder.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-sliding',
+    name: 'listSliding',
+    component (resolve) {
+      require(['@DemoComponent/list-sliding.vue'], resolve)
+    }
+  },
+  {
+    path: '/list-thumbnail',
+    name: 'listThumbnail',
+    component (resolve) {
+      require(['@DemoComponent/list-thumbnail.vue'], resolve)
+    }
+  },
+  {
+    path: '/list',
+    name: 'list',
+    component (resolve) {
+      require(['@DemoComponent/list.vue'], resolve)
     }
   },
   {

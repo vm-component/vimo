@@ -10,7 +10,7 @@
             <List>
                 <Item>
                     <Thumbnail slot="item-left">
-                        <img src="./img/thumbnail-totoro.png">
+                        <img src="../assets/thumbnail-totoro.png">
                     </Thumbnail>
                     <Label>
                         <h2>My Neighbor Totoro</h2>
@@ -20,7 +20,7 @@
                 </Item>
                 <Item>
                     <Thumbnail slot="item-left">
-                        <img src="./img/thumbnail-rotla.png">
+                        <img src="../assets/thumbnail-rotla.png">
                     </Thumbnail>
                     <Label>
                         <h2>My Neighbor Totoro</h2>

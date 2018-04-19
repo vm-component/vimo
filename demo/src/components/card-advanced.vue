@@ -6,10 +6,9 @@
             </Navbar>
         </Header>
         <Content>
-
             <!--card type 1-->
             <Card>
-                <img src="./img/nin-live.png"/>
+                <img src="../assets/nin-live.png"/>
                 <CardContent>
                     <CardTitle>
                         <span> Nine Inch Nails Live</span>
@@ -43,22 +42,22 @@
 
             <!--card type 2-->
             <Card class="card-background-page">
-                <img src="./img/card-saopaolo.png"/>
+                <img src="../assets/card-saopaolo.png"/>
                 <div class="card-title">São Paulo</div>
                 <div class="card-subtitle">41 Listings</div>
             </Card>
             <Card class="card-background-page">
-                <img src="./img/card-amsterdam.png"/>
+                <img src="../assets/card-amsterdam.png"/>
                 <div class="card-title">Amsterdam</div>
                 <div class="card-subtitle">64 Listings</div>
             </Card>
             <Card class="card-background-page">
-                <img src="./img/card-sf.png"/>
+                <img src="../assets/card-sf.png"/>
                 <div class="card-title">San Francisco</div>
                 <div class="card-subtitle">72 Listings</div>
             </Card>
             <Card class="card-background-page">
-                <img src="./img/card-madison.png"/>
+                <img src="../assets/card-madison.png"/>
                 <div class="card-title">Madison</div>
                 <div class="card-subtitle">28 Listings</div>
             </Card>
@@ -68,14 +67,14 @@
             <Card>
                 <Item>
                     <Avatar item-left>
-                        <img src="./img/marty-avatar.png">
+                        <img src="../assets/marty-avatar.png">
                     </Avatar>
                     <Label>
                         <h2>Marty McFly</h2>
                         <p>November 5, 1955</p>
                     </Label>
                 </Item>
-                <img src="./img/advance-card-bttf.png">
+                <img src="../assets/advance-card-bttf.png">
                 <CardContent>
                     <p>
                         Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a

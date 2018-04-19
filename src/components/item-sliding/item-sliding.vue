@@ -1,14 +1,12 @@
 <template>
     <div class="ion-item-sliding item-wrapper"
-         @touchstart="onDragStart"
-         @touchend="onDragEnd"
-         @touchmove="onDragMove"
+         ref="itemSliding"
          :class="activeClass">
         <slot></slot>
     </div>
 </template>
 <script type="text/javascript">
-
+  import PointerEvents from 'tp-pointer-events'
   import { pointerCoord, transitionEnd } from '../../util/util.js'
 
   const SWIPE_MARGIN = 30 * 2 // 触发swipe的值
@@ -40,10 +38,12 @@
     name: 'ItemSliding',
     data () {
       return {
+        pointerEvents: null,
+
         timer: null,
         isDragging: false,                      // 是否正在左右滑动
         isDraggingConfirm: false,               // 当次滚动方向确认与否
-        isDraggingFromStart: false,             // 滚动是否从start开始
+        // isDraggingFromStart: false,             // 滚动是否从start开始
 
         itemComponent: null,                     // 父组件Item的实例
         ListComponent: null,                     // 父组件List的实例
@@ -68,6 +68,11 @@
     },
     props: {
       disabled: Boolean
+    },
+    computed: {
+      itemSlidingElement () {
+        return this.$refs.itemSliding
+      }
     },
     methods: {
 
@@ -180,47 +185,71 @@
 
       /**
        * onDragStart
-       * @param {any} ev
+       * @param {UIEvent} ev
        * @return {*}
        * @private
        */
       onDragStart (ev) {
+        if (!ev) return
+
+        // prevent default so scrolling does not happen
+        // ev.preventDefault()
+        // ev.stopPropagation()
+
         if (!this.canDrag()) return
         this.firstCoord = pointerCoord(ev)
         this.firstTimestamp = new Date().getTime()
         this.startSliding(this.firstCoord.x)
         this.$root && this.$root.$emit('onItemSlidingOpen', this)
-        this.isDraggingFromStart = true
+        // this.isDraggingFromStart = true
+
+        // return true so the pointer events
+        // know everything's still valid
+        return true
       },
 
       /**
        * onDragMove
-       * @param {any} ev
+       * @param {UIEvent} ev
        * @return {*}
        * @private
        */
       onDragMove (ev) {
+        if (!ev) return
         if (!this.canDrag()) return
-        if (!this.isDraggingFromStart) return false
+
+        // prevent default so scrolling does not happen
+        ev.preventDefault()
+        ev.stopPropagation()
+
+        // if (!this.isDraggingFromStart) return false
         let coordX = pointerCoord(ev).x
 
         // 判断当前的移动是滚动还是组件的左右移动
-        if (!this.isDraggingConfirm && Math.abs(coordX - this.firstCoord.x) > MAX_DELTAX) {
-          this.isDraggingConfirm = true
+        // if (!this.isDraggingConfirm && Math.abs(coordX - this.firstCoord.x) > MAX_DELTAX) {
+        //   this.isDraggingConfirm = true
+        //
+        //   let directionCode = this.getDirection(this.firstCoord, pointerCoord(ev))
+        //   if (directionCode === DIRECTION_LEFT || directionCode === DIRECTION_RIGHT) {
+        //     this.isDragging = true
+        //     // prevent default so scrolling does not happen
+        //     // ev.preventDefault()
+        //     // ev.stopPropagation()
+        //   } else {
+        //     this.isDragging = false
+        //   }
+        // }
 
-          let directionCode = this.getDirection(this.firstCoord, pointerCoord(ev))
-          if (directionCode === DIRECTION_LEFT || directionCode === DIRECTION_RIGHT) {
-            this.isDragging = true
-            ev.preventDefault && ev.preventDefault()
-          } else {
-            this.isDragging = false
-          }
-        }
-
-        if (this.isDraggingConfirm && this.isDragging) {
+        window.requestAnimationFrame(() => {
           this.moveSliding(coordX)
-          ev.preventDefault && ev.preventDefault()
-        }
+        })
+
+        // if (this.isDraggingConfirm && this.isDragging) {
+        //   this.moveSliding(coordX)
+        //   // prevent default so scrolling does not happen
+        //   // ev.preventDefault()
+        //   // ev.stopPropagation()
+        // }
       },
 
       /**
@@ -229,6 +258,8 @@
        * @private
        */
       onDragEnd (ev) {
+        if (!ev) return
+
         let coordX = pointerCoord(ev).x
         let deltaX = (coordX - this.firstCoord.x)
         let deltaT = (Date.now() - this.firstTimestamp)
@@ -239,7 +270,7 @@
         }
         this.isDragging = false
         this.isDraggingConfirm = false
-        this.isDraggingFromStart = false
+        // this.isDraggingFromStart = false
 
         if (this.openAmount === 0 && !this.unregister) {
           // 如果点击结束后, 组件未开启, 且未动画, 则设为disabled状态
@@ -315,6 +346,9 @@
         this.$root && this.$root.$on('onScroll', () => {
           this.close()
         })
+
+        // event
+        this.pointerEvents = new PointerEvents(this.itemSlidingElement, this.onDragStart, this.onDragMove, this.onDragEnd, {})
       },
 
       /**
@@ -439,7 +473,7 @@
           // 松手关闭状态, 可以是到起始位置, 也可以是到中途点, 全部打回初始状态
           this.isDragging = false
           this.isDraggingConfirm = false
-          this.isDraggingFromStart = false
+          // this.isDraggingFromStart = false
           this.unregister && this.unregister()
           if (openAmount === 0) {
             // 动画过程禁止点击操作
@@ -511,9 +545,7 @@
        * */
       setItemTransformX (val = 0) {
         if (this.itemComponent) {
-          window.requestAnimationFrame(() => {
-            this.itemComponent.$el.style.transform = `translate3d(${val >> 0}px, 0px, 0px)`
-          })
+          this.itemComponent.$el.style.transform = `translate3d(${val >> 0}px, 0px, 0px)`
         }
       },
 
@@ -554,6 +586,7 @@
     destroyed () {
       this.$root && this.$root.$off('onItemSlidingOpen')
       this.$root && this.$root.$off('onScroll')
+      this.pointerEvents && this.pointerEvents.destroy()
     }
   }
 

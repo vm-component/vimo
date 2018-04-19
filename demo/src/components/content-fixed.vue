@@ -1,5 +1,5 @@
 <template>
-    <Page :box="false">
+    <Page>
         <Header>
             <Navbar>
                 <Title>流式布局</Title>

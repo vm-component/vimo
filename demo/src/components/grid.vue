@@ -2,20 +2,12 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Grid</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
-
             <div padding>
-                <h1>Grid组件</h1>
-                <p>栅格系统类似于Bootstrap的栅格, 使用方法大同小异. 栅格组件用于 <strong>响应式布局</strong> 场景, 比如兼容 Mobile / Pad / PC 等设备. 一般移动小屏项目运用较少, 使用 <strong>Flex布局</strong>
-                   即可Hold住绝大多数场景.</p>
-            </div>
-
-            <div padding>
-                <h4>九宫格</h4>
-                <p>需要在Grid加上属性[sudoku]即可</p>
+                <h4>{{$t('sudoku')}}</h4>
             </div>
             <Grid no-padding class="nine" sudoku>
                 <Row>
@@ -46,8 +38,8 @@
             </Grid>
 
             <div class="demo" padding>
-                <h4>传统用法</h4>
-                <p>1. 普通用法</p>
+                <h4>{{$t('title')}}</h4>
+                <p>1. {{$t('usage1')}}</p>
                 <Grid>
                     <Row>
                         <Column>1 of 2</Column>
@@ -68,7 +60,7 @@
                     </Row>
                 </Grid>
 
-                <p>2. 自定义宽度</p>
+                <p>2. {{$t('usage2')}}</p>
                 <Grid>
                     <Row>
                         <Column>
@@ -93,7 +85,7 @@
                         </Column>
                     </Row>
                 </Grid>
-                <p>3. 根据内容自适应宽度</p>
+                <p>3. {{$t('usage3')}}</p>
                 <Grid>
                     <Row>
                         <Column>
@@ -119,7 +111,7 @@
                     </Row>
                 </Grid>
 
-                <p>4. 自定义列宽</p>
+                <p>4. {{$t('usage4')}}</p>
 
                 <Grid>
                     <Row>
@@ -138,7 +130,7 @@
                     </Row>
                 </Grid>
 
-                <p>5. 在小屏(col-sm)上改成堆叠方式</p>
+                <p>5. {{$t('usage5')}}</p>
                 <Grid>
                     <Row>
                         <Column col-12 col-sm>
@@ -156,7 +148,7 @@
                     </Row>
                 </Grid>
 
-                <p>6. 列偏移</p>
+                <p>6. {{$t('usage6')}}</p>
                 <Grid>
                     <Row>
                         <Column col-3>
@@ -168,7 +160,7 @@
                     </Row>
                 </Grid>
 
-                <p>7. 针对屏幕的列偏移</p>
+                <p>7. {{$t('usage7')}}</p>
                 <Grid>
                     <Row>
                         <Column col-md-3>
@@ -183,7 +175,7 @@
                     </Row>
                 </Grid>
 
-                <p>8. push(左偏移-left)和pull(右偏移-right)的用法</p>
+                <p>8. {{$t('usage8')}}</p>
                 <Grid>
                     <Row>
                         <Column col-6 push-6>
@@ -195,7 +187,7 @@
                     </Row>
                 </Grid>
 
-                <p>9. 针对特定屏幕尺寸的push和pull的用法</p>
+                <p>9. {{$t('usage9')}}</p>
                 <Grid>
                     <Row>
                         <Column col-md-6 push-md-3>
@@ -210,7 +202,7 @@
                     </Row>
                 </Grid>
 
-                <p>10. 行对齐方式</p>
+                <p>10. {{$t('usage10')}}</p>
                 <Grid>
                     <Row align-items-start style="outline:2px solid blue;">
                         <Column>
@@ -258,7 +250,7 @@
                     </Row>
                 </Grid>
 
-                <p>11. 列对齐方式</p>
+                <p>11. {{$t('usage11')}}</p>
                 <Grid>
                     <Row style="outline:2px solid blue;">
                         <Column align-self-start>
@@ -284,7 +276,7 @@
                     </Row>
                 </Grid>
 
-                <p>12. 水平对齐方式</p>
+                <p>12. {{$t('usage12')}}</p>
                 <Grid>
                     <Row justify-content-start style="outline:2px solid blue;">
                         <Column col-3>
@@ -357,21 +349,45 @@
     .nine {
         background: #fff;
     }
-
 </style>
 <script type="text/javascript">
   export default {
-    name: 'name',
-    data () {
-      return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {},
-    mounted () {},
-    activated () {},
-    components: {}
+    name: 'DemoGrid',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '栅格',
+          sudoku: '九宫格',
+          usage1: '普通用法',
+          usage2: '自定义宽度',
+          usage3: '根据内容自适应宽度',
+          usage4: '自定义列宽',
+          usage5: '在小屏(col-sm)上改成堆叠方式',
+          usage6: '列偏移',
+          usage7: '针对屏幕的列偏移',
+          usage8: 'push(左偏移-left)和pull(右偏移-right)的用法',
+          usage9: '针对特定屏幕尺寸的push和pull的用法',
+          usage10: '行对齐方式',
+          usage11: '列对齐方式',
+          usage12: '水平对齐方式'
+        },
+        'en-US': {
+          title: 'Grid',
+          sudoku: 'Sudoku',
+          usage1: 'General usage',
+          usage2: 'Custom width',
+          usage3: 'Content adaptive width',
+          usage4: 'Custom column width',
+          usage5: 'Change the stacking mode on the col-sm',
+          usage6: 'Column offset',
+          usage7: 'Column offsets for the screen',
+          usage8: 'The use of push (left offset -left) and pull (right offset -right)',
+          usage9: 'Push and pull usage for a specific screen size',
+          usage10: 'Line alignment',
+          usage11: 'Column alignment',
+          usage12: 'Horizontal alignment'
+        }
+      }
+    }
   }
 </script>

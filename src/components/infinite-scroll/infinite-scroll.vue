@@ -204,7 +204,7 @@
       }
       this.$_setListeners(this.state !== STATE_DISABLED)
     },
-    destroy () {
+    destroyed () {
       this.$_setListeners(false)
     }
   }

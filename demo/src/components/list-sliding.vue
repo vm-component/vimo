@@ -21,7 +21,7 @@
                 <ItemSliding>
                     <Item>
                         <Avatar slot="item-left">
-                            <img src="./img/avatar-ts-woody.png">
+                            <img src="../assets/avatar-ts-woody.png">
                         </Avatar>
                         <Label>
                             <h2>两边都有按钮</h2>
@@ -48,7 +48,7 @@
                 <ItemSliding>
                     <Item>
                         <Avatar slot="item-left">
-                            <img src="./img/avatar-ts-buzz.png">
+                            <img src="../assets/avatar-ts-buzz.png">
                         </Avatar>
                         <Label>
                             <h2>按钮在右边</h2>
@@ -65,7 +65,7 @@
                 <ItemSliding>
                     <Item>
                         <Avatar slot="item-left">
-                            <img src="./img/avatar-ts-buzz.png">
+                            <img src="../assets/avatar-ts-buzz.png">
                         </Avatar>
                         <Label>
                             <h2>按钮在左边</h2>
@@ -87,7 +87,7 @@
                 <ItemSliding>
                     <Item>
                         <Avatar slot="item-left">
-                            <img src="./img/avatar-ts-hamm.png">
+                            <img src="../assets/avatar-ts-hamm.png">
                         </Avatar>
                         <Label>
                             <h2>按钮在右边</h2>
@@ -106,7 +106,7 @@
                 <ItemSliding>
                     <Item>
                         <Avatar slot="item-left">
-                            <img src="./img/avatar-ts-hamm.png">
+                            <img src="../assets/avatar-ts-hamm.png">
                         </Avatar>
                         <label>
                             <h2>Icon在左边的</h2>
@@ -135,7 +135,7 @@
                         @onSwipe="slidingSwipe">
                     <Item>
                         <Avatar slot="item-left">
-                            <img src="./img/avatar-ts-woody.png">
+                            <img src="../assets/avatar-ts-woody.png">
                         </Avatar>
                         <Label>
                             <h2>事件监听</h2>
