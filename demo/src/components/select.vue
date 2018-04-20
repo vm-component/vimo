@@ -2,27 +2,15 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Select</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
             <div padding>
-                <h5>简介</h5>
-                <p>Select组件用于单类型数据但多选, 如果是多类型数据选择, 请选Picker组件.</p>
+                <strong>{{$t('notice')}}</strong>
             </div>
             <List>
-                <ListHeader>单选</ListHeader>
-                <Item>
-                    <Label fixed>Gender(fixed)</Label>
-                    <Select item-right placeholder="Select" interface="action-sheet"
-                            :selectOptions="{title:'Fixed Label'}"
-                            @onChange="onChange"
-                            @onSelect="onSelect"
-                            @onCancel="onCancel">
-                        <SelectOption value="f">Female</SelectOption>
-                        <SelectOption value="m">Male</SelectOption>
-                    </Select>
-                </Item>
+                <ListHeader>Demo</ListHeader>
                 <Item>
                     <Label stacked>Gender(stacked)</Label>
                     <Select item-right placeholder="Select" interface="action-sheet"
@@ -34,17 +22,6 @@
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
                 </Item>
-                <!--<Item>-->
-                <!--<Label floating>Gender(floating)</Label>-->
-                <!--<Select item-right placeholder="Select" interface="action-sheet"-->
-                <!--:selectOptions="{title:'Foating Label'}"-->
-                <!--@onChange="onChange"-->
-                <!--@onSelect="onSelect"-->
-                <!--@onCancel="onCancel">-->
-                <!--<SelectOption value="f">Female</SelectOption>-->
-                <!--<SelectOption value="m">Male</SelectOption>-->
-                <!--</Select>-->
-                <!--</Item>-->
                 <Item>
                     <Label>Gender</Label>
                     <Select item-right placeholder="Select" interface="action-sheet"
@@ -91,8 +68,8 @@
                 </Item>
 
                 <Item>
-                    <Label>能修改选中值文本</Label>
-                    <Select item-right placeholder="请选择" selectedText="已选择" interface="alert" :multiple="true">
+                    <Label>Customize Label</Label>
+                    <Select item-right :placeholder="$t('choosePlease')" :selectedText="$t('chosen')" interface="alert" :multiple="true">
                         <SelectOption value="f">Female</SelectOption>
                         <SelectOption value="m">Male</SelectOption>
                     </Select>
@@ -101,7 +78,7 @@
 
             <List>
                 <ListHeader>
-                    <span>Option组件没有value的情况</span>
+                    <span>No Value(Special)</span>
                 </ListHeader>
                 <Item>
                     <Label>Gaming</Label>
@@ -116,13 +93,11 @@
                 </Item>
             </List>
             <div text-cente padding>
-                <p text-center>Gaming选中值: {{gamingNoValue}}</p>
+                <p text-center>{{$t('currentState')}}: {{gamingNoValue}}</p>
             </div>
 
             <List>
-                <ListHeader>
-                    <span>单选 (v-model)</span>
-                </ListHeader>
+                <ListHeader>v-model</ListHeader>
                 <Item>
                     <Label>Gaming</Label>
                     <Select v-model="gaming" :multiple="true">
@@ -137,14 +112,14 @@
             </List>
 
             <div text-cente padding>
-                <p text-center>Gaming选中值: {{gaming}}</p>
+                <p text-center>{{$t('currentState')}}: {{gaming}}</p>
                 <small>
-                    <span>  * Option中checked是NES/Nintendo64/PlayStation, 而v-model中的值是Option中checked是选中的是NES, 优先使用v-modal中的值</span>
+                    <span>  * {{$t('priority')}}</span>
                 </small>
             </div>
             <List>
                 <ListHeader>
-                    <span>单选 (v-model && v-for)</span>
+                    <span>v-model && v-for</span>
                 </ListHeader>
                 <Item>
                     <Label>Currency</Label>
@@ -159,16 +134,34 @@
                 </div>
             </List>
             <div text-cente padding>
-                <p text-center>Currency选中值: {{currency}}</p>
+                <p text-center>{{$t('currentState')}}: {{currency}}</p>
             </div>
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
-</style>
 <script type="text/javascript">
   export default {
-    name: 'name',
+    name: 'DemoSelect',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '选择弹层',
+          notice: 'Select组件用于单类型数据但多选, 如果是多类型数据选择, 请选Picker组件.',
+          choosePlease: '请选择',
+          chosen: '已选择',
+          currentState: '当前状态',
+          priority: 'Option中checked是NES/Nintendo64/PlayStation, 而v-model中的值是Option中checked是选中的是NES, 优先使用v-modal中的值'
+        },
+        'en-US': {
+          title: 'Select',
+          notice: 'The Select component is used for single-type data but multiple choices. If it is a multi-type data selection, select the Picker component.',
+          choosePlease: 'please choose',
+          chosen: 'Chosen',
+          currentState: 'Current state',
+          priority: 'Checked in Option is NES/Nintendo64/PlayStation, and the value in v-model is checked in Option is NES selected, and the value in v-modal is preferred'
+        }
+      }
+    },
     data () {
       return {
         gaming: 'saturn',
@@ -253,9 +246,6 @@
         ]
       }
     },
-    props: {},
-    watch: {},
-    computed: {},
     methods: {
       onChange (value) {
         console.debug('外部监听 onChange 事件, 返回值: ' + value)

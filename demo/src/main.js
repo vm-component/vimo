@@ -15,9 +15,9 @@ Vue.config.productionTip = false
 // eslint-disable-next-line no-new
 new AttachFastClick(document.body)
 
-let VConsole = require('vconsole')
-// eslint-disable-next-line no-new
-new VConsole()
+// let VConsole = require('vconsole')
+// // eslint-disable-next-line no-new
+// new VConsole()
 
 Vue.use(Install, {
   custConf: appConfig,

@@ -1,10 +1,10 @@
-$OFF_BOTTOM: 40px;
-$EASING: cubic-bezier(0.36, 0.66, 0.04, 1);
-$DURATION: 500ms;
-$CENTER: 0px;
-$OPACITY: opacity;
-$TRANSFORM: -webkit-transform;
-$OPACITY_ZERO: 0.01;
+$OFF_BOTTOM: 40px !default;
+$EASING: cubic-bezier(0.36, 0.66, 0.04, 1) !default;
+$DURATION: 500ms !default;
+$CENTER: 0px !default;
+$OPACITY: opacity !default;
+$TRANSFORM: transform !default;
+$OPACITY_ZERO: 0.01 !default;
 
 // fade-bottom-transition Transition(forward)
 // --------------------------------------------------

@@ -2,12 +2,12 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Checkbox</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
             <List>
-                <ListHeader>Checkbox</ListHeader>
+                <ListHeader>Demo</ListHeader>
                 <Item>
                     <Label>Danger</Label>
                     <Checkbox slot="item-left" color="danger" v-model="displayData.danger"></Checkbox>
@@ -33,15 +33,14 @@
             </List>
 
             <section padding>
-                <h5>单独使用</h5>
+                <p><strong>{{$t('usedAlone')}}</strong></p>
                 <div class="customer-standalone">
                     <Checkbox color="danger" v-model="displayData.danger"></Checkbox>
                 </div>
-                <p>注意这部分样式的写法!</p>
             </section>
 
             <List>
-                <ListHeader>使用 v-modal 绑定</ListHeader>
+                <ListHeader>{{$t('itemNotice')}}</ListHeader>
                 <Item>
                     <Label>Danger</Label>
                     <Checkbox slot="item-left" color="danger" v-model="testModal" :disabled="testDisabled"
@@ -62,10 +61,10 @@
                 <Row justify-content-center>
                     <Column col-1></Column>
                     <Column>
-                        <Button block @click="testModal =!testModal">setValue</Button>
+                        <Button block @click="testModal =!testModal">{{$t('open')}}</Button>
                     </Column>
                     <Column>
-                        <Button block @click="testDisabled =!testDisabled">Disabled</Button>
+                        <Button block @click="testDisabled =!testDisabled">{{$t('disable')}}</Button>
                     </Column>
                     <Column col-1></Column>
                 </Row>
@@ -90,7 +89,26 @@
 </style>
 <script type="text/javascript">
   export default {
-    name: 'name',
+    name: 'DemoCheckBox',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '复选框',
+          itemNotice: '下方按钮控制',
+          usedAlone: '单独使用',
+          open: '设置开/闭',
+          disable: '设置禁用/启用'
+        },
+        'en-US': {
+          title: 'Checkbox',
+          itemNotice: 'Use button control',
+          usedAlone: 'Use alone',
+          open: 'Set on/off',
+          disable: 'Set disabled/enabled',
+          currentState: 'Current state'
+        }
+      }
+    },
     data () {
       return {
 

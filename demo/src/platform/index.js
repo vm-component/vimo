@@ -20,10 +20,12 @@ export default {
   },
   ios: {
     settings: {
-      mode: 'md',
-      ripple: true,
-      // pageTransition: 'fade-right-transition'
-      pageTransition: 'zoom-transition'
+      // mode: 'md',
+      // ripple: true,
+      // pageTransition: 'zoom-transition'
+      mode: 'ios',
+      ripple: false,
+      pageTransition: 'fade-right-transition'
     }
   },
   android: {

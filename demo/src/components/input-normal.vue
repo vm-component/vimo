@@ -2,13 +2,13 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Normal</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
             <List>
                 <ListHeader>
-                    <span>布局</span>
+                    <span>Label</span>
                 </ListHeader>
                 <Item>
                     <Label color="primary">Inline Label</Label>
@@ -32,7 +32,7 @@
             </List>
             <List>
                 <ListHeader>
-                    <span>右侧清除按钮</span>
+                    <span>Clear Btn</span>
                 </ListHeader>
                 <Item>
                     <Input v-model="normalValue" placeholder="Clear Input" clearInput></Input>
@@ -56,14 +56,13 @@
             </List>
             <List>
                 <ListHeader>
-                    <span>Password(自动清除)</span>
+                    <span>Password(Auto Clear)</span>
                 </ListHeader>
                 <Item>
                     <Label color="primary" stacked>Password</Label>
                     <Input type="password" placeholder="Password Input" clear-input></Input>
                 </Item>
             </List>
-
             <List>
                 <ListHeader>
                     <span>Test</span>
@@ -72,32 +71,32 @@
                     <Label color="primary">TestValue</Label>
                     <Input :clearInput="true"
                            :max="18"
-                           placeholder="最多输入18个字符"
+                           placeholder="Enter up to 18 characters"
                            v-model="testValue"
                            :disabled="testDisabled"></Input>
                 </Item>
                 <Item>
-                    <span slot="item-left"> 当前的值({{testValue ? testValue.length : 0}}): {{testValue}}</span>
+                    <span slot="item-left"> Current value({{testValue ? testValue.length : 0}}): {{testValue}}</span>
                     <Button slot="item-right" small outline @click="testDisabled = !testDisabled">Disable</Button>
                 </Item>
             </List>
             <List>
                 <ListHeader>Focus Highlight</ListHeader>
                 <Item>
-                    <Label color="primary">聚焦高亮1</Label>
-                    <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
+                    <Label color="primary">Highlight1</Label>
+                    <Input :showFocusHighlight="true" placeholder="please input text" type="text" clearInput></Input>
                 </Item>
                 <Item>
-                    <Label color="primary">聚焦高亮2</Label>
-                    <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
+                    <Label color="primary">Highlight2</Label>
+                    <Input :showFocusHighlight="true" placeholder="please input text" type="text" clearInput></Input>
                 </Item>
             </List>
 
             <List>
-                <ListHeader>Input单独使用</ListHeader>
+                <ListHeader>Input User Alone</ListHeader>
 
                 <section class="customer">
-                    <Input :showFocusHighlight="true" placeholder="输入文本" type="text" clearInput></Input>
+                    <Input :showFocusHighlight="true" placeholder="please input text" type="text" clearInput></Input>
                 </section>
             </List>
         </Content>
@@ -106,6 +105,16 @@
 <script type="text/javascript">
   export default {
     name: 'InputDemo',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '普通用法'
+        },
+        'en-US': {
+          title: 'Normal'
+        }
+      }
+    },
     data () {
       return {
         debounceValue: null,
@@ -119,10 +128,11 @@
 <style scoped lang="scss">
     .customer {
         width: 80%;
-        height: 40px;
+        /*height: 40px;*/
         background-color: #ffffff;
         color: #000000;
         margin: 10px auto;
         padding-left: 10px;
+        outline: 1px solid #ddd;
     }
 </style>

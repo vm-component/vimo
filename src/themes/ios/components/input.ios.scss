@@ -23,7 +23,7 @@ $text-input-ios-margin-left: 0 !default;
 $text-input-ios-margin-start: $text-input-ios-margin-left !default;
 
 /// @prop - Width of the icon used to clear the input
-$text-input-ios-input-clear-icon-width: 30px !default;
+$text-input-ios-input-clear-icon-width: 44px !default;
 
 /// @prop - Color of the icon used to clear the input
 $text-input-ios-input-clear-icon-color: rgba(0, 0, 0, 0.5) !default;
@@ -164,6 +164,6 @@ $text-input-ios-highlight-color-invalid: $text-input-highlight-color-invalid !de
   width: $text-input-ios-input-clear-icon-width;
   background-size: $text-input-ios-input-clear-icon-size;
 
-  @include position-horizontal(null, ($item-ios-padding-end / 2));
+  @include position-horizontal(null, 0);
   @include svg-background-image($text-input-ios-input-clear-icon-svg);
 }

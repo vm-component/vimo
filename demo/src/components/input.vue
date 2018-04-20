@@ -2,25 +2,40 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Input</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
-            <div padding>
-                <p>Input组件使用示例</p>
-            </div>
             <List>
-                <ListHeader>使用场景</ListHeader>
-                <Item detail-push :to="{name:'inputNormal'}">普通用法</Item>
-                <Item detail-push :to="{name:'inputValid'}">输入验证</Item>
-                <Item detail-push :to="{name:'inputLimit'}">输入限制</Item>
-                <Item detail-push :to="{name:'inputEvent'}">输入事件</Item>
+                <ListHeader>Demo</ListHeader>
+                <Item detail-push :to="{name:'inputNormal'}">{{$t('inputNormal')}}</Item>
+                <Item detail-push :to="{name:'inputValid'}">{{$t('inputValid')}}</Item>
+                <Item detail-push :to="{name:'inputLimit'}">{{$t('inputLimit')}}</Item>
+                <Item detail-push :to="{name:'inputEvent'}">{{$t('inputEvent')}}</Item>
             </List>
         </Content>
     </Page>
 </template>
 <script type="text/javascript">
   export default {
-    name: 'InputDemo'
+    name: 'InputDemo',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '输入',
+          inputNormal: '普通用法',
+          inputValid: '输入验证',
+          inputLimit: '输入限制',
+          inputEvent: '输入事件'
+        },
+        'en-US': {
+          title: 'Input',
+          inputNormal: 'Normal',
+          inputValid: 'Valid',
+          inputLimit: 'Limit',
+          inputEvent: 'Event'
+        }
+      }
+    }
   }
 </script>

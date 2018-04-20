@@ -35,6 +35,7 @@
 </style>
 <script type="text/javascript">
   export default {
+    name: 'DemoList',
     i18n: {
       messages: {
         'zh-CN': {

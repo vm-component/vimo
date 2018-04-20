@@ -30,7 +30,7 @@
                 </Item>
             </List>
             <section padding>
-                <p><strong>Use alone</strong></p>
+                <p><strong>{{$t('usedAlone')}}</strong></p>
                 <div class="customer-standalone">
                     <Toggle slot="item-right" color="danger" v-model="displayData.danger"></Toggle>
                 </div>
@@ -82,6 +82,7 @@
         'zh-CN': {
           title: '开关',
           itemNotice: '下方按钮控制',
+          usedAlone:'单独使用',
           open: '设置开/闭',
           disable: '设置禁用/启用',
           currentState: '当前状态',
@@ -90,6 +91,7 @@
         'en-US': {
           title: 'Toggle',
           itemNotice: 'Use button control',
+          usedAlone:'Use alone',
           open: 'Set on/off',
           disable: 'Set disabled/enabled',
           currentState: 'Current state',

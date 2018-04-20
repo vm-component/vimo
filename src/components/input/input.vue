@@ -21,7 +21,9 @@
         <vm-button v-if="clearInput && hasValue"
                    clear
                    class="text-input-clear-icon"
-                   @click="$_clearTextInput()"></vm-button>
+                   @click="$_clearTextInput()"
+                   @mousedown="$_clearTextInput()"
+        ></vm-button>
     </div>
 </template>
 <script type="text/javascript">
@@ -397,7 +399,7 @@
           } else {
             this.shouldBlur = true
           }
-        }, 16 * 2)
+        }, 200)
       },
 
       /**

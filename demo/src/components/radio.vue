@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Radio</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
@@ -31,7 +31,7 @@
             </List>
 
             <div text-center>
-                <p text-center>当前选择: {{fruits}}</p>
+                <p text-center>{{$t('currentState')}}: {{fruits}}</p>
                 <Button @click="fruits='apple'" outline small>Select Apple</Button>
                 <Button @click="fruits='banana'" outline small>Select Banana</Button>
                 <Button @click="fruits='cherry'" outline small>Select Cherry</Button>
@@ -40,8 +40,7 @@
             </div>
 
             <div padding>
-                <h5>注意</h5>
-                <p>如果是点击则触发onSelect和onChange, 如果是改变v-model的值, 则只触发onSelect的值.</p>
+                <strong>{{$t('notice')}}</strong>
             </div>
 
             <List radio-group v-model="currencies">
@@ -55,12 +54,12 @@
                 <code><b>dynamicCurrencies:</b> {{dynamicCurrencies}}</code><br>
             </div>
             <div text-center>
-                <p text-center>当前选择: {{currencies}}</p>
-                <Button @click="addDynamicCurrencies" outline small>加载数据</Button>
+                <p text-center>{{$t('currentState')}}: {{currencies}}</p>
+                <Button @click="addDynamicCurrencies" outline small>{{$t('loadData')}}</Button>
                 <Button @click="currencies='USD'" outline small>Select USD</Button>
                 <Button @click="currencies='EUR'" outline small>Select EUR</Button>
             </div>
-
+            <br/>
             <List radio-group :disabled="true" v-model="relationship">
                 <ListHeader>Disabled radio-group</ListHeader>
                 <Item>
@@ -79,7 +78,23 @@
 </style>
 <script type="text/javascript">
   export default {
-    name: 'radio',
+    name: 'DemoRadio',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '单选框',
+          currentState: '当前状态',
+          loadData: '加载数据',
+          notice: '如果是点击则触发onSelect和onChange, 如果是改变v-model的值, 则只触发onSelect的值.'
+        },
+        'en-US': {
+          title: 'Radio',
+          currentState: 'Current state',
+          loadData: 'Load data',
+          notice: 'If it is clicked, onSelect and onChange are triggered. If the value of v-model is changed, only the value of onSelect is triggered.'
+        }
+      }
+    },
     data () {
       return {
         fruits: 'default',

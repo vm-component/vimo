@@ -23,7 +23,7 @@ $text-input-md-margin-left: ($item-md-padding-start / 2) !default;
 $text-input-md-margin-start: $text-input-md-margin-left !default;
 
 /// @prop - Width of the icon used to clear the input
-$text-input-md-input-clear-icon-width: 30px !default;
+$text-input-md-input-clear-icon-width: 44px !default;
 
 /// @prop - Color of the icon used to clear the input
 $text-input-md-input-clear-icon-color: #5b5b5b !default;
@@ -57,7 +57,7 @@ $text-input-md-highlight-color-invalid: $text-input-highlight-color-invalid !def
 
 .text-input-md {
   width: calc(100% - #{$text-input-md-margin-end} - #{$text-input-md-margin-start});
-
+  
   @include margin($text-input-md-margin-top, $text-input-md-margin-end, $text-input-md-margin-bottom, $text-input-md-margin-start);
   @include padding(0);
 }
@@ -83,18 +83,18 @@ $text-input-md-highlight-color-invalid: $text-input-highlight-color-invalid !def
 .show-focus-highlight {
   // In order to get a 2px border we need to add an inset
   // box-shadow 1px (this is to avoid the div resizing)
-
+  
   &.item-md.item-input.item-input-has-focus .item-inner,
   &.item-md.item-input.input-has-focus .item-inner {
     @include md-input-highlight($text-input-md-highlight-color);
   }
-
+  
   // The last item in a list has a border on the item, not the
   // inner item, so add it to the item itself
   &.list-md .item-input.item-input-has-focus:last-child,
   &.list-md .item-input.input-has-focus:last-child {
     @include md-input-highlight($text-input-md-highlight-color);
-
+    
     .item-inner {
       box-shadow: none;
     }
@@ -109,11 +109,11 @@ $text-input-md-highlight-color-invalid: $text-input-highlight-color-invalid !def
   .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
     @include md-input-highlight($text-input-md-highlight-color-valid);
   }
-
+  
   .list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
   .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
     @include md-input-highlight($text-input-md-highlight-color-valid);
-
+    
     .item-inner {
       box-shadow: none;
     }
@@ -125,10 +125,10 @@ $text-input-md-highlight-color-invalid: $text-input-highlight-color-invalid !def
   .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
     @include md-input-highlight($text-input-md-highlight-color-invalid);
   }
-
+  
   .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus):last-child {
     @include md-input-highlight($text-input-md-highlight-color-invalid);
-
+    
     .item-inner {
       box-shadow: none;
     }
@@ -141,7 +141,7 @@ $text-input-md-highlight-color-invalid: $text-input-highlight-color-invalid !def
 .item-label-stacked .text-input-md,
 .item-label-floating .text-input-md {
   width: calc(100% - #{$text-input-md-margin-end});
-
+  
   @include margin(8px, null, 8px, 0);
 }
 
@@ -164,7 +164,7 @@ $text-input-md-highlight-color-invalid: $text-input-highlight-color-invalid !def
 .input-md .text-input-clear-icon {
   width: $text-input-md-input-clear-icon-width;
   background-size: $text-input-md-input-clear-icon-size;
-
-  @include position-horizontal(null, ($item-md-padding-end / 2));
+  
+  @include position-horizontal(null, 0);
   @include svg-background-image($text-input-md-input-clear-icon-svg);
 }

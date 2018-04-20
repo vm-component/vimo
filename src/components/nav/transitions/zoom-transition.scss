@@ -1,13 +1,13 @@
-$EASING: cubic-bezier(0.36, 0.66, 0.04, 1);
-$DURATION: 500ms;
-$DELAY: 200ms;
-$CENTER: 0px;
-$OPACITY: opacity;
-$TRANSFORM: -webkit-transform;
-$SCALE: scale;
-$SCALE_SMALL: 0.95;
-$OPACITY_ZERO: 0.01;
-$TRANSFORM_ORIGIN: center center;
+$EASING: cubic-bezier(0.36, 0.66, 0.04, 1) !default;
+$DURATION: 500ms !default;
+$DELAY: 0ms !default;
+$CENTER: 0px !default;
+$OPACITY: opacity !default;
+$TRANSFORM: transform !default;
+$SCALE: scale !default;
+$SCALE_SMALL: 0.95 !default;
+$OPACITY_ZERO: 0.01 !default;
+$TRANSFORM_ORIGIN: center center !default;
 
 // zoom-transition Transition(forward)
 // --------------------------------------------------
