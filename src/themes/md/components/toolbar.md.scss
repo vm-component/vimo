@@ -50,7 +50,6 @@ $toolbar-button-md-strong-font-weight: bold !default;
     background: $toolbar-md-background;
     border-color: $toolbar-md-border-color;
   }
-
   
   // Material Design Toolbar Content
   // --------------------------------------------------
@@ -139,6 +138,8 @@ $toolbar-button-md-strong-font-weight: bold !default;
   // --------------------------------------------------
   
   .bar-button-md {
+    overflow: hidden;
+    
     height: 32px;
     font-size: $toolbar-md-button-font-size;
     font-weight: 500;

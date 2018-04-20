@@ -422,25 +422,25 @@ $button-md-strong-font-weight: bold !default;
 // Only Material uses the button effect, so by default
 // it's display none, and .md sets to display block.
 
-.button-effect {
-  position: absolute;
+//.button-effect {
+//  position: absolute;
+//
+//  //@include multi-dir() {
+//  // scss-lint:disable PropertySpelling
+//  top: 0;
+//  left: 0;
+//  z-index: 0;
+//  display: none;
+//  pointer-events: none;
+//  background-color: $button-md-ripple-background-color;
+//  opacity: 0.2;
+//  transition-timing-function: ease-in-out;
+//
+//  @include border-radius(50%);
+//  @include transform-origin(center, center);
+//}
 
-  //@include multi-dir() {
-  // scss-lint:disable PropertySpelling
-  top: 0;
-  left: 0;
-  z-index: 0;
-  display: none;
-  pointer-events: none;
-  background-color: $button-md-ripple-background-color;
-  opacity: 0.2;
-  transition-timing-function: ease-in-out;
-
-  @include border-radius(50%);
-  @include transform-origin(center, center);
-}
-
-.md button .button-effect {
+.md .button-effect {
   display: block;
 }
 

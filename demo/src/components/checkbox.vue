@@ -82,6 +82,7 @@
         justify-content: center;
         align-items: center;
         border: 1px dashed #333;
+        overflow: hidden;
         .ion-checkbox {
             position: static;
         }

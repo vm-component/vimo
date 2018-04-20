@@ -1,0 +1,28 @@
+@import "../../style/globals";
+
+$button-ripple-background-color: #555 !default;
+
+.button-ripple {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.button-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+  background-color: $button-ripple-background-color;
+  opacity: 0.2;
+  transition-timing-function: ease-in-out;
+  will-change: transform, opacity;
+  
+  @include border-radius(50%);
+  @include transform-origin(center, center);
+}

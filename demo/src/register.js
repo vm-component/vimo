@@ -7,6 +7,7 @@ import {
   Backdrop,
   Badge,
   Button,
+  ButtonRipple,
   Card,
   CardContent,
   CardHeader,
@@ -98,6 +99,7 @@ export default function () {
   Vue.component(Backdrop.name, Backdrop)
   Vue.component(Badge.name, Badge)
   Vue.component(Button.name, Button)
+  Vue.component(ButtonRipple.name, ButtonRipple)
   Vue.component(Card.name, Card)
   Vue.component(CardContent.name, CardContent)
   Vue.component(CardHeader.name, CardHeader)

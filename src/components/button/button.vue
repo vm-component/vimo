@@ -9,14 +9,19 @@
               {'item-button':isInItemComponent}]"
             @click="$_clickHandler($event)">
         <span class="button-inner"><slot></slot></span>
+        <ButtonRipple />
     </button>
 </template>
 <script type="text/javascript">
   import disableHover from '../../util/disable-hover'
   import modeMixin from '../../mixins/mode-mixin/index.js'
+  import ButtonRipple from '../button-ripple/index.js'
 
   export default {
     name: 'Button',
+    components: {
+      ButtonRipple
+    },
     mixins: [modeMixin],
     inject: {
       itemComponent: {

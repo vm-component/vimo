@@ -1,14 +1,17 @@
 <template>
     <div @click.prevent.stop="onPointerDownHandler()" class="segment-button"
          :class="{'segment-activated':isSelected,'segment-button-disabled':isDisabled}">
-        <slot></slot>
+        <slot />
+        <ButtonRipple/>
     </div>
 </template>
 <script type="text/javascript">
   import { isString, isTrueProperty } from '../../util/type'
+  import ButtonRipple from '../../components/button-ripple'
 
   export default {
     name: 'SegmentButton',
+    components: {ButtonRipple},
     inject: {
       segmentComponent: {
         from: 'segmentComponent',

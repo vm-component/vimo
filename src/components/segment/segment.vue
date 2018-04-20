@@ -1,6 +1,6 @@
 <template>
     <div class="ion-segment segment" :class="[modeClass,colorClass]">
-        <slot></slot>
+        <slot/>
     </div>
 </template>
 <script type="text/javascript">

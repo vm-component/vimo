@@ -46,6 +46,7 @@
   display: block;
 }
 
+.item-cover[role="checkbox"],
 .item-cover[role="select"],
 .item-cover[role="radio"],
 .#{$prefix}-button.item-cover.item-button,
@@ -54,6 +55,8 @@
   width: 100%;
   height: 100%;
   cursor: pointer;
+  
+  z-index: 10;
   background: transparent;
   
   @include position(0, null, null, 0);

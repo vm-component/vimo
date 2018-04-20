@@ -9,7 +9,7 @@
             <p>
                 <strong>Normal</strong>
             </p>
-            <Button block @click="present">打开Backdrop</Button>
+            <Button block @click="present">Open Backdrop</Button>
 
             <p>
                 <strong>top: 100px</strong>

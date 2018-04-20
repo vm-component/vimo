@@ -70,6 +70,8 @@
         justify-content: center;
         align-items: center;
         border: 1px dashed #333;
+        overflow: hidden;
+        position: relative;
     }
 </style>
 <script type="text/javascript">

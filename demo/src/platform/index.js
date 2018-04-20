@@ -18,6 +18,7 @@ export default {
   },
   android: {
     settings: {
+      ripple: true,
       pageTransition: 'zoom-transition'
     }
   }

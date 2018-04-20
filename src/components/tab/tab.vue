@@ -3,16 +3,17 @@
         <Icon :mode="mode" v-if="tabIcon" :name="tabIcon" :isActive="isActive" class="tab-button-icon"></Icon>
         <span v-if="tabTitle" class="tab-button-text">{{tabTitle}}</span>
         <Badge :mode="mode" v-if="tabBadge" class="tab-badge" :color="tabBadgeStyle">{{tabBadge}}</Badge>
+        <ButtonRipple/>
     </a>
 </template>
 <script type="text/javascript">
-
   import Badge from '../badge'
   import Icon from '../icon'
+  import ButtonRipple from '../../components/button-ripple'
 
   export default {
     name: 'Tab',
-    components: {Badge, Icon},
+    components: {Badge, Icon, ButtonRipple},
     props: {
       mode: {
         type: String,

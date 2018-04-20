@@ -5,7 +5,7 @@
                 <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
-        <Content padding>
+        <Content padding fullscreen>
             <h4>Colors</h4>
             <Grid>
                 <Row justify-content-center>

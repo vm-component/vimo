@@ -16,8 +16,10 @@
       end: Boolean,
       mode: {
         type: String,
-        default: 'ios'
-      }
+        default () {
+          return this.$config && this.$config.get('mode', 'ios') || 'ios'
+        }
+      },
     },
     computed: {
       // 环境样式

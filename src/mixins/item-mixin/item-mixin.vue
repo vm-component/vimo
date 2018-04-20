@@ -13,10 +13,12 @@
             <!--以下组件显示在此处：[item-right],ion-radio,ion-toggle-->
             <slot name="item-right"></slot>
         </div>
+        <ButtonRipple :diameter="140" />
     </div>
 </template>
 <script type="text/javascript">
   import addItemAttr from '../../util/add-slot-name-to-attr.js'
+  import ButtonRipple from '../../components/button-ripple'
 
   export default {
     provide () {
@@ -25,6 +27,7 @@
         itemComponent: _this
       }
     },
+    components: {ButtonRipple},
     data () {
       return {
         // 用于 Input 元素添加class类名
