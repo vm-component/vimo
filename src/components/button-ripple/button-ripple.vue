@@ -8,7 +8,6 @@
 <script type="text/javascript">
   import PointerEvents from 'tp-pointer-events'
   import { pointerCoord } from '../../util/util'
-  import Css from '../../util/get-css'
 
   const TOUCH_DOWN_ACCEL = 300
 
@@ -79,10 +78,12 @@
         // DOM WRITE
         const rippleStyle = {}
         rippleStyle.opacity = ''
+        rippleStyle.width = this.$_diameter + 'px'
+        rippleStyle.height = this.$_diameter + 'px'
         rippleStyle.left = this.clientPointerX + 'px'
         rippleStyle.top = this.clientPointerY + 'px'
-        rippleStyle[Css.transform] = `scale(0)`
-        rippleStyle[Css.transition] = ''
+        rippleStyle.transform = `scale(0)`
+        rippleStyle.transition = ''
         this.rippleStyle = rippleStyle
         return true
       },
@@ -103,20 +104,12 @@
         scaleTransitionDuration = Math.round(scaleTransitionDuration)
 
         let transform = `scale(1)`
-        let transition = `transform ${scaleTransitionDuration}ms,opacity ${opacityTransitionDuration}ms ${opacityTransitionDelay}ms`
+        let transition = `transform ${scaleTransitionDuration}ms, opacity ${opacityTransitionDuration}ms ${opacityTransitionDelay}ms`
 
         // DOM WRITE
-        this.$nextTick(() => {
-          const rippleStyle = {}
-          rippleStyle.width = this.$_diameter + 'px'
-          rippleStyle.height = this.$_diameter + 'px'
-          rippleStyle.left = this.clientPointerX + 'px'
-          rippleStyle.top = this.clientPointerY + 'px'
-          rippleStyle.opacity = '0'
-          rippleStyle[Css.transform] = transform
-          rippleStyle[Css.transition] = transition
-          this.rippleStyle = rippleStyle
-        })
+        this.rippleStyle.opacity = '0'
+        this.rippleStyle.transform = transform
+        this.rippleStyle.transition = transition
       }
     },
     mounted () {

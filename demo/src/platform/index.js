@@ -11,9 +11,19 @@ export default {
   // wechat: platformWeChatConfig,
   // alipay: platformAliPayConfig,
   // dingtalk: platformDingTalkConfig
+  core: {
+    settings: {
+      mode: 'md',
+      ripple: true,
+      pageTransition: 'zoom-transition'
+    }
+  },
   ios: {
     settings: {
-      pageTransition: 'fade-right-transition'
+      mode: 'md',
+      ripple: true,
+      // pageTransition: 'fade-right-transition'
+      pageTransition: 'zoom-transition'
     }
   },
   android: {

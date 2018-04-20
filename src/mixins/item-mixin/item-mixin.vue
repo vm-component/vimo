@@ -13,7 +13,7 @@
             <!--以下组件显示在此处：[item-right],ion-radio,ion-toggle-->
             <slot name="item-right"></slot>
         </div>
-        <ButtonRipple :diameter="140" />
+        <ButtonRipple :ripple="showRipple" :diameter="140"/>
     </div>
 </template>
 <script type="text/javascript">
@@ -47,7 +47,8 @@
           'item-label-fixed': false,
           'item-label-floating': false,
           'item-label-stacked': false
-        }
+        },
+        showRipple: this.$config && this.$config.get('ripple', false) && this.detailPush
       }
     },
     props: {
@@ -77,9 +78,6 @@
       }
     },
     methods: {
-      /**
-       * 点击代理
-       * */
       $_clickHandler ($event) {
         this.$emit('click', $event)
       }

@@ -1,5 +1,6 @@
 $EASING: cubic-bezier(0.36, 0.66, 0.04, 1);
 $DURATION: 500ms;
+$DELAY: 200ms;
 $CENTER: 0px;
 $OPACITY: opacity;
 $TRANSFORM: -webkit-transform;
@@ -18,7 +19,7 @@ $TRANSFORM_ORIGIN: center center;
 }
 
 .zoom-transition-forward-enter-active {
-  transition: $TRANSFORM $DURATION $EASING, $OPACITY $DURATION $EASING;
+  transition: $TRANSFORM $DURATION $DELAY $EASING, $OPACITY $DURATION $DELAY $EASING;
   transform-origin: $TRANSFORM_ORIGIN;
 }
 

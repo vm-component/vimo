@@ -21,7 +21,7 @@ $button-ripple-background-color: #555 !default;
   background-color: $button-ripple-background-color;
   opacity: 0.2;
   transition-timing-function: ease-in-out;
-  will-change: transform, opacity;
+  // 不能使用will-change
   
   @include border-radius(50%);
   @include transform-origin(center, center);

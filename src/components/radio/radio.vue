@@ -3,22 +3,25 @@
         <div class="radio-icon" :class="{'radio-checked':isChecked}">
             <div class="radio-inner"></div>
         </div>
-        <button role="radio" @click="onPointerDownHandler($event)"
-                type="button"
-                :id="id"
-                ion-button="item-cover"
-                class="item-cover">
-        </button>
+        <vm-button role="radio" @click="onPointerDownHandler($event)"
+                   type="button"
+                   :id="id"
+                   ion-button="item-cover"
+                   class="item-cover">
+        </vm-button>
     </div>
 </template>
 <script type="text/javascript">
-
   import { setElementClass } from '../../util/util'
   import { isTrueProperty } from '../../util/type'
+  import Button from '../button'
 
   let id = 0
   export default {
     name: 'Radio',
+    components: {
+      'vm-button': Button
+    },
     inject: {
       itemComponent: {
         from: 'itemComponent',

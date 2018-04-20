@@ -35,7 +35,8 @@
             <vm-button clear
                        class="searchbar-clear-icon"
                        :mode="mode"
-                       @click.capture="clearInput($event)"
+                       @click="clearInput($event)"
+                       @mousedown="clearInput($event)"
                        role="button"></vm-button>
         </div>
 
@@ -248,14 +249,14 @@
        * @private
        */
       onBlurHandler ($event) {
-        // shouldBlur: 是否真正的blur, 因为当点击clearBtn时, 需要再次focus, 所以等到16*4ms后, 判断是否blue
-        // shouldBlur determines if it should blur
-        // if we are clearing the input we still want to stay focused in the input
-        // wait for DOM update, because of focus method
         window.setTimeout(() => {
+          // shouldBlur: 是否真正的blur, 因为当点击clearBtn时, 需要再次focus, 所以等到16*4ms后, 判断是否blue
+          // shouldBlur determines if it should blur
+          // if we are clearing the input we still want to stay focused in the input
+          // wait for DOM update, because of focus method
           if (!this.shouldBlur) {
-            this.sbHasFocus = true
             this.searchbarInputElement.focus()
+            this.sbHasFocus = true
           } else {
             /**
              * @event component:Searchbar#onBlur
@@ -267,13 +268,14 @@
             this.positionElements()
           }
           this.shouldBlur = true
-        }, 16 * 4)
+        }, 200)
       },
       /**
        * Clears the input field and triggers the control change.
        * @private
        */
       clearInput ($event) {
+        this.shouldBlur = false
         this.searchbarInputElement.focus()
         /**
          * @event component:Searchbar#onClear
@@ -281,7 +283,7 @@
          * @property {object} $event - 事件对象
          */
         this.$emit('onClear', $event)
-        this.shouldBlur = false
+
         if (this.theValue) {
           this.theValue = null
           this.$emit('input', this.theValue)
