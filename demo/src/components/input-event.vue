@@ -2,16 +2,14 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Event</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
             <List>
-                <ListHeader>
-                    <span>事件测试</span>
-                </ListHeader>
+                <ListHeader>Demo</ListHeader>
                 <Item>
-                    <Label color="primary">短文本</Label>
+                    <Label color="primary">{{$t('shortText')}}</Label>
                     <Input type="text"
                            clear-input
                            :regex=regex
@@ -21,15 +19,15 @@
                            @onInput="onInputHandler"
                            @onValid="onValidHandler"
                            @onInvalid="onInvalidHandler"
-                           placeholder="'XX-XX-XXX' 数字格式"></Input>
+                           :placeholder="$t('placeholder')"></Input>
                 </Item>
                 <Item>
-                    <Label fixed slot="item-left">验证条件</Label>
+                    <Label fixed slot="item-left">{{$t('verif')}}</Label>
                     <p>{{regex.toString()}}</p>
                 </Item>
             </List>
             <p class="event__p">
-                <strong>触发记录:</strong>
+                <strong>{{$t('trigger')}}:</strong>
             </p>
             <ul class="event__ul">
                 <li class="event__li" v-for="(item,index) in eventListDisplay.reverse()" :key="index">
@@ -37,7 +35,7 @@
                     <span text-uppercase class="eventType" :class="item.eventType">{{item.eventType}}</span>
                     <span>{{item.msg}}</span>
                 </li>
-                <li v-if="eventListDisplay.length === 0">空</li>
+                <li v-if="eventListDisplay.length === 0">{{$t('empty')}}</li>
             </ul>
         </Content>
     </Page>
@@ -45,6 +43,26 @@
 <script type="text/javascript">
   export default {
     name: 'InputEventDemo',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '输入事件',
+          shortText: '短文本',
+          verif: '验证条件',
+          trigger: '触发记录',
+          empty: '空',
+          placeholder: "'XX-XX-XXX' 数字格式",
+        },
+        'en-US': {
+          title: 'Event',
+          shortText: 'Short text',
+          verif: 'Conditions',
+          trigger: 'Trigger record',
+          empty: 'empty',
+          placeholder: "'XX-XX-XXX' format number",
+        }
+      }
+    },
     data () {
       return {
         regex: /\d{2}-\d{2}-\d{3}/,
