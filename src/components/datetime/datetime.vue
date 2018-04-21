@@ -53,7 +53,7 @@
         theMin: this.min,
         theMax: this.max,
         theValue: {},
-        locale: {}
+        locale: {} // locale数据汇总
       }
     },
     props: {
@@ -65,25 +65,52 @@
       placeholder: String,
       value: [String, Object, Date],
 
-      cancelText: {                     // 取消的显示文本
-        type: String,
-        default: '取消'
-      },
-      doneText: {                       // 确定的显示文本
-        type: String,
-        default: '确认'
-      },
-
       yearValues: [String, Array],      // 显示可以选择的 年 信息, 例如: "2024,2020,2016,2012,2008"
       monthValues: [String, Array],     // 显示可以选择的 月 信息, 例如: "6,7,8"
       dayValues: [String, Array],       // 显示可以选择的 日 信息, 例如: "6,7,8"
       hourValues: [String, Array],      // 显示可以选择的 小时 信息,
       minuteValues: [String, Array],    // 显示可以选择的 分钟 信息,
 
-      monthNames: [String, Array],               // 每个月 的名字
-      monthShortNames: [String, Array],          // 每个月 的短名字
-      dayNames: [String, Array],                  // 每天 的显示名字
-      dayShortNames: [String, Array],            // 每天 的显示名字
+      // 取消的显示文本
+      cancelText: {
+        type: String,
+        default () {
+          return (this.$i18n && this.$i18n.te('vimo.cancelText')) ? this.$i18n.t('vimo.cancelText') : (this.$config ? this.$config.get('cancelText') : '取消')
+        }
+      },
+      // 确定的显示文本
+      doneText: {
+        type: String,
+        default () {
+          return (this.$i18n && this.$i18n.te('vimo.confirmText')) ? this.$i18n.t('vimo.confirmText') : (this.$config ? this.$config.get('confirmText') : '确认')
+        }
+      },
+
+      // locale
+      monthNames: {
+        type: [String, Array],
+        default () {
+          return (this.$i18n && this.$i18n.te('vimo.monthNames')) ? this.$i18n.t('vimo.monthNames') : (this.$config ? this.$config.get('monthNames') : '')
+        }
+      },
+      monthShortNames: {
+        type: [String, Array],
+        default () {
+          return (this.$i18n && this.$i18n.te('vimo.monthShortNames')) ? this.$i18n.t('vimo.monthShortNames') : (this.$config ? this.$config.get('monthShortNames') : '')
+        }
+      },
+      dayNames: {
+        type: [String, Array],
+        default () {
+          return (this.$i18n && this.$i18n.te('vimo.dayNames')) ? this.$i18n.t('vimo.dayNames') : (this.$config ? this.$config.get('dayNames') : '')
+        }
+      },
+      dayShortNames: {
+        type: [String, Array],
+        default () {
+          return (this.$i18n && this.$i18n.te('vimo.dayShortNames')) ? this.$i18n.t('vimo.dayShortNames') : (this.$config ? this.$config.get('dayShortNames') : '')
+        }
+      },
 
       pickerOptions: {
         type: Object,
@@ -350,16 +377,18 @@
           })
         })
 
+        const FontSize = 22
+
         if (columns.length === 2) {
           let width = Math.max(columns[0], columns[1])
           pickerColumns[0].align = 'right'
           pickerColumns[1].align = 'left'
-          pickerColumns[0].optionsWidth = pickerColumns[1].optionsWidth = `${width * 17}px`
+          pickerColumns[0].optionsWidth = pickerColumns[1].optionsWidth = `${width * FontSize}px`
         } else if (columns.length === 3) {
           let width = Math.max(columns[0], columns[2])
           pickerColumns[0].align = 'right'
-          pickerColumns[1].columnWidth = `${columns[1] * 17}px`
-          pickerColumns[0].optionsWidth = pickerColumns[2].optionsWidth = `${width * 17}px`
+          pickerColumns[1].columnWidth = `${columns[1] * FontSize}px`
+          pickerColumns[0].optionsWidth = pickerColumns[2].optionsWidth = `${width * FontSize}px`
           pickerColumns[2].align = 'left'
         }
       },

@@ -2,22 +2,16 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Basic</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-
-            <h5>简介</h5>
-            <p>Picker组件将顶部的button和每列的属性都发放给外部进行自定义, 此外, 每列的columns可以附加前缀和后缀, 比如说明这列是Hour, 右边列是Minus等, 另外, 列的宽度也可定义.</p>
-
-            <Button block @click="simpleColumns">simple</Button>
             <Button block @click="oneColumns">1 Columns</Button>
             <Button block @click="twoColumns">2 Columns</Button>
             <Button block @click="threeColumns">3 Columns</Button>
             <Button block @click="prefixLabel">Prefix Label</Button>
             <Button block @click="suffixLabel">Suffix Label</Button>
             <Button block @click="columnSizes">Columns with sizes</Button>
-
             <p padding>
                 <code>Smoothie: {{ smoothie }}</code><br>
                 <code>Timer: {{ timer }}</code><br>
@@ -25,58 +19,30 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
-
-</style>
 <script type="text/javascript">
   export default {
-    name: 'name',
+    name: 'DemoNormalPick',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '基础使用',
+          confirm: '确认',
+          cancel: '取消'
+        },
+        'en-US': {
+          title: 'Basic Usage',
+          confirm: 'Confirm',
+          cancel: 'Cancel'
+        }
+      }
+    },
     data () {
       return {
         smoothie: '',
         timer: ''
       }
     },
-    props: {},
-    watch: {},
-    computed: {},
     methods: {
-      simpleColumns () {
-        let options = []
-        for (let i = 0; i < 30; i++) {
-          let val = '1'
-          for (let j = 0; i > j; j++) {
-            val += 1
-          }
-          options.push({
-            text: val
-          })
-        }
-        this.$picker.present({
-          buttons: [
-            {
-              text: '取消',
-              role: 'cancel',
-              handler: (data) => {
-                console.log(JSON.stringify(data))
-              }
-            },
-            {
-              text: '确认',
-              handler: (data) => {
-                console.log(JSON.stringify(data))
-              }
-            }
-          ],
-          columns: [
-            {
-              name: 'flavor2',
-              selectedIndex: 2,
-              options: options
-            }
-          ]
-        })
-      },
       oneColumns () {
         let column = [
           {text: 'Mango'},
@@ -104,14 +70,14 @@
         let options = {
           buttons: [
             {
-              text: '取消',
+              text: this.$t('cancel'),
               role: 'cancel',
               handler: (data) => {
                 console.log(JSON.stringify(data))
               }
             },
             {
-              text: '确认',
+              text: this.$t('confirm'),
               handler: (data) => {
                 this.smoothie = `${data.flavor1.value}`
               }
@@ -132,11 +98,11 @@
         this.$picker.present({
           buttons: [
             {
-              text: 'Cancel',
+              text: this.$t('cancel'),
               role: 'cancel'
             },
             {
-              text: 'Done',
+              text: this.$t('confirm'),
               handler: (data) => {
                 this.smoothie = `${data.flavor1.value} ${data.flavor2.value}`
                 console.log(data)
@@ -199,11 +165,11 @@
         this.$picker.present({
           buttons: [
             {
-              text: 'Cancel',
+              text: this.$t('cancel'),
               role: 'cancel'
             },
             {
-              text: 'Done',
+              text: this.$t('confirm'),
               handler: (data) => {
                 this.smoothie = `${data.flavor1.value} ${data.flavor2.value}`
                 console.log(data)
@@ -414,13 +380,6 @@
           ]
         })
       }
-
-    },
-    created () {},
-    mounted () {},
-    activated () {},
-    deactivate () {},
-    components: {},
-    destroyed () {}
+    }
   }
 </script>

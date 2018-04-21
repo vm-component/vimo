@@ -2,12 +2,12 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>日期范围选择</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
             <List>
-                <ListHeader>选择范围</ListHeader>
+                <ListHeader>Demo</ListHeader>
                 <Item>
                     <Label>
                         2017/07/01 ~ 2017/12/01
@@ -17,7 +17,6 @@
                               max="2017-12-01"
                     ></Datetime>
                 </Item>
-
                 <Item>
                     <Label>
                         2017/01/01 ~ 2017/12/01
@@ -41,23 +40,20 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
-
-</style>
 <script type="text/javascript">
-  export default{
-    name: 'name',
-    data () {
-      return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {},
-    mounted () {},
-    activated () {},
-    deactivate () {},
-    destroyed () {}
+  export default {
+    name: 'DemoRangePicker',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '日期范围选择'
+
+        },
+        'en-US': {
+          title: 'RangePicker'
+
+        }
+      }
+    }
   }
 </script>

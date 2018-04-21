@@ -2,19 +2,18 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Datetime Picker</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
 
             <div padding>
-                <h5>简介</h5>
-                <p>
-                    时间选择器可以根据指定的日期格式选择制定日期, 或者指定的时间段. 通过v-model可以穿入如下类型: Date日起对象/ISO格式的时间String/能转化为Date对象的字符串 这三类. 但是v-model返回的数据都是ISO格式日期String, 如果期望返回每个column返回的详细结果, 请监听onChange事件.</p>
+                <h5>{{$t('notice')}}:</h5>
+                <p>{{$t('noticeInfo')}}</p>
             </div>
 
             <List>
-                <ListHeader>Choose Date</ListHeader>
+                <ListHeader>Demo</ListHeader>
                 <Item>
                     <Label>Default</Label>
                     <Datetime slot="item-right"></Datetime>
@@ -152,6 +151,20 @@
 <script type="text/javascript">
   export default{
     name: 'datetime',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '日期时间选择',
+          notice: '注意',
+          noticeInfo: '时间选择器可以根据指定的日期格式选择制定日期, 或者指定的时间段. 通过v-model可以穿入如下类型: Date日起对象/ISO格式的时间String/能转化为Date对象的字符串 这三类. 但是v-model返回的数据都是ISO格式日期String, 如果期望返回每个column返回的详细结果, 请监听onChange事件.',
+        },
+        'en-US': {
+          title: 'DateTime Picker',
+          notice: 'Notice',
+          noticeInfo: 'The time chooser can choose the date of designation according to the specified date format, or the specified time period. Through the v-model you can pass through the following types: Date Date Object/ISO format time String/String that can be converted to Date object These three The class. But the data returned by the v-model is the ISO format date String. If you want to return the detailed results returned by each column, listen to the onChange event.',
+        }
+      }
+    },
     data () {
       return {
         myDate: new Date(),

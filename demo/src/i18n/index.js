@@ -6,6 +6,7 @@ Vue.use(VueI18n)
 
 const i18n = new VueI18n({
   locale: 'en-US', // set locale
+  // locale: 'zh-CN', // set locale
   fallbackLocale: 'en-US',
   messages // set locale messages
 })

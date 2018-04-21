@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Picker</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
@@ -23,12 +23,14 @@
     i18n: {
       messages: {
         'zh-CN': {
+          title: '单多列选择器',
           basic: '基础使用',
           pickerTime: '日期事件选择',
           rangePicker: '日期范围选择',
           cityPicker: '城市选择'
         },
         'en-US': {
+          title: 'Picker',
           basic: 'Basic Usage',
           pickerTime: 'DateTime Picker',
           rangePicker: 'Range Picker',
