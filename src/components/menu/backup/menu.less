@@ -1,0 +1,155 @@
+@import "../../../style/index.less";
+
+// Menu
+// --------------------------------------------------
+
+@menu-width: 304px;
+@menu-small-width: @menu-width - 40px;
+
+.#{$prefix}-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 1;
+  display: none;
+  overflow: hidden;
+
+  //contain: layout style;
+}
+
+.#{$prefix}-menu.show-menu {
+  display: block;
+}
+
+.menu-inner {
+  position: fixed;
+  top: 0;
+  right: auto;
+  bottom: 0;
+  left: 0;
+
+  z-index: 10;
+
+  display: block;
+
+  width: @menu-width;
+  height: 100%;
+
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  // inner从左边进入出去
+  //transform: translate3d(0, 0, 0);
+  transition: all cubic-bezier(0, 0, 0, 1) 280ms;
+  //contain: layout style;
+}
+
+.#{$prefix}-menu[side=right] > .menu-inner {
+  right: 0;
+  left: auto;
+}
+
+.#{$prefix}-menu .#{$prefix}-backdrop {
+  z-index: -1;
+}
+
+// Nav组件的class
+.menu-content {
+  transition: all cubic-bezier(0, 0, 0.6, 1) 280ms;
+}
+
+.menu-content-open {
+  cursor: pointer;
+}
+
+.menu-content-open .#{$prefix}-pane,
+.menu-content-open .#{$prefix}-content,
+.menu-content-open .toolbar {
+  // the containing element itself should be clickable but
+  // everything inside of it should not clickable when menu is open
+  pointer-events: none;
+}
+
+.menu-content-reveal.#{$prefix}-nav {
+  position: absolute;
+}
+
+.menu-content-reveal.menu-content-open {
+  left: 304px;
+  @media (max-width: 340px) {
+    left: 264px;
+  }
+}
+
+.menu-content-reveal.menu-content-right.menu-content-open {
+  left: -304px;
+  @media (max-width: 340px) {
+    left: -264px;
+  }
+}
+
+@media (max-width: 340px) {
+  .menu-inner {
+    width: @menu-small-width;
+  }
+}
+
+// Menu Reveal
+// --------------------------------------------------
+// The content slides over to reveal the menu underneath.
+// The menu itself, which is under the content, does not move.
+
+.#{$prefix}-menu[type=reveal] {
+}
+
+.#{$prefix}-menu[type=reveal].show-menu {
+  //z-index: 0;
+}
+
+.#{$prefix}-menu[type=reveal] .menu-inner {
+  //transform: translate3d(0, 0, 0);
+}
+
+.#{$prefix}-menu[type=reveal].show-menu .menu-inner {
+  //transform: translate3d(0, 0, 0);
+}
+
+// Menu Overlay
+// --------------------------------------------------
+// The menu slides over the content. The content
+// itself, which is under the menu, does not move.
+.#{$prefix}-menu[type=overlay] {
+}
+
+.#{$prefix}-menu[type=overlay].show-menu {
+  z-index: @z-index-overlay + @z-index-overlay-sheet;
+}
+
+/*slide-in-left*/
+/*animate class*/
+.slide-in-left-enter-active,
+.slide-in-left-leave-active {
+  left: 0;
+}
+
+.slide-in-left-enter,
+.slide-in-left-leave-active {
+  left: -100%;
+  transition: all cubic-bezier(0.2, 0, 1, 1) 280ms;
+}
+
+/*slide-in-right*/
+/*animate class*/
+.slide-in-right-enter-active,
+.slide-in-right-leave-active {
+  right: 0 !important;
+}
+
+.slide-in-right-enter,
+.slide-in-right-leave-active {
+  right: -100% !important;
+  transition: all cubic-bezier(0, 0, 1, 1) 280ms;
+}

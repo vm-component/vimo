@@ -1,0 +1,62 @@
+// Default Theme
+// ----------------------------------
+@import "mixins";
+
+@colors: primary, secondary, danger, light, dark;
+@primary: #327eff;
+@secondary: #32db64;
+@danger: #f53d3d;
+@light: #f4f4f4;
+@dark: #222;
+
+@contrast-threshold: 90%; // (反色)对比度倾向阈值 -> 需要微调
+@darken-amount: 2%; // 变暗(color-shade)的百分比, 一般用于按下效果 -> 需要微调
+
+@text-color: #000;
+@link-color: @primary;
+@background-color: #fff;
+@subdued-text-color: #666;
+
+@content-outer-background: #efeff4; // Background color of the outer content
+@content-ios-outer-background: @content-outer-background; // Background color of the outer content
+@content-md-outer-background: #ffffff; // Background color of the outer content
+
+@font-family-base: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
+@font-size-base: 14px; // 1.4rem == 14px
+
+@content-padding: 16px;
+@content-margin: 16px;
+
+@toolbar-height: 44px;
+@toolbar-padding: 4px;
+@toolbar-border-color: rgba(0, 0, 0, .3);
+@toolbar-background: #f8f8f8;
+@toolbar-border-color: #b2b2b2;
+@toolbar-text-color: @text-color;
+@toolbar-active-color: @link-color;
+@toolbar-inactive-color: #8c8c8c;
+
+@tabs-background: #f8f8f8;
+@tabs-border-color: #b2b2b2;
+@tabs-tab-color-inactive: #8c8c8c;
+@tabs-tab-color-active: @link-color;
+
+@list-text-color: @text-color;
+@list-background-color: @background-color;
+@list-border-color: #c8c7cc;
+
+// Hairline width
+//@hairlines-width: .55px;
+@hairlines-width: 1px;
+
+// Input
+// --------------------------------------------------
+
+/// @prop - Color of the input highlight when valid
+@text-input-highlight-color-valid: #32db64;
+
+/// @prop - Color of the input highlight when invalid
+@text-input-highlight-color-invalid: #f53d3d;
+
+/// @prop - Color of the input placeholder
+@text-input-placeholder-color: #999;

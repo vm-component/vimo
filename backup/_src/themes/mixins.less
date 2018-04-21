@@ -1,0 +1,34 @@
+// Appearance
+// --------------------------------------------------
+.appearance(@val) {
+  -moz-appearance: @val;
+  -ms-appearance: @val;
+  -webkit-appearance: @val;
+  appearance: @val;
+}
+
+// Input Placeholder
+// --------------------------------------------------
+.placeholder(@color: #999, @text-indent: 0) {
+  &::-moz-placeholder { // Firefox 19+
+    color: @color;
+  }
+
+  &:-ms-input-placeholder {
+    color: @color;
+  }
+
+  &::-webkit-input-placeholder {
+    // Safari placeholder margin issue
+    text-indent: @text-indent;
+    color: @color;
+  }
+}
+
+// SVG Background Image Mixin
+// --------------------------------------------------
+
+.svg-background-image(@svg) {
+  @url: `encodeURIComponent(@{svg}) `;
+  background-image: url("data:image/svg+xml;charset=utf-8,@{url}");
+}

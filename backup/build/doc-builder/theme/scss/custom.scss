@@ -1,0 +1,199 @@
+.vimo {
+  margin-top: 10px;
+  padding: 20px 0px;
+  background: #f9f9f9;
+  border-radius: 5px;
+
+  .vimo__imgBox {
+    height: 125px;
+    width: 125px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 100%;
+    overflow: hidden;
+    .vimo__imgBox--img {
+      height: 100%;
+      width: 100%;
+      border-radius: 100%;
+    }
+  }
+  .vimo__title {
+    text-align: center;
+    h2 {
+      font-size: 28px;
+      margin: 20px 0 15px;
+      font-weight: bold;
+    }
+    p {
+      margin: 0;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+  }
+  .vimo__iframe {
+    text-align: center;
+    iframe {
+      width: 90px;
+    }
+  }
+}
+
+* {
+  //outline: 1px solid #ddd;
+}
+
+.page-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  .readme {
+    width: 100%;
+    p > img {
+      max-width: 100%;
+    }
+  }
+  .content {
+    width: 100%;
+    //min-width: 700px;
+    max-width: 1200px;
+  }
+  $width: 467px;
+  .showcase {
+    //height: 1000px;
+    width: $width;
+    display: block;
+    position: relative;
+
+    flex: 1 0 $width;
+    .showcase__box {
+      width: $width;
+      //height: $width * 568px / 467px;
+
+      margin: 0 auto;
+      text-align: center;
+      position: fixed;
+      top: 30px;
+      //transform: scale(0.8);
+      transform-origin:top center;
+      &.ios {
+        .showcase__box--ios {
+          display: block !important;
+        }
+        .showcase__choose {
+          #js_choose_ios {
+            font-weight: bold;
+            border-radius: 20px;
+            background: #00663d;
+            color: #fff;
+          }
+        }
+      }
+
+      &.md {
+        .showcase__box--md {
+          display: block !important;
+        }
+        .showcase__choose {
+          #js_choose_md {
+            font-weight: bold;
+            border-radius: 20px;
+            background: #00663d;
+            color: #fff;
+          }
+        }
+      }
+  
+      &.qrcode {
+        .showcase__box--qrcode {
+          display: block !important;
+        }
+        .showcase__choose {
+          #js_choose_qrcode {
+            font-weight: bold;
+            border-radius: 20px;
+            background: #00663d;
+            color: #fff;
+          }
+        }
+      }
+
+      .showcase__box--ios {
+        text-align: center;
+        display: none;
+        width: $width;
+        height: $width * 800px / 467px;
+        background: url(../asset/img/devices-sprite.jpg) no-repeat center top/ $width auto;
+        iframe {
+          margin-top: 85px;
+          width: $width * 320px / 467px;
+          height: $width * 568px / 467px;
+        }
+      }
+      .showcase__box--md {
+        text-align: center;
+        display: none;
+        width: $width;
+        height: $width * 800px / 467px;
+        background: url(../asset/img/devices-sprite.jpg) no-repeat center bottom/ $width auto;
+
+        iframe {
+          margin-top: 64px;
+          width: $width * 360px / 467px;
+          height: $width * 590px / 467px;
+        }
+      }
+  
+      .showcase__box--qrcode {
+        text-align: center;
+        display: none;
+        width: $width;
+        height: $width * 800px / 467px;
+      }
+      
+      
+      iframe {
+        border: none;
+        outline: none;
+      }
+      .showcase__choose {
+        height: 35px;
+        text-align: center;
+        span {
+          font-size: 14px;
+          color: #00663d;
+          cursor: pointer;
+          padding: 5px 10px;
+          margin: 0 0px;
+        }
+
+        .active {
+          font-weight: bold;
+          border-radius: 20px;
+          background: #00663d;
+          color: #fff;
+        }
+
+      }
+
+      .showcase__qrcode {
+        text-align: center;
+        margin: 0 auto;
+        padding-top: 40px;
+        .showcase__qrcode--inner {
+          display: block;
+          width: 200px;
+          height: 200px;
+          border: 1px solid #ddd;
+          margin: 0 auto 10px;
+        }
+      }
+    }
+
+  }
+
+}
+
+// 将函数名前面的static隐藏掉
+h4.name > span.type-signature:first-child {
+  display: none;
+}

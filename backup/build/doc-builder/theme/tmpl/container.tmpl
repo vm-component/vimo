@@ -1,0 +1,292 @@
+<?js
+    var self = this;
+    var isGlobalPage;
+
+    docs.forEach(function(doc, i) {
+?>
+
+<?js
+    // we only need to check this once
+    if (typeof isGlobalPage === 'undefined') {
+        isGlobalPage = (doc.kind === 'globalobj');
+    }
+?>
+<?js if (doc.kind === 'mainpage' || (doc.kind === 'package')) { ?>
+<?js= self.partial('mainpage.tmpl', doc) ?>
+<?js } else if (doc.kind === 'source') { ?>
+<?js= self.partial('source.tmpl', doc) ?>
+<?js } else { ?>
+
+<section class="page-content">
+
+    <div class="content">
+        <header>
+            <?js if (!doc.longname || doc.kind !== 'module') { ?>
+            <h2><?js if (doc.ancestors && doc.ancestors.length) { ?>
+                <span class="ancestors"><?js= doc.ancestors.join('') ?></span>
+                <?js } ?>
+                <?js= doc.name ?>
+                <?js if (doc.variation) { ?>
+                <sup class="variation"><?js= doc.variation ?></sup>
+                <?js } ?></h2>
+            <?js if (doc.classdesc) { ?>
+            <div class="class-description"><?js= doc.classdesc ?></div>
+            <?js } ?>
+            <?js } else if (doc.kind === 'module' && doc.modules) { ?>
+            <?js doc.modules.forEach(function(module) { ?>
+            <?js if (module.classdesc) { ?>
+            <div class="class-description"><?js= module.classdesc ?></div>
+            <?js } ?>
+            <?js }) ?>
+            <?js } ?>
+        </header>
+
+        <article>
+            <div class="container-overview">
+
+                <?js if (doc.description) { ?>
+                <div class="description"><?js= doc.description ?></div>
+                <?js } ?>
+
+                <?js if (doc.kind === 'module' && doc.modules) { ?>
+                <?js doc.modules.forEach(function(module) { ?>
+                <?js= self.partial('method.tmpl', module) ?>
+                <?js }) ?>
+                <?js } else if (doc.kind === 'class') { ?>
+                <?js= self.partial('method.tmpl', doc) ?>
+                <?js } else { ?>
+                <?js= self.partial('details.tmpl', doc) ?>
+
+                <!--<?js if (doc.description) { ?>-->
+                <!--<div class="description"><?js= doc.description ?></div>-->
+                <!--<?js } ?>-->
+
+                <?js if (doc.examples && doc.examples.length) { ?>
+                <h3>示例 / Example<?js= doc.examples.length > 1? 's':'' ?></h3>
+                <?js= self.partial('examples.tmpl', doc.examples) ?>
+                <?js } ?>
+                <?js } ?>
+            </div>
+
+            <?js if (doc.augments && doc.augments.length) { ?>
+            <h3 class="subsection-title">继承 / Extends</h3>
+
+            <?js= self.partial('augments.tmpl', doc) ?>
+            <?js } ?>
+
+            <?js if (doc.requires && doc.requires.length) { ?>
+            <h3 class="subsection-title">依赖 / Requires</h3>
+
+            <ul><?js doc.requires.forEach(function(r) { ?>
+                <li><?js= self.linkto(r, r) ?></li>
+                <?js }); ?></ul>
+            <?js } ?>
+
+            <?js
+        var classes = self.find({kind: 'class', memberof: doc.longname});
+        if (!isGlobalPage && classes && classes.length) {
+    ?>
+            <h3 class="subsection-title">类 / Classes</h3>
+
+            <dl><?js classes.forEach(function(c) { ?>
+                <dt><?js= self.linkto(c.longname, c.name) ?></dt>
+                <dd><?js if (c.summary) { ?><?js= c.summary ?><?js } ?></dd>
+                <?js }); ?></dl>
+            <?js } ?>
+
+            <?js
+        var mixins = self.find({kind: 'mixin', memberof: doc.longname});
+        if (!isGlobalPage && mixins && mixins.length) {
+    ?>
+            <h3 class="subsection-title">混合 / Mixins</h3>
+
+            <dl><?js mixins.forEach(function(m) { ?>
+                <dt><?js= self.linkto(m.longname, m.name) ?></dt>
+                <dd><?js if (m.summary) { ?><?js= m.summary ?><?js } ?></dd>
+                <?js }); ?></dl>
+            <?js } ?>
+
+            <?js
+        var namespaces = self.find({kind: 'namespace', memberof: doc.longname});
+        if (!isGlobalPage && namespaces && namespaces.length) {
+    ?>
+            <h3 class="subsection-title">命名空间 / Namespaces</h3>
+
+            <dl><?js namespaces.forEach(function(n) { ?>
+                <dt><?js= self.linkto(n.longname, n.name) ?></dt>
+                <dd><?js if (n.summary) { ?><?js= n.summary ?><?js } ?></dd>
+                <?js }); ?></dl>
+            <?js } ?>
+
+            <?js
+        var members = self.find({kind: 'member', memberof: isGlobalPage ? {isUndefined: true} : doc.longname});
+
+        // symbols that are assigned to module.exports are not globals, even though they're not a memberof anything
+        if (isGlobalPage && members && members.length && members.forEach) {
+            members = members.filter(function(m) {
+                return m.longname && m.longname.indexOf('module:') !== 0;
+            });
+        }
+        if (members && members.length && members.forEach) {
+    ?>
+            <h3 class="subsection-title">成员 / Members</h3>
+
+            <?js members.forEach(function(p) { ?>
+            <?js= self.partial('members.tmpl', p) ?>
+            <?js }); ?>
+            <?js } ?>
+
+            <?js
+        var methods = self.find({kind: 'function', memberof: isGlobalPage ? {isUndefined: true} : doc.longname});
+        if (methods && methods.length && methods.forEach) {
+    ?>
+            <h3 class="subsection-title">方法 / Methods</h3>
+
+            <?js methods.forEach(function(m) { ?>
+            <?js= self.partial('method.tmpl', m) ?>
+            <?js }); ?>
+            <?js } ?>
+
+            <?js
+        var typedefs = self.find({kind: 'typedef', memberof: isGlobalPage ? {isUndefined: true} : doc.longname});
+        if (typedefs && typedefs.length && typedefs.forEach) {
+    ?>
+            <h3 class="subsection-title">类型定义 / Type Definitions</h3>
+
+            <?js typedefs.forEach(function(e) {
+                if (e.signature) {
+            ?>
+            <?js= self.partial('method.tmpl', e) ?>
+            <?js
+                }
+                else {
+            ?>
+            <?js= self.partial('members.tmpl', e) ?>
+            <?js
+                }
+            }); ?>
+            <?js } ?>
+
+            <?js
+        var events = self.find({kind: 'event', memberof: isGlobalPage ? {isUndefined: true} : doc.longname});
+        if (events && events.length && events.forEach) {
+    ?>
+            <h3 class="subsection-title">事件 / Events</h3>
+
+            <?js events.forEach(function(e) { ?>
+            <?js= self.partial('method.tmpl', e) ?>
+            <?js }); ?>
+            <?js } ?>
+        </article>
+    </div>
+
+    <?js if (doc.kind === 'module' && doc.demos ) { ?>
+    <article class="showcase">
+        <div id="js_showcase__box" class="showcase__box ios">
+            <div class="showcase__choose">
+                <span id="js_choose_ios" class="">IOS</span>
+                <span id="js_choose_md" class="">Android</span>
+                <span id="js_choose_qrcode" class="">QRCode</span>
+            </div>
+            <div class="showcase__box--md">
+                <iframe id="js_iframe_md" frameborder="0" seamless></iframe>
+            </div>
+            <div class="showcase__box--ios">
+                <iframe id="js_iframe_ios" frameborder="0" seamless></iframe>
+            </div>
+            <div class="showcase__box--qrcode">
+                <div class="showcase__qrcode">
+                   <div class="showcase__qrcode--inner" id="js_qrcode"></div>
+                   <a href="#" id="js_qrcode_a">扫码预览</a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <script>
+      (function () {
+        var demoUrl = '<?js= env.conf.docdash.demoUrl ?>'
+        var demos = '<?js= doc.demos.name ?>'
+        var qrCodeUrl = null
+        var iosUrl = null
+        var mdUrl = null
+        if (demos.indexOf('http') > -1) {
+          qrCodeUrl = demos
+          iosUrl = demos + '?vmMode=ios&vmPageTransition=fade-right-transition'
+          mdUrl = demos + '?vmMode=md&vmPageTransition=zoom-transition'
+        } else {
+          qrCodeUrl = demoUrl + demos
+          iosUrl = demoUrl + '?vmMode=ios&vmPageTransition=fade-right-transition' + demos
+          mdUrl = demoUrl + '?vmMode=md&vmPageTransition=zoom-transition' + demos
+        }
+
+        var $qrcode = document.getElementById('js_qrcode')
+        var $jqrcode_a = document.getElementById('js_qrcode_a')
+        $qrcode.title = qrCodeUrl
+        $jqrcode_a.href = qrCodeUrl
+        var qrcode = new QRCode($qrcode, {
+          width: 200,//设置宽高
+          height: 200
+        })
+        qrcode.makeCode(qrCodeUrl)
+
+        document.getElementById('js_iframe_ios').src = iosUrl
+        document.getElementById('js_iframe_md').src = mdUrl
+
+        document.getElementById('js_choose_ios').addEventListener('click', function () {
+          console.log('js_choose_ios')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'ios')) {
+            _removeClass($showCaseBox, 'md')
+            _removeClass($showCaseBox, 'qrcode')
+            _addClass($showCaseBox, 'ios')
+          }
+
+        })
+        document.getElementById('js_choose_md').addEventListener('click', function () {
+          console.log('js_choose_md')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'md')) {
+            _removeClass($showCaseBox, 'ios')
+            _removeClass($showCaseBox, 'qrcode')
+            _addClass($showCaseBox, 'md')
+          }
+        })
+
+        document.getElementById('js_choose_qrcode').addEventListener('click', function () {
+          console.log('js_choose_qrcode')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'qrcode')) {
+            _removeClass($showCaseBox, 'ios')
+            _removeClass($showCaseBox, 'md')
+            _addClass($showCaseBox, 'qrcode')
+          }
+        })
+
+
+        function _hasClass (obj, cls) {
+          return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+        }
+
+        function _addClass (obj, cls) {
+          if (!_hasClass(obj, cls)) {
+            obj.className += ' ' + cls
+          }
+        }
+
+        function _removeClass (obj, cls) {
+          if (_hasClass(obj, cls)) {
+            var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+            obj.className = obj.className.replace(reg, ' ').trim()
+          }
+        }
+      })()
+    </script>
+    <?js } ?>
+
+</section>
+
+
+<?js } ?>
+
+<?js }); ?>

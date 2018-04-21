@@ -1,0 +1,104 @@
+@import "../../../style/default.md.less";
+
+// Material Design Texarea
+// --------------------------------------------------
+
+/// @prop - Background color of the input
+@text-input-md-background-color: @list-md-background-color;
+
+/// @prop - Margin top of the input
+@text-input-md-margin-top: @item-md-padding-top;
+
+/// @prop - Margin right of the input
+@text-input-md-margin-right: (@item-md-padding-right / 2);
+
+/// @prop - Margin bottom of the input
+@text-input-md-margin-bottom: @item-md-padding-bottom;
+
+/// @prop - Margin left of the input
+@text-input-md-margin-left: (@item-md-padding-left / 2);
+
+/// @prop - Color of the input highlight
+@text-input-md-highlight-color: @primary-md;
+
+/// @prop - Color of the input highlight when valid
+@text-input-md-highlight-color-valid: @text-input-highlight-color-valid;
+
+/// @prop - Color of the input highlight when invalid
+@text-input-md-highlight-color-invalid: @text-input-highlight-color-invalid;
+
+// Material Design Default Texarea
+// --------------------------------------------------
+
+.text-input-md {
+  .placeholder(@text-input-placeholder-color);
+  margin: @text-input-md-margin-top @text-input-md-margin-right @text-input-md-margin-bottom @text-input-md-margin-left;
+  padding: 0;
+
+  width: ~'calc(100% - @{text-input-md-margin-right} - @{text-input-md-margin-left})';
+}
+
+// Material Design Highlighted Texarea
+// --------------------------------------------------
+
+// Input highlight mixin for focus
+// mixin
+.md-input-highlight(@highlight-color) {
+  border-bottom-color: @highlight-color;
+  box-shadow: inset 0 -1px 0 0 @highlight-color; /* no */
+}
+
+// Show the focus highlight when the input has focus
+// In order to get a 2px border we need to add an inset
+// box-shadow 1px (this is to avoid the div resizing)
+.item-md.item-input.input-has-focus.show-focus-highlight .item-inner {
+  .md-input-highlight(@text-input-md-highlight-color);
+}
+
+// The last item in a list has a border on the item, not the
+// inner item, so add it to the item itself
+.list-md .item-input.input-has-focus.show-focus-highlight:last-child {
+  .md-input-highlight(@text-input-md-highlight-color);
+
+  .item-inner {
+    box-shadow: none;
+  }
+}
+
+// Show the valid highlight when it has the .ng-valid class and a value
+.item-md.item-input.ng-valid.input-has-value.show-valid-highlight:not(.input-has-focus) .item-inner {
+  .md-input-highlight(@text-input-md-highlight-color-valid);
+}
+
+.list-md .item-input.ng-valid.input-has-value.show-valid-highlight:not(.input-has-focus):last-child {
+  .md-input-highlight(@text-input-md-highlight-color-valid);
+
+  .item-inner {
+    box-shadow: none;
+  }
+}
+
+// Show the invalid highlight when it has the invalid class and has been touched
+.item-md.item-input.ng-invalid.ng-touched.show-invalid-highlight:not(.input-has-focus) .item-inner {
+  .md-input-highlight(@text-input-md-highlight-color-invalid);
+}
+
+.list-md .item-input.ng-invalid.ng-touched.show-invalid-highlight:not(.input-has-focus):last-child {
+  .md-input-highlight(@text-input-md-highlight-color-invalid);
+
+  .item-inner {
+    box-shadow: none;
+  }
+}
+
+// Material Design Stacked & Floating Inputs
+// --------------------------------------------------
+
+.item-label-stacked .text-input-md,
+.item-label-floating .text-input-md {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: 0;
+
+  width: ~'calc(100% - @{text-input-md-margin-right})';
+}

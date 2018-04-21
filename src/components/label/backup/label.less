@@ -1,0 +1,78 @@
+@import "../../../style/index.less";
+
+// Label
+// --------------------------------------------------
+
+/// @prop - ling-height of label
+@label-line-height: 18px;
+
+// Label
+// --------------------------------------------------
+
+.#{$prefix}-label {
+  display: block;
+  overflow: hidden;
+
+  flex: 1;
+
+  margin: 0;
+
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  line-height: @label-line-height;
+}
+
+.item-input .#{$prefix}-label {
+  flex: initial;
+
+  max-width: 200px;
+
+  pointer-events: none;
+}
+
+[text-wrap] .#{$prefix}-label {
+  white-space: normal;
+}
+
+// Stacked & Floating Inputs
+// --------------------------------------------------
+
+.#{$prefix}-label[fixed] {
+  flex: 0 0 100px;
+
+  width: 100px;
+  min-width: 100px;
+  max-width: 200px;
+}
+
+.item-label-stacked .#{$prefix}-label,
+.item-label-floating .#{$prefix}-label {
+  align-self: stretch;
+
+  width: auto;
+  max-width: 100%;
+}
+
+.#{$prefix}-label[stacked],
+.#{$prefix}-label[floating] {
+  margin-bottom: 0;
+}
+
+.item-label-stacked .input-wrapper,
+.item-label-floating .input-wrapper {
+  flex: 1;
+  flex-direction: column;
+}
+
+.item-label-stacked .#{$prefix}-select,
+.item-label-floating .#{$prefix}-select {
+  align-self: stretch;
+
+  max-width: 100%;
+}
+
+.item-select .#{$prefix}-label[floating] {
+  transform: translate3d(0, 0, 0) scale(.8);
+}
