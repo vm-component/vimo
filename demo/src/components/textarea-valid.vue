@@ -2,16 +2,16 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Valid</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content>
             <List>
                 <ListHeader>
-                    <span>必填验证</span>
+                    <span>Demo(Need Check)</span>
                 </ListHeader>
                 <Item>
-                    <Label stacked color="primary">地址</Label>
+                    <Label stacked color="primary">Address</Label>
                     <Textarea placeholder="Required..." showFocusHighlight required></Textarea>
                 </Item>
             </List>
@@ -19,8 +19,19 @@
     </Page>
 </template>
 <script type="text/javascript">
+  // TODO: 需要完善这个示例
   export default {
-    name: 'InputDemo',
+    name: 'DemoTextareaValid',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '输入验证'
+        },
+        'en-US': {
+          title: 'Valid'
+        }
+      }
+    },
     data () {
       return {
         testValue: 'hello',

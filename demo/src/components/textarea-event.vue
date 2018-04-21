@@ -2,16 +2,13 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Event</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
             <List>
-                <ListHeader>
-                    <span>事件测试</span>
-                </ListHeader>
+                <ListHeader>Demo</ListHeader>
                 <Item>
-                    <Label color="primary">短文本</Label>
                     <Textarea @onKeyup.enter="submit"
                               autosize
                               @onBlur="onBlurtHandler"
@@ -21,7 +18,7 @@
                 </Item>
             </List>
             <p class="event__p">
-                <strong>触发记录:</strong>
+                <strong>Record:</strong>
             </p>
             <ul class="event__ul">
                 <li class="event__li" v-for="(item,index) in eventListDisplay.reverse()" :key="index">
@@ -29,7 +26,7 @@
                     <span text-uppercase class="eventType" :class="item.eventType">{{item.eventType}}</span>
                     <span>{{item.msg}}</span>
                 </li>
-                <li v-if="eventListDisplay.length === 0">空</li>
+                <li v-if="eventListDisplay.length === 0">{{$t('empty')}}</li>
             </ul>
         </Content>
     </Page>
@@ -37,6 +34,18 @@
 <script type="text/javascript">
   export default {
     name: 'TextareaEventDemo',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '输入事件',
+          empty: '输入事件',
+        },
+        'en-US': {
+          title: 'Event',
+          empty: 'Empty',
+        }
+      }
+    },
     data () {
       return {
         eventList: []

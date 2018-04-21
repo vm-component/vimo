@@ -2,13 +2,13 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Normal</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
             <List>
                 <ListHeader>
-                    <span>布局</span>
+                    <span>With Label</span>
                 </ListHeader>
                 <Item>
                     <Label color="primary">Inline Label</Label>
@@ -33,33 +33,33 @@
             </List>
             <List>
                 <Item>
-                    <Label color="primary" stacked>计数</Label>
-                    <Textarea :count="10000"  placeholder="输入文本"></Textarea>
+                    <Label color="primary" stacked>Input Count</Label>
+                    <Textarea :count="10000" placeholder="Please input text..."></Textarea>
                 </Item>
                 <Item>
-                    <Label color="primary" stacked>聚焦高亮</Label>
-                    <Textarea showFocusHighlight placeholder="输入文本"></Textarea>
+                    <Label color="primary" stacked>Highlighting</Label>
+                    <Textarea showFocusHighlight placeholder="Please input text..."></Textarea>
                 </Item>
                 <Item>
-                    <Label color="primary" stacked>自动高度</Label>
-                    <Textarea autosize placeholder="输入文本"></Textarea>
+                    <Label color="primary" stacked>Auto Height</Label>
+                    <Textarea autosize placeholder="Please input text..."></Textarea>
                 </Item>
                 <Item>
-                    <Label color="primary" stacked>禁用</Label>
-                    <Textarea :rows="1" disabled placeholder="输入文本"></Textarea>
+                    <Label color="primary" stacked>Disabled</Label>
+                    <Textarea :rows="1" disabled placeholder="Please input text..."></Textarea>
                 </Item>
                 <Item>
-                    <Label color="primary" stacked>最长20个字符</Label>
-                    <Textarea :rows="1" :maxlength="20" placeholder="输入文本"></Textarea>
+                    <Label color="primary" stacked>Up to 20 characters</Label>
+                    <Textarea :rows="1" :maxlength="20" placeholder="Please input text..."></Textarea>
                 </Item>
                 <Item>
-                    <Label color="primary" stacked>只读</Label>
-                    <Textarea :rows="1" readonly placeholder="输入文本"></Textarea>
+                    <Label color="primary" stacked>ReadOnly</Label>
+                    <Textarea :rows="1" readonly placeholder="Please input text..."></Textarea>
                 </Item>
             </List>
             <List>
                 <ListHeader>
-                    <span>单独使用</span>
+                    <span>Use Alone</span>
                 </ListHeader>
                 <section class="customer">
                     <Textarea :count="300" autosize placeholder="Text here"></Textarea>
@@ -70,11 +70,17 @@
 </template>
 <script type="text/javascript">
   export default {
-    name: 'TextareaDemo',
-    data () {
-      return {}
-    },
-    methods: {}
+    name: 'DemoTextareaNormal',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '普通用法',
+        },
+        'en-US': {
+          title: 'Normal',
+        }
+      }
+    }
   }
 </script>
 <style scoped lang="scss">
@@ -84,5 +90,6 @@
         color: #000000;
         margin: 10px auto;
         padding: 1px 10px;
+        outline: 1px solid #ddd;
     }
 </style>
