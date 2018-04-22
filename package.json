@@ -205,6 +205,6 @@
     ]
   },
   "theme": [
-    "examples/src/theme/variables.scss"
+    "demo/src/theme/variables.scss"
   ]
 }

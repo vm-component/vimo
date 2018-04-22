@@ -180,52 +180,45 @@
                     <span>{{$t('refresher')}}</span>
                 </Item>
             </List>
+
             <List>
-                <ListHeader>内容展示/Content Display</ListHeader>
+                <ListHeader>{{$t('contentDisplay')}}</ListHeader>
                 <Item detail-push :to="{name: 'list'}">
                     <Icon slot="item-left" name="list"></Icon>
-                    <span>列表</span>
-                    <Note slot="item-right">List</Note>
+                    <span>{{$t('list')}}</span>
                 </Item>
-                <Item detail-push :to="{name:'list.collapse'}">
+                <Item detail-push :to="{name:'listCollapse'}">
                     <Icon slot="item-left" name="filing"></Icon>
-                    <span>手风琴</span>
-                    <Note slot="item-right">Collapse</Note>
+                    <span>{{$t('collapse')}}</span>
                 </Item>
-                <Item detail-push :to="{name:'list.slidingList'}">
+                <Item detail-push :to="{name:'listSlidingList'}">
                     <Icon slot="item-left" name="hand"></Icon>
-                    <span>侧滑操作</span>
-                    <Note slot="item-right">SlidingItem</Note>
+                    <span>{{$t('slidingList')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'slides'}">
                     <Icon slot="item-left" name="photos"></Icon>
-                    <span>轮播/跑马灯</span>
-                    <Note slot="item-right">Slides</Note>
+                    <span>{{$t('slides')}}</span>
                 </Item>
-                <Item detail-push :to="{name: 'slidesLite'}">
-                    <Icon slot="item-left" name="film"></Icon>
-                    <span>轮播(Lite)</span>
-                    <Note slot="item-right">SlidesLite</Note>
-                </Item>
+                <!--<Item detail-push :to="{name: 'slidesLite'}">-->
+                    <!--<Icon slot="item-left" name="film"></Icon>-->
+                    <!--<span>轮播(Lite)</span>-->
+                    <!--<Note slot="item-right">SlidesLite</Note>-->
+                <!--</Item>-->
                 <Item detail-push :to="{name: 'cards'}">
                     <Icon slot="item-left" name="calendar"></Icon>
-                    <span>卡片</span>
-                    <Note slot="item-right">Cards</Note>
+                    <span>{{$t('cards')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'scroll'}">
                     <Icon slot="item-left" name="flash"></Icon>
-                    <span>滚动</span>
-                    <Note slot="item-right">Scroll</Note>
+                    <span>{{$t('scroll')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'separation'}">
                     <Icon slot="item-left" name="remove"></Icon>
-                    <span>分割段</span>
-                    <Note slot="item-right">Separation</Note>
+                    <span>{{$t('separation')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'previewImage'}">
                     <Icon slot="item-left" name="image"></Icon>
-                    <span>图片预览</span>
-                    <Note slot="item-right">PreviewImage</Note>
+                    <span>{{$t('previewImage')}}</span>
                 </Item>
                 <!--<Item detail-push>-->
                 <!--<Icon slot="item-left" name="star"></Icon>-->
@@ -369,6 +362,16 @@
           dataLoading: '数据加载',
           infiniteScroll: '无限滚动',
           refresher: '下拉刷新',
+          // 内容展示
+          contentDisplay: '内容展示',
+          list: '列表',
+          collapse: '手风琴',
+          slidingList: '侧滑操作',
+          slides: '轮播/跑马灯',
+          cards: '卡片',
+          scroll: '滚动',
+          separation: '分割段',
+          previewImage: '图片预览',
 
           rest: '页面组件'
         },
@@ -409,6 +412,16 @@
           dataLoading: 'Data Loading',
           infiniteScroll: 'Infinite Scroll',
           refresher: 'Refresher',
+          // 内容展示
+          contentDisplay: 'Content Display',
+          list: 'List',
+          collapse: 'Collapse',
+          slidingList: 'SlidingItem',
+          slides: 'Slides',
+          cards: 'Cards',
+          scroll: 'Scroll',
+          separation: 'Separation',
+          previewImage: 'PreviewImage',
 
           rest: '页面组件'
         }

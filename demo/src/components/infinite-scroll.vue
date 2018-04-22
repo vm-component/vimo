@@ -10,31 +10,16 @@
                 <Item v-for="(i,index) in 30" :key="index">demo-{{i}}</Item>
                 <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
             </List>
-            <InfiniteScroll ref="infiniteScroll" class="infiniteScroll" :enabled="true" threshold="10%"
+            <InfiniteScroll ref="infiniteScroll" class="infiniteScroll" :enabled="true" threshold="30%"
                             @onInfinite="onInfinite">
-                <!--<InfiniteScroll class="infiniteScroll" :enabled="true" threshold="20%" @onInfinite="$event.waitFor(onInfinitePromise())">-->
-                <InfiniteScrollContent loadingSpinner="ios" loadingText="正在加载..."></InfiniteScrollContent>
-                <h5 class="loadedAll" text-center>全部加载完毕</h5>
+                <InfiniteScrollContent/>
             </InfiniteScroll>
         </Content>
     </Page>
 </template>
 <style scoped lang="scss">
-    .ion-infinite-scroll {
-        .loadedAll {
-            display: none;
-        }
-    }
-
-    .ion-infinite-scroll[state=disabled] {
-        .loadedAll {
-            display: block;
-        }
-    }
-
     .infiniteScroll {
         margin-top: 20px;
-
     }
 </style>
 <script type="text/javascript">
@@ -44,6 +29,7 @@
       return {
         page: 1,
         size: 30,
+        total: 4,
         timer: null,
         list: []
       }
@@ -59,22 +45,25 @@
       fetchData () {
         return new Promise((resolve) => {
           let list = []
-          this.timer && window.clearTimeout(this.timer)
-          this.timer = window.setTimeout(() => {
-            for (let j = 0; j < this.size; j++) {
-              list.push(`item - ${j + (this.page - 1) * this.size}`)
-            }
-            this.page++
+          if (this.page > this.total) {
             resolve(list)
-            console.log('sended')
-          }, 100)
+          } else {
+            this.timer && window.clearTimeout(this.timer)
+            this.timer = window.setTimeout(() => {
+              for (let j = 0; j < this.size; j++) {
+                list.push(`item - ${j + (this.page - 1) * this.size}`)
+              }
+              this.page++
+              resolve(list)
+              console.log('sended')
+            }, 100)
+          }
         })
       },
       onInfinite () {
         console.log('onInfinite')
         this.fetchData().then((list) => {
-          let length = list.length
-          if (length < this.size) {
+          if (list.length < this.size) {
             // 当前异步结束, 没有新数据了
             this.infiniteScrollComponent && this.infiniteScrollComponent.enable(false)
             console.log('onInfinite-enable-false')

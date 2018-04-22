@@ -77,11 +77,15 @@
             this.pageTransitionName = `${this.pageTransition}-forward`
             this.historyList.push(to.name)
             this.$root.$emit('nav:forward')
+
           } else {
             this.direction = `backward`
             this.pageTransitionName = `${this.pageTransition}-backward`
             this.historyList = this.historyList.slice(0, index + 1)
             this.$root.$emit('nav:backward')
+
+            // remove scroll position
+            window.sessionStorage.removeItem(from.path)
           }
           next()
         })

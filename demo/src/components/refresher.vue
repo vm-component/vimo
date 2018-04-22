@@ -2,21 +2,18 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Refresher</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content" record-position ref="content" @onScroll="onScrollHandler">
             <Refresher slot="refresher" :enabled="enabled" @onRefresh="doRefresh($event)">
-                <RefresherContent
-                        pullingText="下拉刷新..."
-                        refreshingText="正在刷新...">
-                </RefresherContent>
+                <RefresherContent/>
             </Refresher>
             <div padding class="state" text-center>
                 <p>Refresher Enabled: {{enabled}}</p>
                 <p>IsScrollDisabled: {{$app.isScrollDisabled}}</p>
                 <p>PageScrollTop: {{ev.scrollTop}}</p>
-                <Button small outline @click="toggleDisabled">禁用/启用</Button>
+                <Button small outline @click="toggleDisabled">{{$t('state')}}</Button>
             </div>
             <List>
                 <Item v-for="(i,index) in list" :key="index">{{i}}</Item>
@@ -31,7 +28,19 @@
 </style>
 <script type="text/javascript">
   export default {
-    name: 'RefresherDemo',
+    name: 'DemoRefresher',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '下拉刷新',
+          state: '禁用/启用'
+        },
+        'en-US': {
+          title: 'Refresher',
+          state: 'Disable/Enable'
+        }
+      }
+    },
     data () {
       return {
         i: 0,
@@ -41,8 +50,6 @@
         ev: true
       }
     },
-    props: {},
-    watch: {},
     computed: {
       contentComponent () {
         return this.$refs.content
@@ -52,7 +59,6 @@
       onScrollHandler (ev) {
         this.ev = ev
       },
-      //
       toggleDisabled () {
         this.enabled = !this.enabled
       },
@@ -65,7 +71,6 @@
           }
           // 当前异步完成
           ins.complete()
-          console.debug('onInfinite-complete')
         }, 500)
       }
     },
@@ -73,8 +78,6 @@
       for (; this.i < 15; this.i++) {
         this.list.unshift(`item - ${this.i}`)
       }
-    },
-    mounted () {},
-    activated () {}
+    }
   }
 </script>

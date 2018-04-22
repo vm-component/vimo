@@ -7,36 +7,28 @@
         </Header>
         <Content class="outer-content">
             <List>
-                <ListHeader>
-                    <span>classes</span>
-                </ListHeader>
-
+                <ListHeader>classes</ListHeader>
                 <Item>
                     <Icon name="planet" slot="item-left"></Icon>
                     <Label>Astronomy</Label>
                     <Note slot="item-right">To the moon</Note>
                 </Item>
-
                 <Item>
                     <Icon name="body" slot="item-left"></Icon>
                     <Label>Muggle Studies</Label>
                     <Toggle slot="item-right" :checked="false"></Toggle>
                 </Item>
-
                 <Item>
                     <Icon name="leaf" slot="item-left"></Icon>
                     <Label>Herbology</Label>
                     <Icon name="rose" slot="item-right"></Icon>
                 </Item>
-
                 <Item>
                     <Icon name="flask" slot="item-left"></Icon>
                     <label>Potions</label>
                     <Button slot="item-right" outline color="primary">Btn</Button>
                 </Item>
-
-
-                <Item @click.native="onClickHandler" :to="{'name':'components'}">
+                <Item>
                     <Icon name="flask" slot="item-left"></Icon>
                     <label>Click</label>
                     <Button slot="item-right" outline color="primary">Btn</Button>
@@ -48,6 +40,7 @@
 <style scoped lang="scss"></style>
 <script type="text/javascript">
   export default{
+    name:'DemoListIcon',
     data () {
       return {
         list: [
@@ -66,11 +59,6 @@
           'NoLine 13',
           'NoLine 14'
         ]
-      }
-    },
-    methods: {
-      onClickHandler () {
-        alert('click click')
       }
     }
   }

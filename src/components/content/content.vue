@@ -301,9 +301,9 @@
        * @private
        * */
       $_writePosition () {
-        if (this.isBox) {
+        if (this.isBox && this.$route) {
           requestAnimationFrame(() => {
-            let _scrollPosition = window.sessionStorage.getItem(window.location.href)
+            let _scrollPosition = window.sessionStorage.getItem(this.$route.path)
             _scrollPosition && this.scrollView.scrollTo(0, _scrollPosition, 0)
           })
         }
@@ -312,8 +312,8 @@
        * @private
        * */
       $_recordPosition (scrollTop) {
-        if (this.isBox) {
-          window.sessionStorage.setItem(window.location.href, scrollTop)
+        if (this.isBox && this.$route) {
+          window.sessionStorage.setItem(this.$route.path, scrollTop)
         }
       }
     },

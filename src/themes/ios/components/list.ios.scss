@@ -169,7 +169,7 @@ $list-ios-header-background-color: transparent !default;
 // iOS List Header
 // --------------------------------------------------
 
-.list-ios .list-header-ios {
+.list-ios .list-header.list-header-ios {
   position: relative;
   font-size: $list-ios-header-font-size;
   font-weight: $list-ios-header-font-weight;
@@ -187,7 +187,7 @@ $list-ios-header-background-color: transparent !default;
 // --------------------------------------------------
 
 @each $color-name, $color-base, $color-contrast in get-colors($colors-ios) {
-  .list-header-ios-#{$color-name} {
+  .list-header.list-header-ios-#{$color-name} {
     color: $color-contrast;
     background-color: $color-base;
   }

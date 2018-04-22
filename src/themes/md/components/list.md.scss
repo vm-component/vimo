@@ -157,7 +157,7 @@ $list-md-header-color: #757575 !default;
 // Material Design List Header
 // --------------------------------------------------
 
-.list-header-md {
+.list-header.list-header-md {
   min-height: $list-md-header-min-height;
   font-size: $list-md-header-font-size;
   color: $list-md-header-color;
@@ -171,7 +171,7 @@ $list-md-header-color: #757575 !default;
 // --------------------------------------------------
 
 @each $color-name, $color-base, $color-contrast in get-colors($colors-md) {
-  .list-header-md-#{$color-name} {
+  .list-header.list-header-md-#{$color-name} {
     color: $color-contrast;
     background-color: $color-base;
   }

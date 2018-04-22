@@ -11,12 +11,10 @@
                 <div class="item-arrow"></div>
                 <slot name="item-right"></slot>
             </div>
+            <ButtonRipple/>
         </div>
-        <transition @before-enter="beforeEnter"
-                    @enter="enter"
-                    @before-leave="beforeLeave"
-                    @leave="leave">
-            <div class="item-collapse-inner" v-show="isActive" ref="itemCollapseInner">
+        <transition name="collapse">
+            <div class="item-collapse-inner" :style="{'height':height+'px'}" v-show="isActive" ref="itemCollapseInner">
                 <slot></slot>
             </div>
         </transition>
@@ -25,6 +23,8 @@
 <script type="text/javascript">
   import addItemAttr from '../../util/add-slot-name-to-attr.js'
   import { getSize } from '../../util/style-tools'
+  import ButtonRipple from '../button-ripple/index.js'
+
   export default {
     name: 'ItemCollapse',
     inject: {
@@ -32,6 +32,9 @@
         from: 'itemCollapseGroupComponent',
         default: null
       }
+    },
+    components: {
+      ButtonRipple
     },
     data () {
       return {
@@ -53,7 +56,13 @@
       /**
        * 按钮color：primary、secondary、danger、light、dark
        * */
-      color: String
+      color: String,
+      itemKey: {
+        type: [String, Number],
+        default () {
+          return this._uid
+        }
+      }
     },
     computed: {
       itemCollapseInnerElement () {
@@ -70,54 +79,20 @@
       }
     },
     methods: {
-      beforeEnter (el) {
-        el.style.opacity = 0
-        el.style.height = 0
-        this.enable = false
-      },
-      enter (el, done) {
-        window.setTimeout(() => {
-          el.style.opacity = 1
-          el.style.height = this.height + 'px'
-          this.enable = false
-          window.setTimeout(() => {
-            this.enable = true
-            done()
-          }, 300)
-        }, 16)
-      },
-      beforeLeave () {
-        this.enable = false
-      },
-      leave (el, done) {
-        window.setTimeout(() => {
-          el.style.opacity = 0
-          el.style.height = 0
-          this.enable = false
-          window.setTimeout(() => {
-            this.enable = true
-            done()
-          }, 300)
-        }, 16)
-      },
-
-      /**
-       * 点击时
-       * */
       onPointerDownHandler () {
-        this.enable && this.itemCollapseGroupComponent && this.itemCollapseGroupComponent.onItemCollapseChange(this._uid)
+        this.enable && this.itemCollapseGroupComponent && this.itemCollapseGroupComponent.onItemCollapseChange(this.itemKey)
       }
     },
     created () {
-      if (this.itemCollapseGroupComponent) {
-        this.itemCollapseGroupComponent = this.$parent
-        this.itemCollapseGroupComponent.recordItemCollapse(this)
+      if (!this.itemCollapseGroupComponent) {
+        console.warn('ItemCollapse component must be used under the ItemCollapseGroup component!')
+        return false
       }
+      this.itemCollapseGroupComponent.recordItemCollapse(this)
     },
     mounted () {
       this.height = getSize(this.itemCollapseInnerElement).height
       this.isInit = true
-
       addItemAttr(this.$slots)
     }
   }

@@ -12,11 +12,11 @@ $item-md-collapse-detail-push-svg: "<svg xmlns='http://www.w3.org/2000/svg' view
 .#{$prefix}-item-collapse-group {
   .collapse-md {
     .item-md {
-      &:active {
+      &:active[detail-push] {
         background-color: $list-md-activated-background-color;
         transition-duration: 0ms;
       }
-      
+
       .item-arrow {
         position: absolute;
         top: 50%;

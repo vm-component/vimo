@@ -46,7 +46,7 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
 
 .toolbar-ios {
   min-height: $toolbar-ios-height;
-
+  
   @include padding($toolbar-ios-padding);
   @include safe-area-padding-horizontal($toolbar-ios-padding);
 }
@@ -97,7 +97,7 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   font-weight: $toolbar-ios-title-font-weight;
   color: $toolbar-ios-title-text-color;
   pointer-events: auto;
-
+  
   @include text-align($toolbar-ios-title-text-align);
 }
 
@@ -106,7 +106,7 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   width: 100%;
   height: 100%;
   pointer-events: none;
-
+  
   @include position(0, null, null, 0);
   @include padding(0, 90px, 1px);
 }
@@ -116,17 +116,17 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
     .toolbar-background-ios {
       background: $color-base;
     }
-
+    
     .toolbar-title-ios,
     .bar-button-clear-ios,
     .bar-button-default-ios {
       color: $color-contrast;
     }
-
+    
     .back-button .button-inner {
       @include arrow-back($color-contrast);
     }
-
+    
     @each $color-name, $color-base, $color-contrast in get-colors($colors-ios) {
       @include ios-bar-button-default($color-name, $color-base, $color-contrast);
       @include ios-bar-button-outline($color-name, $color-base, $color-contrast);
@@ -148,13 +148,13 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
 
 .bar-buttons-ios[end] {
   order: map-get($toolbar-order-ios, buttons-end);
-
+  
   @include text-align(end);
 }
 
 .bar-buttons-ios[right] {
   order: map-get($toolbar-order-ios, buttons-right);
-
+  
   @include text-align(right);
 }
 
@@ -165,7 +165,7 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   height: 32px;
   font-size: $toolbar-ios-button-font-size;
   border: 0;
-
+  
   @include padding(0, 4px);
   @include border-radius($toolbar-ios-button-border-radius);
 }
@@ -176,15 +176,15 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   .bar-button-clear-ios-#{$color-name} {
     color: $color-base;
     background-color: transparent;
-
+    
     &:hover:not(.disable-hover) {
       color: $color-base;
     }
-
+    
     &:active {
       opacity: 0.4;
     }
-
+    
     &.back-button {
       @include arrow-back($color-base);
     }
@@ -200,11 +200,11 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   border-color: $toolbar-ios-button-color;
   border-style: solid;
   border-width: 1px;
-
+  
   &:hover:not(.disable-hover) {
     opacity: 0.4;
   }
-
+  
   &:active {
     color: color-contrast($colors-ios, $toolbar-ios-button-color);
     background-color: $toolbar-ios-button-color;
@@ -216,13 +216,13 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
     color: $color-base;
     background-color: transparent;
     border-color: $color-base;
-
+    
     &:active {
       color: $color-contrast;
       background-color: $color-base;
     }
   }
-
+  
 }
 
 // iOS Toolbar Button Solid
@@ -231,12 +231,12 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
 .bar-button-solid-ios {
   color: color-contrast($colors-ios, $toolbar-ios-button-color);
   background-color: $toolbar-ios-button-color;
-
+  
   &:hover:not(.disable-hover) {
     color: color-contrast($colors-ios, $toolbar-ios-button-color);
     opacity: 0.4;
   }
-
+  
   &:active {
     color: color-contrast($colors-ios, $toolbar-ios-button-color);
     background-color: color-shade($toolbar-ios-button-color);
@@ -248,13 +248,13 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   .bar-button-solid-ios-#{$color-name} {
     color: $color-contrast;
     background-color: $color-base;
-
+    
     &:active {
       color: $color-contrast;
       background-color: color-shade($color-base);
     }
   }
-
+  
 }
 
 // iOS Toolbar Button Icon
@@ -264,7 +264,7 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   font-size: 1.4em;
   line-height: 0.67;
   pointer-events: none;
-
+  
   @include padding-horizontal(null, 0.3em);
 }
 
@@ -272,13 +272,13 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   font-size: 1.4em;
   line-height: 0.67;
   pointer-events: none;
-
+  
   @include padding-horizontal(0.4em, null);
 }
 
 .bar-button-ios[icon-only] {
   min-width: 0.9em;
-
+  
   @include padding(0);
 }
 
@@ -286,7 +286,7 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   font-size: 1.8em;
   line-height: 0.67;
   pointer-events: none;
-
+  
   @include padding(0, 0.1em);
 }
 
@@ -299,7 +299,7 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   overflow: visible;
   line-height: 1;
   order: map-get($toolbar-order-ios, back-button);
-
+  
   @include margin(0);
 }
 
@@ -307,7 +307,7 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
   display: inherit;
   min-width: 18px;
   font-size: 17px;
-
+  
   @include margin(-1px, 0, 0, 0);
 }
 
@@ -321,13 +321,13 @@ $toolbar-button-ios-strong-font-weight: 600 !default;
 .bar-button-menutoggle-ios {
   min-width: 36px;
   order: map-get($toolbar-order-ios, menu-toggle-start);
-
+  
   @include margin(0, 6px);
   @include padding(0);
-
+  
   .ion-icon {
     font-size: 28px;
-
+    
     @include padding(0, 6px);
   }
 }

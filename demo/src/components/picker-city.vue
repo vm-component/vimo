@@ -2,12 +2,11 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>城市选择器</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding>
-
-            <h5>简介</h5>
+            <h5>简介(未完成)</h5>
             <p>
                 城市选择器使用的是本地数据库进行地址匹配, 使用的是Picker组件.
             </p>
@@ -24,6 +23,16 @@
 
   export default {
     name: 'name',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '城市选择',
+        },
+        'en-US': {
+          title: 'City Picker',
+        }
+      }
+    },
     data () {
       return {
         selectedCity: ['140000', '140100', '140106'],

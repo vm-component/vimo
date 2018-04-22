@@ -15,22 +15,6 @@
     </div>
 </template>
 <script type="text/javascript">
-  /**
-   * @component Refresher/RefresherContent
-   * @description
-   *
-   * ## 数据加载 / RefresherContent下拉刷新组件的指示器
-   *
-   * 这个组件是与Refresher组件配合使用的.
-   *
-   * @props {String} [pullingIcon='arrow-down'] - 下拉的icon
-   * @props {String} [pullingText='下拉刷新'] - 下拉刷新的文字
-   * @props {String} [refreshingSpinner='ios'] - 刷新的icon
-   * @props {String} [refreshingText='正在刷新'] -正在刷新的文字
-   *
-   * @see component:Refresher
-   * @demo #/refresher
-   * */
   import Icon from '../icon'
   import Spinner from '../spinner'
 
@@ -43,7 +27,9 @@
       },
       pullingText: {
         type: String,
-        default: '下拉刷新'
+        default () {
+          return (this.$i18n && this.$i18n.te('vimo.pullingText')) ? this.$i18n.t('vimo.pullingText') : 'Pull to refresh'
+        }
       },
       refreshingSpinner: {
         type: String,
@@ -51,7 +37,9 @@
       },
       refreshingText: {
         type: String,
-        default: '正在刷新'
+        default () {
+          return (this.$i18n && this.$i18n.te('vimo.refreshingText')) ? this.$i18n.t('vimo.refreshingText') : 'Refreshing'
+        }
       }
     },
     components: {

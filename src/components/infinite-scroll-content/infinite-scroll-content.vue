@@ -24,7 +24,9 @@
       // loading的文字
       loadingText: {
         type: String,
-        default: 'Loading more data...'
+        default () {
+          return (this.$i18n && this.$i18n.te('vimo.confirmText')) ? this.$i18n.t('vimo.loadingText') : 'Loading'
+        }
       }
     },
     data () {

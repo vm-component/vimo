@@ -2,126 +2,159 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>折叠列表</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
 
             <div padding>
-                <p>折叠列表不支持重叠组合, 最多只有一级折叠.</p>
+                <strong>{{$t('notice')}}</strong>
+                <p>{{$t('noticeInfo')}}</p>
             </div>
             <List>
-                <ListHeader>普通Item</ListHeader>
-                <Item button>
-                    <span>你好</span>
-                    <Note slot="item-right">Hello</Note>
+                <ListHeader>{{$t('normalList')}}</ListHeader>
+                <Item detail-push>
+                    <span>Demo Text1</span>
+                    <Note slot="item-right">Text1 Right</Note>
                 </Item>
-                <Item button>
-                    <span>移动端组件库</span>
-                    <Note slot="item-right">Vimo</Note>
+                <Item detail-push>
+                    <span>Demo Text2</span>
+                    <Note slot="item-right">Text2 Right</Note>
                 </Item>
             </List>
             <List>
-                <ListHeader>折叠列表</ListHeader>
-                <ItemCollapseGroup>
-                    <ItemCollapse title="Cars">
+                <ListHeader>{{$t('collapseList')}}</ListHeader>
+                <ItemCollapseGroup :selected="1">
+                    <ItemCollapse title="Cars(Auto)" :itemKey="1">
                         <Icon slot="item-left" name="car"></Icon>
-                        <Item button>
+                        <Note slot="item-right">Please Choose</Note>
+                        <Item detail-push>
                             <Icon slot="item-left" name="wifi"></Icon>
                             Wi-Fi
                             <Note slot="item-right">XXX-Office</Note>
                         </Item>
                         <Item>
                             <Icon slot="item-left" name="plane"></Icon>
-                            <span>飞行模式</span>
+                            <span>Flight Mode</span>
                             <Toggle slot="item-right" :checked="true"></Toggle>
                         </Item>
                     </ItemCollapse>
-                    <ItemCollapse title="Apple">
+                    <ItemCollapse title="Apple(Auto)" :itemKey="2">
                         <Icon slot="item-left" name="logo-apple"></Icon>
-                        <Note slot="item-right">请选择</Note>
-                        <Item button>MacBook Air</Item>
-                        <Item button>MacBook Pro</Item>
-                        <Item button>iPhone 8</Item>
-                    </ItemCollapse>
-                </ItemCollapseGroup>
-            </List>
-
-            <List>
-                <ListHeader>纯文本</ListHeader>
-                <ItemCollapseGroup accordion>
-                    <ItemCollapse>
-                        <div slot="item-title">
-                            文本1
-                        </div>
-                        <section padding>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, aut autem dolor eligendi eum fugiat illo minima necessitatibus obcaecati omnis quidem repellendus. Aperiam ipsa numquam perspiciatis quod saepe totam ullam.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, aut autem dolor eligendi eum fugiat illo minima necessitatibus obcaecati omnis quidem repellendus. Aperiam ipsa numquam perspiciatis quod saepe totam ullam.
-                        </section>
-                    </ItemCollapse>
-                    <ItemCollapse>
-                        <div slot="item-title">
-                            文本2
-                        </div>
-                        <section padding>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
-                        </section>
-                    </ItemCollapse>
-                    <ItemCollapse>
-                        <div slot="item-title">
-                            文本3
-                        </div>
-                        <section padding>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
-                        </section>
+                        <Note slot="item-right">Please Choose</Note>
+                        <Item detail-push>MacBook Air</Item>
+                        <Item detail-push>MacBook Pro</Item>
+                        <Item detail-push>iPhone 8</Item>
                     </ItemCollapse>
                 </ItemCollapseGroup>
             </List>
             <List>
-                <ListHeader>手风琴列表(只开启一个)</ListHeader>
-                <ItemCollapseGroup accordion>
-                    <ItemCollapse title="This Is Title1">
+                <ListHeader>{{$t('accordionList')}}</ListHeader>
+                <ItemCollapseGroup accordion :selected="column2">
+                    <ItemCollapse title="This Is Title1(Auto)" :itemKey="1">
                         <Item>subItem1</Item>
                         <Item>subItem2</Item>
                         <Item>subItem3</Item>
                     </ItemCollapse>
-                    <ItemCollapse>
+                    <ItemCollapse :itemKey="2">
                         <template slot="item-title">
                             This Is Title2 &ensp;
                             <Icon name="information-circle"></Icon>
                         </template>
-                        <Item button>subItem1</Item>
-                        <Item button>subItem2</Item>
-                        <Item button>subItem3</Item>
+                        <Item detail-push>subItem1</Item>
+                        <Item detail-push>subItem2</Item>
+                        <Item detail-push>subItem3</Item>
                     </ItemCollapse>
-                    <ItemCollapse title="This Is Title3">
-                        <Item button>subItem1</Item>
-                        <Item button>subItem2</Item>
-                        <Item button>subItem3</Item>
+                    <ItemCollapse title="This Is Title3" :itemKey="3">
+                        <Item detail-push>subItem1</Item>
+                        <Item detail-push>subItem2</Item>
+                        <Item detail-push>subItem3</Item>
+                    </ItemCollapse>
+                </ItemCollapseGroup>
+            </List>
+            <List>
+                <ListHeader>{{$t('accordionList')}}</ListHeader>
+                <Item>
+                    JS Control(openId:{{openId}})
+                    <Button slot="item-right" @click="choose(1)">1</Button>
+                    <Button slot="item-right" @click="choose(2)">2</Button>
+                    <Button slot="item-right" @click="choose(3)">3</Button>
+                </Item>
+                <ItemCollapseGroup accordion :selected="openId">
+                    <ItemCollapse :itemKey="1">
+                        <div slot="item-title">
+                            Text 1
+                        </div>
+                        <Note slot="item-right">Show More</Note>
+                        <section padding>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, aut autem dolor eligendi eum fugiat illo minima necessitatibus
+                            obcaecati omnis quidem repellendus. Aperiam ipsa numquam perspiciatis quod saepe totam ullam.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, aut autem dolor eligendi eum fugiat illo minima necessitatibus
+                            obcaecati omnis quidem repellendus. Aperiam ipsa numquam perspiciatis quod saepe totam ullam.
+                        </section>
+                    </ItemCollapse>
+                    <ItemCollapse :itemKey="2">
+                        <div slot="item-title">
+                            Text 2
+                        </div>
+                        <Note slot="item-right">Show More</Note>
+                        <section padding>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure
+                            libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure
+                            libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
+                        </section>
+                    </ItemCollapse>
+                    <ItemCollapse :itemKey="3">
+                        <div slot="item-title">
+                            Text 3(Auto)
+                        </div>
+                        <Note slot="item-right">Show More</Note>
+                        <section padding>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure
+                            libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti dolores nostrum soluta. Aspernatur, dolorem explicabo iure
+                            libero molestiae nesciunt nihil officia optio provident sapiente voluptates voluptatibus! Laborum, quaerat, repudiandae!
+                        </section>
                     </ItemCollapse>
                 </ItemCollapseGroup>
             </List>
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
-
-</style>
 <script type="text/javascript">
   export default {
-    name: 'accordion',
+    name: 'DemoListCollapse',
     data () {
-      return {}
+      return {
+        column2: [1, 2],
+        openId: 3
+      }
     },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {},
-    mounted () {},
-    activated () {},
-    components: {}
+    methods: {
+      choose (id) {
+        this.openId = id
+      }
+    },
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '列表折叠',
+          notice: '注意',
+          noticeInfo: '折叠列表不支持重叠组合, 最多只有一级折叠. "Selected" 数据由外向内传递, 只用于展示, 请勿过分使用.',
+          normalList: '普通列表',
+          collapseList: '列表折叠',
+          accordionList: '手风琴列表(只开启一个)',
+        },
+        'en-US': {
+          title: 'ListCollapse',
+          notice: 'Notice',
+          noticeInfo: 'Collapsed lists do not support overlapping combinations. There is at most only one level of folding. "Selected" data is transmitted from outside to inside. For display only, DO NOT over use it.',
+          normalList: 'Normal List',
+          collapseList: 'Collapse List',
+          accordionList: 'Accordion List (open only one)',
+        }
+      }
+    }
   }
 </script>
