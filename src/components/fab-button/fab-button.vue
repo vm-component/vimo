@@ -6,11 +6,13 @@
         <span class="button-inner">
             <slot></slot>
         </span>
+        <ButtonRipple />
     </button>
 </template>
 <script type="text/javascript">
   import Icon from '../icon'
   import { setElementClass } from '../../util/util'
+  import ButtonRipple from '../button-ripple/index.js'
 
   export default {
     name: 'FabButton',
@@ -77,6 +79,6 @@
         this.fabListComponent && this.fabListComponent.fabs.push(this)
       }
     },
-    components: {Icon}
+    components: {Icon,ButtonRipple}
   }
 </script>

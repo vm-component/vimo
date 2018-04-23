@@ -9,7 +9,7 @@
               {'item-button':isInItemComponent}]"
             @click="$_clickHandler($event)">
         <span class="button-inner"><slot></slot></span>
-        <ButtonRipple />
+        <ButtonRipple/>
     </button>
 </template>
 <script type="text/javascript">

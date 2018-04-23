@@ -20,7 +20,7 @@
             >
                 <div class="action-sheet-container">
                     <!--group normal-->
-                    <div class="action-sheet-group">
+                    <div class="action-sheet-group action-sheet-group-normal">
                         <div
                                 v-if="title"
                                 class="action-sheet-title"
@@ -32,28 +32,30 @@
                             >{{ subTitle }}
                             </div>
                         </div>
-                        <div class="action-sheet-buttons">
-                            <vm-button
-                                    v-for="(b,index) in normalButtons"
-                                    :key="index"
-                                    :class="[b.cssClass,{'icon-left':b.icon}]"
-                                    role="action-sheet-button"
-                                    icon-left
-                                    @click="click(b)"
-                            >
-                                <vm-icon
-                                        v-if="b.icon"
-                                        :name="b.icon"
-                                        class="action-sheet-icon"
-                                />
-                                <span>{{ b.text }}</span>
-                            </vm-button>
+                        <div class="action-sheet-buttons" :class="{'button-many':normalButtons.length>6}">
+                            <div class="buttons-inner">
+                                <vm-button
+                                        v-for="(b,index) in normalButtons"
+                                        :key="index"
+                                        :class="[b.cssClass,{'icon-left':b.icon}]"
+                                        role="action-sheet-button"
+                                        icon-left
+                                        @click="click(b)"
+                                >
+                                    <vm-icon
+                                            v-if="b.icon"
+                                            :name="b.icon"
+                                            class="action-sheet-icon"
+                                    />
+                                    <span>{{ b.text }}</span>
+                                </vm-button>
+                            </div>
                         </div>
                     </div>
                     <!--group cancel-->
                     <div
                             v-if="cancelButton"
-                            class="action-sheet-group"
+                            class="action-sheet-group action-sheet-group-cancel"
                     >
                         <vm-button
                                 :class="cancelButton.cssClass"

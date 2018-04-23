@@ -38,12 +38,12 @@
   justify-content: flex-end;
 }
 
-.action-sheet-group {
+.action-sheet-group-normal {
   overflow: scroll;
   pointer-events: all;
   flex-shrink: 2;
   
-  .action-sheet-buttons {
+  .buttons-inner {
     position: relative;
     z-index: 1;
     max-height: 265px;

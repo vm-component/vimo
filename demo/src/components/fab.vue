@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Fab</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding>
@@ -120,9 +120,10 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
                 blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
-            <h5>注意</h5>
-            <p>Fab需要手动放置在fixed的slot中, 关闭使用ref获取组件示例之后执行close()方法.</p>
-
+            <hr>
+            <h5>{{$t('notice')}}:</h5>
+            <p>{{$t('noticeInfo')}}</p>
+            <hr>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus explicabo laudantium nobis quas, quidem ratione recusandae vel! Assumenda
                 blanditiis ducimus illum itaque molestiae ut. At culpa dolores modi quod vitae?</p>
@@ -170,7 +171,21 @@
 </style>
 <script type="text/javascript">
   export default {
-    name: 'name',
+    name: 'DemoFab',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '浮动按钮',
+          notice: '注意',
+          noticeInfo: 'Fab需要手动放置在fixed的slot中, 关闭使用ref获取组件示例之后执行close()方法.'
+        },
+        'en-US': {
+          title: 'Fab',
+          notice: 'Notice',
+          noticeInfo: 'Fab needs to be manually placed in the fixed slot. Close the ref method to get the component instance and execute the close() method.'
+        }
+      }
+    },
     methods: {
       clickHandler (fabComponent, value) {
         fabComponent.close()
