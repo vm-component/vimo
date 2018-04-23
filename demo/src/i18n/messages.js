@@ -2,6 +2,7 @@ export default {
   'zh-CN': {
     vimo: {
       backBtnText: '返回',
+      closeText: '关闭',
       cancelText: '取消',
       confirmText: '确认',
       pullingText: '下拉刷新',
@@ -50,6 +51,7 @@ export default {
   'en-US': {
     vimo: {
       backBtnText: 'Back',
+      closeText: 'Close',
       cancelText: 'Cancel',
       confirmText: 'Confirm',
       pullingText: 'Pull to refresh',

@@ -2,25 +2,22 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Toast</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding>
-            <h5>简介</h5>
-            <p>Toast用于将应用状态传递给用户, 提示一般自动关闭.</p>
+            <p>{{$t('parameter')}}: this.$toast('Show Toast...')</p>
+            <Button block @click="toastBottomOnlyString()">{{$t('open')}}</Button>
 
-            <p>传参指纹: this.$toast('显示Toast提示')</p>
-            <Button block @click="toastBottomOnlyString()">只传入String</Button>
-
-            <p>传参指纹: this.$toast('显示Toast提示',1000)</p>
+            <p>{{$t('parameter')}}: this.$toast('Show Toast...',1000)</p>
             <Button block @click="toastBottomWithStringAndDuration()">String + Duration(1000)</Button>
 
-            <p>传参指纹: this.$toast({...})</p>
-            <Button id="top" block @click="toastTop($event)">顶部出现</Button>
-            <Button block @click="toastButtom()">底部出现</Button>
-            <Button block @click="toastMiddle()">显示在中间</Button>
-            <Button block @click="toastMiddleWithBtn()">显示在中间 + 按钮</Button>
-            <Button block @click="showCloseBtnToast()">显示在顶部 + 按钮</Button>
+            <p>{{$t('parameter')}}: this.$toast({...})</p>
+            <Button id="top" block @click="toastTop($event)">{{$t('openTop')}}</Button>
+            <Button block @click="toastButtom()">{{$t('openBottom')}}</Button>
+            <Button block @click="toastMiddle()">{{$t('openMiddle')}}</Button>
+            <Button block @click="toastMiddleWithBtn()">{{$t('openMiddle')}} + {{$t('btn')}}</Button>
+            <Button block @click="showCloseBtnToast()">{{$t('openTop')}} + {{$t('btn')}}</Button>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga rerum tenetur unde. Ab accusamus aliquam amet corporis cupiditate deleniti
                deserunt, expedita, id impedit modi nulla obcaecati quia, rem sint temporibus!</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga rerum tenetur unde. Ab accusamus aliquam amet corporis cupiditate deleniti
@@ -40,12 +37,29 @@
 </style>
 <script type="text/javascript">
   export default {
-
-    data () {
-      return {}
+    name: 'DemoToast',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '通知',
+          open: '开启',
+          parameter: '传参',
+          openTop: '顶部出现',
+          openBottom: '底部出现',
+          openMiddle: '显示在中间',
+          btn: '按钮'
+        },
+        'en-US': {
+          title: 'Toast',
+          open: 'Open',
+          parameter: 'Parameter',
+          openTop: 'open Top',
+          openBottom: 'open Bottom',
+          openMiddle: 'open Middle',
+          btn: 'Button'
+        }
+      }
     },
-    watch: {},
-    computed: {},
     methods: {
       toastBottomOnlyString () {
         let _toastIns = this.$toast.present('Toast Bottom Only String', 4000)
@@ -116,7 +130,7 @@
           duration: 3000, // 这个不生效
           position: 'top',
           showCloseButton: true,
-          closeButtonText: '好的',
+          closeButtonText: 'OK',
           cssClass: 'showCloseBtnToastCssClass',
           dismissOnPageChange: true,
           onDismiss () {

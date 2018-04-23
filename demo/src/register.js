@@ -24,6 +24,7 @@ import {
   Header,
   Icon,
   Img,
+  Indicator,
   InfiniteScroll,
   InfiniteScrollContent,
   Input,
@@ -70,6 +71,7 @@ import {
   Textarea,
   Thumbnail,
   Toast,
+  ToastState,
   Toggle,
   Toolbar,
   ToolbarButtons,
@@ -81,9 +83,9 @@ export default function () {
   Vue.prototype.$loading = Loading
   Vue.prototype.$alert = Alert
   Vue.prototype.$toast = Toast
-  // Vue.prototype.$toastState = ToastState
+  Vue.prototype.$toastState = ToastState
   Vue.prototype.$modal = Modal
-  // Vue.prototype.$indicator = Indicator
+  Vue.prototype.$indicator = Indicator
   // Vue.prototype.$chooseCity = ChooseCity
   // Vue.prototype.$cityPicker = CityPicker
   Vue.prototype.$picker = Picker

@@ -1,6 +1,6 @@
-import LoadingComponent from '../../loading/loading.vue'
-import GeneratePopUpInstance from '../../../util/GeneratePopUpInstance.js'
-import { isBlank, isBoolean, isObject, isString } from '../../../util/type'
+import LoadingComponent from '../loading/loading.vue'
+import GeneratePopUpInstance from '../../util/GeneratePopUpInstance.js'
+import { isBlank, isBoolean, isObject, isString } from '../../util/type'
 
 let indicatorPresentWaitTime = 70
 let indicatorPresentThrottleTime = 500

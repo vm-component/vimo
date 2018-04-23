@@ -43,7 +43,9 @@
       showCloseButton: Boolean,
       closeButtonText: {
         type: String,
-        default: 'Close'
+        default () {
+          return (this.$i18n && this.$i18n.te('vimo.closeText')) ? this.$i18n.t('vimo.closeText') : 'Close'
+        }
       },
       // execute when component closed and animate done
       onDismiss: {

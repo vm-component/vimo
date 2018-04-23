@@ -2,23 +2,21 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Indicator</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding class="outer-content">
-            <h1>Indicator组件</h1>
-            <p>Loading的简单版, 用于无提示的Loading使用场景, 且开启最多存在10s, 10s后自动关闭.</p>
-            <p>如果路由切换则关闭组件</p>
+            <p>{{$t('noticeInfo1')}}</p>
             <Button block @click="openIndicatorInfinity">Open infinity(max 10s)</Button>
             <Button block @click="openIndicator1000">Open 1000ms</Button>
             <Button block @click="openIndicatorReverse1000">Open 1000ms In Reverse Color</Button>
             <Button block @click="openIndicator300">Open 300ms</Button>
             <Button block @click="openIndicator100">Open 100ms</Button>
             <Button block @click="openIndicator70">Open 70ms</Button>
-            <p>时间过短不开启, 开启的动作被cancel</p>
+            <p>{{$t('noticeInfo2')}}</p>
             <Button block @click="openIndicator50">Open 50ms</Button>
             <Button block @click="openIndicator5">Open 5ms</Button>
-            <p>present多次执行, dismiss异步多次执行的特殊场景</p>
+            <p>{{$t('noticeInfo3')}}</p>
             <Button block @click="special">Special</Button>
 
             <article>
@@ -47,12 +45,26 @@
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
 
-</style>
 <script type="text/javascript">
   export default {
-    name: 'name',
+    name: 'DemoIndicator',
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '指示器',
+          noticeInfo1: 'Loading的简单版, 用于无提示的Loading使用场景, 且开启最多存在10s, 10s后自动关闭. 如果路由切换则关闭组件',
+          noticeInfo2: '70ms期间执行dismiss则不再显示Indicator',
+          noticeInfo3: 'present和dismiss乱序调用'
+        },
+        'en-US': {
+          title: 'Indicator',
+          noticeInfo1: 'A simple version of Loading, used for silent loading scenarios, with up to 10 seconds on, and off automatically after 10 seconds. If the route is switched, the component is closed.',
+          noticeInfo2: 'Dismiss the indicator no longer appears during 70ms',
+          noticeInfo3: 'Present and dismiss out of order calls'
+        }
+      }
+    },
     data () {
       return {}
     },
@@ -130,10 +142,6 @@
           this.$indicator.dismiss()
         }, 5)
       }
-    },
-    created () {},
-    mounted () {},
-    activated () {},
-    components: {}
+    }
   }
 </script>
