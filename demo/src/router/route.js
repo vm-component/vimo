@@ -323,6 +323,41 @@ export default [
     }
   },
   {
+    path: '/modal-login',
+    name: 'modalLogin',
+    component (resolve) {
+      require(['@DemoComponent/modal-login.vue'], resolve)
+    }
+  },
+  {
+    path: '/modal-page',
+    name: 'modalPage',
+    component (resolve) {
+      require(['@DemoComponent/modal-page.vue'], resolve)
+    }
+  },
+  {
+    path: '/modal-redirect',
+    name: 'modalRedirect',
+    component (resolve) {
+      require(['@DemoComponent/modal-redirect.vue'], resolve)
+    }
+  },
+  {
+    path: '/modal-secret',
+    name: 'modalSecret',
+    component (resolve) {
+      require(['@DemoComponent/modal-secret.vue'], resolve)
+    }
+  },
+  {
+    path: '/modal',
+    name: 'modal',
+    component (resolve) {
+      require(['@DemoComponent/modal.vue'], resolve)
+    }
+  },
+  {
     path: '/nav',
     name: 'nav',
     component (resolve) {
@@ -369,6 +404,13 @@ export default [
     name: 'picker',
     component (resolve) {
       require(['@DemoComponent/picker.vue'], resolve)
+    }
+  },
+  {
+    path: '/popover',
+    name: 'popover',
+    component (resolve) {
+      require(['@DemoComponent/popover.vue'], resolve)
     }
   },
   {

@@ -4,9 +4,16 @@
             :id="mode"
             :style="styleObj"
             :class="[mode,modeClass,platformClass,{'disable-hover':disableHover},{'disable-scroll':disableScroll}]"
-            class="ion-app app-root"
+            class="ion-app"
     >
-        <slot></slot>
+        <section class="app-root">
+            <slot></slot>
+        </section>
+        <aside id="modalPortal"></aside>
+        <aside id="sheetPortal"></aside>
+        <aside id="alertPortal"></aside>
+        <aside id="loadingPortal"></aside>
+        <aside id="toastPortal"></aside>
         <aside
                 :class="[{'click-block-enabled':isClickBlockEnabled,'click-block-active':isClickBlockActive}]"
                 class="click-block"
