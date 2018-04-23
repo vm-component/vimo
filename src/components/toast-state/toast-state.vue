@@ -1,5 +1,5 @@
 <template>
-    <div class="ion-toast-state" :class="[customerClass]">
+    <div class="ion-toast-state" :class="[customerClass,modeClass]">
         <transition name="fade"
                     @before-enter="beforeEnter"
                     @after-enter="afterEnter"
@@ -31,6 +31,10 @@
     components: {Spinner},
     extends: popupExtend,
     props: {
+      mode: {
+        type: String,
+        default () { return this.$config && this.$config.get('mode', 'ios') || 'ios' }
+      },
       'type': {
         type: String,
         validator (val) {
@@ -77,6 +81,9 @@
     computed: {
       isLoading () {
         return this.type === 'loading'
+      },
+      modeClass () {
+        return `toast-state-${this.mode}`
       },
       typeClass () {
         return this.type ? `toast-state-${this.type}` : null

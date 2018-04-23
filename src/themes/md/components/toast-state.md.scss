@@ -1,1 +1,34 @@
-// empty
+@import "../globals.md";
+
+/// @prop - Background of the toast wrapper
+$toast-state-md-background: #333 !default;
+
+/// @prop - Color of the toast title
+$toast-state-md-title-color: #fff !default;
+
+/// @prop - Font size of the toast title
+$toast-state-md-title-font-size: 15px !default;
+
+/// @prop - Padding top of the toast title
+$toast-state-md-title-padding-top: 19px !default;
+
+/// @prop - Padding end of the toast title
+$toast-state-md-title-padding-end: 16px !default;
+
+/// @prop - Padding bottom of the toast title
+$toast-state-md-title-padding-bottom: 17px !default;
+
+/// @prop - Padding start of the toast title
+$toast-state-md-title-padding-start: $toast-state-md-title-padding-end !default;
+
+.toast-state-md {
+  .toast-state-container {
+    background: $toast-state-md-background;
+    @include padding($toast-state-md-title-padding-top, $toast-state-md-title-padding-end, $toast-state-md-title-padding-bottom, $toast-state-md-title-padding-start);
+  }
+  
+  .toast-state-message {
+    font-size: $toast-state-md-title-font-size;
+    color: $toast-state-md-title-color;
+  }
+}

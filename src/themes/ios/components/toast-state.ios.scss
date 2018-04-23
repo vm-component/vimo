@@ -1,1 +1,38 @@
-// empty
+@import "../globals.ios";
+
+/// @prop - Background of the toast wrapper
+$toast-state-ios-background: rgba(0, 0, 0, 0.9) !default;
+
+/// @prop - Border radius of the toast wrapper
+$toast-state-ios-border-radius: 6.5px !default;
+
+/// @prop - Color of the toast title
+$toast-state-ios-title-color: #fff !default;
+
+/// @prop - Font size of the toast title
+$toast-state-ios-title-font-size: 14px !default;
+
+/// @prop - Padding top of the toast title
+$toast-state-ios-title-padding-top: 16px !default;
+
+/// @prop - Padding end of the toast title
+$toast-state-ios-title-padding-end: $toast-state-ios-title-padding-top !default;
+
+/// @prop - Padding bottom of the toast title
+$toast-state-ios-title-padding-bottom: $toast-state-ios-title-padding-top !default;
+
+/// @prop - Padding start of the toast title
+$toast-state-ios-title-padding-start: $toast-state-ios-title-padding-end !default;
+
+.toast-state-ios {
+  .toast-state-container {
+    background: $toast-state-ios-background;
+    @include border-radius($toast-state-ios-border-radius);
+    @include padding($toast-state-ios-title-padding-top, $toast-state-ios-title-padding-end, $toast-state-ios-title-padding-bottom, $toast-state-ios-title-padding-start);
+  }
+  
+  .toast-state-message {
+    font-size: $toast-state-ios-title-font-size;
+    color: $toast-state-ios-title-color;
+  }
+}
