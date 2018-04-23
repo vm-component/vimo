@@ -43,6 +43,7 @@ import {
   Nav,
   Navbar,
   Note,
+  Noticebar,
   Page,
   Picker,
   Popover,
@@ -51,6 +52,7 @@ import {
   Refresher,
   RefresherContent,
   Row,
+  Scroll,
   ScrollSegment,
   ScrollSegmentButton,
   Searchbar,
@@ -131,12 +133,12 @@ export default function () {
   Vue.component(List.name, List)
   Vue.component(Menu.name, Menu)
   Vue.component(Note.name, Note)
-  // Vue.component(Noticebar.name, Noticebar)
+  Vue.component(Noticebar.name, Noticebar)
   Vue.component(Radio.name, Radio)
   Vue.component(Range.name, Range)
   Vue.component(Refresher.name, Refresher)
   Vue.component(RefresherContent.name, RefresherContent)
-  // Vue.component(Scroll.name, Scroll)
+  Vue.component(Scroll.name, Scroll)
   Vue.component(ScrollSegment.name, ScrollSegment)
   Vue.component(ScrollSegmentButton.name, ScrollSegmentButton)
   Vue.component(Searchbar.name, Searchbar)

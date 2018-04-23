@@ -21,7 +21,7 @@
                     <Item detail-push :to="{name:'listAvatar'}">{{$t('listAvatar')}}</Item>
                     <Item detail-push :to="{name:'listThumbnail'}">{{$t('listThumbnail')}}</Item>
                     <Item detail-push :to="{name:'listMulti'}">{{$t('listMulti')}}</Item>
-                    <!--<Item detail-push :to="{name:'listSliding'}">{{$t('listSliding')}}</Item>-->
+                    <Item detail-push :to="{name:'listSliding'}">{{$t('listSliding')}}</Item>
                     <!--<Item detail-push :to="{name:'list.reorder'}">Reorder</Item>-->
                     <Item detail-push :to="{name:'listCollapse'}">{{$t('listCollapse')}}</Item>
                 </ItemGroup>

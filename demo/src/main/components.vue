@@ -191,9 +191,9 @@
                     <Icon slot="item-left" name="filing"></Icon>
                     <span>{{$t('collapse')}}</span>
                 </Item>
-                <Item detail-push :to="{name:'listSlidingList'}">
+                <Item detail-push :to="{name:'listSliding'}">
                     <Icon slot="item-left" name="hand"></Icon>
-                    <span>{{$t('slidingList')}}</span>
+                    <span>{{$t('listSliding')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'slides'}">
                     <Icon slot="item-left" name="photos"></Icon>
@@ -366,7 +366,7 @@
           contentDisplay: '内容展示',
           list: '列表',
           collapse: '手风琴',
-          slidingList: '侧滑操作',
+          listSliding: '侧滑操作',
           slides: '轮播/跑马灯',
           cards: '卡片',
           scroll: '滚动',
@@ -416,7 +416,7 @@
           contentDisplay: 'Content Display',
           list: 'List',
           collapse: 'Collapse',
-          slidingList: 'SlidingItem',
+          listSliding: 'SlidingItem',
           slides: 'Slides',
           cards: 'Cards',
           scroll: 'Scroll',

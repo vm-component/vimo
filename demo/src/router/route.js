@@ -365,6 +365,13 @@ export default [
     }
   },
   {
+    path: '/preview-image',
+    name: 'previewImage',
+    component (resolve) {
+      require(['@DemoComponent/preview-image.vue'], resolve)
+    }
+  },
+  {
     path: '/radio',
     name: 'radio',
     component (resolve) {
@@ -386,10 +393,38 @@ export default [
     }
   },
   {
+    path: '/scroll-city',
+    name: 'scrollCity',
+    component (resolve) {
+      require(['@DemoComponent/scroll-city.vue'], resolve)
+    }
+  },
+  {
+    path: '/scroll-header',
+    name: 'scrollHeader',
+    component (resolve) {
+      require(['@DemoComponent/scroll-header.vue'], resolve)
+    }
+  },
+  {
+    path: '/scroll-normal',
+    name: 'scrollNormal',
+    component (resolve) {
+      require(['@DemoComponent/scroll-normal.vue'], resolve)
+    }
+  },
+  {
     path: '/scroll-segment',
     name: 'scrollSegment',
     component (resolve) {
       require(['@DemoComponent/scroll-segment.vue'], resolve)
+    }
+  },
+  {
+    path: '/scroll',
+    name: 'scroll',
+    component (resolve) {
+      require(['@DemoComponent/scroll.vue'], resolve)
     }
   },
   {
@@ -439,6 +474,13 @@ export default [
     name: 'select',
     component (resolve) {
       require(['@DemoComponent/select.vue'], resolve)
+    }
+  },
+  {
+    path: '/separation',
+    name: 'separation',
+    component (resolve) {
+      require(['@DemoComponent/separation.vue'], resolve)
     }
   },
   {
