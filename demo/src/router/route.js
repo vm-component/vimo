@@ -330,6 +330,13 @@ export default [
     }
   },
   {
+    path: '/notice-bar',
+    name: 'noticeBar',
+    component (resolve) {
+      require(['@DemoComponent/notice-bar.vue'], resolve)
+    }
+  },
+  {
     path: '/picker-base',
     name: 'pickerBase',
     component (resolve) {
@@ -553,6 +560,13 @@ export default [
     name: 'textarea',
     component (resolve) {
       require(['@DemoComponent/textarea.vue'], resolve)
+    }
+  },
+  {
+    path: '/toast-state',
+    name: 'toastState',
+    component (resolve) {
+      require(['@DemoComponent/toast-state.vue'], resolve)
     }
   },
   {
