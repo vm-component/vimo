@@ -74,7 +74,7 @@
   import canvasResize from './fixImage'
   import { isArray, isString } from '../../../util/type'
   import Textarea from '../../textarea/index'
-  import PreviewImage from '../preview-image/index'
+  import PreviewImage from '../../preview-image/index'
 
   export default {
     name: 'Feedback',

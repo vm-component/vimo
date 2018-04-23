@@ -47,6 +47,7 @@ import {
   Page,
   Picker,
   Popover,
+  PreviewImage,
   Radio,
   Range,
   Refresher,
@@ -87,7 +88,7 @@ export default function () {
   // Vue.prototype.$cityPicker = CityPicker
   Vue.prototype.$picker = Picker
   Vue.prototype.$popover = Popover
-  // Vue.prototype.$previewImage = PreviewImage
+  Vue.prototype.$previewImage = PreviewImage
 
   Vue.component(App.name, App)
   Vue.component(Nav.name, Nav)

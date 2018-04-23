@@ -26,11 +26,10 @@
         </section>
     </transition>
 </template>
-
 <script type="text/javascript">
-  import Slides from '../../slides/index'
-  import Slide from '../../slide/index'
-  import popupExtend from '../../../util/popup-extend'
+  import Slides from '../slides/index'
+  import Slide from '../slide/index'
+  import popupExtend from '../../util/popup-extend'
 
   export default {
     name: 'PreviewImage',

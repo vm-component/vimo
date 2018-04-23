@@ -1,4 +1,4 @@
-@import "../../../style/globals";
+@import "../../style/globals";
 
 .vm-preview-image.preview-image {
   position: fixed;
@@ -60,11 +60,11 @@
 }
 
 .zoom-enter-active, .zoom-leave-active {
-  transform: scale(1);
   opacity: 1;
+  transform: scale(1);
 }
 
 .zoom-enter, .zoom-leave-active {
-  transform: scale(0.9);
   opacity: 0.01;
+  transform: scale(0.9);
 }

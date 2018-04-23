@@ -33,7 +33,7 @@
  *  }
  * */
 import PreviewImageComponent from './preview-image.vue'
-import GeneratePopUpInstance from '../../../util/GeneratePopUpInstance.js'
+import GeneratePopUpInstance from '../../util/GeneratePopUpInstance.js'
 
 class PreviewImageInstance extends GeneratePopUpInstance {
   normalizeOptions (options) {
