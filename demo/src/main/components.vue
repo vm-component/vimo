@@ -180,7 +180,6 @@
                     <span>{{$t('refresher')}}</span>
                 </Item>
             </List>
-
             <List>
                 <ListHeader>{{$t('contentDisplay')}}</ListHeader>
                 <Item detail-push :to="{name: 'list'}">
@@ -200,9 +199,9 @@
                     <span>{{$t('slides')}}</span>
                 </Item>
                 <!--<Item detail-push :to="{name: 'slidesLite'}">-->
-                    <!--<Icon slot="item-left" name="film"></Icon>-->
-                    <!--<span>轮播(Lite)</span>-->
-                    <!--<Note slot="item-right">SlidesLite</Note>-->
+                <!--<Icon slot="item-left" name="film"></Icon>-->
+                <!--<span>轮播(Lite)</span>-->
+                <!--<Note slot="item-right">SlidesLite</Note>-->
                 <!--</Item>-->
                 <Item detail-push :to="{name: 'cards'}">
                     <Icon slot="item-left" name="calendar"></Icon>
@@ -241,62 +240,47 @@
                 <!--</Item>-->
             </List>
             <List>
-                <ListHeader>提示&操作/Notice&Action</ListHeader>
+                <ListHeader>{{$t('noticeAction')}}</ListHeader>
                 <Item detail-push :to="{name: 'alert'}">
                     <Icon slot="item-left" name="alert"></Icon>
-                    <span>对话框</span>
-                    <Note slot="item-right">Alert</Note>
+                    <span>{{$t('alert')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'loading'}">
                     <Icon slot="item-left" name="refresh"></Icon>
-                    <span>加载提示</span>
-                    <Note slot="item-right">Loading</Note>
+                    <span>{{$t('loading')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'indicator'}">
                     <Icon slot="item-left" name="more"></Icon>
-                    <span>指示器</span>
-                    <Note slot="item-right">Indicator</Note>
+                    <span>{{$t('indicator')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'modal'}">
                     <Icon slot="item-left" name="chatboxes"></Icon>
-                    <span>弹出页</span>
-                    <Note slot="item-right">Modal</Note>
+                    <span>{{$t('modal')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'toast'}">
                     <Icon slot="item-left" name="information-circle"></Icon>
-                    <span>通知</span>
-                    <Note slot="item-right">Toast</Note>
+                    <span>{{$t('toast')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'toastState'}">
                     <Icon slot="item-left" name="information-circle"></Icon>
-                    <span>通知(状态)</span>
-                    <Note slot="item-right">ToastState</Note>
+                    <span>{{$t('toastState')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'popover'}">
                     <Icon slot="item-left" name="text"></Icon>
-                    <span>提示框</span>
-                    <Note slot="item-right">Popover</Note>
+                    <span>{{$t('popover')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'actionSheet'}">
                     <Icon slot="item-left" name="list-box"></Icon>
-                    <span>选择单</span>
-                    <Note slot="item-right">ActionSheet</Note>
+                    <span>{{$t('actionSheet')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'fab'}">
                     <Icon slot="item-left" name="basketball"></Icon>
-                    <span>浮动按钮</span>
-                    <Note slot="item-right">Fab</Note>
+                    <span>{{$t('fab')}}</span>
                 </Item>
                 <Item detail-push :to="{name: 'noticeBar'}">
                     <Icon slot="item-left" name="compass"></Icon>
-                    <span>提示条</span>
-                    <Note slot="item-right">NoticeBar</Note>
+                    <span>{{$t('noticeBar')}}</span>
                 </Item>
-                <!--<Item detail-push>-->
-                <!--<Icon slot="item-left" name="star"></Icon>-->
-                <!--<span>返回顶部(未完成)</span>-->
-                <!--<Note slot="item-right">BackToTop</Note>-->
-                <!--</Item>-->
             </List>
             <!--<List>-->
             <!--<ListHeader>业务组件/Business Component</ListHeader>-->
@@ -373,6 +357,19 @@
           separation: '分割段',
           previewImage: '图片预览',
 
+          // 提示&操作
+          noticeAction: '提示&操作',
+          alert: '对话框',
+          loading: '加载提示',
+          indicator: '指示器',
+          modal: '弹出页',
+          toast: '通知',
+          toastState: '通知(状态)',
+          popover: '提示框',
+          actionSheet: '选择单',
+          fab: '浮动按钮',
+          noticeBar: '提示条',
+
           rest: '页面组件'
         },
         'en-US': {
@@ -422,6 +419,19 @@
           scroll: 'Scroll',
           separation: 'Separation',
           previewImage: 'PreviewImage',
+
+          // 提示&操作
+          noticeAction: 'Notice&Action',
+          alert: 'Alert',
+          loading: 'Loading',
+          indicator: 'Indicator',
+          modal: 'Modal',
+          toast: 'Toast',
+          toastState: 'ToastState',
+          popover: 'Popover',
+          actionSheet: 'ActionSheet',
+          fab: 'Fab',
+          noticeBar: 'NoticeBar',
 
           rest: '页面组件'
         }

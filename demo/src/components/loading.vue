@@ -2,55 +2,97 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>Loading</Title>
+                <Title>{{$t('title')}}</Title>
             </Navbar>
         </Header>
         <Content padding>
-            <p>显示不同的旋转样式, 默认打开Backdrop</p>
+            <p>{{$t('onlySpinner')}}</p>
+            <Button block @click="spinnerOnly()">{{$t('open')}}</Button>
+            <p>{{$t('onlyString')}}</p>
+            <Button block @click="stringOnly()">{{$t('open')}}</Button>
+            <p>{{$t('closeWhenPageChange')}}</p>
+            <Button block @click="showDefault()">{{$t('open')}}(Default)</Button>
+            <Button block @click="dismissWhenChangeUrl()">{{$t('open')}}</Button>
+            <p>{{$t('type')}}: ios/ios-small/bubbles/circles/crescent/dots</p>
+            <Button block @click="showIos()">{{$t('show')}} ios</Button>
+            <Button block @click="showIosSmall()">{{$t('show')}} ios-small</Button>
+            <Button block @click="showBubbles()">{{$t('show')}} Bubbles</Button>
+            <Button block @click="showCircles()">{{$t('show')}} circles</Button>
+            <Button block @click="showCrescent()">{{$t('show')}} crescent</Button>
+            <Button block @click="showDots()">{{$t('show')}} dots</Button>
 
-            <p>只有Spinner</p>
-            <Button block @click="spinnerOnly()">点击打开</Button>
-            <p>只传入string</p>
-            <Button block @click="stringOnly()">点击打开默认Loading</Button>
-            <Button block @click="stringOnlyH5Only()">点击打开默认Loading(强制使用H5模式)</Button>
-            <p>控制页面切换是否关闭loading</p>
+            <p>{{$t('noBackdrop')}}</p>
+            <Button block @click="showNoBackDrop()">{{$t('open')}}</Button>
 
-            <Button block @click="showDefault()">页面切换不关闭loading(默认)</Button>
-            <Button block @click="dismissWhenChangeUrl()">页面切换关闭loading</Button>
+            <p>{{$t('openContinue')}}</p>
+            <Button block @click="showOther()">{{$t('open')}}</Button>
 
-            <p>类型有: ios/ios-small/bubbles/circles/crescent/dots</p>
-            <Button block @click="showIos()">显示 ios</Button>
-            <Button block @click="showIosSmall()">显示 ios-small</Button>
-            <Button block @click="showBubbles()">显示 Bubbles</Button>
-            <Button block @click="showCircles()">显示 circles</Button>
-            <Button block @click="showCrescent()">显示 crescent</Button>
-            <Button block @click="showDots()">显示 dots</Button>
+            <p>{{$t('noSpinner')}}</p>
+            <Button block @click="showNoSpinner()">{{$t('open')}}</Button>
 
-            <p>不显示Backdrop</p>
-            <Button block @click="showNoBackDrop()">不显示Backdrop</Button>
-
-            <p>在一个loading中定时打开另一个</p>
-            <Button block @click="showOther()">连续开启</Button>
-
-            <p>没有旋转样式(NoSpinner)</p>
-            <Button block @click="showNoSpinner()">showNoSpinner</Button>
-
-            <p>自定义内容</p>
-            <Button block @click="showCusContent()">showCusContent</Button>
+            <p>{{$t('customer')}}</p>
+            <Button block @click="showCusContent()">{{$t('open')}}</Button>
 
         </Content>
     </Page>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     .loadingDemo {
         padding: 15px;
+    }
+
+    .customer-loading {
+        text-align: center;
+        .loading-box {
+            text-align: center;
+            img {
+                height: 80px;
+            }
+        }
+        p {
+            text-align: center;
+            margin: 0;
+        }
     }
 </style>
 <script type="text/javascript">
 
+  import loadinImg from '../assets/customer-loading.gif'
+
   export default {
     data () {
       return {}
+    },
+    i18n: {
+      messages: {
+        'zh-CN': {
+          title: '加载提示',
+          open: '打开Loading',
+          onlySpinner: '只有Spinner',
+          onlyString: '只传入String',
+          closeWhenPageChange: '控制页面切换是否关闭loading',
+          type: '类型',
+          show: '显示',
+          noBackdrop: '不显示Backdrop',
+          openContinue: '在一个loading中定时打开另一个',
+          noSpinner: '没有旋转样式',
+          customer: '自定义内容'
+
+        },
+        'en-US': {
+          title: 'Loading',
+          open: 'Open Loading',
+          onlySpinner: 'Only Spinner',
+          onlyString: 'Only String',
+          closeWhenPageChange: 'Control page switching is off loading',
+          type: 'Type',
+          show: 'Show',
+          noBackdrop: 'Does not show Backdrop',
+          openContinue: 'To open another one regularly during a loading',
+          noSpinner: 'No rotation style',
+          customer: 'Custom content'
+        }
+      }
     },
     methods: {
       // 只显示菊花
@@ -72,18 +114,6 @@
         }, 1000)
       },
 
-      stringOnlyH5Only () {
-        this.$loading.present({
-          content: '只传入了String',
-          // showBackdrop: false,
-          isH5: true
-        })
-        setTimeout(() => {
-          this.$loading.dismiss().then(() => {
-            console.debug('dismiss in promise success!')
-          })
-        }, 1000)
-      },
       // 普通的
       showDefault () {
         this.$loading.present({
@@ -261,15 +291,15 @@
       showCusContent () {
         this.$loading.present({
           spinner: 'hide',
-          content: '<p>你好Vimo</p>',
-          cssClass: 'cssClass',
+          content: `<div class="loading-box"><img src="${loadinImg}"><p>Loading</p></div>`,
+          cssClass: 'customer-loading',
           showBackdrop: true
         })
         setTimeout(() => {
           this.$loading.dismiss().then(() => {
             console.debug('dismiss in promise success!')
           })
-        }, 1000)
+        }, 3000)
       }
     }
   }
