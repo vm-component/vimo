@@ -11,4 +11,7 @@ const i18n = new VueI18n({
   messages // set locale messages
 })
 
+// for outer usage
+window.vimoI18n = i18n
+
 export default i18n

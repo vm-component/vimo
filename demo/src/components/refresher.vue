@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>{{$t('title')}}</Title>
+                <Title :title="$t('title')"></Title>
             </Navbar>
         </Header>
         <Content class="outer-content" record-position ref="content" @onScroll="onScrollHandler">

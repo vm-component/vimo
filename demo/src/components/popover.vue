@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>{{$t('title')}}</Title>
+                <Title :title="$t('title')"></Title>
                 <!--menutoggle-->
                 <Buttons slot="buttons" right>
                     <Button icon-only role="bar-button" menutoggle @click="openSetting($event)">

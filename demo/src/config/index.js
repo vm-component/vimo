@@ -13,5 +13,5 @@ export default {
   // ripple: true,
   backButtonText: i18n.t('vimo.backBtn'),
   box: false,
-  autoHideBackButton: false // 是否自动根据历史记录隐藏后退按钮
+  autoHideBackButton: true // 是否自动根据历史记录隐藏后退按钮
 }

@@ -436,17 +436,6 @@
           rest: '页面组件'
         }
       }
-    },
-    data () {
-      return {}
-    },
-    props: {},
-    watch: {},
-    computed: {},
-    methods: {},
-    created () {
-    },
-    activated () {
     }
   }
 </script>

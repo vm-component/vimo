@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>{{$t('title')}}</Title>
+                <Title :title="$t('title')"></Title>
             </Navbar>
         </Header>
         <Content class="outer-content">
@@ -144,7 +144,7 @@
           noticeInfo: '折叠列表不支持重叠组合, 最多只有一级折叠. "Selected" 数据由外向内传递, 只用于展示, 请勿过分使用.',
           normalList: '普通列表',
           collapseList: '列表折叠',
-          accordionList: '手风琴列表(只开启一个)',
+          accordionList: '手风琴列表(只开启一个)'
         },
         'en-US': {
           title: 'ListCollapse',
@@ -152,7 +152,7 @@
           noticeInfo: 'Collapsed lists do not support overlapping combinations. There is at most only one level of folding. "Selected" data is transmitted from outside to inside. For display only, DO NOT over use it.',
           normalList: 'Normal List',
           collapseList: 'Collapse List',
-          accordionList: 'Accordion List (open only one)',
+          accordionList: 'Accordion List (open only one)'
         }
       }
     }

@@ -2,7 +2,7 @@
     <Page>
         <Header ref="header">
             <Navbar>
-                <Title>{{$t('title')}}</Title>
+                <Title :title="$t('title')"></Title>
             </Navbar>
         </Header>
         <Content fullscreen padding class="outer-content" ref="content" @onScroll="onScrollHandler">

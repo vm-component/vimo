@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar hide-back-button>
-                <Title>{{$t('title')}}</Title>
+                <Title :title="$t('title')"></Title>
             </Navbar>
         </Header>
         <Content padding>

@@ -192,11 +192,18 @@
       }
     },
     methods: {
+      emitCustomerEvent (eventName, val) {
+        var event = document.createEvent('CustomEvent')
+        event.initCustomEvent(eventName, true, false, val)
+        document.dispatchEvent(event)
+      },
       switchLanguage () {
         if (this.$i18n.locale !== 'zh-CN') {
           this.$store.commit('SET_LOCALE', {locale: 'zh-CN'})
+          this.emitCustomerEvent('vimoI18nChange', 'zh-CN')
         } else {
           this.$store.commit('SET_LOCALE', {locale: 'en-US'})
+          this.emitCustomerEvent('vimoI18nChange', 'en-US')
         }
       },
       changeMode () {
@@ -208,6 +215,14 @@
           this.mode = this.$config.get('mode')
         }
       }
+    },
+    mounted () {
+      // document.addEventListener('vimoI18nChange', (val) => {
+      //   console.log('Current Lang:', val.detail)
+      // })
+      this.$platform.ready().then((val) => {
+        this.emitCustomerEvent('vimoReady', val)
+      })
     }
   }
 </script>

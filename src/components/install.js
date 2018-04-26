@@ -17,7 +17,6 @@ export default function install (Vue, options) {
   }
   const platform = setupPlatform(options.pltConf || {})
   const platformSettings = platform.settings()
-  console.log('platformSettings:', platformSettings)
   const config = new Config(Object.assign({}, options.custConf || {}, platformSettings))
   // 全局注册
   window.VM = {
@@ -28,13 +27,13 @@ export default function install (Vue, options) {
   }
 
   Vue.prototype.$config = config
-  // Vue.prototype.$platform = platform
+  Vue.prototype.$platform = platform
 
   // add logo
   addLogo(version, Vue.version)
 
   // ready event for VimoReady
-  var ev = document.createEvent('HTMLEvents')
-  ev.initEvent('VimoReady', false, false)
-  document.dispatchEvent(ev)
+  var event = document.createEvent('CustomEvent')
+  event.initCustomEvent('VimoReady', true, false, '')
+  document.dispatchEvent(event)
 }

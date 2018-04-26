@@ -2,7 +2,7 @@
     <Page box>
         <Header>
             <Navbar>
-                <Title>{{$t('title')}}</Title>
+                <Title :title="$t('title')"></Title>
             </Navbar>
         </Header>
         <Content class="outer-content" padding ref="content">

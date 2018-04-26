@@ -19,7 +19,7 @@ const routes = [
 ]
 
 const config = {
-  mode: 'history',
+  mode: 'hash',
   routes: routes.concat(subPageRoutes)  // （缩写）相当于 routes: routes
 }
 

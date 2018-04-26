@@ -2,7 +2,7 @@
     <Page>
         <Header>
             <Navbar>
-                <Title>{{$t('title')}}</Title>
+                <Title :title="$t('title')"></Title>
             </Navbar>
             <Toolbar>
                 <!--content-->
