@@ -48,7 +48,7 @@ $item-md-divider-border-bottom: 1px solid $list-md-border-color !default;
 /// @prop - Background for the sliding content
 $item-md-sliding-content-background: $list-md-background-color !default;
 
-.item-md {
+.item-md.item-block {
   position: relative;
   font-size: $item-md-font-size;
   font-weight: normal;

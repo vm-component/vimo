@@ -54,7 +54,7 @@ $item-ios-sliding-content-background: $list-ios-background-color !default;
 // iOS Item
 // --------------------------------------------------
 
-.item-ios {
+.item-ios.item-block {
   position: relative;
   font-size: $item-ios-body-text-font-size;
   color: $list-ios-text-color;
