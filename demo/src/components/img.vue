@@ -9,7 +9,7 @@
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius expedita officia quam reiciendis similique suscipit vel. Assumenda, cum error
                 eum, fuga nobis pariatur placeat praesentium qui, repellendus repudiandae similique veritatis.</p>
-            <Img width="100%" height="200" :src="'https://raw.githubusercontent.com/vm-component/vimo/master/examples/static/background/'+i+'.jpg'"
+            <Img width="100%" height="200" :src="'https://raw.githubusercontent.com/vm-component/vimo/master/demo/static/background/'+i+'.jpg'"
                  v-for="i in totalCount"
                  :key="i"/>
         </Content>

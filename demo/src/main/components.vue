@@ -134,25 +134,22 @@
                     <Icon slot="item-left" name="search"></Icon>
                     <span>{{$t('searchbar')}}</span>
                 </Item>
-                <!--<Item detail-push :to="{name: 'feedback'}">-->
-                <!--<Icon slot="item-left" name="archive"></Icon>-->
-                <!--<span>反馈</span>-->
-                <!--<Note slot="item-right">Feedback</Note>-->
-                <!--</Item>-->
+                <Item detail-push :to="{name: 'feedback'}">
+                    <Icon slot="item-left" name="archive"></Icon>
+                    <span>{{$t('feedback')}}</span>
+                </Item>
                 <Item detail-push :to="{name: 'picker'}">
                     <Icon slot="item-left" name="basket"></Icon>
                     <span>{{$t('picker')}}</span>
                 </Item>
-                <!--<Item detail-push :to="{name: 'sheet'}">-->
-                <!--<Icon slot="item-left" name="barcode"></Icon>-->
-                <!--<span>弹出单</span>-->
-                <!--<Note slot="item-right">Sheet</Note>-->
-                <!--</Item>-->
-                <!--<Item detail-push :to="{name: 'popSheet'}">-->
-                <!--<Icon slot="item-left" name="archive"></Icon>-->
-                <!--<span>弹出窗</span>-->
-                <!--<Note slot="item-right">PopSheet</Note>-->
-                <!--</Item>-->
+                <Item detail-push :to="{name: 'sheet'}">
+                    <Icon slot="item-left" name="barcode"></Icon>
+                    <span>{{$t('sheet')}}</span>
+                </Item>
+                <Item detail-push :to="{name: 'popSheet'}">
+                    <Icon slot="item-left" name="archive"></Icon>
+                    <span>{{$t('popSheet')}}</span>
+                </Item>
                 <!--<Item detail-push>-->
                 <!--<Icon slot="item-left" name="star"></Icon>-->
                 <!--<Label>数字支付键盘(未完成)</Label>-->
@@ -198,11 +195,10 @@
                     <Icon slot="item-left" name="photos"></Icon>
                     <span>{{$t('slides')}}</span>
                 </Item>
-                <!--<Item detail-push :to="{name: 'slidesLite'}">-->
-                <!--<Icon slot="item-left" name="film"></Icon>-->
-                <!--<span>轮播(Lite)</span>-->
-                <!--<Note slot="item-right">SlidesLite</Note>-->
-                <!--</Item>-->
+                <Item detail-push :to="{name: 'slidesLite'}">
+                    <Icon slot="item-left" name="film"></Icon>
+                    <span>{{$t('slidesLite')}}</span>
+                </Item>
                 <Item detail-push :to="{name: 'cards'}">
                     <Icon slot="item-left" name="calendar"></Icon>
                     <span>{{$t('cards')}}</span>
@@ -283,21 +279,19 @@
                 </Item>
             </List>
             <List>
-                <ListHeader>业务组件/Business Component</ListHeader>
-                <!--<Item detail-push :to="{name: 'chooseCity'}">-->
-                    <!--<Icon slot="item-left" name="boat"></Icon>-->
-                    <!--<span>城市选择</span>-->
-                    <!--<Note slot="item-right">ChooseCity</Note>-->
-                <!--</Item>-->
+                <ListHeader>{{$t('bc')}}</ListHeader>
+                <Item detail-push :to="{name: 'chooseCity'}">
+                    <Icon slot="item-left" name="boat"></Icon>
+                    <span>{{$t('chooseCity')}}</span>
+                </Item>
                 <Item detail-push :to="{name: 'slideVerification'}">
                     <Icon slot="item-left" name="key"></Icon>
-                    <span>滑动验证</span>
-                    <Note slot="item-right">SlideVerification</Note>
+                    <span>{{$t('slideVerification')}}</span>
                 </Item>
                 <!--<Item detail-push>-->
-                    <!--<Icon slot="item-left" name="pricetag"></Icon>-->
-                    <!--<span>分类选择(未完成)</span>-->
-                    <!--<Note slot="item-right">Category</Note>-->
+                <!--<Icon slot="item-left" name="pricetag"></Icon>-->
+                <!--<span>分类选择(未完成)</span>-->
+                <!--<Note slot="item-right">Category</Note>-->
                 <!--</Item>-->
             </List>
         </Content>
@@ -341,7 +335,11 @@
           textarea: '多行输入',
           range: '范围选择',
           searchbar: '搜索栏',
+          feedback: '反馈',
           picker: '单多列选择器',
+          sheet: '弹出单',
+          popSheet: '弹出窗',
+
           // 数据加载
           dataLoading: '数据加载',
           infiniteScroll: '无限滚动',
@@ -352,6 +350,7 @@
           collapse: '手风琴',
           listSliding: '侧滑操作',
           slides: '轮播/跑马灯',
+          slidesLite: '轮播(Lite)',
           cards: '卡片',
           scroll: '滚动',
           separation: '分割段',
@@ -369,6 +368,11 @@
           actionSheet: '选择单',
           fab: '浮动按钮',
           noticeBar: '提示条',
+
+          // 提示&操作
+          bc: '业务组件',
+          chooseCity: '城市选择',
+          slideVerification: '滑动验证',
 
           rest: '页面组件'
         },
@@ -404,7 +408,11 @@
           textarea: 'Textarea',
           range: 'Range',
           searchbar: 'SearchBar',
+          feedback: 'Feedback',
           picker: 'Picker',
+          sheet: 'Sheet',
+          popSheet: 'PopSheet',
+
           // 数据加载
           dataLoading: 'Data Loading',
           infiniteScroll: 'Infinite Scroll',
@@ -415,6 +423,7 @@
           collapse: 'Collapse',
           listSliding: 'SlidingItem',
           slides: 'Slides',
+          slidesLite: 'SlidesLite',
           cards: 'Cards',
           scroll: 'Scroll',
           separation: 'Separation',
@@ -432,6 +441,11 @@
           actionSheet: 'ActionSheet',
           fab: 'Fab',
           noticeBar: 'NoticeBar',
+
+          // 提示&操作
+          bc: 'Business Component',
+          chooseCity: 'ChooseCity',
+          slideVerification: 'SlideVerification',
 
           rest: '页面组件'
         }

@@ -104,13 +104,13 @@
                     :grabCursor="false">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_2.jpg">
+                    <img src="../assets/scenery_2.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_3.jpg">
+                    <img src="../assets/scenery_3.jpg">
                 </Slide>
             </Slides>
 
@@ -124,13 +124,13 @@
                     :loop="true">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_2.jpg">
+                    <img src="../assets/scenery_2.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_3.jpg">
+                    <img src="../assets/scenery_3.jpg">
                 </Slide>
             </Slides>
 
@@ -185,13 +185,14 @@
                     effect="cube" @onInit="onInit">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_2.jpg">
+                    <img src="../assets/scenery_2.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_3.jpg">
+                    <img src="../assets/scenery_3.jpg">
                 </Slide>
             </Slides>
 
@@ -207,13 +208,13 @@
                     :coverflow="coverflow">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_2.jpg">
+                    <img src="../assets/scenery_2.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_3.jpg">
+                    <img src="../assets/scenery_3.jpg">
                 </Slide>
             </Slides>
 
@@ -233,13 +234,13 @@
                     :spaceBetween="30">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_2.jpg">
+                    <img src="../assets/scenery_2.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_3.jpg">
+                    <img src="../assets/scenery_3.jpg">
                 </Slide>
             </Slides>
 
@@ -275,13 +276,13 @@
                     :paginationClickable="true">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_2.jpg">
+                    <img src="../assets/scenery_2.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_3.jpg">
+                    <img src="../assets/scenery_3.jpg">
                 </Slide>
             </Slides>
 
@@ -334,13 +335,13 @@
                     :paginationBulletRender="paginationBulletRender">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_2.jpg">
+                    <img src="../assets/scenery_2.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_3.jpg">
+                    <img src="../assets/scenery_3.jpg">
                 </Slide>
             </Slides>
 
@@ -352,13 +353,13 @@
                     paginationType="fraction">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_2.jpg">
+                    <img src="../assets/scenery_2.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_3.jpg">
+                    <img src="../assets/scenery_3.jpg">
                 </Slide>
             </Slides>
 
@@ -370,13 +371,13 @@
                     paginationType="progress">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_2.jpg">
+                    <img src="../assets/scenery_2.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_3.jpg">
+                    <img src="../assets/scenery_3.jpg">
                 </Slide>
             </Slides>
 
@@ -476,13 +477,13 @@
                     :zoom="true">
                 <!-- 幻灯内容 -->
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_1.jpg">
+                    <img src="../assets/scenery_1.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_2.jpg">
+                    <img src="../assets/scenery_2.jpg">
                 </Slide>
                 <Slide class="slide">
-                    <img src="../../../examples/static/img/scenery_3.jpg">
+                    <img src="../assets/scenery_3.jpg">
                 </Slide>
             </Slides>
 
@@ -570,7 +571,7 @@
             top: 0;
             width: 130%;
             height: 100%;
-            background: url(../../../examples/static/img/scenery_3.jpg) no-repeat center center/cover
+            background: url(../assets/scenery_3.jpg) no-repeat center center/cover
         }
         .swiper-slide {
             background: transparent !important;
@@ -636,9 +637,9 @@
 
 </style>
 <script type="text/javascript">
-  import scenery1 from '../../../examples/static/img/scenery_1.jpg'
-  import scenery2 from '../../../examples/static/img/scenery_2.jpg'
-  import scenery3 from '../../../examples/static/img/scenery_3.jpg'
+  import scenery1 from '../assets/scenery_1.jpg'
+  import scenery2 from '../assets/scenery_2.jpg'
+  import scenery3 from '../assets/scenery_3.jpg'
 
   export default {
     name: 'name',

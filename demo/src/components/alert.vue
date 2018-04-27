@@ -343,7 +343,7 @@
       },
       image () {
         this.$alert.present({
-          image: 'https://github.com/vm-component/Vimo/blob/master/examples/static/img/vimo.png?raw=true',
+          image: 'https://github.com/vm-component/Vimo/blob/master/demo/static/vimo.png?raw=true',
           title: '5.5 version update',
           message: '1. Function update 2. Function update;',
           cssClass: 'alertCssOuterMain',

@@ -13,12 +13,15 @@ import {
   CardHeader,
   CardTitle,
   Checkbox,
+  ChooseCity,
+  CityPicker,
   Column,
   Content,
   Datetime,
   Fab,
   FabButton,
   FabList,
+  Feedback,
   Footer,
   Grid,
   Header,
@@ -48,6 +51,7 @@ import {
   Page,
   Picker,
   Popover,
+  PopSheet,
   PreviewImage,
   Radio,
   Range,
@@ -63,8 +67,11 @@ import {
   Select,
   SelectOption,
   Separation,
+  Sheet,
   Slide,
+  SlideLite,
   Slides,
+  SlidesLite,
   SlideVerification,
   Spinner,
   Tab,
@@ -87,8 +94,8 @@ export default function () {
   Vue.prototype.$toastState = ToastState
   Vue.prototype.$modal = Modal
   Vue.prototype.$indicator = Indicator
-  // Vue.prototype.$chooseCity = ChooseCity
-  // Vue.prototype.$cityPicker = CityPicker
+  Vue.prototype.$chooseCity = ChooseCity
+  Vue.prototype.$cityPicker = CityPicker
   Vue.prototype.$picker = Picker
   Vue.prototype.$popover = Popover
   Vue.prototype.$previewImage = PreviewImage
@@ -115,7 +122,7 @@ export default function () {
   Vue.component(Fab.name, Fab)
   Vue.component(FabButton.name, FabButton)
   Vue.component(FabList.name, FabList)
-  // Vue.component(Feedback.name, Feedback)
+  Vue.component(Feedback.name, Feedback)
   Vue.component(Column.name, Column)
   Vue.component(Grid.name, Grid)
   Vue.component(Row.name, Row)
@@ -151,13 +158,13 @@ export default function () {
   Vue.component(Select.name, Select)
   Vue.component(SelectOption.name, SelectOption)
   Vue.component(Separation.name, Separation)
-  // Vue.component(Sheet.name, Sheet)
-  // Vue.component(PopSheet.name, PopSheet)
+  Vue.component(Sheet.name, Sheet)
+  Vue.component(PopSheet.name, PopSheet)
   Vue.component(SlideVerification.name, SlideVerification)
   Vue.component(Slides.name, Slides)
   Vue.component(Slide.name, Slide)
-  // Vue.component(SlidesLite.name, SlidesLite)
-  // Vue.component(SlideLite.name, SlideLite)
+  Vue.component(SlidesLite.name, SlidesLite)
+  Vue.component(SlideLite.name, SlideLite)
   Vue.component(Spinner.name, Spinner)
   Vue.component(Tabs.name, Tabs)
   Vue.component(Tab.name, Tab)

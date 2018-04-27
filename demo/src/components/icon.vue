@@ -84,25 +84,25 @@
     .icon-vue {
         height: 30px;
         width: 30px;
-        background: url('../../../examples/src/assets/vue.png') no-repeat center center/cover;
+        background: url('../assets/vue.png') no-repeat center center/cover;
     }
 
     .icon-vimo {
         height: 30px;
         width: 30px;
-        background: url('../../../examples/src/assets/vimo.png') no-repeat center center/cover;
+        background: url('../assets/vimo.png') no-repeat center center/cover;
     }
 
     .icon-alipay {
         height: 30px;
         width: 40px;
-        background: url('../../../examples/src/assets/alipay.png') no-repeat center center/cover;
+        background: url('../assets/alipay.png') no-repeat center center/cover;
     }
 
     .icon-wechat {
         height: 30px;
         width: 36px;
-        background: url('../../../examples/src/assets/wechat.png') no-repeat center center/cover;
+        background: url('../assets/wechat.png') no-repeat center center/cover;
     }
 
     .expo {

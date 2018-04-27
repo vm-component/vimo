@@ -78,6 +78,13 @@ export default [
     }
   },
   {
+    path: '/choose-city',
+    name: 'chooseCity',
+    component (resolve) {
+      require(['@DemoComponent/choose-city.vue'], resolve)
+    }
+  },
+  {
     path: '/content-box',
     name: 'contentBox',
     component (resolve) {
@@ -131,6 +138,13 @@ export default [
     name: 'fab',
     component (resolve) {
       require(['@DemoComponent/fab.vue'], resolve)
+    }
+  },
+  {
+    path: '/feedback',
+    name: 'feedback',
+    component (resolve) {
+      require(['@DemoComponent/feedback.vue'], resolve)
     }
   },
   {
@@ -407,6 +421,13 @@ export default [
     }
   },
   {
+    path: '/pop-sheet',
+    name: 'popSheet',
+    component (resolve) {
+      require(['@DemoComponent/pop-sheet.vue'], resolve)
+    }
+  },
+  {
     path: '/popover',
     name: 'popover',
     component (resolve) {
@@ -533,10 +554,24 @@ export default [
     }
   },
   {
+    path: '/sheet',
+    name: 'sheet',
+    component (resolve) {
+      require(['@DemoComponent/sheet.vue'], resolve)
+    }
+  },
+  {
     path: '/slide-verification',
     name: 'slideVerification',
     component (resolve) {
       require(['@DemoComponent/slide-verification.vue'], resolve)
+    }
+  },
+  {
+    path: '/slides-lite',
+    name: 'slidesLite',
+    component (resolve) {
+      require(['@DemoComponent/slides-lite.vue'], resolve)
     }
   },
   {
