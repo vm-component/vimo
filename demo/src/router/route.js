@@ -533,6 +533,13 @@ export default [
     }
   },
   {
+    path: '/slide-verification',
+    name: 'slideVerification',
+    component (resolve) {
+      require(['@DemoComponent/slide-verification.vue'], resolve)
+    }
+  },
+  {
     path: '/slides',
     name: 'slides',
     component (resolve) {

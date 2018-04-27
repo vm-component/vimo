@@ -67,7 +67,7 @@ $list-ios-header-background-color: transparent !default;
 // iOS Default List
 // --------------------------------------------------
 
-.list-ios {
+.list-ios.ion-list {
   @include margin(-1px, $list-ios-margin-end, $list-ios-margin-bottom, $list-ios-margin-start);
 }
 

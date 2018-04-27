@@ -65,6 +65,7 @@ import {
   Separation,
   Slide,
   Slides,
+  SlideVerification,
   Spinner,
   Tab,
   Tabs,
@@ -152,7 +153,7 @@ export default function () {
   Vue.component(Separation.name, Separation)
   // Vue.component(Sheet.name, Sheet)
   // Vue.component(PopSheet.name, PopSheet)
-  // Vue.component(SlideBox.name, SlideBox)
+  Vue.component(SlideVerification.name, SlideVerification)
   Vue.component(Slides.name, Slides)
   Vue.component(Slide.name, Slide)
   // Vue.component(SlidesLite.name, SlidesLite)

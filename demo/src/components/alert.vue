@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
     <Page>
         <Header>
             <Navbar>
@@ -33,21 +33,7 @@
         </Content>
     </Page>
 </template>
-<style lang="scss">
-    .alertCssOuterMain {
-        .alert-image-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-top: 16px;
-            .alert-image {
-                height: 100px;
-                width: 100px;
-            }
-        }
-    }
-</style>
-<script type="text/javascript">
+<script>
   export default {
     name: 'AlertDemo',
     i18n: {
@@ -387,3 +373,17 @@
     }
   }
 </script>
+<style lang="scss">
+    .alertCssOuterMain {
+        .alert-image-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 16px;
+            .alert-image {
+                height: 100px;
+                width: 100px;
+            }
+        }
+    }
+</style>

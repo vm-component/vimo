@@ -57,6 +57,7 @@ $track-failing-background-color: #ef4644 !default;
       opacity: 1;
       align-items: center;
       justify-content: center;
+      touch-action: pan-x;
       
       .icon-arrow-right {
         width: 20px;

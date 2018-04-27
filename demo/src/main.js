@@ -26,8 +26,6 @@ Vue.use(Install, {
 
 register()
 
-console.log(router)
-
 new Vue({
   i18n,
   router,

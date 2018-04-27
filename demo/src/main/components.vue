@@ -282,24 +282,24 @@
                     <span>{{$t('noticeBar')}}</span>
                 </Item>
             </List>
-            <!--<List>-->
-            <!--<ListHeader>业务组件/Business Component</ListHeader>-->
-            <!--<Item detail-push :to="{name: 'chooseCity'}">-->
-            <!--<Icon slot="item-left" name="boat"></Icon>-->
-            <!--<span>城市选择</span>-->
-            <!--<Note slot="item-right">ChooseCity</Note>-->
-            <!--</Item>-->
-            <!--<Item detail-push :to="{name: 'slideBox'}">-->
-            <!--<Icon slot="item-left" name="key"></Icon>-->
-            <!--<span>滑动验证</span>-->
-            <!--<Note slot="item-right">SlideBox</Note>-->
-            <!--</Item>-->
-            <!--<Item detail-push>-->
-            <!--<Icon slot="item-left" name="pricetag"></Icon>-->
-            <!--<span>分类选择(未完成)</span>-->
-            <!--<Note slot="item-right">Category</Note>-->
-            <!--</Item>-->
-            <!--</List>-->
+            <List>
+                <ListHeader>业务组件/Business Component</ListHeader>
+                <!--<Item detail-push :to="{name: 'chooseCity'}">-->
+                    <!--<Icon slot="item-left" name="boat"></Icon>-->
+                    <!--<span>城市选择</span>-->
+                    <!--<Note slot="item-right">ChooseCity</Note>-->
+                <!--</Item>-->
+                <Item detail-push :to="{name: 'slideVerification'}">
+                    <Icon slot="item-left" name="key"></Icon>
+                    <span>滑动验证</span>
+                    <Note slot="item-right">SlideVerification</Note>
+                </Item>
+                <!--<Item detail-push>-->
+                    <!--<Icon slot="item-left" name="pricetag"></Icon>-->
+                    <!--<span>分类选择(未完成)</span>-->
+                    <!--<Note slot="item-right">Category</Note>-->
+                <!--</Item>-->
+            </List>
         </Content>
     </Page>
 </template>

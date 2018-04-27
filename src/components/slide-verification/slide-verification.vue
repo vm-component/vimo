@@ -8,13 +8,7 @@
                 <span v-if="state === 'failing'">{{failText}}</span>
             </div>
             <!--按钮-->
-            <div class="track-btn" ref="slideBoxBtn"
-                 @touchstart="onPointerStartHandler($event)"
-                 @mousedown="onPointerStartHandler($event)"
-                 @touchmove="onPointerMoveHandler($event)"
-                 @mousemove="onPointerMoveHandler($event)"
-                 @touchend="onPointerEndHandler($event)"
-                 @mouseup="onPointerEndHandler($event)">
+            <div class="track-btn" ref="slideBoxBtn">
                 <i class="icon-arrow-right"
                    v-if="state === 'inactive' || state === 'sliding' || state === 'cancelling'"></i>
                 <i class="icon-ok" v-if="state === 'completing'"></i>
@@ -24,72 +18,10 @@
         </div>
     </div>
 </template>
-
 <script type="text/javascript">
-  /**
-   * @component SlideBox
-   * @description
-   *
-   * ## 滑动验证组件 / SlideBox
-   *
-   * ### 介绍
-   *
-   * 这是一个仿照淘宝注册的一个验证组件, 向右滑动到底部意味着用户确认协议可以继续向下进行. 组件一共有以下几种状态, 且状态只能维持其一, 且一下状态的切换由业务自己控制:
-   *
-   *  - checking
-   *  - cancelling
-   *  - completing
-   *  - failing
-   *
-   *
-   * 下面是组件的全部状态, 同一时间只能保持一个
-   *
-   * - inactive     // 初始状态
-   * - sliding      // 滑动状态
-   * - checking     // 正在验证
-   * - cancelling   // 释放状态
-   * - completing   // 验证通过状态
-   * - failing      // 验证失败状态
-   *
-   * ### 如何引入
-   * ```
-   * // 引入
-   * import { SlideBox } from 'vimo'
-   * // 安装
-   * Vue.component(SlideBox.name, SlideBox)
-   * // 或者
-   * export default{
-   *   components: {
-   *     SlideBox
-   *  }
-   * }
-   * ```
-   *
-   * ### 如果获取组件实例
-   *
-   * - 通过ref标记获取
-   * - 监听组件的`onSlideEnd`事件, 事件传递组件实例
-   *
-   *
-   * @demo #/slide-box
-   * @fires component:SlideBox#onSlideEnd
-   * @usage
-   *
-   * <p>向右滑动进入验证状态, 1s后重置</p>
-   * <SlideBox @onSlideEnd="onSlideEndHandler"></SlideBox>
-   *
-   * methods: {
-   *    // 向右滑动进入验证状态, 4s后重置
-   *    onSlideEndHandler (ins) {
-   *      ins.checking()
-   *      setTimeout(() => {
-   *        ins.cancel()
-   *      }, 1000)
-   *    },
-   *  }
-   *
-   * */
-  import { clamp, pointerCoord, transitionEnd } from '../../../util/util'
+  import PointerEvents from 'tp-pointer-events'
+  import { clamp, pointerCoord, transitionEnd } from '../../util/util'
+  import registerListener from '../../util/register-listener.js'
 
   const STATE_INACTIVE = 'inactive'         // 初始状态
   const STATE_SLIDING = 'sliding'           // 滑动状态
@@ -98,9 +30,12 @@
   const STATE_COMPLETING = 'completing'     // 验证通过状态
   const STATE_FAILING = 'failing'           // 验证失败状态
   export default {
-    name: 'SlideBox',
+    name: 'SlideVerification',
     data () {
       return {
+        pointerEvents: null,
+        resizeUnReg: null,
+
         timer: null,            // 计时器
         unReg: null,            // 动画完毕的解绑函数
         min: 0,                 // 可移动的最小距离
@@ -194,14 +129,13 @@
       // ------ private------
       onPointerStartHandler ($event) {
         if (this.state !== STATE_INACTIVE) return
-        $event.preventDefault()
         this.state = STATE_SLIDING
         let coord = pointerCoord($event)
         this.pointerStart = coord.x - this.slideBoxBtnElement.getBoundingClientRect().left
+        return true
       },
       onPointerMoveHandler ($event) {
         if (this.state !== STATE_SLIDING) return
-        $event.preventDefault()
         let coord = pointerCoord($event)
         let left = coord.x - this.$el.offsetLeft - this.pointerStart >> 0
         this.translateX = this.max - clamp(this.min, left, this.max)
@@ -221,12 +155,29 @@
         } else {
           this.cancel()
         }
+      },
+      init () {
+        this.pointerEvents && this.pointerEvents.destroy()
+
+        let boxWidth = parseInt(window.getComputedStyle(this.$el).width)
+        let btnWidth = parseInt(window.getComputedStyle(this.slideBoxBtnElement).width)
+        this.translateX = this.max = boxWidth - btnWidth >> 0
+
+        this.pointerEvents = new PointerEvents(this.slideBoxBtnElement, this.onPointerStartHandler, this.onPointerMoveHandler, this.onPointerEndHandler, {})
       }
     },
     mounted () {
-      let boxWidth = parseInt(window.getComputedStyle(this.$el).width)
-      let btnWidth = parseInt(window.getComputedStyle(this.slideBoxBtnElement).width)
-      this.translateX = this.max = boxWidth - btnWidth >> 0
+      this.resizeUnReg = registerListener(window, 'resize', () => {
+        requestAnimationFrame(() => {
+          this.init()
+        })
+      })
+
+      this.init()
+    },
+    destroyed () {
+      this.pointerEvents && this.pointerEvents.destroy()
+      this.resizeUnReg && this.resizeUnReg()
     }
   }
 
