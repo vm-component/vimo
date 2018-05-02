@@ -27,7 +27,7 @@
  *
  * ActionSheet.present({
  *  title: '请选择操作',
- *  subTitle: '注意，选择后不能撤销！',
+ *  subTitle: '注意，选择后不能撤销!',
  *  cssClass: 'ActionSheetCssClass1 ActionSheetCssClass2',
  *  enableBackdropDismiss: true,
  *  buttons: [
