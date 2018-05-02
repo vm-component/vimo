@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.15"></a>
+## [1.1.15](https://github.com/vm-component/vimo/compare/v1.1.14...v1.1.15) (2018-05-02)
+
+
+### Bug Fixes
+
+* 修复demo缺少pointer-events.es5.js的报错 ([55e4fd3](https://github.com/vm-component/vimo/commit/55e4fd3))
+* 修改action-sheet文档 ([c3504a6](https://github.com/vm-component/vimo/commit/c3504a6))
+
+
+
 <a name="1.1.14"></a>
 ## [1.1.14](https://github.com/vm-component/vimo/compare/v1.1.13...v1.1.14) (2018-02-26)
 
