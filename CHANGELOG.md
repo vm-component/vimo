@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.16"></a>
+## [1.1.16](https://github.com/vm-component/vimo/compare/v1.1.15...v1.1.16) (2018-05-04)
+
+
+### Bug Fixes
+
+* 修改spinner DEMO ([ecf13c6](https://github.com/vm-component/vimo/commit/ecf13c6))
+
+
+
 <a name="1.1.15"></a>
 ## [1.1.15](https://github.com/vm-component/vimo/compare/v1.1.14...v1.1.15) (2018-05-02)
 
