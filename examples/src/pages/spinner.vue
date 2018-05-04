@@ -7,7 +7,7 @@
         </Header>
         <Content padding>
             <h1>Spinner组件</h1>
-            <p>嗯, 菊花图...</p>
+            <p>嗯, 菊花图, 你懂得...</p>
 
             <h4>默认</h4>
             <Spinner></Spinner>
