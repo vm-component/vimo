@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.17"></a>
+## [1.1.17](https://github.com/vm-component/vimo/compare/v1.1.16...v1.1.17) (2018-05-04)
+
+
+
 <a name="1.1.16"></a>
 ## [1.1.16](https://github.com/vm-component/vimo/compare/v1.1.15...v1.1.16) (2018-05-04)
 
