@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>choose-city/choose-city.vue - Documentation</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="scripts/qrcode.js"></script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/custom.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114740261-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-114740261-1');
+    </script>
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+
+    <section class="vimo">
+        <div class="vimo__imgBox">
+            <img class="vimo__imgBox--img" src="./asset/img/vimo.png">
+        </div>
+
+        <div class="vimo__title">
+            <h2>VIMO</h2>
+            <!--<p>beta</p>-->
+            <p>基于Vue2.x的移动端Hybrid框架</p>
+        </div>
+        <div class="vimo__iframe">
+            <iframe src="https://ghbtns.com/github-btn.html?user=vm-component&amp;repo=Vimo&amp;type=star&amp;count=true"
+                    frameborder="0" scrolling="0" width="110px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=vm-component&amp;repo=Vimo&amp;type=fork&amp;count=true"
+                    frameborder="0" scrolling="0" width="95px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+        </div>
+    </section>
+    <section class="nav__header"><h2><a href="index.html">首页 / Home</a></h2><h2><a href="https://vm-component.github.io/vimo-demo">示例 / Demo</a></h2><h2><a href="https://github.com/vm-component/vimo-start-kit">如何开始 / How To Start</a></h2><h2><a href="https://github.com/vm-component/vimo/blob/master/THEME.md">主题替换 / Change Theme</a></h2><h2><a href="https://github.com/vm-component/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2><h2><a href="https://github.com/vm-component/vimo/blob/master/FAQ.md">常见问题 / Question</a></h2></section><h3>组件 / Components</h3><ul><li><a href="component-ActionSheet.html">ActionSheet</a><ul class='methods'><li data-type='method'><a href="component-ActionSheet.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-ActionSheet.html#~present">present</a></li></ul></li><li><a href="component-Alert.html">Alert</a><ul class='methods'><li data-type='method'><a href="component-Alert.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Alert.html#~present">present</a></li></ul></li><li><a href="component-App.html">App</a></li><li><a href="component-Avatar.html">Avatar</a></li><li><a href="component-Backdrop.html">Backdrop</a></li><li><a href="component-Badge.html">Badge</a></li><li><a href="component-Button.html">Button</a></li><li><a href="component-Card.html">Card</a></li><li><a href="component-Card_CardContent.html">Card/CardContent</a></li><li><a href="component-Card_CardHeader.html">Card/CardHeader</a></li><li><a href="component-Card_CardTitle.html">Card/CardTitle</a></li><li><a href="component-Checkbox.html">Checkbox</a></li><li><a href="component-ChooseCity.html">ChooseCity</a><ul class='methods'><li data-type='method'><a href="component-ChooseCity.html#~present">present</a></li></ul></li><li><a href="component-CityPicker.html">CityPicker</a></li><li><a href="component-Content.html">Content</a><ul class='methods'><li data-type='method'><a href="component-Content.html#~resize">resize</a></li><li data-type='method'><a href="component-Content.html#~scrollBy">scrollBy</a></li><li data-type='method'><a href="component-Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="component-Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="component-Content.html#~scrollToElement">scrollToElement</a></li><li data-type='method'><a href="component-Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="component-CountDown.html">CountDown</a></li><li><a href="component-Datetime.html">Datetime</a></li><li><a href="component-Fab.html">Fab</a><ul class='methods'><li data-type='method'><a href="component-Fab.html#~close">close</a></li></ul></li><li><a href="component-Fab_FabButton.html">Fab/FabButton</a></li><li><a href="component-Fab_FabList.html">Fab/FabList</a></li><li><a href="component-Feedback.html">Feedback</a><ul class='methods'><li data-type='method'><a href="component-Feedback.html#~destroy">destroy</a></li><li data-type='method'><a href="component-Feedback.html#~update">update</a></li></ul></li><li><a href="component-Footer.html">Footer</a><ul class='methods'><li data-type='method'><a href="component-Footer.html#~hide">hide</a></li><li data-type='method'><a href="component-Footer.html#~setStyle">setStyle</a></li><li data-type='method'><a href="component-Footer.html#~show">show</a></li><li data-type='method'><a href="component-Footer.html#~toggle">toggle</a></li></ul></li><li><a href="component-Grid.html">Grid</a></li><li><a href="component-Grid_Column.html">Grid/Column</a></li><li><a href="component-Grid_Row.html">Grid/Row</a></li><li><a href="component-Header.html">Header</a><ul class='methods'><li data-type='method'><a href="component-Header.html#~hide">hide</a></li><li data-type='method'><a href="component-Header.html#~setStyle">setStyle</a></li><li data-type='method'><a href="component-Header.html#~show">show</a></li><li data-type='method'><a href="component-Header.html#~toggle">toggle</a></li></ul></li><li><a href="component-Icon.html">Icon</a></li><li><a href="component-Img.html">Img</a></li><li><a href="component-InfiniteScroll.html">InfiniteScroll</a><ul class='methods'><li data-type='method'><a href="component-InfiniteScroll.html#~complete">complete</a></li><li data-type='method'><a href="component-InfiniteScroll.html#~enable">enable</a></li><li data-type='method'><a href="component-InfiniteScroll.html#~waitFor">waitFor</a></li></ul></li><li><a href="component-InfiniteScroll_InfiniteScrollContent.html">InfiniteScroll/InfiniteScrollContent</a></li><li><a href="component-Input.html">Input</a></li><li><a href="component-Item.html">Item</a></li><li><a href="component-Item_ItemCollapse.html">Item/ItemCollapse</a></li><li><a href="component-Item_ItemCollapseGroup.html">Item/ItemCollapseGroup</a></li><li><a href="component-Item_ItemDivider.html">Item/ItemDivider</a></li><li><a href="component-Item_ItemGroup.html">Item/ItemGroup</a></li><li><a href="component-Item_ItemSliding.html">Item/ItemSliding</a><ul class='methods'><li data-type='method'><a href="component-Item_ItemSliding.html#~close">close</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~getOpenAmount">getOpenAmount</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~getSlidingPercent">getSlidingPercent</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~openLeftOptions">openLeftOptions</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~openRightOptions">openRightOptions</a></li></ul></li><li><a href="component-Item_ItemSlidingOptions.html">Item/ItemSlidingOptions</a></li><li><a href="component-Item_ListHeader.html">Item/ListHeader</a></li><li><a href="component-Label.html">Label</a></li><li><a href="component-LandscapePrompt.html">LandscapePrompt</a></li><li><a href="component-List.html">List</a></li><li><a href="component-Loading.html">Loading</a></li><li><a href="component-Menu.html">Menu</a><ul class='methods'><li data-type='method'><a href="component-Menu.html#~close">close</a></li><li data-type='method'><a href="component-Menu.html#~open">open</a></li><li data-type='method'><a href="component-Menu.html#~toggle">toggle</a></li></ul></li><li><a href="component-Modal.html">Modal</a><ul class='methods'><li data-type='method'><a href="component-Modal.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Modal.html#~present">present</a></li></ul></li><li><a href="component-Nav.html">Nav</a></li><li><a href="component-Navbar.html">Navbar</a><ul class='methods'><li data-type='method'><a href="component-Navbar.html#~hideOptionButton">hideOptionButton</a></li><li data-type='method'><a href="component-Navbar.html#~reset">reset</a></li><li data-type='method'><a href="component-Navbar.html#~showOptionButton">showOptionButton</a></li><li data-type='method'><a href="component-Navbar.html#~showPopMenu">showPopMenu</a></li></ul></li><li><a href="component-Note.html">Note</a></li><li><a href="component-NoticeBar.html">NoticeBar</a><ul class='methods'><li data-type='method'><a href="component-NoticeBar.html#~close">close</a></li></ul></li><li><a href="component-Page.html">Page</a></li><li><a href="component-Picker.html">Picker</a></li><li><a href="component-Popover.html">Popover</a></li><li><a href="component-PopSheet.html">PopSheet</a></li><li><a href="component-PreviewImage.html">PreviewImage</a></li><li><a href="component-Radio.html">Radio</a></li><li><a href="component-Range.html">Range</a></li><li><a href="component-Refresher.html">Refresher</a><ul class='methods'><li data-type='method'><a href="component-Refresher.html#~cancel">cancel</a></li><li data-type='method'><a href="component-Refresher.html#~complete">complete</a></li></ul></li><li><a href="component-Refresher_RefresherContent.html">Refresher/RefresherContent</a></li><li><a href="component-Scroll.html">Scroll</a></li><li><a href="component-ScrollSegment.html">ScrollSegment</a></li><li><a href="component-ScrollSegment_ScrollSegmentButton.html">ScrollSegment/ScrollSegmentButton</a></li><li><a href="component-Searchbar.html">Searchbar</a><ul class='methods'><li data-type='method'><a href="component-Searchbar.html#~setFocus">setFocus</a></li></ul></li><li><a href="component-Segment.html">Segment</a></li><li><a href="component-Segment_SegmentButton.html">Segment/SegmentButton</a></li><li><a href="component-Select.html">Select</a></li><li><a href="component-Select_SelectOption.html">Select/SelectOption</a></li><li><a href="component-Separation.html">Separation</a></li><li><a href="component-Sheet.html">Sheet</a></li><li><a href="component-SlideBox.html">SlideBox</a><ul class='methods'><li data-type='method'><a href="component-SlideBox.html#~cancel">cancel</a></li><li data-type='method'><a href="component-SlideBox.html#~checking">checking</a></li><li data-type='method'><a href="component-SlideBox.html#~complete">complete</a></li><li data-type='method'><a href="component-SlideBox.html#~fail">fail</a></li></ul></li><li><a href="component-Slides.html">Slides</a></li><li><a href="component-Slides_Slide.html">Slides/Slide</a></li><li><a href="component-SlidesLite.html">SlidesLite</a></li><li><a href="component-SlidesLite_Slide.html">SlidesLite/Slide</a></li><li><a href="component-Spinner.html">Spinner</a></li><li><a href="component-Tabs.html">Tabs</a><ul class='methods'><li data-type='method'><a href="component-Tabs.html#~getActivatedIndex">getActivatedIndex</a></li><li data-type='method'><a href="component-Tabs.html#~getByIndex">getByIndex</a></li><li data-type='method'><a href="component-Tabs.html#~getSelected">getSelected</a></li><li data-type='method'><a href="component-Tabs.html#~select">select</a></li></ul></li><li><a href="component-Tabs_Tab.html">Tabs/Tab</a></li><li><a href="component-Textarea.html">Textarea</a><ul class='methods'><li data-type='method'><a href="component-Textarea.html#~destroy">destroy</a></li><li data-type='method'><a href="component-Textarea.html#~update">update</a></li></ul></li><li><a href="component-Thumbnail.html">Thumbnail</a></li><li><a href="component-Toast.html">Toast</a></li><li><a href="component-ToastState.html">ToastState</a></li><li><a href="component-Toggle.html">Toggle</a></li><li><a href="component-Toolbar.html">Toolbar</a></li><li><a href="component-Toolbar_Buttons.html">Toolbar/Buttons</a></li><li><a href="component-Toolbar_Title.html">Toolbar/Title</a><ul class='methods'><li data-type='method'><a href="component-Toolbar_Title.html#~getTitle">getTitle</a></li><li data-type='method'><a href="component-Toolbar_Title.html#~reset">reset</a></li><li data-type='method'><a href="component-Toolbar_Title.html#~setTitle">setTitle</a></li><li data-type='method'><a href="component-Toolbar_Title.html#~setTitleColor">setTitleColor</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#PointerEvents">PointerEvents</a></li><li><a href="global.html#setClass">setClass</a></li><li><a href="global.html#setDisableScroll">setDisableScroll</a></li><li><a href="global.html#setDocTitle">setDocTitle</a></li><li><a href="global.html#setEnabled">setEnabled</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <article class="content">
+
+        
+        <h1 class="page-title">choose-city/choose-city.vue</h1>
+        
+
+        
+
+
+
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+    &lt;transition
+            name="fade-right"
+            @before-enter="beforeEnter"
+            @after-enter="afterEnter"
+            @before-leave="beforeLeave"
+            @after-leave="afterLeave">
+        &lt;article class="vm-city-selector" v-show="isActive">
+            &lt;div class="city-shortcut" ref="cityShortcut"
+                 @touchstart="onTouchShortcut"
+                 @touchmove="onTouchShortcut">
+                &lt;div class="shortcut-item" :data-id="item.name" v-for="item in shortcutList">{{item.name}}&lt;/div>
+            &lt;/div>
+            &lt;div class="city-selector-container" ref="content">
+                &lt;div class="city-selector">
+                    &lt;!--定位服务-->
+                    &lt;article class="city-selector__group" v-if="showLocatedCity">
+                        &lt;section sticky color="light" class="group-header">
+                            &lt;span>你所在的地区&lt;/span>
+                        &lt;/section>
+                        &lt;section class="group-hotbox">
+                            &lt;div class="hotbox-wrap" @click="selectCity(currentCity)">
+                                &lt;div class="wrap-city">{{currentCity.city}}&lt;/div>
+                            &lt;/div>
+                        &lt;/section>
+                    &lt;/article>
+                    &lt;!--热门城市-->
+                    &lt;article class="city-selector__group" v-if="showHotCities &amp;&amp; hotCities.length>0">
+                        &lt;section sticky color="light" class="group-header" :id="'★' | getClassifyId">
+                            &lt;span>热门城市&lt;/span>
+                        &lt;/section>
+                        &lt;section class="group-hotbox">
+                            &lt;div class="hotbox-wrap" @click="selectCity(item)" v-for="item in hotCities"
+                                 :key="item.adCode">
+                                &lt;div class="wrap-city">{{item.city}}&lt;/div>
+                            &lt;/div>
+                        &lt;/section>
+                    &lt;/article>
+                    &lt;!--城市列表-->
+                    &lt;article class="city-selector__group" v-for="(classify,index) in cityList" :key="index">
+                        &lt;!--sticky-->
+                        &lt;section class="group-header" :id="classify.letter | getClassifyId">{{classify.letter}}
+                        &lt;/section>
+                        &lt;section class="group-item" v-for="item in classify.cities"
+                                 :key="item.adCode"
+                                 @click="selectCity(item)">
+                            &lt;div>{{item.city}}&lt;/div>
+                        &lt;/section>
+                    &lt;/article>
+                &lt;/div>
+            &lt;/div>
+        &lt;/article>
+    &lt;/transition>
+&lt;/template>
+&lt;style lang="scss" src="./style.scss">&lt;/style>
+&lt;script type="text/javascript">
+  import { pointerCoord, clamp } from '../../util/util'
+  import popupExtend from '../../util/popup-extend'
+  import loadScript from '../../util/load-script'
+
+  export default {
+    name: 'ChooseCity',
+    extends: popupExtend,
+    props: {
+      showLocatedCity: Boolean,
+      showHotCities: {
+        type: Boolean,
+        default: true
+      },
+      hotCities: {
+        type: Array,
+        default () {
+          return require('./data/hot-cities.json')
+        }
+      },
+      cities: {
+        type: Array,
+        default () {
+          return require('./data/cities.json')
+        }
+      },
+      ak: {
+        type: String,
+        default: '8d1ba642a3a3046d1ee087e0f8b490a2'
+      },
+      onDismiss: {
+        type: Function,
+        default: function () {}
+      }
+    },
+    data () {
+      return {
+        currentCity: {city: '正在定位', adcode: null},         // 当前城市，如果开启开启了定位的话
+
+        shortcutTop: 0,         // shortcutElement距离页面顶部的距离
+        shortcutList: []        // cityShortcut 的数组 A->Z
+      }
+    },
+    filters: {
+      getClassifyId (name) {
+        return 'city-' + name.substr(0, 1)
+      }
+    },
+    computed: {
+      shortcutElement () {
+        return this.$refs.cityShortcut
+      },
+      contentComponent () {
+        return this.$refs.content
+      },
+      cityList () {
+        return this.sortCityList(this.cities)
+      }
+    },
+    methods: {
+      /**
+       * 触摸开始和移动
+       * @private
+       * */
+      onTouchShortcut (ev) {
+        ev.preventDefault()
+        ev.stopPropagation()
+        let index = this.getSelectedIndex(ev)
+        this.contentComponent.scrollTo(0, this.shortcutList[index].top, 0)
+      },
+
+      /**
+       * 由数据初始化 cityShortcut
+       * */
+      initShortCut () {
+        if (this.showHotCities) {
+          this.shortcutList.push({
+            name: '★',
+            top: 0
+          })
+        }
+        this.cityList.forEach((group) => {
+          var name = group.letter.substr(0, 1)
+          this.shortcutList.push({
+            name: name,
+            top: 0
+          })
+        })
+      },
+
+      /**
+       * 根据传入的ev值获取当前在Shortcut上点击的是第几个item
+       * @private
+       * */
+      getSelectedIndex (ev) {
+        let point = pointerCoord(ev)
+        let index = ((point.y - this.shortcutTop) / 16) >> 0
+        index = clamp(0, index, this.shortcutList.length - 1)
+        return index
+      },
+
+      /**
+       * 点击选择城市
+       * @private
+       * */
+      selectCity (result) {
+        if (result.city &amp;&amp; result.adCode) {
+          this.onDismiss(JSON.parse(JSON.stringify(result)))
+          this.dismiss()
+        }
+      },
+
+      /**
+       * 获取当前位置
+       * @private
+       * */
+      getCurrentLocation () {
+        return new Promise((resolve, reject) => {
+          if (!window.AMap) {
+            loadScript(`https://webapi.amap.com/maps?v=1.3&amp;key=${this.ak}`, () => {
+              window.setTimeout(() => {
+                if (!window.AMap || !window.AMap.Map) { return }
+                let map = new window.AMap.Map('')
+                map.plugin('AMap.Geolocation', () => {
+                  /**
+                   * @param {object} posOptions - 传入参数
+                   * @param {boolean} [posOptions.enableHighAccuracy=true] - 是否使用高精度定位，默认:true
+                   * @param {number} [posOptions.timeout=10000] - 超过10秒后停止定位，默认：无穷大
+                   * @param {number} 9posOptions.maximumAge=00 - 定位结果缓存0毫秒，默认：0
+                   * */
+                  getCurrentPosition()
+                })
+              }, 50)
+            })
+          } else {
+            getCurrentPosition()
+          }
+
+          function getCurrentPosition () {
+            new window.AMap.Geolocation({
+              timeout: 1,    // 超过10秒后停止定位，
+              maximumAge: 60000  // 定位结果缓存0毫秒，60s
+            }).getCurrentPosition((status, result) => {
+              if (status === 'complete') {
+                resolve(result)
+              } else {
+                reject(status)
+              }
+            })
+          }
+        })
+      },
+
+      /**
+       * 将传入的一维数据按照首字母整理，用于显示
+       * @private
+       * */
+      sortCityList (cities) {
+        // hash object for filter
+        let store = {}
+        let _cities = []
+        cities.forEach((city) => {
+          let letter = city.spell.charAt(0).toUpperCase()
+          if (store[letter]) {
+            store[letter].push(city)
+          } else {
+            store[letter] = [city]
+          }
+        })
+
+        for (let key in store) {
+          _cities.push({
+            'letter': key,
+            'cities': store[key]
+          })
+        }
+
+        // 字母排序
+        let _map = {}
+        _cities.forEach((item, index) => {
+          _map[item.letter] = index
+        })
+
+        let _keys = Object.keys(_map)
+        _keys.sort()
+
+        let _tmp = []
+        _keys.forEach((item) => {
+          _tmp.push(_cities[_map[item]])
+        })
+
+        return _tmp
+      },
+
+      /**
+       * 初始化获取当前城市
+       * @private
+       * */
+      initLocatedCity () {
+        if (this.showLocatedCity) {
+          this.getCurrentLocation().then((data) => {
+            if (data &amp;&amp; data.addressComponent) {
+              this.currentCity = {
+                adCode: data.addressComponent.adcode,
+                city: data.addressComponent.city
+              }
+            }
+          }, () => {
+            this.currentCity = {
+              adCode: null,
+              city: '定位失败'
+            }
+          })
+        }
+      }
+    },
+    created () {
+      this.initLocatedCity()
+      this.initShortCut()
+    },
+    mounted () {
+      this.$on('popup:afterEnter', () => {
+        let clientHeight = this.shortcutElement.offsetHeight || 0
+        let docHieght = window.innerHeight || 0
+        this.shortcutTop = (docHieght - clientHeight) / 2
+        this.shortcutList.forEach((item) => {
+          let el = document.getElementById('city-' + item.name)
+          if (el) {
+            item.top = el.offsetTop + 1
+          }
+        })
+      })
+    }
+  }
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+    </article>
+</div>
+
+<br class="clear">
+
+<!--<footer>-->
+    <!--文档根据<a href="https://github.com/vm-component/Vimo">Vimo源码</a>由<a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>自动生成, 主题修改自<a href="https://github.com/clenemt/docdash">docdash</a>, 并增加了 @component / @demo / @props / @slot / @usage 增强标注.-->
+<!--</footer>-->
+
+<footer>
+    文档根据<a href="https://github.com/vm-component/Vimo">Vimo源码</a>由<a href="https://github.com/jsdoc3/jsdoc">JSDoc3.5.5</a>自动生成。
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

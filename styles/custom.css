@@ -1,0 +1,130 @@
+.vimo {
+  margin-top: 10px;
+  padding: 20px 0px;
+  background: #f9f9f9;
+  border-radius: 5px; }
+  .vimo .vimo__imgBox {
+    height: 125px;
+    width: 125px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 100%;
+    overflow: hidden; }
+    .vimo .vimo__imgBox .vimo__imgBox--img {
+      height: 100%;
+      width: 100%;
+      border-radius: 100%; }
+  .vimo .vimo__title {
+    text-align: center; }
+    .vimo .vimo__title h2 {
+      font-size: 28px;
+      margin: 20px 0 15px;
+      font-weight: bold; }
+    .vimo .vimo__title p {
+      margin: 0;
+      font-size: 12px;
+      margin-bottom: 5px; }
+  .vimo .vimo__iframe {
+    text-align: center; }
+    .vimo .vimo__iframe iframe {
+      width: 90px; }
+
+.page-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; }
+  .page-content .readme {
+    width: 100%; }
+    .page-content .readme p > img {
+      max-width: 100%; }
+  .page-content .content {
+    width: 100%;
+    max-width: 1200px; }
+  .page-content .showcase {
+    width: 467px;
+    display: block;
+    position: relative;
+    flex: 1 0 467px; }
+    .page-content .showcase .showcase__box {
+      width: 467px;
+      margin: 0 auto;
+      text-align: center;
+      position: fixed;
+      top: 30px;
+      transform-origin: top center; }
+      .page-content .showcase .showcase__box.ios .showcase__box--ios {
+        display: block !important; }
+      .page-content .showcase .showcase__box.ios .showcase__choose #js_choose_ios {
+        font-weight: bold;
+        border-radius: 20px;
+        background: #00663d;
+        color: #fff; }
+      .page-content .showcase .showcase__box.md .showcase__box--md {
+        display: block !important; }
+      .page-content .showcase .showcase__box.md .showcase__choose #js_choose_md {
+        font-weight: bold;
+        border-radius: 20px;
+        background: #00663d;
+        color: #fff; }
+      .page-content .showcase .showcase__box.qrcode .showcase__box--qrcode {
+        display: block !important; }
+      .page-content .showcase .showcase__box.qrcode .showcase__choose #js_choose_qrcode {
+        font-weight: bold;
+        border-radius: 20px;
+        background: #00663d;
+        color: #fff; }
+      .page-content .showcase .showcase__box .showcase__box--ios {
+        text-align: center;
+        display: none;
+        width: 467px;
+        height: 800px;
+        background: url(../asset/img/devices-sprite.jpg) no-repeat center top/467px auto; }
+        .page-content .showcase .showcase__box .showcase__box--ios iframe {
+          margin-top: 85px;
+          width: 320px;
+          height: 568px; }
+      .page-content .showcase .showcase__box .showcase__box--md {
+        text-align: center;
+        display: none;
+        width: 467px;
+        height: 800px;
+        background: url(../asset/img/devices-sprite.jpg) no-repeat center bottom/467px auto; }
+        .page-content .showcase .showcase__box .showcase__box--md iframe {
+          margin-top: 64px;
+          width: 360px;
+          height: 590px; }
+      .page-content .showcase .showcase__box .showcase__box--qrcode {
+        text-align: center;
+        display: none;
+        width: 467px;
+        height: 800px; }
+      .page-content .showcase .showcase__box iframe {
+        border: none;
+        outline: none; }
+      .page-content .showcase .showcase__box .showcase__choose {
+        height: 35px;
+        text-align: center; }
+        .page-content .showcase .showcase__box .showcase__choose span {
+          font-size: 14px;
+          color: #00663d;
+          cursor: pointer;
+          padding: 5px 10px;
+          margin: 0 0px; }
+        .page-content .showcase .showcase__box .showcase__choose .active {
+          font-weight: bold;
+          border-radius: 20px;
+          background: #00663d;
+          color: #fff; }
+      .page-content .showcase .showcase__box .showcase__qrcode {
+        text-align: center;
+        margin: 0 auto;
+        padding-top: 40px; }
+        .page-content .showcase .showcase__box .showcase__qrcode .showcase__qrcode--inner {
+          display: block;
+          width: 200px;
+          height: 200px;
+          border: 1px solid #ddd;
+          margin: 0 auto 10px; }
+
+h4.name > span.type-signature:first-child {
+  display: none; }

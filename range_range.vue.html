@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>range/range.vue - Documentation</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="scripts/qrcode.js"></script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/custom.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114740261-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-114740261-1');
+    </script>
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+
+    <section class="vimo">
+        <div class="vimo__imgBox">
+            <img class="vimo__imgBox--img" src="./asset/img/vimo.png">
+        </div>
+
+        <div class="vimo__title">
+            <h2>VIMO</h2>
+            <!--<p>beta</p>-->
+            <p>基于Vue2.x的移动端Hybrid框架</p>
+        </div>
+        <div class="vimo__iframe">
+            <iframe src="https://ghbtns.com/github-btn.html?user=vm-component&amp;repo=Vimo&amp;type=star&amp;count=true"
+                    frameborder="0" scrolling="0" width="110px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=vm-component&amp;repo=Vimo&amp;type=fork&amp;count=true"
+                    frameborder="0" scrolling="0" width="95px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+        </div>
+    </section>
+    <section class="nav__header"><h2><a href="index.html">首页 / Home</a></h2><h2><a href="https://vm-component.github.io/vimo-demo">示例 / Demo</a></h2><h2><a href="https://github.com/vm-component/vimo-start-kit">如何开始 / How To Start</a></h2><h2><a href="https://github.com/vm-component/vimo/blob/master/THEME.md">主题替换 / Change Theme</a></h2><h2><a href="https://github.com/vm-component/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2><h2><a href="https://github.com/vm-component/vimo/blob/master/FAQ.md">常见问题 / Question</a></h2></section><h3>组件 / Components</h3><ul><li><a href="component-ActionSheet.html">ActionSheet</a><ul class='methods'><li data-type='method'><a href="component-ActionSheet.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-ActionSheet.html#~present">present</a></li></ul></li><li><a href="component-Alert.html">Alert</a><ul class='methods'><li data-type='method'><a href="component-Alert.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Alert.html#~present">present</a></li></ul></li><li><a href="component-App.html">App</a></li><li><a href="component-Avatar.html">Avatar</a></li><li><a href="component-Backdrop.html">Backdrop</a></li><li><a href="component-Badge.html">Badge</a></li><li><a href="component-Button.html">Button</a></li><li><a href="component-Card.html">Card</a></li><li><a href="component-Card_CardContent.html">Card/CardContent</a></li><li><a href="component-Card_CardHeader.html">Card/CardHeader</a></li><li><a href="component-Card_CardTitle.html">Card/CardTitle</a></li><li><a href="component-Checkbox.html">Checkbox</a></li><li><a href="component-ChooseCity.html">ChooseCity</a><ul class='methods'><li data-type='method'><a href="component-ChooseCity.html#~present">present</a></li></ul></li><li><a href="component-CityPicker.html">CityPicker</a></li><li><a href="component-Content.html">Content</a><ul class='methods'><li data-type='method'><a href="component-Content.html#~resize">resize</a></li><li data-type='method'><a href="component-Content.html#~scrollBy">scrollBy</a></li><li data-type='method'><a href="component-Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="component-Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="component-Content.html#~scrollToElement">scrollToElement</a></li><li data-type='method'><a href="component-Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="component-CountDown.html">CountDown</a></li><li><a href="component-Datetime.html">Datetime</a></li><li><a href="component-Fab.html">Fab</a><ul class='methods'><li data-type='method'><a href="component-Fab.html#~close">close</a></li></ul></li><li><a href="component-Fab_FabButton.html">Fab/FabButton</a></li><li><a href="component-Fab_FabList.html">Fab/FabList</a></li><li><a href="component-Feedback.html">Feedback</a><ul class='methods'><li data-type='method'><a href="component-Feedback.html#~destroy">destroy</a></li><li data-type='method'><a href="component-Feedback.html#~update">update</a></li></ul></li><li><a href="component-Footer.html">Footer</a><ul class='methods'><li data-type='method'><a href="component-Footer.html#~hide">hide</a></li><li data-type='method'><a href="component-Footer.html#~setStyle">setStyle</a></li><li data-type='method'><a href="component-Footer.html#~show">show</a></li><li data-type='method'><a href="component-Footer.html#~toggle">toggle</a></li></ul></li><li><a href="component-Grid.html">Grid</a></li><li><a href="component-Grid_Column.html">Grid/Column</a></li><li><a href="component-Grid_Row.html">Grid/Row</a></li><li><a href="component-Header.html">Header</a><ul class='methods'><li data-type='method'><a href="component-Header.html#~hide">hide</a></li><li data-type='method'><a href="component-Header.html#~setStyle">setStyle</a></li><li data-type='method'><a href="component-Header.html#~show">show</a></li><li data-type='method'><a href="component-Header.html#~toggle">toggle</a></li></ul></li><li><a href="component-Icon.html">Icon</a></li><li><a href="component-Img.html">Img</a></li><li><a href="component-InfiniteScroll.html">InfiniteScroll</a><ul class='methods'><li data-type='method'><a href="component-InfiniteScroll.html#~complete">complete</a></li><li data-type='method'><a href="component-InfiniteScroll.html#~enable">enable</a></li><li data-type='method'><a href="component-InfiniteScroll.html#~waitFor">waitFor</a></li></ul></li><li><a href="component-InfiniteScroll_InfiniteScrollContent.html">InfiniteScroll/InfiniteScrollContent</a></li><li><a href="component-Input.html">Input</a></li><li><a href="component-Item.html">Item</a></li><li><a href="component-Item_ItemCollapse.html">Item/ItemCollapse</a></li><li><a href="component-Item_ItemCollapseGroup.html">Item/ItemCollapseGroup</a></li><li><a href="component-Item_ItemDivider.html">Item/ItemDivider</a></li><li><a href="component-Item_ItemGroup.html">Item/ItemGroup</a></li><li><a href="component-Item_ItemSliding.html">Item/ItemSliding</a><ul class='methods'><li data-type='method'><a href="component-Item_ItemSliding.html#~close">close</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~getOpenAmount">getOpenAmount</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~getSlidingPercent">getSlidingPercent</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~openLeftOptions">openLeftOptions</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~openRightOptions">openRightOptions</a></li></ul></li><li><a href="component-Item_ItemSlidingOptions.html">Item/ItemSlidingOptions</a></li><li><a href="component-Item_ListHeader.html">Item/ListHeader</a></li><li><a href="component-Label.html">Label</a></li><li><a href="component-LandscapePrompt.html">LandscapePrompt</a></li><li><a href="component-List.html">List</a></li><li><a href="component-Loading.html">Loading</a></li><li><a href="component-Menu.html">Menu</a><ul class='methods'><li data-type='method'><a href="component-Menu.html#~close">close</a></li><li data-type='method'><a href="component-Menu.html#~open">open</a></li><li data-type='method'><a href="component-Menu.html#~toggle">toggle</a></li></ul></li><li><a href="component-Modal.html">Modal</a><ul class='methods'><li data-type='method'><a href="component-Modal.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Modal.html#~present">present</a></li></ul></li><li><a href="component-Nav.html">Nav</a></li><li><a href="component-Navbar.html">Navbar</a><ul class='methods'><li data-type='method'><a href="component-Navbar.html#~hideOptionButton">hideOptionButton</a></li><li data-type='method'><a href="component-Navbar.html#~reset">reset</a></li><li data-type='method'><a href="component-Navbar.html#~showOptionButton">showOptionButton</a></li><li data-type='method'><a href="component-Navbar.html#~showPopMenu">showPopMenu</a></li></ul></li><li><a href="component-Note.html">Note</a></li><li><a href="component-NoticeBar.html">NoticeBar</a><ul class='methods'><li data-type='method'><a href="component-NoticeBar.html#~close">close</a></li></ul></li><li><a href="component-Page.html">Page</a></li><li><a href="component-Picker.html">Picker</a></li><li><a href="component-Popover.html">Popover</a></li><li><a href="component-PopSheet.html">PopSheet</a></li><li><a href="component-PreviewImage.html">PreviewImage</a></li><li><a href="component-Radio.html">Radio</a></li><li><a href="component-Range.html">Range</a></li><li><a href="component-Refresher.html">Refresher</a><ul class='methods'><li data-type='method'><a href="component-Refresher.html#~cancel">cancel</a></li><li data-type='method'><a href="component-Refresher.html#~complete">complete</a></li></ul></li><li><a href="component-Refresher_RefresherContent.html">Refresher/RefresherContent</a></li><li><a href="component-Scroll.html">Scroll</a></li><li><a href="component-ScrollSegment.html">ScrollSegment</a></li><li><a href="component-ScrollSegment_ScrollSegmentButton.html">ScrollSegment/ScrollSegmentButton</a></li><li><a href="component-Searchbar.html">Searchbar</a><ul class='methods'><li data-type='method'><a href="component-Searchbar.html#~setFocus">setFocus</a></li></ul></li><li><a href="component-Segment.html">Segment</a></li><li><a href="component-Segment_SegmentButton.html">Segment/SegmentButton</a></li><li><a href="component-Select.html">Select</a></li><li><a href="component-Select_SelectOption.html">Select/SelectOption</a></li><li><a href="component-Separation.html">Separation</a></li><li><a href="component-Sheet.html">Sheet</a></li><li><a href="component-SlideBox.html">SlideBox</a><ul class='methods'><li data-type='method'><a href="component-SlideBox.html#~cancel">cancel</a></li><li data-type='method'><a href="component-SlideBox.html#~checking">checking</a></li><li data-type='method'><a href="component-SlideBox.html#~complete">complete</a></li><li data-type='method'><a href="component-SlideBox.html#~fail">fail</a></li></ul></li><li><a href="component-Slides.html">Slides</a></li><li><a href="component-Slides_Slide.html">Slides/Slide</a></li><li><a href="component-SlidesLite.html">SlidesLite</a></li><li><a href="component-SlidesLite_Slide.html">SlidesLite/Slide</a></li><li><a href="component-Spinner.html">Spinner</a></li><li><a href="component-Tabs.html">Tabs</a><ul class='methods'><li data-type='method'><a href="component-Tabs.html#~getActivatedIndex">getActivatedIndex</a></li><li data-type='method'><a href="component-Tabs.html#~getByIndex">getByIndex</a></li><li data-type='method'><a href="component-Tabs.html#~getSelected">getSelected</a></li><li data-type='method'><a href="component-Tabs.html#~select">select</a></li></ul></li><li><a href="component-Tabs_Tab.html">Tabs/Tab</a></li><li><a href="component-Textarea.html">Textarea</a><ul class='methods'><li data-type='method'><a href="component-Textarea.html#~destroy">destroy</a></li><li data-type='method'><a href="component-Textarea.html#~update">update</a></li></ul></li><li><a href="component-Thumbnail.html">Thumbnail</a></li><li><a href="component-Toast.html">Toast</a></li><li><a href="component-ToastState.html">ToastState</a></li><li><a href="component-Toggle.html">Toggle</a></li><li><a href="component-Toolbar.html">Toolbar</a></li><li><a href="component-Toolbar_Buttons.html">Toolbar/Buttons</a></li><li><a href="component-Toolbar_Title.html">Toolbar/Title</a><ul class='methods'><li data-type='method'><a href="component-Toolbar_Title.html#~getTitle">getTitle</a></li><li data-type='method'><a href="component-Toolbar_Title.html#~reset">reset</a></li><li data-type='method'><a href="component-Toolbar_Title.html#~setTitle">setTitle</a></li><li data-type='method'><a href="component-Toolbar_Title.html#~setTitleColor">setTitleColor</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#PointerEvents">PointerEvents</a></li><li><a href="global.html#setClass">setClass</a></li><li><a href="global.html#setDisableScroll">setDisableScroll</a></li><li><a href="global.html#setDocTitle">setDocTitle</a></li><li><a href="global.html#setEnabled">setEnabled</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <article class="content">
+
+        
+        <h1 class="page-title">range/range.vue</h1>
+        
+
+        
+
+
+
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+  &lt;div class="ion-range"
+       :class="[modeClass,colorClass,{'range-pressed':pressed},{'range-disabled':disabled},{'range-has-pin':pin}]">
+    &lt;slot name="range-left">&lt;/slot>
+    &lt;div ref="slider" class="range-slider">
+      &lt;div class="range-tick" v-for="t in ticks" :style="{ left: t.left }"
+           :class="{'range-tick-active':t.active}"
+           role="presentation">&lt;/div>
+      &lt;div class="range-bar" role="presentation">&lt;/div>
+      &lt;div class="range-bar range-bar-active" :style="{ left: barL,right:barR }" ref="bar"
+           role="presentation">&lt;/div>
+      &lt;RangeKnobHandle
+        :ratio="ratioA"
+        :val="valA"
+        :pin="pin"
+        :pressed="pressedA"
+        :min="min"
+        :max="max"
+        :disabled="disabled">
+      &lt;/RangeKnobHandle>
+      &lt;RangeKnobHandle
+        :ratio="ratioB"
+        :val="valB"
+        :pin="pin"
+        :pressed="pressedB"
+        :min="min"
+        :max="max"
+        :disabled="disabled"
+        v-if="dualKnobs">
+      &lt;/RangeKnobHandle>
+    &lt;/div>
+    &lt;slot name="range-right">&lt;/slot>
+  &lt;/div>
+&lt;/template>
+&lt;style lang="scss" src="./style.scss">&lt;/style>
+&lt;script type="text/javascript">
+  /**
+   *
+   * @component Range
+   * @description
+   *
+   * ## 表单组件 / Range滑块组件
+   *
+   *
+   * ### 注意
+   *
+   * @props {String} [color] - 颜色
+   * @props {Boolean} [disabled=false] - 是否禁用
+   * @props {Boolean} [dualKnobs=false] - 选择的拖动按钮, 默认是一个, true为两个
+   * @props {Number} [max=100] - range的最大值
+   * @props {Number} [min=0] - range的最小值
+   * @props {String} [mode='ios'] - 模式
+   * @props {Boolean} [pin=false] - 当拖动knob时显示大头针提示
+   * @props {Boolean} [snaps=false] - 类似于卡槽, 如果为true, 则在range上画标尺, 并且拖动中knob只能停留在标尺标记处
+   * @props {Number} [step=1] - 移动的步伐/粒度
+   * @props {String| Number| Object} [value] - v-model对应的值, 需要出发input事件
+   *
+   * @slot range-right - 在range组件右边, 一般放Icon
+   * @slot range-left - 在range组件左边, 一般放Icon
+   *
+   * @demo #/range
+   *
+   * @usage
+   * &lt;List>
+   *    &lt;ListHeader>
+   *        &lt;span>Brightness&lt;/span>
+   *        &lt;Badge slot="item-right">{{brightness}}&lt;/Badge>
+   *    &lt;/ListHeader>
+   *    &lt;Item>
+   *         &lt;Range v-model="brightness">
+   *            &lt;Icon slot="range-left" small name="sunny">&lt;/Icon>
+   *            &lt;Icon slot="range-right" name="sunny">&lt;/Icon>
+   *        &lt;/Range>
+   *    &lt;/Item>
+   * &lt;/List>
+   *
+   * */
+  import RangeKnobHandle from './range-knob-handle.vue';
+  import { clamp, pointerCoord, setElementClass } from '../../util/util';
+  import { isNumber, isObject, isString } from '../../util/type';
+  import throttle from 'lodash.throttle';
+  import PointerEvents from './pointer-events.es5.js';
+
+  export default {
+    name: 'Range',
+    inject: {
+      itemComponent: {
+        from: 'itemComponent',
+        default: null
+      }
+    },
+    data() {
+      return {
+        ticks: [], // 移动的标尺
+        pressed: false, // 拖动knob
+        moving: false, //
+
+        barL: 0, // 左边bar的位置
+        barR: 0, // 右边bar的位置
+
+        ratioA: 0, // 左边bar的比例
+        ratioB: 0, // 右边bar的比例
+        valA: 0,
+        valB: 0,
+        pressedA: false,
+        pressedB: false,
+
+        _sliderEl: null, // slider的DOM句柄
+        _rect: null, // _sliderEl的尺寸对象
+        _activeB: null, // 是否激活了B按钮
+
+        _timer: 0,
+
+        pointerEvents: null,
+
+        valueInner: JSON.parse(JSON.stringify(this.value)) // value内部值
+      };
+    },
+    props: {
+      /**
+       * 颜色: "primary", "secondary", "danger", "light", and "dark"
+       */
+      color: String,
+      /**
+       * 是否禁用
+       * */
+      disabled: Boolean,
+      /**
+       * 选择的拖动按钮, 默认是一个, true为两个
+       * */
+      dualKnobs: Boolean,
+      /**
+       * range的最大值
+       * */
+      max: {
+        type: Number,
+        default: 100
+      },
+      /**
+       *  range的最小值
+       * */
+      min: {
+        type: Number,
+        default: 0
+      },
+      mode: {
+        type: String,
+        default() {
+          return this.$config &amp;&amp; this.$config.get('mode', 'ios') || 'ios';
+        }
+      },
+      /**
+       * 当拖动knob时显示大头针提示
+       * */
+      pin: Boolean,
+      /**
+       * 类似于卡槽, 如果为true, 则在range上画标尺,
+       * 并且拖动中knob只能停留在标尺标记处
+       * */
+      snaps: Boolean,
+      /**
+       * 移动的步伐/粒度
+       * */
+      step: {
+        type: Number,
+        default: 1
+      },
+
+      /**
+       * v-model对应的值,
+       * 需要出发input事件
+       */
+      value: [String, Number, Object]
+    },
+    computed: {
+      // 环境样式
+      modeClass() {
+        return `range range-${this.mode}`;
+      },
+      // 颜色
+      colorClass() {
+        return this.color ? (`range-${this.mode}-${this.color}`) : '';
+      },
+
+      /**
+       * 返回knob现在的位置比, ratio数值在0/1之间,
+       * 如果使用了两个knob, 则返回最小那个
+       */
+      ratio() {
+        if (this.dualKnobs) {
+          return Math.min(this.ratioA, this.ratioB);
+        }
+        return this.ratioA;
+      },
+
+      /**
+       * 在有两个knob的情况下, 返回最大的按个knob的ratio
+       */
+      ratioUpper() {
+        if (this.dualKnobs) {
+          return Math.max(this.ratioA, this.ratioB);
+        }
+        return 0;
+      }
+    },
+    methods: {
+      mouseOutHandler() {
+        this.moving = false;
+      },
+      /**
+       * 拖动开始
+       * @param {UIEvent} ev
+       * @return {boolean}
+       * */
+      pointerDown(ev) {
+        if (this.disabled) {
+          return false;
+        }
+
+        this.moving = true;
+
+        // prevent default so scrolling does not happen
+        ev.preventDefault();
+        ev.stopPropagation();
+
+        // get the start coordinates
+        const current = pointerCoord(ev);
+
+        // 获取slider元素的尺寸
+        const rect = this._rect = this._sliderEl.getBoundingClientRect();
+
+        // 判断点击的位置离那个knob近
+        const ratio = clamp(0, (current.x - rect.left) / (rect.width), 1);
+        this._activeB = (Math.abs(ratio - this.ratioA) > Math.abs(ratio - this.ratioB));
+
+        // 更新激活状态的knob位置
+
+        this.updateRange(current, rect, true);
+
+        // return true so the pointer events
+        // know everything's still valid
+        return true;
+      },
+
+      /**
+       * 拖动处理
+       * @param {UIEvent} ev
+       * */
+      pointerMove(ev) {
+        if (!this.disabled) {
+          if (!this.moving) return;
+          // prevent default so scrolling does not happen
+          ev.preventDefault();
+          ev.stopPropagation();
+          const current = pointerCoord(ev);
+
+          // update the active knob's position
+          this.updateRange(current, this._rect, true);
+
+          // 告知v-model
+          this.$_emit();
+        }
+      },
+
+      $_emit: throttle(function () {
+        // 频发触发会导致卡顿
+        this.$emit('input', JSON.parse(JSON.stringify(this.valueInner)));
+      }, 16 * 3),
+
+      /**
+       * 拖动停止
+       * @param {UIEvent} ev
+       * */
+      pointerUp(ev) {
+        this.moving = false;
+        if (!this.disabled) {
+          // prevent default so scrolling does not happen
+          ev.preventDefault();
+          ev.stopPropagation();
+
+          // update the active knob's position
+          this.updateRange(pointerCoord(ev), this._rect, false);
+        }
+      },
+
+      /**
+       * 更新knob的位置
+       * @param {PointerCoordinates} current
+       * @param {ClientRect} rect
+       * @param {boolean} isPressed
+       */
+      updateRange(current, rect, isPressed) {
+        // figure out where the pointer is currently at
+        // update the knob being interacted with
+        let ratio = clamp(0, (current.x - rect.left) / (rect.width), 1);
+        let val = this.ratioToValue(ratio);
+
+        if (this.snaps) {
+          // snaps the ratio to the current value
+          ratio = this.valueToRatio(val);
+        }
+
+        // update which knob is pressed
+        this.pressed = isPressed;
+
+        if (this._activeB) {
+          // when the pointer down started it was determined
+          // that knob B was the one they were interacting with
+          this.pressedB = isPressed;
+          this.pressedA = false;
+          this.ratioB = ratio;
+
+          if (val === this.valB) {
+            // hasn't changed
+            return false;
+          }
+          this.valB = val;
+        } else {
+          // interacting with knob A
+          this.pressedA = isPressed;
+          this.pressedB = false;
+          this.ratioA = ratio;
+
+          if (val === this.valA) {
+            // hasn't changed
+            return false;
+          }
+          this.valA = val;
+        }
+
+        // value has been updated
+        if (this.dualKnobs) {
+          // dual knobs have an lower and upper value
+          if (!this.valueInner) {
+            // ensure we're always updating the same object
+            this.valueInner = {};
+          }
+          this.valueInner.lower = Math.min(this.valA, this.valB);
+          this.valueInner.upper = Math.max(this.valA, this.valB);
+        } else {
+          // single knob only has one value
+          this.valueInner = this.valA;
+        }
+
+        this.updateBar();
+        return true;
+      },
+
+      /**
+       * @param {number} ratio
+       */
+      ratioToValue(ratio) {
+        ratio = Math.round(((this.max - this.min) * ratio));
+        ratio = Math.round(ratio / this.step) * this.step + this.min;
+        return clamp(this.min, ratio, this.max);
+      },
+      /**
+       * @param {number} value
+       */
+      valueToRatio(value) {
+        value = Math.round((value - this.min) / this.step) * this.step;
+        value = value / (this.max - this.min);
+        return clamp(0, value, 1);
+      },
+
+      /**
+       * 更新bar的位置
+       */
+      updateBar() {
+        const ratioA = this.ratioA;
+        const ratioB = this.ratioB;
+        if (this.dualKnobs) {
+          this.barL = `${(Math.min(ratioA, ratioB) * 100)}%`;
+          this.barR = `${100 - (Math.max(ratioA, ratioB) * 100)}%`;
+        } else {
+          this.barL = '';
+          this.barR = `${100 - (ratioA * 100)}%`;
+        }
+
+        this.updateTicks();
+      },
+
+      /**
+       * 更新bar的位置
+       * 更新标尺
+       */
+      updateTicks() {
+        const ticks = this.ticks;
+        const ratio = this.ratio;
+
+        if (this.snaps &amp;&amp; ticks) {
+          if (this.dualKnobs) {
+            var upperRatio = this.ratioUpper;
+
+            ticks.forEach(t => {
+              t.active = (t.ratio >= ratio &amp;&amp; t.ratio &lt;= upperRatio);
+            });
+          } else {
+            ticks.forEach(t => {
+              t.active = (t.ratio &lt;= ratio);
+            });
+          }
+        }
+      },
+
+      /**
+       * 在rangebar上画上移动的标尺
+       * */
+      createTicks() {
+        if (this.snaps) {
+          this.$nextTick(function () {
+            this.ticks = [];
+            for (var value = this.min; value &lt;= this.max; value += this.step) {
+              var ratio = this.valueToRatio(value);
+              this.ticks.push({
+                ratio: ratio,
+                left: `${ratio * 100}%`
+              });
+            }
+            this.updateTicks();
+          });
+        }
+      },
+
+      /**
+       * init
+       * 为父元素item设置class需要等待mounted之后
+       */
+      initDOM() {
+        // 在item父元素上添加类item-range
+        if (this.itemComponent) {
+          if (this.itemComponent.$el) {
+            setElementClass(this.itemComponent.$el, 'item-range', true);
+            // setElementClass(this.itemComponent.$el, 'item-range-disabled', this.disabled);
+          }
+        }
+
+        // 获取slider的DOM
+        this._sliderEl = this.$refs.slider;
+
+        // 为range左右添加属性
+        if (this.$slots &amp;&amp; this.$slots['range-left']) {
+          this.$slots['range-left'].forEach(function (item) {
+            item.elm.setAttribute('range-left', '');
+          });
+        }
+        if (this.$slots &amp;&amp; this.$slots['range-right']) {
+          this.$slots['range-right'].forEach(function (item) {
+            item.elm.setAttribute('range-right', '');
+          });
+        }
+
+        this.pointerEvents = new PointerEvents(this._sliderEl, this.pointerDown, this.pointerMove, this.pointerUp, {});
+      },
+      /**
+       * init
+       * 初始化传入数据并更新视图
+       */
+      initData() {
+        // 设置标尺
+        this.createTicks();
+
+        // 设置value的初始状态
+        if (isString(this.valueInner)) {
+          let val = Math.round(this.valueInner);
+          if (!isNaN(val)) {
+            this.valueInner = val;
+          } else {
+            this.valueInner = 0;
+          }
+        }
+
+        if (isNumber(this.valueInner)) {
+          this.ratioA = this.valueToRatio(this.valueInner);
+        }
+
+        if (isObject(this.valueInner)) {
+          this.valA = Math.min(this.valueInner.lower, this.valueInner.upper);
+          this.valB = Math.max(this.valueInner.lower, this.valueInner.upper);
+
+          this.ratioA = this.valueToRatio(this.valA);
+          this.ratioB = this.valueToRatio(this.valB);
+        }
+        // 更新bar
+        this.updateBar();
+      }
+    },
+    created() {
+      this.initData();
+    },
+    mounted() {
+      this.initDOM();
+    },
+    destroy() {
+      this.pointerEvents &amp;&amp; this.pointerEvents.destroy();
+    },
+    components: {
+      RangeKnobHandle: RangeKnobHandle
+    }
+  };
+&lt;/script>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+    </article>
+</div>
+
+<br class="clear">
+
+<!--<footer>-->
+    <!--文档根据<a href="https://github.com/vm-component/Vimo">Vimo源码</a>由<a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>自动生成, 主题修改自<a href="https://github.com/clenemt/docdash">docdash</a>, 并增加了 @component / @demo / @props / @slot / @usage 增强标注.-->
+<!--</footer>-->
+
+<footer>
+    文档根据<a href="https://github.com/vm-component/Vimo">Vimo源码</a>由<a href="https://github.com/jsdoc3/jsdoc">JSDoc3.5.5</a>自动生成。
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

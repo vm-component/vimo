@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>InfiniteScroll - Documentation</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="scripts/qrcode.js"></script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/custom.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114740261-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-114740261-1');
+    </script>
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+
+    <section class="vimo">
+        <div class="vimo__imgBox">
+            <img class="vimo__imgBox--img" src="./asset/img/vimo.png">
+        </div>
+
+        <div class="vimo__title">
+            <h2>VIMO</h2>
+            <!--<p>beta</p>-->
+            <p>基于Vue2.x的移动端Hybrid框架</p>
+        </div>
+        <div class="vimo__iframe">
+            <iframe src="https://ghbtns.com/github-btn.html?user=vm-component&amp;repo=Vimo&amp;type=star&amp;count=true"
+                    frameborder="0" scrolling="0" width="110px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=vm-component&amp;repo=Vimo&amp;type=fork&amp;count=true"
+                    frameborder="0" scrolling="0" width="95px" height="20px"
+                    class="enter-transition"
+                    style=""></iframe>
+        </div>
+    </section>
+    <section class="nav__header"><h2><a href="index.html">首页 / Home</a></h2><h2><a href="https://vm-component.github.io/vimo-demo">示例 / Demo</a></h2><h2><a href="https://github.com/vm-component/vimo-start-kit">如何开始 / How To Start</a></h2><h2><a href="https://github.com/vm-component/vimo/blob/master/THEME.md">主题替换 / Change Theme</a></h2><h2><a href="https://github.com/vm-component/Vimo/blob/master/CHANGELOG.md">更新日志 / Change Log</a></h2><h2><a href="https://github.com/vm-component/vimo/blob/master/FAQ.md">常见问题 / Question</a></h2></section><h3>组件 / Components</h3><ul><li><a href="component-ActionSheet.html">ActionSheet</a><ul class='methods'><li data-type='method'><a href="component-ActionSheet.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-ActionSheet.html#~present">present</a></li></ul></li><li><a href="component-Alert.html">Alert</a><ul class='methods'><li data-type='method'><a href="component-Alert.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Alert.html#~present">present</a></li></ul></li><li><a href="component-App.html">App</a></li><li><a href="component-Avatar.html">Avatar</a></li><li><a href="component-Backdrop.html">Backdrop</a></li><li><a href="component-Badge.html">Badge</a></li><li><a href="component-Button.html">Button</a></li><li><a href="component-Card.html">Card</a></li><li><a href="component-Card_CardContent.html">Card/CardContent</a></li><li><a href="component-Card_CardHeader.html">Card/CardHeader</a></li><li><a href="component-Card_CardTitle.html">Card/CardTitle</a></li><li><a href="component-Checkbox.html">Checkbox</a></li><li><a href="component-ChooseCity.html">ChooseCity</a><ul class='methods'><li data-type='method'><a href="component-ChooseCity.html#~present">present</a></li></ul></li><li><a href="component-CityPicker.html">CityPicker</a></li><li><a href="component-Content.html">Content</a><ul class='methods'><li data-type='method'><a href="component-Content.html#~resize">resize</a></li><li data-type='method'><a href="component-Content.html#~scrollBy">scrollBy</a></li><li data-type='method'><a href="component-Content.html#~scrollTo">scrollTo</a></li><li data-type='method'><a href="component-Content.html#~scrollToBottom">scrollToBottom</a></li><li data-type='method'><a href="component-Content.html#~scrollToElement">scrollToElement</a></li><li data-type='method'><a href="component-Content.html#~scrollToTop">scrollToTop</a></li></ul></li><li><a href="component-CountDown.html">CountDown</a></li><li><a href="component-Datetime.html">Datetime</a></li><li><a href="component-Fab.html">Fab</a><ul class='methods'><li data-type='method'><a href="component-Fab.html#~close">close</a></li></ul></li><li><a href="component-Fab_FabButton.html">Fab/FabButton</a></li><li><a href="component-Fab_FabList.html">Fab/FabList</a></li><li><a href="component-Feedback.html">Feedback</a><ul class='methods'><li data-type='method'><a href="component-Feedback.html#~destroy">destroy</a></li><li data-type='method'><a href="component-Feedback.html#~update">update</a></li></ul></li><li><a href="component-Footer.html">Footer</a><ul class='methods'><li data-type='method'><a href="component-Footer.html#~hide">hide</a></li><li data-type='method'><a href="component-Footer.html#~setStyle">setStyle</a></li><li data-type='method'><a href="component-Footer.html#~show">show</a></li><li data-type='method'><a href="component-Footer.html#~toggle">toggle</a></li></ul></li><li><a href="component-Grid.html">Grid</a></li><li><a href="component-Grid_Column.html">Grid/Column</a></li><li><a href="component-Grid_Row.html">Grid/Row</a></li><li><a href="component-Header.html">Header</a><ul class='methods'><li data-type='method'><a href="component-Header.html#~hide">hide</a></li><li data-type='method'><a href="component-Header.html#~setStyle">setStyle</a></li><li data-type='method'><a href="component-Header.html#~show">show</a></li><li data-type='method'><a href="component-Header.html#~toggle">toggle</a></li></ul></li><li><a href="component-Icon.html">Icon</a></li><li><a href="component-Img.html">Img</a></li><li><a href="component-InfiniteScroll.html">InfiniteScroll</a><ul class='methods'><li data-type='method'><a href="component-InfiniteScroll.html#~complete">complete</a></li><li data-type='method'><a href="component-InfiniteScroll.html#~enable">enable</a></li><li data-type='method'><a href="component-InfiniteScroll.html#~waitFor">waitFor</a></li></ul></li><li><a href="component-InfiniteScroll_InfiniteScrollContent.html">InfiniteScroll/InfiniteScrollContent</a></li><li><a href="component-Input.html">Input</a></li><li><a href="component-Item.html">Item</a></li><li><a href="component-Item_ItemCollapse.html">Item/ItemCollapse</a></li><li><a href="component-Item_ItemCollapseGroup.html">Item/ItemCollapseGroup</a></li><li><a href="component-Item_ItemDivider.html">Item/ItemDivider</a></li><li><a href="component-Item_ItemGroup.html">Item/ItemGroup</a></li><li><a href="component-Item_ItemSliding.html">Item/ItemSliding</a><ul class='methods'><li data-type='method'><a href="component-Item_ItemSliding.html#~close">close</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~getOpenAmount">getOpenAmount</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~getSlidingPercent">getSlidingPercent</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~openLeftOptions">openLeftOptions</a></li><li data-type='method'><a href="component-Item_ItemSliding.html#~openRightOptions">openRightOptions</a></li></ul></li><li><a href="component-Item_ItemSlidingOptions.html">Item/ItemSlidingOptions</a></li><li><a href="component-Item_ListHeader.html">Item/ListHeader</a></li><li><a href="component-Label.html">Label</a></li><li><a href="component-LandscapePrompt.html">LandscapePrompt</a></li><li><a href="component-List.html">List</a></li><li><a href="component-Loading.html">Loading</a></li><li><a href="component-Menu.html">Menu</a><ul class='methods'><li data-type='method'><a href="component-Menu.html#~close">close</a></li><li data-type='method'><a href="component-Menu.html#~open">open</a></li><li data-type='method'><a href="component-Menu.html#~toggle">toggle</a></li></ul></li><li><a href="component-Modal.html">Modal</a><ul class='methods'><li data-type='method'><a href="component-Modal.html#~dismiss">dismiss</a></li><li data-type='method'><a href="component-Modal.html#~present">present</a></li></ul></li><li><a href="component-Nav.html">Nav</a></li><li><a href="component-Navbar.html">Navbar</a><ul class='methods'><li data-type='method'><a href="component-Navbar.html#~hideOptionButton">hideOptionButton</a></li><li data-type='method'><a href="component-Navbar.html#~reset">reset</a></li><li data-type='method'><a href="component-Navbar.html#~showOptionButton">showOptionButton</a></li><li data-type='method'><a href="component-Navbar.html#~showPopMenu">showPopMenu</a></li></ul></li><li><a href="component-Note.html">Note</a></li><li><a href="component-NoticeBar.html">NoticeBar</a><ul class='methods'><li data-type='method'><a href="component-NoticeBar.html#~close">close</a></li></ul></li><li><a href="component-Page.html">Page</a></li><li><a href="component-Picker.html">Picker</a></li><li><a href="component-Popover.html">Popover</a></li><li><a href="component-PopSheet.html">PopSheet</a></li><li><a href="component-PreviewImage.html">PreviewImage</a></li><li><a href="component-Radio.html">Radio</a></li><li><a href="component-Range.html">Range</a></li><li><a href="component-Refresher.html">Refresher</a><ul class='methods'><li data-type='method'><a href="component-Refresher.html#~cancel">cancel</a></li><li data-type='method'><a href="component-Refresher.html#~complete">complete</a></li></ul></li><li><a href="component-Refresher_RefresherContent.html">Refresher/RefresherContent</a></li><li><a href="component-Scroll.html">Scroll</a></li><li><a href="component-ScrollSegment.html">ScrollSegment</a></li><li><a href="component-ScrollSegment_ScrollSegmentButton.html">ScrollSegment/ScrollSegmentButton</a></li><li><a href="component-Searchbar.html">Searchbar</a><ul class='methods'><li data-type='method'><a href="component-Searchbar.html#~setFocus">setFocus</a></li></ul></li><li><a href="component-Segment.html">Segment</a></li><li><a href="component-Segment_SegmentButton.html">Segment/SegmentButton</a></li><li><a href="component-Select.html">Select</a></li><li><a href="component-Select_SelectOption.html">Select/SelectOption</a></li><li><a href="component-Separation.html">Separation</a></li><li><a href="component-Sheet.html">Sheet</a></li><li><a href="component-SlideBox.html">SlideBox</a><ul class='methods'><li data-type='method'><a href="component-SlideBox.html#~cancel">cancel</a></li><li data-type='method'><a href="component-SlideBox.html#~checking">checking</a></li><li data-type='method'><a href="component-SlideBox.html#~complete">complete</a></li><li data-type='method'><a href="component-SlideBox.html#~fail">fail</a></li></ul></li><li><a href="component-Slides.html">Slides</a></li><li><a href="component-Slides_Slide.html">Slides/Slide</a></li><li><a href="component-SlidesLite.html">SlidesLite</a></li><li><a href="component-SlidesLite_Slide.html">SlidesLite/Slide</a></li><li><a href="component-Spinner.html">Spinner</a></li><li><a href="component-Tabs.html">Tabs</a><ul class='methods'><li data-type='method'><a href="component-Tabs.html#~getActivatedIndex">getActivatedIndex</a></li><li data-type='method'><a href="component-Tabs.html#~getByIndex">getByIndex</a></li><li data-type='method'><a href="component-Tabs.html#~getSelected">getSelected</a></li><li data-type='method'><a href="component-Tabs.html#~select">select</a></li></ul></li><li><a href="component-Tabs_Tab.html">Tabs/Tab</a></li><li><a href="component-Textarea.html">Textarea</a><ul class='methods'><li data-type='method'><a href="component-Textarea.html#~destroy">destroy</a></li><li data-type='method'><a href="component-Textarea.html#~update">update</a></li></ul></li><li><a href="component-Thumbnail.html">Thumbnail</a></li><li><a href="component-Toast.html">Toast</a></li><li><a href="component-ToastState.html">ToastState</a></li><li><a href="component-Toggle.html">Toggle</a></li><li><a href="component-Toolbar.html">Toolbar</a></li><li><a href="component-Toolbar_Buttons.html">Toolbar/Buttons</a></li><li><a href="component-Toolbar_Title.html">Toolbar/Title</a><ul class='methods'><li data-type='method'><a href="component-Toolbar_Title.html#~getTitle">getTitle</a></li><li data-type='method'><a href="component-Toolbar_Title.html#~reset">reset</a></li><li data-type='method'><a href="component-Toolbar_Title.html#~setTitle">setTitle</a></li><li data-type='method'><a href="component-Toolbar_Title.html#~setTitleColor">setTitleColor</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#PointerEvents">PointerEvents</a></li><li><a href="global.html#setClass">setClass</a></li><li><a href="global.html#setDisableScroll">setDisableScroll</a></li><li><a href="global.html#setDocTitle">setDocTitle</a></li><li><a href="global.html#setEnabled">setEnabled</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <article class="content">
+
+        
+        <h1 class="page-title">InfiniteScroll</h1>
+        
+
+        
+
+
+
+
+<section class="page-content">
+
+    <div class="content">
+        <header>
+            
+        </header>
+
+        <article>
+            <div class="container-overview">
+
+                
+                <div class="description"><h2>数据加载 / InfiniteScroll无限滚动组件</h2><h3>说明</h3><p>当页面滚动到页面底部一定距离时, InfiniteScroll组件会触发<code>onInfinite</code>事件, 通过回调传入的参数<code>infiniteScroll</code>来处理对应的状态.</p>
+<p>比如: 当需要异步请求AJAX数据时, 数据请求后, 需要执行<code>infiniteScroll.complete()</code> 来变更InfiniteScroll组件的状态,当继续向下滚动时, 还能继续出发<code>onInfinite</code>事件, 如此往复.</p>
+<p>当通过AJAX请求的数据已经全部请求完毕(没有更多的数据时), 则执行<code>infiniteScroll.enable(false)</code>, 表明InfiniteScroll任务全部结束. 此时, 将解除对Content组件的<code>onScroll</code>事件的监听.</p>
+<h3>其他</h3><p>InfiniteScroll组件会附带InfiniteScrollContent组件, InfiniteScrollContent组件 是默认的显示组件,它只是起到显示状态的作用, 你也可以自己定义显示状态, 只要写好相应的css样式就好.</p>
+<p>其中, 标示状态的<code>state</code>有三种值: enabled/disabled/loading, 且这三种状态会写在父组件上, 因此可以用这个特性定义子组件的样式. 比如像下面的demo</p>
+<h3>建议</h3><p>首屏的数据至少占满两个以上屏幕高度, 通过 InfiniteScroll 加载的数据也至少能占满两个以上的屏幕高度, 这样的体验效果会好点</p>
+<h3>注意</h3><ul>
+<li>组件中的方法是在事件的回调参数中定义的.</li>
+<li>组件支持js滚动监听, 如何设置参考Content组件</li>
+</ul>
+<h3>如何引入</h3><pre class="prettyprint source"><code>// 引入
+import { InfiniteScroll, InfiniteScrollContent } from 'vimo'
+// 安装
+Vue.component(InfiniteScroll.name, InfiniteScroll)
+Vue.component(InfiniteScrollContent.name, InfiniteScrollContent)
+// 或者
+export default{
+  components: {
+    InfiniteScroll, InfiniteScrollContent
+ }
+}</code></pre></div>
+                
+
+                
+                
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="infinite-scroll_infinite-scroll.vue.html">infinite-scroll/infinite-scroll.vue</a>
+                    , <a href="infinite-scroll_infinite-scroll.vue.html#line2">line 2</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <section class="details__inner">
+        <dt class="tag-see">参考:</dt>
+        <dd class="tag-see">
+            <ul>
+                <li><a href="component-Content.html">component:Content</a></li>
+                </ul>
+        </dd>
+    </section>
+    
+
+    
+</dl>
+
+
+<h3 class="subsection-title">传入属性 / Props:</h3>
+
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>enabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>true</code>
+                
+                </td>
+            
+
+            <td class="description last">设置当前组件的可用状态, 如果为false, 则移除当前组件绑定的全部事件处理函数, 隐藏组件并且将状态设置为disabled</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>threshold</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'15%'</code>
+                
+                </td>
+            
+
+            <td class="description last">激活`onInfinite`事件的阈值. 阈值可以使百分比也可以是具体的px值. 如果为百分比(10%), 则距离底部10%的位置将为激活点; 如果为具体px值(100px), 则页面底部向下100px出为激活点.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+<h3 class="subsection-title">对外事件 / Fires:</h3>
+<ul>
+    <li><a href="component-InfiniteScroll.html#event:onInfinite">component:InfiniteScroll#event:onInfinite</a></li>
+    </ul>
+
+
+
+
+
+
+
+<h3 class="subsection-title">用法 / Usages</h3>
+
+    <pre class="prettyprint"><code>&lt;InfiniteScroll threshold="20%" @onInfinite="onInfinite">
+   &lt;InfiniteScrollContent loadingSpinner="ios" loadingText="正在加载...">&lt;/InfiniteScrollContent>
+   &lt;h5 class="loadedAll" text-center>全部加载完毕&lt;/h5>
+&lt;/InfiniteScroll>
+
+// ....
+ .ion-infinite-scroll{
+     .loadedAll{
+         display: none;
+     }
+  }
+ .ion-infinite-scroll[state=disabled]{
+     .loadedAll{
+         display: block;
+     }
+ }
+
+// ....
+
+methods: {
+   onInfinite(infiniteScroll){
+     let _start = this.i;
+     if(_start &lt; 40){
+       setTimeout(() => {
+         for (; (10 + _start) > this.i; this.i++) {
+          this.list.push(`item - ${this.i}`)
+        }
+        // 当前异步完成
+        infiniteScroll.complete();
+      }, 100)
+    }else{
+      // 当前异步结束, 没有新数据了
+      infiniteScroll.enable(false);
+    }
+ }
+ // ....</code></pre>
+
+
+
+                <!---->
+                <!--<div class="description"><h2>数据加载 / InfiniteScroll无限滚动组件</h2><h3>说明</h3><p>当页面滚动到页面底部一定距离时, InfiniteScroll组件会触发<code>onInfinite</code>事件, 通过回调传入的参数<code>infiniteScroll</code>来处理对应的状态.</p>
+<p>比如: 当需要异步请求AJAX数据时, 数据请求后, 需要执行<code>infiniteScroll.complete()</code> 来变更InfiniteScroll组件的状态,当继续向下滚动时, 还能继续出发<code>onInfinite</code>事件, 如此往复.</p>
+<p>当通过AJAX请求的数据已经全部请求完毕(没有更多的数据时), 则执行<code>infiniteScroll.enable(false)</code>, 表明InfiniteScroll任务全部结束. 此时, 将解除对Content组件的<code>onScroll</code>事件的监听.</p>
+<h3>其他</h3><p>InfiniteScroll组件会附带InfiniteScrollContent组件, InfiniteScrollContent组件 是默认的显示组件,它只是起到显示状态的作用, 你也可以自己定义显示状态, 只要写好相应的css样式就好.</p>
+<p>其中, 标示状态的<code>state</code>有三种值: enabled/disabled/loading, 且这三种状态会写在父组件上, 因此可以用这个特性定义子组件的样式. 比如像下面的demo</p>
+<h3>建议</h3><p>首屏的数据至少占满两个以上屏幕高度, 通过 InfiniteScroll 加载的数据也至少能占满两个以上的屏幕高度, 这样的体验效果会好点</p>
+<h3>注意</h3><ul>
+<li>组件中的方法是在事件的回调参数中定义的.</li>
+<li>组件支持js滚动监听, 如何设置参考Content组件</li>
+</ul>
+<h3>如何引入</h3><pre class="prettyprint source"><code>// 引入
+import { InfiniteScroll, InfiniteScrollContent } from 'vimo'
+// 安装
+Vue.component(InfiniteScroll.name, InfiniteScroll)
+Vue.component(InfiniteScrollContent.name, InfiniteScrollContent)
+// 或者
+export default{
+  components: {
+    InfiniteScroll, InfiniteScrollContent
+ }
+}</code></pre></div>-->
+                <!---->
+
+                
+                
+            </div>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+            <h3 class="subsection-title">方法 / Methods</h3>
+
+            
+            
+
+    
+
+    <h4 class="name" id="~complete"><span class="type-signature">(inner) </span>complete<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="infinite-scroll_infinite-scroll.vue.html">infinite-scroll/infinite-scroll.vue</a>
+                    , <a href="infinite-scroll_infinite-scroll.vue.html#line154">line 154</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>在 <code>onInfinite</code> 事件的回调中(参数为当前InfiniteScroll组件的this)执行<code>complete()</code>这个方法, 表示异步操作完毕.<br>比如在异步情况下通过AJAX获取数据增加新行列, 数据获取完毕更新UI后, 执行<code>complete()</code>这个方法,<br>表示loading已经完成, InfiniteScroll组件的状态将由<code>loading</code> 转为 <code>enabled</code>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---->
+
+
+
+
+
+
+
+
+
+
+            
+            
+
+    
+
+    <h4 class="name" id="~enable"><span class="type-signature">(inner) </span>enable<span class="signature">(shouldEnable)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="infinite-scroll_infinite-scroll.vue.html">infinite-scroll/infinite-scroll.vue</a>
+                    , <a href="infinite-scroll_infinite-scroll.vue.html#line171">line 171</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>设置InfiniteScroll组件的状态. 当在已经没有数据或者不再需要InfiniteScroll组件时执行这个方法.<br>需要在<code>onInfinite</code> 事件的回调中执行 <code>infiniteScroll.enable(false)</code>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>参数 / Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>shouldEnable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>组件当前状态, 如果为<code>false</code>, 则移除scroll的所有监听函数, 并隐藏组件</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<!---->
+
+
+
+
+
+
+
+
+
+
+            
+            
+
+    
+
+    <h4 class="name" id="~waitFor"><span class="type-signature">(inner) </span>waitFor<span class="signature">(action)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="infinite-scroll_infinite-scroll.vue.html">infinite-scroll/infinite-scroll.vue</a>
+                    , <a href="infinite-scroll_infinite-scroll.vue.html#line183">line 183</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>传入Promise对象, 在传入的Promise完成数据的加载, 当加载完毕执行<code>resolve()</code>, 这个<code>resolve()</code><br>在这里相当于执行了<code>this.complete()</code>, 用法如下所示</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>示例 / Examples</h5>
+    
+    <pre class="prettyprint"><code>&lt;Content>
+ &lt;List>
+     &lt;Item v-for="item of items">{{item}}&lt;/Item>
+ &lt;/List>
+ &lt;InfiniteScroll @onInfinite="$event.waitFor(doInfinite())">
+     &lt;InfiniteScrollContent>&lt;/InfiniteScrollContent>
+ &lt;/InfiniteScroll>
+&lt;/Content></code></pre>
+
+    <pre class="prettyprint"><code>// ...
+  doInfinite () {
+    console.log('Begin async operation');
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        for (var i = 0; i &lt; 30; i++) {
+          this.items.push( this.items.length );
+        }
+        console.log('Async operation has ended');
+        resolve();
+      }, 500);
+    })
+}
+// ...</code></pre>
+
+
+
+
+    <h5>参数 / Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Promise</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>执行方法</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<!---->
+
+
+
+
+
+
+
+
+
+
+            
+            
+
+            
+
+            
+            <h3 class="subsection-title">事件 / Events</h3>
+
+            
+            
+
+    
+
+    <h4 class="name" id="event:onInfinite">onInfinite</h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <section class="details__inner">
+        <dt class="tag-source">源码:</dt>
+        <dd class="tag-source">
+            <ul class="dummy">
+                <li>
+                    <a href="infinite-scroll_infinite-scroll.vue.html">infinite-scroll/infinite-scroll.vue</a>
+                    , <a href="infinite-scroll_infinite-scroll.vue.html#line276">line 276</a>
+                </li>
+            </ul>
+        </dd>
+    </section>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="description">
+    <p>触发无限滚动</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>参数 / Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>infiniteScroll</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">InfiniteScroll</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>InfiniteScroll组件的实例对象</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<!---->
+
+
+
+
+
+
+
+
+
+
+            
+            
+        </article>
+    </div>
+
+    
+    <article class="showcase">
+        <div id="js_showcase__box" class="showcase__box ios">
+            <div class="showcase__choose">
+                <span id="js_choose_ios" class="">IOS</span>
+                <span id="js_choose_md" class="">Android</span>
+                <span id="js_choose_qrcode" class="">QRCode</span>
+            </div>
+            <div class="showcase__box--md">
+                <iframe id="js_iframe_md" frameborder="0" seamless></iframe>
+            </div>
+            <div class="showcase__box--ios">
+                <iframe id="js_iframe_ios" frameborder="0" seamless></iframe>
+            </div>
+            <div class="showcase__box--qrcode">
+                <div class="showcase__qrcode">
+                   <div class="showcase__qrcode--inner" id="js_qrcode"></div>
+                   <a href="#" id="js_qrcode_a">扫码预览</a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <script>
+      (function () {
+        var demoUrl = 'https://vm-component.github.io/vimo-demo'
+        var demos = '#/infinite-scroll'
+        var qrCodeUrl = null
+        var iosUrl = null
+        var mdUrl = null
+        if (demos.indexOf('http') > -1) {
+          qrCodeUrl = demos
+          iosUrl = demos + '?vmMode=ios&vmPageTransition=fade-right-transition'
+          mdUrl = demos + '?vmMode=md&vmPageTransition=zoom-transition'
+        } else {
+          qrCodeUrl = demoUrl + demos
+          iosUrl = demoUrl + '?vmMode=ios&vmPageTransition=fade-right-transition' + demos
+          mdUrl = demoUrl + '?vmMode=md&vmPageTransition=zoom-transition' + demos
+        }
+
+        var $qrcode = document.getElementById('js_qrcode')
+        var $jqrcode_a = document.getElementById('js_qrcode_a')
+        $qrcode.title = qrCodeUrl
+        $jqrcode_a.href = qrCodeUrl
+        var qrcode = new QRCode($qrcode, {
+          width: 200,//设置宽高
+          height: 200
+        })
+        qrcode.makeCode(qrCodeUrl)
+
+        document.getElementById('js_iframe_ios').src = iosUrl
+        document.getElementById('js_iframe_md').src = mdUrl
+
+        document.getElementById('js_choose_ios').addEventListener('click', function () {
+          console.log('js_choose_ios')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'ios')) {
+            _removeClass($showCaseBox, 'md')
+            _removeClass($showCaseBox, 'qrcode')
+            _addClass($showCaseBox, 'ios')
+          }
+
+        })
+        document.getElementById('js_choose_md').addEventListener('click', function () {
+          console.log('js_choose_md')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'md')) {
+            _removeClass($showCaseBox, 'ios')
+            _removeClass($showCaseBox, 'qrcode')
+            _addClass($showCaseBox, 'md')
+          }
+        })
+
+        document.getElementById('js_choose_qrcode').addEventListener('click', function () {
+          console.log('js_choose_qrcode')
+          var $showCaseBox = document.getElementById('js_showcase__box')
+          if (!_hasClass($showCaseBox, 'qrcode')) {
+            _removeClass($showCaseBox, 'ios')
+            _removeClass($showCaseBox, 'md')
+            _addClass($showCaseBox, 'qrcode')
+          }
+        })
+
+
+        function _hasClass (obj, cls) {
+          return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+        }
+
+        function _addClass (obj, cls) {
+          if (!_hasClass(obj, cls)) {
+            obj.className += ' ' + cls
+          }
+        }
+
+        function _removeClass (obj, cls) {
+          if (_hasClass(obj, cls)) {
+            var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+            obj.className = obj.className.replace(reg, ' ').trim()
+          }
+        }
+      })()
+    </script>
+    
+
+</section>
+
+
+
+
+
+
+
+    </article>
+</div>
+
+<br class="clear">
+
+<!--<footer>-->
+    <!--文档根据<a href="https://github.com/vm-component/Vimo">Vimo源码</a>由<a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>自动生成, 主题修改自<a href="https://github.com/clenemt/docdash">docdash</a>, 并增加了 @component / @demo / @props / @slot / @usage 增强标注.-->
+<!--</footer>-->
+
+<footer>
+    文档根据<a href="https://github.com/vm-component/Vimo">Vimo源码</a>由<a href="https://github.com/jsdoc3/jsdoc">JSDoc3.5.5</a>自动生成。
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
